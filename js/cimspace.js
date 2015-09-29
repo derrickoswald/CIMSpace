@@ -309,12 +309,12 @@ requirejs
             var asset;
             var info;
             var resource;
-//        <cim:Asset rdf:ID="_busbar_1772383_asset">^M
-//                <cim:Asset.type>Busbar</cim:Asset.type>^M
-//                <cim:IdentifiedObject.name>Busbar_SAM143</cim:IdentifiedObject.name>^M
-//                <cim:Asset.PowerSystemResources rdf:resource="#_busbar_1772383"/>^M
-//                <cim:Asset.AssetInfo rdf:resource="#_busbar_spec_566593648"/>^M
-//        </cim:Asset>^M
+//        <cim:Asset rdf:ID="_busbar_1772383_asset">
+//                <cim:Asset.type>Busbar</cim:Asset.type>
+//                <cim:IdentifiedObject.name>Busbar_SAM143</cim:IdentifiedObject.name>
+//                <cim:Asset.PowerSystemResources rdf:resource="#_busbar_1772383"/>
+//                <cim:Asset.AssetInfo rdf:resource="#_busbar_spec_566593648"/>
+//        </cim:Asset>
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
@@ -435,9 +435,9 @@ requirejs
             var id;
             var name;
             var resource;
-//        <cim:BusbarInfo rdf:ID="_busbar_spec_566593648">^M
-//                <cim:IdentifiedObject.name>unbekannt EWS</cim:IdentifiedObject.name>^M
-//        </cim:BusbarInfo>^M
+//        <cim:BusbarInfo rdf:ID="_busbar_spec_566593648">
+//                <cim:IdentifiedObject.name>unbekannt EWS</cim:IdentifiedObject.name>
+//        </cim:BusbarInfo>
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
@@ -506,9 +506,9 @@ requirejs
             var id;
             var name;
             var resource;
-//        <cim:CableInfo rdf:ID="_cable_spec_566593874">^M
-//                <cim:IdentifiedObject.name>TT 4x1x70</cim:IdentifiedObject.name>^M
-//        </cim:CableInfo>^M
+//        <cim:CableInfo rdf:ID="_cable_spec_566593874">
+//                <cim:IdentifiedObject.name>TT 4x1x70</cim:IdentifiedObject.name>
+//        </cim:CableInfo>
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
@@ -538,13 +538,13 @@ requirejs
             var voltage;
             var container;
             var resource;
-//        <cim:ACLineSegment rdf:ID="_internal_line_2094357">^M
-//                <cim:IdentifiedObject.name>KLE8207</cim:IdentifiedObject.name>^M
-//                <cim:Conductor.length>19.5</cim:Conductor.length>^M
-//                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>^M
-//                <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>^M
-//                <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_859028"/>^M
-//        </cim:ACLineSegment>^M
+//        <cim:ACLineSegment rdf:ID="_internal_line_2094357">
+//                <cim:IdentifiedObject.name>KLE8207</cim:IdentifiedObject.name>
+//                <cim:Conductor.length>19.5</cim:Conductor.length>
+//                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
+//                <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>
+//                <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_859028"/>
+//        </cim:ACLineSegment>
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
@@ -583,11 +583,11 @@ requirejs
             var phase;
             var segment;
             var resource;
-//        <cim:ACLineSegmentPhase rdf:ID="_internal_line_2094357_phase_A">^M
-//                <cim:IdentifiedObject.name>KLE8207_phase_A</cim:IdentifiedObject.name>^M
-//                <cim:ACLineSegmentPhase.phase rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#SinglePhaseKind.A"/>^M
-//                <cim:ACLineSegmentPhase.ACLineSegment rdf:resource="_internal_line_2094357"/>^M
-//        </cim:ACLineSegmentPhase>^M
+//        <cim:ACLineSegmentPhase rdf:ID="_internal_line_2094357_phase_A">
+//                <cim:IdentifiedObject.name>KLE8207_phase_A</cim:IdentifiedObject.name>
+//                <cim:ACLineSegmentPhase.phase rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#SinglePhaseKind.A"/>
+//                <cim:ACLineSegmentPhase.ACLineSegment rdf:resource="_internal_line_2094357"/>
+//        </cim:ACLineSegmentPhase>
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
@@ -619,9 +619,9 @@ requirejs
             var id;
             var name;
             var resource;
-//        <cim:SwitchInfo rdf:ID="_switch_spec_566593661">^M
-//                <cim:IdentifiedObject.name>G4</cim:IdentifiedObject.name>^M
-//        </cim:SwitchInfo>^M
+//        <cim:SwitchInfo rdf:ID="_switch_spec_566593661">
+//                <cim:IdentifiedObject.name>G4</cim:IdentifiedObject.name>
+//        </cim:SwitchInfo>
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
@@ -650,12 +650,12 @@ requirejs
             var type;
             var container;
             var resource;
-//        <cim:LoadBreakSwitch rdf:ID="_switch_1977502">^M
-//                <cim:IdentifiedObject.name>TEI568</cim:IdentifiedObject.name>^M
-//                <cim:Switch.normalOpen>false</cim:Switch.normalOpen>^M
-//                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>^M
-//                <cim:Equipment.EquipmentContainer rdf:resource="_substation_251865"/>^M
-//        </cim:LoadBreakSwitch>^M
+//        <cim:LoadBreakSwitch rdf:ID="_switch_1977502">
+//                <cim:IdentifiedObject.name>TEI568</cim:IdentifiedObject.name>
+//                <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+//                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>
+//                <cim:Equipment.EquipmentContainer rdf:resource="_substation_251865"/>
+//        </cim:LoadBreakSwitch>
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
@@ -691,10 +691,10 @@ requirejs
             var name;
             var tank_info;
             var resource;
-//        <cim:PowerTransformerInfo rdf:ID="_power_transformer_2083545">^M
-//                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA</cim:IdentifiedObject.name>^M
-//                <cim:PowerTransformerInfo.TransformerTankInfo rdf:resource="#_power_xfrmr_spec_2083545"/>^M
-//        </cim:PowerTransformerInfo>^M
+//        <cim:PowerTransformerInfo rdf:ID="_power_transformer_2083545">
+//                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA</cim:IdentifiedObject.name>
+//                <cim:PowerTransformerInfo.TransformerTankInfo rdf:resource="#_power_xfrmr_spec_2083545"/>
+//        </cim:PowerTransformerInfo>
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
@@ -723,10 +723,10 @@ requirejs
             var name;
             var transformer_info;
             var resource;
-//        <cim:TransformerTankInfo rdf:ID="_power_xfrmr_spec_2083545">^M
-//                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA tank</cim:IdentifiedObject.name>^M
-//                <cim:TransformerTankInfo.PowerTransformerInfo rdf:resource="#_power_transformer_2083545"/>^M
-//        </cim:TransformerTankInfo>^M
+//        <cim:TransformerTankInfo rdf:ID="_power_xfrmr_spec_2083545">
+//                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA tank</cim:IdentifiedObject.name>
+//                <cim:TransformerTankInfo.PowerTransformerInfo rdf:resource="#_power_transformer_2083545"/>
+//        </cim:TransformerTankInfo>
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
@@ -755,10 +755,10 @@ requirejs
             var name;
             var end;
             var resource;
-//        <cim:TransformerEndInfo rdf:ID="_power_transformer_2083545_end_info_1">^M
-//                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA_tei_1</cim:IdentifiedObject.name>^M
-//                <cim:TransformerEndInfo.endNumber>1</cim:TransformerEndInfo.endNumber>^M
-//        </cim:TransformerEndInfo>^M
+//        <cim:TransformerEndInfo rdf:ID="_power_transformer_2083545_end_info_1">
+//                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA_tei_1</cim:IdentifiedObject.name>
+//                <cim:TransformerEndInfo.endNumber>1</cim:TransformerEndInfo.endNumber>
+//        </cim:TransformerEndInfo>
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
@@ -787,11 +787,11 @@ requirejs
             var type;
             var container;
             var resource;
-//        <cim:PowerTransformer rdf:ID="_transformer_2083545">^M
-//                <cim:IdentifiedObject.name>TRA79</cim:IdentifiedObject.name>^M
-//                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>^M
-//                <cim:Equipment.EquipmentContainer rdf:resource="#_substation_244441"/>^M
-//        </cim:PowerTransformer>^M
+//        <cim:PowerTransformer rdf:ID="_transformer_2083545">
+//                <cim:IdentifiedObject.name>TRA79</cim:IdentifiedObject.name>
+//                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
+//                <cim:Equipment.EquipmentContainer rdf:resource="#_substation_244441"/>
+//        </cim:PowerTransformer>
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
@@ -826,10 +826,10 @@ requirejs
             var name;
             var transformer;
             var resource;
-//       <cim:TransformerTank rdf:ID="_transformer_2083545_tank">^M
-//                <cim:IdentifiedObject.name>TRA79_tank</cim:IdentifiedObject.name>^M
-//                <cim:TransformerTank.PowerTransformer rdf:resource="#_transformer_2083545"/>^M
-//        </cim:TransformerTank>^M
+//       <cim:TransformerTank rdf:ID="_transformer_2083545_tank">
+//                <cim:IdentifiedObject.name>TRA79_tank</cim:IdentifiedObject.name>
+//                <cim:TransformerTank.PowerTransformer rdf:resource="#_transformer_2083545"/>
+//        </cim:TransformerTank>
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
@@ -866,14 +866,14 @@ requirejs
             var terminal;
             var voltage;
             var resource;
-//        <cim:TransformerTankEnd rdf:ID="_transformer_2083545_tank_end_1">^M
-//                <cim:TransformerEnd.endNumber>1</cim:TransformerEnd.endNumber>^M
-//                <cim:IdentifiedObject.name>TRA79_tank_end_1</cim:IdentifiedObject.name>^M
-//                <cim:TransformerTankEnd.phases rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseCode.ABC"/>^M
-//                <cim:TransformerTankEnd.TransformerTank rdf:resource="#_transformer_2083545_tank"/>^M
-//                <cim:TransformerEnd.Terminal rdf:resource="#_transformer_2083545_terminal_1"/>^M
-//                <cim:TransformerEnd.BaseVoltage rdf:resource="#BaseVoltage_16.0000000000"/>^M
-//        </cim:TransformerTankEnd>^M
+//        <cim:TransformerTankEnd rdf:ID="_transformer_2083545_tank_end_1">
+//                <cim:TransformerEnd.endNumber>1</cim:TransformerEnd.endNumber>
+//                <cim:IdentifiedObject.name>TRA79_tank_end_1</cim:IdentifiedObject.name>
+//                <cim:TransformerTankEnd.phases rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseCode.ABC"/>
+//                <cim:TransformerTankEnd.TransformerTank rdf:resource="#_transformer_2083545_tank"/>
+//                <cim:TransformerEnd.Terminal rdf:resource="#_transformer_2083545_terminal_1"/>
+//                <cim:TransformerEnd.BaseVoltage rdf:resource="#BaseVoltage_16.0000000000"/>
+//        </cim:TransformerTankEnd>
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
@@ -1071,11 +1071,11 @@ requirejs
         }
 
         /**
-         * Handle the FileReader completion event.
+         * Handle the FileReader completion event for an XML file.
          * @param {Object} event - the onload event
          * @memberOf module:cimspace
          */
-        function read_files (event)
+        function read_xml_file (event)
         {
 
             var next;
@@ -1141,6 +1141,259 @@ requirejs
         }
 
         /**
+         * Convert the provided GML into GeoJSON
+         * @param {String} gml - the gml text
+         * @param {Object} context - the file reading context
+         * @param {Object} parsed - optional parsed elements to add to
+         * @returns {Object} the parsed object
+         * @memberOf module:cimspace
+         */
+        function read_gml (gml, context, parsed)
+        {
+//                        <gml:boundedBy>
+//                                <gml:Envelope srsName="EPSG:4326">
+//                                        <gml:lowerCorner>8.58640801325 47.0567348335</gml:lowerCorner>
+//                                        <gml:upperCorner>8.58653962013 47.0567361498</gml:upperCorner>
+//                                </gml:Envelope>
+//                        </gml:boundedBy>
+//                        <nmm:ID>_busbar_1772407</nmm:ID>
+//                        <nmm:Angle>0</nmm:Angle>
+//                        <nmm:NMMGeometry>
+//                                <nmm:FieldName>path</nmm:FieldName>
+//                                <gml:LineString srsName="EPSG:4326">
+//                                        <gml:posList>8.58640801325 47.0567361498 8.58644091497 47.0567358207 8.58647381669 47.0567354916 8.58650671841 47.0567351626 8.58653962013 47.0567348335</gml:posList>
+//                                </gml:LineString>
+//                        </nmm:NMMGeometry>
+
+
+//                        <gml:boundedBy>
+//                                <gml:Envelope srsName="EPSG:4326">
+//                                        <gml:lowerCorner>8.78184724183 47.0400997930</gml:lowerCorner>
+//                                        <gml:upperCorner>8.78184724183 47.0400997930</gml:upperCorner>
+//                                </gml:Envelope>
+//                        </gml:boundedBy>
+//                        <nmm:ID>_house_connection_1469932</nmm:ID>
+//                        <nmm:Angle>147.307201327</nmm:Angle>
+//                        <nmm:NMMGeometry>
+//                                <nmm:FieldName>location</nmm:FieldName>
+//                                <gml:Point srsName="EPSG:4326">
+//                                        <gml:pos>8.78184724183 47.0400997930</gml:pos>
+//                                </gml:Point>
+//                        </nmm:NMMGeometry>
+            var regex;
+            var result;
+            var subcontext;
+            var guts;
+            var id;
+            var angle;
+            var type;
+            var coords;
+
+            context = context ||
+            {
+                start_character: 0,
+                end_character: 0,
+                newlines: []
+            };
+            parsed = parsed ||
+            {
+                lines:
+                {
+                    "type" : "FeatureCollection",
+                    "features" :
+                    [
+//                        {
+//                            "type" : "Feature",
+//                            "geometry" :
+//                            {
+//                                "type" : "LineString",
+//                                "coordinates" : [ [ 102.0, 0.0 ], [ 103.0, 1.0 ], [ 104.0, 0.0 ], [ 105.0, 1.0 ] ]
+//                            },
+//                            "properties" :
+//                            {
+//                                "prop0" : "value0",
+//                                "prop1" : 0.0
+//                            }
+//                        }
+                    ]
+                },
+                points:
+                {
+                    "type" : "FeatureCollection",
+                    "features" :
+                    [
+//                        {
+//                            "type" : "Feature",
+//                            "geometry" :
+//                            {
+//                                "type" : "Point",
+//                                "coordinates" : [ 102.0, 0.5 ]
+//                            },
+//                            "properties" :
+//                            {
+//                                "prop0" : "value0"
+//                            }
+//                        }
+                    ]
+                }
+            };
+
+            // update the newline index
+            context.newlines = index_string (gml, context.start_character);
+
+            // scan for device elements
+            regex = /<nmm:DeviceMember>\s*<nmm:Device>([\s\S]*?)<\/nmm:Device>\s*<\/nmm:DeviceMember>/g;
+            while (null != (result = regex.exec (gml)))
+            {
+                // update the last seen character position
+                context.end_character = context.start_character + regex.lastIndex;
+                // form the subcontext for parsing individual elements
+                subcontext =
+                {
+                    start_character: context.start_character + result.index,
+                    end_character: context.end_character,
+                    newlines: context.newlines
+                };
+                guts = result[1];
+                id = parse_element (/<nmm:ID>([\s\S]*?)<\/nmm:ID>/g, guts, subcontext);
+                angle= parse_element (/<nmm:Angle>([\s\S]*?)<\/nmm:Angle>/g, guts, subcontext);
+                type = parse_element (/<nmm:FieldName>([\s\S]*?)<\/nmm:FieldName>/g, guts, subcontext);
+                if ("path" == type)
+                {
+                    coords = parse_element (/<gml:posList>([\s\S]*?)<\/gml:posList>/g, guts, subcontext).split (" ");
+                    parsed.lines.features.push
+                    (
+                        {
+                            "type" : "Feature",
+                            "geometry" :
+                            {
+                                "type" : "LineString",
+                                "coordinates" : coords.reduce
+                                (
+                                    function (ret, item)
+                                    {
+                                        var next;
+
+                                        next = ret[ret.length - 1];
+                                        if (!next || (2 <= next.length))
+                                        {
+                                            next = [];
+                                            ret.push (next);
+                                        }
+                                        next.push (item);
+
+                                        return (ret);
+                                    },
+                                    []
+                                )
+                            },
+                            "properties" :
+                            {
+                                "id" : id
+                            }
+                        }
+                    );
+                }
+                else if ("location" == type)
+                {
+                    coords = parse_element (/<gml:pos>([\s\S]*?)<\/gml:pos>/g, guts, subcontext).split (" ");
+                    parsed.points.features.push
+                    (
+                        {
+                            "type" : "Feature",
+                            "geometry" :
+                            {
+                                "type" : "Point",
+                                "coordinates" : [ coords[0], coords[1] ]
+                            },
+                            "properties" :
+                            {
+                                "id" : id
+                            }
+                        }
+                    );
+                }
+            }
+
+            return ({parsed: parsed, context: context});
+        }
+
+        /**
+         * Handle the FileReader completion event for a GML file.
+         * @param {Object} event - the onload event
+         * @memberOf module:cimspace
+         */
+        function read_gml_file (event)
+        {
+            var next;
+
+            console.log ("starting");
+            next = read_gml (event.target.result);
+            console.log ("done parsing " + event.target.result.length + " characters yields "
+                + next.parsed.lines.features.length + " lines and "
+                + next.parsed.points.features.length + " points.");
+            //var layer = L.mapbox.featureLayer (next.parsed);
+            //layer.addTo (map);
+            map.addSource
+            (
+                "the cim lines",
+                {
+                    type: "geojson",
+                    data: next.parsed.lines
+                }
+            );
+
+            map.addSource
+            (
+                "the cim points",
+                {
+                    type: "geojson",
+                    data: next.parsed.points
+                }
+            );
+
+            map.addLayer
+            (
+                {
+                    id: "lines",
+                    type: "line",
+                    source: "the cim lines",
+                    layout:
+                    {
+                        "line-join": "round",
+                        "line-cap": "round"
+                    },
+                    paint:
+                    {
+                        "line-color": "#000",
+                        "line-width": 3
+                    }
+                }
+            );
+
+            map.addLayer
+            (
+                {
+                    id: "points",
+                    type: "symbol",
+                    source: "the cim points",
+                    layout:
+                    {
+                        "icon-image": "monument-15",
+//                        "text-field": ".",
+//                        "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+//                        "text-offset": [0, 0.6],
+//                        "text-anchor": "top"
+                    },
+                    paint:
+                    {
+                        "text-size": 12
+                    }
+                }
+            );
+        }
+
+        /**
          * @summary Handler for file change events.
          * @description Add files to the collection and update the display.
          * @param {object} event - the file change event
@@ -1149,11 +1402,19 @@ requirejs
          */
         function file_change (event)
         {
-            var reader = new FileReader ();
-            reader.onload = read_files;
-            reader.readAsText(event.target.files[0], "UTF-8");
+            for (var i = 0; i < event.target.files.length; i++)
+            {
+                var file = event.target.files[i];
+                var name = file.name;
+                var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
+                var reader = new FileReader ();
+                if (".xml" == extension)
+                    reader.onload = read_xml_file;
+                else if (".gml" == extension)
+                    reader.onload = read_gml_file;
+                reader.readAsText (file, "UTF-8");
+            }
         }
-
 
         document.getElementById ("fake_files").onclick = fake_files;
         document.getElementById ("read_files").onchange = file_change;

@@ -20,7 +20,8 @@
     <link href="css/mdb.css" rel="stylesheet">
 
     <!-- Mapbox -->
-    <link href="css/mapbox.css" rel="stylesheet" />
+    <!-- link href="css/mapbox.css" rel="stylesheet" /-->
+    <link href="css/mapbox-gl.css" rel="stylesheet" />
 
     <!-- Template style -->
     <link href="css/style.css" rel="stylesheet">
@@ -113,26 +114,26 @@
     <script type="text/javascript" src="js/mdb.js"></script>
 
     <!-- Mapbox -->
-    <script type="text/javascript" src="js/mapbox.js"></script>
+    <!-- script type="text/javascript" src="js/mapbox.js"></script -->
+    <script type="text/javascript" src="js/mapbox-gl.js"></script>
 
     <!-- CIMSpace Application -->
     <script type="text/javascript" src="js/require.js" data-main="js/cimspace.js"></script>
 
     <script>
-     L.mapbox.accessToken = "pk....";
-     var map = L.mapbox.map ("map", "derrickoswald.ciezok3nc00ovsvlth7rs7tcz").setView([46.93003, 7.48634000000001], 9);
-    /*
+    //L.mapbox.accessToken = "pk...";
+    //var map = L.mapbox.map ("map", "derrickoswald.ciezok3nc00ovsvlth7rs7tcz").setView([46.93003, 7.48634000000001], 9);
+    mapboxgl.accessToken = "pk...";
     var map = new mapboxgl.Map
     (
         {
             container: "map",
-            center: [46.93003, 7.48634000000001],
+            center: [7.48634000000001, 46.93003],
             zoom: 9,
-            style: "mapbox://styles/mapbox/basic-v8",
+            style: "mapbox://styles/mapbox/streets-v8",
             hash: true
         }
     );
-    */
     </script>
 </body>
 
