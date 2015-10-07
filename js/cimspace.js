@@ -1083,10 +1083,11 @@ requirejs
 
         /**
          * Handle the FileReader completion event for an XML file.
+         * @param {Object[]} files - the array of files
          * @param {Object} event - the onload event
          * @memberOf module:cimspace
          */
-        function read_xml_file (event)
+        function read_xml_file (files, event)
         {
 
             var next;
@@ -1149,6 +1150,21 @@ requirejs
                 }
 
             console.log ("done checking " + count_resources + " resources " + count_connectivity + " connections");
+
+            // chain to the gml file reader
+            for (var i = 0; i < files.length; i++)
+            {
+                var file = files[i];
+                var name = file.name;
+                var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
+                if (".gml" == extension)
+                {
+                    var reader = new FileReader ();
+                    reader.onload = read_gml_file.bind (this, next.parsed);
+                    reader.readAsText (file, "UTF-8");
+                    break;
+                }
+            }
         }
 
         /**
@@ -1329,14 +1345,22 @@ requirejs
             return ({parsed: parsed, context: context});
         }
 
+        function do_vector_tiles ()
+        {
+            return (document.getElementById ("vector_tiles").checked && mapboxgl.supported ());
+        }
+
         /**
          * Handle the FileReader completion event for a GML file.
+         * @param {Object} data - the XML parsed data
          * @param {Object} event - the onload event
          * @memberOf module:cimspace
          */
-        function read_gml_file (event)
+        function read_gml_file (data, event)
         {
             var next;
+            var feature;
+            var item;
 
             console.log ("starting");
             next = read_gml (event.target.result);
@@ -1344,7 +1368,24 @@ requirejs
                 + next.parsed.lines.features.length + " lines and "
                 + next.parsed.points.features.length + " points.");
 
-            var mapbox_classic = !document.getElementById ("vector_tiles").checked;
+            // match up the data
+            for (var i = 0; i < next.parsed.lines.features.length; i++)
+            {
+                feature = next.parsed.lines.features[i];
+                item = data.PowerSystemResources[feature.properties.id];
+                if (null != item)
+                    feature.properties = item;
+            }
+            for (var i = 0; i < next.parsed.points.features.length; i++)
+            {
+                feature = next.parsed.points.features[i];
+                item = data.PowerSystemResources[feature.properties.id];
+                if (null != item)
+                    feature.properties = item;
+            }
+
+            // update the map
+            var mapbox_classic = !do_vector_tiles ();
             if (mapbox_classic)
             {
                 var lines = L.mapbox.featureLayer (next.parsed.lines);
@@ -1372,48 +1413,6 @@ requirejs
                     }
                 );
 
-//                map.batch
-//                (
-//                    function (batch)
-//                    {
-//                        batch.addLayer
-//                        (
-//                            {
-//                                id: "lines",
-//                                type: "line",
-//                                source: "the cim lines",
-//                                layout:
-//                                {
-//                                    "line-join": "round",
-//                                    "line-cap": "round"
-//                                },
-//                                paint:
-//                                {
-//                                    "line-color": "#000",
-//                                    "line-width": 3
-//                                }
-//                            }
-//                        );
-//
-//                        batch.addLayer
-//                        (
-//                            {
-//                                id: "points",
-//                                type: "symbol",
-//                                source: "the cim points",
-//                                layout:
-//                                {
-//                                    "icon-image": "monument-15"
-//                                },
-//                                paint:
-//                                {
-//                                    "text-size": 12
-//                                }
-//                            }
-//                        );
-//                    }
-//                );
-
                 TheMap.addLayer
                 (
                     {
@@ -1433,20 +1432,48 @@ requirejs
                     }
                 );
 
+                // simple circle from 14 to 17
                 TheMap.addLayer
                 (
                     {
-                        id: "points",
+                        id: "circles",
+                        type: "circle",
+                        source: "the cim points",
+                        minzoom: 14,
+                        maxzoom: 17,
+                        layout:
+                        {
+                            "visibility": "visible"
+                        },
+                        paint:
+                        {
+                            "circle-radius": 5, // Optional number. Units in pixels. Defaults to 5.
+                            "circle-color": "rgb(0, 0, 0)", // Optional color. Defaults to #000000.
+                            "circle-blur": 0, // Optional number. Defaults to 0. 1 blurs the circle such that only the centerpoint is full opacity.
+                            "circle-opacity": 1, // Optional number. Defaults to 1.
+                            "circle-translate": [0, 0], // Optional array. Units in pixels. Defaults to 0,0. Values are [x, y] where negatives indicate left and up, respectively.
+                            "circle-translate-anchor": "map", // Optional enum. One of map, viewport. Defaults to map. Requires circle-translate.
+                        }
+                    }
+                );
+
+                // symbol icon from 17 and deeper
+                TheMap.addLayer
+                (
+                    {
+                        id: "symbols",
                         type: "symbol",
                         source: "the cim points",
+                        minzoom: 17,
                         layout:
                         {
                             "icon-image": "monument-15",
-                            "icon-allow-overlap": true
-    //                        "text-field": ".",
-    //                        "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-    //                        "text-offset": [0, 0.6],
-    //                        "text-anchor": "top"
+                            "icon-allow-overlap": true,
+                            "text-field": "{name}",
+                            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                            "text-offset": [0, 0.6],
+                            "text-anchor": "top",
+                            "text-allow-overlap": true
                         },
                         paint:
                         {
@@ -1462,7 +1489,7 @@ requirejs
          * @description Add files to the collection and update the display.
          * @param {object} event - the file change event
          * @function file_change
-         * @memberOf module:thingmaker/files
+         * @memberOf module:cimspace
          */
         function file_change (event)
         {
@@ -1471,18 +1498,26 @@ requirejs
                 var file = event.target.files[i];
                 var name = file.name;
                 var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
-                var reader = new FileReader ();
                 if (".xml" == extension)
-                    reader.onload = read_xml_file;
-                else if (".gml" == extension)
-                    reader.onload = read_gml_file;
-                reader.readAsText (file, "UTF-8");
+                {
+                    var reader = new FileReader ();
+                    reader.onload = read_xml_file.bind (this, event.target.files);
+                    reader.readAsText (file, "UTF-8");
+                    break;
+                }
             }
         }
 
+        /**
+         * @summary Initialize the map.
+         * @description Create the background map.
+         * @param {object} event - optional, the vector tile checkbox change event
+         * @function init_map
+         * @memberOf module:cimspace
+         */
         function init_map (event)
         {
-            var mapbox_classic = !document.getElementById ("vector_tiles").checked;
+            var mapbox_classic = !do_vector_tiles ();
 
             document.getElementById ("map").innerHTML = "";
             if (mapbox_classic)
