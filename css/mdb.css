@@ -2527,6 +2527,22 @@ select {
   text-transform: none;
 }
 
+/* missing in my mdb.css - added by Derrick */
+.file-field input[type=file] {
+    position:absolute;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    width:100%;
+    margin:0;
+    padding:0;
+    font-size:20px;
+    cursor:pointer;
+    opacity:0;
+    filter:alpha(opacity=0)
+}
+
 /**
  * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
  *    and `video` controls.
@@ -3494,7 +3510,8 @@ a {
 
 html {
   line-height: 1.5;
-  font-family: "Roboto",     sans-serif;
+  font-family: "Roboto",
+     sans-serif;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.87);
 }

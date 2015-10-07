@@ -15,6 +15,17 @@ requirejs
     function ()
     {
         /**
+         * The map object.
+         * @see https://www.mapbox.com
+         */
+        var TheMap;
+
+        /**
+         * The user specific token to access mapbox tiles.
+         */
+        var TheToken = "pk.eyJ1IjoiZGVycmlja29zd2FsZCIsImEiOiJjaWV6b2szd3MwMHFidDRtNDZoejMyc3hsIn0.wnEkePEuhYiNcXDLACSxVw";
+
+        /**
          * Convert a string into a boolean value.
          * @param {String} str - the string to convert
          * @returns {Boolean} the boolean value
@@ -1185,7 +1196,7 @@ requirejs
             var subcontext;
             var guts;
             var id;
-            var angle;
+            //var angle;
             var type;
             var coords;
 
@@ -1256,7 +1267,7 @@ requirejs
                 };
                 guts = result[1];
                 id = parse_element (/<nmm:ID>([\s\S]*?)<\/nmm:ID>/g, guts, subcontext);
-                angle= parse_element (/<nmm:Angle>([\s\S]*?)<\/nmm:Angle>/g, guts, subcontext);
+                //angle= parse_element (/<nmm:Angle>([\s\S]*?)<\/nmm:Angle>/g, guts, subcontext);
                 type = parse_element (/<nmm:FieldName>([\s\S]*?)<\/nmm:FieldName>/g, guts, subcontext);
                 if ("path" == type)
                 {
@@ -1332,65 +1343,118 @@ requirejs
             console.log ("done parsing " + event.target.result.length + " characters yields "
                 + next.parsed.lines.features.length + " lines and "
                 + next.parsed.points.features.length + " points.");
-            //var layer = L.mapbox.featureLayer (next.parsed);
-            //layer.addTo (map);
-            map.addSource
-            (
-                "the cim lines",
-                {
-                    type: "geojson",
-                    data: next.parsed.lines
-                }
-            );
 
-            map.addSource
-            (
-                "the cim points",
-                {
-                    type: "geojson",
-                    data: next.parsed.points
-                }
-            );
-
-            map.addLayer
-            (
-                {
-                    id: "lines",
-                    type: "line",
-                    source: "the cim lines",
-                    layout:
+            var mapbox_classic = !document.getElementById ("vector_tiles").checked;
+            if (mapbox_classic)
+            {
+                var lines = L.mapbox.featureLayer (next.parsed.lines);
+                lines.addTo (TheMap);
+                var points = L.mapbox.featureLayer (next.parsed.points);
+                points.addTo (TheMap);
+            }
+            else
+            {
+                TheMap.addSource
+                (
+                    "the cim lines",
                     {
-                        "line-join": "round",
-                        "line-cap": "round"
-                    },
-                    paint:
-                    {
-                        "line-color": "#000",
-                        "line-width": 3
+                        type: "geojson",
+                        data: next.parsed.lines
                     }
-                }
-            );
+                );
 
-            map.addLayer
-            (
-                {
-                    id: "points",
-                    type: "symbol",
-                    source: "the cim points",
-                    layout:
+                TheMap.addSource
+                (
+                    "the cim points",
                     {
-                        "icon-image": "monument-15",
-//                        "text-field": ".",
-//                        "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-//                        "text-offset": [0, 0.6],
-//                        "text-anchor": "top"
-                    },
-                    paint:
-                    {
-                        "text-size": 12
+                        type: "geojson",
+                        data: next.parsed.points
                     }
-                }
-            );
+                );
+
+//                map.batch
+//                (
+//                    function (batch)
+//                    {
+//                        batch.addLayer
+//                        (
+//                            {
+//                                id: "lines",
+//                                type: "line",
+//                                source: "the cim lines",
+//                                layout:
+//                                {
+//                                    "line-join": "round",
+//                                    "line-cap": "round"
+//                                },
+//                                paint:
+//                                {
+//                                    "line-color": "#000",
+//                                    "line-width": 3
+//                                }
+//                            }
+//                        );
+//
+//                        batch.addLayer
+//                        (
+//                            {
+//                                id: "points",
+//                                type: "symbol",
+//                                source: "the cim points",
+//                                layout:
+//                                {
+//                                    "icon-image": "monument-15"
+//                                },
+//                                paint:
+//                                {
+//                                    "text-size": 12
+//                                }
+//                            }
+//                        );
+//                    }
+//                );
+
+                TheMap.addLayer
+                (
+                    {
+                        id: "lines",
+                        type: "line",
+                        source: "the cim lines",
+                        layout:
+                        {
+                            "line-join": "round",
+                            "line-cap": "round"
+                        },
+                        paint:
+                        {
+                            "line-color": "#000",
+                            "line-width": 3
+                        }
+                    }
+                );
+
+                TheMap.addLayer
+                (
+                    {
+                        id: "points",
+                        type: "symbol",
+                        source: "the cim points",
+                        layout:
+                        {
+                            "icon-image": "monument-15",
+                            "icon-allow-overlap": true
+    //                        "text-field": ".",
+    //                        "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+    //                        "text-offset": [0, 0.6],
+    //                        "text-anchor": "top"
+                        },
+                        paint:
+                        {
+                            "text-size": 12
+                        }
+                    }
+                );
+            }
         }
 
         /**
@@ -1416,7 +1480,36 @@ requirejs
             }
         }
 
+        function init_map (event)
+        {
+            var mapbox_classic = !document.getElementById ("vector_tiles").checked;
+
+            document.getElementById ("map").innerHTML = "";
+            if (mapbox_classic)
+            {
+                L.mapbox.accessToken = TheToken;
+                TheMap = L.mapbox.map ("map", "derrickoswald.ciezok3nc00ovsvlth7rs7tcz").setView([46.93003, 7.48634000000001], 9);
+            }
+            else
+            {
+                mapboxgl.accessToken = TheToken;
+                TheMap = new mapboxgl.Map
+                (
+                    {
+                        container: "map",
+                        center: [7.48634000000001, 46.93003],
+                        zoom: 9,
+                        style: "mapbox://styles/mapbox/streets-v8",
+                        hash: true
+                    }
+                );
+            }
+        }
+
         document.getElementById ("fake_files").onclick = fake_files;
         document.getElementById ("read_files").onchange = file_change;
+        //document.getElementById ("file_button").onchange = file_change;
+        document.getElementById ("vector_tiles").onchange = init_map;
+        init_map ();
     }
 );

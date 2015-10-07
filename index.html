@@ -20,7 +20,7 @@
     <link href="css/mdb.css" rel="stylesheet">
 
     <!-- Mapbox -->
-    <!-- link href="css/mapbox.css" rel="stylesheet" /-->
+    <link href="css/mapbox.css" rel="stylesheet" />
     <link href="css/mapbox-gl.css" rel="stylesheet" />
 
     <!-- Template style -->
@@ -47,9 +47,19 @@
                     <li><a id="fake_files" href="#" class="waves-effect waves-light">Fake Files</a></li>
                     <!-- li><a id="read_files" href="#" class="waves-effect waves-light">Read Files</a></li -->
                     <li><input id="read_files" type="file" name="files[]" multiple></li>
+                    <!-- li><a id="load_files" href="#" class="waves-effect waves-light" data-toggle="modal" data-target="#file_modal">Load Files</a></li -->
+                    <!-- li><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal-3">Click me</button></li -->
+
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="vector_tiles" type="checkbox" name="vector" checked> Enable vector tiles
+                                    </label>
+                                </div>
+                            </li>
                             <li><a href="#">Action</a></li>
                             <li><a href="#">Another action</a></li>
                             <li><a href="#">Something else here</a></li>
@@ -70,9 +80,8 @@
     </nav>
 
 
-    <!-- Put your page content here! -->
+    <!-- Content -->
     <section id="map" class="intro">
-    <!-- iframe width='100%' height='100%' frameBorder='0' src='https://a.tiles.mapbox.com/v4/derrickoswald.ciezok3nc00ovsvlth7rs7tcz/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoiZGVycmlja29zd2FsZCIsImEiOiJjaWV6b2szd3MwMHFidDRtNDZoejMyc3hsIn0.wnEkePEuhYiNcXDLACSxVw'></iframe -->
     </section>
 
     <!-- Footer -->
@@ -96,13 +105,82 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                © 2015 Copyright Text
+                © 2015 9code GmbH
                 <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
             </div>
         </div>
     </footer>
 
-     <!-- SCRIPTS -->
+    <!-- Modal -->
+    <div class="modal fade" id="file_modal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header text-center" style="padding:35px 50px;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><i class="fa fa-upload"></i> Load files</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="choose_thing_files">Files</label>
+                            <div class="col-sm-9">
+                                <div class="input-group" aria-describedby="files_help">
+                                    <span id="choose_thing_files" class="input-group-btn">
+                                        <span class="btn btn-success btn-file">
+                                            <i class="fa fa-plus marginright"></i>
+                                            Add files...
+                                            <input id="thing_files" type="file" name="filesxx[]" multiple>
+                                        </span>
+                                    </span>
+                                    <div id="files_drop_zone" class="form-control drop_zone">
+                                        Drop files here...
+                                    </div>
+                                </div>
+                                <span id="files_help" class="help-block nonexpert">
+                                    Choose both a CIM XML file and a corresponding GML file.
+                                </span>
+                            </div>
+                        </div>
+
+                        <form action="#">
+                            <div class="file-field input-field">
+                              <button type="button" class="btn btn-default waves-effect waves-light">
+                                <span>Files</span>
+                                <input id="file_button" type="file"  name="files[]" multiple/>
+                              </button>
+                            </div>
+                        </form>
+
+                        <form class="col-md-12">
+                            <div class="row">
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-default btn-lg waves-effect waves-light">Sign up</button>
+                                    <div class="subscription-checkbox">
+                                        <form action="#">
+
+                                            <input type="checkbox" id="test6" />
+                                            <label for="test6">
+                                                <p>Subscribe me to the Newsletter</p>
+                                            </label>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">Cancel</button>
+                    <p>Already have an account? <a href="#">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
 
     <!-- JQuery -->
     <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -114,27 +192,12 @@
     <script type="text/javascript" src="js/mdb.js"></script>
 
     <!-- Mapbox -->
-    <!-- script type="text/javascript" src="js/mapbox.js"></script -->
+    <script type="text/javascript" src="js/mapbox.js"></script>
     <script type="text/javascript" src="js/mapbox-gl.js"></script>
 
     <!-- CIMSpace Application -->
     <script type="text/javascript" src="js/require.js" data-main="js/cimspace.js"></script>
 
-    <script>
-    //L.mapbox.accessToken = "pk...";
-    //var map = L.mapbox.map ("map", "derrickoswald.ciezok3nc00ovsvlth7rs7tcz").setView([46.93003, 7.48634000000001], 9);
-    mapboxgl.accessToken = "pk...";
-    var map = new mapboxgl.Map
-    (
-        {
-            container: "map",
-            center: [7.48634000000001, 46.93003],
-            zoom: 9,
-            style: "mapbox://styles/mapbox/streets-v8",
-            hash: true
-        }
-    );
-    </script>
 </body>
 
 </html>
