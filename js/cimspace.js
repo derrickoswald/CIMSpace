@@ -1465,9 +1465,10 @@ requirejs
                         type: "symbol",
                         source: "the cim points",
                         minzoom: 17,
+                        interactive: true,
                         layout:
                         {
-                            "icon-image": "monument-15",
+                            "icon-image": "monument-11",
                             "icon-allow-overlap": true,
                             "text-field": "{name}",
                             "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
@@ -1531,11 +1532,40 @@ requirejs
                 TheMap = new mapboxgl.Map
                 (
                     {
+                        name: "TheMap",
+                        version: 8,
                         container: "map",
                         center: [7.48634000000001, 46.93003],
                         zoom: 9,
                         style: "mapbox://styles/mapbox/streets-v8",
                         hash: true
+                    }
+                );
+                // add zoom and rotation controls to the map.
+                TheMap.addControl (new mapboxgl.Navigation ());
+                // handle mouse movement
+                var last;
+                TheMap.on
+                (
+                    'mousemove',
+                    function (event)
+                    {
+                        TheMap.featuresAt
+                        (
+                            event.point,
+                            {radius: 5},
+                            function (err, features)
+                            {
+                                if (err)
+                                    throw err;
+                                if (0 != features.length)
+                                {
+                                    if (features[0].properties.name != last)
+                                        console.log (JSON.stringify (features[0].properties, null, 2));
+                                    last = features[0].properties.name;
+                                }
+                            }
+                        );
                     }
                 );
             }
