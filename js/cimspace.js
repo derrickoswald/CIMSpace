@@ -1376,13 +1376,45 @@ requirejs
                 if (null != item)
                     feature.properties = item;
             }
-            for (var i = 0; i < next.parsed.points.features.length; i++)
+            for (var j = 0; j < next.parsed.points.features.length; j++)
             {
-                feature = next.parsed.points.features[i];
+                feature = next.parsed.points.features[j];
                 item = data.PowerSystemResources[feature.properties.id];
                 if (null != item)
                     feature.properties = item;
             }
+
+            // split out the generated lines
+            var features =
+            {
+                normal_lines:
+                {
+                    "type" : "FeatureCollection",
+                    "features" :
+                    [
+                    ]
+                },
+                generated_lines:
+                {
+                    "type" : "FeatureCollection",
+                    "features" :
+                    [
+                    ]
+                }
+            };
+            next.parsed.lines.features.reduce
+            (
+                function (ret, item)
+                {
+                    if (0 == item.properties.name.indexOf ("_generated"))
+                        ret.generated_lines.features.push (item);
+                    else
+                        ret.normal_lines.features.push (item);
+
+                    return (ret);
+                },
+                features
+            );
 
             // update the map
             var mapbox_classic = !do_vector_tiles ();
@@ -1400,7 +1432,18 @@ requirejs
                     "the cim lines",
                     {
                         type: "geojson",
-                        data: next.parsed.lines
+                        data: features.normal_lines,
+                        maxzoom: 25
+                    }
+                );
+
+                TheMap.addSource
+                (
+                    "the generated lines",
+                    {
+                        type: "geojson",
+                        data: features.generated_lines,
+                        maxzoom: 25
                     }
                 );
 
@@ -1409,7 +1452,8 @@ requirejs
                     "the cim points",
                     {
                         type: "geojson",
-                        data: next.parsed.points
+                        data: next.parsed.points,
+                        maxzoom: 25
                     }
                 );
 
@@ -1428,6 +1472,23 @@ requirejs
                         {
                             "line-color": "#000",
                             "line-width": 3
+                        }
+                    }
+                );
+
+                TheMap.addLayer
+                (
+                    {
+                        id: "generated_lines",
+                        type: "line",
+                        source: "the generated lines",
+                        layout:
+                        {
+                        },
+                        paint:
+                        {
+                            "line-color": "#555555",
+                            "line-width": 1
                         }
                     }
                 );
@@ -1537,6 +1598,7 @@ requirejs
                         container: "map",
                         center: [7.48634000000001, 46.93003],
                         zoom: 9,
+                        maxZoom: 25,
                         style: "mapbox://styles/mapbox/streets-v8",
                         hash: true
                     }
