@@ -1608,6 +1608,7 @@ requirejs
                         layout:
                         {
                             "icon-image": "transformer",
+                            "icon-color": "rgb(0, 255, 0)",
                             "icon-allow-overlap": true,
                             "text-field": "{name}",
                             "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
@@ -1659,6 +1660,7 @@ requirejs
                         layout:
                         {
                             "icon-image": "switch",
+                            "icon-color": "rgb(0, 0, 255)",
                             "icon-allow-overlap": true,
                             "text-field": "{name}",
                             "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
@@ -1710,6 +1712,7 @@ requirejs
                         layout:
                         {
                             "icon-image": "house_connection",
+                            "icon-color": "rgb(255, 0, 0)",
                             "icon-allow-overlap": true,
                             "text-field": "{name}",
                             "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
@@ -1778,6 +1781,31 @@ requirejs
         }
 
         /**
+         * @summary Handler for file change events.
+         * @description Process files from the browse dialog.
+         * @param {object} event - the file change event
+         * @function file_change
+         * @memberOf module:cimspace
+         */
+        function process_files (list)
+        {
+            for (var i = 0; i < list.length; i++)
+            {
+                var file = list[i];
+                var name = file.name;
+                var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
+                if (".xml" == extension)
+                {
+                    console.log ("starting XML read");
+                    var reader = new FileReader ();
+                    reader.onload = read_xml_file.bind (this, list);
+                    reader.readAsText (file, "UTF-8");
+                    break;
+                }
+            }
+        }
+
+        /**
          * @summary Close the file dialog.
          * @description Hide the modal dialog.
          * @function close_file_modal
@@ -1791,7 +1819,7 @@ requirejs
 
         /**
          * @summary Handler for file change events.
-         * @description Add files to the collection and update the display.
+         * @description Process files from the browse dialog.
          * @param {object} event - the file change event
          * @function file_change
          * @memberOf module:cimspace
@@ -1799,20 +1827,35 @@ requirejs
         function file_change (event)
         {
             close_file_modal ();
-            for (var i = 0; i < event.target.files.length; i++)
-            {
-                var file = event.target.files[i];
-                var name = file.name;
-                var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
-                if (".xml" == extension)
-                {
-                    console.log ("starting XML read");
-                    var reader = new FileReader ();
-                    reader.onload = read_xml_file.bind (this, event.target.files);
-                    reader.readAsText (file, "UTF-8");
-                    break;
-                }
-            }
+            process_files (event.target.files);
+        }
+
+        /**
+         * @summary Event handler for dropped files.
+         * @description Attached to the drop target, this handler responds to dropped files.
+         * @param {object} event - the drop event
+         * @memberOf module:cimspace
+         */
+        function file_drop (event)
+        {
+            event.stopPropagation ();
+            event.preventDefault ();
+            close_file_modal ();
+            process_files (event.dataTransfer.files);
+        }
+
+        /**
+         * @summary Event handler for dragging files.
+         * @description Attached to the drop target, this handler simply modifies the effect to copy,
+         * (which produces the typical hand cursor).
+         * @param {object} event - the dragover event
+         * @memberOf module:cimspace
+         */
+        function file_drag (event)
+        {
+            event.stopPropagation ();
+            event.preventDefault ();
+            event.dataTransfer.dropEffect = 'copy';
         }
 
         /**
@@ -1879,9 +1922,11 @@ requirejs
             }
         }
 
-        document.getElementById ("read_files").onchange = file_change;
         document.getElementById ("file_button").onchange = file_change;
         document.getElementById ("vector_tiles").onchange = init_map;
+        // drag and drop listeners
+        document.getElementById ("files_drop_zone").ondragover = file_drag;
+        document.getElementById ("files_drop_zone").ondrop = file_drop;
         init_map ();
     }
 );
