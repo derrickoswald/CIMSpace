@@ -54,21 +54,24 @@ requirejs
          * @param {String} str - the string to index
          * @param {Number} offset - optional offset to add to the index values
          * @param {Number[]} newlines - optional existing index to append to
-         * @returns {Number[]} the index of newlines, e.g. [15, 32, 64] for "Now is the time\nfor all good men\nto come to the aid of the party\n"
+         * @returns {[Number]} the index of newlines, e.g. [15, 32, 64] for "Now is the time\nfor all good men\nto come to the aid of the party\n"
          * @memberOf module:cimspace
          */
         function index_string (str, offset, newlines)
         {
             var lines;
             var res;
+            var ret;
 
+            ret = [];
+            if (newlines)
+                ret = newlines;
             offset = offset || 0;
-            newlines = newlines || [];
             lines = /\n/g;
             while (null != (res = lines.exec (str)))
-                newlines.push (res.index + offset);
+                ret.push (res.index + offset);
 
-            return (newlines);
+            return (ret);
         }
 
         /**
@@ -1056,55 +1059,17 @@ requirejs
         }
 
         /**
-         * Test parse a chunk of XML file into constituent parts
+         * @summary Count the resource entries.
+         * @description Cycle through the resource object and check they are valid.
+         * @return
+         * @function count_resources
          * @memberOf module:cimspace
          */
-        function fake_files ()
+        function count_resources (resources)
         {
+            var ret;
 
-            var ss =
-            '    <rdf:RDF xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">\n' +
-            '    <cim:PSRType rdf:ID="PSRType_Substation">\n' +
-            '        <cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n' +
-            '    </cim:PSRType>\n' +
-            '    <cim:Line rdf:ID="_subnetwork_349554">\n' +
-            '        <cim:IdentifiedObject.name>ABG2236|ABG7246|APP197|FLT13|FLU20|FLU21|FLU22|FLU23|HAS332|HAS333|HAS334|HAS335|MUF2681|MUF2682|PIN2</cim:IdentifiedObject.name>\n' +
-            '    </cim:Line>\n' +
-            '    <cim:ConnectivityNode rdf:ID="_pin_1555069">\n' +
-            '        <cim:IdentifiedObject.name>PIN2</cim:IdentifiedObject.name>\n' +
-            '        <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="_subnetwork_349554"/>\n' +
-            '    </cim:ConnectivityNode>\n';
-
-            var next;
-
-            next = read_xml (ss);
-            console.log (JSON.stringify (next, null, 4));
-            return (next);
-        }
-
-        /**
-         * Handle the FileReader completion event for an XML file.
-         * @param {Object[]} files - the array of files
-         * @param {Object} event - the onload event
-         * @memberOf module:cimspace
-         */
-        function read_xml_file (files, event)
-        {
-
-            var next;
-            var count_resources;
-            var resources;
-            var count_connectivity;
-            var connections;
-
-            console.log ("starting XML parse");
-
-            next = read_xml (event.target.result);
-            console.log ("done XML parse");
-
-            // check some stuff
-            count_resources = 0;
-            resources = next.parsed.PowerSystemResources;
+            ret = 0;
             for (var property in resources)
                 if (resources.hasOwnProperty (property))
                 {
@@ -1118,10 +1083,17 @@ requirejs
                     }
                     if (!resources[property].name)
                         console.log (property + " has no name");
-                    count_resources++;
+                    ret++;
                 }
-            count_connectivity = 0;
-            connections = next.parsed.ConnectivityNodes;
+
+            return (ret);
+        }
+
+        function count_connections (connections)
+        {
+            var ret;
+
+            ret = 0;
             for (var property in connections)
                 if (connections.hasOwnProperty (property))
                 {
@@ -1137,7 +1109,7 @@ requirejs
                                 console.log (property + " has no container");
                             if (!connections[property].name)
                                 console.log (property + " has no name");
-                            count_connectivity++;
+                            ret++;
                         }
                     }
                     else
@@ -1146,12 +1118,37 @@ requirejs
                             console.log (property + " has no container");
                         if (!connections[property].name)
                             console.log (property + " has no name");
-                        count_connectivity++;
+                        ret++;
                     }
                 }
+
+            return (ret);
+        }
+
+        /**
+         * Handle the FileReader completion event for an XML file.
+         * @param {Object[]} files - the array of files
+         * @param {Object} event - the onload event
+         * @memberOf module:cimspace
+         */
+        function read_xml_file (files, event)
+        {
+
+            var next;
+            var resources;
+            var connectivity;
+
+            console.log ("starting XML parse");
+
+            next = read_xml (event.target.result);
+            console.log ("done XML parse");
+
+            // check some stuff
+            resources = count_resources (next.parsed.PowerSystemResources);
+            connectivity = count_connections (next.parsed.ConnectivityNodes);
             console.log (event.target.result.length + " characters yields "
-                + count_resources + " resources "
-                + count_connectivity + " connections.");
+                + resources + " resources "
+                + connectivity + " connections.");
 
             // chain to the gml file reader
             for (var i = 0; i < files.length; i++)
@@ -1389,7 +1386,7 @@ requirejs
             }
 
             // split out the generated lines
-            var features =
+            var lines =
             {
                 normal_lines:
                 {
@@ -1417,17 +1414,67 @@ requirejs
 
                     return (ret);
                 },
-                features
+                lines
+            );
+
+            // split up the types of points
+            var points =
+            {
+                transformers:
+                {
+                    "type" : "FeatureCollection",
+                    "features" :
+                    [
+                    ]
+                },
+                switches:
+                {
+                    "type" : "FeatureCollection",
+                    "features" :
+                    [
+                    ]
+                },
+                consumers:
+                {
+                    "type" : "FeatureCollection",
+                    "features" :
+                    [
+                    ]
+                },
+                other:
+                {
+                    "type" : "FeatureCollection",
+                    "features" :
+                    [
+                    ]
+                }
+            };
+            next.parsed.points.features.reduce
+            (
+                function (ret, item)
+                {
+                    if (0 == item.properties.name.indexOf ("TRA"))
+                        ret.transformers.features.push (item);
+                    else if (0 == item.properties.name.indexOf ("TEI"))
+                        ret.switches.features.push (item);
+                    else if (0 == item.properties.name.indexOf ("HAS"))
+                        ret.consumers.features.push (item);
+                    else
+                        ret.other.features.push (item);
+
+                    return (ret);
+                },
+                points
             );
 
             // update the map
             var mapbox_classic = !do_vector_tiles ();
             if (mapbox_classic)
             {
-                var lines = L.mapbox.featureLayer (next.parsed.lines);
-                lines.addTo (TheMap);
-                var points = L.mapbox.featureLayer (next.parsed.points);
-                points.addTo (TheMap);
+                var l = L.mapbox.featureLayer (next.parsed.lines);
+                l.addTo (TheMap);
+                var p = L.mapbox.featureLayer (next.parsed.points);
+                p.addTo (TheMap);
             }
             else
             {
@@ -1436,7 +1483,7 @@ requirejs
                     "the cim lines",
                     {
                         type: "geojson",
-                        data: features.normal_lines,
+                        data: lines.normal_lines,
                         maxzoom: 25
                     }
                 );
@@ -1446,17 +1493,44 @@ requirejs
                     "the generated lines",
                     {
                         type: "geojson",
-                        data: features.generated_lines,
+                        data: lines.generated_lines,
                         maxzoom: 25
                     }
                 );
 
                 TheMap.addSource
                 (
+                    "the transformers",
+                    {
+                        type: "geojson",
+                        data: points.transformers,
+                        maxzoom: 25
+                    }
+                );
+                TheMap.addSource
+                (
+                    "the switches",
+                    {
+                        type: "geojson",
+                        data: points.switches,
+                        maxzoom: 25
+                    }
+                );
+                TheMap.addSource
+                (
+                    "the consumers",
+                    {
+                        type: "geojson",
+                        data: points.consumers,
+                        maxzoom: 25
+                    }
+                );
+                TheMap.addSource
+                (
                     "the cim points",
                     {
                         type: "geojson",
-                        data: next.parsed.points,
+                        data: points.other,
                         maxzoom: 25
                     }
                 );
@@ -1497,6 +1571,159 @@ requirejs
                     }
                 );
 
+                                // simple circle from 14 to 17
+                TheMap.addLayer
+                (
+                    {
+                        id: "circles_transformers",
+                        type: "circle",
+                        source: "the transformers",
+                        minzoom: 14,
+                        maxzoom: 17,
+                        layout:
+                        {
+                            "visibility": "visible"
+                        },
+                        paint:
+                        {
+                            "circle-radius": 5, // Optional number. Units in pixels. Defaults to 5.
+                            "circle-color": "rgb(0, 255, 0)", // Optional color. Defaults to #000000.
+                            "circle-blur": 0, // Optional number. Defaults to 0. 1 blurs the circle such that only the centerpoint is full opacity.
+                            "circle-opacity": 1, // Optional number. Defaults to 1.
+                            "circle-translate": [0, 0], // Optional array. Units in pixels. Defaults to 0,0. Values are [x, y] where negatives indicate left and up, respectively.
+                            "circle-translate-anchor": "map", // Optional enum. One of map, viewport. Defaults to map. Requires circle-translate.
+                        }
+                    }
+                );
+
+                // symbol icon from 17 and deeper
+                TheMap.addLayer
+                (
+                    {
+                        id: "symbols_transformers",
+                        type: "symbol",
+                        source: "the transformers",
+                        minzoom: 17,
+                        interactive: true,
+                        layout:
+                        {
+                            "icon-image": "transformer",
+                            "icon-allow-overlap": true,
+                            "text-field": "{name}",
+                            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                            "text-offset": [0, 0.6],
+                            "text-anchor": "top",
+                            "text-allow-overlap": true
+                        },
+                        paint:
+                        {
+                            "text-size": 12
+                        }
+                    }
+                );
+
+                // simple circle from 14 to 17
+                TheMap.addLayer
+                (
+                    {
+                        id: "circles_switches",
+                        type: "circle",
+                        source: "the switches",
+                        minzoom: 14,
+                        maxzoom: 17,
+                        layout:
+                        {
+                            "visibility": "visible"
+                        },
+                        paint:
+                        {
+                            "circle-radius": 5, // Optional number. Units in pixels. Defaults to 5.
+                            "circle-color": "rgb(0, 0, 255)", // Optional color. Defaults to #000000.
+                            "circle-blur": 0, // Optional number. Defaults to 0. 1 blurs the circle such that only the centerpoint is full opacity.
+                            "circle-opacity": 1, // Optional number. Defaults to 1.
+                            "circle-translate": [0, 0], // Optional array. Units in pixels. Defaults to 0,0. Values are [x, y] where negatives indicate left and up, respectively.
+                            "circle-translate-anchor": "map", // Optional enum. One of map, viewport. Defaults to map. Requires circle-translate.
+                        }
+                    }
+                );
+
+                // symbol icon from 17 and deeper
+                TheMap.addLayer
+                (
+                    {
+                        id: "symbols_switches",
+                        type: "symbol",
+                        source: "the switches",
+                        minzoom: 17,
+                        interactive: true,
+                        layout:
+                        {
+                            "icon-image": "switch",
+                            "icon-allow-overlap": true,
+                            "text-field": "{name}",
+                            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                            "text-offset": [0, 0.6],
+                            "text-anchor": "top",
+                            "text-allow-overlap": true
+                        },
+                        paint:
+                        {
+                            "text-size": 12
+                        }
+                    }
+                );
+
+                // simple circle from 14 to 17
+                TheMap.addLayer
+                (
+                    {
+                        id: "circles_consumers",
+                        type: "circle",
+                        source: "the consumers",
+                        minzoom: 14,
+                        maxzoom: 17,
+                        layout:
+                        {
+                            "visibility": "visible"
+                        },
+                        paint:
+                        {
+                            "circle-radius": 5, // Optional number. Units in pixels. Defaults to 5.
+                            "circle-color": "rgb(255, 0, 0)", // Optional color. Defaults to #000000.
+                            "circle-blur": 0, // Optional number. Defaults to 0. 1 blurs the circle such that only the centerpoint is full opacity.
+                            "circle-opacity": 1, // Optional number. Defaults to 1.
+                            "circle-translate": [0, 0], // Optional array. Units in pixels. Defaults to 0,0. Values are [x, y] where negatives indicate left and up, respectively.
+                            "circle-translate-anchor": "map", // Optional enum. One of map, viewport. Defaults to map. Requires circle-translate.
+                        }
+                    }
+                );
+
+                // symbol icon from 17 and deeper
+                TheMap.addLayer
+                (
+                    {
+                        id: "symbols_consumers",
+                        type: "symbol",
+                        source: "the consumers",
+                        minzoom: 17,
+                        interactive: true,
+                        layout:
+                        {
+                            "icon-image": "house_connection",
+                            "icon-allow-overlap": true,
+                            "text-field": "{name}",
+                            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                            "text-offset": [0, 0.6],
+                            "text-anchor": "top",
+                            "text-allow-overlap": true
+                        },
+                        paint:
+                        {
+                            "text-size": 12
+                        }
+                    }
+                );
+
                 // simple circle from 14 to 17
                 TheMap.addLayer
                 (
@@ -1533,7 +1760,7 @@ requirejs
                         interactive: true,
                         layout:
                         {
-                            "icon-image": "monument-11",
+                            "icon-image": "monument-24",
                             "icon-allow-overlap": true,
                             "text-field": "{name}",
                             "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
@@ -1551,6 +1778,18 @@ requirejs
         }
 
         /**
+         * @summary Close the file dialog.
+         * @description Hide the modal dialog.
+         * @function close_file_modal
+         * @memberOf module:cimspace
+         */
+        function close_file_modal ()
+        {
+            //var modal = document.getElementById ("file_modal").onchange = file_change;
+            $ ("#file_modal").modal("hide");
+        }
+
+        /**
          * @summary Handler for file change events.
          * @description Add files to the collection and update the display.
          * @param {object} event - the file change event
@@ -1559,6 +1798,7 @@ requirejs
          */
         function file_change (event)
         {
+            close_file_modal ();
             for (var i = 0; i < event.target.files.length; i++)
             {
                 var file = event.target.files[i];
@@ -1639,9 +1879,8 @@ requirejs
             }
         }
 
-        document.getElementById ("fake_files").onclick = fake_files;
         document.getElementById ("read_files").onchange = file_change;
-        //document.getElementById ("file_button").onchange = file_change;
+        document.getElementById ("file_button").onchange = file_change;
         document.getElementById ("vector_tiles").onchange = init_map;
         init_map ();
     }

@@ -44,10 +44,9 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a id="fake_files" href="#" class="waves-effect waves-light">Fake Files</a></li>
                     <!-- li><a id="read_files" href="#" class="waves-effect waves-light">Read Files</a></li -->
                     <li><input id="read_files" type="file" name="files[]" multiple></li>
-                    <!-- li><a id="load_files" href="#" class="waves-effect waves-light" data-toggle="modal" data-target="#file_modal">Load Files</a></li -->
+                    <li><a id="load_files" href="#" class="waves-effect waves-light" data-toggle="modal" data-target="#file_modal">Load Files</a></li>
                     <!-- li><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal-3">Click me</button></li -->
 
                     <li class="dropdown">
@@ -112,7 +111,7 @@
     </footer>
 
     <!-- Modal -->
-    <div class="modal fade" id="file_modal" role="dialog">
+    <div id="file_modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -124,57 +123,30 @@
                 <div class="modal-body" style="padding:40px 50px;">
                     <div class="row">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="choose_thing_files">Files</label>
+                            <div class="col-sm-3">
+                                <div class="file-field input-field" aria-describedby="files_help">
+                                    <div type="button" class="btn btn-default waves-effect waves-light">
+                                        <span>Browse</span>
+                                        <input id="file_button" type="file" name="files[]" multiple/>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-sm-9">
                                 <div class="input-group" aria-describedby="files_help">
-                                    <span id="choose_thing_files" class="input-group-btn">
-                                        <span class="btn btn-success btn-file">
-                                            <i class="fa fa-plus marginright"></i>
-                                            Add files...
-                                            <input id="thing_files" type="file" name="filesxx[]" multiple>
-                                        </span>
-                                    </span>
                                     <div id="files_drop_zone" class="form-control drop_zone">
                                         Drop files here...
                                     </div>
                                 </div>
                                 <span id="files_help" class="help-block nonexpert">
-                                    Choose both a CIM XML file and a corresponding GML file.
+                                    Click the browse button and choose both a CIM XML file and a corresponding GML file,
+                                    or drag files from your operating system file browser onto the drop zone above.
                                 </span>
                             </div>
                         </div>
-
-                        <form action="#">
-                            <div class="file-field input-field">
-                              <button type="button" class="btn btn-default waves-effect waves-light">
-                                <span>Files</span>
-                                <input id="file_button" type="file"  name="files[]" multiple/>
-                              </button>
-                            </div>
-                        </form>
-
-                        <form class="col-md-12">
-                            <div class="row">
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-default btn-lg waves-effect waves-light">Sign up</button>
-                                    <div class="subscription-checkbox">
-                                        <form action="#">
-
-                                            <input type="checkbox" id="test6" />
-                                            <label for="test6">
-                                                <p>Subscribe me to the Newsletter</p>
-                                            </label>
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">Cancel</button>
-                    <p>Already have an account? <a href="#">Login</a></p>
+                    <button type="submit" class="btn btn-danger waves-effect waves-light btn-default pull-left" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>

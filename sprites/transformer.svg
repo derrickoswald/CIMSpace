@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="23.956003"
+   height="24.001026"
+   viewBox="0 0 23.956003 24.001025"
+   id="svg4280"
+   version="1.1"
+   inkscape:version="0.91 r"
+   sodipodi:docname="transformer-24.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2495"
+     inkscape:window-height="1416"
+     id="namedview3349"
+     showgrid="false"
+     showguides="false"
+     fit-margin-left="6"
+     fit-margin-right="6"
+     fit-margin-bottom="3"
+     fit-margin-top="3"
+     inkscape:zoom="50.240993"
+     inkscape:cx="5.9779723"
+     inkscape:cy="12.000515"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4280" />
+  <defs
+     id="defs4282" />
+  <metadata
+     id="metadata4285">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="matrix(0.07110622,0,0,0.07111013,6.0000003,-53.832588)">
+    <g
+       id="g4324"
+       transform="translate(-238.42857,21.999969)">
+      <circle
+         r="75.714287"
+         cy="860.93359"
+         cx="322.14285"
+         id="path4288"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:16;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <circle
+         r="75.714287"
+         cy="946.64795"
+         cx="322.85715"
+         id="path4288-2"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:16;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>
