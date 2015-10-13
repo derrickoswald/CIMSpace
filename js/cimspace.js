@@ -1,7 +1,7 @@
 /**
  * Main javascript file for CIMSpace application
  */
-"use strict"
+"use strict";
 requirejs
 (
     [],
@@ -19,7 +19,7 @@ requirejs
          * The map object.
          * @see https://www.mapbox.com
          */
-        var TheMap;
+        var TheMap = null;
 
         /**
          * The user specific token to access mapbox tiles.
@@ -1367,7 +1367,7 @@ requirejs
 
             console.log ("starting GML parse");
             next = read_gml (event.target.result);
-            console.log ("done GML parse")
+            console.log ("done GML parse");
             console.log (event.target.result.length + " characters yields "
                 + next.parsed.lines.features.length + " lines and "
                 + next.parsed.points.features.length + " points.");
@@ -1604,14 +1604,15 @@ requirejs
                         center: [7.48634000000001, 46.93003],
                         zoom: 9,
                         maxZoom: 25,
-                        style: "mapbox://styles/mapbox/streets-v8",
+                        //style: "mapbox://styles/mapbox/streets-v8",
+                        style: "styles/streets-v8.json",
                         hash: true
                     }
                 );
                 // add zoom and rotation controls to the map.
                 TheMap.addControl (new mapboxgl.Navigation ());
                 // handle mouse movement
-                var last;
+                var last = null;
                 TheMap.on
                 (
                     'mousemove',
