@@ -1,6 +1,7 @@
 /**
  * Main javascript file for CIMSpace application
  */
+"use strict"
 requirejs
 (
     [],
@@ -1096,10 +1097,10 @@ requirejs
             var count_connectivity;
             var connections;
 
-            console.log ("starting");
+            console.log ("starting XML parse");
 
             next = read_xml (event.target.result);
-            console.log ("done parsing");
+            console.log ("done XML parse");
 
             // check some stuff
             count_resources = 0;
@@ -1148,8 +1149,9 @@ requirejs
                         count_connectivity++;
                     }
                 }
-
-            console.log ("done checking " + count_resources + " resources " + count_connectivity + " connections");
+            console.log (event.target.result.length + " characters yields "
+                + count_resources + " resources "
+                + count_connectivity + " connections.");
 
             // chain to the gml file reader
             for (var i = 0; i < files.length; i++)
@@ -1159,6 +1161,7 @@ requirejs
                 var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
                 if (".gml" == extension)
                 {
+                    console.log ("starting GML read");
                     var reader = new FileReader ();
                     reader.onload = read_gml_file.bind (this, next.parsed);
                     reader.readAsText (file, "UTF-8");
@@ -1362,9 +1365,10 @@ requirejs
             var feature;
             var item;
 
-            console.log ("starting");
+            console.log ("starting GML parse");
             next = read_gml (event.target.result);
-            console.log ("done parsing " + event.target.result.length + " characters yields "
+            console.log ("done GML parse")
+            console.log (event.target.result.length + " characters yields "
                 + next.parsed.lines.features.length + " lines and "
                 + next.parsed.points.features.length + " points.");
 
@@ -1562,6 +1566,7 @@ requirejs
                 var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
                 if (".xml" == extension)
                 {
+                    console.log ("starting XML read");
                     var reader = new FileReader ();
                     reader.onload = read_xml_file.bind (this, event.target.files);
                     reader.readAsText (file, "UTF-8");
