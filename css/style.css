@@ -21,6 +21,13 @@ footer.page-footer {
 {
     position: relative;
     overflow: hidden;
+    color: white;
+    background-color: #2bbbad;
+}
+
+.btn-file:hover, .btn-file:focus
+{
+    color: white;
 }
 
 .btn-file input[type=file]

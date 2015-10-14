@@ -2527,22 +2527,6 @@ select {
   text-transform: none;
 }
 
-/* missing in my mdb.css - added by Derrick */
-.file-field input[type=file] {
-    position:absolute;
-    top:0;
-    right:0;
-    left:0;
-    bottom:0;
-    width:100%;
-    margin:0;
-    padding:0;
-    font-size:20px;
-    cursor:pointer;
-    opacity:0;
-    filter:alpha(opacity=0)
-}
-
 /**
  * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
  *    and `video` controls.
@@ -2878,6 +2862,30 @@ footer.page-footer .footer-copyright {
   background-color: rgba(51, 51, 51, 0.08);
 }
 
+.section-white {
+  background-color: #fff;
+  color: #666666;
+  text-align: center;
+  padding: 1.5em 0;
+}
+
+.section-white h3 {
+  margin-bottom: 1.1em;
+  margin-top: 1.1em;
+}
+
+.section-dark {
+  background-color: #212121;
+  color: #fff;
+  text-align: center;
+  padding: 2.8em 0;
+}
+
+.section-dark h3 {
+  margin-bottom: 1.1em;
+  margin-top: 1.1em;
+}
+
 /*********************
   Roboto font
 **********************/
@@ -3171,9 +3179,9 @@ button.btn-floating {
   Navbar
 **********************/
 .navbar {
-  background-color: #4285F4;
   border: 0;
   border-radius: 0;
+  font-weight: 300;
 }
 
 .navbar .navbar-brand {
@@ -3510,8 +3518,7 @@ a {
 
 html {
   line-height: 1.5;
-  font-family: "Roboto",
-     sans-serif;
+  font-family: "Roboto",     sans-serif;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.87);
 }
@@ -3534,14 +3541,19 @@ html {
   }
 }
 
+p {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
-  font-weight: 400;
-  line-height: 1.1;
+h5 {
+  font-weight: 300;
 }
 
 h1 a,
@@ -4010,6 +4022,12 @@ Dropdowns
 /*********************
   Tooltip
 **********************/
+.tooltip {
+  line-height: 1.5;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+}
+
 .tooltip .tooltip-arrow {
   border-top-color: #222;
   margin: 1px;
@@ -4037,8 +4055,9 @@ Dropdowns
   color: #FFF;
   display: inline-block;
   font-size: 1.6rem;
-  font-weight: 500;
-  line-height: 14px;
+  line-height: 1.5;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
   max-width: 170px;
   padding: 8px;
   text-align: center;
@@ -4286,6 +4305,36 @@ Dropdowns
   background-color: transparent;
 }
 
+.pagination-dark li {
+  float: left;
+  font-size: 1.2rem;
+  line-height: 30px;
+  border-radius: 2px;
+  text-align: center;
+}
+
+.pagination-dark li .active {
+  background-color: #ee6e73;
+}
+
+.pagination-dark li a {
+  border: 0;
+  color: #eee;
+  background-color: transparent;
+}
+
+.pagination-dark li a:active {
+  color: #000;
+}
+
+.pagination-dark li a:hover {
+  background-color: transparent;
+}
+
+.pag-circle .active a {
+  border-radius: 50%;
+}
+
 /*********************
   Panels
 **********************/
@@ -4323,14 +4372,31 @@ Carousel
   animation-delay: 3s;
 }
 
+.carousel-control:hover {
+  -webkit-transition-duration: 400ms;
+  -moz-transition-duration: 400ms;
+  -o-transition-duration: 400ms;
+  -ms-transition-duration: 400ms;
+  transition-duration: 400ms;
+}
+
 .carousel-fade .carousel-inner .item {
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -ms-transition-property: opacity;
   transition-property: opacity;
+  -webkit-transition-duration: 1000ms;
+  -moz-transition-duration: 1000ms;
+  -o-transition-duration: 1000ms;
+  -ms-transition-duration: 1000ms;
+  transition-duration: 1000ms;
 }
 
 .carousel-fade .carousel-inner .item,
 .carousel-fade .carousel-inner .active.left,
 .carousel-fade .carousel-inner .active.right {
-  opacity: 0.5;
+  opacity: 0;
 }
 
 .carousel-fade .carousel-inner .active,
@@ -4343,7 +4409,7 @@ Carousel
 .carousel-fade .carousel-inner .prev,
 .carousel-fade .carousel-inner .active.left,
 .carousel-fade .carousel-inner .active.right {
-  left: 0.5;
+  left: 0;
   transform: translate3d(0, 0, 0);
 }
 
@@ -4353,8 +4419,8 @@ Carousel
 
 .carousel-control .icon-prev,
 .carousel-control .icon-next,
-.carousel-control .fa-chevron-left,
-.carousel-control .fa-chevron-right {
+.carousel-control .fa-angle-left,
+.carousel-control .fa-angle-right {
   position: absolute;
   top: 50%;
   z-index: 5;
@@ -4363,13 +4429,13 @@ Carousel
 }
 
 .carousel-control .icon-prev,
-.carousel-control .fa-chevron-left {
+.carousel-control .fa-angle-left {
   left: 50%;
   margin-left: -10px;
 }
 
 .carousel-control .icon-next,
-.carousel-control .fa-chevron-right {
+.carousel-control .fa-angle-right {
   right: 50%;
   margin-right: -10px;
 }
@@ -4382,41 +4448,47 @@ Carousel
   margin-top: -10px;
 }
 
-.carousel-indicators li {
+.carousel-full-bg .carousel-indicators {
+  margin-bottom: 6em;
+}
+
+.carousel-full-bg .carousel-caption {
+  margin-bottom: 8em;
+}
+
+.carousel .carousel-indicators li {
   height: 20px;
   width: 20px;
 }
 
-.carousel-indicators .active {
+.carousel .carousel-indicators .active {
   height: 20px;
   width: 20px;
   background-color: #fff;
 }
 
 .carousel-caption {
-  margin-bottom: 50px;
+  margin-bottom: 3em;
 }
 
-@media only screen and (max-width: 992px) {
-  .carousel-control .fa {
-    font-size: 99%;
-  }
-  .carousel-caption h4 {
-    font-size: 2.0rem;
-  }
-  .carousel-indicators li {
-    height: 15px;
-    width: 15px;
-  }
-  .carousel-indicators .active {
-    height: 15px;
-    width: 15px;
-  }
+.new-control .fa {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background-color: #000;
+  padding-top: 3px;
 }
 
 @media only screen and (max-width: 600px) {
-  .carousel-caption h4 {
-    font-size: 1.5rem;
+  .new-control .fa {
+    border-radius: 50%;
+    width: 33px;
+    height: 33px;
+    background-color: #000;
+    padding-top: 3px;
+  }
+  .carousel-control .fa {
+    font-size: 25px;
   }
   .carousel-indicators li {
     height: 10px;
@@ -4425,6 +4497,19 @@ Carousel
   .carousel-indicators .active {
     height: 10px;
     width: 10px;
+    background-color: #fff;
+  }
+  .carousel .carousel-indicators li {
+    height: 10px;
+    width: 10px;
+  }
+  .carousel .carousel-indicators .active {
+    height: 10px;
+    width: 10px;
+    background-color: #fff;
+  }
+  .carousel-caption {
+    margin-bottom: 1em;
   }
 }
 
@@ -7667,6 +7752,58 @@ textarea.materialize-textarea + label:after {
 }
 
 /*********************
+Video background
+**********************/
+.homepage-hero-module {
+  border-right: none;
+  border-left: none;
+  position: relative;
+}
+
+.no-video .video-container video,
+.touch .video-container video {
+  display: none;
+}
+
+.no-video .video-container .poster,
+.touch .video-container .poster {
+  display: block !important;
+}
+
+.video-container {
+  position: relative;
+  bottom: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-container .poster img {
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+}
+
+.video-container .filter {
+  z-index: 100;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+
+.video-container video {
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+}
+
+.video-container video.fillWidth {
+  width: 100%;
+}
+
+/*********************
   Waves
 **********************/
 /*!
@@ -7805,4 +7942,60 @@ a.waves-effect .waves-ripple {
   .center-on-small-only {
     text-align: center;
   }
+}
+
+.no-margin {
+  margin: 0;
+  padding: 0;
+}
+
+.space-30 {
+  height: 30px;
+}
+
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.vertical-center {
+  margin: 0;
+  min-height: 100%;
+  /* Fallback for vh unit */
+  min-height: 100vh;
+  /* You might also want to use
+                        'height' property instead.
+                        
+                        Note that for percentage values of
+                        'height' or 'min-height' properties,
+                        the 'height' of the parent element
+                        should be specified explicitly.
+  
+                        In this case the parent of '.vertical-center'
+                        is the <body> element */
+  /* Make it a flex container */
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  /* Align the bootstrap's container vertically */
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  /* In legacy web browsers such as Firefox 9
+     we need to specify the width of the flex container */
+  width: 100%;
+  /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
+     hence the bootstrap's container won't be aligned to the center anymore.
+  
+     Therefore, we should use the following declarations to get it centered again */
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
 }

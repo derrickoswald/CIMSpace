@@ -1061,11 +1061,13 @@ requirejs
         /**
          * @summary Count the resource entries.
          * @description Cycle through the resource object and check they are valid.
-         * @return
+         * @param {Object} resources - the resource object (like a big hash table) of power system resources
+         * @param {Object} connections - the connections object (like a big hash table) of connection nodes
+         * @return {Number} the number of resource entries
          * @function count_resources
          * @memberOf module:cimspace
          */
-        function count_resources (resources)
+        function count_resources (resources, connections)
         {
             var ret;
 
@@ -1073,22 +1075,40 @@ requirejs
             for (var property in resources)
                 if (resources.hasOwnProperty (property))
                 {
+                    if (!resources[property].name)
+                        console.log (property + " has no name");
                     if (0 == property.indexOf ("_substation"))
                     {
                         if (!resources[property].contents)
                             console.log (property + " has no contents");
                         else
-                            if (0 == resources[property].length)
+                            if (0 == resources[property].contents.length)
                                 console.log (property + " contents has zero length");
                     }
-                    if (!resources[property].name)
-                        console.log (property + " has no name");
+                    if (0 == property.indexOf ("_terminal"))
+                    {
+                        if (null != resources[property].node)
+                        {
+                            if (null == connections[resources[property].node])
+                                console.log (property + " has unknown node " + resources[property].node);
+                        }
+                        else
+                            console.log (property + " has no node");
+                    }
                     ret++;
                 }
 
             return (ret);
         }
 
+        /**
+         * @summary Count the connections.
+         * @description Cycle through the connection object and check they are valid.
+         * @param {Object} connections - the connections object (like a big hash table) of connection nodes
+         * @return {Number} the number of connection entries
+         * @function count_connections
+         * @memberOf module:cimspace
+         */
         function count_connections (connections)
         {
             var ret;
@@ -1097,29 +1117,11 @@ requirejs
             for (var property in connections)
                 if (connections.hasOwnProperty (property))
                 {
-                    if (0 == property.indexOf ("_pin")) // ToDo: just do Transformer high voltage pins
-                    {
-                        if ((!connections[property].container) && (!connections[property].name))
-                        {
-                            // unnamed pins come from transformer high sides: don't count them
-                        }
-                        else
-                        {
-                            if (!connections[property].container)
-                                console.log (property + " has no container");
-                            if (!connections[property].name)
-                                console.log (property + " has no name");
-                            ret++;
-                        }
-                    }
-                    else
-                    {
-                        if (!connections[property].container)
-                            console.log (property + " has no container");
-                        if (!connections[property].name)
-                            console.log (property + " has no name");
-                        ret++;
-                    }
+                    if (!connections[property].container)
+                        console.log (property + " has no container");
+                    if (!connections[property].name)
+                        console.log (property + " has no name");
+                    ret++;
                 }
 
             return (ret);
@@ -1361,6 +1363,7 @@ requirejs
             var next;
             var feature;
             var item;
+            var unmatched;
 
             console.log ("starting GML parse");
             next = read_gml (event.target.result);
@@ -1370,12 +1373,15 @@ requirejs
                 + next.parsed.points.features.length + " points.");
 
             // match up the data
+            unmatched = 0;
             for (var i = 0; i < next.parsed.lines.features.length; i++)
             {
                 feature = next.parsed.lines.features[i];
                 item = data.PowerSystemResources[feature.properties.id];
                 if (null != item)
                     feature.properties = item;
+                else
+                    unmatched++;
             }
             for (var j = 0; j < next.parsed.points.features.length; j++)
             {
@@ -1383,7 +1389,10 @@ requirejs
                 item = data.PowerSystemResources[feature.properties.id];
                 if (null != item)
                     feature.properties = item;
+                else
+                    unmatched++;
             }
+            console.log (unmatched + " features had no matching Power System Resource");
 
             // split out the generated lines
             var lines =
