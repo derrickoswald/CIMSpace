@@ -54,6 +54,14 @@ requirejs
          * @param {String} str - the string to index
          * @param {Number} offset - optional offset to add to the index values
          * @param {Number[]} newlines - optional existing index to append to
+         * Originally the idea behind this parameter was to:
+         * read the file in 64K chunks using slice on the File blob,
+         * and then read as text, scan with regex,
+         * getting the last character position before the end of the slice or somewhere convenient,
+         * and then to get the next slice starting on a character boundary (UTF8 encoded right) you need
+         * to write out the characters seen so far and count the bytes,
+         * then ask for the next 64K slice starting at that byte offset.
+         * But reading in the entire file (64MB so far) seems to work OK, so this isn't used.
          * @returns {[Number]} the index of newlines, e.g. [15, 32, 64] for "Now is the time\nfor all good men\nto come to the aid of the party\n"
          * @memberOf module:cimspace
          */
@@ -1352,6 +1360,31 @@ requirejs
             return (document.getElementById ("vector_tiles").checked && mapboxgl.supported ());
         }
 
+        function layout (symbol, color)
+        {
+            return (
+                {
+                    "icon-image": symbol,
+                    "icon-color": color,
+                    "icon-allow-overlap": true,
+                    "icon-size":
+                    {
+                        stops: [[17, 1], [18, 1], [19, 1.2], [20, 1.4], [21, 1.6], [22, 1.8], [23, 2], [24, 2.2], [25, 2.4]]
+                    },
+                    "text-field": "{name}",
+                    "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                    "text-offset": [0, 1],
+                    "text-anchor": "top",
+                    "text-allow-overlap": true,
+                    "text-size":
+                    {
+                        stops: [[17, 4], [18, 8], [19, 12], [20, 14], [21, 18], [22, 24], [23, 30], [24, 38], [25, 48]]
+                    }
+                }
+            );
+
+        }
+
         /**
          * Handle the FileReader completion event for a GML file.
          * @param {Object} data - the XML parsed data
@@ -1580,7 +1613,7 @@ requirejs
                     }
                 );
 
-                                // simple circle from 14 to 17
+                // simple circle from 14 to 17
                 TheMap.addLayer
                 (
                     {
@@ -1614,21 +1647,7 @@ requirejs
                         source: "the transformers",
                         minzoom: 17,
                         interactive: true,
-                        layout:
-                        {
-                            "icon-image": "transformer",
-                            "icon-color": "rgb(0, 255, 0)",
-                            "icon-allow-overlap": true,
-                            "text-field": "{name}",
-                            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                            "text-offset": [0, 0.6],
-                            "text-anchor": "top",
-                            "text-allow-overlap": true
-                        },
-                        paint:
-                        {
-                            "text-size": 12
-                        }
+                        layout: layout ("transformer", "rgb(0, 255, 0)")
                     }
                 );
 
@@ -1666,21 +1685,7 @@ requirejs
                         source: "the switches",
                         minzoom: 17,
                         interactive: true,
-                        layout:
-                        {
-                            "icon-image": "switch",
-                            "icon-color": "rgb(0, 0, 255)",
-                            "icon-allow-overlap": true,
-                            "text-field": "{name}",
-                            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                            "text-offset": [0, 0.6],
-                            "text-anchor": "top",
-                            "text-allow-overlap": true
-                        },
-                        paint:
-                        {
-                            "text-size": 12
-                        }
+                        layout: layout ("switch", "rgb(0, 0, 255)")
                     }
                 );
 
@@ -1718,21 +1723,7 @@ requirejs
                         source: "the consumers",
                         minzoom: 17,
                         interactive: true,
-                        layout:
-                        {
-                            "icon-image": "house_connection",
-                            "icon-color": "rgb(255, 0, 0)",
-                            "icon-allow-overlap": true,
-                            "text-field": "{name}",
-                            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                            "text-offset": [0, 0.6],
-                            "text-anchor": "top",
-                            "text-allow-overlap": true
-                        },
-                        paint:
-                        {
-                            "text-size": 12
-                        }
+                        layout: layout ("house_connection", "rgb(255, 0, 0)")
                     }
                 );
 
@@ -1770,20 +1761,7 @@ requirejs
                         source: "the cim points",
                         minzoom: 17,
                         interactive: true,
-                        layout:
-                        {
-                            "icon-image": "monument-24",
-                            "icon-allow-overlap": true,
-                            "text-field": "{name}",
-                            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                            "text-offset": [0, 0.6],
-                            "text-anchor": "top",
-                            "text-allow-overlap": true
-                        },
-                        paint:
-                        {
-                            "text-size": 12
-                        }
+                        layout: layout ("monument-24", "black")
                     }
                 );
             }
