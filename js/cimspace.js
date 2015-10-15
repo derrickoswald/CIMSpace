@@ -1222,7 +1222,7 @@ requirejs
             var subcontext;
             var guts;
             var id;
-            //var angle;
+            var orientation;
             var type;
             var coords;
 
@@ -1293,7 +1293,7 @@ requirejs
                 };
                 guts = result[1];
                 id = parse_element (/<nmm:ID>([\s\S]*?)<\/nmm:ID>/g, guts, subcontext);
-                //angle= parse_element (/<nmm:Angle>([\s\S]*?)<\/nmm:Angle>/g, guts, subcontext);
+                orientation = parse_element (/<nmm:Angle>([\s\S]*?)<\/nmm:Angle>/g, guts, subcontext);
                 type = parse_element (/<nmm:FieldName>([\s\S]*?)<\/nmm:FieldName>/g, guts, subcontext);
                 if ("path" == type)
                 {
@@ -1301,11 +1301,11 @@ requirejs
                     parsed.lines.features.push
                     (
                         {
-                            "type" : "Feature",
-                            "geometry" :
+                            type : "Feature",
+                            geometry :
                             {
-                                "type" : "LineString",
-                                "coordinates" : coords.reduce
+                                type : "LineString",
+                                coordinates : coords.reduce
                                 (
                                     function (ret, item)
                                     {
@@ -1326,7 +1326,7 @@ requirejs
                             },
                             "properties" :
                             {
-                                "id" : id
+                                id : id
                             }
                         }
                     );
@@ -1334,18 +1334,22 @@ requirejs
                 else if ("location" == type)
                 {
                     coords = parse_element (/<gml:pos>([\s\S]*?)<\/gml:pos>/g, guts, subcontext).split (" ");
+                    orientation = Number (orientation);
+                    if (orientation < 0.0)
+                        orientation += 360.0;
                     parsed.points.features.push
                     (
                         {
-                            "type" : "Feature",
-                            "geometry" :
+                            type : "Feature",
+                            geometry :
                             {
-                                "type" : "Point",
-                                "coordinates" : [ coords[0], coords[1] ]
+                                type : "Point",
+                                coordinates : [ coords[0], coords[1] ]
                             },
-                            "properties" :
+                            properties :
                             {
-                                "id" : id
+                                id : id,
+                                orientation: orientation
                             }
                         }
                     );
@@ -1399,32 +1403,48 @@ requirejs
         }
 
         /**
-         * Create a symbol layout object.
-         * @param {String} symbol - the symbol name to use
-         * @param {String} color - the symbol color to use (doesn't work)
-         * @returns {Object} the layout
-         * @function layout
+         * Create a symbol layer object.
+         * @param {String} id - the layer id
+         * @param {Any[]} filter - the filter to apply to the points
+         * @param {String} symbol - the symbol name
+         * @param {Number} orientation - the symbol orientation
+         * @param {Number[]} offset - the symbol offset
+         * @param {String} color - the symbol color (doesn't work)
+         * @returns {Object} the layer
+         * @function symbol_layer
          * @memberOf module:cimspace
          */
-        function layout (symbol, color)
+        function symbol_layer (id, filter, symbol, orientation, offset, color)
         {
+            //console.log (id + " " + JSON.stringify (filter, null, 4));
             return (
                 {
-                    "icon-image": symbol,
-                    "icon-color": color,
-                    "icon-allow-overlap": true,
-                    "icon-size":
+                    id: id,
+                    type: "symbol",
+                    source: "the cim points",
+                    minzoom: 17,
+                    filter: filter,
+                    interactive: true,
+                    layout:
                     {
-                        stops: [[17, 1], [18, 1], [19, 1.2], [20, 1.4], [21, 1.6], [22, 1.8], [23, 2], [24, 2.2], [25, 2.4]]
-                    },
-                    "text-field": "{name}",
-                    "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                    "text-offset": [0, 1],
-                    "text-anchor": "top",
-                    "text-allow-overlap": true,
-                    "text-size":
-                    {
-                        stops: [[17, 4], [18, 8], [19, 12], [20, 14], [21, 18], [22, 24], [23, 30], [24, 38], [25, 48]]
+                        "icon-image": symbol,
+                        "icon-color": color,
+                        "icon-allow-overlap": true,
+                        "icon-size":
+                        {
+                            stops: [[17, 1], [18, 1], [19, 1.2], [20, 1.4], [21, 1.6], [22, 1.8], [23, 2], [24, 2.2], [25, 2.4]]
+                        },
+                        "icon-rotate": orientation,
+                        "icon-offset": offset,
+                        "text-field": "{name}",
+                        "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                        "text-offset": [0, 1],
+                        "text-anchor": "top",
+                        "text-allow-overlap": true,
+                        "text-size":
+                        {
+                            stops: [[17, 4], [18, 8], [19, 12], [20, 14], [21, 18], [22, 24], [23, 30], [24, 38], [25, 48]]
+                        }
                     }
                 }
             );
@@ -1474,6 +1494,7 @@ requirejs
                 if (null != item)
                 {
                     item.id = feature.properties.id;
+                    item.orientation = feature.properties.orientation;
                     // assign the symbol
                     if (0 == item.name.indexOf ("TRA"))
                     {
@@ -1578,17 +1599,11 @@ requirejs
                 TheMap.addLayer (circle_layer ("circle_other", ["==", "symbol", "monument-24"], "black"));
 
                 // symbol icon from 17 and deeper
-                TheMap.addLayer
-                (
-                    {
-                        id: "symbols_points",
-                        type: "symbol",
-                        source: "the cim points",
-                        minzoom: 17,
-                        interactive: true,
-                        layout: layout ("{symbol}", "{color}")
-                    }
-                );
+                var increment = 5.0;
+                for (var orientation = 0; orientation < 360.0; orientation += increment)
+                    TheMap.addLayer (symbol_layer ("symbol_" + orientation, ["all", ["==", "symbol", "house_connection"], [">=", "orientation", (orientation - (increment / 2.0))], ["<", "orientation", (orientation + (increment / 2.0))]], "{symbol}", orientation, [0, 12], "{color}"));
+                // don't rotate others
+                TheMap.addLayer (symbol_layer ("symbol_other", ["!=", "symbol", "house_connection"], "{symbol}", 0.0, [0, 0], "{color}"));
             }
         }
 
