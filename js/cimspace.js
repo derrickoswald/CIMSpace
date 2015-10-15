@@ -1355,11 +1355,57 @@ requirejs
             return ({parsed: parsed, context: context});
         }
 
+        /**
+         * Get the user's choice for vector/image tiles.
+         * @returns {boolean} <code>true</code> if vector tiles should be used, <code>false</code> otherwise
+         * @function do_vector_tiles
+         * @memberOf module:cimspace
+         */
         function do_vector_tiles ()
         {
             return (document.getElementById ("vector_tiles").checked && mapboxgl.supported ());
         }
 
+        /**
+         * Create a circle layer object.
+         * @param {String} id - the layer id
+         * @param {Any[]} filter - the filter to apply to the points
+         * @param {String} color - the symbol color to use (doesn't work)
+         * @returns {Object} the layer
+         * @function circle_layer
+         * @memberOf module:cimspace
+         */
+        function circle_layer (id, filter, color)
+        {
+            return (
+                {
+                    id: id,
+                    type: "circle",
+                    source: "the cim points",
+                    minzoom: 14,
+                    maxzoom: 17,
+                    filter: filter,
+                    paint:
+                    {
+                        "circle-radius": 5, // Optional number. Units in pixels. Defaults to 5.
+                        "circle-color": color, // Optional color. Defaults to #000000.
+                        "circle-blur": 0, // Optional number. Defaults to 0. 1 blurs the circle such that only the centerpoint is full opacity.
+                        "circle-opacity": 1, // Optional number. Defaults to 1.
+                        "circle-translate": [0, 0], // Optional array. Units in pixels. Defaults to 0,0. Values are [x, y] where negatives indicate left and up, respectively.
+                        "circle-translate-anchor": "map", // Optional enum. One of map, viewport. Defaults to map. Requires circle-translate.
+                    }
+                }
+            );
+        }
+
+        /**
+         * Create a symbol layout object.
+         * @param {String} symbol - the symbol name to use
+         * @param {String} color - the symbol color to use (doesn't work)
+         * @returns {Object} the layout
+         * @function layout
+         * @memberOf module:cimspace
+         */
         function layout (symbol, color)
         {
             return (
@@ -1412,7 +1458,12 @@ requirejs
                 feature = next.parsed.lines.features[i];
                 item = data.PowerSystemResources[feature.properties.id];
                 if (null != item)
+                {
+                    item.id = feature.properties.id;
+                    // assign generated
+                    item.generated = (0 == item.name.indexOf ("_generated"));
                     feature.properties = item;
+                }
                 else
                     unmatched++;
             }
@@ -1421,93 +1472,35 @@ requirejs
                 feature = next.parsed.points.features[j];
                 item = data.PowerSystemResources[feature.properties.id];
                 if (null != item)
+                {
+                    item.id = feature.properties.id;
+                    // assign the symbol
+                    if (0 == item.name.indexOf ("TRA"))
+                    {
+                        item.symbol = "transformer";
+                        item.color = "rgb(0, 255, 0)";
+                    }
+                    else if (0 == item.name.indexOf ("TEI"))
+                    {
+                        item.symbol = "switch";
+                        item.color = "rgb(0, 0, 255)";
+                    }
+                    else if (0 == item.name.indexOf ("HAS"))
+                    {
+                        item.symbol = "house_connection";
+                        item.color = "rgb(255, 0, 0)";
+                    }
+                    else
+                    {
+                        item.symbol = "monument-24";
+                        item.color = "rgb(255, 255, 255)";
+                    }
                     feature.properties = item;
+                }
                 else
                     unmatched++;
             }
             console.log (unmatched + " features had no matching Power System Resource");
-
-            // split out the generated lines
-            var lines =
-            {
-                normal_lines:
-                {
-                    "type" : "FeatureCollection",
-                    "features" :
-                    [
-                    ]
-                },
-                generated_lines:
-                {
-                    "type" : "FeatureCollection",
-                    "features" :
-                    [
-                    ]
-                }
-            };
-            next.parsed.lines.features.reduce
-            (
-                function (ret, item)
-                {
-                    if (0 == item.properties.name.indexOf ("_generated"))
-                        ret.generated_lines.features.push (item);
-                    else
-                        ret.normal_lines.features.push (item);
-
-                    return (ret);
-                },
-                lines
-            );
-
-            // split up the types of points
-            var points =
-            {
-                transformers:
-                {
-                    "type" : "FeatureCollection",
-                    "features" :
-                    [
-                    ]
-                },
-                switches:
-                {
-                    "type" : "FeatureCollection",
-                    "features" :
-                    [
-                    ]
-                },
-                consumers:
-                {
-                    "type" : "FeatureCollection",
-                    "features" :
-                    [
-                    ]
-                },
-                other:
-                {
-                    "type" : "FeatureCollection",
-                    "features" :
-                    [
-                    ]
-                }
-            };
-            next.parsed.points.features.reduce
-            (
-                function (ret, item)
-                {
-                    if (0 == item.properties.name.indexOf ("TRA"))
-                        ret.transformers.features.push (item);
-                    else if (0 == item.properties.name.indexOf ("TEI"))
-                        ret.switches.features.push (item);
-                    else if (0 == item.properties.name.indexOf ("HAS"))
-                        ret.consumers.features.push (item);
-                    else
-                        ret.other.features.push (item);
-
-                    return (ret);
-                },
-                points
-            );
 
             // update the map
             var mapbox_classic = !do_vector_tiles ();
@@ -1525,54 +1518,17 @@ requirejs
                     "the cim lines",
                     {
                         type: "geojson",
-                        data: lines.normal_lines,
+                        data: next.parsed.lines,
                         maxzoom: 25
                     }
                 );
 
-                TheMap.addSource
-                (
-                    "the generated lines",
-                    {
-                        type: "geojson",
-                        data: lines.generated_lines,
-                        maxzoom: 25
-                    }
-                );
-
-                TheMap.addSource
-                (
-                    "the transformers",
-                    {
-                        type: "geojson",
-                        data: points.transformers,
-                        maxzoom: 25
-                    }
-                );
-                TheMap.addSource
-                (
-                    "the switches",
-                    {
-                        type: "geojson",
-                        data: points.switches,
-                        maxzoom: 25
-                    }
-                );
-                TheMap.addSource
-                (
-                    "the consumers",
-                    {
-                        type: "geojson",
-                        data: points.consumers,
-                        maxzoom: 25
-                    }
-                );
                 TheMap.addSource
                 (
                     "the cim points",
                     {
                         type: "geojson",
-                        data: points.other,
+                        data: next.parsed.points,
                         maxzoom: 25
                     }
                 );
@@ -1583,6 +1539,7 @@ requirejs
                         id: "lines",
                         type: "line",
                         source: "the cim lines",
+                        filter: ["==", "generated", false],
                         layout:
                         {
                             "line-join": "round",
@@ -1601,7 +1558,8 @@ requirejs
                     {
                         id: "generated_lines",
                         type: "line",
-                        source: "the generated lines",
+                        source: "the cim lines",
+                        filter: ["==", "generated", true],
                         layout:
                         {
                         },
@@ -1614,154 +1572,21 @@ requirejs
                 );
 
                 // simple circle from 14 to 17
-                TheMap.addLayer
-                (
-                    {
-                        id: "circles_transformers",
-                        type: "circle",
-                        source: "the transformers",
-                        minzoom: 14,
-                        maxzoom: 17,
-                        layout:
-                        {
-                            "visibility": "visible"
-                        },
-                        paint:
-                        {
-                            "circle-radius": 5, // Optional number. Units in pixels. Defaults to 5.
-                            "circle-color": "rgb(0, 255, 0)", // Optional color. Defaults to #000000.
-                            "circle-blur": 0, // Optional number. Defaults to 0. 1 blurs the circle such that only the centerpoint is full opacity.
-                            "circle-opacity": 1, // Optional number. Defaults to 1.
-                            "circle-translate": [0, 0], // Optional array. Units in pixels. Defaults to 0,0. Values are [x, y] where negatives indicate left and up, respectively.
-                            "circle-translate-anchor": "map", // Optional enum. One of map, viewport. Defaults to map. Requires circle-translate.
-                        }
-                    }
-                );
+                TheMap.addLayer (circle_layer ("circle_transformer", ["==", "symbol", "transformer"], "rgb(0, 255, 0)"));
+                TheMap.addLayer (circle_layer ("circle_switch", ["==", "symbol", "switch"], "rgb(0, 0, 255)"));
+                TheMap.addLayer (circle_layer ("circle_house_connection", ["==", "symbol", "house_connection"], "rgb(255, 0, 0)"));
+                TheMap.addLayer (circle_layer ("circle_other", ["==", "symbol", "monument-24"], "black"));
 
                 // symbol icon from 17 and deeper
                 TheMap.addLayer
                 (
                     {
-                        id: "symbols_transformers",
-                        type: "symbol",
-                        source: "the transformers",
-                        minzoom: 17,
-                        interactive: true,
-                        layout: layout ("transformer", "rgb(0, 255, 0)")
-                    }
-                );
-
-                // simple circle from 14 to 17
-                TheMap.addLayer
-                (
-                    {
-                        id: "circles_switches",
-                        type: "circle",
-                        source: "the switches",
-                        minzoom: 14,
-                        maxzoom: 17,
-                        layout:
-                        {
-                            "visibility": "visible"
-                        },
-                        paint:
-                        {
-                            "circle-radius": 5, // Optional number. Units in pixels. Defaults to 5.
-                            "circle-color": "rgb(0, 0, 255)", // Optional color. Defaults to #000000.
-                            "circle-blur": 0, // Optional number. Defaults to 0. 1 blurs the circle such that only the centerpoint is full opacity.
-                            "circle-opacity": 1, // Optional number. Defaults to 1.
-                            "circle-translate": [0, 0], // Optional array. Units in pixels. Defaults to 0,0. Values are [x, y] where negatives indicate left and up, respectively.
-                            "circle-translate-anchor": "map", // Optional enum. One of map, viewport. Defaults to map. Requires circle-translate.
-                        }
-                    }
-                );
-
-                // symbol icon from 17 and deeper
-                TheMap.addLayer
-                (
-                    {
-                        id: "symbols_switches",
-                        type: "symbol",
-                        source: "the switches",
-                        minzoom: 17,
-                        interactive: true,
-                        layout: layout ("switch", "rgb(0, 0, 255)")
-                    }
-                );
-
-                // simple circle from 14 to 17
-                TheMap.addLayer
-                (
-                    {
-                        id: "circles_consumers",
-                        type: "circle",
-                        source: "the consumers",
-                        minzoom: 14,
-                        maxzoom: 17,
-                        layout:
-                        {
-                            "visibility": "visible"
-                        },
-                        paint:
-                        {
-                            "circle-radius": 5, // Optional number. Units in pixels. Defaults to 5.
-                            "circle-color": "rgb(255, 0, 0)", // Optional color. Defaults to #000000.
-                            "circle-blur": 0, // Optional number. Defaults to 0. 1 blurs the circle such that only the centerpoint is full opacity.
-                            "circle-opacity": 1, // Optional number. Defaults to 1.
-                            "circle-translate": [0, 0], // Optional array. Units in pixels. Defaults to 0,0. Values are [x, y] where negatives indicate left and up, respectively.
-                            "circle-translate-anchor": "map", // Optional enum. One of map, viewport. Defaults to map. Requires circle-translate.
-                        }
-                    }
-                );
-
-                // symbol icon from 17 and deeper
-                TheMap.addLayer
-                (
-                    {
-                        id: "symbols_consumers",
-                        type: "symbol",
-                        source: "the consumers",
-                        minzoom: 17,
-                        interactive: true,
-                        layout: layout ("house_connection", "rgb(255, 0, 0)")
-                    }
-                );
-
-                // simple circle from 14 to 17
-                TheMap.addLayer
-                (
-                    {
-                        id: "circles",
-                        type: "circle",
-                        source: "the cim points",
-                        minzoom: 14,
-                        maxzoom: 17,
-                        layout:
-                        {
-                            "visibility": "visible"
-                        },
-                        paint:
-                        {
-                            "circle-radius": 5, // Optional number. Units in pixels. Defaults to 5.
-                            "circle-color": "rgb(0, 0, 0)", // Optional color. Defaults to #000000.
-                            "circle-blur": 0, // Optional number. Defaults to 0. 1 blurs the circle such that only the centerpoint is full opacity.
-                            "circle-opacity": 1, // Optional number. Defaults to 1.
-                            "circle-translate": [0, 0], // Optional array. Units in pixels. Defaults to 0,0. Values are [x, y] where negatives indicate left and up, respectively.
-                            "circle-translate-anchor": "map", // Optional enum. One of map, viewport. Defaults to map. Requires circle-translate.
-                        }
-                    }
-                );
-
-                // symbol icon from 17 and deeper
-                TheMap.addLayer
-                (
-                    {
-                        id: "symbols",
+                        id: "symbols_points",
                         type: "symbol",
                         source: "the cim points",
                         minzoom: 17,
                         interactive: true,
-                        layout: layout ("monument-24", "black")
+                        layout: layout ("{symbol}", "{color}")
                     }
                 );
             }
