@@ -1976,6 +1976,8 @@ requirejs
                     function (result)
                     {
                         var psr;
+//                        var resources;
+//                        var connectivity;
                         var location;
                         var coordinates;
                         var lines =
@@ -1991,6 +1993,14 @@ requirejs
 
                         console.log ("finished XML read");
                         psr = result.parsed.PowerSystemResources;
+
+                        // check some stuff
+//                        resources = count_resources (psr);
+//                        connectivity = count_connections (result.parsed.ConnectivityNodes);
+//                        console.log (files[0].length + " characters yields "
+//                            + resources + " resources "
+//                            + connectivity + " connections.");
+
                         for (var id in psr)
                         {
                             if (null != (location = psr[id].location))
