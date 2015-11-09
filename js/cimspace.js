@@ -4,7 +4,7 @@
 "use strict";
 requirejs
 (
-    [],
+    ["es6-promise"],
     /**
      * @summary Main entry point for the application.
      * @description Performs application initialization as the first step in the RequireJS load sequence.
@@ -13,7 +13,7 @@ requirejs
      * @exports cimspace
      * @version 1.0
      */
-    function ()
+    function (es6_promise)
     {
         /**
          * The map object.
@@ -25,6 +25,14 @@ requirejs
          * The user specific token to access mapbox tiles.
          */
         var TheToken = "pk.eyJ1IjoiZGVycmlja29zd2FsZCIsImEiOiJjaWV6b2szd3MwMHFidDRtNDZoejMyc3hsIn0.wnEkePEuhYiNcXDLACSxVw";
+
+        /**
+         * The size of chunks to read into memory.
+         */
+        var CHUNK_SIZE = 1000000;
+
+        // using Promise: backwards compatibility for older browsers
+        es6_promise.polyfill ();
 
         /**
          * Convert a string into a boolean value.
@@ -69,17 +77,14 @@ requirejs
         {
             var lines;
             var res;
-            var ret;
 
-            ret = [];
-            if (newlines)
-                ret = newlines;
             offset = offset || 0;
+            newlines = newlines || [];
             lines = /\n/g;
             while (null != (res = lines.exec (str)))
-                ret.push (res.index + offset);
+                newlines.push (res.index + offset);
 
-            return (ret);
+            return (newlines);
         }
 
         /**
@@ -87,14 +92,15 @@ requirejs
          * @param {Object} context - the context object
          * @param {Number[]} context.newlines - the index of newline positions within the text
          * @param {Number} context.start_character - the starting character position for this context
+         * @param {Number} offset - the character position to find line number of, default = context.start_character
          * @returns {Number} the line number for the starting character position
          * @memberOf module:cimspace
          */
-        function line_number (context)
+        function line_number (context, offset)
         {
             var min = 0;
             var max = context.newlines.length - 1;
-            var offset = context.start_character; // the character position to find line number of
+            var offset = offset || context.start_character;
             var index;
             var item;
 
@@ -175,6 +181,10 @@ requirejs
 //                    console.log (regex.source + " not found at line " + line_number (context));
 
             return (ret);
+        }
+
+        function bogus1 () // ToDo: only needed for Eclipse braindead Javascript outlining
+        {
         }
 
         /**
@@ -357,6 +367,10 @@ requirejs
             resource.info = info;
         }
 
+        function bogus2 () // ToDo: only needed for Eclipse braindead Javascript outlining
+        {
+        }
+
        /**
          * Parse a EnergyConsumer element and add it to the PowerSystemResources.
          * @param {Object} parsed - the parsed elements
@@ -370,16 +384,27 @@ requirejs
             var idex;
             var id;
             var name;
+            var location;
             var type;
             var voltage;
             var container;
             var phase;
             var resource;
 
+//        <cim:EnergyConsumer rdf:ID="_house_connection_1469932">
+//                <cim:IdentifiedObject.name>HAS1</cim:IdentifiedObject.name>
+//                <cim:PowerSystemResource.Location>_location_5773088_1107287243_317923</cim:PowerSystemResource.Location>
+//                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
+//                <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>
+//                <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_350063"/>
+//                <cim:PhaseConnection rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y"/>
+//        </cim:EnergyConsumer>
+
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
             name = parse_element (/<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>/g, sub, context);
+            location = parse_element (/<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>/g, sub, context, true);
             type = parse_attribute (/<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
             voltage = parse_attribute (/<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
             container = parse_attribute (/<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
@@ -395,6 +420,12 @@ requirejs
             resource.voltage = voltage;
             resource.container = container;
             resource.phase = phase;
+            if (null != location)
+            {
+                if (null == parsed.PowerSystemResources[location])
+                    parsed.PowerSystemResources[location] = { coordinates: [] };
+                resource.location = location;
+            }
             parsed.PowerSystemResources[container].contents.push (resource);
         }
 
@@ -443,7 +474,6 @@ requirejs
             // parsed.PowerSystemResources[container].contents.push (resource);
         }
 
-
         /**
          * Parse a BusbarInfo element and add it to the PowerSystemResources.
          * @param {Object} parsed - the parsed elements
@@ -472,6 +502,10 @@ requirejs
             resource.name = name;
         }
 
+        function bogus3 () // ToDo: only needed for Eclipse braindead Javascript outlining
+        {
+        }
+
         /**
          * Parse a BusBarSection element and add it to the PowerSystemResources.
          * @param {Object} parsed - the parsed elements
@@ -485,20 +519,25 @@ requirejs
             var idex;
             var id;
             var name;
+            var location;
             var type;
             var voltage;
             var container;
             var resource;
-//    <cim:BusbarSection rdf:ID="_busbar_1772383">
-//        <cim:IdentifiedObject.name>SAM143</cim:IdentifiedObject.name>
-//        <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>
-//        <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>
-//        <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_858945"/>
-//    </cim:BusbarSection>
+
+//        <cim:BusbarSection rdf:ID="_busbar_1772383">
+//                <cim:IdentifiedObject.name>SAM143</cim:IdentifiedObject.name>
+//                <cim:PowerSystemResource.Location>_location_1610657792_427078125_1772388</cim:PowerSystemResource.Location>
+//                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>
+//                <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>
+//                <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_858945"/>
+//        </cim:BusbarSection>
+
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
             name = parse_element (/<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>/g, sub, context);
+            location = parse_element (/<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>/g, sub, context, true);
             type = parse_attribute (/<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
             voltage = parse_attribute (/<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
             container = parse_attribute (/<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -512,6 +551,12 @@ requirejs
             resource.type = type;
             resource.voltage = voltage;
             resource.container = container;
+            if (null != location)
+            {
+                if (null == parsed.PowerSystemResources[location])
+                    parsed.PowerSystemResources[location] = { coordinates: [] };
+                resource.location = location;
+            }
             parsed.PowerSystemResources[container].contents.push (resource);
         }
 
@@ -543,6 +588,10 @@ requirejs
             resource.name = name;
         }
 
+        function bogus4 () // ToDo: only needed for Eclipse braindead Javascript outlining
+        {
+        }
+
         /**
          * Parse a ACLineSegment element and add it to the PowerSystemResources.
          * @param {Object} parsed - the parsed elements
@@ -556,22 +605,27 @@ requirejs
             var idex;
             var id;
             var name;
+            var location;
             var length;
             var type;
             var voltage;
             var container;
             var resource;
+
 //        <cim:ACLineSegment rdf:ID="_internal_line_2094357">
 //                <cim:IdentifiedObject.name>KLE8207</cim:IdentifiedObject.name>
+//                <cim:PowerSystemResource.Location>_location_1610630656_427084375_2094361</cim:PowerSystemResource.Location>
 //                <cim:Conductor.length>19.5</cim:Conductor.length>
 //                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
 //                <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>
 //                <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_859028"/>
 //        </cim:ACLineSegment>
+
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
             name = parse_element (/<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>/g, sub, context);
+            location = parse_element (/<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>/g, sub, context, true);
             length = Number (parse_element (/<cim:Conductor.length>([\s\S]*?)<\/cim:Conductor.length>/g, sub, context));
             type = parse_attribute (/<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
             voltage = parse_attribute (/<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
@@ -587,6 +641,12 @@ requirejs
             resource.type = type;
             resource.voltage = voltage;
             resource.container = container;
+            if (null != location)
+            {
+                if (null == parsed.PowerSystemResources[location])
+                    parsed.PowerSystemResources[location] = { coordinates: [] };
+                resource.location = location;
+            }
             parsed.PowerSystemResources[container].contents.push (resource);
         }
 
@@ -628,7 +688,11 @@ requirejs
             resource.segment = segment;
         }
 
-       /**
+        function bogus5 () // ToDo: only needed for Eclipse braindead Javascript outlining
+        {
+        }
+
+        /**
          * Parse a SwitchInfo element and add it to the PowerSystemResources.
          * @param {Object} parsed - the parsed elements
          * @param {Object} parsed.PowerSystemResources - the object with power system resources
@@ -656,6 +720,10 @@ requirejs
             resource.name = name;
         }
 
+        function bogus6 () // ToDo: only needed for Eclipse braindead Javascript outlining
+        {
+        }
+
         /**
          * Parse a LoadBreakSwitch element and add it to the PowerSystemResources.
          * @param {Object} parsed - the parsed elements
@@ -669,20 +737,25 @@ requirejs
             var idex;
             var id;
             var name;
+            var location;
             var open;
             var type;
             var container;
             var resource;
+
 //        <cim:LoadBreakSwitch rdf:ID="_switch_1977502">
 //                <cim:IdentifiedObject.name>TEI568</cim:IdentifiedObject.name>
+//                <cim:PowerSystemResource.Location>_location_1610720512_427087414_1977506</cim:PowerSystemResource.Location>
 //                <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
 //                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>
 //                <cim:Equipment.EquipmentContainer rdf:resource="_substation_251865"/>
 //        </cim:LoadBreakSwitch>
+
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
             name = parse_element (/<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>/g, sub, context);
+            location = parse_element (/<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>/g, sub, context, true);
             open = to_boolean (parse_element (/<cim:Switch.normalOpen>([\s\S]*?)<\/cim:Switch.normalOpen>/g, sub, context));
             type = parse_attribute (/<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
             container = parse_attribute (/<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
@@ -696,7 +769,17 @@ requirejs
             resource.normallyOpen = open;
             resource.type = type;
             resource.container = container;
+            if (null != location)
+            {
+                if (null == parsed.PowerSystemResources[location])
+                    parsed.PowerSystemResources[location] = { coordinates: [] };
+                resource.location = location;
+            }
             parsed.PowerSystemResources[container].contents.push (resource);
+        }
+
+        function bogus7 () // ToDo: only needed for Eclipse braindead Javascript outlining
+        {
         }
 
         /**
@@ -731,6 +814,10 @@ requirejs
             resource.tank_info = tank_info;
         }
 
+        function bogus8 () // ToDo: only needed for Eclipse braindead Javascript outlining
+        {
+        }
+
         /**
          * Parse a TransformerTankInfo element and add it to the PowerSystemResources.
          * @param {Object} parsed - the parsed elements
@@ -761,6 +848,10 @@ requirejs
                 parsed.PowerSystemResources[id] = resource = {};
             resource.name = name;
             resource.transformer_info = transformer_info;
+        }
+
+        function bogus9 () // ToDo: only needed for Eclipse braindead Javascript outlining
+        {
         }
 
         /**
@@ -794,6 +885,11 @@ requirejs
             resource.name = name;
             resource.end = end;
         }
+
+        function bogus10 () // ToDo: only needed for Eclipse braindead Javascript outlining
+        {
+        }
+
         /**
          * Parse a PowerTransformer element and add it to the PowerSystemResources.
          * @param {Object} parsed - the parsed elements
@@ -807,18 +903,23 @@ requirejs
             var idex;
             var id;
             var name;
+            var location;
             var type;
             var container;
             var resource;
+
 //        <cim:PowerTransformer rdf:ID="_transformer_2083545">
 //                <cim:IdentifiedObject.name>TRA79</cim:IdentifiedObject.name>
+//                <cim:PowerSystemResource.Location>_location_1610630656_427085543_2083549</cim:PowerSystemResource.Location>
 //                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
 //                <cim:Equipment.EquipmentContainer rdf:resource="#_substation_244441"/>
 //        </cim:PowerTransformer>
+
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
             name = parse_element (/<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>/g, sub, context);
+            location = parse_element (/<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>/g, sub, context, true);
             type = parse_attribute (/<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
             container = parse_attribute (/<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
 
@@ -831,6 +932,12 @@ requirejs
             resource.type = type;
             resource.container = container;
             resource.tanks = [];
+            if (null != location)
+            {
+                if (null == parsed.PowerSystemResources[location])
+                    parsed.PowerSystemResources[location] = { coordinates: [] };
+                resource.location = location;
+            }
             parsed.PowerSystemResources[container].contents.push (resource);
         }
 
@@ -922,6 +1029,109 @@ requirejs
         }
 
         /**
+         * Parse a CoordinateSystem element and add it to the PowerSystemResources.
+         * @param {Object} parsed - the parsed elements
+         * @param {Object} parsed.PowerSystemResources - the object with power system resources
+         * @param {Object} context - the file reading context
+         * @param {String} sub - the substring within the Line element
+         * @memberOf module:cimspace
+         */
+        function parse_cs (parsed, context, sub)
+        {
+            var idex;
+            var id;
+            var name;
+            var urn;
+            var resource;
+
+//        <cim:CoordinateSystem rdf:ID="wgs_84">
+//                <cim:IdentifiedObject.name>WGS 84</cim:IdentifiedObject.name>
+//                <cim:crsUrn>EPSG::4326</cim:crsUrn>
+//        </cim:CoordinateSystem>
+
+            idex = /rdf:ID=("|')([\s\S]*?)\1/g;
+            id = parse_attribute (idex, sub, context);
+            sub = sub.substring (idex.lastIndex);
+            name = parse_element (/<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>/g, sub, context);
+            urn = parse_element (/<cim:crsUrn>([\s\S]*?)<\/cim:crsUrn>/g, sub, context);
+
+            resource = parsed.PowerSystemResources[id];
+            if (null == resource)
+                parsed.PowerSystemResources[id] = resource = { };
+            resource.name = name;
+            resource.urn = urn;
+        }
+
+        /**
+         * Parse a Location element and add it to the PowerSystemResources.
+         * @param {Object} parsed - the parsed elements
+         * @param {Object} parsed.PowerSystemResources - the object with power system resources
+         * @param {Object} context - the file reading context
+         * @param {String} sub - the substring within the Line element
+         * @memberOf module:cimspace
+         */
+        function parse_location  (parsed, context, sub)
+        {
+            var idex;
+            var id;
+            var cs;
+            var type;
+            var resource;
+
+//        <cim:Location rdf:ID="_location_5773088_1107287243_317923">
+//                <cim:Location.CoordinateSystem>wgs_84</cim:Location.CoordinateSystem>
+//                <cim:Location.type>geographic</cim:Location.type>
+//        </cim:Location>
+
+            idex = /rdf:ID=("|')([\s\S]*?)\1/g;
+            id = parse_attribute (idex, sub, context);
+            sub = sub.substring (idex.lastIndex);
+            cs = parse_element (/<cim:Location.CoordinateSystem>([\s\S]*?)<\/cim:Location.CoordinateSystem>/g, sub, context);
+            type = parse_element (/<cim:Location.type>([\s\S]*?)<\/cim:Location.type>/g, sub, context);
+
+            resource = parsed.PowerSystemResources[id];
+            if (null == resource)
+                parsed.PowerSystemResources[id] = resource = { coordinates: []};
+            resource.cs = cs;
+            resource.type = type;
+        }
+
+        /**
+         * Parse a PositionPoint element and add it to the location.
+         * @param {Object} parsed - the parsed elements
+         * @param {Object} parsed.PowerSystemResources - the object with power system resources
+         * @param {Object} context - the file reading context
+         * @param {String} sub - the substring within the Line element
+         * @memberOf module:cimspace
+         */
+        function parse_position_point  (parsed, context, sub)
+        {
+            var location;
+            var sequence;
+            var x;
+            var y;
+            var resource;
+
+//        <cim:PositionPoint>
+//                <cim:PositionPoint.Location>_location_5773088_1107287243_317923</cim:PositionPoint.Location>
+//                <cim:sequenceNumber>0</cim:sequenceNumber>
+//                <cim:xPosition>8.78184724183</cim:xPosition>
+//                <cim:yPosition>47.0400997930</cim:yPosition>
+//        </cim:PositionPoint>
+
+            location = parse_element (/<cim:PositionPoint.Location>([\s\S]*?)<\/cim:PositionPoint.Location>/g, sub, context);
+            sequence = Number (parse_element (/<cim:sequenceNumber>([\s\S]*?)<\/cim:sequenceNumber>/g, sub, context));
+            x = Number (parse_element (/<cim:xPosition>([\s\S]*?)<\/cim:xPosition>/g, sub, context));
+            y = Number (parse_element (/<cim:yPosition>([\s\S]*?)<\/cim:yPosition>/g, sub, context));
+
+            resource = parsed.PowerSystemResources[location];
+            if (null == resource)
+                parsed.PowerSystemResources[location] = resource = { coordinates: []};
+            resource.coordinates[sequence * 2] = x;
+            resource.coordinates[sequence * 2 + 1] = y;
+        }
+
+        /**
          * Parse an XML file into constituent parts
          * @param {String} xml - the string to parse
          * @param {Object} context - the file reading context
@@ -932,6 +1142,7 @@ requirejs
         function read_xml (xml, context, parsed)
         {
             var regex;
+            var startindex;
             var result;
             var subcontext;
             var ignored = 0;
@@ -951,12 +1162,19 @@ requirejs
             };
 
             // update the newline index
-            context.newlines = index_string (xml, context.start_character);
+            context.newlines = index_string (xml, context.start_character, context.newlines);
 
             // scan for cim elements
-            regex = /<(cim:\S+)([\s\S]*?)<\/\1>/g;
+            regex = /\s*<(cim:\S+)([\s\S]*?)<\/\1>\s*/g; // important to consume leading and trailing whitespace
+            startindex = 0;
             while (null != (result = regex.exec (xml)))
             {
+                // check that the matched pattern length fills starting index to ending index
+                // this is in lieu of all browser support for the sticky flag - y
+                if (startindex + result[0].length != regex.lastIndex)
+                    break;
+                startindex = regex.lastIndex;
+
                 // update the last seen character position
                 context.end_character = context.start_character + regex.lastIndex;
                 // form the subcontext for parsing individual elements
@@ -1055,14 +1273,27 @@ requirejs
                         parse_transformer_tank_end (parsed, subcontext, guts);
                         break;
 
+                    case "cim:CoordinateSystem":
+                        parse_cs (parsed, subcontext, guts);
+                        break;
+
+                    case "cim:Location":
+                        parse_location (parsed, subcontext, guts);
+                        break;
+
+                    case "cim:PositionPoint":
+                        parse_position_point (parsed, subcontext, guts);
+                        break;
+
                     default:
-                        //console.log ("unrecognized element type '" + result[1] + "' at line " + line_number (subcontext));
+                        if (ignored < 3)
+                            console.log ("unrecognized element type '" + result[1] + "' at line " + line_number (subcontext));
                         ignored++;
                         break;
                 }
+                result = null;
             }
 
-            console.log ("ignored " + ignored + " elements");
             return ({parsed: parsed, context: context});
         }
 
@@ -1083,7 +1314,7 @@ requirejs
             for (var property in resources)
                 if (resources.hasOwnProperty (property))
                 {
-                    if (!resources[property].name)
+                    if (!resources[property].name && !(0 == property.indexOf ("_location_")))
                         console.log (property + " has no name");
                     if (0 == property.indexOf ("_substation"))
                     {
@@ -1133,48 +1364,6 @@ requirejs
                 }
 
             return (ret);
-        }
-
-        /**
-         * Handle the FileReader completion event for an XML file.
-         * @param {Object[]} files - the array of files
-         * @param {Object} event - the onload event
-         * @memberOf module:cimspace
-         */
-        function read_xml_file (files, event)
-        {
-
-            var next;
-            var resources;
-            var connectivity;
-
-            console.log ("starting XML parse");
-
-            next = read_xml (event.target.result);
-            console.log ("done XML parse");
-
-            // check some stuff
-            resources = count_resources (next.parsed.PowerSystemResources);
-            connectivity = count_connections (next.parsed.ConnectivityNodes);
-            console.log (event.target.result.length + " characters yields "
-                + resources + " resources "
-                + connectivity + " connections.");
-
-            // chain to the gml file reader
-            for (var i = 0; i < files.length; i++)
-            {
-                var file = files[i];
-                var name = file.name;
-                var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
-                if (".gml" == extension)
-                {
-                    console.log ("starting GML read");
-                    var reader = new FileReader ();
-                    reader.onload = read_gml_file.bind (this, next.parsed);
-                    reader.readAsText (file, "UTF-8");
-                    break;
-                }
-            }
         }
 
         /**
@@ -1452,9 +1641,107 @@ requirejs
         }
 
         /**
+         * Generate a map.
+         * @param {Object} points - the points GeoJSON
+         * @param {Object} lines - the lines GeoJSON
+         * @function make_map
+         * @memberOf module:cimspace
+         */
+        function make_map (points, lines)
+        {
+            var mapbox_classic;
+
+            // update the map
+            mapbox_classic = !do_vector_tiles ();
+            if (mapbox_classic)
+            {
+                var l = L.mapbox.featureLayer (lines);
+                l.addTo (TheMap);
+                var p = L.mapbox.featureLayer (points);
+                p.addTo (TheMap);
+            }
+            else
+            {
+                TheMap.addSource
+                (
+                    "the cim lines",
+                    {
+                        type: "geojson",
+                        data: lines,
+                        maxzoom: 25
+                    }
+                );
+
+                TheMap.addSource
+                (
+                    "the cim points",
+                    {
+                        type: "geojson",
+                        data: points,
+                        maxzoom: 25
+                    }
+                );
+
+                TheMap.addLayer
+                (
+                    {
+                        id: "lines",
+                        type: "line",
+                        source: "the cim lines",
+                        filter: ["==", "generated", false],
+                        layout:
+                        {
+                            "line-join": "round",
+                            "line-cap": "round"
+                        },
+                        paint:
+                        {
+                            "line-color": "#000",
+                            "line-width": 3
+                        }
+                    }
+                );
+
+                TheMap.addLayer
+                (
+                    {
+                        id: "generated_lines",
+                        type: "line",
+                        source: "the cim lines",
+                        filter: ["==", "generated", true],
+                        layout:
+                        {
+                        },
+                        paint:
+                        {
+                            "line-color": "#555555",
+                            "line-width": 1
+                        }
+                    }
+                );
+
+                // simple circle from 14 to 17
+                TheMap.addLayer (circle_layer ("circle_transformer", ["==", "symbol", "transformer"], "rgb(0, 255, 0)"));
+                TheMap.addLayer (circle_layer ("circle_switch", ["==", "symbol", "switch"], "rgb(0, 0, 255)"));
+                TheMap.addLayer (circle_layer ("circle_house_connection", ["==", "symbol", "house_connection"], "rgb(255, 0, 0)"));
+                TheMap.addLayer (circle_layer ("circle_other", ["==", "symbol", "monument-24"], "black"));
+
+                // symbol icon from 17 and deeper
+//                var increment = 5.0;
+//                for (var orientation = 0; orientation < 360.0; orientation += increment)
+//                    TheMap.addLayer (symbol_layer ("symbol_" + orientation, ["all", ["==", "symbol", "house_connection"], [">=", "orientation", (orientation - (increment / 2.0))], ["<", "orientation", (orientation + (increment / 2.0))]], "{symbol}", orientation, [0, 12], "{color}"));
+                TheMap.addLayer (symbol_layer ("symbol_house_connection", ["==", "symbol", "house_connection"], "{symbol}", 0.0, [0, 0], "{color}"));
+
+                // don't rotate others
+                TheMap.addLayer (symbol_layer ("symbol_other", ["!=", "symbol", "house_connection"], "{symbol}", 0.0, [0, 0], "{color}"));
+            }
+        }
+
+        /**
          * Handle the FileReader completion event for a GML file.
          * @param {Object} data - the XML parsed data
          * @param {Object} event - the onload event
+         * @function read_gml_file
          * @memberOf module:cimspace
          */
         function read_gml_file (data, event)
@@ -1523,113 +1810,312 @@ requirejs
             }
             console.log (unmatched + " features had no matching Power System Resource");
 
-            // update the map
-            var mapbox_classic = !do_vector_tiles ();
-            if (mapbox_classic)
-            {
-                var l = L.mapbox.featureLayer (next.parsed.lines);
-                l.addTo (TheMap);
-                var p = L.mapbox.featureLayer (next.parsed.points);
-                p.addTo (TheMap);
-            }
-            else
-            {
-                TheMap.addSource
-                (
-                    "the cim lines",
-                    {
-                        type: "geojson",
-                        data: next.parsed.lines,
-                        maxzoom: 25
-                    }
-                );
+            make_map (next.parsed.points, next.parsed.lines);
+        }
 
-                TheMap.addSource
-                (
-                    "the cim points",
-                    {
-                        type: "geojson",
-                        data: next.parsed.points,
-                        maxzoom: 25
-                    }
-                );
+        /**
+         * @summary Read a blob as XML and resolve or reject.
+         * @description Reads a blob as UTF8 and parses the XML.
+         * @param {Blob} blob - the blob to read
+         * @param {Number} start - the starting byte to read from the blob
+         * @param {Object} context - the state of the parser
+         * @param {Object} parsed - the output of the parser so far
+         * @param {Function} resolve - the function to call to resolve the promise
+         * @param {Function} reject - the function to call to reject the promise
+         * @function xml_read_promise
+         * @memberOf module:cimspace
+         */
+        function xml_read_promise (blob, start, context, parsed, resolve, reject)
+        {
+            var size;
+            var tbd;
+            var subblob;
+            var reader;
 
-                TheMap.addLayer
-                (
+            size = blob.size;
+            tbd = Math.min (CHUNK_SIZE, size - start);
+            subblob = blob.slice (start, start + tbd, blob.type);
+            reader = new FileReader ();
+            reader.onload = function (event)
+            {
+                var xml;
+                var subxml;
+                var offset;
+                var regex;
+                var encoding;
+                var result;
+                var read;
+                var bytes;
+                var done;
+
+                xml = event.target.result;
+                subxml = xml;
+                offset = 0;
+//                console.log ("parsing at line " + (context ? line_number (context) : "0") + " beginning with:\n" + xml.substring (0, 300) + "\n and ending with:\n" + xml.substring (xml.length - 300) + "\n");
+
+                // check for just starting
+                if (0 == start)
+                {
+                    context = context ||
                     {
-                        id: "lines",
-                        type: "line",
-                        source: "the cim lines",
-                        filter: ["==", "generated", false],
-                        layout:
+                        start_character: 0,
+                        end_character: 0,
+                        newlines: []
+                    };
+
+                    // remove the XML declaration, i.e. <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                    regex = /<\?([\s\S]*)\?>\s*/g;
+                    if (null != (result = regex.exec (subxml)))
+                    {
+                        context.newlines = index_string (subxml.substring (0, regex.lastIndex), context.start_character, context.newlines);
+                        context.start_character += regex.lastIndex;
+                        subxml = subxml.substring (regex.lastIndex);
+                        offset += regex.lastIndex;
+                        // check the encoding
+                        regex = /encoding="([^"]*)"/g;
+                        if (null != (result = regex.exec (result[1])))
                         {
-                            "line-join": "round",
-                            "line-cap": "round"
-                        },
-                        paint:
-                        {
-                            "line-color": "#000",
-                            "line-width": 3
+                            encoding = result[1];
+                            if ("UTF-8" != encoding.toUpperCase ())
+                                reject (Error ("unsupported encoding " + encoding));
                         }
                     }
-                );
 
-                TheMap.addLayer
-                (
+                    // parse RDF, i.e. <rdf:RDF xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                    regex = /<rdf:RDF([\s\S]*?)>\s*/g;
+                    if (null != (result = regex.exec (subxml)))
                     {
-                        id: "generated_lines",
-                        type: "line",
-                        source: "the cim lines",
-                        filter: ["==", "generated", true],
-                        layout:
-                        {
-                        },
-                        paint:
-                        {
-                            "line-color": "#555555",
-                            "line-width": 1
-                        }
+                        context.newlines = index_string (subxml.substring (0, regex.lastIndex), context.start_character, context.newlines);
+                        context.start_character += regex.lastIndex;
+                        subxml = subxml.substring (regex.lastIndex);
+                        offset += regex.lastIndex;
+                        // ToDo: need we/can we handle different prefix values
                     }
-                );
+                }
 
-                // simple circle from 14 to 17
-                TheMap.addLayer (circle_layer ("circle_transformer", ["==", "symbol", "transformer"], "rgb(0, 255, 0)"));
-                TheMap.addLayer (circle_layer ("circle_switch", ["==", "symbol", "switch"], "rgb(0, 0, 255)"));
-                TheMap.addLayer (circle_layer ("circle_house_connection", ["==", "symbol", "house_connection"], "rgb(255, 0, 0)"));
-                TheMap.addLayer (circle_layer ("circle_other", ["==", "symbol", "monument-24"], "black"));
+                result = read_xml (subxml, context, parsed);
+                read = result.context.end_character - result.context.start_character; // number of characters parsed
+                if (0 == read)
+                    reject (Error ("parse failed at line " + line_number (context)));
+                else
+                {
+//                    console.log ("stopped parsing at line " + line_number (result.context, result.context.end_character) + " ending with:\n" + xml.substring (read - 300, read) + "\n");
+                    bytes = encode_utf8 (xml.substring (0, read + offset)).length;
 
-                // symbol icon from 17 and deeper
-                var increment = 5.0;
-                for (var orientation = 0; orientation < 360.0; orientation += increment)
-                    TheMap.addLayer (symbol_layer ("symbol_" + orientation, ["all", ["==", "symbol", "house_connection"], [">=", "orientation", (orientation - (increment / 2.0))], ["<", "orientation", (orientation + (increment / 2.0))]], "{symbol}", orientation, [0, 12], "{color}"));
-                // don't rotate others
-                TheMap.addLayer (symbol_layer ("symbol_other", ["!=", "symbol", "house_connection"], "{symbol}", 0.0, [0, 0], "{color}"));
+                    context = result.context;
+                    parsed = result.parsed;
+
+                    // check for done
+                    done = false;
+                    regex = /\s*<\/rdf:RDF>\s*/g;
+                    if (null != (result = regex.exec (subxml.substring (read))))
+                    {
+                        context.end_character += regex.lastIndex;
+                        done = true;
+                    }
+                    else
+                    {
+                        context.start_character = context.start_character + read;
+                        context.newlines.slice (0, 1 + line_number (context, context.end_character));
+                    }
+
+                    if (done)
+                        resolve ({context: context, parsed: parsed});
+                    else
+                        xml_read_promise (blob, start + bytes, context, parsed, resolve, reject); // tail recursive
+                }
             }
+            reader.onerror = function ()
+            {
+                reject (Error ("reader error"));
+            };
+            reader.readAsText (subblob, "UTF-8");
+        }
+
+        /**
+         * @summary Read a blob as XML.
+         * @description Processes chunks of the file reading the blob as UTF8.
+         * @param {Blob} blob - the blob to read
+         * @param
+         * @function read_xml_blob
+         * @memberOf module:cimspace
+         */
+        function read_xml_blob (blob, callback)
+        {
+            var promise;
+
+            promise = new Promise (xml_read_promise.bind (this, blob, 0, null, null));
+            promise.then
+            (
+                function (result)
+                {
+                    callback (result);
+                },
+                function (err)
+                {
+                    console.log (err);
+                }
+            );
         }
 
         /**
          * @summary Handler for file change events.
          * @description Process files from the browse dialog.
-         * @param {object} event - the file change event
+         * @param {File[]} files - the list of files
          * @function file_change
          * @memberOf module:cimspace
          */
-        function process_files (list)
+        function process_files (files)
         {
-            for (var i = 0; i < list.length; i++)
+            if (1 == files.length)
             {
-                var file = list[i];
-                var name = file.name;
-                var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
-                if (".xml" == extension)
-                {
-                    console.log ("starting XML read");
-                    var reader = new FileReader ();
-                    reader.onload = read_xml_file.bind (this, list);
-                    reader.readAsText (file, "UTF-8");
-                    break;
-                }
+                console.log ("starting XML read");
+                read_xml_blob
+                (
+                    files[0],
+                    function (result)
+                    {
+                        var psr;
+                        var location;
+                        var coordinates;
+                        var lines =
+                        {
+                            "type" : "FeatureCollection",
+                            "features" : []
+                        };
+                        var points =
+                        {
+                            "type" : "FeatureCollection",
+                            "features" : []
+                        };
+
+                        console.log ("finished XML read");
+                        psr = result.parsed.PowerSystemResources;
+                        for (var id in psr)
+                        {
+                            if (null != (location = psr[id].location))
+                            {
+                                if (null != (coordinates = psr[location].coordinates))
+                                {
+                                    if (2 == coordinates.length)
+                                    {
+                                        points.features.push
+                                        (
+                                            {
+                                                type : "Feature",
+                                                geometry :
+                                                {
+                                                    type : "Point",
+                                                    coordinates : [ coordinates[0], coordinates[1] ]
+                                                },
+                                                properties : psr[id]
+                                            }
+                                        );
+                                        psr[id].id = id;
+                                        psr[id].orientation = 0.0;
+                                        // assign the symbol
+                                        if (0 == psr[id].name.indexOf ("TRA"))
+                                        {
+                                            psr[id].symbol = "transformer";
+                                            psr[id].color = "rgb(0, 255, 0)";
+                                        }
+                                        else if (0 == psr[id].name.indexOf ("TEI"))
+                                        {
+                                            psr[id].symbol = "switch";
+                                            psr[id].color = "rgb(0, 0, 255)";
+                                        }
+                                        else if (0 == psr[id].name.indexOf ("HAS"))
+                                        {
+                                            psr[id].symbol = "house_connection";
+                                            psr[id].color = "rgb(255, 0, 0)";
+                                        }
+                                        else
+                                        {
+                                            psr[id].symbol = "monument-24";
+                                            psr[id].color = "rgb(255, 255, 255)";
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        lines.features.push
+                                        (
+                                            {
+                                                type : "Feature",
+                                                geometry :
+                                                {
+                                                    type : "LineString",
+                                                    coordinates : coordinates.reduce
+                                                    (
+                                                        function (ret, item)
+                                                        {
+                                                            var next;
+
+                                                            next = ret[ret.length - 1];
+                                                            if (!next || (2 <= next.length))
+                                                            {
+                                                                next = [];
+                                                                ret.push (next);
+                                                            }
+                                                            next.push (item);
+
+                                                            return (ret);
+                                                        },
+                                                        []
+                                                    )
+                                                },
+                                                properties : psr[id]
+//                                                {
+//                                                    id : id
+//                                                }
+                                            }
+                                        );
+                                        psr[id].id = id;
+                                        psr[id].generated = (0 == psr[id].name.indexOf ("_generated"));
+                                    }
+                                }
+                            }
+                        }
+                        make_map (points, lines);
+                    }
+                );
             }
+            else
+                for (var i = 0; i < files.length; i++)
+                {
+                    var file = files[i];
+                    var name = file.name;
+                    var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
+                    var self = this;
+                    if (".xml" == extension)
+                    {
+                        console.log ("starting XML read");
+                        read_xml_blob
+                        (
+                            file,
+                            function (result)
+                            {
+                                console.log ("finished XML read");
+                                // chain to the gml file reader
+                                for (var i = 0; i < files.length; i++)
+                                {
+                                    var file = files[i];
+                                    var name = file.name;
+                                    var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
+                                    if (".gml" == extension)
+                                    {
+                                        console.log ("starting GML read");
+                                        var reader = new FileReader ();
+                                        reader.onload = read_gml_file.bind (self, result.parsed);
+                                        reader.readAsText (file, "UTF-8");
+                                        break;
+                                    }
+                                }
+                            }
+                        );
+                        break;
+                    }
+                }
         }
 
         /**
