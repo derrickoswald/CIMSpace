@@ -93,14 +93,15 @@ requirejs
          * @param {Number[]} context.newlines - the index of newline positions within the text
          * @param {Number} context.start_character - the starting character position for this context
          * @param {Number} offset - the character position to find line number of, default = context.start_character
-         * @returns {Number} the line number for the starting character position
+         * @returns {Number} the one-based line number for the starting character position
          * @memberOf module:cimspace
          */
         function line_number (context, offset)
         {
             var min = 0;
             var max = context.newlines.length - 1;
-            var offset = offset || context.start_character;
+            if ("undefined" == typeof (offset))
+                offset = context.start_character;
             var index;
             var item;
 
@@ -115,10 +116,10 @@ requirejs
                 else if (item > offset)
                     max = index - 1;
                 else
-                    return (index);
+                    return (index + 1);
             }
 
-            return (index);
+            return ((context.newlines[index] <= offset ? index + 1 : index) + 1);
         }
 
         /**
@@ -1851,7 +1852,7 @@ requirejs
                 xml = event.target.result;
                 subxml = xml;
                 offset = 0;
-//                console.log ("parsing at line " + (context ? line_number (context) : "0") + " beginning with:\n" + xml.substring (0, 300) + "\n and ending with:\n" + xml.substring (xml.length - 300) + "\n");
+                //console.log ("parsing at line " + (context ? line_number (context) : "0") + " beginning with:\n" + xml.substring (0, xml.indexOf ("\n")));
 
                 // check for just starting
                 if (0 == start)
@@ -1899,7 +1900,6 @@ requirejs
                     reject (Error ("parse failed at line " + line_number (context)));
                 else
                 {
-//                    console.log ("stopped parsing at line " + line_number (result.context, result.context.end_character) + " ending with:\n" + xml.substring (read - 300, read) + "\n");
                     bytes = encode_utf8 (xml.substring (0, read + offset)).length;
 
                     context = result.context;
@@ -1916,7 +1916,7 @@ requirejs
                     else
                     {
                         context.start_character = context.start_character + read;
-                        context.newlines.slice (0, 1 + line_number (context, context.end_character));
+                        context.newlines = context.newlines.slice (0, line_number (context, context.end_character) - 1);
                     }
 
                     if (done)
