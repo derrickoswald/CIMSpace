@@ -13,6 +13,14 @@ body {
     -o-background-size: cover;
 }
 
+/* allow div in dropdown menus, not just a */  
+.dropdown-menu > li > div
+{
+    padding-left: 16px;
+    color: #333;
+    font-size: 16px;
+}
+
 footer.page-footer {
     margin-top: 0;
 }
@@ -21,8 +29,9 @@ footer.page-footer {
 {
     position: relative;
     overflow: hidden;
-    color: white;
-    background-color: #2bbbad;
+    padding-left: 22px;
+    color: white !important;
+    background-color: #2bbbad !important;
 }
 
 .btn-file:hover, .btn-file:focus
@@ -47,9 +56,18 @@ footer.page-footer {
     display: block;
 }
 
+.modal-footer
+{
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+    padding-bottom:40px !important;
+}
 .drop_zone
 {
     color: graytext;
+    background-color: rgb(238, 238, 238);
+    padding: 7px;
+    background-image: none;
 }
 
 

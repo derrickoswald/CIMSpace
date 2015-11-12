@@ -1166,7 +1166,8 @@ requirejs
             context.newlines = index_string (xml, context.start_character, context.newlines);
 
             // scan for cim elements
-            regex = /\s*<(cim:\S+)([\s\S]*?)<\/\1>\s*/g; // important to consume leading and trailing whitespace
+            regex = new RegExp ("\\s*<(cim:\\S+)([\\s\\S]*?)<\\/\\1>\\s*", "g");
+//            regex = /\s*<(cim:\S+)([\s\S]*?)<\/\1>\s*/g; // important to consume leading and trailing whitespace
             startindex = 0;
             while (null != (result = regex.exec (xml)))
             {
@@ -2245,6 +2246,9 @@ requirejs
             }
         }
 
+        // initialize material design for bootstrap (https://github.com/FezVrasta/bootstrap-material-design)
+        $.material.init ();
+        // initialize buttons
         document.getElementById ("file_button").onchange = file_change;
         document.getElementById ("vector_tiles").onchange = init_map;
         // drag and drop listeners

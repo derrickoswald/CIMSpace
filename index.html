@@ -7,17 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>CIM Space</title>
 
-    <!-- Material Design Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" >
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Material Design Bootstrap -->
-    <link href="css/mdb.css" rel="stylesheet">
+    <!-- Material Design for Bootstrap -->
+    <link href="css/roboto.min.css" rel="stylesheet">
+    <link href="css/material-fullpalette.min.css" rel="stylesheet">
+    <link href="css/ripples.min.css" rel="stylesheet">
 
     <!-- Mapbox -->
     <link href="css/mapbox.css" rel="stylesheet" />
@@ -49,8 +48,12 @@
                         <a href="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <input id="vector_tiles" type="checkbox" checked="checked" />
-                                <label for="vector_tiles">Enable vector tiles</label>
+                                <div class="checkbox">
+                                    <label for="vector_tiles">
+                                        <input id="vector_tiles" type="checkbox" checked="checked" />
+                                        Enable vector tiles
+                                    </label>
+                                </div>
                             </li>
                             <li><a href="#">Action</a></li>
                             <li><a href="#">Another action</a></li>
@@ -76,33 +79,6 @@
     <section id="map" class="intro">
     </section>
 
-    <!-- Footer -->
-    <footer class="page-footer indigo darken-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5 class="white-text">Footer Content</h5>
-                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-                </div>
-                <div class="col-md-6">
-                    <h5 class="white-text">Links</h5>
-                    <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                © 2015 9code GmbH
-                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
-        </div>
-    </footer>
-
     <!-- Modal -->
     <div id="file_modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -111,14 +87,14 @@
             <div class="modal-content">
                 <div class="modal-header text-center" style="padding:35px 50px;">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4><i class="fa fa-upload"></i> Load files</h4>
+                    <h2><i class="fa fa-upload"></i> Load files</h2>
                 </div>
                 <div class="modal-body" style="padding:40px 50px;">
                     <div class="row">
                         <div class="form-group">
                             <div class="col-sm-3">
                                 <div class="file-field input-field" aria-describedby="files_help">
-                                    <div type="button" class="btn btn-file waves-effect waves-light">
+                                    <div type="button" class="btn btn-file">
                                         <span>Browse</span>
                                         <input id="file_button" type="file" name="files[]" multiple/>
                                     </div>
@@ -139,7 +115,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger waves-effect waves-light btn-default pull-left" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -153,8 +129,9 @@
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-    <!-- Material Design Bootstrap -->
-    <script type="text/javascript" src="js/mdb.js"></script>
+    <!-- Material Design for Bootstrap -->
+    <script src="js/ripples.min.js"></script>
+    <script src="js/material.min.js"></script>
 
     <!-- Mapbox -->
     <script type="text/javascript" src="js/mapbox.js"></script>
