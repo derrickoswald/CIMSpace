@@ -1397,7 +1397,7 @@ define
                     else
                         xml_read_promise (blob, start + bytes, context, parsed, resolve, reject); // tail recursive
                 }
-            }
+            };
             reader.onerror = function ()
             {
                 reject (Error ("reader error"));
