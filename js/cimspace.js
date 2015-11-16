@@ -476,16 +476,22 @@ requirejs
          * @function read_gml_file
          * @memberOf module:cimspace
          */
-        function read_gml_file (data, event)
+        function read_gml_file (start, data, event)
         {
             var next;
             var feature;
             var item;
             var unmatched;
 
+            var end = new Date ().getTime ();
+            console.log ("finished XML read (" + (Math.round (end - start) / 1000) + " seconds)");
+
+            start = new Date ().getTime ();
             console.log ("starting GML parse");
             next = read_gml (event.target.result);
-            console.log ("done GML parse");
+            end = new Date ().getTime ();
+            console.log ("finished GML parse (" + (Math.round (end - start) / 1000) + " seconds)");
+
             console.log (event.target.result.length + " characters yields "
                 + next.parsed.lines.features.length + " lines and "
                 + next.parsed.points.features.length + " points.");
@@ -556,6 +562,7 @@ requirejs
         {
             if (1 == files.length)
             {
+                var start = new Date ().getTime ();
                 console.log ("starting XML read");
                 cim.read_xml_blob
                 (
@@ -578,7 +585,9 @@ requirejs
                             "features" : []
                         };
 
-                        console.log ("finished XML read");
+                        var end = new Date ().getTime ();
+                        console.log ("finished XML read (" + (Math.round (end - start) / 1000) + " seconds)");
+
                         psr = result.parsed.PowerSystemResources;
 
                         // check some stuff
@@ -686,13 +695,16 @@ requirejs
                     var self = this;
                     if (".xml" == extension)
                     {
+                        var start = new Date ().getTime ();
                         console.log ("starting XML read");
                         cim.read_xml_blob
                         (
                             file,
                             function (result)
                             {
-                                console.log ("finished XML read");
+                                var end = new Date ().getTime ();
+                                console.log ("finished XML read (" + (Math.round (end - start) / 1000) + " seconds)");
+
                                 // chain to the gml file reader
                                 for (var i = 0; i < files.length; i++)
                                 {
@@ -701,9 +713,10 @@ requirejs
                                     var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
                                     if (".gml" == extension)
                                     {
+                                        var begin = new Date ().getTime ();
                                         console.log ("starting GML read");
                                         var reader = new FileReader ();
-                                        reader.onload = read_gml_file.bind (self, result.parsed);
+                                        reader.onload = read_gml_file.bind (self, begin, result.parsed);
                                         reader.readAsText (file, "UTF-8");
                                         break;
                                     }

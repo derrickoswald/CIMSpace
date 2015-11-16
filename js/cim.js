@@ -20,7 +20,7 @@ define
         /**
          * The size of chunks to read into memory.
          */
-        var CHUNK_SIZE = 1000000;
+        var CHUNK_SIZE = 4000000;
 
         /**
          * Convert a string into UTF-8 encoded (all high order bytes are zero) string.
@@ -1134,7 +1134,6 @@ define
             var startindex;
             var result;
             var subcontext;
-            var ignored = 0;
 
             context = context ||
             {
@@ -1147,15 +1146,16 @@ define
                 ConnectivityNodes: {},
                 PowerSystemResourceTypes: {},
                 PowerSystemResources: {},
-                Voltages: {}
+                Voltages: {},
+                ignored: 0
             };
 
             // update the newline index
             context.newlines = index_string (xml, context.start_character, context.newlines);
 
             // scan for cim elements
-            regex = new RegExp ("\\s*<(cim:\\S+)([\\s\\S]*?)<\\/\\1>\\s*", "g");
-//            regex = /\s*<(cim:\S+)([\s\S]*?)<\/\1>\s*/g; // important to consume leading and trailing whitespace
+            regex = new RegExp ("\\s*<(cim:[^ >\\s]+)([\\s\\S]*?)<\\/\\1>\\s*", "g");
+//            regex = /\s*<(cim:[^ >\\s]+)([\s\S]*?)<\/\1>\s*/g; // important to consume leading and trailing whitespace
             startindex = 0;
             while (null != (result = regex.exec (xml)))
             {
@@ -1276,9 +1276,9 @@ define
                         break;
 
                     default:
-                        if (ignored < 3)
+                        if (parsed.ignored < 3)
                             console.log ("unrecognized element type '" + result[1] + "' at line " + line_number (subcontext));
-                        ignored++;
+                        parsed.ignored++;
                         break;
                 }
                 result = null;
