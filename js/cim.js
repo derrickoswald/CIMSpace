@@ -56,12 +56,12 @@ define
             var res;
 
             offset = offset || 0;
-            newlines = newlines || [];
+            var nl = newlines || [];
             lines = /\n/g;
             while (null != (res = lines.exec (str)))
-                newlines.push (res.index + offset);
+                nl.push (res.index + offset);
 
-            return (newlines);
+            return (nl);
         }
 
         /**
@@ -189,6 +189,9 @@ define
             var typex;
             var id;
             var value;
+//        <cim:PSRType rdf:ID="PSRType_Substation">
+//                <cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
+//        </cim:PSRType>
 
             typex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (typex, sub, context);
@@ -213,6 +216,10 @@ define
             var name;
             var container;
             var node;
+//        <cim:ConnectivityNode rdf:ID="_pin_1555069">
+//                <cim:IdentifiedObject.name>PIN2</cim:IdentifiedObject.name>
+//                <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="_subnetwork_349554"/>
+//        </cim:ConnectivityNode>
 
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
@@ -299,6 +306,10 @@ define
             var name;
             var resource;
             var voltage;
+//        <cim:BaseVoltage rdf:ID="BaseVoltage_0.400000000000">
+//                <cim:IdentifiedObject.name>400.000 V</cim:IdentifiedObject.name>
+//                <cim:BaseVoltage.nominalVoltage>0.400000000000</cim:BaseVoltage.nominalVoltage>
+//        </cim:BaseVoltage>
 
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
@@ -313,8 +324,11 @@ define
             resource.voltage = voltage;
         }
 
+        function dummy () // ToDo: only needed for Eclipse braindead Javascript outlining
+        {
+        }
 
-       /**
+        /**
          * Parse a Asset element and add it to the PowerSystemResources.
          * @param {Object} parsed - the parsed elements
          * @param {Object} parsed.PowerSystemResources - the object with power system resources
@@ -1159,7 +1173,8 @@ define
             startindex = 0;
             while (null != (result = regex.exec (xml)))
             {
-                // check that the matched pattern length fills starting index to ending index
+                // check for a complete outer element,
+                // i.e. check that the matched pattern length fills starting index to ending index
                 // this is in lieu of all browser support for the sticky flag - y
                 if (startindex + result[0].length != regex.lastIndex)
                     break;
