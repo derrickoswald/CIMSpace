@@ -1166,6 +1166,7 @@ define
 
             // update the newline index
             context.newlines = index_string (xml, context.start_character, context.newlines);
+            context.end_character = context.start_character;
 
             // scan for cim elements
             regex = new RegExp ("\\s*<(cim:[^ >\\s]+)([\\s\\S]*?)<\\/\\1>\\s*", "g");
@@ -1378,10 +1379,20 @@ define
                         context.start_character += regex.lastIndex;
                         subxml = subxml.substring (regex.lastIndex);
                         offset += regex.lastIndex;
-                        // ToDo: need we/can we handle different prefix values
+                    }
+
+                    // parse FullModel, i.e. <md:FullModel ....  </md:FullModel>
+                    regex = new RegExp ("\\s*<md:FullModel ([\\s\\S]*?)<\\/md:FullModel>\\s*", "g");
+                    if (null != (result = regex.exec (subxml)))
+                    {
+                        context.newlines = index_string (subxml.substring (0, regex.lastIndex), context.start_character, context.newlines);
+                        context.start_character += regex.lastIndex;
+                        subxml = subxml.substring (regex.lastIndex);
+                        offset += regex.lastIndex;
                     }
                 }
 
+                context.end_character = context.start_character;
                 result = read_xml (subxml, context, parsed);
                 read = result.context.end_character - result.context.start_character; // number of characters parsed
                 if (0 == read)
