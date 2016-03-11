@@ -400,7 +400,7 @@ define
 //                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
 //                <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>
 //                <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_350063"/>
-//                <cim:PhaseConnection rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y"/>
+//                <cim:EnergyConsumer.PhaseConnection rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y"/>
 //        </cim:EnergyConsumer>
 
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
@@ -411,7 +411,7 @@ define
             type = parse_attribute (/<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
             voltage = parse_attribute (/<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
             container = parse_attribute (/<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
-            phase = parse_attribute (/<cim:PhaseConnection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
+            phase = parse_attribute (/<cim:EnergyConsumer.PhaseConnection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
 
             if (null == parsed.PowerSystemResources[container])
                 parsed.PowerSystemResources[container] = { contents: [] };
@@ -1049,14 +1049,14 @@ define
 
 //        <cim:CoordinateSystem rdf:ID="wgs_84">
 //                <cim:IdentifiedObject.name>WGS 84</cim:IdentifiedObject.name>
-//                <cim:crsUrn>EPSG::4326</cim:crsUrn>
+//                <cim:CoordinateSystem.crsUrn>EPSG::4326</cim:crsUrn>
 //        </cim:CoordinateSystem>
 
             idex = /rdf:ID=("|')([\s\S]*?)\1/g;
             id = parse_attribute (idex, sub, context);
             sub = sub.substring (idex.lastIndex);
             name = parse_element (/<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>/g, sub, context);
-            urn = parse_element (/<cim:crsUrn>([\s\S]*?)<\/cim:crsUrn>/g, sub, context);
+            urn = parse_element (/<cim:CoordinateSystem.crsUrn>([\s\S]*?)<\/cim:CoordinateSystem.crsUrn>/g, sub, context);
 
             resource = parsed.PowerSystemResources[id];
             if (null == resource)
@@ -1117,15 +1117,15 @@ define
 
 //        <cim:PositionPoint>
 //                <cim:PositionPoint.Location>_location_5773088_1107287243_317923</cim:PositionPoint.Location>
-//                <cim:sequenceNumber>0</cim:sequenceNumber>
-//                <cim:xPosition>8.78184724183</cim:xPosition>
-//                <cim:yPosition>47.0400997930</cim:yPosition>
+//                <cim:PositionPoint.sequenceNumber>0</cim:sequenceNumber>
+//                <cim:PositionPoint.xPosition>8.78184724183</cim:xPosition>
+//                <cim:PositionPoint.yPosition>47.0400997930</cim:yPosition>
 //        </cim:PositionPoint>
 
             location = parse_element (/<cim:PositionPoint.Location>([\s\S]*?)<\/cim:PositionPoint.Location>/g, sub, context);
-            sequence = Number (parse_element (/<cim:sequenceNumber>([\s\S]*?)<\/cim:sequenceNumber>/g, sub, context));
-            x = Number (parse_element (/<cim:xPosition>([\s\S]*?)<\/cim:xPosition>/g, sub, context));
-            y = Number (parse_element (/<cim:yPosition>([\s\S]*?)<\/cim:yPosition>/g, sub, context));
+            sequence = Number (parse_element (/<cim:PositionPoint.sequenceNumber>([\s\S]*?)<\/cim:PositionPoint.sequenceNumber>/g, sub, context));
+            x = Number (parse_element (/<cim:PositionPoint.xPosition>([\s\S]*?)<\/cim:PositionPoint.xPosition>/g, sub, context));
+            y = Number (parse_element (/<cim:PositionPoint.yPosition>([\s\S]*?)<\/cim:PositionPoint.yPosition>/g, sub, context));
 
             resource = parsed.PowerSystemResources[location];
             if (null == resource)
