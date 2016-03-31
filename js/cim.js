@@ -563,6 +563,124 @@ define
             parsed.PowerSystemResources[container].contents.push (resource);
         }
 
+        /**
+         * Parse a Connector element and add it to the PowerSystemResources.
+         * @param {Object} parsed - the parsed elements
+         * @param {Object} parsed.PowerSystemResources - the object with power system resources
+         * @param {Object} context - the file reading context
+         * @param {String} sub - the substring within the Line element
+         * @memberOf module:cim
+         */
+        function parse_connector (parsed, context, sub)
+        {
+            var idex;
+            var id;
+            var name;
+            var location;
+            var type;
+            var voltage;
+            var aggregate;
+            var inservice;
+            var phase;
+            var container;
+            var resource;
+
+//        <cim:Connector rdf:ID="ABG490">
+//                <cim:IdentifiedObject.name>ABG490</cim:IdentifiedObject.name>
+//                <cim:PowerSystemResource.Location>_location_1610657792_427087417_2101413</cim:PowerSystemResource.Location>
+//                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
+//                <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>
+//                <cim:Equipment.aggregate>true</cim:Equipment.aggregate>
+//                <cim:Equipment.normallyInService>true</cim:Equipment.normallyInService>
+//                <cim:Equipment.EquipmentContainer rdf:resource="#KAB76"/>
+//        </cim:Connector>
+
+            idex = /rdf:ID=("|')([\s\S]*?)\1/g;
+            id = parse_attribute (idex, sub, context);
+            sub = sub.substring (idex.lastIndex);
+            name = parse_element (/<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>/g, sub, context);
+            location = parse_element (/<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>/g, sub, context, true);
+            type = parse_attribute (/<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
+            voltage = parse_attribute (/<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
+            aggregate = parse_element (/<cim:Equipment.aggregate>([\s\S]*?)<\/cim:Equipment.aggregate>/g, sub, context, false);
+            inservice = parse_element (/<cim:Equipment.normallyInService>([\s\S]*?)<\/cim:Equipment.normallyInService>/g, sub, context, false);
+            container = parse_attribute (/<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+
+            if (null == parsed.PowerSystemResources[container])
+                parsed.PowerSystemResources[container] = { contents: [] };
+            resource = parsed.PowerSystemResources[id];
+            if (null == resource)
+                parsed.PowerSystemResources[id] = resource = {};
+            resource.name = name;
+            resource.type = type;
+            resource.voltage = voltage;
+            if (null != aggregate)
+                resource.aggregate = aggregate;
+            if (null != inservice)
+                resource.inservice = inservice;
+            resource.container = container;
+            if (null != location)
+            {
+                if (null == parsed.PowerSystemResources[location])
+                    parsed.PowerSystemResources[location] = { coordinates: [] };
+                resource.location = location;
+            }
+            parsed.PowerSystemResources[container].contents.push (resource);
+        }
+
+        /**
+         * Parse a Junction element and add it to the PowerSystemResources.
+         * @param {Object} parsed - the parsed elements
+         * @param {Object} parsed.PowerSystemResources - the object with power system resources
+         * @param {Object} context - the file reading context
+         * @param {String} sub - the substring within the Line element
+         * @memberOf module:cim
+         */
+        function parse_junction (parsed, context, sub)
+        {
+            var idex;
+            var id;
+            var name;
+            var location;
+            var type;
+            var voltage;
+            var container;
+            var resource;
+
+//        <cim:Junction rdf:ID="MUF1">
+//                <cim:IdentifiedObject.name>MUF1</cim:IdentifiedObject.name>
+//                <cim:PowerSystemResource.Location>_location_1121749_1206245218_1532764</cim:PowerSystemResource.Location>
+//                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
+//                <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>
+//                <cim:Equipment.EquipmentContainer rdf:resource="#ABG1122|ABG1141|HAS14|HAS15|KLE11|KLE5|KLE6|KLE889|MUF1"/>
+//        </cim:Junction>
+            idex = /rdf:ID=("|')([\s\S]*?)\1/g;
+            id = parse_attribute (idex, sub, context);
+            sub = sub.substring (idex.lastIndex);
+            name = parse_element (/<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>/g, sub, context);
+            location = parse_element (/<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>/g, sub, context, true);
+            type = parse_attribute (/<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
+            voltage = parse_attribute (/<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context);
+            container = parse_attribute (/<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, false);
+
+            if (null == parsed.PowerSystemResources[container])
+                parsed.PowerSystemResources[container] = { contents: [] };
+            resource = parsed.PowerSystemResources[id];
+            if (null == resource)
+                parsed.PowerSystemResources[id] = resource = {};
+            resource.name = name;
+            resource.type = type;
+            resource.voltage = voltage;
+            resource.container = container;
+            if (null != location)
+            {
+                if (null == parsed.PowerSystemResources[location])
+                    parsed.PowerSystemResources[location] = { coordinates: [] };
+                resource.location = location;
+            }
+            parsed.PowerSystemResources[container].contents.push (resource);
+        }
+
        /**
          * Parse a CableInfo element and add it to the PowerSystemResources.
          * @param {Object} parsed - the parsed elements
@@ -650,7 +768,10 @@ define
                     parsed.PowerSystemResources[location] = { coordinates: [] };
                 resource.location = location;
             }
-            parsed.PowerSystemResources[container].contents.push (resource);
+            if (null == parsed.PowerSystemResources[container].contents)
+                console.log (id + container);
+            else
+                parsed.PowerSystemResources[container].contents.push (resource);
         }
 
         /**
@@ -1233,6 +1354,14 @@ define
 
                     case "cim:BusbarSection":
                         parse_busbar (parsed, subcontext, guts);
+                        break;
+
+                    case "cim:Connector":
+                        parse_connector (parsed, subcontext, guts);
+                        break;
+
+                    case "cim:Junction":
+                        parse_junction (parsed, subcontext, guts);
                         break;
 
                     case "cim:CableInfo":
