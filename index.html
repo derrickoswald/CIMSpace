@@ -44,6 +44,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a id="load_files" href="#" class="waves-effect waves-light" data-toggle="modal" data-target="#file_modal">Load Files</a></li>
+                    <li><a id="connect_server" href="#" class="waves-effect waves-light" data-toggle="modal" data-target="#server_modal">Connect</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -79,11 +80,10 @@
     <section id="map" class="intro">
     </section>
 
-    <!-- Modal -->
+    <!-- File Dialog Modal -->
     <div id="file_modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
-            <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header text-center" style="padding:35px 50px;">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -115,6 +115,33 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Server Dialog Modal -->
+    <div id="server_modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header text-center" style="padding:35px 50px;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h2><i class="fa fa-connect"></i> Connect to server</h2>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="server_url">Server URL</label>
+                            <div class="col-sm-9">
+                                <input id="server_url" class="form-control" type="text" name="server_url" placeholder="http://9code.ch">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info" data-dismiss="modal">Connect</button>
                     <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </div>

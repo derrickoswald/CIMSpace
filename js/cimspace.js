@@ -677,7 +677,7 @@ requirejs
                                             }
                                         );
                                         psr[id].id = id;
-                                        psr[id].generated = (0 == psr[id].name.indexOf ("_generated"));
+                                        psr[id].generated = (null == psr[id].name) ? false : (0 == psr[id].name.indexOf ("_generated"));
                                     }
                                 }
                             }
