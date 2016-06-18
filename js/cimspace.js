@@ -99,188 +99,6 @@ requirejs
         }
 
         /**
-         * Convert the provided GML into GeoJSON
-         * @param {String} gml - the gml text
-         * @param {Object} context - the file reading context
-         * @param {Object} parsed - optional parsed elements to add to
-         * @returns {Object} the parsed object
-         * @memberOf module:cimspace
-         */
-        function read_gml (gml, context, parsed)
-        {
-//                        <gml:boundedBy>
-//                                <gml:Envelope srsName="EPSG:4326">
-//                                        <gml:lowerCorner>8.58640801325 47.0567348335</gml:lowerCorner>
-//                                        <gml:upperCorner>8.58653962013 47.0567361498</gml:upperCorner>
-//                                </gml:Envelope>
-//                        </gml:boundedBy>
-//                        <nmm:ID>_busbar_1772407</nmm:ID>
-//                        <nmm:Angle>0</nmm:Angle>
-//                        <nmm:NMMGeometry>
-//                                <nmm:FieldName>path</nmm:FieldName>
-//                                <gml:LineString srsName="EPSG:4326">
-//                                        <gml:posList>8.58640801325 47.0567361498 8.58644091497 47.0567358207 8.58647381669 47.0567354916 8.58650671841 47.0567351626 8.58653962013 47.0567348335</gml:posList>
-//                                </gml:LineString>
-//                        </nmm:NMMGeometry>
-
-
-//                        <gml:boundedBy>
-//                                <gml:Envelope srsName="EPSG:4326">
-//                                        <gml:lowerCorner>8.78184724183 47.0400997930</gml:lowerCorner>
-//                                        <gml:upperCorner>8.78184724183 47.0400997930</gml:upperCorner>
-//                                </gml:Envelope>
-//                        </gml:boundedBy>
-//                        <nmm:ID>_house_connection_1469932</nmm:ID>
-//                        <nmm:Angle>147.307201327</nmm:Angle>
-//                        <nmm:NMMGeometry>
-//                                <nmm:FieldName>location</nmm:FieldName>
-//                                <gml:Point srsName="EPSG:4326">
-//                                        <gml:pos>8.78184724183 47.0400997930</gml:pos>
-//                                </gml:Point>
-//                        </nmm:NMMGeometry>
-            var regex;
-            var result;
-            var subcontext;
-            var guts;
-            var id;
-            var orientation;
-            var type;
-            var coords;
-
-            context = context ||
-            {
-                start_character: 0,
-                end_character: 0,
-                newlines: []
-            };
-            parsed = parsed ||
-            {
-                lines:
-                {
-                    "type" : "FeatureCollection",
-                    "features" :
-                    [
-//                        {
-//                            "type" : "Feature",
-//                            "geometry" :
-//                            {
-//                                "type" : "LineString",
-//                                "coordinates" : [ [ 102.0, 0.0 ], [ 103.0, 1.0 ], [ 104.0, 0.0 ], [ 105.0, 1.0 ] ]
-//                            },
-//                            "properties" :
-//                            {
-//                                "prop0" : "value0",
-//                                "prop1" : 0.0
-//                            }
-//                        }
-                    ]
-                },
-                points:
-                {
-                    "type" : "FeatureCollection",
-                    "features" :
-                    [
-//                        {
-//                            "type" : "Feature",
-//                            "geometry" :
-//                            {
-//                                "type" : "Point",
-//                                "coordinates" : [ 102.0, 0.5 ]
-//                            },
-//                            "properties" :
-//                            {
-//                                "prop0" : "value0"
-//                            }
-//                        }
-                    ]
-                }
-            };
-
-            // update the newline index
-            context.newlines = cim.index_string (gml, context.start_character);
-
-            // scan for device elements
-            regex = /<nmm:DeviceMember>\s*<nmm:Device>([\s\S]*?)<\/nmm:Device>\s*<\/nmm:DeviceMember>/g;
-            while (null != (result = regex.exec (gml)))
-            {
-                // update the last seen character position
-                context.end_character = context.start_character + regex.lastIndex;
-                // form the subcontext for parsing individual elements
-                subcontext =
-                {
-                    start_character: context.start_character + result.index,
-                    end_character: context.end_character,
-                    newlines: context.newlines
-                };
-                guts = result[1];
-                id = cim.parse_element (/<nmm:ID>([\s\S]*?)<\/nmm:ID>/g, guts, subcontext);
-                orientation = cim.parse_element (/<nmm:Angle>([\s\S]*?)<\/nmm:Angle>/g, guts, subcontext);
-                type = cim.parse_element (/<nmm:FieldName>([\s\S]*?)<\/nmm:FieldName>/g, guts, subcontext);
-                if ("path" == type)
-                {
-                    coords = cim.parse_element (/<gml:posList>([\s\S]*?)<\/gml:posList>/g, guts, subcontext).split (" ");
-                    parsed.lines.features.push
-                    (
-                        {
-                            type : "Feature",
-                            geometry :
-                            {
-                                type : "LineString",
-                                coordinates : coords.reduce
-                                (
-                                    function (ret, item)
-                                    {
-                                        var next;
-
-                                        next = ret[ret.length - 1];
-                                        if (!next || (2 <= next.length))
-                                        {
-                                            next = [];
-                                            ret.push (next);
-                                        }
-                                        next.push (item);
-
-                                        return (ret);
-                                    },
-                                    []
-                                )
-                            },
-                            "properties" :
-                            {
-                                id : id
-                            }
-                        }
-                    );
-                }
-                else if ("location" == type)
-                {
-                    coords = cim.parse_element (/<gml:pos>([\s\S]*?)<\/gml:pos>/g, guts, subcontext).split (" ");
-                    orientation = Number (orientation);
-                    if (orientation < 0.0)
-                        orientation += 360.0;
-                    parsed.points.features.push
-                    (
-                        {
-                            type : "Feature",
-                            geometry :
-                            {
-                                type : "Point",
-                                coordinates : [ coords[0], coords[1] ]
-                            },
-                            properties :
-                            {
-                                id : id,
-                                orientation: orientation
-                            }
-                        }
-                    );
-                }
-            }
-
-            return ({parsed: parsed, context: context});
-        }
-
-        /**
          * Get the user's choice for vector/image tiles.
          * @returns {boolean} <code>true</code> if vector tiles should be used, <code>false</code> otherwise
          * @function do_vector_tiles
@@ -469,86 +287,94 @@ requirejs
             }
         }
 
-        /**
-         * Handle the FileReader completion event for a GML file.
-         * @param {Object} data - the XML parsed data
-         * @param {Object} event - the onload event
-         * @function read_gml_file
-         * @memberOf module:cimspace
-         */
-        function read_gml_file (start, data, event)
+        function process_spatial_objects (psr, locations, points, lines)
         {
-            var next;
-            var feature;
-            var item;
-            var unmatched;
-
-            var end = new Date ().getTime ();
-            console.log ("finished XML read (" + (Math.round (end - start) / 1000) + " seconds)");
-
-            start = new Date ().getTime ();
-            console.log ("starting GML parse");
-            next = read_gml (event.target.result);
-            end = new Date ().getTime ();
-            console.log ("finished GML parse (" + (Math.round (end - start) / 1000) + " seconds)");
-
-            console.log (event.target.result.length + " characters yields "
-                + next.parsed.lines.features.length + " lines and "
-                + next.parsed.points.features.length + " points.");
-
-            // match up the data
-            unmatched = 0;
-            for (var i = 0; i < next.parsed.lines.features.length; i++)
+            var coordinates;
+            var location;
+            for (var id in psr)
             {
-                feature = next.parsed.lines.features[i];
-                item = data.PowerSystemResources[feature.properties.id];
-                if (null != item)
+                if (null != (location = psr[id].Location))
                 {
-                    item.id = feature.properties.id;
-                    // assign generated
-                    item.generated = (0 == item.name.indexOf ("_generated"));
-                    feature.properties = item;
-                }
-                else
-                    unmatched++;
-            }
-            for (var j = 0; j < next.parsed.points.features.length; j++)
-            {
-                feature = next.parsed.points.features[j];
-                item = data.PowerSystemResources[feature.properties.id];
-                if (null != item)
-                {
-                    item.id = feature.properties.id;
-                    item.orientation = feature.properties.orientation;
-                    // assign the symbol
-                    if (0 == item.name.indexOf ("TRA"))
+                    if (null != (coordinates = locations[location]))
                     {
-                        item.symbol = "transformer";
-                        item.color = "rgb(0, 255, 0)";
-                    }
-                    else if (0 == item.name.indexOf ("TEI"))
-                    {
-                        item.symbol = "switch";
-                        item.color = "rgb(0, 0, 255)";
-                    }
-                    else if (0 == item.name.indexOf ("HAS"))
-                    {
-                        item.symbol = "house_connection";
-                        item.color = "rgb(255, 0, 0)";
-                    }
-                    else
-                    {
-                        item.symbol = "monument-24";
-                        item.color = "rgb(255, 255, 255)";
-                    }
-                    feature.properties = item;
-                }
-                else
-                    unmatched++;
-            }
-            console.log (unmatched + " features had no matching Power System Resource");
+                        if (2 == coordinates.length)
+                        {
+                            points.features.push
+                            (
+                                {
+                                    type : "Feature",
+                                    geometry :
+                                    {
+                                        type : "Point",
+                                        coordinates : [ coordinates[0], coordinates[1] ]
+                                    },
+                                    properties : psr[id]
+                                }
+                            );
+                            psr[id].id = id;
+                            psr[id].orientation = 0.0;
+                            // assign the symbol
+                            if (0 == psr[id].name.indexOf ("TRA"))
+                            {
+                                psr[id].symbol = "transformer";
+                                psr[id].color = "rgb(0, 255, 0)";
+                            }
+                            else if (0 == psr[id].name.indexOf ("TEI"))
+                            {
+                                psr[id].symbol = "switch";
+                                psr[id].color = "rgb(0, 0, 255)";
+                            }
+                            else if (0 == psr[id].name.indexOf ("HAS"))
+                            {
+                                psr[id].symbol = "house_connection";
+                                psr[id].color = "rgb(255, 0, 0)";
+                            }
+                            else
+                            {
+                                psr[id].symbol = "monument-24";
+                                psr[id].color = "rgb(255, 255, 255)";
+                            }
+                        }
+                        else
+                        {
+                            lines.features.push
+                            (
+                                {
+                                    type : "Feature",
+                                    geometry :
+                                    {
+                                        type : "LineString",
+                                        coordinates : coordinates.reduce
+                                        (
+                                            function (ret, item)
+                                            {
+                                                var next;
 
-            make_map (next.parsed.points, next.parsed.lines);
+                                                next = ret[ret.length - 1];
+                                                if (!next || (2 <= next.length))
+                                                {
+                                                    next = [];
+                                                    ret.push (next);
+                                                }
+                                                next.push (item);
+
+                                                return (ret);
+                                            },
+                                            []
+                                        )
+                                    },
+                                    properties : psr[id]
+//                                    {
+//                                        id : id
+//                                    }
+                                }
+                            );
+                            psr[id].id = id;
+                            psr[id].generated = (null == psr[id].name) ? false : (0 == psr[id].name.indexOf ("_generated"));
+                        }
+                    }
+                }
+            }
         }
 
         /**
@@ -569,11 +395,9 @@ requirejs
                     files[0],
                     function (result)
                     {
-                        var psr;
-//                        var resources;
-//                        var connectivity;
+                        var locations;
+                        var pp;
                         var location;
-                        var coordinates;
                         var lines =
                         {
                             "type" : "FeatureCollection",
@@ -588,100 +412,27 @@ requirejs
                         var end = new Date ().getTime ();
                         console.log ("finished XML read (" + (Math.round (end - start) / 1000) + " seconds)");
 
-                        psr = result.parsed.PowerSystemResources;
-
-                        // check some stuff
-//                        resources = count_resources (psr);
-//                        connectivity = count_connections (result.parsed.ConnectivityNodes);
-//                        console.log (files[0].length + " characters yields "
-//                            + resources + " resources "
-//                            + connectivity + " connections.");
-
-                        for (var id in psr)
+                        // gather position points into locations
+                        locations = {};
+                        pp = result.parsed.PositionPoint;
+                        for (var point in pp)
                         {
-                            if (null != (location = psr[id].location))
+                            var p = pp[point];
+                            location = p.Location;
+                            if (null != location)
                             {
-                                if (null != (coordinates = psr[location].coordinates))
+                                if (null == locations[location])
+                                    locations[location] = [];
+                                var seq = p.sequenceNumber;
+                                if (null != seq)
                                 {
-                                    if (2 == coordinates.length)
-                                    {
-                                        points.features.push
-                                        (
-                                            {
-                                                type : "Feature",
-                                                geometry :
-                                                {
-                                                    type : "Point",
-                                                    coordinates : [ coordinates[0], coordinates[1] ]
-                                                },
-                                                properties : psr[id]
-                                            }
-                                        );
-                                        psr[id].id = id;
-                                        psr[id].orientation = 0.0;
-                                        // assign the symbol
-                                        if (0 == psr[id].name.indexOf ("TRA"))
-                                        {
-                                            psr[id].symbol = "transformer";
-                                            psr[id].color = "rgb(0, 255, 0)";
-                                        }
-                                        else if (0 == psr[id].name.indexOf ("TEI"))
-                                        {
-                                            psr[id].symbol = "switch";
-                                            psr[id].color = "rgb(0, 0, 255)";
-                                        }
-                                        else if (0 == psr[id].name.indexOf ("HAS"))
-                                        {
-                                            psr[id].symbol = "house_connection";
-                                            psr[id].color = "rgb(255, 0, 0)";
-                                        }
-                                        else
-                                        {
-                                            psr[id].symbol = "monument-24";
-                                            psr[id].color = "rgb(255, 255, 255)";
-                                        }
-
-                                    }
-                                    else
-                                    {
-                                        lines.features.push
-                                        (
-                                            {
-                                                type : "Feature",
-                                                geometry :
-                                                {
-                                                    type : "LineString",
-                                                    coordinates : coordinates.reduce
-                                                    (
-                                                        function (ret, item)
-                                                        {
-                                                            var next;
-
-                                                            next = ret[ret.length - 1];
-                                                            if (!next || (2 <= next.length))
-                                                            {
-                                                                next = [];
-                                                                ret.push (next);
-                                                            }
-                                                            next.push (item);
-
-                                                            return (ret);
-                                                        },
-                                                        []
-                                                    )
-                                                },
-                                                properties : psr[id]
-//                                                {
-//                                                    id : id
-//                                                }
-                                            }
-                                        );
-                                        psr[id].id = id;
-                                        psr[id].generated = (null == psr[id].name) ? false : (0 == psr[id].name.indexOf ("_generated"));
-                                    }
+                                    locations[location][seq * 2] = p.xPosition;
+                                    locations[location][seq * 2 + 1] = p.yPosition;
                                 }
                             }
                         }
+
+                        process_spatial_objects (result.parsed.PowerSystemResource, locations, points, lines);
                         make_map (points, lines);
                     }
                 );
@@ -704,23 +455,6 @@ requirejs
                             {
                                 var end = new Date ().getTime ();
                                 console.log ("finished XML read (" + (Math.round (end - start) / 1000) + " seconds)");
-
-                                // chain to the gml file reader
-                                for (var i = 0; i < files.length; i++)
-                                {
-                                    var file = files[i];
-                                    var name = file.name;
-                                    var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
-                                    if (".gml" == extension)
-                                    {
-                                        var begin = new Date ().getTime ();
-                                        console.log ("starting GML read");
-                                        var reader = new FileReader ();
-                                        reader.onload = read_gml_file.bind (self, begin, result.parsed);
-                                        reader.readAsText (file, "UTF-8");
-                                        break;
-                                    }
-                                }
                             }
                         );
                         break;
