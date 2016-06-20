@@ -26,6 +26,21 @@ requirejs
          */
         var TheToken = "pk.eyJ1IjoiZGVycmlja29zd2FsZCIsImEiOiJjaWV6b2szd3MwMHFidDRtNDZoejMyc3hsIn0.wnEkePEuhYiNcXDLACSxVw";
 
+        /**
+         * The CIM file contents after load.
+         */
+        var CIM_Data = null;
+
+        /**
+         * The last selected feature.
+         */
+        var CURRENT_FEATURE = null;
+
+        /**
+         * Flag to avoid multiple alert() boxes.
+         */
+        var ALERTED = false;
+
         // using Promise: backwards compatibility for older browsers
         es6_promise.polyfill ();
 
@@ -167,7 +182,6 @@ requirejs
                     layout:
                     {
                         "icon-image": symbol,
-                        //"icon-color": color,
                         "icon-allow-overlap": true,
                         "icon-size":
                         {
@@ -184,6 +198,11 @@ requirejs
                         {
                             stops: [[17, 4], [18, 8], [19, 12], [20, 14], [21, 18], [22, 24], [23, 30], [24, 38], [25, 48]]
                         }
+                    },
+                    paint:
+                    {
+                        "icon-color": color,
+                        "text-color": color
                     }
                 }
             );
@@ -270,20 +289,39 @@ requirejs
                     }
                 );
 
+                TheMap.addLayer
+                (
+                    {
+                        id: "lines_highlight",
+                        type: "line",
+                        source: "the cim lines",
+                        filter: ["==", "mRID", ""],
+                        layout:
+                        {
+                            "line-join": "round",
+                            "line-cap": "round"
+                        },
+                        paint:
+                        {
+                            "line-color": "#ffff00",
+                            "line-width": 3
+                        }
+                    }
+                );
+
                 // simple circle from 14 to 17
                 TheMap.addLayer (circle_layer ("circle_transformer", ["==", "symbol", "transformer"], "rgb(0, 255, 0)"));
                 TheMap.addLayer (circle_layer ("circle_switch", ["==", "symbol", "switch"], "rgb(0, 0, 255)"));
                 TheMap.addLayer (circle_layer ("circle_house_connection", ["==", "symbol", "house_connection"], "rgb(255, 0, 0)"));
                 TheMap.addLayer (circle_layer ("circle_other", ["==", "symbol", "monument-24"], "black"));
 
-                // symbol icon from 17 and deeper
-//                var increment = 5.0;
-//                for (var orientation = 0; orientation < 360.0; orientation += increment)
-//                    TheMap.addLayer (symbol_layer ("symbol_" + orientation, ["all", ["==", "symbol", "house_connection"], [">=", "orientation", (orientation - (increment / 2.0))], ["<", "orientation", (orientation + (increment / 2.0))]], "{symbol}", orientation, [0, 12], "{color}"));
-                TheMap.addLayer (symbol_layer ("symbol_house_connection", ["==", "symbol", "house_connection"], "{symbol}", 0.0, [0, 0], "{color}"));
+                TheMap.addLayer (circle_layer ("circle_highlight", ["==", "mRID", ""], "rgb(255, 255, 0)"));
 
-                // don't rotate others
-                TheMap.addLayer (symbol_layer ("symbol_other", ["!=", "symbol", "house_connection"], "{symbol}", 0.0, [0, 0], "{color}"));
+                // symbol icon from 17 and deeper
+                // ToDo: color the icons according to color on the object
+                TheMap.addLayer (symbol_layer ("symbol", ["!=", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(0, 0, 0)"));
+
+                TheMap.addLayer (symbol_layer ("symbol_highlight", ["==", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(255, 255, 0)"));
             }
         }
 
@@ -410,11 +448,12 @@ requirejs
                         };
 
                         var end = new Date ().getTime ();
+                        CIM_Data = result.parsed;
                         console.log ("finished XML read (" + (Math.round (end - start) / 1000) + " seconds)");
 
                         // gather position points into locations
                         locations = {};
-                        pp = result.parsed.PositionPoint;
+                        pp = CIM_Data.PositionPoint;
                         for (var point in pp)
                         {
                             var p = pp[point];
@@ -432,7 +471,7 @@ requirejs
                             }
                         }
 
-                        process_spatial_objects (result.parsed.PowerSystemResource, locations, points, lines);
+                        process_spatial_objects (CIM_Data.PowerSystemResource, locations, points, lines);
                         make_map (points, lines);
                     }
                 );
@@ -514,17 +553,21 @@ requirejs
             event.dataTransfer.dropEffect = 'copy';
         }
 
-        var ALERTED = false;
-
+        /**
+         * Show the content in a window.
+         * @description Raise a popup window and populate it with the preformatted text provided.
+         * @param {string} content - the detail content to display
+         * @memberOf module:cimspace
+         */
         function showDetails (content)
         {
             if (null == top.FeatureDetails)
-                top.FeatureDetails = { closed: true }
+                top.FeatureDetails = { closed: true };
             if (FeatureDetails.closed)
                 top.FeatureDetails = window.open ("","details", "width=350,height=250,menubar=0,toolbar=1,status=0,scrollbars=1,resizable=1");
             else
                 top.FeatureDetails.document.open ("text/html", "replace");
-            if (!top.FeatureDetails || top.FeatureDetails.closed || typeof top.FeatureDetails.closed=='undefined')
+            if (!top.FeatureDetails || top.FeatureDetails.closed || typeof top.FeatureDetails.closed == 'undefined')
             {
                 if (!ALERTED)
                 {
@@ -549,6 +592,99 @@ requirejs
                 );
                 top.FeatureDetails.document.close ();
             }
+        }
+
+        /**
+         * Trace the currently displayed object and highlight the results.
+         * @description Raise a popup window and populate it with the preformatted text provided.
+         * @param {string} content - the detail content to display
+         * @memberOf module:cimspace
+         */
+        function trace ()
+        {
+            // the source feature
+            var source;
+            // the list of traced conducting equipment
+            var equipment = [];
+
+            if (null == CIM_Data)
+                alert ("no CIM data loaded");
+            else if (null == CURRENT_FEATURE)
+                alert ("no feature selected");
+            else if (null == (source = CIM_Data.ConductingEquipment[CURRENT_FEATURE]))
+                alert ("feature is not conducting equipment");
+            else
+            {
+                // organize terminals by connectivity node and equipment
+                var terminals_by_node = {};
+                var terminals_by_equp = {};
+                var tt = CIM_Data.Terminal;
+                for (var t in tt)
+                {
+                    var terminal = tt[t];
+                    var node = terminal.ConnectivityNode;
+                    var equp = terminal.ConductingEquipment;
+                    if ((null != node) && (null != equp))
+                    {
+                        if (null == terminals_by_node[node])
+                            terminals_by_node[node] = [];
+                        if (!terminals_by_node[node].includes (terminal.mRID))
+                            terminals_by_node[node].push (terminal.mRID);
+                        if (null == terminals_by_equp[equp])
+                            terminals_by_equp[equp] = [];
+                        if (!terminals_by_equp[equp].includes (terminal.mRID))
+                            terminals_by_equp[equp].push (terminal.mRID);
+                    }
+                }
+
+                // the list of things to trace
+                var todo = [];
+                todo.push (source.mRID);
+                // iterate until done
+                while ("undefined" != typeof (source = todo.pop ())) // if you call pop() on an empty array, it returns undefined
+                {
+                    equipment.push (source);
+                    var terms = terminals_by_equp[source];
+                    if (null != terms)
+                        for (var i = 0; i < terms.length; i++)
+                        {
+                            var terminal = CIM_Data.Terminal[terms[i]];
+                            if (null != terminal)
+                            {
+                                var equp = terminal.ConductingEquipment;
+                                if (null != equp)
+                                    if (!equipment.includes (equp) && !todo.includes (equp))
+                                        todo.push (equp); // this should never happen
+                                var node = terminal.ConnectivityNode;
+                                if (null != node)
+                                {
+                                    var next = terminals_by_node[node];
+                                    if (null != next)
+                                        for (var j = 0; j < next.length; j++)
+                                        {
+                                            if (next[j] != terms[i]) // don't trace back the way we came
+                                            {
+                                                var t = CIM_Data.Terminal[next[j]];
+                                                if (null != t)
+                                                {
+                                                    var e = t.ConductingEquipment;
+                                                    if (null != e)
+                                                        if (!equipment.includes (e) && !todo.includes (e))
+                                                            todo.push (e);
+                                                }
+                                            }
+                                        }
+                                }
+                            }
+
+                        }
+                }
+            }
+
+            equipment.unshift ("in", "mRID");
+            TheMap.setFilter ("lines_highlight", equipment);
+            TheMap.setFilter ("circle_highlight", equipment);
+            TheMap.setFilter ("symbol_highlight", equipment);
         }
 
         /**
@@ -588,7 +724,6 @@ requirejs
                 // add zoom and rotation controls to the map.
                 TheMap.addControl (new mapboxgl.Navigation ());
                 // handle mouse movement
-                var last = null;
                 TheMap.on
                 (
                     'mousemove',
@@ -604,9 +739,9 @@ requirejs
                             var mrid = features[0].properties.mRID;
                             if (null != mrid)
                             {
-                                if (mrid != last)
+                                if (mrid != CURRENT_FEATURE)
                                     showDetails (JSON.stringify (features[0].properties, null, 2));
-                                last = mrid;
+                                CURRENT_FEATURE = mrid;
                             }
                         }
                     }
@@ -622,6 +757,8 @@ requirejs
         // drag and drop listeners
         document.getElementById ("files_drop_zone").ondragover = file_drag;
         document.getElementById ("files_drop_zone").ondrop = file_drop;
+        // javascript functions
+        document.getElementById ("trace").onclick = trace;
         init_map ();
     }
 );
