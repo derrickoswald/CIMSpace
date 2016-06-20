@@ -594,6 +594,20 @@ requirejs
             }
         }
 
+        function highlight (filter)
+        {
+            TheMap.setFilter ("lines_highlight", filter);
+            TheMap.setFilter ("circle_highlight", filter);
+            TheMap.setFilter ("symbol_highlight", filter);
+        }
+
+        function unhighlight ()
+        {
+            highlight (["==", "mRID", ""]);
+            CURRENT_FEATURE = null;
+            showDetails ("");
+        }
+
         /**
          * Trace the currently displayed object and highlight the results.
          * @description Raise a popup window and populate it with the preformatted text provided.
@@ -681,10 +695,13 @@ requirejs
                 }
             }
 
+            equipment.sort ();
+            showDetails (
+                JSON.stringify (CIM_Data.PowerSystemResource[CURRENT_FEATURE], null, 2) +
+                "\n" +
+                equipment.join (', '));
             equipment.unshift ("in", "mRID");
-            TheMap.setFilter ("lines_highlight", equipment);
-            TheMap.setFilter ("circle_highlight", equipment);
-            TheMap.setFilter ("symbol_highlight", equipment);
+            highlight (equipment);
         }
 
         /**
@@ -726,7 +743,7 @@ requirejs
                 // handle mouse movement
                 TheMap.on
                 (
-                    'mousemove',
+                    'mousedown',
                     function (event)
                     {
                         var features = TheMap.queryRenderedFeatures
@@ -740,10 +757,15 @@ requirejs
                             if (null != mrid)
                             {
                                 if (mrid != CURRENT_FEATURE)
+                                {
                                     showDetails (JSON.stringify (features[0].properties, null, 2));
+                                    highlight (["in", "mRID", mrid]);
+                                }
                                 CURRENT_FEATURE = mrid;
                             }
                         }
+                        else
+                            unhighlight ();
                     }
                 );
             }
@@ -759,6 +781,7 @@ requirejs
         document.getElementById ("files_drop_zone").ondrop = file_drop;
         // javascript functions
         document.getElementById ("trace").onclick = trace;
+        document.getElementById ("unhighlight").onclick = unhighlight;
         init_map ();
     }
 );
