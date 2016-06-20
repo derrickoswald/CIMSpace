@@ -167,7 +167,7 @@ requirejs
                     layout:
                     {
                         "icon-image": symbol,
-                        "icon-color": color,
+                        //"icon-color": color,
                         "icon-allow-overlap": true,
                         "icon-size":
                         {
@@ -314,17 +314,17 @@ requirejs
                             psr[id].id = id;
                             psr[id].orientation = 0.0;
                             // assign the symbol
-                            if (0 == psr[id].name.indexOf ("TRA"))
+                            if (0 == psr[id].mRID.indexOf ("TRA"))
                             {
                                 psr[id].symbol = "transformer";
                                 psr[id].color = "rgb(0, 255, 0)";
                             }
-                            else if (0 == psr[id].name.indexOf ("TEI"))
+                            else if (0 == psr[id].mRID.indexOf ("TEI"))
                             {
                                 psr[id].symbol = "switch";
                                 psr[id].color = "rgb(0, 0, 255)";
                             }
-                            else if (0 == psr[id].name.indexOf ("HAS"))
+                            else if (0 == psr[id].mRID.indexOf ("HAS"))
                             {
                                 psr[id].symbol = "house_connection";
                                 psr[id].color = "rgb(255, 0, 0)";
@@ -443,7 +443,6 @@ requirejs
                     var file = files[i];
                     var name = file.name;
                     var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
-                    var self = this;
                     if (".xml" == extension)
                     {
                         var start = new Date ().getTime ();
@@ -558,22 +557,21 @@ requirejs
                     'mousemove',
                     function (event)
                     {
-                        TheMap.featuresAt
+                        var features = TheMap.queryRenderedFeatures
                         (
                             event.point,
-                            {radius: 5},
-                            function (err, features)
-                            {
-                                if (err)
-                                    throw err;
-                                if (0 != features.length)
-                                {
-                                    if (features[0].properties.name != last)
-                                        console.log (JSON.stringify (features[0].properties, null, 2));
-                                    last = features[0].properties.name;
-                                }
-                            }
+                            {}
                         );
+                        if ((null != features) && (0 != features.length))
+                        {
+                            var mrid = features[0].properties.mRID;
+                            if (null != mrid)
+                            {
+                                if (mrid != last)
+                                    console.log (JSON.stringify (features[0].properties, null, 2));
+                                last = mrid;
+                            }
+                        }
                     }
                 );
             }
