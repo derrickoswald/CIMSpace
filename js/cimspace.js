@@ -514,6 +514,43 @@ requirejs
             event.dataTransfer.dropEffect = 'copy';
         }
 
+        var ALERTED = false;
+
+        function showDetails (content)
+        {
+            if (null == top.FeatureDetails)
+                top.FeatureDetails = { closed: true }
+            if (FeatureDetails.closed)
+                top.FeatureDetails = window.open ("","details", "width=350,height=250,menubar=0,toolbar=1,status=0,scrollbars=1,resizable=1");
+            else
+                top.FeatureDetails.document.open ("text/html", "replace");
+            if (!top.FeatureDetails || top.FeatureDetails.closed || typeof top.FeatureDetails.closed=='undefined')
+            {
+                if (!ALERTED)
+                {
+                    alert ("Feature Detail popup blocked. Either enable popups for this page or examine the feature details in the console.");
+                    ALERTED = true;
+                }
+                console.log (content);
+            }
+            else
+            {
+                top.FeatureDetails.document.writeln (
+                 "<html>\n" +
+                 "    <head>\n" +
+                 "        <title>Feature Details</title>\n" +
+                 "    </head>\n" +
+                 "    <body bgcolor=white onLoad='self.focus()'>\n" +
+                 "        <pre>" +
+                 content +
+                 "        </pre>" +
+                 "    </body>\n" +
+                 "</html>\n"
+                );
+                top.FeatureDetails.document.close ();
+            }
+        }
+
         /**
          * @summary Initialize the map.
          * @description Create the background map.
@@ -568,7 +605,7 @@ requirejs
                             if (null != mrid)
                             {
                                 if (mrid != last)
-                                    console.log (JSON.stringify (features[0].properties, null, 2));
+                                    showDetails (JSON.stringify (features[0].properties, null, 2));
                                 last = mrid;
                             }
                         }
