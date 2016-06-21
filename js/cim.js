@@ -196,8 +196,6 @@ define
                 UNIQUE_NUMBER++;
                 id = "element_" + UNIQUE_NUMBER;
             }
-            if (null == context.parsed)
-                console.log ("gotcha")
             elements = context.parsed.Element;
             if (null == elements)
                 context.parsed.Element = elements = {};

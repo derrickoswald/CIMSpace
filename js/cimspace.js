@@ -1,8 +1,8 @@
 /**
- * Main javascript file for CIMSpace application
+ * Functions for CIMSpace application
  */
 "use strict";
-requirejs
+define
 (
     ["es6-promise", "cim"],
     /**
@@ -35,6 +35,11 @@ requirejs
          * The last selected feature.
          */
         var CURRENT_FEATURE = null;
+
+        /**
+         * The last selected features.
+         */
+        var CURRENT_SELECTION = null;
 
         /**
          * Flag to avoid multiple alert() boxes.
@@ -553,6 +558,16 @@ requirejs
             event.dataTransfer.dropEffect = 'copy';
         }
 
+        function show_details ()
+        {
+            $("#feature_details").show ();
+        }
+
+        function hide_details ()
+        {
+            $("#feature_details").hide (200);
+        }
+
         /**
          * Show the content in a window.
          * @description Raise a popup window and populate it with the preformatted text provided.
@@ -561,51 +576,56 @@ requirejs
          */
         function showDetails (content)
         {
-            if (null == top.FeatureDetails)
-                top.FeatureDetails = { closed: true };
-            if (FeatureDetails.closed)
-                top.FeatureDetails = window.open ("","details", "width=350,height=250,menubar=0,toolbar=1,status=0,scrollbars=1,resizable=1");
-            else
-                top.FeatureDetails.document.open ("text/html", "replace");
-            if (!top.FeatureDetails || top.FeatureDetails.closed || typeof top.FeatureDetails.closed == 'undefined')
-            {
-                if (!ALERTED)
-                {
-                    alert ("Feature Detail popup blocked. Either enable popups for this page or examine the feature details in the console.");
-                    ALERTED = true;
-                }
-                console.log (content);
-            }
-            else
-            {
-                top.FeatureDetails.document.writeln (
-                 "<html>\n" +
-                 "    <head>\n" +
-                 "        <title>Feature Details</title>\n" +
-                 "    </head>\n" +
-                 "    <body bgcolor=white onLoad='self.focus()'>\n" +
+            var text =
                  "        <pre>" +
                  content +
-                 "        </pre>" +
-                 "    </body>\n" +
-                 "</html>\n"
-                );
-                top.FeatureDetails.document.close ();
-            }
+                 "        </pre>";
+            document.getElementById ("feature_detail_contents").innerHTML = text;
+            show_details ();
         }
 
-        function highlight (filter)
+        function glow (filter)
         {
             TheMap.setFilter ("lines_highlight", filter);
             TheMap.setFilter ("circle_highlight", filter);
             TheMap.setFilter ("symbol_highlight", filter);
         }
 
+        function highlight ()
+        {
+            var feature;
+            if ((null != CIM_Data) && (null != CURRENT_FEATURE))
+                if (null != (feature = CIM_Data.PowerSystemResource[CURRENT_FEATURE]))
+                {
+                    var mrid = feature.mRID;
+                    var text = JSON.stringify (feature, null, 2);
+                    if (null != CURRENT_SELECTION)
+                        for (var i = 0; i < CURRENT_SELECTION.length; i++)
+                        {
+                            if (CURRENT_SELECTION[i] != mrid)
+                                text = text + "\n<a href='#' onclick='require([\"cimspace\"], function(cimspace) {cimspace.select (\"" + CURRENT_SELECTION[i] + "\");})'>" + CURRENT_SELECTION[i] + "</a>";
+                        }
+                    showDetails (text);
+                    glow (["in", "mRID", mrid]);
+                }
+        }
+
         function unhighlight ()
         {
-            highlight (["==", "mRID", ""]);
+            glow (["==", "mRID", ""]);
             CURRENT_FEATURE = null;
-            showDetails ("");
+            CURRENT_SELECTION = null;
+            document.getElementById ("feature_detail_contents").innerHTML = "";
+            hide_details ();
+        }
+
+        function select (mrid)
+        {
+            if ((null != CURRENT_SELECTION) && CURRENT_SELECTION.includes (mrid))
+            {
+                CURRENT_FEATURE = mrid;
+                highlight ();
+            }
         }
 
         /**
@@ -701,7 +721,7 @@ requirejs
                 "\n" +
                 equipment.join (', '));
             equipment.unshift ("in", "mRID");
-            highlight (equipment);
+            glow (equipment);
         }
 
         /**
@@ -753,16 +773,24 @@ requirejs
                         );
                         if ((null != features) && (0 != features.length))
                         {
-                            var mrid = features[0].properties.mRID;
-                            if (null != mrid)
+                            var selection = [];
+                            for (var i = 0; i < features.length; i++)
                             {
-                                if (mrid != CURRENT_FEATURE)
-                                {
-                                    showDetails (JSON.stringify (features[0].properties, null, 2));
-                                    highlight (["in", "mRID", mrid]);
-                                }
-                                CURRENT_FEATURE = mrid;
+                                var mrid = features[i].properties.mRID;
+                                if (null != mrid)
+                                    selection[selection.length] = mrid;
                             }
+                            if (selection.length > 0)
+                            {
+                                if (selection[0] != CURRENT_FEATURE)
+                                {
+                                    CURRENT_FEATURE = selection[0];
+                                    CURRENT_SELECTION = selection;
+                                    highlight ();
+                                }
+                            }
+                            else
+                                unhighlight ();
                         }
                         else
                             unhighlight ();
@@ -771,17 +799,16 @@ requirejs
             }
         }
 
-        // initialize material design for bootstrap (https://github.com/FezVrasta/bootstrap-material-design)
-        $.material.init ();
-        // initialize buttons
-        document.getElementById ("file_button").onchange = file_change;
-        document.getElementById ("vector_tiles").onchange = init_map;
-        // drag and drop listeners
-        document.getElementById ("files_drop_zone").ondragover = file_drag;
-        document.getElementById ("files_drop_zone").ondrop = file_drop;
-        // javascript functions
-        document.getElementById ("trace").onclick = trace;
-        document.getElementById ("unhighlight").onclick = unhighlight;
-        init_map ();
+        return (
+            {
+                file_change: file_change,
+                init_map: init_map,
+                file_drag: file_drag,
+                file_drop: file_drop,
+                trace: trace,
+                unhighlight: unhighlight,
+                select: select
+            }
+        );
     }
 );
