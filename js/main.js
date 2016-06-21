@@ -18,6 +18,7 @@ requirejs
         // javascript functions
         document.getElementById ("trace").onclick = cimspace.trace;
         document.getElementById ("unhighlight").onclick = cimspace.unhighlight;
+        document.getElementById ("search").onsubmit = cimspace.search;
 
         cimspace.init_map ();
     }

@@ -729,6 +729,87 @@ define
             glow (equipment);
         }
 
+        function get_bounding_box (id)
+        {
+            var ret = null;
+
+            var feature;
+            var location;
+            if (null != (feature = CIM_Data.Element[id]))
+            {
+                if (null != (location = feature.Location))
+                {
+                    var minx = Number.MAX_VALUE;
+                    var maxx = Number.MIN_VALUE;
+                    var miny = Number.MAX_VALUE;
+                    var maxy = Number.MIN_VALUE;
+                    var pp = CIM_Data.PositionPoint;
+                    var valid = false;
+                    for (var point in pp)
+                    {
+                        var p = pp[point];
+                        if (location == p.Location)
+                        {
+                            if (minx > p.xPosition)
+                                minx = p.xPosition;
+                            if (maxx < p.xPosition)
+                                maxx = p.xPosition;
+                            if (miny > p.yPosition)
+                                miny = p.yPosition;
+                            if (maxy < p.yPosition)
+                                maxy = p.yPosition;
+                            valid = true;
+                        }
+                    }
+                    if (valid)
+                        ret = [[minx, miny], [maxx, maxy]];
+                }
+            }
+            return (ret);
+        }
+
+        function search ()
+        {
+            var text;
+            if (null != CIM_Data)
+                if ("" != (text = document.getElementById ("search_text").value))
+                {
+                    var match = [];
+                    for (var id in CIM_Data.Element)
+                        if (CIM_Data.Element[id].id == text)
+                            match.push (id);
+                        else if (CIM_Data.Element[id].mRID == text)
+                            match.push (id);
+                        else if (CIM_Data.Element[id].name == text)
+                            match.push (id);
+                    if (match.length > 0)
+                    {
+                        CURRENT_FEATURE = match[0];
+                        CURRENT_SELECTION = match;
+                        highlight ();
+                        var bb = get_bounding_box (CURRENT_FEATURE);
+                        if (null != bb)
+                        {
+                            var x = (bb[1][0] - bb[0][0]) / 2.0 + bb[0][0];
+                            var y = (bb[1][1] - bb[0][1]) / 2.0 + bb[0][1];
+                            TheMap.easeTo
+                            (
+                                {
+                                    center: [x, y],
+                                    zoom: 17
+                                }
+                            );
+                        }
+                    }
+                    else
+                        alert ("No matches found for '" + text + "'");
+                }
+                else
+                    alert ("No search text");
+            else
+                alert ("No CIM data loaded");
+        }
+
         /**
          * @summary Initialize the map.
          * @description Create the background map.
@@ -825,7 +906,8 @@ define
                 file_drop: file_drop,
                 trace: trace,
                 unhighlight: unhighlight,
-                select: select
+                select: select,
+                search: search
             }
         );
     }
