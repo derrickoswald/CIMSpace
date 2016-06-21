@@ -597,16 +597,15 @@ define
             if ((null != CIM_Data) && (null != CURRENT_FEATURE))
                 if (null != (feature = CIM_Data.PowerSystemResource[CURRENT_FEATURE]))
                 {
-                    var mrid = feature.mRID;
                     var text = JSON.stringify (feature, null, 2);
                     if (null != CURRENT_SELECTION)
                         for (var i = 0; i < CURRENT_SELECTION.length; i++)
                         {
-                            if (CURRENT_SELECTION[i] != mrid)
+                            if (CURRENT_SELECTION[i] != CURRENT_FEATURE)
                                 text = text + "\n<a href='#' onclick='require([\"cimspace\"], function(cimspace) {cimspace.select (\"" + CURRENT_SELECTION[i] + "\");})'>" + CURRENT_SELECTION[i] + "</a>";
                         }
                     showDetails (text);
-                    glow (["in", "mRID", mrid]);
+                    glow (["in", "mRID", CURRENT_FEATURE]);
                 }
         }
 
@@ -716,10 +715,16 @@ define
             }
 
             equipment.sort ();
-            showDetails (
-                JSON.stringify (CIM_Data.PowerSystemResource[CURRENT_FEATURE], null, 2) +
+            var text = JSON.stringify (CIM_Data.PowerSystemResource[CURRENT_FEATURE], null, 2) +
                 "\n" +
-                equipment.join (', '));
+                equipment.join (', ');
+            if (null != CURRENT_SELECTION)
+                for (var i = 0; i < CURRENT_SELECTION.length; i++)
+                {
+                    if (CURRENT_SELECTION[i] != CURRENT_FEATURE)
+                        text = text + "\n<a href='#' onclick='require([\"cimspace\"], function(cimspace) {cimspace.select (\"" + CURRENT_SELECTION[i] + "\");})'>" + CURRENT_SELECTION[i] + "</a>";
+                }
+            showDetails (text);
             equipment.unshift ("in", "mRID");
             glow (equipment);
         }
@@ -760,7 +765,7 @@ define
                 );
                 // add zoom and rotation controls to the map.
                 TheMap.addControl (new mapboxgl.Navigation ());
-                // handle mouse movement
+                // handle mouse click
                 TheMap.on
                 (
                     'mousedown',
@@ -794,6 +799,19 @@ define
                         }
                         else
                             unhighlight ();
+                    }
+                );
+                // handle mouse movement
+                TheMap.on
+                (
+                    'mousemove',
+                    function (event)
+                    {
+                        var lng = event.lngLat.lng;
+                        var lat = event.lngLat.lat
+                        lng = Math.round (lng * 1000000) / 1000000;
+                        lat = Math.round (lat * 1000000) / 1000000;
+                        document.getElementById ("coordinates").innerHTML = "" + lng + "," + lat;
                     }
                 );
             }
