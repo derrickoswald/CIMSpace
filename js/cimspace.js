@@ -41,82 +41,8 @@ define
          */
         var CURRENT_SELECTION = null;
 
-        /**
-         * Flag to avoid multiple alert() boxes.
-         */
-        var ALERTED = false;
-
         // using Promise: backwards compatibility for older browsers
         es6_promise.polyfill ();
-
-        /**
-         * @summary Count the resource entries.
-         * @description Cycle through the resource object and check they are valid.
-         * @param {Object} resources - the resource object (like a big hash table) of power system resources
-         * @param {Object} connections - the connections object (like a big hash table) of connection nodes
-         * @return {Number} the number of resource entries
-         * @function count_resources
-         * @memberOf module:cimspace
-         */
-        function count_resources (resources, connections)
-        {
-            var ret;
-
-            ret = 0;
-            for (var property in resources)
-                if (resources.hasOwnProperty (property))
-                {
-                    if (!resources[property].name && !(0 == property.indexOf ("_location_")))
-                        console.log (property + " has no name");
-                    if (0 == property.indexOf ("_substation"))
-                    {
-                        if (!resources[property].contents)
-                            console.log (property + " has no contents");
-                        else
-                            if (0 == resources[property].contents.length)
-                                console.log (property + " contents has zero length");
-                    }
-                    if (0 == property.indexOf ("_terminal"))
-                    {
-                        if (null != resources[property].node)
-                        {
-                            if (null == connections[resources[property].node])
-                                console.log (property + " has unknown node " + resources[property].node);
-                        }
-                        else
-                            console.log (property + " has no node");
-                    }
-                    ret++;
-                }
-
-            return (ret);
-        }
-
-        /**
-         * @summary Count the connections.
-         * @description Cycle through the connection object and check they are valid.
-         * @param {Object} connections - the connections object (like a big hash table) of connection nodes
-         * @return {Number} the number of connection entries
-         * @function count_connections
-         * @memberOf module:cimspace
-         */
-        function count_connections (connections)
-        {
-            var ret;
-
-            ret = 0;
-            for (var property in connections)
-                if (connections.hasOwnProperty (property))
-                {
-                    if (!connections[property].container)
-                        console.log (property + " has no container");
-                    if (!connections[property].name)
-                        console.log (property + " has no name");
-                    ret++;
-                }
-
-            return (ret);
-        }
 
         /**
          * Get the user's choice for vector/image tiles.
@@ -330,6 +256,15 @@ define
             }
         }
 
+        /**
+         * Add stylization information to elements and make a list of point and linear features.
+         * @param {Object} psr - the hash table object with properties that are (PowerSystemResource) elements keyed by mRID.
+         * @param {Object} locations - the hash table object with properties that are locations with arrays of coordinates.
+         * @param {Object[]} points - the resultant list of point GeoJSON objects.
+         * @param {Object} psr - the resultant list of linear GeoJSON objects.
+         * @function process_spatial_objects
+         * @memberOf module:cimspace
+         */
         function process_spatial_objects (psr, locations, points, lines)
         {
             var coordinates;
@@ -407,9 +342,6 @@ define
                                         )
                                     },
                                     properties : psr[id]
-//                                    {
-//                                        id : id
-//                                    }
                                 }
                             );
                             psr[id].id = id;
@@ -424,12 +356,12 @@ define
          * @summary Handler for file change events.
          * @description Process files from the browse dialog.
          * @param {File[]} files - the list of files
-         * @function file_change
+         * @function process_files
          * @memberOf module:cimspace
          */
         function process_files (files)
         {
-            if (1 == files.length)
+            if (0 < files.length)
             {
                 var start = new Date ().getTime ();
                 console.log ("starting XML read");
@@ -481,28 +413,6 @@ define
                     }
                 );
             }
-            else
-                for (var i = 0; i < files.length; i++)
-                {
-                    var file = files[i];
-                    var name = file.name;
-                    var extension = name.substring (name.length - Math.min (4, name.length)).toLowerCase ();
-                    if (".xml" == extension)
-                    {
-                        var start = new Date ().getTime ();
-                        console.log ("starting XML read");
-                        cim.read_xml_blob
-                        (
-                            file,
-                            function (result)
-                            {
-                                var end = new Date ().getTime ();
-                                console.log ("finished XML read (" + (Math.round (end - start) / 1000) + " seconds)");
-                            }
-                        );
-                        break;
-                    }
-                }
         }
 
         /**
@@ -513,7 +423,6 @@ define
          */
         function close_file_modal ()
         {
-            //var modal = document.getElementById ("file_modal").onchange = file_change;
             $ ("#file_modal").modal("hide");
         }
 
@@ -534,6 +443,7 @@ define
          * @summary Event handler for dropped files.
          * @description Attached to the drop target, this handler responds to dropped files.
          * @param {object} event - the drop event
+         * @function file_drop
          * @memberOf module:cimspace
          */
         function file_drop (event)
@@ -549,6 +459,7 @@ define
          * @description Attached to the drop target, this handler simply modifies the effect to copy,
          * (which produces the typical hand cursor).
          * @param {object} event - the dragover event
+         * @function file_drag
          * @memberOf module:cimspace
          */
         function file_drag (event)
@@ -558,11 +469,23 @@ define
             event.dataTransfer.dropEffect = 'copy';
         }
 
+        /**
+         * @summary Make the details non-model dialog visible.
+         * @description Uses jQuery to show the panel.
+         * @function show_details
+         * @memberOf module:cimspace
+         */
         function show_details ()
         {
             $("#feature_details").show ();
         }
 
+        /**
+         * @summary Make the details non-model dialog invisible.
+         * @description Uses jQuery to hide the panel.
+         * @function hide_details
+         * @memberOf module:cimspace
+         */
         function hide_details ()
         {
             $("#feature_details").hide (200);
@@ -572,6 +495,7 @@ define
          * Show the content in a window.
          * @description Raise a popup window and populate it with the preformatted text provided.
          * @param {string} content - the detail content to display
+         * @function showDetails
          * @memberOf module:cimspace
          */
         function showDetails (content)
@@ -584,6 +508,17 @@ define
             show_details ();
         }
 
+        /**
+         * @summary Change the filter for the glow layers.
+         * @description Applies the given filter to the highlight layers.
+         * These layers are copies of the similarly named layers, but with a yellow color.
+         * When a filter matches a feature, the yeloow layer is drawn on top of
+         * the original layer creating a cheezy 'glow' effect.
+         * Setting the filter to something that never matches effectively turns off the layer.
+         * @param {string} filter - the filter to apply to the highlight layers
+         * @function glow
+         * @memberOf module:cimspace
+         */
         function glow (filter)
         {
             TheMap.setFilter ("lines_highlight", filter);
@@ -591,6 +526,15 @@ define
             TheMap.setFilter ("symbol_highlight", filter);
         }
 
+        /**
+         * @summary Display the current feature properties and highlight it on the map.
+         * @description Shows a JSON properties sheet in the details window,
+         * and highlights the current feature in the map.
+         * Other features in the current selection are provided links in the details window
+         * to make them the current feature.
+         * @function highlight
+         * @memberOf module:cimspace
+         */
         function highlight ()
         {
             var feature;
@@ -609,6 +553,12 @@ define
                 }
         }
 
+        /**
+         * @summary Clears the current feature and selection.
+         * @description Hides the details non-modal dialog and reverts any highlighting in the map.
+         * @function unhighlight
+         * @memberOf module:cimspace
+         */
         function unhighlight ()
         {
             glow (["==", "mRID", ""]);
@@ -618,6 +568,12 @@ define
             hide_details ();
         }
 
+        /**
+         * @summary Handler for a current feature link click.
+         * @description Sets the current feature and redisplay the details window and highlighting appropriately.
+         * @function select
+         * @memberOf module:cimspace
+         */
         function select (mrid)
         {
             if ((null != CURRENT_SELECTION) && CURRENT_SELECTION.includes (mrid))
@@ -628,9 +584,10 @@ define
         }
 
         /**
-         * Trace the currently displayed object and highlight the results.
-         * @description Raise a popup window and populate it with the preformatted text provided.
-         * @param {string} content - the detail content to display
+         * Trace the currently selected object and highlight the results.
+         * @description Traverse through the ConnectivityNode, Terminal and ConductingEquipment
+         * to make a list of connected devices and wires. Then highlight them on screen.
+         * @function trace
          * @memberOf module:cimspace
          */
         function trace ()
@@ -713,8 +670,9 @@ define
                         }
                 }
             }
-
+            // sort the list to make it easy to find an element
             equipment.sort ();
+            // create the text to show in the details window
             var text = JSON.stringify (CIM_Data.PowerSystemResource[CURRENT_FEATURE], null, 2) +
                 "\n" +
                 equipment.join (', ');
@@ -724,11 +682,21 @@ define
                     if (CURRENT_SELECTION[i] != CURRENT_FEATURE)
                         text = text + "\n<a href='#' onclick='require([\"cimspace\"], function(cimspace) {cimspace.select (\"" + CURRENT_SELECTION[i] + "\");})'>" + CURRENT_SELECTION[i] + "</a>";
                 }
+            // post the text
             showDetails (text);
+            // highlight the elements on screen
             equipment.unshift ("in", "mRID");
             glow (equipment);
         }
 
+        /**
+         * Compute the bounding box for the currentls selected element.
+         * @description Look up all PositionPoint elements associated with elemen's location,
+         * and compute the minimum bounding box that would enclose it.
+         * @parm {string} id - the id of the element to process
+         * @function get_bounding_box
+         * @memberOf module:cimspace
+         */
         function get_bounding_box (id)
         {
             var ret = null;
@@ -768,6 +736,15 @@ define
             return (ret);
         }
 
+        /**
+         * Search the element identifiers to find those that match the search text.
+         * @description Scan through all elements and make a list of those
+         * where the id, mRID, name or aliasName match the user enetered text.
+         * If some are found, highlight the first and zoom to the area that
+         * contains the element.
+         * @function search
+         * @memberOf module:cimspace
+         */
         function search ()
         {
             var text;
@@ -781,6 +758,8 @@ define
                         else if (CIM_Data.Element[id].mRID == text)
                             match.push (id);
                         else if (CIM_Data.Element[id].name == text)
+                            match.push (id);
+                        else if (CIM_Data.Element[id].aliasName == text)
                             match.push (id);
                     if (match.length > 0)
                     {
@@ -812,7 +791,7 @@ define
 
         /**
          * @summary Initialize the map.
-         * @description Create the background map.
+         * @description Create the background map, centered on Bern and showing most of Switzerland.
          * @param {object} event - optional, the vector tile checkbox change event
          * @function init_map
          * @memberOf module:cimspace
@@ -837,7 +816,7 @@ define
                         version: 8,
                         container: "map",
                         center: [7.48634000000001, 46.93003],
-                        zoom: 9,
+                        zoom: 8,
                         maxZoom: 25,
                         //style: "mapbox://styles/mapbox/streets-v8",
                         style: "styles/streets-v8.json",
@@ -889,7 +868,7 @@ define
                     function (event)
                     {
                         var lng = event.lngLat.lng;
-                        var lat = event.lngLat.lat
+                        var lat = event.lngLat.lat;
                         lng = Math.round (lng * 1000000) / 1000000;
                         lat = Math.round (lat * 1000000) / 1000000;
                         document.getElementById ("coordinates").innerHTML = "" + lng + "," + lat;
