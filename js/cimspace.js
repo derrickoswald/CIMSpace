@@ -539,7 +539,7 @@ define
         {
             var feature;
             if ((null != CIM_Data) && (null != CURRENT_FEATURE))
-                if (null != (feature = CIM_Data.PowerSystemResource[CURRENT_FEATURE]))
+                if (null != (feature = CIM_Data.Element[CURRENT_FEATURE]))
                 {
                     var text = JSON.stringify (feature, null, 2);
                     if (null != CURRENT_SELECTION)
@@ -669,24 +669,24 @@ define
 
                         }
                 }
+                // sort the list to make it easy to find an element
+                equipment.sort ();
+                // create the text to show in the details window
+                var text = JSON.stringify (CIM_Data.PowerSystemResource[CURRENT_FEATURE], null, 2) +
+                    "\n" +
+                    equipment.join (', ');
+                if (null != CURRENT_SELECTION)
+                    for (var i = 0; i < CURRENT_SELECTION.length; i++)
+                    {
+                        if (CURRENT_SELECTION[i] != CURRENT_FEATURE)
+                            text = text + "\n<a href='#' onclick='require([\"cimspace\"], function(cimspace) {cimspace.select (\"" + CURRENT_SELECTION[i] + "\");})'>" + CURRENT_SELECTION[i] + "</a>";
+                    }
+                // post the text
+                showDetails (text);
+                // highlight the elements on screen
+                equipment.unshift ("in", "mRID");
+                glow (equipment);
             }
-            // sort the list to make it easy to find an element
-            equipment.sort ();
-            // create the text to show in the details window
-            var text = JSON.stringify (CIM_Data.PowerSystemResource[CURRENT_FEATURE], null, 2) +
-                "\n" +
-                equipment.join (', ');
-            if (null != CURRENT_SELECTION)
-                for (var i = 0; i < CURRENT_SELECTION.length; i++)
-                {
-                    if (CURRENT_SELECTION[i] != CURRENT_FEATURE)
-                        text = text + "\n<a href='#' onclick='require([\"cimspace\"], function(cimspace) {cimspace.select (\"" + CURRENT_SELECTION[i] + "\");})'>" + CURRENT_SELECTION[i] + "</a>";
-                }
-            // post the text
-            showDetails (text);
-            // highlight the elements on screen
-            equipment.unshift ("in", "mRID");
-            glow (equipment);
         }
 
         /**
@@ -779,6 +779,8 @@ define
                                 }
                             );
                         }
+                        else
+                            alert ("That object doesn't have geometry");
                     }
                     else
                         alert ("No matches found for '" + text + "'");
