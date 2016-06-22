@@ -937,6 +937,186 @@ define
          */
 
         /**
+         * Parse a Customer element.
+         * @param {Object} context - the file reading context
+         * @param {Object} context.parsed.Customer - the list of Customer elements
+         * @param {String} sub - the substring within which to parse the element
+         * @memberOf module:cim
+         */
+        function parse_Customer (context, sub)
+        {
+            var obj;
+            var customers;
+
+            obj = parse_OrganizatinRole (context, sub);
+            obj.kind = parse_attribute (/<cim:Customer.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj.locale = parse_element (/<cim:Customer.locale>([\s\S]*?)<\/cim:Customer.locale>/g, sub, context, true);
+            obj.pucNumber = parse_element (/<cim:Customer.pucNumber>([\s\S]*?)<\/cim:Customer.pucNumber>/g, sub, context, true);
+            obj.specialNeed = parse_element (/<cim:Customer.specialNeed>([\s\S]*?)<\/cim:Customer.specialNeed>/g, sub, context, true);
+            obj.vip = parse_element (/<cim:Customer.vip>([\s\S]*?)<\/cim:Customer.vip>/g, sub, context, true);
+            obj.priority = parse_attribute (/<cim:Customer.priority\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj.status = parse_attribute (/<cim:Customer.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            customers = context.parsed.Customer;
+            if (null == customers)
+                context.parsed.Customer = customers = {};
+            customers[obj.id] = obj;
+
+            return (obj);
+        }
+
+        /**
+         * Parse a CustomerAccount element.
+         * @param {Object} context - the file reading context
+         * @param {Object} context.parsed.CustomerAccount - the list of CustomerAccount elements
+         * @param {String} sub - the substring within which to parse the element
+         * @memberOf module:cim
+         */
+        function parse_CustomerAccount (context, sub)
+        {
+            var obj;
+            var accounts;
+
+            obj = parse_Document (context, sub);
+            obj.billingCycle = parse_element (/<cim:CustomerAccount.billingCycle>([\s\S]*?)<\/cim:CustomerAccount.billingCycle>/g, sub, context, true);
+            obj.budgetBill = parse_element (/<cim:CustomerAccount.budgetBill>([\s\S]*?)<\/cim:CustomerAccount.budgetBill>/g, sub, context, true);
+            obj.Customer = parse_attribute (/<cim:CustomerAccount.Customer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            accounts = context.parsed.CustomerAccount;
+            if (null == accounts)
+                context.parsed.CustomerAccount = accounts = {};
+            accounts[obj.id] = obj;
+
+            return (obj);
+        }
+
+        /**
+         * Parse a CustomerAgreement element.
+         * @param {Object} context - the file reading context
+         * @param {Object} context.parsed.CustomerAgreement - the list of CustomerAgreement elements
+         * @param {String} sub - the substring within which to parse the element
+         * @memberOf module:cim
+         */
+        function parse_CustomerAgreement (context, sub)
+        {
+            var obj;
+            var agreements;
+
+            obj = parse_Agreement (context, sub);
+            obj.loadMgmt = parse_element (/<cim:CustomerAgreement.loadMgmt>([\s\S]*?)<\/cim:CustomerAgreement.loadMgmt>/g, sub, context, true);
+            obj.Customer = parse_attribute (/<cim:CustomerAgreement.Customer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj.CustomerAccount = parse_attribute (/<cim:CustomerAgreement.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj.ServiceCategory = parse_attribute (/<cim:CustomerAgreement.ServiceCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj.ServiceSupplier = parse_attribute (/<cim:CustomerAgreement.ServiceSupplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj.StandardIndustryCode = parse_attribute (/<cim:CustomerAgreement.StandardIndustryCode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            agreements = context.parsed.CustomerAgreement;
+            if (null == agreements)
+                context.parsed.CustomerAgreement = agreements = {};
+            agreements[obj.id] = obj;
+
+            return (obj);
+        }
+
+        /**
+         * Parse a CustomerNotification element.
+         * @param {Object} context - the file reading context
+         * @param {Object} context.parsed.CustomerNotification - the list of CustomerNotification elements
+         * @param {String} sub - the substring within which to parse the element
+         * @memberOf module:cim
+         */
+        function parse_CustomerNotification (context, sub)
+        {
+            var obj;
+            var notifications;
+
+            obj = parse_Element (context, sub);
+            obj.ContactType = parse_element (/<cim:CustomerNotification.ContactType>([\s\S]*?)<\/cim:CustomerNotification.ContactType>/g, sub, context, true);
+            obj.ContactValue = parse_element (/<cim:CustomerNotification.ContactValue>([\s\S]*?)<\/cim:CustomerNotification.ContactValue>/g, sub, context, true);
+            obj.earliestDateTimeToCall = parse_element (/<cim:CustomerNotification.earliestDateTimeToCall>([\s\S]*?)<\/cim:CustomerNotification.earliestDateTimeToCall>/g, sub, context, true);
+            obj.latestDateTimeToCall = parse_element (/<cim:CustomerNotification.latestDateTimeToCall>([\s\S]*?)<\/cim:CustomerNotification.latestDateTimeToCall>/g, sub, context, true);
+            obj.trigger = parse_attribute (/<cim:CustomerNotification.trigger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj.Customer = parse_attribute (/<cim:CustomerNotification.Customer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj.Incident = parse_attribute (/<cim:CustomerNotification.Incident\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            notifications = context.parsed.CustomerNotification;
+            if (null == notifications)
+                context.parsed.CustomerNotification = notifications = {};
+            notifications[obj.id] = obj;
+
+            return (obj);
+        }
+
+        /**
+         * Parse a IncidentHazard element.
+         * @param {Object} context - the file reading context
+         * @param {Object} context.parsed.IncidentHazard - the list of IncidentHazard elements
+         * @param {String} sub - the substring within which to parse the element
+         * @memberOf module:cim
+         */
+        function parse_IncidentHazard (context, sub)
+        {
+            var obj;
+            var hazards;
+
+            obj = parse_Hazard (context, sub);
+            obj.Incident = parse_attribute (/<cim:IncidentHazard.Incident\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj.TroubleTicket = parse_attribute (/<cim:IncidentHazard.TroubleTicket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            hazards = context.parsed.IncidentHazard;
+            if (null == hazards)
+                context.parsed.IncidentHazard = hazards = {};
+            hazards[obj.id] = obj;
+
+            return (obj);
+        }
+
+        /**
+         * Parse a PricingStructure element.
+         * @param {Object} context - the file reading context
+         * @param {Object} context.parsed.PricingStructure - the list of PricingStructure elements
+         * @param {String} sub - the substring within which to parse the element
+         * @memberOf module:cim
+         */
+        function parse_PricingStructure (context, sub)
+        {
+            var obj;
+            var structures;
+
+            obj = parse_Document (context, sub);
+            obj.code = parse_element (/<cim:PricingStructure.code>([\s\S]*?)<\/cim:PricingStructure.code>/g, sub, context, true);
+            obj.dailyCeilingUsage = parse_element (/<cim:PricingStructure.dailyCeilingUsage>([\s\S]*?)<\/cim:PricingStructure.dailyCeilingUsage>/g, sub, context, true);
+            obj.dailyEstimatedUsage = parse_element (/<cim:PricingStructure.dailyEstimatedUsage>([\s\S]*?)<\/cim:PricingStructure.dailyEstimatedUsage>/g, sub, context, true);
+            obj.dailyFloorUsage = parse_element (/<cim:PricingStructure.dailyFloorUsage>([\s\S]*?)<\/cim:PricingStructure.dailyFloorUsage>/g, sub, context, true);
+            obj.revenueKind = parse_attribute (/<cim:PricingStructure.revenueKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj.taxExemption = parse_element (/<cim:PricingStructure.taxExemption>([\s\S]*?)<\/cim:PricingStructure.taxExemption>/g, sub, context, true);
+            obj.ServiceCategory = parse_attribute (/<cim:PricingStructure.ServiceCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            structures = context.parsed.PricingStructure;
+            if (null == structures)
+                context.parsed.PricingStructure = structures = {};
+            structures[obj.id] = obj;
+
+            return (obj);
+        }
+
+        /**
+         * Parse a ServiceCategory element.
+         * @param {Object} context - the file reading context
+         * @param {Object} context.parsed.ServiceCategory - the list of ServiceCategory elements
+         * @param {String} sub - the substring within which to parse the element
+         * @memberOf module:cim
+         */
+        function parse_ServiceCategory (context, sub)
+        {
+            var obj;
+            var categories;
+
+            obj = parse_IdentifiedObject (context, sub);
+            obj.kind = parse_attribute (/<cim:ServiceCategory.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            categories = context.parsed.ServiceCategory;
+            if (null == categories)
+                context.parsed.ServiceCategory = categories = {};
+            categories[obj.id] = obj;
+
+            return (obj);
+        }
+
+        /**
          * Parse a ServiceLocation element.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.ServiceLocation - the list of ServiceLocation elements
@@ -956,6 +1136,58 @@ define
             if (null == locations)
                 context.parsed.ServiceLocation = locations = {};
             locations[obj.id] = obj;
+
+            return (obj);
+        }
+
+        /**
+         * Parse a Tariff element.
+         * @param {Object} context - the file reading context
+         * @param {Object} context.parsed.Tariff - the list of Tariff elements
+         * @param {String} sub - the substring within which to parse the element
+         * @memberOf module:cim
+         */
+        function parse_Tariff (context, sub)
+        {
+            var obj;
+            var tariffs;
+
+            obj = parse_Document (context, sub);
+            obj.endDate = parse_element (/<cim:Tariff.endDate>([\s\S]*?)<\/cim:Tariff.endDate>/g, sub, context, true);
+            obj.startDate = parse_element (/<cim:Tariff.startDate>([\s\S]*?)<\/cim:Tariff.startDate>/g, sub, context, true);
+            tariffs = context.parsed.Tariff;
+            if (null == tariffs)
+                context.parsed.Tariff = tariffs = {};
+            tariffs[obj.id] = obj;
+
+            return (obj);
+        }
+
+        /**
+         * Parse a TroubleTicket element.
+         * @param {Object} context - the file reading context
+         * @param {Object} context.parsed.TroubleTicket - the list of TroubleTicket elements
+         * @param {String} sub - the substring within which to parse the element
+         * @memberOf module:cim
+         */
+        function parse_TroubleTicket (context, sub)
+        {
+            var obj;
+            var tickets;
+
+            obj = parse_Document (context, sub);
+            obj.dateTimeOfReport = parse_element (/<cim:TroubleTicket.dateTimeOfReport>([\s\S]*?)<\/cim:TroubleTicket.dateTimeOfReport>/g, sub, context, true);
+            obj.firstResponder = parse_element (/<cim:TroubleTicket.firstResponder>([\s\S]*?)<\/cim:TroubleTicket.firstResponder>/g, sub, context, true);
+            obj.reportingKind = parse_attribute (/<cim:TroubleTicket.reportingKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj.resolvedDateTime = parse_element (/<cim:TroubleTicket.resolvedDateTime>([\s\S]*?)<\/cim:TroubleTicket.resolvedDateTime>/g, sub, context, true);
+            obj.troubleCode = parse_element (/<cim:TroubleTicket.troubleCode>([\s\S]*?)<\/cim:TroubleTicket.troubleCode>/g, sub, context, true);
+            obj.Customer = parse_attribute (/<cim:TroubleTicket.Customer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj.Incident = parse_attribute (/<cim:TroubleTicket.Incident\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj.Notification = parse_attribute (/<cim:TroubleTicket.Notification\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            tickets = context.parsed.TroubleTicket;
+            if (null == tickets)
+                context.parsed.TroubleTicket = tickets = {};
+            tickets[obj.id] = obj;
 
             return (obj);
         }
@@ -1630,8 +1862,35 @@ define
                     case "cim:SvStatus":
                         parse_SvStatus (subcontext, guts);
                         break;
+                    case "cim:Customer":
+                        parse_Customer (subcontext, guts);
+                        break;
+                    case "cim:CustomerAccount":
+                        parse_CustomerAccount (subcontext, guts);
+                        break;
+                    case "cim:CustomerAgreement":
+                        parse_CustomerAgreement (subcontext, guts);
+                        break;
+                    case "cim:CustomerNotification":
+                        parse_CustomerNotification (subcontext, guts);
+                        break;
+                    case "cim:IncidentHazard":
+                        parse_IncidentHazard (subcontext, guts);
+                        break;
+                    case "cim:PricingStructure":
+                        parse_PricingStructure (subcontext, guts);
+                        break;
+                    case "cim:ServiceCategory":
+                        parse_ServiceCategory (subcontext, guts);
+                        break;
                     case "cim:ServiceLocation":
                         parse_ServiceLocation (subcontext, guts);
+                        break;
+                    case "cim:Tariff":
+                        parse_Tariff (subcontext, guts);
+                        break;
+                    case "cim:TroubleTicket":
+                        parse_TroubleTicket (subcontext, guts);
                         break;
                     case "cim:ACLineSegment":
                         parse_ACLineSegment (subcontext, guts);
