@@ -199,7 +199,7 @@ define
             elements = context.parsed.Element;
             if (null == elements)
                 context.parsed.Element = elements = {};
-            ret = { id: id };
+            ret = { id: id, cls: "Element" };
             elements[id] = ret;
 
             return (ret);
@@ -222,6 +222,7 @@ define
             var records;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "ActivityRecord";
             obj.createdDateTime = parse_element (/<cim:ActivityRecord.createdDateTime>([\s\S]*?)<\/cim:ActivityRecord.createdDateTime>/g, sub, context, true);
             obj.reason = parse_element (/<cim:ActivityRecord.reason>([\s\S]*?)<\/cim:ActivityRecord.reason>/g, sub, context, true);
             obj.severity = parse_element (/<cim:ActivityRecord.severity>([\s\S]*?)<\/cim:ActivityRecord.severity>/g, sub, context, true);
@@ -248,6 +249,7 @@ define
             var agreements;
 
             obj = parse_Document (context, sub);
+            obj.cls = "Agreement";
             obj.signDate = parse_element (/<cim:Agreement.signDate>([\s\S]*?)<\/cim:Agreement.signDate>/g, sub, context, true);
             obj.validityInterval = parse_attribute (/<cim:Agreement.validityInterval\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             agreements = context.parsed.Agreement;
@@ -271,6 +273,7 @@ define
             var appointments;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "Appointment";
             obj.callAhead = parse_element (/<cim:Appointment.callAhead>([\s\S]*?)<\/cim:Appointment.callAhead>/g, sub, context, true);
             obj.meetingInterval = parse_attribute (/<cim:Appointment.meetingInterval\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             appointments = context.parsed.Appointment;
@@ -294,6 +297,7 @@ define
             var events;
 
             obj = parse_ActivityRecord (context, sub);
+            obj.cls = "ConfigurationEvent";
             obj.effectiveDateTime = parse_element (/<cim:ConfigurationEvent.effectiveDateTime>([\s\S]*?)<\/cim:ConfigurationEvent.effectiveDateTime>/g, sub, context, true);
             obj.modifiedBy = parse_element (/<cim:ConfigurationEvent.modifiedBy>([\s\S]*?)<\/cim:ConfigurationEvent.modifiedBy>/g, sub, context, true);
             obj.remark = parse_element (/<cim:ConfigurationEvent.remark>([\s\S]*?)<\/cim:ConfigurationEvent.remark>/g, sub, context, true);
@@ -325,6 +329,7 @@ define
             var coordinate_systems;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "CoordinateSystem";
             obj.crsUrn = parse_element (/<cim:CoordinateSystem.crsUrn>([\s\S]*?)<\/cim:CoordinateSystem.crsUrn>/g, sub, context, true);
             coordinate_systems = context.parsed.CoordinateSystem;
             if (null == coordinate_systems)
@@ -347,6 +352,7 @@ define
             var crews;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "Crew";
             obj.CrewType = parse_attribute (/<cim:Crew.CrewType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.status = parse_attribute (/<cim:Crew.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             crews = context.parsed.Crew;
@@ -370,6 +376,7 @@ define
             var members;
 
             obj = parse_OperationPersonRole (context, sub);
+            obj.cls = "CrewMember";
             obj.Crew = parse_attribute (/<cim:CrewMember.Crew\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             members = context.parsed.CrewMember;
             if (null == members)
@@ -392,6 +399,7 @@ define
             var types;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "CrewType";
             types = context.parsed.CrewType;
             if (null == types)
                 context.parsed.CrewType = types = {};
@@ -413,6 +421,7 @@ define
             var documents;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "Document";
             obj.authorName = parse_element (/<cim:Document.authorName>([\s\S]*?)<\/cim:Document.authorName>/g, sub, context, true);
             obj.comment = parse_element (/<cim:Document.comment>([\s\S]*?)<\/cim:Document.comment>/g, sub, context, true);
             obj.createdDateTime = parse_element (/<cim:Document.createdDateTime>([\s\S]*?)<\/cim:Document.createdDateTime>/g, sub, context, true);
@@ -445,6 +454,7 @@ define
             var addresses;
 
             obj = parse_Element (context, sub);
+            obj.cls = "ElectronicAddress";
             obj.email1 = parse_element (/<cim:ElectronicAddress.email1>([\s\S]*?)<\/cim:ElectronicAddress.email1>/g, sub, context, true);
             obj.email2 = parse_element (/<cim:ElectronicAddress.email2>([\s\S]*?)<\/cim:ElectronicAddress.email2>/g, sub, context, true);
             obj.lan = parse_element (/<cim:ElectronicAddress.lan>([\s\S]*?)<\/cim:ElectronicAddress.lan>/g, sub, context, true);
@@ -474,6 +484,7 @@ define
             var hazards;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "Hazard";
             obj.type = parse_element (/<cim:Hazard.type>([\s\S]*?)<\/cim:Hazard.type>/g, sub, context, true);
             obj.status = parse_attribute (/<cim:Hazard.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             hazards = context.parsed.Hazard;
@@ -497,6 +508,7 @@ define
             var locations;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "Location";
             obj.direction = parse_element (/<cim:Location.direction>([\s\S]*?)<\/cim:Location.direction>/g, sub, context, true);
             obj.geoInfoReference = parse_element (/<cim:Location.geoInfoReference>([\s\S]*?)<\/cim:Location.geoInfoReference>/g, sub, context, true);
             obj.type = parse_element (/<cim:Location.type>([\s\S]*?)<\/cim:Location.type>/g, sub, context, true);
@@ -528,6 +540,7 @@ define
             var roles;
 
             obj = parse_PersonRole (context, sub);
+            obj.cls = "OperationPersonRole";
             roles = context.parsed.OperationPersonRole;
             if (null == roles)
                 context.parsed.OperationPersonRole = roles = {};
@@ -549,6 +562,7 @@ define
             var operators;
 
             obj = parse_OperationPersonRole (context, sub);
+            obj.cls = "Operator";
             operators = context.parsed.Operator;
             if (null == operators)
                 context.parsed.Operator = operators = {};
@@ -570,6 +584,7 @@ define
             var organisations;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "Organisation";
             obj.electronicAddress = parse_attribute (/<cim:Organisation.electronicAddress\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.phone1 = parse_attribute (/<cim:Organisation.phone1\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.phone2 = parse_attribute (/<cim:Organisation.phone2\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -596,6 +611,7 @@ define
             var roles;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "OrganisationRole";
             obj.Organisation = parse_attribute (/<cim:OrganisationRole.Organisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true); 
             roles = context.parsed.OrganisationRole;
             if (null == roles)
@@ -618,6 +634,7 @@ define
             var ownerships;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "Ownership";
             obj.share = parse_element (/<cim:Ownership.share>([\s\S]*?)<\/cim:Ownership.share>/g, sub, context, true);
             obj.Asset = parse_attribute (/<cim:Ownership.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.AssetOwner = parse_attribute (/<cim:Ownership.AssetOwner\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -642,6 +659,7 @@ define
             var persons;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "Person";
             obj.firstName = parse_element (/<cim:Person.firstName>([\s\S]*?)<\/cim:Person.firstName>/g, sub, context, true);
             obj.lastName = parse_element (/<cim:Person.lastName>([\s\S]*?)<\/cim:Person.lastName>/g, sub, context, true);
             obj.mName = parse_element (/<cim:Person.mName>([\s\S]*?)<\/cim:Person.mName>/g, sub, context, true);
@@ -672,6 +690,7 @@ define
             var roles;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "PersonRole";
             obj.Person = parse_attribute (/<cim:PersonRole.Person\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             roles = context.parsed.PersonRole;
             if (null == roles)
@@ -694,6 +713,7 @@ define
             var points;
 
             obj = parse_Element (context, sub);
+            obj.cls = "PositionPoint";
             obj.sequenceNumber = parse_element (/<cim:PositionPoint.sequenceNumber>([\s\S]*?)<\/cim:PositionPoint.sequenceNumber>/g, sub, context, true);
             obj.xPosition = parse_element (/<cim:PositionPoint.xPosition>([\s\S]*?)<\/cim:PositionPoint.xPosition>/g, sub, context, true);
             obj.yPosition = parse_element (/<cim:PositionPoint.yPosition>([\s\S]*?)<\/cim:PositionPoint.yPosition>/g, sub, context, true);
@@ -724,6 +744,7 @@ define
             var addresses;
 
             obj = parse_Element (context, sub);
+            obj.cls = "PostalAddress";
             obj.poBox = parse_element (/<cim:PostalAddress.poBox>([\s\S]*?)<\/cim:PostalAddress.poBox>/g, sub, context, true);
             obj.postalCode = parse_element (/<cim:PostalAddress.postalCode>([\s\S]*?)<\/cim:PostalAddress.postalCode>/g, sub, context, true);
             obj.streetDetail = parse_attribute (/<cim:PostalAddress.streetDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -749,6 +770,7 @@ define
             var priorities;
 
             obj = parse_Element (context, sub);
+            obj.cls = "Priority";
             obj.justification = parse_element (/<cim:Priority.justification>([\s\S]*?)<\/cim:Priority.justification>/g, sub, context, true);
             obj.rank = parse_element (/<cim:Priority.rank>([\s\S]*?)<\/cim:Priority.rank>/g, sub, context, true);
             obj.type = parse_element (/<cim:Priority.type>([\s\S]*?)<\/cim:Priority.type>/g, sub, context, true);
@@ -773,6 +795,7 @@ define
             var events;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "ScheduledEvent";
             obj.duration = parse_element (/<cim:ScheduledEvent.duration>([\s\S]*?)<\/cim:ScheduledEvent.duration>/g, sub, context, true);
             obj.type = parse_element (/<cim:ScheduledEvent.type>([\s\S]*?)<\/cim:ScheduledEvent.type>/g, sub, context, true);
             obj.ScheduledEventData = parse_attribute (/<cim:ScheduledEvent.ScheduledEventData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -798,6 +821,7 @@ define
             var edata;
 
             obj = parse_Element (context, sub);
+            obj.cls = "ScheduledEventData";
             obj.InspectionDataSet = parse_attribute (/<cim:ScheduledEventData.InspectionDataSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.estimatedWindow = parse_attribute (/<cim:ScheduledEventData.estimatedWindow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.requestedWindow = parse_attribute (/<cim:ScheduledEventData.requestedWindow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -823,6 +847,7 @@ define
             var pstatus;
 
             obj = parse_Element (context, sub);
+            obj.cls = "Status";
             obj.dateTime = parse_element (/<cim:Status.dateTime>([\s\S]*?)<\/cim:Status.dateTime>/g, sub, context, true);
             obj.reason = parse_element (/<cim:Status.reason>([\s\S]*?)<\/cim:Status.reason>/g, sub, context, true);
             obj.remark = parse_element (/<cim:Status.remark>([\s\S]*?)<\/cim:Status.remark>/g, sub, context, true);
@@ -848,6 +873,7 @@ define
             var addresses;
 
             obj = parse_Element (context, sub);
+            obj.cls = "StreetAddress";
             obj.status = parse_attribute (/<cim:StreetAddress.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.streetDetail = parse_attribute (/<cim:StreetAddress.streetDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.townDetail = parse_attribute (/<cim:StreetAddress.townDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -872,6 +898,7 @@ define
             var details;
 
             obj = parse_Element (context, sub);
+            obj.cls = "StreetDetail";
             obj.addressGeneral = parse_element (/<cim:StreetDetail.addressGeneral>([\s\S]*?)<\/cim:StreetDetail.addressGeneral>/g, sub, context, true);
             obj.buildingName = parse_element (/<cim:StreetDetail.buildingName>([\s\S]*?)<\/cim:StreetDetail.buildingName>/g, sub, context, true);
             obj.code = parse_element (/<cim:StreetDetail.code>([\s\S]*?)<\/cim:StreetDetail.code>/g, sub, context, true);
@@ -903,6 +930,7 @@ define
             var phonenumbers;
 
             obj = parse_Element (context, sub);
+            obj.cls = "TelephoneNumber";
             obj.areaCode = parse_element (/<cim:TelephoneNumber.areaCode>([\s\S]*?)<\/cim:TelephoneNumber.areaCode>/g, sub, context, true);
             obj.cityCode = parse_element (/<cim:TelephoneNumber.cityCode>([\s\S]*?)<\/cim:TelephoneNumber.cityCode>/g, sub, context, true);
             obj.countryCode = parse_element (/<cim:TelephoneNumber.countryCode>([\s\S]*?)<\/cim:TelephoneNumber.countryCode>/g, sub, context, true);
@@ -929,6 +957,7 @@ define
             var points;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "TimePoint";
             obj.dateTime = parse_element (/<cim:TimePoint.dateTime>([\s\S]*?)<\/cim:TimePoint.dateTime>/g, sub, context, true);
             obj.relativeTimeInterval = parse_element (/<cim:TimePoint.relativeTimeInterval>([\s\S]*?)<\/cim:TimePoint.relativeTimeInterval>/g, sub, context, true);
             obj.sequenceNumber = parse_element (/<cim:TimePoint.sequenceNumber>([\s\S]*?)<\/cim:TimePoint.sequenceNumber>/g, sub, context, true);
@@ -956,6 +985,7 @@ define
             var schedules;
 
             obj = parse_Document (context, sub);
+            obj.cls = "TimeSchedule";
             obj.disabled = parse_element (/<cim:TimeSchedule.disabled>([\s\S]*?)<\/cim:TimeSchedule.disabled>/g, sub, context, true);
             obj.offset = parse_element (/<cim:TimeSchedule.offset>([\s\S]*?)<\/cim:TimeSchedule.offset>/g, sub, context, true);
             obj.recurrencePattern = parse_element (/<cim:TimeSchedule.recurrencePattern>([\s\S]*?)<\/cim:TimeSchedule.recurrencePattern>/g, sub, context, true);
@@ -982,6 +1012,7 @@ define
             var details;
 
             obj = parse_Element (context, sub);
+            obj.cls = "TownDetail";
             obj.code = parse_element (/<cim:TownDetail.code>([\s\S]*?)<\/cim:TownDetail.code>/g, sub, context, true);
             obj.country = parse_element (/<cim:TownDetail.country>([\s\S]*?)<\/cim:TownDetail.country>/g, sub, context, true);
             obj.name = parse_element (/<cim:TownDetail.name>([\s\S]*?)<\/cim:TownDetail.name>/g, sub, context, true);
@@ -1008,6 +1039,7 @@ define
             var attributes;
 
             obj = parse_Element (context, sub);
+            obj.cls = "UserAttribute";
             obj.name = parse_element (/<cim:UserAttribute.name>([\s\S]*?)<\/cim:UserAttribute.name>/g, sub, context, true);
             obj.sequenceNumber = parse_element (/<cim:UserAttribute.sequenceNumber>([\s\S]*?)<\/cim:UserAttribute.sequenceNumber>/g, sub, context, true);
             obj.PropertySpecification = parse_attribute (/<cim:UserAttribute.PropertySpecification\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -1042,6 +1074,7 @@ define
             var terminals;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "ACDCTerminal";
             obj.connected = parse_element (/<cim:ACDCTerminal.connected>([\s\S]*?)<\/cim:ACDCTerminal.connected>/g, sub, context, true);
             obj.sequenceNumber = parse_element (/<cim:ACDCTerminal.sequenceNumber>([\s\S]*?)<\/cim:ACDCTerminal.sequenceNumber>/g, sub, context, true);
             obj.BusNameMarker = parse_attribute (/<cim:ACDCTerminal.BusNameMarker\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -1068,6 +1101,7 @@ define
             var voltages;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "BaseVoltage";
             obj.nominalVoltage = parse_element (/<cim:BaseVoltage.nominalVoltage>([\s\S]*?)<\/cim:BaseVoltage.nominalVoltage>/g, sub, context, true);
             voltages = context.parsed.BaseVoltage;
             if (null == voltages)
@@ -1078,7 +1112,7 @@ define
         }
 
         /**
-         * Parse a Bay element.
+         * Parse a Bay.
          * @param {Object} parsed - the parsed elements
          * @param {Object} parsed.PowerSystemResources - the object with power system resources
          * @param {Object} context - the file reading context
@@ -1091,6 +1125,7 @@ define
             var bay;
 
             obj = parse_EquipmentContainer (context, sub);
+            obj.cls = "Bay";
             obj.bayEnergyMeasFlag = parse_element (/<cim:Bay.bayEnergyMeasFlag>([\s\S]*?)<\/cim:Bay.bayEnergyMeasFlag>/g, sub, context, true);
             obj.bayPowerMeasFlag = parse_element (/<cim:Bay.bayPowerMeasFlag>([\s\S]*?)<\/cim:Bay.bayPowerMeasFlag>/g, sub, context, true);
             obj.breakerConfiguration = parse_attribute (/<cim:Bay.breakerConfiguration\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -1110,7 +1145,7 @@ define
         }
 
         /**
-         * Parse a ConductingEquipment element.
+         * Parse a ConductingEquipment.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.ConductingEquipment - the list of conducting equipment
          * @param {String} sub - the substring within which to parse the element
@@ -1122,6 +1157,7 @@ define
             var equipment;
 
             obj = parse_Equipment (context, sub);
+            obj.cls = "ConductingEquipment";
             obj.BaseVoltage = parse_attribute (/<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.GroundingAction = parse_attribute (/<cim:ConductingEquipment.GroundingAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.JumpingAction = parse_attribute (/<cim:ConductingEquipment.JumpingAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -1135,7 +1171,7 @@ define
         }
 
         /**
-         * Parse a ConnectivityNode element.
+         * Parse a ConnectivityNode.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.ConnectivityNode - the list of connectivity nodes
          * @param {String} sub - the substring within which to parse the element
@@ -1147,6 +1183,7 @@ define
             var nodes;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "ConnectivityNode";
             obj.ConnectivityNodeContainer = parse_attribute (/<cim:ConnectivityNode.ConnectivityNodeContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.TopologicalNode = parse_attribute (/<cim:ConnectivityNode.TopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             nodes = context.parsed.ConnectivityNode;
@@ -1158,7 +1195,7 @@ define
         }
 
         /**
-         * Parse a ConnectivityNodeContainer element.
+         * Parse a ConnectivityNodeContainer.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.ConnectivityNodeContainer - the list of connectivity node containers
          * @param {String} sub - the substring within which to parse the element
@@ -1170,6 +1207,7 @@ define
             var containers;
 
             obj = parse_PowerSystemResource (context, sub);
+            obj.cls = "ConnectivityNodeContainer";
             containers = context.parsed.ConnectivityNodeContainer;
             if (null == containers)
                 context.parsed.ConnectivityNodeContainer = containers = {};
@@ -1179,7 +1217,7 @@ define
         }
 
         /**
-         * Parse an Equipment element.
+         * Parse an Equipment.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Equipment - the list of equipment
          * @param {String} sub - the substring within which to parse the element
@@ -1191,6 +1229,7 @@ define
             var equipment;
 
             obj = parse_PowerSystemResource (context, sub);
+            obj.cls = "Equipment";
             obj.aggregate = parse_element (/<cim:Equipment.aggregate>([\s\S]*?)<\/cim:Equipment.aggregate>/g, sub, context, true);
             obj.normallyInService = parse_element (/<cim:Equipment.normallyInService>([\s\S]*?)<\/cim:Equipment.normallyInService>/g, sub, context, true);
             obj.EquipmentContainer = parse_attribute (/<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -1203,7 +1242,7 @@ define
         }
 
         /**
-         * Parse an EquipmentContainer element.
+         * Parse an EquipmentContainer.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Equipment - the list of equipment containers
          * @param {String} sub - the substring within which to parse the element
@@ -1215,6 +1254,7 @@ define
             var containers;
 
             obj = parse_ConnectivityNodeContainer (context, sub);
+            obj.cls = "EquipmentContainer";
             containers = context.parsed.EquipmentContainer;
             if (null == containers)
                 context.parsed.EquipmentContainer = containers = {};
@@ -1236,6 +1276,7 @@ define
             var identified_objects;
 
             obj = parse_Element (context, sub);
+            obj.cls = "IdentifiedObject";
             obj.aliasName = parse_element (/<cim:IdentifiedObject.aliasName>([\s\S]*?)<\/cim:IdentifiedObject.aliasName>/g, sub, context, true);
             obj.description = parse_element (/<cim:IdentifiedObject.description>([\s\S]*?)<\/cim:IdentifiedObject.description>/g, sub, context, true);
             obj.mRID = parse_element (/<cim:IdentifiedObject.mRID>([\s\S]*?)<\/cim:IdentifiedObject.mRID>/g, sub, context, true);
@@ -1256,7 +1297,7 @@ define
         }
 
         /**
-         * Parse a Name element.
+         * Parse a Name.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Name - the list of Name elements
          * @param {String} sub - the substring within which to parse the element
@@ -1268,6 +1309,7 @@ define
             var names;
 
             obj = parse_Element (context, sub);
+            obj.cls = "Name";
             obj.name = parse_element (/<cim:Name.name>([\s\S]*?)<\/cim:Name.name>/g, sub, context, true);
             obj.IdentifiedObject = parse_attribute (/<cim:Name.IdentifiedObject\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.NameType = parse_attribute (/<cim:Name.NameType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -1280,7 +1322,7 @@ define
         }
 
         /**
-         * Parse a NameType element.
+         * Parse a NameType.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.NameType - the list of NameType elements
          * @param {String} sub - the substring within which to parse the element
@@ -1292,6 +1334,7 @@ define
             var types;
 
             obj = parse_Element (context, sub);
+            obj.cls = "NameType";
             obj.description = parse_element (/<cim:NameType.description>([\s\S]*?)<\/cim:NameType.description>/g, sub, context, true);
             obj.name = parse_element (/<cim:NameType.name>([\s\S]*?)<\/cim:NameType.name>/g, sub, context, true);
             obj.NameTypeAuthority = parse_attribute (/<cim:Name.NameTypeAuthority\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -1304,7 +1347,7 @@ define
         }
 
         /**
-         * Parse a NameTypeAuthority element.
+         * Parse a NameTypeAuthority.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.NameTypeAuthority - the list of NameTypeAuthority elements
          * @param {String} sub - the substring within which to parse the element
@@ -1316,6 +1359,7 @@ define
             var authorities;
 
             obj = parse_Element (context, sub);
+            obj.cls = "NameTypeAuthority";
             obj.description = parse_element (/<cim:NameTypeAuthority.description>([\s\S]*?)<\/cim:NameTypeAuthority.description>/g, sub, context, true);
             obj.name = parse_element (/<cim:NameTypeAuthority.name>([\s\S]*?)<\/cim:NameTypeAuthority.name>/g, sub, context, true);
             authorities = context.parsed.NameTypeAuthority;
@@ -1327,7 +1371,7 @@ define
         }
 
         /**
-         * Parse a PSRType element.
+         * Parse a PSRType.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.PSRType - the list of PSRType elements
          * @param {String} sub - the substring within which to parse the element
@@ -1339,6 +1383,7 @@ define
             var types;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "PSRType";
             types = context.parsed.PSRType;
             if (null == types)
                 context.parsed.PSRType = types = {};
@@ -1348,7 +1393,7 @@ define
         }
 
         /**
-         * Parse a PowerSystemResource element.
+         * Parse a PowerSystemResource.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.PowerSystemResource - the list of PowerSystemResource elements
          * @param {String} sub - the substring within which to parse the element
@@ -1360,6 +1405,7 @@ define
             var resources;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "PowerSystemResource";
             obj.AssetInfo = parse_attribute (/<cim:PowerSystemResource.AssetInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.Location = parse_attribute (/<cim:PowerSystemResource.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.PSRType = parse_attribute (/<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -1372,7 +1418,7 @@ define
         }
 
         /**
-         * Parse a Substation element.
+         * Parse a Substation.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Substation - the list of Substation elements
          * @param {String} sub - the substring within which to parse the element
@@ -1384,6 +1430,7 @@ define
             var stations;
 
             obj = parse_EquipmentContainer (context, sub);
+            obj.cls = "Substation";
             obj.SubGeographicalRegion = parse_attribute (/<cim:Substation.SubGeographicalRegion\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             stations = context.parsed.Substation;
             if (null == stations)
@@ -1394,7 +1441,7 @@ define
         }
 
         /**
-         * Parse a Terminal element.
+         * Parse a Terminal.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Terminal - the list of Terminal elements
          * @param {String} sub - the substring within which to parse the element
@@ -1406,6 +1453,7 @@ define
             var terminals;
 
             obj = parse_ACDCTerminal (context, sub);
+            obj.cls = "Terminal";
             obj.PhaseCode = parse_element (/<cim:Terminal.PhaseCode>([\s\S]*?)<\/cim:Terminal.PhaseCode>/g, sub, context, true);
             obj.Bushing = parse_attribute (/<cim:Terminal.Bushing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.ConductingEquipment = parse_attribute (/<cim:Terminal.ConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -1421,7 +1469,7 @@ define
         }
 
         /**
-         * Parse a VoltageLevel element.
+         * Parse a VoltageLevel.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.VoltageLevel - the list of VoltageLevel elements
          * @param {String} sub - the substring within which to parse the element
@@ -1433,6 +1481,7 @@ define
             var levels;
 
             obj = parse_EquipmentContainer (context, sub);
+            obj.cls = "VoltageLevel";
             obj.highVoltageLimit = parse_element (/<cim:VoltageLevel.highVoltageLimit>([\s\S]*?)<\/cim:VoltageLevel.highVoltageLimit>/g, sub, context, true);
             obj.lowVoltageLimit = parse_element (/<cim:VoltageLevel.lowVoltageLimit>([\s\S]*?)<\/cim:VoltageLevel.lowVoltageLimit>/g, sub, context, true);
             obj.BaseVoltage = parse_attribute (/<cim:VoltageLevel.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -1450,7 +1499,7 @@ define
          */
 
         /**
-         * Parse a GeneratingUnit element.
+         * Parse a GeneratingUnit.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.GeneratingUnit - the list of GeneratingUnit elements
          * @param {String} sub - the substring within which to parse the element
@@ -1462,6 +1511,7 @@ define
             var units;
 
             obj = parse_Equipment (context, sub);
+            obj.cls = "GeneratingUnit";
             obj.allocSpinResP = parse_element (/<cim:GeneratingUnit.allocSpinResP>([\s\S]*?)<\/cim:GeneratingUnit.allocSpinResP>/g, sub, context, true);
             obj.autoCntrlMarginP = parse_element (/<cim:GeneratingUnit.autoCntrlMarginP>([\s\S]*?)<\/cim:GeneratingUnit.autoCntrlMarginP>/g, sub, context, true);
             obj.baseP = parse_element (/<cim:GeneratingUnit.baseP>([\s\S]*?)<\/cim:GeneratingUnit.baseP>/g, sub, context, true);
@@ -1508,7 +1558,7 @@ define
         }
 
         /**
-         * Parse a SolarGeneratingUnit element.
+         * Parse a SolarGeneratingUnit.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.SolarGeneratingUnit - the list of SolarGeneratingUnit elements
          * @param {String} sub - the substring within which to parse the element
@@ -1520,6 +1570,7 @@ define
             var pvs;
 
             obj = parse_GeneratingUnit (context, sub);
+            obj.cls = "SolarGeneratingUnit";
             pvs = context.parsed.SolarGeneratingUnit;
             if (null == pvs)
                 context.parsed.SolarGeneratingUnit = pvs = {};
@@ -1533,7 +1584,7 @@ define
          */
 
         /**
-         * Parse a CurrentRelay element.
+         * Parse a CurrentRelay.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.CurrentRelay - the list of CurrentRelay elements
          * @param {String} sub - the substring within which to parse the element
@@ -1545,6 +1596,7 @@ define
             var relays;
 
             obj = parse_ProtectionEquipment (context, sub);
+            obj.cls = "CurrentRelay";
             obj.currentLimit1 = parse_element (/<cim:CurrentRelay.currentLimit1>([\s\S]*?)<\/cim:CurrentRelay.currentLimit1>/g, sub, context, true);
             obj.currentLimit2 = parse_element (/<cim:CurrentRelay.currentLimit2>([\s\S]*?)<\/cim:CurrentRelay.currentLimit2>/g, sub, context, true);
             obj.currentLimit3 = parse_element (/<cim:CurrentRelay.currentLimit3>([\s\S]*?)<\/cim:CurrentRelay.currentLimit3>/g, sub, context, true);
@@ -1561,7 +1613,7 @@ define
         }
 
         /**
-         * Parse a ProtectionEquipment element.
+         * Parse a ProtectionEquipment.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.ProtectionEquipment - the list of ProtectionEquipment elements
          * @param {String} sub - the substring within which to parse the element
@@ -1573,6 +1625,7 @@ define
             var equipment;
 
             obj = parse_Equipment (context, sub);
+            obj.cls = "ProtectionEquipment";
             obj.highLimit = parse_element (/<cim:ProtectionEquipment.highLimit>([\s\S]*?)<\/cim:ProtectionEquipment.highLimit>/g, sub, context, true);
             obj.lowLimit = parse_element (/<cim:ProtectionEquipment.lowLimit>([\s\S]*?)<\/cim:ProtectionEquipment.lowLimit>/g, sub, context, true);
             obj.powerDirectionFlag = parse_element (/<cim:ProtectionEquipment.powerDirectionFlag>([\s\S]*?)<\/cim:ProtectionEquipment.powerDirectionFlag>/g, sub, context, true);
@@ -1592,7 +1645,7 @@ define
          */
 
         /**
-         * Parse a StateVariable element.
+         * Parse a StateVariable.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.StateVariable - the list of StateVariable elements
          * @param {String} sub - the substring within which to parse the element
@@ -1604,6 +1657,7 @@ define
             var variables;
 
             obj = parse_Element (context, sub);
+            obj.cls = "StateVariable";
             variables = context.parsed.StateVariable;
             if (null == variables)
                 context.parsed.StateVariable = variables = {};
@@ -1613,7 +1667,7 @@ define
         }
 
         /**
-         * Parse a SvStatus element.
+         * Parse a SvStatus.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.SvStatus - the list of SvStatus elements
          * @param {String} sub - the substring within which to parse the element
@@ -1625,6 +1679,7 @@ define
             var statuses;
 
             obj = parse_StateVariable (context, sub);
+            obj.cls = "SvStatus";
             obj.inService = parse_element (/<cim:SvStatus.inService>([\s\S]*?)<\/cim:SvStatus.inService>/g, sub, context, true);
             obj.ConductingEquipment = parse_attribute (/<cim:SvStatus.ConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             statuses = context.parsed.SvStatus;
@@ -1640,7 +1695,7 @@ define
          */
 
         /**
-         * Parse a Customer element.
+         * Parse a Customer.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Customer - the list of Customer elements
          * @param {String} sub - the substring within which to parse the element
@@ -1652,6 +1707,7 @@ define
             var customers;
 
             obj = parse_OrganizatinRole (context, sub);
+            obj.cls = "Customer";
             obj.kind = parse_attribute (/<cim:Customer.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.locale = parse_element (/<cim:Customer.locale>([\s\S]*?)<\/cim:Customer.locale>/g, sub, context, true);
             obj.pucNumber = parse_element (/<cim:Customer.pucNumber>([\s\S]*?)<\/cim:Customer.pucNumber>/g, sub, context, true);
@@ -1668,7 +1724,7 @@ define
         }
 
         /**
-         * Parse a CustomerAccount element.
+         * Parse a CustomerAccount.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.CustomerAccount - the list of CustomerAccount elements
          * @param {String} sub - the substring within which to parse the element
@@ -1680,6 +1736,7 @@ define
             var accounts;
 
             obj = parse_Document (context, sub);
+            obj.cls = "CustomerAccount";
             obj.billingCycle = parse_element (/<cim:CustomerAccount.billingCycle>([\s\S]*?)<\/cim:CustomerAccount.billingCycle>/g, sub, context, true);
             obj.budgetBill = parse_element (/<cim:CustomerAccount.budgetBill>([\s\S]*?)<\/cim:CustomerAccount.budgetBill>/g, sub, context, true);
             obj.Customer = parse_attribute (/<cim:CustomerAccount.Customer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -1692,7 +1749,7 @@ define
         }
 
         /**
-         * Parse a CustomerAgreement element.
+         * Parse a CustomerAgreement.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.CustomerAgreement - the list of CustomerAgreement elements
          * @param {String} sub - the substring within which to parse the element
@@ -1704,6 +1761,7 @@ define
             var agreements;
 
             obj = parse_Agreement (context, sub);
+            obj.cls = "CustomerAgreement";
             obj.loadMgmt = parse_element (/<cim:CustomerAgreement.loadMgmt>([\s\S]*?)<\/cim:CustomerAgreement.loadMgmt>/g, sub, context, true);
             obj.Customer = parse_attribute (/<cim:CustomerAgreement.Customer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.CustomerAccount = parse_attribute (/<cim:CustomerAgreement.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -1719,7 +1777,7 @@ define
         }
 
         /**
-         * Parse a CustomerNotification element.
+         * Parse a CustomerNotification.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.CustomerNotification - the list of CustomerNotification elements
          * @param {String} sub - the substring within which to parse the element
@@ -1731,6 +1789,7 @@ define
             var notifications;
 
             obj = parse_Element (context, sub);
+            obj.cls = "CustomerNotification";
             obj.ContactType = parse_element (/<cim:CustomerNotification.ContactType>([\s\S]*?)<\/cim:CustomerNotification.ContactType>/g, sub, context, true);
             obj.ContactValue = parse_element (/<cim:CustomerNotification.ContactValue>([\s\S]*?)<\/cim:CustomerNotification.ContactValue>/g, sub, context, true);
             obj.earliestDateTimeToCall = parse_element (/<cim:CustomerNotification.earliestDateTimeToCall>([\s\S]*?)<\/cim:CustomerNotification.earliestDateTimeToCall>/g, sub, context, true);
@@ -1747,7 +1806,7 @@ define
         }
 
         /**
-         * Parse a IncidentHazard element.
+         * Parse a IncidentHazard.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.IncidentHazard - the list of IncidentHazard elements
          * @param {String} sub - the substring within which to parse the element
@@ -1759,6 +1818,7 @@ define
             var hazards;
 
             obj = parse_Hazard (context, sub);
+            obj.cls = "IncidentHazard";
             obj.Incident = parse_attribute (/<cim:IncidentHazard.Incident\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.TroubleTicket = parse_attribute (/<cim:IncidentHazard.TroubleTicket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             hazards = context.parsed.IncidentHazard;
@@ -1770,7 +1830,7 @@ define
         }
 
         /**
-         * Parse a PricingStructure element.
+         * Parse a PricingStructure.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.PricingStructure - the list of PricingStructure elements
          * @param {String} sub - the substring within which to parse the element
@@ -1782,6 +1842,7 @@ define
             var structures;
 
             obj = parse_Document (context, sub);
+            obj.cls = "PricingStructure";
             obj.code = parse_element (/<cim:PricingStructure.code>([\s\S]*?)<\/cim:PricingStructure.code>/g, sub, context, true);
             obj.dailyCeilingUsage = parse_element (/<cim:PricingStructure.dailyCeilingUsage>([\s\S]*?)<\/cim:PricingStructure.dailyCeilingUsage>/g, sub, context, true);
             obj.dailyEstimatedUsage = parse_element (/<cim:PricingStructure.dailyEstimatedUsage>([\s\S]*?)<\/cim:PricingStructure.dailyEstimatedUsage>/g, sub, context, true);
@@ -1798,7 +1859,7 @@ define
         }
 
         /**
-         * Parse a ServiceCategory element.
+         * Parse a ServiceCategory.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.ServiceCategory - the list of ServiceCategory elements
          * @param {String} sub - the substring within which to parse the element
@@ -1810,6 +1871,7 @@ define
             var categories;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "ServiceCategory";
             obj.kind = parse_attribute (/<cim:ServiceCategory.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             categories = context.parsed.ServiceCategory;
             if (null == categories)
@@ -1820,7 +1882,7 @@ define
         }
 
         /**
-         * Parse a ServiceLocation element.
+         * Parse a ServiceLocation.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.ServiceLocation - the list of ServiceLocation elements
          * @param {String} sub - the substring within which to parse the element
@@ -1832,6 +1894,7 @@ define
             var locations;
 
             obj = parse_WorkLocation (context, sub);
+            obj.cls = "ServiceLocation";
             obj.accessMethod = parse_element (/<cim:ServiceLocation.accessMethod>([\s\S]*?)<\/cim:ServiceLocation.accessMethod>/g, sub, context, true);
             obj.needsInspection = parse_element (/<cim:ServiceLocation.needsInspection>([\s\S]*?)<\/cim:ServiceLocation.needsInspection>/g, sub, context, true);
             obj.siteAccessProblem = parse_element (/<cim:ServiceLocation.siteAccessProblem>([\s\S]*?)<\/cim:ServiceLocation.siteAccessProblem>/g, sub, context, true);
@@ -1844,7 +1907,7 @@ define
         }
 
         /**
-         * Parse a Tariff element.
+         * Parse a Tariff.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Tariff - the list of Tariff elements
          * @param {String} sub - the substring within which to parse the element
@@ -1856,6 +1919,7 @@ define
             var tariffs;
 
             obj = parse_Document (context, sub);
+            obj.cls = "Tariff";
             obj.endDate = parse_element (/<cim:Tariff.endDate>([\s\S]*?)<\/cim:Tariff.endDate>/g, sub, context, true);
             obj.startDate = parse_element (/<cim:Tariff.startDate>([\s\S]*?)<\/cim:Tariff.startDate>/g, sub, context, true);
             tariffs = context.parsed.Tariff;
@@ -1867,7 +1931,7 @@ define
         }
 
         /**
-         * Parse a TroubleTicket element.
+         * Parse a TroubleTicket.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.TroubleTicket - the list of TroubleTicket elements
          * @param {String} sub - the substring within which to parse the element
@@ -1879,6 +1943,7 @@ define
             var tickets;
 
             obj = parse_Document (context, sub);
+            obj.cls = "TroubleTicket";
             obj.dateTimeOfReport = parse_element (/<cim:TroubleTicket.dateTimeOfReport>([\s\S]*?)<\/cim:TroubleTicket.dateTimeOfReport>/g, sub, context, true);
             obj.firstResponder = parse_element (/<cim:TroubleTicket.firstResponder>([\s\S]*?)<\/cim:TroubleTicket.firstResponder>/g, sub, context, true);
             obj.reportingKind = parse_attribute (/<cim:TroubleTicket.reportingKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -1900,7 +1965,7 @@ define
          */
 
         /**
-         * Parse a ACLineSegment element.
+         * Parse a ACLineSegment.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.ACLineSegment - the list of ACLineSegment elements
          * @param {String} sub - the substring within which to parse the element
@@ -1912,6 +1977,7 @@ define
             var lines;
 
             obj = parse_Conductor (context, sub);
+            obj.cls = "ACLineSegment";
             obj.b0ch = parse_element (/<cim:ACLineSegment.b0ch>([\s\S]*?)<\/cim:ACLineSegment.b0ch>/g, sub, context, true);
             obj.bch = parse_element (/<cim:ACLineSegment.bch>([\s\S]*?)<\/cim:ACLineSegment.bch>/g, sub, context, true);
             obj.g0ch = parse_element (/<cim:ACLineSegment.g0ch>([\s\S]*?)<\/cim:ACLineSegment.g0ch>/g, sub, context, true);
@@ -1933,7 +1999,7 @@ define
         }
 
         /**
-         * Parse a ACLineSegmentPhase element.
+         * Parse a ACLineSegmentPhase.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.ACLineSegmentPhase - the list of ACLineSegmentPhase elements
          * @param {String} sub - the substring within which to parse the element
@@ -1945,6 +2011,7 @@ define
             var phases;
 
             obj = parse_PowerSystemResource (context, sub);
+            obj.cls = "ACLineSegmentPhase";
             obj.phase = parse_attribute (/<cim:ACLineSegmentPhase.phase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.ACLineSegment = parse_attribute (/<cim:ACLineSegmentPhase.ACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             phases = context.parsed.ACLineSegmentPhase;
@@ -1956,7 +2023,7 @@ define
         }
 
         /**
-         * Parse a BusbarSection element.
+         * Parse a BusbarSection.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.BusbarSection - the list of BusbarSection elements
          * @param {String} sub - the substring within which to parse the element
@@ -1968,6 +2035,7 @@ define
             var sections;
 
             obj = parse_Connector (context, sub);
+            obj.cls = "BusbarSection";
             obj.ipMax = parse_element (/<cim:BusbarSection.ipMax>([\s\S]*?)<\/cim:BusbarSection.ipMax>/g, sub, context, true);
             obj.VoltageControlZone = parse_attribute (/<cim:BusbarSection.VoltageControlZone\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             sections = context.parsed.BusbarSection;
@@ -1979,7 +2047,7 @@ define
         }
 
         /**
-         * Parse a Conductor element.
+         * Parse a Conductor.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Conductor - the list of Conductor elements
          * @param {String} sub - the substring within which to parse the element
@@ -1991,6 +2059,7 @@ define
             var conductors;
 
             obj = parse_ConductingEquipment (context, sub);
+            obj.cls = "Conductor";
             obj.length = parse_element (/<cim:Conductor.length>([\s\S]*?)<\/cim:Conductor.length>/g, sub, context, true);
             if (null != obj.length)
                 obj.length = Number (obj.length);
@@ -2003,7 +2072,7 @@ define
         }
 
         /**
-         * Parse a Connector element.
+         * Parse a Connector.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Connector - the list of Connector elements
          * @param {String} sub - the substring within which to parse the element
@@ -2015,6 +2084,7 @@ define
             var conductors;
 
             obj = parse_ConductingEquipment (context, sub);
+            obj.cls = "Connector";
             conductors = context.parsed.Connector;
             if (null == conductors)
                 context.parsed.Connector = conductors = {};
@@ -2024,7 +2094,7 @@ define
         }
 
         /**
-         * Parse a Disconnector element.
+         * Parse a Disconnector.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Disconnector - the list of Disconnector elements
          * @param {String} sub - the substring within which to parse the element
@@ -2036,6 +2106,7 @@ define
             var disconnectors;
 
             obj = parse_Switch (context, sub);
+            obj.cls = "Disconnector";
             disconnectors = context.parsed.Disconnector;
             if (null == disconnectors)
                 context.parsed.Disconnector = disconnectors = {};
@@ -2045,7 +2116,7 @@ define
         }
 
         /**
-         * Parse a EnergyConsumer element.
+         * Parse a EnergyConsumer.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.EnergyConsumer - the list of EnergyConsumer elements
          * @param {String} sub - the substring within which to parse the element
@@ -2057,6 +2128,7 @@ define
             var consumers;
 
             obj = parse_ConductingEquipment (context, sub);
+            obj.cls = "EnergyConsumer";
             obj.customerCount = parse_element (/<cim:EnergyConsumer.customerCount>([\s\S]*?)<\/cim:EnergyConsumer.customerCount>/g, sub, context, true);
             obj.grounded = parse_element (/<cim:EnergyConsumer.grounded>([\s\S]*?)<\/cim:EnergyConsumer.grounded>/g, sub, context, true);
             obj.p = parse_element (/<cim:EnergyConsumer.p>([\s\S]*?)<\/cim:EnergyConsumer.p>/g, sub, context, true);
@@ -2078,7 +2150,7 @@ define
         }
 
         /**
-         * Parse a Fuse element.
+         * Parse a Fuse.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Fuse - the list of Fuse elements
          * @param {String} sub - the substring within which to parse the element
@@ -2090,6 +2162,7 @@ define
             var fuses;
 
             obj = parse_Switch (context, sub);
+            obj.cls = "Fuse";
             fuses = context.parsed.Fuse;
             if (null == fuses)
                 context.parsed.Fuse = fuses = {};
@@ -2099,7 +2172,7 @@ define
         }
 
         /**
-         * Parse a GroundDisconnector element.
+         * Parse a GroundDisconnector.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.GroundDisconnector - the list of GroundDisconnector elements
          * @param {String} sub - the substring within which to parse the element
@@ -2111,6 +2184,7 @@ define
             var disconnectors;
 
             obj = parse_Switch (context, sub);
+            obj.cls = "GroundDisconnector";
             disconnectors = context.parsed.GroundDisconnector;
             if (null == disconnectors)
                 context.parsed.GroundDisconnector = disconnectors = {};
@@ -2120,7 +2194,7 @@ define
         }
 
         /**
-         * Parse a Jumper element.
+         * Parse a Jumper.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Jumper - the list of Jumper elements
          * @param {String} sub - the substring within which to parse the element
@@ -2132,6 +2206,7 @@ define
             var jumpers;
 
             obj = parse_Switch (context, sub);
+            obj.cls = "Jumper";
             obj.JumperAction = parse_attribute (/<cim:Jumper.JumperAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             jumpers = context.parsed.Jumper;
             if (null == jumpers)
@@ -2142,7 +2217,7 @@ define
         }
 
         /**
-         * Parse a Junction element.
+         * Parse a Junction.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Junction - the list of Junction elements
          * @param {String} sub - the substring within which to parse the element
@@ -2154,6 +2229,7 @@ define
             var junctions;
 
             obj = parse_Connector (context, sub);
+            obj.cls = "Junction";
             junctions = context.parsed.Junction;
             if (null == junctions)
                 context.parsed.Junction = junctions = {};
@@ -2163,7 +2239,7 @@ define
         }
 
         /**
-         * Parse a Line element.
+         * Parse a Line.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Line - the list of Line elements
          * @param {String} sub - the substring within which to parse the element
@@ -2175,6 +2251,7 @@ define
             var lines;
 
             obj = parse_EquipmentContainer (context, sub);
+            obj.cls = "Line";
             obj.Region = parse_attribute (/<cim:Line.Region\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             lines = context.parsed.Line;
             if (null == lines)
@@ -2185,7 +2262,7 @@ define
         }
 
         /**
-         * Parse a LoadBreakSwitch element.
+         * Parse a LoadBreakSwitch.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.LoadBreakSwitch - the list of LoadBreakSwitch elements
          * @param {String} sub - the substring within which to parse the element
@@ -2197,6 +2274,7 @@ define
             var switches;
 
             obj = parse_ProtectedSwitch (context, sub);
+            obj.cls = "LoadBreakSwitch";
             switches = context.parsed.LoadBreakSwitch;
             if (null == switches)
                 context.parsed.LoadBreakSwitch = switches = {};
@@ -2207,7 +2285,7 @@ define
 
 
         /**
-         * Parse a PowerTransformer element.
+         * Parse a PowerTransformer.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.PowerTransformer - the list of PowerTransformer elements
          * @param {String} sub - the substring within which to parse the element
@@ -2219,6 +2297,7 @@ define
             var transformers;
 
             obj = parse_ConductingEquipment (context, sub);
+            obj.cls = "PowerTransformer";
             obj.beforeShCircuitHighestOperatingCurrent = parse_element (/<cim:PowerTransformer.beforeShCircuitHighestOperatingCurrent>([\s\S]*?)<\/cim:PowerTransformer.beforeShCircuitHighestOperatingCurrent>/g, sub, context, true);
             obj.beforeShCircuitHighestOperatingVoltage = parse_element (/<cim:PowerTransformer.beforeShCircuitHighestOperatingVoltage>([\s\S]*?)<\/cim:PowerTransformer.beforeShCircuitHighestOperatingVoltage>/g, sub, context, true);
             obj.beforeShortCircuitAnglePf = parse_element (/<cim:PowerTransformer.beforeShortCircuitAnglePf>([\s\S]*?)<\/cim:PowerTransformer.beforeShortCircuitAnglePf>/g, sub, context, true);
@@ -2238,7 +2317,7 @@ define
         }
 
         /**
-         * Parse a PowerTransformerEnd element.
+         * Parse a PowerTransformerEnd.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.PowerTransformerEnd - the list of PowerTransformerEnd elements
          * @param {String} sub - the substring within which to parse the element
@@ -2250,6 +2329,7 @@ define
             var ends;
 
             obj = parse_TransformerEnd (context, sub);
+            obj.cls = "PowerTransformerEnd";
             obj.b0 = parse_element (/<cim:PowerTransformerEnd.b0>([\s\S]*?)<\/cim:PowerTransformerEnd.b0>/g, sub, context, true);
             obj.b = parse_element (/<cim:PowerTransformerEnd.b>([\s\S]*?)<\/cim:PowerTransformerEnd.b>/g, sub, context, true);
             obj.connectionKind = parse_attribute (/<cim:PowerTransformerEnd.connectionKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -2272,7 +2352,7 @@ define
         }
 
         /**
-         * Parse a ProtectedSwitch element.
+         * Parse a ProtectedSwitch.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.ProtectedSwitch - the list of ProtectedSwitch elements
          * @param {String} sub - the substring within which to parse the element
@@ -2284,6 +2364,7 @@ define
             var switches;
 
             obj = parse_Switch (context, sub);
+            obj.cls = "ProtectedSwitch";
             obj.breakingCapacity = parse_element (/<cim:ProtectedSwitch.breakingCapacity>([\s\S]*?)<\/cim:ProtectedSwitch.breakingCapacity>/g, sub, context, true);
             switches = context.parsed.ProtectedSwitch;
             if (null == switches)
@@ -2294,7 +2375,7 @@ define
         }
 
         /**
-         * Parse a Switch element.
+         * Parse a Switch.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Switch - the list of Switch elements
          * @param {String} sub - the substring within which to parse the element
@@ -2306,6 +2387,7 @@ define
             var switches;
 
             obj = parse_ConductingEquipment (context, sub);
+            obj.cls = "Switch";
             obj.normalOpen = parse_element (/<cim:Switch.normalOpen>([\s\S]*?)<\/cim:Switch.normalOpen>/g, sub, context, true);
             obj.open = parse_element (/<cim:Switch.open>([\s\S]*?)<\/cim:Switch.open>/g, sub, context, true);
             obj.ratedCurrent = parse_element (/<cim:Switch.ratedCurrent>([\s\S]*?)<\/cim:Switch.ratedCurrent>/g, sub, context, true);
@@ -2324,7 +2406,7 @@ define
         }
 
         /**
-         * Parse a TransformerEnd element.
+         * Parse a TransformerEnd.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.TransformerEnd - the list of TransformerEnd elements
          * @param {String} sub - the substring within which to parse the element
@@ -2336,6 +2418,7 @@ define
             var ends;
 
             obj = parse_IdentifiedObject (context, sub);
+            obj.cls = "TransformerEnd";
             obj.bmagSat = parse_element (/<cim:TransformerEnd.bmagSat>([\s\S]*?)<\/cim:TransformerEnd.bmagSat>/g, sub, context, true);
             obj.endNumber = parse_element (/<cim:TransformerEnd.endNumber>([\s\S]*?)<\/cim:TransformerEnd.endNumber>/g, sub, context, true);
             obj.grounded = parse_element (/<cim:TransformerEnd.grounded>([\s\S]*?)<\/cim:TransformerEnd.grounded>/g, sub, context, true);
@@ -2360,7 +2443,7 @@ define
         }
 
         /**
-         * Parse a TransformerTank element.
+         * Parse a TransformerTank.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.TransformerTank - the list of TransformerTank elements
          * @param {String} sub - the substring within which to parse the element
@@ -2372,6 +2455,7 @@ define
             var tanks;
 
             obj = parse_Equipment (context, sub);
+            obj.cls = "TransformerTank";
             obj.PowerTransformer = parse_attribute (/<cim:TransformerTank.PowerTransformer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             tanks = context.parsed.TransformerTank;
             if (null == tanks)
@@ -2394,6 +2478,7 @@ define
             var tanks;
 
             obj = parse_TransformerEnd (context, sub);
+            obj.cls = "TransformerTankEnd";
             obj.TransformerTank = parse_attribute (/<cim:TransformerTankEnd.TransformerTank\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             tanks = context.parsed.TransformerTankEnd;
             if (null == tanks)
@@ -2408,7 +2493,7 @@ define
          */
 
         /**
-         * Parse a WorkLocation element.
+         * Parse a WorkLocation.
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.WorkLocation - the list of WorkLocation elements
          * @param {String} sub - the substring within which to parse the element
@@ -2420,6 +2505,7 @@ define
             var locations;
 
             obj = parse_Location (context, sub);
+            obj.cls = "WorkLocation";
             obj.TransformerTank = parse_attribute (/<cim:WorkLocation.OneCallRequest\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             locations = context.parsed.WorkLocation;
             if (null == locations)
