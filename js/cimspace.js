@@ -584,6 +584,17 @@ define
         }
 
         /**
+         * Get the user's choice for full or limited tracing.
+         * @returns {boolean} <code>true</code> a full trace should be done, <code>false</code> otherwise
+         * @function trace_through_open_switches_and_fuses
+         * @memberOf module:cimspace
+         */
+        function trace_through_open_switches_and_fuses ()
+        {
+            return (document.getElementById ("full_trace").checked);
+        }
+
+        /**
          * Trace the currently selected object and highlight the results.
          * @description Traverse through the ConnectivityNode, Terminal and ConductingEquipment
          * to make a list of connected devices and wires. Then highlight them on screen.
@@ -596,6 +607,8 @@ define
             var source;
             // the list of traced conducting equipment
             var equipment = [];
+            // the type of trace
+            var all = trace_through_open_switches_and_fuses ();
 
             if (null == CIM_Data)
                 alert ("no CIM data loaded");
@@ -634,6 +647,8 @@ define
                 while ("undefined" != typeof (source = todo.pop ())) // if you call pop() on an empty array, it returns undefined
                 {
                     equipment.push (source);
+                    if (!all && CIM_Data.ConductingEquipment[source].normalOpen == "true")
+                        continue;
                     var terms = terminals_by_equp[source];
                     if (null != terms)
                         for (var i = 0; i < terms.length; i++)
