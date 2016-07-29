@@ -527,6 +527,25 @@ define
         }
 
         /**
+         * @summary JSON replacer function for element details display.
+         * @description Makes links out of strings that are also element id values.
+         * @function detail_helper
+         * @memberOf module:cimspace
+         */
+        function detail_helper (key, value)
+        {
+            var feature;
+            if ((key == "orientation") || (key == "symbol") || (key == "color"))
+                return undefined;
+            if (typeof value === "string")
+                if (null != (feature = CIM_Data.Element[value]))
+                {
+                    value = "<a href='#' onclick='require([&quot;cimspace&quot;], function(cimspace) {cimspace.select (&quot;" + value + "&quot;);})'>" + value + "</a>"
+                }
+            return (value);
+        }
+
+        /**
          * @summary Display the current feature properties and highlight it on the map.
          * @description Shows a JSON properties sheet in the details window,
          * and highlights the current feature in the map.
@@ -541,7 +560,7 @@ define
             if ((null != CIM_Data) && (null != CURRENT_FEATURE))
                 if (null != (feature = CIM_Data.Element[CURRENT_FEATURE]))
                 {
-                    var text = JSON.stringify (feature, null, 2);
+                    var text = JSON.stringify (feature, detail_helper, 2);
                     if (null != CURRENT_SELECTION)
                         for (var i = 0; i < CURRENT_SELECTION.length; i++)
                         {
@@ -576,9 +595,11 @@ define
          */
         function select (mrid)
         {
-            if ((null != CURRENT_SELECTION) && CURRENT_SELECTION.includes (mrid))
+            if (mrid != CURRENT_SELECTION)
             {
                 CURRENT_FEATURE = mrid;
+                if (!CURRENT_SELECTION.includes (mrid))
+                    CURRENT_SELECTION = [mrid];
                 highlight ();
             }
         }
