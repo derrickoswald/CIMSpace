@@ -799,12 +799,22 @@ define
                             match.push (id);
                     if (match.length > 0)
                     {
-                        CURRENT_FEATURE = match[0];
                         CURRENT_SELECTION = match;
-                        highlight ();
-                        var bb = get_bounding_box (CURRENT_FEATURE);
-                        if (null != bb)
+                        CURRENT_FEATURE = match[0];
+                        var current = null;
+                        var bb = null;
+                        for (var i = 0; i < CURRENT_SELECTION.length; i++)
                         {
+                            bb = get_bounding_box (match[i]);
+                            if (null != bb)
+                            {
+                                current = match[i];
+                                break;
+                            }
+                        }
+                        if (null != current)
+                        {
+                            CURRENT_FEATURE = current;
                             var x = (bb[1][0] - bb[0][0]) / 2.0 + bb[0][0];
                             var y = (bb[1][1] - bb[0][1]) / 2.0 + bb[0][1];
                             TheMap.easeTo
@@ -816,7 +826,8 @@ define
                             );
                         }
                         else
-                            alert ("That object doesn't have geometry");
+                            alert ("No geometry for selected object(s)");
+                        highlight ();
                     }
                     else
                         alert ("No matches found for '" + text + "'");
