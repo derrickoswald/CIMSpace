@@ -626,8 +626,6 @@ define
         {
             // the source feature
             var source;
-            // the list of traced conducting equipment
-            var equipment = [];
             // the type of trace
             var all = trace_through_open_switches_and_fuses ();
 
@@ -635,25 +633,25 @@ define
                 alert ("no CIM data loaded");
             else if (null == CURRENT_FEATURE)
                 alert ("no feature selected");
-            else if (null == (source = CIM_Data.ConductingEquipment[CURRENT_FEATURE]))
-                alert ("feature is not conducting equipment");
             else
             {
                 // organize terminals by connectivity node and equipment
                 var terminals_by_node = {};
                 var terminals_by_equp = {};
-                var tt = CIM_Data.Terminal;
-                for (var t in tt)
+                for (var t in CIM_Data.Terminal)
                 {
-                    var terminal = tt[t];
+                    var terminal = CIM_Data.Terminal[t];
                     var node = terminal.ConnectivityNode;
-                    var equp = terminal.ConductingEquipment;
-                    if ((null != node) && (null != equp))
+                    if (null != node)
                     {
                         if (null == terminals_by_node[node])
                             terminals_by_node[node] = [];
                         if (!terminals_by_node[node].includes (terminal.mRID))
                             terminals_by_node[node].push (terminal.mRID);
+                    }
+                    var equp = terminal.ConductingEquipment;
+                    if (null != equp)
+                    {
                         if (null == terminals_by_equp[equp])
                             terminals_by_equp[equp] = [];
                         if (!terminals_by_equp[equp].includes (terminal.mRID))
@@ -661,67 +659,94 @@ define
                     }
                 }
 
-                // the list of things to trace
-                var todo = [];
-                todo.push (source.mRID);
-                // iterate until done
-                while ("undefined" != typeof (source = todo.pop ())) // if you call pop() on an empty array, it returns undefined
+                // get the source equipment
+                source = CIM_Data.ConductingEquipment[CURRENT_FEATURE];
+                if (null == source)
                 {
-                    equipment.push (source);
-                    if (!all && CIM_Data.ConductingEquipment[source].normalOpen == "true")
-                        continue;
-                    var terms = terminals_by_equp[source];
-                    if (null != terms)
-                        for (var i = 0; i < terms.length; i++)
+                    // try for a terminal
+                    var term = CIM_Data.Terminal[CURRENT_FEATURE];
+                    source = term ? CIM_Data.ConductingEquipment[term.ConductingEquipment] : null;
+                }
+                if (null == source)
+                {
+                    // try for a node
+                    var terms = terminals_by_node[CURRENT_FEATURE];
+                    if (terms)
+                        for (var i = 0; (i < terms.length) && (null == source); i++)
                         {
-                            var terminal = CIM_Data.Terminal[terms[i]];
-                            if (null != terminal)
-                            {
-                                var equp = terminal.ConductingEquipment;
-                                if (null != equp)
-                                    if (!equipment.includes (equp) && !todo.includes (equp))
-                                        todo.push (equp); // this should never happen
-                                var node = terminal.ConnectivityNode;
-                                if (null != node)
-                                {
-                                    var next = terminals_by_node[node];
-                                    if (null != next)
-                                        for (var j = 0; j < next.length; j++)
-                                        {
-                                            if (next[j] != terms[i]) // don't trace back the way we came
-                                            {
-                                                var t = CIM_Data.Terminal[next[j]];
-                                                if (null != t)
-                                                {
-                                                    var e = t.ConductingEquipment;
-                                                    if (null != e)
-                                                        if (!equipment.includes (e) && !todo.includes (e))
-                                                            todo.push (e);
-                                                }
-                                            }
-                                        }
-                                }
-                            }
-
+                            var term = CIM_Data.Terminal[terms[i]];
+                            source = term ? CIM_Data.ConductingEquipment[term.ConductingEquipment] : null;
                         }
                 }
-                // sort the list to make it easy to find an element
-                equipment.sort ();
-                // create the text to show in the details window
-                var text = JSON.stringify (CIM_Data.PowerSystemResource[CURRENT_FEATURE], null, 2) +
-                    "\n" +
-                    equipment.join (', ');
-                if (null != CURRENT_SELECTION)
-                    for (var i = 0; i < CURRENT_SELECTION.length; i++)
+                if (null == source)
+                    alert ("feature is not part of the topology");
+                else
+                {
+                    // the list of traced conducting equipment
+                    var equipment = [];
+                    // the list of things to trace
+                    var todo = [];
+                    todo.push (source.mRID);
+                    // iterate until done
+                    while ("undefined" != typeof (source = todo.pop ())) // if you call pop() on an empty array, it returns undefined
                     {
-                        if (CURRENT_SELECTION[i] != CURRENT_FEATURE)
-                            text = text + "\n<a href='#' onclick='require([\"cimspace\"], function(cimspace) {cimspace.select (\"" + CURRENT_SELECTION[i] + "\");})'>" + CURRENT_SELECTION[i] + "</a>";
+                        equipment.push (source);
+                        var ce = CIM_Data.ConductingEquipment[source];
+                        if (!all && ((null == ce) || (ce.normalOpen == "true")))
+                            continue;
+                        var terms = terminals_by_equp[source];
+                        if (null != terms)
+                            for (var i = 0; i < terms.length; i++)
+                            {
+                                var terminal = CIM_Data.Terminal[terms[i]];
+                                if (null != terminal)
+                                {
+                                    var equp = terminal.ConductingEquipment;
+                                    if (null != equp)
+                                        if (!equipment.includes (equp) && !todo.includes (equp))
+                                            todo.push (equp); // this should never happen
+                                    var node = terminal.ConnectivityNode;
+                                    if (null != node)
+                                    {
+                                        var next = terminals_by_node[node];
+                                        if (null != next)
+                                            for (var j = 0; j < next.length; j++)
+                                            {
+                                                if (next[j] != terms[i]) // don't trace back the way we came
+                                                {
+                                                    var t = CIM_Data.Terminal[next[j]];
+                                                    if (null != t)
+                                                    {
+                                                        var e = t.ConductingEquipment;
+                                                        if (null != e)
+                                                            if (!equipment.includes (e) && !todo.includes (e))
+                                                                todo.push (e);
+                                                    }
+                                                }
+                                            }
+                                    }
+                                }
+
+                            }
                     }
-                // post the text
-                showDetails (text);
-                // highlight the elements on screen
-                equipment.unshift ("in", "mRID");
-                glow (equipment);
+                    // sort the list to make it easy to find an element
+                    equipment.sort ();
+                    // create the text to show in the details window
+                    var text = JSON.stringify (CIM_Data.Element[CURRENT_FEATURE], detail_helper, 2) +
+                        "\n" +
+                        equipment.join (', ');
+                    if (null != CURRENT_SELECTION)
+                        for (var i = 0; i < CURRENT_SELECTION.length; i++)
+                        {
+                            if (CURRENT_SELECTION[i] != CURRENT_FEATURE)
+                                text = text + "\n<a href='#' onclick='require([\"cimspace\"], function(cimspace) {cimspace.select (\"" + CURRENT_SELECTION[i] + "\");})'>" + CURRENT_SELECTION[i] + "</a>";
+                        }
+                    // post the text
+                    showDetails (text);
+                    // highlight the elements on screen
+                    equipment.unshift ("in", "mRID");
+                    glow (equipment);
+                }
             }
         }
 
