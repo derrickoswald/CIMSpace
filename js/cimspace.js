@@ -353,6 +353,37 @@ define
         }
 
         /**
+         * @summary Gather position points into locations.
+         * @description Convert sequences of position points into locations with coordinate array.
+         * @param points - the parsed PositionPoint set
+         * @function get_locations
+         * @memberOf module:cimspace
+         */
+        function get_locations (points)
+        {
+            var ret = {};
+
+            for (var point in points)
+            {
+                var p = points[point];
+                var location = p.Location;
+                if (null != location)
+                {
+                    if (null == ret[location])
+                        ret[location] = [];
+                    var seq = p.sequenceNumber;
+                    if (null != seq)
+                    {
+                        ret[location][seq * 2] = p.xPosition;
+                        ret[location][seq * 2 + 1] = p.yPosition;
+                    }
+                }
+            }
+
+            return (ret);
+        }
+
+        /**
          * @summary Handler for file change events.
          * @description Process files from the browse dialog.
          * @param {File[]} files - the list of files
@@ -370,9 +401,12 @@ define
                     files[0],
                     function (result)
                     {
-                        var locations;
-                        var pp;
-                        var location;
+                        var end = new Date ().getTime ();
+                        CIM_Data = result.parsed;
+                        console.log ("finished XML read (" + (Math.round (end - start) / 1000) + " seconds)");
+
+                        // display the results on the map
+                        var locations = get_locations (CIM_Data.PositionPoint);
                         var lines =
                         {
                             "type" : "FeatureCollection",
@@ -383,31 +417,6 @@ define
                             "type" : "FeatureCollection",
                             "features" : []
                         };
-
-                        var end = new Date ().getTime ();
-                        CIM_Data = result.parsed;
-                        console.log ("finished XML read (" + (Math.round (end - start) / 1000) + " seconds)");
-
-                        // gather position points into locations
-                        locations = {};
-                        pp = CIM_Data.PositionPoint;
-                        for (var point in pp)
-                        {
-                            var p = pp[point];
-                            location = p.Location;
-                            if (null != location)
-                            {
-                                if (null == locations[location])
-                                    locations[location] = [];
-                                var seq = p.sequenceNumber;
-                                if (null != seq)
-                                {
-                                    locations[location][seq * 2] = p.xPosition;
-                                    locations[location][seq * 2 + 1] = p.yPosition;
-                                }
-                            }
-                        }
-
                         process_spatial_objects (CIM_Data.PowerSystemResource, locations, points, lines);
                         make_map (points, lines);
                     }
@@ -605,14 +614,68 @@ define
         }
 
         /**
-         * Get the user's choice for full or limited tracing.
-         * @returns {boolean} <code>true</code> a full trace should be done, <code>false</code> otherwise
-         * @function trace_through_open_switches_and_fuses
+         * Get the user's choice for through switch tracing.
+         * @returns {boolean} <code>true</code> a trace through open switches should be done, <code>false</code> otherwise
+         * @function trace_through_open_switches
          * @memberOf module:cimspace
          */
-        function trace_through_open_switches_and_fuses ()
+        function trace_through_open_switches ()
         {
-            return (document.getElementById ("full_trace").checked);
+            return (document.getElementById ("trace_through_open_switches").checked);
+        }
+
+        /**
+         * Get the user's choice for through transformer tracing.
+         * @returns {boolean} <code>true</code> a trace across voltage level changes should be done, <code>false</code> otherwise
+         * @function trace_though_voltage_level_changes
+         * @memberOf module:cimspace
+         */
+        function trace_though_voltage_level_changes ()
+        {
+            return (document.getElementById ("trace_though_voltage_level_changes").checked);
+        }
+
+        /**
+         * Get voltage level boundary transformers.
+         * @description Get a list of tranformers with ends where voltages differ.
+         * @function get_transformers
+         * @memberOf module:cimspace
+         */
+        function get_transformers ()
+        {
+            var transformers = {};
+            var ret = {};
+
+            for (var end in CIM_Data.PowerTransformerEnd)
+            {
+                var e = CIM_Data.PowerTransformerEnd[end]
+                var transformer = e.PowerTransformer;
+                if (null != transformer)
+                {
+                    if (null == transformers[transformer])
+                        transformers[transformer] = [];
+                    var no = e.endNumber;
+                    if (null != no)
+                        transformers[transformer][Number(no)] = e
+                }
+            }
+            // eliminate step-down
+            for (var trans in transformers)
+            {
+                var ends = transformers[trans];
+                if (ends && ends.length > 1)
+                {
+                    var high_voltage = Number (CIM_Data.BaseVoltage[ends[1].BaseVoltage].nominalVoltage);
+                    var unequal = false;
+                    for (var i = 2; "undefined" != typeof (ends[i]); i++)
+                        if (high_voltage != Number (CIM_Data.BaseVoltage[ends[i].BaseVoltage].nominalVoltage))
+                            unequal = true;
+                    if (unequal)
+                        ret[trans] = ends; // could also store something else here - the test is just for non-null
+                }
+            }
+alert(JSON.stringify(ret, null, 4));
+            return (ret);
         }
 
         /**
@@ -626,8 +689,10 @@ define
         {
             // the source feature
             var source;
-            // the type of trace
-            var all = trace_through_open_switches_and_fuses ();
+            // the type of switch trace
+            var through_opens = trace_through_open_switches ();
+            // the type of transformer trace
+            var through_voltages = trace_though_voltage_level_changes ();
 
             if (null == CIM_Data)
                 alert ("no CIM data loaded");
@@ -687,14 +752,17 @@ define
                     // the list of things to trace
                     var todo = [];
                     todo.push (source.mRID);
+                    var transformers = (!through_voltages) ? get_transformers () : {};
                     // iterate until done
                     while ("undefined" != typeof (source = todo.pop ())) // if you call pop() on an empty array, it returns undefined
                     {
                         equipment.push (source);
                         var ce = CIM_Data.ConductingEquipment[source];
-                        if (!all && ((null == ce) || (ce.normalOpen == "true")))
+                        if (!through_opens && ((null == ce) || (ce.normalOpen == "true")))
                             continue;
                         var terms = terminals_by_equp[source];
+                        if (!through_voltages && (null != transformers[source]))
+                            continue;
                         if (null != terms)
                             for (var i = 0; i < terms.length; i++)
                             {
