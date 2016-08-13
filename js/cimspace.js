@@ -674,7 +674,8 @@ define
                         ret[trans] = ends; // could also store something else here - the test is just for non-null
                 }
             }
-alert(JSON.stringify(ret, null, 4));
+            //alert(JSON.stringify(ret, null, 4));
+
             return (ret);
         }
 
