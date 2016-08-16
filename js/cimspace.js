@@ -45,17 +45,6 @@ define
         es6_promise.polyfill ();
 
         /**
-         * Get the user's choice for vector/image tiles.
-         * @returns {boolean} <code>true</code> if vector tiles should be used, <code>false</code> otherwise
-         * @function do_vector_tiles
-         * @memberOf module:cimspace
-         */
-        function do_vector_tiles ()
-        {
-            return (document.getElementById ("vector_tiles").checked && mapboxgl.supported ());
-        }
-
-        /**
          * Get the user's choice for showing internal features.
          * @returns {boolean} <code>true</code> if internal features should be shown, <code>false</code> otherwise
          * @function show_internal_features
@@ -314,104 +303,96 @@ define
             };
             process_spatial_objects (CIM_Data.PowerSystemResource, locations, points, lines);
 
+            // remove previous layer data
+            if (TheMap.getSource ("the cim lines"))
+            {
+                TheMap.removeLayer ("lines");
+                TheMap.removeLayer ("lines_highlight");
+                TheMap.removeLayer ("circle_transformer");
+                TheMap.removeLayer ("circle_switch");
+                TheMap.removeLayer ("circle_house_connection");
+                TheMap.removeLayer ("circle_other");
+                TheMap.removeLayer ("circle_highlight");
+                TheMap.removeLayer ("symbol");
+                TheMap.removeLayer ("symbol_highlight");
+                TheMap.removeSource ("the cim lines");
+                TheMap.removeSource ("the cim points");
+            }
+
             // update the map
-            if (!do_vector_tiles ())
-            {
-                var l = L.mapbox.featureLayer (lines);
-                l.addTo (TheMap);
-                var p = L.mapbox.featureLayer (points);
-                p.addTo (TheMap);
-            }
-            else
-            {
-                if (TheMap.getSource ("the cim lines"))
+            TheMap.addSource
+            (
+                "the cim lines",
                 {
-                    TheMap.removeLayer ("lines");
-                    TheMap.removeLayer ("lines_highlight");
-                    TheMap.removeLayer ("circle_transformer");
-                    TheMap.removeLayer ("circle_switch");
-                    TheMap.removeLayer ("circle_house_connection");
-                    TheMap.removeLayer ("circle_other");
-                    TheMap.removeLayer ("circle_highlight");
-                    TheMap.removeLayer ("symbol");
-                    TheMap.removeLayer ("symbol_highlight");
-                    TheMap.removeSource ("the cim lines");
-                    TheMap.removeSource ("the cim points");
+                    type: "geojson",
+                    data: lines,
+                    maxzoom: 25
                 }
+            );
 
-                TheMap.addSource
-                (
-                    "the cim lines",
+            TheMap.addSource
+            (
+                "the cim points",
+                {
+                    type: "geojson",
+                    data: points,
+                    maxzoom: 25
+                }
+            );
+
+            TheMap.addLayer
+            (
+                {
+                    id: "lines",
+                    type: "line",
+                    source: "the cim lines",
+                    layout:
                     {
-                        type: "geojson",
-                        data: lines,
-                        maxzoom: 25
-                    }
-                );
-
-                TheMap.addSource
-                (
-                    "the cim points",
+                        "line-join": "round",
+                        "line-cap": "round"
+                    },
+                    paint:
                     {
-                        type: "geojson",
-                        data: points,
-                        maxzoom: 25
+                        "line-color": "#000",
+                        "line-width": 3
                     }
-                );
+                }
+            );
 
-                TheMap.addLayer
-                (
+            TheMap.addLayer
+            (
+                {
+                    id: "lines_highlight",
+                    type: "line",
+                    source: "the cim lines",
+                    filter: ["==", "mRID", ""],
+                    layout:
                     {
-                        id: "lines",
-                        type: "line",
-                        source: "the cim lines",
-                        layout:
-                        {
-                            "line-join": "round",
-                            "line-cap": "round"
-                        },
-                        paint:
-                        {
-                            "line-color": "#000",
-                            "line-width": 3
-                        }
-                    }
-                );
-
-                TheMap.addLayer
-                (
+                        "line-join": "round",
+                        "line-cap": "round"
+                    },
+                    paint:
                     {
-                        id: "lines_highlight",
-                        type: "line",
-                        source: "the cim lines",
-                        filter: ["==", "mRID", ""],
-                        layout:
-                        {
-                            "line-join": "round",
-                            "line-cap": "round"
-                        },
-                        paint:
-                        {
-                            "line-color": "#ffff00",
-                            "line-width": 3
-                        }
+                        "line-color": "#ffff00",
+                        "line-width": 3
                     }
-                );
+                }
+            );
 
-                // simple circle from 14 to 17
-                TheMap.addLayer (circle_layer ("circle_transformer", ["==", "symbol", "transformer"], "rgb(0, 255, 0)"));
-                TheMap.addLayer (circle_layer ("circle_switch", ["==", "symbol", "switch"], "rgb(0, 0, 255)"));
-                TheMap.addLayer (circle_layer ("circle_house_connection", ["==", "symbol", "house_connection"], "rgb(255, 0, 0)"));
-                TheMap.addLayer (circle_layer ("circle_other", ["==", "symbol", "monument-24"], "black"));
+            // simple circle from 14 to 17
+            TheMap.addLayer (circle_layer ("circle_transformer", ["==", "symbol", "transformer"], "rgb(0, 255, 0)"));
+            TheMap.addLayer (circle_layer ("circle_switch", ["==", "symbol", "switch"], "rgb(0, 0, 255)"));
+            TheMap.addLayer (circle_layer ("circle_house_connection", ["==", "symbol", "house_connection"], "rgb(255, 0, 0)"));
+            TheMap.addLayer (circle_layer ("circle_other", ["==", "symbol", "monument-24"], "black"));
 
-                TheMap.addLayer (circle_layer ("circle_highlight", ["==", "mRID", ""], "rgb(255, 255, 0)"));
+            TheMap.addLayer (circle_layer ("circle_highlight", ["==", "mRID", ""], "rgb(255, 255, 0)"));
 
-                // symbol icon from 17 and deeper
-                // ToDo: color the icons according to color on the object
-                TheMap.addLayer (symbol_layer ("symbol", ["!=", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(0, 0, 0)"));
+            // symbol icon from 17 and deeper
+            // ToDo: color the icons according to color on the object
+            TheMap.addLayer (symbol_layer ("symbol", ["!=", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(0, 0, 0)"));
 
-                TheMap.addLayer (symbol_layer ("symbol_highlight", ["==", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(255, 255, 0)"));
-            }
+            TheMap.addLayer (symbol_layer ("symbol_highlight", ["==", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(255, 255, 0)"));
+
         }
 
         /**
@@ -973,83 +954,75 @@ define
          */
         function init_map (event)
         {
-            var mapbox_classic = !do_vector_tiles ();
-
+            // make the map
             document.getElementById ("map").innerHTML = "";
-            if (mapbox_classic)
-            {
-                L.mapbox.accessToken = TheToken;
-                TheMap = L.mapbox.map ("map", "derrickoswald.ciezok3nc00ovsvlth7rs7tcz").setView([46.93003, 7.48634000000001], 9);
-            }
-            else
-            {
-                mapboxgl.accessToken = TheToken;
-                TheMap = new mapboxgl.Map
-                (
+            mapboxgl.accessToken = TheToken;
+            TheMap = new mapboxgl.Map
+            (
+                {
+                    name: "TheMap",
+                    version: 8,
+                    container: "map",
+                    center: [7.48634000000001, 46.93003],
+                    zoom: 8,
+                    maxZoom: 25,
+                    //style: "mapbox://styles/mapbox/streets-v8",
+                    style: "styles/streets-v8.json",
+                    hash: true
+                }
+            );
+            // add zoom and rotation controls to the map.
+            TheMap.addControl (new mapboxgl.Navigation ());
+            // handle mouse click
+            TheMap.on
+            (
+                'mousedown',
+                function (event)
+                {
+                    var features = TheMap.queryRenderedFeatures
+                    (
+                        event.point,
+                        {}
+                    );
+                    if ((null != features) && (0 != features.length))
                     {
-                        name: "TheMap",
-                        version: 8,
-                        container: "map",
-                        center: [7.48634000000001, 46.93003],
-                        zoom: 8,
-                        maxZoom: 25,
-                        //style: "mapbox://styles/mapbox/streets-v8",
-                        style: "styles/streets-v8.json",
-                        hash: true
-                    }
-                );
-                // add zoom and rotation controls to the map.
-                TheMap.addControl (new mapboxgl.Navigation ());
-                // handle mouse click
-                TheMap.on
-                (
-                    'mousedown',
-                    function (event)
-                    {
-                        var features = TheMap.queryRenderedFeatures
-                        (
-                            event.point,
-                            {}
-                        );
-                        if ((null != features) && (0 != features.length))
+                        var selection = [];
+                        for (var i = 0; i < features.length; i++)
                         {
-                            var selection = [];
-                            for (var i = 0; i < features.length; i++)
+                            var mrid = features[i].properties.mRID;
+                            if (null != mrid)
+                                selection[selection.length] = mrid;
+                        }
+                        if (selection.length > 0)
+                        {
+                            if (selection[0] != CURRENT_FEATURE)
                             {
-                                var mrid = features[i].properties.mRID;
-                                if (null != mrid)
-                                    selection[selection.length] = mrid;
+                                CURRENT_FEATURE = selection[0];
+                                CURRENT_SELECTION = selection;
+                                highlight ();
                             }
-                            if (selection.length > 0)
-                            {
-                                if (selection[0] != CURRENT_FEATURE)
-                                {
-                                    CURRENT_FEATURE = selection[0];
-                                    CURRENT_SELECTION = selection;
-                                    highlight ();
-                                }
-                            }
-                            else
-                                unhighlight ();
                         }
                         else
                             unhighlight ();
                     }
-                );
-                // handle mouse movement
-                TheMap.on
-                (
-                    'mousemove',
-                    function (event)
-                    {
-                        var lng = event.lngLat.lng;
-                        var lat = event.lngLat.lat;
-                        lng = Math.round (lng * 1000000) / 1000000;
-                        lat = Math.round (lat * 1000000) / 1000000;
-                        document.getElementById ("coordinates").innerHTML = "" + lng + "," + lat;
-                    }
-                );
-            }
+                    else
+                        unhighlight ();
+                }
+            );
+            // handle mouse movement
+            TheMap.on
+            (
+                'mousemove',
+                function (event)
+                {
+                    var lng = event.lngLat.lng;
+                    var lat = event.lngLat.lat;
+                    lng = Math.round (lng * 1000000) / 1000000;
+                    lat = Math.round (lat * 1000000) / 1000000;
+                    document.getElementById ("coordinates").innerHTML = "" + lng + "," + lat;
+                }
+            );
+            // display any existing data
             redraw ();
         }
 
