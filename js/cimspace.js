@@ -56,6 +56,17 @@ define
         }
 
         /**
+         * Get the user's choice for showing internal features.
+         * @returns {boolean} <code>true</code> if internal features should be shown, <code>false</code> otherwise
+         * @function show_internal_features
+         * @memberOf module:cimspace
+         */
+        function show_internal_features ()
+        {
+            return (document.getElementById ("show_internal_features").checked && mapboxgl.supported ());
+        }
+
+        /**
          * Create a circle layer object.
          * @param {String} id - the layer id
          * @param {Any[]} filter - the filter to apply to the points
@@ -138,103 +149,6 @@ define
                 }
             );
 
-        }
-
-        /**
-         * Generate a map.
-         * @param {Object} points - the points GeoJSON
-         * @param {Object} lines - the lines GeoJSON
-         * @function make_map
-         * @memberOf module:cimspace
-         */
-        function make_map (points, lines)
-        {
-            var mapbox_classic;
-
-            // update the map
-            mapbox_classic = !do_vector_tiles ();
-            if (mapbox_classic)
-            {
-                var l = L.mapbox.featureLayer (lines);
-                l.addTo (TheMap);
-                var p = L.mapbox.featureLayer (points);
-                p.addTo (TheMap);
-            }
-            else
-            {
-                TheMap.addSource
-                (
-                    "the cim lines",
-                    {
-                        type: "geojson",
-                        data: lines,
-                        maxzoom: 25
-                    }
-                );
-
-                TheMap.addSource
-                (
-                    "the cim points",
-                    {
-                        type: "geojson",
-                        data: points,
-                        maxzoom: 25
-                    }
-                );
-
-                TheMap.addLayer
-                (
-                    {
-                        id: "lines",
-                        type: "line",
-                        source: "the cim lines",
-                        layout:
-                        {
-                            "line-join": "round",
-                            "line-cap": "round"
-                        },
-                        paint:
-                        {
-                            "line-color": "#000",
-                            "line-width": 3
-                        }
-                    }
-                );
-
-                TheMap.addLayer
-                (
-                    {
-                        id: "lines_highlight",
-                        type: "line",
-                        source: "the cim lines",
-                        filter: ["==", "mRID", ""],
-                        layout:
-                        {
-                            "line-join": "round",
-                            "line-cap": "round"
-                        },
-                        paint:
-                        {
-                            "line-color": "#ffff00",
-                            "line-width": 3
-                        }
-                    }
-                );
-
-                // simple circle from 14 to 17
-                TheMap.addLayer (circle_layer ("circle_transformer", ["==", "symbol", "transformer"], "rgb(0, 255, 0)"));
-                TheMap.addLayer (circle_layer ("circle_switch", ["==", "symbol", "switch"], "rgb(0, 0, 255)"));
-                TheMap.addLayer (circle_layer ("circle_house_connection", ["==", "symbol", "house_connection"], "rgb(255, 0, 0)"));
-                TheMap.addLayer (circle_layer ("circle_other", ["==", "symbol", "monument-24"], "black"));
-
-                TheMap.addLayer (circle_layer ("circle_highlight", ["==", "mRID", ""], "rgb(255, 255, 0)"));
-
-                // symbol icon from 17 and deeper
-                // ToDo: color the icons according to color on the object
-                TheMap.addLayer (symbol_layer ("symbol", ["!=", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(0, 0, 0)"));
-
-                TheMap.addLayer (symbol_layer ("symbol_highlight", ["==", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(255, 255, 0)"));
-            }
         }
 
         /**
@@ -335,19 +249,33 @@ define
         /**
          * @summary Gather position points into locations.
          * @description Convert sequences of position points into locations with coordinate array.
-         * @param points - the parsed PositionPoint set
          * @function get_locations
          * @memberOf module:cimspace
          */
         function get_locations (points)
         {
+            // the parsed PositionPoint set
+            var points = CIM_Data.PositionPoint;
+            // the parsed Location set
+            var locations = CIM_Data.Location;
+            // list of locations to exclude
+            var blacklist = {};
             var ret = {};
 
+            if (!show_internal_features ())
+            {
+                for (var location in locations)
+                {
+                    var l = locations[location];
+                    if (l.CoordinateSystem != "wgs_84")
+                        blacklist[location] = true;
+                }
+            }
             for (var point in points)
             {
                 var p = points[point];
                 var location = p.Location;
-                if (null != location)
+                if ((null != location) && ("undefined" == typeof (blacklist[location])))
                 {
                     if (null == ret[location])
                         ret[location] = [];
@@ -361,6 +289,129 @@ define
             }
 
             return (ret);
+        }
+
+        /**
+         * Generate a map.
+         * @function make_map
+         * @memberOf module:cimspace
+         */
+        function make_map ()
+        {
+            // index of position point data by location
+            var locations = get_locations ();
+            // the lines GeoJSON
+            var lines =
+            {
+                "type" : "FeatureCollection",
+                "features" : []
+            };
+            // the points GeoJSON
+            var points =
+            {
+                "type" : "FeatureCollection",
+                "features" : []
+            };
+            process_spatial_objects (CIM_Data.PowerSystemResource, locations, points, lines);
+
+            // update the map
+            if (!do_vector_tiles ())
+            {
+                var l = L.mapbox.featureLayer (lines);
+                l.addTo (TheMap);
+                var p = L.mapbox.featureLayer (points);
+                p.addTo (TheMap);
+            }
+            else
+            {
+                if (TheMap.getSource ("the cim lines"))
+                {
+                    TheMap.removeLayer ("lines");
+                    TheMap.removeLayer ("lines_highlight");
+                    TheMap.removeLayer ("circle_transformer");
+                    TheMap.removeLayer ("circle_switch");
+                    TheMap.removeLayer ("circle_house_connection");
+                    TheMap.removeLayer ("circle_other");
+                    TheMap.removeLayer ("circle_highlight");
+                    TheMap.removeLayer ("symbol");
+                    TheMap.removeLayer ("symbol_highlight");
+                    TheMap.removeSource ("the cim lines");
+                    TheMap.removeSource ("the cim points");
+                }
+
+                TheMap.addSource
+                (
+                    "the cim lines",
+                    {
+                        type: "geojson",
+                        data: lines,
+                        maxzoom: 25
+                    }
+                );
+
+                TheMap.addSource
+                (
+                    "the cim points",
+                    {
+                        type: "geojson",
+                        data: points,
+                        maxzoom: 25
+                    }
+                );
+
+                TheMap.addLayer
+                (
+                    {
+                        id: "lines",
+                        type: "line",
+                        source: "the cim lines",
+                        layout:
+                        {
+                            "line-join": "round",
+                            "line-cap": "round"
+                        },
+                        paint:
+                        {
+                            "line-color": "#000",
+                            "line-width": 3
+                        }
+                    }
+                );
+
+                TheMap.addLayer
+                (
+                    {
+                        id: "lines_highlight",
+                        type: "line",
+                        source: "the cim lines",
+                        filter: ["==", "mRID", ""],
+                        layout:
+                        {
+                            "line-join": "round",
+                            "line-cap": "round"
+                        },
+                        paint:
+                        {
+                            "line-color": "#ffff00",
+                            "line-width": 3
+                        }
+                    }
+                );
+
+                // simple circle from 14 to 17
+                TheMap.addLayer (circle_layer ("circle_transformer", ["==", "symbol", "transformer"], "rgb(0, 255, 0)"));
+                TheMap.addLayer (circle_layer ("circle_switch", ["==", "symbol", "switch"], "rgb(0, 0, 255)"));
+                TheMap.addLayer (circle_layer ("circle_house_connection", ["==", "symbol", "house_connection"], "rgb(255, 0, 0)"));
+                TheMap.addLayer (circle_layer ("circle_other", ["==", "symbol", "monument-24"], "black"));
+
+                TheMap.addLayer (circle_layer ("circle_highlight", ["==", "mRID", ""], "rgb(255, 255, 0)"));
+
+                // symbol icon from 17 and deeper
+                // ToDo: color the icons according to color on the object
+                TheMap.addLayer (symbol_layer ("symbol", ["!=", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(0, 0, 0)"));
+
+                TheMap.addLayer (symbol_layer ("symbol_highlight", ["==", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(255, 255, 0)"));
+            }
         }
 
         /**
@@ -386,19 +437,7 @@ define
                         console.log ("finished XML read (" + (Math.round (end - start) / 1000) + " seconds)");
 
                         // display the results on the map
-                        var locations = get_locations (CIM_Data.PositionPoint);
-                        var lines =
-                        {
-                            "type" : "FeatureCollection",
-                            "features" : []
-                        };
-                        var points =
-                        {
-                            "type" : "FeatureCollection",
-                            "features" : []
-                        };
-                        process_spatial_objects (CIM_Data.PowerSystemResource, locations, points, lines);
-                        make_map (points, lines);
+                        make_map ();
                     }
                 );
             }
@@ -913,6 +952,19 @@ define
         }
 
         /**
+         * @summary Redraw the map.
+         * @description Given some CIM datra has been loaded, redraws the map.
+         * @param {object} event - optional, the vector tile checkbox change event
+         * @function init_map
+         * @memberOf module:cimspace
+         */
+        function redraw (event)
+        {
+            if (null != CIM_Data)
+                make_map ();
+        }
+
+        /**
          * @summary Initialize the map.
          * @description Create the background map, centered on Bern and showing most of Switzerland.
          * @param {object} event - optional, the vector tile checkbox change event
@@ -998,11 +1050,13 @@ define
                     }
                 );
             }
+            redraw ();
         }
 
         return (
             {
                 file_change: file_change,
+                redraw: redraw,
                 init_map: init_map,
                 file_drag: file_drag,
                 file_drop: file_drop,

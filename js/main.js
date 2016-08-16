@@ -11,6 +11,7 @@ requirejs
         $.material.init ();
         // initialize buttons
         document.getElementById ("file_button").onchange = cimspace.file_change;
+        document.getElementById ("show_internal_features").onchange = cimspace.redraw;
         document.getElementById ("vector_tiles").onchange = cimspace.init_map;
         // drag and drop listeners
         document.getElementById ("files_drop_zone").ondragover = cimspace.file_drag;
