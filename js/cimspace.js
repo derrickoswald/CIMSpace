@@ -188,7 +188,6 @@ define
                         id: "lines",
                         type: "line",
                         source: "the cim lines",
-                        filter: ["==", "generated", false],
                         layout:
                         {
                             "line-join": "round",
@@ -198,24 +197,6 @@ define
                         {
                             "line-color": "#000",
                             "line-width": 3
-                        }
-                    }
-                );
-
-                TheMap.addLayer
-                (
-                    {
-                        id: "generated_lines",
-                        type: "line",
-                        source: "the cim lines",
-                        filter: ["==", "generated", true],
-                        layout:
-                        {
-                        },
-                        paint:
-                        {
-                            "line-color": "#555555",
-                            "line-width": 1
                         }
                     }
                 );
@@ -345,7 +326,6 @@ define
                                 }
                             );
                             psr[id].id = id;
-                            psr[id].generated = (null == psr[id].name) ? false : (0 == psr[id].name.indexOf ("_generated"));
                         }
                     }
                 }
