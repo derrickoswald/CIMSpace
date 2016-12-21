@@ -167,7 +167,7 @@ define
                         common.parse_Status (subcontext, guts);
                         break;
                     case "cim:StreetAddress":
-                        parse_StreetAddress (subcontext, guts);
+                        common.parse_StreetAddress (subcontext, guts);
                         break;
                     case "cim:StreetDetail":
                         common.parse_StreetDetail (subcontext, guts);
