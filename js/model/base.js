@@ -17,6 +17,11 @@ define
     function ()
     {
         /**
+         * Unique numbering for elements without an rdf:ID.
+         */
+        var UNIQUE_NUMBER = 0;
+
+        /**
          * Convert a string into a boolean value.
          * @param {String} str - the string to convert
          * @returns {Boolean} the boolean value

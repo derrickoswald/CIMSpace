@@ -6,7 +6,7 @@
  */
 define
 (
-    ["model/base", "model/assets", "model/common", "model/core", "model/customers", "model/meas", "model/metering", "model/production", "model/protection", "model/statevariables", "model/wires", "model/work"],
+    ["model/base", "model/assetinfo", "model/assets", "model/common", "model/core", "model/customers", "model/meas", "model/metering", "model/production", "model/protection", "model/statevariables", "model/wires", "model/work"],
     /**
      * @summary CIM file reading functions.
      * @description Read an XML file with a restricted profile
@@ -15,13 +15,8 @@ define
      * @exports cim
      * @version 1.0
      */
-    function (base, assets, common, core, customers, meas, metering, production, protection, statevariables, wires, work)
+    function (base, assetinfo, assets, common, core, customers, meas, metering, production, protection, statevariables, wires, work)
     {
-        /**
-         * Unique numbering for elements without an rdf:ID.
-         */
-        var UNIQUE_NUMBER = 0;
-
         /**
          * The size of chunks to read into memory.
          */
@@ -346,6 +341,9 @@ define
                     case "cim:TransformerTankEnd":
                         wires.parse_TransformerTankEnd (subcontext, guts);
                         break;
+                    case "cim:WireInfo":
+                        assetinfo.parse_WireInfo (subcontext, guts);
+                        break;
                     case "cim:Asset":
                         assets.parse_Asset (subcontext, guts);
                         break;
@@ -493,7 +491,10 @@ define
 
                     default:
                         if (context.parsed.ignored < 3)
-                            console.log ("unrecognized element type '" + result[1] + "' at line " + base.line_number (subcontext));
+                            if ("undefined" != typeof (console))
+                                console.log ("unrecognized element type '" + result[1] + "' at line " + base.line_number (subcontext));
+                            else
+                                print ("unrecognized element type '" + result[1] + "' at line " + base.line_number (subcontext));
                         context.parsed.ignored++;
                         break;
                 }
@@ -501,6 +502,73 @@ define
             }
 
             return ({parsed: context.parsed, context: context});
+        }
+
+        function read_full_xml (xml, start, context, parsed)
+        {
+            var subxml;
+            var regex;
+            var encoding;
+            var result;
+
+            // check for just starting
+            if (0 == start)
+            {
+                context = context ||
+                {
+                    offset: 0,
+                    start_character: 0,
+                    end_character: 0,
+                    newlines: [],
+                    parsed: { ignored: 0 }
+                };
+                subxml = xml;
+
+                // remove the XML declaration, i.e. <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                regex = /<\?([\s\S]*)\?>\s*/g;
+                if (null != (result = regex.exec (subxml)))
+                {
+                    context.offset += regex.lastIndex;
+                    context.newlines = base.index_string (subxml.substring (0, regex.lastIndex), context.start_character, context.newlines);
+                    context.start_character += regex.lastIndex;
+                    subxml = subxml.substring (regex.lastIndex);
+                    // check the encoding
+                    regex = /encoding="([^"]*)"/g;
+                    if (null != (result = regex.exec (result[1])))
+                    {
+                        encoding = result[1];
+                        if ("UTF-8" != encoding.toUpperCase ())
+                            reject (Error ("unsupported encoding " + encoding));
+                    }
+                }
+
+                // parse RDF, i.e. <rdf:RDF xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                regex = /<rdf:RDF([\s\S]*?)>\s*/g;
+                if (null != (result = regex.exec (subxml)))
+                {
+                    context.offset += regex.lastIndex;
+                    context.newlines = base.index_string (subxml.substring (0, regex.lastIndex), context.start_character, context.newlines);
+                    context.start_character += regex.lastIndex;
+                    subxml = subxml.substring (regex.lastIndex);
+                }
+
+                // parse FullModel, i.e. <md:FullModel ....  </md:FullModel>
+                regex = new RegExp ("\\s*<md:FullModel ([\\s\\S]*?)<\\/md:FullModel>\\s*", "g");
+                if (null != (result = regex.exec (subxml)))
+                {
+                    context.offset += regex.lastIndex;
+                    context.newlines = base.index_string (subxml.substring (0, regex.lastIndex), context.start_character, context.newlines);
+                    context.start_character += regex.lastIndex;
+                    subxml = subxml.substring (regex.lastIndex);
+                }
+            }
+            else
+                subxml = xml;
+
+            context.end_character = context.start_character;
+            result = read_xml (subxml, context, parsed);
+
+            return (result);
         }
 
         /**
@@ -529,100 +597,46 @@ define
             reader.onload = function (event)
             {
                 var xml;
-                var subxml;
-                var offset;
-                var regex;
-                var encoding;
                 var result;
                 var read;
                 var bytes;
                 var done;
 
                 xml = event.target.result;
-                subxml = xml;
-                offset = 0;
-                //console.log ("parsing at line " + (context ? base.line_number (context) : "0") + " beginning with:\n" + xml.substring (0, xml.indexOf ("\n")));
-
-                // check for just starting
-                if (0 == start)
-                {
-                    context = context ||
-                    {
-                        start_character: 0,
-                        end_character: 0,
-                        newlines: [],
-                        parsed: { ignored: 0 }
-                    };
-
-                    // remove the XML declaration, i.e. <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-                    regex = /<\?([\s\S]*)\?>\s*/g;
-                    if (null != (result = regex.exec (subxml)))
-                    {
-                        context.newlines = base.index_string (subxml.substring (0, regex.lastIndex), context.start_character, context.newlines);
-                        context.start_character += regex.lastIndex;
-                        subxml = subxml.substring (regex.lastIndex);
-                        offset += regex.lastIndex;
-                        // check the encoding
-                        regex = /encoding="([^"]*)"/g;
-                        if (null != (result = regex.exec (result[1])))
-                        {
-                            encoding = result[1];
-                            if ("UTF-8" != encoding.toUpperCase ())
-                                reject (Error ("unsupported encoding " + encoding));
-                        }
-                    }
-
-                    // parse RDF, i.e. <rdf:RDF xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                    regex = /<rdf:RDF([\s\S]*?)>\s*/g;
-                    if (null != (result = regex.exec (subxml)))
-                    {
-                        context.newlines = base.index_string (subxml.substring (0, regex.lastIndex), context.start_character, context.newlines);
-                        context.start_character += regex.lastIndex;
-                        subxml = subxml.substring (regex.lastIndex);
-                        offset += regex.lastIndex;
-                    }
-
-                    // parse FullModel, i.e. <md:FullModel ....  </md:FullModel>
-                    regex = new RegExp ("\\s*<md:FullModel ([\\s\\S]*?)<\\/md:FullModel>\\s*", "g");
-                    if (null != (result = regex.exec (subxml)))
-                    {
-                        context.newlines = base.index_string (subxml.substring (0, regex.lastIndex), context.start_character, context.newlines);
-                        context.start_character += regex.lastIndex;
-                        subxml = subxml.substring (regex.lastIndex);
-                        offset += regex.lastIndex;
-                    }
-                }
-
-                context.end_character = context.start_character;
-                result = read_xml (subxml, context, parsed);
-                read = result.context.end_character - result.context.start_character; // number of characters parsed
-                if (0 == read)
-                    reject (Error ("parse failed at line " + base.line_number (context)));
+                if ("" == xml)
+                    resolve ({context: context, parsed: parsed});
                 else
                 {
-                    bytes = encode_utf8 (xml.substring (0, read + offset)).length;
-
-                    context = result.context;
-                    parsed = result.parsed;
-
-                    // check for done
-                    done = false;
-                    regex = /\s*<\/rdf:RDF>\s*/g;
-                    if (null != (result = regex.exec (subxml.substring (read))))
-                    {
-                        context.end_character += regex.lastIndex;
-                        done = true;
-                    }
+                    result = read_full_xml (xml, start, context, parsed);
+                    read = result.context.end_character - result.context.start_character; // number of characters parsed
+                    if (0 == read)
+                        reject (Error ("parse failed at line " + base.line_number (context)));
                     else
                     {
-                        context.start_character = context.start_character + read;
-                        context.newlines = context.newlines.slice (0, base.line_number (context, context.end_character) - 1);
-                    }
+                        bytes = encode_utf8 (xml.substring (0, read + result.context.offset)).length;
 
-                    if (done)
-                        resolve ({context: context, parsed: parsed});
-                    else
-                        xml_read_promise (blob, start + bytes, context, parsed, resolve, reject); // tail recursive
+                        context = result.context;
+                        parsed = result.parsed;
+
+                        // check for done
+                        done = false;
+                        regex = /\s*<\/rdf:RDF>\s*/g;
+                        if (null != (result = regex.exec (xml.substring (read + result.context.offset))))
+                        {
+                            context.end_character += regex.lastIndex;
+                            done = true;
+                        }
+                        else
+                        {
+                            context.start_character = context.start_character + read;
+                            context.newlines = context.newlines.slice (0, base.line_number (context, context.end_character) - 1);
+                        }
+
+                        if (done)
+                            resolve ({context: context, parsed: parsed});
+                        else
+                            xml_read_promise (blob, start + bytes, context, parsed, resolve, reject); // tail recursive
+                    }
                 }
             };
             reader.onerror = function ()
@@ -653,14 +667,17 @@ define
                 },
                 function (err)
                 {
-                    console.log (err);
+                    if ("undefined" != typeof (console))
+                        console.log (err);
+                    else
+                        print (err);
                 }
             );
         }
 
         return (
             {
-                read_xml: read_xml,
+                read_full_xml: read_full_xml,
                 read_xml_blob: read_xml_blob
             }
         );

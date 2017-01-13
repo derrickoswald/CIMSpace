@@ -244,7 +244,10 @@ define
                 obj.mRID = obj.id;
             if ((null != obj.mRID) && (obj.id != obj.mRID))
             {
-                console.log ("***Warning*** rdf:ID != mRID [" + obj.id + " != " + obj.mRID + "]");
+                if ("undefined" != typeof (console))
+                    console.log ("***Warning*** rdf:ID != mRID [" + obj.id + " != " + obj.mRID + "]");
+                else
+                    print ("***Warning*** rdf:ID != mRID [" + obj.id + " != " + obj.mRID + "]");
                 obj.id = obj.mRID;
             }
             identified_objects = context.parsed.IdentifiedObject;
