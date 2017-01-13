@@ -605,7 +605,10 @@ define
                 }
             }
             else
+            {
                 subxml = xml;
+                context.offset = 0;
+            }
 
             context.end_character = context.start_character;
             result = read_xml (subxml, context, parsed);
