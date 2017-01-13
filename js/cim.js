@@ -6,7 +6,7 @@
  */
 define
 (
-    ["model/base", "model/assetinfo", "model/assets", "model/common", "model/core", "model/customers", "model/meas", "model/metering", "model/production", "model/protection", "model/statevariables", "model/wires", "model/work"],
+    ["model/base", "model/assetInfo", "model/assets", "model/common", "model/core", "model/customers", "model/domain", "model/infAssets", "model/meas", "model/metering", "model/production", "model/protection", "model/statevariables", "model/wires", "model/work"],
     /**
      * @summary CIM file reading functions.
      * @description Read an XML file with a restricted profile
@@ -15,7 +15,7 @@ define
      * @exports cim
      * @version 1.0
      */
-    function (base, assetinfo, assets, common, core, customers, meas, metering, production, protection, statevariables, wires, work)
+    function (base, assetInfo, assets, common, core, customers, domain, infAssets, meas, metering, production, protection, statevariables, wires, work)
     {
         /**
          * The size of chunks to read into memory.
@@ -162,7 +162,7 @@ define
                         common.parse_Status (subcontext, guts);
                         break;
                     case "cim:StreetAddress":
-                        parse_StreetAddress (subcontext, guts);
+                        common.parse_StreetAddress (subcontext, guts);
                         break;
                     case "cim:StreetDetail":
                         common.parse_StreetDetail (subcontext, guts);
@@ -341,9 +341,6 @@ define
                     case "cim:TransformerTankEnd":
                         wires.parse_TransformerTankEnd (subcontext, guts);
                         break;
-                    case "cim:WireInfo":
-                        assetinfo.parse_WireInfo (subcontext, guts);
-                        break;
                     case "cim:Asset":
                         assets.parse_Asset (subcontext, guts);
                         break;
@@ -355,6 +352,51 @@ define
                         break;
                     case "cim:AssetInfo":
                         assets.parse_AssetInfo (subcontext, guts);
+                        break;
+                    case "cim:AssetOrganisationRole":
+                        assets.parse_AssetOrganisationRole (subcontext, guts);
+                        break;
+                    case "cim:AssetOwner":
+                        assets.parse_AssetOwner (subcontext, guts);
+                        break;
+                    case "cim:LifecycleDate":
+                        assets.parse_LifecycleDate (subcontext, guts);
+                        break;
+                    case "cim:Cabinet":
+                        infAssets.parse_Cabinet (subcontext, guts);
+                        break;
+                    case "cim:Facility":
+                        infAssets.parse_Facility (subcontext, guts);
+                        break;
+                    case "cim:Pole":
+                        infAssets.parse_Pole (subcontext, guts);
+                        break;
+                    case "cim:Streetlight":
+                        infAssets.parse_Streetlight (subcontext, guts);
+                        break;
+                    case "cim:Structure":
+                        infAssets.parse_Structure (subcontext, guts);
+                        break;
+                    case "cim:UndergroundStructure":
+                        infAssets.parse_UndergroundStructure (subcontext, guts);
+                        break;
+                    case "cim:BusbarSectionInfo":
+                        assetInfo.parse_BusbarSectionInfo (subcontext, guts);
+                        break;
+                    case "cim:OverheadWireInfo":
+                        assetInfo.parse_OverheadWireInfo (subcontext, guts);
+                        break;
+                    case "cim:PowerTransformerInfo":
+                        assetInfo.parse_PowerTransformerInfo (subcontext, guts);
+                        break;
+                    case "cim:SwitchInfo":
+                        assetInfo.parse_SwitchInfo (subcontext, guts);
+                        break;
+                    case "cim:WireInfo":
+                        assetInfo.parse_WireInfo (subcontext, guts);
+                        break;
+                    case "cim:StringQuantity":
+                        domain.parse_StringQuantity (subcontext, guts);
                         break;
                     case "cim:MeasurementValue":
                         meas.parse_MeasurementValue (subcontext, guts);

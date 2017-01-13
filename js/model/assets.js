@@ -6,7 +6,7 @@
  */
 define
 (
-    ["model/base", "model/core"],
+    ["model/base", "model/common", "model/core"],
     /**
      * @summary Package Assets CIM model.
      * @description
@@ -14,7 +14,7 @@ define
      * @exports model/assets
      * @version 1.0
      */
-    function (base, core)
+    function (base, common, core)
     {
         /*
          * Package Assets
@@ -25,7 +25,7 @@ define
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.Asset - the list of Asset elements
          * @param {String} sub - the substring within which to parse the element
-         * @memberOf module:model/protection
+         * @memberOf module:model/assets
          */
         function parse_Asset (context, sub)
         {
@@ -65,7 +65,7 @@ define
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.AssetContainer - the list of AssetContainer elements
          * @param {String} sub - the substring within which to parse the element
-         * @memberOf module:model/protection
+         * @memberOf module:model/assets
          */
         function parse_AssetContainer (context, sub)
         {
@@ -87,7 +87,7 @@ define
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.AssetFunction - the list of AssetFunction elements
          * @param {String} sub - the substring within which to parse the element
-         * @memberOf module:model/protection
+         * @memberOf module:model/assets
          */
         function parse_AssetFunction (context, sub)
         {
@@ -114,7 +114,7 @@ define
          * @param {Object} context - the file reading context
          * @param {Object} context.parsed.AssetInfo - the list of AssetInfo elements
          * @param {String} sub - the substring within which to parse the element
-         * @memberOf module:model/protection
+         * @memberOf module:model/assets
          */
         function parse_AssetInfo (context, sub)
         {
@@ -132,12 +132,87 @@ define
             return (obj);
         }
 
+        /**
+         * Parse an AssetOrganisationRole.
+         * @param {Object} context - the file reading context
+         * @param {Object} context.parsed.AssetOrganisationRole - the list of AssetOrganisationRole elements
+         * @param {String} sub - the substring within which to parse the element
+         * @memberOf module:model/assets
+         */
+        function parse_AssetOrganisationRole (context, sub)
+        {
+            var obj;
+            var infos;
+
+            obj = common.parse_OrganisationRole (context, sub);
+            obj.cls = "AssetOrganisationRole";
+            infos = context.parsed.AssetOrganisationRole;
+            if (null == infos)
+                context.parsed.AssetOrganisationRole = infos = {};
+            infos[obj.id] = obj;
+
+            return (obj);
+        }
+
+        /**
+         * Parse an AssetOwner.
+         * @param {Object} context - the file reading context
+         * @param {Object} context.parsed.AssetOwner - the list of AssetOwner elements
+         * @param {String} sub - the substring within which to parse the element
+         * @memberOf module:model/assets
+         */
+        function parse_AssetOwner (context, sub)
+        {
+            var obj;
+            var infos;
+
+            obj = parse_AssetOrganisationRole (context, sub);
+            obj.cls = "AssetOwner";
+            infos = context.parsed.AssetOwner;
+            if (null == infos)
+                context.parsed.AssetOwner = infos = {};
+            infos[obj.id] = obj;
+
+            return (obj);
+        }
+
+        /**
+         * Parse an LifecycleDate.
+         * @param {Object} context - the file reading context
+         * @param {Object} context.parsed.LifecycleDate - the list of LifecycleDate elements
+         * @param {String} sub - the substring within which to parse the element
+         * @memberOf module:model/assets
+         */
+        function parse_LifecycleDate (context, sub)
+        {
+            var obj;
+            var infos;
+
+            obj = base.parse_Element (context, sub);
+            obj.cls = "LifecycleDate";
+            obj.installationDate = base.parse_element (/<cim:LifecycleDate.installationDate>([\s\S]*?)<\/cim:LifecycleDate.installationDate>/g, sub, context, true);
+            obj.manufacturedDate = base.parse_element (/<cim:LifecycleDate.manufacturedDate>([\s\S]*?)<\/cim:LifecycleDate.manufacturedDate>/g, sub, context, true);
+            obj.purchaseDate = base.parse_element (/<cim:LifecycleDate.purchaseDate>([\s\S]*?)<\/cim:LifecycleDate.purchaseDate>/g, sub, context, true);
+            obj.receivedDate = base.parse_element (/<cim:LifecycleDate.receivedDate>([\s\S]*?)<\/cim:LifecycleDate.receivedDate>/g, sub, context, true);
+            obj.removalDate = base.parse_element (/<cim:LifecycleDate.removalDate>([\s\S]*?)<\/cim:LifecycleDate.removalDate>/g, sub, context, true);
+            obj.retiredDate = base.parse_element (/<cim:LifecycleDate.retiredDate>([\s\S]*?)<\/cim:LifecycleDate.retiredDate>/g, sub, context, true);
+            infos = context.parsed.LifecycleDate;
+            if (null == infos)
+                context.parsed.LifecycleDate = infos = {};
+            infos[obj.id] = obj;
+
+            return (obj);
+        }
+
         return (
             {
                 parse_Asset: parse_Asset,
                 parse_AssetContainer: parse_AssetContainer,
                 parse_AssetFunction: parse_AssetFunction,
-                parse_AssetInfo: parse_AssetInfo
+                parse_AssetInfo: parse_AssetInfo,
+                parse_AssetOrganisationRole: parse_AssetOrganisationRole,
+                parse_AssetOwner: parse_AssetOwner,
+                parse_LifecycleDate: parse_LifecycleDate
             }
         );
     }
