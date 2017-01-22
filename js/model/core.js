@@ -368,7 +368,7 @@ define
 
             obj = parse_IdentifiedObject (context, sub);
             obj.cls = "PowerSystemResource";
-            obj.AssetInfo = base.parse_attribute (/<cim:PowerSystemResource.AssetInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj.AssetDatasheet = base.parse_attribute (/<cim:PowerSystemResource.AssetDatasheet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.Location = base.parse_attribute (/<cim:PowerSystemResource.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj.PSRType = base.parse_attribute (/<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             resources = context.parsed.PowerSystemResource;
