@@ -27,7 +27,7 @@ define
          * @param {String} sub - the substring within which to parse the element
          * @memberOf module:model/core
          */
-        function parse_ACDCTerminal  (context, sub)
+        function parse_ACDCTerminal (context, sub)
         {
             var obj;
             var terminals;

@@ -6,7 +6,7 @@
  */
 define
 (
-    ["model/base", "model/core", "model/assets"],
+    ["model/base", "model/assets"],
     /**
      * @summary Package AssetInfo CIM model.
      * @description
@@ -14,7 +14,7 @@ define
      * @exports model/assetinfo
      * @version 1.0
      */
-    function (base, core, assets)
+    function (base, assets)
     {
         /*
          * Package AssetInfo
