@@ -6,7 +6,7 @@
  */
 define
 (
-    ["model/base", "model/assetInfo", "model/assets", "model/common", "model/core", "model/customers", "model/domain", "model/infAssets", "model/meas", "model/metering", "model/production", "model/protection", "model/statevariables", "model/wires", "model/work"],
+    ["model/base", "model/AssetInfo", "model/Assets", "model/AsynchronousMachineDynamics", "model/AuxiliaryEquipment", "model/Common", "model/CongestionRevenueRights", "model/Contingency", "model/ControlArea", "model/Core", "model/Customers", "model/DC", "model/DiagramLayout", "model/DiscontinuousExcitationControlDynamics", "model/Domain", "model/Equivalents", "model/ExcitationSystemDynamics", "model/ExistingEnumExtensions", "model/ExternalInputs", "model/Faults", "model/GenerationTrainingSimulation", "model/ICCP", "model/IEC61968", "model/IEC61970", "model/IEC62325", "model/InfAssetInfo", "model/InfAssets", "model/InfCommon", "model/InfCongestionRevenueRights", "model/InfCustomers", "model/InfDomain", "model/InfERPSupport", "model/InfEnergyScheduling", "model/InfEnergySource", "model/InfExternalInputs", "model/InfFinancial", "model/InfLocations", "model/InfMarketOperations", "model/InfMarketResults", "model/InfNewAssets", "model/InfOperationalLimits", "model/InfParticipantInterfaces", "model/InfReservation", "model/InfSIPS", "model/InfTypeAsset", "model/InfWiresExt", "model/InfWork", "model/LoadControl", "model/LoadDynamics", "model/LoadModel", "model/MarketCommon", "model/MarketManagement", "model/MarketOpCommon", "model/MarketPlan", "model/MarketQualitySystem", "model/MarketResults", "model/Meas", "model/MechanicalLoadDynamics", "model/Metering", "model/MktDomain", "model/ModelAuthority", "model/ModelDescription", "model/OperationalLimits", "model/Operations", "model/OverexcitationLimiterDynamics", "model/PFVArControllerType1Dynamics", "model/PFVArControllerType2Dynamics", "model/PackageDependencies", "model/ParticipantInterfaces", "model/PaymentMetering", "model/PowerSystemProject", "model/PowerSystemStabilizerDynamics", "model/Production", "model/Protection", "model/ReadingTypeEnumerations", "model/ReferenceData", "model/SCADA", "model/StandardInterconnections", "model/StandardModels", "model/StateVariables", "model/SynchronousMachineDynamics", "model/Topology", "model/TurbineGovernorDynamics", "model/TurbineLoadControllerDynamics", "model/UnderexcitationLimiterDynamics", "model/UserDefinedModels", "model/VoltageAdjusterDynamics", "model/VoltageCompensatorDynamics", "model/WindDynamics", "model/Wires", "model/Work"],
     /**
      * @summary CIM file reading functions.
      * @description Read an XML file with a restricted profile
@@ -15,7 +15,7 @@ define
      * @exports cim
      * @version 1.0
      */
-    function (base, assetInfo, assets, common, core, customers, domain, infAssets, meas, metering, production, protection, statevariables, wires, work)
+    function (base, AssetInfo, Assets, AsynchronousMachineDynamics, AuxiliaryEquipment, Common, CongestionRevenueRights, Contingency, ControlArea, Core, Customers, DC, DiagramLayout, DiscontinuousExcitationControlDynamics, Domain, Equivalents, ExcitationSystemDynamics, ExistingEnumExtensions, ExternalInputs, Faults, GenerationTrainingSimulation, ICCP, IEC61968, IEC61970, IEC62325, InfAssetInfo, InfAssets, InfCommon, InfCongestionRevenueRights, InfCustomers, InfDomain, InfERPSupport, InfEnergyScheduling, InfEnergySource, InfExternalInputs, InfFinancial, InfLocations, InfMarketOperations, InfMarketResults, InfNewAssets, InfOperationalLimits, InfParticipantInterfaces, InfReservation, InfSIPS, InfTypeAsset, InfWiresExt, InfWork, LoadControl, LoadDynamics, LoadModel, MarketCommon, MarketManagement, MarketOpCommon, MarketPlan, MarketQualitySystem, MarketResults, Meas, MechanicalLoadDynamics, Metering, MktDomain, ModelAuthority, ModelDescription, OperationalLimits, Operations, OverexcitationLimiterDynamics, PFVArControllerType1Dynamics, PFVArControllerType2Dynamics, PackageDependencies, ParticipantInterfaces, PaymentMetering, PowerSystemProject, PowerSystemStabilizerDynamics, Production, Protection, ReadingTypeEnumerations, ReferenceData, SCADA, StandardInterconnections, StandardModels, StateVariables, SynchronousMachineDynamics, Topology, TurbineGovernorDynamics, TurbineLoadControllerDynamics, UnderexcitationLimiterDynamics, UserDefinedModels, VoltageAdjusterDynamics, VoltageCompensatorDynamics, WindDynamics, Wires, Work)
     {
         /**
          * The size of chunks to read into memory.
@@ -33,6 +33,18 @@ define
         {
             return (unescape (encodeURIComponent (str)));
         };
+
+        // create the mapping table
+        var theMap = {};
+        Array.prototype.map.call (arguments,
+            function (x)
+            {
+                for (var property in x)
+                    if (x.hasOwnProperty (property))
+                        if (property.startsWith ("parse_"))
+                            theMap["cim:" + property.substring (6)] = x[property];
+            }
+        );
 
         /**
          * Parse an XML file into constituent parts
@@ -87,459 +99,19 @@ define
                 // parse individual elements
                 var element = result[1];
                 var guts = result[2];
-                switch (element)
+                var parser = theMap[element];
+                if ("undefined" != typeof (parser))
+                    parser (subcontext, guts);
+                else
                 {
-                    case "cim:ActivityRecord":
-                        common.parse_ActivityRecord (subcontext, guts);
-                        break;
-                    case "cim:Agreement":
-                        common.parse_Agreement (subcontext, guts);
-                        break;
-                    case "cim:Appointment":
-                        common.parse_Appointment (subcontext, guts);
-                        break;
-                    case "cim:ConfigurationEvent":
-                        common.parse_ConfigurationEvent (subcontext, guts);
-                        break;
-                    case "cim:CoordinateSystem":
-                        common.parse_CoordinateSystem (subcontext, guts);
-                        break;
-                    case "cim:Crew":
-                        common.parse_Crew (subcontext, guts);
-                        break;
-                    case "cim:CrewMember":
-                        common.parse_CrewMember (subcontext, guts);
-                        break;
-                    case "cim:CrewType":
-                        common.parse_CrewType (subcontext, guts);
-                        break;
-                    case "cim:Document":
-                        common.parse_Document (subcontext, guts);
-                        break;
-                    case "cim:ElectronicAddress":
-                        common.parse_ElectronicAddress (subcontext, guts);
-                        break;
-                    case "cim:Hazard":
-                        common.parse_Hazard (subcontext, guts);
-                        break;
-                    case "cim:Location":
-                        common.parse_Location (subcontext, guts);
-                        break;
-                    case "cim:OperationPersonRole":
-                        common.parse_OperationPersonRole (subcontext, guts);
-                        break;
-                    case "cim:Operator":
-                        common.parse_Operator (subcontext, guts);
-                        break;
-                    case "cim:Organisation":
-                        common.parse_Organisation (subcontext, guts);
-                        break;
-                    case "cim:OrganisationRole":
-                        common.parse_OrganisationRole (subcontext, guts);
-                        break;
-                    case "cim:Ownership":
-                        common.parse_Ownership (subcontext, guts);
-                        break;
-                    case "cim:Person":
-                        common.parse_Person (subcontext, guts);
-                        break;
-                    case "cim:PersonRole":
-                        common.parse_PersonRole (subcontext, guts);
-                        break;
-                    case "cim:PositionPoint":
-                        common.parse_PositionPoint (subcontext, guts);
-                        break;
-                    case "cim:PostalAddress":
-                        common.parse_PostalAddress (subcontext, guts);
-                        break;
-                    case "cim:Priority":
-                        common.parse_Priority (subcontext, guts);
-                        break;
-                    case "cim:ScheduledEventData":
-                        common.parse_ScheduledEventData (subcontext, guts);
-                        break;
-                    case "cim:Status":
-                        common.parse_Status (subcontext, guts);
-                        break;
-                    case "cim:StreetAddress":
-                        common.parse_StreetAddress (subcontext, guts);
-                        break;
-                    case "cim:StreetDetail":
-                        common.parse_StreetDetail (subcontext, guts);
-                        break;
-                    case "cim:TelephoneNumber":
-                        common.parse_TelephoneNumber (subcontext, guts);
-                        break;
-                    case "cim:TimePoint":
-                        common.parse_TimePoint (subcontext, guts);
-                        break;
-                    case "cim:TimeSchedule":
-                        common.parse_TimeSchedule (subcontext, guts);
-                        break;
-                    case "cim:TownDetail":
-                        common.parse_TownDetail (subcontext, guts);
-                        break;
-                    case "cim:UserAttribute":
-                        common.parse_UserAttribute (subcontext, guts);
-                        break;
-                    case "cim:ACDCTerminal":
-                        core.parse_ACDCTerminal (subcontext, guts);
-                        break;
-                    case "cim:BaseVoltage":
-                        core.parse_BaseVoltage (subcontext, guts);
-                        break;
-                    case "cim:Bay":
-                        core.parse_Bay (subcontext, guts);
-                        break;
-                    case "cim:ConductingEquipment":
-                        core.parse_ConductingEquipment (subcontext, guts);
-                        break;
-                    case "cim:ConnectivityNode":
-                        core.parse_ConnectivityNode (subcontext, guts);
-                        break;
-                    case "cim:ConnectivityNodeContainer":
-                        core.parse_ConnectivityNodeContainer (subcontext, guts);
-                        break;
-                    case "cim:Equipment":
-                        core.parse_Equipment (subcontext, guts);
-                        break;
-                    case "cim:EquipmentContainer":
-                        core.parse_EquipmentContainer (subcontext, guts);
-                        break;
-                    case "cim:IdentifiedObject":
-                        core.parse_IdentifiedObject (subcontext, guts);
-                        break;
-                    case "cim:Name":
-                        core.parse_Name (subcontext, guts);
-                        break;
-                    case "cim:NameType":
-                        core.parse_NameType (subcontext, guts);
-                        break;
-                    case "cim:NameTypeAuthority":
-                        core.parse_NameTypeAuthority (subcontext, guts);
-                        break;
-                    case "cim:PSRType":
-                        core.parse_PSRType (subcontext, guts);
-                        break;
-                    case "cim:PowerSystemResource":
-                        core.parse_PowerSystemResource (subcontext, guts);
-                        break;
-                    case "cim:Substation":
-                        core.parse_Substation (subcontext, guts);
-                        break;
-                    case "cim:Terminal":
-                        core.parse_Terminal (subcontext, guts);
-                        break;
-                    case "cim:VoltageLevel":
-                        core.parse_VoltageLevel (subcontext, guts);
-                        break;
-                    case "cim:GeneratingUnit":
-                        production.parse_GeneratingUnit (subcontext, guts);
-                        break;
-                    case "cim:SolarGeneratingUnit":
-                        production.parse_SolarGeneratingUnit (subcontext, guts);
-                        break;
-                    case "cim:CurrentRelay":
-                        protection.parse_CurrentRelay (subcontext, guts);
-                        break;
-                    case "cim:ProtectionEquipment":
-                        protection.parse_ProtectionEquipment (subcontext, guts);
-                        break;
-                    case "cim:StateVariable":
-                        statevariables.parse_StateVariable (subcontext, guts);
-                        break;
-                    case "cim:SvStatus":
-                        statevariables.parse_SvStatus (subcontext, guts);
-                        break;
-                    case "cim:Customer":
-                        customers.parse_Customer (subcontext, guts);
-                        break;
-                    case "cim:CustomerAccount":
-                        customers.parse_CustomerAccount (subcontext, guts);
-                        break;
-                    case "cim:CustomerAgreement":
-                        customers.parse_CustomerAgreement (subcontext, guts);
-                        break;
-                    case "cim:CustomerNotification":
-                        customers.parse_CustomerNotification (subcontext, guts);
-                        break;
-                    case "cim:IncidentHazard":
-                        customers.parse_IncidentHazard (subcontext, guts);
-                        break;
-                    case "cim:PricingStructure":
-                        customers.parse_PricingStructure (subcontext, guts);
-                        break;
-                    case "cim:ServiceCategory":
-                        customers.parse_ServiceCategory (subcontext, guts);
-                        break;
-                    case "cim:ServiceLocation":
-                        customers.parse_ServiceLocation (subcontext, guts);
-                        break;
-                    case "cim:Tariff":
-                        customers.parse_Tariff (subcontext, guts);
-                        break;
-                    case "cim:TroubleTicket":
-                        customers.parse_TroubleTicket (subcontext, guts);
-                        break;
-                    case "cim:ACLineSegment":
-                        wires.parse_ACLineSegment (subcontext, guts);
-                        break;
-                    case "cim:ACLineSegmentPhase":
-                        wires.parse_ACLineSegmentPhase (subcontext, guts);
-                        break;
-                    case "cim:BusbarSection":
-                        wires.parse_BusbarSection (subcontext, guts);
-                        break;
-                    case "cim:Conductor":
-                        wires.parse_Conductor (subcontext, guts);
-                        break;
-                    case "cim:Connector":
-                        wires.parse_Connector (subcontext, guts);
-                        break;
-                    case "cim:Disconnector":
-                        wires.parse_Disconnector (subcontext, guts);
-                        break;
-                    case "cim:EnergyConsumer":
-                        wires.parse_EnergyConsumer (subcontext, guts);
-                        break;
-                    case "cim:Fuse":
-                        wires.parse_Fuse (subcontext, guts);
-                        break;
-                    case "cim:GroundDisconnector":
-                        wires.parse_GroundDisconnector (subcontext, guts);
-                        break;
-                    case "cim:Jumper":
-                        wires.parse_Jumper (subcontext, guts);
-                        break;
-                    case "cim:Junction":
-                        wires.parse_Junction (subcontext, guts);
-                        break;
-                    case "cim:Line":
-                        wires.parse_Line (subcontext, guts);
-                        break;
-                    case "cim:LoadBreakSwitch":
-                        wires.parse_LoadBreakSwitch (subcontext, guts);
-                        break;
-                    case "cim:PowerTransformer":
-                        wires.parse_PowerTransformer (subcontext, guts);
-                        break;
-                    case "cim:PowerTransformerEnd":
-                        wires.parse_PowerTransformerEnd (subcontext, guts);
-                        break;
-                    case "cim:ProtectedSwitch":
-                        wires.parse_ProtectedSwitch (subcontext, guts);
-                        break;
-                    case "cim:Switch":
-                        wires.parse_Switch (subcontext, guts);
-                        break;
-                    case "cim:TransformerEnd":
-                        wires.parse_TransformerEnd (subcontext, guts);
-                        break;
-                    case "cim:TransformerTank":
-                        wires.parse_TransformerTank (subcontext, guts);
-                        break;
-                    case "cim:TransformerTankEnd":
-                        wires.parse_TransformerTankEnd (subcontext, guts);
-                        break;
-                    case "cim:Asset":
-                        assets.parse_Asset (subcontext, guts);
-                        break;
-                    case "cim:AssetContainer":
-                        assets.parse_AssetContainer (subcontext, guts);
-                        break;
-                    case "cim:AssetFunction":
-                        assets.parse_AssetFunction (subcontext, guts);
-                        break;
-                    case "cim:AssetInfo":
-                        assets.parse_AssetInfo (subcontext, guts);
-                        break;
-                    case "cim:AssetOrganisationRole":
-                        assets.parse_AssetOrganisationRole (subcontext, guts);
-                        break;
-                    case "cim:AssetOwner":
-                        assets.parse_AssetOwner (subcontext, guts);
-                        break;
-                    case "cim:LifecycleDate":
-                        assets.parse_LifecycleDate (subcontext, guts);
-                        break;
-                    case "cim:Cabinet":
-                        infAssets.parse_Cabinet (subcontext, guts);
-                        break;
-                    case "cim:Facility":
-                        infAssets.parse_Facility (subcontext, guts);
-                        break;
-                    case "cim:Pole":
-                        infAssets.parse_Pole (subcontext, guts);
-                        break;
-                    case "cim:Streetlight":
-                        infAssets.parse_Streetlight (subcontext, guts);
-                        break;
-                    case "cim:Structure":
-                        infAssets.parse_Structure (subcontext, guts);
-                        break;
-                    case "cim:UndergroundStructure":
-                        infAssets.parse_UndergroundStructure (subcontext, guts);
-                        break;
-                    case "cim:BusbarSectionInfo":
-                        assetInfo.parse_BusbarSectionInfo (subcontext, guts);
-                        break;
-                    case "cim:OverheadWireInfo":
-                        assetInfo.parse_OverheadWireInfo (subcontext, guts);
-                        break;
-                    case "cim:PowerTransformerInfo":
-                        assetInfo.parse_PowerTransformerInfo (subcontext, guts);
-                        break;
-                    case "cim:SwitchInfo":
-                        assetInfo.parse_SwitchInfo (subcontext, guts);
-                        break;
-                    case "cim:WireInfo":
-                        assetInfo.parse_WireInfo (subcontext, guts);
-                        break;
-                    case "cim:StringQuantity":
-                        domain.parse_StringQuantity (subcontext, guts);
-                        break;
-                    case "cim:MeasurementValue":
-                        meas.parse_MeasurementValue (subcontext, guts);
-                        break;
-                    case "cim:BaseReading":
-                        metering.parse_BaseReading (subcontext, guts);
-                        break;
-                    case "cim:Channel":
-                        metering.parse_Channel (subcontext, guts);
-                        break;
-                    case "cim:ComFunction":
-                        metering.parse_ComFunction (subcontext, guts);
-                        break;
-                    case "cim:ComModule":
-                        metering.parse_ComModule (subcontext, guts);
-                        break;
-                    case "cim:ControlledAppliance":
-                        metering.parse_ControlledAppliance (subcontext, guts);
-                        break;
-                    case "cim:DemandResponseProgram":
-                        metering.parse_DemandResponseProgram (subcontext, guts);
-                        break;
-                    case "cim:EndDevice":
-                        metering.parse_EndDevice (subcontext, guts);
-                        break;
-                    case "cim:EndDeviceAction":
-                        metering.parse_EndDeviceAction (subcontext, guts);
-                        break;
-                    case "cim:EndDeviceCapability":
-                        metering.parse_EndDeviceCapability (subcontext, guts);
-                        break;
-                    case "cim:EndDeviceControl":
-                        metering.parse_EndDeviceControl (subcontext, guts);
-                        break;
-                    case "cim:EndDeviceControlType":
-                        metering.parse_EndDeviceControlType (subcontext, guts);
-                        break;
-                    case "cim:EndDeviceEvent":
-                        metering.parse_EndDeviceEvent (subcontext, guts);
-                        break;
-                    case "cim:EndDeviceEventDetail":
-                        metering.parse_EndDeviceEventDetail (subcontext, guts);
-                        break;
-                    case "cim:EndDeviceEventType":
-                        metering.parse_EndDeviceEventType (subcontext, guts);
-                        break;
-                    case "cim:EndDeviceFunction":
-                        metering.parse_EndDeviceFunction (subcontext, guts);
-                        break;
-                    case "cim:EndDeviceGroup":
-                        metering.parse_EndDeviceGroup (subcontext, guts);
-                        break;
-                    case "cim:EndDeviceInfo":
-                        metering.parse_EndDeviceInfo (subcontext, guts);
-                        break;
-                    case "cim:EndDeviceTiming":
-                        metering.parse_EndDeviceTiming (subcontext, guts);
-                        break;
-                    case "cim:IntervalBlock":
-                        metering.parse_IntervalBlock (subcontext, guts);
-                        break;
-                    case "cim:IntervalReading":
-                        metering.parse_IntervalReading (subcontext, guts);
-                        break;
-                    case "cim:Meter":
-                        metering.parse_Meter (subcontext, guts);
-                        break;
-                    case "cim:MeterMultiplier":
-                        metering.parse_MeterMultiplier (subcontext, guts);
-                        break;
-                    case "cim:MeterReading":
-                        metering.parse_MeterReading (subcontext, guts);
-                        break;
-                    case "cim:MeterServiceWork":
-                        metering.parse_MeterServiceWork (subcontext, guts);
-                        break;
-                    case "cim:MetrologyRequirement":
-                        metering.parse_MetrologyRequirement (subcontext, guts);
-                        break;
-                    case "cim:PanDemandResponse":
-                        metering.parse_PanDemandResponse (subcontext, guts);
-                        break;
-                    case "cim:PanDisplay":
-                        metering.parse_PanDisplay (subcontext, guts);
-                        break;
-                    case "cim:PanPricing":
-                        metering.parse_PanPricing (subcontext, guts);
-                        break;
-                    case "cim:PanPricingDetail":
-                        metering.parse_PanPricingDetail (subcontext, guts);
-                        break;
-                    case "cim:PendingCalculation":
-                        metering.parse_PendingCalculation (subcontext, guts);
-                        break;
-                    case "cim:RationalNumber":
-                        metering.parse_RationalNumber (subcontext, guts);
-                        break;
-                    case "cim:Reading":
-                        metering.parse_Reading (subcontext, guts);
-                        break;
-                    case "cim:ReadingInterharmonic":
-                        metering.parse_ReadingInterharmonic (subcontext, guts);
-                        break;
-                    case "cim:ReadingQuality":
-                        metering.parse_ReadingQuality (subcontext, guts);
-                        break;
-                    case "cim:ReadingQualityType":
-                        metering.parse_ReadingQualityType (subcontext, guts);
-                        break;
-                    case "cim:ReadingType":
-                        metering.parse_ReadingType (subcontext, guts);
-                        break;
-                    case "cim:Register":
-                        metering.parse_Register (subcontext, guts);
-                        break;
-                    case "cim:ServiceMultiplier":
-                        metering.parse_ServiceMultiplier (subcontext, guts);
-                        break;
-                    case "cim:SimpleEndDeviceFunction":
-                        metering.parse_SimpleEndDeviceFunction (subcontext, guts);
-                        break;
-                    case "cim:UsagePoint":
-                        metering.parse_UsagePoint (subcontext, guts);
-                        break;
-                    case "cim:UsagePointGroup":
-                        metering.parse_UsagePointGroup (subcontext, guts);
-                        break;
-                    case "cim:UsagePointLocation":
-                        metering.parse_UsagePointLocation (subcontext, guts);
-                        break;
-                    case "cim:WorkLocation":
-                        work.parse_WorkLocation (subcontext, guts);
-                        break;
-
-                    default:
-                        if (context.parsed.ignored < 3)
-                            if ("undefined" != typeof (console))
-                                console.log ("unrecognized element type '" + result[1] + "' at line " + base.line_number (subcontext));
-                            else
-                                print ("unrecognized element type '" + result[1] + "' at line " + base.line_number (subcontext));
-                        context.parsed.ignored++;
-                        break;
+                    if (context.parsed.ignored < 3)
+                        if ("undefined" != typeof (console))
+                            console.log ("unrecognized element type '" + result[1] + "' at line " + base.line_number (subcontext));
+                        else
+                            print ("unrecognized element type '" + result[1] + "' at line " + base.line_number (subcontext));
+                    context.parsed.ignored++;
                 }
+
                 result = null;
             }
 

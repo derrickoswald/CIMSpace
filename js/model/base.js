@@ -29,7 +29,38 @@ define
          */
         function to_boolean (str)
         {
-            return (str.toLowerCase () === "true");
+            var ret = (null == str) ? str : (str.toLowerCase () === "true")
+            return (ret);
+        }
+
+        /**
+         * Convert a string into a floating point value.
+         * @param {String} str - the string to convert
+         * @returns {Number} the float value
+         * @memberOf module:model/base
+         */
+        function to_float (str)
+        {
+            var ret = (null == str) ? NaN : Number (str);
+            if (isNaN (ret))
+                ret = str;
+            return (ret);
+        }
+
+        /**
+         * Convert a string into a date.
+         * @param {String} str - the string to convert
+         * @returns {Date} the date and time value
+         * @memberOf module:model/base
+         */
+        function to_datetime (str)
+        {
+            var ret = Date.parse (str);
+            if (isNaN (ret))
+                ret = str;
+            else
+                ret = new Date (ret);
+            return (ret);
         }
 
        /**
@@ -190,6 +221,8 @@ define
         return (
             {
                 to_boolean: to_boolean,
+                to_float: to_float,
+                to_datetime: to_datetime,
                 index_string: index_string,
                 line_number: line_number,
                 parse_element: parse_element,

@@ -176,17 +176,17 @@ define
                             psr[id].id = id;
                             psr[id].orientation = 0.0;
                             // assign the symbol
-                            if (0 == psr[id].mRID.indexOf ("TRA"))
+                            if (0 == id.indexOf ("TRA"))
                             {
                                 psr[id].symbol = "transformer";
                                 psr[id].color = "rgb(0, 255, 0)";
                             }
-                            else if (0 == psr[id].mRID.indexOf ("TEI"))
+                            else if (0 == id.indexOf ("TEI"))
                             {
                                 psr[id].symbol = "switch";
                                 psr[id].color = "rgb(0, 0, 255)";
                             }
-                            else if (0 == psr[id].mRID.indexOf ("HAS"))
+                            else if (0 == id.indexOf ("HAS"))
                             {
                                 psr[id].symbol = "house_connection";
                                 psr[id].color = "rgb(255, 0, 0)";
