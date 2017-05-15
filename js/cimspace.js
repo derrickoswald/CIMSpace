@@ -848,14 +848,16 @@ define
                         var p = pp[point];
                         if (location == p.Location)
                         {
-                            if (minx > p.xPosition)
-                                minx = p.xPosition;
-                            if (maxx < p.xPosition)
-                                maxx = p.xPosition;
-                            if (miny > p.yPosition)
-                                miny = p.yPosition;
-                            if (maxy < p.yPosition)
-                                maxy = p.yPosition;
+                            var x = Number (p.xPosition);
+                            var y = Number (p.yPosition);
+                            if (minx > x)
+                                minx = x;
+                            if (maxx < x)
+                                maxx = x;
+                            if (miny > y)
+                                miny = y;
+                            if (maxy < y)
+                                maxy = y;
                             valid = true;
                         }
                     }
