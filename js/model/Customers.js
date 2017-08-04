@@ -437,9 +437,6 @@ define
              * Customer account owning this agreement.
              */
             obj["CustomerAccount"] = base.parse_attribute (/<cim:CustomerAgreement.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["StandardIndustryCode"] = base.parse_attribute (/<cim:CustomerAgreement.StandardIndustryCode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.CustomerAgreement;
             if (null == bucket)

@@ -110,13 +110,7 @@ define
              * Net Actual MW Flow
              */
             obj["baseMW"] = base.to_float (base.parse_element (/<cim:InterTieResults.baseMW>([\s\S]*?)<\/cim:InterTieResults.baseMW>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["InterTieClearing"] = base.parse_attribute (/<cim:InterTieResults.InterTieClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Flowgate"] = base.parse_attribute (/<cim:InterTieResults.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.InterTieResults;
             if (null == bucket)

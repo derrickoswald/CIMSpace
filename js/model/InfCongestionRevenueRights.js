@@ -18,13 +18,7 @@ define
              * True if limit is enforced.
              */
             obj["enforced"] = base.to_boolean (base.parse_element (/<cim:ViolationLimit.enforced>([\s\S]*?)<\/cim:ViolationLimit.enforced>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["MktMeasurement"] = base.parse_attribute (/<cim:ViolationLimit.MktMeasurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Flowgate"] = base.parse_attribute (/<cim:ViolationLimit.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ViolationLimit;
             if (null == bucket)
@@ -64,13 +58,7 @@ define
              * Peak, Off-peak, 24-hour
              */
             obj["class"] = base.parse_element (/<cim:FTR.class>([\s\S]*?)<\/cim:FTR.class>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["EnergyPriceCurve"] = base.parse_attribute (/<cim:FTR.EnergyPriceCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Flowgate"] = base.parse_attribute (/<cim:FTR.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.FTR;
             if (null == bucket)

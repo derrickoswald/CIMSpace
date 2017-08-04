@@ -51,13 +51,7 @@ define
              * Total Transmission Capacity
              */
             obj["totalTransmissionCapacity"] = base.to_float (base.parse_element (/<cim:TransmissionCapacity.totalTransmissionCapacity>([\s\S]*?)<\/cim:TransmissionCapacity.totalTransmissionCapacity>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["Flowgate"] = base.parse_attribute (/<cim:TransmissionCapacity.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["GenericConstraints"] = base.parse_attribute (/<cim:TransmissionCapacity.GenericConstraints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TransmissionCapacity;
             if (null == bucket)
@@ -98,9 +92,6 @@ define
              * Voltage control capacitor step position
              */
             obj["stepPosition"] = base.parse_element (/<cim:ShuntCompensatorDynamicData.stepPosition>([\s\S]*?)<\/cim:ShuntCompensatorDynamicData.stepPosition>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MktShuntCompensator"] = base.parse_attribute (/<cim:ShuntCompensatorDynamicData.MktShuntCompensator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ShuntCompensatorDynamicData;
             if (null == bucket)
@@ -129,9 +120,6 @@ define
              * Operating date and hour when the entitlement applies
              */
             obj["startOperatingDate"] = base.to_datetime (base.parse_element (/<cim:TREntitlement.startOperatingDate>([\s\S]*?)<\/cim:TREntitlement.startOperatingDate>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["TransmissionContractRight"] = base.parse_attribute (/<cim:TREntitlement.TransmissionContractRight\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TREntitlement;
             if (null == bucket)
@@ -152,17 +140,8 @@ define
 
             obj = Core.parse_Curve (context, sub);
             obj.cls = "ContingencyConstraintLimit";
-            /**
-             * 
-             */
             obj["SecurityConstraintSum"] = base.parse_attribute (/<cim:ContingencyConstraintLimit.SecurityConstraintSum\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MktContingency"] = base.parse_attribute (/<cim:ContingencyConstraintLimit.MktContingency\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MWLimitSchedules"] = base.parse_attribute (/<cim:ContingencyConstraintLimit.MWLimitSchedules\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ContingencyConstraintLimit;
             if (null == bucket)
@@ -226,13 +205,7 @@ define
              * The distribution factors (DFAX) for the unit
              */
             obj["sensitivity"] = base.to_float (base.parse_element (/<cim:GeneratingUnitDynamicValues.sensitivity>([\s\S]*?)<\/cim:GeneratingUnitDynamicValues.sensitivity>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["Flowgate"] = base.parse_attribute (/<cim:GeneratingUnitDynamicValues.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MktGeneratingUnit"] = base.parse_attribute (/<cim:GeneratingUnitDynamicValues.MktGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.GeneratingUnitDynamicValues;
             if (null == bucket)
@@ -300,9 +273,6 @@ define
              * The function is an enumerated value that can be 'active', 'reactive', or 'VA' to indicate the type of flow.
              */
             obj["function"] = base.parse_element (/<cim:ConstraintTerm.function>([\s\S]*?)<\/cim:ConstraintTerm.function>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["SecurityConstraintSum"] = base.parse_attribute (/<cim:ConstraintTerm.SecurityConstraintSum\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ConstraintTerm;
             if (null == bucket)
@@ -363,25 +333,10 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "TransmissionReservation";
-            /**
-             * 
-             */
             obj["EnergyTransaction"] = base.parse_attribute (/<cim:TransmissionReservation.EnergyTransaction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TransmissionPath"] = base.parse_attribute (/<cim:TransmissionReservation.TransmissionPath\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Sink"] = base.parse_attribute (/<cim:TransmissionReservation.Sink\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TransactionBid"] = base.parse_attribute (/<cim:TransmissionReservation.TransactionBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Source"] = base.parse_attribute (/<cim:TransmissionReservation.Source\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TransmissionReservation;
             if (null == bucket)
@@ -415,17 +370,8 @@ define
              * Post Transfer MW for step
              */
             obj["postTransferMW"] = base.to_float (base.parse_element (/<cim:TransferInterfaceSolution.postTransferMW>([\s\S]*?)<\/cim:TransferInterfaceSolution.postTransferMW>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["TransferInterface"] = base.parse_attribute (/<cim:TransferInterfaceSolution.TransferInterface\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MktContingencyB"] = base.parse_attribute (/<cim:TransferInterfaceSolution.MktContingencyB\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj[" MktContingencyA"] = base.parse_attribute (/<cim:TransferInterfaceSolution. MktContingencyA\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TransferInterfaceSolution;
             if (null == bucket)
@@ -446,9 +392,6 @@ define
 
             obj = parse_ConstraintTerm (context, sub);
             obj.cls = "NodeConstraintTerm";
-            /**
-             * 
-             */
             obj["MktConnectivityNode"] = base.parse_attribute (/<cim:NodeConstraintTerm.MktConnectivityNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.NodeConstraintTerm;
             if (null == bucket)
@@ -476,9 +419,6 @@ define
              * Default energy bid adder flag
              */
             obj["debAdderFlag"] = base.parse_element (/<cim:DefaultBidCurve.debAdderFlag>([\s\S]*?)<\/cim:DefaultBidCurve.debAdderFlag>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["DefaultBid"] = base.parse_attribute (/<cim:DefaultBidCurve.DefaultBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.DefaultBidCurve;
             if (null == bucket)
@@ -600,9 +540,6 @@ define
              * Time interval
              */
             obj["timeInterval"] = base.to_datetime (base.parse_element (/<cim:UnitInitialConditions.timeInterval>([\s\S]*?)<\/cim:UnitInitialConditions.timeInterval>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["GeneratingUnit"] = base.parse_attribute (/<cim:UnitInitialConditions.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.UnitInitialConditions;
             if (null == bucket)
@@ -673,13 +610,7 @@ define
 
             obj = Wires.parse_SeriesCompensator (context, sub);
             obj.cls = "MktSeriesCompensator";
-            /**
-             * 
-             */
             obj["EndAFlow"] = base.parse_attribute (/<cim:MktSeriesCompensator.EndAFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["EndBFlow"] = base.parse_attribute (/<cim:MktSeriesCompensator.EndBFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MktSeriesCompensator;
             if (null == bucket)
@@ -703,9 +634,6 @@ define
              * Indicates whether a resource is eligible for PIRP program for a given hour
              */
             obj["eligibilityStatus"] = base.parse_element (/<cim:IntermittentResourceEligibility.eligibilityStatus>([\s\S]*?)<\/cim:IntermittentResourceEligibility.eligibilityStatus>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:IntermittentResourceEligibility.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.IntermittentResourceEligibility;
             if (null == bucket)
@@ -760,9 +688,6 @@ define
              * The maximum phase angle shift of the phase shifter
              */
             obj["maximumAngle"] = base.to_float (base.parse_element (/<cim:TapChangerDynamicData.maximumAngle>([\s\S]*?)<\/cim:TapChangerDynamicData.maximumAngle>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["MktTapChanger"] = base.parse_attribute (/<cim:TapChangerDynamicData.MktTapChanger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TapChangerDynamicData;
             if (null == bucket)
@@ -791,13 +716,7 @@ define
              * Reactive power (MVAr) load distribution factor
              */
             obj["qDistFactor"] = base.to_float (base.parse_element (/<cim:LoadDistributionFactor.qDistFactor>([\s\S]*?)<\/cim:LoadDistributionFactor.qDistFactor>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["IndividualPnode"] = base.parse_attribute (/<cim:LoadDistributionFactor.IndividualPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["AggregatedPnode"] = base.parse_attribute (/<cim:LoadDistributionFactor.AggregatedPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.LoadDistributionFactor;
             if (null == bucket)
@@ -844,9 +763,6 @@ define
              * Existing transmission contract usage MW value
              */
             obj["usageMW"] = base.to_float (base.parse_element (/<cim:InterchangeETCData.usageMW>([\s\S]*?)<\/cim:InterchangeETCData.usageMW>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["InterchangeSchedule"] = base.parse_attribute (/<cim:InterchangeETCData.InterchangeSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.InterchangeETCData;
             if (null == bucket)
@@ -871,13 +787,7 @@ define
              * Used to calculate load "participation" of a connectivity node in an host control area
              */
             obj["factor"] = base.to_float (base.parse_element (/<cim:SysLoadDistributionFactor.factor>([\s\S]*?)<\/cim:SysLoadDistributionFactor.factor>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["HostControlArea"] = base.parse_attribute (/<cim:SysLoadDistributionFactor.HostControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MktConnectivityNode"] = base.parse_attribute (/<cim:SysLoadDistributionFactor.MktConnectivityNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.SysLoadDistributionFactor;
             if (null == bucket)
@@ -939,9 +849,6 @@ define
              * Typically this is a ServicePoint.
              */
             obj["EnergyProduct"] = base.parse_attribute (/<cim:EnergyTransaction.EnergyProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TransmissionReservation"] = base.parse_attribute (/<cim:EnergyTransaction.TransmissionReservation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * Energy is transferred between interchange areas
@@ -979,9 +886,6 @@ define
              * The active power consumption of the load in MW
              */
             obj["loadMW"] = base.to_float (base.parse_element (/<cim:EnergyConsumerData.loadMW>([\s\S]*?)<\/cim:EnergyConsumerData.loadMW>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["MktEnergyConsumer"] = base.parse_attribute (/<cim:EnergyConsumerData.MktEnergyConsumer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.EnergyConsumerData;
             if (null == bucket)
@@ -1013,17 +917,8 @@ define
              * Actual branch or group of branches MW flow (only for transmission constraints)
              */
             obj["actualMW"] = base.parse_element (/<cim:SecurityConstraints.actualMW>([\s\S]*?)<\/cim:SecurityConstraints.actualMW>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RTO"] = base.parse_attribute (/<cim:SecurityConstraints.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Flowgate"] = base.parse_attribute (/<cim:SecurityConstraints.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["GeneratingBid"] = base.parse_attribute (/<cim:SecurityConstraints.GeneratingBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.SecurityConstraints;
             if (null == bucket)
@@ -1044,17 +939,8 @@ define
 
             obj = MarketPlan.parse_MarketFactors (context, sub);
             obj.cls = "SecurityConstraintSum";
-            /**
-             * 
-             */
             obj["DefaultConstraintLimit"] = base.parse_attribute (/<cim:SecurityConstraintSum.DefaultConstraintLimit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RTO"] = base.parse_attribute (/<cim:SecurityConstraintSum.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["BaseCaseConstraintLimit"] = base.parse_attribute (/<cim:SecurityConstraintSum.BaseCaseConstraintLimit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.SecurityConstraintSum;
             if (null == bucket)
@@ -1074,9 +960,6 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "MWLimitSchedule";
-            /**
-             * 
-             */
             obj["SecurityConstraintLimit"] = base.parse_attribute (/<cim:MWLimitSchedule.SecurityConstraintLimit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MWLimitSchedule;
             if (null == bucket)
@@ -1100,17 +983,8 @@ define
              * Load forecast area type.
              */
             obj["forecastType"] = base.parse_element (/<cim:AreaLoadCurve.forecastType>([\s\S]*?)<\/cim:AreaLoadCurve.forecastType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["AggregateNode"] = base.parse_attribute (/<cim:AreaLoadCurve.AggregateNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TACArea"] = base.parse_attribute (/<cim:AreaLoadCurve.TACArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MktLoadArea"] = base.parse_attribute (/<cim:AreaLoadCurve.MktLoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.AreaLoadCurve;
             if (null == bucket)
@@ -1140,13 +1014,7 @@ define
              * For example, operating reserve, regulation and contingency.
              */
             obj["reserveRequirementType"] = base.parse_element (/<cim:ReserveDemandCurve.reserveRequirementType>([\s\S]*?)<\/cim:ReserveDemandCurve.reserveRequirementType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ASRequirements"] = base.parse_attribute (/<cim:ReserveDemandCurve.ASRequirements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MarketRegion"] = base.parse_attribute (/<cim:ReserveDemandCurve.MarketRegion\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ReserveDemandCurve;
             if (null == bucket)
@@ -1192,9 +1060,6 @@ define
              * Circuit Breaker Status (closed or open) of the circuit breaker from the power flow.
              */
             obj["switchStatus"] = base.parse_element (/<cim:SwitchStatus.switchStatus>([\s\S]*?)<\/cim:SwitchStatus.switchStatus>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MktSwitch"] = base.parse_attribute (/<cim:SwitchStatus.MktSwitch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.SwitchStatus;
             if (null == bucket)
@@ -1214,9 +1079,6 @@ define
 
             obj = parse_ConstraintTerm (context, sub);
             obj.cls = "TerminalConstraintTerm";
-            /**
-             * 
-             */
             obj["MktTerminal"] = base.parse_attribute (/<cim:TerminalConstraintTerm.MktTerminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TerminalConstraintTerm;
             if (null == bucket)
@@ -1323,9 +1185,6 @@ define
 
             obj = Core.parse_Curve (context, sub);
             obj.cls = "BaseCaseConstraintLimit";
-            /**
-             * 
-             */
             obj["SecurityConstraintSum"] = base.parse_attribute (/<cim:BaseCaseConstraintLimit.SecurityConstraintSum\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.BaseCaseConstraintLimit;
             if (null == bucket)
@@ -1355,9 +1214,6 @@ define
              * Flag indicating that the switch is removed from operation.
              */
             obj["removeFromOperationIndicator"] = base.to_boolean (base.parse_element (/<cim:DiscreteMeasurementValueQuality.removeFromOperationIndicator>([\s\S]*?)<\/cim:DiscreteMeasurementValueQuality.removeFromOperationIndicator>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["MktDiscreteValue"] = base.parse_attribute (/<cim:DiscreteMeasurementValueQuality.MktDiscreteValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.DiscreteMeasurementValueQuality;
             if (null == bucket)
@@ -1411,13 +1267,7 @@ define
              * on-peak, off-peak, or all
              */
             obj["peakFlag"] = base.parse_element (/<cim:DefaultBid.peakFlag>([\s\S]*?)<\/cim:DefaultBid.peakFlag>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:DefaultBid.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["DefaultBidCurve"] = base.parse_attribute (/<cim:DefaultBid.DefaultBidCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.DefaultBid;
             if (null == bucket)
@@ -1442,13 +1292,7 @@ define
              * Used to calculate generation "participation" of an individual pnond in an AggregatePnode.
              */
             obj["factor"] = base.to_float (base.parse_element (/<cim:GenDistributionFactor.factor>([\s\S]*?)<\/cim:GenDistributionFactor.factor>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["AggregatedPnode"] = base.parse_attribute (/<cim:GenDistributionFactor.AggregatedPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["IndividualPnode"] = base.parse_attribute (/<cim:GenDistributionFactor.IndividualPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.GenDistributionFactor;
             if (null == bucket)
@@ -1472,9 +1316,6 @@ define
              * An EnergyTransaction shall have at least one EnergyProfile.
              */
             obj["EnergyTransaction"] = base.parse_attribute (/<cim:EnergyProfile.EnergyTransaction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TransactionBid"] = base.parse_attribute (/<cim:EnergyProfile.TransactionBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.EnergyProfile;
             if (null == bucket)
@@ -1516,13 +1357,7 @@ define
 
             obj = Wires.parse_ACLineSegment (context, sub);
             obj.cls = "MktACLineSegment";
-            /**
-             * 
-             */
             obj["EndAFlow"] = base.parse_attribute (/<cim:MktACLineSegment.EndAFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["EndBFlow"] = base.parse_attribute (/<cim:MktACLineSegment.EndBFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MktACLineSegment;
             if (null == bucket)
@@ -1570,13 +1405,7 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "TransferInterface";
-            /**
-             * 
-             */
             obj["TransferInterfaceSolution"] = base.parse_attribute (/<cim:TransferInterface.TransferInterfaceSolution\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["HostControlArea"] = base.parse_attribute (/<cim:TransferInterface.HostControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TransferInterface;
             if (null == bucket)
@@ -1648,13 +1477,7 @@ define
              * Operating date and hour when the entitlement applies
              */
             obj["startOperatingDate"] = base.to_datetime (base.parse_element (/<cim:TransmissionInterfaceRightEntitlement.startOperatingDate>([\s\S]*?)<\/cim:TransmissionInterfaceRightEntitlement.startOperatingDate>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["Flowgate"] = base.parse_attribute (/<cim:TransmissionInterfaceRightEntitlement.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ContractRight"] = base.parse_attribute (/<cim:TransmissionInterfaceRightEntitlement.ContractRight\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TransmissionInterfaceRightEntitlement;
             if (null == bucket)
@@ -1684,9 +1507,6 @@ define
              * Attribute Usage: The active power interchange of the pool
              */
             obj["solvedInterchange"] = base.to_float (base.parse_element (/<cim:ControlAreaSolutionData.solvedInterchange>([\s\S]*?)<\/cim:ControlAreaSolutionData.solvedInterchange>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["MktControlArea"] = base.parse_attribute (/<cim:ControlAreaSolutionData.MktControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ControlAreaSolutionData;
             if (null == bucket)
@@ -1742,13 +1562,7 @@ define
              * Wheeling Counter-Resource ID (required when Schedule Type=Wheel).
              */
             obj["wcrID"] = base.parse_element (/<cim:InterchangeSchedule.wcrID>([\s\S]*?)<\/cim:InterchangeSchedule.wcrID>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredInterTie"] = base.parse_attribute (/<cim:InterchangeSchedule.RegisteredInterTie\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["InterTie"] = base.parse_attribute (/<cim:InterchangeSchedule.InterTie\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.InterchangeSchedule;
             if (null == bucket)
@@ -1789,9 +1603,6 @@ define
              * EPI type such as wholesale or retail
              */
             obj["energyPriceIndexType"] = base.parse_element (/<cim:EnergyPriceIndex.energyPriceIndexType>([\s\S]*?)<\/cim:EnergyPriceIndex.energyPriceIndexType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredGenerator"] = base.parse_attribute (/<cim:EnergyPriceIndex.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.EnergyPriceIndex;
             if (null == bucket)
@@ -1816,9 +1627,6 @@ define
              * Defined as: 1 / ( 1 - Incremental Transmission Loss); with the Incremental Transmission Loss expressed as a plus or minus value. The typical range of penalty factors is (0,9 to 1,1).
              */
             obj["lossFactor"] = base.to_float (base.parse_element (/<cim:LossSensitivity.lossFactor>([\s\S]*?)<\/cim:LossSensitivity.lossFactor>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["MktConnectivityNode"] = base.parse_attribute (/<cim:LossSensitivity.MktConnectivityNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.LossSensitivity;
             if (null == bucket)
@@ -1842,9 +1650,6 @@ define
              * The quality code for the given Analog Value.
              */
             obj["scadaQualityCode"] = base.parse_element (/<cim:AnalogMeasurementValueQuality.scadaQualityCode>([\s\S]*?)<\/cim:AnalogMeasurementValueQuality.scadaQualityCode>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MktAnalogValue"] = base.parse_attribute (/<cim:AnalogMeasurementValueQuality.MktAnalogValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.AnalogMeasurementValueQuality;
             if (null == bucket)
@@ -1865,9 +1670,6 @@ define
 
             obj = Core.parse_Curve (context, sub);
             obj.cls = "DefaultConstraintLimit";
-            /**
-             * 
-             */
             obj["SecurityConstraintSum"] = base.parse_attribute (/<cim:DefaultConstraintLimit.SecurityConstraintSum\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.DefaultConstraintLimit;
             if (null == bucket)

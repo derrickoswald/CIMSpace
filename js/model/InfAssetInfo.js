@@ -144,13 +144,7 @@ define
              * Cost is for material or asset only and does not include labor to install/construct or configure it.
              */
             obj["unitCost"] = base.parse_element (/<cim:AssetModelCatalogueItem.unitCost>([\s\S]*?)<\/cim:AssetModelCatalogueItem.unitCost>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["AssetModel"] = base.parse_attribute (/<cim:AssetModelCatalogueItem.AssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["AssetModelCatalogue"] = base.parse_attribute (/<cim:AssetModelCatalogueItem.AssetModelCatalogue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.AssetModelCatalogueItem;
             if (null == bucket)

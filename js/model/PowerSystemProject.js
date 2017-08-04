@@ -32,9 +32,6 @@ define
             obj["scheduledStart"] = base.to_datetime (base.parse_element (/<cim:PowerSystemProjectSchedule.scheduledStart>([\s\S]*?)<\/cim:PowerSystemProjectSchedule.scheduledStart>/g, sub, context, true));
             obj["status"] = base.parse_element (/<cim:PowerSystemProjectSchedule.status>([\s\S]*?)<\/cim:PowerSystemProjectSchedule.status>/g, sub, context, true);
             obj["stepType"] = base.parse_element (/<cim:PowerSystemProjectSchedule.stepType>([\s\S]*?)<\/cim:PowerSystemProjectSchedule.stepType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj[""] = base.parse_attribute (/<cim:PowerSystemProjectSchedule.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.PowerSystemProjectSchedule;
             if (null == bucket)
@@ -106,13 +103,7 @@ define
              */
             obj["version"] = base.parse_element (/<cim:PowerSystemProject.version>([\s\S]*?)<\/cim:PowerSystemProject.version>/g, sub, context, true);
             obj["description"] = base.parse_element (/<cim:PowerSystemProject.description>([\s\S]*?)<\/cim:PowerSystemProject.description>/g, sub, context, true);
-            /**
-             * 
-             */
             obj[""] = base.parse_attribute (/<cim:PowerSystemProject.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Project"] = base.parse_attribute (/<cim:PowerSystemProject.Project\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.PowerSystemProject;
             if (null == bucket)
@@ -187,9 +178,6 @@ define
 
             obj = parse_PowerSystemProject (context, sub);
             obj.cls = "PowerSystemSubProject";
-            /**
-             * 
-             */
             obj["Project"] = base.parse_attribute (/<cim:PowerSystemSubProject.Project\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.PowerSystemSubProject;
             if (null == bucket)

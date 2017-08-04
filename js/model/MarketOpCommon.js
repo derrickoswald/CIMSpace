@@ -25,17 +25,8 @@ define
              * start effective date
              */
             obj["startEffectiveDate"] = base.to_datetime (base.parse_element (/<cim:MktConnectivityNode.startEffectiveDate>([\s\S]*?)<\/cim:MktConnectivityNode.startEffectiveDate>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["RTO"] = base.parse_attribute (/<cim:MktConnectivityNode.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["IndividualPnode"] = base.parse_attribute (/<cim:MktConnectivityNode.IndividualPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["SysLoadDistribuFactor"] = base.parse_attribute (/<cim:MktConnectivityNode.SysLoadDistribuFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MktConnectivityNode;
             if (null == bucket)
@@ -73,9 +64,6 @@ define
 
             obj = Production.parse_GeneratingUnit (context, sub);
             obj.cls = "MktGeneratingUnit";
-            /**
-             * 
-             */
             obj["RegisteredGenerator"] = base.parse_attribute (/<cim:MktGeneratingUnit.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MktGeneratingUnit;
             if (null == bucket)
@@ -131,9 +119,6 @@ define
 
             obj = Wires.parse_Line (context, sub);
             obj.cls = "MktLine";
-            /**
-             * 
-             */
             obj["TransmissionRightOfWay"] = base.parse_attribute (/<cim:MktLine.TransmissionRightOfWay\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MktLine;
             if (null == bucket)
@@ -172,13 +157,7 @@ define
 
             obj = Wires.parse_PowerTransformer (context, sub);
             obj.cls = "MktPowerTransformer";
-            /**
-             * 
-             */
             obj["EndBFlow"] = base.parse_attribute (/<cim:MktPowerTransformer.EndBFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["EndAFlow"] = base.parse_attribute (/<cim:MktPowerTransformer.EndAFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MktPowerTransformer;
             if (null == bucket)
@@ -278,9 +257,6 @@ define
              * Date and time journal entry was recorded.
              */
             obj["transactionDateTime"] = base.to_datetime (base.parse_element (/<cim:MarketLedgerEntry.transactionDateTime>([\s\S]*?)<\/cim:MarketLedgerEntry.transactionDateTime>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["MarketLedger"] = base.parse_attribute (/<cim:MarketLedgerEntry.MarketLedger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MarketLedgerEntry;
             if (null == bucket)
@@ -336,13 +312,7 @@ define
              * Previous line item charge amount.
              */
             obj["previousAmount"] = base.to_float (base.parse_element (/<cim:MarketInvoiceLineItem.previousAmount>([\s\S]*?)<\/cim:MarketInvoiceLineItem.previousAmount>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["MarketInvoice"] = base.parse_attribute (/<cim:MarketInvoiceLineItem.MarketInvoice\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ContainerMarketInvoiceLineItem"] = base.parse_attribute (/<cim:MarketInvoiceLineItem.ContainerMarketInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MarketInvoiceLineItem;
             if (null == bucket)
@@ -370,9 +340,6 @@ define
              * This is the end date/time of the element eligibility for the flowgate.
              */
             obj["endEffectiveDate"] = base.to_datetime (base.parse_element (/<cim:MktTerminal.endEffectiveDate>([\s\S]*?)<\/cim:MktTerminal.endEffectiveDate>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["Flowgate"] = base.parse_attribute (/<cim:MktTerminal.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MktTerminal;
             if (null == bucket)
@@ -438,9 +405,6 @@ define
 
             obj = Wires.parse_EnergyConsumer (context, sub);
             obj.cls = "MktEnergyConsumer";
-            /**
-             * 
-             */
             obj["RegisteredLoad"] = base.parse_attribute (/<cim:MktEnergyConsumer.RegisteredLoad\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MktEnergyConsumer;
             if (null == bucket)
@@ -460,9 +424,6 @@ define
 
             obj = Meas.parse_Measurement (context, sub);
             obj.cls = "MktMeasurement";
-            /**
-             * 
-             */
             obj["Pnode"] = base.parse_attribute (/<cim:MktMeasurement.Pnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * A measurement is made on the A side of a tie point

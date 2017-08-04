@@ -35,9 +35,6 @@ define
              * Usage of the associated wires.
              */
             obj["usage"] = base.parse_element (/<cim:WireSpacingInfo.usage>([\s\S]*?)<\/cim:WireSpacingInfo.usage>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["DuctBank"] = base.parse_attribute (/<cim:WireSpacingInfo.DuctBank\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.WireSpacingInfo;
             if (null == bucket)
@@ -476,9 +473,6 @@ define
              * Rated reactive power.
              */
             obj["ratedReactivePower"] = base.parse_element (/<cim:ShuntCompensatorInfo.ratedReactivePower>([\s\S]*?)<\/cim:ShuntCompensatorInfo.ratedReactivePower>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ShuntCompensatorControl"] = base.parse_attribute (/<cim:ShuntCompensatorInfo.ShuntCompensatorControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ShuntCompensatorInfo;
             if (null == bucket)

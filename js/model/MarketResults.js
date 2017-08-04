@@ -65,9 +65,6 @@ define
              * The total RUC capacity cost for this interval
              */
             obj["totalRucCost"] = base.to_float (base.parse_element (/<cim:MarketResults.totalRucCost>([\s\S]*?)<\/cim:MarketResults.totalRucCost>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["EnergyMarket"] = base.parse_attribute (/<cim:MarketResults.EnergyMarket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MarketResults;
             if (null == bucket)
@@ -111,13 +108,7 @@ define
             obj["updateUser"] = base.parse_element (/<cim:PnodeResults.updateUser>([\s\S]*?)<\/cim:PnodeResults.updateUser>/g, sub, context, true);
             obj["updateTimeStamp"] = base.to_datetime (base.parse_element (/<cim:PnodeResults.updateTimeStamp>([\s\S]*?)<\/cim:PnodeResults.updateTimeStamp>/g, sub, context, true));
             obj["updateType"] = base.parse_element (/<cim:PnodeResults.updateType>([\s\S]*?)<\/cim:PnodeResults.updateType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Pnode"] = base.parse_attribute (/<cim:PnodeResults.Pnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["PnodeClearing"] = base.parse_attribute (/<cim:PnodeResults.PnodeClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.PnodeResults;
             if (null == bucket)
@@ -183,9 +174,6 @@ define
              * Self schedule breakdown type.
              */
             obj["selfSchedType"] = base.parse_element (/<cim:SelfScheduleBreakdown.selfSchedType>([\s\S]*?)<\/cim:SelfScheduleBreakdown.selfSchedType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ResourceAwardInstruction"] = base.parse_attribute (/<cim:SelfScheduleBreakdown.ResourceAwardInstruction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.SelfScheduleBreakdown;
             if (null == bucket)
@@ -216,13 +204,7 @@ define
              * Attribute Usage: Information purposes - Output of LPA engine.
              */
             obj["ehvLossMW"] = base.to_float (base.parse_element (/<cim:ExPostLossResults.ehvLossMW>([\s\S]*?)<\/cim:ExPostLossResults.ehvLossMW>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["ExPostLoss"] = base.parse_attribute (/<cim:ExPostLossResults.ExPostLoss\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["SubControlArea"] = base.parse_attribute (/<cim:ExPostLossResults.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ExPostLossResults;
             if (null == bucket)
@@ -303,13 +285,7 @@ define
              * resource energy ramping upper limit
              */
             obj["upperLimit"] = base.to_float (base.parse_element (/<cim:ResourceDispatchResults.upperLimit>([\s\S]*?)<\/cim:ResourceDispatchResults.upperLimit>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:ResourceDispatchResults.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ResourceClearing"] = base.parse_attribute (/<cim:ResourceDispatchResults.ResourceClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ResourceDispatchResults;
             if (null == bucket)
@@ -416,9 +392,6 @@ define
              * Output results from the case identifying the reason the unit was committed by the software.
              */
             obj["unitStatus"] = base.parse_element (/<cim:DotInstruction.unitStatus>([\s\S]*?)<\/cim:DotInstruction.unitStatus>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:DotInstruction.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.DotInstruction;
             if (null == bucket)
@@ -448,17 +421,8 @@ define
              * Used to show the Margin % result of the Impact test
              */
             obj["marginPercent"] = base.parse_element (/<cim:MPMTestResults.marginPercent>([\s\S]*?)<\/cim:MPMTestResults.marginPercent>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MPMClearing"] = base.parse_attribute (/<cim:MPMTestResults.MPMClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["AggregatedPnode"] = base.parse_attribute (/<cim:MPMTestResults.AggregatedPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MPMTestCategory"] = base.parse_attribute (/<cim:MPMTestResults.MPMTestCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MPMTestResults;
             if (null == bucket)
@@ -485,9 +449,6 @@ define
             obj["updateUser"] = base.parse_element (/<cim:RMROperatorInput.updateUser>([\s\S]*?)<\/cim:RMROperatorInput.updateUser>/g, sub, context, true);
             obj["updateTimeStamp"] = base.to_datetime (base.parse_element (/<cim:RMROperatorInput.updateTimeStamp>([\s\S]*?)<\/cim:RMROperatorInput.updateTimeStamp>/g, sub, context, true));
             obj["updateType"] = base.parse_element (/<cim:RMROperatorInput.updateType>([\s\S]*?)<\/cim:RMROperatorInput.updateType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:RMROperatorInput.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.RMROperatorInput;
             if (null == bucket)
@@ -627,13 +588,7 @@ define
             obj["updateTimeStamp"] = base.to_datetime (base.parse_element (/<cim:ResourceAwardInstruction.updateTimeStamp>([\s\S]*?)<\/cim:ResourceAwardInstruction.updateTimeStamp>/g, sub, context, true));
             obj["updateType"] = base.parse_element (/<cim:ResourceAwardInstruction.updateType>([\s\S]*?)<\/cim:ResourceAwardInstruction.updateType>/g, sub, context, true);
             obj["updateUser"] = base.parse_element (/<cim:ResourceAwardInstruction.updateUser>([\s\S]*?)<\/cim:ResourceAwardInstruction.updateUser>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:ResourceAwardInstruction.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MarketProduct"] = base.parse_attribute (/<cim:ResourceAwardInstruction.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ResourceAwardInstruction;
             if (null == bucket)
@@ -669,9 +624,6 @@ define
             obj["updateUser"] = base.parse_element (/<cim:LoadFollowingOperatorInput.updateUser>([\s\S]*?)<\/cim:LoadFollowingOperatorInput.updateUser>/g, sub, context, true);
             obj["updateTimeStamp"] = base.to_datetime (base.parse_element (/<cim:LoadFollowingOperatorInput.updateTimeStamp>([\s\S]*?)<\/cim:LoadFollowingOperatorInput.updateTimeStamp>/g, sub, context, true));
             obj["updateType"] = base.parse_element (/<cim:LoadFollowingOperatorInput.updateType>([\s\S]*?)<\/cim:LoadFollowingOperatorInput.updateType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:LoadFollowingOperatorInput.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.LoadFollowingOperatorInput;
             if (null == bucket)
@@ -696,13 +648,7 @@ define
              * 'N' - not applicable
              */
             obj["resourceStatus"] = base.parse_element (/<cim:MPMResourceStatus.resourceStatus>([\s\S]*?)<\/cim:MPMResourceStatus.resourceStatus>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MPMTestCategory"] = base.parse_attribute (/<cim:MPMResourceStatus.MPMTestCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:MPMResourceStatus.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MPMResourceStatus;
             if (null == bucket)
@@ -733,9 +679,6 @@ define
              * Mitigated bid segment MW value
              */
             obj["segmentMW"] = base.to_float (base.parse_element (/<cim:MitigatedBidSegment.segmentMW>([\s\S]*?)<\/cim:MitigatedBidSegment.segmentMW>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["Bid"] = base.parse_attribute (/<cim:MitigatedBidSegment.Bid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MitigatedBidSegment;
             if (null == bucket)
@@ -809,13 +752,7 @@ define
             obj["calcLoadFollowingMW"] = base.to_float (base.parse_element (/<cim:ResourceLoadFollowingInst.calcLoadFollowingMW>([\s\S]*?)<\/cim:ResourceLoadFollowingInst.calcLoadFollowingMW>/g, sub, context, true));
             obj["dispWindowLowLimt"] = base.to_float (base.parse_element (/<cim:ResourceLoadFollowingInst.dispWindowLowLimt>([\s\S]*?)<\/cim:ResourceLoadFollowingInst.dispWindowLowLimt>/g, sub, context, true));
             obj["dispWindowHighLimt"] = base.to_float (base.parse_element (/<cim:ResourceLoadFollowingInst.dispWindowHighLimt>([\s\S]*?)<\/cim:ResourceLoadFollowingInst.dispWindowHighLimt>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:ResourceLoadFollowingInst.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ResourceClearing"] = base.parse_attribute (/<cim:ResourceLoadFollowingInst.ResourceClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ResourceLoadFollowingInst;
             if (null == bucket)
@@ -878,21 +815,9 @@ define
             obj = base.parse_Element (context, sub);
             obj.cls = "LossClearingResults";
             obj["lossMW"] = base.to_float (base.parse_element (/<cim:LossClearingResults.lossMW>([\s\S]*?)<\/cim:LossClearingResults.lossMW>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["LossClearing"] = base.parse_attribute (/<cim:LossClearingResults.LossClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RUCZone"] = base.parse_attribute (/<cim:LossClearingResults.RUCZone\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["SubControlArea"] = base.parse_attribute (/<cim:LossClearingResults.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["HostControlArea"] = base.parse_attribute (/<cim:LossClearingResults.HostControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.LossClearingResults;
             if (null == bucket)
@@ -944,9 +869,6 @@ define
             obj["updateTimeStamp"] = base.to_datetime (base.parse_element (/<cim:RUCAwardInstruction.updateTimeStamp>([\s\S]*?)<\/cim:RUCAwardInstruction.updateTimeStamp>/g, sub, context, true));
             obj["updateType"] = base.parse_element (/<cim:RUCAwardInstruction.updateType>([\s\S]*?)<\/cim:RUCAwardInstruction.updateType>/g, sub, context, true);
             obj["updateUser"] = base.parse_element (/<cim:RUCAwardInstruction.updateUser>([\s\S]*?)<\/cim:RUCAwardInstruction.updateUser>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:RUCAwardInstruction.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.RUCAwardInstruction;
             if (null == bucket)
@@ -1020,9 +942,6 @@ define
              * The UOM for the current value of the Bill Determinant.
              */
             obj["unitOfMeasure"] = base.parse_element (/<cim:BillDeterminant.unitOfMeasure>([\s\S]*?)<\/cim:BillDeterminant.unitOfMeasure>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ChargeProfile"] = base.parse_attribute (/<cim:BillDeterminant.ChargeProfile\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.BillDeterminant;
             if (null == bucket)
@@ -1072,13 +991,7 @@ define
              * The price of the market transaction
              */
             obj["clearedPrice"] = base.to_float (base.parse_element (/<cim:TransactionBidResults.clearedPrice>([\s\S]*?)<\/cim:TransactionBidResults.clearedPrice>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["TransactionBidClearing"] = base.parse_attribute (/<cim:TransactionBidResults.TransactionBidClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TransactionBid"] = base.parse_attribute (/<cim:TransactionBidResults.TransactionBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TransactionBidResults;
             if (null == bucket)
@@ -1098,9 +1011,6 @@ define
 
             obj = MarketPlan.parse_MarketFactors (context, sub);
             obj.cls = "AncillaryServiceClearing";
-            /**
-             * 
-             */
             obj["MarketCaseClearing"] = base.parse_attribute (/<cim:AncillaryServiceClearing.MarketCaseClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.AncillaryServiceClearing;
             if (null == bucket)
@@ -1134,13 +1044,7 @@ define
              * Attribute Usage: hourly interchange value for the specific area
              */
             obj["totalNetInterchange"] = base.to_float (base.parse_element (/<cim:GeneralClearingResults.totalNetInterchange>([\s\S]*?)<\/cim:GeneralClearingResults.totalNetInterchange>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["GeneralClearing"] = base.parse_attribute (/<cim:GeneralClearingResults.GeneralClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["SubControlArea"] = base.parse_attribute (/<cim:GeneralClearingResults.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.GeneralClearingResults;
             if (null == bucket)
@@ -1195,9 +1099,6 @@ define
             obj["updateTimeStamp"] = base.to_datetime (base.parse_element (/<cim:Commitments.updateTimeStamp>([\s\S]*?)<\/cim:Commitments.updateTimeStamp>/g, sub, context, true));
             obj["updateType"] = base.parse_element (/<cim:Commitments.updateType>([\s\S]*?)<\/cim:Commitments.updateType>/g, sub, context, true);
             obj["updateUser"] = base.parse_element (/<cim:Commitments.updateUser>([\s\S]*?)<\/cim:Commitments.updateUser>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:Commitments.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Commitments;
             if (null == bucket)
@@ -1217,9 +1118,6 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "MitigatedBid";
-            /**
-             * 
-             */
             obj["Bid"] = base.parse_attribute (/<cim:MitigatedBid.Bid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MitigatedBid;
             if (null == bucket)
@@ -1373,9 +1271,6 @@ define
              * For example, charge customer, bill customer, matching AR/AP, or bill determinant
              */
             obj["transactionType"] = base.parse_element (/<cim:PassThroughBill.transactionType>([\s\S]*?)<\/cim:PassThroughBill.transactionType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MarketStatementLineItem"] = base.parse_attribute (/<cim:PassThroughBill.MarketStatementLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.PassThroughBill;
             if (null == bucket)
@@ -1433,13 +1328,7 @@ define
              * Status of equipment
              */
             obj["status"] = base.parse_element (/<cim:ExPostResourceResults.status>([\s\S]*?)<\/cim:ExPostResourceResults.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ExPostResource"] = base.parse_attribute (/<cim:ExPostResourceResults.ExPostResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:ExPostResourceResults.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ExPostResourceResults;
             if (null == bucket)
@@ -1482,9 +1371,6 @@ define
              * The trade date on which the settlement is run.
              */
             obj["tradeDate"] = base.to_datetime (base.parse_element (/<cim:Settlement.tradeDate>([\s\S]*?)<\/cim:Settlement.tradeDate>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["EnergyMarket"] = base.parse_attribute (/<cim:Settlement.EnergyMarket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Settlement;
             if (null == bucket)
@@ -1520,13 +1406,7 @@ define
              * Attribute Usage: Result of the Security, Pricing, and Dispatch(SPD)/Simultaneous Feasibility Test(SFT) software and denotes the hourly loss component of LMP for each pricing node.
              */
             obj["lossLMP"] = base.to_float (base.parse_element (/<cim:ExPostPricingResults.lossLMP>([\s\S]*?)<\/cim:ExPostPricingResults.lossLMP>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["ExPostPricing"] = base.parse_attribute (/<cim:ExPostPricingResults.ExPostPricing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Pnode"] = base.parse_attribute (/<cim:ExPostPricingResults.Pnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ExPostPricingResults;
             if (null == bucket)
@@ -1579,9 +1459,6 @@ define
             obj["updateTimeStamp"] = base.to_datetime (base.parse_element (/<cim:Instructions.updateTimeStamp>([\s\S]*?)<\/cim:Instructions.updateTimeStamp>/g, sub, context, true));
             obj["updateType"] = base.parse_element (/<cim:Instructions.updateType>([\s\S]*?)<\/cim:Instructions.updateType>/g, sub, context, true);
             obj["updateUser"] = base.parse_element (/<cim:Instructions.updateUser>([\s\S]*?)<\/cim:Instructions.updateUser>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:Instructions.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Instructions;
             if (null == bucket)
@@ -1627,13 +1504,7 @@ define
             obj = base.parse_Element (context, sub);
             obj.cls = "ExPostMarketRegionResults";
             obj["exPostClearedPrice"] = base.to_float (base.parse_element (/<cim:ExPostMarketRegionResults.exPostClearedPrice>([\s\S]*?)<\/cim:ExPostMarketRegionResults.exPostClearedPrice>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["MarketRegion"] = base.parse_attribute (/<cim:ExPostMarketRegionResults.MarketRegion\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ExPostMarketRegion"] = base.parse_attribute (/<cim:ExPostMarketRegionResults.ExPostMarketRegion\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ExPostMarketRegionResults;
             if (null == bucket)
@@ -1653,9 +1524,6 @@ define
 
             obj = MarketPlan.parse_MarketFactors (context, sub);
             obj.cls = "ExPostMarketRegion";
-            /**
-             * 
-             */
             obj["ExPostMarketRegionResults"] = base.parse_attribute (/<cim:ExPostMarketRegion.ExPostMarketRegionResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ExPostMarketRegion;
             if (null == bucket)
@@ -1692,17 +1560,8 @@ define
              * The unit of measure applied to the value attribute of the profile data.
              */
             obj["unitOfMeasure"] = base.parse_element (/<cim:ChargeProfile.unitOfMeasure>([\s\S]*?)<\/cim:ChargeProfile.unitOfMeasure>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["BillDeterminant"] = base.parse_attribute (/<cim:ChargeProfile.BillDeterminant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["PassTroughBill"] = base.parse_attribute (/<cim:ChargeProfile.PassTroughBill\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Bid"] = base.parse_attribute (/<cim:ChargeProfile.Bid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ChargeProfile;
             if (null == bucket)
@@ -1740,9 +1599,6 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "RMRDetermination";
-            /**
-             * 
-             */
             obj["Bid"] = base.parse_attribute (/<cim:RMRDetermination.Bid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.RMRDetermination;
             if (null == bucket)
@@ -1845,17 +1701,8 @@ define
              * Updated user.
              */
             obj["updateUser"] = base.parse_element (/<cim:ConstraintResults.updateUser>([\s\S]*?)<\/cim:ConstraintResults.updateUser>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MktContingency"] = base.parse_attribute (/<cim:ConstraintResults.MktContingency\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ConstraintClearing"] = base.parse_attribute (/<cim:ConstraintResults.ConstraintClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Flowgate"] = base.parse_attribute (/<cim:ConstraintResults.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ConstraintResults;
             if (null == bucket)
@@ -1934,17 +1781,8 @@ define
              * Aof AS, selfScheduleMW = AS Self-Provided
              */
             obj["selfScheduleMW"] = base.to_float (base.parse_element (/<cim:MarketRegionResults.selfScheduleMW>([\s\S]*?)<\/cim:MarketRegionResults.selfScheduleMW>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["MarketProduct"] = base.parse_attribute (/<cim:MarketRegionResults.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MarketRegion"] = base.parse_attribute (/<cim:MarketRegionResults.MarketRegion\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["AncillaryServiceClearing"] = base.parse_attribute (/<cim:MarketRegionResults.AncillaryServiceClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MarketRegionResults;
             if (null == bucket)
@@ -1986,9 +1824,6 @@ define
             obj["updateUser"] = base.parse_element (/<cim:DopInstruction.updateUser>([\s\S]*?)<\/cim:DopInstruction.updateUser>/g, sub, context, true);
             obj["updateTimeStamp"] = base.to_datetime (base.parse_element (/<cim:DopInstruction.updateTimeStamp>([\s\S]*?)<\/cim:DopInstruction.updateTimeStamp>/g, sub, context, true));
             obj["updateType"] = base.parse_element (/<cim:DopInstruction.updateType>([\s\S]*?)<\/cim:DopInstruction.updateType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredResouce"] = base.parse_attribute (/<cim:DopInstruction.RegisteredResouce\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.DopInstruction;
             if (null == bucket)
@@ -2098,17 +1933,8 @@ define
              * Net ISO settlement quantity.
              */
             obj["netISOQuantity"] = base.to_float (base.parse_element (/<cim:MarketStatementLineItem.netISOQuantity>([\s\S]*?)<\/cim:MarketStatementLineItem.netISOQuantity>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["MarketStatement"] = base.parse_attribute (/<cim:MarketStatementLineItem.MarketStatement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ContainerMarketStatementLineItem"] = base.parse_attribute (/<cim:MarketStatementLineItem.ContainerMarketStatementLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["PassThroughBill"] = base.parse_attribute (/<cim:MarketStatementLineItem.PassThroughBill\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MarketStatementLineItem;
             if (null == bucket)
@@ -2159,13 +1985,7 @@ define
              * The value of an interval given a profile type (amount, price, or quantity), subject to the UOM.
              */
             obj["value"] = base.to_float (base.parse_element (/<cim:ChargeProfileData.value>([\s\S]*?)<\/cim:ChargeProfileData.value>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["BillDeterminant"] = base.parse_attribute (/<cim:ChargeProfileData.BillDeterminant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ChargeProfile"] = base.parse_attribute (/<cim:ChargeProfileData.ChargeProfile\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ChargeProfileData;
             if (null == bucket)

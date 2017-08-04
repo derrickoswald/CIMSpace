@@ -27,6 +27,10 @@ define
              * The terminal to which this tie flow belongs.
              */
             obj["Terminal"] = base.parse_attribute (/<cim:TieFlow.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            /**
+             * The control area of the tie flows.
+             */
+            obj["ControlArea"] = base.parse_attribute (/<cim:TieFlow.ControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TieFlow;
             if (null == bucket)
                 context.parsed.TieFlow = bucket = {};
@@ -46,6 +50,10 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "ControlAreaGeneratingUnit";
+            /**
+             * The parent control area for the generating unit specifications.
+             */
+            obj["ControlArea"] = base.parse_attribute (/<cim:ControlAreaGeneratingUnit.ControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * The generating unit specified for this control area.
              * Note that a control area should include a GeneratingUnit only once.
@@ -105,6 +113,10 @@ define
              */
             obj["priority"] = base.parse_element (/<cim:AltTieMeas.priority>([\s\S]*?)<\/cim:AltTieMeas.priority>/g, sub, context, true);
             /**
+             * The tie flow of the alternate measurements.
+             */
+            obj["TieFlow"] = base.parse_attribute (/<cim:AltTieMeas.TieFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            /**
              * The specific analog value used as a source.
              */
             obj["AnalogValue"] = base.parse_attribute (/<cim:AltTieMeas.AnalogValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -135,6 +147,10 @@ define
              * The specific analog value used as a source.
              */
             obj["AnalogValue"] = base.parse_attribute (/<cim:AltGeneratingUnitMeas.AnalogValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            /**
+             * The control aread generating unit to which the prioritized measurement assignment is applied.
+             */
+            obj["ControlAreaGeneratingUnit"] = base.parse_attribute (/<cim:AltGeneratingUnitMeas.ControlAreaGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.AltGeneratingUnitMeas;
             if (null == bucket)
                 context.parsed.AltGeneratingUnitMeas = bucket = {};

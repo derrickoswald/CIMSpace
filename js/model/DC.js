@@ -22,9 +22,6 @@ define
              * TopologicalNode.
              */
             obj["DCTopologicalNode"] = base.parse_attribute (/<cim:DCNode.DCTopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["DCEquipmentContainer"] = base.parse_attribute (/<cim:DCNode.DCEquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.DCNode;
             if (null == bucket)
@@ -260,9 +257,6 @@ define
 
             obj = Core.parse_ACDCTerminal (context, sub);
             obj.cls = "DCBaseTerminal";
-            /**
-             * 
-             */
             obj["DCNode"] = base.parse_attribute (/<cim:DCBaseTerminal.DCNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * See association end Terminal.
@@ -614,9 +608,6 @@ define
 
             obj = parse_DCEquipmentContainer (context, sub);
             obj.cls = "DCLine";
-            /**
-             * 
-             */
             obj["Region"] = base.parse_attribute (/<cim:DCLine.Region\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.DCLine;
             if (null == bucket)
@@ -667,9 +658,6 @@ define
              * Represents the normal network polarity condition.
              */
             obj["polarity"] = base.parse_element (/<cim:ACDCConverterDCTerminal.polarity>([\s\S]*?)<\/cim:ACDCConverterDCTerminal.polarity>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["DCConductingEquipment"] = base.parse_attribute (/<cim:ACDCConverterDCTerminal.DCConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ACDCConverterDCTerminal;
             if (null == bucket)
@@ -757,6 +745,7 @@ define
             obj = parse_DCEquipmentContainer (context, sub);
             obj.cls = "DCConverterUnit";
             obj["operationMode"] = base.parse_element (/<cim:DCConverterUnit.operationMode>([\s\S]*?)<\/cim:DCConverterUnit.operationMode>/g, sub, context, true);
+            obj["Substation"] = base.parse_attribute (/<cim:DCConverterUnit.Substation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.DCConverterUnit;
             if (null == bucket)
                 context.parsed.DCConverterUnit = bucket = {};
@@ -859,9 +848,6 @@ define
 
             obj = parse_DCBaseTerminal (context, sub);
             obj.cls = "DCTerminal";
-            /**
-             * 
-             */
             obj["DCConductingEquipment"] = base.parse_attribute (/<cim:DCTerminal.DCConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.DCTerminal;
             if (null == bucket)

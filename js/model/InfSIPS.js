@@ -18,13 +18,7 @@ define
 
             obj = parse_GateInputPin (context, sub);
             obj.cls = "PinMeasurement";
-            /**
-             * 
-             */
             obj["Measurement"] = base.parse_attribute (/<cim:PinMeasurement.Measurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MeasurementCalculator"] = base.parse_attribute (/<cim:PinMeasurement.MeasurementCalculator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.PinMeasurement;
             if (null == bucket)
@@ -70,9 +64,6 @@ define
              * The threshold value that should be used for compare with the input value.
              */
             obj["thresholdValue"] = base.to_float (base.parse_element (/<cim:GateInputPin.thresholdValue>([\s\S]*?)<\/cim:GateInputPin.thresholdValue>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["Gate"] = base.parse_attribute (/<cim:GateInputPin.Gate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.GateInputPin;
             if (null == bucket)
@@ -105,9 +96,6 @@ define
              * The default/normal value used when other active signal/values are missing.
              */
             obj["normalArmed"] = base.to_boolean (base.parse_element (/<cim:RemedialActionScheme.normalArmed>([\s\S]*?)<\/cim:RemedialActionScheme.normalArmed>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["GateArmed"] = base.parse_attribute (/<cim:RemedialActionScheme.GateArmed\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.RemedialActionScheme;
             if (null == bucket)
@@ -141,25 +129,10 @@ define
              * A trigger with the highest priority will trigger first.
              */
             obj["priority"] = base.parse_element (/<cim:StageTrigger.priority>([\s\S]*?)<\/cim:StageTrigger.priority>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Stage"] = base.parse_attribute (/<cim:StageTrigger.Stage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["GateTrigger"] = base.parse_attribute (/<cim:StageTrigger.GateTrigger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["GateArmed"] = base.parse_attribute (/<cim:StageTrigger.GateArmed\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ProtectiveActionCollection"] = base.parse_attribute (/<cim:StageTrigger.ProtectiveActionCollection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["GateComCondition"] = base.parse_attribute (/<cim:StageTrigger.GateComCondition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.StageTrigger;
             if (null == bucket)
@@ -188,21 +161,9 @@ define
              * The default/normal value used when other active signal/values are missing.
              */
             obj["normalEnabled"] = base.to_boolean (base.parse_element (/<cim:ProtectiveAction.normalEnabled>([\s\S]*?)<\/cim:ProtectiveAction.normalEnabled>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["ProtectionEquipment"] = base.parse_attribute (/<cim:ProtectiveAction.ProtectionEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["GateComCondition"] = base.parse_attribute (/<cim:ProtectiveAction.GateComCondition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ProtectiveActionCollection"] = base.parse_attribute (/<cim:ProtectiveAction.ProtectiveActionCollection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["GateEnabledCondition"] = base.parse_attribute (/<cim:ProtectiveAction.GateEnabledCondition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ProtectiveAction;
             if (null == bucket)
@@ -232,13 +193,7 @@ define
              * The order is not relevant (e.g. summation).
              */
             obj["order"] = base.parse_element (/<cim:MeasurementCalculatorInput.order>([\s\S]*?)<\/cim:MeasurementCalculatorInput.order>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MeasurementCalculator"] = base.parse_attribute (/<cim:MeasurementCalculatorInput.MeasurementCalculator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Measurement"] = base.parse_attribute (/<cim:MeasurementCalculatorInput.Measurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MeasurementCalculatorInput;
             if (null == bucket)
@@ -262,9 +217,6 @@ define
              * The compare operation done on the equipment.
              */
             obj["kind"] = base.parse_element (/<cim:PinEquipment.kind>([\s\S]*?)<\/cim:PinEquipment.kind>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Equipment"] = base.parse_attribute (/<cim:PinEquipment.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.PinEquipment;
             if (null == bucket)
@@ -395,9 +347,6 @@ define
              * The value has the units appropriate to the mode attribute. The protective action does not change the mode attribute.
              */
             obj["targetValue"] = base.to_float (base.parse_element (/<cim:ProtectiveActionRegulation.targetValue>([\s\S]*?)<\/cim:ProtectiveActionRegulation.targetValue>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["RegulatingControl"] = base.parse_attribute (/<cim:ProtectiveActionRegulation.RegulatingControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ProtectiveActionRegulation;
             if (null == bucket)
@@ -417,9 +366,6 @@ define
 
             obj = parse_GateInputPin (context, sub);
             obj.cls = "PinGate";
-            /**
-             * 
-             */
             obj["GateOutput"] = base.parse_attribute (/<cim:PinGate.GateOutput\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.PinGate;
             if (null == bucket)
@@ -500,9 +446,6 @@ define
              * A stage with higher priority needs be activated before a lower stage can be activated.
              */
             obj["priority"] = base.parse_element (/<cim:Stage.priority>([\s\S]*?)<\/cim:Stage.priority>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RemedialActionScheme"] = base.parse_attribute (/<cim:Stage.RemedialActionScheme\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Stage;
             if (null == bucket)
@@ -627,9 +570,6 @@ define
              * The compare operation done on the terminal.
              */
             obj["kind"] = base.parse_element (/<cim:PinTerminal.kind>([\s\S]*?)<\/cim:PinTerminal.kind>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Terminal"] = base.parse_attribute (/<cim:PinTerminal.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.PinTerminal;
             if (null == bucket)
@@ -653,9 +593,6 @@ define
              * The compare operation done on the branch group.
              */
             obj["kind"] = base.parse_element (/<cim:PinBranchGroup.kind>([\s\S]*?)<\/cim:PinBranchGroup.kind>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["BranchGroup"] = base.parse_attribute (/<cim:PinBranchGroup.BranchGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.PinBranchGroup;
             if (null == bucket)
@@ -698,17 +635,8 @@ define
              * The adjustment is given by a new active value.
              */
             obj["setValue"] = base.to_float (base.parse_element (/<cim:ProtectiveActionAdjustment.setValue>([\s\S]*?)<\/cim:ProtectiveActionAdjustment.setValue>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["Measurement"] = base.parse_attribute (/<cim:ProtectiveActionAdjustment.Measurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ConductingEquipment"] = base.parse_attribute (/<cim:ProtectiveActionAdjustment.ConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["DCConductingEquipment"] = base.parse_attribute (/<cim:ProtectiveActionAdjustment.DCConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ProtectiveActionAdjustment;
             if (null == bucket)
@@ -728,13 +656,7 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "TriggerCondition";
-            /**
-             * 
-             */
             obj["RemedialActionScheme"] = base.parse_attribute (/<cim:TriggerCondition.RemedialActionScheme\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["GateTrigger"] = base.parse_attribute (/<cim:TriggerCondition.GateTrigger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TriggerCondition;
             if (null == bucket)
@@ -758,9 +680,6 @@ define
              * If true the equipment is put in-service, otherwise out-of-service.
              */
             obj["inService"] = base.to_boolean (base.parse_element (/<cim:ProtectiveActionEquipment.inService>([\s\S]*?)<\/cim:ProtectiveActionEquipment.inService>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["Equipment"] = base.parse_attribute (/<cim:ProtectiveActionEquipment.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ProtectiveActionEquipment;
             if (null == bucket)

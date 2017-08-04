@@ -43,9 +43,6 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "ProductBid";
-            /**
-             * 
-             */
             obj["MarketProduct"] = base.parse_attribute (/<cim:ProductBid.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * A bid comprises one or more product bids of market products
@@ -86,9 +83,6 @@ define
              * Load Following MW Positive for follow-up and negative for follow-down
              */
             obj["loadFollowingMW"] = base.to_float (base.parse_element (/<cim:LoadFollowingInst.loadFollowingMW>([\s\S]*?)<\/cim:LoadFollowingInst.loadFollowingMW>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:LoadFollowingInst.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.LoadFollowingInst;
             if (null == bucket)
@@ -111,9 +105,6 @@ define
             obj["sequence"] = base.parse_element (/<cim:AttributeProperty.sequence>([\s\S]*?)<\/cim:AttributeProperty.sequence>/g, sub, context, true);
             obj["propertyName"] = base.parse_element (/<cim:AttributeProperty.propertyName>([\s\S]*?)<\/cim:AttributeProperty.propertyName>/g, sub, context, true);
             obj["propertyValue"] = base.parse_element (/<cim:AttributeProperty.propertyValue>([\s\S]*?)<\/cim:AttributeProperty.propertyValue>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MktUserAttribute"] = base.parse_attribute (/<cim:AttributeProperty.MktUserAttribute\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.AttributeProperty;
             if (null == bucket)
@@ -158,9 +149,6 @@ define
 
             obj = Core.parse_Curve (context, sub);
             obj.cls = "LoadReductionPriceCurve";
-            /**
-             * 
-             */
             obj["LoadBid"] = base.parse_attribute (/<cim:LoadReductionPriceCurve.LoadBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.LoadReductionPriceCurve;
             if (null == bucket)
@@ -180,9 +168,6 @@ define
 
             obj = Core.parse_RegularIntervalSchedule (context, sub);
             obj.cls = "BidHourlyProductSchedule";
-            /**
-             * 
-             */
             obj["ProductBid"] = base.parse_attribute (/<cim:BidHourlyProductSchedule.ProductBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.BidHourlyProductSchedule;
             if (null == bucket)
@@ -203,9 +188,6 @@ define
 
             obj = Core.parse_Curve (context, sub);
             obj.cls = "StartUpTimeCurve";
-            /**
-             * 
-             */
             obj["RegisteredGenerator"] = base.parse_attribute (/<cim:StartUpTimeCurve.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.StartUpTimeCurve;
             if (null == bucket)
@@ -284,13 +266,7 @@ define
              * The fixed cost associated with committing a load reduction.
              */
             obj["shutdownCost"] = base.parse_element (/<cim:LoadBid.shutdownCost>([\s\S]*?)<\/cim:LoadBid.shutdownCost>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["AreaLoadBid"] = base.parse_attribute (/<cim:LoadBid.AreaLoadBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredLoad"] = base.parse_attribute (/<cim:LoadBid.RegisteredLoad\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.LoadBid;
             if (null == bucket)
@@ -370,25 +346,10 @@ define
              * A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
              */
             obj["wheelingTransactionReference"] = base.parse_element (/<cim:BidSelfSched.wheelingTransactionReference>([\s\S]*?)<\/cim:BidSelfSched.wheelingTransactionReference>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ProductBid"] = base.parse_attribute (/<cim:BidSelfSched.ProductBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TransmissionContractRight"] = base.parse_attribute (/<cim:BidSelfSched.TransmissionContractRight\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["HostControlArea"] = base.parse_attribute (/<cim:BidSelfSched.HostControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["AdjacentCASet"] = base.parse_attribute (/<cim:BidSelfSched.AdjacentCASet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["SubControlArea"] = base.parse_attribute (/<cim:BidSelfSched.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.BidSelfSched;
             if (null == bucket)
@@ -426,13 +387,7 @@ define
              * 'O' - original
              */
             obj["mitigationStatus"] = base.parse_element (/<cim:BidPriceSchedule.mitigationStatus>([\s\S]*?)<\/cim:BidPriceSchedule.mitigationStatus>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["BidPriceCurve"] = base.parse_attribute (/<cim:BidPriceSchedule.BidPriceCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ProductBid"] = base.parse_attribute (/<cim:BidPriceSchedule.ProductBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.BidPriceSchedule;
             if (null == bucket)
@@ -601,9 +556,6 @@ define
              * End of the time interval n which bid is valid (yyyy-mm-dd hh24: mi: ss)
              */
             obj["timeIntervalEnd"] = base.to_datetime (base.parse_element (/<cim:BidDistributionFactor.timeIntervalEnd>([\s\S]*?)<\/cim:BidDistributionFactor.timeIntervalEnd>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["ProductBid"] = base.parse_attribute (/<cim:BidDistributionFactor.ProductBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.BidDistributionFactor;
             if (null == bucket)
@@ -689,9 +641,6 @@ define
              * Timestamp of logged error/warning message
              */
             obj["logTimeStamp"] = base.to_datetime (base.parse_element (/<cim:TradeError.logTimeStamp>([\s\S]*?)<\/cim:TradeError.logTimeStamp>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["Trade"] = base.parse_attribute (/<cim:TradeError.Trade\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TradeError;
             if (null == bucket)
@@ -786,21 +735,9 @@ define
              * The market type, DAM or RTM.
              */
             obj["marketType"] = base.parse_element (/<cim:Bid.marketType>([\s\S]*?)<\/cim:Bid.marketType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ActionRequest"] = base.parse_attribute (/<cim:Bid.ActionRequest\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MarketParticipant"] = base.parse_attribute (/<cim:Bid.MarketParticipant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["EnergyMarket"] = base.parse_attribute (/<cim:Bid.EnergyMarket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["SchedulingCoordinator"] = base.parse_attribute (/<cim:Bid.SchedulingCoordinator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Bid;
             if (null == bucket)
@@ -873,37 +810,13 @@ define
             obj["tradeStatus"] = base.parse_element (/<cim:Trade.tradeStatus>([\s\S]*?)<\/cim:Trade.tradeStatus>/g, sub, context, true);
             obj["updateTimeStamp"] = base.to_datetime (base.parse_element (/<cim:Trade.updateTimeStamp>([\s\S]*?)<\/cim:Trade.updateTimeStamp>/g, sub, context, true));
             obj["updateUser"] = base.parse_element (/<cim:Trade.updateUser>([\s\S]*?)<\/cim:Trade.updateUser>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TradeProduct"] = base.parse_attribute (/<cim:Trade.TradeProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["submitFromSchedulingCoordinator"] = base.parse_attribute (/<cim:Trade.submitFromSchedulingCoordinator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ActionRequest"] = base.parse_attribute (/<cim:Trade.ActionRequest\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["To_SC"] = base.parse_attribute (/<cim:Trade.To_SC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Pnode"] = base.parse_attribute (/<cim:Trade.Pnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["submitToSchedulingCoordinator"] = base.parse_attribute (/<cim:Trade.submitToSchedulingCoordinator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredGenerator"] = base.parse_attribute (/<cim:Trade.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["From_SC"] = base.parse_attribute (/<cim:Trade.From_SC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Trade;
             if (null == bucket)
@@ -943,9 +856,6 @@ define
             obj["logTimeStamp"] = base.to_datetime (base.parse_element (/<cim:BidError.logTimeStamp>([\s\S]*?)<\/cim:BidError.logTimeStamp>/g, sub, context, true));
             obj["componentType"] = base.parse_element (/<cim:BidError.componentType>([\s\S]*?)<\/cim:BidError.componentType>/g, sub, context, true);
             obj["msgLevel"] = base.parse_element (/<cim:BidError.msgLevel>([\s\S]*?)<\/cim:BidError.msgLevel>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MarketProduct"] = base.parse_attribute (/<cim:BidError.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.BidError;
             if (null == bucket)
@@ -1009,9 +919,6 @@ define
              * Part of the Composite key that downstream app uses to match the instruction
              */
             obj["passIndicator"] = base.parse_element (/<cim:InterTieDispatchResponse.passIndicator>([\s\S]*?)<\/cim:InterTieDispatchResponse.passIndicator>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredInterTie"] = base.parse_attribute (/<cim:InterTieDispatchResponse.RegisteredInterTie\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.InterTieDispatchResponse;
             if (null == bucket)
@@ -1124,25 +1031,10 @@ define
              * Maximum up time.
              */
             obj["upTimeMax"] = base.to_float (base.parse_element (/<cim:GeneratingBid.upTimeMax>([\s\S]*?)<\/cim:GeneratingBid.upTimeMax>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["NotificationTimeCurve"] = base.parse_attribute (/<cim:GeneratingBid.NotificationTimeCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["StartUpCostCurve"] = base.parse_attribute (/<cim:GeneratingBid.StartUpCostCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredGenerator"] = base.parse_attribute (/<cim:GeneratingBid.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["StartUpTimeCurve"] = base.parse_attribute (/<cim:GeneratingBid.StartUpTimeCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["BidSet"] = base.parse_attribute (/<cim:GeneratingBid.BidSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.GeneratingBid;
             if (null == bucket)
@@ -1267,17 +1159,8 @@ define
              * How ramp rate is applied (e.g. raise or lower, as when applied to a generation resource)
              */
             obj["rampRateType"] = base.parse_element (/<cim:RampRateCurve.rampRateType>([\s\S]*?)<\/cim:RampRateCurve.rampRateType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["GeneratingBid"] = base.parse_attribute (/<cim:RampRateCurve.GeneratingBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["LoadBid"] = base.parse_attribute (/<cim:RampRateCurve.LoadBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["InterTieBid"] = base.parse_attribute (/<cim:RampRateCurve.InterTieBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.RampRateCurve;
             if (null == bucket)
@@ -1339,9 +1222,6 @@ define
              * start time
              */
             obj["startTime"] = base.to_datetime (base.parse_element (/<cim:DispatchInstReply.startTime>([\s\S]*?)<\/cim:DispatchInstReply.startTime>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:DispatchInstReply.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.DispatchInstReply;
             if (null == bucket)
@@ -1389,9 +1269,6 @@ define
              */
             obj["duration"] = base.parse_element (/<cim:MarketScheduledEvent.duration>([\s\S]*?)<\/cim:MarketScheduledEvent.duration>/g, sub, context, true);
             obj["status"] = base.parse_element (/<cim:MarketScheduledEvent.status>([\s\S]*?)<\/cim:MarketScheduledEvent.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MajorChargeGroup"] = base.parse_attribute (/<cim:MarketScheduledEvent.MajorChargeGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MarketScheduledEvent;
             if (null == bucket)
@@ -1415,9 +1292,6 @@ define
              * The minimum hourly block for an Inter-Tie Resource supplied within the bid.
              */
             obj["minHourlyBlock "] = base.parse_element (/<cim:InterTieBid.minHourlyBlock >([\s\S]*?)<\/cim:InterTieBid.minHourlyBlock >/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredInterTie"] = base.parse_attribute (/<cim:InterTieBid.RegisteredInterTie\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.InterTieBid;
             if (null == bucket)
@@ -1455,9 +1329,6 @@ define
 
             obj = Core.parse_RegularIntervalSchedule (context, sub);
             obj.cls = "BidHourlySchedule";
-            /**
-             * 
-             */
             obj["Bid"] = base.parse_attribute (/<cim:BidHourlySchedule.Bid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.BidHourlySchedule;
             if (null == bucket)
@@ -1490,17 +1361,8 @@ define
              * This flag is used to determine whether a schedule is willing-to-pay-congestion or not.
              */
             obj["payCongestion"] = base.to_boolean (base.parse_element (/<cim:TransactionBid.payCongestion>([\s\S]*?)<\/cim:TransactionBid.payCongestion>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["Receipt_Pnode"] = base.parse_attribute (/<cim:TransactionBid.Receipt_Pnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Delivery_Pnode"] = base.parse_attribute (/<cim:TransactionBid.Delivery_Pnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TransmissionReservation"] = base.parse_attribute (/<cim:TransactionBid.TransmissionReservation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TransactionBid;
             if (null == bucket)

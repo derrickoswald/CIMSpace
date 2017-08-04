@@ -1242,7 +1242,7 @@ define
              */
             obj["xs"] = base.parse_element (/<cim:WindGenType3IEC.xs>([\s\S]*?)<\/cim:WindGenType3IEC.xs>/g, sub, context, true);
             /**
-             * Wind turbine type 3 model with which this wind generator type 3 is associated. 
+             * Wind turbine type 3 model with which this wind generator type 3 is associated.
              */
             obj["WindTurbineType3IEC"] = base.parse_attribute (/<cim:WindGenType3IEC.WindTurbineType3IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.WindGenType3IEC;
@@ -1778,7 +1778,7 @@ define
              */
             obj["tufiltp4a"] = base.parse_element (/<cim:WindContPType4aIEC.tufiltp4a>([\s\S]*?)<\/cim:WindContPType4aIEC.tufiltp4a>/g, sub, context, true);
             /**
-             *  Wind turbine type 4A model with which this wind control P type 4A model is associated.
+             * Wind turbine type 4A model with which this wind control P type 4A model is associated.
              */
             obj["WindTurbineType4aIEC"] = base.parse_attribute (/<cim:WindContPType4aIEC.WindTurbineType4aIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.WindContPType4aIEC;

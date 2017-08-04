@@ -46,10 +46,8 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "DCTopologicalNode";
-            /**
-             * 
-             */
             obj["DCEquipmentContainer"] = base.parse_attribute (/<cim:DCTopologicalNode.DCEquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj["DCTopologicalIsland"] = base.parse_attribute (/<cim:DCTopologicalNode.DCTopologicalIsland\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.DCTopologicalNode;
             if (null == bucket)
                 context.parsed.DCTopologicalNode = bucket = {};

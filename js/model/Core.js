@@ -473,6 +473,10 @@ define
 
             obj = parse_IdentifiedObject (context, sub);
             obj.cls = "ReportingGroup";
+            /**
+             * Reporting super group to which this reporting group belongs.
+             */
+            obj["ReportingSuperGroup"] = base.parse_attribute (/<cim:ReportingGroup.ReportingSuperGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ReportingGroup;
             if (null == bucket)
                 context.parsed.ReportingGroup = bucket = {};
@@ -1124,9 +1128,6 @@ define
              * The power flow state variable associated with the terminal.
              */
             obj["SvPowerFlow"] = base.parse_attribute (/<cim:Terminal.SvPowerFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Bushing"] = base.parse_attribute (/<cim:Terminal.Bushing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * The connectivity node to which this terminal connects with zero impedance.

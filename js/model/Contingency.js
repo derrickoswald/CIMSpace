@@ -39,6 +39,10 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "ContingencyElement";
+            /**
+             * A contingency element belongs to one contingency.
+             */
+            obj["Contingency"] = base.parse_attribute (/<cim:ContingencyElement.Contingency\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ContingencyElement;
             if (null == bucket)
                 context.parsed.ContingencyElement = bucket = {};

@@ -32,9 +32,6 @@ define
             obj["addressType"] = base.parse_element (/<cim:IPAccessPoint.addressType>([\s\S]*?)<\/cim:IPAccessPoint.addressType>/g, sub, context, true);
             obj["gateway"] = base.parse_element (/<cim:IPAccessPoint.gateway>([\s\S]*?)<\/cim:IPAccessPoint.gateway>/g, sub, context, true);
             obj["subnet"] = base.parse_element (/<cim:IPAccessPoint.subnet>([\s\S]*?)<\/cim:IPAccessPoint.subnet>/g, sub, context, true);
-            /**
-             * 
-             */
             obj[""] = base.parse_attribute (/<cim:IPAccessPoint.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.IPAccessPoint;
             if (null == bucket)
@@ -52,9 +49,6 @@ define
             obj = parse_ICCPPoint (context, sub);
             obj.cls = "ICCPIndicationPoint";
             obj["type"] = base.parse_element (/<cim:ICCPIndicationPoint.type>([\s\S]*?)<\/cim:ICCPIndicationPoint.type>/g, sub, context, true);
-            /**
-             * 
-             */
             obj[""] = base.parse_attribute (/<cim:ICCPIndicationPoint.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ICCPIndicationPoint;
             if (null == bucket)
@@ -91,9 +85,6 @@ define
             obj = parse_ICCPPoint (context, sub);
             obj.cls = "ICCPControlPoint";
             obj["deviceClass"] = base.parse_element (/<cim:ICCPControlPoint.deviceClass>([\s\S]*?)<\/cim:ICCPControlPoint.deviceClass>/g, sub, context, true);
-            /**
-             * 
-             */
             obj[""] = base.parse_attribute (/<cim:ICCPControlPoint.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ICCPControlPoint;
             if (null == bucket)
@@ -192,9 +183,6 @@ define
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "ICCPPoint";
             obj["scope"] = base.parse_element (/<cim:ICCPPoint.scope>([\s\S]*?)<\/cim:ICCPPoint.scope>/g, sub, context, true);
-            /**
-             * 
-             */
             obj[""] = base.parse_attribute (/<cim:ICCPPoint.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ICCPPoint;
             if (null == bucket)
@@ -283,9 +271,6 @@ define
 
             obj = parse_ICCPControlPoint (context, sub);
             obj.cls = "ICCPCommandPoint";
-            /**
-             * 
-             */
             obj[""] = base.parse_attribute (/<cim:ICCPCommandPoint.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ICCPCommandPoint;
             if (null == bucket)
@@ -321,9 +306,6 @@ define
             obj = parse_ICCPControlPoint (context, sub);
             obj.cls = "ICCPSetPoint";
             obj["type"] = base.parse_element (/<cim:ICCPSetPoint.type>([\s\S]*?)<\/cim:ICCPSetPoint.type>/g, sub, context, true);
-            /**
-             * 
-             */
             obj[""] = base.parse_attribute (/<cim:ICCPSetPoint.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ICCPSetPoint;
             if (null == bucket)

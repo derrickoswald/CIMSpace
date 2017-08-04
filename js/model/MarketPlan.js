@@ -34,13 +34,7 @@ define
              * For example, if marketProductType = EN (from enumeration MarketProductType), then the rampInterval is the ramping time interval for Energy.
              */
             obj["rampInterval"] = base.to_float (base.parse_element (/<cim:MarketProduct.rampInterval>([\s\S]*?)<\/cim:MarketProduct.rampInterval>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["MarketRegionResults"] = base.parse_attribute (/<cim:MarketProduct.MarketRegionResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Market"] = base.parse_attribute (/<cim:MarketProduct.Market\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MarketProduct;
             if (null == bucket)
@@ -139,9 +133,6 @@ define
              * The start of the time interval for which requirement is defined.
              */
             obj["intervalStartTime"] = base.to_datetime (base.parse_element (/<cim:MarketFactors.intervalStartTime>([\s\S]*?)<\/cim:MarketFactors.intervalStartTime>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["Market"] = base.parse_attribute (/<cim:MarketFactors.Market\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MarketFactors;
             if (null == bucket)
@@ -229,13 +220,7 @@ define
 
             obj = parse_Market (context, sub);
             obj.cls = "EnergyMarket";
-            /**
-             * 
-             */
             obj["MarketResults"] = base.parse_attribute (/<cim:EnergyMarket.MarketResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RTO"] = base.parse_attribute (/<cim:EnergyMarket.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.EnergyMarket;
             if (null == bucket)
@@ -406,9 +391,6 @@ define
              * A planned market could have multiple market runs for the reason that a planned market could have a rerun.
              */
             obj["PlannedMarket"] = base.parse_attribute (/<cim:MarketRun.PlannedMarket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Market"] = base.parse_attribute (/<cim:MarketRun.Market\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MarketRun;
             if (null == bucket)

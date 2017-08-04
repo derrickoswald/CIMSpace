@@ -34,9 +34,6 @@ define
              * Secondary quantity identified for a point.
              */
             obj["secondaryQuantity"] = base.parse_element (/<cim:Point.secondaryQuantity>([\s\S]*?)<\/cim:Point.secondaryQuantity>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Period"] = base.parse_attribute (/<cim:Point.Period\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Point;
             if (null == bucket)
@@ -379,9 +376,6 @@ define
              * The direction indicates whether a System Operator pays the Market Parties or inverse.
              */
             obj["direction"] = base.parse_element (/<cim:Price.direction>([\s\S]*?)<\/cim:Price.direction>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Point"] = base.parse_attribute (/<cim:Price.Point\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Price;
             if (null == bucket)

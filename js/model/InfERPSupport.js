@@ -20,9 +20,6 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpItemMaster";
             obj["status"] = base.parse_element (/<cim:ErpItemMaster.status>([\s\S]*?)<\/cim:ErpItemMaster.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Asset"] = base.parse_attribute (/<cim:ErpItemMaster.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpItemMaster;
             if (null == bucket)
@@ -62,13 +59,7 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpPayableLineItem";
             obj["status"] = base.parse_element (/<cim:ErpPayableLineItem.status>([\s\S]*?)<\/cim:ErpPayableLineItem.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpPayable"] = base.parse_attribute (/<cim:ErpPayableLineItem.ErpPayable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpInvoiceLineItem"] = base.parse_attribute (/<cim:ErpPayableLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpPayableLineItem;
             if (null == bucket)
@@ -107,13 +98,7 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpRecLineItem";
             obj["status"] = base.parse_element (/<cim:ErpRecLineItem.status>([\s\S]*?)<\/cim:ErpRecLineItem.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpInvoiceLineItem"] = base.parse_attribute (/<cim:ErpRecLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpReceivable"] = base.parse_attribute (/<cim:ErpRecLineItem.ErpReceivable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpRecLineItem;
             if (null == bucket)
@@ -153,13 +138,7 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpIssueInventory";
             obj["status"] = base.parse_element (/<cim:ErpIssueInventory.status>([\s\S]*?)<\/cim:ErpIssueInventory.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TypeMaterial"] = base.parse_attribute (/<cim:ErpIssueInventory.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TypeAsset"] = base.parse_attribute (/<cim:ErpIssueInventory.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpIssueInventory;
             if (null == bucket)
@@ -203,9 +182,6 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpInventory";
             obj["status"] = base.parse_element (/<cim:ErpInventory.status>([\s\S]*?)<\/cim:ErpInventory.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Asset"] = base.parse_attribute (/<cim:ErpInventory.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpInventory;
             if (null == bucket)
@@ -236,25 +212,10 @@ define
              */
             obj["quantity"] = base.parse_element (/<cim:ErpReqLineItem.quantity>([\s\S]*?)<\/cim:ErpReqLineItem.quantity>/g, sub, context, true);
             obj["status"] = base.parse_element (/<cim:ErpReqLineItem.status>([\s\S]*?)<\/cim:ErpReqLineItem.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpPOLineItem"] = base.parse_attribute (/<cim:ErpReqLineItem.ErpPOLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TypeMaterial"] = base.parse_attribute (/<cim:ErpReqLineItem.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpRequisition"] = base.parse_attribute (/<cim:ErpReqLineItem.ErpRequisition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TypeAsset"] = base.parse_attribute (/<cim:ErpReqLineItem.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpQuoteLineItem"] = base.parse_attribute (/<cim:ErpReqLineItem.ErpQuoteLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpReqLineItem;
             if (null == bucket)
@@ -314,17 +275,8 @@ define
              * Date and time journal entry was recorded.
              */
             obj["transactionDateTime"] = base.to_datetime (base.parse_element (/<cim:ErpJournalEntry.transactionDateTime>([\s\S]*?)<\/cim:ErpJournalEntry.transactionDateTime>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["ErpLedgerEntry"] = base.parse_attribute (/<cim:ErpJournalEntry.ErpLedgerEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpJournal"] = base.parse_attribute (/<cim:ErpJournalEntry.ErpJournal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpInvoiceLineItem"] = base.parse_attribute (/<cim:ErpJournalEntry.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpJournalEntry;
             if (null == bucket)
@@ -363,17 +315,8 @@ define
 
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpBomItemData";
-            /**
-             * 
-             */
             obj["TypeAsset"] = base.parse_attribute (/<cim:ErpBomItemData.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["DesignLocation"] = base.parse_attribute (/<cim:ErpBomItemData.DesignLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpBOM"] = base.parse_attribute (/<cim:ErpBomItemData.ErpBOM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpBomItemData;
             if (null == bucket)
@@ -414,9 +357,6 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpSiteLevelData";
             obj["status"] = base.parse_element (/<cim:ErpSiteLevelData.status>([\s\S]*?)<\/cim:ErpSiteLevelData.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["LandProperty"] = base.parse_attribute (/<cim:ErpSiteLevelData.LandProperty\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpSiteLevelData;
             if (null == bucket)
@@ -513,21 +453,9 @@ define
 
             obj = parse_ErpDocument (context, sub);
             obj.cls = "ErpPOLineItem";
-            /**
-             * 
-             */
             obj["ErpRecDelLineItem"] = base.parse_attribute (/<cim:ErpPOLineItem.ErpRecDelLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpReqLineItem"] = base.parse_attribute (/<cim:ErpPOLineItem.ErpReqLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["AssetModelCatalogueItem"] = base.parse_attribute (/<cim:ErpPOLineItem.AssetModelCatalogueItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpPurchaseOrder"] = base.parse_attribute (/<cim:ErpPOLineItem.ErpPurchaseOrder\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpPOLineItem;
             if (null == bucket)
@@ -549,17 +477,8 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpRecDelvLineItem";
             obj["status"] = base.parse_element (/<cim:ErpRecDelvLineItem.status>([\s\S]*?)<\/cim:ErpRecDelvLineItem.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpPOLineItem"] = base.parse_attribute (/<cim:ErpRecDelvLineItem.ErpPOLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpInvoiceLineItem"] = base.parse_attribute (/<cim:ErpRecDelvLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpReceiveDelivery"] = base.parse_attribute (/<cim:ErpRecDelvLineItem.ErpReceiveDelivery\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpRecDelvLineItem;
             if (null == bucket)
@@ -758,9 +677,6 @@ define
              * Type of invoice transfer.
              */
             obj["transferType"] = base.parse_element (/<cim:ErpInvoice.transferType>([\s\S]*?)<\/cim:ErpInvoice.transferType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["CustomerAccount"] = base.parse_attribute (/<cim:ErpInvoice.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpInvoice;
             if (null == bucket)
@@ -861,9 +777,6 @@ define
 
             obj = parse_ErpDocument (context, sub);
             obj.cls = "ErpBOM";
-            /**
-             * 
-             */
             obj["Design"] = base.parse_attribute (/<cim:ErpBOM.Design\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpBOM;
             if (null == bucket)
@@ -884,13 +797,7 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpLedBudLineItem";
             obj["status"] = base.parse_element (/<cim:ErpLedBudLineItem.status>([\s\S]*?)<\/cim:ErpLedBudLineItem.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpLedgerBudget"] = base.parse_attribute (/<cim:ErpLedBudLineItem.ErpLedgerBudget\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpLedBudLineItem"] = base.parse_attribute (/<cim:ErpLedBudLineItem.ErpLedBudLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpLedBudLineItem;
             if (null == bucket)
@@ -912,9 +819,6 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpInventoryCount";
             obj["status"] = base.parse_element (/<cim:ErpInventoryCount.status>([\s\S]*?)<\/cim:ErpInventoryCount.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["AssetModel"] = base.parse_attribute (/<cim:ErpInventoryCount.AssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpInventoryCount;
             if (null == bucket)
@@ -989,29 +893,11 @@ define
              * Previous line item charge amount.
              */
             obj["previousAmount"] = base.to_float (base.parse_element (/<cim:ErpInvoiceLineItem.previousAmount>([\s\S]*?)<\/cim:ErpInvoiceLineItem.previousAmount>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["ContainerErpInvoiceLineItem"] = base.parse_attribute (/<cim:ErpInvoiceLineItem.ContainerErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpPayableLineItem"] = base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpPayableLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpInvoice"] = base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpInvoice\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpRecLineItem"] = base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpRecLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpRecDelvLineItem"] = base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpRecDelvLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpQuoteLineItem"] = base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpQuoteLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpInvoiceLineItem;
             if (null == bucket)
@@ -1032,13 +918,7 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpTimeEntry";
             obj["status"] = base.parse_element (/<cim:ErpTimeEntry.status>([\s\S]*?)<\/cim:ErpTimeEntry.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpTimeSheet"] = base.parse_attribute (/<cim:ErpTimeEntry.ErpTimeSheet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpProjectAccounting"] = base.parse_attribute (/<cim:ErpTimeEntry.ErpProjectAccounting\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpTimeEntry;
             if (null == bucket)
@@ -1078,26 +958,14 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpQuoteLineItem";
             obj["status"] = base.parse_element (/<cim:ErpQuoteLineItem.status>([\s\S]*?)<\/cim:ErpQuoteLineItem.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Design"] = base.parse_attribute (/<cim:ErpQuoteLineItem.Design\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpQuote"] = base.parse_attribute (/<cim:ErpQuoteLineItem.ErpQuote\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * Some utilities provide quotes to customer for services, where the customer accepts the quote by making a payment.
              * An invoice is required for this to occur.
              */
             obj["ErpInvoiceLineItem"] = base.parse_attribute (/<cim:ErpQuoteLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpReqLineItem"] = base.parse_attribute (/<cim:ErpQuoteLineItem.ErpReqLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["AssetModelCatalogueItem"] = base.parse_attribute (/<cim:ErpQuoteLineItem.AssetModelCatalogueItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpQuoteLineItem;
             if (null == bucket)
@@ -1138,17 +1006,8 @@ define
              * Date and time journal entry was recorded.
              */
             obj["transactionDateTime"] = base.to_datetime (base.parse_element (/<cim:ErpLedgerEntry.transactionDateTime>([\s\S]*?)<\/cim:ErpLedgerEntry.transactionDateTime>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["ErpJounalEntry"] = base.parse_attribute (/<cim:ErpLedgerEntry.ErpJounalEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpLedgerEntry"] = base.parse_attribute (/<cim:ErpLedgerEntry.ErpLedgerEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpLedger"] = base.parse_attribute (/<cim:ErpLedgerEntry.ErpLedger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ErpLedgerEntry;
             if (null == bucket)

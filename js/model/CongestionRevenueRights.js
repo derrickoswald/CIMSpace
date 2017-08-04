@@ -39,9 +39,6 @@ define
              * segment start date time
              */
             obj["startDateTime"] = base.to_datetime (base.parse_element (/<cim:CRRSegment.startDateTime>([\s\S]*?)<\/cim:CRRSegment.startDateTime>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["CRR"] = base.parse_attribute (/<cim:CRRSegment.CRR\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.CRRSegment;
             if (null == bucket)
@@ -83,13 +80,7 @@ define
              * Segment of the CRR described in the current record
              */
             obj["tradeSliceID"] = base.parse_element (/<cim:CRR.tradeSliceID>([\s\S]*?)<\/cim:CRR.tradeSliceID>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["CRRMarket"] = base.parse_attribute (/<cim:CRR.CRRMarket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Flowgate"] = base.parse_attribute (/<cim:CRR.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.CRR;
             if (null == bucket)
@@ -117,13 +108,7 @@ define
              * Status of congestion revenue rights organisation role.
              */
             obj["status"] = base.parse_element (/<cim:CRROrgRole.status>([\s\S]*?)<\/cim:CRROrgRole.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["CRR"] = base.parse_attribute (/<cim:CRROrgRole.CRR\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MktOrganisation"] = base.parse_attribute (/<cim:CRROrgRole.MktOrganisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.CRROrgRole;
             if (null == bucket)

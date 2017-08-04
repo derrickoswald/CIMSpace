@@ -111,9 +111,6 @@ define
              * True if regulated voltages are measured line to line, otherwise they are measured line to ground.
              */
             obj["vRegLineLine"] = base.to_boolean (base.parse_element (/<cim:ShuntCompensatorControl.vRegLineLine>([\s\S]*?)<\/cim:ShuntCompensatorControl.vRegLineLine>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["ShuntCompensatorInfo"] = base.parse_attribute (/<cim:ShuntCompensatorControl.ShuntCompensatorInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ShuntCompensatorControl;
             if (null == bucket)

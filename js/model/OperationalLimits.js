@@ -41,9 +41,6 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "OperationalLimitSet";
-            /**
-             * 
-             */
             obj["Terminal"] = base.parse_attribute (/<cim:OperationalLimitSet.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * The equipment to which the limit set applies.
@@ -90,6 +87,10 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "OperationalLimit";
+            /**
+             * The limit set to which the limit values belong.
+             */
+            obj["OperationalLimitSet"] = base.parse_attribute (/<cim:OperationalLimit.OperationalLimitSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * The limit type associated with this limit.
              */
@@ -139,6 +140,10 @@ define
              * The flow out of the terminanl is summed if set false.
              */
             obj["positiveFlowIn"] = base.to_boolean (base.parse_element (/<cim:BranchGroupTerminal.positiveFlowIn>([\s\S]*?)<\/cim:BranchGroupTerminal.positiveFlowIn>/g, sub, context, true));
+            /**
+             * The branch group to which the directed branch group terminals belong.
+             */
+            obj["BranchGroup"] = base.parse_attribute (/<cim:BranchGroupTerminal.BranchGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * The terminal to be summed.
              */
@@ -213,9 +218,6 @@ define
              * The direction of the limit.
              */
             obj["direction"] = base.parse_element (/<cim:OperationalLimitType.direction>([\s\S]*?)<\/cim:OperationalLimitType.direction>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TargetOperationalLimitmTypeScaling"] = base.parse_attribute (/<cim:OperationalLimitType.TargetOperationalLimitmTypeScaling\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.OperationalLimitType;
             if (null == bucket)

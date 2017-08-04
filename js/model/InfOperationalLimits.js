@@ -105,6 +105,7 @@ define
              * The temperature of the table point.
              */
             obj["temperature"] = base.parse_element (/<cim:TemperatureDependentLimitPoint.temperature>([\s\S]*?)<\/cim:TemperatureDependentLimitPoint.temperature>/g, sub, context, true);
+            obj["TemperatureDependentLimitTable"] = base.parse_attribute (/<cim:TemperatureDependentLimitPoint.TemperatureDependentLimitTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TemperatureDependentLimitPoint;
             if (null == bucket)
                 context.parsed.TemperatureDependentLimitPoint = bucket = {};
@@ -129,13 +130,7 @@ define
              * Applys to operational limits within an operaitonal limit set when both source and target operational limit types exist.
              */
             obj["scalingPercent"] = base.parse_element (/<cim:OperatonalLimitTypeScaling.scalingPercent>([\s\S]*?)<\/cim:OperatonalLimitTypeScaling.scalingPercent>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["SourceOperationalLimitType"] = base.parse_attribute (/<cim:OperatonalLimitTypeScaling.SourceOperationalLimitType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TargetOperationalLimit"] = base.parse_attribute (/<cim:OperatonalLimitTypeScaling.TargetOperationalLimit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.OperatonalLimitTypeScaling;
             if (null == bucket)
@@ -160,6 +155,7 @@ define
              * If not specified, then applicable ot any season.
              */
             obj["Season"] = base.parse_attribute (/<cim:ScheduledLimitValue.Season\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            obj["ScheduledLimitDependency"] = base.parse_attribute (/<cim:ScheduledLimitValue.ScheduledLimitDependency\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ScheduledLimitValue;
             if (null == bucket)
                 context.parsed.ScheduledLimitValue = bucket = {};
@@ -242,6 +238,10 @@ define
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "EquipmentLimitSeriesComponent";
             /**
+             * Calculation in which the refernce to equipment applies.
+             */
+            obj["SeriesEquipmentDependentLimit"] = base.parse_attribute (/<cim:EquipmentLimitSeriesComponent.SeriesEquipmentDependentLimit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            /**
              * Equipment contributing toward the series limit.
              * The reference here is to Equipment rather than a specific limit on the equipment so the grouiping can be reused for multiple limits of different types on the same instance of equipment.
              */
@@ -306,9 +306,6 @@ define
              * The associated source limit is scaled by this value to compute the limit of the dependency model.
              */
             obj["limitScalingPercent"] = base.parse_element (/<cim:LimitScalingLimit.limitScalingPercent>([\s\S]*?)<\/cim:LimitScalingLimit.limitScalingPercent>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["SourceOperationalLimit"] = base.parse_attribute (/<cim:LimitScalingLimit.SourceOperationalLimit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.LimitScalingLimit;
             if (null == bucket)

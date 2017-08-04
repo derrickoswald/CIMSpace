@@ -149,9 +149,6 @@ define
              * Attribute Usage: Emergency use indicator, false = Emergency Schedular OFF, true = Emergency Schedular ON.
              */
             obj["useEmergencySchedule"] = base.to_boolean (base.parse_element (/<cim:CurrentScheduledInterchange.useEmergencySchedule>([\s\S]*?)<\/cim:CurrentScheduledInterchange.useEmergencySchedule>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["InternalControlArea"] = base.parse_attribute (/<cim:CurrentScheduledInterchange.InternalControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.CurrentScheduledInterchange;
             if (null == bucket)
@@ -186,9 +183,6 @@ define
              * This is calculated as the remaining time to ramp if a schedule is ramping. Measured in seconds, but can be negattive.
              */
             obj["emergencyScheduleRampTime"] = base.parse_element (/<cim:CurrentEmergencyScheduledInterchange.emergencyScheduleRampTime>([\s\S]*?)<\/cim:CurrentEmergencyScheduledInterchange.emergencyScheduleRampTime>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["InternalControlArea"] = base.parse_attribute (/<cim:CurrentEmergencyScheduledInterchange.InternalControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.CurrentEmergencyScheduledInterchange;
             if (null == bucket)
@@ -261,9 +255,6 @@ define
              * The "active" or "inactive" status of the dynamic schedule
              */
             obj["dynSchedStatus"] = base.parse_element (/<cim:DynamicSchedule.dynSchedStatus>([\s\S]*?)<\/cim:DynamicSchedule.dynSchedStatus>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["MktMeasurement"] = base.parse_attribute (/<cim:DynamicSchedule.MktMeasurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * A control area can receive dynamic schedules from other control areas
@@ -291,9 +282,6 @@ define
 
             obj = Common.parse_Agreement (context, sub);
             obj.cls = "EnergyProduct";
-            /**
-             * 
-             */
             obj["GenerationProvider"] = base.parse_attribute (/<cim:EnergyProduct.GenerationProvider\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * A Marketer holds title to an EnergyProduct.
@@ -340,9 +328,6 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "InternalControlArea";
-            /**
-             * 
-             */
             obj["CurrentScheduledInterchange"] = base.parse_attribute (/<cim:InternalControlArea.CurrentScheduledInterchange\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.InternalControlArea;
             if (null == bucket)

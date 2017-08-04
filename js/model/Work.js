@@ -21,21 +21,9 @@ define
              * Date and time work was requested.
              */
             obj["requestDateTime"] = base.to_datetime (base.parse_element (/<cim:Work.requestDateTime>([\s\S]*?)<\/cim:Work.requestDateTime>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["WorkBillingInfo"] = base.parse_attribute (/<cim:Work.WorkBillingInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Project"] = base.parse_attribute (/<cim:Work.Project\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["BusinessCase"] = base.parse_attribute (/<cim:Work.BusinessCase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpProjectAccounting"] = base.parse_attribute (/<cim:Work.ErpProjectAccounting\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Work;
             if (null == bucket)
@@ -365,9 +353,6 @@ define
 
             obj = Common.parse_Location (context, sub);
             obj.cls = "WorkLocation";
-            /**
-             * 
-             */
             obj["OneCallRequest"] = base.parse_attribute (/<cim:WorkLocation.OneCallRequest\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.WorkLocation;
             if (null == bucket)
@@ -450,13 +435,7 @@ define
              * Quantity of material used.
              */
             obj["quantity"] = base.parse_element (/<cim:MaterialItem.quantity>([\s\S]*?)<\/cim:MaterialItem.quantity>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TypeMaterial"] = base.parse_attribute (/<cim:MaterialItem.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["WorkTask"] = base.parse_attribute (/<cim:MaterialItem.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MaterialItem;
             if (null == bucket)

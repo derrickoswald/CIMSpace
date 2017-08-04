@@ -42,13 +42,7 @@ define
             obj.cls = "ExpectedEnergyValues";
             obj["energyTypeCode"] = base.parse_element (/<cim:ExpectedEnergyValues.energyTypeCode>([\s\S]*?)<\/cim:ExpectedEnergyValues.energyTypeCode>/g, sub, context, true);
             obj["expectedMwh"] = base.to_float (base.parse_element (/<cim:ExpectedEnergyValues.expectedMwh>([\s\S]*?)<\/cim:ExpectedEnergyValues.expectedMwh>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:ExpectedEnergyValues.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ExpectedEnergy"] = base.parse_attribute (/<cim:ExpectedEnergyValues.ExpectedEnergy\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ExpectedEnergyValues;
             if (null == bucket)
@@ -68,13 +62,7 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "AuxiliaryObject";
-            /**
-             * 
-             */
             obj["RegisteredLoad"] = base.parse_attribute (/<cim:AuxiliaryObject.RegisteredLoad\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredGenerator"] = base.parse_attribute (/<cim:AuxiliaryObject.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.AuxiliaryObject;
             if (null == bucket)
@@ -99,13 +87,7 @@ define
              * For DA, the price is hourly. For RTM the price is a 5 minute price.
              */
             obj["price"] = base.to_float (base.parse_element (/<cim:TradingHubValues.price>([\s\S]*?)<\/cim:TradingHubValues.price>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["TradingHubPrice"] = base.parse_attribute (/<cim:TradingHubValues.TradingHubPrice\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["AggregatedPnode"] = base.parse_attribute (/<cim:TradingHubValues.AggregatedPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TradingHubValues;
             if (null == bucket)
@@ -229,13 +211,7 @@ define
              * DEC - Derate Capacity
              */
             obj["marketServiceType"] = base.parse_element (/<cim:AllocationResultValues.marketServiceType>([\s\S]*?)<\/cim:AllocationResultValues.marketServiceType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["RegisteredResource"] = base.parse_attribute (/<cim:AllocationResultValues.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["AllocationResult"] = base.parse_attribute (/<cim:AllocationResultValues.AllocationResult\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.AllocationResultValues;
             if (null == bucket)
@@ -284,17 +260,8 @@ define
             obj["startUpCostEligibilityFlag"] = base.parse_element (/<cim:AuxiliaryValues.startUpCostEligibilityFlag>([\s\S]*?)<\/cim:AuxiliaryValues.startUpCostEligibilityFlag>/g, sub, context, true);
             obj["noLoadCost"] = base.to_float (base.parse_element (/<cim:AuxiliaryValues.noLoadCost>([\s\S]*?)<\/cim:AuxiliaryValues.noLoadCost>/g, sub, context, true));
             obj["noLoadCostEligibilityFlag"] = base.parse_element (/<cim:AuxiliaryValues.noLoadCostEligibilityFlag>([\s\S]*?)<\/cim:AuxiliaryValues.noLoadCostEligibilityFlag>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["AuxillaryCost"] = base.parse_attribute (/<cim:AuxiliaryValues.AuxillaryCost\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["FiveMinAuxillaryData"] = base.parse_attribute (/<cim:AuxiliaryValues.FiveMinAuxillaryData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TenMinAuxillaryData"] = base.parse_attribute (/<cim:AuxiliaryValues.TenMinAuxillaryData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.AuxiliaryValues;
             if (null == bucket)

@@ -354,17 +354,8 @@ define
              * True if item is a stock item (default).
              */
             obj["stockItem"] = base.to_boolean (base.parse_element (/<cim:GenericAssetModelOrMaterial.stockItem>([\s\S]*?)<\/cim:GenericAssetModelOrMaterial.stockItem>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["CUWorkEquipmentAsset"] = base.parse_attribute (/<cim:GenericAssetModelOrMaterial.CUWorkEquipmentAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TypeAssetCatalogue"] = base.parse_attribute (/<cim:GenericAssetModelOrMaterial.TypeAssetCatalogue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["CUAsset"] = base.parse_attribute (/<cim:GenericAssetModelOrMaterial.CUAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.GenericAssetModelOrMaterial;
             if (null == bucket)
@@ -503,9 +494,6 @@ define
              * Date and time warranty on asset expires.
              */
             obj["warrantyEndDateTime"] = base.to_datetime (base.parse_element (/<cim:FinancialInfo.warrantyEndDateTime>([\s\S]*?)<\/cim:FinancialInfo.warrantyEndDateTime>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["Asset"] = base.parse_attribute (/<cim:FinancialInfo.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.FinancialInfo;
             if (null == bucket)
@@ -578,9 +566,6 @@ define
              * Size of this support structure.
              */
             obj["size"] = base.parse_element (/<cim:StructureSupport.size>([\s\S]*?)<\/cim:StructureSupport.size>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["SecuredStructure"] = base.parse_attribute (/<cim:StructureSupport.SecuredStructure\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.StructureSupport;
             if (null == bucket)
@@ -665,9 +650,6 @@ define
              * Kind of insulation.
              */
             obj["insulationKind"] = base.parse_element (/<cim:Bushing.insulationKind>([\s\S]*?)<\/cim:Bushing.insulationKind>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Terminal"] = base.parse_attribute (/<cim:Bushing.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Bushing;
             if (null == bucket)
@@ -695,9 +677,6 @@ define
              * Mean time to repair (MTTR - hours).
              */
             obj["mTTR"] = base.parse_element (/<cim:ReliabilityInfo.mTTR>([\s\S]*?)<\/cim:ReliabilityInfo.mTTR>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Specification"] = base.parse_attribute (/<cim:ReliabilityInfo.Specification\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ReliabilityInfo;
             if (null == bucket)
@@ -870,17 +849,8 @@ define
              */
             obj["leakageReactance"] = base.parse_element (/<cim:WindingInsulation.leakageReactance>([\s\S]*?)<\/cim:WindingInsulation.leakageReactance>/g, sub, context, true);
             obj["status"] = base.parse_element (/<cim:WindingInsulation.status>([\s\S]*?)<\/cim:WindingInsulation.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ToWinding"] = base.parse_attribute (/<cim:WindingInsulation.ToWinding\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["FromWinding"] = base.parse_attribute (/<cim:WindingInsulation.FromWinding\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TransformerObservation"] = base.parse_attribute (/<cim:WindingInsulation.TransformerObservation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.WindingInsulation;
             if (null == bucket)
@@ -993,9 +963,6 @@ define
 
             obj = Core.parse_Curve (context, sub);
             obj.cls = "AssetPropertyCurve";
-            /**
-             * 
-             */
             obj["Specification"] = base.parse_attribute (/<cim:AssetPropertyCurve.Specification\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.AssetPropertyCurve;
             if (null == bucket)
@@ -1134,13 +1101,7 @@ define
              * Water Content expressed in parts per million.
              */
             obj["waterContent"] = base.parse_element (/<cim:TransformerObservation.waterContent>([\s\S]*?)<\/cim:TransformerObservation.waterContent>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Reconditioning"] = base.parse_attribute (/<cim:TransformerObservation.Reconditioning\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Transformer"] = base.parse_attribute (/<cim:TransformerObservation.Transformer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.TransformerObservation;
             if (null == bucket)
@@ -1218,9 +1179,6 @@ define
              * Date and time this reconditioning (or a major overhaul) has been performed.
              */
             obj["dateTime"] = base.to_datetime (base.parse_element (/<cim:Reconditioning.dateTime>([\s\S]*?)<\/cim:Reconditioning.dateTime>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["Asset"] = base.parse_attribute (/<cim:Reconditioning.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Reconditioning;
             if (null == bucket)
@@ -1249,9 +1207,6 @@ define
              * Note that the actual volume is a type of measurement associated witht the asset.
              */
             obj["volumeSpec"] = base.parse_element (/<cim:Medium.volumeSpec>([\s\S]*?)<\/cim:Medium.volumeSpec>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Specification"] = base.parse_attribute (/<cim:Medium.Specification\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Medium;
             if (null == bucket)
@@ -1299,13 +1254,7 @@ define
              * Kind of test for this bushing.
              */
             obj["testKind"] = base.parse_element (/<cim:BushingInsulationPF.testKind>([\s\S]*?)<\/cim:BushingInsulationPF.testKind>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Bushing"] = base.parse_attribute (/<cim:BushingInsulationPF.Bushing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TransformerObservation"] = base.parse_attribute (/<cim:BushingInsulationPF.TransformerObservation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.BushingInsulationPF;
             if (null == bucket)

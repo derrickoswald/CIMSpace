@@ -618,6 +618,10 @@ define
              * The number of the section.
              */
             obj["sectionNumber"] = base.parse_element (/<cim:NonlinearShuntCompensatorPoint.sectionNumber>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPoint.sectionNumber>/g, sub, context, true);
+            /**
+             * Non-linear shunt compensator owning this point.
+             */
+            obj["NonlinearShuntCompensator"] = base.parse_attribute (/<cim:NonlinearShuntCompensatorPoint.NonlinearShuntCompensator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.NonlinearShuntCompensatorPoint;
             if (null == bucket)
                 context.parsed.NonlinearShuntCompensatorPoint = bucket = {};
@@ -676,6 +680,10 @@ define
              * Positive sequence shunt (charging) conductance per section
              */
             obj["g"] = base.parse_element (/<cim:NonlinearShuntCompensatorPhasePoint.g>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPhasePoint.g>/g, sub, context, true);
+            /**
+             * Non-linear shunt compensator phase owning this point.
+             */
+            obj["NonlinearShuntCompensatorPhase"] = base.parse_attribute (/<cim:NonlinearShuntCompensatorPhasePoint.NonlinearShuntCompensatorPhase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.NonlinearShuntCompensatorPhasePoint;
             if (null == bucket)
                 context.parsed.NonlinearShuntCompensatorPhasePoint = bucket = {};

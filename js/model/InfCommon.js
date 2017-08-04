@@ -43,9 +43,6 @@ define
 
             obj = parse_Role (context, sub);
             obj.cls = "PersonDocumentRole";
-            /**
-             * 
-             */
             obj["Person"] = base.parse_attribute (/<cim:PersonDocumentRole.Person\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.PersonDocumentRole;
             if (null == bucket)
@@ -133,9 +130,6 @@ define
              * Classification by utility's work management standards and practices.
              */
             obj["type"] = base.parse_element (/<cim:OldCrew.type>([\s\S]*?)<\/cim:OldCrew.type>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Route"] = base.parse_attribute (/<cim:OldCrew.Route\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.OldCrew;
             if (null == bucket)
@@ -190,9 +184,6 @@ define
              * Level of skill for a Craft.
              */
             obj["level"] = base.parse_element (/<cim:Skill.level>([\s\S]*?)<\/cim:Skill.level>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpPerson"] = base.parse_attribute (/<cim:Skill.ErpPerson\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Skill;
             if (null == bucket)
@@ -232,13 +223,7 @@ define
 
             obj = parse_Role (context, sub);
             obj.cls = "PersonPropertyRole";
-            /**
-             * 
-             */
             obj["LandProperty"] = base.parse_attribute (/<cim:PersonPropertyRole.LandProperty\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Person"] = base.parse_attribute (/<cim:PersonPropertyRole.Person\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.PersonPropertyRole;
             if (null == bucket)
@@ -355,17 +340,8 @@ define
              * Examples include employee, contractor, agent, not affiliated, etc.
              */
             obj["type"] = base.parse_element (/<cim:OldPerson.type>([\s\S]*?)<\/cim:OldPerson.type>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["CustomerData"] = base.parse_attribute (/<cim:OldPerson.CustomerData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpPersonnel"] = base.parse_attribute (/<cim:OldPerson.ErpPersonnel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpCompetency"] = base.parse_attribute (/<cim:OldPerson.ErpCompetency\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.OldPerson;
             if (null == bucket)
@@ -389,9 +365,6 @@ define
              * Identifiers of the person held by an organisation, such as a government agency (federal, state, province, city, county), financial institutions, etc.
              */
             obj["clientID"] = base.parse_element (/<cim:PersonOrganisationRole.clientID>([\s\S]*?)<\/cim:PersonOrganisationRole.clientID>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpPerson"] = base.parse_attribute (/<cim:PersonOrganisationRole.ErpPerson\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.PersonOrganisationRole;
             if (null == bucket)

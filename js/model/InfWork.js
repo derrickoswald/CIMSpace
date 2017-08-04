@@ -23,9 +23,6 @@ define
              */
             obj["sequenceNumber"] = base.parse_element (/<cim:WorkFlowStep.sequenceNumber>([\s\S]*?)<\/cim:WorkFlowStep.sequenceNumber>/g, sub, context, true);
             obj["status"] = base.parse_element (/<cim:WorkFlowStep.status>([\s\S]*?)<\/cim:WorkFlowStep.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Work"] = base.parse_attribute (/<cim:WorkFlowStep.Work\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.WorkFlowStep;
             if (null == bucket)
@@ -53,21 +50,9 @@ define
              * The quantity, unit of measure, and multiplier at the CU level that applies to the materials.
              */
             obj["quantity"] = base.parse_element (/<cim:CompatibleUnit.quantity>([\s\S]*?)<\/cim:CompatibleUnit.quantity>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["CUGroup"] = base.parse_attribute (/<cim:CompatibleUnit.CUGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["PropertyUnit"] = base.parse_attribute (/<cim:CompatibleUnit.PropertyUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["CostType"] = base.parse_attribute (/<cim:CompatibleUnit.CostType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["CUAllowableAction"] = base.parse_attribute (/<cim:CompatibleUnit.CUAllowableAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.CompatibleUnit;
             if (null == bucket)
@@ -189,13 +174,7 @@ define
              */
             obj["cost"] = base.parse_element (/<cim:ContractorItem.cost>([\s\S]*?)<\/cim:ContractorItem.cost>/g, sub, context, true);
             obj["status"] = base.parse_element (/<cim:ContractorItem.status>([\s\S]*?)<\/cim:ContractorItem.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["WorkCostDetail"] = base.parse_attribute (/<cim:ContractorItem.WorkCostDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["WorkTask"] = base.parse_attribute (/<cim:ContractorItem.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ContractorItem;
             if (null == bucket)
@@ -461,13 +440,7 @@ define
              * Price to customer for implementing design.
              */
             obj["price"] = base.parse_element (/<cim:Design.price>([\s\S]*?)<\/cim:Design.price>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Work"] = base.parse_attribute (/<cim:Design.Work\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpQuoteLineItem"] = base.parse_attribute (/<cim:Design.ErpQuoteLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Design;
             if (null == bucket)
@@ -500,9 +473,6 @@ define
              */
             obj["laborRate"] = base.parse_element (/<cim:CULaborItem.laborRate>([\s\S]*?)<\/cim:CULaborItem.laborRate>/g, sub, context, true);
             obj["status"] = base.parse_element (/<cim:CULaborItem.status>([\s\S]*?)<\/cim:CULaborItem.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["CULaborCode"] = base.parse_attribute (/<cim:CULaborItem.CULaborCode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.CULaborItem;
             if (null == bucket)
@@ -586,9 +556,6 @@ define
              * Date and time interval for which this capability is valid (when it became effective and when it expires).
              */
             obj["validityInterval"] = base.parse_element (/<cim:Capability.validityInterval>([\s\S]*?)<\/cim:Capability.validityInterval>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Crew"] = base.parse_attribute (/<cim:Capability.Crew\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Capability;
             if (null == bucket)
@@ -634,9 +601,6 @@ define
              * True if associated electrical equipment is intended to be energized while work is being performed.
              */
             obj["toBeEnergised"] = base.to_boolean (base.parse_element (/<cim:DesignLocationCU.toBeEnergised>([\s\S]*?)<\/cim:DesignLocationCU.toBeEnergised>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["DesignLocation"] = base.parse_attribute (/<cim:DesignLocationCU.DesignLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.DesignLocationCU;
             if (null == bucket)
@@ -700,17 +664,8 @@ define
              */
             obj["quantity"] = base.parse_element (/<cim:MiscCostItem.quantity>([\s\S]*?)<\/cim:MiscCostItem.quantity>/g, sub, context, true);
             obj["status"] = base.parse_element (/<cim:MiscCostItem.status>([\s\S]*?)<\/cim:MiscCostItem.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["WorkTask"] = base.parse_attribute (/<cim:MiscCostItem.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["DesignLocation"] = base.parse_attribute (/<cim:MiscCostItem.DesignLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["WorkCostDetail"] = base.parse_attribute (/<cim:MiscCostItem.WorkCostDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.MiscCostItem;
             if (null == bucket)
@@ -789,9 +744,6 @@ define
              * The code for this type of asset.
              */
             obj["typeAssetCode"] = base.parse_element (/<cim:CUAsset.typeAssetCode>([\s\S]*?)<\/cim:CUAsset.typeAssetCode>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TypeAsset"] = base.parse_attribute (/<cim:CUAsset.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.CUAsset;
             if (null == bucket)
@@ -871,13 +823,7 @@ define
              */
             obj["laborRate"] = base.parse_element (/<cim:LaborItem.laborRate>([\s\S]*?)<\/cim:LaborItem.laborRate>/g, sub, context, true);
             obj["status"] = base.parse_element (/<cim:LaborItem.status>([\s\S]*?)<\/cim:LaborItem.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["WorkCostDetail"] = base.parse_attribute (/<cim:LaborItem.WorkCostDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["WorkTask"] = base.parse_attribute (/<cim:LaborItem.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.LaborItem;
             if (null == bucket)
@@ -926,9 +872,6 @@ define
             obj = parse_WorkIdentifiedObject (context, sub);
             obj.cls = "Usage";
             obj["status"] = base.parse_element (/<cim:Usage.status>([\s\S]*?)<\/cim:Usage.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["WorkTask"] = base.parse_attribute (/<cim:Usage.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Usage;
             if (null == bucket)
@@ -948,17 +891,8 @@ define
 
             obj = Work.parse_WorkTask (context, sub);
             obj.cls = "OldWorkTask";
-            /**
-             * 
-             */
             obj["Design"] = base.parse_attribute (/<cim:OldWorkTask.Design\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["WorkFlowStep"] = base.parse_attribute (/<cim:OldWorkTask.WorkFlowStep\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["OverheadCost"] = base.parse_attribute (/<cim:OldWorkTask.OverheadCost\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.OldWorkTask;
             if (null == bucket)
@@ -996,9 +930,6 @@ define
              */
             obj["stage"] = base.parse_element (/<cim:CostType.stage>([\s\S]*?)<\/cim:CostType.stage>/g, sub, context, true);
             obj["status"] = base.parse_element (/<cim:CostType.status>([\s\S]*?)<\/cim:CostType.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ParentCostType"] = base.parse_attribute (/<cim:CostType.ParentCostType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.CostType;
             if (null == bucket)
@@ -1069,17 +1000,8 @@ define
              * Overall project budget.
              */
             obj["budget"] = base.parse_element (/<cim:Project.budget>([\s\S]*?)<\/cim:Project.budget>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ParentProject"] = base.parse_attribute (/<cim:Project.ParentProject\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["BusinessCase"] = base.parse_attribute (/<cim:Project.BusinessCase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpProjectAccounting"] = base.parse_attribute (/<cim:Project.ErpProjectAccounting\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.Project;
             if (null == bucket)
@@ -1132,9 +1054,6 @@ define
              */
             obj["rate"] = base.parse_element (/<cim:CUWorkEquipmentItem.rate>([\s\S]*?)<\/cim:CUWorkEquipmentItem.rate>/g, sub, context, true);
             obj["status"] = base.parse_element (/<cim:CUWorkEquipmentItem.status>([\s\S]*?)<\/cim:CUWorkEquipmentItem.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TypeAsset"] = base.parse_attribute (/<cim:CUWorkEquipmentItem.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.CUWorkEquipmentItem;
             if (null == bucket)
@@ -1155,9 +1074,6 @@ define
 
             obj = parse_WorkDocument (context, sub);
             obj.cls = "WorkCostSummary";
-            /**
-             * 
-             */
             obj["WorkCostDetail"] = base.parse_attribute (/<cim:WorkCostSummary.WorkCostDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.WorkCostSummary;
             if (null == bucket)
@@ -1187,9 +1103,6 @@ define
              */
             obj["quantity"] = base.parse_element (/<cim:CUMaterialItem.quantity>([\s\S]*?)<\/cim:CUMaterialItem.quantity>/g, sub, context, true);
             obj["status"] = base.parse_element (/<cim:CUMaterialItem.status>([\s\S]*?)<\/cim:CUMaterialItem.status>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["TypeMaterial"] = base.parse_attribute (/<cim:CUMaterialItem.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.CUMaterialItem;
             if (null == bucket)
@@ -1222,29 +1135,11 @@ define
              * Date and time that 'amount' is posted to the work.
              */
             obj["transactionDateTime"] = base.to_datetime (base.parse_element (/<cim:WorkCostDetail.transactionDateTime>([\s\S]*?)<\/cim:WorkCostDetail.transactionDateTime>/g, sub, context, true));
-            /**
-             * 
-             */
             obj["CostType"] = base.parse_attribute (/<cim:WorkCostDetail.CostType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["OverheadCost"] = base.parse_attribute (/<cim:WorkCostDetail.OverheadCost\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["WorkTask"] = base.parse_attribute (/<cim:WorkCostDetail.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Design"] = base.parse_attribute (/<cim:WorkCostDetail.Design\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpProjectAccounting"] = base.parse_attribute (/<cim:WorkCostDetail.ErpProjectAccounting\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["WorkCostSummary"] = base.parse_attribute (/<cim:WorkCostDetail.WorkCostSummary\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.WorkCostDetail;
             if (null == bucket)

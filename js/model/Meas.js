@@ -95,18 +95,12 @@ define
              * The time when the value was last updated
              */
             obj["timeStamp"] = base.to_datetime (base.parse_element (/<cim:MeasurementValue.timeStamp>([\s\S]*?)<\/cim:MeasurementValue.timeStamp>/g, sub, context, true));
-            /**
-             * 
-             */
             obj[""] = base.parse_attribute (/<cim:MeasurementValue.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * A reference to the type of source that updates the MeasurementValue, e.g.
              * SCADA, CCLink, manual, etc. User conventions for the names of sources are contained in the introduction to IEC 61970-301.
              */
             obj["MeasurementValueSource"] = base.parse_attribute (/<cim:MeasurementValue.MeasurementValueSource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["ErpPerson"] = base.parse_attribute (/<cim:MeasurementValue.ErpPerson\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * A MeasurementValue has a MeasurementValueQuality associated with it.
@@ -712,9 +706,6 @@ define
              * One or more measurements may be associated with a terminal in the network.
              */
             obj["Terminal"] = base.parse_attribute (/<cim:Measurement.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["Asset"] = base.parse_attribute (/<cim:Measurement.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * The power system resource that contains the measurement.

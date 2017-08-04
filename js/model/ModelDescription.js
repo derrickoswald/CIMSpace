@@ -47,13 +47,7 @@ define
 
             obj = parse_Model (context, sub);
             obj.cls = "DifferenceModel";
-            /**
-             * 
-             */
             obj["forwardDifferences"] = base.parse_attribute (/<cim:DifferenceModel.forwardDifferences\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["reverseDifferences"] = base.parse_attribute (/<cim:DifferenceModel.reverseDifferences\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.DifferenceModel;
             if (null == bucket)

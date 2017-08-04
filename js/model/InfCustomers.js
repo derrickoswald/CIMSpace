@@ -127,9 +127,6 @@ define
              * Amount of bill.
              */
             obj["workPrice"] = base.parse_element (/<cim:WorkBillingInfo.workPrice>([\s\S]*?)<\/cim:WorkBillingInfo.workPrice>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["CustomerAccount"] = base.parse_attribute (/<cim:WorkBillingInfo.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.WorkBillingInfo;
             if (null == bucket)
@@ -307,9 +304,6 @@ define
              * Type of payment plan.
              */
             obj["pymtPlanType"] = base.parse_element (/<cim:CustomerBillingInfo.pymtPlanType>([\s\S]*?)<\/cim:CustomerBillingInfo.pymtPlanType>/g, sub, context, true);
-            /**
-             * 
-             */
             obj["CustomerAccount"] = base.parse_attribute (/<cim:CustomerBillingInfo.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.CustomerBillingInfo;
             if (null == bucket)
