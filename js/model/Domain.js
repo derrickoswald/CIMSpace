@@ -3,13 +3,16 @@ define
     ["model/base"],
     /**
      * The domain package define primitive datatypes that are used by classes in other packages.
+     *
      * Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+     *
      */
     function (base)
     {
 
         /**
          * Capacitance per unit of length.
+         *
          */
         function parse_CapacitancePerLength (context, sub)
         {
@@ -33,6 +36,7 @@ define
 
         /**
          * Cost per unit volume.
+         *
          */
         function parse_CostPerVolume (context, sub)
         {
@@ -56,7 +60,9 @@ define
 
         /**
          * A floating point number.
+         *
          * The range is unspecified and not limited.
+         *
          */
         function parse_Float (context, sub)
         {
@@ -75,6 +81,7 @@ define
 
         /**
          * The unit multipliers defined for the CIM.
+         *
          */
         function parse_UnitMultiplier (context, sub)
         {
@@ -85,46 +92,57 @@ define
             obj.cls = "UnitMultiplier";
             /**
              * Pico 10**-12.
+             *
              */
             obj["p"] = base.parse_element (/<cim:UnitMultiplier.p>([\s\S]*?)<\/cim:UnitMultiplier.p>/g, sub, context, true);
             /**
              * Nano 10**-9.
+             *
              */
             obj["n"] = base.parse_element (/<cim:UnitMultiplier.n>([\s\S]*?)<\/cim:UnitMultiplier.n>/g, sub, context, true);
             /**
              * Micro 10**-6.
+             *
              */
             obj["micro"] = base.parse_element (/<cim:UnitMultiplier.micro>([\s\S]*?)<\/cim:UnitMultiplier.micro>/g, sub, context, true);
             /**
              * Milli 10**-3.
+             *
              */
             obj["m"] = base.parse_element (/<cim:UnitMultiplier.m>([\s\S]*?)<\/cim:UnitMultiplier.m>/g, sub, context, true);
             /**
              * Centi 10**-2.
+             *
              */
             obj["c"] = base.parse_element (/<cim:UnitMultiplier.c>([\s\S]*?)<\/cim:UnitMultiplier.c>/g, sub, context, true);
             /**
              * Deci 10**-1.
+             *
              */
             obj["d"] = base.parse_element (/<cim:UnitMultiplier.d>([\s\S]*?)<\/cim:UnitMultiplier.d>/g, sub, context, true);
             /**
              * Kilo 10**3.
+             *
              */
             obj["k"] = base.parse_element (/<cim:UnitMultiplier.k>([\s\S]*?)<\/cim:UnitMultiplier.k>/g, sub, context, true);
             /**
              * Mega 10**6.
+             *
              */
             obj["M"] = base.parse_element (/<cim:UnitMultiplier.M>([\s\S]*?)<\/cim:UnitMultiplier.M>/g, sub, context, true);
             /**
              * Giga 10**9.
+             *
              */
             obj["G"] = base.parse_element (/<cim:UnitMultiplier.G>([\s\S]*?)<\/cim:UnitMultiplier.G>/g, sub, context, true);
             /**
              * Tera 10**12.
+             *
              */
             obj["T"] = base.parse_element (/<cim:UnitMultiplier.T>([\s\S]*?)<\/cim:UnitMultiplier.T>/g, sub, context, true);
             /**
              * No multiplier or equivalently multiply by 1.
+             *
              */
             obj["none"] = base.parse_element (/<cim:UnitMultiplier.none>([\s\S]*?)<\/cim:UnitMultiplier.none>/g, sub, context, true);
             bucket = context.parsed.UnitMultiplier;
@@ -137,6 +155,7 @@ define
 
         /**
          * Product of RMS value of the voltage and the RMS value of the quadrature component of the current.
+         *
          */
         function parse_ReactivePower (context, sub)
         {
@@ -158,6 +177,7 @@ define
 
         /**
          * Interval between two times specified as mont and date.
+         *
          */
         function parse_MonthDayInterval (context, sub)
         {
@@ -168,10 +188,12 @@ define
             obj.cls = "MonthDayInterval";
             /**
              * End time of this interval.
+             *
              */
             obj["end"] = base.parse_element (/<cim:MonthDayInterval.end>([\s\S]*?)<\/cim:MonthDayInterval.end>/g, sub, context, true);
             /**
              * Start time of this interval.
+             *
              */
             obj["start"] = base.parse_element (/<cim:MonthDayInterval.start>([\s\S]*?)<\/cim:MonthDayInterval.start>/g, sub, context, true);
             bucket = context.parsed.MonthDayInterval;
@@ -184,6 +206,7 @@ define
 
         /**
          * Reactance (imaginary part of impedance), at rated frequency.
+         *
          */
         function parse_Reactance (context, sub)
         {
@@ -205,6 +228,7 @@ define
 
         /**
          * Resistance (real part of impedance) per unit of length.
+         *
          */
         function parse_ResistancePerLength (context, sub)
         {
@@ -228,6 +252,7 @@ define
 
         /**
          * Phase angle in radians.
+         *
          */
         function parse_AngleRadians (context, sub)
         {
@@ -249,6 +274,7 @@ define
 
         /**
          * Electrical voltage, can be both AC and DC.
+         *
          */
         function parse_Voltage (context, sub)
         {
@@ -270,6 +296,7 @@ define
 
         /**
          * Rate of change of active power per time.
+         *
          */
         function parse_ActivePowerChangeRate (context, sub)
         {
@@ -313,6 +340,7 @@ define
 
         /**
          * Cost, in units of currency, per elapsed time.
+         *
          */
         function parse_CostRate (context, sub)
         {
@@ -336,6 +364,7 @@ define
 
         /**
          * Reservoir water level referred to a given datum such as mean sea level.
+         *
          */
         function parse_WaterLevel (context, sub)
         {
@@ -357,7 +386,9 @@ define
 
         /**
          * An integer number.
+         *
          * The range is unspecified and not limited.
+         *
          */
         function parse_Integer (context, sub)
         {
@@ -376,6 +407,7 @@ define
 
         /**
          * Ratio of current to voltage.
+         *
          */
         function parse_Admittance (context, sub)
         {
@@ -397,6 +429,7 @@ define
 
         /**
          * Cost, in units of currency, per quantity of electrical energy generated.
+         *
          */
         function parse_CostPerEnergyUnit (context, sub)
         {
@@ -420,6 +453,7 @@ define
 
         /**
          * Reactance (imaginary part of impedance) per unit of length, at rated frequency.
+         *
          */
         function parse_ReactancePerLength (context, sub)
         {
@@ -443,7 +477,9 @@ define
 
         /**
          * Duration as "PnYnMnDTnHnMnS" which conforms to ISO 8601, where nY expresses a number of years, nM a number of months, nD a number of days.
+         *
          * The letter T separates the date expression from the time expression and, after it, nH identifies a number of hours, nM a number of minutes and nS a number of seconds. The number of seconds could be expressed as a decimal number, but all other numbers are integers.
+         *
          */
         function parse_Duration (context, sub)
         {
@@ -462,7 +498,9 @@ define
 
         /**
          * Time as "hh:mm:ss.sss", which conforms with ISO 8601.
+         *
          * UTC time zone is specified as "hh:mm:ss.sssZ". A local timezone relative UTC is specified as "hh:mm:ss.sss�hh:mm". The second component (shown here as "ss.sss") could have any number of digits in its fractional part to allow any kind of precision beyond seconds.
+         *
          */
         function parse_Time (context, sub)
         {
@@ -481,7 +519,9 @@ define
 
         /**
          * Per-unit active power variation with frequency referenced on the system apparent power base.
+         *
          * Typical values are in range 1.0 - 2.0.
+         *
          */
         function parse_Damping (context, sub)
         {
@@ -505,7 +545,9 @@ define
 
         /**
          * Per Unit - a positive or negative value referred to a defined base.
+         *
          * Values typically range from -10 to +10.
+         *
          */
         function parse_PU (context, sub)
         {
@@ -527,7 +569,9 @@ define
 
         /**
          * Monetary currencies.
+         *
          * Apologies for this list not being exhaustive.
+         *
          */
         function parse_Currency (context, sub)
         {
@@ -538,58 +582,72 @@ define
             obj.cls = "Currency";
             /**
              * US dollar
+             *
              */
             obj["USD"] = base.parse_element (/<cim:Currency.USD>([\s\S]*?)<\/cim:Currency.USD>/g, sub, context, true);
             /**
              * European euro
+             *
              */
             obj["EUR"] = base.parse_element (/<cim:Currency.EUR>([\s\S]*?)<\/cim:Currency.EUR>/g, sub, context, true);
             /**
              * Australian dollar
+             *
              */
             obj["AUD"] = base.parse_element (/<cim:Currency.AUD>([\s\S]*?)<\/cim:Currency.AUD>/g, sub, context, true);
             /**
              * Canadian dollar
+             *
              */
             obj["CAD"] = base.parse_element (/<cim:Currency.CAD>([\s\S]*?)<\/cim:Currency.CAD>/g, sub, context, true);
             /**
              * Swiss francs
+             *
              */
             obj["CHF"] = base.parse_element (/<cim:Currency.CHF>([\s\S]*?)<\/cim:Currency.CHF>/g, sub, context, true);
             /**
              * Chinese yuan renminbi
+             *
              */
             obj["CNY"] = base.parse_element (/<cim:Currency.CNY>([\s\S]*?)<\/cim:Currency.CNY>/g, sub, context, true);
             /**
              * Danish crown
+             *
              */
             obj["DKK"] = base.parse_element (/<cim:Currency.DKK>([\s\S]*?)<\/cim:Currency.DKK>/g, sub, context, true);
             /**
              * British pound
+             *
              */
             obj["GBP"] = base.parse_element (/<cim:Currency.GBP>([\s\S]*?)<\/cim:Currency.GBP>/g, sub, context, true);
             /**
              * Japanese yen
+             *
              */
             obj["JPY"] = base.parse_element (/<cim:Currency.JPY>([\s\S]*?)<\/cim:Currency.JPY>/g, sub, context, true);
             /**
              * Norwegian crown
+             *
              */
             obj["NOK"] = base.parse_element (/<cim:Currency.NOK>([\s\S]*?)<\/cim:Currency.NOK>/g, sub, context, true);
             /**
              * Russian ruble
+             *
              */
             obj["RUR"] = base.parse_element (/<cim:Currency.RUR>([\s\S]*?)<\/cim:Currency.RUR>/g, sub, context, true);
             /**
              * Swedish crown
+             *
              */
             obj["SEK"] = base.parse_element (/<cim:Currency.SEK>([\s\S]*?)<\/cim:Currency.SEK>/g, sub, context, true);
             /**
              * India rupees
+             *
              */
             obj["INR"] = base.parse_element (/<cim:Currency.INR>([\s\S]*?)<\/cim:Currency.INR>/g, sub, context, true);
             /**
              * Another type of currency.
+             *
              */
             obj["other"] = base.parse_element (/<cim:Currency.other>([\s\S]*?)<\/cim:Currency.other>/g, sub, context, true);
             bucket = context.parsed.Currency;
@@ -602,6 +660,7 @@ define
 
         /**
          * Product of RMS value of the voltage and the RMS value of the in-phase component of the current.
+         *
          */
         function parse_ActivePower (context, sub)
         {
@@ -623,6 +682,7 @@ define
 
         /**
          * Capacitive part of reactance (imaginary part of impedance), at rated frequency.
+         *
          */
         function parse_Capacitance (context, sub)
         {
@@ -644,7 +704,9 @@ define
 
         /**
          * Factor by which voltage must be multiplied to give corresponding power lost from a circuit.
+         *
          * Real part of admittance.
+         *
          */
         function parse_Conductance (context, sub)
         {
@@ -666,6 +728,7 @@ define
 
         /**
          * Inductance per unit of length.
+         *
          */
         function parse_InductancePerLength (context, sub)
         {
@@ -689,6 +752,7 @@ define
 
         /**
          * Volume per time.
+         *
          */
         function parse_VolumeFlowRate (context, sub)
         {
@@ -712,7 +776,9 @@ define
 
         /**
          * Date and time as "yyyy-mm-ddThh:mm:ss.sss", which conforms with ISO 8601.
+         *
          * UTC time zone is specified as "yyyy-mm-ddThh:mm:ss.sssZ". A local timezone relative UTC is specified as "yyyy-mm-ddThh:mm:ss.sss-hh:mm". The second component (shown here as "ss.sss") could have any number of digits in its fractional part to allow any kind of precision beyond seconds.
+         *
          */
         function parse_DateTime (context, sub)
         {
@@ -731,6 +797,7 @@ define
 
         /**
          * MonthDay format as "--mm-dd", which conforms with XSD data type gMonthDay.
+         *
          */
         function parse_MonthDay (context, sub)
         {
@@ -749,7 +816,9 @@ define
 
         /**
          * Electrical current with sign convention: positive flow is out of the conducting equipment into the connectivity node.
+         *
          * Can be both AC and DC.
+         *
          */
         function parse_CurrentFlow (context, sub)
         {
@@ -771,6 +840,7 @@ define
 
         /**
          * Active power in kilowatts.
+         *
          */
         function parse_KiloActivePower (context, sub)
         {
@@ -792,6 +862,7 @@ define
 
         /**
          * Ratio of voltage to current.
+         *
          */
         function parse_Impedance (context, sub)
         {
@@ -813,7 +884,9 @@ define
 
         /**
          * Percentage on a defined base.
+         *
          * For example, specify as 100 to indicate at the defined base.
+         *
          */
         function parse_PerCent (context, sub)
         {
@@ -826,6 +899,7 @@ define
             obj["unit"] = base.parse_element (/<cim:PerCent.unit>([\s\S]*?)<\/cim:PerCent.unit>/g, sub, context, true);
             /**
              * Normally 0 - 100 on a defined base
+             *
              */
             obj["value"] = base.to_float (base.parse_element (/<cim:PerCent.value>([\s\S]*?)<\/cim:PerCent.value>/g, sub, context, true));
             bucket = context.parsed.PerCent;
@@ -838,6 +912,7 @@ define
 
         /**
          * Time, in seconds.
+         *
          */
         function parse_Seconds (context, sub)
         {
@@ -850,6 +925,7 @@ define
             obj["unit"] = base.parse_element (/<cim:Seconds.unit>([\s\S]*?)<\/cim:Seconds.unit>/g, sub, context, true);
             /**
              * Time, in seconds
+             *
              */
             obj["value"] = base.to_float (base.parse_element (/<cim:Seconds.value>([\s\S]*?)<\/cim:Seconds.value>/g, sub, context, true));
             bucket = context.parsed.Seconds;
@@ -862,6 +938,7 @@ define
 
         /**
          * Active power variation with frequency.
+         *
          */
         function parse_ActivePowerPerFrequency (context, sub)
         {
@@ -885,6 +962,7 @@ define
 
         /**
          * Amount of money.
+         *
          */
         function parse_Money (context, sub)
         {
@@ -906,6 +984,7 @@ define
 
         /**
          * Interval between two date and time points.
+         *
          */
         function parse_DateTimeInterval (context, sub)
         {
@@ -916,10 +995,12 @@ define
             obj.cls = "DateTimeInterval";
             /**
              * End date and time of this interval.
+             *
              */
             obj["end"] = base.to_datetime (base.parse_element (/<cim:DateTimeInterval.end>([\s\S]*?)<\/cim:DateTimeInterval.end>/g, sub, context, true));
             /**
              * Start date and time of this interval.
+             *
              */
             obj["start"] = base.to_datetime (base.parse_element (/<cim:DateTimeInterval.start>([\s\S]*?)<\/cim:DateTimeInterval.start>/g, sub, context, true));
             bucket = context.parsed.DateTimeInterval;
@@ -932,6 +1013,7 @@ define
 
         /**
          * Product of the RMS value of the voltage and the RMS value of the current.
+         *
          */
         function parse_ApparentPower (context, sub)
         {
@@ -953,6 +1035,7 @@ define
 
         /**
          * Volume.
+         *
          */
         function parse_Volume (context, sub)
         {
@@ -974,6 +1057,7 @@ define
 
         /**
          * Measurement of angle in degrees.
+         *
          */
         function parse_AngleDegrees (context, sub)
         {
@@ -995,7 +1079,9 @@ define
 
         /**
          * Date as "yyyy-mm-dd", which conforms with ISO 8601.
+         *
          * UTC time zone is specified as "yyyy-mm-ddZ". A local timezone relative UTC is specified as "yyyy-mm-dd(+/-)hh:mm".
+         *
          */
         function parse_Date (context, sub)
         {
@@ -1024,6 +1110,7 @@ define
             obj["multiplier"] = base.parse_element (/<cim:DecimalQuantity.multiplier>([\s\S]*?)<\/cim:DecimalQuantity.multiplier>/g, sub, context, true);
             /**
              * Quantity with decimal value and associated unit or currency information.
+             *
              */
             obj["currency"] = base.parse_element (/<cim:DecimalQuantity.currency>([\s\S]*?)<\/cim:DecimalQuantity.currency>/g, sub, context, true);
             bucket = context.parsed.DecimalQuantity;
@@ -1036,6 +1123,7 @@ define
 
         /**
          * Real electrical energy.
+         *
          */
         function parse_RealEnergy (context, sub)
         {
@@ -1057,6 +1145,7 @@ define
 
         /**
          * Decimal is the base-10 notational system for representing real numbers.
+         *
          */
         function parse_Decimal (context, sub)
         {
@@ -1075,7 +1164,9 @@ define
 
         /**
          * Unit of length.
+         *
          * Never negative.
+         *
          */
         function parse_Length (context, sub)
         {
@@ -1097,6 +1188,7 @@ define
 
         /**
          * Value of temperature in degrees Celsius.
+         *
          */
         function parse_Temperature (context, sub)
         {
@@ -1118,6 +1210,7 @@ define
 
         /**
          * Quantity with float value and associated unit information.
+         *
          */
         function parse_FloatQuantity (context, sub)
         {
@@ -1139,6 +1232,7 @@ define
 
         /**
          * Imaginary part of admittance.
+         *
          */
         function parse_Susceptance (context, sub)
         {
@@ -1160,6 +1254,7 @@ define
 
         /**
          * Cycles per second.
+         *
          */
         function parse_Frequency (context, sub)
         {
@@ -1181,6 +1276,7 @@ define
 
         /**
          * Area.
+         *
          */
         function parse_Area (context, sub)
         {
@@ -1202,6 +1298,7 @@ define
 
         /**
          * Time in minutes.
+         *
          */
         function parse_Minutes (context, sub)
         {
@@ -1223,6 +1320,7 @@ define
 
         /**
          * Interval between two dates.
+         *
          */
         function parse_DateInterval (context, sub)
         {
@@ -1233,10 +1331,12 @@ define
             obj.cls = "DateInterval";
             /**
              * End date of this interval.
+             *
              */
             obj["end"] = base.parse_element (/<cim:DateInterval.end>([\s\S]*?)<\/cim:DateInterval.end>/g, sub, context, true);
             /**
              * Start date of this interval.
+             *
              */
             obj["start"] = base.parse_element (/<cim:DateInterval.start>([\s\S]*?)<\/cim:DateInterval.start>/g, sub, context, true);
             bucket = context.parsed.DateInterval;
@@ -1249,6 +1349,7 @@ define
 
         /**
          * Voltage variation with reactive power.
+         *
          */
         function parse_VoltagePerReactivePower (context, sub)
         {
@@ -1272,6 +1373,7 @@ define
 
         /**
          * Time specified in hours.
+         *
          */
         function parse_Hours (context, sub)
         {
@@ -1293,6 +1395,7 @@ define
 
         /**
          * Distance per unit of time.
+         *
          */
         function parse_Speed (context, sub)
         {
@@ -1316,6 +1419,7 @@ define
 
         /**
          * Unit of displacement relative a reference position, hence can be negative.
+         *
          */
         function parse_Displacement (context, sub)
         {
@@ -1337,7 +1441,9 @@ define
 
         /**
          * A string consisting of a sequence of characters.
+         *
          * The character encoding is UTF-8. The string length is unspecified and unlimited.
+         *
          */
         function parse_String (context, sub)
         {
@@ -1356,6 +1462,7 @@ define
 
         /**
          * The units defined for usage in the CIM.
+         *
          */
         function parse_UnitSymbol (context, sub)
         {
@@ -1366,111 +1473,139 @@ define
             obj.cls = "UnitSymbol";
             /**
              * Apparent power in volt ampere.
+             *
              */
             obj["VA"] = base.parse_element (/<cim:UnitSymbol.VA>([\s\S]*?)<\/cim:UnitSymbol.VA>/g, sub, context, true);
             /**
              * Active power in watt.
+             *
              */
             obj["W"] = base.parse_element (/<cim:UnitSymbol.W>([\s\S]*?)<\/cim:UnitSymbol.W>/g, sub, context, true);
             /**
              * Reactive power in volt ampere reactive.
+             *
              */
             obj["VAr"] = base.parse_element (/<cim:UnitSymbol.VAr>([\s\S]*?)<\/cim:UnitSymbol.VAr>/g, sub, context, true);
             /**
              * Apparent energy in volt ampere hours.
+             *
              */
             obj["VAh"] = base.parse_element (/<cim:UnitSymbol.VAh>([\s\S]*?)<\/cim:UnitSymbol.VAh>/g, sub, context, true);
             /**
              * Real energy in what hours.
+             *
              */
             obj["Wh"] = base.parse_element (/<cim:UnitSymbol.Wh>([\s\S]*?)<\/cim:UnitSymbol.Wh>/g, sub, context, true);
             /**
              * Reactive energy in volt ampere reactive hours.
+             *
              */
             obj["VArh"] = base.parse_element (/<cim:UnitSymbol.VArh>([\s\S]*?)<\/cim:UnitSymbol.VArh>/g, sub, context, true);
             /**
              * Voltage in volt.
+             *
              */
             obj["V"] = base.parse_element (/<cim:UnitSymbol.V>([\s\S]*?)<\/cim:UnitSymbol.V>/g, sub, context, true);
             /**
              * Resistance in ohm.
+             *
              */
             obj["ohm"] = base.parse_element (/<cim:UnitSymbol.ohm>([\s\S]*?)<\/cim:UnitSymbol.ohm>/g, sub, context, true);
             /**
              * Current in ampere.
+             *
              */
             obj["A"] = base.parse_element (/<cim:UnitSymbol.A>([\s\S]*?)<\/cim:UnitSymbol.A>/g, sub, context, true);
             /**
              * Capacitance in farad.
+             *
              */
             obj["F"] = base.parse_element (/<cim:UnitSymbol.F>([\s\S]*?)<\/cim:UnitSymbol.F>/g, sub, context, true);
             /**
              * Inductance in henry.
+             *
              */
             obj["H"] = base.parse_element (/<cim:UnitSymbol.H>([\s\S]*?)<\/cim:UnitSymbol.H>/g, sub, context, true);
             /**
              * Relative temperature in degrees Celsius.
+             *
              * In the SI unit system the symbol is �C. Electric charge is measured in coulomb that has the unit symbol C. To distinguish degree Celsius form coulomb the symbol used in the UML is degC. Reason for not using �C is the special character � is difficult to manage in software.
+             *
              */
             obj["degC"] = base.parse_element (/<cim:UnitSymbol.degC>([\s\S]*?)<\/cim:UnitSymbol.degC>/g, sub, context, true);
             /**
              * Time in seconds.
+             *
              */
             obj["s"] = base.parse_element (/<cim:UnitSymbol.s>([\s\S]*?)<\/cim:UnitSymbol.s>/g, sub, context, true);
             /**
              * Time in minutes.
+             *
              */
             obj["min"] = base.parse_element (/<cim:UnitSymbol.min>([\s\S]*?)<\/cim:UnitSymbol.min>/g, sub, context, true);
             /**
              * Time in hours.
+             *
              */
             obj["h"] = base.parse_element (/<cim:UnitSymbol.h>([\s\S]*?)<\/cim:UnitSymbol.h>/g, sub, context, true);
             /**
              * Plane angle in degrees.
+             *
              */
             obj["deg"] = base.parse_element (/<cim:UnitSymbol.deg>([\s\S]*?)<\/cim:UnitSymbol.deg>/g, sub, context, true);
             /**
              * Plane angle in radians.
+             *
              */
             obj["rad"] = base.parse_element (/<cim:UnitSymbol.rad>([\s\S]*?)<\/cim:UnitSymbol.rad>/g, sub, context, true);
             /**
              * Energy in joule.
+             *
              */
             obj["J"] = base.parse_element (/<cim:UnitSymbol.J>([\s\S]*?)<\/cim:UnitSymbol.J>/g, sub, context, true);
             /**
              * Force in newton.
+             *
              */
             obj["N"] = base.parse_element (/<cim:UnitSymbol.N>([\s\S]*?)<\/cim:UnitSymbol.N>/g, sub, context, true);
             /**
              * Conductance in siemens.
+             *
              */
             obj["S"] = base.parse_element (/<cim:UnitSymbol.S>([\s\S]*?)<\/cim:UnitSymbol.S>/g, sub, context, true);
             /**
              * Dimension less quantity, e.g. count, per unit, etc.
+             *
              */
             obj["none"] = base.parse_element (/<cim:UnitSymbol.none>([\s\S]*?)<\/cim:UnitSymbol.none>/g, sub, context, true);
             /**
              * Frequency in hertz.
+             *
              */
             obj["Hz"] = base.parse_element (/<cim:UnitSymbol.Hz>([\s\S]*?)<\/cim:UnitSymbol.Hz>/g, sub, context, true);
             /**
              * Mass in gram.
+             *
              */
             obj["g"] = base.parse_element (/<cim:UnitSymbol.g>([\s\S]*?)<\/cim:UnitSymbol.g>/g, sub, context, true);
             /**
              * Pressure in pascal (n/m2).
+             *
              */
             obj["Pa"] = base.parse_element (/<cim:UnitSymbol.Pa>([\s\S]*?)<\/cim:UnitSymbol.Pa>/g, sub, context, true);
             /**
              * Length in meter.
+             *
              */
             obj["m"] = base.parse_element (/<cim:UnitSymbol.m>([\s\S]*?)<\/cim:UnitSymbol.m>/g, sub, context, true);
             /**
              * Area in square meters.
+             *
              */
             obj["m2"] = base.parse_element (/<cim:UnitSymbol.m2>([\s\S]*?)<\/cim:UnitSymbol.m2>/g, sub, context, true);
             /**
              * Volume in cubic meters.
+             *
              */
             obj["m3"] = base.parse_element (/<cim:UnitSymbol.m3>([\s\S]*?)<\/cim:UnitSymbol.m3>/g, sub, context, true);
             bucket = context.parsed.UnitSymbol;
@@ -1483,6 +1618,7 @@ define
 
         /**
          * Number of revolutions per second.
+         *
          */
         function parse_RotationSpeed (context, sub)
         {
@@ -1506,6 +1642,7 @@ define
 
         /**
          * Resistance (real part of impedance).
+         *
          */
         function parse_Resistance (context, sub)
         {
@@ -1527,6 +1664,7 @@ define
 
         /**
          * The weight of an object.
+         *
          */
         function parse_Weight (context, sub)
         {
@@ -1548,6 +1686,7 @@ define
 
         /**
          * Pressure in Pascal.
+         *
          */
         function parse_Pressure (context, sub)
         {
@@ -1569,6 +1708,7 @@ define
 
         /**
          * Real part of admittance per unit of length.
+         *
          */
         function parse_ConductancePerLength (context, sub)
         {
@@ -1592,6 +1732,7 @@ define
 
         /**
          * A type with the value space "true" and "false".
+         *
          */
         function parse_Boolean (context, sub)
         {
@@ -1610,6 +1751,7 @@ define
 
         /**
          * Imaginary part of admittance per unit of length.
+         *
          */
         function parse_SusceptancePerLength (context, sub)
         {
@@ -1633,6 +1775,7 @@ define
 
         /**
          * Quantity with string value (when it is not important whether it is an integral or a floating point number) and associated unit information.
+         *
          */
         function parse_StringQuantity (context, sub)
         {
@@ -1654,6 +1797,7 @@ define
 
         /**
          * Quantity with integer value and associated unit information.
+         *
          */
         function parse_IntegerQuantity (context, sub)
         {
@@ -1675,6 +1819,7 @@ define
 
         /**
          * Interval between two times.
+         *
          */
         function parse_TimeInterval (context, sub)
         {
@@ -1685,10 +1830,12 @@ define
             obj.cls = "TimeInterval";
             /**
              * End time of this interval.
+             *
              */
             obj["end"] = base.parse_element (/<cim:TimeInterval.end>([\s\S]*?)<\/cim:TimeInterval.end>/g, sub, context, true);
             /**
              * Start time of this interval.
+             *
              */
             obj["start"] = base.parse_element (/<cim:TimeInterval.start>([\s\S]*?)<\/cim:TimeInterval.start>/g, sub, context, true);
             bucket = context.parsed.TimeInterval;
@@ -1701,6 +1848,7 @@ define
 
         /**
          * Inductive part of reactance (imaginary part of impedance), at rated frequency.
+         *
          */
         function parse_Inductance (context, sub)
         {

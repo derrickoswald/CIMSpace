@@ -6,6 +6,7 @@ define
 
         /**
          * Kind of transformer construction.
+         *
          */
         function parse_TransformerCoreKind (context, sub)
         {
@@ -26,6 +27,7 @@ define
 
         /**
          * Properties of recloser assets.
+         *
          */
         function parse_RecloserInfo (context, sub)
         {
@@ -36,22 +38,27 @@ define
             obj.cls = "RecloserInfo";
             /**
              * True if device has ground trip capability.
+             *
              */
             obj["groundTripCapable"] = base.to_boolean (base.parse_element (/<cim:RecloserInfo.groundTripCapable>([\s\S]*?)<\/cim:RecloserInfo.groundTripCapable>/g, sub, context, true));
             /**
              * True if normal status of ground trip is enabled.
+             *
              */
             obj["groundTripNormalEnabled"] = base.to_boolean (base.parse_element (/<cim:RecloserInfo.groundTripNormalEnabled>([\s\S]*?)<\/cim:RecloserInfo.groundTripNormalEnabled>/g, sub, context, true));
             /**
              * Ground trip rating.
+             *
              */
             obj["groundTripRating"] = base.parse_element (/<cim:RecloserInfo.groundTripRating>([\s\S]*?)<\/cim:RecloserInfo.groundTripRating>/g, sub, context, true);
             /**
              * Phase trip rating.
+             *
              */
             obj["phaseTripRating"] = base.parse_element (/<cim:RecloserInfo.phaseTripRating>([\s\S]*?)<\/cim:RecloserInfo.phaseTripRating>/g, sub, context, true);
             /**
              * Total number of phase reclose operations.
+             *
              */
             obj["recloseLockoutCount"] = base.parse_element (/<cim:RecloserInfo.recloseLockoutCount>([\s\S]*?)<\/cim:RecloserInfo.recloseLockoutCount>/g, sub, context, true);
             bucket = context.parsed.RecloserInfo;
@@ -64,6 +71,7 @@ define
 
         /**
          * Kind of control for shunt impedance.
+         *
          */
         function parse_ShuntImpedanceControlKind (context, sub)
         {
@@ -86,6 +94,7 @@ define
 
         /**
          * Parameters of fault indicator asset.
+         *
          */
         function parse_FaultIndicatorInfo (context, sub)
         {
@@ -96,6 +105,7 @@ define
             obj.cls = "FaultIndicatorInfo";
             /**
              * Kind of reset mechanisim of this fault indicator.
+             *
              */
             obj["resetKind"] = base.parse_element (/<cim:FaultIndicatorInfo.resetKind>([\s\S]*?)<\/cim:FaultIndicatorInfo.resetKind>/g, sub, context, true);
             bucket = context.parsed.FaultIndicatorInfo;
@@ -108,6 +118,7 @@ define
 
         /**
          * Properties of breaker assets.
+         *
          */
         function parse_BreakerInfo (context, sub)
         {
@@ -118,6 +129,7 @@ define
             obj.cls = "BreakerInfo";
             /**
              * Phase trip rating.
+             *
              */
             obj["phaseTrip"] = base.parse_element (/<cim:BreakerInfo.phaseTrip>([\s\S]*?)<\/cim:BreakerInfo.phaseTrip>/g, sub, context, true);
             bucket = context.parsed.BreakerInfo;
@@ -130,7 +142,9 @@ define
 
         /**
          * Provides pricing and other relevant information about a specific manufacturer's product (i.e., AssetModel), and its price from a given supplier.
+         *
          * A single AssetModel may be availble from multiple suppliers. Note that manufacturer and supplier are both types of organisation, which the association is inherited from Document.
+         *
          */
         function parse_AssetModelCatalogueItem (context, sub)
         {
@@ -141,7 +155,9 @@ define
             obj.cls = "AssetModelCatalogueItem";
             /**
              * Unit cost for an asset model from a specific supplier, either for a unit cost or cost per unit length.
+             *
              * Cost is for material or asset only and does not include labor to install/construct or configure it.
+             *
              */
             obj["unitCost"] = base.parse_element (/<cim:AssetModelCatalogueItem.unitCost>([\s\S]*?)<\/cim:AssetModelCatalogueItem.unitCost>/g, sub, context, true);
             obj["AssetModel"] = base.parse_attribute (/<cim:AssetModelCatalogueItem.AssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -156,6 +172,7 @@ define
 
         /**
          * Properties of switch assets.
+         *
          */
         function parse_OldSwitchInfo (context, sub)
         {
@@ -166,31 +183,39 @@ define
             obj.cls = "OldSwitchInfo";
             /**
              * The maximum rms voltage that may be applied across an open contact without breaking down the dielectric properties of the switch in the open position.
+             *
              */
             obj["dielectricStrength"] = base.parse_element (/<cim:OldSwitchInfo.dielectricStrength>([\s\S]*?)<\/cim:OldSwitchInfo.dielectricStrength>/g, sub, context, true);
             /**
              * True if switch has load breaking capabiity.
+             *
              * Unless specified false, this is always assumed to be true for breakers and reclosers.
+             *
              */
             obj["loadBreak"] = base.to_boolean (base.parse_element (/<cim:OldSwitchInfo.loadBreak>([\s\S]*?)<\/cim:OldSwitchInfo.loadBreak>/g, sub, context, true));
             /**
              * The highest value of current the switch can make at the rated voltage under specified operating conditions without suffering significant deterioration of its performance.
+             *
              */
             obj["makingCapacity"] = base.parse_element (/<cim:OldSwitchInfo.makingCapacity>([\s\S]*?)<\/cim:OldSwitchInfo.makingCapacity>/g, sub, context, true);
             /**
              * The lowest value of current that the switch can make, carry and break in uninterrupted duty at the rated voltage under specified operating conditions without suffering significant deterioration of its performance.
+             *
              */
             obj["minimumCurrent"] = base.parse_element (/<cim:OldSwitchInfo.minimumCurrent>([\s\S]*?)<\/cim:OldSwitchInfo.minimumCurrent>/g, sub, context, true);
             /**
              * Number of poles (i.e. of current carrying conductors that are switched).
+             *
              */
             obj["poleCount"] = base.parse_element (/<cim:OldSwitchInfo.poleCount>([\s\S]*?)<\/cim:OldSwitchInfo.poleCount>/g, sub, context, true);
             /**
              * True if device is capable of being operated by remote control.
+             *
              */
             obj["remote"] = base.to_boolean (base.parse_element (/<cim:OldSwitchInfo.remote>([\s\S]*?)<\/cim:OldSwitchInfo.remote>/g, sub, context, true));
             /**
              * The highest value of current the switch can carry in the closed position at the rated voltage under specified operating conditions without suffering significant deterioration of its performance.
+             *
              */
             obj["withstandCurrent"] = base.parse_element (/<cim:OldSwitchInfo.withstandCurrent>([\s\S]*?)<\/cim:OldSwitchInfo.withstandCurrent>/g, sub, context, true);
             bucket = context.parsed.OldSwitchInfo;
@@ -203,6 +228,7 @@ define
 
         /**
          * Properties of current transformer asset.
+         *
          */
         function parse_CurrentTransformerInfo (context, sub)
         {
@@ -213,63 +239,78 @@ define
             obj.cls = "CurrentTransformerInfo";
             /**
              * CT accuracy classification.
+             *
              */
             obj["accuracyClass"] = base.parse_element (/<cim:CurrentTransformerInfo.accuracyClass>([\s\S]*?)<\/cim:CurrentTransformerInfo.accuracyClass>/g, sub, context, true);
             /**
              * Accuracy limit.
+             *
              */
             obj["accuracyLimit"] = base.parse_element (/<cim:CurrentTransformerInfo.accuracyLimit>([\s\S]*?)<\/cim:CurrentTransformerInfo.accuracyLimit>/g, sub, context, true);
             /**
              * Number of cores.
+             *
              */
             obj["coreCount"] = base.parse_element (/<cim:CurrentTransformerInfo.coreCount>([\s\S]*?)<\/cim:CurrentTransformerInfo.coreCount>/g, sub, context, true);
             obj["ctClass"] = base.parse_element (/<cim:CurrentTransformerInfo.ctClass>([\s\S]*?)<\/cim:CurrentTransformerInfo.ctClass>/g, sub, context, true);
             /**
              * Maximum primary current where the CT still displays linear characteristicts.
+             *
              */
             obj["kneePointCurrent"] = base.parse_element (/<cim:CurrentTransformerInfo.kneePointCurrent>([\s\S]*?)<\/cim:CurrentTransformerInfo.kneePointCurrent>/g, sub, context, true);
             /**
              * Maximum voltage across the secondary terminals where the CT still displays linear characteristicts.
+             *
              */
             obj["kneePointVoltage"] = base.parse_element (/<cim:CurrentTransformerInfo.kneePointVoltage>([\s\S]*?)<\/cim:CurrentTransformerInfo.kneePointVoltage>/g, sub, context, true);
             /**
              * Maximum ratio between the primary and secondary current.
+             *
              */
             obj["maxRatio"] = base.parse_element (/<cim:CurrentTransformerInfo.maxRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.maxRatio>/g, sub, context, true);
             /**
              * Nominal ratio between the primary and secondary current; i.e. 100:5.
+             *
              */
             obj["nominalRatio"] = base.parse_element (/<cim:CurrentTransformerInfo.nominalRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.nominalRatio>/g, sub, context, true);
             /**
              * Full load secondary (FLS) rating for primary winding.
+             *
              */
             obj["primaryFlsRating"] = base.parse_element (/<cim:CurrentTransformerInfo.primaryFlsRating>([\s\S]*?)<\/cim:CurrentTransformerInfo.primaryFlsRating>/g, sub, context, true);
             /**
              * Ratio for the primary winding tap changer.
+             *
              */
             obj["primaryRatio"] = base.parse_element (/<cim:CurrentTransformerInfo.primaryRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.primaryRatio>/g, sub, context, true);
             /**
              * Rated current on the primary side.
+             *
              */
             obj["ratedCurrent"] = base.parse_element (/<cim:CurrentTransformerInfo.ratedCurrent>([\s\S]*?)<\/cim:CurrentTransformerInfo.ratedCurrent>/g, sub, context, true);
             /**
              * Full load secondary (FLS) rating for secondary winding.
+             *
              */
             obj["secondaryFlsRating"] = base.parse_element (/<cim:CurrentTransformerInfo.secondaryFlsRating>([\s\S]*?)<\/cim:CurrentTransformerInfo.secondaryFlsRating>/g, sub, context, true);
             /**
              * Ratio for the secondary winding tap changer.
+             *
              */
             obj["secondaryRatio"] = base.parse_element (/<cim:CurrentTransformerInfo.secondaryRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.secondaryRatio>/g, sub, context, true);
             /**
              * Full load secondary (FLS) rating for tertiary winding.
+             *
              */
             obj["tertiaryFlsRating"] = base.parse_element (/<cim:CurrentTransformerInfo.tertiaryFlsRating>([\s\S]*?)<\/cim:CurrentTransformerInfo.tertiaryFlsRating>/g, sub, context, true);
             /**
              * Ratio for the tertiary winding tap changer.
+             *
              */
             obj["tertiaryRatio"] = base.parse_element (/<cim:CurrentTransformerInfo.tertiaryRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.tertiaryRatio>/g, sub, context, true);
             /**
              * Usage: eg. metering, protection, etc.
+             *
              */
             obj["usage"] = base.parse_element (/<cim:CurrentTransformerInfo.usage>([\s\S]*?)<\/cim:CurrentTransformerInfo.usage>/g, sub, context, true);
             bucket = context.parsed.CurrentTransformerInfo;
@@ -282,6 +323,7 @@ define
 
         /**
          * Properties of surge arrester.
+         *
          */
         function parse_SurgeArresterInfo (context, sub)
         {
@@ -292,41 +334,53 @@ define
             obj.cls = "SurgeArresterInfo";
             /**
              * Maximum continuous power frequency voltage allowed on the surge arrester.
+             *
              */
             obj["continuousOperatingVoltage"] = base.parse_element (/<cim:SurgeArresterInfo.continuousOperatingVoltage>([\s\S]*?)<\/cim:SurgeArresterInfo.continuousOperatingVoltage>/g, sub, context, true);
             /**
              * If true, the arrester has a polymer housing, porcelain otherwise.
+             *
              */
             obj["isPolymer"] = base.to_boolean (base.parse_element (/<cim:SurgeArresterInfo.isPolymer>([\s\S]*?)<\/cim:SurgeArresterInfo.isPolymer>/g, sub, context, true));
             /**
              * Residual voltage during an 8x20 microsecond current impulse at the nominal discharge current level.
+             *
              */
             obj["lightningImpulseDischargeVoltage"] = base.parse_element (/<cim:SurgeArresterInfo.lightningImpulseDischargeVoltage>([\s\S]*?)<\/cim:SurgeArresterInfo.lightningImpulseDischargeVoltage>/g, sub, context, true);
             /**
              * Determines the arrester energy discharge capability.
+             *
              * Choices are limited to 0 (none) through 5 (highest) by IEC 60099. Classes 1..3 require a 10-kA nominal discharge current. Classes 4..5 require a 20-kA nominal discharge current. Lower nominal discharge currents must use class 0.
+             *
              */
             obj["lineDischargeClass"] = base.parse_element (/<cim:SurgeArresterInfo.lineDischargeClass>([\s\S]*?)<\/cim:SurgeArresterInfo.lineDischargeClass>/g, sub, context, true);
             /**
              * The lightning discharge current used to classify the arrester.
+             *
              * Choices are limited to 1.5, 2.5, 5, 10, and 20 kA by IEC 60099.
+             *
              */
             obj["nominalDischargeCurrent"] = base.parse_element (/<cim:SurgeArresterInfo.nominalDischargeCurrent>([\s\S]*?)<\/cim:SurgeArresterInfo.nominalDischargeCurrent>/g, sub, context, true);
             /**
              * Fault current level at which all parts of the failed arrester lie within a circle prescribed by IEC 60099.
+             *
              */
             obj["pressureReliefClass"] = base.parse_element (/<cim:SurgeArresterInfo.pressureReliefClass>([\s\S]*?)<\/cim:SurgeArresterInfo.pressureReliefClass>/g, sub, context, true);
             /**
              * The temporary overvoltage (TOV) level at power frequency that the surge arrester withstands for 10 seconds.
+             *
              */
             obj["ratedVoltage"] = base.parse_element (/<cim:SurgeArresterInfo.ratedVoltage>([\s\S]*?)<\/cim:SurgeArresterInfo.ratedVoltage>/g, sub, context, true);
             /**
              * Residual voltage during a current impulse with front time of 1 microsecond, and magnitude equal to the nominal discharge current level.
+             *
              */
             obj["steepFrontDischargeVoltage"] = base.parse_element (/<cim:SurgeArresterInfo.steepFrontDischargeVoltage>([\s\S]*?)<\/cim:SurgeArresterInfo.steepFrontDischargeVoltage>/g, sub, context, true);
             /**
              * Residual voltage during a current impulse with front time of at least 30 microseconds, and magnitude specified in IEC 60099 for the line discharge class.
+             *
              * Does not apply to line discharge class 0.
+             *
              */
             obj["switchingImpulseDischargeVoltage"] = base.parse_element (/<cim:SurgeArresterInfo.switchingImpulseDischargeVoltage>([\s\S]*?)<\/cim:SurgeArresterInfo.switchingImpulseDischargeVoltage>/g, sub, context, true);
             bucket = context.parsed.SurgeArresterInfo;
@@ -339,6 +393,7 @@ define
 
         /**
          * Kind of composite switch.
+         *
          */
         function parse_CompositeSwitchKind (context, sub)
         {
@@ -364,7 +419,9 @@ define
 
         /**
          * Catalogue of available types of products and materials that are used to build or install, maintain or operate an Asset.
+         *
          * Each catalogue item is for a specific product (AssetModel) available from a specific supplier.
+         *
          */
         function parse_AssetModelCatalogue (context, sub)
         {
@@ -384,6 +441,7 @@ define
 
         /**
          * Properties of protection equipment asset.
+         *
          */
         function parse_ProtectionEquipmentInfo (context, sub)
         {
@@ -394,10 +452,12 @@ define
             obj.cls = "ProtectionEquipmentInfo";
             /**
              * Actual ground trip for this type of relay, if applicable.
+             *
              */
             obj["groundTrip"] = base.parse_element (/<cim:ProtectionEquipmentInfo.groundTrip>([\s\S]*?)<\/cim:ProtectionEquipmentInfo.groundTrip>/g, sub, context, true);
             /**
              * Actual phase trip for this type of relay, if applicable.
+             *
              */
             obj["phaseTrip"] = base.parse_element (/<cim:ProtectionEquipmentInfo.phaseTrip>([\s\S]*?)<\/cim:ProtectionEquipmentInfo.phaseTrip>/g, sub, context, true);
             bucket = context.parsed.ProtectionEquipmentInfo;
@@ -410,6 +470,7 @@ define
 
         /**
          * Kind of transformer construction.
+         *
          */
         function parse_TransformerConstructionKind (context, sub)
         {
@@ -444,6 +505,7 @@ define
 
         /**
          * Insulation kind for windings.
+         *
          */
         function parse_WindingInsulationKind (context, sub)
         {
@@ -473,26 +535,32 @@ define
             obj.cls = "OldTransformerTankInfo";
             /**
              * Kind of construction for this transformer.
+             *
              */
             obj["constructionKind"] = base.parse_element (/<cim:OldTransformerTankInfo.constructionKind>([\s\S]*?)<\/cim:OldTransformerTankInfo.constructionKind>/g, sub, context, true);
             /**
              * Weight of core and coils in transformer.
+             *
              */
             obj["coreCoilsWeight"] = base.parse_element (/<cim:OldTransformerTankInfo.coreCoilsWeight>([\s\S]*?)<\/cim:OldTransformerTankInfo.coreCoilsWeight>/g, sub, context, true);
             /**
              * Core kind of this transformer product.
+             *
              */
             obj["coreKind"] = base.parse_element (/<cim:OldTransformerTankInfo.coreKind>([\s\S]*?)<\/cim:OldTransformerTankInfo.coreKind>/g, sub, context, true);
             /**
              * Function of this transformer.
+             *
              */
             obj["function"] = base.parse_element (/<cim:OldTransformerTankInfo.function>([\s\S]*?)<\/cim:OldTransformerTankInfo.function>/g, sub, context, true);
             /**
              * Basic insulation level of neutral.
+             *
              */
             obj["neutralBIL"] = base.parse_element (/<cim:OldTransformerTankInfo.neutralBIL>([\s\S]*?)<\/cim:OldTransformerTankInfo.neutralBIL>/g, sub, context, true);
             /**
              * Kind of oil preservation system.
+             *
              */
             obj["oilPreservationKind"] = base.parse_element (/<cim:OldTransformerTankInfo.oilPreservationKind>([\s\S]*?)<\/cim:OldTransformerTankInfo.oilPreservationKind>/g, sub, context, true);
             bucket = context.parsed.OldTransformerTankInfo;
@@ -505,6 +573,7 @@ define
 
         /**
          * Properties of a composite switch.
+         *
          */
         function parse_CompositeSwitchInfo (context, sub)
         {
@@ -515,38 +584,47 @@ define
             obj.cls = "CompositeSwitchInfo";
             /**
              * True if multi-phase switch controls all phases concurrently.
+             *
              */
             obj["ganged"] = base.to_boolean (base.parse_element (/<cim:CompositeSwitchInfo.ganged>([\s\S]*?)<\/cim:CompositeSwitchInfo.ganged>/g, sub, context, true));
             /**
              * Initial operating mode, with the following values: Automatic, Manual.
+             *
              */
             obj["initOpMode"] = base.parse_element (/<cim:CompositeSwitchInfo.initOpMode>([\s\S]*?)<\/cim:CompositeSwitchInfo.initOpMode>/g, sub, context, true);
             /**
              * Breaking capacity, or short circuit rating, is the maximum rated current which the device can safely interrupt at the rated voltage.
+             *
              */
             obj["interruptingRating"] = base.parse_element (/<cim:CompositeSwitchInfo.interruptingRating>([\s\S]*?)<\/cim:CompositeSwitchInfo.interruptingRating>/g, sub, context, true);
             /**
              * Kind of composite switch.
+             *
              */
             obj["kind"] = base.parse_element (/<cim:CompositeSwitchInfo.kind>([\s\S]*?)<\/cim:CompositeSwitchInfo.kind>/g, sub, context, true);
             /**
              * Phases carried, if applicable.
+             *
              */
             obj["phaseCode"] = base.parse_element (/<cim:CompositeSwitchInfo.phaseCode>([\s\S]*?)<\/cim:CompositeSwitchInfo.phaseCode>/g, sub, context, true);
             /**
              * Supported number of phases, typically 0, 1 or 3.
+             *
              */
             obj["phaseCount"] = base.parse_element (/<cim:CompositeSwitchInfo.phaseCount>([\s\S]*?)<\/cim:CompositeSwitchInfo.phaseCount>/g, sub, context, true);
             /**
              * Rated voltage.
+             *
              */
             obj["ratedVoltage"] = base.parse_element (/<cim:CompositeSwitchInfo.ratedVoltage>([\s\S]*?)<\/cim:CompositeSwitchInfo.ratedVoltage>/g, sub, context, true);
             /**
              * True if device is capable of being operated by remote control.
+             *
              */
             obj["remote"] = base.to_boolean (base.parse_element (/<cim:CompositeSwitchInfo.remote>([\s\S]*?)<\/cim:CompositeSwitchInfo.remote>/g, sub, context, true));
             /**
              * Number of switch states represented by the composite switch.
+             *
              */
             obj["switchStateCount"] = base.parse_element (/<cim:CompositeSwitchInfo.switchStateCount>([\s\S]*?)<\/cim:CompositeSwitchInfo.switchStateCount>/g, sub, context, true);
             bucket = context.parsed.CompositeSwitchInfo;
@@ -559,6 +637,7 @@ define
 
         /**
          * Kind of local control for shunt impedance.
+         *
          */
         function parse_ShuntImpedanceLocalControlKind (context, sub)
         {
@@ -584,6 +663,7 @@ define
 
         /**
          * Kind of resetting the fault indicators.
+         *
          */
         function parse_FaultIndicatorResetKind (context, sub)
         {
@@ -606,6 +686,7 @@ define
 
         /**
          * Properties of potential transformer asset.
+         *
          */
         function parse_PotentialTransformerInfo (context, sub)
         {
@@ -618,19 +699,23 @@ define
             obj["nominalRatio"] = base.parse_element (/<cim:PotentialTransformerInfo.nominalRatio>([\s\S]*?)<\/cim:PotentialTransformerInfo.nominalRatio>/g, sub, context, true);
             /**
              * Ratio for the primary winding tap changer.
+             *
              */
             obj["primaryRatio"] = base.parse_element (/<cim:PotentialTransformerInfo.primaryRatio>([\s\S]*?)<\/cim:PotentialTransformerInfo.primaryRatio>/g, sub, context, true);
             obj["ptClass"] = base.parse_element (/<cim:PotentialTransformerInfo.ptClass>([\s\S]*?)<\/cim:PotentialTransformerInfo.ptClass>/g, sub, context, true);
             /**
              * Rated voltage on the primary side.
+             *
              */
             obj["ratedVoltage"] = base.parse_element (/<cim:PotentialTransformerInfo.ratedVoltage>([\s\S]*?)<\/cim:PotentialTransformerInfo.ratedVoltage>/g, sub, context, true);
             /**
              * Ratio for the secondary winding tap changer.
+             *
              */
             obj["secondaryRatio"] = base.parse_element (/<cim:PotentialTransformerInfo.secondaryRatio>([\s\S]*?)<\/cim:PotentialTransformerInfo.secondaryRatio>/g, sub, context, true);
             /**
              * Ratio for the tertiary winding tap changer.
+             *
              */
             obj["tertiaryRatio"] = base.parse_element (/<cim:PotentialTransformerInfo.tertiaryRatio>([\s\S]*?)<\/cim:PotentialTransformerInfo.tertiaryRatio>/g, sub, context, true);
             bucket = context.parsed.PotentialTransformerInfo;
@@ -643,6 +728,7 @@ define
 
         /**
          * Function of a transformer.
+         *
          */
         function parse_TransformerFunctionKind (context, sub)
         {
@@ -673,18 +759,22 @@ define
             obj.cls = "OldTransformerEndInfo";
             /**
              * Overload rating for 24 hours.
+             *
              */
             obj["dayOverLoadRating"] = base.parse_element (/<cim:OldTransformerEndInfo.dayOverLoadRating>([\s\S]*?)<\/cim:OldTransformerEndInfo.dayOverLoadRating>/g, sub, context, true);
             /**
              * Overload rating for 1 hour.
+             *
              */
             obj["hourOverLoadRating"] = base.parse_element (/<cim:OldTransformerEndInfo.hourOverLoadRating>([\s\S]*?)<\/cim:OldTransformerEndInfo.hourOverLoadRating>/g, sub, context, true);
             /**
              * Weight of solid insultation in transformer.
+             *
              */
             obj["solidInsulationWeight"] = base.parse_element (/<cim:OldTransformerEndInfo.solidInsulationWeight>([\s\S]*?)<\/cim:OldTransformerEndInfo.solidInsulationWeight>/g, sub, context, true);
             /**
              * Type of insultation used for transformer windings.
+             *
              */
             obj["windingInsulationKind"] = base.parse_element (/<cim:OldTransformerEndInfo.windingInsulationKind>([\s\S]*?)<\/cim:OldTransformerEndInfo.windingInsulationKind>/g, sub, context, true);
             bucket = context.parsed.OldTransformerEndInfo;
@@ -697,6 +787,7 @@ define
 
         /**
          * Kind of regulation branch for shunt impedance.
+         *
          */
         function parse_RegulationBranchKind (context, sub)
         {
@@ -723,6 +814,7 @@ define
 
         /**
          * Kind of oil preservation.
+         *
          */
         function parse_OilPreservationKind (context, sub)
         {

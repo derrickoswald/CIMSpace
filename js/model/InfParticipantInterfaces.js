@@ -6,7 +6,9 @@ define
 
         /**
          * A unique identifier of a wheeling transaction.
+         *
          * A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
+         *
          */
         function parse_WheelingReferenceSchedule (context, sub)
         {

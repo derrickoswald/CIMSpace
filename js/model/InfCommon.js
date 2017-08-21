@@ -3,12 +3,14 @@ define
     ["model/base", "model/Common", "model/Core"],
     /**
      * This package contains functions common for distribution management.
+     *
      */
     function (base, Common, Core)
     {
 
         /**
          * Organisation that is a commercial bank, agency, or other institution that offers a similar service.
+         *
          */
         function parse_Bank (context, sub)
         {
@@ -19,10 +21,12 @@ define
             obj.cls = "Bank";
             /**
              * Bank identifier code as defined in ISO 9362; for use in countries wher IBAN is not yet in operation.
+             *
              */
             obj["bic"] = base.parse_element (/<cim:Bank.bic>([\s\S]*?)<\/cim:Bank.bic>/g, sub, context, true);
             /**
              * International bank account number defined in ISO 13616; for countries where IBAN is not in operation, the existing BIC or SWIFT codes may be used instead (see ISO 9362).
+             *
              */
             obj["iban"] = base.parse_element (/<cim:Bank.iban>([\s\S]*?)<\/cim:Bank.iban>/g, sub, context, true);
             bucket = context.parsed.Bank;
@@ -35,6 +39,7 @@ define
 
         /**
          * Roles played between Persons and Documents.
+         *
          */
         function parse_PersonDocumentRole (context, sub)
         {
@@ -54,6 +59,7 @@ define
 
         /**
          * Kind of skill level.
+         *
          */
         function parse_SkillLevelKind (context, sub)
         {
@@ -76,7 +82,9 @@ define
 
         /**
          * A business role that this organisation plays.
+         *
          * A single organisation typically performs many functions, each one described as a role.
+         *
          */
         function parse_BusinessRole (context, sub)
         {
@@ -88,6 +96,7 @@ define
             obj["status"] = base.parse_element (/<cim:BusinessRole.status>([\s\S]*?)<\/cim:BusinessRole.status>/g, sub, context, true);
             /**
              * Classification by utility's corporate standards and practices.
+             *
              */
             obj["type"] = base.parse_element (/<cim:BusinessRole.type>([\s\S]*?)<\/cim:BusinessRole.type>/g, sub, context, true);
             bucket = context.parsed.BusinessRole;
@@ -100,6 +109,7 @@ define
 
         /**
          * Role an organisation plays with respect to property (for example, the organisation may be the owner, renter, occupier, taxiing authority, etc.).
+         *
          */
         function parse_PropertyOrganisationRole (context, sub)
         {
@@ -118,6 +128,7 @@ define
 
         /**
          * A crew is a group of people with specific skills, tools, and vehicles.
+         *
          */
         function parse_OldCrew (context, sub)
         {
@@ -128,6 +139,7 @@ define
             obj.cls = "OldCrew";
             /**
              * Classification by utility's work management standards and practices.
+             *
              */
             obj["type"] = base.parse_element (/<cim:OldCrew.type>([\s\S]*?)<\/cim:OldCrew.type>/g, sub, context, true);
             obj["Route"] = base.parse_attribute (/<cim:OldCrew.Route\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -141,7 +153,9 @@ define
 
         /**
          * Roles played between Organisations and other Organisations.
+         *
          * This includes role ups for ogranisations, cost centers, profit centers, regulatory reporting, etc.
+         *
          */
         function parse_OrgOrgRole (context, sub)
         {
@@ -152,6 +166,7 @@ define
             obj.cls = "OrgOrgRole";
             /**
              * Identifiers of the organisation held by another organisation, such as a government agency (federal, state, province, city, county), financial institution (Dun and Bradstreet), etc.
+             *
              */
             obj["clientID"] = base.parse_element (/<cim:OrgOrgRole.clientID>([\s\S]*?)<\/cim:OrgOrgRole.clientID>/g, sub, context, true);
             bucket = context.parsed.OrgOrgRole;
@@ -164,6 +179,7 @@ define
 
         /**
          * Proficiency level of a craft, which is required to operate or maintain a particular type of asset and/or perform certain types of work.
+         *
          */
         function parse_Skill (context, sub)
         {
@@ -174,14 +190,17 @@ define
             obj.cls = "Skill";
             /**
              * Interval between the certification and its expiry.
+             *
              */
             obj["certificationPeriod"] = base.parse_element (/<cim:Skill.certificationPeriod>([\s\S]*?)<\/cim:Skill.certificationPeriod>/g, sub, context, true);
             /**
              * Date and time the skill became effective.
+             *
              */
             obj["effectiveDateTime"] = base.to_datetime (base.parse_element (/<cim:Skill.effectiveDateTime>([\s\S]*?)<\/cim:Skill.effectiveDateTime>/g, sub, context, true));
             /**
              * Level of skill for a Craft.
+             *
              */
             obj["level"] = base.parse_element (/<cim:Skill.level>([\s\S]*?)<\/cim:Skill.level>/g, sub, context, true);
             obj["ErpPerson"] = base.parse_attribute (/<cim:Skill.ErpPerson\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -195,7 +214,9 @@ define
 
         /**
          * A BusinessPlan is an organized sequence of predetermined actions required to complete a future organizational objective.
+         *
          * It is a type of document that typically references a schedule, physical and/or logical resources (assets and/or PowerSystemResources), locations, etc.
+         *
          */
         function parse_BusinessPlan (context, sub)
         {
@@ -214,7 +235,9 @@ define
 
         /**
          * The role of a person relative to a given piece of property.
+         *
          * Examples of roles include: owner, renter, contractor, etc.
+         *
          */
         function parse_PersonPropertyRole (context, sub)
         {
@@ -235,6 +258,7 @@ define
 
         /**
          * Enumeration of potential roles that might be played by one object relative to another.
+         *
          */
         function parse_Role (context, sub)
         {
@@ -246,6 +270,7 @@ define
             obj["status"] = base.parse_element (/<cim:Role.status>([\s\S]*?)<\/cim:Role.status>/g, sub, context, true);
             /**
              * Type of role.
+             *
              */
             obj["type"] = base.parse_element (/<cim:Role.type>([\s\S]*?)<\/cim:Role.type>/g, sub, context, true);
             bucket = context.parsed.Role;
@@ -258,6 +283,7 @@ define
 
         /**
          * Role an organisation plays with respect to documents.
+         *
          */
         function parse_DocumentOrganisationRole (context, sub)
         {
@@ -276,6 +302,7 @@ define
 
         /**
          * Fraction specified explicitly with a numerator and denominator, which can be used to calculate the quotient.
+         *
          */
         function parse_Ratio (context, sub)
         {
@@ -286,10 +313,12 @@ define
             obj.cls = "Ratio";
             /**
              * The part of a fraction that is below the line and that functions as the divisor of the numerator.
+             *
              */
             obj["denominator"] = base.to_float (base.parse_element (/<cim:Ratio.denominator>([\s\S]*?)<\/cim:Ratio.denominator>/g, sub, context, true));
             /**
              * The part of a fraction that is above the line and signifies the number to be divided by the denominator.
+             *
              */
             obj["numerator"] = base.to_float (base.parse_element (/<cim:Ratio.numerator>([\s\S]*?)<\/cim:Ratio.numerator>/g, sub, context, true));
             bucket = context.parsed.Ratio;
@@ -302,7 +331,9 @@ define
 
         /**
          * Craft of a person or a crew.
+         *
          * Examples include overhead electric, underground electric, high pressure gas, etc. This ensures necessary knowledge and skills before being allowed to perform certain types of work.
+         *
          */
         function parse_Craft (context, sub)
         {
@@ -314,6 +345,7 @@ define
             obj["status"] = base.parse_element (/<cim:Craft.status>([\s\S]*?)<\/cim:Craft.status>/g, sub, context, true);
             /**
              * Classification by utility's work mangement standards and practices.
+             *
              */
             obj["type"] = base.parse_element (/<cim:Craft.type>([\s\S]*?)<\/cim:Craft.type>/g, sub, context, true);
             bucket = context.parsed.Craft;
@@ -326,6 +358,7 @@ define
 
         /**
          * General purpose information for name and other information to contact people.
+         *
          */
         function parse_OldPerson (context, sub)
         {
@@ -337,7 +370,9 @@ define
             obj["status"] = base.parse_element (/<cim:OldPerson.status>([\s\S]*?)<\/cim:OldPerson.status>/g, sub, context, true);
             /**
              * Utility-specific classification for this person, according to the utility's corporate standards and practices.
+             *
              * Examples include employee, contractor, agent, not affiliated, etc.
+             *
              */
             obj["type"] = base.parse_element (/<cim:OldPerson.type>([\s\S]*?)<\/cim:OldPerson.type>/g, sub, context, true);
             obj["CustomerData"] = base.parse_attribute (/<cim:OldPerson.CustomerData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -353,6 +388,7 @@ define
 
         /**
          * Role an organisation plays with respect to persons.
+         *
          */
         function parse_PersonOrganisationRole (context, sub)
         {
@@ -363,6 +399,7 @@ define
             obj.cls = "PersonOrganisationRole";
             /**
              * Identifiers of the person held by an organisation, such as a government agency (federal, state, province, city, county), financial institutions, etc.
+             *
              */
             obj["clientID"] = base.parse_element (/<cim:PersonOrganisationRole.clientID>([\s\S]*?)<\/cim:PersonOrganisationRole.clientID>/g, sub, context, true);
             obj["ErpPerson"] = base.parse_attribute (/<cim:PersonOrganisationRole.ErpPerson\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -376,6 +413,7 @@ define
 
         /**
          * Bank account.
+         *
          */
         function parse_BankAccount (context, sub)
         {
@@ -386,14 +424,17 @@ define
             obj.cls = "BankAccount";
             /**
              * Account reference number.
+             *
              */
             obj["accountNumber"] = base.parse_element (/<cim:BankAccount.accountNumber>([\s\S]*?)<\/cim:BankAccount.accountNumber>/g, sub, context, true);
             /**
              * ServiceSupplier that is owner of this BankAccount.
+             *
              */
             obj["ServiceSupplier"] = base.parse_attribute (/<cim:BankAccount.ServiceSupplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * Bank that provides this BankAccount.
+             *
              */
             obj["Bank"] = base.parse_attribute (/<cim:BankAccount.Bank\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.BankAccount;

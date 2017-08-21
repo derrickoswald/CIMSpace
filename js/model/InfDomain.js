@@ -166,7 +166,9 @@ define
 
         /**
          * S - Scheduling
+         *
          * P - Pricing
+         *
          */
         function parse_runTypeCAISO (context, sub)
         {
@@ -187,7 +189,9 @@ define
 
         /**
          * BASELI NE
+         *
          * NEGOTIATED
+         *
          */
         function parse_AdderType (context, sub)
         {
@@ -208,6 +212,7 @@ define
 
         /**
          * Description of market statement
+         *
          */
         function parse_MarketStatementDescription (context, sub)
         {
@@ -231,8 +236,10 @@ define
 
         /**
          * ADD - add
-        DEL - delete
+         * DEL - delete
+         *
          * CHG - change
+         *
          */
         function parse_MQSDELType (context, sub)
         {
@@ -360,17 +367,19 @@ define
 
         /**
          * Status indication for bids
-        
-        CV - Conditionally Valid Bid
-        CM - Conditionally Modified Bid
-        V - Valid Bid
-        M - Modified Bid
-        RJ - Rejected Bid
-        I - Invalid Bid
-        CX - Cancelled Bid
-        O - Obsolete Bid
-        CL - Clean Bid
+         * 
+         * CV - Conditionally Valid Bid
+         * CM - Conditionally Modified Bid
+         * V - Valid Bid
+         * M - Modified Bid
+         * RJ - Rejected Bid
+         * I - Invalid Bid
+         * CX - Cancelled Bid
+         * O - Obsolete Bid
+         * CL - Clean Bid
+         *
          * RP - Replicated Bid
+         *
          */
         function parse_BidStatusType (context, sub)
         {
@@ -381,10 +390,12 @@ define
             obj.cls = "BidStatusType";
             /**
              * Clean
+             *
              */
             obj["CL"] = base.parse_element (/<cim:BidStatusType.CL>([\s\S]*?)<\/cim:BidStatusType.CL>/g, sub, context, true);
             /**
              * Replicated
+             *
              */
             obj["RP"] = base.parse_element (/<cim:BidStatusType.RP>([\s\S]*?)<\/cim:BidStatusType.RP>/g, sub, context, true);
             obj["RJ"] = base.parse_element (/<cim:BidStatusType.RJ>([\s\S]*?)<\/cim:BidStatusType.RJ>/g, sub, context, true);
@@ -489,6 +500,7 @@ define
 
         /**
          * market statement document status
+         *
          */
         function parse_MarketStatementDocStatus (context, sub)
         {
@@ -509,7 +521,9 @@ define
 
         /**
          * MP
+         *
          * ISO
+         *
          */
         function parse_RequestorRmrTest (context, sub)
         {
@@ -530,6 +544,7 @@ define
 
         /**
          * market statement line item alias name
+         *
          */
         function parse_MarketStatementLineItemAliasName (context, sub)
         {
@@ -561,30 +576,37 @@ define
             obj.cls = "CleanTradeProductType";
             /**
              * Physical Energy Tra
+             *
              */
             obj["PHY"] = base.parse_element (/<cim:CleanTradeProductType.PHY>([\s\S]*?)<\/cim:CleanTradeProductType.PHY>/g, sub, context, true);
             /**
              * Energy Trades at Aggregated Pricing Nodes
+             *
              */
             obj["APN"] = base.parse_element (/<cim:CleanTradeProductType.APN>([\s\S]*?)<\/cim:CleanTradeProductType.APN>/g, sub, context, true);
             /**
              * Converted Physical Energy Trade
+             *
              */
             obj["CPT"] = base.parse_element (/<cim:CleanTradeProductType.CPT>([\s\S]*?)<\/cim:CleanTradeProductType.CPT>/g, sub, context, true);
             /**
              * Regulation Up Trade
+             *
              */
             obj["RUT"] = base.parse_element (/<cim:CleanTradeProductType.RUT>([\s\S]*?)<\/cim:CleanTradeProductType.RUT>/g, sub, context, true);
             /**
              * Regulation Down Trade
+             *
              */
             obj["RDT"] = base.parse_element (/<cim:CleanTradeProductType.RDT>([\s\S]*?)<\/cim:CleanTradeProductType.RDT>/g, sub, context, true);
             /**
              * Spinning Reserve Trade
+             *
              */
             obj["SRT"] = base.parse_element (/<cim:CleanTradeProductType.SRT>([\s\S]*?)<\/cim:CleanTradeProductType.SRT>/g, sub, context, true);
             /**
              * Non-Spinning Reserve Trade
+             *
              */
             obj["NRT"] = base.parse_element (/<cim:CleanTradeProductType.NRT>([\s\S]*?)<\/cim:CleanTradeProductType.NRT>/g, sub, context, true);
             bucket = context.parsed.CleanTradeProductType;
@@ -614,6 +636,7 @@ define
 
         /**
          * market statement document type
+         *
          */
         function parse_MarketStatementDocType (context, sub)
         {
@@ -635,21 +658,23 @@ define
 
         /**
          * Path Flow - PF
-        Path Inflow Limit - PIL
-        Path Inflow Available Limit - PIAL 
-        Path Inflow Armed Limit - PIML
-        Path Outflow Limit - POL
-        Path Outflow Available Limit - POAL 
-        Path Outflow Armed Limit - OARL
-        Generation Output - GO 
-        Generation Max Operating Limit - GMOL 
-        Generation Min Operating Limit - GNOL 
-        Generation Regulation - GR 
-        Generation Status - GS 
-        Pump Production - PP 
-        System Load - SL 
-        System ACE - ACE
+         * Path Inflow Limit - PIL
+         * Path Inflow Available Limit - PIAL
+         * Path Inflow Armed Limit - PIML
+         * Path Outflow Limit - POL
+         * Path Outflow Available Limit - POAL
+         * Path Outflow Armed Limit - OARL
+         * Generation Output - GO
+         * Generation Max Operating Limit - GMOL
+         * Generation Min Operating Limit - GNOL
+         * Generation Regulation - GR
+         * Generation Status - GS
+         * Pump Production - PP
+         * System Load - SL
+         * System ACE - ACE
+         *
          * System INADV - INADV
+         *
          */
         function parse_MeasurementTypeEMS (context, sub)
         {
@@ -691,26 +716,32 @@ define
             obj.cls = "ResourceCertificationType";
             /**
              * Generic Type
+             *
              */
             obj["GT"] = base.parse_element (/<cim:ResourceCertificationType.GT>([\s\S]*?)<\/cim:ResourceCertificationType.GT>/g, sub, context, true);
             /**
              * Regulating
+             *
              */
             obj["RG"] = base.parse_element (/<cim:ResourceCertificationType.RG>([\s\S]*?)<\/cim:ResourceCertificationType.RG>/g, sub, context, true);
             /**
              * Spinning Reserve
+             *
              */
             obj["SR"] = base.parse_element (/<cim:ResourceCertificationType.SR>([\s\S]*?)<\/cim:ResourceCertificationType.SR>/g, sub, context, true);
             /**
              * Generic
-            Regulation
-            Spinning
-            Non-spinning
+             * Regulation
+             * Spinning
+             * Non-spinning
+             *
              * Intermittent Resource
+             *
              */
             obj["NR"] = base.parse_element (/<cim:ResourceCertificationType.NR>([\s\S]*?)<\/cim:ResourceCertificationType.NR>/g, sub, context, true);
             /**
              * Intermittent Resource
+             *
              */
             obj["IR"] = base.parse_element (/<cim:ResourceCertificationType.IR>([\s\S]*?)<\/cim:ResourceCertificationType.IR>/g, sub, context, true);
             bucket = context.parsed.ResourceCertificationType;
@@ -734,10 +765,12 @@ define
             obj["RMT"] = base.parse_element (/<cim:SelfSchedTypeRawBid.RMT>([\s\S]*?)<\/cim:SelfSchedTypeRawBid.RMT>/g, sub, context, true);
             /**
              * Self-Provision
+             *
              */
             obj["SP"] = base.parse_element (/<cim:SelfSchedTypeRawBid.SP>([\s\S]*?)<\/cim:SelfSchedTypeRawBid.SP>/g, sub, context, true);
             /**
              * RA Obligations
+             *
              */
             obj["RA"] = base.parse_element (/<cim:SelfSchedTypeRawBid.RA>([\s\S]*?)<\/cim:SelfSchedTypeRawBid.RA>/g, sub, context, true);
             obj["BAS"] = base.parse_element (/<cim:SelfSchedTypeRawBid.BAS>([\s\S]*?)<\/cim:SelfSchedTypeRawBid.BAS>/g, sub, context, true);
@@ -771,6 +804,7 @@ define
 
         /**
          * Self Schedule Types applicable to Mitigated Bid
+         *
          */
         function parse_SelfScheduleTypeMB (context, sub)
         {
@@ -789,9 +823,11 @@ define
         }
 
         /**
-         * Y - indicates a resource is capable of setting the Markte Clearing Price 
-        S - indicates the resource must submit bids for energy at $ 0
-         * N - indicates the resource does not have to submit bids for energy at $ 0
+         * Y - indicates a resource is capable of setting the Markte Clearing Price
+         * S - indicates the resource must submit bids for energy at \$ 0
+         *
+         * N - indicates the resource does not have to submit bids for energy at \$ 0
+         *
          */
         function parse_PriceSetFlag (context, sub)
         {
@@ -856,6 +892,7 @@ define
 
         /**
          * zone type
+         *
          */
         function parse_ZoneType (context, sub)
         {
@@ -866,22 +903,27 @@ define
             obj.cls = "ZoneType";
             /**
              * load zone
+             *
              */
             obj["LOADZONE"] = base.parse_element (/<cim:ZoneType.LOADZONE>([\s\S]*?)<\/cim:ZoneType.LOADZONE>/g, sub, context, true);
             /**
              * trading hub
+             *
              */
             obj["TRADINGHUB"] = base.parse_element (/<cim:ZoneType.TRADINGHUB>([\s\S]*?)<\/cim:ZoneType.TRADINGHUB>/g, sub, context, true);
             /**
              * RUC zone
+             *
              */
             obj["RUCZONE"] = base.parse_element (/<cim:ZoneType.RUCZONE>([\s\S]*?)<\/cim:ZoneType.RUCZONE>/g, sub, context, true);
             /**
              * ancillary service region
+             *
              */
             obj["ASREGION"] = base.parse_element (/<cim:ZoneType.ASREGION>([\s\S]*?)<\/cim:ZoneType.ASREGION>/g, sub, context, true);
             /**
              * designated congestion area
+             *
              */
             obj["DCA"] = base.parse_element (/<cim:ZoneType.DCA>([\s\S]*?)<\/cim:ZoneType.DCA>/g, sub, context, true);
             bucket = context.parsed.ZoneType;
@@ -995,8 +1037,10 @@ define
 
         /**
          * MIN_CONSTRAINT
-        MAX_CONSTRAINT
+         * MAX_CONSTRAINT
+         *
          * FIXED_CONSTRAINT
+         *
          */
         function parse_ADSInstructionTypeOOS (context, sub)
         {
@@ -1137,7 +1181,9 @@ define
 
         /**
          * MW
+         *
          * FLAG
+         *
          */
         function parse_UnitTypeEMS (context, sub)
         {
@@ -1158,10 +1204,12 @@ define
 
         /**
          * RU - Regulation Up
-        RD - Regulation Down
-        SR - Spin Reserve
-        NR - Nonspin Reserve
+         * RD - Regulation Down
+         * SR - Spin Reserve
+         * NR - Nonspin Reserve
+         *
          * AS - Upward Ancillary Service
+         *
          */
         function parse_MarketProductTypeAsReq (context, sub)
         {
@@ -1172,18 +1220,22 @@ define
             obj.cls = "MarketProductTypeAsReq";
             /**
              * regulation up
+             *
              */
             obj["RU"] = base.parse_element (/<cim:MarketProductTypeAsReq.RU>([\s\S]*?)<\/cim:MarketProductTypeAsReq.RU>/g, sub, context, true);
             /**
              * regulation down
+             *
              */
             obj["RD"] = base.parse_element (/<cim:MarketProductTypeAsReq.RD>([\s\S]*?)<\/cim:MarketProductTypeAsReq.RD>/g, sub, context, true);
             /**
              * spinning reserve
+             *
              */
             obj["SR"] = base.parse_element (/<cim:MarketProductTypeAsReq.SR>([\s\S]*?)<\/cim:MarketProductTypeAsReq.SR>/g, sub, context, true);
             /**
              * non spinning reserve
+             *
              */
             obj["NR"] = base.parse_element (/<cim:MarketProductTypeAsReq.NR>([\s\S]*?)<\/cim:MarketProductTypeAsReq.NR>/g, sub, context, true);
             obj["AS"] = base.parse_element (/<cim:MarketProductTypeAsReq.AS>([\s\S]*?)<\/cim:MarketProductTypeAsReq.AS>/g, sub, context, true);
@@ -1197,6 +1249,7 @@ define
 
         /**
          * ancillary serivce types
+         *
          */
         function parse_AncillaryCommodityType (context, sub)
         {
@@ -1207,18 +1260,22 @@ define
             obj.cls = "AncillaryCommodityType";
             /**
              * regulation up
+             *
              */
             obj["REGUP"] = base.parse_element (/<cim:AncillaryCommodityType.REGUP>([\s\S]*?)<\/cim:AncillaryCommodityType.REGUP>/g, sub, context, true);
             /**
              * regulation down
+             *
              */
             obj["REGDN"] = base.parse_element (/<cim:AncillaryCommodityType.REGDN>([\s\S]*?)<\/cim:AncillaryCommodityType.REGDN>/g, sub, context, true);
             /**
              * spinning reserve
+             *
              */
             obj["SPIN"] = base.parse_element (/<cim:AncillaryCommodityType.SPIN>([\s\S]*?)<\/cim:AncillaryCommodityType.SPIN>/g, sub, context, true);
             /**
              * non spinning reserve
+             *
              */
             obj["NONSPIN"] = base.parse_element (/<cim:AncillaryCommodityType.NONSPIN>([\s\S]*?)<\/cim:AncillaryCommodityType.NONSPIN>/g, sub, context, true);
             bucket = context.parsed.AncillaryCommodityType;
@@ -1335,6 +1392,7 @@ define
 
         /**
          * organization type
+         *
          */
         function parse_OrganisationType (context, sub)
         {
@@ -1355,15 +1413,17 @@ define
 
         /**
          * self schedule types
-        
-        PT
-        ETC
-        TOR
-        RMR
-        RMT
-        RGMR
-        ORFC
+         * 
+         * PT
+         * ETC
+         * TOR
+         * RMR
+         * RMT
+         * RGMR
+         * ORFC
+         *
          * SP
+         *
          */
         function parse_SelfScheduleType (context, sub)
         {
@@ -1381,22 +1441,26 @@ define
             obj["ORFC"] = base.parse_element (/<cim:SelfScheduleType.ORFC>([\s\S]*?)<\/cim:SelfScheduleType.ORFC>/g, sub, context, true);
             /**
              * Self-Provision
+             *
              */
             obj["SP"] = base.parse_element (/<cim:SelfScheduleType.SP>([\s\S]*?)<\/cim:SelfScheduleType.SP>/g, sub, context, true);
             obj["IFM"] = base.parse_element (/<cim:SelfScheduleType.IFM>([\s\S]*?)<\/cim:SelfScheduleType.IFM>/g, sub, context, true);
             obj["RUC"] = base.parse_element (/<cim:SelfScheduleType.RUC>([\s\S]*?)<\/cim:SelfScheduleType.RUC>/g, sub, context, true);
             /**
              * RA Obligations
+             *
              */
             obj["RA"] = base.parse_element (/<cim:SelfScheduleType.RA>([\s\S]*?)<\/cim:SelfScheduleType.RA>/g, sub, context, true);
             obj["PUMP_ETC"] = base.parse_element (/<cim:SelfScheduleType.PUMP_ETC>([\s\S]*?)<\/cim:SelfScheduleType.PUMP_ETC>/g, sub, context, true);
             obj["PUMP_TOR"] = base.parse_element (/<cim:SelfScheduleType.PUMP_TOR>([\s\S]*?)<\/cim:SelfScheduleType.PUMP_TOR>/g, sub, context, true);
             /**
              * Base Schedule
+             *
              */
             obj["BAS"] = base.parse_element (/<cim:SelfScheduleType.BAS>([\s\S]*?)<\/cim:SelfScheduleType.BAS>/g, sub, context, true);
             /**
              * Lay-off schedule
+             *
              */
             obj["LOF"] = base.parse_element (/<cim:SelfScheduleType.LOF>([\s\S]*?)<\/cim:SelfScheduleType.LOF>/g, sub, context, true);
             obj["WHL"] = base.parse_element (/<cim:SelfScheduleType.WHL>([\s\S]*?)<\/cim:SelfScheduleType.WHL>/g, sub, context, true);
@@ -1439,10 +1503,12 @@ define
             obj["RMT"] = base.parse_element (/<cim:SelfSchedTypeCleanBid.RMT>([\s\S]*?)<\/cim:SelfSchedTypeCleanBid.RMT>/g, sub, context, true);
             /**
              * Self-Provision
+             *
              */
             obj["SP"] = base.parse_element (/<cim:SelfSchedTypeCleanBid.SP>([\s\S]*?)<\/cim:SelfSchedTypeCleanBid.SP>/g, sub, context, true);
             /**
              * RA Obligations
+             *
              */
             obj["RA"] = base.parse_element (/<cim:SelfSchedTypeCleanBid.RA>([\s\S]*?)<\/cim:SelfSchedTypeCleanBid.RA>/g, sub, context, true);
             obj["IFM"] = base.parse_element (/<cim:SelfSchedTypeCleanBid.IFM>([\s\S]*?)<\/cim:SelfSchedTypeCleanBid.IFM>/g, sub, context, true);
@@ -1467,30 +1533,37 @@ define
             obj.cls = "TradeProductType";
             /**
              * Physical Energy Tra
+             *
              */
             obj["PHY"] = base.parse_element (/<cim:TradeProductType.PHY>([\s\S]*?)<\/cim:TradeProductType.PHY>/g, sub, context, true);
             /**
              * Energy Trades at Aggregated Pricing Nodes
+             *
              */
             obj["APN"] = base.parse_element (/<cim:TradeProductType.APN>([\s\S]*?)<\/cim:TradeProductType.APN>/g, sub, context, true);
             /**
              * Regulation Up Trade
+             *
              */
             obj["RUT"] = base.parse_element (/<cim:TradeProductType.RUT>([\s\S]*?)<\/cim:TradeProductType.RUT>/g, sub, context, true);
             /**
              * Regulation Down Trade
+             *
              */
             obj["RDT"] = base.parse_element (/<cim:TradeProductType.RDT>([\s\S]*?)<\/cim:TradeProductType.RDT>/g, sub, context, true);
             /**
              * Spinning Reserve Trade
+             *
              */
             obj["SRT"] = base.parse_element (/<cim:TradeProductType.SRT>([\s\S]*?)<\/cim:TradeProductType.SRT>/g, sub, context, true);
             /**
              * Non-Spinning Reserve Trade
+             *
              */
             obj["NRT"] = base.parse_element (/<cim:TradeProductType.NRT>([\s\S]*?)<\/cim:TradeProductType.NRT>/g, sub, context, true);
             /**
              * Capacity type trade
+             *
              */
             obj["CAP"] = base.parse_element (/<cim:TradeProductType.CAP>([\s\S]*?)<\/cim:TradeProductType.CAP>/g, sub, context, true);
             bucket = context.parsed.TradeProductType;
@@ -1539,24 +1612,26 @@ define
 
         /**
          * Valid Enumerations:
-        1) DASE Day Ahead Scheduled Energy; 
-        2) DSSE Day Ahead Incremental Self Schedule Energy; 
-        3) DABE Day Ahead Incremental Energy Bid Awarded Energy; 
-        4) OE Optimal Energy; 
-        5) HASE Hour ahead pre-dispatched schedule energy; 
-        6) SRE Standard Ramping Energy; 
-        7) RED Ramping Energy Deviation; 
-        8) EDE Exceptional Dispatch energy; 
-        9) RMRE RMR Energy; 
-        10) MSSLFE MSSLF Energy; 
-        11) RE Residual Energy; 
-        12) MLE Minimum Load Energy; 
-        13) SE SLIC Energy; 
-        14) RTSSE Real time self scheduled energy; 
-        15) DMLE Day ahead minimum load energy; 
-        16) PE Pumping Energy; 
-        17) TEE Total Expected Energy;
+         * 1) DASE Day Ahead Scheduled Energy;
+         * 2) DSSE Day Ahead Incremental Self Schedule Energy;
+         * 3) DABE Day Ahead Incremental Energy Bid Awarded Energy;
+         * 4) OE Optimal Energy;
+         * 5) HASE Hour ahead pre-dispatched schedule energy;
+         * 6) SRE Standard Ramping Energy;
+         * 7) RED Ramping Energy Deviation;
+         * 8) EDE Exceptional Dispatch energy;
+         * 9) RMRE RMR Energy;
+         * 10) MSSLFE MSSLF Energy;
+         * 11) RE Residual Energy;
+         * 12) MLE Minimum Load Energy;
+         * 13) SE SLIC Energy;
+         * 14) RTSSE Real time self scheduled energy;
+         * 15) DMLE Day ahead minimum load energy;
+         * 16) PE Pumping Energy;
+         * 17) TEE Total Expected Energy;
+         *
          * 18) DAPE - Day-Ahead Pumping Energy;
+         *
          */
         function parse_EnergyTypeCode (context, sub)
         {
@@ -1593,7 +1668,9 @@ define
 
         /**
          * ACTIVE
+         *
          * INACTIVE
+         *
          */
         function parse_CurrentStatusSC (context, sub)
         {
@@ -1614,16 +1691,18 @@ define
 
         /**
          * RJ - Rejected Trade
-        I - Invalid Trade
-        V - Valid Trade
-        M - Modified Trade
-        CV - Conditionally Valid Trade
-        CM - Conditionally Modified Trade
-        CI - Conditionally Invalid Trade
-        CX - Cancelled Trade
-        O - Obsolete Trade
-        MT - Matched Trade
+         * I - Invalid Trade
+         * V - Valid Trade
+         * M - Modified Trade
+         * CV - Conditionally Valid Trade
+         * CM - Conditionally Modified Trade
+         * CI - Conditionally Invalid Trade
+         * CX - Cancelled Trade
+         * O - Obsolete Trade
+         * MT - Matched Trade
+         *
          * U - Unmatched Trade
+         *
          */
         function parse_TradeStatusType (context, sub)
         {
@@ -1663,6 +1742,7 @@ define
             obj["RC"] = base.parse_element (/<cim:ResourceCertificationCategory.RC>([\s\S]*?)<\/cim:ResourceCertificationCategory.RC>/g, sub, context, true);
             /**
              * Generic
+             *
              */
             obj["GT"] = base.parse_element (/<cim:ResourceCertificationCategory.GT>([\s\S]*?)<\/cim:ResourceCertificationCategory.GT>/g, sub, context, true);
             bucket = context.parsed.ResourceCertificationCategory;
@@ -1675,6 +1755,7 @@ define
 
         /**
          * organization code
+         *
          */
         function parse_OrganisationCode (context, sub)
         {

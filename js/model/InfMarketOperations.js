@@ -6,6 +6,7 @@ define
 
         /**
          * Bilateral transaction
+         *
          */
         function parse_BilateralTransaction (context, sub)
         {
@@ -16,42 +17,53 @@ define
             obj.cls = "BilateralTransaction";
             /**
              * Transaction scope:
-            'Internal' (default)
+             * 'Internal' (default)
+             *
              * 'External'
+             *
              */
             obj["scope"] = base.parse_element (/<cim:BilateralTransaction.scope>([\s\S]*?)<\/cim:BilateralTransaction.scope>/g, sub, context, true);
             /**
              * Transaction type (default 1)
-            1 - Fixed
-            2 - Dispatchable continuous
+             * 1 - Fixed
+             * 2 - Dispatchable continuous
+             *
              * 3 - Dispatchable block-loading
+             *
              */
             obj["transactionType"] = base.parse_element (/<cim:BilateralTransaction.transactionType>([\s\S]*?)<\/cim:BilateralTransaction.transactionType>/g, sub, context, true);
             /**
              * Market type (default=DA)
-            DA - Day Ahead
-            RT - Real Time
+             * DA - Day Ahead
+             * RT - Real Time
+             *
              * HA - Hour Ahead
+             *
              */
             obj["marketType"] = base.parse_element (/<cim:BilateralTransaction.marketType>([\s\S]*?)<\/cim:BilateralTransaction.marketType>/g, sub, context, true);
             /**
              * Minimum purchase time in number of trading intervals
+             *
              */
             obj["purchaseTimeMin"] = base.parse_element (/<cim:BilateralTransaction.purchaseTimeMin>([\s\S]*?)<\/cim:BilateralTransaction.purchaseTimeMin>/g, sub, context, true);
             /**
              * Maximum purchase time in number of trading intervals
+             *
              */
             obj["purchaseTimeMax"] = base.parse_element (/<cim:BilateralTransaction.purchaseTimeMax>([\s\S]*?)<\/cim:BilateralTransaction.purchaseTimeMax>/g, sub, context, true);
             /**
              * Minimum curtailment time in number of trading intervals
+             *
              */
             obj["curtailTimeMin"] = base.parse_element (/<cim:BilateralTransaction.curtailTimeMin>([\s\S]*?)<\/cim:BilateralTransaction.curtailTimeMin>/g, sub, context, true);
             /**
              * Maximum curtailment time in number of trading intervals
+             *
              */
             obj["curtailTimeMax"] = base.parse_element (/<cim:BilateralTransaction.curtailTimeMax>([\s\S]*?)<\/cim:BilateralTransaction.curtailTimeMax>/g, sub, context, true);
             /**
              * Maximum total transmission (congestion) charges in monetary units
+             *
              */
             obj["totalTranChargeMax"] = base.parse_element (/<cim:BilateralTransaction.totalTranChargeMax>([\s\S]*?)<\/cim:BilateralTransaction.totalTranChargeMax>/g, sub, context, true);
             bucket = context.parsed.BilateralTransaction;
@@ -64,6 +76,7 @@ define
 
         /**
          * Participation level of a given Pnode in a given AggregatePnode.
+         *
          */
         function parse_Participation (context, sub)
         {
@@ -74,7 +87,9 @@ define
             obj.cls = "Participation";
             /**
              * Used to calculate "participation" of Pnode in an AggregatePnode.
+             *
              * For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
+             *
              */
             obj["factor"] = base.to_float (base.parse_element (/<cim:Participation.factor>([\s\S]*?)<\/cim:Participation.factor>/g, sub, context, true));
             bucket = context.parsed.Participation;
@@ -87,7 +102,9 @@ define
 
         /**
          * This class represent the resource certification for a specific product type.
+         *
          * For example, a resource is certified for Non-Spinning reserve for RTM.
+         *
          */
         function parse_ResourceCertification (context, sub)
         {

@@ -6,6 +6,7 @@ define
 
         /**
          * Used to define the type of generation for scheduling purposes.
+         *
          */
         function parse_EnergySchedulingType (context, sub)
         {

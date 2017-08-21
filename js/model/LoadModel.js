@@ -3,13 +3,16 @@ define
     ["model/base", "model/Core", "model/Wires"],
     /**
      * This package is responsible for modeling the energy consumers and the system load as curves and associated curve data.
+     *
      * Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+     *
      */
     function (base, Core, Wires)
     {
 
         /**
          * The class is the second level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
+         *
          */
         function parse_SubLoadArea (context, sub)
         {
@@ -20,6 +23,7 @@ define
             obj.cls = "SubLoadArea";
             /**
              * The LoadArea where the SubLoadArea belongs.
+             *
              */
             obj["LoadArea"] = base.parse_attribute (/<cim:SubLoadArea.LoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.SubLoadArea;
@@ -32,6 +36,7 @@ define
 
         /**
          * A specified time period of the year.
+         *
          */
         function parse_Season (context, sub)
         {
@@ -42,10 +47,12 @@ define
             obj.cls = "Season";
             /**
              * Date season ends.
+             *
              */
             obj["endDate"] = base.parse_element (/<cim:Season.endDate>([\s\S]*?)<\/cim:Season.endDate>/g, sub, context, true);
             /**
              * Date season starts.
+             *
              */
             obj["startDate"] = base.parse_element (/<cim:Season.startDate>([\s\S]*?)<\/cim:Season.startDate>/g, sub, context, true);
             bucket = context.parsed.Season;
@@ -58,6 +65,7 @@ define
 
         /**
          * A time schedule covering a 24 hour period, with curve data for a specific type of season and day.
+         *
          */
         function parse_SeasonDayTypeSchedule (context, sub)
         {
@@ -68,10 +76,12 @@ define
             obj.cls = "SeasonDayTypeSchedule";
             /**
              * Season for the Schedule.
+             *
              */
             obj["Season"] = base.parse_attribute (/<cim:SeasonDayTypeSchedule.Season\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             /**
              * DayType for the Schedule.
+             *
              */
             obj["DayType"] = base.parse_attribute (/<cim:SeasonDayTypeSchedule.DayType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.SeasonDayTypeSchedule;
@@ -84,6 +94,7 @@ define
 
         /**
          * The class is the third level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
+         *
          */
         function parse_LoadGroup (context, sub)
         {
@@ -94,6 +105,7 @@ define
             obj.cls = "LoadGroup";
             /**
              * The SubLoadArea where the Loadgroup belongs.
+             *
              */
             obj["SubLoadArea"] = base.parse_attribute (/<cim:LoadGroup.SubLoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.LoadGroup;
@@ -106,6 +118,7 @@ define
 
         /**
          * The class is the root or first level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
+         *
          */
         function parse_LoadArea (context, sub)
         {
@@ -124,7 +137,9 @@ define
 
         /**
          * Describes an area having energy production or consumption.
+         *
          * Specializations are intended to support the load allocation function as typically required in energy management systems or planning studies to allocate hypothesized load levels to individual load points for power flow analysis.  Often the energy area can be linked to both measured and forecast load levels.
+         *
          */
         function parse_EnergyArea (context, sub)
         {
@@ -135,6 +150,7 @@ define
             obj.cls = "EnergyArea";
             /**
              * The control area specification that is used for the load forecast.
+             *
              */
             obj["ControlArea"] = base.parse_attribute (/<cim:EnergyArea.ControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.EnergyArea;
@@ -147,6 +163,7 @@ define
 
         /**
          * NonConformLoad represent loads that do not follow a daily load change pattern and changes are not correlated with the daily load change pattern.
+         *
          */
         function parse_NonConformLoad (context, sub)
         {
@@ -157,6 +174,7 @@ define
             obj.cls = "NonConformLoad";
             /**
              * Group of this ConformLoad.
+             *
              */
             obj["LoadGroup"] = base.parse_attribute (/<cim:NonConformLoad.LoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.NonConformLoad;
@@ -169,7 +187,9 @@ define
 
         /**
          * Group of similar days.
+         *
          * For example it could be used to represent weekdays, weekend, or holidays.
+         *
          */
         function parse_DayType (context, sub)
         {
@@ -188,6 +208,7 @@ define
 
         /**
          * ConformLoad represent loads that follow a daily load change pattern where the pattern can be used to scale the load with a system load.
+         *
          */
         function parse_ConformLoad (context, sub)
         {
@@ -198,6 +219,7 @@ define
             obj.cls = "ConformLoad";
             /**
              * Group of this ConformLoad.
+             *
              */
             obj["LoadGroup"] = base.parse_attribute (/<cim:ConformLoad.LoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ConformLoad;
@@ -210,6 +232,7 @@ define
 
         /**
          * An active power (Y1-axis) and reactive power (Y2-axis) schedule (curves) versus time (X-axis) for non-conforming loads, e.g., large industrial load or power station service (where modeled).
+         *
          */
         function parse_NonConformLoadSchedule (context, sub)
         {
@@ -220,6 +243,7 @@ define
             obj.cls = "NonConformLoadSchedule";
             /**
              * The NonConformLoadGroup where the NonConformLoadSchedule belongs.
+             *
              */
             obj["NonConformLoadGroup"] = base.parse_attribute (/<cim:NonConformLoadSchedule.NonConformLoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.NonConformLoadSchedule;
@@ -232,6 +256,7 @@ define
 
         /**
          * Station supply with load derived from the station output.
+         *
          */
         function parse_StationSupply (context, sub)
         {
@@ -250,6 +275,7 @@ define
 
         /**
          * Loads that do not follow a daily and seasonal load variation pattern.
+         *
          */
         function parse_NonConformLoadGroup (context, sub)
         {
@@ -268,7 +294,9 @@ define
 
         /**
          * Models the characteristic response of the load demand due to changes in system conditions such as voltage and frequency.
+         *
          * This is not related to demand response.
+         *
          */
         function parse_LoadResponseCharacteristic (context, sub)
         {
@@ -279,47 +307,59 @@ define
             obj.cls = "LoadResponseCharacteristic";
             /**
              * Indicates the exponential voltage dependency model is to be used.
+             *
              * If false, the coefficient model is to be used.
+             *
              */
             obj["exponentModel"] = base.to_boolean (base.parse_element (/<cim:LoadResponseCharacteristic.exponentModel>([\s\S]*?)<\/cim:LoadResponseCharacteristic.exponentModel>/g, sub, context, true));
             /**
              * Portion of active power load modeled as constant current.
+             *
              */
             obj["pConstantCurrent"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.pConstantCurrent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pConstantCurrent>/g, sub, context, true));
             /**
              * Portion of active power load modeled as constant impedance.
+             *
              */
             obj["pConstantImpedance"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.pConstantImpedance>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pConstantImpedance>/g, sub, context, true));
             /**
              * Portion of active power load modeled as constant power.
+             *
              */
             obj["pConstantPower"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.pConstantPower>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pConstantPower>/g, sub, context, true));
             /**
              * Exponent of per unit frequency effecting active power.
+             *
              */
             obj["pFrequencyExponent"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.pFrequencyExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pFrequencyExponent>/g, sub, context, true));
             /**
              * Exponent of per unit voltage effecting real power.
+             *
              */
             obj["pVoltageExponent"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.pVoltageExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pVoltageExponent>/g, sub, context, true));
             /**
              * Portion of reactive power load modeled as constant current.
+             *
              */
             obj["qConstantCurrent"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.qConstantCurrent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qConstantCurrent>/g, sub, context, true));
             /**
              * Portion of reactive power load modeled as constant impedance.
+             *
              */
             obj["qConstantImpedance"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.qConstantImpedance>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qConstantImpedance>/g, sub, context, true));
             /**
              * Portion of reactive power load modeled as constant power.
+             *
              */
             obj["qConstantPower"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.qConstantPower>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qConstantPower>/g, sub, context, true));
             /**
              * Exponent of per unit frequency effecting reactive power.
+             *
              */
             obj["qFrequencyExponent"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.qFrequencyExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qFrequencyExponent>/g, sub, context, true));
             /**
              * Exponent of per unit voltage effecting reactive power.
+             *
              */
             obj["qVoltageExponent"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.qVoltageExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qVoltageExponent>/g, sub, context, true));
             bucket = context.parsed.LoadResponseCharacteristic;
@@ -332,6 +372,7 @@ define
 
         /**
          * An area or zone of the power system which is used for load shedding purposes.
+         *
          */
         function parse_PowerCutZone (context, sub)
         {
@@ -342,10 +383,12 @@ define
             obj.cls = "PowerCutZone";
             /**
              * First level (amount) of load to cut as a percentage of total zone load.
+             *
              */
             obj["cutLevel1"] = base.parse_element (/<cim:PowerCutZone.cutLevel1>([\s\S]*?)<\/cim:PowerCutZone.cutLevel1>/g, sub, context, true);
             /**
              * Second level (amount) of load to cut as a percentage of total zone load.
+             *
              */
             obj["cutLevel2"] = base.parse_element (/<cim:PowerCutZone.cutLevel2>([\s\S]*?)<\/cim:PowerCutZone.cutLevel2>/g, sub, context, true);
             bucket = context.parsed.PowerCutZone;
@@ -358,6 +401,7 @@ define
 
         /**
          * A group of loads conforming to an allocation pattern.
+         *
          */
         function parse_ConformLoadGroup (context, sub)
         {
@@ -376,7 +420,9 @@ define
 
         /**
          * A curve of load  versus time (X-axis) showing the active power values (Y1-axis) and reactive power (Y2-axis) for each unit of the period covered.
+         *
          * This curve represents a typical pattern of load over the time period for a given day type and season.
+         *
          */
         function parse_ConformLoadSchedule (context, sub)
         {
@@ -387,6 +433,7 @@ define
             obj.cls = "ConformLoadSchedule";
             /**
              * The ConformLoadGroup where the ConformLoadSchedule belongs.
+             *
              */
             obj["ConformLoadGroup"] = base.parse_attribute (/<cim:ConformLoadSchedule.ConformLoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.ConformLoadSchedule;

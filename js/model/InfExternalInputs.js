@@ -6,6 +6,7 @@ define
 
         /**
          * Ancillary service requirements for a market.
+         *
          */
         function parse_ResourceGroupReq (context, sub)
         {
@@ -25,6 +26,7 @@ define
 
         /**
          * Requirements for minimum amount of reserve and/or regulation to be supplied by a set of qualified resources.
+         *
          */
         function parse_ReserveReq (context, sub)
         {
@@ -35,6 +37,7 @@ define
             obj.cls = "ReserveReq";
             /**
              * Market product associated with reserve requirement must be a reserve or regulation product.
+             *
              */
             obj["MarketProduct"] = base.parse_attribute (/<cim:ReserveReq.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             obj["SensitivityPriceCurve"] = base.parse_attribute (/<cim:ReserveReq.SensitivityPriceCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -49,7 +52,9 @@ define
 
         /**
          * A curve relating  reserve requirement versus time, showing the values of a specific reserve requirement for each unit of the period covered.
+         *
          * The  curve can be based on "absolute" time or on "normalized' time.
+         *
          */
         function parse_ReserveReqCurve (context, sub)
         {
@@ -69,6 +74,7 @@ define
 
         /**
          * A logical grouping of resources that are used to model location of types of requirements for ancillary services such as spinning reserve zones, regulation zones, etc.
+         *
          */
         function parse_ResourceGroup (context, sub)
         {
@@ -79,10 +85,12 @@ define
             obj.cls = "ResourceGroup";
             /**
              * Type of this group.
+             *
              */
             obj["type"] = base.parse_element (/<cim:ResourceGroup.type>([\s\S]*?)<\/cim:ResourceGroup.type>/g, sub, context, true);
             /**
              * Status of this group.
+             *
              */
             obj["status"] = base.parse_element (/<cim:ResourceGroup.status>([\s\S]*?)<\/cim:ResourceGroup.status>/g, sub, context, true);
             bucket = context.parsed.ResourceGroup;
@@ -95,7 +103,9 @@ define
 
         /**
          * Optionally, this curve expresses elasticity of the associated requirement.
-         * For example, used to reduce requirements when clearing price exceeds reasonable values when the supply quantity becomes scarce. For example, a single point value of $1000/MW for a spinning reserve will cause a reduction in the required spinning reserve.
+         *
+         * For example, used to reduce requirements when clearing price exceeds reasonable values when the supply quantity becomes scarce. For example, a single point value of \$1000/MW for a spinning reserve will cause a reduction in the required spinning reserve.
+         *
          */
         function parse_SensitivityPriceCurve (context, sub)
         {

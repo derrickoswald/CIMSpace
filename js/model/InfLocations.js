@@ -6,7 +6,9 @@ define
 
         /**
          * This class is used for handling the accompanying annotations, time stamp, author, etc. of designs, drawings and maps.
+         *
          * A red line can be associated with any Location object.
+         *
          */
         function parse_RedLine (context, sub)
         {
@@ -26,7 +28,9 @@ define
 
         /**
          * Area divided off from other areas.
+         *
          * It may be part of the electrical network, a land area where special restrictions apply, weather areas, etc. For weather, it is an area where a set of relatively homogenous weather measurements apply.
+         *
          */
         function parse_Zone (context, sub)
         {
@@ -37,6 +41,7 @@ define
             obj.cls = "Zone";
             /**
              * Kind of this zone.
+             *
              */
             obj["kind"] = base.parse_element (/<cim:Zone.kind>([\s\S]*?)<\/cim:Zone.kind>/g, sub, context, true);
             bucket = context.parsed.Zone;
@@ -49,6 +54,7 @@ define
 
         /**
          * Kind of zone.
+         *
          */
         function parse_ZoneKind (context, sub)
         {
@@ -71,7 +77,9 @@ define
 
         /**
          * A grant provides a right, as defined by type, for a parcel of land.
+         *
          * Note that the association to Location, Asset, Organisation, etc. for the Grant is inherited from Agreement, a type of Document.
+         *
          */
         function parse_LocationGrant (context, sub)
         {
@@ -82,11 +90,14 @@ define
             obj.cls = "LocationGrant";
             /**
              * Property related information that describes the Grant's land parcel.
+             *
              * For example, it may be a deed book number, deed book page number, and parcel number.
+             *
              */
             obj["propertyData"] = base.parse_element (/<cim:LocationGrant.propertyData>([\s\S]*?)<\/cim:LocationGrant.propertyData>/g, sub, context, true);
             /**
              * Land property this location grant applies to.
+             *
              */
             obj["LandProperty"] = base.parse_attribute (/<cim:LocationGrant.LandProperty\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
             bucket = context.parsed.LocationGrant;
@@ -99,6 +110,7 @@ define
 
         /**
          * Route that is followed, for example by service crews.
+         *
          */
         function parse_Route (context, sub)
         {
@@ -110,6 +122,7 @@ define
             obj["status"] = base.parse_element (/<cim:Route.status>([\s\S]*?)<\/cim:Route.status>/g, sub, context, true);
             /**
              * Classification by utility's work management standards and practices.
+             *
              */
             obj["type"] = base.parse_element (/<cim:Route.type>([\s\S]*?)<\/cim:Route.type>/g, sub, context, true);
             bucket = context.parsed.Route;
@@ -122,6 +135,7 @@ define
 
         /**
          * Kind of (land) property.
+         *
          */
         function parse_LandPropertyKind (context, sub)
         {
@@ -132,30 +146,37 @@ define
             obj.cls = "LandPropertyKind";
             /**
              * Site enclosed within a building.
+             *
              */
             obj["building"] = base.parse_element (/<cim:LandPropertyKind.building>([\s\S]*?)<\/cim:LandPropertyKind.building>/g, sub, context, true);
             /**
              * Site with a customer.
+             *
              */
             obj["customerPremise"] = base.parse_element (/<cim:LandPropertyKind.customerPremise>([\s\S]*?)<\/cim:LandPropertyKind.customerPremise>/g, sub, context, true);
             /**
              * Storehouse for supplies that also serves as a station for supporting crews.
+             *
              */
             obj["depot"] = base.parse_element (/<cim:LandPropertyKind.depot>([\s\S]*?)<\/cim:LandPropertyKind.depot>/g, sub, context, true);
             /**
              * Place of storage (e.g., a warehouse) to put aside, or accumulate, material and equipment for use when needed.
+             *
              */
             obj["store"] = base.parse_element (/<cim:LandPropertyKind.store>([\s\S]*?)<\/cim:LandPropertyKind.store>/g, sub, context, true);
             /**
              * Transmission network switchyard.
+             *
              */
             obj["substation"] = base.parse_element (/<cim:LandPropertyKind.substation>([\s\S]*?)<\/cim:LandPropertyKind.substation>/g, sub, context, true);
             /**
              * Substation where the distribution and transmission networks meet and hence have mixed ownership and mixed operational control.
+             *
              */
             obj["gridSupplyPoint"] = base.parse_element (/<cim:LandPropertyKind.gridSupplyPoint>([\s\S]*?)<\/cim:LandPropertyKind.gridSupplyPoint>/g, sub, context, true);
             /**
              * Property owned or used by an external party that is not a customer.
+             *
              */
             obj["external"] = base.parse_element (/<cim:LandPropertyKind.external>([\s\S]*?)<\/cim:LandPropertyKind.external>/g, sub, context, true);
             bucket = context.parsed.LandPropertyKind;
@@ -168,6 +189,7 @@ define
 
         /**
          * Demographic kind of a land property.
+         *
          */
         function parse_DemographicKind (context, sub)
         {
@@ -189,7 +211,9 @@ define
 
         /**
          * Information about a particular piece of (land) property such as its use.
+         *
          * Ownership of the property may be determined through associations to Organisations and/or ErpPersons.
+         *
          */
         function parse_LandProperty (context, sub)
         {
@@ -200,15 +224,19 @@ define
             obj.cls = "LandProperty";
             /**
              * Demographics around the site.
+             *
              */
             obj["demographicKind"] = base.parse_element (/<cim:LandProperty.demographicKind>([\s\S]*?)<\/cim:LandProperty.demographicKind>/g, sub, context, true);
             /**
              * Reference allocated by the governing organisation (such as municipality) to this piece of land that has a formal reference to Surveyor General's records.
+             *
              * The governing organisation is specified in associated Organisation.
+             *
              */
             obj["externalRecordReference"] = base.parse_element (/<cim:LandProperty.externalRecordReference>([\s\S]*?)<\/cim:LandProperty.externalRecordReference>/g, sub, context, true);
             /**
              * Kind of (land) property, categorised according to its main functional use from the utility's perspective.
+             *
              */
             obj["kind"] = base.parse_element (/<cim:LandProperty.kind>([\s\S]*?)<\/cim:LandProperty.kind>/g, sub, context, true);
             obj["status"] = base.parse_element (/<cim:LandProperty.status>([\s\S]*?)<\/cim:LandProperty.status>/g, sub, context, true);
@@ -222,7 +250,9 @@ define
 
         /**
          * A right-of-way (ROW) is for land where it is lawful to use for a public road, an electric power line, etc.
+         *
          * Note that the association to Location, Asset, Organisation, etc. for the Grant is inherited from Agreement, a type of Document.
+         *
          */
         function parse_RightOfWay (context, sub)
         {
@@ -233,7 +263,9 @@ define
             obj.cls = "RightOfWay";
             /**
              * Property related information that describes the ROW's land parcel.
+             *
              * For example, it may be a deed book number, deed book page number, and parcel number.
+             *
              */
             obj["propertyData"] = base.parse_element (/<cim:RightOfWay.propertyData>([\s\S]*?)<\/cim:RightOfWay.propertyData>/g, sub, context, true);
             bucket = context.parsed.RightOfWay;

@@ -3,13 +3,16 @@ define
     ["model/base"],
     /**
      * Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes.
+     *
      * Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
+     *
      */
     function (base)
     {
 
         /**
          * Models Market clearing results for Auxillary costs
+         *
          */
         function parse_AuxiliaryCost (context, sub)
         {
@@ -32,6 +35,7 @@ define
 
         /**
          * Model Expected Energy  from Market Clearing
+         *
          */
         function parse_ExpectedEnergyValues (context, sub)
         {
@@ -54,6 +58,7 @@ define
 
         /**
          * Models Auxillary Values
+         *
          */
         function parse_AuxiliaryObject (context, sub)
         {
@@ -74,6 +79,7 @@ define
 
         /**
          * Models prices at Trading Hubs
+         *
          */
         function parse_TradingHubValues (context, sub)
         {
@@ -84,7 +90,9 @@ define
             obj.cls = "TradingHubValues";
             /**
              * Utilizes the Market type.
+             *
              * For DA, the price is hourly. For RTM the price is a 5 minute price.
+             *
              */
             obj["price"] = base.to_float (base.parse_element (/<cim:TradingHubValues.price>([\s\S]*?)<\/cim:TradingHubValues.price>/g, sub, context, true));
             obj["TradingHubPrice"] = base.parse_attribute (/<cim:TradingHubValues.TradingHubPrice\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -99,6 +107,7 @@ define
 
         /**
          * Models prices at Trading Hubs, interval based
+         *
          */
         function parse_TradingHubPrice (context, sub)
         {
@@ -121,6 +130,7 @@ define
 
         /**
          * Model Expected Energy  from Market Clearing, interval based
+         *
          */
         function parse_ExpectedEnergy (context, sub)
         {
@@ -142,6 +152,7 @@ define
 
         /**
          * Models 10-Minutes Auxillary Data
+         *
          */
         function parse_TenMinAuxiliaryData (context, sub)
         {
@@ -163,7 +174,9 @@ define
 
         /**
          * Models Market clearing results.
+         *
          * Indicates market horizon, interval based. Used by a market quality system for billing and settlement purposes
+         *
          */
         function parse_AllocationResult (context, sub)
         {
@@ -185,6 +198,7 @@ define
 
         /**
          * Models Market clearing results in terms of price and MW values
+         *
          */
         function parse_AllocationResultValues (context, sub)
         {
@@ -195,20 +209,24 @@ define
             obj.cls = "AllocationResultValues";
             /**
              * "1" --  "Detail",
-            "2" --  "Aggregate by Market service type", in which case, the "AllocationEnergyType" field will not be filled;
+             * "2" --  "Aggregate by Market service type", in which case, the "AllocationEnergyType" field will not be filled;
+             *
              * "3" --  "Aggregate by "AllocationEnergyType", in which case "MarketServiceType" will not be filled.
+             *
              */
             obj["aggregateType"] = base.parse_element (/<cim:AllocationResultValues.aggregateType>([\s\S]*?)<\/cim:AllocationResultValues.aggregateType>/g, sub, context, true);
             obj["allocationMwHour"] = base.to_float (base.parse_element (/<cim:AllocationResultValues.allocationMwHour>([\s\S]*?)<\/cim:AllocationResultValues.allocationMwHour>/g, sub, context, true));
             obj["allocationPrice"] = base.to_float (base.parse_element (/<cim:AllocationResultValues.allocationPrice>([\s\S]*?)<\/cim:AllocationResultValues.allocationPrice>/g, sub, context, true));
             obj["energyTypeCode"] = base.parse_element (/<cim:AllocationResultValues.energyTypeCode>([\s\S]*?)<\/cim:AllocationResultValues.energyTypeCode>/g, sub, context, true);
             /**
-             * Choices are: 
-            ME - Market Energy Capacity; 
-            SR - Spinning Reserve Capacity; 
-            NR - Non-Spinning Reserve Capacity; 
-            DAC - Day Ahead Capacity;
+             * Choices are:
+             * ME - Market Energy Capacity;
+             * SR - Spinning Reserve Capacity;
+             * NR - Non-Spinning Reserve Capacity;
+             * DAC - Day Ahead Capacity;
+             *
              * DEC - Derate Capacity
+             *
              */
             obj["marketServiceType"] = base.parse_element (/<cim:AllocationResultValues.marketServiceType>([\s\S]*?)<\/cim:AllocationResultValues.marketServiceType>/g, sub, context, true);
             obj["RegisteredResource"] = base.parse_attribute (/<cim:AllocationResultValues.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
@@ -223,6 +241,7 @@ define
 
         /**
          * Models 5-Minutes Auxillary Data
+         *
          */
         function parse_FiveMinAuxiliaryData (context, sub)
         {
@@ -244,6 +263,7 @@ define
 
         /**
          * Models Auxillary Values
+         *
          */
         function parse_AuxiliaryValues (context, sub)
         {

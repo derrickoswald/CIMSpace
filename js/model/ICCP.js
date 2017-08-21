@@ -114,7 +114,9 @@ define
 
         /**
          * This class represents the TASE.2 Information Message Object.
+         *
          * The IdentifiedObject.name attribute must be non-null.  The value of the attribute shall be used as the TASE.2 Information Reference, as specified by 60870-6-503.
+         *
          */
         function parse_ICCPInformationMessage (context, sub)
         {
@@ -125,7 +127,9 @@ define
             obj.cls = "ICCPInformationMessage";
             /**
              * The Local Reference attribute specifies a value agreed upon between sender and receiver of the Information Message.
+             *
              * It further identifies the Information Message.
+             *
              */
             obj["localReference"] = base.parse_element (/<cim:ICCPInformationMessage.localReference>([\s\S]*?)<\/cim:ICCPInformationMessage.localReference>/g, sub, context, true);
             obj["scope"] = base.parse_element (/<cim:ICCPInformationMessage.scope>([\s\S]*?)<\/cim:ICCPInformationMessage.scope>/g, sub, context, true);
@@ -173,7 +177,9 @@ define
 
         /**
          * The IdentifiedObject.name attribute must have a value.
+         *
          * The name attribute shall be used as the DataValue name used for the exchange.
+         *
          */
         function parse_ICCPPoint (context, sub)
         {
@@ -211,7 +217,9 @@ define
 
         /**
          * This class describe the sending (providing) side in a bilateral ICCP data exchange.
+         *
          * Hence the ICCP bilateral (table) descriptions are created by exchanging ICCPProvider data between the parties.
+         *
          */
         function parse_TASE2BilateralTable (context, sub)
         {
@@ -222,20 +230,26 @@ define
             obj.cls = "TASE2BilateralTable";
             /**
              * Specifies the version of the Bilateral Table configuration that is being exchanged.
+             *
              */
             obj["bilateralTableID"] = base.parse_element (/<cim:TASE2BilateralTable.bilateralTableID>([\s\S]*?)<\/cim:TASE2BilateralTable.bilateralTableID>/g, sub, context, true);
             /**
              * Used to indicate if the Provider is responsible for initiating the TASE.2 connection.
+             *
              * If the value is TRUE, the provider is responsible for establishing the association.  If the value is FALSE, the peer provider of the Bilateral Table will need to establish the association.
+             *
              */
             obj["calling"] = base.to_boolean (base.parse_element (/<cim:TASE2BilateralTable.calling>([\s\S]*?)<\/cim:TASE2BilateralTable.calling>/g, sub, context, true));
             /**
              * Specifies the ICC scope name that the remote can use to access the information in the Bilateral Table if the information is not VCC scoped.
+             *
              * This value may not be null.
+             *
              */
             obj["nameOfICC"] = base.parse_element (/<cim:TASE2BilateralTable.nameOfICC>([\s\S]*?)<\/cim:TASE2BilateralTable.nameOfICC>/g, sub, context, true);
             /**
              * Specifies the version of the TASE.2 that is needed to access the Bilateral Table information via TASE.2
+             *
              */
             obj["tase2version"] = base.parse_element (/<cim:TASE2BilateralTable.tase2version>([\s\S]*?)<\/cim:TASE2BilateralTable.tase2version>/g, sub, context, true);
             bucket = context.parsed.TASE2BilateralTable;

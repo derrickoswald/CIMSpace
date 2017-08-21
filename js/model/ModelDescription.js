@@ -3,12 +3,14 @@ define
     ["model/base"],
     /**
      * The package describes meta data for the exchange of power system model data.
+     *
      */
     function (base)
     {
 
         /**
          * URI is a string following the rules defined by the W3C/IETF URI Planning Interest Group in a set of RFCs of which one is RFC 3305.
+         *
          */
         function parse_URI (context, sub)
         {
@@ -91,6 +93,7 @@ define
 
         /**
          * Identity contain comon descriptive information.
+         *
          */
         function parse_Description (context, sub)
         {

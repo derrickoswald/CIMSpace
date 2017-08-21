@@ -13,54 +13,73 @@ define
             obj.cls = "AccumulationKind";
             /**
              * Not Applicable, or implied by the unit of measure.
+             *
              */
             obj["none"] = base.parse_element (/<cim:AccumulationKind.none>([\s\S]*?)<\/cim:AccumulationKind.none>/g, sub, context, true);
             /**
              * A value from a register which represents the bulk quantity of a commodity.
+             *
              * This quantity is computed as the integral of the commodity usage rate. This value is typically used as the basis for the dial reading at the meter, and as a result, will roll over upon reaching a maximum dial value.
+             *
              */
             obj["bulkQuantity"] = base.parse_element (/<cim:AccumulationKind.bulkQuantity>([\s\S]*?)<\/cim:AccumulationKind.bulkQuantity>/g, sub, context, true);
             /**
              * The sum of the previous billing period values and the present period value.
+             *
              * Note: �ContinuousCumulative� is commonly used in conjunction with �demand.� The �ContinuousCumulative Demand� would be the cumulative sum of the previous billing period maximum demand values (as occurring with each demand reset) summed with the present period maximum demand value (which has yet to be reset.)
+             *
              */
             obj["continuousCumulative"] = base.parse_element (/<cim:AccumulationKind.continuousCumulative>([\s\S]*?)<\/cim:AccumulationKind.continuousCumulative>/g, sub, context, true);
             /**
              * The sum of the previous billing period values.
+             *
              * Note: �Cumulative� is commonly used in conjunction with �demand.� Each demand reset causes the maximum demand value for the present billing period (since the last demand reset) to accumulate as an accumulative total of all maximum demands. So instead of �zeroing� the demand register, a demand reset has the affect of adding the present maximum demand to this accumulating total.
+             *
              */
             obj["cumulative"] = base.parse_element (/<cim:AccumulationKind.cumulative>([\s\S]*?)<\/cim:AccumulationKind.cumulative>/g, sub, context, true);
             /**
              * The difference between the value at the end of the prescribed interval and the beginning of the interval.
+             *
              * This is used for incremental interval data.
+             *
              */
             obj["deltaData"] = base.parse_element (/<cim:AccumulationKind.deltaData>([\s\S]*?)<\/cim:AccumulationKind.deltaData>/g, sub, context, true);
             /**
              * As if a needle is swung out on the meter face to a value to indicate the current value. (Note: An �indicating� value is typically measured over hundreds of milliseconds or greater, or may imply a �pusher� mechanism to capture a value.
+             *
              * Compare this to �instantaneous� which is measured over a shorter period of time.)
+             *
              */
             obj["indicating"] = base.parse_element (/<cim:AccumulationKind.indicating>([\s\S]*?)<\/cim:AccumulationKind.indicating>/g, sub, context, true);
             /**
              * A form of accumulation which is selective with respect to time.
+             *
              * Note : �Summation� could be considered a specialization of �Bulk Quantity� according to the rules of inheritance where �Summation� selectively accumulates pulses over a timing pattern, and �BulkQuantity� accumulates pulses all of the time.
+             *
              */
             obj["summation"] = base.parse_element (/<cim:AccumulationKind.summation>([\s\S]*?)<\/cim:AccumulationKind.summation>/g, sub, context, true);
             /**
              * A form of computation which introduces a time delay characteristic to the data value
+             *
              */
             obj["timeDelay"] = base.parse_element (/<cim:AccumulationKind.timeDelay>([\s\S]*?)<\/cim:AccumulationKind.timeDelay>/g, sub, context, true);
             /**
              * Typically measured over the fastest period of time allowed by the definition of the metric (usually milliseconds or tens of milliseconds.) (Note: �Instantaneous� was moved to attribute #3 in 61968-9Ed2 from attribute #1 in 61968-9Ed1.)
+             *
              */
             obj["instantaneous"] = base.parse_element (/<cim:AccumulationKind.instantaneous>([\s\S]*?)<\/cim:AccumulationKind.instantaneous>/g, sub, context, true);
             /**
              * When this description is applied to a metered value, it implies that the value is a time-independent cumulative quantity much a BulkQuantity, except that it latches upon the maximum value upon reaching that value.
+             *
              * Any additional accumulation (positive or negative) is discarded until a reset occurs.
+             *
              */
             obj["latchingQuantity"] = base.parse_element (/<cim:AccumulationKind.latchingQuantity>([\s\S]*?)<\/cim:AccumulationKind.latchingQuantity>/g, sub, context, true);
             /**
              * A time-independent cumulative quantity much a BulkQuantity or a LatchingQuantity, except that the accumulation stops at the maximum or minimum values.
+             *
              * When the maximum is reached, any additional positive accumulation is discarded, but negative accumulation may be accepted (thus lowering the counter.) Likewise, when the negative bound is reached, any additional negative accumulation is discarded, but positive accumulation is accepted (thus increasing the counter.)
+             *
              */
             obj["boundedQuantity"] = base.parse_element (/<cim:AccumulationKind.boundedQuantity>([\s\S]*?)<\/cim:AccumulationKind.boundedQuantity>/g, sub, context, true);
             bucket = context.parsed.AccumulationKind;
@@ -80,95 +99,123 @@ define
             obj.cls = "FlowDirectionKind";
             /**
              * Not Applicable (N/A)
+             *
              */
             obj["none"] = base.parse_element (/<cim:FlowDirectionKind.none>([\s\S]*?)<\/cim:FlowDirectionKind.none>/g, sub, context, true);
             /**
              * "Delivered," or "Imported" as defined 61968-2.
+             *
              * Forward Active Energy is a positive kWh value as one would naturally expect to find as energy is supplied by the utility and consumed at the service.
+             *
              */
             obj["forward"] = base.parse_element (/<cim:FlowDirectionKind.forward>([\s\S]*?)<\/cim:FlowDirectionKind.forward>/g, sub, context, true);
             /**
              * Typically used to describe that a power factor is lagging the reference value.
+             *
              * Note 1: When used to describe VA, �lagging� describes a form of measurement where reactive power is considered in all four quadrants, but real power is considered only in quadrants I and IV.
+             *
              */
             obj["lagging"] = base.parse_element (/<cim:FlowDirectionKind.lagging>([\s\S]*?)<\/cim:FlowDirectionKind.lagging>/g, sub, context, true);
             /**
              * Typically used to describe that a power factor is leading the reference value.
+             *
              * Note: Leading power factors typically indicate capacitive loading.
+             *
              */
             obj["leading"] = base.parse_element (/<cim:FlowDirectionKind.leading>([\s\S]*?)<\/cim:FlowDirectionKind.leading>/g, sub, context, true);
             /**
              * |Forward| - |Reverse|, See 61968-2.
+             *
              * Note: In some systems, the value passed as a �net� value could become negative. In other systems the value passed as a �net� value is always a positive number, and rolls-over and rolls-under as needed.
+             *
              */
             obj["net"] = base.parse_element (/<cim:FlowDirectionKind.net>([\s\S]*?)<\/cim:FlowDirectionKind.net>/g, sub, context, true);
             /**
              * Reactive positive quadrants. (The term �lagging� is preferred.)
+             *
              */
             obj["q1plusQ2"] = base.parse_element (/<cim:FlowDirectionKind.q1plusQ2>([\s\S]*?)<\/cim:FlowDirectionKind.q1plusQ2>/g, sub, context, true);
             /**
              * Quadrants 1 and 3
+             *
              */
             obj["q1plusQ3"] = base.parse_element (/<cim:FlowDirectionKind.q1plusQ3>([\s\S]*?)<\/cim:FlowDirectionKind.q1plusQ3>/g, sub, context, true);
             /**
              * Quadrants 1 and 4 usually represent forward active energy
+             *
              */
             obj["q1plusQ4"] = base.parse_element (/<cim:FlowDirectionKind.q1plusQ4>([\s\S]*?)<\/cim:FlowDirectionKind.q1plusQ4>/g, sub, context, true);
             /**
              * Q1 minus Q4
+             *
              */
             obj["q1minusQ4"] = base.parse_element (/<cim:FlowDirectionKind.q1minusQ4>([\s\S]*?)<\/cim:FlowDirectionKind.q1minusQ4>/g, sub, context, true);
             /**
              * Quadrants 2 and 3 usually represent reverse active energy
+             *
              */
             obj["q2plusQ3"] = base.parse_element (/<cim:FlowDirectionKind.q2plusQ3>([\s\S]*?)<\/cim:FlowDirectionKind.q2plusQ3>/g, sub, context, true);
             /**
              * Quadrants 2 and 4
+             *
              */
             obj["q2plusQ4"] = base.parse_element (/<cim:FlowDirectionKind.q2plusQ4>([\s\S]*?)<\/cim:FlowDirectionKind.q2plusQ4>/g, sub, context, true);
             /**
              * Q2 minus Q3
+             *
              */
             obj["q2minusQ3"] = base.parse_element (/<cim:FlowDirectionKind.q2minusQ3>([\s\S]*?)<\/cim:FlowDirectionKind.q2minusQ3>/g, sub, context, true);
             /**
              * Reactive negative quadrants. (The term �leading� is preferred.)
+             *
              */
             obj["q3plusQ4"] = base.parse_element (/<cim:FlowDirectionKind.q3plusQ4>([\s\S]*?)<\/cim:FlowDirectionKind.q3plusQ4>/g, sub, context, true);
             /**
              * Q3 minus Q2
+             *
              */
             obj["q3minusQ2"] = base.parse_element (/<cim:FlowDirectionKind.q3minusQ2>([\s\S]*?)<\/cim:FlowDirectionKind.q3minusQ2>/g, sub, context, true);
             /**
              * Q1 only
+             *
              */
             obj["quadrant1"] = base.parse_element (/<cim:FlowDirectionKind.quadrant1>([\s\S]*?)<\/cim:FlowDirectionKind.quadrant1>/g, sub, context, true);
             /**
              * Q2 only
+             *
              */
             obj["quadrant2"] = base.parse_element (/<cim:FlowDirectionKind.quadrant2>([\s\S]*?)<\/cim:FlowDirectionKind.quadrant2>/g, sub, context, true);
             /**
              * Q3 only
+             *
              */
             obj["quadrant3"] = base.parse_element (/<cim:FlowDirectionKind.quadrant3>([\s\S]*?)<\/cim:FlowDirectionKind.quadrant3>/g, sub, context, true);
             /**
              * Q4 only
+             *
              */
             obj["quadrant4"] = base.parse_element (/<cim:FlowDirectionKind.quadrant4>([\s\S]*?)<\/cim:FlowDirectionKind.quadrant4>/g, sub, context, true);
             /**
              * Reverse Active Energy is equivalent to "Received," or "Exported" as defined in 61968-2.
+             *
              * Reverse Active Energy is a positive kWh value as one would expect to find when energy is backfed by the service onto the utility network.
+             *
              */
             obj["reverse"] = base.parse_element (/<cim:FlowDirectionKind.reverse>([\s\S]*?)<\/cim:FlowDirectionKind.reverse>/g, sub, context, true);
             /**
              * |Forward| + |Reverse|, See 61968-2.
+             *
              * The sum of the commodity in all quadrants Q1+Q2+Q3+Q4.
+             *
              */
             obj["total"] = base.parse_element (/<cim:FlowDirectionKind.total>([\s\S]*?)<\/cim:FlowDirectionKind.total>/g, sub, context, true);
             /**
              * In polyphase metering, the total by phase energy register is incremented when the sum of the absolute values of the phase energies is greater than zero:
-            
-            &lt;img src="HTS_1.
+             * 
+             * &lt;img src="HTS_1.
+             *
              * PNG" width="234" height="16" border="0" alt="graphic"/&gt;
+             *
              */
             obj["totalByPhase"] = base.parse_element (/<cim:FlowDirectionKind.totalByPhase>([\s\S]*?)<\/cim:FlowDirectionKind.totalByPhase>/g, sub, context, true);
             bucket = context.parsed.FlowDirectionKind;
@@ -188,166 +235,207 @@ define
             obj.cls = "MeasuringPeriodKind";
             /**
              * Not Applicable
+             *
              */
             obj["none"] = base.parse_element (/<cim:MeasuringPeriodKind.none>([\s\S]*?)<\/cim:MeasuringPeriodKind.none>/g, sub, context, true);
             /**
              * 10-minute
+             *
              */
             obj["tenMinute"] = base.parse_element (/<cim:MeasuringPeriodKind.tenMinute>([\s\S]*?)<\/cim:MeasuringPeriodKind.tenMinute>/g, sub, context, true);
             /**
              * 15-minute
+             *
              */
             obj["fifteenMinute"] = base.parse_element (/<cim:MeasuringPeriodKind.fifteenMinute>([\s\S]*?)<\/cim:MeasuringPeriodKind.fifteenMinute>/g, sub, context, true);
             /**
              * 1-minute
+             *
              */
             obj["oneMinute"] = base.parse_element (/<cim:MeasuringPeriodKind.oneMinute>([\s\S]*?)<\/cim:MeasuringPeriodKind.oneMinute>/g, sub, context, true);
             /**
              * 24-hour
+             *
              */
             obj["twentyfourHour"] = base.parse_element (/<cim:MeasuringPeriodKind.twentyfourHour>([\s\S]*?)<\/cim:MeasuringPeriodKind.twentyfourHour>/g, sub, context, true);
             /**
              * 30-minute
+             *
              */
             obj["thirtyMinute"] = base.parse_element (/<cim:MeasuringPeriodKind.thirtyMinute>([\s\S]*?)<\/cim:MeasuringPeriodKind.thirtyMinute>/g, sub, context, true);
             /**
              * 5-minute
+             *
              */
             obj["fiveMinute"] = base.parse_element (/<cim:MeasuringPeriodKind.fiveMinute>([\s\S]*?)<\/cim:MeasuringPeriodKind.fiveMinute>/g, sub, context, true);
             /**
              * 60-minute
+             *
              */
             obj["sixtyMinute"] = base.parse_element (/<cim:MeasuringPeriodKind.sixtyMinute>([\s\S]*?)<\/cim:MeasuringPeriodKind.sixtyMinute>/g, sub, context, true);
             /**
              * 2-minute
+             *
              */
             obj["twoMinute"] = base.parse_element (/<cim:MeasuringPeriodKind.twoMinute>([\s\S]*?)<\/cim:MeasuringPeriodKind.twoMinute>/g, sub, context, true);
             /**
              * 3-minute
+             *
              */
             obj["threeMinute"] = base.parse_element (/<cim:MeasuringPeriodKind.threeMinute>([\s\S]*?)<\/cim:MeasuringPeriodKind.threeMinute>/g, sub, context, true);
             /**
              * Within the present period of time
+             *
              */
             obj["present"] = base.parse_element (/<cim:MeasuringPeriodKind.present>([\s\S]*?)<\/cim:MeasuringPeriodKind.present>/g, sub, context, true);
             /**
              * Shifted within the previous monthly cycle and data set
+             *
              */
             obj["previous"] = base.parse_element (/<cim:MeasuringPeriodKind.previous>([\s\S]*?)<\/cim:MeasuringPeriodKind.previous>/g, sub, context, true);
             /**
              * 20-minute interval
+             *
              */
             obj["twentyMinute"] = base.parse_element (/<cim:MeasuringPeriodKind.twentyMinute>([\s\S]*?)<\/cim:MeasuringPeriodKind.twentyMinute>/g, sub, context, true);
             /**
              * 60-minute Fixed Block
+             *
              */
             obj["fixedBlock60Min"] = base.parse_element (/<cim:MeasuringPeriodKind.fixedBlock60Min>([\s\S]*?)<\/cim:MeasuringPeriodKind.fixedBlock60Min>/g, sub, context, true);
             /**
              * 30-minute Fixed Block
+             *
              */
             obj["fixedBlock30Min"] = base.parse_element (/<cim:MeasuringPeriodKind.fixedBlock30Min>([\s\S]*?)<\/cim:MeasuringPeriodKind.fixedBlock30Min>/g, sub, context, true);
             /**
              * 20-minute Fixed Block
+             *
              */
             obj["fixedBlock20Min"] = base.parse_element (/<cim:MeasuringPeriodKind.fixedBlock20Min>([\s\S]*?)<\/cim:MeasuringPeriodKind.fixedBlock20Min>/g, sub, context, true);
             /**
              * 15-minute Fixed Block
+             *
              */
             obj["fixedBlock15Min"] = base.parse_element (/<cim:MeasuringPeriodKind.fixedBlock15Min>([\s\S]*?)<\/cim:MeasuringPeriodKind.fixedBlock15Min>/g, sub, context, true);
             /**
              * 10-minute Fixed Block
+             *
              */
             obj["fixedBlock10Min"] = base.parse_element (/<cim:MeasuringPeriodKind.fixedBlock10Min>([\s\S]*?)<\/cim:MeasuringPeriodKind.fixedBlock10Min>/g, sub, context, true);
             /**
              * 5-minute Fixed Block
+             *
              */
             obj["fixedBlock5Min"] = base.parse_element (/<cim:MeasuringPeriodKind.fixedBlock5Min>([\s\S]*?)<\/cim:MeasuringPeriodKind.fixedBlock5Min>/g, sub, context, true);
             /**
              * 1-minute Fixed Block
+             *
              */
             obj["fixedBlock1Min"] = base.parse_element (/<cim:MeasuringPeriodKind.fixedBlock1Min>([\s\S]*?)<\/cim:MeasuringPeriodKind.fixedBlock1Min>/g, sub, context, true);
             /**
              * 60-minute Rolling Block with 30-minute sub-intervals
+             *
              */
             obj["rollingBlock60MinIntvl30MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock60MinIntvl30MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock60MinIntvl30MinSubIntvl>/g, sub, context, true);
             /**
              * 60-minute Rolling Block with 20-minute sub-intervals
+             *
              */
             obj["rollingBlock60MinIntvl20MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock60MinIntvl20MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock60MinIntvl20MinSubIntvl>/g, sub, context, true);
             /**
              * 60-minute Rolling Block with 15-minute sub-intervals
+             *
              */
             obj["rollingBlock60MinIntvl15MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock60MinIntvl15MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock60MinIntvl15MinSubIntvl>/g, sub, context, true);
             /**
              * 60-minute Rolling Block with 12-minute sub-intervals
+             *
              */
             obj["rollingBlock60MinIntvl12MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock60MinIntvl12MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock60MinIntvl12MinSubIntvl>/g, sub, context, true);
             /**
              * 60-minute Rolling Block with 10-minute sub-intervals
+             *
              */
             obj["rollingBlock60MinIntvl10MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock60MinIntvl10MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock60MinIntvl10MinSubIntvl>/g, sub, context, true);
             /**
              * 60-minute Rolling Block with 6-minute sub-intervals
+             *
              */
             obj["rollingBlock60MinIntvl6MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock60MinIntvl6MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock60MinIntvl6MinSubIntvl>/g, sub, context, true);
             /**
              * 60-minute Rolling Block with 5-minute sub-intervals
+             *
              */
             obj["rollingBlock60MinIntvl5MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock60MinIntvl5MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock60MinIntvl5MinSubIntvl>/g, sub, context, true);
             /**
              * 60-minute Rolling Block with 4-minute sub-intervals
+             *
              */
             obj["rollingBlock60MinIntvl4MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock60MinIntvl4MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock60MinIntvl4MinSubIntvl>/g, sub, context, true);
             /**
              * 30-minute Rolling Block with 15-minute sub-intervals
+             *
              */
             obj["rollingBlock30MinIntvl15MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock30MinIntvl15MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock30MinIntvl15MinSubIntvl>/g, sub, context, true);
             /**
              * 30-minute Rolling Block with 10-minute sub-intervals
+             *
              */
             obj["rollingBlock30MinIntvl10MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock30MinIntvl10MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock30MinIntvl10MinSubIntvl>/g, sub, context, true);
             /**
              * 30-minute Rolling Block with 6-minute sub-intervals
+             *
              */
             obj["rollingBlock30MinIntvl6MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock30MinIntvl6MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock30MinIntvl6MinSubIntvl>/g, sub, context, true);
             /**
              * 30-minute Rolling Block with 3-minute sub-intervals
+             *
              */
             obj["rollingBlock30MinIntvl3MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock30MinIntvl3MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock30MinIntvl3MinSubIntvl>/g, sub, context, true);
             /**
              * 30-minute Rolling Block with 2-minute sub-intervals
+             *
              */
             obj["rollingBlock30MinIntvl2MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock30MinIntvl2MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock30MinIntvl2MinSubIntvl>/g, sub, context, true);
             /**
              * 15-minute Rolling Block with 5-minute sub-intervals
+             *
              */
             obj["rollingBlock15MinIntvl5MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock15MinIntvl5MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock15MinIntvl5MinSubIntvl>/g, sub, context, true);
             /**
              * 15-minute Rolling Block with 3-minute sub-intervals
+             *
              */
             obj["rollingBlock15MinIntvl3MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock15MinIntvl3MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock15MinIntvl3MinSubIntvl>/g, sub, context, true);
             /**
              * 15-minute Rolling Block with 1-minute sub-intervals
+             *
              */
             obj["rollingBlock15MinIntvl1MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock15MinIntvl1MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock15MinIntvl1MinSubIntvl>/g, sub, context, true);
             /**
              * 10-minute Rolling Block with 5-minute sub-intervals
+             *
              */
             obj["rollingBlock10MinIntvl5MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock10MinIntvl5MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock10MinIntvl5MinSubIntvl>/g, sub, context, true);
             /**
              * 10-minute Rolling Block with 2-minute sub-intervals
+             *
              */
             obj["rollingBlock10MinIntvl2MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock10MinIntvl2MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock10MinIntvl2MinSubIntvl>/g, sub, context, true);
             /**
              * 10-minute Rolling Block with 1-minute sub-intervals
+             *
              */
             obj["rollingBlock10MinIntvl1MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock10MinIntvl1MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock10MinIntvl1MinSubIntvl>/g, sub, context, true);
             /**
              * 5-minute Rolling Block with 1-minute sub-intervals
+             *
              */
             obj["rollingBlock5MinIntvl1MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock5MinIntvl1MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock5MinIntvl1MinSubIntvl>/g, sub, context, true);
             /**
              * 30-minute Rolling Block with 5-minute sub-intervals
+             *
              */
             obj["rollingBlock30MinIntvl5MinSubIntvl"] = base.parse_element (/<cim:MeasuringPeriodKind.rollingBlock30MinIntvl5MinSubIntvl>([\s\S]*?)<\/cim:MeasuringPeriodKind.rollingBlock30MinIntvl5MinSubIntvl>/g, sub, context, true);
             bucket = context.parsed.MeasuringPeriodKind;
@@ -367,11 +455,13 @@ define
             obj.cls = "MeasurementKind";
             /**
              * Not Applicable
+             *
              */
             obj["none"] = base.parse_element (/<cim:MeasurementKind.none>([\s\S]*?)<\/cim:MeasurementKind.none>/g, sub, context, true);
             obj["apparentPowerFactor"] = base.parse_element (/<cim:MeasurementKind.apparentPowerFactor>([\s\S]*?)<\/cim:MeasurementKind.apparentPowerFactor>/g, sub, context, true);
             /**
              * funds
+             *
              */
             obj["currency"] = base.parse_element (/<cim:MeasurementKind.currency>([\s\S]*?)<\/cim:MeasurementKind.currency>/g, sub, context, true);
             obj["current"] = base.parse_element (/<cim:MeasurementKind.current>([\s\S]*?)<\/cim:MeasurementKind.current>/g, sub, context, true);
@@ -388,6 +478,7 @@ define
             obj["frequency"] = base.parse_element (/<cim:MeasurementKind.frequency>([\s\S]*?)<\/cim:MeasurementKind.frequency>/g, sub, context, true);
             /**
              * Dup with �currency�
+             *
              */
             obj["fund"] = base.parse_element (/<cim:MeasurementKind.fund>([\s\S]*?)<\/cim:MeasurementKind.fund>/g, sub, context, true);
             obj["ieee1366ASAI"] = base.parse_element (/<cim:MeasurementKind.ieee1366ASAI>([\s\S]*?)<\/cim:MeasurementKind.ieee1366ASAI>/g, sub, context, true);
@@ -413,6 +504,7 @@ define
             obj["quantityPower"] = base.parse_element (/<cim:MeasurementKind.quantityPower>([\s\S]*?)<\/cim:MeasurementKind.quantityPower>/g, sub, context, true);
             /**
              * or Voltage Dip
+             *
              */
             obj["sag"] = base.parse_element (/<cim:MeasurementKind.sag>([\s\S]*?)<\/cim:MeasurementKind.sag>/g, sub, context, true);
             obj["swell"] = base.parse_element (/<cim:MeasurementKind.swell>([\s\S]*?)<\/cim:MeasurementKind.swell>/g, sub, context, true);
@@ -433,6 +525,7 @@ define
             obj["voltageImbalance"] = base.parse_element (/<cim:MeasurementKind.voltageImbalance>([\s\S]*?)<\/cim:MeasurementKind.voltageImbalance>/g, sub, context, true);
             /**
              * Clarified  from Ed. 1. to indicate fluid volume
+             *
              */
             obj["volume"] = base.parse_element (/<cim:MeasurementKind.volume>([\s\S]*?)<\/cim:MeasurementKind.volume>/g, sub, context, true);
             obj["zeroFlowDuration"] = base.parse_element (/<cim:MeasurementKind.zeroFlowDuration>([\s\S]*?)<\/cim:MeasurementKind.zeroFlowDuration>/g, sub, context, true);
@@ -440,6 +533,7 @@ define
             obj["distortionPowerFactor"] = base.parse_element (/<cim:MeasurementKind.distortionPowerFactor>([\s\S]*?)<\/cim:MeasurementKind.distortionPowerFactor>/g, sub, context, true);
             /**
              * Usually expressed as a �count�
+             *
              */
             obj["frequencyExcursion"] = base.parse_element (/<cim:MeasurementKind.frequencyExcursion>([\s\S]*?)<\/cim:MeasurementKind.frequencyExcursion>/g, sub, context, true);
             obj["applicationContext"] = base.parse_element (/<cim:MeasurementKind.applicationContext>([\s\S]*?)<\/cim:MeasurementKind.applicationContext>/g, sub, context, true);
@@ -471,6 +565,7 @@ define
             obj["twoWayAddress"] = base.parse_element (/<cim:MeasurementKind.twoWayAddress>([\s\S]*?)<\/cim:MeasurementKind.twoWayAddress>/g, sub, context, true);
             /**
              * Moved here from Attribute #9 UOM
+             *
              */
             obj["signaltoNoiseRatio"] = base.parse_element (/<cim:MeasurementKind.signaltoNoiseRatio>([\s\S]*?)<\/cim:MeasurementKind.signaltoNoiseRatio>/g, sub, context, true);
             obj["alarm"] = base.parse_element (/<cim:MeasurementKind.alarm>([\s\S]*?)<\/cim:MeasurementKind.alarm>/g, sub, context, true);
@@ -479,6 +574,7 @@ define
             obj["demandLimit"] = base.parse_element (/<cim:MeasurementKind.demandLimit>([\s\S]*?)<\/cim:MeasurementKind.demandLimit>/g, sub, context, true);
             /**
              * Usually expressed as a count as part of a billing cycle
+             *
              */
             obj["demandReset"] = base.parse_element (/<cim:MeasurementKind.demandReset>([\s\S]*?)<\/cim:MeasurementKind.demandReset>/g, sub, context, true);
             obj["diagnostic"] = base.parse_element (/<cim:MeasurementKind.diagnostic>([\s\S]*?)<\/cim:MeasurementKind.diagnostic>/g, sub, context, true);
@@ -502,6 +598,7 @@ define
             obj["relayActivation"] = base.parse_element (/<cim:MeasurementKind.relayActivation>([\s\S]*?)<\/cim:MeasurementKind.relayActivation>/g, sub, context, true);
             /**
              * Usually expressed as a count
+             *
              */
             obj["relayCycle"] = base.parse_element (/<cim:MeasurementKind.relayCycle>([\s\S]*?)<\/cim:MeasurementKind.relayCycle>/g, sub, context, true);
             obj["removalTamper"] = base.parse_element (/<cim:MeasurementKind.removalTamper>([\s\S]*?)<\/cim:MeasurementKind.removalTamper>/g, sub, context, true);
@@ -513,22 +610,27 @@ define
             obj["watchdogTimeout"] = base.parse_element (/<cim:MeasurementKind.watchdogTimeout>([\s\S]*?)<\/cim:MeasurementKind.watchdogTimeout>/g, sub, context, true);
             /**
              * Customer�s bill for the previous billing period (Currency)
+             *
              */
             obj["billLastPeriod"] = base.parse_element (/<cim:MeasurementKind.billLastPeriod>([\s\S]*?)<\/cim:MeasurementKind.billLastPeriod>/g, sub, context, true);
             /**
              * Customer�s bill, as known thus far within the present billing period (Currency)
+             *
              */
             obj["billToDate"] = base.parse_element (/<cim:MeasurementKind.billToDate>([\s\S]*?)<\/cim:MeasurementKind.billToDate>/g, sub, context, true);
             /**
              * Customer�s bill for the (Currency)
+             *
              */
             obj["billCarryover"] = base.parse_element (/<cim:MeasurementKind.billCarryover>([\s\S]*?)<\/cim:MeasurementKind.billCarryover>/g, sub, context, true);
             /**
              * Monthly fee for connection to commodity.
+             *
              */
             obj["connectionFee"] = base.parse_element (/<cim:MeasurementKind.connectionFee>([\s\S]*?)<\/cim:MeasurementKind.connectionFee>/g, sub, context, true);
             /**
              * Sound
+             *
              */
             obj["audibleVolume"] = base.parse_element (/<cim:MeasurementKind.audibleVolume>([\s\S]*?)<\/cim:MeasurementKind.audibleVolume>/g, sub, context, true);
             obj["volumetricFlow"] = base.parse_element (/<cim:MeasurementKind.volumetricFlow>([\s\S]*?)<\/cim:MeasurementKind.volumetricFlow>/g, sub, context, true);
@@ -549,25 +651,32 @@ define
             obj.cls = "CommodityKind";
             /**
              * Not Applicable
+             *
              */
             obj["none"] = base.parse_element (/<cim:CommodityKind.none>([\s\S]*?)<\/cim:CommodityKind.none>/g, sub, context, true);
             /**
              * All types of metered quantities.
+             *
              * This type of reading comes from the meter and represents a �secondary� metered value.
+             *
              */
             obj["electricitySecondaryMetered"] = base.parse_element (/<cim:CommodityKind.electricitySecondaryMetered>([\s\S]*?)<\/cim:CommodityKind.electricitySecondaryMetered>/g, sub, context, true);
             /**
              * It is possible for a meter to be outfitted with an external VT and/or CT.
+             *
              * The meter might not be aware of these devices, and the display not compensate for their presence. Ultimately, when these scalars are applied, the value that represents the service value is called the �primary metered� value. The �index� in sub-category 3 mirrors those of sub-category 0.
+             *
              */
             obj["electricityPrimaryMetered"] = base.parse_element (/<cim:CommodityKind.electricityPrimaryMetered>([\s\S]*?)<\/cim:CommodityKind.electricityPrimaryMetered>/g, sub, context, true);
             /**
              * A measurement of the communication infrastructure itself.
+             *
              */
             obj["communication"] = base.parse_element (/<cim:CommodityKind.communication>([\s\S]*?)<\/cim:CommodityKind.communication>/g, sub, context, true);
             obj["air"] = base.parse_element (/<cim:CommodityKind.air>([\s\S]*?)<\/cim:CommodityKind.air>/g, sub, context, true);
             /**
              * (SF<sub>6</sub> is found separately below.)
+             *
              */
             obj["insulativeGas"] = base.parse_element (/<cim:CommodityKind.insulativeGas>([\s\S]*?)<\/cim:CommodityKind.insulativeGas>/g, sub, context, true);
             obj["insulativeOil"] = base.parse_element (/<cim:CommodityKind.insulativeOil>([\s\S]*?)<\/cim:CommodityKind.insulativeOil>/g, sub, context, true);
@@ -575,69 +684,87 @@ define
             obj["propane"] = base.parse_element (/<cim:CommodityKind.propane>([\s\S]*?)<\/cim:CommodityKind.propane>/g, sub, context, true);
             /**
              * Drinkable water
+             *
              */
             obj["potableWater"] = base.parse_element (/<cim:CommodityKind.potableWater>([\s\S]*?)<\/cim:CommodityKind.potableWater>/g, sub, context, true);
             /**
              * Water in steam form, usually used for heating.
+             *
              */
             obj["steam"] = base.parse_element (/<cim:CommodityKind.steam>([\s\S]*?)<\/cim:CommodityKind.steam>/g, sub, context, true);
             /**
              * (Sewerage)
+             *
              */
             obj["wasteWater"] = base.parse_element (/<cim:CommodityKind.wasteWater>([\s\S]*?)<\/cim:CommodityKind.wasteWater>/g, sub, context, true);
             /**
              * This fluid is likely in liquid form.
+             *
              * It is not necessarily water or water based. The warm fluid returns cooler than when it was sent. The heat conveyed may be metered.
+             *
              */
             obj["heatingFluid"] = base.parse_element (/<cim:CommodityKind.heatingFluid>([\s\S]*?)<\/cim:CommodityKind.heatingFluid>/g, sub, context, true);
             /**
              * The cool fluid returns warmer than when it was sent.
+             *
              * The heat conveyed may be metered.
+             *
              */
             obj["coolingFluid"] = base.parse_element (/<cim:CommodityKind.coolingFluid>([\s\S]*?)<\/cim:CommodityKind.coolingFluid>/g, sub, context, true);
             /**
              * Reclaimed water � possibly used for irrigation but not sufficiently treated to be considered safe for drinking.
+             *
              */
             obj["nonpotableWater"] = base.parse_element (/<cim:CommodityKind.nonpotableWater>([\s\S]*?)<\/cim:CommodityKind.nonpotableWater>/g, sub, context, true);
             /**
              * Nitrous Oxides NO<sub>X</sub>
+             *
              */
             obj["nox"] = base.parse_element (/<cim:CommodityKind.nox>([\s\S]*?)<\/cim:CommodityKind.nox>/g, sub, context, true);
             /**
              * Sulfur Dioxide SO<sub>2</sub>
+             *
              */
             obj["so2"] = base.parse_element (/<cim:CommodityKind.so2>([\s\S]*?)<\/cim:CommodityKind.so2>/g, sub, context, true);
             /**
              * Methane CH<sub>4</sub>
+             *
              */
             obj["ch4"] = base.parse_element (/<cim:CommodityKind.ch4>([\s\S]*?)<\/cim:CommodityKind.ch4>/g, sub, context, true);
             /**
              * Carbon Dioxide CO<sub>2</sub>
+             *
              */
             obj["co2"] = base.parse_element (/<cim:CommodityKind.co2>([\s\S]*?)<\/cim:CommodityKind.co2>/g, sub, context, true);
             obj["carbon"] = base.parse_element (/<cim:CommodityKind.carbon>([\s\S]*?)<\/cim:CommodityKind.carbon>/g, sub, context, true);
             /**
              * Hexachlorocyclohexane HCH
+             *
              */
             obj["hch"] = base.parse_element (/<cim:CommodityKind.hch>([\s\S]*?)<\/cim:CommodityKind.hch>/g, sub, context, true);
             /**
              * Perfluorocarbons PFC
+             *
              */
             obj["pfc"] = base.parse_element (/<cim:CommodityKind.pfc>([\s\S]*?)<\/cim:CommodityKind.pfc>/g, sub, context, true);
             /**
              * Sulfurhexafluoride SF<sub>6</sub>
+             *
              */
             obj["sf6"] = base.parse_element (/<cim:CommodityKind.sf6>([\s\S]*?)<\/cim:CommodityKind.sf6>/g, sub, context, true);
             /**
              * Television
+             *
              */
             obj["tvLicence"] = base.parse_element (/<cim:CommodityKind.tvLicence>([\s\S]*?)<\/cim:CommodityKind.tvLicence>/g, sub, context, true);
             /**
              * Internet service
+             *
              */
             obj["internet"] = base.parse_element (/<cim:CommodityKind.internet>([\s\S]*?)<\/cim:CommodityKind.internet>/g, sub, context, true);
             /**
              * trash
+             *
              */
             obj["refuse"] = base.parse_element (/<cim:CommodityKind.refuse>([\s\S]*?)<\/cim:CommodityKind.refuse>/g, sub, context, true);
             bucket = context.parsed.CommodityKind;
@@ -657,53 +784,65 @@ define
             obj.cls = "AggregateKind";
             /**
              * Not Applicable
+             *
              */
             obj["none"] = base.parse_element (/<cim:AggregateKind.none>([\s\S]*?)<\/cim:AggregateKind.none>/g, sub, context, true);
             obj["average"] = base.parse_element (/<cim:AggregateKind.average>([\s\S]*?)<\/cim:AggregateKind.average>/g, sub, context, true);
             /**
              * The value represents an amount over which a threshold was exceeded.
+             *
              */
             obj["excess"] = base.parse_element (/<cim:AggregateKind.excess>([\s\S]*?)<\/cim:AggregateKind.excess>/g, sub, context, true);
             /**
              * The value represents a programmed threshold.
+             *
              */
             obj["highThreshold"] = base.parse_element (/<cim:AggregateKind.highThreshold>([\s\S]*?)<\/cim:AggregateKind.highThreshold>/g, sub, context, true);
             /**
              * The value represents a programmed threshold.
+             *
              */
             obj["lowThreshold"] = base.parse_element (/<cim:AggregateKind.lowThreshold>([\s\S]*?)<\/cim:AggregateKind.lowThreshold>/g, sub, context, true);
             /**
              * The highest value observed
+             *
              */
             obj["maximum"] = base.parse_element (/<cim:AggregateKind.maximum>([\s\S]*?)<\/cim:AggregateKind.maximum>/g, sub, context, true);
             /**
              * The smallest value observed
+             *
              */
             obj["minimum"] = base.parse_element (/<cim:AggregateKind.minimum>([\s\S]*?)<\/cim:AggregateKind.minimum>/g, sub, context, true);
             obj["nominal"] = base.parse_element (/<cim:AggregateKind.nominal>([\s\S]*?)<\/cim:AggregateKind.nominal>/g, sub, context, true);
             obj["normal"] = base.parse_element (/<cim:AggregateKind.normal>([\s\S]*?)<\/cim:AggregateKind.normal>/g, sub, context, true);
             /**
              * The second highest value observed
+             *
              */
             obj["secondMaximum"] = base.parse_element (/<cim:AggregateKind.secondMaximum>([\s\S]*?)<\/cim:AggregateKind.secondMaximum>/g, sub, context, true);
             /**
              * The second smallest value observed
+             *
              */
             obj["secondMinimum"] = base.parse_element (/<cim:AggregateKind.secondMinimum>([\s\S]*?)<\/cim:AggregateKind.secondMinimum>/g, sub, context, true);
             /**
              * The third highest value observed
+             *
              */
             obj["thirdMaximum"] = base.parse_element (/<cim:AggregateKind.thirdMaximum>([\s\S]*?)<\/cim:AggregateKind.thirdMaximum>/g, sub, context, true);
             /**
              * The fourth highest value observed
+             *
              */
             obj["fourthMaximum"] = base.parse_element (/<cim:AggregateKind.fourthMaximum>([\s\S]*?)<\/cim:AggregateKind.fourthMaximum>/g, sub, context, true);
             /**
              * The fifth highest value observed
+             *
              */
             obj["fifthMaximum"] = base.parse_element (/<cim:AggregateKind.fifthMaximum>([\s\S]*?)<\/cim:AggregateKind.fifthMaximum>/g, sub, context, true);
             /**
              * The accumulated sum
+             *
              */
             obj["sum"] = base.parse_element (/<cim:AggregateKind.sum>([\s\S]*?)<\/cim:AggregateKind.sum>/g, sub, context, true);
             bucket = context.parsed.AggregateKind;
@@ -723,35 +862,47 @@ define
             obj.cls = "MacroPeriodKind";
             /**
              * Not Applicable
+             *
              */
             obj["none"] = base.parse_element (/<cim:MacroPeriodKind.none>([\s\S]*?)<\/cim:MacroPeriodKind.none>/g, sub, context, true);
             /**
              * Captured during the billing period starting at midnight of the first day of the billing period (as defined by the billing cycle day).
+             *
              * If during the current billing period, it specifies a period from the start of the current billing period until "now".
+             *
              */
             obj["billingPeriod"] = base.parse_element (/<cim:MacroPeriodKind.billingPeriod>([\s\S]*?)<\/cim:MacroPeriodKind.billingPeriod>/g, sub, context, true);
             /**
              * Daily Period starting at midnight.
+             *
              * If for the current day, this specifies the time from midnight to "now".
+             *
              */
             obj["daily"] = base.parse_element (/<cim:MacroPeriodKind.daily>([\s\S]*?)<\/cim:MacroPeriodKind.daily>/g, sub, context, true);
             /**
              * Monthly period starting at midnight on the first day of the month.
+             *
              * If within the current month, this specifies the period from the start of the month until "now."
+             *
              */
             obj["monthly"] = base.parse_element (/<cim:MacroPeriodKind.monthly>([\s\S]*?)<\/cim:MacroPeriodKind.monthly>/g, sub, context, true);
             /**
              * A season of time spanning multiple months.
+             *
              * E.g. "Summer," "Spring," "Fall," and "Winter" based cycle. If within the current season, it specifies the period from the start of the current season until "now."
+             *
              */
             obj["seasonal"] = base.parse_element (/<cim:MacroPeriodKind.seasonal>([\s\S]*?)<\/cim:MacroPeriodKind.seasonal>/g, sub, context, true);
             /**
              * Weekly period starting at midnight on the first day of the week and ending the instant before midnight the last day of the week.
+             *
              * If within the current week, it specifies the period from the start of the week until "now."
+             *
              */
             obj["weekly"] = base.parse_element (/<cim:MacroPeriodKind.weekly>([\s\S]*?)<\/cim:MacroPeriodKind.weekly>/g, sub, context, true);
             /**
              * For the period defined by the start and end of the TimePeriod element in the message.
+             *
              */
             obj["specifiedPeriod"] = base.parse_element (/<cim:MacroPeriodKind.specifiedPeriod>([\s\S]*?)<\/cim:MacroPeriodKind.specifiedPeriod>/g, sub, context, true);
             bucket = context.parsed.MacroPeriodKind;
