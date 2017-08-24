@@ -425,6 +425,71 @@ define
         }
 
         /**
+         * @summary Browser independent CORS setup.
+         * @description Creates the CORS request and opens it.
+         * @param {string} method The method type, e.g. "GET" or "POST"
+         * @param {string} url the URL to open the request on
+         * @param {boolean} synchronous optional parameter for open() call, default <em>true</em>
+         * @returns {object} the request object or <code>null</code> if CORS isn't supported
+         * @memberOf module:cimspace
+         */
+        function createCORSRequest (method, url, synchronous)
+        {
+            var ret;
+
+            if ("undefined" == typeof (synchronous))
+                synchronous = true;
+            ret = new XMLHttpRequest ();
+            if ('withCredentials' in ret) // "withCredentials" only exists on XMLHTTPRequest2 objects
+                ret.open (method, url, synchronous);
+            else if (typeof XDomainRequest != 'undefined') // IE
+            {
+                ret = new XDomainRequest ();
+                ret.open (method, url);
+            }
+            else
+                ret = null; // CORS is not supported by the browser
+
+            return (ret);
+        }
+
+        /**
+         * @summary Handler for server connect event.
+         * @description Process URL from the connect dialog.
+         * @param {object} event - the button click event
+         * @function process_url
+         * @memberOf module:cimspace
+         */
+        function process_url (event)
+        {
+            var url;
+            if ("" != (url = document.getElementById ("server_url").value))
+            {
+                var xmlhttp = createCORSRequest ("GET", url);
+                xmlhttp.setRequestHeader ("Accept", "application/octet-stream");
+                xmlhttp.onreadystatechange = function ()
+                {
+                    if (4 == xmlhttp.readyState)
+                        if (200 == xmlhttp.status || 201 == xmlhttp.status || 202 == xmlhttp.status)
+                        {
+                            var start = new Date ().getTime ();
+                            console.log ("starting XML read");
+                            var result = cim.read_full_xml (xmlhttp.response, 0, null, null)
+                            CIM_Data = result.parsed;
+                            var end = new Date ().getTime ();
+                            console.log ("finished XML read (" + (Math.round (end - start) / 1000) + " seconds)");
+
+                            // display the results on the map
+                            make_map ();
+                        }
+                        else
+                            console.log ("xmlhttp status " + xmlhttp.status)
+                };
+                xmlhttp.send ();
+            }
+        }
+
+        /**
          * @summary Close the file dialog.
          * @description Hide the modal dialog.
          * @function close_file_modal
@@ -1035,6 +1100,7 @@ define
                 init_map: init_map,
                 file_drag: file_drag,
                 file_drop: file_drop,
+                process_url: process_url,
                 trace: trace,
                 unhighlight: unhighlight,
                 select: select,
