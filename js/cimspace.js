@@ -256,7 +256,7 @@ define
                 for (var location in locations)
                 {
                     var l = locations[location];
-                    if (l.CoordinateSystem != "wgs_84")
+                    if (l.CoordinateSystem != "wgs84")
                         blacklist[location] = true;
                 }
             }
