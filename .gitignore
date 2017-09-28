@@ -1,0 +1,37 @@
+# Java #
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# IDEA #
+*.iml
+.idea
+*~
+
+# Eclipse #
+.project
+.metadata
+.classpath
+.settings/
+
+# Maven #
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+release.properties
+
+# Test Data #
+data/
+private_data/
+
+# Misc #
+glslogs/
+*.log
+/bin/
+.cache-main
+.cache-tests
+
