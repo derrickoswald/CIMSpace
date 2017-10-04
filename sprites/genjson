@@ -1,0 +1,7 @@
+i=0
+for file in `ls sdf`
+do
+    echo '"'${file%.*}'" : { "x" : ' $((30 * ($i % 15))) ', "y" : ' $((30 * ($i / 15))) ', "width" : 30, "height" : 30, "pixelRatio" : 1, "visible" : true, "sdf" : true },'
+    i=$((i+1))
+done
+

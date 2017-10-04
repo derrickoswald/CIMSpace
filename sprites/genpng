@@ -1,0 +1,16 @@
+    for svg in $@; do
+
+        icon=$(basename $svg .svg)
+        echo ${icon}
+
+        inkscape \
+            --export-dpi=96 \
+            --export-png=png/${icon}.png \
+            $svg &> /dev/null
+
+        inkscape \
+            --export-dpi=192 \
+            --export-png=png/${icon}@2x.png \
+            $svg &> /dev/null
+    done
+
