@@ -928,7 +928,9 @@ define
          */
         function toURL (url, resourcetype)
         {
-            var _url = url.startsWith (":///") ? (running_local () ? url.substring (3) : window.location.origin + window.location.pathname + (url.substring (3))) : url;
+            var _url = url.startsWith (":///") ? url.substring (3) : url;
+            if (_url.startsWith ("/"))
+               _url = running_local () ? _url : window.location.origin + window.location.pathname + _url;
             return ({ url: _url });
         }
 
