@@ -11,7 +11,7 @@
      xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
      width="96"
      height="96"
-     viewBox="0 0 96 96"
+     viewBox="0 0 96.000001 96"
      version="1.1"
      id="svg8"
      inkscape:version="0.92.2 (30a58d1, 2017-08-07)"
@@ -40,8 +40,8 @@
         <inkscape:grid
              type="xygrid"
              id="grid815"
-             originx="11.999998"
-             originy="28.500012" />
+             originx="-11.784842"
+             originy="28.500014" />
     </sodipodi:namedview>
     <metadata
          id="metadata5">
@@ -51,7 +51,7 @@
                 <dc:format>image/svg+xml</dc:format>
                 <dc:type
                      rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-                <dc:title></dc:title>
+                <dc:title />
             </cc:Work>
         </rdf:RDF>
     </metadata>
@@ -59,15 +59,16 @@
          inkscape:label="Layer 1"
          inkscape:groupmode="layer"
          id="layer1"
-         transform="translate(11.999998,-296.20869)">
+         transform="translate(-11.784842,-296.20869)">
         <path
-             style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-             d="m 36.000002,296.20869 v 16"
+             style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             d="m 59.784842,296.15664 v 29.75213"
              id="path1019"
-             inkscape:connector-curvature="0" />
+             inkscape:connector-curvature="0"
+             sodipodi:nodetypes="cc" />
         <path
-             style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-             d="m 15.784842,316.04445 v 39.25908 l 20.21516,19.62956 20.21516,-19.62956 v -39.25908 z"
+             style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             d="m 39.569682,327.74453 v 39.25908 l 20.21516,19.62956 20.21516,-19.62956 v -39.25908 z"
              id="path1021"
              inkscape:connector-curvature="0"
              sodipodi:nodetypes="cccccc" />

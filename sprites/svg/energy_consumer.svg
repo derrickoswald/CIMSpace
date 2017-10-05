@@ -51,7 +51,7 @@
                 <dc:format>image/svg+xml</dc:format>
                 <dc:type
                      rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-                <dc:title></dc:title>
+                <dc:title />
             </cc:Work>
         </rdf:RDF>
     </metadata>
@@ -61,10 +61,11 @@
          id="layer1"
          transform="translate(12.000001,-288.70872)">
         <path
-             style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-             d="m 35.999999,288.70872 v 24"
+             style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             d="m 35.999999,288.70867 v 61"
              id="path821"
-             inkscape:connector-curvature="0" />
+             inkscape:connector-curvature="0"
+             sodipodi:nodetypes="cc" />
         <path
              sodipodi:type="star"
              style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.88245308;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -80,7 +81,7 @@
              inkscape:rounded="0"
              inkscape:randomized="0"
              d="M 17.809475,346.17751 14.904737,351.20867 12,356.23982 9.0952625,351.20867 6.1905251,346.17751 12,346.17751 Z"
-             inkscape:transform-center-y="8.0000687"
-             transform="matrix(4.1311824,0,0,4.7702784,-13.57419,-1338.6543)" />
+             inkscape:transform-center-y="5.8333906"
+             transform="matrix(3.2705196,0,0,3.4783233,-3.2462362,-854.40855)" />
     </g>
 </svg>

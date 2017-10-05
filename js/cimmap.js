@@ -46,8 +46,11 @@ define
          */
         var transformer_symbol = "transformer";
         var switch_symbol = "switch";
+        var fuse_symbol = "fuse";
         var energy_consumer_symbol = "energy_consumer";
-        var other_symbol = "alternate-junction";
+        var connector_symbol = "connector";
+        var junction_symbol = "alternate_junction";
+        var other_symbol = "junction";
 
         /**
          * Set the CIM data for the map to draw.
@@ -206,25 +209,19 @@ define
                             psr[id].orientation = 0.0;
                             // assign the symbol
                             if ("PowerTransformer" == psr[id].cls)
-                            {
                                 psr[id].symbol = transformer_symbol;
-                                psr[id].color = "rgb(0, 255, 0)";
-                            }
+                            else if ("Fuse" == psr[id].cls)
+                                psr[id].symbol = fuse_symbol;
                             else if ("undefined" != typeof (psr[id].normalOpen)) // all switches have this attribute
-                            {
                                 psr[id].symbol = switch_symbol;
-                                psr[id].color = "rgb(0, 0, 255)";
-                            }
                             else if ("EnergyConsumer" == psr[id].cls)
-                            {
                                 psr[id].symbol = energy_consumer_symbol;
-                                psr[id].color = "rgb(255, 0, 0)";
-                            }
+                            else if ("Connector" == psr[id].cls)
+                                psr[id].symbol = connector_symbol;
+                            else if ("BusbarSection" == psr[id].cls)
+                                psr[id].symbol = junction_symbol;
                             else
-                            {
                                 psr[id].symbol = other_symbol;
-                                psr[id].color = "rgb(255, 255, 255)";
-                            }
                         }
                         else
                         {
@@ -347,7 +344,10 @@ define
                 TheMap.removeLayer ("lines_highlight");
                 TheMap.removeLayer ("circle_transformer");
                 TheMap.removeLayer ("circle_switch");
-                TheMap.removeLayer ("circle_house_connection");
+                TheMap.removeLayer ("circle_fuse");
+                TheMap.removeLayer ("circle_energy_consumer");
+                TheMap.removeLayer ("circle_connector");
+                TheMap.removeLayer ("circle_junction");
                 TheMap.removeLayer ("circle_other");
                 TheMap.removeLayer ("circle_highlight");
                 TheMap.removeLayer ("symbol");
@@ -419,7 +419,10 @@ define
             // simple circle from 14 to 17
             TheMap.addLayer (circle_layer ("circle_transformer", ["==", "symbol", transformer_symbol], "rgb(0, 255, 0)"));
             TheMap.addLayer (circle_layer ("circle_switch", ["==", "symbol", switch_symbol], "rgb(0, 0, 255)"));
-            TheMap.addLayer (circle_layer ("circle_house_connection", ["==", "symbol", energy_consumer_symbol], "rgb(255, 0, 0)"));
+            TheMap.addLayer (circle_layer ("circle_fuse", ["==", "symbol", fuse_symbol], "rgb(0, 0, 255)"));
+            TheMap.addLayer (circle_layer ("circle_energy_consumer", ["==", "symbol", energy_consumer_symbol], "rgb(255, 0, 0)"));
+            TheMap.addLayer (circle_layer ("circle_connector", ["==", "symbol", connector_symbol], "rgb(255, 0, 0)"));
+            TheMap.addLayer (circle_layer ("circle_junction", ["==", "symbol", junction_symbol], "rgb(255, 0, 0)"));
             TheMap.addLayer (circle_layer ("circle_other", ["==", "symbol", other_symbol], "black"));
 
             TheMap.addLayer (circle_layer ("circle_highlight", ["==", "mRID", ""], "rgb(255, 255, 0)"));

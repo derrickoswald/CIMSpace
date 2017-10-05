@@ -2943,7 +2943,7 @@
         "pixelRatio": 2,
         "visible": true
     },
-    "alternate-junction": {
+    "alternate_junction": {
         "x": 0,
         "y": 758,
         "width": 192,
@@ -2970,7 +2970,7 @@
         "visible": true,
         "sdf": true
     },
-    "switch": {
+    "fuse": {
         "x": 576,
         "y": 758,
         "width": 192,
@@ -2988,8 +2988,17 @@
         "visible": true,
         "sdf": true
     },
-    "transformer": {
+    "switch": {
         "x": 0,
+        "y": 950,
+        "width": 192,
+        "height": 192,
+        "pixelRatio": 2,
+        "visible": true,
+        "sdf": true
+    },
+    "transformer": {
+        "x": 192,
         "y": 950,
         "width": 192,
         "height": 192,
