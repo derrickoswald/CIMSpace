@@ -933,7 +933,7 @@ define
         {
             var _url = url.startsWith (":///") ? url.substring (3) : url;
             if (_url.startsWith ("/"))
-               _url = running_local () ? _url : window.location.origin + window.location.pathname + _url.substring (1);
+               _url = running_local () ? _url.substring (1) : window.location.origin + window.location.pathname + _url.substring (1);
             return ({ url: _url });
         }
 
