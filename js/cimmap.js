@@ -905,6 +905,20 @@ define
         }
 
         /**
+         * @summary Checks for execution from file://.
+         * @description Determines if the script is running from an active server or just loaded passively from file.
+         * @returns {boolean} <code>true</code> if the code is running from file://
+         * @memberOf module:cimmap
+         */
+        function running_local ()
+        {
+            return (
+                ("null" == window.location.origin) // Firefox
+             || ("file://" == window.location.origin) // chromium
+                )
+        }
+
+        /**
          * @summary Doctor local urls.
          * @description Fix the brain-dead handling by mapbox for local URLs.
          * @param {string} url - the URL to massage.
@@ -914,7 +928,7 @@ define
          */
         function toURL (url, resourcetype)
         {
-            var _url = url.startsWith (":///") ? url.substring (3) : url;
+            var _url = url.startsWith (":///") ? (running_local () ? url.substring (3) : window.location.origin + window.location.pathname + (url.substring (3))) : url;
             return ({ url: _url });
         }
 
