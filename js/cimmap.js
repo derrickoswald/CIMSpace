@@ -42,6 +42,14 @@ define
         var CURRENT_SELECTION = null;
 
         /**
+         * symbology
+         */
+        var transformer_symbol = "transformer";
+        var switch_symbol = "switch";
+        var energy_consumer_symbol = "energy_consumer";
+        var other_symbol = "alternate-junction";
+
+        /**
          * Set the CIM data for the map to draw.
          * @param {JSON} Data parsed from the cim module.
          * @function set_data
@@ -136,7 +144,8 @@ define
                         "icon-allow-overlap": true,
                         "icon-size":
                         {
-                            stops: [[17, 1], [18, 1], [19, 1.2], [20, 1.4], [21, 1.6], [22, 1.8], [23, 2], [24, 2.2], [25, 2.4]]
+//                            stops: [[17, 1], [18, 1], [19, 1.2], [20, 1.4], [21, 1.6], [22, 1.8], [23, 2], [24, 2.2], [25, 2.4]]
+                            stops: [[17, 0.25], [18, 0.25], [19, 0.3], [20, 0.35], [21, 0.4], [22, 0.45], [23, 0.5], [24, 0.55], [25, 0.6]]
                         },
                         "icon-rotate": orientation,
                         "icon-offset": offset,
@@ -196,24 +205,24 @@ define
                             psr[id].id = id;
                             psr[id].orientation = 0.0;
                             // assign the symbol
-                            if (0 == id.indexOf ("TRA"))
+                            if ("PowerTransformer" == psr[id].cls)
                             {
-                                psr[id].symbol = "transformer";
+                                psr[id].symbol = transformer_symbol;
                                 psr[id].color = "rgb(0, 255, 0)";
                             }
-                            else if (0 == id.indexOf ("TEI"))
+                            else if ("undefined" != typeof (psr[id].normalOpen)) // all switches have this attribute
                             {
-                                psr[id].symbol = "switch";
+                                psr[id].symbol = switch_symbol;
                                 psr[id].color = "rgb(0, 0, 255)";
                             }
-                            else if (0 == id.indexOf ("HAS"))
+                            else if ("EnergyConsumer" == psr[id].cls)
                             {
-                                psr[id].symbol = "house_connection";
+                                psr[id].symbol = energy_consumer_symbol;
                                 psr[id].color = "rgb(255, 0, 0)";
                             }
                             else
                             {
-                                psr[id].symbol = "monument-24";
+                                psr[id].symbol = other_symbol;
                                 psr[id].color = "rgb(255, 255, 255)";
                             }
                         }
@@ -408,10 +417,10 @@ define
             );
 
             // simple circle from 14 to 17
-            TheMap.addLayer (circle_layer ("circle_transformer", ["==", "symbol", "transformer"], "rgb(0, 255, 0)"));
-            TheMap.addLayer (circle_layer ("circle_switch", ["==", "symbol", "switch"], "rgb(0, 0, 255)"));
-            TheMap.addLayer (circle_layer ("circle_house_connection", ["==", "symbol", "house_connection"], "rgb(255, 0, 0)"));
-            TheMap.addLayer (circle_layer ("circle_other", ["==", "symbol", "monument-24"], "black"));
+            TheMap.addLayer (circle_layer ("circle_transformer", ["==", "symbol", transformer_symbol], "rgb(0, 255, 0)"));
+            TheMap.addLayer (circle_layer ("circle_switch", ["==", "symbol", switch_symbol], "rgb(0, 0, 255)"));
+            TheMap.addLayer (circle_layer ("circle_house_connection", ["==", "symbol", energy_consumer_symbol], "rgb(255, 0, 0)"));
+            TheMap.addLayer (circle_layer ("circle_other", ["==", "symbol", other_symbol], "black"));
 
             TheMap.addLayer (circle_layer ("circle_highlight", ["==", "mRID", ""], "rgb(255, 255, 0)"));
 
@@ -475,9 +484,12 @@ define
          */
         function glow (filter)
         {
-            TheMap.setFilter ("lines_highlight", filter);
-            TheMap.setFilter ("circle_highlight", filter);
-            TheMap.setFilter ("symbol_highlight", filter);
+            if (TheMap.getSource ("the cim lines"))
+            {
+                TheMap.setFilter ("lines_highlight", filter);
+                TheMap.setFilter ("circle_highlight", filter);
+                TheMap.setFilter ("symbol_highlight", filter);
+            }
         }
 
         /**
@@ -893,6 +905,20 @@ define
         }
 
         /**
+         * @summary Doctor local urls.
+         * @description Fix the brain-dead handling by mapbox for local URLs.
+         * @param {string} url - the URL to massage.
+         * @param {string} resourcetype - the resource type <em>not used</em>
+         * @function toURL
+         * @memberOf module:cimmap
+         */
+        function toURL (url, resourcetype)
+        {
+            var _url = url.startsWith (":///") ? url.substring (3) : url;
+            return ({ url: _url });
+        }
+
+        /**
          * @summary Initialize the map.
          * @description Create the background map, centered on Bern and showing most of Switzerland.
          * @param {object} event - <em>not used</em>
@@ -913,14 +939,16 @@ define
                     center: [7.48634000000001, 46.93003],
                     zoom: 8,
                     maxZoom: 25,
+                    // Note: this local copy is the same as mapbox (as of 3.10.2017) except for the reference
+                    // to the sprite URL which is changed to     sprite: "/styles/streets-v9-sprites"
                     // style: "mapbox://styles/mapbox/streets-v9",
-                    style: "styles/streets-v8.json",
-                    // style: "https://rawgit.com/derrickoswald/CIMApplication/master/CIMWeb/src/main/webapp/styles/streets-v8.json",
-                    hash: true
+                    style: "/styles/streets-v9.json",
+                    hash: true,
+                    transformRequest: toURL
                 }
             );
             // add zoom and rotation controls to the map.
-            TheMap.addControl (new mapboxgl.Navigation ());
+            TheMap.addControl (new mapboxgl.NavigationControl ());
             // handle mouse click
             TheMap.on
             (

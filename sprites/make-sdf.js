@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 
+/*
+ * Generate sdf png files from black and transparent png files (as exported from inkscape with genpng).
+ *
+ */
+
 var fs = require ('fs');
 var glob = require ('glob');
 var PNG = require ('pngjs').PNG;
@@ -72,11 +77,10 @@ function scale (dist)
 {
     var cutoff = 1/8;
 
-    // drop off quickly
-    dist *= 2;
-
-    // Shift the 0 so that we can fit a few negative values into our 8 bits.
-//    dist -= cutoff * 256;
+    // drop off quicker
+    dist *= 24;
+    // keep some negative
+    dist -= cutoff * 256;
 
     // Clamp to 0-255.
     return (Math.ceil (Math.min (255.0, Math.max (0.0, 255 - dist))));
