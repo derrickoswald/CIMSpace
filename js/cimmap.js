@@ -148,7 +148,7 @@ define
                         "icon-size":
                         {
 //                            stops: [[17, 1], [18, 1], [19, 1.2], [20, 1.4], [21, 1.6], [22, 1.8], [23, 2], [24, 2.2], [25, 2.4]]
-                            stops: [[17, 0.25], [18, 0.25], [19, 0.3], [20, 0.35], [21, 0.4], [22, 0.45], [23, 0.5], [24, 0.55], [25, 0.6]]
+                            stops: [[17, 0.1875], [18, 0.25], [19, 0.3], [20, 0.45], [21, 0.9], [22, 1.8], [23, 3.75], [24, 7.5], [25, 10.0]]
                         },
                         "icon-rotate": orientation,
                         "icon-offset": offset,
@@ -313,6 +313,9 @@ define
          */
         async function make_map ()
         {
+            var start = new Date ().getTime ();
+            console.log ("rendering CIM data");
+
             function sleep(ms)
             {
                 return new Promise(resolve => setTimeout(resolve, ms));
@@ -432,6 +435,9 @@ define
             TheMap.addLayer (symbol_layer ("symbol", ["!=", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(0, 0, 0)"));
 
             TheMap.addLayer (symbol_layer ("symbol_highlight", ["==", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(255, 255, 0)"));
+
+            var end = new Date ().getTime ();
+            console.log ("finished rendering CIM data (" + (Math.round (end - start) / 1000) + " seconds)");
 
         }
 

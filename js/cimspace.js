@@ -19,6 +19,68 @@ define
         es6_promise.polyfill ();
 
         /**
+         * @summary Parse a zip file.
+         * @description Read in a CIM file.
+         * @param {Blob} blob - the blob of CIM data
+         * @function read_cim
+         * @memberOf module:cimspace
+         */
+        function read_cim (blob)
+        {
+            var start = new Date ().getTime ();
+            console.log ("starting CIM read");
+            cim.read_xml_blob
+            (
+                blob,
+                function (result)
+                {
+                    var end = new Date ().getTime ();
+                    console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds)");
+                    cimmap.set_data (result.parsed);
+                }
+            );
+        }
+
+        /**
+         * @summary Uncompress a zip file and then parse it.
+         * @description Use AMD wrapped zip.js (see https://github.com/MeltingMosaic/zip-amd) to read in a CIM file.
+         * @param {Blob} blob - the blob of zipped data
+         * @function read_zip
+         * @memberOf module:cimspace
+         */
+        function read_zip (blob)
+        {
+            var start = new Date ().getTime ();
+            console.log ("starting unzip");
+            require (
+                ["zip/zip", "zip/mime-types"],
+                function (zip, mimeTypes)
+                {
+                    //zip.workerScriptsPath = "js/zip/";
+                    zip.useWebWorkers = false;
+                    zip.createReader (new zip.BlobReader (blob),
+                        function (zipReader)
+                        {
+                            zipReader.getEntries (
+                                function (entries) {
+                                    entries[0].getData (
+                                        new zip.BlobWriter (mimeTypes.getMimeType (entries[0].filename)),
+                                        function (data)
+                                        {
+                                            zipReader.close ();
+                                            var end = new Date ().getTime ();
+                                            console.log ("finished unzip (" + (Math.round (end - start) / 1000) + " seconds)");
+                                            read_cim (data);
+                                        }
+                                );
+                            })
+                        }
+                    );
+                }
+            );
+        }
+
+        /**
          * @summary Handler for file change events.
          * @description Process files from the browse dialog.
          * @param {File[]} files - the list of files
@@ -29,18 +91,10 @@ define
         {
             if (0 < files.length)
             {
-                var start = new Date ().getTime ();
-                console.log ("starting XML read");
-                cim.read_xml_blob
-                (
-                    files[0],
-                    function (result)
-                    {
-                        var end = new Date ().getTime ();
-                        console.log ("finished XML read (" + (Math.round (end - start) / 1000) + " seconds)");
-                        cimmap.set_data (result.parsed);
-                    }
-                );
+                if (files[0].name.endsWith (".zip"))
+                    read_zip (files[0]);
+                else
+                    read_cim (files[0]);
             }
         }
 
