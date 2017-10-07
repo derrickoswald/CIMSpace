@@ -27,6 +27,7 @@ define
          * @see {http://monsur.hossa.in/2012/07/20/utf-8-in-javascript.html}
          * @param {String} str - the string to encode
          * @returns {String} UTF-8 encoded string
+         * @function encode_utf8
          * @memberOf module:cim
          */
         function encode_utf8 (str)
@@ -52,6 +53,7 @@ define
          * @param {Object} context - the file reading context
          * @param {Object} parsed - optional parsed elements to add to
          * @returns {Object} the parsed object
+         * @function read_xml
          * @memberOf module:cim
          */
         function read_xml (xml, context, parsed)
@@ -118,6 +120,15 @@ define
             return ({parsed: context.parsed, context: context});
         }
 
+        /**
+         * Parse an XML file into constituent parts.
+         * @param {String} xml - the string to parse
+         * @param {Number} start - the position in the string to start parsing at
+         * @param {Object} context - the file reading context
+         * @returns {Object} the parsed object
+         * @function read_full_xml
+         * @memberOf module:cim
+         */
         function read_full_xml (xml, start, context, parsed)
         {
             var subxml;

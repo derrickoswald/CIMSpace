@@ -140,18 +140,29 @@ define
             if ("" != (url = document.getElementById ("server_url").value))
             {
                 var xmlhttp = createCORSRequest ("GET", url);
-                xmlhttp.setRequestHeader ("Accept", "application/octet-stream");
+                if (url.endsWith (".zip"))
+                {
+                    xmlhttp.setRequestHeader ("Accept", "application/zip");
+                    xmlhttp.responseType = "blob";
+                }
+                else
+                    xmlhttp.setRequestHeader ("Accept", "application/octet-stream");
                 xmlhttp.onreadystatechange = function ()
                 {
                     if (4 == xmlhttp.readyState)
                         if (200 == xmlhttp.status || 201 == xmlhttp.status || 202 == xmlhttp.status)
                         {
-                            var start = new Date ().getTime ();
-                            console.log ("starting XML read");
-                            var result = cim.read_full_xml (xmlhttp.response, 0, null, null)
-                            var end = new Date ().getTime ();
-                            console.log ("finished XML read (" + (Math.round (end - start) / 1000) + " seconds)");
-                            cimmap.set_data (result.parsed);
+                            if (url.endsWith (".zip"))
+                                read_zip (xmlhttp.response);
+                            else
+                            {
+                                var start = new Date ().getTime ();
+                                console.log ("starting CIM read");
+                                var result = cim.read_full_xml (xmlhttp.response, 0, null, null)
+                                var end = new Date ().getTime ();
+                                console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds)");
+                                cimmap.set_data (result.parsed);
+                            }
                         }
                         else
                             console.log ("xmlhttp status " + xmlhttp.status)
