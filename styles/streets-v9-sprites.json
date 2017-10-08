@@ -2961,7 +2961,7 @@
         "visible": true,
         "sdf": true
     },
-    "energy_consumer": {
+    "distribution_box": {
         "x": 192,
         "y": 379,
         "width": 96,
@@ -2970,7 +2970,7 @@
         "visible": true,
         "sdf": true
     },
-    "fuse": {
+    "energy_consumer": {
         "x": 288,
         "y": 379,
         "width": 96,
@@ -2979,7 +2979,7 @@
         "visible": true,
         "sdf": true
     },
-    "junction": {
+    "fuse": {
         "x": 384,
         "y": 379,
         "width": 96,
@@ -2988,7 +2988,7 @@
         "visible": true,
         "sdf": true
     },
-    "switch": {
+    "junction": {
         "x": 0,
         "y": 475,
         "width": 96,
@@ -2997,9 +2997,54 @@
         "visible": true,
         "sdf": true
     },
-    "transformer": {
+    "station": {
         "x": 96,
         "y": 475,
+        "width": 96,
+        "height": 96,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "street_light": {
+        "x": 192,
+        "y": 475,
+        "width": 96,
+        "height": 96,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "substation": {
+        "x": 288,
+        "y": 475,
+        "width": 96,
+        "height": 96,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "switch": {
+        "x": 384,
+        "y": 475,
+        "width": 96,
+        "height": 96,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "transformer": {
+        "x": 0,
+        "y": 571,
+        "width": 96,
+        "height": 96,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "transformer_station": {
+        "x": 96,
+        "y": 571,
         "width": 96,
         "height": 96,
         "pixelRatio": 1,

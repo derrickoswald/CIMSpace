@@ -34,7 +34,7 @@ and click the *Download* button
 - Zoom *mouse wheel* or *click arrows in upper right hand corner* or *shift-left-click and hold, drag window, release*
 - Pan *left-click and hold, drag, release*
 - Rotate *control-left-click and hold, drag, release* or reset North to vertical by *clicking compas icon in upper right hand corner*
-- toggle *Include internal features* in *Options* drop down in upper nav bar to hide or show station/distribution-box internals
+- toggle *Internal features* in *Options* drop down in upper nav bar to hide or show station/distribution-box internals
 - coordinate display in upper nav bar shows cursor longitude,latitude (x,y)
 
 **Attributes**
@@ -52,7 +52,7 @@ and click the *Download* button
 - select the start feature, *click Trace* in *Options* drop down in upper nav bar
 - options for tracing in *Options* drop down in upper nav bar:
     * toggle Trace through open switches *ignore/honor normalOpen attribute of Switch derived objects for trace stopping conditions*
-    * toggle Trace through voltage level changes *ignore/honor transformer voltage changes for trace stopping conditions*
+    * toggle Trace through voltage levels *ignore/honor transformer voltage changes for trace stopping conditions*
 
 # WebGL
 

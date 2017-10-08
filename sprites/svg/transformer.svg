@@ -28,7 +28,7 @@
          id="namedview10"
          showgrid="true"
          inkscape:zoom="9.9479167"
-         inkscape:cx="29.805236"
+         inkscape:cx="11.610472"
          inkscape:cy="48"
          inkscape:window-x="2625"
          inkscape:window-y="34"
@@ -53,25 +53,25 @@
         </rdf:RDF>
     </metadata>
     <circle
-         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          id="path817"
          cx="48"
          cy="34.000031"
          r="21.791887" />
     <path
          inkscape:connector-curvature="0"
-         style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 48,-1e-5 v 12"
          id="path821" />
     <path
          inkscape:connector-curvature="0"
-         style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 48,95.99999 v -12"
          id="path823" />
     <circle
          cy="62.000031"
          cx="48"
          id="ellipse844"
-         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          r="21.791887" />
 </svg>

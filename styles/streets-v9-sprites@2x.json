@@ -2970,7 +2970,7 @@
         "visible": true,
         "sdf": true
     },
-    "fuse": {
+    "distribution_box": {
         "x": 576,
         "y": 758,
         "width": 192,
@@ -2979,7 +2979,7 @@
         "visible": true,
         "sdf": true
     },
-    "junction": {
+    "fuse": {
         "x": 768,
         "y": 758,
         "width": 192,
@@ -2988,7 +2988,7 @@
         "visible": true,
         "sdf": true
     },
-    "switch": {
+    "junction": {
         "x": 0,
         "y": 950,
         "width": 192,
@@ -2997,9 +2997,54 @@
         "visible": true,
         "sdf": true
     },
-    "transformer": {
+    "station": {
         "x": 192,
         "y": 950,
+        "width": 192,
+        "height": 192,
+        "pixelRatio": 2,
+        "visible": true,
+        "sdf": true
+    },
+    "street_light": {
+        "x": 384,
+        "y": 950,
+        "width": 192,
+        "height": 192,
+        "pixelRatio": 2,
+        "visible": true,
+        "sdf": true
+    },
+    "substation": {
+        "x": 576,
+        "y": 950,
+        "width": 192,
+        "height": 192,
+        "pixelRatio": 2,
+        "visible": true,
+        "sdf": true
+    },
+    "switch": {
+        "x": 768,
+        "y": 950,
+        "width": 192,
+        "height": 192,
+        "pixelRatio": 2,
+        "visible": true,
+        "sdf": true
+    },
+    "transformer_station": {
+        "x": 0,
+        "y": 1142,
+        "width": 192,
+        "height": 192,
+        "pixelRatio": 2,
+        "visible": true,
+        "sdf": true
+    },
+    "transformer": {
+        "x": 192,
+        "y": 1142,
         "width": 192,
         "height": 192,
         "pixelRatio": 2,

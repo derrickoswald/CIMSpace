@@ -103,19 +103,19 @@ define
          * @description Creates the CORS request and opens it.
          * @param {string} method The method type, e.g. "GET" or "POST"
          * @param {string} url the URL to open the request on
-         * @param {boolean} synchronous optional parameter for open() call, default <em>true</em>
+         * @param {boolean} asynchronous optional parameter for open() call, default <em>true</em>
          * @returns {object} the request object or <code>null</code> if CORS isn't supported
          * @memberOf module:cimspace
          */
-        function createCORSRequest (method, url, synchronous)
+        function createCORSRequest (method, url, asynchronous)
         {
             var ret;
 
-            if ("undefined" == typeof (synchronous))
-                synchronous = true;
+            if ("undefined" == typeof (asynchronous))
+                asynchronous = true;
             ret = new XMLHttpRequest ();
             if ('withCredentials' in ret) // "withCredentials" only exists on XMLHTTPRequest2 objects
-                ret.open (method, url, synchronous);
+                ret.open (method, url, asynchronous);
             else if (typeof XDomainRequest != 'undefined') // IE
             {
                 ret = new XDomainRequest ();

@@ -4,7 +4,7 @@ body {
 }
 
 .intro {
-    height: 100%;
+    height: calc(100% - 60px);
     margin-top: -20px;
     padding: 0;
     -webkit-background-size: cover;
