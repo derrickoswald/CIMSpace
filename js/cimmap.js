@@ -691,6 +691,21 @@ define
         }
 
         /**
+         * Get the user's choice for number of elements to trace.
+         * @returns {number} Either the user's requested number or 0 indicating don't limit tracing.
+         * @function number_of_elements
+         * @memberOf module:cimmap
+         */
+        function number_of_elements ()
+        {
+            var no = document.getElementById ("number_of_elements").value;
+            var ret = Number (no);
+            if (isNaN (ret))
+                ret = 0;
+            return (ret);
+        }
+
+        /**
          * Get voltage level boundary transformers.
          * @description Get a list of tranformers with ends where voltages differ.
          * @function get_transformers
@@ -810,6 +825,7 @@ define
                     todo.push (source.mRID);
                     var transformers = (!through_voltages) ? get_transformers () : {};
                     // iterate until done
+                    var count = number_of_elements ();
                     while ("undefined" != typeof (source = todo.pop ())) // if you call pop() on an empty array, it returns undefined
                     {
                         equipment.push (source);
@@ -852,6 +868,9 @@ define
                                 }
 
                             }
+                        count -= 1;
+                        if (0 == count)
+                            break;
                     }
                     // sort the list to make it easy to find an element
                     equipment.sort ();

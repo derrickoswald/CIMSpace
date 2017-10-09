@@ -45,7 +45,7 @@
                     <li><a id="upload_files" href="#" class="waves-effect waves-light" data-toggle="modal" data-target="#file_modal">Upload Files</a></li>
                     <li><a id="download_files" href="#" class="waves-effect waves-light" data-toggle="modal" data-target="#server_modal">Download Files</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" role="button" aria-expanded="false">Trace <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a id="trace" href="#">Trace</a></li>
                             <li>
@@ -64,8 +64,15 @@
                                     </label>
                                 </div>
                             </li>
+                            <li>
+                                <input id="number_of_elements" type="text" class="form-control" placeholder="# elements" style="margin-left: 15px; width: 120px;">
+                            </li>
                             <li><a id="unhighlight" href="#">Un-Highlight</a></li>
-                            <li class="divider"></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
                             <li>
                                 <div class="checkbox">
                                     <label for="show_internal_features">
