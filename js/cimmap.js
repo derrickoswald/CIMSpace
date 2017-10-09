@@ -457,6 +457,8 @@ define
 
             TheMap.addLayer (symbol_layer ("symbol_highlight", ["==", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(255, 255, 0)"));
 
+            buildings_3d ();
+
             var end = new Date ().getTime ();
             console.log ("finished rendering CIM data (" + (Math.round (end - start) / 1000) + " seconds)");
 
@@ -598,6 +600,72 @@ define
                     CURRENT_SELECTION = [mrid];
                 highlight ();
             }
+        }
+
+        /**
+         * Get the user's choice for 3d buildings.
+         * @returns {boolean} <code>true</code> show buildings in 3D, <code>false</code> otherwise
+         * @function show_3d_buildings
+         * @memberOf module:cimmap
+         */
+        function show_3d_buildings ()
+        {
+            return (document.getElementById ("buildings_3d").checked);
+        }
+
+        /**
+         * Turn on or off 3D building display.
+         * @description Insert or remove a layer showing buildings with height.
+         * The 'building' layer in the mapbox-streets vector source contains building-height data from OpenStreetMap.
+         * @ param {object} event - optional event trigger <em>not used</em>
+         * @function buildings_3d
+         * @memberOf module:cimmap
+         */
+        function buildings_3d (event)
+        {
+            if (show_3d_buildings ())
+            {
+                if ("undefined" == typeof (TheMap.getLayer ("3d-buildings")))
+                {
+                    // insert the layer beneath any symbol layer.
+                    var layers = TheMap.getStyle ().layers.reverse ();
+                    var index = layers.findIndex (
+                        function (layer)
+                        {
+                            return (layer.type !== "symbol");
+                        }
+                    );
+                    var id = index !== -1 ? layers[index].id : undefined;
+                    TheMap.addLayer (
+                        {
+                            "id": "3d-buildings",
+                            "source": "composite",
+                            "source-layer": "building",
+                            "filter": ["==", "extrude", "true"],
+                            "type": "fill-extrusion",
+                            "minzoom": 15,
+                            "paint":
+                            {
+                                "fill-extrusion-color": "#aaa",
+                                "fill-extrusion-height":
+                                {
+                                    "type": "identity",
+                                    "property": "height"
+                                },
+                                "fill-extrusion-base":
+                                {
+                                    "type": "identity",
+                                    "property": "min_height"
+                                },
+                                "fill-extrusion-opacity": .6
+                            }
+                        },
+                        id);
+                }
+            }
+            else
+                if ("undefined" != typeof (TheMap.getLayer ("3d-buildings")))
+                    TheMap.removeLayer ("3d-buildings");
         }
 
         /**
@@ -1071,6 +1139,7 @@ define
                 get_data: get_data,
                 redraw: redraw,
                 initialize: initialize,
+                buildings_3d: buildings_3d,
                 trace: trace,
                 unhighlight: unhighlight,
                 select: select,
