@@ -22,6 +22,11 @@ define
         var TheMap = null;
 
         /**
+         * The extents of visible objects (those with Location and PositionPoint).
+         */
+        var TheExtents = null;
+
+        /**
          * The user specific token to access mapbox tiles.
          */
         var TheToken = "pk.eyJ1IjoiZGVycmlja29zd2FsZCIsImEiOiJjaWV6b2szd3MwMHFidDRtNDZoejMyc3hsIn0.wnEkePEuhYiNcXDLACSxVw";
@@ -65,7 +70,8 @@ define
         function set_data (data)
         {
             CIM_Data = data;
-            redraw ();
+            if (null != CIM_Data)
+                make_map (function () { zoom_extents (); });
         }
 
         /**
@@ -87,7 +93,7 @@ define
          */
         function show_internal_features ()
         {
-            return (document.getElementById ("show_internal_features").checked && mapboxgl.supported ());
+            return (document.getElementById ("internal_features").checked && mapboxgl.supported ());
         }
 
         /**
@@ -287,6 +293,9 @@ define
         /**
          * @summary Gather position points into locations.
          * @description Convert sequences of position points into locations with coordinate array.
+         * As a side effect, computes the minimum bounding rectangle and stores it in TheExtents.
+         * @param {object} PositionPoint objects stored by id (real or generated)
+         * @return {object} object of arrays stored by Location.id
          * @function get_locations
          * @memberOf module:cimmap
          */
@@ -298,6 +307,7 @@ define
             var locations = CIM_Data.Location;
             // list of locations to exclude
             var blacklist = {};
+            var extents = { xmin: Number.MAX_VALUE, ymin: Number.MAX_VALUE, xmax: -Number.MAX_VALUE, ymax: -Number.MAX_VALUE };
             var ret = {};
 
             if (!show_internal_features ())
@@ -320,21 +330,39 @@ define
                     var seq = p.sequenceNumber;
                     if (null != seq)
                     {
-                        ret[location][seq * 2] = p.xPosition;
-                        ret[location][seq * 2 + 1] = p.yPosition;
+                        var x = Number (p.xPosition);
+                        var y = Number (p.yPosition);
+                        ret[location][seq * 2] = x;
+                        ret[location][seq * 2 + 1] = y;
+                        if ((x >= -180.0) && (x <= 180.0)) // eliminate fucked up coordinates
+                        {
+                            if (x < extents.xmin)
+                                extents.xmin = x;
+                            if (x > extents.xmax)
+                                extents.xmax = x;
+                        }
+                        if ((y >= -90.0) && (y <= 90.0))
+                        {
+                            if (y < extents.ymin)
+                                extents.ymin = y;
+                            if (y > extents.ymax)
+                                extents.ymax = y;
+                        }
                     }
                 }
             }
 
+            TheExtents = extents;
             return (ret);
         }
 
         /**
          * Generate a map.
+         * @param {function} callback The function to invoke when the map is complete.
          * @function make_map
          * @memberOf module:cimmap
          */
-        async function make_map ()
+        async function make_map (callback)
         {
             var start = new Date ().getTime ();
             console.log ("rendering CIM data");
@@ -461,7 +489,15 @@ define
 
             var end = new Date ().getTime ();
             console.log ("finished rendering CIM data (" + (Math.round (end - start) / 1000) + " seconds)");
+            if (callback)
+                callback ();
+        }
 
+        function zoom_extents ()
+        {
+            TheMap.fitBounds (
+                [[TheExtents.xmin, TheExtents.ymin], [TheExtents.xmax, TheExtents.ymax]],
+                { linear: true, padding: 50 });
         }
 
         /**
@@ -1156,6 +1192,7 @@ define
             {
                 set_data: set_data,
                 get_data: get_data,
+                zoom_extents: zoom_extents,
                 redraw: redraw,
                 initialize: initialize,
                 buildings_3d: buildings_3d,

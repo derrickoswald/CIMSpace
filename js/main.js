@@ -12,7 +12,7 @@ requirejs
         // initialize buttons
         document.getElementById ("file_button").onchange = cimspace.file_change;
         document.getElementById ("connect").onclick = cimspace.process_url;
-        document.getElementById ("show_internal_features").onchange = cimmap.redraw;
+        document.getElementById ("internal_features").onchange = cimmap.redraw;
         document.getElementById ("buildings_3d").onchange = cimmap.buildings_3d;
 
         // drag and drop listeners
