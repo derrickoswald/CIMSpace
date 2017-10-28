@@ -15,7 +15,8 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "ResourceGroupReq";
-            obj["ResourceGroup"] = base.parse_attribute (/<cim:ResourceGroupReq.ResourceGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ResourceGroupReq.ResourceGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceGroup", sub, context, true);
+
             bucket = context.parsed.ResourceGroupReq;
             if (null == bucket)
                 context.parsed.ResourceGroupReq = bucket = {};
@@ -39,9 +40,12 @@ define
              * Market product associated with reserve requirement must be a reserve or regulation product.
              *
              */
-            obj["MarketProduct"] = base.parse_attribute (/<cim:ReserveReq.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            obj["SensitivityPriceCurve"] = base.parse_attribute (/<cim:ReserveReq.SensitivityPriceCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            obj["ReserveReqCurve"] = base.parse_attribute (/<cim:ReserveReq.ReserveReqCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ReserveReq.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context, true);
+
+            base.parse_attribute (/<cim:ReserveReq.SensitivityPriceCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SensitivityPriceCurve", sub, context, true);
+
+            base.parse_attribute (/<cim:ReserveReq.ReserveReqCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReqCurve", sub, context, true);
+
             bucket = context.parsed.ReserveReq;
             if (null == bucket)
                 context.parsed.ReserveReq = bucket = {};
@@ -63,7 +67,8 @@ define
 
             obj = Core.parse_Curve (context, sub);
             obj.cls = "ReserveReqCurve";
-            obj["ReserveReq"] = base.parse_attribute (/<cim:ReserveReqCurve.ReserveReq\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ReserveReqCurve.ReserveReq\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReq", sub, context, true);
+
             bucket = context.parsed.ReserveReqCurve;
             if (null == bucket)
                 context.parsed.ReserveReqCurve = bucket = {};
@@ -87,12 +92,14 @@ define
              * Type of this group.
              *
              */
-            obj["type"] = base.parse_element (/<cim:ResourceGroup.type>([\s\S]*?)<\/cim:ResourceGroup.type>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceGroup.type>([\s\S]*?)<\/cim:ResourceGroup.type>/g, obj, "type", base.to_string, sub, context);
+
             /**
              * Status of this group.
              *
              */
-            obj["status"] = base.parse_element (/<cim:ResourceGroup.status>([\s\S]*?)<\/cim:ResourceGroup.status>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceGroup.status>([\s\S]*?)<\/cim:ResourceGroup.status>/g, obj, "status", base.to_string, sub, context);
+
             bucket = context.parsed.ResourceGroup;
             if (null == bucket)
                 context.parsed.ResourceGroup = bucket = {};
@@ -114,7 +121,8 @@ define
 
             obj = Core.parse_Curve (context, sub);
             obj.cls = "SensitivityPriceCurve";
-            obj["ReserveReq"] = base.parse_attribute (/<cim:SensitivityPriceCurve.ReserveReq\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SensitivityPriceCurve.ReserveReq\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReq", sub, context, true);
+
             bucket = context.parsed.SensitivityPriceCurve;
             if (null == bucket)
                 context.parsed.SensitivityPriceCurve = bucket = {};

@@ -44,7 +44,8 @@ define
              * A Modeling Authority set supplies and maintains the data for the objects in a Modeling Authority Set.
              *
              */
-            obj["ModelingAuthority"] = base.parse_attribute (/<cim:ModelingAuthoritySet.ModelingAuthority\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ModelingAuthoritySet.ModelingAuthority\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ModelingAuthority", sub, context, true);
+
             bucket = context.parsed.ModelingAuthoritySet;
             if (null == bucket)
                 context.parsed.ModelingAuthoritySet = bucket = {};

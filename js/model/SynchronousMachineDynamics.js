@@ -61,94 +61,108 @@ define
              * Used only by Type J model.  Typical Value = 0.
              *
              */
-            obj["ks"] = base.to_float (base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.ks>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.ks>/g, sub, context, true));
+            base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.ks>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.ks>/g, obj, "ks", base.to_float, sub, context);
+
             /**
              * Type of synchronous machine model used in Dynamic simulation applications.
              *
              */
-            obj["modelType"] = base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.modelType>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.modelType>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.modelType>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.modelType>/g, obj, "modelType", base.to_string, sub, context);
+
             /**
              * Type of rotor on physical machine.
              *
              */
-            obj["rotorType"] = base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.rotorType>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.rotorType>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.rotorType>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.rotorType>/g, obj, "rotorType", base.to_string, sub, context);
+
             /**
              * Damping time constant for �Canay� reactance.
              *
              * Typical Value = 0.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.tc>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.tc>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.tc>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Direct-axis transient rotor time constant (T'do) (&gt; T''do).
              *
              * Typical Value = 5.
              *
              */
-            obj["tpdo"] = base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.tpdo>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.tpdo>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.tpdo>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.tpdo>/g, obj, "tpdo", base.to_string, sub, context);
+
             /**
              * Direct-axis subtransient rotor time constant (T''do) (&gt; 0).
              *
              * Typical Value = 0.03.
              *
              */
-            obj["tppdo"] = base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.tppdo>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.tppdo>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.tppdo>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.tppdo>/g, obj, "tppdo", base.to_string, sub, context);
+
             /**
              * Quadrature-axis subtransient rotor time constant (T''qo) (&gt; 0).
              *
              * Typical Value = 0.03.
              *
              */
-            obj["tppqo"] = base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.tppqo>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.tppqo>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.tppqo>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.tppqo>/g, obj, "tppqo", base.to_string, sub, context);
+
             /**
              * Quadrature-axis transient rotor time constant (T'qo) (&gt; T''qo).
              *
              * Typical Value = 0.5.
              *
              */
-            obj["tpqo"] = base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.tpqo>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.tpqo>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.tpqo>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.tpqo>/g, obj, "tpqo", base.to_string, sub, context);
+
             /**
              * Direct-axis subtransient reactance (unsaturated) (X''d) (&gt; Xl).
              *
              * Typical Value = 0.2.
              *
              */
-            obj["xDirectSubtrans"] = base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xDirectSubtrans>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xDirectSubtrans>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xDirectSubtrans>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xDirectSubtrans>/g, obj, "xDirectSubtrans", base.to_string, sub, context);
+
             /**
              * Direct-axis synchronous reactance (Xd) (&gt;= X'd).
              *
              * The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed. Typical Value = 1.8.
              *
              */
-            obj["xDirectSync"] = base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xDirectSync>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xDirectSync>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xDirectSync>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xDirectSync>/g, obj, "xDirectSync", base.to_string, sub, context);
+
             /**
              * Direct-axis transient reactance (unsaturated) (X'd) (&gt; =X''d).
              *
              * Typical Value = 0.5.
              *
              */
-            obj["xDirectTrans"] = base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xDirectTrans>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xDirectTrans>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xDirectTrans>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xDirectTrans>/g, obj, "xDirectTrans", base.to_string, sub, context);
+
             /**
              * Quadrature-axis subtransient reactance (X''q) (&gt; Xl).
              *
              * Typical Value = 0.2.
              *
              */
-            obj["xQuadSubtrans"] = base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xQuadSubtrans>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xQuadSubtrans>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xQuadSubtrans>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xQuadSubtrans>/g, obj, "xQuadSubtrans", base.to_string, sub, context);
+
             /**
              * Quadrature-axis synchronous reactance (Xq) (&gt; =X'q).
              *
              * The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical Value = 1.6.
              *
              */
-            obj["xQuadSync"] = base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xQuadSync>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xQuadSync>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xQuadSync>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xQuadSync>/g, obj, "xQuadSync", base.to_string, sub, context);
+
             /**
              * Quadrature-axis transient reactance (X'q) (&gt; =X''q).
              *
              * Typical Value = 0.3.
              *
              */
-            obj["xQuadTrans"] = base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xQuadTrans>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xQuadTrans>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xQuadTrans>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xQuadTrans>/g, obj, "xQuadTrans", base.to_string, sub, context);
+
             bucket = context.parsed.SynchronousMachineTimeConstantReactance;
             if (null == bucket)
                 context.parsed.SynchronousMachineTimeConstantReactance = bucket = {};
@@ -184,17 +198,20 @@ define
              * Mechanical load model associated with this synchronous machine model.
              *
              */
-            obj["MechanicalLoadDynamics"] = base.parse_attribute (/<cim:SynchronousMachineDynamics.MechanicalLoadDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SynchronousMachineDynamics.MechanicalLoadDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MechanicalLoadDynamics", sub, context, true);
+
             /**
              * Excitation system model associated with this synchronous machine model.
              *
              */
-            obj["ExcitationSystemDynamics"] = base.parse_attribute (/<cim:SynchronousMachineDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SynchronousMachineDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context, true);
+
             /**
              * Synchronous machine to which synchronous machine dynamics model applies.
              *
              */
-            obj["SynchronousMachine"] = base.parse_attribute (/<cim:SynchronousMachineDynamics.SynchronousMachine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SynchronousMachineDynamics.SynchronousMachine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SynchronousMachine", sub, context, true);
+
             bucket = context.parsed.SynchronousMachineDynamics;
             if (null == bucket)
                 context.parsed.SynchronousMachineDynamics = bucket = {};
@@ -222,28 +239,32 @@ define
              * Typical Value = 1.
              *
              */
-            obj["efdBaseRatio"] = base.to_float (base.parse_element (/<cim:SynchronousMachineDetailed.efdBaseRatio>([\s\S]*?)<\/cim:SynchronousMachineDetailed.efdBaseRatio>/g, sub, context, true));
+            base.parse_element (/<cim:SynchronousMachineDetailed.efdBaseRatio>([\s\S]*?)<\/cim:SynchronousMachineDetailed.efdBaseRatio>/g, obj, "efdBaseRatio", base.to_float, sub, context);
+
             /**
              * Excitation base system mode.
              *
              * It should be equal to the value of WLMDV given by the user. WLMDV is the per unit ratio between the field voltage and the excitation current: Efd = WLMDV*Ifd. Typical Value = ifag.
              *
              */
-            obj["ifdBaseType"] = base.parse_element (/<cim:SynchronousMachineDetailed.ifdBaseType>([\s\S]*?)<\/cim:SynchronousMachineDetailed.ifdBaseType>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineDetailed.ifdBaseType>([\s\S]*?)<\/cim:SynchronousMachineDetailed.ifdBaseType>/g, obj, "ifdBaseType", base.to_string, sub, context);
+
             /**
              * Q-axis saturation factor at 120% of rated terminal voltage (S12q) (&gt;=S1q).
              *
              * Typical Value = 0.12.
              *
              */
-            obj["saturationFactor120QAxis"] = base.to_float (base.parse_element (/<cim:SynchronousMachineDetailed.saturationFactor120QAxis>([\s\S]*?)<\/cim:SynchronousMachineDetailed.saturationFactor120QAxis>/g, sub, context, true));
+            base.parse_element (/<cim:SynchronousMachineDetailed.saturationFactor120QAxis>([\s\S]*?)<\/cim:SynchronousMachineDetailed.saturationFactor120QAxis>/g, obj, "saturationFactor120QAxis", base.to_float, sub, context);
+
             /**
              * Q-axis saturation factor at rated terminal voltage (S1q) (&gt;= 0).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["saturationFactorQAxis"] = base.to_float (base.parse_element (/<cim:SynchronousMachineDetailed.saturationFactorQAxis>([\s\S]*?)<\/cim:SynchronousMachineDetailed.saturationFactorQAxis>/g, sub, context, true));
+            base.parse_element (/<cim:SynchronousMachineDetailed.saturationFactorQAxis>([\s\S]*?)<\/cim:SynchronousMachineDetailed.saturationFactorQAxis>/g, obj, "saturationFactorQAxis", base.to_float, sub, context);
+
             bucket = context.parsed.SynchronousMachineDetailed;
             if (null == bucket)
                 context.parsed.SynchronousMachineDetailed = bucket = {};
@@ -293,57 +314,68 @@ define
              * D-axis damper 1 winding resistance.
              *
              */
-            obj["r1d"] = base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.r1d>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.r1d>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.r1d>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.r1d>/g, obj, "r1d", base.to_string, sub, context);
+
             /**
              * Q-axis damper 1 winding resistance.
              *
              */
-            obj["r1q"] = base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.r1q>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.r1q>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.r1q>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.r1q>/g, obj, "r1q", base.to_string, sub, context);
+
             /**
              * Q-axis damper 2 winding resistance.
              *
              */
-            obj["r2q"] = base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.r2q>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.r2q>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.r2q>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.r2q>/g, obj, "r2q", base.to_string, sub, context);
+
             /**
              * Field winding resistance.
              *
              */
-            obj["rfd"] = base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.rfd>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.rfd>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.rfd>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.rfd>/g, obj, "rfd", base.to_string, sub, context);
+
             /**
              * D-axis damper 1 winding leakage reactance.
              *
              */
-            obj["x1d"] = base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.x1d>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.x1d>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.x1d>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.x1d>/g, obj, "x1d", base.to_string, sub, context);
+
             /**
              * Q-axis damper 1 winding leakage reactance.
              *
              */
-            obj["x1q"] = base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.x1q>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.x1q>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.x1q>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.x1q>/g, obj, "x1q", base.to_string, sub, context);
+
             /**
              * Q-axis damper 2 winding leakage reactance.
              *
              */
-            obj["x2q"] = base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.x2q>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.x2q>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.x2q>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.x2q>/g, obj, "x2q", base.to_string, sub, context);
+
             /**
              * D-axis mutual reactance.
              *
              */
-            obj["xad"] = base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.xad>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.xad>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.xad>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.xad>/g, obj, "xad", base.to_string, sub, context);
+
             /**
              * Q-axis mutual reactance.
              *
              */
-            obj["xaq"] = base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.xaq>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.xaq>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.xaq>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.xaq>/g, obj, "xaq", base.to_string, sub, context);
+
             /**
              * Differential mutual (�Canay�) reactance.
              *
              */
-            obj["xf1d"] = base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.xf1d>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.xf1d>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.xf1d>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.xf1d>/g, obj, "xf1d", base.to_string, sub, context);
+
             /**
              * Field winding leakage reactance.
              *
              */
-            obj["xfd"] = base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.xfd>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.xfd>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.xfd>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.xfd>/g, obj, "xfd", base.to_string, sub, context);
+
             bucket = context.parsed.SynchronousMachineEquivalentCircuit;
             if (null == bucket)
                 context.parsed.SynchronousMachineEquivalentCircuit = bucket = {};
@@ -367,12 +399,14 @@ define
              * Round rotor type of synchronous machine.
              *
              */
-            obj["roundRotor"] = base.parse_element (/<cim:RotorKind.roundRotor>([\s\S]*?)<\/cim:RotorKind.roundRotor>/g, sub, context, true);
+            base.parse_element (/<cim:RotorKind.roundRotor>([\s\S]*?)<\/cim:RotorKind.roundRotor>/g, obj, "roundRotor", base.to_string, sub, context);
+
             /**
              * Salient pole type of synchronous machine.
              *
              */
-            obj["salientPole"] = base.parse_element (/<cim:RotorKind.salientPole>([\s\S]*?)<\/cim:RotorKind.salientPole>/g, sub, context, true);
+            base.parse_element (/<cim:RotorKind.salientPole>([\s\S]*?)<\/cim:RotorKind.salientPole>/g, obj, "salientPole", base.to_string, sub, context);
+
             bucket = context.parsed.RotorKind;
             if (null == bucket)
                 context.parsed.RotorKind = bucket = {};
@@ -417,27 +451,32 @@ define
              * Subtransient synchronous machine model.
              *
              */
-            obj["subtransient"] = base.parse_element (/<cim:SynchronousMachineModelKind.subtransient>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransient>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineModelKind.subtransient>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransient>/g, obj, "subtransient", base.to_string, sub, context);
+
             /**
              * WECC Type F variant of subtransient synchronous machine model.
              *
              */
-            obj["subtransientTypeF"] = base.parse_element (/<cim:SynchronousMachineModelKind.subtransientTypeF>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransientTypeF>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineModelKind.subtransientTypeF>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransientTypeF>/g, obj, "subtransientTypeF", base.to_string, sub, context);
+
             /**
              * WECC Type J variant of subtransient synchronous machine model.
              *
              */
-            obj["subtransientTypeJ"] = base.parse_element (/<cim:SynchronousMachineModelKind.subtransientTypeJ>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransientTypeJ>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineModelKind.subtransientTypeJ>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransientTypeJ>/g, obj, "subtransientTypeJ", base.to_string, sub, context);
+
             /**
              * Simplified version of subtransient synchronous machine model where magnetic coupling between the direct and quadrature axes is ignored.
              *
              */
-            obj["subtransientSimplified"] = base.parse_element (/<cim:SynchronousMachineModelKind.subtransientSimplified>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransientSimplified>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineModelKind.subtransientSimplified>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransientSimplified>/g, obj, "subtransientSimplified", base.to_string, sub, context);
+
             /**
              * Simplified version of a subtransient synchronous machine model with no damper circuit on d-axis.
              *
              */
-            obj["subtransientSimplifiedDirectAxis"] = base.parse_element (/<cim:SynchronousMachineModelKind.subtransientSimplifiedDirectAxis>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransientSimplifiedDirectAxis>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineModelKind.subtransientSimplifiedDirectAxis>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransientSimplifiedDirectAxis>/g, obj, "subtransientSimplifiedDirectAxis", base.to_string, sub, context);
+
             bucket = context.parsed.SynchronousMachineModelKind;
             if (null == bucket)
                 context.parsed.SynchronousMachineModelKind = bucket = {};
@@ -461,17 +500,20 @@ define
              * Air gap line mode.  ifdBaseValue is computed, not defined by the user, in this mode.
              *
              */
-            obj["ifag"] = base.parse_element (/<cim:IfdBaseKind.ifag>([\s\S]*?)<\/cim:IfdBaseKind.ifag>/g, sub, context, true);
+            base.parse_element (/<cim:IfdBaseKind.ifag>([\s\S]*?)<\/cim:IfdBaseKind.ifag>/g, obj, "ifag", base.to_string, sub, context);
+
             /**
              * No load system with saturation mode.  ifdBaseValue is computed, not defined by the user, in this mode.
              *
              */
-            obj["ifnl"] = base.parse_element (/<cim:IfdBaseKind.ifnl>([\s\S]*?)<\/cim:IfdBaseKind.ifnl>/g, sub, context, true);
+            base.parse_element (/<cim:IfdBaseKind.ifnl>([\s\S]*?)<\/cim:IfdBaseKind.ifnl>/g, obj, "ifnl", base.to_string, sub, context);
+
             /**
              * Full load system mode.  ifdBaseValue is computed, not defined by the user, in this mode.
              *
              */
-            obj["iffl"] = base.parse_element (/<cim:IfdBaseKind.iffl>([\s\S]*?)<\/cim:IfdBaseKind.iffl>/g, sub, context, true);
+            base.parse_element (/<cim:IfdBaseKind.iffl>([\s\S]*?)<\/cim:IfdBaseKind.iffl>/g, obj, "iffl", base.to_string, sub, context);
+
             bucket = context.parsed.IfdBaseKind;
             if (null == bucket)
                 context.parsed.IfdBaseKind = bucket = {};

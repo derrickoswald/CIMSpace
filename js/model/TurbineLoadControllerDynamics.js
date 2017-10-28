@@ -23,7 +23,8 @@ define
              * Turbine-governor controlled by this turbine load controller.
              *
              */
-            obj["TurbineGovernorDynamics"] = base.parse_attribute (/<cim:TurbineLoadControllerDynamics.TurbineGovernorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TurbineLoadControllerDynamics.TurbineGovernorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TurbineGovernorDynamics", sub, context, true);
+
             bucket = context.parsed.TurbineLoadControllerDynamics;
             if (null == bucket)
                 context.parsed.TurbineLoadControllerDynamics = bucket = {};
@@ -51,21 +52,24 @@ define
              * Typical Value = 0.
              *
              */
-            obj["db"] = base.parse_element (/<cim:TurbLCFB1.db>([\s\S]*?)<\/cim:TurbLCFB1.db>/g, sub, context, true);
+            base.parse_element (/<cim:TurbLCFB1.db>([\s\S]*?)<\/cim:TurbLCFB1.db>/g, obj, "db", base.to_string, sub, context);
+
             /**
              * Maximum control error (Emax) (note 4).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["emax"] = base.parse_element (/<cim:TurbLCFB1.emax>([\s\S]*?)<\/cim:TurbLCFB1.emax>/g, sub, context, true);
+            base.parse_element (/<cim:TurbLCFB1.emax>([\s\S]*?)<\/cim:TurbLCFB1.emax>/g, obj, "emax", base.to_string, sub, context);
+
             /**
              * Frequency bias gain (Fb).
              *
              * Typical Value = 0.
              *
              */
-            obj["fb"] = base.parse_element (/<cim:TurbLCFB1.fb>([\s\S]*?)<\/cim:TurbLCFB1.fb>/g, sub, context, true);
+            base.parse_element (/<cim:TurbLCFB1.fb>([\s\S]*?)<\/cim:TurbLCFB1.fb>/g, obj, "fb", base.to_string, sub, context);
+
             /**
              * Frequency bias flag (Fbf).
              * true = enable frequency bias
@@ -74,35 +78,40 @@ define
              * Typical Value = false.
              *
              */
-            obj["fbf"] = base.to_boolean (base.parse_element (/<cim:TurbLCFB1.fbf>([\s\S]*?)<\/cim:TurbLCFB1.fbf>/g, sub, context, true));
+            base.parse_element (/<cim:TurbLCFB1.fbf>([\s\S]*?)<\/cim:TurbLCFB1.fbf>/g, obj, "fbf", base.to_boolean, sub, context);
+
             /**
              * Maximum turbine speed/load reference bias (Irmax) (note 3).
              *
              * Typical Value = 0.
              *
              */
-            obj["irmax"] = base.parse_element (/<cim:TurbLCFB1.irmax>([\s\S]*?)<\/cim:TurbLCFB1.irmax>/g, sub, context, true);
+            base.parse_element (/<cim:TurbLCFB1.irmax>([\s\S]*?)<\/cim:TurbLCFB1.irmax>/g, obj, "irmax", base.to_string, sub, context);
+
             /**
              * Integral gain (Ki).
              *
              * Typical Value = 0.
              *
              */
-            obj["ki"] = base.parse_element (/<cim:TurbLCFB1.ki>([\s\S]*?)<\/cim:TurbLCFB1.ki>/g, sub, context, true);
+            base.parse_element (/<cim:TurbLCFB1.ki>([\s\S]*?)<\/cim:TurbLCFB1.ki>/g, obj, "ki", base.to_string, sub, context);
+
             /**
              * Proportional gain (Kp).
              *
              * Typical Value = 0.
              *
              */
-            obj["kp"] = base.parse_element (/<cim:TurbLCFB1.kp>([\s\S]*?)<\/cim:TurbLCFB1.kp>/g, sub, context, true);
+            base.parse_element (/<cim:TurbLCFB1.kp>([\s\S]*?)<\/cim:TurbLCFB1.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * Base for power values (MWbase) (&gt;0).
              *
              * Unit = MW.
              *
              */
-            obj["mwbase"] = base.parse_element (/<cim:TurbLCFB1.mwbase>([\s\S]*?)<\/cim:TurbLCFB1.mwbase>/g, sub, context, true);
+            base.parse_element (/<cim:TurbLCFB1.mwbase>([\s\S]*?)<\/cim:TurbLCFB1.mwbase>/g, obj, "mwbase", base.to_string, sub, context);
+
             /**
              * Power controller flag (Pbf).
              * true = enable load controller
@@ -111,14 +120,16 @@ define
              * Typical Value = false.
              *
              */
-            obj["pbf"] = base.to_boolean (base.parse_element (/<cim:TurbLCFB1.pbf>([\s\S]*?)<\/cim:TurbLCFB1.pbf>/g, sub, context, true));
+            base.parse_element (/<cim:TurbLCFB1.pbf>([\s\S]*?)<\/cim:TurbLCFB1.pbf>/g, obj, "pbf", base.to_boolean, sub, context);
+
             /**
              * Power controller setpoint (Pmwset) (note 1).
              *
              * Unit = MW. Typical Value = 0.
              *
              */
-            obj["pmwset"] = base.parse_element (/<cim:TurbLCFB1.pmwset>([\s\S]*?)<\/cim:TurbLCFB1.pmwset>/g, sub, context, true);
+            base.parse_element (/<cim:TurbLCFB1.pmwset>([\s\S]*?)<\/cim:TurbLCFB1.pmwset>/g, obj, "pmwset", base.to_string, sub, context);
+
             /**
              * Type of turbine governor reference (Type).
              * true = speed reference governor
@@ -127,14 +138,16 @@ define
              * Typical Value = true.
              *
              */
-            obj["speedReferenceGovernor"] = base.to_boolean (base.parse_element (/<cim:TurbLCFB1.speedReferenceGovernor>([\s\S]*?)<\/cim:TurbLCFB1.speedReferenceGovernor>/g, sub, context, true));
+            base.parse_element (/<cim:TurbLCFB1.speedReferenceGovernor>([\s\S]*?)<\/cim:TurbLCFB1.speedReferenceGovernor>/g, obj, "speedReferenceGovernor", base.to_boolean, sub, context);
+
             /**
              * Power transducer time constant (Tpelec).
              *
              * Typical Value = 0.
              *
              */
-            obj["tpelec"] = base.parse_element (/<cim:TurbLCFB1.tpelec>([\s\S]*?)<\/cim:TurbLCFB1.tpelec>/g, sub, context, true);
+            base.parse_element (/<cim:TurbLCFB1.tpelec>([\s\S]*?)<\/cim:TurbLCFB1.tpelec>/g, obj, "tpelec", base.to_string, sub, context);
+
             bucket = context.parsed.TurbLCFB1;
             if (null == bucket)
                 context.parsed.TurbLCFB1 = bucket = {};

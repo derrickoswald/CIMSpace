@@ -21,7 +21,8 @@ define
              * The MW rating of the tie point.
              *
              */
-            obj["tiePointMWRating"] = base.parse_element (/<cim:TiePoint.tiePointMWRating>([\s\S]*?)<\/cim:TiePoint.tiePointMWRating>/g, sub, context, true);
+            base.parse_element (/<cim:TiePoint.tiePointMWRating>([\s\S]*?)<\/cim:TiePoint.tiePointMWRating>/g, obj, "tiePointMWRating", base.to_string, sub, context);
+
             bucket = context.parsed.TiePoint;
             if (null == bucket)
                 context.parsed.TiePoint = bucket = {};

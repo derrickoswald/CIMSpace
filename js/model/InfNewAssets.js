@@ -19,17 +19,20 @@ define
              * Condition of asset just following maintenance procedure.
              *
              */
-            obj["conditionAfter"] = base.parse_element (/<cim:MaintenanceDataSet.conditionAfter>([\s\S]*?)<\/cim:MaintenanceDataSet.conditionAfter>/g, sub, context, true);
+            base.parse_element (/<cim:MaintenanceDataSet.conditionAfter>([\s\S]*?)<\/cim:MaintenanceDataSet.conditionAfter>/g, obj, "conditionAfter", base.to_string, sub, context);
+
             /**
              * Description of the condition of the asset just prior to maintenance being performed.
              *
              */
-            obj["conditionBefore"] = base.parse_element (/<cim:MaintenanceDataSet.conditionBefore>([\s\S]*?)<\/cim:MaintenanceDataSet.conditionBefore>/g, sub, context, true);
+            base.parse_element (/<cim:MaintenanceDataSet.conditionBefore>([\s\S]*?)<\/cim:MaintenanceDataSet.conditionBefore>/g, obj, "conditionBefore", base.to_string, sub, context);
+
             /**
              * Code for the type of maintenance performed.
              *
              */
-            obj["maintCode"] = base.parse_element (/<cim:MaintenanceDataSet.maintCode>([\s\S]*?)<\/cim:MaintenanceDataSet.maintCode>/g, sub, context, true);
+            base.parse_element (/<cim:MaintenanceDataSet.maintCode>([\s\S]*?)<\/cim:MaintenanceDataSet.maintCode>/g, obj, "maintCode", base.to_string, sub, context);
+
             bucket = context.parsed.MaintenanceDataSet;
             if (null == bucket)
                 context.parsed.MaintenanceDataSet = bucket = {};
@@ -53,7 +56,8 @@ define
              * Description of the conditions of the location where the asset resides.
              *
              */
-            obj["locationCondition"] = base.parse_element (/<cim:InspectionDataSet.locationCondition>([\s\S]*?)<\/cim:InspectionDataSet.locationCondition>/g, sub, context, true);
+            base.parse_element (/<cim:InspectionDataSet.locationCondition>([\s\S]*?)<\/cim:InspectionDataSet.locationCondition>/g, obj, "locationCondition", base.to_string, sub, context);
+
             bucket = context.parsed.InspectionDataSet;
             if (null == bucket)
                 context.parsed.InspectionDataSet = bucket = {};
@@ -77,67 +81,80 @@ define
              * Effect of problem.
              *
              */
-            obj["effect"] = base.parse_element (/<cim:DiagnosisDataSet.effect>([\s\S]*?)<\/cim:DiagnosisDataSet.effect>/g, sub, context, true);
+            base.parse_element (/<cim:DiagnosisDataSet.effect>([\s\S]*?)<\/cim:DiagnosisDataSet.effect>/g, obj, "effect", base.to_string, sub, context);
+
             /**
              * Failuer mode, for example: Failure to Insulate; Failure to conduct; Failure to contain oil; Failure to provide ground plane; Other.
              *
              */
-            obj["failureMode"] = base.parse_element (/<cim:DiagnosisDataSet.failureMode>([\s\S]*?)<\/cim:DiagnosisDataSet.failureMode>/g, sub, context, true);
+            base.parse_element (/<cim:DiagnosisDataSet.failureMode>([\s\S]*?)<\/cim:DiagnosisDataSet.failureMode>/g, obj, "failureMode", base.to_string, sub, context);
+
             /**
              * Cause of problem determined during diagnosis.
              *
              */
-            obj["finalCause"] = base.parse_element (/<cim:DiagnosisDataSet.finalCause>([\s\S]*?)<\/cim:DiagnosisDataSet.finalCause>/g, sub, context, true);
+            base.parse_element (/<cim:DiagnosisDataSet.finalCause>([\s\S]*?)<\/cim:DiagnosisDataSet.finalCause>/g, obj, "finalCause", base.to_string, sub, context);
+
             /**
              * Code for diagnosed probem type.
              *
              */
-            obj["finalCode"] = base.parse_element (/<cim:DiagnosisDataSet.finalCode>([\s\S]*?)<\/cim:DiagnosisDataSet.finalCode>/g, sub, context, true);
+            base.parse_element (/<cim:DiagnosisDataSet.finalCode>([\s\S]*?)<\/cim:DiagnosisDataSet.finalCode>/g, obj, "finalCode", base.to_string, sub, context);
+
             /**
              * Origin of problem determined during diagnosis.
              *
              */
-            obj["finalOrigin"] = base.parse_element (/<cim:DiagnosisDataSet.finalOrigin>([\s\S]*?)<\/cim:DiagnosisDataSet.finalOrigin>/g, sub, context, true);
+            base.parse_element (/<cim:DiagnosisDataSet.finalOrigin>([\s\S]*?)<\/cim:DiagnosisDataSet.finalOrigin>/g, obj, "finalOrigin", base.to_string, sub, context);
+
             /**
              * Remarks pertaining to findings during problem diagnosis.
              *
              */
-            obj["finalRemark"] = base.parse_element (/<cim:DiagnosisDataSet.finalRemark>([\s\S]*?)<\/cim:DiagnosisDataSet.finalRemark>/g, sub, context, true);
+            base.parse_element (/<cim:DiagnosisDataSet.finalRemark>([\s\S]*?)<\/cim:DiagnosisDataSet.finalRemark>/g, obj, "finalRemark", base.to_string, sub, context);
+
             /**
              * Phase(s) diagnosed.
              *
              */
-            obj["phaseCode"] = base.parse_element (/<cim:DiagnosisDataSet.phaseCode>([\s\S]*?)<\/cim:DiagnosisDataSet.phaseCode>/g, sub, context, true);
+            base.parse_element (/<cim:DiagnosisDataSet.phaseCode>([\s\S]*?)<\/cim:DiagnosisDataSet.phaseCode>/g, obj, "phaseCode", base.to_string, sub, context);
+
             /**
              * Code for problem type determined during preliminary assessment.
              *
              */
-            obj["preliminaryCode"] = base.parse_element (/<cim:DiagnosisDataSet.preliminaryCode>([\s\S]*?)<\/cim:DiagnosisDataSet.preliminaryCode>/g, sub, context, true);
+            base.parse_element (/<cim:DiagnosisDataSet.preliminaryCode>([\s\S]*?)<\/cim:DiagnosisDataSet.preliminaryCode>/g, obj, "preliminaryCode", base.to_string, sub, context);
+
             /**
              * Date and time preliminary assessment of problem was performed.
              *
              */
-            obj["preliminaryDateTime"] = base.to_datetime (base.parse_element (/<cim:DiagnosisDataSet.preliminaryDateTime>([\s\S]*?)<\/cim:DiagnosisDataSet.preliminaryDateTime>/g, sub, context, true));
+            base.parse_element (/<cim:DiagnosisDataSet.preliminaryDateTime>([\s\S]*?)<\/cim:DiagnosisDataSet.preliminaryDateTime>/g, obj, "preliminaryDateTime", base.to_datetime, sub, context);
+
             /**
              * Remarks pertaining to preliminary assessment of problem.
              *
              */
-            obj["preliminaryRemark"] = base.parse_element (/<cim:DiagnosisDataSet.preliminaryRemark>([\s\S]*?)<\/cim:DiagnosisDataSet.preliminaryRemark>/g, sub, context, true);
+            base.parse_element (/<cim:DiagnosisDataSet.preliminaryRemark>([\s\S]*?)<\/cim:DiagnosisDataSet.preliminaryRemark>/g, obj, "preliminaryRemark", base.to_string, sub, context);
+
             /**
              * Root cause of problem determined during diagnosis.
              *
              */
-            obj["rootCause"] = base.parse_element (/<cim:DiagnosisDataSet.rootCause>([\s\S]*?)<\/cim:DiagnosisDataSet.rootCause>/g, sub, context, true);
+            base.parse_element (/<cim:DiagnosisDataSet.rootCause>([\s\S]*?)<\/cim:DiagnosisDataSet.rootCause>/g, obj, "rootCause", base.to_string, sub, context);
+
             /**
              * Root origin of problem determined during diagnosis.
              *
              */
-            obj["rootOrigin"] = base.parse_element (/<cim:DiagnosisDataSet.rootOrigin>([\s\S]*?)<\/cim:DiagnosisDataSet.rootOrigin>/g, sub, context, true);
+            base.parse_element (/<cim:DiagnosisDataSet.rootOrigin>([\s\S]*?)<\/cim:DiagnosisDataSet.rootOrigin>/g, obj, "rootOrigin", base.to_string, sub, context);
+
             /**
              * Remarks pertaining to root cause findings during problem diagnosis.
              *
              */
-            obj["rootRemark"] = base.parse_element (/<cim:DiagnosisDataSet.rootRemark>([\s\S]*?)<\/cim:DiagnosisDataSet.rootRemark>/g, sub, context, true);
+            base.parse_element (/<cim:DiagnosisDataSet.rootRemark>([\s\S]*?)<\/cim:DiagnosisDataSet.rootRemark>/g, obj, "rootRemark", base.to_string, sub, context);
+
             bucket = context.parsed.DiagnosisDataSet;
             if (null == bucket)
                 context.parsed.DiagnosisDataSet = bucket = {};
@@ -161,17 +178,20 @@ define
              * Conclusion drawn from test results.
              *
              */
-            obj["conclusion"] = base.parse_element (/<cim:TestDataSet.conclusion>([\s\S]*?)<\/cim:TestDataSet.conclusion>/g, sub, context, true);
+            base.parse_element (/<cim:TestDataSet.conclusion>([\s\S]*?)<\/cim:TestDataSet.conclusion>/g, obj, "conclusion", base.to_string, sub, context);
+
             /**
              * Identifier of specimen used in inspection or test.
              *
              */
-            obj["specimenID"] = base.parse_element (/<cim:TestDataSet.specimenID>([\s\S]*?)<\/cim:TestDataSet.specimenID>/g, sub, context, true);
+            base.parse_element (/<cim:TestDataSet.specimenID>([\s\S]*?)<\/cim:TestDataSet.specimenID>/g, obj, "specimenID", base.to_string, sub, context);
+
             /**
              * Date and time the specimen was received by the lab.
              *
              */
-            obj["specimenToLabDateTime"] = base.to_datetime (base.parse_element (/<cim:TestDataSet.specimenToLabDateTime>([\s\S]*?)<\/cim:TestDataSet.specimenToLabDateTime>/g, sub, context, true));
+            base.parse_element (/<cim:TestDataSet.specimenToLabDateTime>([\s\S]*?)<\/cim:TestDataSet.specimenToLabDateTime>/g, obj, "specimenToLabDateTime", base.to_datetime, sub, context);
+
             bucket = context.parsed.TestDataSet;
             if (null == bucket)
                 context.parsed.TestDataSet = bucket = {};

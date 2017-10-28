@@ -25,22 +25,26 @@ define
              * Energy conversion capability for generating.
              *
              */
-            obj["energyConversionCapability"] = base.parse_element (/<cim:HydroGeneratingUnit.energyConversionCapability>([\s\S]*?)<\/cim:HydroGeneratingUnit.energyConversionCapability>/g, sub, context, true);
+            base.parse_element (/<cim:HydroGeneratingUnit.energyConversionCapability>([\s\S]*?)<\/cim:HydroGeneratingUnit.energyConversionCapability>/g, obj, "energyConversionCapability", base.to_string, sub, context);
+
             /**
              * The equivalent cost of water that drives the hydro turbine.
              *
              */
-            obj["hydroUnitWaterCost"] = base.parse_element (/<cim:HydroGeneratingUnit.hydroUnitWaterCost>([\s\S]*?)<\/cim:HydroGeneratingUnit.hydroUnitWaterCost>/g, sub, context, true);
+            base.parse_element (/<cim:HydroGeneratingUnit.hydroUnitWaterCost>([\s\S]*?)<\/cim:HydroGeneratingUnit.hydroUnitWaterCost>/g, obj, "hydroUnitWaterCost", base.to_string, sub, context);
+
             /**
              * A hydro generating unit has a penstock loss curve.
              *
              */
-            obj["PenstockLossCurve"] = base.parse_attribute (/<cim:HydroGeneratingUnit.PenstockLossCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:HydroGeneratingUnit.PenstockLossCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PenstockLossCurve", sub, context, true);
+
             /**
              * The hydro generating unit belongs to a hydro power plant.
              *
              */
-            obj["HydroPowerPlant"] = base.parse_attribute (/<cim:HydroGeneratingUnit.HydroPowerPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:HydroGeneratingUnit.HydroPowerPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroPowerPlant", sub, context, true);
+
             bucket = context.parsed.HydroGeneratingUnit;
             if (null == bucket)
                 context.parsed.HydroGeneratingUnit = bucket = {};
@@ -64,12 +68,14 @@ define
              * Able to generate power, but not able to pump water for energy storage.
              *
              */
-            obj["generator"] = base.parse_element (/<cim:HydroEnergyConversionKind.generator>([\s\S]*?)<\/cim:HydroEnergyConversionKind.generator>/g, sub, context, true);
+            base.parse_element (/<cim:HydroEnergyConversionKind.generator>([\s\S]*?)<\/cim:HydroEnergyConversionKind.generator>/g, obj, "generator", base.to_string, sub, context);
+
             /**
              * Able to both generate power and pump water for energy storage.
              *
              */
-            obj["pumpAndGenerator"] = base.parse_element (/<cim:HydroEnergyConversionKind.pumpAndGenerator>([\s\S]*?)<\/cim:HydroEnergyConversionKind.pumpAndGenerator>/g, sub, context, true);
+            base.parse_element (/<cim:HydroEnergyConversionKind.pumpAndGenerator>([\s\S]*?)<\/cim:HydroEnergyConversionKind.pumpAndGenerator>/g, obj, "pumpAndGenerator", base.to_string, sub, context);
+
             bucket = context.parsed.HydroEnergyConversionKind;
             if (null == bucket)
                 context.parsed.HydroEnergyConversionKind = bucket = {};
@@ -95,7 +101,8 @@ define
              * The kind of wind generating unit
              *
              */
-            obj["windGenUnitType"] = base.parse_element (/<cim:WindGeneratingUnit.windGenUnitType>([\s\S]*?)<\/cim:WindGeneratingUnit.windGenUnitType>/g, sub, context, true);
+            base.parse_element (/<cim:WindGeneratingUnit.windGenUnitType>([\s\S]*?)<\/cim:WindGeneratingUnit.windGenUnitType>/g, obj, "windGenUnitType", base.to_string, sub, context);
+
             bucket = context.parsed.WindGeneratingUnit;
             if (null == bucket)
                 context.parsed.WindGeneratingUnit = bucket = {};
@@ -115,11 +122,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Emission";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:Emission.denominatorMultiplier>([\s\S]*?)<\/cim:Emission.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:Emission.denominatorUnit>([\s\S]*?)<\/cim:Emission.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:Emission.multiplier>([\s\S]*?)<\/cim:Emission.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Emission.unit>([\s\S]*?)<\/cim:Emission.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Emission.value>([\s\S]*?)<\/cim:Emission.value>/g, sub, context, true));
+            base.parse_element (/<cim:Emission.denominatorMultiplier>([\s\S]*?)<\/cim:Emission.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Emission.denominatorUnit>([\s\S]*?)<\/cim:Emission.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Emission.multiplier>([\s\S]*?)<\/cim:Emission.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Emission.unit>([\s\S]*?)<\/cim:Emission.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Emission.value>([\s\S]*?)<\/cim:Emission.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Emission;
             if (null == bucket)
                 context.parsed.Emission = bucket = {};
@@ -143,12 +155,14 @@ define
              * The wind generating unit is located offshore.
              *
              */
-            obj["offshore"] = base.parse_element (/<cim:WindGenUnitKind.offshore>([\s\S]*?)<\/cim:WindGenUnitKind.offshore>/g, sub, context, true);
+            base.parse_element (/<cim:WindGenUnitKind.offshore>([\s\S]*?)<\/cim:WindGenUnitKind.offshore>/g, obj, "offshore", base.to_string, sub, context);
+
             /**
              * The wind generating unit is located onshore.
              *
              */
-            obj["onshore"] = base.parse_element (/<cim:WindGenUnitKind.onshore>([\s\S]*?)<\/cim:WindGenUnitKind.onshore>/g, sub, context, true);
+            base.parse_element (/<cim:WindGenUnitKind.onshore>([\s\S]*?)<\/cim:WindGenUnitKind.onshore>/g, obj, "onshore", base.to_string, sub, context);
+
             bucket = context.parsed.WindGenUnitKind;
             if (null == bucket)
                 context.parsed.WindGenUnitKind = bucket = {};
@@ -172,39 +186,46 @@ define
              * The pumping discharge under maximum head conditions, usually at full gate.
              *
              */
-            obj["pumpDischAtMaxHead"] = base.parse_element (/<cim:HydroPump.pumpDischAtMaxHead>([\s\S]*?)<\/cim:HydroPump.pumpDischAtMaxHead>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPump.pumpDischAtMaxHead>([\s\S]*?)<\/cim:HydroPump.pumpDischAtMaxHead>/g, obj, "pumpDischAtMaxHead", base.to_string, sub, context);
+
             /**
              * The pumping discharge under minimum head conditions, usually at full gate.
              *
              */
-            obj["pumpDischAtMinHead"] = base.parse_element (/<cim:HydroPump.pumpDischAtMinHead>([\s\S]*?)<\/cim:HydroPump.pumpDischAtMinHead>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPump.pumpDischAtMinHead>([\s\S]*?)<\/cim:HydroPump.pumpDischAtMinHead>/g, obj, "pumpDischAtMinHead", base.to_string, sub, context);
+
             /**
              * The pumping power under maximum head conditions, usually at full gate.
              *
              */
-            obj["pumpPowerAtMaxHead"] = base.parse_element (/<cim:HydroPump.pumpPowerAtMaxHead>([\s\S]*?)<\/cim:HydroPump.pumpPowerAtMaxHead>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPump.pumpPowerAtMaxHead>([\s\S]*?)<\/cim:HydroPump.pumpPowerAtMaxHead>/g, obj, "pumpPowerAtMaxHead", base.to_string, sub, context);
+
             /**
              * The pumping power under minimum head conditions, usually at full gate.
              *
              */
-            obj["pumpPowerAtMinHead"] = base.parse_element (/<cim:HydroPump.pumpPowerAtMinHead>([\s\S]*?)<\/cim:HydroPump.pumpPowerAtMinHead>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPump.pumpPowerAtMinHead>([\s\S]*?)<\/cim:HydroPump.pumpPowerAtMinHead>/g, obj, "pumpPowerAtMinHead", base.to_string, sub, context);
+
             /**
              * The synchronous machine drives the turbine which moves the water from a low elevation to a higher elevation.
              *
              * The direction of machine rotation for pumping may or may not be the same as for generating.
              *
              */
-            obj["RotatingMachine"] = base.parse_attribute (/<cim:HydroPump.RotatingMachine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:HydroPump.RotatingMachine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RotatingMachine", sub, context, true);
+
             /**
              * The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
              *
              */
-            obj["HydroPumpOpSchedule"] = base.parse_attribute (/<cim:HydroPump.HydroPumpOpSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:HydroPump.HydroPumpOpSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroPumpOpSchedule", sub, context, true);
+
             /**
              * The hydro pump may be a member of a pumped storage plant or a pump for distributing water.
              *
              */
-            obj["HydroPowerPlant"] = base.parse_attribute (/<cim:HydroPump.HydroPowerPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:HydroPump.HydroPowerPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroPowerPlant", sub, context, true);
+
             bucket = context.parsed.HydroPump;
             if (null == bucket)
                 context.parsed.HydroPump = bucket = {};
@@ -230,7 +251,8 @@ define
              * A hydro generating unit has a penstock loss curve.
              *
              */
-            obj["HydroGeneratingUnit"] = base.parse_attribute (/<cim:PenstockLossCurve.HydroGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:PenstockLossCurve.HydroGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroGeneratingUnit", sub, context, true);
+
             bucket = context.parsed.PenstockLossCurve;
             if (null == bucket)
                 context.parsed.PenstockLossCurve = bucket = {};
@@ -256,32 +278,38 @@ define
              * The high pressure steam sendout.
              *
              */
-            obj["cogenHPSendoutRating"] = base.to_float (base.parse_element (/<cim:CogenerationPlant.cogenHPSendoutRating>([\s\S]*?)<\/cim:CogenerationPlant.cogenHPSendoutRating>/g, sub, context, true));
+            base.parse_element (/<cim:CogenerationPlant.cogenHPSendoutRating>([\s\S]*?)<\/cim:CogenerationPlant.cogenHPSendoutRating>/g, obj, "cogenHPSendoutRating", base.to_float, sub, context);
+
             /**
              * The high pressure steam rating.
              *
              */
-            obj["cogenHPSteamRating"] = base.to_float (base.parse_element (/<cim:CogenerationPlant.cogenHPSteamRating>([\s\S]*?)<\/cim:CogenerationPlant.cogenHPSteamRating>/g, sub, context, true));
+            base.parse_element (/<cim:CogenerationPlant.cogenHPSteamRating>([\s\S]*?)<\/cim:CogenerationPlant.cogenHPSteamRating>/g, obj, "cogenHPSteamRating", base.to_float, sub, context);
+
             /**
              * The low pressure steam sendout.
              *
              */
-            obj["cogenLPSendoutRating"] = base.to_float (base.parse_element (/<cim:CogenerationPlant.cogenLPSendoutRating>([\s\S]*?)<\/cim:CogenerationPlant.cogenLPSendoutRating>/g, sub, context, true));
+            base.parse_element (/<cim:CogenerationPlant.cogenLPSendoutRating>([\s\S]*?)<\/cim:CogenerationPlant.cogenLPSendoutRating>/g, obj, "cogenLPSendoutRating", base.to_float, sub, context);
+
             /**
              * The low pressure steam rating.
              *
              */
-            obj["cogenLPSteamRating"] = base.to_float (base.parse_element (/<cim:CogenerationPlant.cogenLPSteamRating>([\s\S]*?)<\/cim:CogenerationPlant.cogenLPSteamRating>/g, sub, context, true));
+            base.parse_element (/<cim:CogenerationPlant.cogenLPSteamRating>([\s\S]*?)<\/cim:CogenerationPlant.cogenLPSteamRating>/g, obj, "cogenLPSteamRating", base.to_float, sub, context);
+
             /**
              * The rated output active power of the cogeneration plant.
              *
              */
-            obj["ratedP"] = base.parse_element (/<cim:CogenerationPlant.ratedP>([\s\S]*?)<\/cim:CogenerationPlant.ratedP>/g, sub, context, true);
+            base.parse_element (/<cim:CogenerationPlant.ratedP>([\s\S]*?)<\/cim:CogenerationPlant.ratedP>/g, obj, "ratedP", base.to_string, sub, context);
+
             /**
              * A cogeneration plant has a steam sendout schedule.
              *
              */
-            obj["SteamSendoutSchedule"] = base.parse_attribute (/<cim:CogenerationPlant.SteamSendoutSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:CogenerationPlant.SteamSendoutSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SteamSendoutSchedule", sub, context, true);
+
             bucket = context.parsed.CogenerationPlant;
             if (null == bucket)
                 context.parsed.CogenerationPlant = bucket = {};
@@ -307,12 +335,14 @@ define
              * Flag is set to true when output is expressed in net active power.
              *
              */
-            obj["isNetGrossP"] = base.to_boolean (base.parse_element (/<cim:IncrementalHeatRateCurve.isNetGrossP>([\s\S]*?)<\/cim:IncrementalHeatRateCurve.isNetGrossP>/g, sub, context, true));
+            base.parse_element (/<cim:IncrementalHeatRateCurve.isNetGrossP>([\s\S]*?)<\/cim:IncrementalHeatRateCurve.isNetGrossP>/g, obj, "isNetGrossP", base.to_boolean, sub, context);
+
             /**
              * A thermal generating unit may have an incremental heat rate curve.
              *
              */
-            obj["ThermalGeneratingUnit"] = base.parse_attribute (/<cim:IncrementalHeatRateCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:IncrementalHeatRateCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context, true);
+
             bucket = context.parsed.IncrementalHeatRateCurve;
             if (null == bucket)
                 context.parsed.IncrementalHeatRateCurve = bucket = {};
@@ -336,17 +366,20 @@ define
              * Run of river.
              *
              */
-            obj["runOfRiver"] = base.parse_element (/<cim:HydroPlantStorageKind.runOfRiver>([\s\S]*?)<\/cim:HydroPlantStorageKind.runOfRiver>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPlantStorageKind.runOfRiver>([\s\S]*?)<\/cim:HydroPlantStorageKind.runOfRiver>/g, obj, "runOfRiver", base.to_string, sub, context);
+
             /**
              * Pumped storage.
              *
              */
-            obj["pumpedStorage"] = base.parse_element (/<cim:HydroPlantStorageKind.pumpedStorage>([\s\S]*?)<\/cim:HydroPlantStorageKind.pumpedStorage>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPlantStorageKind.pumpedStorage>([\s\S]*?)<\/cim:HydroPlantStorageKind.pumpedStorage>/g, obj, "pumpedStorage", base.to_string, sub, context);
+
             /**
              * Storage.
              *
              */
-            obj["storage"] = base.parse_element (/<cim:HydroPlantStorageKind.storage>([\s\S]*?)<\/cim:HydroPlantStorageKind.storage>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPlantStorageKind.storage>([\s\S]*?)<\/cim:HydroPlantStorageKind.storage>/g, obj, "storage", base.to_string, sub, context);
+
             bucket = context.parsed.HydroPlantStorageKind;
             if (null == bucket)
                 context.parsed.HydroPlantStorageKind = bucket = {};
@@ -372,69 +405,82 @@ define
              * Storage volume between the full supply level and the normal minimum operating level.
              *
              */
-            obj["activeStorageCapacity"] = base.parse_element (/<cim:Reservoir.activeStorageCapacity>([\s\S]*?)<\/cim:Reservoir.activeStorageCapacity>/g, sub, context, true);
+            base.parse_element (/<cim:Reservoir.activeStorageCapacity>([\s\S]*?)<\/cim:Reservoir.activeStorageCapacity>/g, obj, "activeStorageCapacity", base.to_string, sub, context);
+
             /**
              * The reservoir's energy storage rating in energy for given head conditions.
              *
              */
-            obj["energyStorageRating"] = base.to_float (base.parse_element (/<cim:Reservoir.energyStorageRating>([\s\S]*?)<\/cim:Reservoir.energyStorageRating>/g, sub, context, true));
+            base.parse_element (/<cim:Reservoir.energyStorageRating>([\s\S]*?)<\/cim:Reservoir.energyStorageRating>/g, obj, "energyStorageRating", base.to_float, sub, context);
+
             /**
              * Full supply level, above which water will spill.
              *
              * This can be the spillway crest level or the top of closed gates.
              *
              */
-            obj["fullSupplyLevel"] = base.parse_element (/<cim:Reservoir.fullSupplyLevel>([\s\S]*?)<\/cim:Reservoir.fullSupplyLevel>/g, sub, context, true);
+            base.parse_element (/<cim:Reservoir.fullSupplyLevel>([\s\S]*?)<\/cim:Reservoir.fullSupplyLevel>/g, obj, "fullSupplyLevel", base.to_string, sub, context);
+
             /**
              * Total capacity of reservoir.
              *
              */
-            obj["grossCapacity"] = base.parse_element (/<cim:Reservoir.grossCapacity>([\s\S]*?)<\/cim:Reservoir.grossCapacity>/g, sub, context, true);
+            base.parse_element (/<cim:Reservoir.grossCapacity>([\s\S]*?)<\/cim:Reservoir.grossCapacity>/g, obj, "grossCapacity", base.to_string, sub, context);
+
             /**
              * Normal minimum operating level below which the penstocks will draw air.
              *
              */
-            obj["normalMinOperateLevel"] = base.parse_element (/<cim:Reservoir.normalMinOperateLevel>([\s\S]*?)<\/cim:Reservoir.normalMinOperateLevel>/g, sub, context, true);
+            base.parse_element (/<cim:Reservoir.normalMinOperateLevel>([\s\S]*?)<\/cim:Reservoir.normalMinOperateLevel>/g, obj, "normalMinOperateLevel", base.to_string, sub, context);
+
             /**
              * River outlet works for riparian right releases or other purposes.
              *
              */
-            obj["riverOutletWorks"] = base.parse_element (/<cim:Reservoir.riverOutletWorks>([\s\S]*?)<\/cim:Reservoir.riverOutletWorks>/g, sub, context, true);
+            base.parse_element (/<cim:Reservoir.riverOutletWorks>([\s\S]*?)<\/cim:Reservoir.riverOutletWorks>/g, obj, "riverOutletWorks", base.to_string, sub, context);
+
             /**
              * The spillway water travel delay to the next downstream reservoir.
              *
              */
-            obj["spillTravelDelay"] = base.parse_element (/<cim:Reservoir.spillTravelDelay>([\s\S]*?)<\/cim:Reservoir.spillTravelDelay>/g, sub, context, true);
+            base.parse_element (/<cim:Reservoir.spillTravelDelay>([\s\S]*?)<\/cim:Reservoir.spillTravelDelay>/g, obj, "spillTravelDelay", base.to_string, sub, context);
+
             /**
              * The flow capacity of the spillway in cubic meters per second.
              *
              */
-            obj["spillwayCapacity"] = base.to_float (base.parse_element (/<cim:Reservoir.spillwayCapacity>([\s\S]*?)<\/cim:Reservoir.spillwayCapacity>/g, sub, context, true));
+            base.parse_element (/<cim:Reservoir.spillwayCapacity>([\s\S]*?)<\/cim:Reservoir.spillwayCapacity>/g, obj, "spillwayCapacity", base.to_float, sub, context);
+
             /**
              * The length of the spillway crest.
              *
              */
-            obj["spillwayCrestLength"] = base.parse_element (/<cim:Reservoir.spillwayCrestLength>([\s\S]*?)<\/cim:Reservoir.spillwayCrestLength>/g, sub, context, true);
+            base.parse_element (/<cim:Reservoir.spillwayCrestLength>([\s\S]*?)<\/cim:Reservoir.spillwayCrestLength>/g, obj, "spillwayCrestLength", base.to_string, sub, context);
+
             /**
              * Spillway crest level above which water will spill.
              *
              */
-            obj["spillwayCrestLevel"] = base.parse_element (/<cim:Reservoir.spillwayCrestLevel>([\s\S]*?)<\/cim:Reservoir.spillwayCrestLevel>/g, sub, context, true);
+            base.parse_element (/<cim:Reservoir.spillwayCrestLevel>([\s\S]*?)<\/cim:Reservoir.spillwayCrestLevel>/g, obj, "spillwayCrestLevel", base.to_string, sub, context);
+
             /**
              * Type of spillway gate, including parameters.
              *
              */
-            obj["spillWayGateType"] = base.parse_element (/<cim:Reservoir.spillWayGateType>([\s\S]*?)<\/cim:Reservoir.spillWayGateType>/g, sub, context, true);
+            base.parse_element (/<cim:Reservoir.spillWayGateType>([\s\S]*?)<\/cim:Reservoir.spillWayGateType>/g, obj, "spillWayGateType", base.to_string, sub, context);
+
             /**
              * A reservoir may have a water level target schedule.
              *
              */
-            obj["TargetLevelSchedule"] = base.parse_attribute (/<cim:Reservoir.TargetLevelSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Reservoir.TargetLevelSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TargetLevelSchedule", sub, context, true);
+
             /**
              * A reservoir may spill into a downstream reservoir.
              *
              */
-            obj["SpillsFromReservoir"] = base.parse_attribute (/<cim:Reservoir.SpillsFromReservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Reservoir.SpillsFromReservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SpillsFromReservoir", sub, context, true);
+
             bucket = context.parsed.Reservoir;
             if (null == bucket)
                 context.parsed.Reservoir = bucket = {};
@@ -456,9 +502,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Classification";
-            obj["multiplier"] = base.parse_element (/<cim:Classification.multiplier>([\s\S]*?)<\/cim:Classification.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Classification.unit>([\s\S]*?)<\/cim:Classification.unit>/g, sub, context, true);
-            obj["value"] = base.parse_element (/<cim:Classification.value>([\s\S]*?)<\/cim:Classification.value>/g, sub, context, true);
+            base.parse_element (/<cim:Classification.multiplier>([\s\S]*?)<\/cim:Classification.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Classification.unit>([\s\S]*?)<\/cim:Classification.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Classification.value>([\s\S]*?)<\/cim:Classification.value>/g, obj, "value", base.to_string, sub, context);
+
             bucket = context.parsed.Classification;
             if (null == bucket)
                 context.parsed.Classification = bucket = {};
@@ -482,12 +531,14 @@ define
              * Type of ignition fuel.
              *
              */
-            obj["ignitionFuelType"] = base.parse_element (/<cim:StartIgnFuelCurve.ignitionFuelType>([\s\S]*?)<\/cim:StartIgnFuelCurve.ignitionFuelType>/g, sub, context, true);
+            base.parse_element (/<cim:StartIgnFuelCurve.ignitionFuelType>([\s\S]*?)<\/cim:StartIgnFuelCurve.ignitionFuelType>/g, obj, "ignitionFuelType", base.to_string, sub, context);
+
             /**
              * The unit's startup model may have a startup ignition fuel curve.
              *
              */
-            obj["StartupModel"] = base.parse_attribute (/<cim:StartIgnFuelCurve.StartupModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:StartIgnFuelCurve.StartupModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartupModel", sub, context, true);
+
             bucket = context.parsed.StartIgnFuelCurve;
             if (null == bucket)
                 context.parsed.StartIgnFuelCurve = bucket = {};
@@ -513,7 +564,8 @@ define
              * A reservoir may have a level versus volume relationship.
              *
              */
-            obj["Reservoir"] = base.parse_attribute (/<cim:LevelVsVolumeCurve.Reservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:LevelVsVolumeCurve.Reservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reservoir", sub, context, true);
+
             bucket = context.parsed.LevelVsVolumeCurve;
             if (null == bucket)
                 context.parsed.LevelVsVolumeCurve = bucket = {};
@@ -539,7 +591,8 @@ define
              * A generating unit may have a gross active power to net active power curve, describing the losses and auxiliary power requirements of the unit.
              *
              */
-            obj["GeneratingUnit"] = base.parse_attribute (/<cim:GrossToNetActivePowerCurve.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:GrossToNetActivePowerCurve.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingUnit", sub, context, true);
+
             bucket = context.parsed.GrossToNetActivePowerCurve;
             if (null == bucket)
                 context.parsed.GrossToNetActivePowerCurve = bucket = {};
@@ -563,17 +616,20 @@ define
              * Rating of the CAES air compressor.
              *
              */
-            obj["airCompressorRating"] = base.to_float (base.parse_element (/<cim:AirCompressor.airCompressorRating>([\s\S]*?)<\/cim:AirCompressor.airCompressorRating>/g, sub, context, true));
+            base.parse_element (/<cim:AirCompressor.airCompressorRating>([\s\S]*?)<\/cim:AirCompressor.airCompressorRating>/g, obj, "airCompressorRating", base.to_float, sub, context);
+
             /**
              * A CAES air compressor is driven by combustion turbine.
              *
              */
-            obj["CombustionTurbine"] = base.parse_attribute (/<cim:AirCompressor.CombustionTurbine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:AirCompressor.CombustionTurbine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CombustionTurbine", sub, context, true);
+
             /**
              * An air compressor may be a member of a compressed air energy storage plant.
              *
              */
-            obj["CAESPlant"] = base.parse_attribute (/<cim:AirCompressor.CAESPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:AirCompressor.CAESPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CAESPlant", sub, context, true);
+
             bucket = context.parsed.AirCompressor;
             if (null == bucket)
                 context.parsed.AirCompressor = bucket = {};
@@ -593,11 +649,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "HeatRate";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:HeatRate.denominatorMultiplier>([\s\S]*?)<\/cim:HeatRate.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:HeatRate.denominatorUnit>([\s\S]*?)<\/cim:HeatRate.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:HeatRate.multiplier>([\s\S]*?)<\/cim:HeatRate.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:HeatRate.unit>([\s\S]*?)<\/cim:HeatRate.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:HeatRate.value>([\s\S]*?)<\/cim:HeatRate.value>/g, sub, context, true));
+            base.parse_element (/<cim:HeatRate.denominatorMultiplier>([\s\S]*?)<\/cim:HeatRate.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:HeatRate.denominatorUnit>([\s\S]*?)<\/cim:HeatRate.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:HeatRate.multiplier>([\s\S]*?)<\/cim:HeatRate.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:HeatRate.unit>([\s\S]*?)<\/cim:HeatRate.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:HeatRate.value>([\s\S]*?)<\/cim:HeatRate.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.HeatRate;
             if (null == bucket)
                 context.parsed.HeatRate = bucket = {};
@@ -621,37 +682,44 @@ define
              * The end time and date of the fuel allocation schedule.
              *
              */
-            obj["fuelAllocationEndDate"] = base.to_datetime (base.parse_element (/<cim:FuelAllocationSchedule.fuelAllocationEndDate>([\s\S]*?)<\/cim:FuelAllocationSchedule.fuelAllocationEndDate>/g, sub, context, true));
+            base.parse_element (/<cim:FuelAllocationSchedule.fuelAllocationEndDate>([\s\S]*?)<\/cim:FuelAllocationSchedule.fuelAllocationEndDate>/g, obj, "fuelAllocationEndDate", base.to_datetime, sub, context);
+
             /**
              * The start time and date of the fuel allocation schedule.
              *
              */
-            obj["fuelAllocationStartDate"] = base.to_datetime (base.parse_element (/<cim:FuelAllocationSchedule.fuelAllocationStartDate>([\s\S]*?)<\/cim:FuelAllocationSchedule.fuelAllocationStartDate>/g, sub, context, true));
+            base.parse_element (/<cim:FuelAllocationSchedule.fuelAllocationStartDate>([\s\S]*?)<\/cim:FuelAllocationSchedule.fuelAllocationStartDate>/g, obj, "fuelAllocationStartDate", base.to_datetime, sub, context);
+
             /**
              * The type of fuel, which also indicates the corresponding measurement unit.
              *
              */
-            obj["fuelType"] = base.parse_element (/<cim:FuelAllocationSchedule.fuelType>([\s\S]*?)<\/cim:FuelAllocationSchedule.fuelType>/g, sub, context, true);
+            base.parse_element (/<cim:FuelAllocationSchedule.fuelType>([\s\S]*?)<\/cim:FuelAllocationSchedule.fuelType>/g, obj, "fuelType", base.to_string, sub, context);
+
             /**
              * The maximum amount fuel that is allocated for consumption for the scheduled time period.
              *
              */
-            obj["maxFuelAllocation"] = base.to_float (base.parse_element (/<cim:FuelAllocationSchedule.maxFuelAllocation>([\s\S]*?)<\/cim:FuelAllocationSchedule.maxFuelAllocation>/g, sub, context, true));
+            base.parse_element (/<cim:FuelAllocationSchedule.maxFuelAllocation>([\s\S]*?)<\/cim:FuelAllocationSchedule.maxFuelAllocation>/g, obj, "maxFuelAllocation", base.to_float, sub, context);
+
             /**
              * The minimum amount fuel that is allocated for consumption for the scheduled time period, e.g., based on a "take-or-pay" contract.
              *
              */
-            obj["minFuelAllocation"] = base.to_float (base.parse_element (/<cim:FuelAllocationSchedule.minFuelAllocation>([\s\S]*?)<\/cim:FuelAllocationSchedule.minFuelAllocation>/g, sub, context, true));
+            base.parse_element (/<cim:FuelAllocationSchedule.minFuelAllocation>([\s\S]*?)<\/cim:FuelAllocationSchedule.minFuelAllocation>/g, obj, "minFuelAllocation", base.to_float, sub, context);
+
             /**
              * A fuel allocation schedule must have a fossil fuel.
              *
              */
-            obj["FossilFuel"] = base.parse_attribute (/<cim:FuelAllocationSchedule.FossilFuel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:FuelAllocationSchedule.FossilFuel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FossilFuel", sub, context, true);
+
             /**
              * A thermal generating unit may have one or more fuel allocation schedules.
              *
              */
-            obj["ThermalGeneratingUnit"] = base.parse_attribute (/<cim:FuelAllocationSchedule.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:FuelAllocationSchedule.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context, true);
+
             bucket = context.parsed.FuelAllocationSchedule;
             if (null == bucket)
                 context.parsed.FuelAllocationSchedule = bucket = {};
@@ -675,22 +743,26 @@ define
              * Not available.
              *
              */
-            obj["unavailable"] = base.parse_element (/<cim:GeneratorControlSource.unavailable>([\s\S]*?)<\/cim:GeneratorControlSource.unavailable>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratorControlSource.unavailable>([\s\S]*?)<\/cim:GeneratorControlSource.unavailable>/g, obj, "unavailable", base.to_string, sub, context);
+
             /**
              * Off of automatic generation control (AGC).
              *
              */
-            obj["offAGC"] = base.parse_element (/<cim:GeneratorControlSource.offAGC>([\s\S]*?)<\/cim:GeneratorControlSource.offAGC>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratorControlSource.offAGC>([\s\S]*?)<\/cim:GeneratorControlSource.offAGC>/g, obj, "offAGC", base.to_string, sub, context);
+
             /**
              * On automatic generation control (AGC).
              *
              */
-            obj["onAGC"] = base.parse_element (/<cim:GeneratorControlSource.onAGC>([\s\S]*?)<\/cim:GeneratorControlSource.onAGC>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratorControlSource.onAGC>([\s\S]*?)<\/cim:GeneratorControlSource.onAGC>/g, obj, "onAGC", base.to_string, sub, context);
+
             /**
              * Plant is controlling.
              *
              */
-            obj["plantControl"] = base.parse_element (/<cim:GeneratorControlSource.plantControl>([\s\S]*?)<\/cim:GeneratorControlSource.plantControl>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratorControlSource.plantControl>([\s\S]*?)<\/cim:GeneratorControlSource.plantControl>/g, obj, "plantControl", base.to_string, sub, context);
+
             bucket = context.parsed.GeneratorControlSource;
             if (null == bucket)
                 context.parsed.GeneratorControlSource = bucket = {};
@@ -714,32 +786,38 @@ define
              * Sulfer dioxide.
              *
              */
-            obj["sulfurDioxide"] = base.parse_element (/<cim:EmissionType.sulfurDioxide>([\s\S]*?)<\/cim:EmissionType.sulfurDioxide>/g, sub, context, true);
+            base.parse_element (/<cim:EmissionType.sulfurDioxide>([\s\S]*?)<\/cim:EmissionType.sulfurDioxide>/g, obj, "sulfurDioxide", base.to_string, sub, context);
+
             /**
              * Carbon diaoxide.
              *
              */
-            obj["carbonDioxide"] = base.parse_element (/<cim:EmissionType.carbonDioxide>([\s\S]*?)<\/cim:EmissionType.carbonDioxide>/g, sub, context, true);
+            base.parse_element (/<cim:EmissionType.carbonDioxide>([\s\S]*?)<\/cim:EmissionType.carbonDioxide>/g, obj, "carbonDioxide", base.to_string, sub, context);
+
             /**
              * Nitrogen oxide.
              *
              */
-            obj["nitrogenOxide"] = base.parse_element (/<cim:EmissionType.nitrogenOxide>([\s\S]*?)<\/cim:EmissionType.nitrogenOxide>/g, sub, context, true);
+            base.parse_element (/<cim:EmissionType.nitrogenOxide>([\s\S]*?)<\/cim:EmissionType.nitrogenOxide>/g, obj, "nitrogenOxide", base.to_string, sub, context);
+
             /**
              * Hydrogen sulfide.
              *
              */
-            obj["hydrogenSulfide"] = base.parse_element (/<cim:EmissionType.hydrogenSulfide>([\s\S]*?)<\/cim:EmissionType.hydrogenSulfide>/g, sub, context, true);
+            base.parse_element (/<cim:EmissionType.hydrogenSulfide>([\s\S]*?)<\/cim:EmissionType.hydrogenSulfide>/g, obj, "hydrogenSulfide", base.to_string, sub, context);
+
             /**
              * Clorine.
              *
              */
-            obj["chlorine"] = base.parse_element (/<cim:EmissionType.chlorine>([\s\S]*?)<\/cim:EmissionType.chlorine>/g, sub, context, true);
+            base.parse_element (/<cim:EmissionType.chlorine>([\s\S]*?)<\/cim:EmissionType.chlorine>/g, obj, "chlorine", base.to_string, sub, context);
+
             /**
              * Carbon disulfide.
              *
              */
-            obj["carbonDisulfide"] = base.parse_element (/<cim:EmissionType.carbonDisulfide>([\s\S]*?)<\/cim:EmissionType.carbonDisulfide>/g, sub, context, true);
+            base.parse_element (/<cim:EmissionType.carbonDisulfide>([\s\S]*?)<\/cim:EmissionType.carbonDisulfide>/g, obj, "carbonDisulfide", base.to_string, sub, context);
+
             bucket = context.parsed.EmissionType;
             if (null == bucket)
                 context.parsed.EmissionType = bucket = {};
@@ -765,7 +843,8 @@ define
              * A hydro generating unit has an efficiency curve.
              *
              */
-            obj["HydroGeneratingUnit"] = base.parse_attribute (/<cim:HydroGeneratingEfficiencyCurve.HydroGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:HydroGeneratingEfficiencyCurve.HydroGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroGeneratingUnit", sub, context, true);
+
             bucket = context.parsed.HydroGeneratingEfficiencyCurve;
             if (null == bucket)
                 context.parsed.HydroGeneratingEfficiencyCurve = bucket = {};
@@ -791,7 +870,8 @@ define
              * A generating unit may have an operating schedule, indicating the planned operation of the unit.
              *
              */
-            obj["GeneratingUnit"] = base.parse_attribute (/<cim:GenUnitOpSchedule.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:GenUnitOpSchedule.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingUnit", sub, context, true);
+
             bucket = context.parsed.GenUnitOpSchedule;
             if (null == bucket)
                 context.parsed.GenUnitOpSchedule = bucket = {};
@@ -817,12 +897,14 @@ define
              * Flag is set to true when output is expressed in net active power.
              *
              */
-            obj["isNetGrossP"] = base.to_boolean (base.parse_element (/<cim:HeatRateCurve.isNetGrossP>([\s\S]*?)<\/cim:HeatRateCurve.isNetGrossP>/g, sub, context, true));
+            base.parse_element (/<cim:HeatRateCurve.isNetGrossP>([\s\S]*?)<\/cim:HeatRateCurve.isNetGrossP>/g, obj, "isNetGrossP", base.to_boolean, sub, context);
+
             /**
              * A thermal generating unit may have a heat rate curve.
              *
              */
-            obj["ThermalGeneratingUnit"] = base.parse_attribute (/<cim:HeatRateCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:HeatRateCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context, true);
+
             bucket = context.parsed.HeatRateCurve;
             if (null == bucket)
                 context.parsed.HeatRateCurve = bucket = {};
@@ -846,34 +928,40 @@ define
              * Generic coal, not including lignite type.
              *
              */
-            obj["coal"] = base.parse_element (/<cim:FuelType.coal>([\s\S]*?)<\/cim:FuelType.coal>/g, sub, context, true);
+            base.parse_element (/<cim:FuelType.coal>([\s\S]*?)<\/cim:FuelType.coal>/g, obj, "coal", base.to_string, sub, context);
+
             /**
              * Oil.
              *
              */
-            obj["oil"] = base.parse_element (/<cim:FuelType.oil>([\s\S]*?)<\/cim:FuelType.oil>/g, sub, context, true);
+            base.parse_element (/<cim:FuelType.oil>([\s\S]*?)<\/cim:FuelType.oil>/g, obj, "oil", base.to_string, sub, context);
+
             /**
              * Natural gas.
              *
              */
-            obj["gas"] = base.parse_element (/<cim:FuelType.gas>([\s\S]*?)<\/cim:FuelType.gas>/g, sub, context, true);
+            base.parse_element (/<cim:FuelType.gas>([\s\S]*?)<\/cim:FuelType.gas>/g, obj, "gas", base.to_string, sub, context);
+
             /**
              * The fuel is lignite coal.
              *
              * Note that this is a special type of coal, so the other enum of coal is reserved for hard coal types or if the exact type of coal is not known.
              *
              */
-            obj["lignite"] = base.parse_element (/<cim:FuelType.lignite>([\s\S]*?)<\/cim:FuelType.lignite>/g, sub, context, true);
+            base.parse_element (/<cim:FuelType.lignite>([\s\S]*?)<\/cim:FuelType.lignite>/g, obj, "lignite", base.to_string, sub, context);
+
             /**
              * Hard coal
              *
              */
-            obj["hardCoal"] = base.parse_element (/<cim:FuelType.hardCoal>([\s\S]*?)<\/cim:FuelType.hardCoal>/g, sub, context, true);
+            base.parse_element (/<cim:FuelType.hardCoal>([\s\S]*?)<\/cim:FuelType.hardCoal>/g, obj, "hardCoal", base.to_string, sub, context);
+
             /**
              * Oil Shale
              *
              */
-            obj["oilShale"] = base.parse_element (/<cim:FuelType.oilShale>([\s\S]*?)<\/cim:FuelType.oilShale>/g, sub, context, true);
+            base.parse_element (/<cim:FuelType.oilShale>([\s\S]*?)<\/cim:FuelType.oilShale>/g, obj, "oilShale", base.to_string, sub, context);
+
             bucket = context.parsed.FuelType;
             if (null == bucket)
                 context.parsed.FuelType = bucket = {};
@@ -899,12 +987,14 @@ define
              * Flag is set to true when output is expressed in net active power.
              *
              */
-            obj["isNetGrossP"] = base.to_boolean (base.parse_element (/<cim:GenUnitOpCostCurve.isNetGrossP>([\s\S]*?)<\/cim:GenUnitOpCostCurve.isNetGrossP>/g, sub, context, true));
+            base.parse_element (/<cim:GenUnitOpCostCurve.isNetGrossP>([\s\S]*?)<\/cim:GenUnitOpCostCurve.isNetGrossP>/g, obj, "isNetGrossP", base.to_boolean, sub, context);
+
             /**
              * A generating unit may have one or more cost curves, depending upon fuel mixture and fuel cost.
              *
              */
-            obj["GeneratingUnit"] = base.parse_attribute (/<cim:GenUnitOpCostCurve.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:GenUnitOpCostCurve.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingUnit", sub, context, true);
+
             bucket = context.parsed.GenUnitOpCostCurve;
             if (null == bucket)
                 context.parsed.GenUnitOpCostCurve = bucket = {};
@@ -928,7 +1018,8 @@ define
              * A cogeneration plant has a steam sendout schedule.
              *
              */
-            obj["CogenerationPlant"] = base.parse_attribute (/<cim:SteamSendoutSchedule.CogenerationPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SteamSendoutSchedule.CogenerationPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CogenerationPlant", sub, context, true);
+
             bucket = context.parsed.SteamSendoutSchedule;
             if (null == bucket)
                 context.parsed.SteamSendoutSchedule = bucket = {};
@@ -954,7 +1045,8 @@ define
              * A hydro generating unit has a tailbay loss curve.
              *
              */
-            obj["HydroGeneratingUnit"] = base.parse_attribute (/<cim:TailbayLossCurve.HydroGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TailbayLossCurve.HydroGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroGeneratingUnit", sub, context, true);
+
             bucket = context.parsed.TailbayLossCurve;
             if (null == bucket)
                 context.parsed.TailbayLossCurve = bucket = {};
@@ -978,22 +1070,26 @@ define
              * The rated energy storage capacity.
              *
              */
-            obj["energyStorageCapacity"] = base.parse_element (/<cim:CAESPlant.energyStorageCapacity>([\s\S]*?)<\/cim:CAESPlant.energyStorageCapacity>/g, sub, context, true);
+            base.parse_element (/<cim:CAESPlant.energyStorageCapacity>([\s\S]*?)<\/cim:CAESPlant.energyStorageCapacity>/g, obj, "energyStorageCapacity", base.to_string, sub, context);
+
             /**
              * The CAES plant's gross rated generating capacity.
              *
              */
-            obj["ratedCapacityP"] = base.parse_element (/<cim:CAESPlant.ratedCapacityP>([\s\S]*?)<\/cim:CAESPlant.ratedCapacityP>/g, sub, context, true);
+            base.parse_element (/<cim:CAESPlant.ratedCapacityP>([\s\S]*?)<\/cim:CAESPlant.ratedCapacityP>/g, obj, "ratedCapacityP", base.to_string, sub, context);
+
             /**
              * A thermal generating unit may be a member of a compressed air energy storage plant.
              *
              */
-            obj["ThermalGeneratingUnit"] = base.parse_attribute (/<cim:CAESPlant.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:CAESPlant.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context, true);
+
             /**
              * An air compressor may be a member of a compressed air energy storage plant.
              *
              */
-            obj["AirCompressor"] = base.parse_attribute (/<cim:CAESPlant.AirCompressor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:CAESPlant.AirCompressor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AirCompressor", sub, context, true);
+
             bucket = context.parsed.CAESPlant;
             if (null == bucket)
                 context.parsed.CAESPlant = bucket = {};
@@ -1036,12 +1132,14 @@ define
              * Measured.
              *
              */
-            obj["measured"] = base.parse_element (/<cim:EmissionValueSource.measured>([\s\S]*?)<\/cim:EmissionValueSource.measured>/g, sub, context, true);
+            base.parse_element (/<cim:EmissionValueSource.measured>([\s\S]*?)<\/cim:EmissionValueSource.measured>/g, obj, "measured", base.to_string, sub, context);
+
             /**
              * Calculated.
              *
              */
-            obj["calculated"] = base.parse_element (/<cim:EmissionValueSource.calculated>([\s\S]*?)<\/cim:EmissionValueSource.calculated>/g, sub, context, true);
+            base.parse_element (/<cim:EmissionValueSource.calculated>([\s\S]*?)<\/cim:EmissionValueSource.calculated>/g, obj, "calculated", base.to_string, sub, context);
+
             bucket = context.parsed.EmissionValueSource;
             if (null == bucket)
                 context.parsed.EmissionValueSource = bucket = {};
@@ -1067,24 +1165,28 @@ define
              * The emission content per quantity of fuel burned.
              *
              */
-            obj["emissionContent"] = base.parse_element (/<cim:EmissionCurve.emissionContent>([\s\S]*?)<\/cim:EmissionCurve.emissionContent>/g, sub, context, true);
+            base.parse_element (/<cim:EmissionCurve.emissionContent>([\s\S]*?)<\/cim:EmissionCurve.emissionContent>/g, obj, "emissionContent", base.to_string, sub, context);
+
             /**
              * The type of emission, which also gives the production rate measurement unit.
              *
              * The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfer dioxide).
              *
              */
-            obj["emissionType"] = base.parse_element (/<cim:EmissionCurve.emissionType>([\s\S]*?)<\/cim:EmissionCurve.emissionType>/g, sub, context, true);
+            base.parse_element (/<cim:EmissionCurve.emissionType>([\s\S]*?)<\/cim:EmissionCurve.emissionType>/g, obj, "emissionType", base.to_string, sub, context);
+
             /**
              * Flag is set to true when output is expressed in net active power.
              *
              */
-            obj["isNetGrossP"] = base.to_boolean (base.parse_element (/<cim:EmissionCurve.isNetGrossP>([\s\S]*?)<\/cim:EmissionCurve.isNetGrossP>/g, sub, context, true));
+            base.parse_element (/<cim:EmissionCurve.isNetGrossP>([\s\S]*?)<\/cim:EmissionCurve.isNetGrossP>/g, obj, "isNetGrossP", base.to_boolean, sub, context);
+
             /**
              * A thermal generating unit may have  one or more emission curves.
              *
              */
-            obj["ThermalGeneratingUnit"] = base.parse_attribute (/<cim:EmissionCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:EmissionCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context, true);
+
             bucket = context.parsed.EmissionCurve;
             if (null == bucket)
                 context.parsed.EmissionCurve = bucket = {};
@@ -1108,12 +1210,14 @@ define
              * Setpoint control mode.
              *
              */
-            obj["setpoint"] = base.parse_element (/<cim:GeneratorControlMode.setpoint>([\s\S]*?)<\/cim:GeneratorControlMode.setpoint>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratorControlMode.setpoint>([\s\S]*?)<\/cim:GeneratorControlMode.setpoint>/g, obj, "setpoint", base.to_string, sub, context);
+
             /**
              * Pulse control mode.
              *
              */
-            obj["pulse"] = base.parse_element (/<cim:GeneratorControlMode.pulse>([\s\S]*?)<\/cim:GeneratorControlMode.pulse>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratorControlMode.pulse>([\s\S]*?)<\/cim:GeneratorControlMode.pulse>/g, obj, "pulse", base.to_string, sub, context);
+
             bucket = context.parsed.GeneratorControlMode;
             if (null == bucket)
                 context.parsed.GeneratorControlMode = bucket = {};
@@ -1156,12 +1260,14 @@ define
              * Type of main fuel.
              *
              */
-            obj["mainFuelType"] = base.parse_element (/<cim:StartMainFuelCurve.mainFuelType>([\s\S]*?)<\/cim:StartMainFuelCurve.mainFuelType>/g, sub, context, true);
+            base.parse_element (/<cim:StartMainFuelCurve.mainFuelType>([\s\S]*?)<\/cim:StartMainFuelCurve.mainFuelType>/g, obj, "mainFuelType", base.to_string, sub, context);
+
             /**
              * The unit's startup model may have a startup main fuel curve.
              *
              */
-            obj["StartupModel"] = base.parse_attribute (/<cim:StartMainFuelCurve.StartupModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:StartMainFuelCurve.StartupModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartupModel", sub, context, true);
+
             bucket = context.parsed.StartMainFuelCurve;
             if (null == bucket)
                 context.parsed.StartMainFuelCurve = bucket = {};
@@ -1185,12 +1291,14 @@ define
              * The startup ramp rate in gross for a unit that is on hot standby.
              *
              */
-            obj["hotStandbyRamp"] = base.parse_element (/<cim:StartRampCurve.hotStandbyRamp>([\s\S]*?)<\/cim:StartRampCurve.hotStandbyRamp>/g, sub, context, true);
+            base.parse_element (/<cim:StartRampCurve.hotStandbyRamp>([\s\S]*?)<\/cim:StartRampCurve.hotStandbyRamp>/g, obj, "hotStandbyRamp", base.to_string, sub, context);
+
             /**
              * The unit's startup model may have a startup ramp curve.
              *
              */
-            obj["StartupModel"] = base.parse_attribute (/<cim:StartRampCurve.StartupModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:StartRampCurve.StartupModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartupModel", sub, context, true);
+
             bucket = context.parsed.StartRampCurve;
             if (null == bucket)
                 context.parsed.StartRampCurve = bucket = {};
@@ -1216,61 +1324,72 @@ define
              * The type of fossil fuel, such as coal, oil, or gas.
              *
              */
-            obj["fossilFuelType"] = base.parse_element (/<cim:FossilFuel.fossilFuelType>([\s\S]*?)<\/cim:FossilFuel.fossilFuelType>/g, sub, context, true);
+            base.parse_element (/<cim:FossilFuel.fossilFuelType>([\s\S]*?)<\/cim:FossilFuel.fossilFuelType>/g, obj, "fossilFuelType", base.to_string, sub, context);
+
             /**
              * The cost in terms of heat value for the given type of fuel.
              *
              */
-            obj["fuelCost"] = base.parse_element (/<cim:FossilFuel.fuelCost>([\s\S]*?)<\/cim:FossilFuel.fuelCost>/g, sub, context, true);
+            base.parse_element (/<cim:FossilFuel.fuelCost>([\s\S]*?)<\/cim:FossilFuel.fuelCost>/g, obj, "fuelCost", base.to_string, sub, context);
+
             /**
              * The cost of fuel used for economic dispatching which includes: fuel cost, transportation cost,  and incremental maintenance cost.
              *
              */
-            obj["fuelDispatchCost"] = base.parse_element (/<cim:FossilFuel.fuelDispatchCost>([\s\S]*?)<\/cim:FossilFuel.fuelDispatchCost>/g, sub, context, true);
+            base.parse_element (/<cim:FossilFuel.fuelDispatchCost>([\s\S]*?)<\/cim:FossilFuel.fuelDispatchCost>/g, obj, "fuelDispatchCost", base.to_string, sub, context);
+
             /**
              * The efficiency factor for the fuel (per unit) in terms of the effective energy absorbed.
              *
              */
-            obj["fuelEffFactor"] = base.parse_element (/<cim:FossilFuel.fuelEffFactor>([\s\S]*?)<\/cim:FossilFuel.fuelEffFactor>/g, sub, context, true);
+            base.parse_element (/<cim:FossilFuel.fuelEffFactor>([\s\S]*?)<\/cim:FossilFuel.fuelEffFactor>/g, obj, "fuelEffFactor", base.to_string, sub, context);
+
             /**
              * Handling and processing cost associated with this fuel.
              *
              */
-            obj["fuelHandlingCost"] = base.parse_element (/<cim:FossilFuel.fuelHandlingCost>([\s\S]*?)<\/cim:FossilFuel.fuelHandlingCost>/g, sub, context, true);
+            base.parse_element (/<cim:FossilFuel.fuelHandlingCost>([\s\S]*?)<\/cim:FossilFuel.fuelHandlingCost>/g, obj, "fuelHandlingCost", base.to_string, sub, context);
+
             /**
              * The amount of heat per weight (or volume) of the given type of fuel.
              *
              */
-            obj["fuelHeatContent"] = base.to_float (base.parse_element (/<cim:FossilFuel.fuelHeatContent>([\s\S]*?)<\/cim:FossilFuel.fuelHeatContent>/g, sub, context, true));
+            base.parse_element (/<cim:FossilFuel.fuelHeatContent>([\s\S]*?)<\/cim:FossilFuel.fuelHeatContent>/g, obj, "fuelHeatContent", base.to_float, sub, context);
+
             /**
              * Relative amount of the given type of fuel, when multiple fuels are being consumed.
              *
              */
-            obj["fuelMixture"] = base.parse_element (/<cim:FossilFuel.fuelMixture>([\s\S]*?)<\/cim:FossilFuel.fuelMixture>/g, sub, context, true);
+            base.parse_element (/<cim:FossilFuel.fuelMixture>([\s\S]*?)<\/cim:FossilFuel.fuelMixture>/g, obj, "fuelMixture", base.to_string, sub, context);
+
             /**
              * The fuel's fraction of pollution credit per unit of heat content.
              *
              */
-            obj["fuelSulfur"] = base.parse_element (/<cim:FossilFuel.fuelSulfur>([\s\S]*?)<\/cim:FossilFuel.fuelSulfur>/g, sub, context, true);
+            base.parse_element (/<cim:FossilFuel.fuelSulfur>([\s\S]*?)<\/cim:FossilFuel.fuelSulfur>/g, obj, "fuelSulfur", base.to_string, sub, context);
+
             /**
              * The active power output level of the unit at which the given type of fuel is switched on.
              *
              * This fuel (e.g., oil) is sometimes used to supplement the base fuel (e.g., coal) at high active power output levels.
              *
              */
-            obj["highBreakpointP"] = base.parse_element (/<cim:FossilFuel.highBreakpointP>([\s\S]*?)<\/cim:FossilFuel.highBreakpointP>/g, sub, context, true);
+            base.parse_element (/<cim:FossilFuel.highBreakpointP>([\s\S]*?)<\/cim:FossilFuel.highBreakpointP>/g, obj, "highBreakpointP", base.to_string, sub, context);
+
             /**
              * The active power output level of the unit at which the given type of fuel is switched off.
              *
              * This fuel (e.g., oil) is sometimes used to stabilize the base fuel (e.g., coal) at low active power output levels.
              *
              */
-            obj["lowBreakpointP"] = base.parse_element (/<cim:FossilFuel.lowBreakpointP>([\s\S]*?)<\/cim:FossilFuel.lowBreakpointP>/g, sub, context, true);
+            base.parse_element (/<cim:FossilFuel.lowBreakpointP>([\s\S]*?)<\/cim:FossilFuel.lowBreakpointP>/g, obj, "lowBreakpointP", base.to_string, sub, context);
+
             /**
              * A thermal generating unit may have one or more fossil fuels.
              *
              */
-            obj["ThermalGeneratingUnit"] = base.parse_attribute (/<cim:FossilFuel.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:FossilFuel.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context, true);
+
             bucket = context.parsed.FossilFuel;
             if (null == bucket)
                 context.parsed.FossilFuel = bucket = {};
@@ -1296,204 +1415,242 @@ define
              * The planned unused capacity (spinning reserve) which can be used to support emergency load.
              *
              */
-            obj["allocSpinResP"] = base.parse_element (/<cim:GeneratingUnit.allocSpinResP>([\s\S]*?)<\/cim:GeneratingUnit.allocSpinResP>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.allocSpinResP>([\s\S]*?)<\/cim:GeneratingUnit.allocSpinResP>/g, obj, "allocSpinResP", base.to_string, sub, context);
+
             /**
              * The planned unused capacity which can be used to support automatic control overruns.
              *
              */
-            obj["autoCntrlMarginP"] = base.parse_element (/<cim:GeneratingUnit.autoCntrlMarginP>([\s\S]*?)<\/cim:GeneratingUnit.autoCntrlMarginP>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.autoCntrlMarginP>([\s\S]*?)<\/cim:GeneratingUnit.autoCntrlMarginP>/g, obj, "autoCntrlMarginP", base.to_string, sub, context);
+
             /**
              * For dispatchable units, this value represents the economic active power basepoint, for units that are not dispatchable, this value represents the fixed generation value.
              *
              * The value must be between the operating low and high limits.
              *
              */
-            obj["baseP"] = base.parse_element (/<cim:GeneratingUnit.baseP>([\s\S]*?)<\/cim:GeneratingUnit.baseP>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.baseP>([\s\S]*?)<\/cim:GeneratingUnit.baseP>/g, obj, "baseP", base.to_string, sub, context);
+
             /**
              * Unit control error deadband.
              *
              * When a unit's desired active power change is less than this deadband, then no control pulses will be sent to the unit.
              *
              */
-            obj["controlDeadband"] = base.parse_element (/<cim:GeneratingUnit.controlDeadband>([\s\S]*?)<\/cim:GeneratingUnit.controlDeadband>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.controlDeadband>([\s\S]*?)<\/cim:GeneratingUnit.controlDeadband>/g, obj, "controlDeadband", base.to_string, sub, context);
+
             /**
              * Pulse high limit which is the largest control pulse that the unit can respond to.
              *
              */
-            obj["controlPulseHigh"] = base.parse_element (/<cim:GeneratingUnit.controlPulseHigh>([\s\S]*?)<\/cim:GeneratingUnit.controlPulseHigh>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.controlPulseHigh>([\s\S]*?)<\/cim:GeneratingUnit.controlPulseHigh>/g, obj, "controlPulseHigh", base.to_string, sub, context);
+
             /**
              * Pulse low limit which is the smallest control pulse that the unit can respond to.
              *
              */
-            obj["controlPulseLow"] = base.parse_element (/<cim:GeneratingUnit.controlPulseLow>([\s\S]*?)<\/cim:GeneratingUnit.controlPulseLow>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.controlPulseLow>([\s\S]*?)<\/cim:GeneratingUnit.controlPulseLow>/g, obj, "controlPulseLow", base.to_string, sub, context);
+
             /**
              * Unit response rate which specifies the active power change for a control pulse of one second in the most responsive loading level of the unit.
              *
              */
-            obj["controlResponseRate"] = base.parse_element (/<cim:GeneratingUnit.controlResponseRate>([\s\S]*?)<\/cim:GeneratingUnit.controlResponseRate>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.controlResponseRate>([\s\S]*?)<\/cim:GeneratingUnit.controlResponseRate>/g, obj, "controlResponseRate", base.to_string, sub, context);
+
             /**
              * The efficiency of the unit in converting mechanical energy, from the prime mover, into electrical energy.
              *
              */
-            obj["efficiency"] = base.parse_element (/<cim:GeneratingUnit.efficiency>([\s\S]*?)<\/cim:GeneratingUnit.efficiency>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.efficiency>([\s\S]*?)<\/cim:GeneratingUnit.efficiency>/g, obj, "efficiency", base.to_string, sub, context);
+
             /**
              * The unit control mode.
              *
              */
-            obj["genControlMode"] = base.parse_element (/<cim:GeneratingUnit.genControlMode>([\s\S]*?)<\/cim:GeneratingUnit.genControlMode>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.genControlMode>([\s\S]*?)<\/cim:GeneratingUnit.genControlMode>/g, obj, "genControlMode", base.to_string, sub, context);
+
             /**
              * The source of controls for a generating unit.
              *
              */
-            obj["genControlSource"] = base.parse_element (/<cim:GeneratingUnit.genControlSource>([\s\S]*?)<\/cim:GeneratingUnit.genControlSource>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.genControlSource>([\s\S]*?)<\/cim:GeneratingUnit.genControlSource>/g, obj, "genControlSource", base.to_string, sub, context);
+
             /**
              * Governor motor position limit.
              *
              */
-            obj["governorMPL"] = base.parse_element (/<cim:GeneratingUnit.governorMPL>([\s\S]*?)<\/cim:GeneratingUnit.governorMPL>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.governorMPL>([\s\S]*?)<\/cim:GeneratingUnit.governorMPL>/g, obj, "governorMPL", base.to_string, sub, context);
+
             /**
              * Governor Speed Changer Droop.
              *
              * This is the change in generator power output divided by the change in frequency normalized by the nominal power of the generator and the nominal frequency and expressed in percent and negated. A positive value of speed change droop provides additional generator output upon a drop in frequency.
              *
              */
-            obj["governorSCD"] = base.parse_element (/<cim:GeneratingUnit.governorSCD>([\s\S]*?)<\/cim:GeneratingUnit.governorSCD>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.governorSCD>([\s\S]*?)<\/cim:GeneratingUnit.governorSCD>/g, obj, "governorSCD", base.to_string, sub, context);
+
             /**
              * High limit for secondary (AGC) control.
              *
              */
-            obj["highControlLimit"] = base.parse_element (/<cim:GeneratingUnit.highControlLimit>([\s\S]*?)<\/cim:GeneratingUnit.highControlLimit>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.highControlLimit>([\s\S]*?)<\/cim:GeneratingUnit.highControlLimit>/g, obj, "highControlLimit", base.to_string, sub, context);
+
             /**
              * Default initial active power  which is used to store a powerflow result for the initial active power for this unit in this network configuration.
              *
              */
-            obj["initialP"] = base.parse_element (/<cim:GeneratingUnit.initialP>([\s\S]*?)<\/cim:GeneratingUnit.initialP>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.initialP>([\s\S]*?)<\/cim:GeneratingUnit.initialP>/g, obj, "initialP", base.to_string, sub, context);
+
             /**
              * Generating unit long term economic participation factor.
              *
              */
-            obj["longPF"] = base.to_float (base.parse_element (/<cim:GeneratingUnit.longPF>([\s\S]*?)<\/cim:GeneratingUnit.longPF>/g, sub, context, true));
+            base.parse_element (/<cim:GeneratingUnit.longPF>([\s\S]*?)<\/cim:GeneratingUnit.longPF>/g, obj, "longPF", base.to_float, sub, context);
+
             /**
              * Low limit for secondary (AGC) control.
              *
              */
-            obj["lowControlLimit"] = base.parse_element (/<cim:GeneratingUnit.lowControlLimit>([\s\S]*?)<\/cim:GeneratingUnit.lowControlLimit>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.lowControlLimit>([\s\S]*?)<\/cim:GeneratingUnit.lowControlLimit>/g, obj, "lowControlLimit", base.to_string, sub, context);
+
             /**
              * The normal maximum rate the generating unit active power output can be lowered by control actions.
              *
              */
-            obj["lowerRampRate"] = base.parse_element (/<cim:GeneratingUnit.lowerRampRate>([\s\S]*?)<\/cim:GeneratingUnit.lowerRampRate>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.lowerRampRate>([\s\S]*?)<\/cim:GeneratingUnit.lowerRampRate>/g, obj, "lowerRampRate", base.to_string, sub, context);
+
             /**
              * Maximum high economic active power limit, that should not exceed the maximum operating active power limit.
              *
              */
-            obj["maxEconomicP"] = base.parse_element (/<cim:GeneratingUnit.maxEconomicP>([\s\S]*?)<\/cim:GeneratingUnit.maxEconomicP>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.maxEconomicP>([\s\S]*?)<\/cim:GeneratingUnit.maxEconomicP>/g, obj, "maxEconomicP", base.to_string, sub, context);
+
             /**
              * Maximum allowable spinning reserve.
              *
              * Spinning reserve will never be considered greater than this value regardless of the current operating point.
              *
              */
-            obj["maximumAllowableSpinningReserve"] = base.parse_element (/<cim:GeneratingUnit.maximumAllowableSpinningReserve>([\s\S]*?)<\/cim:GeneratingUnit.maximumAllowableSpinningReserve>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.maximumAllowableSpinningReserve>([\s\S]*?)<\/cim:GeneratingUnit.maximumAllowableSpinningReserve>/g, obj, "maximumAllowableSpinningReserve", base.to_string, sub, context);
+
             /**
              * This is the maximum operating active power limit the dispatcher can enter for this unit.
              *
              */
-            obj["maxOperatingP"] = base.parse_element (/<cim:GeneratingUnit.maxOperatingP>([\s\S]*?)<\/cim:GeneratingUnit.maxOperatingP>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.maxOperatingP>([\s\S]*?)<\/cim:GeneratingUnit.maxOperatingP>/g, obj, "maxOperatingP", base.to_string, sub, context);
+
             /**
              * Low economic active power limit that must be greater than or equal to the minimum operating active power limit.
              *
              */
-            obj["minEconomicP"] = base.parse_element (/<cim:GeneratingUnit.minEconomicP>([\s\S]*?)<\/cim:GeneratingUnit.minEconomicP>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.minEconomicP>([\s\S]*?)<\/cim:GeneratingUnit.minEconomicP>/g, obj, "minEconomicP", base.to_string, sub, context);
+
             /**
              * Minimum time interval between unit shutdown and startup.
              *
              */
-            obj["minimumOffTime"] = base.parse_element (/<cim:GeneratingUnit.minimumOffTime>([\s\S]*?)<\/cim:GeneratingUnit.minimumOffTime>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.minimumOffTime>([\s\S]*?)<\/cim:GeneratingUnit.minimumOffTime>/g, obj, "minimumOffTime", base.to_string, sub, context);
+
             /**
              * This is the minimum operating active power limit the dispatcher can enter for this unit.
              *
              */
-            obj["minOperatingP"] = base.parse_element (/<cim:GeneratingUnit.minOperatingP>([\s\S]*?)<\/cim:GeneratingUnit.minOperatingP>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.minOperatingP>([\s\S]*?)<\/cim:GeneratingUnit.minOperatingP>/g, obj, "minOperatingP", base.to_string, sub, context);
+
             /**
              * Detail level of the generator model data.
              *
              */
-            obj["modelDetail"] = base.parse_element (/<cim:GeneratingUnit.modelDetail>([\s\S]*?)<\/cim:GeneratingUnit.modelDetail>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.modelDetail>([\s\S]*?)<\/cim:GeneratingUnit.modelDetail>/g, obj, "modelDetail", base.to_string, sub, context);
+
             /**
              * The nominal power of the generating unit.
              *
              * Used to give precise meaning to percentage based attributes such as the governor speed change droop (governorSCD attribute).
              *
              */
-            obj["nominalP"] = base.parse_element (/<cim:GeneratingUnit.nominalP>([\s\S]*?)<\/cim:GeneratingUnit.nominalP>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.nominalP>([\s\S]*?)<\/cim:GeneratingUnit.nominalP>/g, obj, "nominalP", base.to_string, sub, context);
+
             /**
              * Generating unit economic participation factor.
              *
              */
-            obj["normalPF"] = base.to_float (base.parse_element (/<cim:GeneratingUnit.normalPF>([\s\S]*?)<\/cim:GeneratingUnit.normalPF>/g, sub, context, true));
+            base.parse_element (/<cim:GeneratingUnit.normalPF>([\s\S]*?)<\/cim:GeneratingUnit.normalPF>/g, obj, "normalPF", base.to_float, sub, context);
+
             /**
              * Defined as: 1 / ( 1 - Incremental Transmission Loss); with the Incremental Transmission Loss expressed as a plus or minus value.
              *
              * The typical range of penalty factors is (0.9 to 1.1).
              *
              */
-            obj["penaltyFactor"] = base.to_float (base.parse_element (/<cim:GeneratingUnit.penaltyFactor>([\s\S]*?)<\/cim:GeneratingUnit.penaltyFactor>/g, sub, context, true));
+            base.parse_element (/<cim:GeneratingUnit.penaltyFactor>([\s\S]*?)<\/cim:GeneratingUnit.penaltyFactor>/g, obj, "penaltyFactor", base.to_float, sub, context);
+
             /**
              * The normal maximum rate the generating unit active power output can be raised by control actions.
              *
              */
-            obj["raiseRampRate"] = base.parse_element (/<cim:GeneratingUnit.raiseRampRate>([\s\S]*?)<\/cim:GeneratingUnit.raiseRampRate>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.raiseRampRate>([\s\S]*?)<\/cim:GeneratingUnit.raiseRampRate>/g, obj, "raiseRampRate", base.to_string, sub, context);
+
             /**
              * The unit's gross rated maximum capacity (book value).
              *
              */
-            obj["ratedGrossMaxP"] = base.parse_element (/<cim:GeneratingUnit.ratedGrossMaxP>([\s\S]*?)<\/cim:GeneratingUnit.ratedGrossMaxP>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.ratedGrossMaxP>([\s\S]*?)<\/cim:GeneratingUnit.ratedGrossMaxP>/g, obj, "ratedGrossMaxP", base.to_string, sub, context);
+
             /**
              * The gross rated minimum generation level which the unit can safely operate at while delivering power to the transmission grid.
              *
              */
-            obj["ratedGrossMinP"] = base.parse_element (/<cim:GeneratingUnit.ratedGrossMinP>([\s\S]*?)<\/cim:GeneratingUnit.ratedGrossMinP>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.ratedGrossMinP>([\s\S]*?)<\/cim:GeneratingUnit.ratedGrossMinP>/g, obj, "ratedGrossMinP", base.to_string, sub, context);
+
             /**
              * The net rated maximum capacity determined by subtracting the auxiliary power used to operate the internal plant machinery from the rated gross maximum capacity.
              *
              */
-            obj["ratedNetMaxP"] = base.parse_element (/<cim:GeneratingUnit.ratedNetMaxP>([\s\S]*?)<\/cim:GeneratingUnit.ratedNetMaxP>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.ratedNetMaxP>([\s\S]*?)<\/cim:GeneratingUnit.ratedNetMaxP>/g, obj, "ratedNetMaxP", base.to_string, sub, context);
+
             /**
              * Generating unit short term economic participation factor.
              *
              */
-            obj["shortPF"] = base.to_float (base.parse_element (/<cim:GeneratingUnit.shortPF>([\s\S]*?)<\/cim:GeneratingUnit.shortPF>/g, sub, context, true));
+            base.parse_element (/<cim:GeneratingUnit.shortPF>([\s\S]*?)<\/cim:GeneratingUnit.shortPF>/g, obj, "shortPF", base.to_float, sub, context);
+
             /**
              * The initial startup cost incurred for each start of the GeneratingUnit.
              *
              */
-            obj["startupCost"] = base.parse_element (/<cim:GeneratingUnit.startupCost>([\s\S]*?)<\/cim:GeneratingUnit.startupCost>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.startupCost>([\s\S]*?)<\/cim:GeneratingUnit.startupCost>/g, obj, "startupCost", base.to_string, sub, context);
+
             /**
              * Time it takes to get the unit on-line, from the time that the prime mover mechanical power is applied.
              *
              */
-            obj["startupTime"] = base.parse_element (/<cim:GeneratingUnit.startupTime>([\s\S]*?)<\/cim:GeneratingUnit.startupTime>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.startupTime>([\s\S]*?)<\/cim:GeneratingUnit.startupTime>/g, obj, "startupTime", base.to_string, sub, context);
+
             /**
              * Generating unit economic participation factor.
              *
              */
-            obj["tieLinePF"] = base.to_float (base.parse_element (/<cim:GeneratingUnit.tieLinePF>([\s\S]*?)<\/cim:GeneratingUnit.tieLinePF>/g, sub, context, true));
+            base.parse_element (/<cim:GeneratingUnit.tieLinePF>([\s\S]*?)<\/cim:GeneratingUnit.tieLinePF>/g, obj, "tieLinePF", base.to_float, sub, context);
+
             /**
              * The variable cost component of production per unit of ActivePower.
              *
              */
-            obj["variableCost"] = base.parse_element (/<cim:GeneratingUnit.variableCost>([\s\S]*?)<\/cim:GeneratingUnit.variableCost>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.variableCost>([\s\S]*?)<\/cim:GeneratingUnit.variableCost>/g, obj, "variableCost", base.to_string, sub, context);
+
             /**
              * The efficiency of the unit in converting the fuel into electrical energy.
              *
              */
-            obj["totalEfficiency"] = base.parse_element (/<cim:GeneratingUnit.totalEfficiency>([\s\S]*?)<\/cim:GeneratingUnit.totalEfficiency>/g, sub, context, true);
+            base.parse_element (/<cim:GeneratingUnit.totalEfficiency>([\s\S]*?)<\/cim:GeneratingUnit.totalEfficiency>/g, obj, "totalEfficiency", base.to_string, sub, context);
+
             /**
              * A generating unit may have an operating schedule, indicating the planned operation of the unit.
              *
              */
-            obj["GenUnitOpSchedule"] = base.parse_attribute (/<cim:GeneratingUnit.GenUnitOpSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:GeneratingUnit.GenUnitOpSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenUnitOpSchedule", sub, context, true);
+
             bucket = context.parsed.GeneratingUnit;
             if (null == bucket)
                 context.parsed.GeneratingUnit = bucket = {};
@@ -1519,57 +1676,68 @@ define
              * Water travel delay from tailbay to next downstream hydro power station.
              *
              */
-            obj["dischargeTravelDelay"] = base.parse_element (/<cim:HydroPowerPlant.dischargeTravelDelay>([\s\S]*?)<\/cim:HydroPowerPlant.dischargeTravelDelay>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPowerPlant.dischargeTravelDelay>([\s\S]*?)<\/cim:HydroPowerPlant.dischargeTravelDelay>/g, obj, "dischargeTravelDelay", base.to_string, sub, context);
+
             /**
              * The hydro plant's generating rating active power for rated head conditions.
              *
              */
-            obj["genRatedP"] = base.parse_element (/<cim:HydroPowerPlant.genRatedP>([\s\S]*?)<\/cim:HydroPowerPlant.genRatedP>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPowerPlant.genRatedP>([\s\S]*?)<\/cim:HydroPowerPlant.genRatedP>/g, obj, "genRatedP", base.to_string, sub, context);
+
             /**
              * The type of hydro power plant water storage.
              *
              */
-            obj["hydroPlantStorageType"] = base.parse_element (/<cim:HydroPowerPlant.hydroPlantStorageType>([\s\S]*?)<\/cim:HydroPowerPlant.hydroPlantStorageType>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPowerPlant.hydroPlantStorageType>([\s\S]*?)<\/cim:HydroPowerPlant.hydroPlantStorageType>/g, obj, "hydroPlantStorageType", base.to_string, sub, context);
+
             /**
              * Type and configuration of hydro plant penstock(s).
              *
              */
-            obj["penstockType"] = base.parse_element (/<cim:HydroPowerPlant.penstockType>([\s\S]*?)<\/cim:HydroPowerPlant.penstockType>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPowerPlant.penstockType>([\s\S]*?)<\/cim:HydroPowerPlant.penstockType>/g, obj, "penstockType", base.to_string, sub, context);
+
             /**
              * Total plant discharge capacity.
              *
              */
-            obj["plantDischargeCapacity"] = base.parse_element (/<cim:HydroPowerPlant.plantDischargeCapacity>([\s\S]*?)<\/cim:HydroPowerPlant.plantDischargeCapacity>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPowerPlant.plantDischargeCapacity>([\s\S]*?)<\/cim:HydroPowerPlant.plantDischargeCapacity>/g, obj, "plantDischargeCapacity", base.to_string, sub, context);
+
             /**
              * The plant's rated gross head.
              *
              */
-            obj["plantRatedHead"] = base.parse_element (/<cim:HydroPowerPlant.plantRatedHead>([\s\S]*?)<\/cim:HydroPowerPlant.plantRatedHead>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPowerPlant.plantRatedHead>([\s\S]*?)<\/cim:HydroPowerPlant.plantRatedHead>/g, obj, "plantRatedHead", base.to_string, sub, context);
+
             /**
              * The hydro plant's pumping rating active power for rated head conditions.
              *
              */
-            obj["pumpRatedP"] = base.parse_element (/<cim:HydroPowerPlant.pumpRatedP>([\s\S]*?)<\/cim:HydroPowerPlant.pumpRatedP>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPowerPlant.pumpRatedP>([\s\S]*?)<\/cim:HydroPowerPlant.pumpRatedP>/g, obj, "pumpRatedP", base.to_string, sub, context);
+
             /**
              * A code describing the type (or absence) of surge tank that is associated with the hydro power plant.
              *
              */
-            obj["surgeTankCode"] = base.parse_element (/<cim:HydroPowerPlant.surgeTankCode>([\s\S]*?)<\/cim:HydroPowerPlant.surgeTankCode>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPowerPlant.surgeTankCode>([\s\S]*?)<\/cim:HydroPowerPlant.surgeTankCode>/g, obj, "surgeTankCode", base.to_string, sub, context);
+
             /**
              * The level at which the surge tank spills.
              *
              */
-            obj["surgeTankCrestLevel"] = base.parse_element (/<cim:HydroPowerPlant.surgeTankCrestLevel>([\s\S]*?)<\/cim:HydroPowerPlant.surgeTankCrestLevel>/g, sub, context, true);
+            base.parse_element (/<cim:HydroPowerPlant.surgeTankCrestLevel>([\s\S]*?)<\/cim:HydroPowerPlant.surgeTankCrestLevel>/g, obj, "surgeTankCrestLevel", base.to_string, sub, context);
+
             /**
              * Generators discharge water to or pumps are supplied water from a downstream reservoir.
              *
              */
-            obj["Reservoir"] = base.parse_attribute (/<cim:HydroPowerPlant.Reservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:HydroPowerPlant.Reservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reservoir", sub, context, true);
+
             /**
              * Generators are supplied water from or pumps discharge water to an upstream reservoir.
              *
              */
-            obj["GenSourcePumpDischargeReservoir"] = base.parse_attribute (/<cim:HydroPowerPlant.GenSourcePumpDischargeReservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:HydroPowerPlant.GenSourcePumpDischargeReservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenSourcePumpDischargeReservoir", sub, context, true);
+
             bucket = context.parsed.HydroPowerPlant;
             if (null == bucket)
                 context.parsed.HydroPowerPlant = bucket = {};
@@ -1595,7 +1763,8 @@ define
              * The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
              *
              */
-            obj["HydroPump"] = base.parse_attribute (/<cim:HydroPumpOpSchedule.HydroPump\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:HydroPumpOpSchedule.HydroPump\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroPump", sub, context, true);
+
             bucket = context.parsed.HydroPumpOpSchedule;
             if (null == bucket)
                 context.parsed.HydroPumpOpSchedule = bucket = {};
@@ -1619,17 +1788,20 @@ define
              * Fixed shutdown cost.
              *
              */
-            obj["shutdownCost"] = base.parse_element (/<cim:ShutdownCurve.shutdownCost>([\s\S]*?)<\/cim:ShutdownCurve.shutdownCost>/g, sub, context, true);
+            base.parse_element (/<cim:ShutdownCurve.shutdownCost>([\s\S]*?)<\/cim:ShutdownCurve.shutdownCost>/g, obj, "shutdownCost", base.to_string, sub, context);
+
             /**
              * The date and time of the most recent generating unit shutdown.
              *
              */
-            obj["shutdownDate"] = base.to_datetime (base.parse_element (/<cim:ShutdownCurve.shutdownDate>([\s\S]*?)<\/cim:ShutdownCurve.shutdownDate>/g, sub, context, true));
+            base.parse_element (/<cim:ShutdownCurve.shutdownDate>([\s\S]*?)<\/cim:ShutdownCurve.shutdownDate>/g, obj, "shutdownDate", base.to_datetime, sub, context);
+
             /**
              * A thermal generating unit may have a shutdown curve.
              *
              */
-            obj["ThermalGeneratingUnit"] = base.parse_attribute (/<cim:ShutdownCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ShutdownCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context, true);
+
             bucket = context.parsed.ShutdownCurve;
             if (null == bucket)
                 context.parsed.ShutdownCurve = bucket = {};
@@ -1657,17 +1829,20 @@ define
              * The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfer dioxide).
              *
              */
-            obj["emissionType"] = base.parse_element (/<cim:EmissionAccount.emissionType>([\s\S]*?)<\/cim:EmissionAccount.emissionType>/g, sub, context, true);
+            base.parse_element (/<cim:EmissionAccount.emissionType>([\s\S]*?)<\/cim:EmissionAccount.emissionType>/g, obj, "emissionType", base.to_string, sub, context);
+
             /**
              * The source of the emission value.
              *
              */
-            obj["emissionValueSource"] = base.parse_element (/<cim:EmissionAccount.emissionValueSource>([\s\S]*?)<\/cim:EmissionAccount.emissionValueSource>/g, sub, context, true);
+            base.parse_element (/<cim:EmissionAccount.emissionValueSource>([\s\S]*?)<\/cim:EmissionAccount.emissionValueSource>/g, obj, "emissionValueSource", base.to_string, sub, context);
+
             /**
              * A thermal generating unit may have one or more emission allowance accounts.
              *
              */
-            obj["ThermalGeneratingUnit"] = base.parse_attribute (/<cim:EmissionAccount.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:EmissionAccount.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context, true);
+
             bucket = context.parsed.EmissionAccount;
             if (null == bucket)
                 context.parsed.EmissionAccount = bucket = {};
@@ -1693,32 +1868,38 @@ define
              * Power output - auxiliary power multiplier adjustment factor.
              *
              */
-            obj["auxPowerMult"] = base.parse_element (/<cim:HeatInputCurve.auxPowerMult>([\s\S]*?)<\/cim:HeatInputCurve.auxPowerMult>/g, sub, context, true);
+            base.parse_element (/<cim:HeatInputCurve.auxPowerMult>([\s\S]*?)<\/cim:HeatInputCurve.auxPowerMult>/g, obj, "auxPowerMult", base.to_string, sub, context);
+
             /**
              * Power output - auxiliary power offset adjustment factor.
              *
              */
-            obj["auxPowerOffset"] = base.parse_element (/<cim:HeatInputCurve.auxPowerOffset>([\s\S]*?)<\/cim:HeatInputCurve.auxPowerOffset>/g, sub, context, true);
+            base.parse_element (/<cim:HeatInputCurve.auxPowerOffset>([\s\S]*?)<\/cim:HeatInputCurve.auxPowerOffset>/g, obj, "auxPowerOffset", base.to_string, sub, context);
+
             /**
              * Heat input - efficiency multiplier adjustment factor.
              *
              */
-            obj["heatInputEff"] = base.parse_element (/<cim:HeatInputCurve.heatInputEff>([\s\S]*?)<\/cim:HeatInputCurve.heatInputEff>/g, sub, context, true);
+            base.parse_element (/<cim:HeatInputCurve.heatInputEff>([\s\S]*?)<\/cim:HeatInputCurve.heatInputEff>/g, obj, "heatInputEff", base.to_string, sub, context);
+
             /**
              * Heat input - offset adjustment factor.
              *
              */
-            obj["heatInputOffset"] = base.parse_element (/<cim:HeatInputCurve.heatInputOffset>([\s\S]*?)<\/cim:HeatInputCurve.heatInputOffset>/g, sub, context, true);
+            base.parse_element (/<cim:HeatInputCurve.heatInputOffset>([\s\S]*?)<\/cim:HeatInputCurve.heatInputOffset>/g, obj, "heatInputOffset", base.to_string, sub, context);
+
             /**
              * Flag is set to true when output is expressed in net active power.
              *
              */
-            obj["isNetGrossP"] = base.to_boolean (base.parse_element (/<cim:HeatInputCurve.isNetGrossP>([\s\S]*?)<\/cim:HeatInputCurve.isNetGrossP>/g, sub, context, true));
+            base.parse_element (/<cim:HeatInputCurve.isNetGrossP>([\s\S]*?)<\/cim:HeatInputCurve.isNetGrossP>/g, obj, "isNetGrossP", base.to_boolean, sub, context);
+
             /**
              * A thermal generating unit may have a heat input curve.
              *
              */
-            obj["ThermalGeneratingUnit"] = base.parse_attribute (/<cim:HeatInputCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:HeatInputCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context, true);
+
             bucket = context.parsed.HeatInputCurve;
             if (null == bucket)
                 context.parsed.HeatInputCurve = bucket = {};
@@ -1742,76 +1923,90 @@ define
              * Fixed maintenance cost.
              *
              */
-            obj["fixedMaintCost"] = base.parse_element (/<cim:StartupModel.fixedMaintCost>([\s\S]*?)<\/cim:StartupModel.fixedMaintCost>/g, sub, context, true);
+            base.parse_element (/<cim:StartupModel.fixedMaintCost>([\s\S]*?)<\/cim:StartupModel.fixedMaintCost>/g, obj, "fixedMaintCost", base.to_string, sub, context);
+
             /**
              * The amount of heat input per time uint required for hot standby operation.
              *
              */
-            obj["hotStandbyHeat"] = base.parse_element (/<cim:StartupModel.hotStandbyHeat>([\s\S]*?)<\/cim:StartupModel.hotStandbyHeat>/g, sub, context, true);
+            base.parse_element (/<cim:StartupModel.hotStandbyHeat>([\s\S]*?)<\/cim:StartupModel.hotStandbyHeat>/g, obj, "hotStandbyHeat", base.to_string, sub, context);
+
             /**
              * Incremental maintenance cost.
              *
              */
-            obj["incrementalMaintCost"] = base.parse_element (/<cim:StartupModel.incrementalMaintCost>([\s\S]*?)<\/cim:StartupModel.incrementalMaintCost>/g, sub, context, true);
+            base.parse_element (/<cim:StartupModel.incrementalMaintCost>([\s\S]*?)<\/cim:StartupModel.incrementalMaintCost>/g, obj, "incrementalMaintCost", base.to_string, sub, context);
+
             /**
              * The minimum number of hours the unit must be down before restart.
              *
              */
-            obj["minimumDownTime"] = base.parse_element (/<cim:StartupModel.minimumDownTime>([\s\S]*?)<\/cim:StartupModel.minimumDownTime>/g, sub, context, true);
+            base.parse_element (/<cim:StartupModel.minimumDownTime>([\s\S]*?)<\/cim:StartupModel.minimumDownTime>/g, obj, "minimumDownTime", base.to_string, sub, context);
+
             /**
              * The minimum number of hours the unit must be operating before being allowed to shut down.
              *
              */
-            obj["minimumRunTime"] = base.parse_element (/<cim:StartupModel.minimumRunTime>([\s\S]*?)<\/cim:StartupModel.minimumRunTime>/g, sub, context, true);
+            base.parse_element (/<cim:StartupModel.minimumRunTime>([\s\S]*?)<\/cim:StartupModel.minimumRunTime>/g, obj, "minimumRunTime", base.to_string, sub, context);
+
             /**
              * The opportunity cost associated with the return in monetary unit.
              *
              * This represents the restart's "share" of the unit depreciation and risk of an event which would damage the unit.
              *
              */
-            obj["riskFactorCost"] = base.parse_element (/<cim:StartupModel.riskFactorCost>([\s\S]*?)<\/cim:StartupModel.riskFactorCost>/g, sub, context, true);
+            base.parse_element (/<cim:StartupModel.riskFactorCost>([\s\S]*?)<\/cim:StartupModel.riskFactorCost>/g, obj, "riskFactorCost", base.to_string, sub, context);
+
             /**
              * Total miscellaneous start up costs.
              *
              */
-            obj["startupCost"] = base.parse_element (/<cim:StartupModel.startupCost>([\s\S]*?)<\/cim:StartupModel.startupCost>/g, sub, context, true);
+            base.parse_element (/<cim:StartupModel.startupCost>([\s\S]*?)<\/cim:StartupModel.startupCost>/g, obj, "startupCost", base.to_string, sub, context);
+
             /**
              * The date and time of the most recent generating unit startup.
              *
              */
-            obj["startupDate"] = base.to_datetime (base.parse_element (/<cim:StartupModel.startupDate>([\s\S]*?)<\/cim:StartupModel.startupDate>/g, sub, context, true));
+            base.parse_element (/<cim:StartupModel.startupDate>([\s\S]*?)<\/cim:StartupModel.startupDate>/g, obj, "startupDate", base.to_datetime, sub, context);
+
             /**
              * Startup priority within control area where lower numbers indicate higher priorities.
              *
              * More than one unit in an area may be assigned the same priority.
              *
              */
-            obj["startupPriority"] = base.parse_element (/<cim:StartupModel.startupPriority>([\s\S]*?)<\/cim:StartupModel.startupPriority>/g, sub, context, true);
+            base.parse_element (/<cim:StartupModel.startupPriority>([\s\S]*?)<\/cim:StartupModel.startupPriority>/g, obj, "startupPriority", base.to_string, sub, context);
+
             /**
              * The unit's auxiliary active power consumption to maintain standby mode.
              *
              */
-            obj["stbyAuxP"] = base.parse_element (/<cim:StartupModel.stbyAuxP>([\s\S]*?)<\/cim:StartupModel.stbyAuxP>/g, sub, context, true);
+            base.parse_element (/<cim:StartupModel.stbyAuxP>([\s\S]*?)<\/cim:StartupModel.stbyAuxP>/g, obj, "stbyAuxP", base.to_string, sub, context);
+
             /**
              * The unit's startup model may have a startup ignition fuel curve.
              *
              */
-            obj["StartIgnFuelCurve"] = base.parse_attribute (/<cim:StartupModel.StartIgnFuelCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:StartupModel.StartIgnFuelCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartIgnFuelCurve", sub, context, true);
+
             /**
              * A thermal generating unit may have a startup model.
              *
              */
-            obj["ThermalGeneratingUnit"] = base.parse_attribute (/<cim:StartupModel.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:StartupModel.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context, true);
+
             /**
              * The unit's startup model may have a startup main fuel curve.
              *
              */
-            obj["StartMainFuelCurve"] = base.parse_attribute (/<cim:StartupModel.StartMainFuelCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:StartupModel.StartMainFuelCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartMainFuelCurve", sub, context, true);
+
             /**
              * The unit's startup model may have a startup ramp curve.
              *
              */
-            obj["StartRampCurve"] = base.parse_attribute (/<cim:StartupModel.StartRampCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:StartupModel.StartRampCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartRampCurve", sub, context, true);
+
             bucket = context.parsed.StartupModel;
             if (null == bucket)
                 context.parsed.StartupModel = bucket = {};
@@ -1831,11 +2026,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "CostPerHeatUnit";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:CostPerHeatUnit.denominatorMultiplier>([\s\S]*?)<\/cim:CostPerHeatUnit.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:CostPerHeatUnit.denominatorUnit>([\s\S]*?)<\/cim:CostPerHeatUnit.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:CostPerHeatUnit.multiplier>([\s\S]*?)<\/cim:CostPerHeatUnit.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:CostPerHeatUnit.unit>([\s\S]*?)<\/cim:CostPerHeatUnit.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:CostPerHeatUnit.value>([\s\S]*?)<\/cim:CostPerHeatUnit.value>/g, sub, context, true));
+            base.parse_element (/<cim:CostPerHeatUnit.denominatorMultiplier>([\s\S]*?)<\/cim:CostPerHeatUnit.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostPerHeatUnit.denominatorUnit>([\s\S]*?)<\/cim:CostPerHeatUnit.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostPerHeatUnit.multiplier>([\s\S]*?)<\/cim:CostPerHeatUnit.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostPerHeatUnit.unit>([\s\S]*?)<\/cim:CostPerHeatUnit.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostPerHeatUnit.value>([\s\S]*?)<\/cim:CostPerHeatUnit.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.CostPerHeatUnit;
             if (null == bucket)
                 context.parsed.CostPerHeatUnit = bucket = {};
@@ -1859,7 +2059,8 @@ define
              * The combined cycle plant's active power output rating.
              *
              */
-            obj["combCyclePlantRating"] = base.parse_element (/<cim:CombinedCyclePlant.combCyclePlantRating>([\s\S]*?)<\/cim:CombinedCyclePlant.combCyclePlantRating>/g, sub, context, true);
+            base.parse_element (/<cim:CombinedCyclePlant.combCyclePlantRating>([\s\S]*?)<\/cim:CombinedCyclePlant.combCyclePlantRating>/g, obj, "combCyclePlantRating", base.to_string, sub, context);
+
             bucket = context.parsed.CombinedCyclePlant;
             if (null == bucket)
                 context.parsed.CombinedCyclePlant = bucket = {};
@@ -1885,17 +2086,20 @@ define
              * High target level limit, above which the reservoir operation will be penalized.
              *
              */
-            obj["highLevelLimit"] = base.parse_element (/<cim:TargetLevelSchedule.highLevelLimit>([\s\S]*?)<\/cim:TargetLevelSchedule.highLevelLimit>/g, sub, context, true);
+            base.parse_element (/<cim:TargetLevelSchedule.highLevelLimit>([\s\S]*?)<\/cim:TargetLevelSchedule.highLevelLimit>/g, obj, "highLevelLimit", base.to_string, sub, context);
+
             /**
              * Low target level limit, below which the reservoir operation will be penalized.
              *
              */
-            obj["lowLevelLimit"] = base.parse_element (/<cim:TargetLevelSchedule.lowLevelLimit>([\s\S]*?)<\/cim:TargetLevelSchedule.lowLevelLimit>/g, sub, context, true);
+            base.parse_element (/<cim:TargetLevelSchedule.lowLevelLimit>([\s\S]*?)<\/cim:TargetLevelSchedule.lowLevelLimit>/g, obj, "lowLevelLimit", base.to_string, sub, context);
+
             /**
              * A reservoir may have a water level target schedule.
              *
              */
-            obj["Reservoir"] = base.parse_attribute (/<cim:TargetLevelSchedule.Reservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TargetLevelSchedule.Reservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reservoir", sub, context, true);
+
             bucket = context.parsed.TargetLevelSchedule;
             if (null == bucket)
                 context.parsed.TargetLevelSchedule = bucket = {};
@@ -1919,47 +2123,56 @@ define
              * Operating and maintenance cost for the thermal unit.
              *
              */
-            obj["oMCost"] = base.parse_element (/<cim:ThermalGeneratingUnit.oMCost>([\s\S]*?)<\/cim:ThermalGeneratingUnit.oMCost>/g, sub, context, true);
+            base.parse_element (/<cim:ThermalGeneratingUnit.oMCost>([\s\S]*?)<\/cim:ThermalGeneratingUnit.oMCost>/g, obj, "oMCost", base.to_string, sub, context);
+
             /**
              * A thermal generating unit may have a shutdown curve.
              *
              */
-            obj["ShutdownCurve"] = base.parse_attribute (/<cim:ThermalGeneratingUnit.ShutdownCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ThermalGeneratingUnit.ShutdownCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ShutdownCurve", sub, context, true);
+
             /**
              * A thermal generating unit may be a member of a cogeneration plant.
              *
              */
-            obj["CogenerationPlant"] = base.parse_attribute (/<cim:ThermalGeneratingUnit.CogenerationPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ThermalGeneratingUnit.CogenerationPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CogenerationPlant", sub, context, true);
+
             /**
              * A thermal generating unit may have a heat rate curve.
              *
              */
-            obj["HeatRateCurve"] = base.parse_attribute (/<cim:ThermalGeneratingUnit.HeatRateCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ThermalGeneratingUnit.HeatRateCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HeatRateCurve", sub, context, true);
+
             /**
              * A thermal generating unit may be a member of a compressed air energy storage plant.
              *
              */
-            obj["CAESPlant"] = base.parse_attribute (/<cim:ThermalGeneratingUnit.CAESPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ThermalGeneratingUnit.CAESPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CAESPlant", sub, context, true);
+
             /**
              * A thermal generating unit may have a startup model.
              *
              */
-            obj["StartupModel"] = base.parse_attribute (/<cim:ThermalGeneratingUnit.StartupModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ThermalGeneratingUnit.StartupModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartupModel", sub, context, true);
+
             /**
              * A thermal generating unit may be a member of a combined cycle plant.
              *
              */
-            obj["CombinedCyclePlant"] = base.parse_attribute (/<cim:ThermalGeneratingUnit.CombinedCyclePlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ThermalGeneratingUnit.CombinedCyclePlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CombinedCyclePlant", sub, context, true);
+
             /**
              * A thermal generating unit may have an incremental heat rate curve.
              *
              */
-            obj["IncrementalHeatRateCurve"] = base.parse_attribute (/<cim:ThermalGeneratingUnit.IncrementalHeatRateCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ThermalGeneratingUnit.IncrementalHeatRateCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IncrementalHeatRateCurve", sub, context, true);
+
             /**
              * A thermal generating unit may have a heat input curve.
              *
              */
-            obj["HeatInputCurve"] = base.parse_attribute (/<cim:ThermalGeneratingUnit.HeatInputCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ThermalGeneratingUnit.HeatInputCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HeatInputCurve", sub, context, true);
+
             bucket = context.parsed.ThermalGeneratingUnit;
             if (null == bucket)
                 context.parsed.ThermalGeneratingUnit = bucket = {};
@@ -1985,7 +2198,8 @@ define
              * A reservoir may have a "natural" inflow forecast.
              *
              */
-            obj["Reservoir"] = base.parse_attribute (/<cim:InflowForecast.Reservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:InflowForecast.Reservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reservoir", sub, context, true);
+
             bucket = context.parsed.InflowForecast;
             if (null == bucket)
                 context.parsed.InflowForecast = bucket = {};

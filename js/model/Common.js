@@ -23,7 +23,8 @@ define
              * Crew to which this crew member belongs.
              *
              */
-            obj["Crew"] = base.parse_attribute (/<cim:CrewMember.Crew\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:CrewMember.Crew\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Crew", sub, context, true);
+
             bucket = context.parsed.CrewMember;
             if (null == bucket)
                 context.parsed.CrewMember = bucket = {};
@@ -49,63 +50,74 @@ define
              * Name of the author of this document.
              *
              */
-            obj["authorName"] = base.parse_element (/<cim:Document.authorName>([\s\S]*?)<\/cim:Document.authorName>/g, sub, context, true);
+            base.parse_element (/<cim:Document.authorName>([\s\S]*?)<\/cim:Document.authorName>/g, obj, "authorName", base.to_string, sub, context);
+
             /**
              * Date and time that this document was created.
              *
              */
-            obj["createdDateTime"] = base.to_datetime (base.parse_element (/<cim:Document.createdDateTime>([\s\S]*?)<\/cim:Document.createdDateTime>/g, sub, context, true));
+            base.parse_element (/<cim:Document.createdDateTime>([\s\S]*?)<\/cim:Document.createdDateTime>/g, obj, "createdDateTime", base.to_datetime, sub, context);
+
             /**
              * Status of this document.
              *
              * For status of subject matter this document represents (e.g., Agreement, Work), use 'status' attribute.
              *
              */
-            obj["docStatus"] = base.parse_element (/<cim:Document.docStatus>([\s\S]*?)<\/cim:Document.docStatus>/g, sub, context, true);
+            base.parse_element (/<cim:Document.docStatus>([\s\S]*?)<\/cim:Document.docStatus>/g, obj, "docStatus", base.to_string, sub, context);
+
             /**
              * Electronic address.
              *
              */
-            obj["electronicAddress"] = base.parse_element (/<cim:Document.electronicAddress>([\s\S]*?)<\/cim:Document.electronicAddress>/g, sub, context, true);
+            base.parse_element (/<cim:Document.electronicAddress>([\s\S]*?)<\/cim:Document.electronicAddress>/g, obj, "electronicAddress", base.to_string, sub, context);
+
             /**
              * Date and time this document was last modified.
              *
              * Documents may potentially be modified many times during their lifetime.
              *
              */
-            obj["lastModifiedDateTime"] = base.to_datetime (base.parse_element (/<cim:Document.lastModifiedDateTime>([\s\S]*?)<\/cim:Document.lastModifiedDateTime>/g, sub, context, true));
+            base.parse_element (/<cim:Document.lastModifiedDateTime>([\s\S]*?)<\/cim:Document.lastModifiedDateTime>/g, obj, "lastModifiedDateTime", base.to_datetime, sub, context);
+
             /**
              * Revision number for this document.
              *
              */
-            obj["revisionNumber"] = base.parse_element (/<cim:Document.revisionNumber>([\s\S]*?)<\/cim:Document.revisionNumber>/g, sub, context, true);
+            base.parse_element (/<cim:Document.revisionNumber>([\s\S]*?)<\/cim:Document.revisionNumber>/g, obj, "revisionNumber", base.to_string, sub, context);
+
             /**
              * Status of subject matter (e.g., Agreement, Work) this document represents.
              *
              * For status of the document itself, use 'docStatus' attribute.
              *
              */
-            obj["status"] = base.parse_element (/<cim:Document.status>([\s\S]*?)<\/cim:Document.status>/g, sub, context, true);
+            base.parse_element (/<cim:Document.status>([\s\S]*?)<\/cim:Document.status>/g, obj, "status", base.to_string, sub, context);
+
             /**
              * Document subject.
              *
              */
-            obj["subject"] = base.parse_element (/<cim:Document.subject>([\s\S]*?)<\/cim:Document.subject>/g, sub, context, true);
+            base.parse_element (/<cim:Document.subject>([\s\S]*?)<\/cim:Document.subject>/g, obj, "subject", base.to_string, sub, context);
+
             /**
              * Document title.
              *
              */
-            obj["title"] = base.parse_element (/<cim:Document.title>([\s\S]*?)<\/cim:Document.title>/g, sub, context, true);
+            base.parse_element (/<cim:Document.title>([\s\S]*?)<\/cim:Document.title>/g, obj, "title", base.to_string, sub, context);
+
             /**
              * Utility-specific classification of this document, according to its corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
              *
              */
-            obj["type"] = base.parse_element (/<cim:Document.type>([\s\S]*?)<\/cim:Document.type>/g, sub, context, true);
+            base.parse_element (/<cim:Document.type>([\s\S]*?)<\/cim:Document.type>/g, obj, "type", base.to_string, sub, context);
+
             /**
              * Free text comment.
              *
              */
-            obj["comment"] = base.parse_element (/<cim:Document.comment>([\s\S]*?)<\/cim:Document.comment>/g, sub, context, true);
+            base.parse_element (/<cim:Document.comment>([\s\S]*?)<\/cim:Document.comment>/g, obj, "comment", base.to_string, sub, context);
+
             bucket = context.parsed.Document;
             if (null == bucket)
                 context.parsed.Document = bucket = {};
@@ -129,17 +141,20 @@ define
              * Status of this address.
              *
              */
-            obj["status"] = base.parse_element (/<cim:StreetAddress.status>([\s\S]*?)<\/cim:StreetAddress.status>/g, sub, context, true);
+            base.parse_element (/<cim:StreetAddress.status>([\s\S]*?)<\/cim:StreetAddress.status>/g, obj, "status", base.to_string, sub, context);
+
             /**
              * Street detail.
              *
              */
-            obj["streetDetail"] = base.parse_element (/<cim:StreetAddress.streetDetail>([\s\S]*?)<\/cim:StreetAddress.streetDetail>/g, sub, context, true);
+            base.parse_element (/<cim:StreetAddress.streetDetail>([\s\S]*?)<\/cim:StreetAddress.streetDetail>/g, obj, "streetDetail", base.to_string, sub, context);
+
             /**
              * Town detail.
              *
              */
-            obj["townDetail"] = base.parse_element (/<cim:StreetAddress.townDetail>([\s\S]*?)<\/cim:StreetAddress.townDetail>/g, sub, context, true);
+            base.parse_element (/<cim:StreetAddress.townDetail>([\s\S]*?)<\/cim:StreetAddress.townDetail>/g, obj, "townDetail", base.to_string, sub, context);
+
             bucket = context.parsed.StreetAddress;
             if (null == bucket)
                 context.parsed.StreetAddress = bucket = {};
@@ -163,7 +178,8 @@ define
              * Organisation having this role.
              *
              */
-            obj["Organisation"] = base.parse_attribute (/<cim:OrganisationRole.Organisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:OrganisationRole.Organisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Organisation", sub, context, true);
+
             bucket = context.parsed.OrganisationRole;
             if (null == bucket)
                 context.parsed.OrganisationRole = bucket = {};
@@ -187,42 +203,50 @@ define
              * Primary email address.
              *
              */
-            obj["email1"] = base.parse_element (/<cim:ElectronicAddress.email1>([\s\S]*?)<\/cim:ElectronicAddress.email1>/g, sub, context, true);
+            base.parse_element (/<cim:ElectronicAddress.email1>([\s\S]*?)<\/cim:ElectronicAddress.email1>/g, obj, "email1", base.to_string, sub, context);
+
             /**
              * Alternate email address.
              *
              */
-            obj["email2"] = base.parse_element (/<cim:ElectronicAddress.email2>([\s\S]*?)<\/cim:ElectronicAddress.email2>/g, sub, context, true);
+            base.parse_element (/<cim:ElectronicAddress.email2>([\s\S]*?)<\/cim:ElectronicAddress.email2>/g, obj, "email2", base.to_string, sub, context);
+
             /**
              * Address on local area network.
              *
              */
-            obj["lan"] = base.parse_element (/<cim:ElectronicAddress.lan>([\s\S]*?)<\/cim:ElectronicAddress.lan>/g, sub, context, true);
+            base.parse_element (/<cim:ElectronicAddress.lan>([\s\S]*?)<\/cim:ElectronicAddress.lan>/g, obj, "lan", base.to_string, sub, context);
+
             /**
              * MAC (Media Access Control) address.
              *
              */
-            obj["mac"] = base.parse_element (/<cim:ElectronicAddress.mac>([\s\S]*?)<\/cim:ElectronicAddress.mac>/g, sub, context, true);
+            base.parse_element (/<cim:ElectronicAddress.mac>([\s\S]*?)<\/cim:ElectronicAddress.mac>/g, obj, "mac", base.to_string, sub, context);
+
             /**
              * Password needed to log in.
              *
              */
-            obj["password"] = base.parse_element (/<cim:ElectronicAddress.password>([\s\S]*?)<\/cim:ElectronicAddress.password>/g, sub, context, true);
+            base.parse_element (/<cim:ElectronicAddress.password>([\s\S]*?)<\/cim:ElectronicAddress.password>/g, obj, "password", base.to_string, sub, context);
+
             /**
              * Radio address.
              *
              */
-            obj["radio"] = base.parse_element (/<cim:ElectronicAddress.radio>([\s\S]*?)<\/cim:ElectronicAddress.radio>/g, sub, context, true);
+            base.parse_element (/<cim:ElectronicAddress.radio>([\s\S]*?)<\/cim:ElectronicAddress.radio>/g, obj, "radio", base.to_string, sub, context);
+
             /**
              * User ID needed to log in, which can be for an individual person, an organisation, a location, etc.
              *
              */
-            obj["userID"] = base.parse_element (/<cim:ElectronicAddress.userID>([\s\S]*?)<\/cim:ElectronicAddress.userID>/g, sub, context, true);
+            base.parse_element (/<cim:ElectronicAddress.userID>([\s\S]*?)<\/cim:ElectronicAddress.userID>/g, obj, "userID", base.to_string, sub, context);
+
             /**
              * World wide web address.
              *
              */
-            obj["web"] = base.parse_element (/<cim:ElectronicAddress.web>([\s\S]*?)<\/cim:ElectronicAddress.web>/g, sub, context, true);
+            base.parse_element (/<cim:ElectronicAddress.web>([\s\S]*?)<\/cim:ElectronicAddress.web>/g, obj, "web", base.to_string, sub, context);
+
             bucket = context.parsed.ElectronicAddress;
             if (null == bucket)
                 context.parsed.ElectronicAddress = bucket = {};
@@ -246,12 +270,14 @@ define
              * Status of this crew.
              *
              */
-            obj["status"] = base.parse_element (/<cim:Crew.status>([\s\S]*?)<\/cim:Crew.status>/g, sub, context, true);
+            base.parse_element (/<cim:Crew.status>([\s\S]*?)<\/cim:Crew.status>/g, obj, "status", base.to_string, sub, context);
+
             /**
              * Type of this crew.
              *
              */
-            obj["CrewType"] = base.parse_attribute (/<cim:Crew.CrewType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Crew.CrewType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CrewType", sub, context, true);
+
             bucket = context.parsed.Crew;
             if (null == bucket)
                 context.parsed.Crew = bucket = {};
@@ -296,31 +322,36 @@ define
              * True if this schedule is deactivated (disabled).
              *
              */
-            obj["disabled"] = base.to_boolean (base.parse_element (/<cim:TimeSchedule.disabled>([\s\S]*?)<\/cim:TimeSchedule.disabled>/g, sub, context, true));
+            base.parse_element (/<cim:TimeSchedule.disabled>([\s\S]*?)<\/cim:TimeSchedule.disabled>/g, obj, "disabled", base.to_boolean, sub, context);
+
             /**
              * The offset from midnight (i.e., 0 h, 0 min, 0 s) for the periodic time points to begin.
              *
              * For example, for an interval meter that is set up for five minute intervals ('recurrencePeriod'=300=5 min), setting 'offset'=120=2 min would result in scheduled events to read the meter executing at 2 min, 7 min, 12 min, 17 min, 22 min, 27 min, 32 min, 37 min, 42 min, 47 min, 52 min, and 57 min past each hour.
              *
              */
-            obj["offset"] = base.parse_element (/<cim:TimeSchedule.offset>([\s\S]*?)<\/cim:TimeSchedule.offset>/g, sub, context, true);
+            base.parse_element (/<cim:TimeSchedule.offset>([\s\S]*?)<\/cim:TimeSchedule.offset>/g, obj, "offset", base.to_string, sub, context);
+
             /**
              * Interval at which the scheduled action repeats (e.g., first Monday of every month, last day of the month, etc.).
              *
              */
-            obj["recurrencePattern"] = base.parse_element (/<cim:TimeSchedule.recurrencePattern>([\s\S]*?)<\/cim:TimeSchedule.recurrencePattern>/g, sub, context, true);
+            base.parse_element (/<cim:TimeSchedule.recurrencePattern>([\s\S]*?)<\/cim:TimeSchedule.recurrencePattern>/g, obj, "recurrencePattern", base.to_string, sub, context);
+
             /**
              * Duration between time points, from the beginning of one period to the beginning of the next period.
              *
              * Note that a device like a meter may have multiple interval periods (e.g., 1 min, 5 min, 15 min, 30 min, or 60 min).
              *
              */
-            obj["recurrencePeriod"] = base.parse_element (/<cim:TimeSchedule.recurrencePeriod>([\s\S]*?)<\/cim:TimeSchedule.recurrencePeriod>/g, sub, context, true);
+            base.parse_element (/<cim:TimeSchedule.recurrencePeriod>([\s\S]*?)<\/cim:TimeSchedule.recurrencePeriod>/g, obj, "recurrencePeriod", base.to_string, sub, context);
+
             /**
              * Schedule date and time interval.
              *
              */
-            obj["scheduleInterval"] = base.parse_element (/<cim:TimeSchedule.scheduleInterval>([\s\S]*?)<\/cim:TimeSchedule.scheduleInterval>/g, sub, context, true);
+            base.parse_element (/<cim:TimeSchedule.scheduleInterval>([\s\S]*?)<\/cim:TimeSchedule.scheduleInterval>/g, obj, "scheduleInterval", base.to_string, sub, context);
+
             bucket = context.parsed.TimeSchedule;
             if (null == bucket)
                 context.parsed.TimeSchedule = bucket = {};
@@ -346,12 +377,14 @@ define
              * Date this agreement was consummated among associated persons and/or organisations.
              *
              */
-            obj["signDate"] = base.parse_element (/<cim:Agreement.signDate>([\s\S]*?)<\/cim:Agreement.signDate>/g, sub, context, true);
+            base.parse_element (/<cim:Agreement.signDate>([\s\S]*?)<\/cim:Agreement.signDate>/g, obj, "signDate", base.to_string, sub, context);
+
             /**
              * Date and time interval this agreement is valid (from going into effect to termination).
              *
              */
-            obj["validityInterval"] = base.parse_element (/<cim:Agreement.validityInterval>([\s\S]*?)<\/cim:Agreement.validityInterval>/g, sub, context, true);
+            base.parse_element (/<cim:Agreement.validityInterval>([\s\S]*?)<\/cim:Agreement.validityInterval>/g, obj, "validityInterval", base.to_string, sub, context);
+
             bucket = context.parsed.Agreement;
             if (null == bucket)
                 context.parsed.Agreement = bucket = {};
@@ -375,18 +408,22 @@ define
              * Duration of the scheduled event, for example, the time to ramp between values.
              *
              */
-            obj["duration"] = base.parse_element (/<cim:ScheduledEvent.duration>([\s\S]*?)<\/cim:ScheduledEvent.duration>/g, sub, context, true);
-            obj["status"] = base.parse_element (/<cim:ScheduledEvent.status>([\s\S]*?)<\/cim:ScheduledEvent.status>/g, sub, context, true);
+            base.parse_element (/<cim:ScheduledEvent.duration>([\s\S]*?)<\/cim:ScheduledEvent.duration>/g, obj, "duration", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ScheduledEvent.status>([\s\S]*?)<\/cim:ScheduledEvent.status>/g, obj, "status", base.to_string, sub, context);
+
             /**
              * Type of scheduled event.
              *
              */
-            obj["type"] = base.parse_element (/<cim:ScheduledEvent.type>([\s\S]*?)<\/cim:ScheduledEvent.type>/g, sub, context, true);
+            base.parse_element (/<cim:ScheduledEvent.type>([\s\S]*?)<\/cim:ScheduledEvent.type>/g, obj, "type", base.to_string, sub, context);
+
             /**
              * Specification for this scheduled event.
              *
              */
-            obj["ScheduledEventData"] = base.parse_attribute (/<cim:ScheduledEvent.ScheduledEventData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ScheduledEvent.ScheduledEventData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ScheduledEventData", sub, context, true);
+
             bucket = context.parsed.ScheduledEvent;
             if (null == bucket)
                 context.parsed.ScheduledEvent = bucket = {};
@@ -410,17 +447,20 @@ define
              * Justification for 'rank'.
              *
              */
-            obj["justification"] = base.parse_element (/<cim:Priority.justification>([\s\S]*?)<\/cim:Priority.justification>/g, sub, context, true);
+            base.parse_element (/<cim:Priority.justification>([\s\S]*?)<\/cim:Priority.justification>/g, obj, "justification", base.to_string, sub, context);
+
             /**
              * Priority level; usually, lower number means high priority, but the details are provided in 'type'.
              *
              */
-            obj["rank"] = base.parse_element (/<cim:Priority.rank>([\s\S]*?)<\/cim:Priority.rank>/g, sub, context, true);
+            base.parse_element (/<cim:Priority.rank>([\s\S]*?)<\/cim:Priority.rank>/g, obj, "rank", base.to_string, sub, context);
+
             /**
              * Type describing 'rank'; e.g., high, emergency, etc.
              *
              */
-            obj["type"] = base.parse_element (/<cim:Priority.type>([\s\S]*?)<\/cim:Priority.type>/g, sub, context, true);
+            base.parse_element (/<cim:Priority.type>([\s\S]*?)<\/cim:Priority.type>/g, obj, "type", base.to_string, sub, context);
+
             bucket = context.parsed.Priority;
             if (null == bucket)
                 context.parsed.Priority = bucket = {};
@@ -446,32 +486,38 @@ define
              * For calendar-based time point, it is typically manually entered, while for interval-based or sequence-based time point it is derived.
              *
              */
-            obj["dateTime"] = base.to_datetime (base.parse_element (/<cim:TimePoint.dateTime>([\s\S]*?)<\/cim:TimePoint.dateTime>/g, sub, context, true));
+            base.parse_element (/<cim:TimePoint.dateTime>([\s\S]*?)<\/cim:TimePoint.dateTime>/g, obj, "dateTime", base.to_datetime, sub, context);
+
             /**
              * (if interval-based) A point in time relative to scheduled start time in 'TimeSchedule.scheduleInterval.start'.
              *
              */
-            obj["relativeTimeInterval"] = base.parse_element (/<cim:TimePoint.relativeTimeInterval>([\s\S]*?)<\/cim:TimePoint.relativeTimeInterval>/g, sub, context, true);
+            base.parse_element (/<cim:TimePoint.relativeTimeInterval>([\s\S]*?)<\/cim:TimePoint.relativeTimeInterval>/g, obj, "relativeTimeInterval", base.to_string, sub, context);
+
             /**
              * (if sequence-based) Relative sequence number for this time point.
              *
              */
-            obj["sequenceNumber"] = base.parse_element (/<cim:TimePoint.sequenceNumber>([\s\S]*?)<\/cim:TimePoint.sequenceNumber>/g, sub, context, true);
+            base.parse_element (/<cim:TimePoint.sequenceNumber>([\s\S]*?)<\/cim:TimePoint.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
+
             /**
              * Status of this time point.
              *
              */
-            obj["status"] = base.parse_element (/<cim:TimePoint.status>([\s\S]*?)<\/cim:TimePoint.status>/g, sub, context, true);
+            base.parse_element (/<cim:TimePoint.status>([\s\S]*?)<\/cim:TimePoint.status>/g, obj, "status", base.to_string, sub, context);
+
             /**
              * Interval defining the window of time that this time point is valid (for example, seasonal, only on weekends, not on weekends, only 8:00 am to 5:00 pm, etc.).
              *
              */
-            obj["window"] = base.parse_element (/<cim:TimePoint.window>([\s\S]*?)<\/cim:TimePoint.window>/g, sub, context, true);
+            base.parse_element (/<cim:TimePoint.window>([\s\S]*?)<\/cim:TimePoint.window>/g, obj, "window", base.to_string, sub, context);
+
             /**
              * Time schedule owning this time point.
              *
              */
-            obj["TimeSchedule"] = base.parse_attribute (/<cim:TimePoint.TimeSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TimePoint.TimeSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSchedule", sub, context, true);
+
             bucket = context.parsed.TimePoint;
             if (null == bucket)
                 context.parsed.TimePoint = bucket = {};
@@ -495,27 +541,32 @@ define
              * Date and time this activity record has been created (different from the 'status.dateTime', which is the time of a status change of the associated object, if applicable).
              *
              */
-            obj["createdDateTime"] = base.to_datetime (base.parse_element (/<cim:ActivityRecord.createdDateTime>([\s\S]*?)<\/cim:ActivityRecord.createdDateTime>/g, sub, context, true));
+            base.parse_element (/<cim:ActivityRecord.createdDateTime>([\s\S]*?)<\/cim:ActivityRecord.createdDateTime>/g, obj, "createdDateTime", base.to_datetime, sub, context);
+
             /**
              * Reason for event resulting in this activity record, typically supplied when user initiated.
              *
              */
-            obj["reason"] = base.parse_element (/<cim:ActivityRecord.reason>([\s\S]*?)<\/cim:ActivityRecord.reason>/g, sub, context, true);
+            base.parse_element (/<cim:ActivityRecord.reason>([\s\S]*?)<\/cim:ActivityRecord.reason>/g, obj, "reason", base.to_string, sub, context);
+
             /**
              * Severity level of event resulting in this activity record.
              *
              */
-            obj["severity"] = base.parse_element (/<cim:ActivityRecord.severity>([\s\S]*?)<\/cim:ActivityRecord.severity>/g, sub, context, true);
+            base.parse_element (/<cim:ActivityRecord.severity>([\s\S]*?)<\/cim:ActivityRecord.severity>/g, obj, "severity", base.to_string, sub, context);
+
             /**
              * Information on consequence of event resulting in this activity record.
              *
              */
-            obj["status"] = base.parse_element (/<cim:ActivityRecord.status>([\s\S]*?)<\/cim:ActivityRecord.status>/g, sub, context, true);
+            base.parse_element (/<cim:ActivityRecord.status>([\s\S]*?)<\/cim:ActivityRecord.status>/g, obj, "status", base.to_string, sub, context);
+
             /**
              * Type of event resulting in this activity record.
              *
              */
-            obj["type"] = base.parse_element (/<cim:ActivityRecord.type>([\s\S]*?)<\/cim:ActivityRecord.type>/g, sub, context, true);
+            base.parse_element (/<cim:ActivityRecord.type>([\s\S]*?)<\/cim:ActivityRecord.type>/g, obj, "type", base.to_string, sub, context);
+
             bucket = context.parsed.ActivityRecord;
             if (null == bucket)
                 context.parsed.ActivityRecord = bucket = {};
@@ -539,22 +590,26 @@ define
              * Post office box.
              *
              */
-            obj["poBox"] = base.parse_element (/<cim:PostalAddress.poBox>([\s\S]*?)<\/cim:PostalAddress.poBox>/g, sub, context, true);
+            base.parse_element (/<cim:PostalAddress.poBox>([\s\S]*?)<\/cim:PostalAddress.poBox>/g, obj, "poBox", base.to_string, sub, context);
+
             /**
              * Postal code for the address.
              *
              */
-            obj["postalCode"] = base.parse_element (/<cim:PostalAddress.postalCode>([\s\S]*?)<\/cim:PostalAddress.postalCode>/g, sub, context, true);
+            base.parse_element (/<cim:PostalAddress.postalCode>([\s\S]*?)<\/cim:PostalAddress.postalCode>/g, obj, "postalCode", base.to_string, sub, context);
+
             /**
              * Street detail.
              *
              */
-            obj["streetDetail"] = base.parse_element (/<cim:PostalAddress.streetDetail>([\s\S]*?)<\/cim:PostalAddress.streetDetail>/g, sub, context, true);
+            base.parse_element (/<cim:PostalAddress.streetDetail>([\s\S]*?)<\/cim:PostalAddress.streetDetail>/g, obj, "streetDetail", base.to_string, sub, context);
+
             /**
              * Town detail.
              *
              */
-            obj["townDetail"] = base.parse_element (/<cim:PostalAddress.townDetail>([\s\S]*?)<\/cim:PostalAddress.townDetail>/g, sub, context, true);
+            base.parse_element (/<cim:PostalAddress.townDetail>([\s\S]*?)<\/cim:PostalAddress.townDetail>/g, obj, "townDetail", base.to_string, sub, context);
+
             bucket = context.parsed.PostalAddress;
             if (null == bucket)
                 context.parsed.PostalAddress = bucket = {};
@@ -574,7 +629,8 @@ define
              * Person having this role.
              *
              */
-            obj["Person"] = base.parse_attribute (/<cim:PersonRole.Person\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:PersonRole.Person\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Person", sub, context, true);
+
             bucket = context.parsed.PersonRole;
             if (null == bucket)
                 context.parsed.PersonRole = bucket = {};
@@ -600,7 +656,8 @@ define
              * PositionPoints'.
              *
              */
-            obj["crsUrn"] = base.parse_element (/<cim:CoordinateSystem.crsUrn>([\s\S]*?)<\/cim:CoordinateSystem.crsUrn>/g, sub, context, true);
+            base.parse_element (/<cim:CoordinateSystem.crsUrn>([\s\S]*?)<\/cim:CoordinateSystem.crsUrn>/g, obj, "crsUrn", base.to_string, sub, context);
+
             bucket = context.parsed.CoordinateSystem;
             if (null == bucket)
                 context.parsed.CoordinateSystem = bucket = {};
@@ -624,12 +681,14 @@ define
              * Status of this hazard.
              *
              */
-            obj["status"] = base.parse_element (/<cim:Hazard.status>([\s\S]*?)<\/cim:Hazard.status>/g, sub, context, true);
+            base.parse_element (/<cim:Hazard.status>([\s\S]*?)<\/cim:Hazard.status>/g, obj, "status", base.to_string, sub, context);
+
             /**
              * Type of this hazard.
              *
              */
-            obj["type"] = base.parse_element (/<cim:Hazard.type>([\s\S]*?)<\/cim:Hazard.type>/g, sub, context, true);
+            base.parse_element (/<cim:Hazard.type>([\s\S]*?)<\/cim:Hazard.type>/g, obj, "type", base.to_string, sub, context);
+
             bucket = context.parsed.Hazard;
             if (null == bucket)
                 context.parsed.Hazard = bucket = {};
@@ -653,29 +712,34 @@ define
              * Town code.
              *
              */
-            obj["code"] = base.parse_element (/<cim:TownDetail.code>([\s\S]*?)<\/cim:TownDetail.code>/g, sub, context, true);
+            base.parse_element (/<cim:TownDetail.code>([\s\S]*?)<\/cim:TownDetail.code>/g, obj, "code", base.to_string, sub, context);
+
             /**
              * Name of the country.
              *
              */
-            obj["country"] = base.parse_element (/<cim:TownDetail.country>([\s\S]*?)<\/cim:TownDetail.country>/g, sub, context, true);
+            base.parse_element (/<cim:TownDetail.country>([\s\S]*?)<\/cim:TownDetail.country>/g, obj, "country", base.to_string, sub, context);
+
             /**
              * Town name.
              *
              */
-            obj["name"] = base.parse_element (/<cim:TownDetail.name>([\s\S]*?)<\/cim:TownDetail.name>/g, sub, context, true);
+            base.parse_element (/<cim:TownDetail.name>([\s\S]*?)<\/cim:TownDetail.name>/g, obj, "name", base.to_string, sub, context);
+
             /**
              * Town section.
              *
              * For example, it is common for there to be 36 sections per township.
              *
              */
-            obj["section"] = base.parse_element (/<cim:TownDetail.section>([\s\S]*?)<\/cim:TownDetail.section>/g, sub, context, true);
+            base.parse_element (/<cim:TownDetail.section>([\s\S]*?)<\/cim:TownDetail.section>/g, obj, "section", base.to_string, sub, context);
+
             /**
              * Name of the state or province.
              *
              */
-            obj["stateOrProvince"] = base.parse_element (/<cim:TownDetail.stateOrProvince>([\s\S]*?)<\/cim:TownDetail.stateOrProvince>/g, sub, context, true);
+            base.parse_element (/<cim:TownDetail.stateOrProvince>([\s\S]*?)<\/cim:TownDetail.stateOrProvince>/g, obj, "stateOrProvince", base.to_string, sub, context);
+
             bucket = context.parsed.TownDetail;
             if (null == bucket)
                 context.parsed.TownDetail = bucket = {};
@@ -699,27 +763,32 @@ define
              * Electronic address.
              *
              */
-            obj["electronicAddress"] = base.parse_element (/<cim:Organisation.electronicAddress>([\s\S]*?)<\/cim:Organisation.electronicAddress>/g, sub, context, true);
+            base.parse_element (/<cim:Organisation.electronicAddress>([\s\S]*?)<\/cim:Organisation.electronicAddress>/g, obj, "electronicAddress", base.to_string, sub, context);
+
             /**
              * Phone number.
              *
              */
-            obj["phone1"] = base.parse_element (/<cim:Organisation.phone1>([\s\S]*?)<\/cim:Organisation.phone1>/g, sub, context, true);
+            base.parse_element (/<cim:Organisation.phone1>([\s\S]*?)<\/cim:Organisation.phone1>/g, obj, "phone1", base.to_string, sub, context);
+
             /**
              * Additional phone number.
              *
              */
-            obj["phone2"] = base.parse_element (/<cim:Organisation.phone2>([\s\S]*?)<\/cim:Organisation.phone2>/g, sub, context, true);
+            base.parse_element (/<cim:Organisation.phone2>([\s\S]*?)<\/cim:Organisation.phone2>/g, obj, "phone2", base.to_string, sub, context);
+
             /**
              * Postal address, potentially different than 'streetAddress' (e.g., another city).
              *
              */
-            obj["postalAddress"] = base.parse_element (/<cim:Organisation.postalAddress>([\s\S]*?)<\/cim:Organisation.postalAddress>/g, sub, context, true);
+            base.parse_element (/<cim:Organisation.postalAddress>([\s\S]*?)<\/cim:Organisation.postalAddress>/g, obj, "postalAddress", base.to_string, sub, context);
+
             /**
              * Street address.
              *
              */
-            obj["streetAddress"] = base.parse_element (/<cim:Organisation.streetAddress>([\s\S]*?)<\/cim:Organisation.streetAddress>/g, sub, context, true);
+            base.parse_element (/<cim:Organisation.streetAddress>([\s\S]*?)<\/cim:Organisation.streetAddress>/g, obj, "streetAddress", base.to_string, sub, context);
+
             bucket = context.parsed.Organisation;
             if (null == bucket)
                 context.parsed.Organisation = bucket = {};
@@ -787,54 +856,64 @@ define
              * For a given location, such as a street address, this is the relative direction in which to find the asset. For example, a streetlight may be located at the 'NW' (northwest) corner of the customer's site, or a usage point may be located on the second floor of an apartment building.
              *
              */
-            obj["direction"] = base.parse_element (/<cim:Location.direction>([\s\S]*?)<\/cim:Location.direction>/g, sub, context, true);
+            base.parse_element (/<cim:Location.direction>([\s\S]*?)<\/cim:Location.direction>/g, obj, "direction", base.to_string, sub, context);
+
             /**
              * Electronic address.
              *
              */
-            obj["electronicAddress"] = base.parse_element (/<cim:Location.electronicAddress>([\s\S]*?)<\/cim:Location.electronicAddress>/g, sub, context, true);
+            base.parse_element (/<cim:Location.electronicAddress>([\s\S]*?)<\/cim:Location.electronicAddress>/g, obj, "electronicAddress", base.to_string, sub, context);
+
             /**
              * (if applicable) Reference to geographical information source, often external to the utility.
              *
              */
-            obj["geoInfoReference"] = base.parse_element (/<cim:Location.geoInfoReference>([\s\S]*?)<\/cim:Location.geoInfoReference>/g, sub, context, true);
+            base.parse_element (/<cim:Location.geoInfoReference>([\s\S]*?)<\/cim:Location.geoInfoReference>/g, obj, "geoInfoReference", base.to_string, sub, context);
+
             /**
              * Main address of the location.
              *
              */
-            obj["mainAddress"] = base.parse_element (/<cim:Location.mainAddress>([\s\S]*?)<\/cim:Location.mainAddress>/g, sub, context, true);
+            base.parse_element (/<cim:Location.mainAddress>([\s\S]*?)<\/cim:Location.mainAddress>/g, obj, "mainAddress", base.to_string, sub, context);
+
             /**
              * Phone number.
              *
              */
-            obj["phone1"] = base.parse_element (/<cim:Location.phone1>([\s\S]*?)<\/cim:Location.phone1>/g, sub, context, true);
+            base.parse_element (/<cim:Location.phone1>([\s\S]*?)<\/cim:Location.phone1>/g, obj, "phone1", base.to_string, sub, context);
+
             /**
              * Additional phone number.
              *
              */
-            obj["phone2"] = base.parse_element (/<cim:Location.phone2>([\s\S]*?)<\/cim:Location.phone2>/g, sub, context, true);
+            base.parse_element (/<cim:Location.phone2>([\s\S]*?)<\/cim:Location.phone2>/g, obj, "phone2", base.to_string, sub, context);
+
             /**
              * Secondary address of the location.
              *
              * For example, PO Box address may have different ZIP code than that in the 'mainAddress'.
              *
              */
-            obj["secondaryAddress"] = base.parse_element (/<cim:Location.secondaryAddress>([\s\S]*?)<\/cim:Location.secondaryAddress>/g, sub, context, true);
+            base.parse_element (/<cim:Location.secondaryAddress>([\s\S]*?)<\/cim:Location.secondaryAddress>/g, obj, "secondaryAddress", base.to_string, sub, context);
+
             /**
              * Status of this location.
              *
              */
-            obj["status"] = base.parse_element (/<cim:Location.status>([\s\S]*?)<\/cim:Location.status>/g, sub, context, true);
+            base.parse_element (/<cim:Location.status>([\s\S]*?)<\/cim:Location.status>/g, obj, "status", base.to_string, sub, context);
+
             /**
              * Classification by utility's corporate standards and practices, relative to the location itself (e.g., geographical, functional accounting, etc., not a given property that happens to exist at that location).
              *
              */
-            obj["type"] = base.parse_element (/<cim:Location.type>([\s\S]*?)<\/cim:Location.type>/g, sub, context, true);
+            base.parse_element (/<cim:Location.type>([\s\S]*?)<\/cim:Location.type>/g, obj, "type", base.to_string, sub, context);
+
             /**
              * Coordinate system used to describe position points of this location.
              *
              */
-            obj["CoordinateSystem"] = base.parse_attribute (/<cim:Location.CoordinateSystem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Location.CoordinateSystem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CoordinateSystem", sub, context, true);
+
             bucket = context.parsed.Location;
             if (null == bucket)
                 context.parsed.Location = bucket = {};
@@ -858,17 +937,20 @@ define
              * Share of this ownership.
              *
              */
-            obj["share"] = base.parse_element (/<cim:Ownership.share>([\s\S]*?)<\/cim:Ownership.share>/g, sub, context, true);
+            base.parse_element (/<cim:Ownership.share>([\s\S]*?)<\/cim:Ownership.share>/g, obj, "share", base.to_string, sub, context);
+
             /**
              * Asset owner that is subject in this ownership.
              *
              */
-            obj["AssetOwner"] = base.parse_attribute (/<cim:Ownership.AssetOwner\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Ownership.AssetOwner\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetOwner", sub, context, true);
+
             /**
              * Asset that is object of this ownership.
              *
              */
-            obj["Asset"] = base.parse_attribute (/<cim:Ownership.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Ownership.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Asset", sub, context, true);
+
             bucket = context.parsed.Ownership;
             if (null == bucket)
                 context.parsed.Ownership = bucket = {};
@@ -892,27 +974,32 @@ define
              * Area or region code.
              *
              */
-            obj["areaCode"] = base.parse_element (/<cim:TelephoneNumber.areaCode>([\s\S]*?)<\/cim:TelephoneNumber.areaCode>/g, sub, context, true);
+            base.parse_element (/<cim:TelephoneNumber.areaCode>([\s\S]*?)<\/cim:TelephoneNumber.areaCode>/g, obj, "areaCode", base.to_string, sub, context);
+
             /**
              * (if applicable) City code.
              *
              */
-            obj["cityCode"] = base.parse_element (/<cim:TelephoneNumber.cityCode>([\s\S]*?)<\/cim:TelephoneNumber.cityCode>/g, sub, context, true);
+            base.parse_element (/<cim:TelephoneNumber.cityCode>([\s\S]*?)<\/cim:TelephoneNumber.cityCode>/g, obj, "cityCode", base.to_string, sub, context);
+
             /**
              * Country code.
              *
              */
-            obj["countryCode"] = base.parse_element (/<cim:TelephoneNumber.countryCode>([\s\S]*?)<\/cim:TelephoneNumber.countryCode>/g, sub, context, true);
+            base.parse_element (/<cim:TelephoneNumber.countryCode>([\s\S]*?)<\/cim:TelephoneNumber.countryCode>/g, obj, "countryCode", base.to_string, sub, context);
+
             /**
              * (if applicable) Extension for this telephone number.
              *
              */
-            obj["extension"] = base.parse_element (/<cim:TelephoneNumber.extension>([\s\S]*?)<\/cim:TelephoneNumber.extension>/g, sub, context, true);
+            base.parse_element (/<cim:TelephoneNumber.extension>([\s\S]*?)<\/cim:TelephoneNumber.extension>/g, obj, "extension", base.to_string, sub, context);
+
             /**
              * Main (local) part of this telephone number.
              *
              */
-            obj["localNumber"] = base.parse_element (/<cim:TelephoneNumber.localNumber>([\s\S]*?)<\/cim:TelephoneNumber.localNumber>/g, sub, context, true);
+            base.parse_element (/<cim:TelephoneNumber.localNumber>([\s\S]*?)<\/cim:TelephoneNumber.localNumber>/g, obj, "localNumber", base.to_string, sub, context);
+
             bucket = context.parsed.TelephoneNumber;
             if (null == bucket)
                 context.parsed.TelephoneNumber = bucket = {};
@@ -938,27 +1025,32 @@ define
              * Zero-relative sequence number of this point within a series of points.
              *
              */
-            obj["sequenceNumber"] = base.parse_element (/<cim:PositionPoint.sequenceNumber>([\s\S]*?)<\/cim:PositionPoint.sequenceNumber>/g, sub, context, true);
+            base.parse_element (/<cim:PositionPoint.sequenceNumber>([\s\S]*?)<\/cim:PositionPoint.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
+
             /**
              * X axis position.
              *
              */
-            obj["xPosition"] = base.parse_element (/<cim:PositionPoint.xPosition>([\s\S]*?)<\/cim:PositionPoint.xPosition>/g, sub, context, true);
+            base.parse_element (/<cim:PositionPoint.xPosition>([\s\S]*?)<\/cim:PositionPoint.xPosition>/g, obj, "xPosition", base.to_string, sub, context);
+
             /**
              * Y axis position.
              *
              */
-            obj["yPosition"] = base.parse_element (/<cim:PositionPoint.yPosition>([\s\S]*?)<\/cim:PositionPoint.yPosition>/g, sub, context, true);
+            base.parse_element (/<cim:PositionPoint.yPosition>([\s\S]*?)<\/cim:PositionPoint.yPosition>/g, obj, "yPosition", base.to_string, sub, context);
+
             /**
              * (if applicable) Z axis position.
              *
              */
-            obj["zPosition"] = base.parse_element (/<cim:PositionPoint.zPosition>([\s\S]*?)<\/cim:PositionPoint.zPosition>/g, sub, context, true);
+            base.parse_element (/<cim:PositionPoint.zPosition>([\s\S]*?)<\/cim:PositionPoint.zPosition>/g, obj, "zPosition", base.to_string, sub, context);
+
             /**
              * Location described by this position point.
              *
              */
-            obj["Location"] = base.parse_attribute (/<cim:PositionPoint.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:PositionPoint.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Location", sub, context, true);
+
             bucket = context.parsed.PositionPoint;
             if (null == bucket)
                 context.parsed.PositionPoint = bucket = {};
@@ -982,52 +1074,62 @@ define
              * Date and time this event has or will become effective.
              *
              */
-            obj["effectiveDateTime"] = base.to_datetime (base.parse_element (/<cim:ConfigurationEvent.effectiveDateTime>([\s\S]*?)<\/cim:ConfigurationEvent.effectiveDateTime>/g, sub, context, true));
+            base.parse_element (/<cim:ConfigurationEvent.effectiveDateTime>([\s\S]*?)<\/cim:ConfigurationEvent.effectiveDateTime>/g, obj, "effectiveDateTime", base.to_datetime, sub, context);
+
             /**
              * Source/initiator of modification.
              *
              */
-            obj["modifiedBy"] = base.parse_element (/<cim:ConfigurationEvent.modifiedBy>([\s\S]*?)<\/cim:ConfigurationEvent.modifiedBy>/g, sub, context, true);
+            base.parse_element (/<cim:ConfigurationEvent.modifiedBy>([\s\S]*?)<\/cim:ConfigurationEvent.modifiedBy>/g, obj, "modifiedBy", base.to_string, sub, context);
+
             /**
              * Free text remarks.
              *
              */
-            obj["remark"] = base.parse_element (/<cim:ConfigurationEvent.remark>([\s\S]*?)<\/cim:ConfigurationEvent.remark>/g, sub, context, true);
+            base.parse_element (/<cim:ConfigurationEvent.remark>([\s\S]*?)<\/cim:ConfigurationEvent.remark>/g, obj, "remark", base.to_string, sub, context);
+
             /**
              * Person role whose change resulted in this configuration event.
              *
              */
-            obj["ChangedPersonRole"] = base.parse_attribute (/<cim:ConfigurationEvent.ChangedPersonRole\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ConfigurationEvent.ChangedPersonRole\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChangedPersonRole", sub, context, true);
+
             /**
              * Organisation role whose change resulted in this configuration event.
              *
              */
-            obj["ChangedOrganisationRole"] = base.parse_attribute (/<cim:ConfigurationEvent.ChangedOrganisationRole\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ConfigurationEvent.ChangedOrganisationRole\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChangedOrganisationRole", sub, context, true);
+
             /**
              * Asset whose change resulted in this configuration event.
              *
              */
-            obj["ChangedAsset"] = base.parse_attribute (/<cim:ConfigurationEvent.ChangedAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ConfigurationEvent.ChangedAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChangedAsset", sub, context, true);
+
             /**
              * Location whose change resulted in this configuration event.
              *
              */
-            obj["ChangedLocation"] = base.parse_attribute (/<cim:ConfigurationEvent.ChangedLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ConfigurationEvent.ChangedLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChangedLocation", sub, context, true);
+
             /**
              * Service category whose change resulted in this configuration event.
              *
              */
-            obj["ChangedServiceCategory"] = base.parse_attribute (/<cim:ConfigurationEvent.ChangedServiceCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ConfigurationEvent.ChangedServiceCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChangedServiceCategory", sub, context, true);
+
             /**
              * Usage point whose change resulted in this configuration event.
              *
              */
-            obj["ChangedUsagePoint"] = base.parse_attribute (/<cim:ConfigurationEvent.ChangedUsagePoint\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ConfigurationEvent.ChangedUsagePoint\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChangedUsagePoint", sub, context, true);
+
             /**
              * Document whose change resulted in this configuration event.
              *
              */
-            obj["ChangedDocument"] = base.parse_attribute (/<cim:ConfigurationEvent.ChangedDocument\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ConfigurationEvent.ChangedDocument\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChangedDocument", sub, context, true);
+
             bucket = context.parsed.ConfigurationEvent;
             if (null == bucket)
                 context.parsed.ConfigurationEvent = bucket = {};
@@ -1051,24 +1153,30 @@ define
              * Name of an attribute.
              *
              */
-            obj["name"] = base.parse_element (/<cim:UserAttribute.name>([\s\S]*?)<\/cim:UserAttribute.name>/g, sub, context, true);
+            base.parse_element (/<cim:UserAttribute.name>([\s\S]*?)<\/cim:UserAttribute.name>/g, obj, "name", base.to_string, sub, context);
+
             /**
              * Sequence number for this attribute in a list of attributes.
              *
              */
-            obj["sequenceNumber"] = base.parse_element (/<cim:UserAttribute.sequenceNumber>([\s\S]*?)<\/cim:UserAttribute.sequenceNumber>/g, sub, context, true);
+            base.parse_element (/<cim:UserAttribute.sequenceNumber>([\s\S]*?)<\/cim:UserAttribute.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
+
             /**
              * Value of an attribute, including unit information.
              *
              */
-            obj["value"] = base.parse_element (/<cim:UserAttribute.value>([\s\S]*?)<\/cim:UserAttribute.value>/g, sub, context, true);
+            base.parse_element (/<cim:UserAttribute.value>([\s\S]*?)<\/cim:UserAttribute.value>/g, obj, "value", base.to_string, sub, context);
+
             /**
              * Transaction for which this snapshot has been recorded.
              *
              */
-            obj["Transaction"] = base.parse_attribute (/<cim:UserAttribute.Transaction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            obj["RatingSpecification"] = base.parse_attribute (/<cim:UserAttribute.RatingSpecification\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            obj["PropertySpecification"] = base.parse_attribute (/<cim:UserAttribute.PropertySpecification\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:UserAttribute.Transaction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Transaction", sub, context, true);
+
+            base.parse_attribute (/<cim:UserAttribute.RatingSpecification\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RatingSpecification", sub, context, true);
+
+            base.parse_attribute (/<cim:UserAttribute.PropertySpecification\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PropertySpecification", sub, context, true);
+
             bucket = context.parsed.UserAttribute;
             if (null == bucket)
                 context.parsed.UserAttribute = bucket = {};
@@ -1092,14 +1200,18 @@ define
              * Estimated date and time for activity execution (with earliest possibility of activity initiation and latest possibility of activity completion).
              *
              */
-            obj["estimatedWindow"] = base.parse_element (/<cim:ScheduledEventData.estimatedWindow>([\s\S]*?)<\/cim:ScheduledEventData.estimatedWindow>/g, sub, context, true);
+            base.parse_element (/<cim:ScheduledEventData.estimatedWindow>([\s\S]*?)<\/cim:ScheduledEventData.estimatedWindow>/g, obj, "estimatedWindow", base.to_string, sub, context);
+
             /**
              * Requested date and time interval for activity execution.
              *
              */
-            obj["requestedWindow"] = base.parse_element (/<cim:ScheduledEventData.requestedWindow>([\s\S]*?)<\/cim:ScheduledEventData.requestedWindow>/g, sub, context, true);
-            obj["status"] = base.parse_element (/<cim:ScheduledEventData.status>([\s\S]*?)<\/cim:ScheduledEventData.status>/g, sub, context, true);
-            obj["InspectionDataSet"] = base.parse_attribute (/<cim:ScheduledEventData.InspectionDataSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_element (/<cim:ScheduledEventData.requestedWindow>([\s\S]*?)<\/cim:ScheduledEventData.requestedWindow>/g, obj, "requestedWindow", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ScheduledEventData.status>([\s\S]*?)<\/cim:ScheduledEventData.status>/g, obj, "status", base.to_string, sub, context);
+
+            base.parse_attribute (/<cim:ScheduledEventData.InspectionDataSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InspectionDataSet", sub, context, true);
+
             bucket = context.parsed.ScheduledEventData;
             if (null == bucket)
                 context.parsed.ScheduledEventData = bucket = {};
@@ -1123,22 +1235,26 @@ define
              * Date and time for which status 'value' applies.
              *
              */
-            obj["dateTime"] = base.to_datetime (base.parse_element (/<cim:Status.dateTime>([\s\S]*?)<\/cim:Status.dateTime>/g, sub, context, true));
+            base.parse_element (/<cim:Status.dateTime>([\s\S]*?)<\/cim:Status.dateTime>/g, obj, "dateTime", base.to_datetime, sub, context);
+
             /**
              * Reason code or explanation for why an object went to the current status 'value'.
              *
              */
-            obj["reason"] = base.parse_element (/<cim:Status.reason>([\s\S]*?)<\/cim:Status.reason>/g, sub, context, true);
+            base.parse_element (/<cim:Status.reason>([\s\S]*?)<\/cim:Status.reason>/g, obj, "reason", base.to_string, sub, context);
+
             /**
              * Pertinent information regarding the current 'value', as free form text.
              *
              */
-            obj["remark"] = base.parse_element (/<cim:Status.remark>([\s\S]*?)<\/cim:Status.remark>/g, sub, context, true);
+            base.parse_element (/<cim:Status.remark>([\s\S]*?)<\/cim:Status.remark>/g, obj, "remark", base.to_string, sub, context);
+
             /**
              * Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.
              *
              */
-            obj["value"] = base.parse_element (/<cim:Status.value>([\s\S]*?)<\/cim:Status.value>/g, sub, context, true);
+            base.parse_element (/<cim:Status.value>([\s\S]*?)<\/cim:Status.value>/g, obj, "value", base.to_string, sub, context);
+
             bucket = context.parsed.Status;
             if (null == bucket)
                 context.parsed.Status = bucket = {};
@@ -1162,47 +1278,56 @@ define
              * Electronic address.
              *
              */
-            obj["electronicAddress"] = base.parse_element (/<cim:Person.electronicAddress>([\s\S]*?)<\/cim:Person.electronicAddress>/g, sub, context, true);
+            base.parse_element (/<cim:Person.electronicAddress>([\s\S]*?)<\/cim:Person.electronicAddress>/g, obj, "electronicAddress", base.to_string, sub, context);
+
             /**
              * Person's first name.
              *
              */
-            obj["firstName"] = base.parse_element (/<cim:Person.firstName>([\s\S]*?)<\/cim:Person.firstName>/g, sub, context, true);
+            base.parse_element (/<cim:Person.firstName>([\s\S]*?)<\/cim:Person.firstName>/g, obj, "firstName", base.to_string, sub, context);
+
             /**
              * Landline phone number.
              *
              */
-            obj["landlinePhone"] = base.parse_element (/<cim:Person.landlinePhone>([\s\S]*?)<\/cim:Person.landlinePhone>/g, sub, context, true);
+            base.parse_element (/<cim:Person.landlinePhone>([\s\S]*?)<\/cim:Person.landlinePhone>/g, obj, "landlinePhone", base.to_string, sub, context);
+
             /**
              * Person's last (family, sir) name.
              *
              */
-            obj["lastName"] = base.parse_element (/<cim:Person.lastName>([\s\S]*?)<\/cim:Person.lastName>/g, sub, context, true);
+            base.parse_element (/<cim:Person.lastName>([\s\S]*?)<\/cim:Person.lastName>/g, obj, "lastName", base.to_string, sub, context);
+
             /**
              * Middle name(s) or initial(s).
              *
              */
-            obj["mName"] = base.parse_element (/<cim:Person.mName>([\s\S]*?)<\/cim:Person.mName>/g, sub, context, true);
+            base.parse_element (/<cim:Person.mName>([\s\S]*?)<\/cim:Person.mName>/g, obj, "mName", base.to_string, sub, context);
+
             /**
              * Mobile phone number.
              *
              */
-            obj["mobilePhone"] = base.parse_element (/<cim:Person.mobilePhone>([\s\S]*?)<\/cim:Person.mobilePhone>/g, sub, context, true);
+            base.parse_element (/<cim:Person.mobilePhone>([\s\S]*?)<\/cim:Person.mobilePhone>/g, obj, "mobilePhone", base.to_string, sub, context);
+
             /**
              * A prefix or title for the person's name, such as Miss, Mister, Doctor, etc.
              *
              */
-            obj["prefix"] = base.parse_element (/<cim:Person.prefix>([\s\S]*?)<\/cim:Person.prefix>/g, sub, context, true);
+            base.parse_element (/<cim:Person.prefix>([\s\S]*?)<\/cim:Person.prefix>/g, obj, "prefix", base.to_string, sub, context);
+
             /**
              * Special service needs for the person (contact) are described; examples include life support, etc.
              *
              */
-            obj["specialNeed"] = base.parse_element (/<cim:Person.specialNeed>([\s\S]*?)<\/cim:Person.specialNeed>/g, sub, context, true);
+            base.parse_element (/<cim:Person.specialNeed>([\s\S]*?)<\/cim:Person.specialNeed>/g, obj, "specialNeed", base.to_string, sub, context);
+
             /**
              * A suffix for the person's name, such as II, III, etc.
              *
              */
-            obj["suffix"] = base.parse_element (/<cim:Person.suffix>([\s\S]*?)<\/cim:Person.suffix>/g, sub, context, true);
+            base.parse_element (/<cim:Person.suffix>([\s\S]*?)<\/cim:Person.suffix>/g, obj, "suffix", base.to_string, sub, context);
+
             bucket = context.parsed.Person;
             if (null == bucket)
                 context.parsed.Person = bucket = {};
@@ -1226,12 +1351,14 @@ define
              * True if requested to call customer when someone is about to arrive at their premises.
              *
              */
-            obj["callAhead"] = base.to_boolean (base.parse_element (/<cim:Appointment.callAhead>([\s\S]*?)<\/cim:Appointment.callAhead>/g, sub, context, true));
+            base.parse_element (/<cim:Appointment.callAhead>([\s\S]*?)<\/cim:Appointment.callAhead>/g, obj, "callAhead", base.to_boolean, sub, context);
+
             /**
              * Date and time reserved for appointment.
              *
              */
-            obj["meetingInterval"] = base.parse_element (/<cim:Appointment.meetingInterval>([\s\S]*?)<\/cim:Appointment.meetingInterval>/g, sub, context, true);
+            base.parse_element (/<cim:Appointment.meetingInterval>([\s\S]*?)<\/cim:Appointment.meetingInterval>/g, obj, "meetingInterval", base.to_string, sub, context);
+
             bucket = context.parsed.Appointment;
             if (null == bucket)
                 context.parsed.Appointment = bucket = {};
@@ -1255,58 +1382,68 @@ define
              * Additional address information, for example a mailstop.
              *
              */
-            obj["addressGeneral"] = base.parse_element (/<cim:StreetDetail.addressGeneral>([\s\S]*?)<\/cim:StreetDetail.addressGeneral>/g, sub, context, true);
+            base.parse_element (/<cim:StreetDetail.addressGeneral>([\s\S]*?)<\/cim:StreetDetail.addressGeneral>/g, obj, "addressGeneral", base.to_string, sub, context);
+
             /**
              * (if applicable) In certain cases the physical location of the place of interest does not have a direct point of entry from the street, but may be located inside a larger structure such as a building, complex, office block, apartment, etc.
              *
              */
-            obj["buildingName"] = base.parse_element (/<cim:StreetDetail.buildingName>([\s\S]*?)<\/cim:StreetDetail.buildingName>/g, sub, context, true);
+            base.parse_element (/<cim:StreetDetail.buildingName>([\s\S]*?)<\/cim:StreetDetail.buildingName>/g, obj, "buildingName", base.to_string, sub, context);
+
             /**
              * (if applicable) Utilities often make use of external reference systems, such as those of the town-planner's department or surveyor general's mapping system, that allocate global reference codes to streets.
              *
              */
-            obj["code"] = base.parse_element (/<cim:StreetDetail.code>([\s\S]*?)<\/cim:StreetDetail.code>/g, sub, context, true);
+            base.parse_element (/<cim:StreetDetail.code>([\s\S]*?)<\/cim:StreetDetail.code>/g, obj, "code", base.to_string, sub, context);
+
             /**
              * Name of the street.
              *
              */
-            obj["name"] = base.parse_element (/<cim:StreetDetail.name>([\s\S]*?)<\/cim:StreetDetail.name>/g, sub, context, true);
+            base.parse_element (/<cim:StreetDetail.name>([\s\S]*?)<\/cim:StreetDetail.name>/g, obj, "name", base.to_string, sub, context);
+
             /**
              * Designator of the specific location on the street.
              *
              */
-            obj["number"] = base.parse_element (/<cim:StreetDetail.number>([\s\S]*?)<\/cim:StreetDetail.number>/g, sub, context, true);
+            base.parse_element (/<cim:StreetDetail.number>([\s\S]*?)<\/cim:StreetDetail.number>/g, obj, "number", base.to_string, sub, context);
+
             /**
              * Prefix to the street name.
              *
              * For example: North, South, East, West.
              *
              */
-            obj["prefix"] = base.parse_element (/<cim:StreetDetail.prefix>([\s\S]*?)<\/cim:StreetDetail.prefix>/g, sub, context, true);
+            base.parse_element (/<cim:StreetDetail.prefix>([\s\S]*?)<\/cim:StreetDetail.prefix>/g, obj, "prefix", base.to_string, sub, context);
+
             /**
              * Suffix to the street name.
              *
              * For example: North, South, East, West.
              *
              */
-            obj["suffix"] = base.parse_element (/<cim:StreetDetail.suffix>([\s\S]*?)<\/cim:StreetDetail.suffix>/g, sub, context, true);
+            base.parse_element (/<cim:StreetDetail.suffix>([\s\S]*?)<\/cim:StreetDetail.suffix>/g, obj, "suffix", base.to_string, sub, context);
+
             /**
              * Number of the apartment or suite.
              *
              */
-            obj["suiteNumber"] = base.parse_element (/<cim:StreetDetail.suiteNumber>([\s\S]*?)<\/cim:StreetDetail.suiteNumber>/g, sub, context, true);
+            base.parse_element (/<cim:StreetDetail.suiteNumber>([\s\S]*?)<\/cim:StreetDetail.suiteNumber>/g, obj, "suiteNumber", base.to_string, sub, context);
+
             /**
              * Type of street.
              *
              * Examples include: street, circle, boulevard, avenue, road, drive, etc.
              *
              */
-            obj["type"] = base.parse_element (/<cim:StreetDetail.type>([\s\S]*?)<\/cim:StreetDetail.type>/g, sub, context, true);
+            base.parse_element (/<cim:StreetDetail.type>([\s\S]*?)<\/cim:StreetDetail.type>/g, obj, "type", base.to_string, sub, context);
+
             /**
              * True if this street is within the legal geographical boundaries of the specified town (default).
              *
              */
-            obj["withinTownLimits"] = base.to_boolean (base.parse_element (/<cim:StreetDetail.withinTownLimits>([\s\S]*?)<\/cim:StreetDetail.withinTownLimits>/g, sub, context, true));
+            base.parse_element (/<cim:StreetDetail.withinTownLimits>([\s\S]*?)<\/cim:StreetDetail.withinTownLimits>/g, obj, "withinTownLimits", base.to_boolean, sub, context);
+
             bucket = context.parsed.StreetDetail;
             if (null == bucket)
                 context.parsed.StreetDetail = bucket = {};

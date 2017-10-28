@@ -27,17 +27,20 @@ define
              * <font color="#0f0f0f">Resistive component of compensation of a generator (Rc).</font>
              *
              */
-            obj["rc"] = base.parse_element (/<cim:VCompIEEEType1.rc>([\s\S]*?)<\/cim:VCompIEEEType1.rc>/g, sub, context, true);
+            base.parse_element (/<cim:VCompIEEEType1.rc>([\s\S]*?)<\/cim:VCompIEEEType1.rc>/g, obj, "rc", base.to_string, sub, context);
+
             /**
              * <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
              *
              */
-            obj["tr"] = base.parse_element (/<cim:VCompIEEEType1.tr>([\s\S]*?)<\/cim:VCompIEEEType1.tr>/g, sub, context, true);
+            base.parse_element (/<cim:VCompIEEEType1.tr>([\s\S]*?)<\/cim:VCompIEEEType1.tr>/g, obj, "tr", base.to_string, sub, context);
+
             /**
              * <font color="#0f0f0f">Reactive component of compensation of a generator (Xc).</font>
              *
              */
-            obj["xc"] = base.parse_element (/<cim:VCompIEEEType1.xc>([\s\S]*?)<\/cim:VCompIEEEType1.xc>/g, sub, context, true);
+            base.parse_element (/<cim:VCompIEEEType1.xc>([\s\S]*?)<\/cim:VCompIEEEType1.xc>/g, obj, "xc", base.to_string, sub, context);
+
             bucket = context.parsed.VCompIEEEType1;
             if (null == bucket)
                 context.parsed.VCompIEEEType1 = bucket = {};
@@ -61,22 +64,26 @@ define
              * <font color="#0f0f0f">Resistive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Rcij).</font>
              *
              */
-            obj["rcij"] = base.parse_element (/<cim:GenICompensationForGenJ.rcij>([\s\S]*?)<\/cim:GenICompensationForGenJ.rcij>/g, sub, context, true);
+            base.parse_element (/<cim:GenICompensationForGenJ.rcij>([\s\S]*?)<\/cim:GenICompensationForGenJ.rcij>/g, obj, "rcij", base.to_string, sub, context);
+
             /**
              * <font color="#0f0f0f">Reactive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Xcij).</font>
              *
              */
-            obj["xcij"] = base.parse_element (/<cim:GenICompensationForGenJ.xcij>([\s\S]*?)<\/cim:GenICompensationForGenJ.xcij>/g, sub, context, true);
+            base.parse_element (/<cim:GenICompensationForGenJ.xcij>([\s\S]*?)<\/cim:GenICompensationForGenJ.xcij>/g, obj, "xcij", base.to_string, sub, context);
+
             /**
              * The standard IEEE Type 2 voltage compensator of this compensation.
              *
              */
-            obj["VcompIEEEType2"] = base.parse_attribute (/<cim:GenICompensationForGenJ.VcompIEEEType2\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:GenICompensationForGenJ.VcompIEEEType2\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VcompIEEEType2", sub, context, true);
+
             /**
              * Standard synchronous machine out of which current flow is being compensated for.
              *
              */
-            obj["SynchronousMachineDynamics"] = base.parse_attribute (/<cim:GenICompensationForGenJ.SynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:GenICompensationForGenJ.SynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SynchronousMachineDynamics", sub, context, true);
+
             bucket = context.parsed.GenICompensationForGenJ;
             if (null == bucket)
                 context.parsed.GenICompensationForGenJ = bucket = {};
@@ -100,12 +107,14 @@ define
              * Remote input signal used by this voltage compensator model.
              *
              */
-            obj["RemoteInputSignal"] = base.parse_attribute (/<cim:VoltageCompensatorDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:VoltageCompensatorDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context, true);
+
             /**
              * Excitation system model with which this voltage compensator is associated.
              *
              */
-            obj["ExcitationSystemDynamics"] = base.parse_attribute (/<cim:VoltageCompensatorDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:VoltageCompensatorDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context, true);
+
             bucket = context.parsed.VoltageCompensatorDynamics;
             if (null == bucket)
                 context.parsed.VoltageCompensatorDynamics = bucket = {};
@@ -131,7 +140,8 @@ define
              * <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
              *
              */
-            obj["tr"] = base.parse_element (/<cim:VCompIEEEType2.tr>([\s\S]*?)<\/cim:VCompIEEEType2.tr>/g, sub, context, true);
+            base.parse_element (/<cim:VCompIEEEType2.tr>([\s\S]*?)<\/cim:VCompIEEEType2.tr>/g, obj, "tr", base.to_string, sub, context);
+
             bucket = context.parsed.VCompIEEEType2;
             if (null == bucket)
                 context.parsed.VCompIEEEType2 = bucket = {};

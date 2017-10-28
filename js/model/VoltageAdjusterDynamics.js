@@ -29,40 +29,46 @@ define
              * Unit = sec./PU.  Typical Value = 300.
              *
              */
-            obj["adjslew"] = base.to_float (base.parse_element (/<cim:VAdjIEEE.adjslew>([\s\S]*?)<\/cim:VAdjIEEE.adjslew>/g, sub, context, true));
+            base.parse_element (/<cim:VAdjIEEE.adjslew>([\s\S]*?)<\/cim:VAdjIEEE.adjslew>/g, obj, "adjslew", base.to_float, sub, context);
+
             /**
              * Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>).
              *
              * Typical Value = 0.5.
              *
              */
-            obj["taoff"] = base.parse_element (/<cim:VAdjIEEE.taoff>([\s\S]*?)<\/cim:VAdjIEEE.taoff>/g, sub, context, true);
+            base.parse_element (/<cim:VAdjIEEE.taoff>([\s\S]*?)<\/cim:VAdjIEEE.taoff>/g, obj, "taoff", base.to_string, sub, context);
+
             /**
              * Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["taon"] = base.parse_element (/<cim:VAdjIEEE.taon>([\s\S]*?)<\/cim:VAdjIEEE.taon>/g, sub, context, true);
+            base.parse_element (/<cim:VAdjIEEE.taon>([\s\S]*?)<\/cim:VAdjIEEE.taon>/g, obj, "taon", base.to_string, sub, context);
+
             /**
              * Set high to provide a continuous raise or lower (<i>V</i><i><sub>ADJF</sub></i>).
              *
              */
-            obj["vadjf"] = base.to_float (base.parse_element (/<cim:VAdjIEEE.vadjf>([\s\S]*?)<\/cim:VAdjIEEE.vadjf>/g, sub, context, true));
+            base.parse_element (/<cim:VAdjIEEE.vadjf>([\s\S]*?)<\/cim:VAdjIEEE.vadjf>/g, obj, "vadjf", base.to_float, sub, context);
+
             /**
              * Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>).
              *
              * Typical Value = 1.1.
              *
              */
-            obj["vadjmax"] = base.parse_element (/<cim:VAdjIEEE.vadjmax>([\s\S]*?)<\/cim:VAdjIEEE.vadjmax>/g, sub, context, true);
+            base.parse_element (/<cim:VAdjIEEE.vadjmax>([\s\S]*?)<\/cim:VAdjIEEE.vadjmax>/g, obj, "vadjmax", base.to_string, sub, context);
+
             /**
              * Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>).
              *
              * Typical Value = 0.9.
              *
              */
-            obj["vadjmin"] = base.parse_element (/<cim:VAdjIEEE.vadjmin>([\s\S]*?)<\/cim:VAdjIEEE.vadjmin>/g, sub, context, true);
+            base.parse_element (/<cim:VAdjIEEE.vadjmin>([\s\S]*?)<\/cim:VAdjIEEE.vadjmin>/g, obj, "vadjmin", base.to_string, sub, context);
+
             bucket = context.parsed.VAdjIEEE;
             if (null == bucket)
                 context.parsed.VAdjIEEE = bucket = {};
@@ -86,7 +92,8 @@ define
              * Power Factor or VAr controller Type I model with which this voltage adjuster is associated.
              *
              */
-            obj["PFVArControllerType1Dynamics"] = base.parse_attribute (/<cim:VoltageAdjusterDynamics.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:VoltageAdjusterDynamics.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType1Dynamics", sub, context, true);
+
             bucket = context.parsed.VoltageAdjusterDynamics;
             if (null == bucket)
                 context.parsed.VoltageAdjusterDynamics = bucket = {};

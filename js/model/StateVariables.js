@@ -27,19 +27,22 @@ define
              * Positive sign means injection into the TopologicalNode (bus).
              *
              */
-            obj["pInjection"] = base.parse_element (/<cim:SvInjection.pInjection>([\s\S]*?)<\/cim:SvInjection.pInjection>/g, sub, context, true);
+            base.parse_element (/<cim:SvInjection.pInjection>([\s\S]*?)<\/cim:SvInjection.pInjection>/g, obj, "pInjection", base.to_string, sub, context);
+
             /**
              * The reactive power injected into the bus in addition to injections from equipment terminals.
              *
              * Positive sign means injection into the TopologicalNode (bus).
              *
              */
-            obj["qInjection"] = base.parse_element (/<cim:SvInjection.qInjection>([\s\S]*?)<\/cim:SvInjection.qInjection>/g, sub, context, true);
+            base.parse_element (/<cim:SvInjection.qInjection>([\s\S]*?)<\/cim:SvInjection.qInjection>/g, obj, "qInjection", base.to_string, sub, context);
+
             /**
              * The topological node associated with the flow injection state variable.
              *
              */
-            obj["TopologicalNode"] = base.parse_attribute (/<cim:SvInjection.TopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SvInjection.TopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TopologicalNode", sub, context, true);
+
             bucket = context.parsed.SvInjection;
             if (null == bucket)
                 context.parsed.SvInjection = bucket = {};
@@ -63,12 +66,14 @@ define
              * The in service status as a result of topology processing.
              *
              */
-            obj["inService"] = base.to_boolean (base.parse_element (/<cim:SvStatus.inService>([\s\S]*?)<\/cim:SvStatus.inService>/g, sub, context, true));
+            base.parse_element (/<cim:SvStatus.inService>([\s\S]*?)<\/cim:SvStatus.inService>/g, obj, "inService", base.to_boolean, sub, context);
+
             /**
              * The conducting equipment associated with the status state variable.
              *
              */
-            obj["ConductingEquipment"] = base.parse_attribute (/<cim:SvStatus.ConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SvStatus.ConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConductingEquipment", sub, context, true);
+
             bucket = context.parsed.SvStatus;
             if (null == bucket)
                 context.parsed.SvStatus = bucket = {};
@@ -96,12 +101,14 @@ define
              * This is not the tap ratio, but rather the tap step position as defined by the related tap changer model and normally is constrained to be within the range of minimum and maximum tap positions.
              *
              */
-            obj["position"] = base.to_float (base.parse_element (/<cim:SvTapStep.position>([\s\S]*?)<\/cim:SvTapStep.position>/g, sub, context, true));
+            base.parse_element (/<cim:SvTapStep.position>([\s\S]*?)<\/cim:SvTapStep.position>/g, obj, "position", base.to_float, sub, context);
+
             /**
              * The tap changer associated with the tap step state.
              *
              */
-            obj["TapChanger"] = base.parse_attribute (/<cim:SvTapStep.TapChanger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SvTapStep.TapChanger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TapChanger", sub, context, true);
+
             bucket = context.parsed.SvTapStep;
             if (null == bucket)
                 context.parsed.SvTapStep = bucket = {};
@@ -127,12 +134,14 @@ define
              * To get integer value scale with ShuntCompensator.bPerSection.
              *
              */
-            obj["sections"] = base.to_float (base.parse_element (/<cim:SvShuntCompensatorSections.sections>([\s\S]*?)<\/cim:SvShuntCompensatorSections.sections>/g, sub, context, true));
+            base.parse_element (/<cim:SvShuntCompensatorSections.sections>([\s\S]*?)<\/cim:SvShuntCompensatorSections.sections>/g, obj, "sections", base.to_float, sub, context);
+
             /**
              * The shunt compensator for which the state applies.
              *
              */
-            obj["ShuntCompensator"] = base.parse_attribute (/<cim:SvShuntCompensatorSections.ShuntCompensator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SvShuntCompensatorSections.ShuntCompensator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ShuntCompensator", sub, context, true);
+
             bucket = context.parsed.SvShuntCompensatorSections;
             if (null == bucket)
                 context.parsed.SvShuntCompensatorSections = bucket = {};
@@ -160,19 +169,22 @@ define
              * Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
              *
              */
-            obj["p"] = base.parse_element (/<cim:SvPowerFlow.p>([\s\S]*?)<\/cim:SvPowerFlow.p>/g, sub, context, true);
+            base.parse_element (/<cim:SvPowerFlow.p>([\s\S]*?)<\/cim:SvPowerFlow.p>/g, obj, "p", base.to_string, sub, context);
+
             /**
              * The reactive power flow.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
              *
              */
-            obj["q"] = base.parse_element (/<cim:SvPowerFlow.q>([\s\S]*?)<\/cim:SvPowerFlow.q>/g, sub, context, true);
+            base.parse_element (/<cim:SvPowerFlow.q>([\s\S]*?)<\/cim:SvPowerFlow.q>/g, obj, "q", base.to_string, sub, context);
+
             /**
              * The terminal associated with the power flow state variable.
              *
              */
-            obj["Terminal"] = base.parse_attribute (/<cim:SvPowerFlow.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SvPowerFlow.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context, true);
+
             bucket = context.parsed.SvPowerFlow;
             if (null == bucket)
                 context.parsed.SvPowerFlow = bucket = {};
@@ -196,17 +208,20 @@ define
              * The voltage angle of the topological node complex voltage with respect to system reference.
              *
              */
-            obj["angle"] = base.parse_element (/<cim:SvVoltage.angle>([\s\S]*?)<\/cim:SvVoltage.angle>/g, sub, context, true);
+            base.parse_element (/<cim:SvVoltage.angle>([\s\S]*?)<\/cim:SvVoltage.angle>/g, obj, "angle", base.to_string, sub, context);
+
             /**
              * The voltage magnitude of the topological node.
              *
              */
-            obj["v"] = base.parse_element (/<cim:SvVoltage.v>([\s\S]*?)<\/cim:SvVoltage.v>/g, sub, context, true);
+            base.parse_element (/<cim:SvVoltage.v>([\s\S]*?)<\/cim:SvVoltage.v>/g, obj, "v", base.to_string, sub, context);
+
             /**
              * The topological node associated with the voltage state.
              *
              */
-            obj["TopologicalNode"] = base.parse_attribute (/<cim:SvVoltage.TopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SvVoltage.TopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TopologicalNode", sub, context, true);
+
             bucket = context.parsed.SvVoltage;
             if (null == bucket)
                 context.parsed.SvVoltage = bucket = {};

@@ -25,22 +25,26 @@ define
              * Ignore UEL signal.
              *
              */
-            obj["ignoreUELsignal"] = base.parse_element (/<cim:ExcIEEEST1AUELselectorKind.ignoreUELsignal>([\s\S]*?)<\/cim:ExcIEEEST1AUELselectorKind.ignoreUELsignal>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1AUELselectorKind.ignoreUELsignal>([\s\S]*?)<\/cim:ExcIEEEST1AUELselectorKind.ignoreUELsignal>/g, obj, "ignoreUELsignal", base.to_string, sub, context);
+
             /**
              * UEL input HV gate with voltage regulator output.
              *
              */
-            obj["inputHVgateVoltageOutput"] = base.parse_element (/<cim:ExcIEEEST1AUELselectorKind.inputHVgateVoltageOutput>([\s\S]*?)<\/cim:ExcIEEEST1AUELselectorKind.inputHVgateVoltageOutput>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1AUELselectorKind.inputHVgateVoltageOutput>([\s\S]*?)<\/cim:ExcIEEEST1AUELselectorKind.inputHVgateVoltageOutput>/g, obj, "inputHVgateVoltageOutput", base.to_string, sub, context);
+
             /**
              * UEL input HV gate with error signal.
              *
              */
-            obj["inputHVgateErrorSignal"] = base.parse_element (/<cim:ExcIEEEST1AUELselectorKind.inputHVgateErrorSignal>([\s\S]*?)<\/cim:ExcIEEEST1AUELselectorKind.inputHVgateErrorSignal>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1AUELselectorKind.inputHVgateErrorSignal>([\s\S]*?)<\/cim:ExcIEEEST1AUELselectorKind.inputHVgateErrorSignal>/g, obj, "inputHVgateErrorSignal", base.to_string, sub, context);
+
             /**
              * UEL input added to error signal.
              *
              */
-            obj["inputAddedToErrorSignal"] = base.parse_element (/<cim:ExcIEEEST1AUELselectorKind.inputAddedToErrorSignal>([\s\S]*?)<\/cim:ExcIEEEST1AUELselectorKind.inputAddedToErrorSignal>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1AUELselectorKind.inputAddedToErrorSignal>([\s\S]*?)<\/cim:ExcIEEEST1AUELselectorKind.inputAddedToErrorSignal>/g, obj, "inputAddedToErrorSignal", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEST1AUELselectorKind;
             if (null == bucket)
                 context.parsed.ExcIEEEST1AUELselectorKind = bucket = {};
@@ -68,21 +72,24 @@ define
              * Typical Value = 5.
              *
              */
-            obj["efdmax"] = base.parse_element (/<cim:ExcBBC.efdmax>([\s\S]*?)<\/cim:ExcBBC.efdmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcBBC.efdmax>([\s\S]*?)<\/cim:ExcBBC.efdmax>/g, obj, "efdmax", base.to_string, sub, context);
+
             /**
              * Minimum open circuit exciter voltage (Efdmin).
              *
              * Typical Value = -5.
              *
              */
-            obj["efdmin"] = base.parse_element (/<cim:ExcBBC.efdmin>([\s\S]*?)<\/cim:ExcBBC.efdmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcBBC.efdmin>([\s\S]*?)<\/cim:ExcBBC.efdmin>/g, obj, "efdmin", base.to_string, sub, context);
+
             /**
              * Steady state gain (K).
              *
              * Typical Value = 300.
              *
              */
-            obj["k"] = base.parse_element (/<cim:ExcBBC.k>([\s\S]*?)<\/cim:ExcBBC.k>/g, sub, context, true);
+            base.parse_element (/<cim:ExcBBC.k>([\s\S]*?)<\/cim:ExcBBC.k>/g, obj, "k", base.to_string, sub, context);
+
             /**
              * Supplementary signal routing selector (switch).
              * true = Vs connected to 3rd summing point
@@ -91,56 +98,64 @@ define
              * Typical Value = true.
              *
              */
-            obj["switch"] = base.to_boolean (base.parse_element (/<cim:ExcBBC.switch>([\s\S]*?)<\/cim:ExcBBC.switch>/g, sub, context, true));
+            base.parse_element (/<cim:ExcBBC.switch>([\s\S]*?)<\/cim:ExcBBC.switch>/g, obj, "switch", base.to_boolean, sub, context);
+
             /**
              * Controller time constant (T1).
              *
              * Typical Value = 6.
              *
              */
-            obj["t1"] = base.parse_element (/<cim:ExcBBC.t1>([\s\S]*?)<\/cim:ExcBBC.t1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcBBC.t1>([\s\S]*?)<\/cim:ExcBBC.t1>/g, obj, "t1", base.to_string, sub, context);
+
             /**
              * Controller time constant (T2).
              *
              * Typical Value = 1.
              *
              */
-            obj["t2"] = base.parse_element (/<cim:ExcBBC.t2>([\s\S]*?)<\/cim:ExcBBC.t2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcBBC.t2>([\s\S]*?)<\/cim:ExcBBC.t2>/g, obj, "t2", base.to_string, sub, context);
+
             /**
              * Lead/lag time constant (T3).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["t3"] = base.parse_element (/<cim:ExcBBC.t3>([\s\S]*?)<\/cim:ExcBBC.t3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcBBC.t3>([\s\S]*?)<\/cim:ExcBBC.t3>/g, obj, "t3", base.to_string, sub, context);
+
             /**
              * Lead/lag time constant (T4).
              *
              * Typical Value = 0.01.
              *
              */
-            obj["t4"] = base.parse_element (/<cim:ExcBBC.t4>([\s\S]*?)<\/cim:ExcBBC.t4>/g, sub, context, true);
+            base.parse_element (/<cim:ExcBBC.t4>([\s\S]*?)<\/cim:ExcBBC.t4>/g, obj, "t4", base.to_string, sub, context);
+
             /**
              * Maximum control element output (Vrmax).
              *
              * Typical Value = 5.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcBBC.vrmax>([\s\S]*?)<\/cim:ExcBBC.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcBBC.vrmax>([\s\S]*?)<\/cim:ExcBBC.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum control element output (Vrmin).
              *
              * Typical Value = -5.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcBBC.vrmin>([\s\S]*?)<\/cim:ExcBBC.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcBBC.vrmin>([\s\S]*?)<\/cim:ExcBBC.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             /**
              * Effective excitation transformer reactance (Xe).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["xe"] = base.parse_element (/<cim:ExcBBC.xe>([\s\S]*?)<\/cim:ExcBBC.xe>/g, sub, context, true);
+            base.parse_element (/<cim:ExcBBC.xe>([\s\S]*?)<\/cim:ExcBBC.xe>/g, obj, "xe", base.to_string, sub, context);
+
             bucket = context.parsed.ExcBBC;
             if (null == bucket)
                 context.parsed.ExcBBC = bucket = {};
@@ -166,56 +181,64 @@ define
              * Typical Value = 0.113.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcST4B.kc>([\s\S]*?)<\/cim:ExcST4B.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.kc>([\s\S]*?)<\/cim:ExcST4B.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Feedback gain constant of the inner loop field regulator (Kg).
              *
              * Typical Value = 0.
              *
              */
-            obj["kg"] = base.parse_element (/<cim:ExcST4B.kg>([\s\S]*?)<\/cim:ExcST4B.kg>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.kg>([\s\S]*?)<\/cim:ExcST4B.kg>/g, obj, "kg", base.to_string, sub, context);
+
             /**
              * Potential circuit gain coefficient (Ki).
              *
              * Typical Value = 0.
              *
              */
-            obj["ki"] = base.parse_element (/<cim:ExcST4B.ki>([\s\S]*?)<\/cim:ExcST4B.ki>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.ki>([\s\S]*?)<\/cim:ExcST4B.ki>/g, obj, "ki", base.to_string, sub, context);
+
             /**
              * Voltage regulator integral gain output (Kim).
              *
              * Typical Value = 0.
              *
              */
-            obj["kim"] = base.parse_element (/<cim:ExcST4B.kim>([\s\S]*?)<\/cim:ExcST4B.kim>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.kim>([\s\S]*?)<\/cim:ExcST4B.kim>/g, obj, "kim", base.to_string, sub, context);
+
             /**
              * Voltage regulator integral gain (Kir).
              *
              * Typical Value = 10.75.
              *
              */
-            obj["kir"] = base.parse_element (/<cim:ExcST4B.kir>([\s\S]*?)<\/cim:ExcST4B.kir>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.kir>([\s\S]*?)<\/cim:ExcST4B.kir>/g, obj, "kir", base.to_string, sub, context);
+
             /**
              * Potential circuit gain coefficient (Kp).
              *
              * Typical Value = 9.3.
              *
              */
-            obj["kp"] = base.parse_element (/<cim:ExcST4B.kp>([\s\S]*?)<\/cim:ExcST4B.kp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.kp>([\s\S]*?)<\/cim:ExcST4B.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * Voltage regulator proportional gain output (Kpm).
              *
              * Typical Value = 1.
              *
              */
-            obj["kpm"] = base.parse_element (/<cim:ExcST4B.kpm>([\s\S]*?)<\/cim:ExcST4B.kpm>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.kpm>([\s\S]*?)<\/cim:ExcST4B.kpm>/g, obj, "kpm", base.to_string, sub, context);
+
             /**
              * Voltage regulator proportional gain (Kpr).
              *
              * Typical Value = 10.75.
              *
              */
-            obj["kpr"] = base.parse_element (/<cim:ExcST4B.kpr>([\s\S]*?)<\/cim:ExcST4B.kpr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.kpr>([\s\S]*?)<\/cim:ExcST4B.kpr>/g, obj, "kpr", base.to_string, sub, context);
+
             /**
              * Selector (LVgate).
              * true = LVgate is part of the block diagram
@@ -224,21 +247,24 @@ define
              * Typical Value = false.
              *
              */
-            obj["lvgate"] = base.to_boolean (base.parse_element (/<cim:ExcST4B.lvgate>([\s\S]*?)<\/cim:ExcST4B.lvgate>/g, sub, context, true));
+            base.parse_element (/<cim:ExcST4B.lvgate>([\s\S]*?)<\/cim:ExcST4B.lvgate>/g, obj, "lvgate", base.to_boolean, sub, context);
+
             /**
              * Voltage regulator time constant (Ta).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcST4B.ta>([\s\S]*?)<\/cim:ExcST4B.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.ta>([\s\S]*?)<\/cim:ExcST4B.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Potential circuit phase angle (thetap).
              *
              * Typical Value = 0.
              *
              */
-            obj["thetap"] = base.parse_element (/<cim:ExcST4B.thetap>([\s\S]*?)<\/cim:ExcST4B.thetap>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.thetap>([\s\S]*?)<\/cim:ExcST4B.thetap>/g, obj, "thetap", base.to_string, sub, context);
+
             /**
              * Selector (Uel).
              * true = UEL is part of block diagram
@@ -247,56 +273,64 @@ define
              * Typical Value = false.
              *
              */
-            obj["uel"] = base.to_boolean (base.parse_element (/<cim:ExcST4B.uel>([\s\S]*?)<\/cim:ExcST4B.uel>/g, sub, context, true));
+            base.parse_element (/<cim:ExcST4B.uel>([\s\S]*?)<\/cim:ExcST4B.uel>/g, obj, "uel", base.to_boolean, sub, context);
+
             /**
              * Maximum excitation voltage (Vbmax).
              *
              * Typical Value = 11.63.
              *
              */
-            obj["vbmax"] = base.parse_element (/<cim:ExcST4B.vbmax>([\s\S]*?)<\/cim:ExcST4B.vbmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.vbmax>([\s\S]*?)<\/cim:ExcST4B.vbmax>/g, obj, "vbmax", base.to_string, sub, context);
+
             /**
              * Maximum inner loop feedback voltage (Vgmax).
              *
              * Typical Value = 5.8.
              *
              */
-            obj["vgmax"] = base.parse_element (/<cim:ExcST4B.vgmax>([\s\S]*?)<\/cim:ExcST4B.vgmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.vgmax>([\s\S]*?)<\/cim:ExcST4B.vgmax>/g, obj, "vgmax", base.to_string, sub, context);
+
             /**
              * Maximum inner loop output (Vmmax).
              *
              * Typical Value = 99.
              *
              */
-            obj["vmmax"] = base.parse_element (/<cim:ExcST4B.vmmax>([\s\S]*?)<\/cim:ExcST4B.vmmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.vmmax>([\s\S]*?)<\/cim:ExcST4B.vmmax>/g, obj, "vmmax", base.to_string, sub, context);
+
             /**
              * Minimum inner loop output (Vmmin).
              *
              * Typical Value = -99.
              *
              */
-            obj["vmmin"] = base.parse_element (/<cim:ExcST4B.vmmin>([\s\S]*?)<\/cim:ExcST4B.vmmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.vmmin>([\s\S]*?)<\/cim:ExcST4B.vmmin>/g, obj, "vmmin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (Vrmax).
              *
              * Typical Value = 1.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcST4B.vrmax>([\s\S]*?)<\/cim:ExcST4B.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.vrmax>([\s\S]*?)<\/cim:ExcST4B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vrmin).
              *
              * Typical Value = -0.87.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcST4B.vrmin>([\s\S]*?)<\/cim:ExcST4B.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.vrmin>([\s\S]*?)<\/cim:ExcST4B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             /**
              * Reactance associated with potential source (Xl).
              *
              * Typical Value = 0.124.
              *
              */
-            obj["xl"] = base.parse_element (/<cim:ExcST4B.xl>([\s\S]*?)<\/cim:ExcST4B.xl>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST4B.xl>([\s\S]*?)<\/cim:ExcST4B.xl>/g, obj, "xl", base.to_string, sub, context);
+
             bucket = context.parsed.ExcST4B;
             if (null == bucket)
                 context.parsed.ExcST4B = bucket = {};
@@ -322,161 +356,184 @@ define
              * Typical Value = 536.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcAC6A.ka>([\s\S]*?)<\/cim:ExcAC6A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.ka>([\s\S]*?)<\/cim:ExcAC6A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (Kc).
              *
              * Typical Value = 0.173.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcAC6A.kc>([\s\S]*?)<\/cim:ExcAC6A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.kc>([\s\S]*?)<\/cim:ExcAC6A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Demagnetizing factor, a function of exciter alternator reactances (Kd).
              *
              * Typical Value = 1.91.
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcAC6A.kd>([\s\S]*?)<\/cim:ExcAC6A.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.kd>([\s\S]*?)<\/cim:ExcAC6A.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (Ke).
              *
              * Typical Value = 1.6.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcAC6A.ke>([\s\S]*?)<\/cim:ExcAC6A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.ke>([\s\S]*?)<\/cim:ExcAC6A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Exciter field current limiter gain (Kh).
              *
              * Typical Value = 92.
              *
              */
-            obj["kh"] = base.parse_element (/<cim:ExcAC6A.kh>([\s\S]*?)<\/cim:ExcAC6A.kh>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.kh>([\s\S]*?)<\/cim:ExcAC6A.kh>/g, obj, "kh", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model-speed coefficient (Ks).
              *
              * Typical Value = 0.
              *
              */
-            obj["ks"] = base.parse_element (/<cim:ExcAC6A.ks>([\s\S]*?)<\/cim:ExcAC6A.ks>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.ks>([\s\S]*?)<\/cim:ExcAC6A.ks>/g, obj, "ks", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
              *
              * Typical Value = 0.214.
              *
              */
-            obj["seve1"] = base.to_float (base.parse_element (/<cim:ExcAC6A.seve1>([\s\S]*?)<\/cim:ExcAC6A.seve1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC6A.seve1>([\s\S]*?)<\/cim:ExcAC6A.seve1>/g, obj, "seve1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
              *
              * Typical Value = 0.044.
              *
              */
-            obj["seve2"] = base.to_float (base.parse_element (/<cim:ExcAC6A.seve2>([\s\S]*?)<\/cim:ExcAC6A.seve2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC6A.seve2>([\s\S]*?)<\/cim:ExcAC6A.seve2>/g, obj, "seve2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (Ta).
              *
              * Typical Value = 0.086.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcAC6A.ta>([\s\S]*?)<\/cim:ExcAC6A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.ta>([\s\S]*?)<\/cim:ExcAC6A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tb).
              *
              * Typical Value = 9.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcAC6A.tb>([\s\S]*?)<\/cim:ExcAC6A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.tb>([\s\S]*?)<\/cim:ExcAC6A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tc).
              *
              * Typical Value = 3.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcAC6A.tc>([\s\S]*?)<\/cim:ExcAC6A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.tc>([\s\S]*?)<\/cim:ExcAC6A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (Te).
              *
              * Typical Value = 1.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcAC6A.te>([\s\S]*?)<\/cim:ExcAC6A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.te>([\s\S]*?)<\/cim:ExcAC6A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Exciter field current limiter time constant (Th).
              *
              * Typical Value = 0.08.
              *
              */
-            obj["th"] = base.parse_element (/<cim:ExcAC6A.th>([\s\S]*?)<\/cim:ExcAC6A.th>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.th>([\s\S]*?)<\/cim:ExcAC6A.th>/g, obj, "th", base.to_string, sub, context);
+
             /**
              * Exciter field current limiter time constant (Tj).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["tj"] = base.parse_element (/<cim:ExcAC6A.tj>([\s\S]*?)<\/cim:ExcAC6A.tj>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.tj>([\s\S]*?)<\/cim:ExcAC6A.tj>/g, obj, "tj", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tk).
              *
              * Typical Value = 0.18.
              *
              */
-            obj["tk"] = base.parse_element (/<cim:ExcAC6A.tk>([\s\S]*?)<\/cim:ExcAC6A.tk>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.tk>([\s\S]*?)<\/cim:ExcAC6A.tk>/g, obj, "tk", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (Vamax).
              *
              * Typical Value = 75.
              *
              */
-            obj["vamax"] = base.parse_element (/<cim:ExcAC6A.vamax>([\s\S]*?)<\/cim:ExcAC6A.vamax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.vamax>([\s\S]*?)<\/cim:ExcAC6A.vamax>/g, obj, "vamax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vamin).
              *
              * Typical Value = -75.
              *
              */
-            obj["vamin"] = base.parse_element (/<cim:ExcAC6A.vamin>([\s\S]*?)<\/cim:ExcAC6A.vamin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.vamin>([\s\S]*?)<\/cim:ExcAC6A.vamin>/g, obj, "vamin", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>).
              *
              * Typical Value = 7.4.
              *
              */
-            obj["ve1"] = base.parse_element (/<cim:ExcAC6A.ve1>([\s\S]*?)<\/cim:ExcAC6A.ve1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.ve1>([\s\S]*?)<\/cim:ExcAC6A.ve1>/g, obj, "ve1", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
              *
              * Typical Value = 5.55.
              *
              */
-            obj["ve2"] = base.parse_element (/<cim:ExcAC6A.ve2>([\s\S]*?)<\/cim:ExcAC6A.ve2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.ve2>([\s\S]*?)<\/cim:ExcAC6A.ve2>/g, obj, "ve2", base.to_string, sub, context);
+
             /**
              * Exciter field current limit reference (Vfelim).
              *
              * Typical Value = 19.
              *
              */
-            obj["vfelim"] = base.parse_element (/<cim:ExcAC6A.vfelim>([\s\S]*?)<\/cim:ExcAC6A.vfelim>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.vfelim>([\s\S]*?)<\/cim:ExcAC6A.vfelim>/g, obj, "vfelim", base.to_string, sub, context);
+
             /**
              * Maximum field current limiter signal reference (Vhmax).
              *
              * Typical Value = 75.
              *
              */
-            obj["vhmax"] = base.parse_element (/<cim:ExcAC6A.vhmax>([\s\S]*?)<\/cim:ExcAC6A.vhmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.vhmax>([\s\S]*?)<\/cim:ExcAC6A.vhmax>/g, obj, "vhmax", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (Vrmax).
              *
              * Typical Value = 44.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcAC6A.vrmax>([\s\S]*?)<\/cim:ExcAC6A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.vrmax>([\s\S]*?)<\/cim:ExcAC6A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vrmin).
              *
              * Typical Value = -36.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcAC6A.vrmin>([\s\S]*?)<\/cim:ExcAC6A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC6A.vrmin>([\s\S]*?)<\/cim:ExcAC6A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcAC6A;
             if (null == bucket)
                 context.parsed.ExcAC6A = bucket = {};
@@ -500,97 +557,116 @@ define
              * Saturation parameter (E<sub>1</sub>).
              *
              */
-            obj["e1"] = base.parse_element (/<cim:ExcOEX3T.e1>([\s\S]*?)<\/cim:ExcOEX3T.e1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.e1>([\s\S]*?)<\/cim:ExcOEX3T.e1>/g, obj, "e1", base.to_string, sub, context);
+
             /**
              * Saturation parameter (E<sub>2</sub>).
              *
              */
-            obj["e2"] = base.parse_element (/<cim:ExcOEX3T.e2>([\s\S]*?)<\/cim:ExcOEX3T.e2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.e2>([\s\S]*?)<\/cim:ExcOEX3T.e2>/g, obj, "e2", base.to_string, sub, context);
+
             /**
              * Gain (K<sub>A</sub>).
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcOEX3T.ka>([\s\S]*?)<\/cim:ExcOEX3T.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.ka>([\s\S]*?)<\/cim:ExcOEX3T.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Gain (K<sub>C</sub>).
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcOEX3T.kc>([\s\S]*?)<\/cim:ExcOEX3T.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.kc>([\s\S]*?)<\/cim:ExcOEX3T.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Gain (K<sub>D</sub>).
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcOEX3T.kd>([\s\S]*?)<\/cim:ExcOEX3T.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.kd>([\s\S]*?)<\/cim:ExcOEX3T.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * Gain (K<sub>E</sub>).
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcOEX3T.ke>([\s\S]*?)<\/cim:ExcOEX3T.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.ke>([\s\S]*?)<\/cim:ExcOEX3T.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Gain (K<sub>F</sub>).
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcOEX3T.kf>([\s\S]*?)<\/cim:ExcOEX3T.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.kf>([\s\S]*?)<\/cim:ExcOEX3T.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Saturation parameter (S<sub>E</sub>(E<sub>1</sub>)).
              *
              */
-            obj["see1"] = base.parse_element (/<cim:ExcOEX3T.see1>([\s\S]*?)<\/cim:ExcOEX3T.see1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.see1>([\s\S]*?)<\/cim:ExcOEX3T.see1>/g, obj, "see1", base.to_string, sub, context);
+
             /**
              * Saturation parameter (S<sub>E</sub>(E<sub>2</sub>)).
              *
              */
-            obj["see2"] = base.parse_element (/<cim:ExcOEX3T.see2>([\s\S]*?)<\/cim:ExcOEX3T.see2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.see2>([\s\S]*?)<\/cim:ExcOEX3T.see2>/g, obj, "see2", base.to_string, sub, context);
+
             /**
              * Time constant (T<sub>1</sub>).
              *
              */
-            obj["t1"] = base.parse_element (/<cim:ExcOEX3T.t1>([\s\S]*?)<\/cim:ExcOEX3T.t1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.t1>([\s\S]*?)<\/cim:ExcOEX3T.t1>/g, obj, "t1", base.to_string, sub, context);
+
             /**
              * Time constant (T<sub>2</sub>).
              *
              */
-            obj["t2"] = base.parse_element (/<cim:ExcOEX3T.t2>([\s\S]*?)<\/cim:ExcOEX3T.t2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.t2>([\s\S]*?)<\/cim:ExcOEX3T.t2>/g, obj, "t2", base.to_string, sub, context);
+
             /**
              * Time constant (T<sub>3</sub>).
              *
              */
-            obj["t3"] = base.parse_element (/<cim:ExcOEX3T.t3>([\s\S]*?)<\/cim:ExcOEX3T.t3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.t3>([\s\S]*?)<\/cim:ExcOEX3T.t3>/g, obj, "t3", base.to_string, sub, context);
+
             /**
              * Time constant (T<sub>4</sub>).
              *
              */
-            obj["t4"] = base.parse_element (/<cim:ExcOEX3T.t4>([\s\S]*?)<\/cim:ExcOEX3T.t4>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.t4>([\s\S]*?)<\/cim:ExcOEX3T.t4>/g, obj, "t4", base.to_string, sub, context);
+
             /**
              * Time constant (T<sub>5</sub>).
              *
              */
-            obj["t5"] = base.parse_element (/<cim:ExcOEX3T.t5>([\s\S]*?)<\/cim:ExcOEX3T.t5>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.t5>([\s\S]*?)<\/cim:ExcOEX3T.t5>/g, obj, "t5", base.to_string, sub, context);
+
             /**
              * Time constant (T<sub>6</sub>).
              *
              */
-            obj["t6"] = base.parse_element (/<cim:ExcOEX3T.t6>([\s\S]*?)<\/cim:ExcOEX3T.t6>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.t6>([\s\S]*?)<\/cim:ExcOEX3T.t6>/g, obj, "t6", base.to_string, sub, context);
+
             /**
              * Time constant (T<sub>E</sub>).
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcOEX3T.te>([\s\S]*?)<\/cim:ExcOEX3T.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.te>([\s\S]*?)<\/cim:ExcOEX3T.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Time constant (T<sub>F</sub>).
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcOEX3T.tf>([\s\S]*?)<\/cim:ExcOEX3T.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.tf>([\s\S]*?)<\/cim:ExcOEX3T.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Limiter (V<sub>RMAX</sub>).
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcOEX3T.vrmax>([\s\S]*?)<\/cim:ExcOEX3T.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.vrmax>([\s\S]*?)<\/cim:ExcOEX3T.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Limiter (V<sub>RMIN</sub>).
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcOEX3T.vrmin>([\s\S]*?)<\/cim:ExcOEX3T.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcOEX3T.vrmin>([\s\S]*?)<\/cim:ExcOEX3T.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcOEX3T;
             if (null == bucket)
                 context.parsed.ExcOEX3T = bucket = {};
@@ -614,22 +690,26 @@ define
              * No OEL input is used.
              *
              */
-            obj["noOELinput"] = base.parse_element (/<cim:ExcST7BOELselectorKind.noOELinput>([\s\S]*?)<\/cim:ExcST7BOELselectorKind.noOELinput>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7BOELselectorKind.noOELinput>([\s\S]*?)<\/cim:ExcST7BOELselectorKind.noOELinput>/g, obj, "noOELinput", base.to_string, sub, context);
+
             /**
              * The signal is added to Vref.
              *
              */
-            obj["addVref"] = base.parse_element (/<cim:ExcST7BOELselectorKind.addVref>([\s\S]*?)<\/cim:ExcST7BOELselectorKind.addVref>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7BOELselectorKind.addVref>([\s\S]*?)<\/cim:ExcST7BOELselectorKind.addVref>/g, obj, "addVref", base.to_string, sub, context);
+
             /**
              * The signal is connected in the input of the LV gate.
              *
              */
-            obj["inputLVgate"] = base.parse_element (/<cim:ExcST7BOELselectorKind.inputLVgate>([\s\S]*?)<\/cim:ExcST7BOELselectorKind.inputLVgate>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7BOELselectorKind.inputLVgate>([\s\S]*?)<\/cim:ExcST7BOELselectorKind.inputLVgate>/g, obj, "inputLVgate", base.to_string, sub, context);
+
             /**
              * The signal is connected in the output of the LV gate.
              *
              */
-            obj["outputLVgate"] = base.parse_element (/<cim:ExcST7BOELselectorKind.outputLVgate>([\s\S]*?)<\/cim:ExcST7BOELselectorKind.outputLVgate>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7BOELselectorKind.outputLVgate>([\s\S]*?)<\/cim:ExcST7BOELselectorKind.outputLVgate>/g, obj, "outputLVgate", base.to_string, sub, context);
+
             bucket = context.parsed.ExcST7BOELselectorKind;
             if (null == bucket)
                 context.parsed.ExcST7BOELselectorKind = bucket = {};
@@ -655,182 +735,208 @@ define
              * Typical Value = 2.36.
              *
              */
-            obj["efdn"] = base.parse_element (/<cim:ExcAC3A.efdn>([\s\S]*?)<\/cim:ExcAC3A.efdn>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.efdn>([\s\S]*?)<\/cim:ExcAC3A.efdn>/g, obj, "efdn", base.to_string, sub, context);
+
             /**
              * Voltage regulator gain (Ka).
              *
              * Typical Value = 45.62.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcAC3A.ka>([\s\S]*?)<\/cim:ExcAC3A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.ka>([\s\S]*?)<\/cim:ExcAC3A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (Kc).
              *
              * Typical Value = 0.104.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcAC3A.kc>([\s\S]*?)<\/cim:ExcAC3A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.kc>([\s\S]*?)<\/cim:ExcAC3A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Demagnetizing factor, a function of exciter alternator reactances (Kd).
              *
              * Typical Value = 0.499.
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcAC3A.kd>([\s\S]*?)<\/cim:ExcAC3A.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.kd>([\s\S]*?)<\/cim:ExcAC3A.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (Ke).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcAC3A.ke>([\s\S]*?)<\/cim:ExcAC3A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.ke>([\s\S]*?)<\/cim:ExcAC3A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gains (Kf).
              *
              * Typical Value = 0.143.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcAC3A.kf>([\s\S]*?)<\/cim:ExcAC3A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.kf>([\s\S]*?)<\/cim:ExcAC3A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model (Kf1).
              *
              * Typical Value = 1.
              *
              */
-            obj["kf1"] = base.parse_element (/<cim:ExcAC3A.kf1>([\s\S]*?)<\/cim:ExcAC3A.kf1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.kf1>([\s\S]*?)<\/cim:ExcAC3A.kf1>/g, obj, "kf1", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model (Kf2).
              *
              * Typical Value = 0.
              *
              */
-            obj["kf2"] = base.parse_element (/<cim:ExcAC3A.kf2>([\s\S]*?)<\/cim:ExcAC3A.kf2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.kf2>([\s\S]*?)<\/cim:ExcAC3A.kf2>/g, obj, "kf2", base.to_string, sub, context);
+
             /**
              * Gain used in the minimum field voltage limiter loop (Klv).
              *
              * Typical Value = 0.194.
              *
              */
-            obj["klv"] = base.parse_element (/<cim:ExcAC3A.klv>([\s\S]*?)<\/cim:ExcAC3A.klv>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.klv>([\s\S]*?)<\/cim:ExcAC3A.klv>/g, obj, "klv", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gain (Kn).
              *
              * Typical Value =0.05.
              *
              */
-            obj["kn"] = base.parse_element (/<cim:ExcAC3A.kn>([\s\S]*?)<\/cim:ExcAC3A.kn>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.kn>([\s\S]*?)<\/cim:ExcAC3A.kn>/g, obj, "kn", base.to_string, sub, context);
+
             /**
              * Constant associated with regulator and alternator field power supply (Kr).
              *
              * Typical Value =3.77.
              *
              */
-            obj["kr"] = base.parse_element (/<cim:ExcAC3A.kr>([\s\S]*?)<\/cim:ExcAC3A.kr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.kr>([\s\S]*?)<\/cim:ExcAC3A.kr>/g, obj, "kr", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model-speed coefficient (Ks).
              *
              * Typical Value = 0.
              *
              */
-            obj["ks"] = base.parse_element (/<cim:ExcAC3A.ks>([\s\S]*?)<\/cim:ExcAC3A.ks>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.ks>([\s\S]*?)<\/cim:ExcAC3A.ks>/g, obj, "ks", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Ve<sub>1</sub>, back of commutating reactance (Se[Ve<sub>1</sub>]).
              *
              * Typical Value = 1.143.
              *
              */
-            obj["seve1"] = base.to_float (base.parse_element (/<cim:ExcAC3A.seve1>([\s\S]*?)<\/cim:ExcAC3A.seve1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC3A.seve1>([\s\S]*?)<\/cim:ExcAC3A.seve1>/g, obj, "seve1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Ve<sub>2</sub>, back of commutating reactance (Se[Ve<sub>2</sub>]).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["seve2"] = base.to_float (base.parse_element (/<cim:ExcAC3A.seve2>([\s\S]*?)<\/cim:ExcAC3A.seve2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC3A.seve2>([\s\S]*?)<\/cim:ExcAC3A.seve2>/g, obj, "seve2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (Ta).
              *
              * Typical Value = 0.013.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcAC3A.ta>([\s\S]*?)<\/cim:ExcAC3A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.ta>([\s\S]*?)<\/cim:ExcAC3A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tb).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcAC3A.tb>([\s\S]*?)<\/cim:ExcAC3A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.tb>([\s\S]*?)<\/cim:ExcAC3A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>c</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcAC3A.tc>([\s\S]*?)<\/cim:ExcAC3A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.tc>([\s\S]*?)<\/cim:ExcAC3A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (Te).
              *
              * Typical Value = 1.17.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcAC3A.te>([\s\S]*?)<\/cim:ExcAC3A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.te>([\s\S]*?)<\/cim:ExcAC3A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (Tf).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcAC3A.tf>([\s\S]*?)<\/cim:ExcAC3A.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.tf>([\s\S]*?)<\/cim:ExcAC3A.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>amax</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["vamax"] = base.parse_element (/<cim:ExcAC3A.vamax>([\s\S]*?)<\/cim:ExcAC3A.vamax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.vamax>([\s\S]*?)<\/cim:ExcAC3A.vamax>/g, obj, "vamax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>amin</sub>).
              *
              * Typical Value = -0.95.
              *
              */
-            obj["vamin"] = base.parse_element (/<cim:ExcAC3A.vamin>([\s\S]*?)<\/cim:ExcAC3A.vamin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.vamin>([\s\S]*?)<\/cim:ExcAC3A.vamin>/g, obj, "vamin", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve1) equals Vemax (Ve1).
              *
              * Typical Value = 6.24.
              *
              */
-            obj["ve1"] = base.parse_element (/<cim:ExcAC3A.ve1>([\s\S]*?)<\/cim:ExcAC3A.ve1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.ve1>([\s\S]*?)<\/cim:ExcAC3A.ve1>/g, obj, "ve1", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>2</sub>).
              *
              * Typical Value = 4.68.
              *
              */
-            obj["ve2"] = base.parse_element (/<cim:ExcAC3A.ve2>([\s\S]*?)<\/cim:ExcAC3A.ve2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.ve2>([\s\S]*?)<\/cim:ExcAC3A.ve2>/g, obj, "ve2", base.to_string, sub, context);
+
             /**
              * Minimum exciter voltage output (Vemin).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["vemin"] = base.parse_element (/<cim:ExcAC3A.vemin>([\s\S]*?)<\/cim:ExcAC3A.vemin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.vemin>([\s\S]*?)<\/cim:ExcAC3A.vemin>/g, obj, "vemin", base.to_string, sub, context);
+
             /**
              * Exciter field current limit reference (Vfemax).
              *
              * Typical Value = 16.
              *
              */
-            obj["vfemax"] = base.parse_element (/<cim:ExcAC3A.vfemax>([\s\S]*?)<\/cim:ExcAC3A.vfemax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.vfemax>([\s\S]*?)<\/cim:ExcAC3A.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
+
             /**
              * Field voltage used in the minimum field voltage limiter loop (Vlv).
              *
              * Typical Value = 0.79.
              *
              */
-            obj["vlv"] = base.parse_element (/<cim:ExcAC3A.vlv>([\s\S]*?)<\/cim:ExcAC3A.vlv>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC3A.vlv>([\s\S]*?)<\/cim:ExcAC3A.vlv>/g, obj, "vlv", base.to_string, sub, context);
+
             bucket = context.parsed.ExcAC3A;
             if (null == bucket)
                 context.parsed.ExcAC3A = bucket = {};
@@ -858,154 +964,176 @@ define
              * Typical Value = 536.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcIEEEAC6A.ka>([\s\S]*?)<\/cim:ExcIEEEAC6A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.ka>([\s\S]*?)<\/cim:ExcIEEEAC6A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
              *
              * Typical Value = 0.173.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcIEEEAC6A.kc>([\s\S]*?)<\/cim:ExcIEEEAC6A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.kc>([\s\S]*?)<\/cim:ExcIEEEAC6A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
              *
              * Typical Value = 1.91.
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcIEEEAC6A.kd>([\s\S]*?)<\/cim:ExcIEEEAC6A.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.kd>([\s\S]*?)<\/cim:ExcIEEEAC6A.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (K<sub>E</sub>).
              *
              * Typical Value = 1.6.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcIEEEAC6A.ke>([\s\S]*?)<\/cim:ExcIEEEAC6A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.ke>([\s\S]*?)<\/cim:ExcIEEEAC6A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Exciter field current limiter gain (K<sub>H</sub>).
              *
              * Typical Value = 92.
              *
              */
-            obj["kh"] = base.parse_element (/<cim:ExcIEEEAC6A.kh>([\s\S]*?)<\/cim:ExcIEEEAC6A.kh>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.kh>([\s\S]*?)<\/cim:ExcIEEEAC6A.kh>/g, obj, "kh", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
              *
              * Typical Value = 0.214.
              *
              */
-            obj["seve1"] = base.to_float (base.parse_element (/<cim:ExcIEEEAC6A.seve1>([\s\S]*?)<\/cim:ExcIEEEAC6A.seve1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEAC6A.seve1>([\s\S]*?)<\/cim:ExcIEEEAC6A.seve1>/g, obj, "seve1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
              *
              * Typical Value = 0.044.
              *
              */
-            obj["seve2"] = base.to_float (base.parse_element (/<cim:ExcIEEEAC6A.seve2>([\s\S]*?)<\/cim:ExcIEEEAC6A.seve2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEAC6A.seve2>([\s\S]*?)<\/cim:ExcIEEEAC6A.seve2>/g, obj, "seve2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.086.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcIEEEAC6A.ta>([\s\S]*?)<\/cim:ExcIEEEAC6A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.ta>([\s\S]*?)<\/cim:ExcIEEEAC6A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>B</sub>).
              *
              * Typical Value = 9.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcIEEEAC6A.tb>([\s\S]*?)<\/cim:ExcIEEEAC6A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.tb>([\s\S]*?)<\/cim:ExcIEEEAC6A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>C</sub>).
              *
              * Typical Value = 3.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcIEEEAC6A.tc>([\s\S]*?)<\/cim:ExcIEEEAC6A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.tc>([\s\S]*?)<\/cim:ExcIEEEAC6A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcIEEEAC6A.te>([\s\S]*?)<\/cim:ExcIEEEAC6A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.te>([\s\S]*?)<\/cim:ExcIEEEAC6A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Exciter field current limiter time constant (T<sub>H</sub>).
              *
              * Typical Value = 0.08.
              *
              */
-            obj["th"] = base.parse_element (/<cim:ExcIEEEAC6A.th>([\s\S]*?)<\/cim:ExcIEEEAC6A.th>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.th>([\s\S]*?)<\/cim:ExcIEEEAC6A.th>/g, obj, "th", base.to_string, sub, context);
+
             /**
              * Exciter field current limiter time constant (T<sub>J</sub>).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["tj"] = base.parse_element (/<cim:ExcIEEEAC6A.tj>([\s\S]*?)<\/cim:ExcIEEEAC6A.tj>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.tj>([\s\S]*?)<\/cim:ExcIEEEAC6A.tj>/g, obj, "tj", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>K</sub>).
              *
              * Typical Value = 0.18.
              *
              */
-            obj["tk"] = base.parse_element (/<cim:ExcIEEEAC6A.tk>([\s\S]*?)<\/cim:ExcIEEEAC6A.tk>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.tk>([\s\S]*?)<\/cim:ExcIEEEAC6A.tk>/g, obj, "tk", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>AMAX</sub>).
              *
              * Typical Value = 75.
              *
              */
-            obj["vamax"] = base.parse_element (/<cim:ExcIEEEAC6A.vamax>([\s\S]*?)<\/cim:ExcIEEEAC6A.vamax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.vamax>([\s\S]*?)<\/cim:ExcIEEEAC6A.vamax>/g, obj, "vamax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>AMIN</sub>).
              *
              * Typical Value = -75.
              *
              */
-            obj["vamin"] = base.parse_element (/<cim:ExcIEEEAC6A.vamin>([\s\S]*?)<\/cim:ExcIEEEAC6A.vamin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.vamin>([\s\S]*?)<\/cim:ExcIEEEAC6A.vamin>/g, obj, "vamin", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX </sub>(V<sub>E1</sub>).
              *
              * Typical Value = 7.4.
              *
              */
-            obj["ve1"] = base.parse_element (/<cim:ExcIEEEAC6A.ve1>([\s\S]*?)<\/cim:ExcIEEEAC6A.ve1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.ve1>([\s\S]*?)<\/cim:ExcIEEEAC6A.ve1>/g, obj, "ve1", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
              *
              * Typical Value = 5.55.
              *
              */
-            obj["ve2"] = base.parse_element (/<cim:ExcIEEEAC6A.ve2>([\s\S]*?)<\/cim:ExcIEEEAC6A.ve2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.ve2>([\s\S]*?)<\/cim:ExcIEEEAC6A.ve2>/g, obj, "ve2", base.to_string, sub, context);
+
             /**
              * Exciter field current limit reference (V<sub>FELIM</sub>).
              *
              * Typical Value = 19.
              *
              */
-            obj["vfelim"] = base.parse_element (/<cim:ExcIEEEAC6A.vfelim>([\s\S]*?)<\/cim:ExcIEEEAC6A.vfelim>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.vfelim>([\s\S]*?)<\/cim:ExcIEEEAC6A.vfelim>/g, obj, "vfelim", base.to_string, sub, context);
+
             /**
              * Maximum field current limiter signal reference (V<sub>HMAX</sub>).
              *
              * Typical Value = 75.
              *
              */
-            obj["vhmax"] = base.parse_element (/<cim:ExcIEEEAC6A.vhmax>([\s\S]*?)<\/cim:ExcIEEEAC6A.vhmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.vhmax>([\s\S]*?)<\/cim:ExcIEEEAC6A.vhmax>/g, obj, "vhmax", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>RMAX</sub>).
              *
              * Typical Value = 44.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEAC6A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC6A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC6A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>RMIN</sub>).
              *
              * Typical Value = -36.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEAC6A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC6A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC6A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC6A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEAC6A;
             if (null == bucket)
                 context.parsed.ExcIEEEAC6A = bucket = {};
@@ -1031,126 +1159,144 @@ define
              * Typical Value = 0.
              *
              */
-            obj["ilr"] = base.parse_element (/<cim:ExcST1A.ilr>([\s\S]*?)<\/cim:ExcST1A.ilr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.ilr>([\s\S]*?)<\/cim:ExcST1A.ilr>/g, obj, "ilr", base.to_string, sub, context);
+
             /**
              * Voltage regulator gain (Ka).
              *
              * Typical Value = 190.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcST1A.ka>([\s\S]*?)<\/cim:ExcST1A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.ka>([\s\S]*?)<\/cim:ExcST1A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (Kc).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcST1A.kc>([\s\S]*?)<\/cim:ExcST1A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.kc>([\s\S]*?)<\/cim:ExcST1A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gains (Kf).
              *
              * Typical Value = 0.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcST1A.kf>([\s\S]*?)<\/cim:ExcST1A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.kf>([\s\S]*?)<\/cim:ExcST1A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Exciter output current limiter gain (Klr).
              *
              * Typical Value = 0.
              *
              */
-            obj["klr"] = base.parse_element (/<cim:ExcST1A.klr>([\s\S]*?)<\/cim:ExcST1A.klr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.klr>([\s\S]*?)<\/cim:ExcST1A.klr>/g, obj, "klr", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Ta).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcST1A.ta>([\s\S]*?)<\/cim:ExcST1A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.ta>([\s\S]*?)<\/cim:ExcST1A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tb).
              *
              * Typical Value = 10.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcST1A.tb>([\s\S]*?)<\/cim:ExcST1A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.tb>([\s\S]*?)<\/cim:ExcST1A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tb<sub>1</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb1"] = base.parse_element (/<cim:ExcST1A.tb1>([\s\S]*?)<\/cim:ExcST1A.tb1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.tb1>([\s\S]*?)<\/cim:ExcST1A.tb1>/g, obj, "tb1", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tc).
              *
              * Typical Value = 1.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcST1A.tc>([\s\S]*?)<\/cim:ExcST1A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.tc>([\s\S]*?)<\/cim:ExcST1A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tc<sub>1</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc1"] = base.parse_element (/<cim:ExcST1A.tc1>([\s\S]*?)<\/cim:ExcST1A.tc1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.tc1>([\s\S]*?)<\/cim:ExcST1A.tc1>/g, obj, "tc1", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (Tf).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcST1A.tf>([\s\S]*?)<\/cim:ExcST1A.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.tf>([\s\S]*?)<\/cim:ExcST1A.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (Vamax).
              *
              * Typical Value = 999.
              *
              */
-            obj["vamax"] = base.parse_element (/<cim:ExcST1A.vamax>([\s\S]*?)<\/cim:ExcST1A.vamax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.vamax>([\s\S]*?)<\/cim:ExcST1A.vamax>/g, obj, "vamax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vamin).
              *
              * Typical Value = -999.
              *
              */
-            obj["vamin"] = base.parse_element (/<cim:ExcST1A.vamin>([\s\S]*?)<\/cim:ExcST1A.vamin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.vamin>([\s\S]*?)<\/cim:ExcST1A.vamin>/g, obj, "vamin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator input limit (Vimax).
              *
              * Typical Value = 999.
              *
              */
-            obj["vimax"] = base.parse_element (/<cim:ExcST1A.vimax>([\s\S]*?)<\/cim:ExcST1A.vimax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.vimax>([\s\S]*?)<\/cim:ExcST1A.vimax>/g, obj, "vimax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator input limit (Vimin).
              *
              * Typical Value = -999.
              *
              */
-            obj["vimin"] = base.parse_element (/<cim:ExcST1A.vimin>([\s\S]*?)<\/cim:ExcST1A.vimin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.vimin>([\s\S]*?)<\/cim:ExcST1A.vimin>/g, obj, "vimin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator outputs (Vrmax).
              *
              * Typical Value = 7.8.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcST1A.vrmax>([\s\S]*?)<\/cim:ExcST1A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.vrmax>([\s\S]*?)<\/cim:ExcST1A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator outputs (Vrmin).
              *
              * Typical Value = -6.7.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcST1A.vrmin>([\s\S]*?)<\/cim:ExcST1A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.vrmin>([\s\S]*?)<\/cim:ExcST1A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             /**
              * Excitation xfmr effective reactance (Xe).
              *
              * Typical Value = 0.04.
              *
              */
-            obj["xe"] = base.parse_element (/<cim:ExcST1A.xe>([\s\S]*?)<\/cim:ExcST1A.xe>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST1A.xe>([\s\S]*?)<\/cim:ExcST1A.xe>/g, obj, "xe", base.to_string, sub, context);
+
             bucket = context.parsed.ExcST1A;
             if (null == bucket)
                 context.parsed.ExcST1A = bucket = {};
@@ -1178,105 +1324,120 @@ define
              * Typical Value = 0.
              *
              */
-            obj["dpnf"] = base.parse_element (/<cim:ExcELIN1.dpnf>([\s\S]*?)<\/cim:ExcELIN1.dpnf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.dpnf>([\s\S]*?)<\/cim:ExcELIN1.dpnf>/g, obj, "dpnf", base.to_string, sub, context);
+
             /**
              * Maximum open circuit excitation voltage (Efmax).
              *
              * Typical Value = 5.
              *
              */
-            obj["efmax"] = base.parse_element (/<cim:ExcELIN1.efmax>([\s\S]*?)<\/cim:ExcELIN1.efmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.efmax>([\s\S]*?)<\/cim:ExcELIN1.efmax>/g, obj, "efmax", base.to_string, sub, context);
+
             /**
              * Minimum open circuit excitation voltage (Efmin).
              *
              * Typical Value = -5.
              *
              */
-            obj["efmin"] = base.parse_element (/<cim:ExcELIN1.efmin>([\s\S]*?)<\/cim:ExcELIN1.efmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.efmin>([\s\S]*?)<\/cim:ExcELIN1.efmin>/g, obj, "efmin", base.to_string, sub, context);
+
             /**
              * Stabilizer Gain 1 (Ks1).
              *
              * Typical Value = 0.
              *
              */
-            obj["ks1"] = base.parse_element (/<cim:ExcELIN1.ks1>([\s\S]*?)<\/cim:ExcELIN1.ks1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.ks1>([\s\S]*?)<\/cim:ExcELIN1.ks1>/g, obj, "ks1", base.to_string, sub, context);
+
             /**
              * Stabilizer Gain 2 (Ks2).
              *
              * Typical Value = 0.
              *
              */
-            obj["ks2"] = base.parse_element (/<cim:ExcELIN1.ks2>([\s\S]*?)<\/cim:ExcELIN1.ks2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.ks2>([\s\S]*?)<\/cim:ExcELIN1.ks2>/g, obj, "ks2", base.to_string, sub, context);
+
             /**
              * Stabilizer Limit Output (smax).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["smax"] = base.parse_element (/<cim:ExcELIN1.smax>([\s\S]*?)<\/cim:ExcELIN1.smax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.smax>([\s\S]*?)<\/cim:ExcELIN1.smax>/g, obj, "smax", base.to_string, sub, context);
+
             /**
              * Current transducer time constant (Tfi).
              *
              * Typical Value = 0.
              *
              */
-            obj["tfi"] = base.parse_element (/<cim:ExcELIN1.tfi>([\s\S]*?)<\/cim:ExcELIN1.tfi>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.tfi>([\s\S]*?)<\/cim:ExcELIN1.tfi>/g, obj, "tfi", base.to_string, sub, context);
+
             /**
              * Controller reset time constant (Tnu).
              *
              * Typical Value = 2.
              *
              */
-            obj["tnu"] = base.parse_element (/<cim:ExcELIN1.tnu>([\s\S]*?)<\/cim:ExcELIN1.tnu>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.tnu>([\s\S]*?)<\/cim:ExcELIN1.tnu>/g, obj, "tnu", base.to_string, sub, context);
+
             /**
              * Stabilizer Phase Lag Time Constant (Ts1).
              *
              * Typical Value = 1.
              *
              */
-            obj["ts1"] = base.parse_element (/<cim:ExcELIN1.ts1>([\s\S]*?)<\/cim:ExcELIN1.ts1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.ts1>([\s\S]*?)<\/cim:ExcELIN1.ts1>/g, obj, "ts1", base.to_string, sub, context);
+
             /**
              * Stabilizer Filter Time Constant (Ts2).
              *
              * Typical Value = 1.
              *
              */
-            obj["ts2"] = base.parse_element (/<cim:ExcELIN1.ts2>([\s\S]*?)<\/cim:ExcELIN1.ts2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.ts2>([\s\S]*?)<\/cim:ExcELIN1.ts2>/g, obj, "ts2", base.to_string, sub, context);
+
             /**
              * Stabilizer parameters (Tsw).
              *
              * Typical Value = 3.
              *
              */
-            obj["tsw"] = base.parse_element (/<cim:ExcELIN1.tsw>([\s\S]*?)<\/cim:ExcELIN1.tsw>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.tsw>([\s\S]*?)<\/cim:ExcELIN1.tsw>/g, obj, "tsw", base.to_string, sub, context);
+
             /**
              * Current controller gain (Vpi).
              *
              * Typical Value = 12.45.
              *
              */
-            obj["vpi"] = base.parse_element (/<cim:ExcELIN1.vpi>([\s\S]*?)<\/cim:ExcELIN1.vpi>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.vpi>([\s\S]*?)<\/cim:ExcELIN1.vpi>/g, obj, "vpi", base.to_string, sub, context);
+
             /**
              * Controller follow up gain (Vpnf).
              *
              * Typical Value = 2.
              *
              */
-            obj["vpnf"] = base.parse_element (/<cim:ExcELIN1.vpnf>([\s\S]*?)<\/cim:ExcELIN1.vpnf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.vpnf>([\s\S]*?)<\/cim:ExcELIN1.vpnf>/g, obj, "vpnf", base.to_string, sub, context);
+
             /**
              * Voltage controller proportional gain (Vpu).
              *
              * Typical Value = 34.5.
              *
              */
-            obj["vpu"] = base.parse_element (/<cim:ExcELIN1.vpu>([\s\S]*?)<\/cim:ExcELIN1.vpu>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.vpu>([\s\S]*?)<\/cim:ExcELIN1.vpu>/g, obj, "vpu", base.to_string, sub, context);
+
             /**
              * Excitation transformer effective reactance (Xe) (&gt;=0).
              *
              * Xe represents the regulation of the transformer/rectifier unit.  Typical Value = 0.06.
              *
              */
-            obj["xe"] = base.parse_element (/<cim:ExcELIN1.xe>([\s\S]*?)<\/cim:ExcELIN1.xe>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN1.xe>([\s\S]*?)<\/cim:ExcELIN1.xe>/g, obj, "xe", base.to_string, sub, context);
+
             bucket = context.parsed.ExcELIN1;
             if (null == bucket)
                 context.parsed.ExcELIN1 = bucket = {};
@@ -1306,98 +1467,112 @@ define
              * Typical Value = true.
              *
              */
-            obj["imul"] = base.to_boolean (base.parse_element (/<cim:ExcAVR4.imul>([\s\S]*?)<\/cim:ExcAVR4.imul>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR4.imul>([\s\S]*?)<\/cim:ExcAVR4.imul>/g, obj, "imul", base.to_boolean, sub, context);
+
             /**
              * AVR gain (K<sub>A</sub>).
              *
              * Typical Value = 300.
              *
              */
-            obj["ka"] = base.to_float (base.parse_element (/<cim:ExcAVR4.ka>([\s\S]*?)<\/cim:ExcAVR4.ka>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR4.ka>([\s\S]*?)<\/cim:ExcAVR4.ka>/g, obj, "ka", base.to_float, sub, context);
+
             /**
              * Exciter gain (K<sub>E</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.to_float (base.parse_element (/<cim:ExcAVR4.ke>([\s\S]*?)<\/cim:ExcAVR4.ke>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR4.ke>([\s\S]*?)<\/cim:ExcAVR4.ke>/g, obj, "ke", base.to_float, sub, context);
+
             /**
              * Exciter internal reactance (K<sub>IF</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["kif"] = base.to_float (base.parse_element (/<cim:ExcAVR4.kif>([\s\S]*?)<\/cim:ExcAVR4.kif>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR4.kif>([\s\S]*?)<\/cim:ExcAVR4.kif>/g, obj, "kif", base.to_float, sub, context);
+
             /**
              * AVR time constant (T<sub>1</sub>).
              *
              * Typical Value = 4.8.
              *
              */
-            obj["t1"] = base.parse_element (/<cim:ExcAVR4.t1>([\s\S]*?)<\/cim:ExcAVR4.t1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR4.t1>([\s\S]*?)<\/cim:ExcAVR4.t1>/g, obj, "t1", base.to_string, sub, context);
+
             /**
              * Exciter current feedback time constant (T<sub>1IF</sub>).
              *
              * Typical Value = 60.
              *
              */
-            obj["t1if"] = base.parse_element (/<cim:ExcAVR4.t1if>([\s\S]*?)<\/cim:ExcAVR4.t1if>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR4.t1if>([\s\S]*?)<\/cim:ExcAVR4.t1if>/g, obj, "t1if", base.to_string, sub, context);
+
             /**
              * AVR time constant (T<sub>2</sub>).
              *
              * Typical Value = 1.5.
              *
              */
-            obj["t2"] = base.parse_element (/<cim:ExcAVR4.t2>([\s\S]*?)<\/cim:ExcAVR4.t2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR4.t2>([\s\S]*?)<\/cim:ExcAVR4.t2>/g, obj, "t2", base.to_string, sub, context);
+
             /**
              * AVR time constant (T<sub>3</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["t3"] = base.parse_element (/<cim:ExcAVR4.t3>([\s\S]*?)<\/cim:ExcAVR4.t3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR4.t3>([\s\S]*?)<\/cim:ExcAVR4.t3>/g, obj, "t3", base.to_string, sub, context);
+
             /**
              * AVR time constant (T<sub>4</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["t4"] = base.parse_element (/<cim:ExcAVR4.t4>([\s\S]*?)<\/cim:ExcAVR4.t4>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR4.t4>([\s\S]*?)<\/cim:ExcAVR4.t4>/g, obj, "t4", base.to_string, sub, context);
+
             /**
              * Exciter current feedback time constant (T<sub>IF</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tif"] = base.parse_element (/<cim:ExcAVR4.tif>([\s\S]*?)<\/cim:ExcAVR4.tif>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR4.tif>([\s\S]*?)<\/cim:ExcAVR4.tif>/g, obj, "tif", base.to_string, sub, context);
+
             /**
              * Minimum exciter output (V<sub>FMN</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["vfmn"] = base.parse_element (/<cim:ExcAVR4.vfmn>([\s\S]*?)<\/cim:ExcAVR4.vfmn>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR4.vfmn>([\s\S]*?)<\/cim:ExcAVR4.vfmn>/g, obj, "vfmn", base.to_string, sub, context);
+
             /**
              * Maximum exciter output (V<sub>FMX</sub>).
              *
              * Typical Value = 5.
              *
              */
-            obj["vfmx"] = base.parse_element (/<cim:ExcAVR4.vfmx>([\s\S]*?)<\/cim:ExcAVR4.vfmx>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR4.vfmx>([\s\S]*?)<\/cim:ExcAVR4.vfmx>/g, obj, "vfmx", base.to_string, sub, context);
+
             /**
              * Minimum AVR output (V<sub>RMN</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["vrmn"] = base.parse_element (/<cim:ExcAVR4.vrmn>([\s\S]*?)<\/cim:ExcAVR4.vrmn>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR4.vrmn>([\s\S]*?)<\/cim:ExcAVR4.vrmn>/g, obj, "vrmn", base.to_string, sub, context);
+
             /**
              * Maximum AVR output (V<sub>RMX</sub>).
              *
              * Typical Value = 5.
              *
              */
-            obj["vrmx"] = base.parse_element (/<cim:ExcAVR4.vrmx>([\s\S]*?)<\/cim:ExcAVR4.vrmx>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR4.vrmx>([\s\S]*?)<\/cim:ExcAVR4.vrmx>/g, obj, "vrmx", base.to_string, sub, context);
+
             bucket = context.parsed.ExcAVR4;
             if (null == bucket)
                 context.parsed.ExcAVR4 = bucket = {};
@@ -1425,140 +1600,160 @@ define
              * This is parameter K in the IEEE Std. Typical Value = 200.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcIEEEST3A.ka>([\s\S]*?)<\/cim:ExcIEEEST3A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.ka>([\s\S]*?)<\/cim:ExcIEEEST3A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
              *
              * Typical Value = 0.2.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcIEEEST3A.kc>([\s\S]*?)<\/cim:ExcIEEEST3A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.kc>([\s\S]*?)<\/cim:ExcIEEEST3A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Feedback gain constant of the inner loop field regulator (K<sub>G</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["kg"] = base.parse_element (/<cim:ExcIEEEST3A.kg>([\s\S]*?)<\/cim:ExcIEEEST3A.kg>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.kg>([\s\S]*?)<\/cim:ExcIEEEST3A.kg>/g, obj, "kg", base.to_string, sub, context);
+
             /**
              * Potential circuit gain coefficient (K<sub>I</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["ki"] = base.parse_element (/<cim:ExcIEEEST3A.ki>([\s\S]*?)<\/cim:ExcIEEEST3A.ki>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.ki>([\s\S]*?)<\/cim:ExcIEEEST3A.ki>/g, obj, "ki", base.to_string, sub, context);
+
             /**
              * Forward gain constant of the inner loop field regulator (K<sub>M</sub>).
              *
              * Typical Value = 7.93.
              *
              */
-            obj["km"] = base.parse_element (/<cim:ExcIEEEST3A.km>([\s\S]*?)<\/cim:ExcIEEEST3A.km>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.km>([\s\S]*?)<\/cim:ExcIEEEST3A.km>/g, obj, "km", base.to_string, sub, context);
+
             /**
              * Potential circuit gain coefficient (K<sub>P</sub>).
              *
              * Typical Value = 6.15.
              *
              */
-            obj["kp"] = base.parse_element (/<cim:ExcIEEEST3A.kp>([\s\S]*?)<\/cim:ExcIEEEST3A.kp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.kp>([\s\S]*?)<\/cim:ExcIEEEST3A.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcIEEEST3A.ta>([\s\S]*?)<\/cim:ExcIEEEST3A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.ta>([\s\S]*?)<\/cim:ExcIEEEST3A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>B</sub>).
              *
              * Typical Value = 10.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcIEEEST3A.tb>([\s\S]*?)<\/cim:ExcIEEEST3A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.tb>([\s\S]*?)<\/cim:ExcIEEEST3A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>C</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcIEEEST3A.tc>([\s\S]*?)<\/cim:ExcIEEEST3A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.tc>([\s\S]*?)<\/cim:ExcIEEEST3A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Potential circuit phase angle (thetap).
              *
              * Typical Value = 0.
              *
              */
-            obj["thetap"] = base.parse_element (/<cim:ExcIEEEST3A.thetap>([\s\S]*?)<\/cim:ExcIEEEST3A.thetap>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.thetap>([\s\S]*?)<\/cim:ExcIEEEST3A.thetap>/g, obj, "thetap", base.to_string, sub, context);
+
             /**
              * Forward time constant of inner loop field regulator (T<sub>M</sub>).
              *
              * Typical Value = 0.4.
              *
              */
-            obj["tm"] = base.parse_element (/<cim:ExcIEEEST3A.tm>([\s\S]*?)<\/cim:ExcIEEEST3A.tm>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.tm>([\s\S]*?)<\/cim:ExcIEEEST3A.tm>/g, obj, "tm", base.to_string, sub, context);
+
             /**
              * Maximum excitation voltage (V<sub>BMax</sub>).
              *
              * Typical Value = 6.9.
              *
              */
-            obj["vbmax"] = base.parse_element (/<cim:ExcIEEEST3A.vbmax>([\s\S]*?)<\/cim:ExcIEEEST3A.vbmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.vbmax>([\s\S]*?)<\/cim:ExcIEEEST3A.vbmax>/g, obj, "vbmax", base.to_string, sub, context);
+
             /**
              * Maximum inner loop feedback voltage (V<sub>GMax</sub>).
              *
              * Typical Value = 5.8.
              *
              */
-            obj["vgmax"] = base.parse_element (/<cim:ExcIEEEST3A.vgmax>([\s\S]*?)<\/cim:ExcIEEEST3A.vgmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.vgmax>([\s\S]*?)<\/cim:ExcIEEEST3A.vgmax>/g, obj, "vgmax", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator input limit (V<sub>IMAX</sub>).
              *
              * Typical Value = 0.2.
              *
              */
-            obj["vimax"] = base.parse_element (/<cim:ExcIEEEST3A.vimax>([\s\S]*?)<\/cim:ExcIEEEST3A.vimax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.vimax>([\s\S]*?)<\/cim:ExcIEEEST3A.vimax>/g, obj, "vimax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator input limit (V<sub>IMIN</sub>).
              *
              * Typical Value = -0.2.
              *
              */
-            obj["vimin"] = base.parse_element (/<cim:ExcIEEEST3A.vimin>([\s\S]*?)<\/cim:ExcIEEEST3A.vimin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.vimin>([\s\S]*?)<\/cim:ExcIEEEST3A.vimin>/g, obj, "vimin", base.to_string, sub, context);
+
             /**
              * Maximum inner loop output (V<sub>MMax</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["vmmax"] = base.parse_element (/<cim:ExcIEEEST3A.vmmax>([\s\S]*?)<\/cim:ExcIEEEST3A.vmmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.vmmax>([\s\S]*?)<\/cim:ExcIEEEST3A.vmmax>/g, obj, "vmmax", base.to_string, sub, context);
+
             /**
              * Minimum inner loop output (V<sub>MMin</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["vmmin"] = base.parse_element (/<cim:ExcIEEEST3A.vmmin>([\s\S]*?)<\/cim:ExcIEEEST3A.vmmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.vmmin>([\s\S]*?)<\/cim:ExcIEEEST3A.vmmin>/g, obj, "vmmin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>RMAX</sub>).
              *
              * Typical Value = 10.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEST3A.vrmax>([\s\S]*?)<\/cim:ExcIEEEST3A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.vrmax>([\s\S]*?)<\/cim:ExcIEEEST3A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>RMIN</sub>).
              *
              * Typical Value = -10.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEST3A.vrmin>([\s\S]*?)<\/cim:ExcIEEEST3A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.vrmin>([\s\S]*?)<\/cim:ExcIEEEST3A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             /**
              * Reactance associated with potential source (X<sub>L</sub>).
              *
              * Typical Value = 0.081.
              *
              */
-            obj["xl"] = base.parse_element (/<cim:ExcIEEEST3A.xl>([\s\S]*?)<\/cim:ExcIEEEST3A.xl>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST3A.xl>([\s\S]*?)<\/cim:ExcIEEEST3A.xl>/g, obj, "xl", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEST3A;
             if (null == bucket)
                 context.parsed.ExcIEEEST3A = bucket = {};
@@ -1586,119 +1781,136 @@ define
              * Typical Value = 3.05.
              *
              */
-            obj["efd1"] = base.parse_element (/<cim:ExcDC2A.efd1>([\s\S]*?)<\/cim:ExcDC2A.efd1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC2A.efd1>([\s\S]*?)<\/cim:ExcDC2A.efd1>/g, obj, "efd1", base.to_string, sub, context);
+
             /**
              * Exciter voltage at which exciter saturation is defined (Efd2).
              *
              * Typical Value = 2.29.
              *
              */
-            obj["efd2"] = base.parse_element (/<cim:ExcDC2A.efd2>([\s\S]*?)<\/cim:ExcDC2A.efd2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC2A.efd2>([\s\S]*?)<\/cim:ExcDC2A.efd2>/g, obj, "efd2", base.to_string, sub, context);
+
             /**
              * (exclim).
              *
              * IEEE standard is ambiguous about lower limit on exciter output.
              *
              */
-            obj["exclim"] = base.to_boolean (base.parse_element (/<cim:ExcDC2A.exclim>([\s\S]*?)<\/cim:ExcDC2A.exclim>/g, sub, context, true));
+            base.parse_element (/<cim:ExcDC2A.exclim>([\s\S]*?)<\/cim:ExcDC2A.exclim>/g, obj, "exclim", base.to_boolean, sub, context);
+
             /**
              * Voltage regulator gain (Ka).
              *
              * Typical Value = 300.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcDC2A.ka>([\s\S]*?)<\/cim:ExcDC2A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC2A.ka>([\s\S]*?)<\/cim:ExcDC2A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (Ke).
              *
              * If Ke is entered as zero, the model calculates an effective value of Ke such that the initial condition value of Vr is zero. The zero value of Ke is not changed.  If Ke is entered as non-zero, its value is used directly, without change.  Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcDC2A.ke>([\s\S]*?)<\/cim:ExcDC2A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC2A.ke>([\s\S]*?)<\/cim:ExcDC2A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gain (Kf).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcDC2A.kf>([\s\S]*?)<\/cim:ExcDC2A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC2A.kf>([\s\S]*?)<\/cim:ExcDC2A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model-speed coefficient (Ks).
              *
              * Typical Value = 0.
              *
              */
-            obj["ks"] = base.parse_element (/<cim:ExcDC2A.ks>([\s\S]*?)<\/cim:ExcDC2A.ks>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC2A.ks>([\s\S]*?)<\/cim:ExcDC2A.ks>/g, obj, "ks", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
              *
              * Typical Value = 0.279.
              *
              */
-            obj["seefd1"] = base.to_float (base.parse_element (/<cim:ExcDC2A.seefd1>([\s\S]*?)<\/cim:ExcDC2A.seefd1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcDC2A.seefd1>([\s\S]*?)<\/cim:ExcDC2A.seefd1>/g, obj, "seefd1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Efd2 (Se[Efd2]).
              *
              * Typical Value = 0.117.
              *
              */
-            obj["seefd2"] = base.to_float (base.parse_element (/<cim:ExcDC2A.seefd2>([\s\S]*?)<\/cim:ExcDC2A.seefd2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcDC2A.seefd2>([\s\S]*?)<\/cim:ExcDC2A.seefd2>/g, obj, "seefd2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (Ta).
              *
              * Typical Value = 0.01.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcDC2A.ta>([\s\S]*?)<\/cim:ExcDC2A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC2A.ta>([\s\S]*?)<\/cim:ExcDC2A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tb).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcDC2A.tb>([\s\S]*?)<\/cim:ExcDC2A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC2A.tb>([\s\S]*?)<\/cim:ExcDC2A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tc).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcDC2A.tc>([\s\S]*?)<\/cim:ExcDC2A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC2A.tc>([\s\S]*?)<\/cim:ExcDC2A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (Te).
              *
              * Typical Value = 1.33.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcDC2A.te>([\s\S]*?)<\/cim:ExcDC2A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC2A.te>([\s\S]*?)<\/cim:ExcDC2A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (Tf).
              *
              * Typical Value = 0.675.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcDC2A.tf>([\s\S]*?)<\/cim:ExcDC2A.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC2A.tf>([\s\S]*?)<\/cim:ExcDC2A.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (Tf1).
              *
              * Typical Value = 0.
              *
              */
-            obj["tf1"] = base.parse_element (/<cim:ExcDC2A.tf1>([\s\S]*?)<\/cim:ExcDC2A.tf1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC2A.tf1>([\s\S]*?)<\/cim:ExcDC2A.tf1>/g, obj, "tf1", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (Vrmax).
              *
              * Typical Value = 4.95.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcDC2A.vrmax>([\s\S]*?)<\/cim:ExcDC2A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC2A.vrmax>([\s\S]*?)<\/cim:ExcDC2A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vrmin).
              *
              * Typical Value = -4.9.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcDC2A.vrmin>([\s\S]*?)<\/cim:ExcDC2A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC2A.vrmin>([\s\S]*?)<\/cim:ExcDC2A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             /**
              * (Vtlim).
              * true = limiter at the block [Ka/(1+sTa)] is dependent on Vt
@@ -1707,7 +1919,8 @@ define
              * Typical Value = true.
              *
              */
-            obj["vtlim"] = base.to_boolean (base.parse_element (/<cim:ExcDC2A.vtlim>([\s\S]*?)<\/cim:ExcDC2A.vtlim>/g, sub, context, true));
+            base.parse_element (/<cim:ExcDC2A.vtlim>([\s\S]*?)<\/cim:ExcDC2A.vtlim>/g, obj, "vtlim", base.to_boolean, sub, context);
+
             bucket = context.parsed.ExcDC2A;
             if (null == bucket)
                 context.parsed.ExcDC2A = bucket = {};
@@ -1735,84 +1948,96 @@ define
              * Typical Value = 4.18.
              *
              */
-            obj["e1"] = base.parse_element (/<cim:ExcAVR1.e1>([\s\S]*?)<\/cim:ExcAVR1.e1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR1.e1>([\s\S]*?)<\/cim:ExcAVR1.e1>/g, obj, "e1", base.to_string, sub, context);
+
             /**
              * Field voltage value 2 (E2).
              *
              * Typical Value = 3.14.
              *
              */
-            obj["e2"] = base.parse_element (/<cim:ExcAVR1.e2>([\s\S]*?)<\/cim:ExcAVR1.e2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR1.e2>([\s\S]*?)<\/cim:ExcAVR1.e2>/g, obj, "e2", base.to_string, sub, context);
+
             /**
              * AVR gain (K<sub>A</sub>).
              *
              * Typical Value = 500.
              *
              */
-            obj["ka"] = base.to_float (base.parse_element (/<cim:ExcAVR1.ka>([\s\S]*?)<\/cim:ExcAVR1.ka>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR1.ka>([\s\S]*?)<\/cim:ExcAVR1.ka>/g, obj, "ka", base.to_float, sub, context);
+
             /**
              * Rate feedback gain (K<sub>F</sub>).
              *
              * Typical Value = 0.12.
              *
              */
-            obj["kf"] = base.to_float (base.parse_element (/<cim:ExcAVR1.kf>([\s\S]*?)<\/cim:ExcAVR1.kf>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR1.kf>([\s\S]*?)<\/cim:ExcAVR1.kf>/g, obj, "kf", base.to_float, sub, context);
+
             /**
              * Saturation factor at E1 (S(E1)).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["se1"] = base.to_float (base.parse_element (/<cim:ExcAVR1.se1>([\s\S]*?)<\/cim:ExcAVR1.se1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR1.se1>([\s\S]*?)<\/cim:ExcAVR1.se1>/g, obj, "se1", base.to_float, sub, context);
+
             /**
              * Saturation factor at E2 (S(E2)).
              *
              * Typical Value = 0.03.
              *
              */
-            obj["se2"] = base.to_float (base.parse_element (/<cim:ExcAVR1.se2>([\s\S]*?)<\/cim:ExcAVR1.se2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR1.se2>([\s\S]*?)<\/cim:ExcAVR1.se2>/g, obj, "se2", base.to_float, sub, context);
+
             /**
              * AVR time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.2.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcAVR1.ta>([\s\S]*?)<\/cim:ExcAVR1.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR1.ta>([\s\S]*?)<\/cim:ExcAVR1.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * AVR time constant (T<sub>B</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcAVR1.tb>([\s\S]*?)<\/cim:ExcAVR1.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR1.tb>([\s\S]*?)<\/cim:ExcAVR1.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Exciter time constant (T<sub>E</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcAVR1.te>([\s\S]*?)<\/cim:ExcAVR1.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR1.te>([\s\S]*?)<\/cim:ExcAVR1.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Rate feedback time constant (T<sub>F</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcAVR1.tf>([\s\S]*?)<\/cim:ExcAVR1.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR1.tf>([\s\S]*?)<\/cim:ExcAVR1.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Minimum AVR output (V<sub>RMN</sub>).
              *
              * Typical Value = -6.
              *
              */
-            obj["vrmn"] = base.parse_element (/<cim:ExcAVR1.vrmn>([\s\S]*?)<\/cim:ExcAVR1.vrmn>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR1.vrmn>([\s\S]*?)<\/cim:ExcAVR1.vrmn>/g, obj, "vrmn", base.to_string, sub, context);
+
             /**
              * Maximum AVR output (V<sub>RMX</sub>).
              *
              * Typical Value = 7.
              *
              */
-            obj["vrmx"] = base.parse_element (/<cim:ExcAVR1.vrmx>([\s\S]*?)<\/cim:ExcAVR1.vrmx>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR1.vrmx>([\s\S]*?)<\/cim:ExcAVR1.vrmx>/g, obj, "vrmx", base.to_string, sub, context);
+
             bucket = context.parsed.ExcAVR1;
             if (null == bucket)
                 context.parsed.ExcAVR1 = bucket = {};
@@ -1840,98 +2065,112 @@ define
              * Typical Value = 4.164.
              *
              */
-            obj["ilr"] = base.parse_element (/<cim:ExcIEEEST6B.ilr>([\s\S]*?)<\/cim:ExcIEEEST6B.ilr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST6B.ilr>([\s\S]*?)<\/cim:ExcIEEEST6B.ilr>/g, obj, "ilr", base.to_string, sub, context);
+
             /**
              * Exciter output current limit adjustment (K<sub>CI</sub>).
              *
              * Typical Value = 1.0577.
              *
              */
-            obj["kci"] = base.parse_element (/<cim:ExcIEEEST6B.kci>([\s\S]*?)<\/cim:ExcIEEEST6B.kci>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST6B.kci>([\s\S]*?)<\/cim:ExcIEEEST6B.kci>/g, obj, "kci", base.to_string, sub, context);
+
             /**
              * Pre-control gain constant of the inner loop field regulator (K<sub>FF</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["kff"] = base.parse_element (/<cim:ExcIEEEST6B.kff>([\s\S]*?)<\/cim:ExcIEEEST6B.kff>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST6B.kff>([\s\S]*?)<\/cim:ExcIEEEST6B.kff>/g, obj, "kff", base.to_string, sub, context);
+
             /**
              * Feedback gain constant of the inner loop field regulator (K<sub>G</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["kg"] = base.parse_element (/<cim:ExcIEEEST6B.kg>([\s\S]*?)<\/cim:ExcIEEEST6B.kg>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST6B.kg>([\s\S]*?)<\/cim:ExcIEEEST6B.kg>/g, obj, "kg", base.to_string, sub, context);
+
             /**
              * Voltage regulator integral gain (K<sub>IA</sub>).
              *
              * Typical Value = 45.094.
              *
              */
-            obj["kia"] = base.parse_element (/<cim:ExcIEEEST6B.kia>([\s\S]*?)<\/cim:ExcIEEEST6B.kia>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST6B.kia>([\s\S]*?)<\/cim:ExcIEEEST6B.kia>/g, obj, "kia", base.to_string, sub, context);
+
             /**
              * Exciter output current limiter gain (K<sub>LR</sub>).
              *
              * Typical Value = 17.33.
              *
              */
-            obj["klr"] = base.parse_element (/<cim:ExcIEEEST6B.klr>([\s\S]*?)<\/cim:ExcIEEEST6B.klr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST6B.klr>([\s\S]*?)<\/cim:ExcIEEEST6B.klr>/g, obj, "klr", base.to_string, sub, context);
+
             /**
              * Forward gain constant of the inner loop field regulator (K<sub>M</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["km"] = base.parse_element (/<cim:ExcIEEEST6B.km>([\s\S]*?)<\/cim:ExcIEEEST6B.km>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST6B.km>([\s\S]*?)<\/cim:ExcIEEEST6B.km>/g, obj, "km", base.to_string, sub, context);
+
             /**
              * Voltage regulator proportional gain (K<sub>PA</sub>).
              *
              * Typical Value = 18.038.
              *
              */
-            obj["kpa"] = base.parse_element (/<cim:ExcIEEEST6B.kpa>([\s\S]*?)<\/cim:ExcIEEEST6B.kpa>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST6B.kpa>([\s\S]*?)<\/cim:ExcIEEEST6B.kpa>/g, obj, "kpa", base.to_string, sub, context);
+
             /**
              * OEL input selector (OELin).
              *
              * Typical Value = noOELinput.
              *
              */
-            obj["oelin"] = base.parse_element (/<cim:ExcIEEEST6B.oelin>([\s\S]*?)<\/cim:ExcIEEEST6B.oelin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST6B.oelin>([\s\S]*?)<\/cim:ExcIEEEST6B.oelin>/g, obj, "oelin", base.to_string, sub, context);
+
             /**
              * Feedback time constant of inner loop field voltage regulator (T<sub>G</sub>).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["tg"] = base.parse_element (/<cim:ExcIEEEST6B.tg>([\s\S]*?)<\/cim:ExcIEEEST6B.tg>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST6B.tg>([\s\S]*?)<\/cim:ExcIEEEST6B.tg>/g, obj, "tg", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>AMAX</sub>).
              *
              * Typical Value = 4.81.
              *
              */
-            obj["vamax"] = base.parse_element (/<cim:ExcIEEEST6B.vamax>([\s\S]*?)<\/cim:ExcIEEEST6B.vamax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST6B.vamax>([\s\S]*?)<\/cim:ExcIEEEST6B.vamax>/g, obj, "vamax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>AMIN</sub>).
              *
              * Typical Value = -3.85.
              *
              */
-            obj["vamin"] = base.parse_element (/<cim:ExcIEEEST6B.vamin>([\s\S]*?)<\/cim:ExcIEEEST6B.vamin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST6B.vamin>([\s\S]*?)<\/cim:ExcIEEEST6B.vamin>/g, obj, "vamin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>RMAX</sub>).
              *
              * Typical Value = 4.81.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEST6B.vrmax>([\s\S]*?)<\/cim:ExcIEEEST6B.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST6B.vrmax>([\s\S]*?)<\/cim:ExcIEEEST6B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>RMIN</sub>).
              *
              * Typical Value = -3.85.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEST6B.vrmin>([\s\S]*?)<\/cim:ExcIEEEST6B.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST6B.vrmin>([\s\S]*?)<\/cim:ExcIEEEST6B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEST6B;
             if (null == bucket)
                 context.parsed.ExcIEEEST6B = bucket = {};
@@ -1955,42 +2194,50 @@ define
              * Power system stabilizer model associated with this excitation system model.
              *
              */
-            obj["PowerSystemStabilizerDynamics"] = base.parse_attribute (/<cim:ExcitationSystemDynamics.PowerSystemStabilizerDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ExcitationSystemDynamics.PowerSystemStabilizerDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemStabilizerDynamics", sub, context, true);
+
             /**
              * Undrexcitation limiter model associated with this excitation system model.
              *
              */
-            obj["UnderexcitationLimiterDynamics"] = base.parse_attribute (/<cim:ExcitationSystemDynamics.UnderexcitationLimiterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ExcitationSystemDynamics.UnderexcitationLimiterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UnderexcitationLimiterDynamics", sub, context, true);
+
             /**
              * Discontinuous excitation control model associated with this excitation system model.
              *
              */
-            obj["DiscontinuousExcitationControlDynamics"] = base.parse_attribute (/<cim:ExcitationSystemDynamics.DiscontinuousExcitationControlDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ExcitationSystemDynamics.DiscontinuousExcitationControlDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DiscontinuousExcitationControlDynamics", sub, context, true);
+
             /**
              * Power Factor or VAr controller Type I model associated with this excitation system model.
              *
              */
-            obj["PFVArControllerType1Dynamics"] = base.parse_attribute (/<cim:ExcitationSystemDynamics.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ExcitationSystemDynamics.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType1Dynamics", sub, context, true);
+
             /**
              * Synchronous machine model with which this excitation system model is associated.
              *
              */
-            obj["SynchronousMachineDynamics"] = base.parse_attribute (/<cim:ExcitationSystemDynamics.SynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ExcitationSystemDynamics.SynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SynchronousMachineDynamics", sub, context, true);
+
             /**
              * Voltage compensator model associated with this excitation system model.
              *
              */
-            obj["VoltageCompensatorDynamics"] = base.parse_attribute (/<cim:ExcitationSystemDynamics.VoltageCompensatorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ExcitationSystemDynamics.VoltageCompensatorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VoltageCompensatorDynamics", sub, context, true);
+
             /**
              * Overexcitation limiter model associated with this excitation system model.
              *
              */
-            obj["OverexcitationLimiterDynamics"] = base.parse_attribute (/<cim:ExcitationSystemDynamics.OverexcitationLimiterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ExcitationSystemDynamics.OverexcitationLimiterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OverexcitationLimiterDynamics", sub, context, true);
+
             /**
              * Power Factor or VAr controller Type II model associated with this excitation system model.
              *
              */
-            obj["PFVArControllerType2Dynamics"] = base.parse_attribute (/<cim:ExcitationSystemDynamics.PFVArControllerType2Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ExcitationSystemDynamics.PFVArControllerType2Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType2Dynamics", sub, context, true);
+
             bucket = context.parsed.ExcitationSystemDynamics;
             if (null == bucket)
                 context.parsed.ExcitationSystemDynamics = bucket = {};
@@ -2018,91 +2265,104 @@ define
              * Typical Value = 3.1.
              *
              */
-            obj["efd1"] = base.parse_element (/<cim:ExcIEEEDC1A.efd1>([\s\S]*?)<\/cim:ExcIEEEDC1A.efd1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC1A.efd1>([\s\S]*?)<\/cim:ExcIEEEDC1A.efd1>/g, obj, "efd1", base.to_string, sub, context);
+
             /**
              * Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
              *
              * Typical Value = 2.3.
              *
              */
-            obj["efd2"] = base.parse_element (/<cim:ExcIEEEDC1A.efd2>([\s\S]*?)<\/cim:ExcIEEEDC1A.efd2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC1A.efd2>([\s\S]*?)<\/cim:ExcIEEEDC1A.efd2>/g, obj, "efd2", base.to_string, sub, context);
+
             /**
              * (exclim).
              *
              * IEEE standard is ambiguous about lower limit on exciter output.
              *
              */
-            obj["exclim"] = base.to_boolean (base.parse_element (/<cim:ExcIEEEDC1A.exclim>([\s\S]*?)<\/cim:ExcIEEEDC1A.exclim>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEDC1A.exclim>([\s\S]*?)<\/cim:ExcIEEEDC1A.exclim>/g, obj, "exclim", base.to_boolean, sub, context);
+
             /**
              * Voltage regulator gain (K<sub>A</sub>).
              *
              * Typical Value = 46.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcIEEEDC1A.ka>([\s\S]*?)<\/cim:ExcIEEEDC1A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC1A.ka>([\s\S]*?)<\/cim:ExcIEEEDC1A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (K<sub>E</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcIEEEDC1A.ke>([\s\S]*?)<\/cim:ExcIEEEDC1A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC1A.ke>([\s\S]*?)<\/cim:ExcIEEEDC1A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gain (K<sub>F</sub>).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcIEEEDC1A.kf>([\s\S]*?)<\/cim:ExcIEEEDC1A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC1A.kf>([\s\S]*?)<\/cim:ExcIEEEDC1A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
              *
              * Typical Value = 0.33.
              *
              */
-            obj["seefd1"] = base.to_float (base.parse_element (/<cim:ExcIEEEDC1A.seefd1>([\s\S]*?)<\/cim:ExcIEEEDC1A.seefd1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEDC1A.seefd1>([\s\S]*?)<\/cim:ExcIEEEDC1A.seefd1>/g, obj, "seefd1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["seefd2"] = base.to_float (base.parse_element (/<cim:ExcIEEEDC1A.seefd2>([\s\S]*?)<\/cim:ExcIEEEDC1A.seefd2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEDC1A.seefd2>([\s\S]*?)<\/cim:ExcIEEEDC1A.seefd2>/g, obj, "seefd2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.06.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcIEEEDC1A.ta>([\s\S]*?)<\/cim:ExcIEEEDC1A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC1A.ta>([\s\S]*?)<\/cim:ExcIEEEDC1A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>B</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcIEEEDC1A.tb>([\s\S]*?)<\/cim:ExcIEEEDC1A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC1A.tb>([\s\S]*?)<\/cim:ExcIEEEDC1A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>C</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcIEEEDC1A.tc>([\s\S]*?)<\/cim:ExcIEEEDC1A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC1A.tc>([\s\S]*?)<\/cim:ExcIEEEDC1A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
              *
              * Typical Value = 0.46.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcIEEEDC1A.te>([\s\S]*?)<\/cim:ExcIEEEDC1A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC1A.te>([\s\S]*?)<\/cim:ExcIEEEDC1A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (T<sub>F</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcIEEEDC1A.tf>([\s\S]*?)<\/cim:ExcIEEEDC1A.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC1A.tf>([\s\S]*?)<\/cim:ExcIEEEDC1A.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * UEL input (uelin).
              * true = input is connected to the HV gate
@@ -2111,21 +2371,24 @@ define
              * Typical Value = true.
              *
              */
-            obj["uelin"] = base.to_boolean (base.parse_element (/<cim:ExcIEEEDC1A.uelin>([\s\S]*?)<\/cim:ExcIEEEDC1A.uelin>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEDC1A.uelin>([\s\S]*?)<\/cim:ExcIEEEDC1A.uelin>/g, obj, "uelin", base.to_boolean, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>RMAX</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEDC1A.vrmax>([\s\S]*?)<\/cim:ExcIEEEDC1A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC1A.vrmax>([\s\S]*?)<\/cim:ExcIEEEDC1A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>RMIN</sub>).
              *
              * Typical Value = -0.9.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEDC1A.vrmin>([\s\S]*?)<\/cim:ExcIEEEDC1A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC1A.vrmin>([\s\S]*?)<\/cim:ExcIEEEDC1A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEDC1A;
             if (null == bucket)
                 context.parsed.ExcIEEEDC1A = bucket = {};
@@ -2152,56 +2415,64 @@ define
              * false = generator terminal voltage.
              *
              */
-            obj["cswitch"] = base.to_boolean (base.parse_element (/<cim:ExcSCRX.cswitch>([\s\S]*?)<\/cim:ExcSCRX.cswitch>/g, sub, context, true));
+            base.parse_element (/<cim:ExcSCRX.cswitch>([\s\S]*?)<\/cim:ExcSCRX.cswitch>/g, obj, "cswitch", base.to_boolean, sub, context);
+
             /**
              * Maximum field voltage output (Emax).
              *
              * Typical Value = 5.
              *
              */
-            obj["emax"] = base.parse_element (/<cim:ExcSCRX.emax>([\s\S]*?)<\/cim:ExcSCRX.emax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSCRX.emax>([\s\S]*?)<\/cim:ExcSCRX.emax>/g, obj, "emax", base.to_string, sub, context);
+
             /**
              * Minimum field voltage output (Emin).
              *
              * Typical Value = 0.
              *
              */
-            obj["emin"] = base.parse_element (/<cim:ExcSCRX.emin>([\s\S]*?)<\/cim:ExcSCRX.emin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSCRX.emin>([\s\S]*?)<\/cim:ExcSCRX.emin>/g, obj, "emin", base.to_string, sub, context);
+
             /**
              * Gain (K) (&gt;0).
              *
              * Typical Value = 200.
              *
              */
-            obj["k"] = base.parse_element (/<cim:ExcSCRX.k>([\s\S]*?)<\/cim:ExcSCRX.k>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSCRX.k>([\s\S]*?)<\/cim:ExcSCRX.k>/g, obj, "k", base.to_string, sub, context);
+
             /**
              * Rc/Rfd - ratio of field discharge resistance to field winding resistance (RcRfd).
              *
              * Typical Value = 0.
              *
              */
-            obj["rcrfd"] = base.to_float (base.parse_element (/<cim:ExcSCRX.rcrfd>([\s\S]*?)<\/cim:ExcSCRX.rcrfd>/g, sub, context, true));
+            base.parse_element (/<cim:ExcSCRX.rcrfd>([\s\S]*?)<\/cim:ExcSCRX.rcrfd>/g, obj, "rcrfd", base.to_float, sub, context);
+
             /**
              * Ta/Tb - gain reduction ratio of lag-lead element (TaTb).
              *
              * The parameter Ta is not defined explicitly.  Typical Value = 0.1.
              *
              */
-            obj["tatb"] = base.to_float (base.parse_element (/<cim:ExcSCRX.tatb>([\s\S]*?)<\/cim:ExcSCRX.tatb>/g, sub, context, true));
+            base.parse_element (/<cim:ExcSCRX.tatb>([\s\S]*?)<\/cim:ExcSCRX.tatb>/g, obj, "tatb", base.to_float, sub, context);
+
             /**
              * Denominator time constant of lag-lead block (Tb).
              *
              * Typical Value = 10.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcSCRX.tb>([\s\S]*?)<\/cim:ExcSCRX.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSCRX.tb>([\s\S]*?)<\/cim:ExcSCRX.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Time constant of gain block (Te) (&gt;0).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcSCRX.te>([\s\S]*?)<\/cim:ExcSCRX.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSCRX.te>([\s\S]*?)<\/cim:ExcSCRX.te>/g, obj, "te", base.to_string, sub, context);
+
             bucket = context.parsed.ExcSCRX;
             if (null == bucket)
                 context.parsed.ExcSCRX = bucket = {};
@@ -2229,56 +2500,64 @@ define
              * Typical Value = 1.75.
              *
              */
-            obj["efd1"] = base.parse_element (/<cim:ExcIEEEDC4B.efd1>([\s\S]*?)<\/cim:ExcIEEEDC4B.efd1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.efd1>([\s\S]*?)<\/cim:ExcIEEEDC4B.efd1>/g, obj, "efd1", base.to_string, sub, context);
+
             /**
              * Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
              *
              * Typical Value = 2.33.
              *
              */
-            obj["efd2"] = base.parse_element (/<cim:ExcIEEEDC4B.efd2>([\s\S]*?)<\/cim:ExcIEEEDC4B.efd2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.efd2>([\s\S]*?)<\/cim:ExcIEEEDC4B.efd2>/g, obj, "efd2", base.to_string, sub, context);
+
             /**
              * Voltage regulator gain (K<sub>A</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcIEEEDC4B.ka>([\s\S]*?)<\/cim:ExcIEEEDC4B.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.ka>([\s\S]*?)<\/cim:ExcIEEEDC4B.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Regulator derivative gain (K<sub>D</sub>).
              *
              * Typical Value = 20.
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcIEEEDC4B.kd>([\s\S]*?)<\/cim:ExcIEEEDC4B.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.kd>([\s\S]*?)<\/cim:ExcIEEEDC4B.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (K<sub>E</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcIEEEDC4B.ke>([\s\S]*?)<\/cim:ExcIEEEDC4B.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.ke>([\s\S]*?)<\/cim:ExcIEEEDC4B.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gain (K<sub>F</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcIEEEDC4B.kf>([\s\S]*?)<\/cim:ExcIEEEDC4B.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.kf>([\s\S]*?)<\/cim:ExcIEEEDC4B.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Regulator integral gain (K<sub>I</sub>).
              *
              * Typical Value = 20.
              *
              */
-            obj["ki"] = base.parse_element (/<cim:ExcIEEEDC4B.ki>([\s\S]*?)<\/cim:ExcIEEEDC4B.ki>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.ki>([\s\S]*?)<\/cim:ExcIEEEDC4B.ki>/g, obj, "ki", base.to_string, sub, context);
+
             /**
              * Regulator proportional gain (K<sub>P</sub>).
              *
              * Typical Value = 20.
              *
              */
-            obj["kp"] = base.parse_element (/<cim:ExcIEEEDC4B.kp>([\s\S]*?)<\/cim:ExcIEEEDC4B.kp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.kp>([\s\S]*?)<\/cim:ExcIEEEDC4B.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * OEL input (OELin).
              * true = LV gate
@@ -2287,49 +2566,56 @@ define
              * Typical Value = true.
              *
              */
-            obj["oelin"] = base.to_boolean (base.parse_element (/<cim:ExcIEEEDC4B.oelin>([\s\S]*?)<\/cim:ExcIEEEDC4B.oelin>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEDC4B.oelin>([\s\S]*?)<\/cim:ExcIEEEDC4B.oelin>/g, obj, "oelin", base.to_boolean, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
              *
              * Typical Value = 0.08.
              *
              */
-            obj["seefd1"] = base.to_float (base.parse_element (/<cim:ExcIEEEDC4B.seefd1>([\s\S]*?)<\/cim:ExcIEEEDC4B.seefd1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEDC4B.seefd1>([\s\S]*?)<\/cim:ExcIEEEDC4B.seefd1>/g, obj, "seefd1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
              *
              * Typical Value = 0.27.
              *
              */
-            obj["seefd2"] = base.to_float (base.parse_element (/<cim:ExcIEEEDC4B.seefd2>([\s\S]*?)<\/cim:ExcIEEEDC4B.seefd2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEDC4B.seefd2>([\s\S]*?)<\/cim:ExcIEEEDC4B.seefd2>/g, obj, "seefd2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.2.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcIEEEDC4B.ta>([\s\S]*?)<\/cim:ExcIEEEDC4B.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.ta>([\s\S]*?)<\/cim:ExcIEEEDC4B.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Regulator derivative filter time constant(T<sub>D</sub>).
              *
              * Typical Value = 0.01.
              *
              */
-            obj["td"] = base.parse_element (/<cim:ExcIEEEDC4B.td>([\s\S]*?)<\/cim:ExcIEEEDC4B.td>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.td>([\s\S]*?)<\/cim:ExcIEEEDC4B.td>/g, obj, "td", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
              *
              * Typical Value = 0.8.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcIEEEDC4B.te>([\s\S]*?)<\/cim:ExcIEEEDC4B.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.te>([\s\S]*?)<\/cim:ExcIEEEDC4B.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (T<sub>F</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcIEEEDC4B.tf>([\s\S]*?)<\/cim:ExcIEEEDC4B.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.tf>([\s\S]*?)<\/cim:ExcIEEEDC4B.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * UEL input (UELin).
              * true = HV gate
@@ -2338,28 +2624,32 @@ define
              * Typical Value = true.
              *
              */
-            obj["uelin"] = base.to_boolean (base.parse_element (/<cim:ExcIEEEDC4B.uelin>([\s\S]*?)<\/cim:ExcIEEEDC4B.uelin>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEDC4B.uelin>([\s\S]*?)<\/cim:ExcIEEEDC4B.uelin>/g, obj, "uelin", base.to_boolean, sub, context);
+
             /**
              * Minimum exciter voltage output(V<sub>EMIN</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["vemin"] = base.parse_element (/<cim:ExcIEEEDC4B.vemin>([\s\S]*?)<\/cim:ExcIEEEDC4B.vemin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.vemin>([\s\S]*?)<\/cim:ExcIEEEDC4B.vemin>/g, obj, "vemin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>RMAX</sub>).
              *
              * Typical Value = 2.7.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEDC4B.vrmax>([\s\S]*?)<\/cim:ExcIEEEDC4B.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.vrmax>([\s\S]*?)<\/cim:ExcIEEEDC4B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>RMIN</sub>).
              *
              * Typical Value = -0.9.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEDC4B.vrmin>([\s\S]*?)<\/cim:ExcIEEEDC4B.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC4B.vrmin>([\s\S]*?)<\/cim:ExcIEEEDC4B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEDC4B;
             if (null == bucket)
                 context.parsed.ExcIEEEDC4B = bucket = {};
@@ -2387,147 +2677,168 @@ define
              * Typical Value = 2.36.
              *
              */
-            obj["efdn"] = base.parse_element (/<cim:ExcIEEEAC3A.efdn>([\s\S]*?)<\/cim:ExcIEEEAC3A.efdn>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.efdn>([\s\S]*?)<\/cim:ExcIEEEAC3A.efdn>/g, obj, "efdn", base.to_string, sub, context);
+
             /**
              * Voltage regulator gain (K<sub>A</sub>).
              *
              * Typical Value = 45.62.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcIEEEAC3A.ka>([\s\S]*?)<\/cim:ExcIEEEAC3A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.ka>([\s\S]*?)<\/cim:ExcIEEEAC3A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
              *
              * Typical Value = 0.104.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcIEEEAC3A.kc>([\s\S]*?)<\/cim:ExcIEEEAC3A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.kc>([\s\S]*?)<\/cim:ExcIEEEAC3A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
              *
              * Typical Value = 0.499.
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcIEEEAC3A.kd>([\s\S]*?)<\/cim:ExcIEEEAC3A.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.kd>([\s\S]*?)<\/cim:ExcIEEEAC3A.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (K<sub>E</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcIEEEAC3A.ke>([\s\S]*?)<\/cim:ExcIEEEAC3A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.ke>([\s\S]*?)<\/cim:ExcIEEEAC3A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gains (K<sub>F</sub>).
              *
              * Typical Value = 0.143.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcIEEEAC3A.kf>([\s\S]*?)<\/cim:ExcIEEEAC3A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.kf>([\s\S]*?)<\/cim:ExcIEEEAC3A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gain (K<sub>N</sub>).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["kn"] = base.parse_element (/<cim:ExcIEEEAC3A.kn>([\s\S]*?)<\/cim:ExcIEEEAC3A.kn>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.kn>([\s\S]*?)<\/cim:ExcIEEEAC3A.kn>/g, obj, "kn", base.to_string, sub, context);
+
             /**
              * Constant associated with regulator and alternator field power supply (K<sub>R</sub>).
              *
              * Typical Value = 3.77.
              *
              */
-            obj["kr"] = base.parse_element (/<cim:ExcIEEEAC3A.kr>([\s\S]*?)<\/cim:ExcIEEEAC3A.kr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.kr>([\s\S]*?)<\/cim:ExcIEEEAC3A.kr>/g, obj, "kr", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
              *
              * Typical Value = 1.143.
              *
              */
-            obj["seve1"] = base.to_float (base.parse_element (/<cim:ExcIEEEAC3A.seve1>([\s\S]*?)<\/cim:ExcIEEEAC3A.seve1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEAC3A.seve1>([\s\S]*?)<\/cim:ExcIEEEAC3A.seve1>/g, obj, "seve1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["seve2"] = base.to_float (base.parse_element (/<cim:ExcIEEEAC3A.seve2>([\s\S]*?)<\/cim:ExcIEEEAC3A.seve2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEAC3A.seve2>([\s\S]*?)<\/cim:ExcIEEEAC3A.seve2>/g, obj, "seve2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.013.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcIEEEAC3A.ta>([\s\S]*?)<\/cim:ExcIEEEAC3A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.ta>([\s\S]*?)<\/cim:ExcIEEEAC3A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>B</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcIEEEAC3A.tb>([\s\S]*?)<\/cim:ExcIEEEAC3A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.tb>([\s\S]*?)<\/cim:ExcIEEEAC3A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>C</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcIEEEAC3A.tc>([\s\S]*?)<\/cim:ExcIEEEAC3A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.tc>([\s\S]*?)<\/cim:ExcIEEEAC3A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
              *
              * Typical Value = 1.17.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcIEEEAC3A.te>([\s\S]*?)<\/cim:ExcIEEEAC3A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.te>([\s\S]*?)<\/cim:ExcIEEEAC3A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (T<sub>F</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcIEEEAC3A.tf>([\s\S]*?)<\/cim:ExcIEEEAC3A.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.tf>([\s\S]*?)<\/cim:ExcIEEEAC3A.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>AMAX</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["vamax"] = base.parse_element (/<cim:ExcIEEEAC3A.vamax>([\s\S]*?)<\/cim:ExcIEEEAC3A.vamax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.vamax>([\s\S]*?)<\/cim:ExcIEEEAC3A.vamax>/g, obj, "vamax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>AMIN</sub>).
              *
              * Typical Value = -0.95.
              *
              */
-            obj["vamin"] = base.parse_element (/<cim:ExcIEEEAC3A.vamin>([\s\S]*?)<\/cim:ExcIEEEAC3A.vamin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.vamin>([\s\S]*?)<\/cim:ExcIEEEAC3A.vamin>/g, obj, "vamin", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX </sub>(V<sub>E1</sub>).
              *
              * Typical Value = 6.24.
              *
              */
-            obj["ve1"] = base.parse_element (/<cim:ExcIEEEAC3A.ve1>([\s\S]*?)<\/cim:ExcIEEEAC3A.ve1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.ve1>([\s\S]*?)<\/cim:ExcIEEEAC3A.ve1>/g, obj, "ve1", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
              *
              * Typical Value = 4.68.
              *
              */
-            obj["ve2"] = base.parse_element (/<cim:ExcIEEEAC3A.ve2>([\s\S]*?)<\/cim:ExcIEEEAC3A.ve2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.ve2>([\s\S]*?)<\/cim:ExcIEEEAC3A.ve2>/g, obj, "ve2", base.to_string, sub, context);
+
             /**
              * Minimum exciter voltage output (V<sub>EMIN</sub>).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["vemin"] = base.parse_element (/<cim:ExcIEEEAC3A.vemin>([\s\S]*?)<\/cim:ExcIEEEAC3A.vemin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.vemin>([\s\S]*?)<\/cim:ExcIEEEAC3A.vemin>/g, obj, "vemin", base.to_string, sub, context);
+
             /**
              * Exciter field current limit reference (V<sub>FEMAX</sub>).
              *
              * Typical Value = 16.
              *
              */
-            obj["vfemax"] = base.parse_element (/<cim:ExcIEEEAC3A.vfemax>([\s\S]*?)<\/cim:ExcIEEEAC3A.vfemax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC3A.vfemax>([\s\S]*?)<\/cim:ExcIEEEAC3A.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEAC3A;
             if (null == bucket)
                 context.parsed.ExcIEEEAC3A = bucket = {};
@@ -2553,19 +2864,22 @@ define
              * Gain (Ka).
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcAVR5.ka>([\s\S]*?)<\/cim:ExcAVR5.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR5.ka>([\s\S]*?)<\/cim:ExcAVR5.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Effective Output Resistance (Rex).
              *
              * Rex represents the effective output resistance seen by the excitation system.
              *
              */
-            obj["rex"] = base.parse_element (/<cim:ExcAVR5.rex>([\s\S]*?)<\/cim:ExcAVR5.rex>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR5.rex>([\s\S]*?)<\/cim:ExcAVR5.rex>/g, obj, "rex", base.to_string, sub, context);
+
             /**
              * Time constant (Ta).
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcAVR5.ta>([\s\S]*?)<\/cim:ExcAVR5.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR5.ta>([\s\S]*?)<\/cim:ExcAVR5.ta>/g, obj, "ta", base.to_string, sub, context);
+
             bucket = context.parsed.ExcAVR5;
             if (null == bucket)
                 context.parsed.ExcAVR5 = bucket = {};
@@ -2591,84 +2905,96 @@ define
              * Typical Value = 99.
              *
              */
-            obj["efdmax"] = base.parse_element (/<cim:ExcST2A.efdmax>([\s\S]*?)<\/cim:ExcST2A.efdmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST2A.efdmax>([\s\S]*?)<\/cim:ExcST2A.efdmax>/g, obj, "efdmax", base.to_string, sub, context);
+
             /**
              * Voltage regulator gain (Ka).
              *
              * Typical Value = 120.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcST2A.ka>([\s\S]*?)<\/cim:ExcST2A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST2A.ka>([\s\S]*?)<\/cim:ExcST2A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (Kc).
              *
              * Typical Value = 1.82.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcST2A.kc>([\s\S]*?)<\/cim:ExcST2A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST2A.kc>([\s\S]*?)<\/cim:ExcST2A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (Ke).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcST2A.ke>([\s\S]*?)<\/cim:ExcST2A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST2A.ke>([\s\S]*?)<\/cim:ExcST2A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gains (Kf).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcST2A.kf>([\s\S]*?)<\/cim:ExcST2A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST2A.kf>([\s\S]*?)<\/cim:ExcST2A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Potential circuit gain coefficient (Ki).
              *
              * Typical Value = 8.
              *
              */
-            obj["ki"] = base.parse_element (/<cim:ExcST2A.ki>([\s\S]*?)<\/cim:ExcST2A.ki>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST2A.ki>([\s\S]*?)<\/cim:ExcST2A.ki>/g, obj, "ki", base.to_string, sub, context);
+
             /**
              * Potential circuit gain coefficient (Kp).
              *
              * Typical Value = 4.88.
              *
              */
-            obj["kp"] = base.parse_element (/<cim:ExcST2A.kp>([\s\S]*?)<\/cim:ExcST2A.kp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST2A.kp>([\s\S]*?)<\/cim:ExcST2A.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Ta).
              *
              * Typical Value = 0.15.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcST2A.ta>([\s\S]*?)<\/cim:ExcST2A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST2A.ta>([\s\S]*?)<\/cim:ExcST2A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tb).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcST2A.tb>([\s\S]*?)<\/cim:ExcST2A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST2A.tb>([\s\S]*?)<\/cim:ExcST2A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tc).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcST2A.tc>([\s\S]*?)<\/cim:ExcST2A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST2A.tc>([\s\S]*?)<\/cim:ExcST2A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (Te).
              *
              * Typical Value = 0.5.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcST2A.te>([\s\S]*?)<\/cim:ExcST2A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST2A.te>([\s\S]*?)<\/cim:ExcST2A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (Tf).
              *
              * Typical Value = 0.7.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcST2A.tf>([\s\S]*?)<\/cim:ExcST2A.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST2A.tf>([\s\S]*?)<\/cim:ExcST2A.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * UEL input (UELin).
              * true = HV gate
@@ -2677,21 +3003,24 @@ define
              * Typical Value = false.
              *
              */
-            obj["uelin"] = base.to_boolean (base.parse_element (/<cim:ExcST2A.uelin>([\s\S]*?)<\/cim:ExcST2A.uelin>/g, sub, context, true));
+            base.parse_element (/<cim:ExcST2A.uelin>([\s\S]*?)<\/cim:ExcST2A.uelin>/g, obj, "uelin", base.to_boolean, sub, context);
+
             /**
              * Maximum voltage regulator outputs (Vrmax).
              *
              * Typical Value = 1.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcST2A.vrmax>([\s\S]*?)<\/cim:ExcST2A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST2A.vrmax>([\s\S]*?)<\/cim:ExcST2A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator outputs (Vrmin).
              *
              * Typical Value = -1.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcST2A.vrmin>([\s\S]*?)<\/cim:ExcST2A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST2A.vrmin>([\s\S]*?)<\/cim:ExcST2A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcST2A;
             if (null == bucket)
                 context.parsed.ExcST2A = bucket = {};
@@ -2719,189 +3048,216 @@ define
              * Typical Value = 0.1.
              *
              */
-            obj["efdbas"] = base.parse_element (/<cim:ExcELIN2.efdbas>([\s\S]*?)<\/cim:ExcELIN2.efdbas>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.efdbas>([\s\S]*?)<\/cim:ExcELIN2.efdbas>/g, obj, "efdbas", base.to_string, sub, context);
+
             /**
              * Limiter (Iefmax).
              *
              * Typical Value = 1.
              *
              */
-            obj["iefmax"] = base.parse_element (/<cim:ExcELIN2.iefmax>([\s\S]*?)<\/cim:ExcELIN2.iefmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.iefmax>([\s\S]*?)<\/cim:ExcELIN2.iefmax>/g, obj, "iefmax", base.to_string, sub, context);
+
             /**
              * Minimum open circuit excitation voltage (Iefmax2).
              *
              * Typical Value = -5.
              *
              */
-            obj["iefmax2"] = base.parse_element (/<cim:ExcELIN2.iefmax2>([\s\S]*?)<\/cim:ExcELIN2.iefmax2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.iefmax2>([\s\S]*?)<\/cim:ExcELIN2.iefmax2>/g, obj, "iefmax2", base.to_string, sub, context);
+
             /**
              * Limiter (Iefmin).
              *
              * Typical Value = 1.
              *
              */
-            obj["iefmin"] = base.parse_element (/<cim:ExcELIN2.iefmin>([\s\S]*?)<\/cim:ExcELIN2.iefmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.iefmin>([\s\S]*?)<\/cim:ExcELIN2.iefmin>/g, obj, "iefmin", base.to_string, sub, context);
+
             /**
              * Voltage regulator input gain (K1).
              *
              * Typical Value = 0.
              *
              */
-            obj["k1"] = base.parse_element (/<cim:ExcELIN2.k1>([\s\S]*?)<\/cim:ExcELIN2.k1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.k1>([\s\S]*?)<\/cim:ExcELIN2.k1>/g, obj, "k1", base.to_string, sub, context);
+
             /**
              * Voltage regulator input limit (K1ec).
              *
              * Typical Value = 2.
              *
              */
-            obj["k1ec"] = base.parse_element (/<cim:ExcELIN2.k1ec>([\s\S]*?)<\/cim:ExcELIN2.k1ec>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.k1ec>([\s\S]*?)<\/cim:ExcELIN2.k1ec>/g, obj, "k1ec", base.to_string, sub, context);
+
             /**
              * Gain (K2).
              *
              * Typical Value = 5.
              *
              */
-            obj["k2"] = base.parse_element (/<cim:ExcELIN2.k2>([\s\S]*?)<\/cim:ExcELIN2.k2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.k2>([\s\S]*?)<\/cim:ExcELIN2.k2>/g, obj, "k2", base.to_string, sub, context);
+
             /**
              * Gain (K3).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["k3"] = base.parse_element (/<cim:ExcELIN2.k3>([\s\S]*?)<\/cim:ExcELIN2.k3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.k3>([\s\S]*?)<\/cim:ExcELIN2.k3>/g, obj, "k3", base.to_string, sub, context);
+
             /**
              * Gain (K4).
              *
              * Typical Value = 0.
              *
              */
-            obj["k4"] = base.parse_element (/<cim:ExcELIN2.k4>([\s\S]*?)<\/cim:ExcELIN2.k4>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.k4>([\s\S]*?)<\/cim:ExcELIN2.k4>/g, obj, "k4", base.to_string, sub, context);
+
             /**
              * Voltage controller derivative gain (Kd1).
              *
              * Typical Value = 34.5.
              *
              */
-            obj["kd1"] = base.parse_element (/<cim:ExcELIN2.kd1>([\s\S]*?)<\/cim:ExcELIN2.kd1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.kd1>([\s\S]*?)<\/cim:ExcELIN2.kd1>/g, obj, "kd1", base.to_string, sub, context);
+
             /**
              * Gain (Ke2).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["ke2"] = base.parse_element (/<cim:ExcELIN2.ke2>([\s\S]*?)<\/cim:ExcELIN2.ke2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.ke2>([\s\S]*?)<\/cim:ExcELIN2.ke2>/g, obj, "ke2", base.to_string, sub, context);
+
             /**
              * Gain (Ketb).
              *
              * Typical Value = 0.06.
              *
              */
-            obj["ketb"] = base.parse_element (/<cim:ExcELIN2.ketb>([\s\S]*?)<\/cim:ExcELIN2.ketb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.ketb>([\s\S]*?)<\/cim:ExcELIN2.ketb>/g, obj, "ketb", base.to_string, sub, context);
+
             /**
              * Controller follow up gain (PID1max).
              *
              * Typical Value = 2.
              *
              */
-            obj["pid1max"] = base.parse_element (/<cim:ExcELIN2.pid1max>([\s\S]*?)<\/cim:ExcELIN2.pid1max>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.pid1max>([\s\S]*?)<\/cim:ExcELIN2.pid1max>/g, obj, "pid1max", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
              *
              * Typical Value = 0.
              *
              */
-            obj["seve1"] = base.parse_element (/<cim:ExcELIN2.seve1>([\s\S]*?)<\/cim:ExcELIN2.seve1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.seve1>([\s\S]*?)<\/cim:ExcELIN2.seve1>/g, obj, "seve1", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
              *
              * Typical Value = 1.
              *
              */
-            obj["seve2"] = base.parse_element (/<cim:ExcELIN2.seve2>([\s\S]*?)<\/cim:ExcELIN2.seve2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.seve2>([\s\S]*?)<\/cim:ExcELIN2.seve2>/g, obj, "seve2", base.to_string, sub, context);
+
             /**
              * Voltage controller derivative washout time constant (Tb1).
              *
              * Typical Value = 12.45.
              *
              */
-            obj["tb1"] = base.parse_element (/<cim:ExcELIN2.tb1>([\s\S]*?)<\/cim:ExcELIN2.tb1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.tb1>([\s\S]*?)<\/cim:ExcELIN2.tb1>/g, obj, "tb1", base.to_string, sub, context);
+
             /**
              * Time constant (Te).
              *
              * Typical Value = 0.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcELIN2.te>([\s\S]*?)<\/cim:ExcELIN2.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.te>([\s\S]*?)<\/cim:ExcELIN2.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Time Constant (Te2).
              *
              * Typical Value = 1.
              *
              */
-            obj["te2"] = base.parse_element (/<cim:ExcELIN2.te2>([\s\S]*?)<\/cim:ExcELIN2.te2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.te2>([\s\S]*?)<\/cim:ExcELIN2.te2>/g, obj, "te2", base.to_string, sub, context);
+
             /**
              * Controller follow up dead band (Ti1).
              *
              * Typical Value = 0.
              *
              */
-            obj["ti1"] = base.parse_element (/<cim:ExcELIN2.ti1>([\s\S]*?)<\/cim:ExcELIN2.ti1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.ti1>([\s\S]*?)<\/cim:ExcELIN2.ti1>/g, obj, "ti1", base.to_string, sub, context);
+
             /**
              * Time constant (Ti3).
              *
              * Typical Value = 3.
              *
              */
-            obj["ti3"] = base.parse_element (/<cim:ExcELIN2.ti3>([\s\S]*?)<\/cim:ExcELIN2.ti3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.ti3>([\s\S]*?)<\/cim:ExcELIN2.ti3>/g, obj, "ti3", base.to_string, sub, context);
+
             /**
              * Time constant (Ti4).
              *
              * Typical Value = 0.
              *
              */
-            obj["ti4"] = base.parse_element (/<cim:ExcELIN2.ti4>([\s\S]*?)<\/cim:ExcELIN2.ti4>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.ti4>([\s\S]*?)<\/cim:ExcELIN2.ti4>/g, obj, "ti4", base.to_string, sub, context);
+
             /**
              * Time constant (Tr4).
              *
              * Typical Value = 1.
              *
              */
-            obj["tr4"] = base.parse_element (/<cim:ExcELIN2.tr4>([\s\S]*?)<\/cim:ExcELIN2.tr4>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.tr4>([\s\S]*?)<\/cim:ExcELIN2.tr4>/g, obj, "tr4", base.to_string, sub, context);
+
             /**
              * Limiter (Upmax).
              *
              * Typical Value = 3.
              *
              */
-            obj["upmax"] = base.parse_element (/<cim:ExcELIN2.upmax>([\s\S]*?)<\/cim:ExcELIN2.upmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.upmax>([\s\S]*?)<\/cim:ExcELIN2.upmax>/g, obj, "upmax", base.to_string, sub, context);
+
             /**
              * Limiter (Upmin).
              *
              * Typical Value = 0.
              *
              */
-            obj["upmin"] = base.parse_element (/<cim:ExcELIN2.upmin>([\s\S]*?)<\/cim:ExcELIN2.upmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.upmin>([\s\S]*?)<\/cim:ExcELIN2.upmin>/g, obj, "upmin", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve1).
              *
              * Typical Value = 3.
              *
              */
-            obj["ve1"] = base.parse_element (/<cim:ExcELIN2.ve1>([\s\S]*?)<\/cim:ExcELIN2.ve1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.ve1>([\s\S]*?)<\/cim:ExcELIN2.ve1>/g, obj, "ve1", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
              *
              * Typical Value = 0.
              *
              */
-            obj["ve2"] = base.parse_element (/<cim:ExcELIN2.ve2>([\s\S]*?)<\/cim:ExcELIN2.ve2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.ve2>([\s\S]*?)<\/cim:ExcELIN2.ve2>/g, obj, "ve2", base.to_string, sub, context);
+
             /**
              * Excitation transformer effective reactance (Xp).
              *
              * Typical Value = 1.
              *
              */
-            obj["xp"] = base.parse_element (/<cim:ExcELIN2.xp>([\s\S]*?)<\/cim:ExcELIN2.xp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcELIN2.xp>([\s\S]*?)<\/cim:ExcELIN2.xp>/g, obj, "xp", base.to_string, sub, context);
+
             bucket = context.parsed.ExcELIN2;
             if (null == bucket)
                 context.parsed.ExcELIN2 = bucket = {};
@@ -2929,77 +3285,88 @@ define
              * Typical Value = 3.375.
              *
              */
-            obj["efd1"] = base.parse_element (/<cim:ExcIEEEDC3A.efd1>([\s\S]*?)<\/cim:ExcIEEEDC3A.efd1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC3A.efd1>([\s\S]*?)<\/cim:ExcIEEEDC3A.efd1>/g, obj, "efd1", base.to_string, sub, context);
+
             /**
              * Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
              *
              * Typical Value = 3.15.
              *
              */
-            obj["efd2"] = base.parse_element (/<cim:ExcIEEEDC3A.efd2>([\s\S]*?)<\/cim:ExcIEEEDC3A.efd2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC3A.efd2>([\s\S]*?)<\/cim:ExcIEEEDC3A.efd2>/g, obj, "efd2", base.to_string, sub, context);
+
             /**
              * (exclim).
              *
              * IEEE standard is ambiguous about lower limit on exciter output.
              *
              */
-            obj["exclim"] = base.to_boolean (base.parse_element (/<cim:ExcIEEEDC3A.exclim>([\s\S]*?)<\/cim:ExcIEEEDC3A.exclim>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEDC3A.exclim>([\s\S]*?)<\/cim:ExcIEEEDC3A.exclim>/g, obj, "exclim", base.to_boolean, sub, context);
+
             /**
              * Exciter constant related to self-excited field (K<sub>E</sub>).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcIEEEDC3A.ke>([\s\S]*?)<\/cim:ExcIEEEDC3A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC3A.ke>([\s\S]*?)<\/cim:ExcIEEEDC3A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Fast raise/lower contact setting (K<sub>V</sub>).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["kv"] = base.parse_element (/<cim:ExcIEEEDC3A.kv>([\s\S]*?)<\/cim:ExcIEEEDC3A.kv>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC3A.kv>([\s\S]*?)<\/cim:ExcIEEEDC3A.kv>/g, obj, "kv", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
              *
              * Typical Value = 0.267.
              *
              */
-            obj["seefd1"] = base.to_float (base.parse_element (/<cim:ExcIEEEDC3A.seefd1>([\s\S]*?)<\/cim:ExcIEEEDC3A.seefd1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEDC3A.seefd1>([\s\S]*?)<\/cim:ExcIEEEDC3A.seefd1>/g, obj, "seefd1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
              *
              * Typical Value = 0.068.
              *
              */
-            obj["seefd2"] = base.to_float (base.parse_element (/<cim:ExcIEEEDC3A.seefd2>([\s\S]*?)<\/cim:ExcIEEEDC3A.seefd2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEDC3A.seefd2>([\s\S]*?)<\/cim:ExcIEEEDC3A.seefd2>/g, obj, "seefd2", base.to_float, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
              *
              * Typical Value = 0.5.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcIEEEDC3A.te>([\s\S]*?)<\/cim:ExcIEEEDC3A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC3A.te>([\s\S]*?)<\/cim:ExcIEEEDC3A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Rheostat travel time (T<sub>RH</sub>).
              *
              * Typical Value = 20.
              *
              */
-            obj["trh"] = base.parse_element (/<cim:ExcIEEEDC3A.trh>([\s\S]*?)<\/cim:ExcIEEEDC3A.trh>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC3A.trh>([\s\S]*?)<\/cim:ExcIEEEDC3A.trh>/g, obj, "trh", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>RMAX</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEDC3A.vrmax>([\s\S]*?)<\/cim:ExcIEEEDC3A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC3A.vrmax>([\s\S]*?)<\/cim:ExcIEEEDC3A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>RMIN</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEDC3A.vrmin>([\s\S]*?)<\/cim:ExcIEEEDC3A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC3A.vrmin>([\s\S]*?)<\/cim:ExcIEEEDC3A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEDC3A;
             if (null == bucket)
                 context.parsed.ExcIEEEDC3A = bucket = {};
@@ -3027,147 +3394,168 @@ define
              * Typical Value = 400.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcIEEEAC2A.ka>([\s\S]*?)<\/cim:ExcIEEEAC2A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.ka>([\s\S]*?)<\/cim:ExcIEEEAC2A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Second stage regulator gain (K<sub>B</sub>).
              *
              * Typical Value = 25.
              *
              */
-            obj["kb"] = base.parse_element (/<cim:ExcIEEEAC2A.kb>([\s\S]*?)<\/cim:ExcIEEEAC2A.kb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.kb>([\s\S]*?)<\/cim:ExcIEEEAC2A.kb>/g, obj, "kb", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
              *
              * Typical Value = 0.28.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcIEEEAC2A.kc>([\s\S]*?)<\/cim:ExcIEEEAC2A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.kc>([\s\S]*?)<\/cim:ExcIEEEAC2A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
              *
              * Typical Value = 0.35.
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcIEEEAC2A.kd>([\s\S]*?)<\/cim:ExcIEEEAC2A.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.kd>([\s\S]*?)<\/cim:ExcIEEEAC2A.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (K<sub>E</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcIEEEAC2A.ke>([\s\S]*?)<\/cim:ExcIEEEAC2A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.ke>([\s\S]*?)<\/cim:ExcIEEEAC2A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gains (K<sub>F</sub>).
              *
              * Typical Value = 0.03.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcIEEEAC2A.kf>([\s\S]*?)<\/cim:ExcIEEEAC2A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.kf>([\s\S]*?)<\/cim:ExcIEEEAC2A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Exciter field current feedback gain (K<sub>H</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["kh"] = base.parse_element (/<cim:ExcIEEEAC2A.kh>([\s\S]*?)<\/cim:ExcIEEEAC2A.kh>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.kh>([\s\S]*?)<\/cim:ExcIEEEAC2A.kh>/g, obj, "kh", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
              *
              * Typical Value = 0.037.
              *
              */
-            obj["seve1"] = base.to_float (base.parse_element (/<cim:ExcIEEEAC2A.seve1>([\s\S]*?)<\/cim:ExcIEEEAC2A.seve1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEAC2A.seve1>([\s\S]*?)<\/cim:ExcIEEEAC2A.seve1>/g, obj, "seve1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
              *
              * Typical Value = 0.012.
              *
              */
-            obj["seve2"] = base.to_float (base.parse_element (/<cim:ExcIEEEAC2A.seve2>([\s\S]*?)<\/cim:ExcIEEEAC2A.seve2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEAC2A.seve2>([\s\S]*?)<\/cim:ExcIEEEAC2A.seve2>/g, obj, "seve2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcIEEEAC2A.ta>([\s\S]*?)<\/cim:ExcIEEEAC2A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.ta>([\s\S]*?)<\/cim:ExcIEEEAC2A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>B</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcIEEEAC2A.tb>([\s\S]*?)<\/cim:ExcIEEEAC2A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.tb>([\s\S]*?)<\/cim:ExcIEEEAC2A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>C</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcIEEEAC2A.tc>([\s\S]*?)<\/cim:ExcIEEEAC2A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.tc>([\s\S]*?)<\/cim:ExcIEEEAC2A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
              *
              * Typical Value = 0.6.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcIEEEAC2A.te>([\s\S]*?)<\/cim:ExcIEEEAC2A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.te>([\s\S]*?)<\/cim:ExcIEEEAC2A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (T<sub>F</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcIEEEAC2A.tf>([\s\S]*?)<\/cim:ExcIEEEAC2A.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.tf>([\s\S]*?)<\/cim:ExcIEEEAC2A.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>AMAX</sub>).
              *
              * Typical Value = 8.
              *
              */
-            obj["vamax"] = base.parse_element (/<cim:ExcIEEEAC2A.vamax>([\s\S]*?)<\/cim:ExcIEEEAC2A.vamax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.vamax>([\s\S]*?)<\/cim:ExcIEEEAC2A.vamax>/g, obj, "vamax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>AMIN</sub>).
              *
              * Typical Value = -8.
              *
              */
-            obj["vamin"] = base.parse_element (/<cim:ExcIEEEAC2A.vamin>([\s\S]*?)<\/cim:ExcIEEEAC2A.vamin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.vamin>([\s\S]*?)<\/cim:ExcIEEEAC2A.vamin>/g, obj, "vamin", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>).
              *
              * Typical Value = 4.4.
              *
              */
-            obj["ve1"] = base.parse_element (/<cim:ExcIEEEAC2A.ve1>([\s\S]*?)<\/cim:ExcIEEEAC2A.ve1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.ve1>([\s\S]*?)<\/cim:ExcIEEEAC2A.ve1>/g, obj, "ve1", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
              *
              * Typical Value = 3.3.
              *
              */
-            obj["ve2"] = base.parse_element (/<cim:ExcIEEEAC2A.ve2>([\s\S]*?)<\/cim:ExcIEEEAC2A.ve2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.ve2>([\s\S]*?)<\/cim:ExcIEEEAC2A.ve2>/g, obj, "ve2", base.to_string, sub, context);
+
             /**
              * Exciter field current limit reference (V<sub>FEMAX</sub>).
              *
              * Typical Value = 4.4.
              *
              */
-            obj["vfemax"] = base.parse_element (/<cim:ExcIEEEAC2A.vfemax>([\s\S]*?)<\/cim:ExcIEEEAC2A.vfemax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.vfemax>([\s\S]*?)<\/cim:ExcIEEEAC2A.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator outputs (V<sub>RMAX</sub>).
              *
              * Typical Value = 105.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEAC2A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC2A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC2A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator outputs (V<sub>RMIN</sub>).
              *
              * Typical Value = -95.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEAC2A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC2A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC2A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC2A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEAC2A;
             if (null == bucket)
                 context.parsed.ExcIEEEAC2A = bucket = {};
@@ -3195,154 +3583,176 @@ define
              * Typical Value = true.
              *
              */
-            obj["hvlvgates"] = base.to_boolean (base.parse_element (/<cim:ExcAC1A.hvlvgates>([\s\S]*?)<\/cim:ExcAC1A.hvlvgates>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC1A.hvlvgates>([\s\S]*?)<\/cim:ExcAC1A.hvlvgates>/g, obj, "hvlvgates", base.to_boolean, sub, context);
+
             /**
              * Voltage regulator gain (Ka).
              *
              * Typical Value = 400.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcAC1A.ka>([\s\S]*?)<\/cim:ExcAC1A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.ka>([\s\S]*?)<\/cim:ExcAC1A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (Kc).
              *
              * Typical Value = 0.2.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcAC1A.kc>([\s\S]*?)<\/cim:ExcAC1A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.kc>([\s\S]*?)<\/cim:ExcAC1A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Demagnetizing factor, a function of exciter alternator reactances (Kd).
              *
              * Typical Value = 0.38.
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcAC1A.kd>([\s\S]*?)<\/cim:ExcAC1A.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.kd>([\s\S]*?)<\/cim:ExcAC1A.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (Ke).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcAC1A.ke>([\s\S]*?)<\/cim:ExcAC1A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.ke>([\s\S]*?)<\/cim:ExcAC1A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gains (Kf).
              *
              * Typical Value = 0.03.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcAC1A.kf>([\s\S]*?)<\/cim:ExcAC1A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.kf>([\s\S]*?)<\/cim:ExcAC1A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model (Kf1).
              *
              * Typical Value = 0.
              *
              */
-            obj["kf1"] = base.parse_element (/<cim:ExcAC1A.kf1>([\s\S]*?)<\/cim:ExcAC1A.kf1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.kf1>([\s\S]*?)<\/cim:ExcAC1A.kf1>/g, obj, "kf1", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model (Kf2).
              *
              * Typical Value = 1.
              *
              */
-            obj["kf2"] = base.parse_element (/<cim:ExcAC1A.kf2>([\s\S]*?)<\/cim:ExcAC1A.kf2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.kf2>([\s\S]*?)<\/cim:ExcAC1A.kf2>/g, obj, "kf2", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model-speed coefficient (Ks).
              *
              * Typical Value = 0.
              *
              */
-            obj["ks"] = base.parse_element (/<cim:ExcAC1A.ks>([\s\S]*?)<\/cim:ExcAC1A.ks>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.ks>([\s\S]*?)<\/cim:ExcAC1A.ks>/g, obj, "ks", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["seve1"] = base.to_float (base.parse_element (/<cim:ExcAC1A.seve1>([\s\S]*?)<\/cim:ExcAC1A.seve1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC1A.seve1>([\s\S]*?)<\/cim:ExcAC1A.seve1>/g, obj, "seve1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
              *
              * Typical Value = 0.03.
              *
              */
-            obj["seve2"] = base.to_float (base.parse_element (/<cim:ExcAC1A.seve2>([\s\S]*?)<\/cim:ExcAC1A.seve2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC1A.seve2>([\s\S]*?)<\/cim:ExcAC1A.seve2>/g, obj, "seve2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (Ta).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcAC1A.ta>([\s\S]*?)<\/cim:ExcAC1A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.ta>([\s\S]*?)<\/cim:ExcAC1A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tb).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcAC1A.tb>([\s\S]*?)<\/cim:ExcAC1A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.tb>([\s\S]*?)<\/cim:ExcAC1A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>c</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcAC1A.tc>([\s\S]*?)<\/cim:ExcAC1A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.tc>([\s\S]*?)<\/cim:ExcAC1A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (Te).
              *
              * Typical Value = 0.8.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcAC1A.te>([\s\S]*?)<\/cim:ExcAC1A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.te>([\s\S]*?)<\/cim:ExcAC1A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (Tf).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcAC1A.tf>([\s\S]*?)<\/cim:ExcAC1A.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.tf>([\s\S]*?)<\/cim:ExcAC1A.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>amax</sub>).
              *
              * Typical Value = 14.5.
              *
              */
-            obj["vamax"] = base.parse_element (/<cim:ExcAC1A.vamax>([\s\S]*?)<\/cim:ExcAC1A.vamax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.vamax>([\s\S]*?)<\/cim:ExcAC1A.vamax>/g, obj, "vamax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>amin</sub>).
              *
              * Typical Value = -14.5.
              *
              */
-            obj["vamin"] = base.parse_element (/<cim:ExcAC1A.vamin>([\s\S]*?)<\/cim:ExcAC1A.vamin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.vamin>([\s\S]*?)<\/cim:ExcAC1A.vamin>/g, obj, "vamin", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve1).
              *
              * Typical Value = 4.18.
              *
              */
-            obj["ve1"] = base.parse_element (/<cim:ExcAC1A.ve1>([\s\S]*?)<\/cim:ExcAC1A.ve1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.ve1>([\s\S]*?)<\/cim:ExcAC1A.ve1>/g, obj, "ve1", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
              *
              * Typical Value = 3.14.
              *
              */
-            obj["ve2"] = base.parse_element (/<cim:ExcAC1A.ve2>([\s\S]*?)<\/cim:ExcAC1A.ve2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.ve2>([\s\S]*?)<\/cim:ExcAC1A.ve2>/g, obj, "ve2", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator outputs (Vrmax).
              *
              * Typical Value = 6.03.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcAC1A.vrmax>([\s\S]*?)<\/cim:ExcAC1A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.vrmax>([\s\S]*?)<\/cim:ExcAC1A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator outputs (Rrmin).
              *
              * Typical Value = -5.43.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcAC1A.vrmin>([\s\S]*?)<\/cim:ExcAC1A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC1A.vrmin>([\s\S]*?)<\/cim:ExcAC1A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcAC1A;
             if (null == bucket)
                 context.parsed.ExcAC1A = bucket = {};
@@ -3366,17 +3776,20 @@ define
              * No OEL input is used.
              *
              */
-            obj["noOELinput"] = base.parse_element (/<cim:ExcST6BOELselectorKind.noOELinput>([\s\S]*?)<\/cim:ExcST6BOELselectorKind.noOELinput>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6BOELselectorKind.noOELinput>([\s\S]*?)<\/cim:ExcST6BOELselectorKind.noOELinput>/g, obj, "noOELinput", base.to_string, sub, context);
+
             /**
              * The connection is before UEL.
              *
              */
-            obj["beforeUEL"] = base.parse_element (/<cim:ExcST6BOELselectorKind.beforeUEL>([\s\S]*?)<\/cim:ExcST6BOELselectorKind.beforeUEL>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6BOELselectorKind.beforeUEL>([\s\S]*?)<\/cim:ExcST6BOELselectorKind.beforeUEL>/g, obj, "beforeUEL", base.to_string, sub, context);
+
             /**
              * The connection is after UEL.
              *
              */
-            obj["afterUEL"] = base.parse_element (/<cim:ExcST6BOELselectorKind.afterUEL>([\s\S]*?)<\/cim:ExcST6BOELselectorKind.afterUEL>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6BOELselectorKind.afterUEL>([\s\S]*?)<\/cim:ExcST6BOELselectorKind.afterUEL>/g, obj, "afterUEL", base.to_string, sub, context);
+
             bucket = context.parsed.ExcST6BOELselectorKind;
             if (null == bucket)
                 context.parsed.ExcST6BOELselectorKind = bucket = {};
@@ -3402,70 +3815,80 @@ define
              * Typical Value = 5.
              *
              */
-            obj["efdmax"] = base.parse_element (/<cim:ExcSEXS.efdmax>([\s\S]*?)<\/cim:ExcSEXS.efdmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSEXS.efdmax>([\s\S]*?)<\/cim:ExcSEXS.efdmax>/g, obj, "efdmax", base.to_string, sub, context);
+
             /**
              * Field voltage clipping minimum limit (Efdmin).
              *
              * Typical Value = -5.
              *
              */
-            obj["efdmin"] = base.parse_element (/<cim:ExcSEXS.efdmin>([\s\S]*?)<\/cim:ExcSEXS.efdmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSEXS.efdmin>([\s\S]*?)<\/cim:ExcSEXS.efdmin>/g, obj, "efdmin", base.to_string, sub, context);
+
             /**
              * Maximum field voltage output (Emax).
              *
              * Typical Value = 5.
              *
              */
-            obj["emax"] = base.parse_element (/<cim:ExcSEXS.emax>([\s\S]*?)<\/cim:ExcSEXS.emax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSEXS.emax>([\s\S]*?)<\/cim:ExcSEXS.emax>/g, obj, "emax", base.to_string, sub, context);
+
             /**
              * Minimum field voltage output (Emin).
              *
              * Typical Value = -5.
              *
              */
-            obj["emin"] = base.parse_element (/<cim:ExcSEXS.emin>([\s\S]*?)<\/cim:ExcSEXS.emin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSEXS.emin>([\s\S]*?)<\/cim:ExcSEXS.emin>/g, obj, "emin", base.to_string, sub, context);
+
             /**
              * Gain (K) (&gt;0).
              *
              * Typical Value = 100.
              *
              */
-            obj["k"] = base.parse_element (/<cim:ExcSEXS.k>([\s\S]*?)<\/cim:ExcSEXS.k>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSEXS.k>([\s\S]*?)<\/cim:ExcSEXS.k>/g, obj, "k", base.to_string, sub, context);
+
             /**
              * PI controller gain (Kc).
              *
              * Typical Value = 0.08.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcSEXS.kc>([\s\S]*?)<\/cim:ExcSEXS.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSEXS.kc>([\s\S]*?)<\/cim:ExcSEXS.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Ta/Tb - gain reduction ratio of lag-lead element (TaTb).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["tatb"] = base.to_float (base.parse_element (/<cim:ExcSEXS.tatb>([\s\S]*?)<\/cim:ExcSEXS.tatb>/g, sub, context, true));
+            base.parse_element (/<cim:ExcSEXS.tatb>([\s\S]*?)<\/cim:ExcSEXS.tatb>/g, obj, "tatb", base.to_float, sub, context);
+
             /**
              * Denominator time constant of lag-lead block (Tb).
              *
              * Typical Value = 10.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcSEXS.tb>([\s\S]*?)<\/cim:ExcSEXS.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSEXS.tb>([\s\S]*?)<\/cim:ExcSEXS.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * PI controller phase lead time constant (Tc).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcSEXS.tc>([\s\S]*?)<\/cim:ExcSEXS.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSEXS.tc>([\s\S]*?)<\/cim:ExcSEXS.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Time constant of gain block (Te).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcSEXS.te>([\s\S]*?)<\/cim:ExcSEXS.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSEXS.te>([\s\S]*?)<\/cim:ExcSEXS.te>/g, obj, "te", base.to_string, sub, context);
+
             bucket = context.parsed.ExcSEXS;
             if (null == bucket)
                 context.parsed.ExcSEXS = bucket = {};
@@ -3493,91 +3916,104 @@ define
              * Typical Value = 4.18.
              *
              */
-            obj["e1"] = base.parse_element (/<cim:ExcAVR2.e1>([\s\S]*?)<\/cim:ExcAVR2.e1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR2.e1>([\s\S]*?)<\/cim:ExcAVR2.e1>/g, obj, "e1", base.to_string, sub, context);
+
             /**
              * Field voltage value 2 (E2).
              *
              * Typical Value = 3.14.
              *
              */
-            obj["e2"] = base.parse_element (/<cim:ExcAVR2.e2>([\s\S]*?)<\/cim:ExcAVR2.e2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR2.e2>([\s\S]*?)<\/cim:ExcAVR2.e2>/g, obj, "e2", base.to_string, sub, context);
+
             /**
              * AVR gain (K<sub>A</sub>).
              *
              * Typical Value = 500.
              *
              */
-            obj["ka"] = base.to_float (base.parse_element (/<cim:ExcAVR2.ka>([\s\S]*?)<\/cim:ExcAVR2.ka>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR2.ka>([\s\S]*?)<\/cim:ExcAVR2.ka>/g, obj, "ka", base.to_float, sub, context);
+
             /**
              * Rate feedback gain (K<sub>F</sub>).
              *
              * Typical Value = 0.12.
              *
              */
-            obj["kf"] = base.to_float (base.parse_element (/<cim:ExcAVR2.kf>([\s\S]*?)<\/cim:ExcAVR2.kf>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR2.kf>([\s\S]*?)<\/cim:ExcAVR2.kf>/g, obj, "kf", base.to_float, sub, context);
+
             /**
              * Saturation factor at E1 (S(E1)).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["se1"] = base.to_float (base.parse_element (/<cim:ExcAVR2.se1>([\s\S]*?)<\/cim:ExcAVR2.se1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR2.se1>([\s\S]*?)<\/cim:ExcAVR2.se1>/g, obj, "se1", base.to_float, sub, context);
+
             /**
              * Saturation factor at E2 (S(E2)).
              *
              * Typical Value = 0.03.
              *
              */
-            obj["se2"] = base.to_float (base.parse_element (/<cim:ExcAVR2.se2>([\s\S]*?)<\/cim:ExcAVR2.se2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR2.se2>([\s\S]*?)<\/cim:ExcAVR2.se2>/g, obj, "se2", base.to_float, sub, context);
+
             /**
              * AVR time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcAVR2.ta>([\s\S]*?)<\/cim:ExcAVR2.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR2.ta>([\s\S]*?)<\/cim:ExcAVR2.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * AVR time constant (T<sub>B</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcAVR2.tb>([\s\S]*?)<\/cim:ExcAVR2.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR2.tb>([\s\S]*?)<\/cim:ExcAVR2.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Exciter time constant (T<sub>E</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcAVR2.te>([\s\S]*?)<\/cim:ExcAVR2.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR2.te>([\s\S]*?)<\/cim:ExcAVR2.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Rate feedback time constant (T<sub>F1</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf1"] = base.parse_element (/<cim:ExcAVR2.tf1>([\s\S]*?)<\/cim:ExcAVR2.tf1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR2.tf1>([\s\S]*?)<\/cim:ExcAVR2.tf1>/g, obj, "tf1", base.to_string, sub, context);
+
             /**
              * Rate feedback time constant (T<sub>F2</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf2"] = base.parse_element (/<cim:ExcAVR2.tf2>([\s\S]*?)<\/cim:ExcAVR2.tf2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR2.tf2>([\s\S]*?)<\/cim:ExcAVR2.tf2>/g, obj, "tf2", base.to_string, sub, context);
+
             /**
              * Minimum AVR output (V<sub>RMN</sub>).
              *
              * Typical Value = -6.
              *
              */
-            obj["vrmn"] = base.parse_element (/<cim:ExcAVR2.vrmn>([\s\S]*?)<\/cim:ExcAVR2.vrmn>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR2.vrmn>([\s\S]*?)<\/cim:ExcAVR2.vrmn>/g, obj, "vrmn", base.to_string, sub, context);
+
             /**
              * Maximum AVR output (V<sub>RMX</sub>).
              *
              * Typical Value = 7.
              *
              */
-            obj["vrmx"] = base.parse_element (/<cim:ExcAVR2.vrmx>([\s\S]*?)<\/cim:ExcAVR2.vrmx>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR2.vrmx>([\s\S]*?)<\/cim:ExcAVR2.vrmx>/g, obj, "vrmx", base.to_string, sub, context);
+
             bucket = context.parsed.ExcAVR2;
             if (null == bucket)
                 context.parsed.ExcAVR2 = bucket = {};
@@ -3605,21 +4041,24 @@ define
              * Typical Value = 99.
              *
              */
-            obj["edfmax"] = base.parse_element (/<cim:ExcDC3A.edfmax>([\s\S]*?)<\/cim:ExcDC3A.edfmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A.edfmax>([\s\S]*?)<\/cim:ExcDC3A.edfmax>/g, obj, "edfmax", base.to_string, sub, context);
+
             /**
              * Exciter voltage at which exciter saturation is defined (Efd1).
              *
              * Typical Value = 2.6.
              *
              */
-            obj["efd1"] = base.parse_element (/<cim:ExcDC3A.efd1>([\s\S]*?)<\/cim:ExcDC3A.efd1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A.efd1>([\s\S]*?)<\/cim:ExcDC3A.efd1>/g, obj, "efd1", base.to_string, sub, context);
+
             /**
              * Exciter voltage at which exciter saturation is defined (Efd2).
              *
              * Typical Value = 3.45.
              *
              */
-            obj["efd2"] = base.parse_element (/<cim:ExcDC3A.efd2>([\s\S]*?)<\/cim:ExcDC3A.efd2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A.efd2>([\s\S]*?)<\/cim:ExcDC3A.efd2>/g, obj, "efd2", base.to_string, sub, context);
+
             /**
              * (Efdlim).
              * true = exciter output limiter is active
@@ -3628,91 +4067,104 @@ define
              * Typical Value = true.
              *
              */
-            obj["efdlim"] = base.to_boolean (base.parse_element (/<cim:ExcDC3A.efdlim>([\s\S]*?)<\/cim:ExcDC3A.efdlim>/g, sub, context, true));
+            base.parse_element (/<cim:ExcDC3A.efdlim>([\s\S]*?)<\/cim:ExcDC3A.efdlim>/g, obj, "efdlim", base.to_boolean, sub, context);
+
             /**
              * Minimum voltage exciter output limiter (Efdmin).
              *
              * Typical Value = -99.
              *
              */
-            obj["efdmin"] = base.parse_element (/<cim:ExcDC3A.efdmin>([\s\S]*?)<\/cim:ExcDC3A.efdmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A.efdmin>([\s\S]*?)<\/cim:ExcDC3A.efdmin>/g, obj, "efdmin", base.to_string, sub, context);
+
             /**
              * (exclim).
              *
              * IEEE standard is ambiguous about lower limit on exciter output.
              *
              */
-            obj["exclim"] = base.to_boolean (base.parse_element (/<cim:ExcDC3A.exclim>([\s\S]*?)<\/cim:ExcDC3A.exclim>/g, sub, context, true));
+            base.parse_element (/<cim:ExcDC3A.exclim>([\s\S]*?)<\/cim:ExcDC3A.exclim>/g, obj, "exclim", base.to_boolean, sub, context);
+
             /**
              * Exciter constant related to self-excited field (Ke).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcDC3A.ke>([\s\S]*?)<\/cim:ExcDC3A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A.ke>([\s\S]*?)<\/cim:ExcDC3A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Death band (Kr).
              *
              * If Kr is not zero, the voltage regulator input changes at a constant rate if Verr &gt; Kr or Verr &lt; -Kr as per the IEEE (1968) Type 4 model. If Kr is zero, the error signal drives the voltage regulator continuously as per the IEEE (1980) DC3 and IEEE (1992, 2005) DC3A models.  Typical Value = 0.
              *
              */
-            obj["kr"] = base.parse_element (/<cim:ExcDC3A.kr>([\s\S]*?)<\/cim:ExcDC3A.kr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A.kr>([\s\S]*?)<\/cim:ExcDC3A.kr>/g, obj, "kr", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model-speed coefficient (Ks).
              *
              * Typical Value = 0.
              *
              */
-            obj["ks"] = base.parse_element (/<cim:ExcDC3A.ks>([\s\S]*?)<\/cim:ExcDC3A.ks>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A.ks>([\s\S]*?)<\/cim:ExcDC3A.ks>/g, obj, "ks", base.to_string, sub, context);
+
             /**
              * Fast raise/lower contact setting (Kv).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["kv"] = base.parse_element (/<cim:ExcDC3A.kv>([\s\S]*?)<\/cim:ExcDC3A.kv>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A.kv>([\s\S]*?)<\/cim:ExcDC3A.kv>/g, obj, "kv", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["seefd1"] = base.to_float (base.parse_element (/<cim:ExcDC3A.seefd1>([\s\S]*?)<\/cim:ExcDC3A.seefd1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcDC3A.seefd1>([\s\S]*?)<\/cim:ExcDC3A.seefd1>/g, obj, "seefd1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Efd2 (Se[Efd2]).
              *
              * Typical Value = 0.35.
              *
              */
-            obj["seefd2"] = base.to_float (base.parse_element (/<cim:ExcDC3A.seefd2>([\s\S]*?)<\/cim:ExcDC3A.seefd2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcDC3A.seefd2>([\s\S]*?)<\/cim:ExcDC3A.seefd2>/g, obj, "seefd2", base.to_float, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (Te).
              *
              * Typical Value = 1.83.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcDC3A.te>([\s\S]*?)<\/cim:ExcDC3A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A.te>([\s\S]*?)<\/cim:ExcDC3A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Rheostat travel time (Trh).
              *
              * Typical Value = 20.
              *
              */
-            obj["trh"] = base.parse_element (/<cim:ExcDC3A.trh>([\s\S]*?)<\/cim:ExcDC3A.trh>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A.trh>([\s\S]*?)<\/cim:ExcDC3A.trh>/g, obj, "trh", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (Vrmax).
              *
              * Typical Value = 5.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcDC3A.vrmax>([\s\S]*?)<\/cim:ExcDC3A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A.vrmax>([\s\S]*?)<\/cim:ExcDC3A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vrmin).
              *
              * Typical Value = 0.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcDC3A.vrmin>([\s\S]*?)<\/cim:ExcDC3A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A.vrmin>([\s\S]*?)<\/cim:ExcDC3A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcDC3A;
             if (null == bucket)
                 context.parsed.ExcDC3A = bucket = {};
@@ -3738,7 +4190,8 @@ define
              * Typical Value = 4.164.
              *
              */
-            obj["ilr"] = base.parse_element (/<cim:ExcST6B.ilr>([\s\S]*?)<\/cim:ExcST6B.ilr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.ilr>([\s\S]*?)<\/cim:ExcST6B.ilr>/g, obj, "ilr", base.to_string, sub, context);
+
             /**
              * Selector (K1).
              * true = feedback is from Ifd
@@ -3747,105 +4200,120 @@ define
              * Typical Value = true.
              *
              */
-            obj["k1"] = base.to_boolean (base.parse_element (/<cim:ExcST6B.k1>([\s\S]*?)<\/cim:ExcST6B.k1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcST6B.k1>([\s\S]*?)<\/cim:ExcST6B.k1>/g, obj, "k1", base.to_boolean, sub, context);
+
             /**
              * Exciter output current limit adjustment (Kcl).
              *
              * Typical Value = 1.0577.
              *
              */
-            obj["kcl"] = base.parse_element (/<cim:ExcST6B.kcl>([\s\S]*?)<\/cim:ExcST6B.kcl>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.kcl>([\s\S]*?)<\/cim:ExcST6B.kcl>/g, obj, "kcl", base.to_string, sub, context);
+
             /**
              * Pre-control gain constant of the inner loop field regulator (Kff).
              *
              * Typical Value = 1.
              *
              */
-            obj["kff"] = base.parse_element (/<cim:ExcST6B.kff>([\s\S]*?)<\/cim:ExcST6B.kff>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.kff>([\s\S]*?)<\/cim:ExcST6B.kff>/g, obj, "kff", base.to_string, sub, context);
+
             /**
              * Feedback gain constant of the inner loop field regulator (Kg).
              *
              * Typical Value = 1.
              *
              */
-            obj["kg"] = base.parse_element (/<cim:ExcST6B.kg>([\s\S]*?)<\/cim:ExcST6B.kg>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.kg>([\s\S]*?)<\/cim:ExcST6B.kg>/g, obj, "kg", base.to_string, sub, context);
+
             /**
              * Voltage regulator integral gain (Kia).
              *
              * Typical Value = 45.094.
              *
              */
-            obj["kia"] = base.parse_element (/<cim:ExcST6B.kia>([\s\S]*?)<\/cim:ExcST6B.kia>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.kia>([\s\S]*?)<\/cim:ExcST6B.kia>/g, obj, "kia", base.to_string, sub, context);
+
             /**
              * Exciter output current limit adjustment (Kcl).
              *
              * Typical Value = 17.33.
              *
              */
-            obj["klr"] = base.parse_element (/<cim:ExcST6B.klr>([\s\S]*?)<\/cim:ExcST6B.klr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.klr>([\s\S]*?)<\/cim:ExcST6B.klr>/g, obj, "klr", base.to_string, sub, context);
+
             /**
              * Forward gain constant of the inner loop field regulator (Km).
              *
              * Typical Value = 1.
              *
              */
-            obj["km"] = base.parse_element (/<cim:ExcST6B.km>([\s\S]*?)<\/cim:ExcST6B.km>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.km>([\s\S]*?)<\/cim:ExcST6B.km>/g, obj, "km", base.to_string, sub, context);
+
             /**
              * Voltage regulator proportional gain (Kpa).
              *
              * Typical Value = 18.038.
              *
              */
-            obj["kpa"] = base.parse_element (/<cim:ExcST6B.kpa>([\s\S]*?)<\/cim:ExcST6B.kpa>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.kpa>([\s\S]*?)<\/cim:ExcST6B.kpa>/g, obj, "kpa", base.to_string, sub, context);
+
             /**
              * Voltage regulator derivative gain (Kvd).
              *
              * Typical Value = 0.
              *
              */
-            obj["kvd"] = base.parse_element (/<cim:ExcST6B.kvd>([\s\S]*?)<\/cim:ExcST6B.kvd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.kvd>([\s\S]*?)<\/cim:ExcST6B.kvd>/g, obj, "kvd", base.to_string, sub, context);
+
             /**
              * OEL input selector (OELin).
              *
              * Typical Value = noOELinput.
              *
              */
-            obj["oelin"] = base.parse_element (/<cim:ExcST6B.oelin>([\s\S]*?)<\/cim:ExcST6B.oelin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.oelin>([\s\S]*?)<\/cim:ExcST6B.oelin>/g, obj, "oelin", base.to_string, sub, context);
+
             /**
              * Feedback time constant of inner loop field voltage regulator (Tg).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["tg"] = base.parse_element (/<cim:ExcST6B.tg>([\s\S]*?)<\/cim:ExcST6B.tg>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.tg>([\s\S]*?)<\/cim:ExcST6B.tg>/g, obj, "tg", base.to_string, sub, context);
+
             /**
              * Rectifier firing time constant (Ts).
              *
              * Typical Value = 0.
              *
              */
-            obj["ts"] = base.parse_element (/<cim:ExcST6B.ts>([\s\S]*?)<\/cim:ExcST6B.ts>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.ts>([\s\S]*?)<\/cim:ExcST6B.ts>/g, obj, "ts", base.to_string, sub, context);
+
             /**
              * Voltage regulator derivative gain (Tvd).
              *
              * Typical Value = 0.
              *
              */
-            obj["tvd"] = base.parse_element (/<cim:ExcST6B.tvd>([\s\S]*?)<\/cim:ExcST6B.tvd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.tvd>([\s\S]*?)<\/cim:ExcST6B.tvd>/g, obj, "tvd", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (Vamax).
              *
              * Typical Value = 4.81.
              *
              */
-            obj["vamax"] = base.parse_element (/<cim:ExcST6B.vamax>([\s\S]*?)<\/cim:ExcST6B.vamax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.vamax>([\s\S]*?)<\/cim:ExcST6B.vamax>/g, obj, "vamax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vamin).
              *
              * Typical Value = -3.85.
              *
              */
-            obj["vamin"] = base.parse_element (/<cim:ExcST6B.vamin>([\s\S]*?)<\/cim:ExcST6B.vamin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.vamin>([\s\S]*?)<\/cim:ExcST6B.vamin>/g, obj, "vamin", base.to_string, sub, context);
+
             /**
              * Selector (Vilim).
              * true = Vimin-Vimax limiter is active
@@ -3854,21 +4322,24 @@ define
              * Typical Value = true.
              *
              */
-            obj["vilim"] = base.to_boolean (base.parse_element (/<cim:ExcST6B.vilim>([\s\S]*?)<\/cim:ExcST6B.vilim>/g, sub, context, true));
+            base.parse_element (/<cim:ExcST6B.vilim>([\s\S]*?)<\/cim:ExcST6B.vilim>/g, obj, "vilim", base.to_boolean, sub, context);
+
             /**
              * Maximum voltage regulator input limit (Vimax).
              *
              * Typical Value = 10.
              *
              */
-            obj["vimax"] = base.parse_element (/<cim:ExcST6B.vimax>([\s\S]*?)<\/cim:ExcST6B.vimax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.vimax>([\s\S]*?)<\/cim:ExcST6B.vimax>/g, obj, "vimax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator input limit (Vimin).
              *
              * Typical Value = -10.
              *
              */
-            obj["vimin"] = base.parse_element (/<cim:ExcST6B.vimin>([\s\S]*?)<\/cim:ExcST6B.vimin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.vimin>([\s\S]*?)<\/cim:ExcST6B.vimin>/g, obj, "vimin", base.to_string, sub, context);
+
             /**
              * Selector (Vmult).
              * true = multiply regulator output by terminal voltage
@@ -3877,28 +4348,32 @@ define
              * Typical Value = true.
              *
              */
-            obj["vmult"] = base.to_boolean (base.parse_element (/<cim:ExcST6B.vmult>([\s\S]*?)<\/cim:ExcST6B.vmult>/g, sub, context, true));
+            base.parse_element (/<cim:ExcST6B.vmult>([\s\S]*?)<\/cim:ExcST6B.vmult>/g, obj, "vmult", base.to_boolean, sub, context);
+
             /**
              * Maximum voltage regulator output (Vrmax).
              *
              * Typical Value = 4.81.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcST6B.vrmax>([\s\S]*?)<\/cim:ExcST6B.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.vrmax>([\s\S]*?)<\/cim:ExcST6B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vrmin).
              *
              * Typical Value = -3.85.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcST6B.vrmin>([\s\S]*?)<\/cim:ExcST6B.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.vrmin>([\s\S]*?)<\/cim:ExcST6B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             /**
              * Excitation source reactance (Xc).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["xc"] = base.parse_element (/<cim:ExcST6B.xc>([\s\S]*?)<\/cim:ExcST6B.xc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST6B.xc>([\s\S]*?)<\/cim:ExcST6B.xc>/g, obj, "xc", base.to_string, sub, context);
+
             bucket = context.parsed.ExcST6B;
             if (null == bucket)
                 context.parsed.ExcST6B = bucket = {};
@@ -3926,161 +4401,184 @@ define
              * Typical Value = 0.
              *
              */
-            obj["e1"] = base.parse_element (/<cim:ExcPIC.e1>([\s\S]*?)<\/cim:ExcPIC.e1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.e1>([\s\S]*?)<\/cim:ExcPIC.e1>/g, obj, "e1", base.to_string, sub, context);
+
             /**
              * Field voltage value 2 (E2).
              *
              * Typical Value = 0.
              *
              */
-            obj["e2"] = base.parse_element (/<cim:ExcPIC.e2>([\s\S]*?)<\/cim:ExcPIC.e2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.e2>([\s\S]*?)<\/cim:ExcPIC.e2>/g, obj, "e2", base.to_string, sub, context);
+
             /**
              * Exciter maximum limit (Efdmax).
              *
              * Typical Value = 8.
              *
              */
-            obj["efdmax"] = base.parse_element (/<cim:ExcPIC.efdmax>([\s\S]*?)<\/cim:ExcPIC.efdmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.efdmax>([\s\S]*?)<\/cim:ExcPIC.efdmax>/g, obj, "efdmax", base.to_string, sub, context);
+
             /**
              * Exciter minimum limit (Efdmin).
              *
              * Typical Value = -0.87.
              *
              */
-            obj["efdmin"] = base.parse_element (/<cim:ExcPIC.efdmin>([\s\S]*?)<\/cim:ExcPIC.efdmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.efdmin>([\s\S]*?)<\/cim:ExcPIC.efdmin>/g, obj, "efdmin", base.to_string, sub, context);
+
             /**
              * PI controller gain (Ka).
              *
              * Typical Value = 3.15.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcPIC.ka>([\s\S]*?)<\/cim:ExcPIC.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.ka>([\s\S]*?)<\/cim:ExcPIC.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Exciter regulation factor (Kc).
              *
              * Typical Value = 0.08.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcPIC.kc>([\s\S]*?)<\/cim:ExcPIC.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.kc>([\s\S]*?)<\/cim:ExcPIC.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Exciter constant (Ke).
              *
              * Typical Value = 0.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcPIC.ke>([\s\S]*?)<\/cim:ExcPIC.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.ke>([\s\S]*?)<\/cim:ExcPIC.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Rate feedback gain (Kf).
              *
              * Typical Value = 0.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcPIC.kf>([\s\S]*?)<\/cim:ExcPIC.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.kf>([\s\S]*?)<\/cim:ExcPIC.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Current source gain (Ki).
              *
              * Typical Value = 0.
              *
              */
-            obj["ki"] = base.parse_element (/<cim:ExcPIC.ki>([\s\S]*?)<\/cim:ExcPIC.ki>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.ki>([\s\S]*?)<\/cim:ExcPIC.ki>/g, obj, "ki", base.to_string, sub, context);
+
             /**
              * Potential source gain (Kp).
              *
              * Typical Value = 6.5.
              *
              */
-            obj["kp"] = base.parse_element (/<cim:ExcPIC.kp>([\s\S]*?)<\/cim:ExcPIC.kp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.kp>([\s\S]*?)<\/cim:ExcPIC.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * Saturation factor at E1 (Se1).
              *
              * Typical Value = 0.
              *
              */
-            obj["se1"] = base.parse_element (/<cim:ExcPIC.se1>([\s\S]*?)<\/cim:ExcPIC.se1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.se1>([\s\S]*?)<\/cim:ExcPIC.se1>/g, obj, "se1", base.to_string, sub, context);
+
             /**
              * Saturation factor at E2 (Se2).
              *
              * Typical Value = 0.
              *
              */
-            obj["se2"] = base.parse_element (/<cim:ExcPIC.se2>([\s\S]*?)<\/cim:ExcPIC.se2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.se2>([\s\S]*?)<\/cim:ExcPIC.se2>/g, obj, "se2", base.to_string, sub, context);
+
             /**
              * PI controller time constant (Ta1).
              *
              * Typical Value = 1.
              *
              */
-            obj["ta1"] = base.parse_element (/<cim:ExcPIC.ta1>([\s\S]*?)<\/cim:ExcPIC.ta1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.ta1>([\s\S]*?)<\/cim:ExcPIC.ta1>/g, obj, "ta1", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Ta2).
              *
              * Typical Value = 0.01.
              *
              */
-            obj["ta2"] = base.parse_element (/<cim:ExcPIC.ta2>([\s\S]*?)<\/cim:ExcPIC.ta2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.ta2>([\s\S]*?)<\/cim:ExcPIC.ta2>/g, obj, "ta2", base.to_string, sub, context);
+
             /**
              * Lead time constant (Ta3).
              *
              * Typical Value = 0.
              *
              */
-            obj["ta3"] = base.parse_element (/<cim:ExcPIC.ta3>([\s\S]*?)<\/cim:ExcPIC.ta3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.ta3>([\s\S]*?)<\/cim:ExcPIC.ta3>/g, obj, "ta3", base.to_string, sub, context);
+
             /**
              * Lag time constant (Ta4).
              *
              * Typical Value = 0.
              *
              */
-            obj["ta4"] = base.parse_element (/<cim:ExcPIC.ta4>([\s\S]*?)<\/cim:ExcPIC.ta4>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.ta4>([\s\S]*?)<\/cim:ExcPIC.ta4>/g, obj, "ta4", base.to_string, sub, context);
+
             /**
              * Exciter time constant (Te).
              *
              * Typical Value = 0.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcPIC.te>([\s\S]*?)<\/cim:ExcPIC.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.te>([\s\S]*?)<\/cim:ExcPIC.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Rate feedback time constant (Tf1).
              *
              * Typical Value = 0.
              *
              */
-            obj["tf1"] = base.parse_element (/<cim:ExcPIC.tf1>([\s\S]*?)<\/cim:ExcPIC.tf1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.tf1>([\s\S]*?)<\/cim:ExcPIC.tf1>/g, obj, "tf1", base.to_string, sub, context);
+
             /**
              * Rate feedback lag time constant (Tf2).
              *
              * Typical Value = 0.
              *
              */
-            obj["tf2"] = base.parse_element (/<cim:ExcPIC.tf2>([\s\S]*?)<\/cim:ExcPIC.tf2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.tf2>([\s\S]*?)<\/cim:ExcPIC.tf2>/g, obj, "tf2", base.to_string, sub, context);
+
             /**
              * PI maximum limit (Vr1).
              *
              * Typical Value = 1.
              *
              */
-            obj["vr1"] = base.parse_element (/<cim:ExcPIC.vr1>([\s\S]*?)<\/cim:ExcPIC.vr1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.vr1>([\s\S]*?)<\/cim:ExcPIC.vr1>/g, obj, "vr1", base.to_string, sub, context);
+
             /**
              * PI minimum limit (Vr2).
              *
              * Typical Value = -0.87.
              *
              */
-            obj["vr2"] = base.parse_element (/<cim:ExcPIC.vr2>([\s\S]*?)<\/cim:ExcPIC.vr2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.vr2>([\s\S]*?)<\/cim:ExcPIC.vr2>/g, obj, "vr2", base.to_string, sub, context);
+
             /**
              * Voltage regulator maximum limit (Vrmax).
              *
              * Typical Value = 1.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcPIC.vrmax>([\s\S]*?)<\/cim:ExcPIC.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.vrmax>([\s\S]*?)<\/cim:ExcPIC.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Voltage regulator minimum limit (Vrmin).
              *
              * Typical Value = -0.87.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcPIC.vrmin>([\s\S]*?)<\/cim:ExcPIC.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcPIC.vrmin>([\s\S]*?)<\/cim:ExcPIC.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcPIC;
             if (null == bucket)
                 context.parsed.ExcPIC = bucket = {};
@@ -4104,52 +4602,62 @@ define
              * Exciter output maximum limit (Efdmax).
              *
              */
-            obj["efdmax"] = base.parse_element (/<cim:ExcCZ.efdmax>([\s\S]*?)<\/cim:ExcCZ.efdmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcCZ.efdmax>([\s\S]*?)<\/cim:ExcCZ.efdmax>/g, obj, "efdmax", base.to_string, sub, context);
+
             /**
              * Exciter output minimum limit (Efdmin).
              *
              */
-            obj["efdmin"] = base.parse_element (/<cim:ExcCZ.efdmin>([\s\S]*?)<\/cim:ExcCZ.efdmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcCZ.efdmin>([\s\S]*?)<\/cim:ExcCZ.efdmin>/g, obj, "efdmin", base.to_string, sub, context);
+
             /**
              * Regulator gain (Ka).
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcCZ.ka>([\s\S]*?)<\/cim:ExcCZ.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcCZ.ka>([\s\S]*?)<\/cim:ExcCZ.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (Ke).
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcCZ.ke>([\s\S]*?)<\/cim:ExcCZ.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcCZ.ke>([\s\S]*?)<\/cim:ExcCZ.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Regulator proportional gain (Kp).
              *
              */
-            obj["kp"] = base.parse_element (/<cim:ExcCZ.kp>([\s\S]*?)<\/cim:ExcCZ.kp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcCZ.kp>([\s\S]*?)<\/cim:ExcCZ.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * Regulator time constant (Ta).
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcCZ.ta>([\s\S]*?)<\/cim:ExcCZ.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcCZ.ta>([\s\S]*?)<\/cim:ExcCZ.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Regulator integral time constant (Tc).
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcCZ.tc>([\s\S]*?)<\/cim:ExcCZ.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcCZ.tc>([\s\S]*?)<\/cim:ExcCZ.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (Te).
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcCZ.te>([\s\S]*?)<\/cim:ExcCZ.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcCZ.te>([\s\S]*?)<\/cim:ExcCZ.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Voltage regulator maximum limit (Vrmax).
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcCZ.vrmax>([\s\S]*?)<\/cim:ExcCZ.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcCZ.vrmax>([\s\S]*?)<\/cim:ExcCZ.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Voltage regulator minimum limit (Vrmin).
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcCZ.vrmin>([\s\S]*?)<\/cim:ExcCZ.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcCZ.vrmin>([\s\S]*?)<\/cim:ExcCZ.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcCZ;
             if (null == bucket)
                 context.parsed.ExcCZ = bucket = {};
@@ -4177,63 +4685,72 @@ define
              * Typical Value = true.
              *
              */
-            obj["inlim"] = base.to_boolean (base.parse_element (/<cim:ExcAC8B.inlim>([\s\S]*?)<\/cim:ExcAC8B.inlim>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC8B.inlim>([\s\S]*?)<\/cim:ExcAC8B.inlim>/g, obj, "inlim", base.to_boolean, sub, context);
+
             /**
              * Voltage regulator gain (Ka).
              *
              * Typical Value = 1.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcAC8B.ka>([\s\S]*?)<\/cim:ExcAC8B.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.ka>([\s\S]*?)<\/cim:ExcAC8B.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (Kc).
              *
              * Typical Value = 0.55.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcAC8B.kc>([\s\S]*?)<\/cim:ExcAC8B.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.kc>([\s\S]*?)<\/cim:ExcAC8B.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Demagnetizing factor, a function of exciter alternator reactances (Kd).
              *
              * Typical Value = 1.1.
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcAC8B.kd>([\s\S]*?)<\/cim:ExcAC8B.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.kd>([\s\S]*?)<\/cim:ExcAC8B.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * Voltage regulator derivative gain (Kdr).
              *
              * Typical Value = 10.
              *
              */
-            obj["kdr"] = base.parse_element (/<cim:ExcAC8B.kdr>([\s\S]*?)<\/cim:ExcAC8B.kdr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.kdr>([\s\S]*?)<\/cim:ExcAC8B.kdr>/g, obj, "kdr", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (Ke).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcAC8B.ke>([\s\S]*?)<\/cim:ExcAC8B.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.ke>([\s\S]*?)<\/cim:ExcAC8B.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Voltage regulator integral gain (Kir).
              *
              * Typical Value = 5.
              *
              */
-            obj["kir"] = base.parse_element (/<cim:ExcAC8B.kir>([\s\S]*?)<\/cim:ExcAC8B.kir>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.kir>([\s\S]*?)<\/cim:ExcAC8B.kir>/g, obj, "kir", base.to_string, sub, context);
+
             /**
              * Voltage regulator proportional gain (Kpr).
              *
              * Typical Value = 80.
              *
              */
-            obj["kpr"] = base.parse_element (/<cim:ExcAC8B.kpr>([\s\S]*?)<\/cim:ExcAC8B.kpr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.kpr>([\s\S]*?)<\/cim:ExcAC8B.kpr>/g, obj, "kpr", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model-speed coefficient (Ks).
              *
              * Typical Value = 0.
              *
              */
-            obj["ks"] = base.parse_element (/<cim:ExcAC8B.ks>([\s\S]*?)<\/cim:ExcAC8B.ks>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.ks>([\s\S]*?)<\/cim:ExcAC8B.ks>/g, obj, "ks", base.to_string, sub, context);
+
             /**
              * PID limiter indicator.
              * true = input limiter Vpidmax and Vpidmin is considered
@@ -4242,119 +4759,136 @@ define
              * Typical Value = true.
              *
              */
-            obj["pidlim"] = base.to_boolean (base.parse_element (/<cim:ExcAC8B.pidlim>([\s\S]*?)<\/cim:ExcAC8B.pidlim>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC8B.pidlim>([\s\S]*?)<\/cim:ExcAC8B.pidlim>/g, obj, "pidlim", base.to_boolean, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Ve<sub>1</sub>, back of commutating reactance (Se[Ve1]).
              *
              * Typical Value = 0.3.
              *
              */
-            obj["seve1"] = base.to_float (base.parse_element (/<cim:ExcAC8B.seve1>([\s\S]*?)<\/cim:ExcAC8B.seve1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC8B.seve1>([\s\S]*?)<\/cim:ExcAC8B.seve1>/g, obj, "seve1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Ve<sub>2</sub>, back of commutating reactance (Se[Ve2]).
              *
              * Typical Value = 3.
              *
              */
-            obj["seve2"] = base.to_float (base.parse_element (/<cim:ExcAC8B.seve2>([\s\S]*?)<\/cim:ExcAC8B.seve2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC8B.seve2>([\s\S]*?)<\/cim:ExcAC8B.seve2>/g, obj, "seve2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (Ta).
              *
              * Typical Value = 0.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcAC8B.ta>([\s\S]*?)<\/cim:ExcAC8B.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.ta>([\s\S]*?)<\/cim:ExcAC8B.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Lag time constant (Tdr).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["tdr"] = base.parse_element (/<cim:ExcAC8B.tdr>([\s\S]*?)<\/cim:ExcAC8B.tdr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.tdr>([\s\S]*?)<\/cim:ExcAC8B.tdr>/g, obj, "tdr", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (Te).
              *
              * Typical Value = 1.2.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcAC8B.te>([\s\S]*?)<\/cim:ExcAC8B.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.te>([\s\S]*?)<\/cim:ExcAC8B.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Selector for the limiter on the block [1/sTe].
              *
              * See diagram for meaning of true and false.
              *
              */
-            obj["telim"] = base.to_boolean (base.parse_element (/<cim:ExcAC8B.telim>([\s\S]*?)<\/cim:ExcAC8B.telim>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC8B.telim>([\s\S]*?)<\/cim:ExcAC8B.telim>/g, obj, "telim", base.to_boolean, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>) equals V<sub>EMAX</sub> (Ve1).
              *
              * Typical Value = 6.5.
              *
              */
-            obj["ve1"] = base.parse_element (/<cim:ExcAC8B.ve1>([\s\S]*?)<\/cim:ExcAC8B.ve1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.ve1>([\s\S]*?)<\/cim:ExcAC8B.ve1>/g, obj, "ve1", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>2</sub>).
              *
              * Typical Value = 9.
              *
              */
-            obj["ve2"] = base.parse_element (/<cim:ExcAC8B.ve2>([\s\S]*?)<\/cim:ExcAC8B.ve2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.ve2>([\s\S]*?)<\/cim:ExcAC8B.ve2>/g, obj, "ve2", base.to_string, sub, context);
+
             /**
              * Minimum exciter voltage output (Vemin).
              *
              * Typical Value = 0.
              *
              */
-            obj["vemin"] = base.parse_element (/<cim:ExcAC8B.vemin>([\s\S]*?)<\/cim:ExcAC8B.vemin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.vemin>([\s\S]*?)<\/cim:ExcAC8B.vemin>/g, obj, "vemin", base.to_string, sub, context);
+
             /**
              * Exciter field current limit reference (Vfemax).
              *
              * Typical Value = 6.
              *
              */
-            obj["vfemax"] = base.parse_element (/<cim:ExcAC8B.vfemax>([\s\S]*?)<\/cim:ExcAC8B.vfemax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.vfemax>([\s\S]*?)<\/cim:ExcAC8B.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
+
             /**
              * Input signal maximum (Vimax).
              *
              * Typical Value = 35.
              *
              */
-            obj["vimax"] = base.parse_element (/<cim:ExcAC8B.vimax>([\s\S]*?)<\/cim:ExcAC8B.vimax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.vimax>([\s\S]*?)<\/cim:ExcAC8B.vimax>/g, obj, "vimax", base.to_string, sub, context);
+
             /**
              * Input signal minimum (Vimin).
              *
              * Typical Value = -10.
              *
              */
-            obj["vimin"] = base.parse_element (/<cim:ExcAC8B.vimin>([\s\S]*?)<\/cim:ExcAC8B.vimin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.vimin>([\s\S]*?)<\/cim:ExcAC8B.vimin>/g, obj, "vimin", base.to_string, sub, context);
+
             /**
              * PID maximum controller output (Vpidmax).
              *
              * Typical Value = 35.
              *
              */
-            obj["vpidmax"] = base.parse_element (/<cim:ExcAC8B.vpidmax>([\s\S]*?)<\/cim:ExcAC8B.vpidmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.vpidmax>([\s\S]*?)<\/cim:ExcAC8B.vpidmax>/g, obj, "vpidmax", base.to_string, sub, context);
+
             /**
              * PID minimum controller output (Vpidmin).
              *
              * Typical Value = -10.
              *
              */
-            obj["vpidmin"] = base.parse_element (/<cim:ExcAC8B.vpidmin>([\s\S]*?)<\/cim:ExcAC8B.vpidmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.vpidmin>([\s\S]*?)<\/cim:ExcAC8B.vpidmin>/g, obj, "vpidmin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (Vrmax).
              *
              * Typical Value = 35.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcAC8B.vrmax>([\s\S]*?)<\/cim:ExcAC8B.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.vrmax>([\s\S]*?)<\/cim:ExcAC8B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vrmin).
              *
              * Typical Value = 0.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcAC8B.vrmin>([\s\S]*?)<\/cim:ExcAC8B.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC8B.vrmin>([\s\S]*?)<\/cim:ExcAC8B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             /**
              * Multiply by generator's terminal voltage indicator.
              * true =the limits Vrmax and Vrmin are multiplied by the generator�s terminal voltage to represent a thyristor power stage fed from the generator terminals
@@ -4363,7 +4897,8 @@ define
              * Typical Value = false.
              *
              */
-            obj["vtmult"] = base.to_boolean (base.parse_element (/<cim:ExcAC8B.vtmult>([\s\S]*?)<\/cim:ExcAC8B.vtmult>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC8B.vtmult>([\s\S]*?)<\/cim:ExcAC8B.vtmult>/g, obj, "vtmult", base.to_boolean, sub, context);
+
             bucket = context.parsed.ExcAC8B;
             if (null == bucket)
                 context.parsed.ExcAC8B = bucket = {};
@@ -4391,98 +4926,112 @@ define
              * Typical Value = 5.6.
              *
              */
-            obj["efd1"] = base.parse_element (/<cim:ExcIEEEAC5A.efd1>([\s\S]*?)<\/cim:ExcIEEEAC5A.efd1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC5A.efd1>([\s\S]*?)<\/cim:ExcIEEEAC5A.efd1>/g, obj, "efd1", base.to_string, sub, context);
+
             /**
              * Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
              *
              * Typical Value = 4.2.
              *
              */
-            obj["efd2"] = base.parse_element (/<cim:ExcIEEEAC5A.efd2>([\s\S]*?)<\/cim:ExcIEEEAC5A.efd2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC5A.efd2>([\s\S]*?)<\/cim:ExcIEEEAC5A.efd2>/g, obj, "efd2", base.to_string, sub, context);
+
             /**
              * Voltage regulator gain (K<sub>A</sub>).
              *
              * Typical Value = 400.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcIEEEAC5A.ka>([\s\S]*?)<\/cim:ExcIEEEAC5A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC5A.ka>([\s\S]*?)<\/cim:ExcIEEEAC5A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (K<sub>E</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcIEEEAC5A.ke>([\s\S]*?)<\/cim:ExcIEEEAC5A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC5A.ke>([\s\S]*?)<\/cim:ExcIEEEAC5A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gains (K<sub>F</sub>).
              *
              * Typical Value = 0.03.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcIEEEAC5A.kf>([\s\S]*?)<\/cim:ExcIEEEAC5A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC5A.kf>([\s\S]*?)<\/cim:ExcIEEEAC5A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
              *
              * Typical Value = 0.86.
              *
              */
-            obj["seefd1"] = base.to_float (base.parse_element (/<cim:ExcIEEEAC5A.seefd1>([\s\S]*?)<\/cim:ExcIEEEAC5A.seefd1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEAC5A.seefd1>([\s\S]*?)<\/cim:ExcIEEEAC5A.seefd1>/g, obj, "seefd1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
              *
              * Typical Value = 0.5.
              *
              */
-            obj["seefd2"] = base.to_float (base.parse_element (/<cim:ExcIEEEAC5A.seefd2>([\s\S]*?)<\/cim:ExcIEEEAC5A.seefd2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEAC5A.seefd2>([\s\S]*?)<\/cim:ExcIEEEAC5A.seefd2>/g, obj, "seefd2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcIEEEAC5A.ta>([\s\S]*?)<\/cim:ExcIEEEAC5A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC5A.ta>([\s\S]*?)<\/cim:ExcIEEEAC5A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
              *
              * Typical Value = 0.8.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcIEEEAC5A.te>([\s\S]*?)<\/cim:ExcIEEEAC5A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC5A.te>([\s\S]*?)<\/cim:ExcIEEEAC5A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (T<sub>F1</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf1"] = base.parse_element (/<cim:ExcIEEEAC5A.tf1>([\s\S]*?)<\/cim:ExcIEEEAC5A.tf1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC5A.tf1>([\s\S]*?)<\/cim:ExcIEEEAC5A.tf1>/g, obj, "tf1", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (T<sub>F2</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf2"] = base.parse_element (/<cim:ExcIEEEAC5A.tf2>([\s\S]*?)<\/cim:ExcIEEEAC5A.tf2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC5A.tf2>([\s\S]*?)<\/cim:ExcIEEEAC5A.tf2>/g, obj, "tf2", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (T<sub>F3</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf3"] = base.parse_element (/<cim:ExcIEEEAC5A.tf3>([\s\S]*?)<\/cim:ExcIEEEAC5A.tf3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC5A.tf3>([\s\S]*?)<\/cim:ExcIEEEAC5A.tf3>/g, obj, "tf3", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>RMAX</sub>).
              *
              * Typical Value = 7.3.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEAC5A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC5A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC5A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC5A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>RMIN</sub>).
              *
              * Typical Value = -7.3.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEAC5A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC5A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC5A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC5A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEAC5A;
             if (null == bucket)
                 context.parsed.ExcIEEEAC5A = bucket = {};
@@ -4510,70 +5059,80 @@ define
              * Typical Value = 99.
              *
              */
-            obj["efdmax"] = base.parse_element (/<cim:ExcIEEEST2A.efdmax>([\s\S]*?)<\/cim:ExcIEEEST2A.efdmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST2A.efdmax>([\s\S]*?)<\/cim:ExcIEEEST2A.efdmax>/g, obj, "efdmax", base.to_string, sub, context);
+
             /**
              * Voltage regulator gain (K<sub>A</sub>).
              *
              * Typical Value = 120.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcIEEEST2A.ka>([\s\S]*?)<\/cim:ExcIEEEST2A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST2A.ka>([\s\S]*?)<\/cim:ExcIEEEST2A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
              *
              * Typical Value = 1.82.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcIEEEST2A.kc>([\s\S]*?)<\/cim:ExcIEEEST2A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST2A.kc>([\s\S]*?)<\/cim:ExcIEEEST2A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (K<sub>E</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcIEEEST2A.ke>([\s\S]*?)<\/cim:ExcIEEEST2A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST2A.ke>([\s\S]*?)<\/cim:ExcIEEEST2A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gains (K<sub>F</sub>).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcIEEEST2A.kf>([\s\S]*?)<\/cim:ExcIEEEST2A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST2A.kf>([\s\S]*?)<\/cim:ExcIEEEST2A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Potential circuit gain coefficient (K<sub>I</sub>).
              *
              * Typical Value = 8.
              *
              */
-            obj["ki"] = base.parse_element (/<cim:ExcIEEEST2A.ki>([\s\S]*?)<\/cim:ExcIEEEST2A.ki>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST2A.ki>([\s\S]*?)<\/cim:ExcIEEEST2A.ki>/g, obj, "ki", base.to_string, sub, context);
+
             /**
              * Potential circuit gain coefficient (K<sub>P</sub>).
              *
              * Typical Value = 4.88.
              *
              */
-            obj["kp"] = base.parse_element (/<cim:ExcIEEEST2A.kp>([\s\S]*?)<\/cim:ExcIEEEST2A.kp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST2A.kp>([\s\S]*?)<\/cim:ExcIEEEST2A.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.15.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcIEEEST2A.ta>([\s\S]*?)<\/cim:ExcIEEEST2A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST2A.ta>([\s\S]*?)<\/cim:ExcIEEEST2A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
              *
              * Typical Value = 0.5.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcIEEEST2A.te>([\s\S]*?)<\/cim:ExcIEEEST2A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST2A.te>([\s\S]*?)<\/cim:ExcIEEEST2A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (T<sub>F</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcIEEEST2A.tf>([\s\S]*?)<\/cim:ExcIEEEST2A.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST2A.tf>([\s\S]*?)<\/cim:ExcIEEEST2A.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * UEL input (UELin).
              * true = HV gate
@@ -4582,21 +5141,24 @@ define
              * Typical Value = true.
              *
              */
-            obj["uelin"] = base.to_boolean (base.parse_element (/<cim:ExcIEEEST2A.uelin>([\s\S]*?)<\/cim:ExcIEEEST2A.uelin>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEST2A.uelin>([\s\S]*?)<\/cim:ExcIEEEST2A.uelin>/g, obj, "uelin", base.to_boolean, sub, context);
+
             /**
              * Maximum voltage regulator outputs (V<sub>RMAX</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEST2A.vrmax>([\s\S]*?)<\/cim:ExcIEEEST2A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST2A.vrmax>([\s\S]*?)<\/cim:ExcIEEEST2A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator outputs (V<sub>RMIN</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEST2A.vrmin>([\s\S]*?)<\/cim:ExcIEEEST2A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST2A.vrmin>([\s\S]*?)<\/cim:ExcIEEEST2A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEST2A;
             if (null == bucket)
                 context.parsed.ExcIEEEST2A = bucket = {};
@@ -4624,119 +5186,136 @@ define
              * Typical Value = 0.004.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcIEEEST5B.kc>([\s\S]*?)<\/cim:ExcIEEEST5B.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.kc>([\s\S]*?)<\/cim:ExcIEEEST5B.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Regulator gain (K<sub>R</sub>).
              *
              * Typical Value = 200.
              *
              */
-            obj["kr"] = base.parse_element (/<cim:ExcIEEEST5B.kr>([\s\S]*?)<\/cim:ExcIEEEST5B.kr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.kr>([\s\S]*?)<\/cim:ExcIEEEST5B.kr>/g, obj, "kr", base.to_string, sub, context);
+
             /**
              * Firing circuit time constant (T1).
              *
              * Typical Value = 0.004.
              *
              */
-            obj["t1"] = base.parse_element (/<cim:ExcIEEEST5B.t1>([\s\S]*?)<\/cim:ExcIEEEST5B.t1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.t1>([\s\S]*?)<\/cim:ExcIEEEST5B.t1>/g, obj, "t1", base.to_string, sub, context);
+
             /**
              * Regulator lag time constant (T<sub>B1</sub>).
              *
              * Typical Value = 6.
              *
              */
-            obj["tb1"] = base.parse_element (/<cim:ExcIEEEST5B.tb1>([\s\S]*?)<\/cim:ExcIEEEST5B.tb1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.tb1>([\s\S]*?)<\/cim:ExcIEEEST5B.tb1>/g, obj, "tb1", base.to_string, sub, context);
+
             /**
              * Regulator lag time constant (T<sub>B2</sub>).
              *
              * Typical Value = 0.01.
              *
              */
-            obj["tb2"] = base.parse_element (/<cim:ExcIEEEST5B.tb2>([\s\S]*?)<\/cim:ExcIEEEST5B.tb2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.tb2>([\s\S]*?)<\/cim:ExcIEEEST5B.tb2>/g, obj, "tb2", base.to_string, sub, context);
+
             /**
              * Regulator lead time constant (T<sub>C1</sub>).
              *
              * Typical Value = 0.8.
              *
              */
-            obj["tc1"] = base.parse_element (/<cim:ExcIEEEST5B.tc1>([\s\S]*?)<\/cim:ExcIEEEST5B.tc1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.tc1>([\s\S]*?)<\/cim:ExcIEEEST5B.tc1>/g, obj, "tc1", base.to_string, sub, context);
+
             /**
              * Regulator lead time constant (T<sub>C2</sub>).
              *
              * Typical Value = 0.08.
              *
              */
-            obj["tc2"] = base.parse_element (/<cim:ExcIEEEST5B.tc2>([\s\S]*?)<\/cim:ExcIEEEST5B.tc2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.tc2>([\s\S]*?)<\/cim:ExcIEEEST5B.tc2>/g, obj, "tc2", base.to_string, sub, context);
+
             /**
              * OEL lag time constant (T<sub>OB1</sub>).
              *
              * Typical Value = 2.
              *
              */
-            obj["tob1"] = base.parse_element (/<cim:ExcIEEEST5B.tob1>([\s\S]*?)<\/cim:ExcIEEEST5B.tob1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.tob1>([\s\S]*?)<\/cim:ExcIEEEST5B.tob1>/g, obj, "tob1", base.to_string, sub, context);
+
             /**
              * OEL lag time constant (T<sub>OB2</sub>).
              *
              * Typical Value = 0.08.
              *
              */
-            obj["tob2"] = base.parse_element (/<cim:ExcIEEEST5B.tob2>([\s\S]*?)<\/cim:ExcIEEEST5B.tob2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.tob2>([\s\S]*?)<\/cim:ExcIEEEST5B.tob2>/g, obj, "tob2", base.to_string, sub, context);
+
             /**
              * OEL lead time constant (T<sub>OC1</sub>).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["toc1"] = base.parse_element (/<cim:ExcIEEEST5B.toc1>([\s\S]*?)<\/cim:ExcIEEEST5B.toc1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.toc1>([\s\S]*?)<\/cim:ExcIEEEST5B.toc1>/g, obj, "toc1", base.to_string, sub, context);
+
             /**
              * OEL lead time constant (T<sub>OC2</sub>).
              *
              * Typical Value = 0.08.
              *
              */
-            obj["toc2"] = base.parse_element (/<cim:ExcIEEEST5B.toc2>([\s\S]*?)<\/cim:ExcIEEEST5B.toc2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.toc2>([\s\S]*?)<\/cim:ExcIEEEST5B.toc2>/g, obj, "toc2", base.to_string, sub, context);
+
             /**
              * UEL lag time constant (T<sub>UB1</sub>).
              *
              * Typical Value = 10.
              *
              */
-            obj["tub1"] = base.parse_element (/<cim:ExcIEEEST5B.tub1>([\s\S]*?)<\/cim:ExcIEEEST5B.tub1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.tub1>([\s\S]*?)<\/cim:ExcIEEEST5B.tub1>/g, obj, "tub1", base.to_string, sub, context);
+
             /**
              * UEL lag time constant (T<sub>UB2</sub>).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["tub2"] = base.parse_element (/<cim:ExcIEEEST5B.tub2>([\s\S]*?)<\/cim:ExcIEEEST5B.tub2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.tub2>([\s\S]*?)<\/cim:ExcIEEEST5B.tub2>/g, obj, "tub2", base.to_string, sub, context);
+
             /**
              * UEL lead time constant (T<sub>UC1</sub>).
              *
              * Typical Value = 2.
              *
              */
-            obj["tuc1"] = base.parse_element (/<cim:ExcIEEEST5B.tuc1>([\s\S]*?)<\/cim:ExcIEEEST5B.tuc1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.tuc1>([\s\S]*?)<\/cim:ExcIEEEST5B.tuc1>/g, obj, "tuc1", base.to_string, sub, context);
+
             /**
              * UEL lead time constant (T<sub>UC2</sub>).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["tuc2"] = base.parse_element (/<cim:ExcIEEEST5B.tuc2>([\s\S]*?)<\/cim:ExcIEEEST5B.tuc2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.tuc2>([\s\S]*?)<\/cim:ExcIEEEST5B.tuc2>/g, obj, "tuc2", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>RMAX</sub>).
              *
              * Typical Value = 5.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEST5B.vrmax>([\s\S]*?)<\/cim:ExcIEEEST5B.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.vrmax>([\s\S]*?)<\/cim:ExcIEEEST5B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>RMIN</sub>).
              *
              * Typical Value = -4.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEST5B.vrmin>([\s\S]*?)<\/cim:ExcIEEEST5B.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST5B.vrmin>([\s\S]*?)<\/cim:ExcIEEEST5B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEST5B;
             if (null == bucket)
                 context.parsed.ExcIEEEST5B = bucket = {};
@@ -4762,63 +5341,72 @@ define
              * Typical Value = 200.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcAC4A.ka>([\s\S]*?)<\/cim:ExcAC4A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC4A.ka>([\s\S]*?)<\/cim:ExcAC4A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (Kc).
              *
              * Typical Value = 0.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcAC4A.kc>([\s\S]*?)<\/cim:ExcAC4A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC4A.kc>([\s\S]*?)<\/cim:ExcAC4A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Ta).
              *
              * Typical Value = 0.015.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcAC4A.ta>([\s\S]*?)<\/cim:ExcAC4A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC4A.ta>([\s\S]*?)<\/cim:ExcAC4A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tb).
              *
              * Typical Value = 10.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcAC4A.tb>([\s\S]*?)<\/cim:ExcAC4A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC4A.tb>([\s\S]*?)<\/cim:ExcAC4A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tc).
              *
              * Typical Value = 1.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcAC4A.tc>([\s\S]*?)<\/cim:ExcAC4A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC4A.tc>([\s\S]*?)<\/cim:ExcAC4A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator input limit (Vimax).
              *
              * Typical Value = 10.
              *
              */
-            obj["vimax"] = base.parse_element (/<cim:ExcAC4A.vimax>([\s\S]*?)<\/cim:ExcAC4A.vimax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC4A.vimax>([\s\S]*?)<\/cim:ExcAC4A.vimax>/g, obj, "vimax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator input limit (Vimin).
              *
              * Typical Value = -10.
              *
              */
-            obj["vimin"] = base.parse_element (/<cim:ExcAC4A.vimin>([\s\S]*?)<\/cim:ExcAC4A.vimin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC4A.vimin>([\s\S]*?)<\/cim:ExcAC4A.vimin>/g, obj, "vimin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (Vrmax).
              *
              * Typical Value = 5.64.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcAC4A.vrmax>([\s\S]*?)<\/cim:ExcAC4A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC4A.vrmax>([\s\S]*?)<\/cim:ExcAC4A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vrmin).
              *
              * Typical Value = -4.53.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcAC4A.vrmin>([\s\S]*?)<\/cim:ExcAC4A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC4A.vrmin>([\s\S]*?)<\/cim:ExcAC4A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcAC4A;
             if (null == bucket)
                 context.parsed.ExcAC4A = bucket = {};
@@ -4846,126 +5434,144 @@ define
              * Typical Value = 1.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcIEEEAC8B.ka>([\s\S]*?)<\/cim:ExcIEEEAC8B.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.ka>([\s\S]*?)<\/cim:ExcIEEEAC8B.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
              *
              * Typical Value = 0.55.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcIEEEAC8B.kc>([\s\S]*?)<\/cim:ExcIEEEAC8B.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.kc>([\s\S]*?)<\/cim:ExcIEEEAC8B.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
              *
              * Typical Value = 1.1.
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcIEEEAC8B.kd>([\s\S]*?)<\/cim:ExcIEEEAC8B.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.kd>([\s\S]*?)<\/cim:ExcIEEEAC8B.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * Voltage regulator derivative gain (K<sub>DR</sub>).
              *
              * Typical Value = 10.
              *
              */
-            obj["kdr"] = base.parse_element (/<cim:ExcIEEEAC8B.kdr>([\s\S]*?)<\/cim:ExcIEEEAC8B.kdr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.kdr>([\s\S]*?)<\/cim:ExcIEEEAC8B.kdr>/g, obj, "kdr", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (K<sub>E</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcIEEEAC8B.ke>([\s\S]*?)<\/cim:ExcIEEEAC8B.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.ke>([\s\S]*?)<\/cim:ExcIEEEAC8B.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Voltage regulator integral gain (K<sub>IR</sub>).
              *
              * Typical Value = 5.
              *
              */
-            obj["kir"] = base.parse_element (/<cim:ExcIEEEAC8B.kir>([\s\S]*?)<\/cim:ExcIEEEAC8B.kir>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.kir>([\s\S]*?)<\/cim:ExcIEEEAC8B.kir>/g, obj, "kir", base.to_string, sub, context);
+
             /**
              * Voltage regulator proportional gain (K<sub>PR</sub>).
              *
              * Typical Value = 80.
              *
              */
-            obj["kpr"] = base.parse_element (/<cim:ExcIEEEAC8B.kpr>([\s\S]*?)<\/cim:ExcIEEEAC8B.kpr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.kpr>([\s\S]*?)<\/cim:ExcIEEEAC8B.kpr>/g, obj, "kpr", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
              *
              * Typical Value = 0.3.
              *
              */
-            obj["seve1"] = base.to_float (base.parse_element (/<cim:ExcIEEEAC8B.seve1>([\s\S]*?)<\/cim:ExcIEEEAC8B.seve1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEAC8B.seve1>([\s\S]*?)<\/cim:ExcIEEEAC8B.seve1>/g, obj, "seve1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
              *
              * Typical Value = 3.
              *
              */
-            obj["seve2"] = base.to_float (base.parse_element (/<cim:ExcIEEEAC8B.seve2>([\s\S]*?)<\/cim:ExcIEEEAC8B.seve2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEAC8B.seve2>([\s\S]*?)<\/cim:ExcIEEEAC8B.seve2>/g, obj, "seve2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcIEEEAC8B.ta>([\s\S]*?)<\/cim:ExcIEEEAC8B.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.ta>([\s\S]*?)<\/cim:ExcIEEEAC8B.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Lag time constant (T<sub>DR</sub>).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["tdr"] = base.parse_element (/<cim:ExcIEEEAC8B.tdr>([\s\S]*?)<\/cim:ExcIEEEAC8B.tdr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.tdr>([\s\S]*?)<\/cim:ExcIEEEAC8B.tdr>/g, obj, "tdr", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
              *
              * Typical Value = 1.2.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcIEEEAC8B.te>([\s\S]*?)<\/cim:ExcIEEEAC8B.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.te>([\s\S]*?)<\/cim:ExcIEEEAC8B.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX</sub> (V<sub>E1</sub>).
              *
              * Typical Value = 6.5.
              *
              */
-            obj["ve1"] = base.parse_element (/<cim:ExcIEEEAC8B.ve1>([\s\S]*?)<\/cim:ExcIEEEAC8B.ve1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.ve1>([\s\S]*?)<\/cim:ExcIEEEAC8B.ve1>/g, obj, "ve1", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
              *
              * Typical Value = 9.
              *
              */
-            obj["ve2"] = base.parse_element (/<cim:ExcIEEEAC8B.ve2>([\s\S]*?)<\/cim:ExcIEEEAC8B.ve2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.ve2>([\s\S]*?)<\/cim:ExcIEEEAC8B.ve2>/g, obj, "ve2", base.to_string, sub, context);
+
             /**
              * Minimum exciter voltage output (V<sub>EMIN</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["vemin"] = base.parse_element (/<cim:ExcIEEEAC8B.vemin>([\s\S]*?)<\/cim:ExcIEEEAC8B.vemin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.vemin>([\s\S]*?)<\/cim:ExcIEEEAC8B.vemin>/g, obj, "vemin", base.to_string, sub, context);
+
             /**
              * Exciter field current limit reference (V<sub>FEMAX</sub>).
              *
              * Typical Value = 6.
              *
              */
-            obj["vfemax"] = base.parse_element (/<cim:ExcIEEEAC8B.vfemax>([\s\S]*?)<\/cim:ExcIEEEAC8B.vfemax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.vfemax>([\s\S]*?)<\/cim:ExcIEEEAC8B.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>RMAX</sub>).
              *
              * Typical Value = 35.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEAC8B.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC8B.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC8B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>RMIN</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEAC8B.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC8B.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC8B.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC8B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEAC8B;
             if (null == bucket)
                 context.parsed.ExcIEEEAC8B = bucket = {};
@@ -4989,22 +5595,26 @@ define
              * No UEL input is used.
              *
              */
-            obj["noUELinput"] = base.parse_element (/<cim:ExcST7BUELselectorKind.noUELinput>([\s\S]*?)<\/cim:ExcST7BUELselectorKind.noUELinput>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7BUELselectorKind.noUELinput>([\s\S]*?)<\/cim:ExcST7BUELselectorKind.noUELinput>/g, obj, "noUELinput", base.to_string, sub, context);
+
             /**
              * The signal is added to Vref.
              *
              */
-            obj["addVref"] = base.parse_element (/<cim:ExcST7BUELselectorKind.addVref>([\s\S]*?)<\/cim:ExcST7BUELselectorKind.addVref>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7BUELselectorKind.addVref>([\s\S]*?)<\/cim:ExcST7BUELselectorKind.addVref>/g, obj, "addVref", base.to_string, sub, context);
+
             /**
              * The signal is connected in the input of the HV gate.
              *
              */
-            obj["inputHVgate"] = base.parse_element (/<cim:ExcST7BUELselectorKind.inputHVgate>([\s\S]*?)<\/cim:ExcST7BUELselectorKind.inputHVgate>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7BUELselectorKind.inputHVgate>([\s\S]*?)<\/cim:ExcST7BUELselectorKind.inputHVgate>/g, obj, "inputHVgate", base.to_string, sub, context);
+
             /**
              * The signal is connected in the output of the HV gate.
              *
              */
-            obj["outputHVgate"] = base.parse_element (/<cim:ExcST7BUELselectorKind.outputHVgate>([\s\S]*?)<\/cim:ExcST7BUELselectorKind.outputHVgate>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7BUELselectorKind.outputHVgate>([\s\S]*?)<\/cim:ExcST7BUELselectorKind.outputHVgate>/g, obj, "outputHVgate", base.to_string, sub, context);
+
             bucket = context.parsed.ExcST7BUELselectorKind;
             if (null == bucket)
                 context.parsed.ExcST7BUELselectorKind = bucket = {};
@@ -5030,108 +5640,124 @@ define
              * Field voltage clipping limit (Efdmax).
              *
              */
-            obj["efdmax"] = base.parse_element (/<cim:ExcSK.efdmax>([\s\S]*?)<\/cim:ExcSK.efdmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.efdmax>([\s\S]*?)<\/cim:ExcSK.efdmax>/g, obj, "efdmax", base.to_string, sub, context);
+
             /**
              * Field voltage clipping limit (Efdmin).
              *
              */
-            obj["efdmin"] = base.parse_element (/<cim:ExcSK.efdmin>([\s\S]*?)<\/cim:ExcSK.efdmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.efdmin>([\s\S]*?)<\/cim:ExcSK.efdmin>/g, obj, "efdmin", base.to_string, sub, context);
+
             /**
              * Maximum field voltage output (Emax).
              *
              * Typical Value = 20.
              *
              */
-            obj["emax"] = base.parse_element (/<cim:ExcSK.emax>([\s\S]*?)<\/cim:ExcSK.emax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.emax>([\s\S]*?)<\/cim:ExcSK.emax>/g, obj, "emax", base.to_string, sub, context);
+
             /**
              * Minimum field voltage output (Emin).
              *
              * Typical Value = -20.
              *
              */
-            obj["emin"] = base.parse_element (/<cim:ExcSK.emin>([\s\S]*?)<\/cim:ExcSK.emin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.emin>([\s\S]*?)<\/cim:ExcSK.emin>/g, obj, "emin", base.to_string, sub, context);
+
             /**
              * Gain (K).
              *
              * Typical Value = 1.
              *
              */
-            obj["k"] = base.parse_element (/<cim:ExcSK.k>([\s\S]*?)<\/cim:ExcSK.k>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.k>([\s\S]*?)<\/cim:ExcSK.k>/g, obj, "k", base.to_string, sub, context);
+
             /**
              * Parameter of underexcitation limit (K1).
              *
              * Typical Value = 0.1364.
              *
              */
-            obj["k1"] = base.parse_element (/<cim:ExcSK.k1>([\s\S]*?)<\/cim:ExcSK.k1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.k1>([\s\S]*?)<\/cim:ExcSK.k1>/g, obj, "k1", base.to_string, sub, context);
+
             /**
              * Parameter of underexcitation limit (K2).
              *
              * Typical Value = -0.3861.
              *
              */
-            obj["k2"] = base.parse_element (/<cim:ExcSK.k2>([\s\S]*?)<\/cim:ExcSK.k2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.k2>([\s\S]*?)<\/cim:ExcSK.k2>/g, obj, "k2", base.to_string, sub, context);
+
             /**
              * PI controller gain (Kc).
              *
              * Typical Value = 70.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcSK.kc>([\s\S]*?)<\/cim:ExcSK.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.kc>([\s\S]*?)<\/cim:ExcSK.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Rectifier regulation factor (Kce).
              *
              * Typical Value = 0.
              *
              */
-            obj["kce"] = base.parse_element (/<cim:ExcSK.kce>([\s\S]*?)<\/cim:ExcSK.kce>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.kce>([\s\S]*?)<\/cim:ExcSK.kce>/g, obj, "kce", base.to_string, sub, context);
+
             /**
              * Exciter internal reactance (Kd).
              *
              * Typical Value = 0.
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcSK.kd>([\s\S]*?)<\/cim:ExcSK.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.kd>([\s\S]*?)<\/cim:ExcSK.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * P controller gain (Kgob).
              *
              * Typical Value = 10.
              *
              */
-            obj["kgob"] = base.parse_element (/<cim:ExcSK.kgob>([\s\S]*?)<\/cim:ExcSK.kgob>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.kgob>([\s\S]*?)<\/cim:ExcSK.kgob>/g, obj, "kgob", base.to_string, sub, context);
+
             /**
              * PI controller gain (Kp).
              *
              * Typical Value = 1.
              *
              */
-            obj["kp"] = base.parse_element (/<cim:ExcSK.kp>([\s\S]*?)<\/cim:ExcSK.kp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.kp>([\s\S]*?)<\/cim:ExcSK.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * PI controller gain of integral component (Kqi).
              *
              * Typical Value = 0.
              *
              */
-            obj["kqi"] = base.parse_element (/<cim:ExcSK.kqi>([\s\S]*?)<\/cim:ExcSK.kqi>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.kqi>([\s\S]*?)<\/cim:ExcSK.kqi>/g, obj, "kqi", base.to_string, sub, context);
+
             /**
              * Rate of rise of the reactive power (Kqob).
              *
              */
-            obj["kqob"] = base.parse_element (/<cim:ExcSK.kqob>([\s\S]*?)<\/cim:ExcSK.kqob>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.kqob>([\s\S]*?)<\/cim:ExcSK.kqob>/g, obj, "kqob", base.to_string, sub, context);
+
             /**
              * PI controller gain (Kqp).
              *
              * Typical Value = 0.
              *
              */
-            obj["kqp"] = base.parse_element (/<cim:ExcSK.kqp>([\s\S]*?)<\/cim:ExcSK.kqp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.kqp>([\s\S]*?)<\/cim:ExcSK.kqp>/g, obj, "kqp", base.to_string, sub, context);
+
             /**
              * Dead band of reactive power (nq).
              *
              * Determines the range of sensitivity.  Typical Value = 0.001.
              *
              */
-            obj["nq"] = base.parse_element (/<cim:ExcSK.nq>([\s\S]*?)<\/cim:ExcSK.nq>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.nq>([\s\S]*?)<\/cim:ExcSK.nq>/g, obj, "nq", base.to_string, sub, context);
+
             /**
              * Secondary voltage control state (Qc_on_off).
              * true = secondary voltage control is ON
@@ -5140,12 +5766,14 @@ define
              * Typical Value = false.
              *
              */
-            obj["qconoff"] = base.to_boolean (base.parse_element (/<cim:ExcSK.qconoff>([\s\S]*?)<\/cim:ExcSK.qconoff>/g, sub, context, true));
+            base.parse_element (/<cim:ExcSK.qconoff>([\s\S]*?)<\/cim:ExcSK.qconoff>/g, obj, "qconoff", base.to_boolean, sub, context);
+
             /**
              * Desired value (setpoint) of reactive power, manual setting (Qz).
              *
              */
-            obj["qz"] = base.parse_element (/<cim:ExcSK.qz>([\s\S]*?)<\/cim:ExcSK.qz>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.qz>([\s\S]*?)<\/cim:ExcSK.qz>/g, obj, "qz", base.to_string, sub, context);
+
             /**
              * Selector to apply automatic calculation in secondary controller model.
              * true = automatic calculation is activated
@@ -5154,98 +5782,112 @@ define
              * Typical Value = true.
              *
              */
-            obj["remote"] = base.to_boolean (base.parse_element (/<cim:ExcSK.remote>([\s\S]*?)<\/cim:ExcSK.remote>/g, sub, context, true));
+            base.parse_element (/<cim:ExcSK.remote>([\s\S]*?)<\/cim:ExcSK.remote>/g, obj, "remote", base.to_boolean, sub, context);
+
             /**
              * Apparent power of the unit (Sbase).
              *
              * Unit = MVA.  Typical Value = 259.
              *
              */
-            obj["sbase"] = base.parse_element (/<cim:ExcSK.sbase>([\s\S]*?)<\/cim:ExcSK.sbase>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.sbase>([\s\S]*?)<\/cim:ExcSK.sbase>/g, obj, "sbase", base.to_string, sub, context);
+
             /**
              * PI controller phase lead time constant (Tc).
              *
              * Typical Value = 8.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcSK.tc>([\s\S]*?)<\/cim:ExcSK.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.tc>([\s\S]*?)<\/cim:ExcSK.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Time constant of gain block (Te).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcSK.te>([\s\S]*?)<\/cim:ExcSK.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.te>([\s\S]*?)<\/cim:ExcSK.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * PI controller phase lead time constant (Ti).
              *
              * Typical Value = 2.
              *
              */
-            obj["ti"] = base.parse_element (/<cim:ExcSK.ti>([\s\S]*?)<\/cim:ExcSK.ti>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.ti>([\s\S]*?)<\/cim:ExcSK.ti>/g, obj, "ti", base.to_string, sub, context);
+
             /**
              * Time constant (Tp).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["tp"] = base.parse_element (/<cim:ExcSK.tp>([\s\S]*?)<\/cim:ExcSK.tp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.tp>([\s\S]*?)<\/cim:ExcSK.tp>/g, obj, "tp", base.to_string, sub, context);
+
             /**
              * Voltage transducer time constant (Tr).
              *
              * Typical Value = 0.01.
              *
              */
-            obj["tr"] = base.parse_element (/<cim:ExcSK.tr>([\s\S]*?)<\/cim:ExcSK.tr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.tr>([\s\S]*?)<\/cim:ExcSK.tr>/g, obj, "tr", base.to_string, sub, context);
+
             /**
              * Maximum error (Uimax).
              *
              * Typical Value = 10.
              *
              */
-            obj["uimax"] = base.parse_element (/<cim:ExcSK.uimax>([\s\S]*?)<\/cim:ExcSK.uimax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.uimax>([\s\S]*?)<\/cim:ExcSK.uimax>/g, obj, "uimax", base.to_string, sub, context);
+
             /**
              * Minimum error (UImin).
              *
              * Typical Value = -10.
              *
              */
-            obj["uimin"] = base.parse_element (/<cim:ExcSK.uimin>([\s\S]*?)<\/cim:ExcSK.uimin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.uimin>([\s\S]*?)<\/cim:ExcSK.uimin>/g, obj, "uimin", base.to_string, sub, context);
+
             /**
              * Maximum controller output (URmax).
              *
              * Typical Value = 10.
              *
              */
-            obj["urmax"] = base.parse_element (/<cim:ExcSK.urmax>([\s\S]*?)<\/cim:ExcSK.urmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.urmax>([\s\S]*?)<\/cim:ExcSK.urmax>/g, obj, "urmax", base.to_string, sub, context);
+
             /**
              * Minimum controller output (URmin).
              *
              * Typical Value = -10.
              *
              */
-            obj["urmin"] = base.parse_element (/<cim:ExcSK.urmin>([\s\S]*?)<\/cim:ExcSK.urmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.urmin>([\s\S]*?)<\/cim:ExcSK.urmin>/g, obj, "urmin", base.to_string, sub, context);
+
             /**
              * Maximum terminal voltage input (Vtmax).
              *
              * Determines the range of voltage dead band.  Typical Value = 1.05.
              *
              */
-            obj["vtmax"] = base.parse_element (/<cim:ExcSK.vtmax>([\s\S]*?)<\/cim:ExcSK.vtmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.vtmax>([\s\S]*?)<\/cim:ExcSK.vtmax>/g, obj, "vtmax", base.to_string, sub, context);
+
             /**
              * Minimum terminal voltage input (Vtmin).
              *
              * Determines the range of voltage dead band.  Typical Value = 0.95.
              *
              */
-            obj["vtmin"] = base.parse_element (/<cim:ExcSK.vtmin>([\s\S]*?)<\/cim:ExcSK.vtmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.vtmin>([\s\S]*?)<\/cim:ExcSK.vtmin>/g, obj, "vtmin", base.to_string, sub, context);
+
             /**
              * Maximum output (Yp).
              *
              * Minimum output = 0.  Typical Value = 1.
              *
              */
-            obj["yp"] = base.parse_element (/<cim:ExcSK.yp>([\s\S]*?)<\/cim:ExcSK.yp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcSK.yp>([\s\S]*?)<\/cim:ExcSK.yp>/g, obj, "yp", base.to_string, sub, context);
+
             bucket = context.parsed.ExcSK;
             if (null == bucket)
                 context.parsed.ExcSK = bucket = {};
@@ -5273,252 +5915,288 @@ define
              * Typical Value = 3.
              *
              */
-            obj["e1"] = base.parse_element (/<cim:ExcREXS.e1>([\s\S]*?)<\/cim:ExcREXS.e1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.e1>([\s\S]*?)<\/cim:ExcREXS.e1>/g, obj, "e1", base.to_string, sub, context);
+
             /**
              * Field voltage value 2 (E2).
              *
              * Typical Value = 4.
              *
              */
-            obj["e2"] = base.parse_element (/<cim:ExcREXS.e2>([\s\S]*?)<\/cim:ExcREXS.e2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.e2>([\s\S]*?)<\/cim:ExcREXS.e2>/g, obj, "e2", base.to_string, sub, context);
+
             /**
              * Rate feedback signal flag (Fbf).
              *
              * Typical Value = fieldCurrent.
              *
              */
-            obj["fbf"] = base.parse_element (/<cim:ExcREXS.fbf>([\s\S]*?)<\/cim:ExcREXS.fbf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.fbf>([\s\S]*?)<\/cim:ExcREXS.fbf>/g, obj, "fbf", base.to_string, sub, context);
+
             /**
              * Limit type flag (Flimf).
              *
              * Typical Value = 0.
              *
              */
-            obj["flimf"] = base.parse_element (/<cim:ExcREXS.flimf>([\s\S]*?)<\/cim:ExcREXS.flimf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.flimf>([\s\S]*?)<\/cim:ExcREXS.flimf>/g, obj, "flimf", base.to_string, sub, context);
+
             /**
              * Rectifier regulation factor (Kc).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcREXS.kc>([\s\S]*?)<\/cim:ExcREXS.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.kc>([\s\S]*?)<\/cim:ExcREXS.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Exciter regulation factor (Kd).
              *
              * Typical Value = 2.
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcREXS.kd>([\s\S]*?)<\/cim:ExcREXS.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.kd>([\s\S]*?)<\/cim:ExcREXS.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * Exciter field proportional constant (Ke).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcREXS.ke>([\s\S]*?)<\/cim:ExcREXS.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.ke>([\s\S]*?)<\/cim:ExcREXS.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Field voltage feedback gain (Kefd).
              *
              * Typical Value = 0.
              *
              */
-            obj["kefd"] = base.parse_element (/<cim:ExcREXS.kefd>([\s\S]*?)<\/cim:ExcREXS.kefd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.kefd>([\s\S]*?)<\/cim:ExcREXS.kefd>/g, obj, "kefd", base.to_string, sub, context);
+
             /**
              * Rate feedback gain (Kf).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcREXS.kf>([\s\S]*?)<\/cim:ExcREXS.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.kf>([\s\S]*?)<\/cim:ExcREXS.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Field voltage controller feedback gain (Kh).
              *
              * Typical Value = 0.
              *
              */
-            obj["kh"] = base.parse_element (/<cim:ExcREXS.kh>([\s\S]*?)<\/cim:ExcREXS.kh>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.kh>([\s\S]*?)<\/cim:ExcREXS.kh>/g, obj, "kh", base.to_string, sub, context);
+
             /**
              * Field Current Regulator Integral Gain (Kii).
              *
              * Typical Value = 0.
              *
              */
-            obj["kii"] = base.parse_element (/<cim:ExcREXS.kii>([\s\S]*?)<\/cim:ExcREXS.kii>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.kii>([\s\S]*?)<\/cim:ExcREXS.kii>/g, obj, "kii", base.to_string, sub, context);
+
             /**
              * Field Current Regulator Proportional Gain (Kip).
              *
              * Typical Value = 1.
              *
              */
-            obj["kip"] = base.parse_element (/<cim:ExcREXS.kip>([\s\S]*?)<\/cim:ExcREXS.kip>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.kip>([\s\S]*?)<\/cim:ExcREXS.kip>/g, obj, "kip", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model-speed coefficient (Ks).
              *
              * Typical Value = 0.
              *
              */
-            obj["ks"] = base.parse_element (/<cim:ExcREXS.ks>([\s\S]*?)<\/cim:ExcREXS.ks>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.ks>([\s\S]*?)<\/cim:ExcREXS.ks>/g, obj, "ks", base.to_string, sub, context);
+
             /**
              * Voltage Regulator Integral Gain (Kvi).
              *
              * Typical Value = 0.
              *
              */
-            obj["kvi"] = base.parse_element (/<cim:ExcREXS.kvi>([\s\S]*?)<\/cim:ExcREXS.kvi>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.kvi>([\s\S]*?)<\/cim:ExcREXS.kvi>/g, obj, "kvi", base.to_string, sub, context);
+
             /**
              * Voltage Regulator Proportional Gain (Kvp).
              *
              * Typical Value = 2800.
              *
              */
-            obj["kvp"] = base.parse_element (/<cim:ExcREXS.kvp>([\s\S]*?)<\/cim:ExcREXS.kvp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.kvp>([\s\S]*?)<\/cim:ExcREXS.kvp>/g, obj, "kvp", base.to_string, sub, context);
+
             /**
              * V/Hz limiter gain (Kvphz).
              *
              * Typical Value = 0.
              *
              */
-            obj["kvphz"] = base.parse_element (/<cim:ExcREXS.kvphz>([\s\S]*?)<\/cim:ExcREXS.kvphz>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.kvphz>([\s\S]*?)<\/cim:ExcREXS.kvphz>/g, obj, "kvphz", base.to_string, sub, context);
+
             /**
              * Pickup speed of V/Hz limiter (Nvphz).
              *
              * Typical Value = 0.
              *
              */
-            obj["nvphz"] = base.parse_element (/<cim:ExcREXS.nvphz>([\s\S]*?)<\/cim:ExcREXS.nvphz>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.nvphz>([\s\S]*?)<\/cim:ExcREXS.nvphz>/g, obj, "nvphz", base.to_string, sub, context);
+
             /**
              * Saturation factor at E1 (Se1).
              *
              * Typical Value = 0.0001.
              *
              */
-            obj["se1"] = base.parse_element (/<cim:ExcREXS.se1>([\s\S]*?)<\/cim:ExcREXS.se1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.se1>([\s\S]*?)<\/cim:ExcREXS.se1>/g, obj, "se1", base.to_string, sub, context);
+
             /**
              * Saturation factor at E2 (Se2).
              *
              * Typical Value = 0.001.
              *
              */
-            obj["se2"] = base.parse_element (/<cim:ExcREXS.se2>([\s\S]*?)<\/cim:ExcREXS.se2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.se2>([\s\S]*?)<\/cim:ExcREXS.se2>/g, obj, "se2", base.to_string, sub, context);
+
             /**
              * Voltage Regulator time constant (Ta).
              *
              * Typical Value = 0.01.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcREXS.ta>([\s\S]*?)<\/cim:ExcREXS.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.ta>([\s\S]*?)<\/cim:ExcREXS.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Lag time constant (Tb1).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb1"] = base.parse_element (/<cim:ExcREXS.tb1>([\s\S]*?)<\/cim:ExcREXS.tb1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.tb1>([\s\S]*?)<\/cim:ExcREXS.tb1>/g, obj, "tb1", base.to_string, sub, context);
+
             /**
              * Lag time constant (Tb2).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb2"] = base.parse_element (/<cim:ExcREXS.tb2>([\s\S]*?)<\/cim:ExcREXS.tb2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.tb2>([\s\S]*?)<\/cim:ExcREXS.tb2>/g, obj, "tb2", base.to_string, sub, context);
+
             /**
              * Lead time constant (Tc1).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc1"] = base.parse_element (/<cim:ExcREXS.tc1>([\s\S]*?)<\/cim:ExcREXS.tc1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.tc1>([\s\S]*?)<\/cim:ExcREXS.tc1>/g, obj, "tc1", base.to_string, sub, context);
+
             /**
              * Lead time constant (Tc2).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc2"] = base.parse_element (/<cim:ExcREXS.tc2>([\s\S]*?)<\/cim:ExcREXS.tc2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.tc2>([\s\S]*?)<\/cim:ExcREXS.tc2>/g, obj, "tc2", base.to_string, sub, context);
+
             /**
              * Exciter field time constant (Te).
              *
              * Typical Value = 1.2.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcREXS.te>([\s\S]*?)<\/cim:ExcREXS.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.te>([\s\S]*?)<\/cim:ExcREXS.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Rate feedback time constant (Tf).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcREXS.tf>([\s\S]*?)<\/cim:ExcREXS.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.tf>([\s\S]*?)<\/cim:ExcREXS.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Feedback lead time constant (Tf1).
              *
              * Typical Value = 0.
              *
              */
-            obj["tf1"] = base.parse_element (/<cim:ExcREXS.tf1>([\s\S]*?)<\/cim:ExcREXS.tf1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.tf1>([\s\S]*?)<\/cim:ExcREXS.tf1>/g, obj, "tf1", base.to_string, sub, context);
+
             /**
              * Feedback lag time constant (Tf2).
              *
              * Typical Value = 0.
              *
              */
-            obj["tf2"] = base.parse_element (/<cim:ExcREXS.tf2>([\s\S]*?)<\/cim:ExcREXS.tf2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.tf2>([\s\S]*?)<\/cim:ExcREXS.tf2>/g, obj, "tf2", base.to_string, sub, context);
+
             /**
              * Field current Bridge time constant (Tp).
              *
              * Typical Value = 0.
              *
              */
-            obj["tp"] = base.parse_element (/<cim:ExcREXS.tp>([\s\S]*?)<\/cim:ExcREXS.tp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.tp>([\s\S]*?)<\/cim:ExcREXS.tp>/g, obj, "tp", base.to_string, sub, context);
+
             /**
              * Maximum compounding voltage (Vcmax).
              *
              * Typical Value = 0.
              *
              */
-            obj["vcmax"] = base.parse_element (/<cim:ExcREXS.vcmax>([\s\S]*?)<\/cim:ExcREXS.vcmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.vcmax>([\s\S]*?)<\/cim:ExcREXS.vcmax>/g, obj, "vcmax", base.to_string, sub, context);
+
             /**
              * Maximum Exciter Field Current (Vfmax).
              *
              * Typical Value = 47.
              *
              */
-            obj["vfmax"] = base.parse_element (/<cim:ExcREXS.vfmax>([\s\S]*?)<\/cim:ExcREXS.vfmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.vfmax>([\s\S]*?)<\/cim:ExcREXS.vfmax>/g, obj, "vfmax", base.to_string, sub, context);
+
             /**
              * Minimum Exciter Field Current (Vfmin).
              *
              * Typical Value = -20.
              *
              */
-            obj["vfmin"] = base.parse_element (/<cim:ExcREXS.vfmin>([\s\S]*?)<\/cim:ExcREXS.vfmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.vfmin>([\s\S]*?)<\/cim:ExcREXS.vfmin>/g, obj, "vfmin", base.to_string, sub, context);
+
             /**
              * Voltage Regulator Input Limit (Vimax).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["vimax"] = base.parse_element (/<cim:ExcREXS.vimax>([\s\S]*?)<\/cim:ExcREXS.vimax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.vimax>([\s\S]*?)<\/cim:ExcREXS.vimax>/g, obj, "vimax", base.to_string, sub, context);
+
             /**
              * Maximum controller output (Vrmax).
              *
              * Typical Value = 47.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcREXS.vrmax>([\s\S]*?)<\/cim:ExcREXS.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.vrmax>([\s\S]*?)<\/cim:ExcREXS.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum controller output (Vrmin).
              *
              * Typical Value = -20.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcREXS.vrmin>([\s\S]*?)<\/cim:ExcREXS.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.vrmin>([\s\S]*?)<\/cim:ExcREXS.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             /**
              * Exciter compounding reactance (Xc).
              *
              * Typical Value = 0.
              *
              */
-            obj["xc"] = base.parse_element (/<cim:ExcREXS.xc>([\s\S]*?)<\/cim:ExcREXS.xc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXS.xc>([\s\S]*?)<\/cim:ExcREXS.xc>/g, obj, "xc", base.to_string, sub, context);
+
             bucket = context.parsed.ExcREXS;
             if (null == bucket)
                 context.parsed.ExcREXS = bucket = {};
@@ -5548,42 +6226,48 @@ define
              * Typical Value = 0.
              *
              */
-            obj["blint"] = base.parse_element (/<cim:ExcANS.blint>([\s\S]*?)<\/cim:ExcANS.blint>/g, sub, context, true);
+            base.parse_element (/<cim:ExcANS.blint>([\s\S]*?)<\/cim:ExcANS.blint>/g, obj, "blint", base.to_string, sub, context);
+
             /**
              * Minimum exciter current (I<sub>FMN</sub>).
              *
              * Typical Value = -5.2.
              *
              */
-            obj["ifmn"] = base.parse_element (/<cim:ExcANS.ifmn>([\s\S]*?)<\/cim:ExcANS.ifmn>/g, sub, context, true);
+            base.parse_element (/<cim:ExcANS.ifmn>([\s\S]*?)<\/cim:ExcANS.ifmn>/g, obj, "ifmn", base.to_string, sub, context);
+
             /**
              * Maximum exciter current (I<sub>FMX</sub>).
              *
              * Typical Value = 6.5.
              *
              */
-            obj["ifmx"] = base.parse_element (/<cim:ExcANS.ifmx>([\s\S]*?)<\/cim:ExcANS.ifmx>/g, sub, context, true);
+            base.parse_element (/<cim:ExcANS.ifmx>([\s\S]*?)<\/cim:ExcANS.ifmx>/g, obj, "ifmx", base.to_string, sub, context);
+
             /**
              * Exciter gain (K<sub>2</sub>).
              *
              * Typical Value = 20.
              *
              */
-            obj["k2"] = base.to_float (base.parse_element (/<cim:ExcANS.k2>([\s\S]*?)<\/cim:ExcANS.k2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcANS.k2>([\s\S]*?)<\/cim:ExcANS.k2>/g, obj, "k2", base.to_float, sub, context);
+
             /**
              * AVR gain (K<sub>3</sub>).
              *
              * Typical Value = 1000.
              *
              */
-            obj["k3"] = base.to_float (base.parse_element (/<cim:ExcANS.k3>([\s\S]*?)<\/cim:ExcANS.k3>/g, sub, context, true));
+            base.parse_element (/<cim:ExcANS.k3>([\s\S]*?)<\/cim:ExcANS.k3>/g, obj, "k3", base.to_float, sub, context);
+
             /**
              * Ceiling factor (K<sub>CE</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["kce"] = base.to_float (base.parse_element (/<cim:ExcANS.kce>([\s\S]*?)<\/cim:ExcANS.kce>/g, sub, context, true));
+            base.parse_element (/<cim:ExcANS.kce>([\s\S]*?)<\/cim:ExcANS.kce>/g, obj, "kce", base.to_float, sub, context);
+
             /**
              * Feedback enabling (K<sub>RVECC</sub>).
              * 0 = Open loop control
@@ -5592,7 +6276,8 @@ define
              * Typical Value = 1.
              *
              */
-            obj["krvecc"] = base.parse_element (/<cim:ExcANS.krvecc>([\s\S]*?)<\/cim:ExcANS.krvecc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcANS.krvecc>([\s\S]*?)<\/cim:ExcANS.krvecc>/g, obj, "krvecc", base.to_string, sub, context);
+
             /**
              * Rate feedback signal flag (K<sub>VFIF</sub>).
              * 0 = output voltage of the exciter
@@ -5601,49 +6286,56 @@ define
              * Typical Value = 0.
              *
              */
-            obj["kvfif"] = base.parse_element (/<cim:ExcANS.kvfif>([\s\S]*?)<\/cim:ExcANS.kvfif>/g, sub, context, true);
+            base.parse_element (/<cim:ExcANS.kvfif>([\s\S]*?)<\/cim:ExcANS.kvfif>/g, obj, "kvfif", base.to_string, sub, context);
+
             /**
              * Time constant (T<sub>1</sub>).
              *
              * Typical Value = 20.
              *
              */
-            obj["t1"] = base.parse_element (/<cim:ExcANS.t1>([\s\S]*?)<\/cim:ExcANS.t1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcANS.t1>([\s\S]*?)<\/cim:ExcANS.t1>/g, obj, "t1", base.to_string, sub, context);
+
             /**
              * Time constant (T<sub>2</sub>).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["t2"] = base.parse_element (/<cim:ExcANS.t2>([\s\S]*?)<\/cim:ExcANS.t2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcANS.t2>([\s\S]*?)<\/cim:ExcANS.t2>/g, obj, "t2", base.to_string, sub, context);
+
             /**
              * Time constant (T<sub>3</sub>).
              *
              * Typical Value = 1.6.
              *
              */
-            obj["t3"] = base.parse_element (/<cim:ExcANS.t3>([\s\S]*?)<\/cim:ExcANS.t3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcANS.t3>([\s\S]*?)<\/cim:ExcANS.t3>/g, obj, "t3", base.to_string, sub, context);
+
             /**
              * Exciter time constant (T<sub>B</sub>).
              *
              * Typical Value = 0.04.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcANS.tb>([\s\S]*?)<\/cim:ExcANS.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcANS.tb>([\s\S]*?)<\/cim:ExcANS.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Minimum AVR output (V<sub>RMN</sub>).
              *
              * Typical Value = -5.2.
              *
              */
-            obj["vrmn"] = base.parse_element (/<cim:ExcANS.vrmn>([\s\S]*?)<\/cim:ExcANS.vrmn>/g, sub, context, true);
+            base.parse_element (/<cim:ExcANS.vrmn>([\s\S]*?)<\/cim:ExcANS.vrmn>/g, obj, "vrmn", base.to_string, sub, context);
+
             /**
              * Maximum AVR output (V<sub>RMX</sub>).
              *
              * Typical Value = 6.5.
              *
              */
-            obj["vrmx"] = base.parse_element (/<cim:ExcANS.vrmx>([\s\S]*?)<\/cim:ExcANS.vrmx>/g, sub, context, true);
+            base.parse_element (/<cim:ExcANS.vrmx>([\s\S]*?)<\/cim:ExcANS.vrmx>/g, obj, "vrmx", base.to_string, sub, context);
+
             bucket = context.parsed.ExcANS;
             if (null == bucket)
                 context.parsed.ExcANS = bucket = {};
@@ -5671,182 +6363,208 @@ define
              * Typical Value = 0.18.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcIEEEAC7B.kc>([\s\S]*?)<\/cim:ExcIEEEAC7B.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.kc>([\s\S]*?)<\/cim:ExcIEEEAC7B.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcIEEEAC7B.kd>([\s\S]*?)<\/cim:ExcIEEEAC7B.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.kd>([\s\S]*?)<\/cim:ExcIEEEAC7B.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * Voltage regulator derivative gain (K<sub>DR</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["kdr"] = base.parse_element (/<cim:ExcIEEEAC7B.kdr>([\s\S]*?)<\/cim:ExcIEEEAC7B.kdr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.kdr>([\s\S]*?)<\/cim:ExcIEEEAC7B.kdr>/g, obj, "kdr", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (K<sub>E</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcIEEEAC7B.ke>([\s\S]*?)<\/cim:ExcIEEEAC7B.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.ke>([\s\S]*?)<\/cim:ExcIEEEAC7B.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gain (K<sub>F1</sub>).
              *
              * Typical Value = 0.212.
              *
              */
-            obj["kf1"] = base.parse_element (/<cim:ExcIEEEAC7B.kf1>([\s\S]*?)<\/cim:ExcIEEEAC7B.kf1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.kf1>([\s\S]*?)<\/cim:ExcIEEEAC7B.kf1>/g, obj, "kf1", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gain (K<sub>F2</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["kf2"] = base.parse_element (/<cim:ExcIEEEAC7B.kf2>([\s\S]*?)<\/cim:ExcIEEEAC7B.kf2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.kf2>([\s\S]*?)<\/cim:ExcIEEEAC7B.kf2>/g, obj, "kf2", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gain (K<sub>F3</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["kf3"] = base.parse_element (/<cim:ExcIEEEAC7B.kf3>([\s\S]*?)<\/cim:ExcIEEEAC7B.kf3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.kf3>([\s\S]*?)<\/cim:ExcIEEEAC7B.kf3>/g, obj, "kf3", base.to_string, sub, context);
+
             /**
              * Voltage regulator integral gain (K<sub>IA</sub>).
              *
              * Typical Value = 59.69.
              *
              */
-            obj["kia"] = base.parse_element (/<cim:ExcIEEEAC7B.kia>([\s\S]*?)<\/cim:ExcIEEEAC7B.kia>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.kia>([\s\S]*?)<\/cim:ExcIEEEAC7B.kia>/g, obj, "kia", base.to_string, sub, context);
+
             /**
              * Voltage regulator integral gain (K<sub>IR</sub>).
              *
              * Typical Value = 4.24.
              *
              */
-            obj["kir"] = base.parse_element (/<cim:ExcIEEEAC7B.kir>([\s\S]*?)<\/cim:ExcIEEEAC7B.kir>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.kir>([\s\S]*?)<\/cim:ExcIEEEAC7B.kir>/g, obj, "kir", base.to_string, sub, context);
+
             /**
              * Exciter field voltage lower limit parameter (K<sub>L</sub>).
              *
              * Typical Value = 10.
              *
              */
-            obj["kl"] = base.parse_element (/<cim:ExcIEEEAC7B.kl>([\s\S]*?)<\/cim:ExcIEEEAC7B.kl>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.kl>([\s\S]*?)<\/cim:ExcIEEEAC7B.kl>/g, obj, "kl", base.to_string, sub, context);
+
             /**
              * Potential circuit gain coefficient (K<sub>P</sub>).
              *
              * Typical Value = 4.96.
              *
              */
-            obj["kp"] = base.parse_element (/<cim:ExcIEEEAC7B.kp>([\s\S]*?)<\/cim:ExcIEEEAC7B.kp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.kp>([\s\S]*?)<\/cim:ExcIEEEAC7B.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * Voltage regulator proportional gain (K<sub>PA</sub>).
              *
              * Typical Value = 65.36.
              *
              */
-            obj["kpa"] = base.parse_element (/<cim:ExcIEEEAC7B.kpa>([\s\S]*?)<\/cim:ExcIEEEAC7B.kpa>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.kpa>([\s\S]*?)<\/cim:ExcIEEEAC7B.kpa>/g, obj, "kpa", base.to_string, sub, context);
+
             /**
              * Voltage regulator proportional gain (K<sub>PR</sub>).
              *
              * Typical Value = 4.24.
              *
              */
-            obj["kpr"] = base.parse_element (/<cim:ExcIEEEAC7B.kpr>([\s\S]*?)<\/cim:ExcIEEEAC7B.kpr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.kpr>([\s\S]*?)<\/cim:ExcIEEEAC7B.kpr>/g, obj, "kpr", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
              *
              * Typical Value = 0.44.
              *
              */
-            obj["seve1"] = base.to_float (base.parse_element (/<cim:ExcIEEEAC7B.seve1>([\s\S]*?)<\/cim:ExcIEEEAC7B.seve1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEAC7B.seve1>([\s\S]*?)<\/cim:ExcIEEEAC7B.seve1>/g, obj, "seve1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
              *
              * Typical Value = 0.075.
              *
              */
-            obj["seve2"] = base.to_float (base.parse_element (/<cim:ExcIEEEAC7B.seve2>([\s\S]*?)<\/cim:ExcIEEEAC7B.seve2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEAC7B.seve2>([\s\S]*?)<\/cim:ExcIEEEAC7B.seve2>/g, obj, "seve2", base.to_float, sub, context);
+
             /**
              * Lag time constant (T<sub>DR</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tdr"] = base.parse_element (/<cim:ExcIEEEAC7B.tdr>([\s\S]*?)<\/cim:ExcIEEEAC7B.tdr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.tdr>([\s\S]*?)<\/cim:ExcIEEEAC7B.tdr>/g, obj, "tdr", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
              *
              * Typical Value = 1.1.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcIEEEAC7B.te>([\s\S]*?)<\/cim:ExcIEEEAC7B.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.te>([\s\S]*?)<\/cim:ExcIEEEAC7B.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (T<sub>F</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcIEEEAC7B.tf>([\s\S]*?)<\/cim:ExcIEEEAC7B.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.tf>([\s\S]*?)<\/cim:ExcIEEEAC7B.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>AMAX</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["vamax"] = base.parse_element (/<cim:ExcIEEEAC7B.vamax>([\s\S]*?)<\/cim:ExcIEEEAC7B.vamax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.vamax>([\s\S]*?)<\/cim:ExcIEEEAC7B.vamax>/g, obj, "vamax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>AMIN</sub>).
              *
              * Typical Value = -0.95.
              *
              */
-            obj["vamin"] = base.parse_element (/<cim:ExcIEEEAC7B.vamin>([\s\S]*?)<\/cim:ExcIEEEAC7B.vamin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.vamin>([\s\S]*?)<\/cim:ExcIEEEAC7B.vamin>/g, obj, "vamin", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX</sub> (V<sub>E1</sub>).
              *
              * Typical Value = 6.3.
              *
              */
-            obj["ve1"] = base.parse_element (/<cim:ExcIEEEAC7B.ve1>([\s\S]*?)<\/cim:ExcIEEEAC7B.ve1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.ve1>([\s\S]*?)<\/cim:ExcIEEEAC7B.ve1>/g, obj, "ve1", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
              *
              * Typical Value = 3.02.
              *
              */
-            obj["ve2"] = base.parse_element (/<cim:ExcIEEEAC7B.ve2>([\s\S]*?)<\/cim:ExcIEEEAC7B.ve2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.ve2>([\s\S]*?)<\/cim:ExcIEEEAC7B.ve2>/g, obj, "ve2", base.to_string, sub, context);
+
             /**
              * Minimum exciter voltage output (V<sub>EMIN</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["vemin"] = base.parse_element (/<cim:ExcIEEEAC7B.vemin>([\s\S]*?)<\/cim:ExcIEEEAC7B.vemin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.vemin>([\s\S]*?)<\/cim:ExcIEEEAC7B.vemin>/g, obj, "vemin", base.to_string, sub, context);
+
             /**
              * Exciter field current limit reference (V<sub>FEMAX</sub>).
              *
              * Typical Value = 6.9.
              *
              */
-            obj["vfemax"] = base.parse_element (/<cim:ExcIEEEAC7B.vfemax>([\s\S]*?)<\/cim:ExcIEEEAC7B.vfemax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.vfemax>([\s\S]*?)<\/cim:ExcIEEEAC7B.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>RMAX</sub>).
              *
              * Typical Value = 5.79.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEAC7B.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC7B.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC7B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>RMIN</sub>).
              *
              * Typical Value = -5.79.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEAC7B.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC7B.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC7B.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC7B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEAC7B;
             if (null == bucket)
                 context.parsed.ExcIEEEAC7B = bucket = {};
@@ -5874,112 +6592,128 @@ define
              * Typical Value = 0.113.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcIEEEST4B.kc>([\s\S]*?)<\/cim:ExcIEEEST4B.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.kc>([\s\S]*?)<\/cim:ExcIEEEST4B.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Feedback gain constant of the inner loop field regulator (K<sub>G</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["kg"] = base.parse_element (/<cim:ExcIEEEST4B.kg>([\s\S]*?)<\/cim:ExcIEEEST4B.kg>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.kg>([\s\S]*?)<\/cim:ExcIEEEST4B.kg>/g, obj, "kg", base.to_string, sub, context);
+
             /**
              * Potential circuit gain coefficient (K<sub>I</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["ki"] = base.parse_element (/<cim:ExcIEEEST4B.ki>([\s\S]*?)<\/cim:ExcIEEEST4B.ki>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.ki>([\s\S]*?)<\/cim:ExcIEEEST4B.ki>/g, obj, "ki", base.to_string, sub, context);
+
             /**
              * Voltage regulator integral gain output (K<sub>IM</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["kim"] = base.parse_element (/<cim:ExcIEEEST4B.kim>([\s\S]*?)<\/cim:ExcIEEEST4B.kim>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.kim>([\s\S]*?)<\/cim:ExcIEEEST4B.kim>/g, obj, "kim", base.to_string, sub, context);
+
             /**
              * Voltage regulator integral gain (K<sub>IR</sub>).
              *
              * Typical Value = 10.75.
              *
              */
-            obj["kir"] = base.parse_element (/<cim:ExcIEEEST4B.kir>([\s\S]*?)<\/cim:ExcIEEEST4B.kir>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.kir>([\s\S]*?)<\/cim:ExcIEEEST4B.kir>/g, obj, "kir", base.to_string, sub, context);
+
             /**
              * Potential circuit gain coefficient (K<sub>P</sub>).
              *
              * Typical Value = 9.3.
              *
              */
-            obj["kp"] = base.parse_element (/<cim:ExcIEEEST4B.kp>([\s\S]*?)<\/cim:ExcIEEEST4B.kp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.kp>([\s\S]*?)<\/cim:ExcIEEEST4B.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * Voltage regulator proportional gain output (K<sub>PM</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["kpm"] = base.parse_element (/<cim:ExcIEEEST4B.kpm>([\s\S]*?)<\/cim:ExcIEEEST4B.kpm>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.kpm>([\s\S]*?)<\/cim:ExcIEEEST4B.kpm>/g, obj, "kpm", base.to_string, sub, context);
+
             /**
              * Voltage regulator proportional gain (K<sub>PR</sub>).
              *
              * Typical Value = 10.75.
              *
              */
-            obj["kpr"] = base.parse_element (/<cim:ExcIEEEST4B.kpr>([\s\S]*?)<\/cim:ExcIEEEST4B.kpr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.kpr>([\s\S]*?)<\/cim:ExcIEEEST4B.kpr>/g, obj, "kpr", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcIEEEST4B.ta>([\s\S]*?)<\/cim:ExcIEEEST4B.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.ta>([\s\S]*?)<\/cim:ExcIEEEST4B.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Potential circuit phase angle (thetap).
              *
              * Typical Value = 0.
              *
              */
-            obj["thetap"] = base.parse_element (/<cim:ExcIEEEST4B.thetap>([\s\S]*?)<\/cim:ExcIEEEST4B.thetap>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.thetap>([\s\S]*?)<\/cim:ExcIEEEST4B.thetap>/g, obj, "thetap", base.to_string, sub, context);
+
             /**
              * Maximum excitation voltage (V<sub>BMax</sub>).
              *
              * Typical Value = 11.63.
              *
              */
-            obj["vbmax"] = base.parse_element (/<cim:ExcIEEEST4B.vbmax>([\s\S]*?)<\/cim:ExcIEEEST4B.vbmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.vbmax>([\s\S]*?)<\/cim:ExcIEEEST4B.vbmax>/g, obj, "vbmax", base.to_string, sub, context);
+
             /**
              * Maximum inner loop output (V<sub>MMax</sub>).
              *
              * Typical Value = 99.
              *
              */
-            obj["vmmax"] = base.parse_element (/<cim:ExcIEEEST4B.vmmax>([\s\S]*?)<\/cim:ExcIEEEST4B.vmmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.vmmax>([\s\S]*?)<\/cim:ExcIEEEST4B.vmmax>/g, obj, "vmmax", base.to_string, sub, context);
+
             /**
              * Minimum inner loop output (V<sub>MMin</sub>).
              *
              * Typical Value = -99.
              *
              */
-            obj["vmmin"] = base.parse_element (/<cim:ExcIEEEST4B.vmmin>([\s\S]*?)<\/cim:ExcIEEEST4B.vmmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.vmmin>([\s\S]*?)<\/cim:ExcIEEEST4B.vmmin>/g, obj, "vmmin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>RMAX</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEST4B.vrmax>([\s\S]*?)<\/cim:ExcIEEEST4B.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.vrmax>([\s\S]*?)<\/cim:ExcIEEEST4B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>RMIN</sub>).
              *
              * Typical Value = -0.87.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEST4B.vrmin>([\s\S]*?)<\/cim:ExcIEEEST4B.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.vrmin>([\s\S]*?)<\/cim:ExcIEEEST4B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             /**
              * Reactance associated with potential source (X<sub>L</sub>).
              *
              * Typical Value = 0.124.
              *
              */
-            obj["xl"] = base.parse_element (/<cim:ExcIEEEST4B.xl>([\s\S]*?)<\/cim:ExcIEEEST4B.xl>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST4B.xl>([\s\S]*?)<\/cim:ExcIEEEST4B.xl>/g, obj, "xl", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEST4B;
             if (null == bucket)
                 context.parsed.ExcIEEEST4B = bucket = {};
@@ -6005,112 +6739,128 @@ define
              * Typical Value = 1.
              *
              */
-            obj["kh"] = base.parse_element (/<cim:ExcST7B.kh>([\s\S]*?)<\/cim:ExcST7B.kh>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.kh>([\s\S]*?)<\/cim:ExcST7B.kh>/g, obj, "kh", base.to_string, sub, context);
+
             /**
              * Voltage regulator integral gain (Kia).
              *
              * Typical Value = 1.
              *
              */
-            obj["kia"] = base.parse_element (/<cim:ExcST7B.kia>([\s\S]*?)<\/cim:ExcST7B.kia>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.kia>([\s\S]*?)<\/cim:ExcST7B.kia>/g, obj, "kia", base.to_string, sub, context);
+
             /**
              * Low-value gate feedback gain (Kl).
              *
              * Typical Value = 1.
              *
              */
-            obj["kl"] = base.parse_element (/<cim:ExcST7B.kl>([\s\S]*?)<\/cim:ExcST7B.kl>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.kl>([\s\S]*?)<\/cim:ExcST7B.kl>/g, obj, "kl", base.to_string, sub, context);
+
             /**
              * Voltage regulator proportional gain (Kpa).
              *
              * Typical Value = 40.
              *
              */
-            obj["kpa"] = base.parse_element (/<cim:ExcST7B.kpa>([\s\S]*?)<\/cim:ExcST7B.kpa>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.kpa>([\s\S]*?)<\/cim:ExcST7B.kpa>/g, obj, "kpa", base.to_string, sub, context);
+
             /**
              * OEL input selector (OELin).
              *
              * Typical Value = noOELinput.
              *
              */
-            obj["oelin"] = base.parse_element (/<cim:ExcST7B.oelin>([\s\S]*?)<\/cim:ExcST7B.oelin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.oelin>([\s\S]*?)<\/cim:ExcST7B.oelin>/g, obj, "oelin", base.to_string, sub, context);
+
             /**
              * Regulator lag time constant (Tb).
              *
              * Typical Value = 1.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcST7B.tb>([\s\S]*?)<\/cim:ExcST7B.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.tb>([\s\S]*?)<\/cim:ExcST7B.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Regulator lead time constant (Tc).
              *
              * Typical Value = 1.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcST7B.tc>([\s\S]*?)<\/cim:ExcST7B.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.tc>([\s\S]*?)<\/cim:ExcST7B.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (Tf).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcST7B.tf>([\s\S]*?)<\/cim:ExcST7B.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.tf>([\s\S]*?)<\/cim:ExcST7B.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Feedback time constant of inner loop field voltage regulator (Tg).
              *
              * Typical Value = 1.
              *
              */
-            obj["tg"] = base.parse_element (/<cim:ExcST7B.tg>([\s\S]*?)<\/cim:ExcST7B.tg>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.tg>([\s\S]*?)<\/cim:ExcST7B.tg>/g, obj, "tg", base.to_string, sub, context);
+
             /**
              * Feedback time constant (Tia).
              *
              * Typical Value = 3.
              *
              */
-            obj["tia"] = base.parse_element (/<cim:ExcST7B.tia>([\s\S]*?)<\/cim:ExcST7B.tia>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.tia>([\s\S]*?)<\/cim:ExcST7B.tia>/g, obj, "tia", base.to_string, sub, context);
+
             /**
              * Rectifier firing time constant (Ts).
              *
              * Typical Value = 0.
              *
              */
-            obj["ts"] = base.parse_element (/<cim:ExcST7B.ts>([\s\S]*?)<\/cim:ExcST7B.ts>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.ts>([\s\S]*?)<\/cim:ExcST7B.ts>/g, obj, "ts", base.to_string, sub, context);
+
             /**
              * UEL input selector (UELin).
              *
              * Typical Value = noUELinput.
              *
              */
-            obj["uelin"] = base.parse_element (/<cim:ExcST7B.uelin>([\s\S]*?)<\/cim:ExcST7B.uelin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.uelin>([\s\S]*?)<\/cim:ExcST7B.uelin>/g, obj, "uelin", base.to_string, sub, context);
+
             /**
              * Maximum voltage reference signal (Vmax).
              *
              * Typical Value = 1.1.
              *
              */
-            obj["vmax"] = base.parse_element (/<cim:ExcST7B.vmax>([\s\S]*?)<\/cim:ExcST7B.vmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.vmax>([\s\S]*?)<\/cim:ExcST7B.vmax>/g, obj, "vmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage reference signal (Vmin).
              *
              * Typical Value = 0.9.
              *
              */
-            obj["vmin"] = base.parse_element (/<cim:ExcST7B.vmin>([\s\S]*?)<\/cim:ExcST7B.vmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.vmin>([\s\S]*?)<\/cim:ExcST7B.vmin>/g, obj, "vmin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (Vrmax).
              *
              * Typical Value = 5.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcST7B.vrmax>([\s\S]*?)<\/cim:ExcST7B.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.vrmax>([\s\S]*?)<\/cim:ExcST7B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vrmin).
              *
              * Typical Value = -4.5.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcST7B.vrmin>([\s\S]*?)<\/cim:ExcST7B.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST7B.vrmin>([\s\S]*?)<\/cim:ExcST7B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcST7B;
             if (null == bucket)
                 context.parsed.ExcST7B = bucket = {};
@@ -6136,126 +6886,144 @@ define
              * Typical Value = 99.
              *
              */
-            obj["edfmax"] = base.parse_element (/<cim:ExcDC1A.edfmax>([\s\S]*?)<\/cim:ExcDC1A.edfmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.edfmax>([\s\S]*?)<\/cim:ExcDC1A.edfmax>/g, obj, "edfmax", base.to_string, sub, context);
+
             /**
              * Exciter voltage at which exciter saturation is defined (Efd1).
              *
              * Typical Value = 3.1.
              *
              */
-            obj["efd1"] = base.parse_element (/<cim:ExcDC1A.efd1>([\s\S]*?)<\/cim:ExcDC1A.efd1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.efd1>([\s\S]*?)<\/cim:ExcDC1A.efd1>/g, obj, "efd1", base.to_string, sub, context);
+
             /**
              * Exciter voltage at which exciter saturation is defined (Efd2).
              *
              * Typical Value = 2.3.
              *
              */
-            obj["efd2"] = base.parse_element (/<cim:ExcDC1A.efd2>([\s\S]*?)<\/cim:ExcDC1A.efd2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.efd2>([\s\S]*?)<\/cim:ExcDC1A.efd2>/g, obj, "efd2", base.to_string, sub, context);
+
             /**
              * Minimum voltage exciter output limiter (Efdmin).
              *
              * Typical Value = -99.
              *
              */
-            obj["efdmin"] = base.parse_element (/<cim:ExcDC1A.efdmin>([\s\S]*?)<\/cim:ExcDC1A.efdmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.efdmin>([\s\S]*?)<\/cim:ExcDC1A.efdmin>/g, obj, "efdmin", base.to_string, sub, context);
+
             /**
              * (exclim).
              *
              * IEEE standard is ambiguous about lower limit on exciter output.
              *
              */
-            obj["exclim"] = base.to_boolean (base.parse_element (/<cim:ExcDC1A.exclim>([\s\S]*?)<\/cim:ExcDC1A.exclim>/g, sub, context, true));
+            base.parse_element (/<cim:ExcDC1A.exclim>([\s\S]*?)<\/cim:ExcDC1A.exclim>/g, obj, "exclim", base.to_boolean, sub, context);
+
             /**
              * Voltage regulator gain (Ka).
              *
              * Typical Value = 46.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcDC1A.ka>([\s\S]*?)<\/cim:ExcDC1A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.ka>([\s\S]*?)<\/cim:ExcDC1A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (Ke).
              *
              * Typical Value = 0.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcDC1A.ke>([\s\S]*?)<\/cim:ExcDC1A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.ke>([\s\S]*?)<\/cim:ExcDC1A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gain (Kf).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcDC1A.kf>([\s\S]*?)<\/cim:ExcDC1A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.kf>([\s\S]*?)<\/cim:ExcDC1A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model-speed coefficient (Ks).
              *
              * Typical Value = 0.
              *
              */
-            obj["ks"] = base.parse_element (/<cim:ExcDC1A.ks>([\s\S]*?)<\/cim:ExcDC1A.ks>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.ks>([\s\S]*?)<\/cim:ExcDC1A.ks>/g, obj, "ks", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
              *
              * Typical Value = 0.33.
              *
              */
-            obj["seefd1"] = base.to_float (base.parse_element (/<cim:ExcDC1A.seefd1>([\s\S]*?)<\/cim:ExcDC1A.seefd1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcDC1A.seefd1>([\s\S]*?)<\/cim:ExcDC1A.seefd1>/g, obj, "seefd1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
              *
              * Typical Value = 0.33.
              *
              */
-            obj["seefd2"] = base.to_float (base.parse_element (/<cim:ExcDC1A.seefd2>([\s\S]*?)<\/cim:ExcDC1A.seefd2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcDC1A.seefd2>([\s\S]*?)<\/cim:ExcDC1A.seefd2>/g, obj, "seefd2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (Ta).
              *
              * Typical Value = 0.06.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcDC1A.ta>([\s\S]*?)<\/cim:ExcDC1A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.ta>([\s\S]*?)<\/cim:ExcDC1A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tb).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcDC1A.tb>([\s\S]*?)<\/cim:ExcDC1A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.tb>([\s\S]*?)<\/cim:ExcDC1A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tc).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcDC1A.tc>([\s\S]*?)<\/cim:ExcDC1A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.tc>([\s\S]*?)<\/cim:ExcDC1A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (Te).
              *
              * Typical Value = 0.46.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcDC1A.te>([\s\S]*?)<\/cim:ExcDC1A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.te>([\s\S]*?)<\/cim:ExcDC1A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (Tf).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcDC1A.tf>([\s\S]*?)<\/cim:ExcDC1A.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.tf>([\s\S]*?)<\/cim:ExcDC1A.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (Vrmax).
              *
              * Typical Value = 1.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcDC1A.vrmax>([\s\S]*?)<\/cim:ExcDC1A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.vrmax>([\s\S]*?)<\/cim:ExcDC1A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vrmin).
              *
              * Typical Value = -0.9.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcDC1A.vrmin>([\s\S]*?)<\/cim:ExcDC1A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC1A.vrmin>([\s\S]*?)<\/cim:ExcDC1A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcDC1A;
             if (null == bucket)
                 context.parsed.ExcDC1A = bucket = {};
@@ -6281,17 +7049,20 @@ define
              * It is the same as exciter field voltage.
              *
              */
-            obj["fieldVoltage"] = base.parse_element (/<cim:ExcREXSFeedbackSignalKind.fieldVoltage>([\s\S]*?)<\/cim:ExcREXSFeedbackSignalKind.fieldVoltage>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXSFeedbackSignalKind.fieldVoltage>([\s\S]*?)<\/cim:ExcREXSFeedbackSignalKind.fieldVoltage>/g, obj, "fieldVoltage", base.to_string, sub, context);
+
             /**
              * The exciter field current is used.
              *
              */
-            obj["fieldCurrent"] = base.parse_element (/<cim:ExcREXSFeedbackSignalKind.fieldCurrent>([\s\S]*?)<\/cim:ExcREXSFeedbackSignalKind.fieldCurrent>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXSFeedbackSignalKind.fieldCurrent>([\s\S]*?)<\/cim:ExcREXSFeedbackSignalKind.fieldCurrent>/g, obj, "fieldCurrent", base.to_string, sub, context);
+
             /**
              * The output voltage of the exciter is used.
              *
              */
-            obj["outputVoltage"] = base.parse_element (/<cim:ExcREXSFeedbackSignalKind.outputVoltage>([\s\S]*?)<\/cim:ExcREXSFeedbackSignalKind.outputVoltage>/g, sub, context, true);
+            base.parse_element (/<cim:ExcREXSFeedbackSignalKind.outputVoltage>([\s\S]*?)<\/cim:ExcREXSFeedbackSignalKind.outputVoltage>/g, obj, "outputVoltage", base.to_string, sub, context);
+
             bucket = context.parsed.ExcREXSFeedbackSignalKind;
             if (null == bucket)
                 context.parsed.ExcREXSFeedbackSignalKind = bucket = {};
@@ -6317,140 +7088,160 @@ define
              * Typical Value = 6.9.
              *
              */
-            obj["efdmax"] = base.parse_element (/<cim:ExcST3A.efdmax>([\s\S]*?)<\/cim:ExcST3A.efdmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.efdmax>([\s\S]*?)<\/cim:ExcST3A.efdmax>/g, obj, "efdmax", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (Kc).
              *
              * Typical Value = 1.1.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcST3A.kc>([\s\S]*?)<\/cim:ExcST3A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.kc>([\s\S]*?)<\/cim:ExcST3A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Feedback gain constant of the inner loop field regulator (Kg).
              *
              * Typical Value = 1.
              *
              */
-            obj["kg"] = base.parse_element (/<cim:ExcST3A.kg>([\s\S]*?)<\/cim:ExcST3A.kg>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.kg>([\s\S]*?)<\/cim:ExcST3A.kg>/g, obj, "kg", base.to_string, sub, context);
+
             /**
              * Potential circuit gain coefficient (Ki).
              *
              * Typical Value = 4.83.
              *
              */
-            obj["ki"] = base.parse_element (/<cim:ExcST3A.ki>([\s\S]*?)<\/cim:ExcST3A.ki>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.ki>([\s\S]*?)<\/cim:ExcST3A.ki>/g, obj, "ki", base.to_string, sub, context);
+
             /**
              * AVR gain (Kj).
              *
              * Typical Value = 200.
              *
              */
-            obj["kj"] = base.parse_element (/<cim:ExcST3A.kj>([\s\S]*?)<\/cim:ExcST3A.kj>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.kj>([\s\S]*?)<\/cim:ExcST3A.kj>/g, obj, "kj", base.to_string, sub, context);
+
             /**
              * Forward gain constant of the inner loop field regulator (Km).
              *
              * Typical Value = 7.04.
              *
              */
-            obj["km"] = base.parse_element (/<cim:ExcST3A.km>([\s\S]*?)<\/cim:ExcST3A.km>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.km>([\s\S]*?)<\/cim:ExcST3A.km>/g, obj, "km", base.to_string, sub, context);
+
             /**
              * Potential source gain (Kp) (&gt;0).
              *
              * Typical Value = 4.37.
              *
              */
-            obj["kp"] = base.parse_element (/<cim:ExcST3A.kp>([\s\S]*?)<\/cim:ExcST3A.kp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.kp>([\s\S]*?)<\/cim:ExcST3A.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model-speed coefficient (Ks).
              *
              * Typical Value = 0.
              *
              */
-            obj["ks"] = base.parse_element (/<cim:ExcST3A.ks>([\s\S]*?)<\/cim:ExcST3A.ks>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.ks>([\s\S]*?)<\/cim:ExcST3A.ks>/g, obj, "ks", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model-speed coefficient (Ks1).
              *
              * Typical Value = 0.
              *
              */
-            obj["ks1"] = base.parse_element (/<cim:ExcST3A.ks1>([\s\S]*?)<\/cim:ExcST3A.ks1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.ks1>([\s\S]*?)<\/cim:ExcST3A.ks1>/g, obj, "ks1", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tb).
              *
              * Typical Value = 6.67.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcST3A.tb>([\s\S]*?)<\/cim:ExcST3A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.tb>([\s\S]*?)<\/cim:ExcST3A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tc).
              *
              * Typical Value = 1.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcST3A.tc>([\s\S]*?)<\/cim:ExcST3A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.tc>([\s\S]*?)<\/cim:ExcST3A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Potential circuit phase angle (thetap).
              *
              * Typical Value = 20.
              *
              */
-            obj["thetap"] = base.parse_element (/<cim:ExcST3A.thetap>([\s\S]*?)<\/cim:ExcST3A.thetap>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.thetap>([\s\S]*?)<\/cim:ExcST3A.thetap>/g, obj, "thetap", base.to_string, sub, context);
+
             /**
              * Forward time constant of inner loop field regulator (Tm).
              *
              * Typical Value = 1.
              *
              */
-            obj["tm"] = base.parse_element (/<cim:ExcST3A.tm>([\s\S]*?)<\/cim:ExcST3A.tm>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.tm>([\s\S]*?)<\/cim:ExcST3A.tm>/g, obj, "tm", base.to_string, sub, context);
+
             /**
              * Maximum excitation voltage (Vbmax).
              *
              * Typical Value = 8.63.
              *
              */
-            obj["vbmax"] = base.parse_element (/<cim:ExcST3A.vbmax>([\s\S]*?)<\/cim:ExcST3A.vbmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.vbmax>([\s\S]*?)<\/cim:ExcST3A.vbmax>/g, obj, "vbmax", base.to_string, sub, context);
+
             /**
              * Maximum inner loop feedback voltage (Vgmax).
              *
              * Typical Value = 6.53.
              *
              */
-            obj["vgmax"] = base.parse_element (/<cim:ExcST3A.vgmax>([\s\S]*?)<\/cim:ExcST3A.vgmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.vgmax>([\s\S]*?)<\/cim:ExcST3A.vgmax>/g, obj, "vgmax", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator input limit (Vimax).
              *
              * Typical Value = 0.2.
              *
              */
-            obj["vimax"] = base.parse_element (/<cim:ExcST3A.vimax>([\s\S]*?)<\/cim:ExcST3A.vimax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.vimax>([\s\S]*?)<\/cim:ExcST3A.vimax>/g, obj, "vimax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator input limit (Vimin).
              *
              * Typical Value = -0.2.
              *
              */
-            obj["vimin"] = base.parse_element (/<cim:ExcST3A.vimin>([\s\S]*?)<\/cim:ExcST3A.vimin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.vimin>([\s\S]*?)<\/cim:ExcST3A.vimin>/g, obj, "vimin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (Vrmax).
              *
              * Typical Value = 1.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcST3A.vrmax>([\s\S]*?)<\/cim:ExcST3A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.vrmax>([\s\S]*?)<\/cim:ExcST3A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vrmin).
              *
              * Typical Value = 0.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcST3A.vrmin>([\s\S]*?)<\/cim:ExcST3A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.vrmin>([\s\S]*?)<\/cim:ExcST3A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             /**
              * Reactance associated with potential source (Xl).
              *
              * Typical Value = 0.09.
              *
              */
-            obj["xl"] = base.parse_element (/<cim:ExcST3A.xl>([\s\S]*?)<\/cim:ExcST3A.xl>/g, sub, context, true);
+            base.parse_element (/<cim:ExcST3A.xl>([\s\S]*?)<\/cim:ExcST3A.xl>/g, obj, "xl", base.to_string, sub, context);
+
             bucket = context.parsed.ExcST3A;
             if (null == bucket)
                 context.parsed.ExcST3A = bucket = {};
@@ -6478,126 +7269,144 @@ define
              * Typical Value = 400.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcIEEEAC1A.ka>([\s\S]*?)<\/cim:ExcIEEEAC1A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.ka>([\s\S]*?)<\/cim:ExcIEEEAC1A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
              *
              * Typical Value = 0.2.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcIEEEAC1A.kc>([\s\S]*?)<\/cim:ExcIEEEAC1A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.kc>([\s\S]*?)<\/cim:ExcIEEEAC1A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
              *
              * Typical Value = 0.38.
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcIEEEAC1A.kd>([\s\S]*?)<\/cim:ExcIEEEAC1A.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.kd>([\s\S]*?)<\/cim:ExcIEEEAC1A.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (K<sub>E</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcIEEEAC1A.ke>([\s\S]*?)<\/cim:ExcIEEEAC1A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.ke>([\s\S]*?)<\/cim:ExcIEEEAC1A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gains (K<sub>F</sub>).
              *
              * Typical Value = 0.03.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcIEEEAC1A.kf>([\s\S]*?)<\/cim:ExcIEEEAC1A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.kf>([\s\S]*?)<\/cim:ExcIEEEAC1A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["seve1"] = base.to_float (base.parse_element (/<cim:ExcIEEEAC1A.seve1>([\s\S]*?)<\/cim:ExcIEEEAC1A.seve1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEAC1A.seve1>([\s\S]*?)<\/cim:ExcIEEEAC1A.seve1>/g, obj, "seve1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
              *
              * Typical Value = 0.03.
              *
              */
-            obj["seve2"] = base.to_float (base.parse_element (/<cim:ExcIEEEAC1A.seve2>([\s\S]*?)<\/cim:ExcIEEEAC1A.seve2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEAC1A.seve2>([\s\S]*?)<\/cim:ExcIEEEAC1A.seve2>/g, obj, "seve2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcIEEEAC1A.ta>([\s\S]*?)<\/cim:ExcIEEEAC1A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.ta>([\s\S]*?)<\/cim:ExcIEEEAC1A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>B</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcIEEEAC1A.tb>([\s\S]*?)<\/cim:ExcIEEEAC1A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.tb>([\s\S]*?)<\/cim:ExcIEEEAC1A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>C</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcIEEEAC1A.tc>([\s\S]*?)<\/cim:ExcIEEEAC1A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.tc>([\s\S]*?)<\/cim:ExcIEEEAC1A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
              *
              * Typical Value = 0.8.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcIEEEAC1A.te>([\s\S]*?)<\/cim:ExcIEEEAC1A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.te>([\s\S]*?)<\/cim:ExcIEEEAC1A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (T<sub>F</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcIEEEAC1A.tf>([\s\S]*?)<\/cim:ExcIEEEAC1A.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.tf>([\s\S]*?)<\/cim:ExcIEEEAC1A.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>AMAX</sub>).
              *
              * Typical Value = 14.5.
              *
              */
-            obj["vamax"] = base.parse_element (/<cim:ExcIEEEAC1A.vamax>([\s\S]*?)<\/cim:ExcIEEEAC1A.vamax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.vamax>([\s\S]*?)<\/cim:ExcIEEEAC1A.vamax>/g, obj, "vamax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>AMIN</sub>).
              *
              * Typical Value = -14.5.
              *
              */
-            obj["vamin"] = base.parse_element (/<cim:ExcIEEEAC1A.vamin>([\s\S]*?)<\/cim:ExcIEEEAC1A.vamin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.vamin>([\s\S]*?)<\/cim:ExcIEEEAC1A.vamin>/g, obj, "vamin", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>).
              *
              * Typical Value = 4.18.
              *
              */
-            obj["ve1"] = base.parse_element (/<cim:ExcIEEEAC1A.ve1>([\s\S]*?)<\/cim:ExcIEEEAC1A.ve1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.ve1>([\s\S]*?)<\/cim:ExcIEEEAC1A.ve1>/g, obj, "ve1", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
              *
              * Typical Value = 3.14.
              *
              */
-            obj["ve2"] = base.parse_element (/<cim:ExcIEEEAC1A.ve2>([\s\S]*?)<\/cim:ExcIEEEAC1A.ve2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.ve2>([\s\S]*?)<\/cim:ExcIEEEAC1A.ve2>/g, obj, "ve2", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator outputs (V<sub>RMAX</sub>).
              *
              * Typical Value = 6.03.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEAC1A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC1A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC1A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator outputs (V<sub>RMIN</sub>).
              *
              * Typical Value = -5.43.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEAC1A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC1A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC1A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC1A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEAC1A;
             if (null == bucket)
                 context.parsed.ExcIEEEAC1A = bucket = {};
@@ -6623,126 +7432,144 @@ define
              * Typical Value = 1.
              *
              */
-            obj["a"] = base.to_float (base.parse_element (/<cim:ExcAC5A.a>([\s\S]*?)<\/cim:ExcAC5A.a>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC5A.a>([\s\S]*?)<\/cim:ExcAC5A.a>/g, obj, "a", base.to_float, sub, context);
+
             /**
              * Exciter voltage at which exciter saturation is defined (Efd1).
              *
              * Typical Value = 5.6.
              *
              */
-            obj["efd1"] = base.parse_element (/<cim:ExcAC5A.efd1>([\s\S]*?)<\/cim:ExcAC5A.efd1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.efd1>([\s\S]*?)<\/cim:ExcAC5A.efd1>/g, obj, "efd1", base.to_string, sub, context);
+
             /**
              * Exciter voltage at which exciter saturation is defined (Efd2).
              *
              * Typical Value = 4.2.
              *
              */
-            obj["efd2"] = base.parse_element (/<cim:ExcAC5A.efd2>([\s\S]*?)<\/cim:ExcAC5A.efd2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.efd2>([\s\S]*?)<\/cim:ExcAC5A.efd2>/g, obj, "efd2", base.to_string, sub, context);
+
             /**
              * Voltage regulator gain (Ka).
              *
              * Typical Value = 400.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcAC5A.ka>([\s\S]*?)<\/cim:ExcAC5A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.ka>([\s\S]*?)<\/cim:ExcAC5A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (Ke).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcAC5A.ke>([\s\S]*?)<\/cim:ExcAC5A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.ke>([\s\S]*?)<\/cim:ExcAC5A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gains (Kf).
              *
              * Typical Value = 0.03.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcAC5A.kf>([\s\S]*?)<\/cim:ExcAC5A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.kf>([\s\S]*?)<\/cim:ExcAC5A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model-speed coefficient (Ks).
              *
              * Typical Value = 0.
              *
              */
-            obj["ks"] = base.parse_element (/<cim:ExcAC5A.ks>([\s\S]*?)<\/cim:ExcAC5A.ks>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.ks>([\s\S]*?)<\/cim:ExcAC5A.ks>/g, obj, "ks", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Efd1 (S<sub>E</sub>[Efd1]).
              *
              * Typical Value = 0.86.
              *
              */
-            obj["seefd1"] = base.to_float (base.parse_element (/<cim:ExcAC5A.seefd1>([\s\S]*?)<\/cim:ExcAC5A.seefd1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC5A.seefd1>([\s\S]*?)<\/cim:ExcAC5A.seefd1>/g, obj, "seefd1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Efd2 (S<sub>E</sub>[Efd2]).
              *
              * Typical Value = 0.5.
              *
              */
-            obj["seefd2"] = base.to_float (base.parse_element (/<cim:ExcAC5A.seefd2>([\s\S]*?)<\/cim:ExcAC5A.seefd2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC5A.seefd2>([\s\S]*?)<\/cim:ExcAC5A.seefd2>/g, obj, "seefd2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (Ta).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcAC5A.ta>([\s\S]*?)<\/cim:ExcAC5A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.ta>([\s\S]*?)<\/cim:ExcAC5A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tb).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcAC5A.tb>([\s\S]*?)<\/cim:ExcAC5A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.tb>([\s\S]*?)<\/cim:ExcAC5A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tc).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcAC5A.tc>([\s\S]*?)<\/cim:ExcAC5A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.tc>([\s\S]*?)<\/cim:ExcAC5A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (Te).
              *
              * Typical Value = 0.8.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcAC5A.te>([\s\S]*?)<\/cim:ExcAC5A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.te>([\s\S]*?)<\/cim:ExcAC5A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (Tf1).
              *
              * Typical Value  = 1.
              *
              */
-            obj["tf1"] = base.parse_element (/<cim:ExcAC5A.tf1>([\s\S]*?)<\/cim:ExcAC5A.tf1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.tf1>([\s\S]*?)<\/cim:ExcAC5A.tf1>/g, obj, "tf1", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (Tf2).
              *
              * Typical Value = 0.8.
              *
              */
-            obj["tf2"] = base.parse_element (/<cim:ExcAC5A.tf2>([\s\S]*?)<\/cim:ExcAC5A.tf2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.tf2>([\s\S]*?)<\/cim:ExcAC5A.tf2>/g, obj, "tf2", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (Tf3).
              *
              * Typical Value = 0.
              *
              */
-            obj["tf3"] = base.parse_element (/<cim:ExcAC5A.tf3>([\s\S]*?)<\/cim:ExcAC5A.tf3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.tf3>([\s\S]*?)<\/cim:ExcAC5A.tf3>/g, obj, "tf3", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (Vrmax).
              *
              * Typical Value = 7.3.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcAC5A.vrmax>([\s\S]*?)<\/cim:ExcAC5A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.vrmax>([\s\S]*?)<\/cim:ExcAC5A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vrmin).
              *
              * Typical Value =-7.3.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcAC5A.vrmin>([\s\S]*?)<\/cim:ExcAC5A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC5A.vrmin>([\s\S]*?)<\/cim:ExcAC5A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcAC5A;
             if (null == bucket)
                 context.parsed.ExcAC5A = bucket = {};
@@ -6768,84 +7595,96 @@ define
              * Typical Value = 3.
              *
              */
-            obj["ae"] = base.parse_element (/<cim:ExcHU.ae>([\s\S]*?)<\/cim:ExcHU.ae>/g, sub, context, true);
+            base.parse_element (/<cim:ExcHU.ae>([\s\S]*?)<\/cim:ExcHU.ae>/g, obj, "ae", base.to_string, sub, context);
+
             /**
              * Minor loop PI tag gain factor (Ai).
              *
              * Typical Value = 22.
              *
              */
-            obj["ai"] = base.parse_element (/<cim:ExcHU.ai>([\s\S]*?)<\/cim:ExcHU.ai>/g, sub, context, true);
+            base.parse_element (/<cim:ExcHU.ai>([\s\S]*?)<\/cim:ExcHU.ai>/g, obj, "ai", base.to_string, sub, context);
+
             /**
              * AVR constant (Atr).
              *
              * Typical Value = 2.19.
              *
              */
-            obj["atr"] = base.parse_element (/<cim:ExcHU.atr>([\s\S]*?)<\/cim:ExcHU.atr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcHU.atr>([\s\S]*?)<\/cim:ExcHU.atr>/g, obj, "atr", base.to_string, sub, context);
+
             /**
              * Field voltage control signal upper limit on AVR base (Emax).
              *
              * Typical Value = 0.996.
              *
              */
-            obj["emax"] = base.parse_element (/<cim:ExcHU.emax>([\s\S]*?)<\/cim:ExcHU.emax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcHU.emax>([\s\S]*?)<\/cim:ExcHU.emax>/g, obj, "emax", base.to_string, sub, context);
+
             /**
              * Field voltage control signal lower limit on AVR base (Emin).
              *
              * Typical Value = -0.866.
              *
              */
-            obj["emin"] = base.parse_element (/<cim:ExcHU.emin>([\s\S]*?)<\/cim:ExcHU.emin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcHU.emin>([\s\S]*?)<\/cim:ExcHU.emin>/g, obj, "emin", base.to_string, sub, context);
+
             /**
              * Major loop PI tag output signal upper limit (Imax).
              *
              * Typical Value = 2.19.
              *
              */
-            obj["imax"] = base.parse_element (/<cim:ExcHU.imax>([\s\S]*?)<\/cim:ExcHU.imax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcHU.imax>([\s\S]*?)<\/cim:ExcHU.imax>/g, obj, "imax", base.to_string, sub, context);
+
             /**
              * Major loop PI tag output signal lower limit (Imin).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["imin"] = base.parse_element (/<cim:ExcHU.imin>([\s\S]*?)<\/cim:ExcHU.imin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcHU.imin>([\s\S]*?)<\/cim:ExcHU.imin>/g, obj, "imin", base.to_string, sub, context);
+
             /**
              * Voltage base conversion constant (Ke).
              *
              * Typical Value = 4.666.
              *
              */
-            obj["ke"] = base.to_float (base.parse_element (/<cim:ExcHU.ke>([\s\S]*?)<\/cim:ExcHU.ke>/g, sub, context, true));
+            base.parse_element (/<cim:ExcHU.ke>([\s\S]*?)<\/cim:ExcHU.ke>/g, obj, "ke", base.to_float, sub, context);
+
             /**
              * Current base conversion constant (Ki).
              *
              * Typical Value = 0.21428.
              *
              */
-            obj["ki"] = base.to_float (base.parse_element (/<cim:ExcHU.ki>([\s\S]*?)<\/cim:ExcHU.ki>/g, sub, context, true));
+            base.parse_element (/<cim:ExcHU.ki>([\s\S]*?)<\/cim:ExcHU.ki>/g, obj, "ki", base.to_float, sub, context);
+
             /**
              * Major loop PI tag integration time constant (Te).
              *
              * Typical Value = 0.154.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcHU.te>([\s\S]*?)<\/cim:ExcHU.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcHU.te>([\s\S]*?)<\/cim:ExcHU.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Minor loop PI control tag integration time constant (Ti).
              *
              * Typical Value = 0.01333.
              *
              */
-            obj["ti"] = base.parse_element (/<cim:ExcHU.ti>([\s\S]*?)<\/cim:ExcHU.ti>/g, sub, context, true);
+            base.parse_element (/<cim:ExcHU.ti>([\s\S]*?)<\/cim:ExcHU.ti>/g, obj, "ti", base.to_string, sub, context);
+
             /**
              * Filter time constant (Tr).
              *
              * If a voltage compensator is used in conjunction with this excitation system model, Tr should be set to 0.  Typical Value = 0.01.
              *
              */
-            obj["tr"] = base.parse_element (/<cim:ExcHU.tr>([\s\S]*?)<\/cim:ExcHU.tr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcHU.tr>([\s\S]*?)<\/cim:ExcHU.tr>/g, obj, "tr", base.to_string, sub, context);
+
             bucket = context.parsed.ExcHU;
             if (null == bucket)
                 context.parsed.ExcHU = bucket = {};
@@ -6871,147 +7710,168 @@ define
              * Typical Value = 0.5.
              *
              */
-            obj["a1"] = base.parse_element (/<cim:ExcAVR7.a1>([\s\S]*?)<\/cim:ExcAVR7.a1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.a1>([\s\S]*?)<\/cim:ExcAVR7.a1>/g, obj, "a1", base.to_string, sub, context);
+
             /**
              * Lag coefficient (A2).
              *
              * Typical Value = 0.5.
              *
              */
-            obj["a2"] = base.parse_element (/<cim:ExcAVR7.a2>([\s\S]*?)<\/cim:ExcAVR7.a2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.a2>([\s\S]*?)<\/cim:ExcAVR7.a2>/g, obj, "a2", base.to_string, sub, context);
+
             /**
              * Lead coefficient (A3).
              *
              * Typical Value = 0.5.
              *
              */
-            obj["a3"] = base.parse_element (/<cim:ExcAVR7.a3>([\s\S]*?)<\/cim:ExcAVR7.a3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.a3>([\s\S]*?)<\/cim:ExcAVR7.a3>/g, obj, "a3", base.to_string, sub, context);
+
             /**
              * Lag coefficient (A4).
              *
              * Typical Value = 0.5.
              *
              */
-            obj["a4"] = base.parse_element (/<cim:ExcAVR7.a4>([\s\S]*?)<\/cim:ExcAVR7.a4>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.a4>([\s\S]*?)<\/cim:ExcAVR7.a4>/g, obj, "a4", base.to_string, sub, context);
+
             /**
              * Lead coefficient (A5).
              *
              * Typical Value = 0.5.
              *
              */
-            obj["a5"] = base.parse_element (/<cim:ExcAVR7.a5>([\s\S]*?)<\/cim:ExcAVR7.a5>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.a5>([\s\S]*?)<\/cim:ExcAVR7.a5>/g, obj, "a5", base.to_string, sub, context);
+
             /**
              * Lag coefficient (A6).
              *
              * Typical Value = 0.5.
              *
              */
-            obj["a6"] = base.parse_element (/<cim:ExcAVR7.a6>([\s\S]*?)<\/cim:ExcAVR7.a6>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.a6>([\s\S]*?)<\/cim:ExcAVR7.a6>/g, obj, "a6", base.to_string, sub, context);
+
             /**
              * Gain (K1).
              *
              * Typical Value = 1.
              *
              */
-            obj["k1"] = base.parse_element (/<cim:ExcAVR7.k1>([\s\S]*?)<\/cim:ExcAVR7.k1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.k1>([\s\S]*?)<\/cim:ExcAVR7.k1>/g, obj, "k1", base.to_string, sub, context);
+
             /**
              * Gain (K3).
              *
              * Typical Value = 3.
              *
              */
-            obj["k3"] = base.parse_element (/<cim:ExcAVR7.k3>([\s\S]*?)<\/cim:ExcAVR7.k3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.k3>([\s\S]*?)<\/cim:ExcAVR7.k3>/g, obj, "k3", base.to_string, sub, context);
+
             /**
              * Gain (K5).
              *
              * Typical Value = 1.
              *
              */
-            obj["k5"] = base.parse_element (/<cim:ExcAVR7.k5>([\s\S]*?)<\/cim:ExcAVR7.k5>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.k5>([\s\S]*?)<\/cim:ExcAVR7.k5>/g, obj, "k5", base.to_string, sub, context);
+
             /**
              * Lead time constant (T1).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["t1"] = base.parse_element (/<cim:ExcAVR7.t1>([\s\S]*?)<\/cim:ExcAVR7.t1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.t1>([\s\S]*?)<\/cim:ExcAVR7.t1>/g, obj, "t1", base.to_string, sub, context);
+
             /**
              * Lag time constant (T2).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["t2"] = base.parse_element (/<cim:ExcAVR7.t2>([\s\S]*?)<\/cim:ExcAVR7.t2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.t2>([\s\S]*?)<\/cim:ExcAVR7.t2>/g, obj, "t2", base.to_string, sub, context);
+
             /**
              * Lead time constant (T3).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["t3"] = base.parse_element (/<cim:ExcAVR7.t3>([\s\S]*?)<\/cim:ExcAVR7.t3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.t3>([\s\S]*?)<\/cim:ExcAVR7.t3>/g, obj, "t3", base.to_string, sub, context);
+
             /**
              * Lag time constant (T4).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["t4"] = base.parse_element (/<cim:ExcAVR7.t4>([\s\S]*?)<\/cim:ExcAVR7.t4>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.t4>([\s\S]*?)<\/cim:ExcAVR7.t4>/g, obj, "t4", base.to_string, sub, context);
+
             /**
              * Lead time constant (T5).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["t5"] = base.parse_element (/<cim:ExcAVR7.t5>([\s\S]*?)<\/cim:ExcAVR7.t5>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.t5>([\s\S]*?)<\/cim:ExcAVR7.t5>/g, obj, "t5", base.to_string, sub, context);
+
             /**
              * Lag time constant (T6).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["t6"] = base.parse_element (/<cim:ExcAVR7.t6>([\s\S]*?)<\/cim:ExcAVR7.t6>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.t6>([\s\S]*?)<\/cim:ExcAVR7.t6>/g, obj, "t6", base.to_string, sub, context);
+
             /**
              * Lead-lag max. limit (Vmax1).
              *
              * Typical Value = 5.
              *
              */
-            obj["vmax1"] = base.parse_element (/<cim:ExcAVR7.vmax1>([\s\S]*?)<\/cim:ExcAVR7.vmax1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.vmax1>([\s\S]*?)<\/cim:ExcAVR7.vmax1>/g, obj, "vmax1", base.to_string, sub, context);
+
             /**
              * Lead-lag max. limit (Vmax3).
              *
              * Typical Value = 5.
              *
              */
-            obj["vmax3"] = base.parse_element (/<cim:ExcAVR7.vmax3>([\s\S]*?)<\/cim:ExcAVR7.vmax3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.vmax3>([\s\S]*?)<\/cim:ExcAVR7.vmax3>/g, obj, "vmax3", base.to_string, sub, context);
+
             /**
              * Lead-lag max. limit (Vmax5).
              *
              * Typical Value = 5.
              *
              */
-            obj["vmax5"] = base.parse_element (/<cim:ExcAVR7.vmax5>([\s\S]*?)<\/cim:ExcAVR7.vmax5>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.vmax5>([\s\S]*?)<\/cim:ExcAVR7.vmax5>/g, obj, "vmax5", base.to_string, sub, context);
+
             /**
              * Lead-lag min. limit (Vmin1).
              *
              * Typical Value = -5.
              *
              */
-            obj["vmin1"] = base.parse_element (/<cim:ExcAVR7.vmin1>([\s\S]*?)<\/cim:ExcAVR7.vmin1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.vmin1>([\s\S]*?)<\/cim:ExcAVR7.vmin1>/g, obj, "vmin1", base.to_string, sub, context);
+
             /**
              * Lead-lag min. limit (Vmin3).
              *
              * Typical Value = -5.
              *
              */
-            obj["vmin3"] = base.parse_element (/<cim:ExcAVR7.vmin3>([\s\S]*?)<\/cim:ExcAVR7.vmin3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.vmin3>([\s\S]*?)<\/cim:ExcAVR7.vmin3>/g, obj, "vmin3", base.to_string, sub, context);
+
             /**
              * Lead-lag min. limit (Vmin5).
              *
              * Typical Value = -2.
              *
              */
-            obj["vmin5"] = base.parse_element (/<cim:ExcAVR7.vmin5>([\s\S]*?)<\/cim:ExcAVR7.vmin5>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR7.vmin5>([\s\S]*?)<\/cim:ExcAVR7.vmin5>/g, obj, "vmin5", base.to_string, sub, context);
+
             bucket = context.parsed.ExcAVR7;
             if (null == bucket)
                 context.parsed.ExcAVR7 = bucket = {};
@@ -7039,105 +7899,120 @@ define
              * Typical Value 1.
              *
              */
-            obj["kh"] = base.parse_element (/<cim:ExcIEEEST7B.kh>([\s\S]*?)<\/cim:ExcIEEEST7B.kh>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.kh>([\s\S]*?)<\/cim:ExcIEEEST7B.kh>/g, obj, "kh", base.to_string, sub, context);
+
             /**
              * Voltage regulator integral gain (K<sub>IA</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["kia"] = base.parse_element (/<cim:ExcIEEEST7B.kia>([\s\S]*?)<\/cim:ExcIEEEST7B.kia>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.kia>([\s\S]*?)<\/cim:ExcIEEEST7B.kia>/g, obj, "kia", base.to_string, sub, context);
+
             /**
              * Low-value gate feedback gain (K<sub>L</sub>).
              *
              * Typical Value 1.
              *
              */
-            obj["kl"] = base.parse_element (/<cim:ExcIEEEST7B.kl>([\s\S]*?)<\/cim:ExcIEEEST7B.kl>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.kl>([\s\S]*?)<\/cim:ExcIEEEST7B.kl>/g, obj, "kl", base.to_string, sub, context);
+
             /**
              * Voltage regulator proportional gain (K<sub>PA</sub>).
              *
              * Typical Value = 40.
              *
              */
-            obj["kpa"] = base.parse_element (/<cim:ExcIEEEST7B.kpa>([\s\S]*?)<\/cim:ExcIEEEST7B.kpa>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.kpa>([\s\S]*?)<\/cim:ExcIEEEST7B.kpa>/g, obj, "kpa", base.to_string, sub, context);
+
             /**
              * OEL input selector (OELin).
              *
              * Typical Value = noOELinput.
              *
              */
-            obj["oelin"] = base.parse_element (/<cim:ExcIEEEST7B.oelin>([\s\S]*?)<\/cim:ExcIEEEST7B.oelin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.oelin>([\s\S]*?)<\/cim:ExcIEEEST7B.oelin>/g, obj, "oelin", base.to_string, sub, context);
+
             /**
              * Regulator lag time constant (T<sub>B</sub>).
              *
              * Typical Value 1.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcIEEEST7B.tb>([\s\S]*?)<\/cim:ExcIEEEST7B.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.tb>([\s\S]*?)<\/cim:ExcIEEEST7B.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Regulator lead time constant (T<sub>C</sub>).
              *
              * Typical Value 1.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcIEEEST7B.tc>([\s\S]*?)<\/cim:ExcIEEEST7B.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.tc>([\s\S]*?)<\/cim:ExcIEEEST7B.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (T<sub>F</sub>).
              *
              * Typical Value 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcIEEEST7B.tf>([\s\S]*?)<\/cim:ExcIEEEST7B.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.tf>([\s\S]*?)<\/cim:ExcIEEEST7B.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Feedback time constant of inner loop field voltage regulator (T<sub>G</sub>).
              *
              * Typical Value 1.
              *
              */
-            obj["tg"] = base.parse_element (/<cim:ExcIEEEST7B.tg>([\s\S]*?)<\/cim:ExcIEEEST7B.tg>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.tg>([\s\S]*?)<\/cim:ExcIEEEST7B.tg>/g, obj, "tg", base.to_string, sub, context);
+
             /**
              * Feedback time constant (T<sub>IA</sub>).
              *
              * Typical Value = 3.
              *
              */
-            obj["tia"] = base.parse_element (/<cim:ExcIEEEST7B.tia>([\s\S]*?)<\/cim:ExcIEEEST7B.tia>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.tia>([\s\S]*?)<\/cim:ExcIEEEST7B.tia>/g, obj, "tia", base.to_string, sub, context);
+
             /**
              * UEL input selector (UELin).
              *
              * Typical Value = noUELinput.
              *
              */
-            obj["uelin"] = base.parse_element (/<cim:ExcIEEEST7B.uelin>([\s\S]*?)<\/cim:ExcIEEEST7B.uelin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.uelin>([\s\S]*?)<\/cim:ExcIEEEST7B.uelin>/g, obj, "uelin", base.to_string, sub, context);
+
             /**
              * Maximum voltage reference signal (V<sub>MAX</sub>).
              *
              * Typical Value = 1.1.
              *
              */
-            obj["vmax"] = base.parse_element (/<cim:ExcIEEEST7B.vmax>([\s\S]*?)<\/cim:ExcIEEEST7B.vmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.vmax>([\s\S]*?)<\/cim:ExcIEEEST7B.vmax>/g, obj, "vmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage reference signal (V<sub>MIN</sub>).
              *
              * Typical Value = 0.9.
              *
              */
-            obj["vmin"] = base.parse_element (/<cim:ExcIEEEST7B.vmin>([\s\S]*?)<\/cim:ExcIEEEST7B.vmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.vmin>([\s\S]*?)<\/cim:ExcIEEEST7B.vmin>/g, obj, "vmin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>RMAX</sub>).
              *
              * Typical Value = 5.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEST7B.vrmax>([\s\S]*?)<\/cim:ExcIEEEST7B.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.vrmax>([\s\S]*?)<\/cim:ExcIEEEST7B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>RMIN</sub>).
              *
              * Typical Value = -4.5.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEST7B.vrmin>([\s\S]*?)<\/cim:ExcIEEEST7B.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST7B.vrmin>([\s\S]*?)<\/cim:ExcIEEEST7B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEST7B;
             if (null == bucket)
                 context.parsed.ExcIEEEST7B = bucket = {};
@@ -7165,91 +8040,104 @@ define
              * Typical Value = 3.05.
              *
              */
-            obj["efd1"] = base.parse_element (/<cim:ExcIEEEDC2A.efd1>([\s\S]*?)<\/cim:ExcIEEEDC2A.efd1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC2A.efd1>([\s\S]*?)<\/cim:ExcIEEEDC2A.efd1>/g, obj, "efd1", base.to_string, sub, context);
+
             /**
              * Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
              *
              * Typical Value = 2.29.
              *
              */
-            obj["efd2"] = base.parse_element (/<cim:ExcIEEEDC2A.efd2>([\s\S]*?)<\/cim:ExcIEEEDC2A.efd2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC2A.efd2>([\s\S]*?)<\/cim:ExcIEEEDC2A.efd2>/g, obj, "efd2", base.to_string, sub, context);
+
             /**
              * (exclim).
              *
              * IEEE standard is ambiguous about lower limit on exciter output. Typical Value = - 999  which means that there is no limit applied.
              *
              */
-            obj["exclim"] = base.parse_element (/<cim:ExcIEEEDC2A.exclim>([\s\S]*?)<\/cim:ExcIEEEDC2A.exclim>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC2A.exclim>([\s\S]*?)<\/cim:ExcIEEEDC2A.exclim>/g, obj, "exclim", base.to_string, sub, context);
+
             /**
              * Voltage regulator gain (K<sub>A</sub>).
              *
              * Typical Value = 300.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcIEEEDC2A.ka>([\s\S]*?)<\/cim:ExcIEEEDC2A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC2A.ka>([\s\S]*?)<\/cim:ExcIEEEDC2A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (K<sub>E</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcIEEEDC2A.ke>([\s\S]*?)<\/cim:ExcIEEEDC2A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC2A.ke>([\s\S]*?)<\/cim:ExcIEEEDC2A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gain (K<sub>F</sub>).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcIEEEDC2A.kf>([\s\S]*?)<\/cim:ExcIEEEDC2A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC2A.kf>([\s\S]*?)<\/cim:ExcIEEEDC2A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
              *
              * Typical Value = 0.279.
              *
              */
-            obj["seefd1"] = base.to_float (base.parse_element (/<cim:ExcIEEEDC2A.seefd1>([\s\S]*?)<\/cim:ExcIEEEDC2A.seefd1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEDC2A.seefd1>([\s\S]*?)<\/cim:ExcIEEEDC2A.seefd1>/g, obj, "seefd1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
              *
              * Typical Value = 0.117.
              *
              */
-            obj["seefd2"] = base.to_float (base.parse_element (/<cim:ExcIEEEDC2A.seefd2>([\s\S]*?)<\/cim:ExcIEEEDC2A.seefd2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEDC2A.seefd2>([\s\S]*?)<\/cim:ExcIEEEDC2A.seefd2>/g, obj, "seefd2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.01.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcIEEEDC2A.ta>([\s\S]*?)<\/cim:ExcIEEEDC2A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC2A.ta>([\s\S]*?)<\/cim:ExcIEEEDC2A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>B</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcIEEEDC2A.tb>([\s\S]*?)<\/cim:ExcIEEEDC2A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC2A.tb>([\s\S]*?)<\/cim:ExcIEEEDC2A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>C</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcIEEEDC2A.tc>([\s\S]*?)<\/cim:ExcIEEEDC2A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC2A.tc>([\s\S]*?)<\/cim:ExcIEEEDC2A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
              *
              * Typical Value = 1.33.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcIEEEDC2A.te>([\s\S]*?)<\/cim:ExcIEEEDC2A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC2A.te>([\s\S]*?)<\/cim:ExcIEEEDC2A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (T<sub>F</sub>).
              *
              * Typical Value = 0.675.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcIEEEDC2A.tf>([\s\S]*?)<\/cim:ExcIEEEDC2A.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC2A.tf>([\s\S]*?)<\/cim:ExcIEEEDC2A.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * UEL input (uelin).
              * true = input is connected to the HV gate
@@ -7258,21 +8146,24 @@ define
              * Typical Value = true.
              *
              */
-            obj["uelin"] = base.to_boolean (base.parse_element (/<cim:ExcIEEEDC2A.uelin>([\s\S]*?)<\/cim:ExcIEEEDC2A.uelin>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEDC2A.uelin>([\s\S]*?)<\/cim:ExcIEEEDC2A.uelin>/g, obj, "uelin", base.to_boolean, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>RMAX</sub>).
              *
              * Typical Value = 4.95.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEDC2A.vrmax>([\s\S]*?)<\/cim:ExcIEEEDC2A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC2A.vrmax>([\s\S]*?)<\/cim:ExcIEEEDC2A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>RMIN</sub>).
              *
              * Typical Value = -4.9.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEDC2A.vrmin>([\s\S]*?)<\/cim:ExcIEEEDC2A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEDC2A.vrmin>([\s\S]*?)<\/cim:ExcIEEEDC2A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEDC2A;
             if (null == bucket)
                 context.parsed.ExcIEEEDC2A = bucket = {};
@@ -7300,84 +8191,96 @@ define
              * Typical Value = 4.18.
              *
              */
-            obj["e1"] = base.parse_element (/<cim:ExcAVR3.e1>([\s\S]*?)<\/cim:ExcAVR3.e1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR3.e1>([\s\S]*?)<\/cim:ExcAVR3.e1>/g, obj, "e1", base.to_string, sub, context);
+
             /**
              * Field voltage value 2 (E2).
              *
              * Typical Value = 3.14.
              *
              */
-            obj["e2"] = base.parse_element (/<cim:ExcAVR3.e2>([\s\S]*?)<\/cim:ExcAVR3.e2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR3.e2>([\s\S]*?)<\/cim:ExcAVR3.e2>/g, obj, "e2", base.to_string, sub, context);
+
             /**
              * AVR gain (K<sub>A</sub>).
              *
              * Typical Value = 100.
              *
              */
-            obj["ka"] = base.to_float (base.parse_element (/<cim:ExcAVR3.ka>([\s\S]*?)<\/cim:ExcAVR3.ka>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR3.ka>([\s\S]*?)<\/cim:ExcAVR3.ka>/g, obj, "ka", base.to_float, sub, context);
+
             /**
              * Saturation factor at E1 (S(E1)).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["se1"] = base.to_float (base.parse_element (/<cim:ExcAVR3.se1>([\s\S]*?)<\/cim:ExcAVR3.se1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR3.se1>([\s\S]*?)<\/cim:ExcAVR3.se1>/g, obj, "se1", base.to_float, sub, context);
+
             /**
              * Saturation factor at E2 (S(E2)).
              *
              * Typical Value = 0.03.
              *
              */
-            obj["se2"] = base.to_float (base.parse_element (/<cim:ExcAVR3.se2>([\s\S]*?)<\/cim:ExcAVR3.se2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAVR3.se2>([\s\S]*?)<\/cim:ExcAVR3.se2>/g, obj, "se2", base.to_float, sub, context);
+
             /**
              * AVR time constant (T<sub>1</sub>).
              *
              * Typical Value = 20.
              *
              */
-            obj["t1"] = base.parse_element (/<cim:ExcAVR3.t1>([\s\S]*?)<\/cim:ExcAVR3.t1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR3.t1>([\s\S]*?)<\/cim:ExcAVR3.t1>/g, obj, "t1", base.to_string, sub, context);
+
             /**
              * AVR time constant (T<sub>2</sub>).
              *
              * Typical Value = 1.6.
              *
              */
-            obj["t2"] = base.parse_element (/<cim:ExcAVR3.t2>([\s\S]*?)<\/cim:ExcAVR3.t2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR3.t2>([\s\S]*?)<\/cim:ExcAVR3.t2>/g, obj, "t2", base.to_string, sub, context);
+
             /**
              * AVR time constant (T<sub>3</sub>).
              *
              * Typical Value = 0.66.
              *
              */
-            obj["t3"] = base.parse_element (/<cim:ExcAVR3.t3>([\s\S]*?)<\/cim:ExcAVR3.t3>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR3.t3>([\s\S]*?)<\/cim:ExcAVR3.t3>/g, obj, "t3", base.to_string, sub, context);
+
             /**
              * AVR time constant (T<sub>4</sub>).
              *
              * Typical Value = 0.07.
              *
              */
-            obj["t4"] = base.parse_element (/<cim:ExcAVR3.t4>([\s\S]*?)<\/cim:ExcAVR3.t4>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR3.t4>([\s\S]*?)<\/cim:ExcAVR3.t4>/g, obj, "t4", base.to_string, sub, context);
+
             /**
              * Exciter time constant (T<sub>E</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcAVR3.te>([\s\S]*?)<\/cim:ExcAVR3.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR3.te>([\s\S]*?)<\/cim:ExcAVR3.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Minimum AVR output (V<sub>RMN</sub>).
              *
              * Typical Value = -7.5.
              *
              */
-            obj["vrmn"] = base.parse_element (/<cim:ExcAVR3.vrmn>([\s\S]*?)<\/cim:ExcAVR3.vrmn>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR3.vrmn>([\s\S]*?)<\/cim:ExcAVR3.vrmn>/g, obj, "vrmn", base.to_string, sub, context);
+
             /**
              * Maximum AVR output (V<sub>RMX</sub>).
              *
              * Typical Value = 7.5.
              *
              */
-            obj["vrmx"] = base.parse_element (/<cim:ExcAVR3.vrmx>([\s\S]*?)<\/cim:ExcAVR3.vrmx>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAVR3.vrmx>([\s\S]*?)<\/cim:ExcAVR3.vrmx>/g, obj, "vrmx", base.to_string, sub, context);
+
             bucket = context.parsed.ExcAVR3;
             if (null == bucket)
                 context.parsed.ExcAVR3 = bucket = {};
@@ -7405,63 +8308,72 @@ define
              * Typical Value = 200.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcIEEEAC4A.ka>([\s\S]*?)<\/cim:ExcIEEEAC4A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC4A.ka>([\s\S]*?)<\/cim:ExcIEEEAC4A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcIEEEAC4A.kc>([\s\S]*?)<\/cim:ExcIEEEAC4A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC4A.kc>([\s\S]*?)<\/cim:ExcIEEEAC4A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.015.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcIEEEAC4A.ta>([\s\S]*?)<\/cim:ExcIEEEAC4A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC4A.ta>([\s\S]*?)<\/cim:ExcIEEEAC4A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>B</sub>).
              *
              * Typical Value = 10.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcIEEEAC4A.tb>([\s\S]*?)<\/cim:ExcIEEEAC4A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC4A.tb>([\s\S]*?)<\/cim:ExcIEEEAC4A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>C</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcIEEEAC4A.tc>([\s\S]*?)<\/cim:ExcIEEEAC4A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC4A.tc>([\s\S]*?)<\/cim:ExcIEEEAC4A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator input limit (V<sub>IMAX</sub>).
              *
              * Typical Value = 10.
              *
              */
-            obj["vimax"] = base.parse_element (/<cim:ExcIEEEAC4A.vimax>([\s\S]*?)<\/cim:ExcIEEEAC4A.vimax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC4A.vimax>([\s\S]*?)<\/cim:ExcIEEEAC4A.vimax>/g, obj, "vimax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator input limit (V<sub>IMIN</sub>).
              *
              * Typical Value = -10.
              *
              */
-            obj["vimin"] = base.parse_element (/<cim:ExcIEEEAC4A.vimin>([\s\S]*?)<\/cim:ExcIEEEAC4A.vimin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC4A.vimin>([\s\S]*?)<\/cim:ExcIEEEAC4A.vimin>/g, obj, "vimin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>RMAX</sub>).
              *
              * Typical Value = 5.64.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEAC4A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC4A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC4A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC4A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>RMIN</sub>).
              *
              * Typical Value = -4.53.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEAC4A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC4A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEAC4A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC4A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEAC4A;
             if (null == bucket)
                 context.parsed.ExcIEEEAC4A = bucket = {};
@@ -7489,84 +8401,96 @@ define
              * Typical Value = true.
              *
              */
-            obj["hvgate"] = base.to_boolean (base.parse_element (/<cim:ExcAC2A.hvgate>([\s\S]*?)<\/cim:ExcAC2A.hvgate>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC2A.hvgate>([\s\S]*?)<\/cim:ExcAC2A.hvgate>/g, obj, "hvgate", base.to_boolean, sub, context);
+
             /**
              * Voltage regulator gain (Ka).
              *
              * Typical Value = 400.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcAC2A.ka>([\s\S]*?)<\/cim:ExcAC2A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.ka>([\s\S]*?)<\/cim:ExcAC2A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Second stage regulator gain (Kb) (&gt;0).
              *
              * Exciter field current controller gain.  Typical Value = 25.
              *
              */
-            obj["kb"] = base.parse_element (/<cim:ExcAC2A.kb>([\s\S]*?)<\/cim:ExcAC2A.kb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.kb>([\s\S]*?)<\/cim:ExcAC2A.kb>/g, obj, "kb", base.to_string, sub, context);
+
             /**
              * Second stage regulator gain (Kb1).
              *
              * It is exciter field current controller gain used as alternative to Kb to represent a variant of the ExcAC2A model.  Typical Value = 25.
              *
              */
-            obj["kb1"] = base.parse_element (/<cim:ExcAC2A.kb1>([\s\S]*?)<\/cim:ExcAC2A.kb1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.kb1>([\s\S]*?)<\/cim:ExcAC2A.kb1>/g, obj, "kb1", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (Kc).
              *
              * Typical Value = 0.28.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcAC2A.kc>([\s\S]*?)<\/cim:ExcAC2A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.kc>([\s\S]*?)<\/cim:ExcAC2A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Demagnetizing factor, a function of exciter alternator reactances (Kd).
              *
              * Typical Value = 0.35.
              *
              */
-            obj["kd"] = base.parse_element (/<cim:ExcAC2A.kd>([\s\S]*?)<\/cim:ExcAC2A.kd>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.kd>([\s\S]*?)<\/cim:ExcAC2A.kd>/g, obj, "kd", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (Ke).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcAC2A.ke>([\s\S]*?)<\/cim:ExcAC2A.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.ke>([\s\S]*?)<\/cim:ExcAC2A.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gains (Kf).
              *
              * Typical Value = 0.03.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcAC2A.kf>([\s\S]*?)<\/cim:ExcAC2A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.kf>([\s\S]*?)<\/cim:ExcAC2A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Exciter field current feedback gain (Kh).
              *
              * Typical Value = 1.
              *
              */
-            obj["kh"] = base.parse_element (/<cim:ExcAC2A.kh>([\s\S]*?)<\/cim:ExcAC2A.kh>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.kh>([\s\S]*?)<\/cim:ExcAC2A.kh>/g, obj, "kh", base.to_string, sub, context);
+
             /**
              * Exciter field current limiter gain (Kl).
              *
              * Typical Value = 10.
              *
              */
-            obj["kl"] = base.parse_element (/<cim:ExcAC2A.kl>([\s\S]*?)<\/cim:ExcAC2A.kl>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.kl>([\s\S]*?)<\/cim:ExcAC2A.kl>/g, obj, "kl", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model (Kl1).
              *
              * Typical Value = 1.
              *
              */
-            obj["kl1"] = base.parse_element (/<cim:ExcAC2A.kl1>([\s\S]*?)<\/cim:ExcAC2A.kl1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.kl1>([\s\S]*?)<\/cim:ExcAC2A.kl1>/g, obj, "kl1", base.to_string, sub, context);
+
             /**
              * Coefficient to allow different usage of the model-speed coefficient (Ks).
              *
              * Typical Value = 0.
              *
              */
-            obj["ks"] = base.parse_element (/<cim:ExcAC2A.ks>([\s\S]*?)<\/cim:ExcAC2A.ks>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.ks>([\s\S]*?)<\/cim:ExcAC2A.ks>/g, obj, "ks", base.to_string, sub, context);
+
             /**
              * Indicates if LV gate is active (LVgate).
              * true = gate is used
@@ -7575,112 +8499,128 @@ define
              * Typical Value = true.
              *
              */
-            obj["lvgate"] = base.to_boolean (base.parse_element (/<cim:ExcAC2A.lvgate>([\s\S]*?)<\/cim:ExcAC2A.lvgate>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC2A.lvgate>([\s\S]*?)<\/cim:ExcAC2A.lvgate>/g, obj, "lvgate", base.to_boolean, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Ve<sub>1</sub>, back of commutating reactance (Se[Ve<sub>1</sub>]).
              *
              * Typical Value = 0.037.
              *
              */
-            obj["seve1"] = base.to_float (base.parse_element (/<cim:ExcAC2A.seve1>([\s\S]*?)<\/cim:ExcAC2A.seve1>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC2A.seve1>([\s\S]*?)<\/cim:ExcAC2A.seve1>/g, obj, "seve1", base.to_float, sub, context);
+
             /**
              * Exciter saturation function value at the corresponding exciter voltage, Ve<sub>2</sub>, back of commutating reactance (Se[Ve<sub>2</sub>]).
              *
              * Typical Value = 0.012.
              *
              */
-            obj["seve2"] = base.to_float (base.parse_element (/<cim:ExcAC2A.seve2>([\s\S]*?)<\/cim:ExcAC2A.seve2>/g, sub, context, true));
+            base.parse_element (/<cim:ExcAC2A.seve2>([\s\S]*?)<\/cim:ExcAC2A.seve2>/g, obj, "seve2", base.to_float, sub, context);
+
             /**
              * Voltage regulator time constant (Ta).
              *
              * Typical Value = 0.02.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcAC2A.ta>([\s\S]*?)<\/cim:ExcAC2A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.ta>([\s\S]*?)<\/cim:ExcAC2A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Tb).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcAC2A.tb>([\s\S]*?)<\/cim:ExcAC2A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.tb>([\s\S]*?)<\/cim:ExcAC2A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>c</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcAC2A.tc>([\s\S]*?)<\/cim:ExcAC2A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.tc>([\s\S]*?)<\/cim:ExcAC2A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (Te).
              *
              * Typical Value = 0.6.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcAC2A.te>([\s\S]*?)<\/cim:ExcAC2A.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.te>([\s\S]*?)<\/cim:ExcAC2A.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (Tf).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcAC2A.tf>([\s\S]*?)<\/cim:ExcAC2A.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.tf>([\s\S]*?)<\/cim:ExcAC2A.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>amax</sub>).
              *
              * Typical Value = 8.
              *
              */
-            obj["vamax"] = base.parse_element (/<cim:ExcAC2A.vamax>([\s\S]*?)<\/cim:ExcAC2A.vamax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.vamax>([\s\S]*?)<\/cim:ExcAC2A.vamax>/g, obj, "vamax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>amin</sub>).
              *
              * Typical Value = -8.
              *
              */
-            obj["vamin"] = base.parse_element (/<cim:ExcAC2A.vamin>([\s\S]*?)<\/cim:ExcAC2A.vamin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.vamin>([\s\S]*?)<\/cim:ExcAC2A.vamin>/g, obj, "vamin", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>).
              *
              * Typical Value = 4.4.
              *
              */
-            obj["ve1"] = base.parse_element (/<cim:ExcAC2A.ve1>([\s\S]*?)<\/cim:ExcAC2A.ve1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.ve1>([\s\S]*?)<\/cim:ExcAC2A.ve1>/g, obj, "ve1", base.to_string, sub, context);
+
             /**
              * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>2</sub>).
              *
              * Typical Value = 3.3.
              *
              */
-            obj["ve2"] = base.parse_element (/<cim:ExcAC2A.ve2>([\s\S]*?)<\/cim:ExcAC2A.ve2>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.ve2>([\s\S]*?)<\/cim:ExcAC2A.ve2>/g, obj, "ve2", base.to_string, sub, context);
+
             /**
              * Exciter field current limit reference (Vfemax).
              *
              * Typical Value = 4.4.
              *
              */
-            obj["vfemax"] = base.parse_element (/<cim:ExcAC2A.vfemax>([\s\S]*?)<\/cim:ExcAC2A.vfemax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.vfemax>([\s\S]*?)<\/cim:ExcAC2A.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
+
             /**
              * Maximum exciter field current (Vlr).
              *
              * Typical Value = 4.4.
              *
              */
-            obj["vlr"] = base.parse_element (/<cim:ExcAC2A.vlr>([\s\S]*?)<\/cim:ExcAC2A.vlr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.vlr>([\s\S]*?)<\/cim:ExcAC2A.vlr>/g, obj, "vlr", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator outputs (Vrmax).
              *
              * Typical Value = 105.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcAC2A.vrmax>([\s\S]*?)<\/cim:ExcAC2A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.vrmax>([\s\S]*?)<\/cim:ExcAC2A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator outputs (Vrmin).
              *
              * Typical Value = -95.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcAC2A.vrmin>([\s\S]*?)<\/cim:ExcAC2A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcAC2A.vrmin>([\s\S]*?)<\/cim:ExcAC2A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcAC2A;
             if (null == bucket)
                 context.parsed.ExcAC2A = bucket = {};
@@ -7708,70 +8648,80 @@ define
              * Typical Value = true.
              *
              */
-            obj["exclim"] = base.to_boolean (base.parse_element (/<cim:ExcDC3A1.exclim>([\s\S]*?)<\/cim:ExcDC3A1.exclim>/g, sub, context, true));
+            base.parse_element (/<cim:ExcDC3A1.exclim>([\s\S]*?)<\/cim:ExcDC3A1.exclim>/g, obj, "exclim", base.to_boolean, sub, context);
+
             /**
              * Voltage regulator gain (Ka).
              *
              * Typical Value = 300.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcDC3A1.ka>([\s\S]*?)<\/cim:ExcDC3A1.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A1.ka>([\s\S]*?)<\/cim:ExcDC3A1.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Exciter constant related to self-excited field (Ke).
              *
              * Typical Value = 1.
              *
              */
-            obj["ke"] = base.parse_element (/<cim:ExcDC3A1.ke>([\s\S]*?)<\/cim:ExcDC3A1.ke>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A1.ke>([\s\S]*?)<\/cim:ExcDC3A1.ke>/g, obj, "ke", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gain (Kf).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcDC3A1.kf>([\s\S]*?)<\/cim:ExcDC3A1.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A1.kf>([\s\S]*?)<\/cim:ExcDC3A1.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Potential circuit gain coefficient (Ki).
              *
              * Typical Value = 4.83.
              *
              */
-            obj["ki"] = base.parse_element (/<cim:ExcDC3A1.ki>([\s\S]*?)<\/cim:ExcDC3A1.ki>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A1.ki>([\s\S]*?)<\/cim:ExcDC3A1.ki>/g, obj, "ki", base.to_string, sub, context);
+
             /**
              * Potential circuit gain coefficient (Kp).
              *
              * Typical Value = 4.37.
              *
              */
-            obj["kp"] = base.parse_element (/<cim:ExcDC3A1.kp>([\s\S]*?)<\/cim:ExcDC3A1.kp>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A1.kp>([\s\S]*?)<\/cim:ExcDC3A1.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (Ta).
              *
              * Typical Value = 0.01.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcDC3A1.ta>([\s\S]*?)<\/cim:ExcDC3A1.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A1.ta>([\s\S]*?)<\/cim:ExcDC3A1.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Exciter time constant, integration rate associated with exciter control (Te).
              *
              * Typical Value = 1.83.
              *
              */
-            obj["te"] = base.parse_element (/<cim:ExcDC3A1.te>([\s\S]*?)<\/cim:ExcDC3A1.te>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A1.te>([\s\S]*?)<\/cim:ExcDC3A1.te>/g, obj, "te", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (Tf).
              *
              * Typical Value = 0.675.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcDC3A1.tf>([\s\S]*?)<\/cim:ExcDC3A1.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A1.tf>([\s\S]*?)<\/cim:ExcDC3A1.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Available exciter voltage limiter (Vb1max).
              *
              * Typical Value = 11.63.
              *
              */
-            obj["vb1max"] = base.parse_element (/<cim:ExcDC3A1.vb1max>([\s\S]*?)<\/cim:ExcDC3A1.vb1max>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A1.vb1max>([\s\S]*?)<\/cim:ExcDC3A1.vb1max>/g, obj, "vb1max", base.to_string, sub, context);
+
             /**
              * Vb limiter indicator.
              * true = exciter Vbmax limiter is active
@@ -7780,28 +8730,32 @@ define
              * Typical Value = true.
              *
              */
-            obj["vblim"] = base.to_boolean (base.parse_element (/<cim:ExcDC3A1.vblim>([\s\S]*?)<\/cim:ExcDC3A1.vblim>/g, sub, context, true));
+            base.parse_element (/<cim:ExcDC3A1.vblim>([\s\S]*?)<\/cim:ExcDC3A1.vblim>/g, obj, "vblim", base.to_boolean, sub, context);
+
             /**
              * Available exciter voltage limiter (Vbmax).
              *
              * Typical Value = 11.63.
              *
              */
-            obj["vbmax"] = base.parse_element (/<cim:ExcDC3A1.vbmax>([\s\S]*?)<\/cim:ExcDC3A1.vbmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A1.vbmax>([\s\S]*?)<\/cim:ExcDC3A1.vbmax>/g, obj, "vbmax", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (Vrmax).
              *
              * Typical Value = 5.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcDC3A1.vrmax>([\s\S]*?)<\/cim:ExcDC3A1.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A1.vrmax>([\s\S]*?)<\/cim:ExcDC3A1.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (Vrmin).
              *
              * Typical Value = 0.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcDC3A1.vrmin>([\s\S]*?)<\/cim:ExcDC3A1.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcDC3A1.vrmin>([\s\S]*?)<\/cim:ExcDC3A1.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcDC3A1;
             if (null == bucket)
                 context.parsed.ExcDC3A1 = bucket = {};
@@ -7829,35 +8783,40 @@ define
              * Typical Value = 0.
              *
              */
-            obj["ilr"] = base.parse_element (/<cim:ExcIEEEST1A.ilr>([\s\S]*?)<\/cim:ExcIEEEST1A.ilr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.ilr>([\s\S]*?)<\/cim:ExcIEEEST1A.ilr>/g, obj, "ilr", base.to_string, sub, context);
+
             /**
              * Voltage regulator gain (K<sub>A</sub>).
              *
              * Typical Value = 190.
              *
              */
-            obj["ka"] = base.parse_element (/<cim:ExcIEEEST1A.ka>([\s\S]*?)<\/cim:ExcIEEEST1A.ka>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.ka>([\s\S]*?)<\/cim:ExcIEEEST1A.ka>/g, obj, "ka", base.to_string, sub, context);
+
             /**
              * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
              *
              * Typical Value = 0.08.
              *
              */
-            obj["kc"] = base.parse_element (/<cim:ExcIEEEST1A.kc>([\s\S]*?)<\/cim:ExcIEEEST1A.kc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.kc>([\s\S]*?)<\/cim:ExcIEEEST1A.kc>/g, obj, "kc", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer gains (K<sub>F</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["kf"] = base.parse_element (/<cim:ExcIEEEST1A.kf>([\s\S]*?)<\/cim:ExcIEEEST1A.kf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.kf>([\s\S]*?)<\/cim:ExcIEEEST1A.kf>/g, obj, "kf", base.to_string, sub, context);
+
             /**
              * Exciter output current limiter gain (K<sub>LR</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["klr"] = base.parse_element (/<cim:ExcIEEEST1A.klr>([\s\S]*?)<\/cim:ExcIEEEST1A.klr>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.klr>([\s\S]*?)<\/cim:ExcIEEEST1A.klr>/g, obj, "klr", base.to_string, sub, context);
+
             /**
              * Selector of the Power System Stabilizer (PSS) input (PSSin).
              * true = PSS input (Vs) added to error signal
@@ -7866,98 +8825,112 @@ define
              * Typical Value = true.
              *
              */
-            obj["pssin"] = base.to_boolean (base.parse_element (/<cim:ExcIEEEST1A.pssin>([\s\S]*?)<\/cim:ExcIEEEST1A.pssin>/g, sub, context, true));
+            base.parse_element (/<cim:ExcIEEEST1A.pssin>([\s\S]*?)<\/cim:ExcIEEEST1A.pssin>/g, obj, "pssin", base.to_boolean, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>A</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["ta"] = base.parse_element (/<cim:ExcIEEEST1A.ta>([\s\S]*?)<\/cim:ExcIEEEST1A.ta>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.ta>([\s\S]*?)<\/cim:ExcIEEEST1A.ta>/g, obj, "ta", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>B</sub>).
              *
              * Typical Value = 10.
              *
              */
-            obj["tb"] = base.parse_element (/<cim:ExcIEEEST1A.tb>([\s\S]*?)<\/cim:ExcIEEEST1A.tb>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.tb>([\s\S]*?)<\/cim:ExcIEEEST1A.tb>/g, obj, "tb", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>B1</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tb1"] = base.parse_element (/<cim:ExcIEEEST1A.tb1>([\s\S]*?)<\/cim:ExcIEEEST1A.tb1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.tb1>([\s\S]*?)<\/cim:ExcIEEEST1A.tb1>/g, obj, "tb1", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>C</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tc"] = base.parse_element (/<cim:ExcIEEEST1A.tc>([\s\S]*?)<\/cim:ExcIEEEST1A.tc>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.tc>([\s\S]*?)<\/cim:ExcIEEEST1A.tc>/g, obj, "tc", base.to_string, sub, context);
+
             /**
              * Voltage regulator time constant (T<sub>C1</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tc1"] = base.parse_element (/<cim:ExcIEEEST1A.tc1>([\s\S]*?)<\/cim:ExcIEEEST1A.tc1>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.tc1>([\s\S]*?)<\/cim:ExcIEEEST1A.tc1>/g, obj, "tc1", base.to_string, sub, context);
+
             /**
              * Excitation control system stabilizer time constant (T<sub>F</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["tf"] = base.parse_element (/<cim:ExcIEEEST1A.tf>([\s\S]*?)<\/cim:ExcIEEEST1A.tf>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.tf>([\s\S]*?)<\/cim:ExcIEEEST1A.tf>/g, obj, "tf", base.to_string, sub, context);
+
             /**
              * Selector of the connection of the UEL input (UELin).
              *
              * Typical Value = ignoreUELsignal.
              *
              */
-            obj["uelin"] = base.parse_element (/<cim:ExcIEEEST1A.uelin>([\s\S]*?)<\/cim:ExcIEEEST1A.uelin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.uelin>([\s\S]*?)<\/cim:ExcIEEEST1A.uelin>/g, obj, "uelin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator output (V<sub>AMAX</sub>).
              *
              * Typical Value = 14.5.
              *
              */
-            obj["vamax"] = base.parse_element (/<cim:ExcIEEEST1A.vamax>([\s\S]*?)<\/cim:ExcIEEEST1A.vamax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.vamax>([\s\S]*?)<\/cim:ExcIEEEST1A.vamax>/g, obj, "vamax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator output (V<sub>AMIN</sub>).
              *
              * Typical Value = -14.5.
              *
              */
-            obj["vamin"] = base.parse_element (/<cim:ExcIEEEST1A.vamin>([\s\S]*?)<\/cim:ExcIEEEST1A.vamin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.vamin>([\s\S]*?)<\/cim:ExcIEEEST1A.vamin>/g, obj, "vamin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator input limit (V<sub>IMAX</sub>).
              *
              * Typical Value = 999.
              *
              */
-            obj["vimax"] = base.parse_element (/<cim:ExcIEEEST1A.vimax>([\s\S]*?)<\/cim:ExcIEEEST1A.vimax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.vimax>([\s\S]*?)<\/cim:ExcIEEEST1A.vimax>/g, obj, "vimax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator input limit (V<sub>IMIN</sub>).
              *
              * Typical Value = -999.
              *
              */
-            obj["vimin"] = base.parse_element (/<cim:ExcIEEEST1A.vimin>([\s\S]*?)<\/cim:ExcIEEEST1A.vimin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.vimin>([\s\S]*?)<\/cim:ExcIEEEST1A.vimin>/g, obj, "vimin", base.to_string, sub, context);
+
             /**
              * Maximum voltage regulator outputs (V<sub>RMAX</sub>).
              *
              * Typical Value = 7.8.
              *
              */
-            obj["vrmax"] = base.parse_element (/<cim:ExcIEEEST1A.vrmax>([\s\S]*?)<\/cim:ExcIEEEST1A.vrmax>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.vrmax>([\s\S]*?)<\/cim:ExcIEEEST1A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+
             /**
              * Minimum voltage regulator outputs (V<sub>RMIN</sub>).
              *
              * Typical Value = -6.7.
              *
              */
-            obj["vrmin"] = base.parse_element (/<cim:ExcIEEEST1A.vrmin>([\s\S]*?)<\/cim:ExcIEEEST1A.vrmin>/g, sub, context, true);
+            base.parse_element (/<cim:ExcIEEEST1A.vrmin>([\s\S]*?)<\/cim:ExcIEEEST1A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+
             bucket = context.parsed.ExcIEEEST1A;
             if (null == bucket)
                 context.parsed.ExcIEEEST1A = bucket = {};

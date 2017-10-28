@@ -23,17 +23,20 @@ define
              * Clearance action to perform.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:ClearanceAction.kind>([\s\S]*?)<\/cim:ClearanceAction.kind>/g, sub, context, true);
+            base.parse_element (/<cim:ClearanceAction.kind>([\s\S]*?)<\/cim:ClearanceAction.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * Clearance associated with this clearance action.
              *
              */
-            obj["Clearance"] = base.parse_attribute (/<cim:ClearanceAction.Clearance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ClearanceAction.Clearance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Clearance", sub, context, true);
+
             /**
              * Group to which this step belongs.
              *
              */
-            obj["SwitchingStepGroup"] = base.parse_attribute (/<cim:ClearanceAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ClearanceAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context, true);
+
             bucket = context.parsed.ClearanceAction;
             if (null == bucket)
                 context.parsed.ClearanceAction = bucket = {};
@@ -57,17 +60,20 @@ define
              * If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.
              *
              */
-            obj["isFreeSequence"] = base.to_boolean (base.parse_element (/<cim:SwitchingStepGroup.isFreeSequence>([\s\S]*?)<\/cim:SwitchingStepGroup.isFreeSequence>/g, sub, context, true));
+            base.parse_element (/<cim:SwitchingStepGroup.isFreeSequence>([\s\S]*?)<\/cim:SwitchingStepGroup.isFreeSequence>/g, obj, "isFreeSequence", base.to_boolean, sub, context);
+
             /**
              * Order of this activity in the sequence of activities within the switching plan.
              *
              */
-            obj["sequenceNumber"] = base.parse_element (/<cim:SwitchingStepGroup.sequenceNumber>([\s\S]*?)<\/cim:SwitchingStepGroup.sequenceNumber>/g, sub, context, true);
+            base.parse_element (/<cim:SwitchingStepGroup.sequenceNumber>([\s\S]*?)<\/cim:SwitchingStepGroup.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
+
             /**
              * Switching plan to which this group belongs.
              *
              */
-            obj["SwitchingPlan"] = base.parse_attribute (/<cim:SwitchingStepGroup.SwitchingPlan\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SwitchingStepGroup.SwitchingPlan\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingPlan", sub, context, true);
+
             bucket = context.parsed.SwitchingStepGroup;
             if (null == bucket)
                 context.parsed.SwitchingStepGroup = bucket = {};
@@ -87,17 +93,20 @@ define
              * Asset on which this operation tag has been placed.
              *
              */
-            obj["Asset"] = base.parse_attribute (/<cim:OperationTag.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:OperationTag.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Asset", sub, context, true);
+
             /**
              * Tag action associated with this tag.
              *
              */
-            obj["TagAction"] = base.parse_attribute (/<cim:OperationTag.TagAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:OperationTag.TagAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TagAction", sub, context, true);
+
             /**
              * Power system resource on which this tag has been placed.
              *
              */
-            obj["PowerSystemResource"] = base.parse_attribute (/<cim:OperationTag.PowerSystemResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:OperationTag.PowerSystemResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResource", sub, context, true);
+
             bucket = context.parsed.OperationTag;
             if (null == bucket)
                 context.parsed.OperationTag = bucket = {};
@@ -121,12 +130,14 @@ define
              * Kind of event.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:PSREvent.kind>([\s\S]*?)<\/cim:PSREvent.kind>/g, sub, context, true);
+            base.parse_element (/<cim:PSREvent.kind>([\s\S]*?)<\/cim:PSREvent.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * Power system resource that generated this event.
              *
              */
-            obj["PowerSystemResource"] = base.parse_attribute (/<cim:PSREvent.PowerSystemResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:PSREvent.PowerSystemResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResource", sub, context, true);
+
             bucket = context.parsed.PSREvent;
             if (null == bucket)
                 context.parsed.PSREvent = bucket = {};
@@ -150,31 +161,36 @@ define
              * Switching action to perform.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:GroundAction.kind>([\s\S]*?)<\/cim:GroundAction.kind>/g, sub, context, true);
+            base.parse_element (/<cim:GroundAction.kind>([\s\S]*?)<\/cim:GroundAction.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * Ground on which this action is taken.
              *
              */
-            obj["Ground"] = base.parse_attribute (/<cim:GroundAction.Ground\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:GroundAction.Ground\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Ground", sub, context, true);
+
             /**
              * The line segment that this ground action will affect.
              *
              * This is the only way to access relationship to clamp in case the ground needs to be placed along the line segment.
              *
              */
-            obj["AlongACLineSegment"] = base.parse_attribute (/<cim:GroundAction.AlongACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:GroundAction.AlongACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AlongACLineSegment", sub, context, true);
+
             /**
              * Equipment being grounded with this operation.
              *
              * In case of placing a ground anywhere along a line segment, you must use the clamp (to get the distance from one terminal), so use the explicit relation with line segment. In all other cases (including placing the ground at a line segment terminal), reference to one or more conducting equipment is sufficient.
              *
              */
-            obj["GroundedEquipment"] = base.parse_attribute (/<cim:GroundAction.GroundedEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:GroundAction.GroundedEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GroundedEquipment", sub, context, true);
+
             /**
              * Group to which this step belongs.
              *
              */
-            obj["SwitchingStepGroup"] = base.parse_attribute (/<cim:GroundAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:GroundAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context, true);
+
             bucket = context.parsed.GroundAction;
             if (null == bucket)
                 context.parsed.GroundAction = bucket = {};
@@ -202,44 +218,52 @@ define
              * Note: At present, this is a free text; could be replaced with a separate associated class in case we have multiple causes (e.g. OutageCauseType, inheriting from IdentifiedObject).
              *
              */
-            obj["cause"] = base.parse_element (/<cim:Outage.cause>([\s\S]*?)<\/cim:Outage.cause>/g, sub, context, true);
+            base.parse_element (/<cim:Outage.cause>([\s\S]*?)<\/cim:Outage.cause>/g, obj, "cause", base.to_string, sub, context);
+
             /**
              * Estimated outage period.
              *
              * The start of the period makes sense in case of a planned outage only, whereas the end of the period corresponds to the estimated restoration time in general.
              *
              */
-            obj["estimatedPeriod"] = base.parse_element (/<cim:Outage.estimatedPeriod>([\s\S]*?)<\/cim:Outage.estimatedPeriod>/g, sub, context, true);
+            base.parse_element (/<cim:Outage.estimatedPeriod>([\s\S]*?)<\/cim:Outage.estimatedPeriod>/g, obj, "estimatedPeriod", base.to_string, sub, context);
+
             /**
              * True if planned, false otherwise (for example due to a breaker trip).
              *
              */
-            obj["isPlanned"] = base.to_boolean (base.parse_element (/<cim:Outage.isPlanned>([\s\S]*?)<\/cim:Outage.isPlanned>/g, sub, context, true));
+            base.parse_element (/<cim:Outage.isPlanned>([\s\S]*?)<\/cim:Outage.isPlanned>/g, obj, "isPlanned", base.to_boolean, sub, context);
+
             /**
              * Actual outage period; end of the period corresponds to the actual restoration time.
              *
              */
-            obj["actualPeriod"] = base.parse_element (/<cim:Outage.actualPeriod>([\s\S]*?)<\/cim:Outage.actualPeriod>/g, sub, context, true);
+            base.parse_element (/<cim:Outage.actualPeriod>([\s\S]*?)<\/cim:Outage.actualPeriod>/g, obj, "actualPeriod", base.to_string, sub, context);
+
             /**
              * Summary counts of service points (customers) affected by this outage.
              *
              */
-            obj["summary"] = base.parse_element (/<cim:Outage.summary>([\s\S]*?)<\/cim:Outage.summary>/g, sub, context, true);
+            base.parse_element (/<cim:Outage.summary>([\s\S]*?)<\/cim:Outage.summary>/g, obj, "summary", base.to_string, sub, context);
+
             /**
              * Date and time planned outage has been cancelled.
              *
              */
-            obj["cancelledDateTime"] = base.to_datetime (base.parse_element (/<cim:Outage.cancelledDateTime>([\s\S]*?)<\/cim:Outage.cancelledDateTime>/g, sub, context, true));
+            base.parse_element (/<cim:Outage.cancelledDateTime>([\s\S]*?)<\/cim:Outage.cancelledDateTime>/g, obj, "cancelledDateTime", base.to_datetime, sub, context);
+
             /**
              * Outage schedule whose execution will result in this outage.
              *
              */
-            obj["OutageSchedule"] = base.parse_attribute (/<cim:Outage.OutageSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Outage.OutageSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OutageSchedule", sub, context, true);
+
             /**
              * Incident reported in trouble call that results in this outage.
              *
              */
-            obj["Incident"] = base.parse_attribute (/<cim:Outage.Incident\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Outage.Incident\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Incident", sub, context, true);
+
             bucket = context.parsed.Outage;
             if (null == bucket)
                 context.parsed.Outage = bucket = {};
@@ -263,22 +287,26 @@ define
              * Open the switch.
              *
              */
-            obj["open"] = base.parse_element (/<cim:SwitchActionKind.open>([\s\S]*?)<\/cim:SwitchActionKind.open>/g, sub, context, true);
+            base.parse_element (/<cim:SwitchActionKind.open>([\s\S]*?)<\/cim:SwitchActionKind.open>/g, obj, "open", base.to_string, sub, context);
+
             /**
              * Close the switch.
              *
              */
-            obj["close"] = base.parse_element (/<cim:SwitchActionKind.close>([\s\S]*?)<\/cim:SwitchActionKind.close>/g, sub, context, true);
+            base.parse_element (/<cim:SwitchActionKind.close>([\s\S]*?)<\/cim:SwitchActionKind.close>/g, obj, "close", base.to_string, sub, context);
+
             /**
              * Disable (automatic) switch reclosing.
              *
              */
-            obj["disableReclosing"] = base.parse_element (/<cim:SwitchActionKind.disableReclosing>([\s\S]*?)<\/cim:SwitchActionKind.disableReclosing>/g, sub, context, true);
+            base.parse_element (/<cim:SwitchActionKind.disableReclosing>([\s\S]*?)<\/cim:SwitchActionKind.disableReclosing>/g, obj, "disableReclosing", base.to_string, sub, context);
+
             /**
              * Enable (automatic) switch reclosing.
              *
              */
-            obj["enableReclosing"] = base.parse_element (/<cim:SwitchActionKind.enableReclosing>([\s\S]*?)<\/cim:SwitchActionKind.enableReclosing>/g, sub, context, true);
+            base.parse_element (/<cim:SwitchActionKind.enableReclosing>([\s\S]*?)<\/cim:SwitchActionKind.enableReclosing>/g, obj, "enableReclosing", base.to_string, sub, context);
+
             bucket = context.parsed.SwitchActionKind;
             if (null == bucket)
                 context.parsed.SwitchActionKind = bucket = {};
@@ -302,17 +330,20 @@ define
              * Switching action to perform.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:CutAction.kind>([\s\S]*?)<\/cim:CutAction.kind>/g, sub, context, true);
+            base.parse_element (/<cim:CutAction.kind>([\s\S]*?)<\/cim:CutAction.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * Group to which this step belongs.
              *
              */
-            obj["SwitchingStepGroup"] = base.parse_attribute (/<cim:CutAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:CutAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context, true);
+
             /**
              * Cut on which this action is taken.
              *
              */
-            obj["Cut"] = base.parse_attribute (/<cim:CutAction.Cut\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:CutAction.Cut\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Cut", sub, context, true);
+
             bucket = context.parsed.CutAction;
             if (null == bucket)
                 context.parsed.CutAction = bucket = {};
@@ -336,22 +367,26 @@ define
              * Switching action to perform.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:SwitchAction.kind>([\s\S]*?)<\/cim:SwitchAction.kind>/g, sub, context, true);
+            base.parse_element (/<cim:SwitchAction.kind>([\s\S]*?)<\/cim:SwitchAction.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * Planned outage for whose scope this switch action applies.
              *
              */
-            obj["PlannedOutage"] = base.parse_attribute (/<cim:SwitchAction.PlannedOutage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SwitchAction.PlannedOutage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PlannedOutage", sub, context, true);
+
             /**
              * Switch that is the object of this switch action.
              *
              */
-            obj["OperatedSwitch"] = base.parse_attribute (/<cim:SwitchAction.OperatedSwitch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SwitchAction.OperatedSwitch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperatedSwitch", sub, context, true);
+
             /**
              * Group to which this step belongs.
              *
              */
-            obj["SwitchingStepGroup"] = base.parse_attribute (/<cim:SwitchAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SwitchAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context, true);
+
             bucket = context.parsed.SwitchAction;
             if (null == bucket)
                 context.parsed.SwitchAction = bucket = {};
@@ -378,17 +413,20 @@ define
              * Ranking in comparison to other switching plans.
              *
              */
-            obj["rank"] = base.parse_element (/<cim:SwitchingPlan.rank>([\s\S]*?)<\/cim:SwitchingPlan.rank>/g, sub, context, true);
+            base.parse_element (/<cim:SwitchingPlan.rank>([\s\S]*?)<\/cim:SwitchingPlan.rank>/g, obj, "rank", base.to_string, sub, context);
+
             /**
              * Purpose of  this plan, such as whether it is to move the state from normal to some abnormal condition, or to restore the normal state after an abnormal condition, or to perform some kind of optimisation such as correction of overload, voltage control, etc.
              *
              */
-            obj["purpose"] = base.parse_element (/<cim:SwitchingPlan.purpose>([\s\S]*?)<\/cim:SwitchingPlan.purpose>/g, sub, context, true);
+            base.parse_element (/<cim:SwitchingPlan.purpose>([\s\S]*?)<\/cim:SwitchingPlan.purpose>/g, obj, "purpose", base.to_string, sub, context);
+
             /**
              * Outage that will be eliminated when this switching plan gets executed.
              *
              */
-            obj["Outage"] = base.parse_attribute (/<cim:SwitchingPlan.Outage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SwitchingPlan.Outage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Outage", sub, context, true);
+
             bucket = context.parsed.SwitchingPlan;
             if (null == bucket)
                 context.parsed.SwitchingPlan = bucket = {};
@@ -412,17 +450,20 @@ define
              * Switching action to perform.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:JumperAction.kind>([\s\S]*?)<\/cim:JumperAction.kind>/g, sub, context, true);
+            base.parse_element (/<cim:JumperAction.kind>([\s\S]*?)<\/cim:JumperAction.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * Jumper on which this action is taken.
              *
              */
-            obj["Jumper"] = base.parse_attribute (/<cim:JumperAction.Jumper\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:JumperAction.Jumper\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Jumper", sub, context, true);
+
             /**
              * Group to which this step belongs.
              *
              */
-            obj["SwitchingStepGroup"] = base.parse_attribute (/<cim:JumperAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:JumperAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context, true);
+
             bucket = context.parsed.JumperAction;
             if (null == bucket)
                 context.parsed.JumperAction = bucket = {};
@@ -448,17 +489,20 @@ define
              * Cause of this incident.
              *
              */
-            obj["cause"] = base.parse_element (/<cim:Incident.cause>([\s\S]*?)<\/cim:Incident.cause>/g, sub, context, true);
+            base.parse_element (/<cim:Incident.cause>([\s\S]*?)<\/cim:Incident.cause>/g, obj, "cause", base.to_string, sub, context);
+
             /**
              * Operator who owns this incident.
              *
              */
-            obj["Owner"] = base.parse_attribute (/<cim:Incident.Owner\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Incident.Owner\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Owner", sub, context, true);
+
             /**
              * Outage for this incident.
              *
              */
-            obj["Outage"] = base.parse_attribute (/<cim:Incident.Outage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Incident.Outage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Outage", sub, context, true);
+
             bucket = context.parsed.Incident;
             if (null == bucket)
                 context.parsed.Incident = bucket = {};
@@ -482,17 +526,20 @@ define
              * Kind of tag action.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:TagAction.kind>([\s\S]*?)<\/cim:TagAction.kind>/g, sub, context, true);
+            base.parse_element (/<cim:TagAction.kind>([\s\S]*?)<\/cim:TagAction.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * Tag associated with this tag action.
              *
              */
-            obj["OperationTag"] = base.parse_attribute (/<cim:TagAction.OperationTag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TagAction.OperationTag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperationTag", sub, context, true);
+
             /**
              * Group to which this step belongs.
              *
              */
-            obj["SwitchingStepGroup"] = base.parse_attribute (/<cim:TagAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TagAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context, true);
+
             bucket = context.parsed.TagAction;
             if (null == bucket)
                 context.parsed.TagAction = bucket = {};
@@ -516,12 +563,14 @@ define
              * Place the jumper (close) or the cut (open).
              *
              */
-            obj["place"] = base.parse_element (/<cim:TempEquipActionKind.place>([\s\S]*?)<\/cim:TempEquipActionKind.place>/g, sub, context, true);
+            base.parse_element (/<cim:TempEquipActionKind.place>([\s\S]*?)<\/cim:TempEquipActionKind.place>/g, obj, "place", base.to_string, sub, context);
+
             /**
              * Remove the jumper (open) or the cut (close).
              *
              */
-            obj["remove"] = base.parse_element (/<cim:TempEquipActionKind.remove>([\s\S]*?)<\/cim:TempEquipActionKind.remove>/g, sub, context, true);
+            base.parse_element (/<cim:TempEquipActionKind.remove>([\s\S]*?)<\/cim:TempEquipActionKind.remove>/g, obj, "remove", base.to_string, sub, context);
+
             bucket = context.parsed.TempEquipActionKind;
             if (null == bucket)
                 context.parsed.TempEquipActionKind = bucket = {};
@@ -547,17 +596,20 @@ define
              * Interval during which this restriction is applied.
              *
              */
-            obj["activePeriod"] = base.parse_element (/<cim:OperationalRestriction.activePeriod>([\s\S]*?)<\/cim:OperationalRestriction.activePeriod>/g, sub, context, true);
+            base.parse_element (/<cim:OperationalRestriction.activePeriod>([\s\S]*?)<\/cim:OperationalRestriction.activePeriod>/g, obj, "activePeriod", base.to_string, sub, context);
+
             /**
              * Restricted (new) value; includes unit of measure and potentially multiplier.
              *
              */
-            obj["restrictedValue"] = base.parse_element (/<cim:OperationalRestriction.restrictedValue>([\s\S]*?)<\/cim:OperationalRestriction.restrictedValue>/g, sub, context, true);
+            base.parse_element (/<cim:OperationalRestriction.restrictedValue>([\s\S]*?)<\/cim:OperationalRestriction.restrictedValue>/g, obj, "restrictedValue", base.to_string, sub, context);
+
             /**
              * Asset model to which this restriction applies.
              *
              */
-            obj["ProductAssetModel"] = base.parse_attribute (/<cim:OperationalRestriction.ProductAssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:OperationalRestriction.ProductAssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProductAssetModel", sub, context, true);
+
             bucket = context.parsed.OperationalRestriction;
             if (null == bucket)
                 context.parsed.OperationalRestriction = bucket = {};
@@ -581,17 +633,20 @@ define
              * Issue clearance.
              *
              */
-            obj["issue"] = base.parse_element (/<cim:ClearanceActionKind.issue>([\s\S]*?)<\/cim:ClearanceActionKind.issue>/g, sub, context, true);
+            base.parse_element (/<cim:ClearanceActionKind.issue>([\s\S]*?)<\/cim:ClearanceActionKind.issue>/g, obj, "issue", base.to_string, sub, context);
+
             /**
              * Update clearance.
              *
              */
-            obj["update"] = base.parse_element (/<cim:ClearanceActionKind.update>([\s\S]*?)<\/cim:ClearanceActionKind.update>/g, sub, context, true);
+            base.parse_element (/<cim:ClearanceActionKind.update>([\s\S]*?)<\/cim:ClearanceActionKind.update>/g, obj, "update", base.to_string, sub, context);
+
             /**
              * Release clearance.
              *
              */
-            obj["release"] = base.parse_element (/<cim:ClearanceActionKind.release>([\s\S]*?)<\/cim:ClearanceActionKind.release>/g, sub, context, true);
+            base.parse_element (/<cim:ClearanceActionKind.release>([\s\S]*?)<\/cim:ClearanceActionKind.release>/g, obj, "release", base.to_string, sub, context);
+
             bucket = context.parsed.ClearanceActionKind;
             if (null == bucket)
                 context.parsed.ClearanceActionKind = bucket = {};
@@ -615,7 +670,8 @@ define
              * Switching plan to which this safety document applies.
              *
              */
-            obj["SwitchingPlan"] = base.parse_attribute (/<cim:SafetyDocument.SwitchingPlan\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SafetyDocument.SwitchingPlan\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingPlan", sub, context, true);
+
             bucket = context.parsed.SafetyDocument;
             if (null == bucket)
                 context.parsed.SafetyDocument = bucket = {};
@@ -641,17 +697,20 @@ define
              * If true, the equipment must be deenergised.
              *
              */
-            obj["mustBeDeenergised"] = base.to_boolean (base.parse_element (/<cim:ClearanceDocument.mustBeDeenergised>([\s\S]*?)<\/cim:ClearanceDocument.mustBeDeenergised>/g, sub, context, true));
+            base.parse_element (/<cim:ClearanceDocument.mustBeDeenergised>([\s\S]*?)<\/cim:ClearanceDocument.mustBeDeenergised>/g, obj, "mustBeDeenergised", base.to_boolean, sub, context);
+
             /**
              * If true, the equipment must be grounded.
              *
              */
-            obj["mustBeGrounded"] = base.to_boolean (base.parse_element (/<cim:ClearanceDocument.mustBeGrounded>([\s\S]*?)<\/cim:ClearanceDocument.mustBeGrounded>/g, sub, context, true));
+            base.parse_element (/<cim:ClearanceDocument.mustBeGrounded>([\s\S]*?)<\/cim:ClearanceDocument.mustBeGrounded>/g, obj, "mustBeGrounded", base.to_boolean, sub, context);
+
             /**
              * Clearance action associated with this clearance.
              *
              */
-            obj["ClearanceAction"] = base.parse_attribute (/<cim:ClearanceDocument.ClearanceAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ClearanceDocument.ClearanceAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ClearanceAction", sub, context, true);
+
             bucket = context.parsed.ClearanceDocument;
             if (null == bucket)
                 context.parsed.ClearanceDocument = bucket = {};
@@ -677,12 +736,14 @@ define
              * Number of critical service (delivery) points affected by an outage.
              *
              */
-            obj["criticalCount"] = base.parse_element (/<cim:ServicePointOutageSummary.criticalCount>([\s\S]*?)<\/cim:ServicePointOutageSummary.criticalCount>/g, sub, context, true);
+            base.parse_element (/<cim:ServicePointOutageSummary.criticalCount>([\s\S]*?)<\/cim:ServicePointOutageSummary.criticalCount>/g, obj, "criticalCount", base.to_string, sub, context);
+
             /**
              * Number of all service (delivery) points affected by an outage.
              *
              */
-            obj["totalCount"] = base.parse_element (/<cim:ServicePointOutageSummary.totalCount>([\s\S]*?)<\/cim:ServicePointOutageSummary.totalCount>/g, sub, context, true);
+            base.parse_element (/<cim:ServicePointOutageSummary.totalCount>([\s\S]*?)<\/cim:ServicePointOutageSummary.totalCount>/g, obj, "totalCount", base.to_string, sub, context);
+
             bucket = context.parsed.ServicePointOutageSummary;
             if (null == bucket)
                 context.parsed.ServicePointOutageSummary = bucket = {};
@@ -706,12 +767,14 @@ define
              * Type of operational updated rating, e.g. a derate, a rerate or a return to normal.
              *
              */
-            obj["changeType"] = base.parse_element (/<cim:OperationalUpdatedRating.changeType>([\s\S]*?)<\/cim:OperationalUpdatedRating.changeType>/g, sub, context, true);
+            base.parse_element (/<cim:OperationalUpdatedRating.changeType>([\s\S]*?)<\/cim:OperationalUpdatedRating.changeType>/g, obj, "changeType", base.to_string, sub, context);
+
             /**
              * Planned equipment outage with this updated rating.
              *
              */
-            obj["PlannedOutage"] = base.parse_attribute (/<cim:OperationalUpdatedRating.PlannedOutage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:OperationalUpdatedRating.PlannedOutage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PlannedOutage", sub, context, true);
+
             bucket = context.parsed.OperationalUpdatedRating;
             if (null == bucket)
                 context.parsed.OperationalUpdatedRating = bucket = {};
@@ -735,37 +798,44 @@ define
              * Power system resource state change to in service.
              *
              */
-            obj["inService"] = base.parse_element (/<cim:PSREventKind.inService>([\s\S]*?)<\/cim:PSREventKind.inService>/g, sub, context, true);
+            base.parse_element (/<cim:PSREventKind.inService>([\s\S]*?)<\/cim:PSREventKind.inService>/g, obj, "inService", base.to_string, sub, context);
+
             /**
              * Power system resource state change to out of service.
              *
              */
-            obj["outOfService"] = base.parse_element (/<cim:PSREventKind.outOfService>([\s\S]*?)<\/cim:PSREventKind.outOfService>/g, sub, context, true);
+            base.parse_element (/<cim:PSREventKind.outOfService>([\s\S]*?)<\/cim:PSREventKind.outOfService>/g, obj, "outOfService", base.to_string, sub, context);
+
             /**
              * Power system resource state change to pending add.
              *
              */
-            obj["pendingAdd"] = base.parse_element (/<cim:PSREventKind.pendingAdd>([\s\S]*?)<\/cim:PSREventKind.pendingAdd>/g, sub, context, true);
+            base.parse_element (/<cim:PSREventKind.pendingAdd>([\s\S]*?)<\/cim:PSREventKind.pendingAdd>/g, obj, "pendingAdd", base.to_string, sub, context);
+
             /**
              * Power system resource state change to pending remove.
              *
              */
-            obj["pendingRemove"] = base.parse_element (/<cim:PSREventKind.pendingRemove>([\s\S]*?)<\/cim:PSREventKind.pendingRemove>/g, sub, context, true);
+            base.parse_element (/<cim:PSREventKind.pendingRemove>([\s\S]*?)<\/cim:PSREventKind.pendingRemove>/g, obj, "pendingRemove", base.to_string, sub, context);
+
             /**
              * Power system resource state change to pending replace.
              *
              */
-            obj["pendingReplace"] = base.parse_element (/<cim:PSREventKind.pendingReplace>([\s\S]*?)<\/cim:PSREventKind.pendingReplace>/g, sub, context, true);
+            base.parse_element (/<cim:PSREventKind.pendingReplace>([\s\S]*?)<\/cim:PSREventKind.pendingReplace>/g, obj, "pendingReplace", base.to_string, sub, context);
+
             /**
              * Other power system resource state change.
              *
              */
-            obj["other"] = base.parse_element (/<cim:PSREventKind.other>([\s\S]*?)<\/cim:PSREventKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:PSREventKind.other>([\s\S]*?)<\/cim:PSREventKind.other>/g, obj, "other", base.to_string, sub, context);
+
             /**
              * Unknown power system resource state change.
              *
              */
-            obj["unknown"] = base.parse_element (/<cim:PSREventKind.unknown>([\s\S]*?)<\/cim:PSREventKind.unknown>/g, sub, context, true);
+            base.parse_element (/<cim:PSREventKind.unknown>([\s\S]*?)<\/cim:PSREventKind.unknown>/g, obj, "unknown", base.to_string, sub, context);
+
             bucket = context.parsed.PSREventKind;
             if (null == bucket)
                 context.parsed.PSREventKind = bucket = {};
@@ -789,17 +859,20 @@ define
              * Switching action to perform.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:EnergySourceAction.kind>([\s\S]*?)<\/cim:EnergySourceAction.kind>/g, sub, context, true);
+            base.parse_element (/<cim:EnergySourceAction.kind>([\s\S]*?)<\/cim:EnergySourceAction.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * Energy source on which this action is taken.
              *
              */
-            obj["EnergySource"] = base.parse_attribute (/<cim:EnergySourceAction.EnergySource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:EnergySourceAction.EnergySource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergySource", sub, context, true);
+
             /**
              * Group to which this step belongs.
              *
              */
-            obj["SwitchingStepGroup"] = base.parse_attribute (/<cim:EnergySourceAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:EnergySourceAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context, true);
+
             bucket = context.parsed.EnergySourceAction;
             if (null == bucket)
                 context.parsed.EnergySourceAction = bucket = {};
@@ -844,17 +917,20 @@ define
              * Place the tag.
              *
              */
-            obj["place"] = base.parse_element (/<cim:TagActionKind.place>([\s\S]*?)<\/cim:TagActionKind.place>/g, sub, context, true);
+            base.parse_element (/<cim:TagActionKind.place>([\s\S]*?)<\/cim:TagActionKind.place>/g, obj, "place", base.to_string, sub, context);
+
             /**
              * Remove the tag.
              *
              */
-            obj["remove"] = base.parse_element (/<cim:TagActionKind.remove>([\s\S]*?)<\/cim:TagActionKind.remove>/g, sub, context, true);
+            base.parse_element (/<cim:TagActionKind.remove>([\s\S]*?)<\/cim:TagActionKind.remove>/g, obj, "remove", base.to_string, sub, context);
+
             /**
              * Verify the tag.
              *
              */
-            obj["verify"] = base.parse_element (/<cim:TagActionKind.verify>([\s\S]*?)<\/cim:TagActionKind.verify>/g, sub, context, true);
+            base.parse_element (/<cim:TagActionKind.verify>([\s\S]*?)<\/cim:TagActionKind.verify>/g, obj, "verify", base.to_string, sub, context);
+
             bucket = context.parsed.TagActionKind;
             if (null == bucket)
                 context.parsed.TagActionKind = bucket = {};
@@ -878,37 +954,44 @@ define
              * Actual date and time of this switching step.
              *
              */
-            obj["executedDateTime"] = base.to_datetime (base.parse_element (/<cim:SwitchingStep.executedDateTime>([\s\S]*?)<\/cim:SwitchingStep.executedDateTime>/g, sub, context, true));
+            base.parse_element (/<cim:SwitchingStep.executedDateTime>([\s\S]*?)<\/cim:SwitchingStep.executedDateTime>/g, obj, "executedDateTime", base.to_datetime, sub, context);
+
             /**
              * Planned date and time of this switching step.
              *
              */
-            obj["plannedDateTime"] = base.to_datetime (base.parse_element (/<cim:SwitchingStep.plannedDateTime>([\s\S]*?)<\/cim:SwitchingStep.plannedDateTime>/g, sub, context, true));
+            base.parse_element (/<cim:SwitchingStep.plannedDateTime>([\s\S]*?)<\/cim:SwitchingStep.plannedDateTime>/g, obj, "plannedDateTime", base.to_datetime, sub, context);
+
             /**
              * Free text description of this activity.
              *
              */
-            obj["description"] = base.parse_element (/<cim:SwitchingStep.description>([\s\S]*?)<\/cim:SwitchingStep.description>/g, sub, context, true);
+            base.parse_element (/<cim:SwitchingStep.description>([\s\S]*?)<\/cim:SwitchingStep.description>/g, obj, "description", base.to_string, sub, context);
+
             /**
              * If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.
              *
              */
-            obj["isFreeSequence"] = base.to_boolean (base.parse_element (/<cim:SwitchingStep.isFreeSequence>([\s\S]*?)<\/cim:SwitchingStep.isFreeSequence>/g, sub, context, true));
+            base.parse_element (/<cim:SwitchingStep.isFreeSequence>([\s\S]*?)<\/cim:SwitchingStep.isFreeSequence>/g, obj, "isFreeSequence", base.to_boolean, sub, context);
+
             /**
              * Order of this activity in the sequence of activities within the switching plan.
              *
              */
-            obj["sequenceNumber"] = base.parse_element (/<cim:SwitchingStep.sequenceNumber>([\s\S]*?)<\/cim:SwitchingStep.sequenceNumber>/g, sub, context, true);
+            base.parse_element (/<cim:SwitchingStep.sequenceNumber>([\s\S]*?)<\/cim:SwitchingStep.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
+
             /**
              * Crew member responsible for this switching step.
              *
              */
-            obj["CrewMember"] = base.parse_attribute (/<cim:SwitchingStep.CrewMember\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SwitchingStep.CrewMember\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CrewMember", sub, context, true);
+
             /**
              * Operator responsible for this switching step.
              *
              */
-            obj["Operator"] = base.parse_attribute (/<cim:SwitchingStep.Operator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SwitchingStep.Operator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Operator", sub, context, true);
+
             bucket = context.parsed.SwitchingStep;
             if (null == bucket)
                 context.parsed.SwitchingStep = bucket = {};
@@ -932,7 +1015,8 @@ define
              * Group to which this step belongs.
              *
              */
-            obj["SwitchingStepGroup"] = base.parse_attribute (/<cim:GenericAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:GenericAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context, true);
+
             bucket = context.parsed.GenericAction;
             if (null == bucket)
                 context.parsed.GenericAction = bucket = {};

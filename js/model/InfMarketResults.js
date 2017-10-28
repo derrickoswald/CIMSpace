@@ -19,17 +19,20 @@ define
              * Binding MW limit.
              *
              */
-            obj["mwLimit"] = base.parse_element (/<cim:SecurityConstraintsClearing.mwLimit>([\s\S]*?)<\/cim:SecurityConstraintsClearing.mwLimit>/g, sub, context, true);
+            base.parse_element (/<cim:SecurityConstraintsClearing.mwLimit>([\s\S]*?)<\/cim:SecurityConstraintsClearing.mwLimit>/g, obj, "mwLimit", base.to_string, sub, context);
+
             /**
              * Optimal MW flow
              *
              */
-            obj["mwFlow"] = base.parse_element (/<cim:SecurityConstraintsClearing.mwFlow>([\s\S]*?)<\/cim:SecurityConstraintsClearing.mwFlow>/g, sub, context, true);
+            base.parse_element (/<cim:SecurityConstraintsClearing.mwFlow>([\s\S]*?)<\/cim:SecurityConstraintsClearing.mwFlow>/g, obj, "mwFlow", base.to_string, sub, context);
+
             /**
              * Security constraint shadow price.
              *
              */
-            obj["shadowPrice"] = base.parse_element (/<cim:SecurityConstraintsClearing.shadowPrice>([\s\S]*?)<\/cim:SecurityConstraintsClearing.shadowPrice>/g, sub, context, true);
+            base.parse_element (/<cim:SecurityConstraintsClearing.shadowPrice>([\s\S]*?)<\/cim:SecurityConstraintsClearing.shadowPrice>/g, obj, "shadowPrice", base.to_string, sub, context);
+
             bucket = context.parsed.SecurityConstraintsClearing;
             if (null == bucket)
                 context.parsed.SecurityConstraintsClearing = bucket = {};
@@ -62,17 +65,20 @@ define
              * 'RT - Amp2'
              *
              */
-            obj["caseType"] = base.parse_element (/<cim:MarketCaseClearing.caseType>([\s\S]*?)<\/cim:MarketCaseClearing.caseType>/g, sub, context, true);
+            base.parse_element (/<cim:MarketCaseClearing.caseType>([\s\S]*?)<\/cim:MarketCaseClearing.caseType>/g, obj, "caseType", base.to_string, sub, context);
+
             /**
              * Bid clearing results posted time and date.
              *
              */
-            obj["postedDate"] = base.to_datetime (base.parse_element (/<cim:MarketCaseClearing.postedDate>([\s\S]*?)<\/cim:MarketCaseClearing.postedDate>/g, sub, context, true));
+            base.parse_element (/<cim:MarketCaseClearing.postedDate>([\s\S]*?)<\/cim:MarketCaseClearing.postedDate>/g, obj, "postedDate", base.to_datetime, sub, context);
+
             /**
              * Last time and date clearing results were manually modified.
              *
              */
-            obj["modifiedDate"] = base.to_datetime (base.parse_element (/<cim:MarketCaseClearing.modifiedDate>([\s\S]*?)<\/cim:MarketCaseClearing.modifiedDate>/g, sub, context, true));
+            base.parse_element (/<cim:MarketCaseClearing.modifiedDate>([\s\S]*?)<\/cim:MarketCaseClearing.modifiedDate>/g, obj, "modifiedDate", base.to_datetime, sub, context);
+
             bucket = context.parsed.MarketCaseClearing;
             if (null == bucket)
                 context.parsed.MarketCaseClearing = bucket = {};
@@ -119,14 +125,18 @@ define
              * Net Dispatched MW
              *
              */
-            obj["clearedValue"] = base.to_float (base.parse_element (/<cim:InterTieResults.clearedValue>([\s\S]*?)<\/cim:InterTieResults.clearedValue>/g, sub, context, true));
+            base.parse_element (/<cim:InterTieResults.clearedValue>([\s\S]*?)<\/cim:InterTieResults.clearedValue>/g, obj, "clearedValue", base.to_float, sub, context);
+
             /**
              * Net Actual MW Flow
              *
              */
-            obj["baseMW"] = base.to_float (base.parse_element (/<cim:InterTieResults.baseMW>([\s\S]*?)<\/cim:InterTieResults.baseMW>/g, sub, context, true));
-            obj["InterTieClearing"] = base.parse_attribute (/<cim:InterTieResults.InterTieClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            obj["Flowgate"] = base.parse_attribute (/<cim:InterTieResults.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_element (/<cim:InterTieResults.baseMW>([\s\S]*?)<\/cim:InterTieResults.baseMW>/g, obj, "baseMW", base.to_float, sub, context);
+
+            base.parse_attribute (/<cim:InterTieResults.InterTieClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterTieClearing", sub, context, true);
+
+            base.parse_attribute (/<cim:InterTieResults.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context, true);
+
             bucket = context.parsed.InterTieResults;
             if (null == bucket)
                 context.parsed.InterTieResults = bucket = {};

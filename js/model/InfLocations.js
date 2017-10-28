@@ -17,7 +17,8 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "RedLine";
-            obj["status"] = base.parse_element (/<cim:RedLine.status>([\s\S]*?)<\/cim:RedLine.status>/g, sub, context, true);
+            base.parse_element (/<cim:RedLine.status>([\s\S]*?)<\/cim:RedLine.status>/g, obj, "status", base.to_string, sub, context);
+
             bucket = context.parsed.RedLine;
             if (null == bucket)
                 context.parsed.RedLine = bucket = {};
@@ -43,7 +44,8 @@ define
              * Kind of this zone.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:Zone.kind>([\s\S]*?)<\/cim:Zone.kind>/g, sub, context, true);
+            base.parse_element (/<cim:Zone.kind>([\s\S]*?)<\/cim:Zone.kind>/g, obj, "kind", base.to_string, sub, context);
+
             bucket = context.parsed.Zone;
             if (null == bucket)
                 context.parsed.Zone = bucket = {};
@@ -63,10 +65,14 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ZoneKind";
-            obj["electricalNetwork"] = base.parse_element (/<cim:ZoneKind.electricalNetwork>([\s\S]*?)<\/cim:ZoneKind.electricalNetwork>/g, sub, context, true);
-            obj["specialRestrictionLand"] = base.parse_element (/<cim:ZoneKind.specialRestrictionLand>([\s\S]*?)<\/cim:ZoneKind.specialRestrictionLand>/g, sub, context, true);
-            obj["weatherZone"] = base.parse_element (/<cim:ZoneKind.weatherZone>([\s\S]*?)<\/cim:ZoneKind.weatherZone>/g, sub, context, true);
-            obj["other"] = base.parse_element (/<cim:ZoneKind.other>([\s\S]*?)<\/cim:ZoneKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:ZoneKind.electricalNetwork>([\s\S]*?)<\/cim:ZoneKind.electricalNetwork>/g, obj, "electricalNetwork", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ZoneKind.specialRestrictionLand>([\s\S]*?)<\/cim:ZoneKind.specialRestrictionLand>/g, obj, "specialRestrictionLand", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ZoneKind.weatherZone>([\s\S]*?)<\/cim:ZoneKind.weatherZone>/g, obj, "weatherZone", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ZoneKind.other>([\s\S]*?)<\/cim:ZoneKind.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.ZoneKind;
             if (null == bucket)
                 context.parsed.ZoneKind = bucket = {};
@@ -94,12 +100,14 @@ define
              * For example, it may be a deed book number, deed book page number, and parcel number.
              *
              */
-            obj["propertyData"] = base.parse_element (/<cim:LocationGrant.propertyData>([\s\S]*?)<\/cim:LocationGrant.propertyData>/g, sub, context, true);
+            base.parse_element (/<cim:LocationGrant.propertyData>([\s\S]*?)<\/cim:LocationGrant.propertyData>/g, obj, "propertyData", base.to_string, sub, context);
+
             /**
              * Land property this location grant applies to.
              *
              */
-            obj["LandProperty"] = base.parse_attribute (/<cim:LocationGrant.LandProperty\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:LocationGrant.LandProperty\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LandProperty", sub, context, true);
+
             bucket = context.parsed.LocationGrant;
             if (null == bucket)
                 context.parsed.LocationGrant = bucket = {};
@@ -119,12 +127,14 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "Route";
-            obj["status"] = base.parse_element (/<cim:Route.status>([\s\S]*?)<\/cim:Route.status>/g, sub, context, true);
+            base.parse_element (/<cim:Route.status>([\s\S]*?)<\/cim:Route.status>/g, obj, "status", base.to_string, sub, context);
+
             /**
              * Classification by utility's work management standards and practices.
              *
              */
-            obj["type"] = base.parse_element (/<cim:Route.type>([\s\S]*?)<\/cim:Route.type>/g, sub, context, true);
+            base.parse_element (/<cim:Route.type>([\s\S]*?)<\/cim:Route.type>/g, obj, "type", base.to_string, sub, context);
+
             bucket = context.parsed.Route;
             if (null == bucket)
                 context.parsed.Route = bucket = {};
@@ -148,37 +158,44 @@ define
              * Site enclosed within a building.
              *
              */
-            obj["building"] = base.parse_element (/<cim:LandPropertyKind.building>([\s\S]*?)<\/cim:LandPropertyKind.building>/g, sub, context, true);
+            base.parse_element (/<cim:LandPropertyKind.building>([\s\S]*?)<\/cim:LandPropertyKind.building>/g, obj, "building", base.to_string, sub, context);
+
             /**
              * Site with a customer.
              *
              */
-            obj["customerPremise"] = base.parse_element (/<cim:LandPropertyKind.customerPremise>([\s\S]*?)<\/cim:LandPropertyKind.customerPremise>/g, sub, context, true);
+            base.parse_element (/<cim:LandPropertyKind.customerPremise>([\s\S]*?)<\/cim:LandPropertyKind.customerPremise>/g, obj, "customerPremise", base.to_string, sub, context);
+
             /**
              * Storehouse for supplies that also serves as a station for supporting crews.
              *
              */
-            obj["depot"] = base.parse_element (/<cim:LandPropertyKind.depot>([\s\S]*?)<\/cim:LandPropertyKind.depot>/g, sub, context, true);
+            base.parse_element (/<cim:LandPropertyKind.depot>([\s\S]*?)<\/cim:LandPropertyKind.depot>/g, obj, "depot", base.to_string, sub, context);
+
             /**
              * Place of storage (e.g., a warehouse) to put aside, or accumulate, material and equipment for use when needed.
              *
              */
-            obj["store"] = base.parse_element (/<cim:LandPropertyKind.store>([\s\S]*?)<\/cim:LandPropertyKind.store>/g, sub, context, true);
+            base.parse_element (/<cim:LandPropertyKind.store>([\s\S]*?)<\/cim:LandPropertyKind.store>/g, obj, "store", base.to_string, sub, context);
+
             /**
              * Transmission network switchyard.
              *
              */
-            obj["substation"] = base.parse_element (/<cim:LandPropertyKind.substation>([\s\S]*?)<\/cim:LandPropertyKind.substation>/g, sub, context, true);
+            base.parse_element (/<cim:LandPropertyKind.substation>([\s\S]*?)<\/cim:LandPropertyKind.substation>/g, obj, "substation", base.to_string, sub, context);
+
             /**
              * Substation where the distribution and transmission networks meet and hence have mixed ownership and mixed operational control.
              *
              */
-            obj["gridSupplyPoint"] = base.parse_element (/<cim:LandPropertyKind.gridSupplyPoint>([\s\S]*?)<\/cim:LandPropertyKind.gridSupplyPoint>/g, sub, context, true);
+            base.parse_element (/<cim:LandPropertyKind.gridSupplyPoint>([\s\S]*?)<\/cim:LandPropertyKind.gridSupplyPoint>/g, obj, "gridSupplyPoint", base.to_string, sub, context);
+
             /**
              * Property owned or used by an external party that is not a customer.
              *
              */
-            obj["external"] = base.parse_element (/<cim:LandPropertyKind.external>([\s\S]*?)<\/cim:LandPropertyKind.external>/g, sub, context, true);
+            base.parse_element (/<cim:LandPropertyKind.external>([\s\S]*?)<\/cim:LandPropertyKind.external>/g, obj, "external", base.to_string, sub, context);
+
             bucket = context.parsed.LandPropertyKind;
             if (null == bucket)
                 context.parsed.LandPropertyKind = bucket = {};
@@ -198,9 +215,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "DemographicKind";
-            obj["urban"] = base.parse_element (/<cim:DemographicKind.urban>([\s\S]*?)<\/cim:DemographicKind.urban>/g, sub, context, true);
-            obj["rural"] = base.parse_element (/<cim:DemographicKind.rural>([\s\S]*?)<\/cim:DemographicKind.rural>/g, sub, context, true);
-            obj["other"] = base.parse_element (/<cim:DemographicKind.other>([\s\S]*?)<\/cim:DemographicKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:DemographicKind.urban>([\s\S]*?)<\/cim:DemographicKind.urban>/g, obj, "urban", base.to_string, sub, context);
+
+            base.parse_element (/<cim:DemographicKind.rural>([\s\S]*?)<\/cim:DemographicKind.rural>/g, obj, "rural", base.to_string, sub, context);
+
+            base.parse_element (/<cim:DemographicKind.other>([\s\S]*?)<\/cim:DemographicKind.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.DemographicKind;
             if (null == bucket)
                 context.parsed.DemographicKind = bucket = {};
@@ -226,20 +246,24 @@ define
              * Demographics around the site.
              *
              */
-            obj["demographicKind"] = base.parse_element (/<cim:LandProperty.demographicKind>([\s\S]*?)<\/cim:LandProperty.demographicKind>/g, sub, context, true);
+            base.parse_element (/<cim:LandProperty.demographicKind>([\s\S]*?)<\/cim:LandProperty.demographicKind>/g, obj, "demographicKind", base.to_string, sub, context);
+
             /**
              * Reference allocated by the governing organisation (such as municipality) to this piece of land that has a formal reference to Surveyor General's records.
              *
              * The governing organisation is specified in associated Organisation.
              *
              */
-            obj["externalRecordReference"] = base.parse_element (/<cim:LandProperty.externalRecordReference>([\s\S]*?)<\/cim:LandProperty.externalRecordReference>/g, sub, context, true);
+            base.parse_element (/<cim:LandProperty.externalRecordReference>([\s\S]*?)<\/cim:LandProperty.externalRecordReference>/g, obj, "externalRecordReference", base.to_string, sub, context);
+
             /**
              * Kind of (land) property, categorised according to its main functional use from the utility's perspective.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:LandProperty.kind>([\s\S]*?)<\/cim:LandProperty.kind>/g, sub, context, true);
-            obj["status"] = base.parse_element (/<cim:LandProperty.status>([\s\S]*?)<\/cim:LandProperty.status>/g, sub, context, true);
+            base.parse_element (/<cim:LandProperty.kind>([\s\S]*?)<\/cim:LandProperty.kind>/g, obj, "kind", base.to_string, sub, context);
+
+            base.parse_element (/<cim:LandProperty.status>([\s\S]*?)<\/cim:LandProperty.status>/g, obj, "status", base.to_string, sub, context);
+
             bucket = context.parsed.LandProperty;
             if (null == bucket)
                 context.parsed.LandProperty = bucket = {};
@@ -267,7 +291,8 @@ define
              * For example, it may be a deed book number, deed book page number, and parcel number.
              *
              */
-            obj["propertyData"] = base.parse_element (/<cim:RightOfWay.propertyData>([\s\S]*?)<\/cim:RightOfWay.propertyData>/g, sub, context, true);
+            base.parse_element (/<cim:RightOfWay.propertyData>([\s\S]*?)<\/cim:RightOfWay.propertyData>/g, obj, "propertyData", base.to_string, sub, context);
+
             bucket = context.parsed.RightOfWay;
             if (null == bucket)
                 context.parsed.RightOfWay = bucket = {};

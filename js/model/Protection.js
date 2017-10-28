@@ -25,17 +25,20 @@ define
              * Indicates the time lapse before the reclose step will execute a reclose.
              *
              */
-            obj["recloseDelay"] = base.parse_element (/<cim:RecloseSequence.recloseDelay>([\s\S]*?)<\/cim:RecloseSequence.recloseDelay>/g, sub, context, true);
+            base.parse_element (/<cim:RecloseSequence.recloseDelay>([\s\S]*?)<\/cim:RecloseSequence.recloseDelay>/g, obj, "recloseDelay", base.to_string, sub, context);
+
             /**
              * Indicates the ordinal position of the reclose step relative to other steps in the sequence.
              *
              */
-            obj["recloseStep"] = base.parse_element (/<cim:RecloseSequence.recloseStep>([\s\S]*?)<\/cim:RecloseSequence.recloseStep>/g, sub, context, true);
+            base.parse_element (/<cim:RecloseSequence.recloseStep>([\s\S]*?)<\/cim:RecloseSequence.recloseStep>/g, obj, "recloseStep", base.to_string, sub, context);
+
             /**
              * A breaker may have zero or more automatic reclosures after a trip occurs.
              *
              */
-            obj["ProtectedSwitch"] = base.parse_attribute (/<cim:RecloseSequence.ProtectedSwitch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RecloseSequence.ProtectedSwitch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectedSwitch", sub, context, true);
+
             bucket = context.parsed.RecloseSequence;
             if (null == bucket)
                 context.parsed.RecloseSequence = bucket = {};
@@ -59,37 +62,44 @@ define
              * Current limit number one 1 for inverse time pickup.
              *
              */
-            obj["currentLimit1"] = base.parse_element (/<cim:CurrentRelay.currentLimit1>([\s\S]*?)<\/cim:CurrentRelay.currentLimit1>/g, sub, context, true);
+            base.parse_element (/<cim:CurrentRelay.currentLimit1>([\s\S]*?)<\/cim:CurrentRelay.currentLimit1>/g, obj, "currentLimit1", base.to_string, sub, context);
+
             /**
              * Current limit number 2 for inverse time pickup.
              *
              */
-            obj["currentLimit2"] = base.parse_element (/<cim:CurrentRelay.currentLimit2>([\s\S]*?)<\/cim:CurrentRelay.currentLimit2>/g, sub, context, true);
+            base.parse_element (/<cim:CurrentRelay.currentLimit2>([\s\S]*?)<\/cim:CurrentRelay.currentLimit2>/g, obj, "currentLimit2", base.to_string, sub, context);
+
             /**
              * Current limit number 3 for inverse time pickup.
              *
              */
-            obj["currentLimit3"] = base.parse_element (/<cim:CurrentRelay.currentLimit3>([\s\S]*?)<\/cim:CurrentRelay.currentLimit3>/g, sub, context, true);
+            base.parse_element (/<cim:CurrentRelay.currentLimit3>([\s\S]*?)<\/cim:CurrentRelay.currentLimit3>/g, obj, "currentLimit3", base.to_string, sub, context);
+
             /**
              * Set true if the current relay has inverse time characteristic.
              *
              */
-            obj["inverseTimeFlag"] = base.to_boolean (base.parse_element (/<cim:CurrentRelay.inverseTimeFlag>([\s\S]*?)<\/cim:CurrentRelay.inverseTimeFlag>/g, sub, context, true));
+            base.parse_element (/<cim:CurrentRelay.inverseTimeFlag>([\s\S]*?)<\/cim:CurrentRelay.inverseTimeFlag>/g, obj, "inverseTimeFlag", base.to_boolean, sub, context);
+
             /**
              * Inverse time delay number 1 for current limit number 1.
              *
              */
-            obj["timeDelay1"] = base.parse_element (/<cim:CurrentRelay.timeDelay1>([\s\S]*?)<\/cim:CurrentRelay.timeDelay1>/g, sub, context, true);
+            base.parse_element (/<cim:CurrentRelay.timeDelay1>([\s\S]*?)<\/cim:CurrentRelay.timeDelay1>/g, obj, "timeDelay1", base.to_string, sub, context);
+
             /**
              * Inverse time delay number 2 for current limit number 2.
              *
              */
-            obj["timeDelay2"] = base.parse_element (/<cim:CurrentRelay.timeDelay2>([\s\S]*?)<\/cim:CurrentRelay.timeDelay2>/g, sub, context, true);
+            base.parse_element (/<cim:CurrentRelay.timeDelay2>([\s\S]*?)<\/cim:CurrentRelay.timeDelay2>/g, obj, "timeDelay2", base.to_string, sub, context);
+
             /**
              * Inverse time delay number 3 for current limit number 3.
              *
              */
-            obj["timeDelay3"] = base.parse_element (/<cim:CurrentRelay.timeDelay3>([\s\S]*?)<\/cim:CurrentRelay.timeDelay3>/g, sub, context, true);
+            base.parse_element (/<cim:CurrentRelay.timeDelay3>([\s\S]*?)<\/cim:CurrentRelay.timeDelay3>/g, obj, "timeDelay3", base.to_string, sub, context);
+
             bucket = context.parsed.CurrentRelay;
             if (null == bucket)
                 context.parsed.CurrentRelay = bucket = {};
@@ -115,17 +125,20 @@ define
              * The maximum allowable voltage vector phase angle difference across the open device.
              *
              */
-            obj["maxAngleDiff"] = base.parse_element (/<cim:SynchrocheckRelay.maxAngleDiff>([\s\S]*?)<\/cim:SynchrocheckRelay.maxAngleDiff>/g, sub, context, true);
+            base.parse_element (/<cim:SynchrocheckRelay.maxAngleDiff>([\s\S]*?)<\/cim:SynchrocheckRelay.maxAngleDiff>/g, obj, "maxAngleDiff", base.to_string, sub, context);
+
             /**
              * The maximum allowable frequency difference across the open device.
              *
              */
-            obj["maxFreqDiff"] = base.parse_element (/<cim:SynchrocheckRelay.maxFreqDiff>([\s\S]*?)<\/cim:SynchrocheckRelay.maxFreqDiff>/g, sub, context, true);
+            base.parse_element (/<cim:SynchrocheckRelay.maxFreqDiff>([\s\S]*?)<\/cim:SynchrocheckRelay.maxFreqDiff>/g, obj, "maxFreqDiff", base.to_string, sub, context);
+
             /**
              * The maximum allowable difference voltage across the open device.
              *
              */
-            obj["maxVoltDiff"] = base.parse_element (/<cim:SynchrocheckRelay.maxVoltDiff>([\s\S]*?)<\/cim:SynchrocheckRelay.maxVoltDiff>/g, sub, context, true);
+            base.parse_element (/<cim:SynchrocheckRelay.maxVoltDiff>([\s\S]*?)<\/cim:SynchrocheckRelay.maxVoltDiff>/g, obj, "maxVoltDiff", base.to_string, sub, context);
+
             bucket = context.parsed.SynchrocheckRelay;
             if (null == bucket)
                 context.parsed.SynchrocheckRelay = bucket = {};
@@ -151,32 +164,38 @@ define
              * The maximum allowable value.
              *
              */
-            obj["highLimit"] = base.to_float (base.parse_element (/<cim:ProtectionEquipment.highLimit>([\s\S]*?)<\/cim:ProtectionEquipment.highLimit>/g, sub, context, true));
+            base.parse_element (/<cim:ProtectionEquipment.highLimit>([\s\S]*?)<\/cim:ProtectionEquipment.highLimit>/g, obj, "highLimit", base.to_float, sub, context);
+
             /**
              * The minimum allowable value.
              *
              */
-            obj["lowLimit"] = base.to_float (base.parse_element (/<cim:ProtectionEquipment.lowLimit>([\s\S]*?)<\/cim:ProtectionEquipment.lowLimit>/g, sub, context, true));
+            base.parse_element (/<cim:ProtectionEquipment.lowLimit>([\s\S]*?)<\/cim:ProtectionEquipment.lowLimit>/g, obj, "lowLimit", base.to_float, sub, context);
+
             /**
              * Direction same as positive active power flow value.
              *
              */
-            obj["powerDirectionFlag"] = base.to_boolean (base.parse_element (/<cim:ProtectionEquipment.powerDirectionFlag>([\s\S]*?)<\/cim:ProtectionEquipment.powerDirectionFlag>/g, sub, context, true));
+            base.parse_element (/<cim:ProtectionEquipment.powerDirectionFlag>([\s\S]*?)<\/cim:ProtectionEquipment.powerDirectionFlag>/g, obj, "powerDirectionFlag", base.to_boolean, sub, context);
+
             /**
              * The time delay from detection of abnormal conditions to relay operation.
              *
              */
-            obj["relayDelayTime"] = base.parse_element (/<cim:ProtectionEquipment.relayDelayTime>([\s\S]*?)<\/cim:ProtectionEquipment.relayDelayTime>/g, sub, context, true);
+            base.parse_element (/<cim:ProtectionEquipment.relayDelayTime>([\s\S]*?)<\/cim:ProtectionEquipment.relayDelayTime>/g, obj, "relayDelayTime", base.to_string, sub, context);
+
             /**
              * The unit multiplier of the value.
              *
              */
-            obj["unitMultiplier"] = base.parse_element (/<cim:ProtectionEquipment.unitMultiplier>([\s\S]*?)<\/cim:ProtectionEquipment.unitMultiplier>/g, sub, context, true);
+            base.parse_element (/<cim:ProtectionEquipment.unitMultiplier>([\s\S]*?)<\/cim:ProtectionEquipment.unitMultiplier>/g, obj, "unitMultiplier", base.to_string, sub, context);
+
             /**
              * The unit of measure of the value.
              *
              */
-            obj["unitSymbol"] = base.parse_element (/<cim:ProtectionEquipment.unitSymbol>([\s\S]*?)<\/cim:ProtectionEquipment.unitSymbol>/g, sub, context, true);
+            base.parse_element (/<cim:ProtectionEquipment.unitSymbol>([\s\S]*?)<\/cim:ProtectionEquipment.unitSymbol>/g, obj, "unitSymbol", base.to_string, sub, context);
+
             bucket = context.parsed.ProtectionEquipment;
             if (null == bucket)
                 context.parsed.ProtectionEquipment = bucket = {};

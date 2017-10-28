@@ -49,8 +49,10 @@ define
 
             obj = parse_Model (context, sub);
             obj.cls = "DifferenceModel";
-            obj["forwardDifferences"] = base.parse_attribute (/<cim:DifferenceModel.forwardDifferences\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            obj["reverseDifferences"] = base.parse_attribute (/<cim:DifferenceModel.reverseDifferences\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:DifferenceModel.forwardDifferences\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "forwardDifferences", sub, context, true);
+
+            base.parse_attribute (/<cim:DifferenceModel.reverseDifferences\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "reverseDifferences", sub, context, true);
+
             bucket = context.parsed.DifferenceModel;
             if (null == bucket)
                 context.parsed.DifferenceModel = bucket = {};
@@ -66,8 +68,10 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ModelDescriptionCIMVersion";
-            obj["date"] = base.parse_element (/<cim:ModelDescriptionCIMVersion.date>([\s\S]*?)<\/cim:ModelDescriptionCIMVersion.date>/g, sub, context, true);
-            obj["version"] = base.parse_element (/<cim:ModelDescriptionCIMVersion.version>([\s\S]*?)<\/cim:ModelDescriptionCIMVersion.version>/g, sub, context, true);
+            base.parse_element (/<cim:ModelDescriptionCIMVersion.date>([\s\S]*?)<\/cim:ModelDescriptionCIMVersion.date>/g, obj, "date", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ModelDescriptionCIMVersion.version>([\s\S]*?)<\/cim:ModelDescriptionCIMVersion.version>/g, obj, "version", base.to_string, sub, context);
+
             bucket = context.parsed.ModelDescriptionCIMVersion;
             if (null == bucket)
                 context.parsed.ModelDescriptionCIMVersion = bucket = {};
@@ -102,9 +106,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Description";
-            obj["description"] = base.parse_element (/<cim:Description.description>([\s\S]*?)<\/cim:Description.description>/g, sub, context, true);
-            obj["name"] = base.parse_element (/<cim:Description.name>([\s\S]*?)<\/cim:Description.name>/g, sub, context, true);
-            obj["version"] = base.parse_element (/<cim:Description.version>([\s\S]*?)<\/cim:Description.version>/g, sub, context, true);
+            base.parse_element (/<cim:Description.description>([\s\S]*?)<\/cim:Description.description>/g, obj, "description", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Description.name>([\s\S]*?)<\/cim:Description.name>/g, obj, "name", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Description.version>([\s\S]*?)<\/cim:Description.version>/g, obj, "version", base.to_string, sub, context);
+
             bucket = context.parsed.Description;
             if (null == bucket)
                 context.parsed.Description = bucket = {};
@@ -120,7 +127,8 @@ define
 
             obj = parse_Description (context, sub);
             obj.cls = "DescriptionID";
-            obj["uri"] = base.parse_element (/<cim:DescriptionID.uri>([\s\S]*?)<\/cim:DescriptionID.uri>/g, sub, context, true);
+            base.parse_element (/<cim:DescriptionID.uri>([\s\S]*?)<\/cim:DescriptionID.uri>/g, obj, "uri", base.to_string, sub, context);
+
             bucket = context.parsed.DescriptionID;
             if (null == bucket)
                 context.parsed.DescriptionID = bucket = {};
@@ -151,12 +159,18 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Model";
-            obj["created"] = base.to_datetime (base.parse_element (/<cim:Model.created>([\s\S]*?)<\/cim:Model.created>/g, sub, context, true));
-            obj["scenarioTime"] = base.to_datetime (base.parse_element (/<cim:Model.scenarioTime>([\s\S]*?)<\/cim:Model.scenarioTime>/g, sub, context, true));
-            obj["description"] = base.parse_element (/<cim:Model.description>([\s\S]*?)<\/cim:Model.description>/g, sub, context, true);
-            obj["modelingAuthoritySet"] = base.parse_element (/<cim:Model.modelingAuthoritySet>([\s\S]*?)<\/cim:Model.modelingAuthoritySet>/g, sub, context, true);
-            obj["profile"] = base.parse_element (/<cim:Model.profile>([\s\S]*?)<\/cim:Model.profile>/g, sub, context, true);
-            obj["version"] = base.parse_element (/<cim:Model.version>([\s\S]*?)<\/cim:Model.version>/g, sub, context, true);
+            base.parse_element (/<cim:Model.created>([\s\S]*?)<\/cim:Model.created>/g, obj, "created", base.to_datetime, sub, context);
+
+            base.parse_element (/<cim:Model.scenarioTime>([\s\S]*?)<\/cim:Model.scenarioTime>/g, obj, "scenarioTime", base.to_datetime, sub, context);
+
+            base.parse_element (/<cim:Model.description>([\s\S]*?)<\/cim:Model.description>/g, obj, "description", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Model.modelingAuthoritySet>([\s\S]*?)<\/cim:Model.modelingAuthoritySet>/g, obj, "modelingAuthoritySet", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Model.profile>([\s\S]*?)<\/cim:Model.profile>/g, obj, "profile", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Model.version>([\s\S]*?)<\/cim:Model.version>/g, obj, "version", base.to_string, sub, context);
+
             bucket = context.parsed.Model;
             if (null == bucket)
                 context.parsed.Model = bucket = {};

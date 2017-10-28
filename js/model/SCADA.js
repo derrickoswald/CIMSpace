@@ -25,22 +25,26 @@ define
              * The maximum set point value accepted by the remote control point.
              *
              */
-            obj["actuatorMaximum"] = base.to_float (base.parse_element (/<cim:RemoteControl.actuatorMaximum>([\s\S]*?)<\/cim:RemoteControl.actuatorMaximum>/g, sub, context, true));
+            base.parse_element (/<cim:RemoteControl.actuatorMaximum>([\s\S]*?)<\/cim:RemoteControl.actuatorMaximum>/g, obj, "actuatorMaximum", base.to_float, sub, context);
+
             /**
              * The minimum set point value accepted by the remote control point.
              *
              */
-            obj["actuatorMinimum"] = base.to_float (base.parse_element (/<cim:RemoteControl.actuatorMinimum>([\s\S]*?)<\/cim:RemoteControl.actuatorMinimum>/g, sub, context, true));
+            base.parse_element (/<cim:RemoteControl.actuatorMinimum>([\s\S]*?)<\/cim:RemoteControl.actuatorMinimum>/g, obj, "actuatorMinimum", base.to_float, sub, context);
+
             /**
              * Set to true if the actuator is remotely controlled.
              *
              */
-            obj["remoteControlled"] = base.to_boolean (base.parse_element (/<cim:RemoteControl.remoteControlled>([\s\S]*?)<\/cim:RemoteControl.remoteControlled>/g, sub, context, true));
+            base.parse_element (/<cim:RemoteControl.remoteControlled>([\s\S]*?)<\/cim:RemoteControl.remoteControlled>/g, obj, "remoteControlled", base.to_boolean, sub, context);
+
             /**
              * The Control for the RemoteControl point.
              *
              */
-            obj["Control"] = base.parse_attribute (/<cim:RemoteControl.Control\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RemoteControl.Control\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Control", sub, context, true);
+
             bucket = context.parsed.RemoteControl;
             if (null == bucket)
                 context.parsed.RemoteControl = bucket = {};
@@ -64,22 +68,26 @@ define
              * Remote terminal unit.
              *
              */
-            obj["RTU"] = base.parse_element (/<cim:RemoteUnitType.RTU>([\s\S]*?)<\/cim:RemoteUnitType.RTU>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteUnitType.RTU>([\s\S]*?)<\/cim:RemoteUnitType.RTU>/g, obj, "RTU", base.to_string, sub, context);
+
             /**
              * Substation control system.
              *
              */
-            obj["SubstationControlSystem"] = base.parse_element (/<cim:RemoteUnitType.SubstationControlSystem>([\s\S]*?)<\/cim:RemoteUnitType.SubstationControlSystem>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteUnitType.SubstationControlSystem>([\s\S]*?)<\/cim:RemoteUnitType.SubstationControlSystem>/g, obj, "SubstationControlSystem", base.to_string, sub, context);
+
             /**
              * Control center.
              *
              */
-            obj["ControlCenter"] = base.parse_element (/<cim:RemoteUnitType.ControlCenter>([\s\S]*?)<\/cim:RemoteUnitType.ControlCenter>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteUnitType.ControlCenter>([\s\S]*?)<\/cim:RemoteUnitType.ControlCenter>/g, obj, "ControlCenter", base.to_string, sub, context);
+
             /**
              * Intelligent electronic device (IED).
              *
              */
-            obj["IED"] = base.parse_element (/<cim:RemoteUnitType.IED>([\s\S]*?)<\/cim:RemoteUnitType.IED>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteUnitType.IED>([\s\S]*?)<\/cim:RemoteUnitType.IED>/g, obj, "IED", base.to_string, sub, context);
+
             bucket = context.parsed.RemoteUnitType;
             if (null == bucket)
                 context.parsed.RemoteUnitType = bucket = {};
@@ -105,7 +113,8 @@ define
              * Remote unit this point belongs to.
              *
              */
-            obj["RemoteUnit"] = base.parse_attribute (/<cim:RemotePoint.RemoteUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RemotePoint.RemoteUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteUnit", sub, context, true);
+
             bucket = context.parsed.RemotePoint;
             if (null == bucket)
                 context.parsed.RemotePoint = bucket = {};
@@ -131,7 +140,8 @@ define
              * Type of remote unit.
              *
              */
-            obj["remoteUnitType"] = base.parse_element (/<cim:RemoteUnit.remoteUnitType>([\s\S]*?)<\/cim:RemoteUnit.remoteUnitType>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteUnit.remoteUnitType>([\s\S]*?)<\/cim:RemoteUnit.remoteUnitType>/g, obj, "remoteUnitType", base.to_string, sub, context);
+
             bucket = context.parsed.RemoteUnit;
             if (null == bucket)
                 context.parsed.RemoteUnit = bucket = {};
@@ -155,27 +165,32 @@ define
              * The smallest change in value to be reported.
              *
              */
-            obj["deadband"] = base.to_float (base.parse_element (/<cim:RemoteSource.deadband>([\s\S]*?)<\/cim:RemoteSource.deadband>/g, sub, context, true));
+            base.parse_element (/<cim:RemoteSource.deadband>([\s\S]*?)<\/cim:RemoteSource.deadband>/g, obj, "deadband", base.to_float, sub, context);
+
             /**
              * The time interval between scans.
              *
              */
-            obj["scanInterval"] = base.parse_element (/<cim:RemoteSource.scanInterval>([\s\S]*?)<\/cim:RemoteSource.scanInterval>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteSource.scanInterval>([\s\S]*?)<\/cim:RemoteSource.scanInterval>/g, obj, "scanInterval", base.to_string, sub, context);
+
             /**
              * The maximum value the telemetry item can return.
              *
              */
-            obj["sensorMaximum"] = base.to_float (base.parse_element (/<cim:RemoteSource.sensorMaximum>([\s\S]*?)<\/cim:RemoteSource.sensorMaximum>/g, sub, context, true));
+            base.parse_element (/<cim:RemoteSource.sensorMaximum>([\s\S]*?)<\/cim:RemoteSource.sensorMaximum>/g, obj, "sensorMaximum", base.to_float, sub, context);
+
             /**
              * The minimum value the telemetry item can return.
              *
              */
-            obj["sensorMinimum"] = base.to_float (base.parse_element (/<cim:RemoteSource.sensorMinimum>([\s\S]*?)<\/cim:RemoteSource.sensorMinimum>/g, sub, context, true));
+            base.parse_element (/<cim:RemoteSource.sensorMinimum>([\s\S]*?)<\/cim:RemoteSource.sensorMinimum>/g, obj, "sensorMinimum", base.to_float, sub, context);
+
             /**
              * Link to the physical telemetered point associated with this measurement.
              *
              */
-            obj["MeasurementValue"] = base.parse_attribute (/<cim:RemoteSource.MeasurementValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RemoteSource.MeasurementValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementValue", sub, context, true);
+
             bucket = context.parsed.RemoteSource;
             if (null == bucket)
                 context.parsed.RemoteSource = bucket = {};
@@ -199,17 +214,20 @@ define
              * The value is provided by input from the process I/O or being calculated from some function.
              *
              */
-            obj["PROCESS"] = base.parse_element (/<cim:Source.PROCESS>([\s\S]*?)<\/cim:Source.PROCESS>/g, sub, context, true);
+            base.parse_element (/<cim:Source.PROCESS>([\s\S]*?)<\/cim:Source.PROCESS>/g, obj, "PROCESS", base.to_string, sub, context);
+
             /**
              * The value contains a default value.
              *
              */
-            obj["DEFAULTED"] = base.parse_element (/<cim:Source.DEFAULTED>([\s\S]*?)<\/cim:Source.DEFAULTED>/g, sub, context, true);
+            base.parse_element (/<cim:Source.DEFAULTED>([\s\S]*?)<\/cim:Source.DEFAULTED>/g, obj, "DEFAULTED", base.to_string, sub, context);
+
             /**
              * The value is provided by input of an operator or by an automatic source.
              *
              */
-            obj["SUBSTITUTED"] = base.parse_element (/<cim:Source.SUBSTITUTED>([\s\S]*?)<\/cim:Source.SUBSTITUTED>/g, sub, context, true);
+            base.parse_element (/<cim:Source.SUBSTITUTED>([\s\S]*?)<\/cim:Source.SUBSTITUTED>/g, obj, "SUBSTITUTED", base.to_string, sub, context);
+
             bucket = context.parsed.Source;
             if (null == bucket)
                 context.parsed.Source = bucket = {};

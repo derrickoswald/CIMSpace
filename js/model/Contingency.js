@@ -23,7 +23,8 @@ define
              * Set true if must study this contingency.
              *
              */
-            obj["mustStudy"] = base.to_boolean (base.parse_element (/<cim:Contingency.mustStudy>([\s\S]*?)<\/cim:Contingency.mustStudy>/g, sub, context, true));
+            base.parse_element (/<cim:Contingency.mustStudy>([\s\S]*?)<\/cim:Contingency.mustStudy>/g, obj, "mustStudy", base.to_boolean, sub, context);
+
             bucket = context.parsed.Contingency;
             if (null == bucket)
                 context.parsed.Contingency = bucket = {};
@@ -47,7 +48,8 @@ define
              * A contingency element belongs to one contingency.
              *
              */
-            obj["Contingency"] = base.parse_attribute (/<cim:ContingencyElement.Contingency\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ContingencyElement.Contingency\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Contingency", sub, context, true);
+
             bucket = context.parsed.ContingencyElement;
             if (null == bucket)
                 context.parsed.ContingencyElement = bucket = {};
@@ -73,12 +75,14 @@ define
              * This status is independent of the case to which the contingency is originally applied, but defines the equipment status when the contingency is applied.
              *
              */
-            obj["contingentStatus"] = base.parse_element (/<cim:ContingencyEquipment.contingentStatus>([\s\S]*?)<\/cim:ContingencyEquipment.contingentStatus>/g, sub, context, true);
+            base.parse_element (/<cim:ContingencyEquipment.contingentStatus>([\s\S]*?)<\/cim:ContingencyEquipment.contingentStatus>/g, obj, "contingentStatus", base.to_string, sub, context);
+
             /**
              * The single piece of equipment to which to apply the contingency.
              *
              */
-            obj["Equipment"] = base.parse_attribute (/<cim:ContingencyEquipment.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ContingencyEquipment.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context, true);
+
             bucket = context.parsed.ContingencyEquipment;
             if (null == bucket)
                 context.parsed.ContingencyEquipment = bucket = {};
@@ -102,12 +106,14 @@ define
              * The equipment is in service.
              *
              */
-            obj["inService"] = base.parse_element (/<cim:ContingencyEquipmentStatusKind.inService>([\s\S]*?)<\/cim:ContingencyEquipmentStatusKind.inService>/g, sub, context, true);
+            base.parse_element (/<cim:ContingencyEquipmentStatusKind.inService>([\s\S]*?)<\/cim:ContingencyEquipmentStatusKind.inService>/g, obj, "inService", base.to_string, sub, context);
+
             /**
              * The equipment is to be taken out of service.
              *
              */
-            obj["outOfService"] = base.parse_element (/<cim:ContingencyEquipmentStatusKind.outOfService>([\s\S]*?)<\/cim:ContingencyEquipmentStatusKind.outOfService>/g, sub, context, true);
+            base.parse_element (/<cim:ContingencyEquipmentStatusKind.outOfService>([\s\S]*?)<\/cim:ContingencyEquipmentStatusKind.outOfService>/g, obj, "outOfService", base.to_string, sub, context);
+
             bucket = context.parsed.ContingencyEquipmentStatusKind;
             if (null == bucket)
                 context.parsed.ContingencyEquipmentStatusKind = bucket = {};

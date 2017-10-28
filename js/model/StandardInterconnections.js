@@ -25,47 +25,56 @@ define
              * Input is voltage frequency from remote terminal bus.
              *
              */
-            obj["remoteBusVoltageFrequency"] = base.parse_element (/<cim:RemoteSignalKind.remoteBusVoltageFrequency>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBusVoltageFrequency>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteSignalKind.remoteBusVoltageFrequency>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBusVoltageFrequency>/g, obj, "remoteBusVoltageFrequency", base.to_string, sub, context);
+
             /**
              * Input is voltage frequency deviation from remote terminal bus.
              *
              */
-            obj["remoteBusVoltageFrequencyDeviation"] = base.parse_element (/<cim:RemoteSignalKind.remoteBusVoltageFrequencyDeviation>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBusVoltageFrequencyDeviation>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteSignalKind.remoteBusVoltageFrequencyDeviation>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBusVoltageFrequencyDeviation>/g, obj, "remoteBusVoltageFrequencyDeviation", base.to_string, sub, context);
+
             /**
              * Input is frequency from remote terminal bus.
              *
              */
-            obj["remoteBusFrequency"] = base.parse_element (/<cim:RemoteSignalKind.remoteBusFrequency>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBusFrequency>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteSignalKind.remoteBusFrequency>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBusFrequency>/g, obj, "remoteBusFrequency", base.to_string, sub, context);
+
             /**
              * Input is frequency deviation from remote terminal bus.
              *
              */
-            obj["remoteBusFrequencyDeviation"] = base.parse_element (/<cim:RemoteSignalKind.remoteBusFrequencyDeviation>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBusFrequencyDeviation>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteSignalKind.remoteBusFrequencyDeviation>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBusFrequencyDeviation>/g, obj, "remoteBusFrequencyDeviation", base.to_string, sub, context);
+
             /**
              * Input is voltage amplitude from remote terminal bus.
              *
              */
-            obj["remoteBusVoltageAmplitude"] = base.parse_element (/<cim:RemoteSignalKind.remoteBusVoltageAmplitude>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBusVoltageAmplitude>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteSignalKind.remoteBusVoltageAmplitude>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBusVoltageAmplitude>/g, obj, "remoteBusVoltageAmplitude", base.to_string, sub, context);
+
             /**
              * Input is voltage from remote terminal bus.
              *
              */
-            obj["remoteBusVoltage"] = base.parse_element (/<cim:RemoteSignalKind.remoteBusVoltage>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBusVoltage>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteSignalKind.remoteBusVoltage>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBusVoltage>/g, obj, "remoteBusVoltage", base.to_string, sub, context);
+
             /**
              * Input is branch current amplitude from remote terminal bus.
              *
              */
-            obj["remoteBranchCurrentAmplitude"] = base.parse_element (/<cim:RemoteSignalKind.remoteBranchCurrentAmplitude>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBranchCurrentAmplitude>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteSignalKind.remoteBranchCurrentAmplitude>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBranchCurrentAmplitude>/g, obj, "remoteBranchCurrentAmplitude", base.to_string, sub, context);
+
             /**
              * Input is branch current amplitude derivative from remote terminal bus.
              *
              */
-            obj["remoteBusVoltageAmplitudeDerivative"] = base.parse_element (/<cim:RemoteSignalKind.remoteBusVoltageAmplitudeDerivative>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBusVoltageAmplitudeDerivative>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteSignalKind.remoteBusVoltageAmplitudeDerivative>([\s\S]*?)<\/cim:RemoteSignalKind.remoteBusVoltageAmplitudeDerivative>/g, obj, "remoteBusVoltageAmplitudeDerivative", base.to_string, sub, context);
+
             /**
              * Input is PU voltage derivative from remote terminal bus.
              *
              */
-            obj["remotePuBusVoltageDerivative"] = base.parse_element (/<cim:RemoteSignalKind.remotePuBusVoltageDerivative>([\s\S]*?)<\/cim:RemoteSignalKind.remotePuBusVoltageDerivative>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteSignalKind.remotePuBusVoltageDerivative>([\s\S]*?)<\/cim:RemoteSignalKind.remotePuBusVoltageDerivative>/g, obj, "remotePuBusVoltageDerivative", base.to_string, sub, context);
+
             bucket = context.parsed.RemoteSignalKind;
             if (null == bucket)
                 context.parsed.RemoteSignalKind = bucket = {};
@@ -89,52 +98,62 @@ define
              * Type of input signal.
              *
              */
-            obj["remoteSignalType"] = base.parse_element (/<cim:RemoteInputSignal.remoteSignalType>([\s\S]*?)<\/cim:RemoteInputSignal.remoteSignalType>/g, sub, context, true);
+            base.parse_element (/<cim:RemoteInputSignal.remoteSignalType>([\s\S]*?)<\/cim:RemoteInputSignal.remoteSignalType>/g, obj, "remoteSignalType", base.to_string, sub, context);
+
             /**
              * Remote terminal with which this input signal is associated.
              *
              */
-            obj["Terminal"] = base.parse_attribute (/<cim:RemoteInputSignal.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RemoteInputSignal.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context, true);
+
             /**
              * Voltage compensator model using this remote input signal.
              *
              */
-            obj["VoltageCompensatorDynamics"] = base.parse_attribute (/<cim:RemoteInputSignal.VoltageCompensatorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RemoteInputSignal.VoltageCompensatorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VoltageCompensatorDynamics", sub, context, true);
+
             /**
              * The wind plant using the remote signal.
              *
              */
-            obj["WindPlantDynamics"] = base.parse_attribute (/<cim:RemoteInputSignal.WindPlantDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RemoteInputSignal.WindPlantDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindPlantDynamics", sub, context, true);
+
             /**
              * Power system stabilizer model using this remote input signal.
              *
              */
-            obj["PowerSystemStabilizerDynamics"] = base.parse_attribute (/<cim:RemoteInputSignal.PowerSystemStabilizerDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RemoteInputSignal.PowerSystemStabilizerDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemStabilizerDynamics", sub, context, true);
+
             /**
              * Wind turbine Type 3 or 4 models using this remote input signal.
              *
              */
-            obj["WindTurbineType3or4Dynamics"] = base.parse_attribute (/<cim:RemoteInputSignal.WindTurbineType3or4Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RemoteInputSignal.WindTurbineType3or4Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3or4Dynamics", sub, context, true);
+
             /**
              * Underexcitation limiter model using this remote input signal.
              *
              */
-            obj["UnderexcitationLimiterDynamics"] = base.parse_attribute (/<cim:RemoteInputSignal.UnderexcitationLimiterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RemoteInputSignal.UnderexcitationLimiterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UnderexcitationLimiterDynamics", sub, context, true);
+
             /**
              * Wind generator Type 1 or Type 2 model using this remote input signal.
              *
              */
-            obj["WindTurbineType1or2Dynamics"] = base.parse_attribute (/<cim:RemoteInputSignal.WindTurbineType1or2Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RemoteInputSignal.WindTurbineType1or2Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType1or2Dynamics", sub, context, true);
+
             /**
              * Power Factor or VAr controller Type I model using this remote input signal.
              *
              */
-            obj["PFVArControllerType1Dynamics"] = base.parse_attribute (/<cim:RemoteInputSignal.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RemoteInputSignal.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType1Dynamics", sub, context, true);
+
             /**
              * Discontinuous excitation control model using this remote input signal.
              *
              */
-            obj["DiscontinuousExcitationControlDynamics"] = base.parse_attribute (/<cim:RemoteInputSignal.DiscontinuousExcitationControlDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RemoteInputSignal.DiscontinuousExcitationControlDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DiscontinuousExcitationControlDynamics", sub, context, true);
+
             bucket = context.parsed.RemoteInputSignal;
             if (null == bucket)
                 context.parsed.RemoteInputSignal = bucket = {};

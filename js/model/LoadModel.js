@@ -25,7 +25,8 @@ define
              * The LoadArea where the SubLoadArea belongs.
              *
              */
-            obj["LoadArea"] = base.parse_attribute (/<cim:SubLoadArea.LoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SubLoadArea.LoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadArea", sub, context, true);
+
             bucket = context.parsed.SubLoadArea;
             if (null == bucket)
                 context.parsed.SubLoadArea = bucket = {};
@@ -49,12 +50,14 @@ define
              * Date season ends.
              *
              */
-            obj["endDate"] = base.parse_element (/<cim:Season.endDate>([\s\S]*?)<\/cim:Season.endDate>/g, sub, context, true);
+            base.parse_element (/<cim:Season.endDate>([\s\S]*?)<\/cim:Season.endDate>/g, obj, "endDate", base.to_string, sub, context);
+
             /**
              * Date season starts.
              *
              */
-            obj["startDate"] = base.parse_element (/<cim:Season.startDate>([\s\S]*?)<\/cim:Season.startDate>/g, sub, context, true);
+            base.parse_element (/<cim:Season.startDate>([\s\S]*?)<\/cim:Season.startDate>/g, obj, "startDate", base.to_string, sub, context);
+
             bucket = context.parsed.Season;
             if (null == bucket)
                 context.parsed.Season = bucket = {};
@@ -78,12 +81,14 @@ define
              * Season for the Schedule.
              *
              */
-            obj["Season"] = base.parse_attribute (/<cim:SeasonDayTypeSchedule.Season\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SeasonDayTypeSchedule.Season\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Season", sub, context, true);
+
             /**
              * DayType for the Schedule.
              *
              */
-            obj["DayType"] = base.parse_attribute (/<cim:SeasonDayTypeSchedule.DayType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SeasonDayTypeSchedule.DayType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DayType", sub, context, true);
+
             bucket = context.parsed.SeasonDayTypeSchedule;
             if (null == bucket)
                 context.parsed.SeasonDayTypeSchedule = bucket = {};
@@ -107,7 +112,8 @@ define
              * The SubLoadArea where the Loadgroup belongs.
              *
              */
-            obj["SubLoadArea"] = base.parse_attribute (/<cim:LoadGroup.SubLoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:LoadGroup.SubLoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubLoadArea", sub, context, true);
+
             bucket = context.parsed.LoadGroup;
             if (null == bucket)
                 context.parsed.LoadGroup = bucket = {};
@@ -152,7 +158,8 @@ define
              * The control area specification that is used for the load forecast.
              *
              */
-            obj["ControlArea"] = base.parse_attribute (/<cim:EnergyArea.ControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:EnergyArea.ControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlArea", sub, context, true);
+
             bucket = context.parsed.EnergyArea;
             if (null == bucket)
                 context.parsed.EnergyArea = bucket = {};
@@ -176,7 +183,8 @@ define
              * Group of this ConformLoad.
              *
              */
-            obj["LoadGroup"] = base.parse_attribute (/<cim:NonConformLoad.LoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:NonConformLoad.LoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadGroup", sub, context, true);
+
             bucket = context.parsed.NonConformLoad;
             if (null == bucket)
                 context.parsed.NonConformLoad = bucket = {};
@@ -221,7 +229,8 @@ define
              * Group of this ConformLoad.
              *
              */
-            obj["LoadGroup"] = base.parse_attribute (/<cim:ConformLoad.LoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ConformLoad.LoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadGroup", sub, context, true);
+
             bucket = context.parsed.ConformLoad;
             if (null == bucket)
                 context.parsed.ConformLoad = bucket = {};
@@ -245,7 +254,8 @@ define
              * The NonConformLoadGroup where the NonConformLoadSchedule belongs.
              *
              */
-            obj["NonConformLoadGroup"] = base.parse_attribute (/<cim:NonConformLoadSchedule.NonConformLoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:NonConformLoadSchedule.NonConformLoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "NonConformLoadGroup", sub, context, true);
+
             bucket = context.parsed.NonConformLoadSchedule;
             if (null == bucket)
                 context.parsed.NonConformLoadSchedule = bucket = {};
@@ -311,57 +321,68 @@ define
              * If false, the coefficient model is to be used.
              *
              */
-            obj["exponentModel"] = base.to_boolean (base.parse_element (/<cim:LoadResponseCharacteristic.exponentModel>([\s\S]*?)<\/cim:LoadResponseCharacteristic.exponentModel>/g, sub, context, true));
+            base.parse_element (/<cim:LoadResponseCharacteristic.exponentModel>([\s\S]*?)<\/cim:LoadResponseCharacteristic.exponentModel>/g, obj, "exponentModel", base.to_boolean, sub, context);
+
             /**
              * Portion of active power load modeled as constant current.
              *
              */
-            obj["pConstantCurrent"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.pConstantCurrent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pConstantCurrent>/g, sub, context, true));
+            base.parse_element (/<cim:LoadResponseCharacteristic.pConstantCurrent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pConstantCurrent>/g, obj, "pConstantCurrent", base.to_float, sub, context);
+
             /**
              * Portion of active power load modeled as constant impedance.
              *
              */
-            obj["pConstantImpedance"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.pConstantImpedance>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pConstantImpedance>/g, sub, context, true));
+            base.parse_element (/<cim:LoadResponseCharacteristic.pConstantImpedance>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pConstantImpedance>/g, obj, "pConstantImpedance", base.to_float, sub, context);
+
             /**
              * Portion of active power load modeled as constant power.
              *
              */
-            obj["pConstantPower"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.pConstantPower>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pConstantPower>/g, sub, context, true));
+            base.parse_element (/<cim:LoadResponseCharacteristic.pConstantPower>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pConstantPower>/g, obj, "pConstantPower", base.to_float, sub, context);
+
             /**
              * Exponent of per unit frequency effecting active power.
              *
              */
-            obj["pFrequencyExponent"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.pFrequencyExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pFrequencyExponent>/g, sub, context, true));
+            base.parse_element (/<cim:LoadResponseCharacteristic.pFrequencyExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pFrequencyExponent>/g, obj, "pFrequencyExponent", base.to_float, sub, context);
+
             /**
              * Exponent of per unit voltage effecting real power.
              *
              */
-            obj["pVoltageExponent"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.pVoltageExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pVoltageExponent>/g, sub, context, true));
+            base.parse_element (/<cim:LoadResponseCharacteristic.pVoltageExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pVoltageExponent>/g, obj, "pVoltageExponent", base.to_float, sub, context);
+
             /**
              * Portion of reactive power load modeled as constant current.
              *
              */
-            obj["qConstantCurrent"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.qConstantCurrent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qConstantCurrent>/g, sub, context, true));
+            base.parse_element (/<cim:LoadResponseCharacteristic.qConstantCurrent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qConstantCurrent>/g, obj, "qConstantCurrent", base.to_float, sub, context);
+
             /**
              * Portion of reactive power load modeled as constant impedance.
              *
              */
-            obj["qConstantImpedance"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.qConstantImpedance>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qConstantImpedance>/g, sub, context, true));
+            base.parse_element (/<cim:LoadResponseCharacteristic.qConstantImpedance>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qConstantImpedance>/g, obj, "qConstantImpedance", base.to_float, sub, context);
+
             /**
              * Portion of reactive power load modeled as constant power.
              *
              */
-            obj["qConstantPower"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.qConstantPower>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qConstantPower>/g, sub, context, true));
+            base.parse_element (/<cim:LoadResponseCharacteristic.qConstantPower>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qConstantPower>/g, obj, "qConstantPower", base.to_float, sub, context);
+
             /**
              * Exponent of per unit frequency effecting reactive power.
              *
              */
-            obj["qFrequencyExponent"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.qFrequencyExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qFrequencyExponent>/g, sub, context, true));
+            base.parse_element (/<cim:LoadResponseCharacteristic.qFrequencyExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qFrequencyExponent>/g, obj, "qFrequencyExponent", base.to_float, sub, context);
+
             /**
              * Exponent of per unit voltage effecting reactive power.
              *
              */
-            obj["qVoltageExponent"] = base.to_float (base.parse_element (/<cim:LoadResponseCharacteristic.qVoltageExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qVoltageExponent>/g, sub, context, true));
+            base.parse_element (/<cim:LoadResponseCharacteristic.qVoltageExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qVoltageExponent>/g, obj, "qVoltageExponent", base.to_float, sub, context);
+
             bucket = context.parsed.LoadResponseCharacteristic;
             if (null == bucket)
                 context.parsed.LoadResponseCharacteristic = bucket = {};
@@ -385,12 +406,14 @@ define
              * First level (amount) of load to cut as a percentage of total zone load.
              *
              */
-            obj["cutLevel1"] = base.parse_element (/<cim:PowerCutZone.cutLevel1>([\s\S]*?)<\/cim:PowerCutZone.cutLevel1>/g, sub, context, true);
+            base.parse_element (/<cim:PowerCutZone.cutLevel1>([\s\S]*?)<\/cim:PowerCutZone.cutLevel1>/g, obj, "cutLevel1", base.to_string, sub, context);
+
             /**
              * Second level (amount) of load to cut as a percentage of total zone load.
              *
              */
-            obj["cutLevel2"] = base.parse_element (/<cim:PowerCutZone.cutLevel2>([\s\S]*?)<\/cim:PowerCutZone.cutLevel2>/g, sub, context, true);
+            base.parse_element (/<cim:PowerCutZone.cutLevel2>([\s\S]*?)<\/cim:PowerCutZone.cutLevel2>/g, obj, "cutLevel2", base.to_string, sub, context);
+
             bucket = context.parsed.PowerCutZone;
             if (null == bucket)
                 context.parsed.PowerCutZone = bucket = {};
@@ -435,7 +458,8 @@ define
              * The ConformLoadGroup where the ConformLoadSchedule belongs.
              *
              */
-            obj["ConformLoadGroup"] = base.parse_attribute (/<cim:ConformLoadSchedule.ConformLoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ConformLoadSchedule.ConformLoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConformLoadGroup", sub, context, true);
+
             bucket = context.parsed.ConformLoadSchedule;
             if (null == bucket)
                 context.parsed.ConformLoadSchedule = bucket = {};

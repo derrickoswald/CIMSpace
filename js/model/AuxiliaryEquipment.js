@@ -46,7 +46,8 @@ define
              * The Terminal at the equipment where the AuxiliaryEquipment is attached.
              *
              */
-            obj["Terminal"] = base.parse_attribute (/<cim:AuxiliaryEquipment.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:AuxiliaryEquipment.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context, true);
+
             bucket = context.parsed.AuxiliaryEquipment;
             if (null == bucket)
                 context.parsed.AuxiliaryEquipment = bucket = {};
@@ -70,12 +71,14 @@ define
              * The potential transformer is using induction coils to create secondary voltage.
              *
              */
-            obj["inductive"] = base.parse_element (/<cim:PotentialTransformerKind.inductive>([\s\S]*?)<\/cim:PotentialTransformerKind.inductive>/g, sub, context, true);
+            base.parse_element (/<cim:PotentialTransformerKind.inductive>([\s\S]*?)<\/cim:PotentialTransformerKind.inductive>/g, obj, "inductive", base.to_string, sub, context);
+
             /**
              * The potential transformer is using capacitive coupling to create secondary voltage.
              *
              */
-            obj["capacitiveCoupling"] = base.parse_element (/<cim:PotentialTransformerKind.capacitiveCoupling>([\s\S]*?)<\/cim:PotentialTransformerKind.capacitiveCoupling>/g, sub, context, true);
+            base.parse_element (/<cim:PotentialTransformerKind.capacitiveCoupling>([\s\S]*?)<\/cim:PotentialTransformerKind.capacitiveCoupling>/g, obj, "capacitiveCoupling", base.to_string, sub, context);
+
             bucket = context.parsed.PotentialTransformerKind;
             if (null == bucket)
                 context.parsed.PotentialTransformerKind = bucket = {};
@@ -139,22 +142,26 @@ define
              * PT accuracy classification.
              *
              */
-            obj["accuracyClass"] = base.parse_element (/<cim:PotentialTransformer.accuracyClass>([\s\S]*?)<\/cim:PotentialTransformer.accuracyClass>/g, sub, context, true);
+            base.parse_element (/<cim:PotentialTransformer.accuracyClass>([\s\S]*?)<\/cim:PotentialTransformer.accuracyClass>/g, obj, "accuracyClass", base.to_string, sub, context);
+
             /**
              * Nominal ratio between the primary and secondary voltage.
              *
              */
-            obj["nominalRatio"] = base.to_float (base.parse_element (/<cim:PotentialTransformer.nominalRatio>([\s\S]*?)<\/cim:PotentialTransformer.nominalRatio>/g, sub, context, true));
+            base.parse_element (/<cim:PotentialTransformer.nominalRatio>([\s\S]*?)<\/cim:PotentialTransformer.nominalRatio>/g, obj, "nominalRatio", base.to_float, sub, context);
+
             /**
              * Potential transformer (PT) classification covering burden.
              *
              */
-            obj["ptClass"] = base.parse_element (/<cim:PotentialTransformer.ptClass>([\s\S]*?)<\/cim:PotentialTransformer.ptClass>/g, sub, context, true);
+            base.parse_element (/<cim:PotentialTransformer.ptClass>([\s\S]*?)<\/cim:PotentialTransformer.ptClass>/g, obj, "ptClass", base.to_string, sub, context);
+
             /**
              * Potential transformer construction type.
              *
              */
-            obj["type"] = base.parse_element (/<cim:PotentialTransformer.type>([\s\S]*?)<\/cim:PotentialTransformer.type>/g, sub, context, true);
+            base.parse_element (/<cim:PotentialTransformer.type>([\s\S]*?)<\/cim:PotentialTransformer.type>/g, obj, "type", base.to_string, sub, context);
+
             bucket = context.parsed.PotentialTransformer;
             if (null == bucket)
                 context.parsed.PotentialTransformer = bucket = {};
@@ -201,27 +208,32 @@ define
              * CT accuracy classification.
              *
              */
-            obj["accuracyClass"] = base.parse_element (/<cim:CurrentTransformer.accuracyClass>([\s\S]*?)<\/cim:CurrentTransformer.accuracyClass>/g, sub, context, true);
+            base.parse_element (/<cim:CurrentTransformer.accuracyClass>([\s\S]*?)<\/cim:CurrentTransformer.accuracyClass>/g, obj, "accuracyClass", base.to_string, sub, context);
+
             /**
              * Percent of rated current for which the CT remains accurate within specified limits.
              *
              */
-            obj["accuracyLimit"] = base.parse_element (/<cim:CurrentTransformer.accuracyLimit>([\s\S]*?)<\/cim:CurrentTransformer.accuracyLimit>/g, sub, context, true);
+            base.parse_element (/<cim:CurrentTransformer.accuracyLimit>([\s\S]*?)<\/cim:CurrentTransformer.accuracyLimit>/g, obj, "accuracyLimit", base.to_string, sub, context);
+
             /**
              * CT classification; i.e. class 10P.
              *
              */
-            obj["ctClass"] = base.parse_element (/<cim:CurrentTransformer.ctClass>([\s\S]*?)<\/cim:CurrentTransformer.ctClass>/g, sub, context, true);
+            base.parse_element (/<cim:CurrentTransformer.ctClass>([\s\S]*?)<\/cim:CurrentTransformer.ctClass>/g, obj, "ctClass", base.to_string, sub, context);
+
             /**
              * Intended usage of the CT; i.e. metering, protection.
              *
              */
-            obj["usage"] = base.parse_element (/<cim:CurrentTransformer.usage>([\s\S]*?)<\/cim:CurrentTransformer.usage>/g, sub, context, true);
+            base.parse_element (/<cim:CurrentTransformer.usage>([\s\S]*?)<\/cim:CurrentTransformer.usage>/g, obj, "usage", base.to_string, sub, context);
+
             /**
              * Power burden of the CT core.
              *
              */
-            obj["coreBurden"] = base.parse_element (/<cim:CurrentTransformer.coreBurden>([\s\S]*?)<\/cim:CurrentTransformer.coreBurden>/g, sub, context, true);
+            base.parse_element (/<cim:CurrentTransformer.coreBurden>([\s\S]*?)<\/cim:CurrentTransformer.coreBurden>/g, obj, "coreBurden", base.to_string, sub, context);
+
             bucket = context.parsed.CurrentTransformer;
             if (null == bucket)
                 context.parsed.CurrentTransformer = bucket = {};

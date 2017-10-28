@@ -25,8 +25,10 @@ define
              * TopologicalNode.
              *
              */
-            obj["DCTopologicalNode"] = base.parse_attribute (/<cim:DCNode.DCTopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            obj["DCEquipmentContainer"] = base.parse_attribute (/<cim:DCNode.DCEquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:DCNode.DCTopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCTopologicalNode", sub, context, true);
+
+            base.parse_attribute (/<cim:DCNode.DCEquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCEquipmentContainer", sub, context, true);
+
             bucket = context.parsed.DCNode;
             if (null == bucket)
                 context.parsed.DCNode = bucket = {};
@@ -71,17 +73,20 @@ define
              * Active power control at AC side.
              *
              */
-            obj["activePower"] = base.parse_element (/<cim:CsPpccControlKind.activePower>([\s\S]*?)<\/cim:CsPpccControlKind.activePower>/g, sub, context, true);
+            base.parse_element (/<cim:CsPpccControlKind.activePower>([\s\S]*?)<\/cim:CsPpccControlKind.activePower>/g, obj, "activePower", base.to_string, sub, context);
+
             /**
              * DC voltage control.
              *
              */
-            obj["dcVoltage"] = base.parse_element (/<cim:CsPpccControlKind.dcVoltage>([\s\S]*?)<\/cim:CsPpccControlKind.dcVoltage>/g, sub, context, true);
+            base.parse_element (/<cim:CsPpccControlKind.dcVoltage>([\s\S]*?)<\/cim:CsPpccControlKind.dcVoltage>/g, obj, "dcVoltage", base.to_string, sub, context);
+
             /**
              * DC current control
              *
              */
-            obj["dcCurrent"] = base.parse_element (/<cim:CsPpccControlKind.dcCurrent>([\s\S]*?)<\/cim:CsPpccControlKind.dcCurrent>/g, sub, context, true);
+            base.parse_element (/<cim:CsPpccControlKind.dcCurrent>([\s\S]*?)<\/cim:CsPpccControlKind.dcCurrent>/g, obj, "dcCurrent", base.to_string, sub, context);
+
             bucket = context.parsed.CsPpccControlKind;
             if (null == bucket)
                 context.parsed.CsPpccControlKind = bucket = {};
@@ -105,68 +110,80 @@ define
              * Kind of control of real power and/or DC voltage.
              *
              */
-            obj["pPccControl"] = base.parse_element (/<cim:VsConverter.pPccControl>([\s\S]*?)<\/cim:VsConverter.pPccControl>/g, sub, context, true);
+            base.parse_element (/<cim:VsConverter.pPccControl>([\s\S]*?)<\/cim:VsConverter.pPccControl>/g, obj, "pPccControl", base.to_string, sub, context);
+
             /**
              * Reactive power sharing factor among parallel converters on Uac control.
              *
              */
-            obj["qShare"] = base.parse_element (/<cim:VsConverter.qShare>([\s\S]*?)<\/cim:VsConverter.qShare>/g, sub, context, true);
+            base.parse_element (/<cim:VsConverter.qShare>([\s\S]*?)<\/cim:VsConverter.qShare>/g, obj, "qShare", base.to_string, sub, context);
+
             /**
              * Reactive power injection target in AC grid, at point of common coupling.
              *
              */
-            obj["targetQpcc"] = base.parse_element (/<cim:VsConverter.targetQpcc>([\s\S]*?)<\/cim:VsConverter.targetQpcc>/g, sub, context, true);
+            base.parse_element (/<cim:VsConverter.targetQpcc>([\s\S]*?)<\/cim:VsConverter.targetQpcc>/g, obj, "targetQpcc", base.to_string, sub, context);
+
             /**
              * Voltage target in AC grid, at point of common coupling.
              *
              */
-            obj["targetUpcc"] = base.parse_element (/<cim:VsConverter.targetUpcc>([\s\S]*?)<\/cim:VsConverter.targetUpcc>/g, sub, context, true);
+            base.parse_element (/<cim:VsConverter.targetUpcc>([\s\S]*?)<\/cim:VsConverter.targetUpcc>/g, obj, "targetUpcc", base.to_string, sub, context);
+
             /**
              * Compensation constant.
              *
              * Used to compensate for voltage drop when controlling voltage at a distant bus.
              *
              */
-            obj["droopCompensation"] = base.parse_element (/<cim:VsConverter.droopCompensation>([\s\S]*?)<\/cim:VsConverter.droopCompensation>/g, sub, context, true);
+            base.parse_element (/<cim:VsConverter.droopCompensation>([\s\S]*?)<\/cim:VsConverter.droopCompensation>/g, obj, "droopCompensation", base.to_string, sub, context);
+
             /**
              * Droop constant; pu value is obtained as D [kV/MW] x Sb / Ubdc.
              *
              */
-            obj["droop"] = base.parse_element (/<cim:VsConverter.droop>([\s\S]*?)<\/cim:VsConverter.droop>/g, sub, context, true);
+            base.parse_element (/<cim:VsConverter.droop>([\s\S]*?)<\/cim:VsConverter.droop>/g, obj, "droop", base.to_string, sub, context);
+
             /**
              * Angle between uf and uc.
              *
              * Converter state variable used in power flow.
              *
              */
-            obj["delta"] = base.parse_element (/<cim:VsConverter.delta>([\s\S]*?)<\/cim:VsConverter.delta>/g, sub, context, true);
+            base.parse_element (/<cim:VsConverter.delta>([\s\S]*?)<\/cim:VsConverter.delta>/g, obj, "delta", base.to_string, sub, context);
+
             /**
              * Line-to-line voltage on the valve side of the converter transformer.
              *
              * Converter state variable, result from power flow.
              *
              */
-            obj["uf"] = base.parse_element (/<cim:VsConverter.uf>([\s\S]*?)<\/cim:VsConverter.uf>/g, sub, context, true);
+            base.parse_element (/<cim:VsConverter.uf>([\s\S]*?)<\/cim:VsConverter.uf>/g, obj, "uf", base.to_string, sub, context);
+
             /**
              * The maximum current through a valve.
              *
              * This current limit is the basis for calculating the capability diagram. VSC  configuration data.
              *
              */
-            obj["maxValveCurrent"] = base.parse_element (/<cim:VsConverter.maxValveCurrent>([\s\S]*?)<\/cim:VsConverter.maxValveCurrent>/g, sub, context, true);
+            base.parse_element (/<cim:VsConverter.maxValveCurrent>([\s\S]*?)<\/cim:VsConverter.maxValveCurrent>/g, obj, "maxValveCurrent", base.to_string, sub, context);
+
             /**
              * The max quotient between the AC converter voltage (Uc) and DC voltage (Ud).
              *
              * A factor typically less than 1. VSC configuration data used in power flow.
              *
              */
-            obj["maxModulationIndex"] = base.to_float (base.parse_element (/<cim:VsConverter.maxModulationIndex>([\s\S]*?)<\/cim:VsConverter.maxModulationIndex>/g, sub, context, true));
-            obj["qPccControl"] = base.parse_element (/<cim:VsConverter.qPccControl>([\s\S]*?)<\/cim:VsConverter.qPccControl>/g, sub, context, true);
+            base.parse_element (/<cim:VsConverter.maxModulationIndex>([\s\S]*?)<\/cim:VsConverter.maxModulationIndex>/g, obj, "maxModulationIndex", base.to_float, sub, context);
+
+            base.parse_element (/<cim:VsConverter.qPccControl>([\s\S]*?)<\/cim:VsConverter.qPccControl>/g, obj, "qPccControl", base.to_string, sub, context);
+
             /**
              * Capability curve of this converter.
              *
              */
-            obj["CapabilityCurve"] = base.parse_attribute (/<cim:VsConverter.CapabilityCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:VsConverter.CapabilityCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CapabilityCurve", sub, context, true);
+
             bucket = context.parsed.VsConverter;
             if (null == bucket)
                 context.parsed.VsConverter = bucket = {};
@@ -190,17 +207,20 @@ define
              * Bipolar operation.
              *
              */
-            obj["bipolar"] = base.parse_element (/<cim:DCConverterOperatingModeKind.bipolar>([\s\S]*?)<\/cim:DCConverterOperatingModeKind.bipolar>/g, sub, context, true);
+            base.parse_element (/<cim:DCConverterOperatingModeKind.bipolar>([\s\S]*?)<\/cim:DCConverterOperatingModeKind.bipolar>/g, obj, "bipolar", base.to_string, sub, context);
+
             /**
              * Monopolar operation with metallic return
              *
              */
-            obj["monopolarMetallicReturn"] = base.parse_element (/<cim:DCConverterOperatingModeKind.monopolarMetallicReturn>([\s\S]*?)<\/cim:DCConverterOperatingModeKind.monopolarMetallicReturn>/g, sub, context, true);
+            base.parse_element (/<cim:DCConverterOperatingModeKind.monopolarMetallicReturn>([\s\S]*?)<\/cim:DCConverterOperatingModeKind.monopolarMetallicReturn>/g, obj, "monopolarMetallicReturn", base.to_string, sub, context);
+
             /**
              * Monopolar operation with ground return
              *
              */
-            obj["monopolarGroundReturn"] = base.parse_element (/<cim:DCConverterOperatingModeKind.monopolarGroundReturn>([\s\S]*?)<\/cim:DCConverterOperatingModeKind.monopolarGroundReturn>/g, sub, context, true);
+            base.parse_element (/<cim:DCConverterOperatingModeKind.monopolarGroundReturn>([\s\S]*?)<\/cim:DCConverterOperatingModeKind.monopolarGroundReturn>/g, obj, "monopolarGroundReturn", base.to_string, sub, context);
+
             bucket = context.parsed.DCConverterOperatingModeKind;
             if (null == bucket)
                 context.parsed.DCConverterOperatingModeKind = bucket = {};
@@ -235,9 +255,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "VsQpccControlKind";
-            obj["reactivePcc"] = base.parse_element (/<cim:VsQpccControlKind.reactivePcc>([\s\S]*?)<\/cim:VsQpccControlKind.reactivePcc>/g, sub, context, true);
-            obj["voltagePcc"] = base.parse_element (/<cim:VsQpccControlKind.voltagePcc>([\s\S]*?)<\/cim:VsQpccControlKind.voltagePcc>/g, sub, context, true);
-            obj["powerFactorPcc"] = base.parse_element (/<cim:VsQpccControlKind.powerFactorPcc>([\s\S]*?)<\/cim:VsQpccControlKind.powerFactorPcc>/g, sub, context, true);
+            base.parse_element (/<cim:VsQpccControlKind.reactivePcc>([\s\S]*?)<\/cim:VsQpccControlKind.reactivePcc>/g, obj, "reactivePcc", base.to_string, sub, context);
+
+            base.parse_element (/<cim:VsQpccControlKind.voltagePcc>([\s\S]*?)<\/cim:VsQpccControlKind.voltagePcc>/g, obj, "voltagePcc", base.to_string, sub, context);
+
+            base.parse_element (/<cim:VsQpccControlKind.powerFactorPcc>([\s\S]*?)<\/cim:VsQpccControlKind.powerFactorPcc>/g, obj, "powerFactorPcc", base.to_string, sub, context);
+
             bucket = context.parsed.VsQpccControlKind;
             if (null == bucket)
                 context.parsed.VsQpccControlKind = bucket = {};
@@ -263,19 +286,22 @@ define
              * Resistance of the DC device.
              *
              */
-            obj["resistance"] = base.parse_element (/<cim:DCSeriesDevice.resistance>([\s\S]*?)<\/cim:DCSeriesDevice.resistance>/g, sub, context, true);
+            base.parse_element (/<cim:DCSeriesDevice.resistance>([\s\S]*?)<\/cim:DCSeriesDevice.resistance>/g, obj, "resistance", base.to_string, sub, context);
+
             /**
              * Inductance of the device.
              *
              */
-            obj["inductance"] = base.parse_element (/<cim:DCSeriesDevice.inductance>([\s\S]*?)<\/cim:DCSeriesDevice.inductance>/g, sub, context, true);
+            base.parse_element (/<cim:DCSeriesDevice.inductance>([\s\S]*?)<\/cim:DCSeriesDevice.inductance>/g, obj, "inductance", base.to_string, sub, context);
+
             /**
              * Rated DC device voltage.
              *
              * Converter configuration data used in power flow.
              *
              */
-            obj["ratedUdc"] = base.parse_element (/<cim:DCSeriesDevice.ratedUdc>([\s\S]*?)<\/cim:DCSeriesDevice.ratedUdc>/g, sub, context, true);
+            base.parse_element (/<cim:DCSeriesDevice.ratedUdc>([\s\S]*?)<\/cim:DCSeriesDevice.ratedUdc>/g, obj, "ratedUdc", base.to_string, sub, context);
+
             bucket = context.parsed.DCSeriesDevice;
             if (null == bucket)
                 context.parsed.DCSeriesDevice = bucket = {};
@@ -297,14 +323,16 @@ define
 
             obj = Core.parse_ACDCTerminal (context, sub);
             obj.cls = "DCBaseTerminal";
-            obj["DCNode"] = base.parse_attribute (/<cim:DCBaseTerminal.DCNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:DCBaseTerminal.DCNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCNode", sub, context, true);
+
             /**
              * See association end Terminal.
              *
              * TopologicalNode.
              *
              */
-            obj["DCTopologicalNode"] = base.parse_attribute (/<cim:DCBaseTerminal.DCTopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:DCBaseTerminal.DCTopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCTopologicalNode", sub, context, true);
+
             bucket = context.parsed.DCBaseTerminal;
             if (null == bucket)
                 context.parsed.DCBaseTerminal = bucket = {};
@@ -347,52 +375,60 @@ define
              * Base apparent power of the converter pole.
              *
              */
-            obj["baseS"] = base.parse_element (/<cim:ACDCConverter.baseS>([\s\S]*?)<\/cim:ACDCConverter.baseS>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.baseS>([\s\S]*?)<\/cim:ACDCConverter.baseS>/g, obj, "baseS", base.to_string, sub, context);
+
             /**
              * Switching losses, relative to the base apparent power 'baseS'.
              *
              * Refer to poleLossP.
              *
              */
-            obj["switchingLoss"] = base.parse_element (/<cim:ACDCConverter.switchingLoss>([\s\S]*?)<\/cim:ACDCConverter.switchingLoss>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.switchingLoss>([\s\S]*?)<\/cim:ACDCConverter.switchingLoss>/g, obj, "switchingLoss", base.to_string, sub, context);
+
             /**
              * Real power injection target in AC grid, at point of common coupling.
              *
              */
-            obj["targetPpcc"] = base.parse_element (/<cim:ACDCConverter.targetPpcc>([\s\S]*?)<\/cim:ACDCConverter.targetPpcc>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.targetPpcc>([\s\S]*?)<\/cim:ACDCConverter.targetPpcc>/g, obj, "targetPpcc", base.to_string, sub, context);
+
             /**
              * Target value for DC voltage magnitude.
              *
              */
-            obj["targetUdc"] = base.parse_element (/<cim:ACDCConverter.targetUdc>([\s\S]*?)<\/cim:ACDCConverter.targetUdc>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.targetUdc>([\s\S]*?)<\/cim:ACDCConverter.targetUdc>/g, obj, "targetUdc", base.to_string, sub, context);
+
             /**
              * Converter DC current, also called Id.
              *
              * Converter state variable, result from power flow.
              *
              */
-            obj["idc"] = base.parse_element (/<cim:ACDCConverter.idc>([\s\S]*?)<\/cim:ACDCConverter.idc>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.idc>([\s\S]*?)<\/cim:ACDCConverter.idc>/g, obj, "idc", base.to_string, sub, context);
+
             /**
              * Active power loss in pole at no power transfer.
              *
              * Converter configuration data used in power flow.
              *
              */
-            obj["idleLoss"] = base.parse_element (/<cim:ACDCConverter.idleLoss>([\s\S]*?)<\/cim:ACDCConverter.idleLoss>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.idleLoss>([\s\S]*?)<\/cim:ACDCConverter.idleLoss>/g, obj, "idleLoss", base.to_string, sub, context);
+
             /**
              * The maximum voltage on the DC side at which the converter should operate.
              *
              * Converter configuration data used in power flow.
              *
              */
-            obj["maxUdc"] = base.parse_element (/<cim:ACDCConverter.maxUdc>([\s\S]*?)<\/cim:ACDCConverter.maxUdc>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.maxUdc>([\s\S]*?)<\/cim:ACDCConverter.maxUdc>/g, obj, "maxUdc", base.to_string, sub, context);
+
             /**
              * Min allowed converter DC voltage.
              *
              * Converter configuration data used in power flow.
              *
              */
-            obj["minUdc"] = base.parse_element (/<cim:ACDCConverter.minUdc>([\s\S]*?)<\/cim:ACDCConverter.minUdc>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.minUdc>([\s\S]*?)<\/cim:ACDCConverter.minUdc>/g, obj, "minUdc", base.to_string, sub, context);
+
             /**
              * The active power loss at a DC Pole
              * &equals; idleLoss + switchingLoss*|Idc| + resitiveLoss*Idc<sup>2</sup>
@@ -403,70 +439,80 @@ define
              * Converter state variable used in power flow.
              *
              */
-            obj["poleLossP"] = base.parse_element (/<cim:ACDCConverter.poleLossP>([\s\S]*?)<\/cim:ACDCConverter.poleLossP>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.poleLossP>([\s\S]*?)<\/cim:ACDCConverter.poleLossP>/g, obj, "poleLossP", base.to_string, sub, context);
+
             /**
              * Rated converter DC voltage, also called UdN.
              *
              * Converter configuration data used in power flow.
              *
              */
-            obj["ratedUdc"] = base.parse_element (/<cim:ACDCConverter.ratedUdc>([\s\S]*?)<\/cim:ACDCConverter.ratedUdc>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.ratedUdc>([\s\S]*?)<\/cim:ACDCConverter.ratedUdc>/g, obj, "ratedUdc", base.to_string, sub, context);
+
             /**
              * Converter configuration data used in power flow.
              *
              * Refer to poleLossP.
              *
              */
-            obj["resistiveLoss"] = base.parse_element (/<cim:ACDCConverter.resistiveLoss>([\s\S]*?)<\/cim:ACDCConverter.resistiveLoss>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.resistiveLoss>([\s\S]*?)<\/cim:ACDCConverter.resistiveLoss>/g, obj, "resistiveLoss", base.to_string, sub, context);
+
             /**
              * Line-to-line converter voltage, the voltage at the AC side of the valve.
              *
              * Converter state variable, result from power flow.
              *
              */
-            obj["uc"] = base.parse_element (/<cim:ACDCConverter.uc>([\s\S]*?)<\/cim:ACDCConverter.uc>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.uc>([\s\S]*?)<\/cim:ACDCConverter.uc>/g, obj, "uc", base.to_string, sub, context);
+
             /**
              * Converter voltage at the DC side, also called Ud.
              *
              * Converter state variable, result from power flow.
              *
              */
-            obj["udc"] = base.parse_element (/<cim:ACDCConverter.udc>([\s\S]*?)<\/cim:ACDCConverter.udc>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.udc>([\s\S]*?)<\/cim:ACDCConverter.udc>/g, obj, "udc", base.to_string, sub, context);
+
             /**
              * Valve threshold voltage, also called Uvalve.
              *
              * Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depends on numberOfValves * valveU0.
              *
              */
-            obj["valveU0"] = base.parse_element (/<cim:ACDCConverter.valveU0>([\s\S]*?)<\/cim:ACDCConverter.valveU0>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.valveU0>([\s\S]*?)<\/cim:ACDCConverter.valveU0>/g, obj, "valveU0", base.to_string, sub, context);
+
             /**
              * Number of valves in the converter.
              *
              * Used in loss calculations.
              *
              */
-            obj["numberOfValves"] = base.parse_element (/<cim:ACDCConverter.numberOfValves>([\s\S]*?)<\/cim:ACDCConverter.numberOfValves>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.numberOfValves>([\s\S]*?)<\/cim:ACDCConverter.numberOfValves>/g, obj, "numberOfValves", base.to_string, sub, context);
+
             /**
              * Active power at the point of common coupling.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["p"] = base.parse_element (/<cim:ACDCConverter.p>([\s\S]*?)<\/cim:ACDCConverter.p>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.p>([\s\S]*?)<\/cim:ACDCConverter.p>/g, obj, "p", base.to_string, sub, context);
+
             /**
              * Reactive power at the point of common coupling.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["q"] = base.parse_element (/<cim:ACDCConverter.q>([\s\S]*?)<\/cim:ACDCConverter.q>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverter.q>([\s\S]*?)<\/cim:ACDCConverter.q>/g, obj, "q", base.to_string, sub, context);
+
             /**
              * Point of common coupling terminal for this converter DC side.
              *
              * It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement must be the sum of all flows into the transformer.
              *
              */
-            obj["PccTerminal"] = base.parse_attribute (/<cim:ACDCConverter.PccTerminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ACDCConverter.PccTerminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PccTerminal", sub, context, true);
+
             bucket = context.parsed.ACDCConverter;
             if (null == bucket)
                 context.parsed.ACDCConverter = bucket = {};
@@ -492,19 +538,22 @@ define
              * Capacitance of the DC shunt.
              *
              */
-            obj["capacitance"] = base.parse_element (/<cim:DCShunt.capacitance>([\s\S]*?)<\/cim:DCShunt.capacitance>/g, sub, context, true);
+            base.parse_element (/<cim:DCShunt.capacitance>([\s\S]*?)<\/cim:DCShunt.capacitance>/g, obj, "capacitance", base.to_string, sub, context);
+
             /**
              * Rated DC device voltage.
              *
              * Converter configuration data used in power flow.
              *
              */
-            obj["ratedUdc"] = base.parse_element (/<cim:DCShunt.ratedUdc>([\s\S]*?)<\/cim:DCShunt.ratedUdc>/g, sub, context, true);
+            base.parse_element (/<cim:DCShunt.ratedUdc>([\s\S]*?)<\/cim:DCShunt.ratedUdc>/g, obj, "ratedUdc", base.to_string, sub, context);
+
             /**
              * Resistance of the DC device.
              *
              */
-            obj["resistance"] = base.parse_element (/<cim:DCShunt.resistance>([\s\S]*?)<\/cim:DCShunt.resistance>/g, sub, context, true);
+            base.parse_element (/<cim:DCShunt.resistance>([\s\S]*?)<\/cim:DCShunt.resistance>/g, obj, "resistance", base.to_string, sub, context);
+
             bucket = context.parsed.DCShunt;
             if (null == bucket)
                 context.parsed.DCShunt = bucket = {};
@@ -528,31 +577,36 @@ define
              * Resistance of the DC line segment.
              *
              */
-            obj["resistance"] = base.parse_element (/<cim:DCLineSegment.resistance>([\s\S]*?)<\/cim:DCLineSegment.resistance>/g, sub, context, true);
+            base.parse_element (/<cim:DCLineSegment.resistance>([\s\S]*?)<\/cim:DCLineSegment.resistance>/g, obj, "resistance", base.to_string, sub, context);
+
             /**
              * Capacitance of the DC line segment.
              *
              * Significant for cables only.
              *
              */
-            obj["capacitance"] = base.parse_element (/<cim:DCLineSegment.capacitance>([\s\S]*?)<\/cim:DCLineSegment.capacitance>/g, sub, context, true);
+            base.parse_element (/<cim:DCLineSegment.capacitance>([\s\S]*?)<\/cim:DCLineSegment.capacitance>/g, obj, "capacitance", base.to_string, sub, context);
+
             /**
              * Inductance of the DC line segment.
              *
              * Neglectable compared with DCSeriesDevice used for smoothing.
              *
              */
-            obj["inductance"] = base.parse_element (/<cim:DCLineSegment.inductance>([\s\S]*?)<\/cim:DCLineSegment.inductance>/g, sub, context, true);
+            base.parse_element (/<cim:DCLineSegment.inductance>([\s\S]*?)<\/cim:DCLineSegment.inductance>/g, obj, "inductance", base.to_string, sub, context);
+
             /**
              * Segment length for calculating line section capabilities.
              *
              */
-            obj["length"] = base.parse_element (/<cim:DCLineSegment.length>([\s\S]*?)<\/cim:DCLineSegment.length>/g, sub, context, true);
+            base.parse_element (/<cim:DCLineSegment.length>([\s\S]*?)<\/cim:DCLineSegment.length>/g, obj, "length", base.to_string, sub, context);
+
             /**
              * Set of per-length parameters for this line segment.
              *
              */
-            obj["PerLengthParameter"] = base.parse_attribute (/<cim:DCLineSegment.PerLengthParameter\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:DCLineSegment.PerLengthParameter\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PerLengthParameter", sub, context, true);
+
             bucket = context.parsed.DCLineSegment;
             if (null == bucket)
                 context.parsed.DCLineSegment = bucket = {};
@@ -572,17 +626,20 @@ define
              * Capacitance per unit of length of the DC line segment; significant for cables only.
              *
              */
-            obj["capacitance"] = base.parse_element (/<cim:PerLengthDCLineParameter.capacitance>([\s\S]*?)<\/cim:PerLengthDCLineParameter.capacitance>/g, sub, context, true);
+            base.parse_element (/<cim:PerLengthDCLineParameter.capacitance>([\s\S]*?)<\/cim:PerLengthDCLineParameter.capacitance>/g, obj, "capacitance", base.to_string, sub, context);
+
             /**
              * Inductance per unit of length of the DC line segment.
              *
              */
-            obj["inductance"] = base.parse_element (/<cim:PerLengthDCLineParameter.inductance>([\s\S]*?)<\/cim:PerLengthDCLineParameter.inductance>/g, sub, context, true);
+            base.parse_element (/<cim:PerLengthDCLineParameter.inductance>([\s\S]*?)<\/cim:PerLengthDCLineParameter.inductance>/g, obj, "inductance", base.to_string, sub, context);
+
             /**
              * Resistance per length of the DC line segment.
              *
              */
-            obj["resistance"] = base.parse_element (/<cim:PerLengthDCLineParameter.resistance>([\s\S]*?)<\/cim:PerLengthDCLineParameter.resistance>/g, sub, context, true);
+            base.parse_element (/<cim:PerLengthDCLineParameter.resistance>([\s\S]*?)<\/cim:PerLengthDCLineParameter.resistance>/g, obj, "resistance", base.to_string, sub, context);
+
             bucket = context.parsed.PerLengthDCLineParameter;
             if (null == bucket)
                 context.parsed.PerLengthDCLineParameter = bucket = {};
@@ -606,27 +663,32 @@ define
              * Control variable (target) is real power at PCC bus.
              *
              */
-            obj["pPcc"] = base.parse_element (/<cim:VsPpccControlKind.pPcc>([\s\S]*?)<\/cim:VsPpccControlKind.pPcc>/g, sub, context, true);
+            base.parse_element (/<cim:VsPpccControlKind.pPcc>([\s\S]*?)<\/cim:VsPpccControlKind.pPcc>/g, obj, "pPcc", base.to_string, sub, context);
+
             /**
              * Control variable (target) is DC voltage and real power at PCC bus is derived.
              *
              */
-            obj["udc"] = base.parse_element (/<cim:VsPpccControlKind.udc>([\s\S]*?)<\/cim:VsPpccControlKind.udc>/g, sub, context, true);
+            base.parse_element (/<cim:VsPpccControlKind.udc>([\s\S]*?)<\/cim:VsPpccControlKind.udc>/g, obj, "udc", base.to_string, sub, context);
+
             /**
              * Control variables (targets) are both active power at point of common coupling and local DC voltage, with the droop.
              *
              */
-            obj["pPccAndUdcDroop"] = base.parse_element (/<cim:VsPpccControlKind.pPccAndUdcDroop>([\s\S]*?)<\/cim:VsPpccControlKind.pPccAndUdcDroop>/g, sub, context, true);
+            base.parse_element (/<cim:VsPpccControlKind.pPccAndUdcDroop>([\s\S]*?)<\/cim:VsPpccControlKind.pPccAndUdcDroop>/g, obj, "pPccAndUdcDroop", base.to_string, sub, context);
+
             /**
              * Control variables (targets) are both active power at point of common coupling and compensated DC voltage, with the droop; compensation factor is the resistance, as an approximation of the DC voltage of a common (real or virtual) node in the DC network.
              *
              */
-            obj["pPccAndUdcDroopWithCompensation"] = base.parse_element (/<cim:VsPpccControlKind.pPccAndUdcDroopWithCompensation>([\s\S]*?)<\/cim:VsPpccControlKind.pPccAndUdcDroopWithCompensation>/g, sub, context, true);
+            base.parse_element (/<cim:VsPpccControlKind.pPccAndUdcDroopWithCompensation>([\s\S]*?)<\/cim:VsPpccControlKind.pPccAndUdcDroopWithCompensation>/g, obj, "pPccAndUdcDroopWithCompensation", base.to_string, sub, context);
+
             /**
              * Control variables (targets) are both active power at point of common coupling and the pilot DC voltage, with the droop.
              *
              */
-            obj["pPccAndUdcDroopPilot"] = base.parse_element (/<cim:VsPpccControlKind.pPccAndUdcDroopPilot>([\s\S]*?)<\/cim:VsPpccControlKind.pPccAndUdcDroopPilot>/g, sub, context, true);
+            base.parse_element (/<cim:VsPpccControlKind.pPccAndUdcDroopPilot>([\s\S]*?)<\/cim:VsPpccControlKind.pPccAndUdcDroopPilot>/g, obj, "pPccAndUdcDroopPilot", base.to_string, sub, context);
+
             bucket = context.parsed.VsPpccControlKind;
             if (null == bucket)
                 context.parsed.VsPpccControlKind = bucket = {};
@@ -650,12 +712,14 @@ define
              * Resistance to ground.
              *
              */
-            obj["r"] = base.parse_element (/<cim:DCGround.r>([\s\S]*?)<\/cim:DCGround.r>/g, sub, context, true);
+            base.parse_element (/<cim:DCGround.r>([\s\S]*?)<\/cim:DCGround.r>/g, obj, "r", base.to_string, sub, context);
+
             /**
              * Inductance to ground.
              *
              */
-            obj["inductance"] = base.parse_element (/<cim:DCGround.inductance>([\s\S]*?)<\/cim:DCGround.inductance>/g, sub, context, true);
+            base.parse_element (/<cim:DCGround.inductance>([\s\S]*?)<\/cim:DCGround.inductance>/g, obj, "inductance", base.to_string, sub, context);
+
             bucket = context.parsed.DCGround;
             if (null == bucket)
                 context.parsed.DCGround = bucket = {};
@@ -715,7 +779,8 @@ define
 
             obj = parse_DCEquipmentContainer (context, sub);
             obj.cls = "DCLine";
-            obj["Region"] = base.parse_attribute (/<cim:DCLine.Region\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:DCLine.Region\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Region", sub, context, true);
+
             bucket = context.parsed.DCLine;
             if (null == bucket)
                 context.parsed.DCLine = bucket = {};
@@ -739,12 +804,14 @@ define
              * Operating as inverter
              *
              */
-            obj["inverter"] = base.parse_element (/<cim:CsOperatingModeKind.inverter>([\s\S]*?)<\/cim:CsOperatingModeKind.inverter>/g, sub, context, true);
+            base.parse_element (/<cim:CsOperatingModeKind.inverter>([\s\S]*?)<\/cim:CsOperatingModeKind.inverter>/g, obj, "inverter", base.to_string, sub, context);
+
             /**
              * Operating as rectifier.
              *
              */
-            obj["rectifier"] = base.parse_element (/<cim:CsOperatingModeKind.rectifier>([\s\S]*?)<\/cim:CsOperatingModeKind.rectifier>/g, sub, context, true);
+            base.parse_element (/<cim:CsOperatingModeKind.rectifier>([\s\S]*?)<\/cim:CsOperatingModeKind.rectifier>/g, obj, "rectifier", base.to_string, sub, context);
+
             bucket = context.parsed.CsOperatingModeKind;
             if (null == bucket)
                 context.parsed.CsOperatingModeKind = bucket = {};
@@ -770,8 +837,10 @@ define
              * Represents the normal network polarity condition.
              *
              */
-            obj["polarity"] = base.parse_element (/<cim:ACDCConverterDCTerminal.polarity>([\s\S]*?)<\/cim:ACDCConverterDCTerminal.polarity>/g, sub, context, true);
-            obj["DCConductingEquipment"] = base.parse_attribute (/<cim:ACDCConverterDCTerminal.DCConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_element (/<cim:ACDCConverterDCTerminal.polarity>([\s\S]*?)<\/cim:ACDCConverterDCTerminal.polarity>/g, obj, "polarity", base.to_string, sub, context);
+
+            base.parse_attribute (/<cim:ACDCConverterDCTerminal.DCConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCConductingEquipment", sub, context, true);
+
             bucket = context.parsed.ACDCConverterDCTerminal;
             if (null == bucket)
                 context.parsed.ACDCConverterDCTerminal = bucket = {};
@@ -835,17 +904,20 @@ define
              * Positive pole.
              *
              */
-            obj["positive"] = base.parse_element (/<cim:DCPolarityKind.positive>([\s\S]*?)<\/cim:DCPolarityKind.positive>/g, sub, context, true);
+            base.parse_element (/<cim:DCPolarityKind.positive>([\s\S]*?)<\/cim:DCPolarityKind.positive>/g, obj, "positive", base.to_string, sub, context);
+
             /**
              * Middle pole, potentially grounded.
              *
              */
-            obj["middle"] = base.parse_element (/<cim:DCPolarityKind.middle>([\s\S]*?)<\/cim:DCPolarityKind.middle>/g, sub, context, true);
+            base.parse_element (/<cim:DCPolarityKind.middle>([\s\S]*?)<\/cim:DCPolarityKind.middle>/g, obj, "middle", base.to_string, sub, context);
+
             /**
              * Negative pole.
              *
              */
-            obj["negative"] = base.parse_element (/<cim:DCPolarityKind.negative>([\s\S]*?)<\/cim:DCPolarityKind.negative>/g, sub, context, true);
+            base.parse_element (/<cim:DCPolarityKind.negative>([\s\S]*?)<\/cim:DCPolarityKind.negative>/g, obj, "negative", base.to_string, sub, context);
+
             bucket = context.parsed.DCPolarityKind;
             if (null == bucket)
                 context.parsed.DCPolarityKind = bucket = {};
@@ -865,8 +937,10 @@ define
 
             obj = parse_DCEquipmentContainer (context, sub);
             obj.cls = "DCConverterUnit";
-            obj["operationMode"] = base.parse_element (/<cim:DCConverterUnit.operationMode>([\s\S]*?)<\/cim:DCConverterUnit.operationMode>/g, sub, context, true);
-            obj["Substation"] = base.parse_attribute (/<cim:DCConverterUnit.Substation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_element (/<cim:DCConverterUnit.operationMode>([\s\S]*?)<\/cim:DCConverterUnit.operationMode>/g, obj, "operationMode", base.to_string, sub, context);
+
+            base.parse_attribute (/<cim:DCConverterUnit.Substation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Substation", sub, context, true);
+
             bucket = context.parsed.DCConverterUnit;
             if (null == bucket)
                 context.parsed.DCConverterUnit = bucket = {};
@@ -892,92 +966,106 @@ define
              * Converter configuration data use in power flow.
              *
              */
-            obj["maxIdc"] = base.parse_element (/<cim:CsConverter.maxIdc>([\s\S]*?)<\/cim:CsConverter.maxIdc>/g, sub, context, true);
+            base.parse_element (/<cim:CsConverter.maxIdc>([\s\S]*?)<\/cim:CsConverter.maxIdc>/g, obj, "maxIdc", base.to_string, sub, context);
+
             /**
              * Rated converter DC current, also called IdN.
              *
              * Converter configuration data used in power flow.
              *
              */
-            obj["ratedIdc"] = base.parse_element (/<cim:CsConverter.ratedIdc>([\s\S]*?)<\/cim:CsConverter.ratedIdc>/g, sub, context, true);
-            obj["pPccControl"] = base.parse_element (/<cim:CsConverter.pPccControl>([\s\S]*?)<\/cim:CsConverter.pPccControl>/g, sub, context, true);
+            base.parse_element (/<cim:CsConverter.ratedIdc>([\s\S]*?)<\/cim:CsConverter.ratedIdc>/g, obj, "ratedIdc", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CsConverter.pPccControl>([\s\S]*?)<\/cim:CsConverter.pPccControl>/g, obj, "pPccControl", base.to_string, sub, context);
+
             /**
              * Firing angle, typical value between 10 and 18 degrees for a rectifier.
              *
              * CSC state variable, result from power flow.
              *
              */
-            obj["alpha"] = base.parse_element (/<cim:CsConverter.alpha>([\s\S]*?)<\/cim:CsConverter.alpha>/g, sub, context, true);
+            base.parse_element (/<cim:CsConverter.alpha>([\s\S]*?)<\/cim:CsConverter.alpha>/g, obj, "alpha", base.to_string, sub, context);
+
             /**
              * Extinction angle.
              *
              * CSC state variable, result from power flow.
              *
              */
-            obj["gamma"] = base.parse_element (/<cim:CsConverter.gamma>([\s\S]*?)<\/cim:CsConverter.gamma>/g, sub, context, true);
+            base.parse_element (/<cim:CsConverter.gamma>([\s\S]*?)<\/cim:CsConverter.gamma>/g, obj, "gamma", base.to_string, sub, context);
+
             /**
              * Maximum firing angle.
              *
              * CSC configuration data used in power flow.
              *
              */
-            obj["maxAlpha"] = base.parse_element (/<cim:CsConverter.maxAlpha>([\s\S]*?)<\/cim:CsConverter.maxAlpha>/g, sub, context, true);
+            base.parse_element (/<cim:CsConverter.maxAlpha>([\s\S]*?)<\/cim:CsConverter.maxAlpha>/g, obj, "maxAlpha", base.to_string, sub, context);
+
             /**
              * Maximum extinction angle.
              *
              * CSC configuration data used in power flow.
              *
              */
-            obj["maxGamma"] = base.parse_element (/<cim:CsConverter.maxGamma>([\s\S]*?)<\/cim:CsConverter.maxGamma>/g, sub, context, true);
+            base.parse_element (/<cim:CsConverter.maxGamma>([\s\S]*?)<\/cim:CsConverter.maxGamma>/g, obj, "maxGamma", base.to_string, sub, context);
+
             /**
              * Minimum firing angle.
              *
              * CSC configuration data used in power flow.
              *
              */
-            obj["minAlpha"] = base.parse_element (/<cim:CsConverter.minAlpha>([\s\S]*?)<\/cim:CsConverter.minAlpha>/g, sub, context, true);
+            base.parse_element (/<cim:CsConverter.minAlpha>([\s\S]*?)<\/cim:CsConverter.minAlpha>/g, obj, "minAlpha", base.to_string, sub, context);
+
             /**
              * Minimum extinction angle.
              *
              * CSC configuration data used in power flow.
              *
              */
-            obj["minGamma"] = base.parse_element (/<cim:CsConverter.minGamma>([\s\S]*?)<\/cim:CsConverter.minGamma>/g, sub, context, true);
+            base.parse_element (/<cim:CsConverter.minGamma>([\s\S]*?)<\/cim:CsConverter.minGamma>/g, obj, "minGamma", base.to_string, sub, context);
+
             /**
              * Target firing angle.
              *
              * CSC control variable used in power flow.
              *
              */
-            obj["targetAlpha"] = base.parse_element (/<cim:CsConverter.targetAlpha>([\s\S]*?)<\/cim:CsConverter.targetAlpha>/g, sub, context, true);
+            base.parse_element (/<cim:CsConverter.targetAlpha>([\s\S]*?)<\/cim:CsConverter.targetAlpha>/g, obj, "targetAlpha", base.to_string, sub, context);
+
             /**
              * Target extinction angle.
              *
              * CSC  control variable used in power flow.
              *
              */
-            obj["targetGamma"] = base.parse_element (/<cim:CsConverter.targetGamma>([\s\S]*?)<\/cim:CsConverter.targetGamma>/g, sub, context, true);
+            base.parse_element (/<cim:CsConverter.targetGamma>([\s\S]*?)<\/cim:CsConverter.targetGamma>/g, obj, "targetGamma", base.to_string, sub, context);
+
             /**
              * DC current target value.
              *
              * CSC control variable used in power flow.
              *
              */
-            obj["targetIdc"] = base.parse_element (/<cim:CsConverter.targetIdc>([\s\S]*?)<\/cim:CsConverter.targetIdc>/g, sub, context, true);
+            base.parse_element (/<cim:CsConverter.targetIdc>([\s\S]*?)<\/cim:CsConverter.targetIdc>/g, obj, "targetIdc", base.to_string, sub, context);
+
             /**
              * The minimum direct current (Id) on the DC side at which the converter should operate.
              *
              * CSC configuration data used in power flow.
              *
              */
-            obj["minIdc"] = base.parse_element (/<cim:CsConverter.minIdc>([\s\S]*?)<\/cim:CsConverter.minIdc>/g, sub, context, true);
+            base.parse_element (/<cim:CsConverter.minIdc>([\s\S]*?)<\/cim:CsConverter.minIdc>/g, obj, "minIdc", base.to_string, sub, context);
+
             /**
              * Indicates whether the DC pole is operating as an inverter or as a rectifier.
              *
              * CSC control variable used in power flow.
              *
              */
-            obj["operatingMode"] = base.parse_element (/<cim:CsConverter.operatingMode>([\s\S]*?)<\/cim:CsConverter.operatingMode>/g, sub, context, true);
+            base.parse_element (/<cim:CsConverter.operatingMode>([\s\S]*?)<\/cim:CsConverter.operatingMode>/g, obj, "operatingMode", base.to_string, sub, context);
+
             bucket = context.parsed.CsConverter;
             if (null == bucket)
                 context.parsed.CsConverter = bucket = {};
@@ -997,7 +1085,8 @@ define
 
             obj = parse_DCBaseTerminal (context, sub);
             obj.cls = "DCTerminal";
-            obj["DCConductingEquipment"] = base.parse_attribute (/<cim:DCTerminal.DCConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:DCTerminal.DCConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCConductingEquipment", sub, context, true);
+
             bucket = context.parsed.DCTerminal;
             if (null == bucket)
                 context.parsed.DCTerminal = bucket = {};

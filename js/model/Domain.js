@@ -21,11 +21,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "CapacitancePerLength";
-            obj["value"] = base.to_float (base.parse_element (/<cim:CapacitancePerLength.value>([\s\S]*?)<\/cim:CapacitancePerLength.value>/g, sub, context, true));
-            obj["unit"] = base.parse_element (/<cim:CapacitancePerLength.unit>([\s\S]*?)<\/cim:CapacitancePerLength.unit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:CapacitancePerLength.multiplier>([\s\S]*?)<\/cim:CapacitancePerLength.multiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:CapacitancePerLength.denominatorUnit>([\s\S]*?)<\/cim:CapacitancePerLength.denominatorUnit>/g, sub, context, true);
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:CapacitancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:CapacitancePerLength.denominatorMultiplier>/g, sub, context, true);
+            base.parse_element (/<cim:CapacitancePerLength.value>([\s\S]*?)<\/cim:CapacitancePerLength.value>/g, obj, "value", base.to_float, sub, context);
+
+            base.parse_element (/<cim:CapacitancePerLength.unit>([\s\S]*?)<\/cim:CapacitancePerLength.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CapacitancePerLength.multiplier>([\s\S]*?)<\/cim:CapacitancePerLength.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CapacitancePerLength.denominatorUnit>([\s\S]*?)<\/cim:CapacitancePerLength.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CapacitancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:CapacitancePerLength.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
             bucket = context.parsed.CapacitancePerLength;
             if (null == bucket)
                 context.parsed.CapacitancePerLength = bucket = {};
@@ -45,11 +50,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "CostPerVolume";
-            obj["value"] = base.to_float (base.parse_element (/<cim:CostPerVolume.value>([\s\S]*?)<\/cim:CostPerVolume.value>/g, sub, context, true));
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:CostPerVolume.denominatorMultiplier>([\s\S]*?)<\/cim:CostPerVolume.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:CostPerVolume.denominatorUnit>([\s\S]*?)<\/cim:CostPerVolume.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:CostPerVolume.multiplier>([\s\S]*?)<\/cim:CostPerVolume.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:CostPerVolume.unit>([\s\S]*?)<\/cim:CostPerVolume.unit>/g, sub, context, true);
+            base.parse_element (/<cim:CostPerVolume.value>([\s\S]*?)<\/cim:CostPerVolume.value>/g, obj, "value", base.to_float, sub, context);
+
+            base.parse_element (/<cim:CostPerVolume.denominatorMultiplier>([\s\S]*?)<\/cim:CostPerVolume.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostPerVolume.denominatorUnit>([\s\S]*?)<\/cim:CostPerVolume.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostPerVolume.multiplier>([\s\S]*?)<\/cim:CostPerVolume.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostPerVolume.unit>([\s\S]*?)<\/cim:CostPerVolume.unit>/g, obj, "unit", base.to_string, sub, context);
+
             bucket = context.parsed.CostPerVolume;
             if (null == bucket)
                 context.parsed.CostPerVolume = bucket = {};
@@ -94,57 +104,68 @@ define
              * Pico 10**-12.
              *
              */
-            obj["p"] = base.parse_element (/<cim:UnitMultiplier.p>([\s\S]*?)<\/cim:UnitMultiplier.p>/g, sub, context, true);
+            base.parse_element (/<cim:UnitMultiplier.p>([\s\S]*?)<\/cim:UnitMultiplier.p>/g, obj, "p", base.to_string, sub, context);
+
             /**
              * Nano 10**-9.
              *
              */
-            obj["n"] = base.parse_element (/<cim:UnitMultiplier.n>([\s\S]*?)<\/cim:UnitMultiplier.n>/g, sub, context, true);
+            base.parse_element (/<cim:UnitMultiplier.n>([\s\S]*?)<\/cim:UnitMultiplier.n>/g, obj, "n", base.to_string, sub, context);
+
             /**
              * Micro 10**-6.
              *
              */
-            obj["micro"] = base.parse_element (/<cim:UnitMultiplier.micro>([\s\S]*?)<\/cim:UnitMultiplier.micro>/g, sub, context, true);
+            base.parse_element (/<cim:UnitMultiplier.micro>([\s\S]*?)<\/cim:UnitMultiplier.micro>/g, obj, "micro", base.to_string, sub, context);
+
             /**
              * Milli 10**-3.
              *
              */
-            obj["m"] = base.parse_element (/<cim:UnitMultiplier.m>([\s\S]*?)<\/cim:UnitMultiplier.m>/g, sub, context, true);
+            base.parse_element (/<cim:UnitMultiplier.m>([\s\S]*?)<\/cim:UnitMultiplier.m>/g, obj, "m", base.to_string, sub, context);
+
             /**
              * Centi 10**-2.
              *
              */
-            obj["c"] = base.parse_element (/<cim:UnitMultiplier.c>([\s\S]*?)<\/cim:UnitMultiplier.c>/g, sub, context, true);
+            base.parse_element (/<cim:UnitMultiplier.c>([\s\S]*?)<\/cim:UnitMultiplier.c>/g, obj, "c", base.to_string, sub, context);
+
             /**
              * Deci 10**-1.
              *
              */
-            obj["d"] = base.parse_element (/<cim:UnitMultiplier.d>([\s\S]*?)<\/cim:UnitMultiplier.d>/g, sub, context, true);
+            base.parse_element (/<cim:UnitMultiplier.d>([\s\S]*?)<\/cim:UnitMultiplier.d>/g, obj, "d", base.to_string, sub, context);
+
             /**
              * Kilo 10**3.
              *
              */
-            obj["k"] = base.parse_element (/<cim:UnitMultiplier.k>([\s\S]*?)<\/cim:UnitMultiplier.k>/g, sub, context, true);
+            base.parse_element (/<cim:UnitMultiplier.k>([\s\S]*?)<\/cim:UnitMultiplier.k>/g, obj, "k", base.to_string, sub, context);
+
             /**
              * Mega 10**6.
              *
              */
-            obj["M"] = base.parse_element (/<cim:UnitMultiplier.M>([\s\S]*?)<\/cim:UnitMultiplier.M>/g, sub, context, true);
+            base.parse_element (/<cim:UnitMultiplier.M>([\s\S]*?)<\/cim:UnitMultiplier.M>/g, obj, "M", base.to_string, sub, context);
+
             /**
              * Giga 10**9.
              *
              */
-            obj["G"] = base.parse_element (/<cim:UnitMultiplier.G>([\s\S]*?)<\/cim:UnitMultiplier.G>/g, sub, context, true);
+            base.parse_element (/<cim:UnitMultiplier.G>([\s\S]*?)<\/cim:UnitMultiplier.G>/g, obj, "G", base.to_string, sub, context);
+
             /**
              * Tera 10**12.
              *
              */
-            obj["T"] = base.parse_element (/<cim:UnitMultiplier.T>([\s\S]*?)<\/cim:UnitMultiplier.T>/g, sub, context, true);
+            base.parse_element (/<cim:UnitMultiplier.T>([\s\S]*?)<\/cim:UnitMultiplier.T>/g, obj, "T", base.to_string, sub, context);
+
             /**
              * No multiplier or equivalently multiply by 1.
              *
              */
-            obj["none"] = base.parse_element (/<cim:UnitMultiplier.none>([\s\S]*?)<\/cim:UnitMultiplier.none>/g, sub, context, true);
+            base.parse_element (/<cim:UnitMultiplier.none>([\s\S]*?)<\/cim:UnitMultiplier.none>/g, obj, "none", base.to_string, sub, context);
+
             bucket = context.parsed.UnitMultiplier;
             if (null == bucket)
                 context.parsed.UnitMultiplier = bucket = {};
@@ -164,9 +185,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ReactivePower";
-            obj["multiplier"] = base.parse_element (/<cim:ReactivePower.multiplier>([\s\S]*?)<\/cim:ReactivePower.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:ReactivePower.unit>([\s\S]*?)<\/cim:ReactivePower.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:ReactivePower.value>([\s\S]*?)<\/cim:ReactivePower.value>/g, sub, context, true));
+            base.parse_element (/<cim:ReactivePower.multiplier>([\s\S]*?)<\/cim:ReactivePower.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ReactivePower.unit>([\s\S]*?)<\/cim:ReactivePower.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ReactivePower.value>([\s\S]*?)<\/cim:ReactivePower.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.ReactivePower;
             if (null == bucket)
                 context.parsed.ReactivePower = bucket = {};
@@ -190,12 +214,14 @@ define
              * End time of this interval.
              *
              */
-            obj["end"] = base.parse_element (/<cim:MonthDayInterval.end>([\s\S]*?)<\/cim:MonthDayInterval.end>/g, sub, context, true);
+            base.parse_element (/<cim:MonthDayInterval.end>([\s\S]*?)<\/cim:MonthDayInterval.end>/g, obj, "end", base.to_string, sub, context);
+
             /**
              * Start time of this interval.
              *
              */
-            obj["start"] = base.parse_element (/<cim:MonthDayInterval.start>([\s\S]*?)<\/cim:MonthDayInterval.start>/g, sub, context, true);
+            base.parse_element (/<cim:MonthDayInterval.start>([\s\S]*?)<\/cim:MonthDayInterval.start>/g, obj, "start", base.to_string, sub, context);
+
             bucket = context.parsed.MonthDayInterval;
             if (null == bucket)
                 context.parsed.MonthDayInterval = bucket = {};
@@ -215,9 +241,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Reactance";
-            obj["multiplier"] = base.parse_element (/<cim:Reactance.multiplier>([\s\S]*?)<\/cim:Reactance.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Reactance.unit>([\s\S]*?)<\/cim:Reactance.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Reactance.value>([\s\S]*?)<\/cim:Reactance.value>/g, sub, context, true));
+            base.parse_element (/<cim:Reactance.multiplier>([\s\S]*?)<\/cim:Reactance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Reactance.unit>([\s\S]*?)<\/cim:Reactance.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Reactance.value>([\s\S]*?)<\/cim:Reactance.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Reactance;
             if (null == bucket)
                 context.parsed.Reactance = bucket = {};
@@ -237,11 +266,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ResistancePerLength";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:ResistancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:ResistancePerLength.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:ResistancePerLength.denominatorUnit>([\s\S]*?)<\/cim:ResistancePerLength.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:ResistancePerLength.multiplier>([\s\S]*?)<\/cim:ResistancePerLength.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:ResistancePerLength.unit>([\s\S]*?)<\/cim:ResistancePerLength.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:ResistancePerLength.value>([\s\S]*?)<\/cim:ResistancePerLength.value>/g, sub, context, true));
+            base.parse_element (/<cim:ResistancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:ResistancePerLength.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ResistancePerLength.denominatorUnit>([\s\S]*?)<\/cim:ResistancePerLength.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ResistancePerLength.multiplier>([\s\S]*?)<\/cim:ResistancePerLength.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ResistancePerLength.unit>([\s\S]*?)<\/cim:ResistancePerLength.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ResistancePerLength.value>([\s\S]*?)<\/cim:ResistancePerLength.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.ResistancePerLength;
             if (null == bucket)
                 context.parsed.ResistancePerLength = bucket = {};
@@ -261,9 +295,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "AngleRadians";
-            obj["multiplier"] = base.parse_element (/<cim:AngleRadians.multiplier>([\s\S]*?)<\/cim:AngleRadians.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:AngleRadians.unit>([\s\S]*?)<\/cim:AngleRadians.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:AngleRadians.value>([\s\S]*?)<\/cim:AngleRadians.value>/g, sub, context, true));
+            base.parse_element (/<cim:AngleRadians.multiplier>([\s\S]*?)<\/cim:AngleRadians.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:AngleRadians.unit>([\s\S]*?)<\/cim:AngleRadians.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:AngleRadians.value>([\s\S]*?)<\/cim:AngleRadians.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.AngleRadians;
             if (null == bucket)
                 context.parsed.AngleRadians = bucket = {};
@@ -283,9 +320,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Voltage";
-            obj["multiplier"] = base.parse_element (/<cim:Voltage.multiplier>([\s\S]*?)<\/cim:Voltage.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Voltage.unit>([\s\S]*?)<\/cim:Voltage.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Voltage.value>([\s\S]*?)<\/cim:Voltage.value>/g, sub, context, true));
+            base.parse_element (/<cim:Voltage.multiplier>([\s\S]*?)<\/cim:Voltage.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Voltage.unit>([\s\S]*?)<\/cim:Voltage.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Voltage.value>([\s\S]*?)<\/cim:Voltage.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Voltage;
             if (null == bucket)
                 context.parsed.Voltage = bucket = {};
@@ -305,11 +345,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ActivePowerChangeRate";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:ActivePowerChangeRate.denominatorMultiplier>([\s\S]*?)<\/cim:ActivePowerChangeRate.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:ActivePowerChangeRate.denominatorUnit>([\s\S]*?)<\/cim:ActivePowerChangeRate.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:ActivePowerChangeRate.multiplier>([\s\S]*?)<\/cim:ActivePowerChangeRate.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:ActivePowerChangeRate.unit>([\s\S]*?)<\/cim:ActivePowerChangeRate.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:ActivePowerChangeRate.value>([\s\S]*?)<\/cim:ActivePowerChangeRate.value>/g, sub, context, true));
+            base.parse_element (/<cim:ActivePowerChangeRate.denominatorMultiplier>([\s\S]*?)<\/cim:ActivePowerChangeRate.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ActivePowerChangeRate.denominatorUnit>([\s\S]*?)<\/cim:ActivePowerChangeRate.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ActivePowerChangeRate.multiplier>([\s\S]*?)<\/cim:ActivePowerChangeRate.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ActivePowerChangeRate.unit>([\s\S]*?)<\/cim:ActivePowerChangeRate.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ActivePowerChangeRate.value>([\s\S]*?)<\/cim:ActivePowerChangeRate.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.ActivePowerChangeRate;
             if (null == bucket)
                 context.parsed.ActivePowerChangeRate = bucket = {};
@@ -325,11 +370,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ActivePowerPerCurrentFlow";
-            obj["multiplier"] = base.parse_element (/<cim:ActivePowerPerCurrentFlow.multiplier>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:ActivePowerPerCurrentFlow.unit>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:ActivePowerPerCurrentFlow.value>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.value>/g, sub, context, true));
-            obj["demoninatorUnit"] = base.parse_element (/<cim:ActivePowerPerCurrentFlow.demoninatorUnit>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.demoninatorUnit>/g, sub, context, true);
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:ActivePowerPerCurrentFlow.denominatorMultiplier>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.denominatorMultiplier>/g, sub, context, true);
+            base.parse_element (/<cim:ActivePowerPerCurrentFlow.multiplier>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ActivePowerPerCurrentFlow.unit>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ActivePowerPerCurrentFlow.value>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.value>/g, obj, "value", base.to_float, sub, context);
+
+            base.parse_element (/<cim:ActivePowerPerCurrentFlow.demoninatorUnit>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.demoninatorUnit>/g, obj, "demoninatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ActivePowerPerCurrentFlow.denominatorMultiplier>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
             bucket = context.parsed.ActivePowerPerCurrentFlow;
             if (null == bucket)
                 context.parsed.ActivePowerPerCurrentFlow = bucket = {};
@@ -349,11 +399,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "CostRate";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:CostRate.denominatorMultiplier>([\s\S]*?)<\/cim:CostRate.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:CostRate.denominatorUnit>([\s\S]*?)<\/cim:CostRate.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:CostRate.multiplier>([\s\S]*?)<\/cim:CostRate.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:CostRate.unit>([\s\S]*?)<\/cim:CostRate.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:CostRate.value>([\s\S]*?)<\/cim:CostRate.value>/g, sub, context, true));
+            base.parse_element (/<cim:CostRate.denominatorMultiplier>([\s\S]*?)<\/cim:CostRate.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostRate.denominatorUnit>([\s\S]*?)<\/cim:CostRate.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostRate.multiplier>([\s\S]*?)<\/cim:CostRate.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostRate.unit>([\s\S]*?)<\/cim:CostRate.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostRate.value>([\s\S]*?)<\/cim:CostRate.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.CostRate;
             if (null == bucket)
                 context.parsed.CostRate = bucket = {};
@@ -373,9 +428,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "WaterLevel";
-            obj["multiplier"] = base.parse_element (/<cim:WaterLevel.multiplier>([\s\S]*?)<\/cim:WaterLevel.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:WaterLevel.unit>([\s\S]*?)<\/cim:WaterLevel.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:WaterLevel.value>([\s\S]*?)<\/cim:WaterLevel.value>/g, sub, context, true));
+            base.parse_element (/<cim:WaterLevel.multiplier>([\s\S]*?)<\/cim:WaterLevel.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:WaterLevel.unit>([\s\S]*?)<\/cim:WaterLevel.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:WaterLevel.value>([\s\S]*?)<\/cim:WaterLevel.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.WaterLevel;
             if (null == bucket)
                 context.parsed.WaterLevel = bucket = {};
@@ -416,9 +474,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Admittance";
-            obj["multiplier"] = base.parse_element (/<cim:Admittance.multiplier>([\s\S]*?)<\/cim:Admittance.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Admittance.unit>([\s\S]*?)<\/cim:Admittance.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Admittance.value>([\s\S]*?)<\/cim:Admittance.value>/g, sub, context, true));
+            base.parse_element (/<cim:Admittance.multiplier>([\s\S]*?)<\/cim:Admittance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Admittance.unit>([\s\S]*?)<\/cim:Admittance.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Admittance.value>([\s\S]*?)<\/cim:Admittance.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Admittance;
             if (null == bucket)
                 context.parsed.Admittance = bucket = {};
@@ -438,11 +499,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "CostPerEnergyUnit";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:CostPerEnergyUnit.denominatorMultiplier>([\s\S]*?)<\/cim:CostPerEnergyUnit.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:CostPerEnergyUnit.denominatorUnit>([\s\S]*?)<\/cim:CostPerEnergyUnit.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:CostPerEnergyUnit.multiplier>([\s\S]*?)<\/cim:CostPerEnergyUnit.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:CostPerEnergyUnit.unit>([\s\S]*?)<\/cim:CostPerEnergyUnit.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:CostPerEnergyUnit.value>([\s\S]*?)<\/cim:CostPerEnergyUnit.value>/g, sub, context, true));
+            base.parse_element (/<cim:CostPerEnergyUnit.denominatorMultiplier>([\s\S]*?)<\/cim:CostPerEnergyUnit.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostPerEnergyUnit.denominatorUnit>([\s\S]*?)<\/cim:CostPerEnergyUnit.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostPerEnergyUnit.multiplier>([\s\S]*?)<\/cim:CostPerEnergyUnit.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostPerEnergyUnit.unit>([\s\S]*?)<\/cim:CostPerEnergyUnit.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostPerEnergyUnit.value>([\s\S]*?)<\/cim:CostPerEnergyUnit.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.CostPerEnergyUnit;
             if (null == bucket)
                 context.parsed.CostPerEnergyUnit = bucket = {};
@@ -462,11 +528,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ReactancePerLength";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:ReactancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:ReactancePerLength.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:ReactancePerLength.denominatorUnit>([\s\S]*?)<\/cim:ReactancePerLength.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:ReactancePerLength.multiplier>([\s\S]*?)<\/cim:ReactancePerLength.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:ReactancePerLength.unit>([\s\S]*?)<\/cim:ReactancePerLength.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:ReactancePerLength.value>([\s\S]*?)<\/cim:ReactancePerLength.value>/g, sub, context, true));
+            base.parse_element (/<cim:ReactancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:ReactancePerLength.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ReactancePerLength.denominatorUnit>([\s\S]*?)<\/cim:ReactancePerLength.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ReactancePerLength.multiplier>([\s\S]*?)<\/cim:ReactancePerLength.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ReactancePerLength.unit>([\s\S]*?)<\/cim:ReactancePerLength.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ReactancePerLength.value>([\s\S]*?)<\/cim:ReactancePerLength.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.ReactancePerLength;
             if (null == bucket)
                 context.parsed.ReactancePerLength = bucket = {};
@@ -530,11 +601,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Damping";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:Damping.denominatorMultiplier>([\s\S]*?)<\/cim:Damping.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:Damping.denominatorUnit>([\s\S]*?)<\/cim:Damping.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:Damping.multiplier>([\s\S]*?)<\/cim:Damping.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Damping.unit>([\s\S]*?)<\/cim:Damping.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Damping.value>([\s\S]*?)<\/cim:Damping.value>/g, sub, context, true));
+            base.parse_element (/<cim:Damping.denominatorMultiplier>([\s\S]*?)<\/cim:Damping.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Damping.denominatorUnit>([\s\S]*?)<\/cim:Damping.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Damping.multiplier>([\s\S]*?)<\/cim:Damping.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Damping.unit>([\s\S]*?)<\/cim:Damping.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Damping.value>([\s\S]*?)<\/cim:Damping.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Damping;
             if (null == bucket)
                 context.parsed.Damping = bucket = {};
@@ -556,9 +632,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "PU";
-            obj["multiplier"] = base.parse_element (/<cim:PU.multiplier>([\s\S]*?)<\/cim:PU.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:PU.unit>([\s\S]*?)<\/cim:PU.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:PU.value>([\s\S]*?)<\/cim:PU.value>/g, sub, context, true));
+            base.parse_element (/<cim:PU.multiplier>([\s\S]*?)<\/cim:PU.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:PU.unit>([\s\S]*?)<\/cim:PU.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:PU.value>([\s\S]*?)<\/cim:PU.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.PU;
             if (null == bucket)
                 context.parsed.PU = bucket = {};
@@ -584,72 +663,86 @@ define
              * US dollar
              *
              */
-            obj["USD"] = base.parse_element (/<cim:Currency.USD>([\s\S]*?)<\/cim:Currency.USD>/g, sub, context, true);
+            base.parse_element (/<cim:Currency.USD>([\s\S]*?)<\/cim:Currency.USD>/g, obj, "USD", base.to_string, sub, context);
+
             /**
              * European euro
              *
              */
-            obj["EUR"] = base.parse_element (/<cim:Currency.EUR>([\s\S]*?)<\/cim:Currency.EUR>/g, sub, context, true);
+            base.parse_element (/<cim:Currency.EUR>([\s\S]*?)<\/cim:Currency.EUR>/g, obj, "EUR", base.to_string, sub, context);
+
             /**
              * Australian dollar
              *
              */
-            obj["AUD"] = base.parse_element (/<cim:Currency.AUD>([\s\S]*?)<\/cim:Currency.AUD>/g, sub, context, true);
+            base.parse_element (/<cim:Currency.AUD>([\s\S]*?)<\/cim:Currency.AUD>/g, obj, "AUD", base.to_string, sub, context);
+
             /**
              * Canadian dollar
              *
              */
-            obj["CAD"] = base.parse_element (/<cim:Currency.CAD>([\s\S]*?)<\/cim:Currency.CAD>/g, sub, context, true);
+            base.parse_element (/<cim:Currency.CAD>([\s\S]*?)<\/cim:Currency.CAD>/g, obj, "CAD", base.to_string, sub, context);
+
             /**
              * Swiss francs
              *
              */
-            obj["CHF"] = base.parse_element (/<cim:Currency.CHF>([\s\S]*?)<\/cim:Currency.CHF>/g, sub, context, true);
+            base.parse_element (/<cim:Currency.CHF>([\s\S]*?)<\/cim:Currency.CHF>/g, obj, "CHF", base.to_string, sub, context);
+
             /**
              * Chinese yuan renminbi
              *
              */
-            obj["CNY"] = base.parse_element (/<cim:Currency.CNY>([\s\S]*?)<\/cim:Currency.CNY>/g, sub, context, true);
+            base.parse_element (/<cim:Currency.CNY>([\s\S]*?)<\/cim:Currency.CNY>/g, obj, "CNY", base.to_string, sub, context);
+
             /**
              * Danish crown
              *
              */
-            obj["DKK"] = base.parse_element (/<cim:Currency.DKK>([\s\S]*?)<\/cim:Currency.DKK>/g, sub, context, true);
+            base.parse_element (/<cim:Currency.DKK>([\s\S]*?)<\/cim:Currency.DKK>/g, obj, "DKK", base.to_string, sub, context);
+
             /**
              * British pound
              *
              */
-            obj["GBP"] = base.parse_element (/<cim:Currency.GBP>([\s\S]*?)<\/cim:Currency.GBP>/g, sub, context, true);
+            base.parse_element (/<cim:Currency.GBP>([\s\S]*?)<\/cim:Currency.GBP>/g, obj, "GBP", base.to_string, sub, context);
+
             /**
              * Japanese yen
              *
              */
-            obj["JPY"] = base.parse_element (/<cim:Currency.JPY>([\s\S]*?)<\/cim:Currency.JPY>/g, sub, context, true);
+            base.parse_element (/<cim:Currency.JPY>([\s\S]*?)<\/cim:Currency.JPY>/g, obj, "JPY", base.to_string, sub, context);
+
             /**
              * Norwegian crown
              *
              */
-            obj["NOK"] = base.parse_element (/<cim:Currency.NOK>([\s\S]*?)<\/cim:Currency.NOK>/g, sub, context, true);
+            base.parse_element (/<cim:Currency.NOK>([\s\S]*?)<\/cim:Currency.NOK>/g, obj, "NOK", base.to_string, sub, context);
+
             /**
              * Russian ruble
              *
              */
-            obj["RUR"] = base.parse_element (/<cim:Currency.RUR>([\s\S]*?)<\/cim:Currency.RUR>/g, sub, context, true);
+            base.parse_element (/<cim:Currency.RUR>([\s\S]*?)<\/cim:Currency.RUR>/g, obj, "RUR", base.to_string, sub, context);
+
             /**
              * Swedish crown
              *
              */
-            obj["SEK"] = base.parse_element (/<cim:Currency.SEK>([\s\S]*?)<\/cim:Currency.SEK>/g, sub, context, true);
+            base.parse_element (/<cim:Currency.SEK>([\s\S]*?)<\/cim:Currency.SEK>/g, obj, "SEK", base.to_string, sub, context);
+
             /**
              * India rupees
              *
              */
-            obj["INR"] = base.parse_element (/<cim:Currency.INR>([\s\S]*?)<\/cim:Currency.INR>/g, sub, context, true);
+            base.parse_element (/<cim:Currency.INR>([\s\S]*?)<\/cim:Currency.INR>/g, obj, "INR", base.to_string, sub, context);
+
             /**
              * Another type of currency.
              *
              */
-            obj["other"] = base.parse_element (/<cim:Currency.other>([\s\S]*?)<\/cim:Currency.other>/g, sub, context, true);
+            base.parse_element (/<cim:Currency.other>([\s\S]*?)<\/cim:Currency.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.Currency;
             if (null == bucket)
                 context.parsed.Currency = bucket = {};
@@ -669,9 +762,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ActivePower";
-            obj["multiplier"] = base.parse_element (/<cim:ActivePower.multiplier>([\s\S]*?)<\/cim:ActivePower.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:ActivePower.unit>([\s\S]*?)<\/cim:ActivePower.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:ActivePower.value>([\s\S]*?)<\/cim:ActivePower.value>/g, sub, context, true));
+            base.parse_element (/<cim:ActivePower.multiplier>([\s\S]*?)<\/cim:ActivePower.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ActivePower.unit>([\s\S]*?)<\/cim:ActivePower.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ActivePower.value>([\s\S]*?)<\/cim:ActivePower.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.ActivePower;
             if (null == bucket)
                 context.parsed.ActivePower = bucket = {};
@@ -691,9 +787,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Capacitance";
-            obj["multiplier"] = base.parse_element (/<cim:Capacitance.multiplier>([\s\S]*?)<\/cim:Capacitance.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Capacitance.unit>([\s\S]*?)<\/cim:Capacitance.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Capacitance.value>([\s\S]*?)<\/cim:Capacitance.value>/g, sub, context, true));
+            base.parse_element (/<cim:Capacitance.multiplier>([\s\S]*?)<\/cim:Capacitance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Capacitance.unit>([\s\S]*?)<\/cim:Capacitance.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Capacitance.value>([\s\S]*?)<\/cim:Capacitance.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Capacitance;
             if (null == bucket)
                 context.parsed.Capacitance = bucket = {};
@@ -715,9 +814,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Conductance";
-            obj["multiplier"] = base.parse_element (/<cim:Conductance.multiplier>([\s\S]*?)<\/cim:Conductance.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Conductance.unit>([\s\S]*?)<\/cim:Conductance.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Conductance.value>([\s\S]*?)<\/cim:Conductance.value>/g, sub, context, true));
+            base.parse_element (/<cim:Conductance.multiplier>([\s\S]*?)<\/cim:Conductance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Conductance.unit>([\s\S]*?)<\/cim:Conductance.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Conductance.value>([\s\S]*?)<\/cim:Conductance.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Conductance;
             if (null == bucket)
                 context.parsed.Conductance = bucket = {};
@@ -737,11 +839,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "InductancePerLength";
-            obj["value"] = base.to_float (base.parse_element (/<cim:InductancePerLength.value>([\s\S]*?)<\/cim:InductancePerLength.value>/g, sub, context, true));
-            obj["unit"] = base.parse_element (/<cim:InductancePerLength.unit>([\s\S]*?)<\/cim:InductancePerLength.unit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:InductancePerLength.multiplier>([\s\S]*?)<\/cim:InductancePerLength.multiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:InductancePerLength.denominatorUnit>([\s\S]*?)<\/cim:InductancePerLength.denominatorUnit>/g, sub, context, true);
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:InductancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:InductancePerLength.denominatorMultiplier>/g, sub, context, true);
+            base.parse_element (/<cim:InductancePerLength.value>([\s\S]*?)<\/cim:InductancePerLength.value>/g, obj, "value", base.to_float, sub, context);
+
+            base.parse_element (/<cim:InductancePerLength.unit>([\s\S]*?)<\/cim:InductancePerLength.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:InductancePerLength.multiplier>([\s\S]*?)<\/cim:InductancePerLength.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:InductancePerLength.denominatorUnit>([\s\S]*?)<\/cim:InductancePerLength.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:InductancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:InductancePerLength.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
             bucket = context.parsed.InductancePerLength;
             if (null == bucket)
                 context.parsed.InductancePerLength = bucket = {};
@@ -761,11 +868,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "VolumeFlowRate";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:VolumeFlowRate.denominatorMultiplier>([\s\S]*?)<\/cim:VolumeFlowRate.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:VolumeFlowRate.denominatorUnit>([\s\S]*?)<\/cim:VolumeFlowRate.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:VolumeFlowRate.multiplier>([\s\S]*?)<\/cim:VolumeFlowRate.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:VolumeFlowRate.unit>([\s\S]*?)<\/cim:VolumeFlowRate.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:VolumeFlowRate.value>([\s\S]*?)<\/cim:VolumeFlowRate.value>/g, sub, context, true));
+            base.parse_element (/<cim:VolumeFlowRate.denominatorMultiplier>([\s\S]*?)<\/cim:VolumeFlowRate.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:VolumeFlowRate.denominatorUnit>([\s\S]*?)<\/cim:VolumeFlowRate.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:VolumeFlowRate.multiplier>([\s\S]*?)<\/cim:VolumeFlowRate.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:VolumeFlowRate.unit>([\s\S]*?)<\/cim:VolumeFlowRate.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:VolumeFlowRate.value>([\s\S]*?)<\/cim:VolumeFlowRate.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.VolumeFlowRate;
             if (null == bucket)
                 context.parsed.VolumeFlowRate = bucket = {};
@@ -827,9 +939,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "CurrentFlow";
-            obj["multiplier"] = base.parse_element (/<cim:CurrentFlow.multiplier>([\s\S]*?)<\/cim:CurrentFlow.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:CurrentFlow.unit>([\s\S]*?)<\/cim:CurrentFlow.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:CurrentFlow.value>([\s\S]*?)<\/cim:CurrentFlow.value>/g, sub, context, true));
+            base.parse_element (/<cim:CurrentFlow.multiplier>([\s\S]*?)<\/cim:CurrentFlow.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CurrentFlow.unit>([\s\S]*?)<\/cim:CurrentFlow.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CurrentFlow.value>([\s\S]*?)<\/cim:CurrentFlow.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.CurrentFlow;
             if (null == bucket)
                 context.parsed.CurrentFlow = bucket = {};
@@ -849,9 +964,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "KiloActivePower";
-            obj["multiplier"] = base.parse_element (/<cim:KiloActivePower.multiplier>([\s\S]*?)<\/cim:KiloActivePower.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:KiloActivePower.unit>([\s\S]*?)<\/cim:KiloActivePower.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:KiloActivePower.value>([\s\S]*?)<\/cim:KiloActivePower.value>/g, sub, context, true));
+            base.parse_element (/<cim:KiloActivePower.multiplier>([\s\S]*?)<\/cim:KiloActivePower.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:KiloActivePower.unit>([\s\S]*?)<\/cim:KiloActivePower.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:KiloActivePower.value>([\s\S]*?)<\/cim:KiloActivePower.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.KiloActivePower;
             if (null == bucket)
                 context.parsed.KiloActivePower = bucket = {};
@@ -871,9 +989,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Impedance";
-            obj["multiplier"] = base.parse_element (/<cim:Impedance.multiplier>([\s\S]*?)<\/cim:Impedance.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Impedance.unit>([\s\S]*?)<\/cim:Impedance.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Impedance.value>([\s\S]*?)<\/cim:Impedance.value>/g, sub, context, true));
+            base.parse_element (/<cim:Impedance.multiplier>([\s\S]*?)<\/cim:Impedance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Impedance.unit>([\s\S]*?)<\/cim:Impedance.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Impedance.value>([\s\S]*?)<\/cim:Impedance.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Impedance;
             if (null == bucket)
                 context.parsed.Impedance = bucket = {};
@@ -895,13 +1016,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "PerCent";
-            obj["multiplier"] = base.parse_element (/<cim:PerCent.multiplier>([\s\S]*?)<\/cim:PerCent.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:PerCent.unit>([\s\S]*?)<\/cim:PerCent.unit>/g, sub, context, true);
+            base.parse_element (/<cim:PerCent.multiplier>([\s\S]*?)<\/cim:PerCent.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:PerCent.unit>([\s\S]*?)<\/cim:PerCent.unit>/g, obj, "unit", base.to_string, sub, context);
+
             /**
              * Normally 0 - 100 on a defined base
              *
              */
-            obj["value"] = base.to_float (base.parse_element (/<cim:PerCent.value>([\s\S]*?)<\/cim:PerCent.value>/g, sub, context, true));
+            base.parse_element (/<cim:PerCent.value>([\s\S]*?)<\/cim:PerCent.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.PerCent;
             if (null == bucket)
                 context.parsed.PerCent = bucket = {};
@@ -921,13 +1045,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Seconds";
-            obj["multiplier"] = base.parse_element (/<cim:Seconds.multiplier>([\s\S]*?)<\/cim:Seconds.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Seconds.unit>([\s\S]*?)<\/cim:Seconds.unit>/g, sub, context, true);
+            base.parse_element (/<cim:Seconds.multiplier>([\s\S]*?)<\/cim:Seconds.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Seconds.unit>([\s\S]*?)<\/cim:Seconds.unit>/g, obj, "unit", base.to_string, sub, context);
+
             /**
              * Time, in seconds
              *
              */
-            obj["value"] = base.to_float (base.parse_element (/<cim:Seconds.value>([\s\S]*?)<\/cim:Seconds.value>/g, sub, context, true));
+            base.parse_element (/<cim:Seconds.value>([\s\S]*?)<\/cim:Seconds.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Seconds;
             if (null == bucket)
                 context.parsed.Seconds = bucket = {};
@@ -947,11 +1074,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ActivePowerPerFrequency";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:ActivePowerPerFrequency.denominatorMultiplier>([\s\S]*?)<\/cim:ActivePowerPerFrequency.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:ActivePowerPerFrequency.denominatorUnit>([\s\S]*?)<\/cim:ActivePowerPerFrequency.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:ActivePowerPerFrequency.multiplier>([\s\S]*?)<\/cim:ActivePowerPerFrequency.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:ActivePowerPerFrequency.unit>([\s\S]*?)<\/cim:ActivePowerPerFrequency.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:ActivePowerPerFrequency.value>([\s\S]*?)<\/cim:ActivePowerPerFrequency.value>/g, sub, context, true));
+            base.parse_element (/<cim:ActivePowerPerFrequency.denominatorMultiplier>([\s\S]*?)<\/cim:ActivePowerPerFrequency.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ActivePowerPerFrequency.denominatorUnit>([\s\S]*?)<\/cim:ActivePowerPerFrequency.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ActivePowerPerFrequency.multiplier>([\s\S]*?)<\/cim:ActivePowerPerFrequency.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ActivePowerPerFrequency.unit>([\s\S]*?)<\/cim:ActivePowerPerFrequency.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ActivePowerPerFrequency.value>([\s\S]*?)<\/cim:ActivePowerPerFrequency.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.ActivePowerPerFrequency;
             if (null == bucket)
                 context.parsed.ActivePowerPerFrequency = bucket = {};
@@ -971,9 +1103,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Money";
-            obj["multiplier"] = base.parse_element (/<cim:Money.multiplier>([\s\S]*?)<\/cim:Money.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Money.unit>([\s\S]*?)<\/cim:Money.unit>/g, sub, context, true);
-            obj["value"] = base.parse_element (/<cim:Money.value>([\s\S]*?)<\/cim:Money.value>/g, sub, context, true);
+            base.parse_element (/<cim:Money.multiplier>([\s\S]*?)<\/cim:Money.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Money.unit>([\s\S]*?)<\/cim:Money.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Money.value>([\s\S]*?)<\/cim:Money.value>/g, obj, "value", base.to_string, sub, context);
+
             bucket = context.parsed.Money;
             if (null == bucket)
                 context.parsed.Money = bucket = {};
@@ -997,12 +1132,14 @@ define
              * End date and time of this interval.
              *
              */
-            obj["end"] = base.to_datetime (base.parse_element (/<cim:DateTimeInterval.end>([\s\S]*?)<\/cim:DateTimeInterval.end>/g, sub, context, true));
+            base.parse_element (/<cim:DateTimeInterval.end>([\s\S]*?)<\/cim:DateTimeInterval.end>/g, obj, "end", base.to_datetime, sub, context);
+
             /**
              * Start date and time of this interval.
              *
              */
-            obj["start"] = base.to_datetime (base.parse_element (/<cim:DateTimeInterval.start>([\s\S]*?)<\/cim:DateTimeInterval.start>/g, sub, context, true));
+            base.parse_element (/<cim:DateTimeInterval.start>([\s\S]*?)<\/cim:DateTimeInterval.start>/g, obj, "start", base.to_datetime, sub, context);
+
             bucket = context.parsed.DateTimeInterval;
             if (null == bucket)
                 context.parsed.DateTimeInterval = bucket = {};
@@ -1022,9 +1159,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ApparentPower";
-            obj["multiplier"] = base.parse_element (/<cim:ApparentPower.multiplier>([\s\S]*?)<\/cim:ApparentPower.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:ApparentPower.unit>([\s\S]*?)<\/cim:ApparentPower.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:ApparentPower.value>([\s\S]*?)<\/cim:ApparentPower.value>/g, sub, context, true));
+            base.parse_element (/<cim:ApparentPower.multiplier>([\s\S]*?)<\/cim:ApparentPower.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ApparentPower.unit>([\s\S]*?)<\/cim:ApparentPower.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ApparentPower.value>([\s\S]*?)<\/cim:ApparentPower.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.ApparentPower;
             if (null == bucket)
                 context.parsed.ApparentPower = bucket = {};
@@ -1044,9 +1184,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Volume";
-            obj["multiplier"] = base.parse_element (/<cim:Volume.multiplier>([\s\S]*?)<\/cim:Volume.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Volume.unit>([\s\S]*?)<\/cim:Volume.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Volume.value>([\s\S]*?)<\/cim:Volume.value>/g, sub, context, true));
+            base.parse_element (/<cim:Volume.multiplier>([\s\S]*?)<\/cim:Volume.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Volume.unit>([\s\S]*?)<\/cim:Volume.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Volume.value>([\s\S]*?)<\/cim:Volume.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Volume;
             if (null == bucket)
                 context.parsed.Volume = bucket = {};
@@ -1066,9 +1209,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "AngleDegrees";
-            obj["multiplier"] = base.parse_element (/<cim:AngleDegrees.multiplier>([\s\S]*?)<\/cim:AngleDegrees.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:AngleDegrees.unit>([\s\S]*?)<\/cim:AngleDegrees.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:AngleDegrees.value>([\s\S]*?)<\/cim:AngleDegrees.value>/g, sub, context, true));
+            base.parse_element (/<cim:AngleDegrees.multiplier>([\s\S]*?)<\/cim:AngleDegrees.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:AngleDegrees.unit>([\s\S]*?)<\/cim:AngleDegrees.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:AngleDegrees.value>([\s\S]*?)<\/cim:AngleDegrees.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.AngleDegrees;
             if (null == bucket)
                 context.parsed.AngleDegrees = bucket = {};
@@ -1105,14 +1251,18 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "DecimalQuantity";
-            obj["value"] = base.parse_element (/<cim:DecimalQuantity.value>([\s\S]*?)<\/cim:DecimalQuantity.value>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:DecimalQuantity.unit>([\s\S]*?)<\/cim:DecimalQuantity.unit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:DecimalQuantity.multiplier>([\s\S]*?)<\/cim:DecimalQuantity.multiplier>/g, sub, context, true);
+            base.parse_element (/<cim:DecimalQuantity.value>([\s\S]*?)<\/cim:DecimalQuantity.value>/g, obj, "value", base.to_string, sub, context);
+
+            base.parse_element (/<cim:DecimalQuantity.unit>([\s\S]*?)<\/cim:DecimalQuantity.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:DecimalQuantity.multiplier>([\s\S]*?)<\/cim:DecimalQuantity.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
             /**
              * Quantity with decimal value and associated unit or currency information.
              *
              */
-            obj["currency"] = base.parse_element (/<cim:DecimalQuantity.currency>([\s\S]*?)<\/cim:DecimalQuantity.currency>/g, sub, context, true);
+            base.parse_element (/<cim:DecimalQuantity.currency>([\s\S]*?)<\/cim:DecimalQuantity.currency>/g, obj, "currency", base.to_string, sub, context);
+
             bucket = context.parsed.DecimalQuantity;
             if (null == bucket)
                 context.parsed.DecimalQuantity = bucket = {};
@@ -1132,9 +1282,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "RealEnergy";
-            obj["multiplier"] = base.parse_element (/<cim:RealEnergy.multiplier>([\s\S]*?)<\/cim:RealEnergy.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:RealEnergy.unit>([\s\S]*?)<\/cim:RealEnergy.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:RealEnergy.value>([\s\S]*?)<\/cim:RealEnergy.value>/g, sub, context, true));
+            base.parse_element (/<cim:RealEnergy.multiplier>([\s\S]*?)<\/cim:RealEnergy.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:RealEnergy.unit>([\s\S]*?)<\/cim:RealEnergy.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:RealEnergy.value>([\s\S]*?)<\/cim:RealEnergy.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.RealEnergy;
             if (null == bucket)
                 context.parsed.RealEnergy = bucket = {};
@@ -1175,9 +1328,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Length";
-            obj["multiplier"] = base.parse_element (/<cim:Length.multiplier>([\s\S]*?)<\/cim:Length.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Length.unit>([\s\S]*?)<\/cim:Length.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Length.value>([\s\S]*?)<\/cim:Length.value>/g, sub, context, true));
+            base.parse_element (/<cim:Length.multiplier>([\s\S]*?)<\/cim:Length.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Length.unit>([\s\S]*?)<\/cim:Length.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Length.value>([\s\S]*?)<\/cim:Length.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Length;
             if (null == bucket)
                 context.parsed.Length = bucket = {};
@@ -1197,9 +1353,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Temperature";
-            obj["multiplier"] = base.parse_element (/<cim:Temperature.multiplier>([\s\S]*?)<\/cim:Temperature.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Temperature.unit>([\s\S]*?)<\/cim:Temperature.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Temperature.value>([\s\S]*?)<\/cim:Temperature.value>/g, sub, context, true));
+            base.parse_element (/<cim:Temperature.multiplier>([\s\S]*?)<\/cim:Temperature.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Temperature.unit>([\s\S]*?)<\/cim:Temperature.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Temperature.value>([\s\S]*?)<\/cim:Temperature.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Temperature;
             if (null == bucket)
                 context.parsed.Temperature = bucket = {};
@@ -1219,9 +1378,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "FloatQuantity";
-            obj["multiplier"] = base.parse_element (/<cim:FloatQuantity.multiplier>([\s\S]*?)<\/cim:FloatQuantity.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:FloatQuantity.unit>([\s\S]*?)<\/cim:FloatQuantity.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:FloatQuantity.value>([\s\S]*?)<\/cim:FloatQuantity.value>/g, sub, context, true));
+            base.parse_element (/<cim:FloatQuantity.multiplier>([\s\S]*?)<\/cim:FloatQuantity.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:FloatQuantity.unit>([\s\S]*?)<\/cim:FloatQuantity.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:FloatQuantity.value>([\s\S]*?)<\/cim:FloatQuantity.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.FloatQuantity;
             if (null == bucket)
                 context.parsed.FloatQuantity = bucket = {};
@@ -1241,9 +1403,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Susceptance";
-            obj["multiplier"] = base.parse_element (/<cim:Susceptance.multiplier>([\s\S]*?)<\/cim:Susceptance.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Susceptance.unit>([\s\S]*?)<\/cim:Susceptance.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Susceptance.value>([\s\S]*?)<\/cim:Susceptance.value>/g, sub, context, true));
+            base.parse_element (/<cim:Susceptance.multiplier>([\s\S]*?)<\/cim:Susceptance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Susceptance.unit>([\s\S]*?)<\/cim:Susceptance.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Susceptance.value>([\s\S]*?)<\/cim:Susceptance.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Susceptance;
             if (null == bucket)
                 context.parsed.Susceptance = bucket = {};
@@ -1263,9 +1428,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Frequency";
-            obj["multiplier"] = base.parse_element (/<cim:Frequency.multiplier>([\s\S]*?)<\/cim:Frequency.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Frequency.unit>([\s\S]*?)<\/cim:Frequency.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Frequency.value>([\s\S]*?)<\/cim:Frequency.value>/g, sub, context, true));
+            base.parse_element (/<cim:Frequency.multiplier>([\s\S]*?)<\/cim:Frequency.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Frequency.unit>([\s\S]*?)<\/cim:Frequency.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Frequency.value>([\s\S]*?)<\/cim:Frequency.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Frequency;
             if (null == bucket)
                 context.parsed.Frequency = bucket = {};
@@ -1285,9 +1453,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Area";
-            obj["value"] = base.to_float (base.parse_element (/<cim:Area.value>([\s\S]*?)<\/cim:Area.value>/g, sub, context, true));
-            obj["unit"] = base.parse_element (/<cim:Area.unit>([\s\S]*?)<\/cim:Area.unit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:Area.multiplier>([\s\S]*?)<\/cim:Area.multiplier>/g, sub, context, true);
+            base.parse_element (/<cim:Area.value>([\s\S]*?)<\/cim:Area.value>/g, obj, "value", base.to_float, sub, context);
+
+            base.parse_element (/<cim:Area.unit>([\s\S]*?)<\/cim:Area.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Area.multiplier>([\s\S]*?)<\/cim:Area.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
             bucket = context.parsed.Area;
             if (null == bucket)
                 context.parsed.Area = bucket = {};
@@ -1307,9 +1478,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Minutes";
-            obj["multiplier"] = base.parse_element (/<cim:Minutes.multiplier>([\s\S]*?)<\/cim:Minutes.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Minutes.unit>([\s\S]*?)<\/cim:Minutes.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Minutes.value>([\s\S]*?)<\/cim:Minutes.value>/g, sub, context, true));
+            base.parse_element (/<cim:Minutes.multiplier>([\s\S]*?)<\/cim:Minutes.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Minutes.unit>([\s\S]*?)<\/cim:Minutes.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Minutes.value>([\s\S]*?)<\/cim:Minutes.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Minutes;
             if (null == bucket)
                 context.parsed.Minutes = bucket = {};
@@ -1333,12 +1507,14 @@ define
              * End date of this interval.
              *
              */
-            obj["end"] = base.parse_element (/<cim:DateInterval.end>([\s\S]*?)<\/cim:DateInterval.end>/g, sub, context, true);
+            base.parse_element (/<cim:DateInterval.end>([\s\S]*?)<\/cim:DateInterval.end>/g, obj, "end", base.to_string, sub, context);
+
             /**
              * Start date of this interval.
              *
              */
-            obj["start"] = base.parse_element (/<cim:DateInterval.start>([\s\S]*?)<\/cim:DateInterval.start>/g, sub, context, true);
+            base.parse_element (/<cim:DateInterval.start>([\s\S]*?)<\/cim:DateInterval.start>/g, obj, "start", base.to_string, sub, context);
+
             bucket = context.parsed.DateInterval;
             if (null == bucket)
                 context.parsed.DateInterval = bucket = {};
@@ -1358,11 +1534,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "VoltagePerReactivePower";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:VoltagePerReactivePower.denominatorMultiplier>([\s\S]*?)<\/cim:VoltagePerReactivePower.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:VoltagePerReactivePower.denominatorUnit>([\s\S]*?)<\/cim:VoltagePerReactivePower.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:VoltagePerReactivePower.multiplier>([\s\S]*?)<\/cim:VoltagePerReactivePower.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:VoltagePerReactivePower.unit>([\s\S]*?)<\/cim:VoltagePerReactivePower.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:VoltagePerReactivePower.value>([\s\S]*?)<\/cim:VoltagePerReactivePower.value>/g, sub, context, true));
+            base.parse_element (/<cim:VoltagePerReactivePower.denominatorMultiplier>([\s\S]*?)<\/cim:VoltagePerReactivePower.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:VoltagePerReactivePower.denominatorUnit>([\s\S]*?)<\/cim:VoltagePerReactivePower.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:VoltagePerReactivePower.multiplier>([\s\S]*?)<\/cim:VoltagePerReactivePower.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:VoltagePerReactivePower.unit>([\s\S]*?)<\/cim:VoltagePerReactivePower.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:VoltagePerReactivePower.value>([\s\S]*?)<\/cim:VoltagePerReactivePower.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.VoltagePerReactivePower;
             if (null == bucket)
                 context.parsed.VoltagePerReactivePower = bucket = {};
@@ -1382,9 +1563,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Hours";
-            obj["multiplier"] = base.parse_element (/<cim:Hours.multiplier>([\s\S]*?)<\/cim:Hours.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Hours.unit>([\s\S]*?)<\/cim:Hours.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Hours.value>([\s\S]*?)<\/cim:Hours.value>/g, sub, context, true));
+            base.parse_element (/<cim:Hours.multiplier>([\s\S]*?)<\/cim:Hours.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Hours.unit>([\s\S]*?)<\/cim:Hours.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Hours.value>([\s\S]*?)<\/cim:Hours.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Hours;
             if (null == bucket)
                 context.parsed.Hours = bucket = {};
@@ -1404,11 +1588,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Speed";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:Speed.denominatorMultiplier>([\s\S]*?)<\/cim:Speed.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:Speed.denominatorUnit>([\s\S]*?)<\/cim:Speed.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:Speed.multiplier>([\s\S]*?)<\/cim:Speed.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Speed.unit>([\s\S]*?)<\/cim:Speed.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Speed.value>([\s\S]*?)<\/cim:Speed.value>/g, sub, context, true));
+            base.parse_element (/<cim:Speed.denominatorMultiplier>([\s\S]*?)<\/cim:Speed.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Speed.denominatorUnit>([\s\S]*?)<\/cim:Speed.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Speed.multiplier>([\s\S]*?)<\/cim:Speed.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Speed.unit>([\s\S]*?)<\/cim:Speed.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Speed.value>([\s\S]*?)<\/cim:Speed.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Speed;
             if (null == bucket)
                 context.parsed.Speed = bucket = {};
@@ -1428,9 +1617,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Displacement";
-            obj["multiplier"] = base.parse_element (/<cim:Displacement.multiplier>([\s\S]*?)<\/cim:Displacement.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Displacement.unit>([\s\S]*?)<\/cim:Displacement.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Displacement.value>([\s\S]*?)<\/cim:Displacement.value>/g, sub, context, true));
+            base.parse_element (/<cim:Displacement.multiplier>([\s\S]*?)<\/cim:Displacement.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Displacement.unit>([\s\S]*?)<\/cim:Displacement.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Displacement.value>([\s\S]*?)<\/cim:Displacement.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Displacement;
             if (null == bucket)
                 context.parsed.Displacement = bucket = {};
@@ -1475,139 +1667,166 @@ define
              * Apparent power in volt ampere.
              *
              */
-            obj["VA"] = base.parse_element (/<cim:UnitSymbol.VA>([\s\S]*?)<\/cim:UnitSymbol.VA>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.VA>([\s\S]*?)<\/cim:UnitSymbol.VA>/g, obj, "VA", base.to_string, sub, context);
+
             /**
              * Active power in watt.
              *
              */
-            obj["W"] = base.parse_element (/<cim:UnitSymbol.W>([\s\S]*?)<\/cim:UnitSymbol.W>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.W>([\s\S]*?)<\/cim:UnitSymbol.W>/g, obj, "W", base.to_string, sub, context);
+
             /**
              * Reactive power in volt ampere reactive.
              *
              */
-            obj["VAr"] = base.parse_element (/<cim:UnitSymbol.VAr>([\s\S]*?)<\/cim:UnitSymbol.VAr>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.VAr>([\s\S]*?)<\/cim:UnitSymbol.VAr>/g, obj, "VAr", base.to_string, sub, context);
+
             /**
              * Apparent energy in volt ampere hours.
              *
              */
-            obj["VAh"] = base.parse_element (/<cim:UnitSymbol.VAh>([\s\S]*?)<\/cim:UnitSymbol.VAh>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.VAh>([\s\S]*?)<\/cim:UnitSymbol.VAh>/g, obj, "VAh", base.to_string, sub, context);
+
             /**
              * Real energy in what hours.
              *
              */
-            obj["Wh"] = base.parse_element (/<cim:UnitSymbol.Wh>([\s\S]*?)<\/cim:UnitSymbol.Wh>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.Wh>([\s\S]*?)<\/cim:UnitSymbol.Wh>/g, obj, "Wh", base.to_string, sub, context);
+
             /**
              * Reactive energy in volt ampere reactive hours.
              *
              */
-            obj["VArh"] = base.parse_element (/<cim:UnitSymbol.VArh>([\s\S]*?)<\/cim:UnitSymbol.VArh>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.VArh>([\s\S]*?)<\/cim:UnitSymbol.VArh>/g, obj, "VArh", base.to_string, sub, context);
+
             /**
              * Voltage in volt.
              *
              */
-            obj["V"] = base.parse_element (/<cim:UnitSymbol.V>([\s\S]*?)<\/cim:UnitSymbol.V>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.V>([\s\S]*?)<\/cim:UnitSymbol.V>/g, obj, "V", base.to_string, sub, context);
+
             /**
              * Resistance in ohm.
              *
              */
-            obj["ohm"] = base.parse_element (/<cim:UnitSymbol.ohm>([\s\S]*?)<\/cim:UnitSymbol.ohm>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.ohm>([\s\S]*?)<\/cim:UnitSymbol.ohm>/g, obj, "ohm", base.to_string, sub, context);
+
             /**
              * Current in ampere.
              *
              */
-            obj["A"] = base.parse_element (/<cim:UnitSymbol.A>([\s\S]*?)<\/cim:UnitSymbol.A>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.A>([\s\S]*?)<\/cim:UnitSymbol.A>/g, obj, "A", base.to_string, sub, context);
+
             /**
              * Capacitance in farad.
              *
              */
-            obj["F"] = base.parse_element (/<cim:UnitSymbol.F>([\s\S]*?)<\/cim:UnitSymbol.F>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.F>([\s\S]*?)<\/cim:UnitSymbol.F>/g, obj, "F", base.to_string, sub, context);
+
             /**
              * Inductance in henry.
              *
              */
-            obj["H"] = base.parse_element (/<cim:UnitSymbol.H>([\s\S]*?)<\/cim:UnitSymbol.H>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.H>([\s\S]*?)<\/cim:UnitSymbol.H>/g, obj, "H", base.to_string, sub, context);
+
             /**
              * Relative temperature in degrees Celsius.
              *
              * In the SI unit system the symbol is �C. Electric charge is measured in coulomb that has the unit symbol C. To distinguish degree Celsius form coulomb the symbol used in the UML is degC. Reason for not using �C is the special character � is difficult to manage in software.
              *
              */
-            obj["degC"] = base.parse_element (/<cim:UnitSymbol.degC>([\s\S]*?)<\/cim:UnitSymbol.degC>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.degC>([\s\S]*?)<\/cim:UnitSymbol.degC>/g, obj, "degC", base.to_string, sub, context);
+
             /**
              * Time in seconds.
              *
              */
-            obj["s"] = base.parse_element (/<cim:UnitSymbol.s>([\s\S]*?)<\/cim:UnitSymbol.s>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.s>([\s\S]*?)<\/cim:UnitSymbol.s>/g, obj, "s", base.to_string, sub, context);
+
             /**
              * Time in minutes.
              *
              */
-            obj["min"] = base.parse_element (/<cim:UnitSymbol.min>([\s\S]*?)<\/cim:UnitSymbol.min>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.min>([\s\S]*?)<\/cim:UnitSymbol.min>/g, obj, "min", base.to_string, sub, context);
+
             /**
              * Time in hours.
              *
              */
-            obj["h"] = base.parse_element (/<cim:UnitSymbol.h>([\s\S]*?)<\/cim:UnitSymbol.h>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.h>([\s\S]*?)<\/cim:UnitSymbol.h>/g, obj, "h", base.to_string, sub, context);
+
             /**
              * Plane angle in degrees.
              *
              */
-            obj["deg"] = base.parse_element (/<cim:UnitSymbol.deg>([\s\S]*?)<\/cim:UnitSymbol.deg>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.deg>([\s\S]*?)<\/cim:UnitSymbol.deg>/g, obj, "deg", base.to_string, sub, context);
+
             /**
              * Plane angle in radians.
              *
              */
-            obj["rad"] = base.parse_element (/<cim:UnitSymbol.rad>([\s\S]*?)<\/cim:UnitSymbol.rad>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.rad>([\s\S]*?)<\/cim:UnitSymbol.rad>/g, obj, "rad", base.to_string, sub, context);
+
             /**
              * Energy in joule.
              *
              */
-            obj["J"] = base.parse_element (/<cim:UnitSymbol.J>([\s\S]*?)<\/cim:UnitSymbol.J>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.J>([\s\S]*?)<\/cim:UnitSymbol.J>/g, obj, "J", base.to_string, sub, context);
+
             /**
              * Force in newton.
              *
              */
-            obj["N"] = base.parse_element (/<cim:UnitSymbol.N>([\s\S]*?)<\/cim:UnitSymbol.N>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.N>([\s\S]*?)<\/cim:UnitSymbol.N>/g, obj, "N", base.to_string, sub, context);
+
             /**
              * Conductance in siemens.
              *
              */
-            obj["S"] = base.parse_element (/<cim:UnitSymbol.S>([\s\S]*?)<\/cim:UnitSymbol.S>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.S>([\s\S]*?)<\/cim:UnitSymbol.S>/g, obj, "S", base.to_string, sub, context);
+
             /**
              * Dimension less quantity, e.g. count, per unit, etc.
              *
              */
-            obj["none"] = base.parse_element (/<cim:UnitSymbol.none>([\s\S]*?)<\/cim:UnitSymbol.none>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.none>([\s\S]*?)<\/cim:UnitSymbol.none>/g, obj, "none", base.to_string, sub, context);
+
             /**
              * Frequency in hertz.
              *
              */
-            obj["Hz"] = base.parse_element (/<cim:UnitSymbol.Hz>([\s\S]*?)<\/cim:UnitSymbol.Hz>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.Hz>([\s\S]*?)<\/cim:UnitSymbol.Hz>/g, obj, "Hz", base.to_string, sub, context);
+
             /**
              * Mass in gram.
              *
              */
-            obj["g"] = base.parse_element (/<cim:UnitSymbol.g>([\s\S]*?)<\/cim:UnitSymbol.g>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.g>([\s\S]*?)<\/cim:UnitSymbol.g>/g, obj, "g", base.to_string, sub, context);
+
             /**
              * Pressure in pascal (n/m2).
              *
              */
-            obj["Pa"] = base.parse_element (/<cim:UnitSymbol.Pa>([\s\S]*?)<\/cim:UnitSymbol.Pa>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.Pa>([\s\S]*?)<\/cim:UnitSymbol.Pa>/g, obj, "Pa", base.to_string, sub, context);
+
             /**
              * Length in meter.
              *
              */
-            obj["m"] = base.parse_element (/<cim:UnitSymbol.m>([\s\S]*?)<\/cim:UnitSymbol.m>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.m>([\s\S]*?)<\/cim:UnitSymbol.m>/g, obj, "m", base.to_string, sub, context);
+
             /**
              * Area in square meters.
              *
              */
-            obj["m2"] = base.parse_element (/<cim:UnitSymbol.m2>([\s\S]*?)<\/cim:UnitSymbol.m2>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.m2>([\s\S]*?)<\/cim:UnitSymbol.m2>/g, obj, "m2", base.to_string, sub, context);
+
             /**
              * Volume in cubic meters.
              *
              */
-            obj["m3"] = base.parse_element (/<cim:UnitSymbol.m3>([\s\S]*?)<\/cim:UnitSymbol.m3>/g, sub, context, true);
+            base.parse_element (/<cim:UnitSymbol.m3>([\s\S]*?)<\/cim:UnitSymbol.m3>/g, obj, "m3", base.to_string, sub, context);
+
             bucket = context.parsed.UnitSymbol;
             if (null == bucket)
                 context.parsed.UnitSymbol = bucket = {};
@@ -1627,11 +1846,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "RotationSpeed";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:RotationSpeed.denominatorMultiplier>([\s\S]*?)<\/cim:RotationSpeed.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:RotationSpeed.denominatorUnit>([\s\S]*?)<\/cim:RotationSpeed.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:RotationSpeed.multiplier>([\s\S]*?)<\/cim:RotationSpeed.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:RotationSpeed.unit>([\s\S]*?)<\/cim:RotationSpeed.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:RotationSpeed.value>([\s\S]*?)<\/cim:RotationSpeed.value>/g, sub, context, true));
+            base.parse_element (/<cim:RotationSpeed.denominatorMultiplier>([\s\S]*?)<\/cim:RotationSpeed.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:RotationSpeed.denominatorUnit>([\s\S]*?)<\/cim:RotationSpeed.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:RotationSpeed.multiplier>([\s\S]*?)<\/cim:RotationSpeed.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:RotationSpeed.unit>([\s\S]*?)<\/cim:RotationSpeed.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:RotationSpeed.value>([\s\S]*?)<\/cim:RotationSpeed.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.RotationSpeed;
             if (null == bucket)
                 context.parsed.RotationSpeed = bucket = {};
@@ -1651,9 +1875,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Resistance";
-            obj["multiplier"] = base.parse_element (/<cim:Resistance.multiplier>([\s\S]*?)<\/cim:Resistance.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Resistance.unit>([\s\S]*?)<\/cim:Resistance.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Resistance.value>([\s\S]*?)<\/cim:Resistance.value>/g, sub, context, true));
+            base.parse_element (/<cim:Resistance.multiplier>([\s\S]*?)<\/cim:Resistance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Resistance.unit>([\s\S]*?)<\/cim:Resistance.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Resistance.value>([\s\S]*?)<\/cim:Resistance.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Resistance;
             if (null == bucket)
                 context.parsed.Resistance = bucket = {};
@@ -1673,9 +1900,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Weight";
-            obj["multiplier"] = base.parse_element (/<cim:Weight.multiplier>([\s\S]*?)<\/cim:Weight.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Weight.unit>([\s\S]*?)<\/cim:Weight.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Weight.value>([\s\S]*?)<\/cim:Weight.value>/g, sub, context, true));
+            base.parse_element (/<cim:Weight.multiplier>([\s\S]*?)<\/cim:Weight.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Weight.unit>([\s\S]*?)<\/cim:Weight.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Weight.value>([\s\S]*?)<\/cim:Weight.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Weight;
             if (null == bucket)
                 context.parsed.Weight = bucket = {};
@@ -1695,9 +1925,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Pressure";
-            obj["multiplier"] = base.parse_element (/<cim:Pressure.multiplier>([\s\S]*?)<\/cim:Pressure.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Pressure.unit>([\s\S]*?)<\/cim:Pressure.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Pressure.value>([\s\S]*?)<\/cim:Pressure.value>/g, sub, context, true));
+            base.parse_element (/<cim:Pressure.multiplier>([\s\S]*?)<\/cim:Pressure.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Pressure.unit>([\s\S]*?)<\/cim:Pressure.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Pressure.value>([\s\S]*?)<\/cim:Pressure.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Pressure;
             if (null == bucket)
                 context.parsed.Pressure = bucket = {};
@@ -1717,11 +1950,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ConductancePerLength";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:ConductancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:ConductancePerLength.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:ConductancePerLength.denominatorUnit>([\s\S]*?)<\/cim:ConductancePerLength.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:ConductancePerLength.multiplier>([\s\S]*?)<\/cim:ConductancePerLength.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:ConductancePerLength.unit>([\s\S]*?)<\/cim:ConductancePerLength.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:ConductancePerLength.value>([\s\S]*?)<\/cim:ConductancePerLength.value>/g, sub, context, true));
+            base.parse_element (/<cim:ConductancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:ConductancePerLength.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ConductancePerLength.denominatorUnit>([\s\S]*?)<\/cim:ConductancePerLength.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ConductancePerLength.multiplier>([\s\S]*?)<\/cim:ConductancePerLength.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ConductancePerLength.unit>([\s\S]*?)<\/cim:ConductancePerLength.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ConductancePerLength.value>([\s\S]*?)<\/cim:ConductancePerLength.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.ConductancePerLength;
             if (null == bucket)
                 context.parsed.ConductancePerLength = bucket = {};
@@ -1760,11 +1998,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "SusceptancePerLength";
-            obj["denominatorMultiplier"] = base.parse_element (/<cim:SusceptancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:SusceptancePerLength.denominatorMultiplier>/g, sub, context, true);
-            obj["denominatorUnit"] = base.parse_element (/<cim:SusceptancePerLength.denominatorUnit>([\s\S]*?)<\/cim:SusceptancePerLength.denominatorUnit>/g, sub, context, true);
-            obj["multiplier"] = base.parse_element (/<cim:SusceptancePerLength.multiplier>([\s\S]*?)<\/cim:SusceptancePerLength.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:SusceptancePerLength.unit>([\s\S]*?)<\/cim:SusceptancePerLength.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:SusceptancePerLength.value>([\s\S]*?)<\/cim:SusceptancePerLength.value>/g, sub, context, true));
+            base.parse_element (/<cim:SusceptancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:SusceptancePerLength.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:SusceptancePerLength.denominatorUnit>([\s\S]*?)<\/cim:SusceptancePerLength.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:SusceptancePerLength.multiplier>([\s\S]*?)<\/cim:SusceptancePerLength.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:SusceptancePerLength.unit>([\s\S]*?)<\/cim:SusceptancePerLength.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:SusceptancePerLength.value>([\s\S]*?)<\/cim:SusceptancePerLength.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.SusceptancePerLength;
             if (null == bucket)
                 context.parsed.SusceptancePerLength = bucket = {};
@@ -1784,9 +2027,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "StringQuantity";
-            obj["multiplier"] = base.parse_element (/<cim:StringQuantity.multiplier>([\s\S]*?)<\/cim:StringQuantity.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:StringQuantity.unit>([\s\S]*?)<\/cim:StringQuantity.unit>/g, sub, context, true);
-            obj["value"] = base.parse_element (/<cim:StringQuantity.value>([\s\S]*?)<\/cim:StringQuantity.value>/g, sub, context, true);
+            base.parse_element (/<cim:StringQuantity.multiplier>([\s\S]*?)<\/cim:StringQuantity.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:StringQuantity.unit>([\s\S]*?)<\/cim:StringQuantity.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:StringQuantity.value>([\s\S]*?)<\/cim:StringQuantity.value>/g, obj, "value", base.to_string, sub, context);
+
             bucket = context.parsed.StringQuantity;
             if (null == bucket)
                 context.parsed.StringQuantity = bucket = {};
@@ -1806,9 +2052,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "IntegerQuantity";
-            obj["multiplier"] = base.parse_element (/<cim:IntegerQuantity.multiplier>([\s\S]*?)<\/cim:IntegerQuantity.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:IntegerQuantity.unit>([\s\S]*?)<\/cim:IntegerQuantity.unit>/g, sub, context, true);
-            obj["value"] = base.parse_element (/<cim:IntegerQuantity.value>([\s\S]*?)<\/cim:IntegerQuantity.value>/g, sub, context, true);
+            base.parse_element (/<cim:IntegerQuantity.multiplier>([\s\S]*?)<\/cim:IntegerQuantity.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:IntegerQuantity.unit>([\s\S]*?)<\/cim:IntegerQuantity.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:IntegerQuantity.value>([\s\S]*?)<\/cim:IntegerQuantity.value>/g, obj, "value", base.to_string, sub, context);
+
             bucket = context.parsed.IntegerQuantity;
             if (null == bucket)
                 context.parsed.IntegerQuantity = bucket = {};
@@ -1832,12 +2081,14 @@ define
              * End time of this interval.
              *
              */
-            obj["end"] = base.parse_element (/<cim:TimeInterval.end>([\s\S]*?)<\/cim:TimeInterval.end>/g, sub, context, true);
+            base.parse_element (/<cim:TimeInterval.end>([\s\S]*?)<\/cim:TimeInterval.end>/g, obj, "end", base.to_string, sub, context);
+
             /**
              * Start time of this interval.
              *
              */
-            obj["start"] = base.parse_element (/<cim:TimeInterval.start>([\s\S]*?)<\/cim:TimeInterval.start>/g, sub, context, true);
+            base.parse_element (/<cim:TimeInterval.start>([\s\S]*?)<\/cim:TimeInterval.start>/g, obj, "start", base.to_string, sub, context);
+
             bucket = context.parsed.TimeInterval;
             if (null == bucket)
                 context.parsed.TimeInterval = bucket = {};
@@ -1857,9 +2108,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Inductance";
-            obj["multiplier"] = base.parse_element (/<cim:Inductance.multiplier>([\s\S]*?)<\/cim:Inductance.multiplier>/g, sub, context, true);
-            obj["unit"] = base.parse_element (/<cim:Inductance.unit>([\s\S]*?)<\/cim:Inductance.unit>/g, sub, context, true);
-            obj["value"] = base.to_float (base.parse_element (/<cim:Inductance.value>([\s\S]*?)<\/cim:Inductance.value>/g, sub, context, true));
+            base.parse_element (/<cim:Inductance.multiplier>([\s\S]*?)<\/cim:Inductance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Inductance.unit>([\s\S]*?)<\/cim:Inductance.unit>/g, obj, "unit", base.to_string, sub, context);
+
+            base.parse_element (/<cim:Inductance.value>([\s\S]*?)<\/cim:Inductance.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.Inductance;
             if (null == bucket)
                 context.parsed.Inductance = bucket = {};

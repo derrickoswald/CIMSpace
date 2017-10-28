@@ -25,21 +25,24 @@ define
              * The line to line fault impedance is not used and assumed infinite. The full ground impedance is connected between each phase specified in the fault and ground, but not between the phases.
              *
              */
-            obj["lineToGround"] = base.parse_element (/<cim:PhaseConnectedFaultKind.lineToGround>([\s\S]*?)<\/cim:PhaseConnectedFaultKind.lineToGround>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseConnectedFaultKind.lineToGround>([\s\S]*?)<\/cim:PhaseConnectedFaultKind.lineToGround>/g, obj, "lineToGround", base.to_string, sub, context);
+
             /**
              * The fault connects the specified phases together without a connection to ground.
              *
              * The ground impedance of this fault is ignored. The line to line impedance is connected between each of the phases specified in the fault. For example three times for a three phase fault, one time for a two phase fault.  A single phase fault should not be specified.
              *
              */
-            obj["lineToLine"] = base.parse_element (/<cim:PhaseConnectedFaultKind.lineToLine>([\s\S]*?)<\/cim:PhaseConnectedFaultKind.lineToLine>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseConnectedFaultKind.lineToLine>([\s\S]*?)<\/cim:PhaseConnectedFaultKind.lineToLine>/g, obj, "lineToLine", base.to_string, sub, context);
+
             /**
              * The fault connects the indicated phases to ground and to each other.
              *
              * The line to line impedance is connected between each of the phases specified in the fault in a full mesh. For example three times for a three phase fault, one time for a two phase fault. A single phase fault should not be specified. The full ground impedance is connected between each phase specified in the fault and ground.
              *
              */
-            obj["lineToLineToGround"] = base.parse_element (/<cim:PhaseConnectedFaultKind.lineToLineToGround>([\s\S]*?)<\/cim:PhaseConnectedFaultKind.lineToLineToGround>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseConnectedFaultKind.lineToLineToGround>([\s\S]*?)<\/cim:PhaseConnectedFaultKind.lineToLineToGround>/g, obj, "lineToLineToGround", base.to_string, sub, context);
+
             bucket = context.parsed.PhaseConnectedFaultKind;
             if (null == bucket)
                 context.parsed.PhaseConnectedFaultKind = bucket = {};
@@ -82,12 +85,14 @@ define
              * The length to the place where the fault is located starting from terminal with sequence number 1 of the faulted line segment.
              *
              */
-            obj["lengthFromTerminal1"] = base.parse_element (/<cim:LineFault.lengthFromTerminal1>([\s\S]*?)<\/cim:LineFault.lengthFromTerminal1>/g, sub, context, true);
+            base.parse_element (/<cim:LineFault.lengthFromTerminal1>([\s\S]*?)<\/cim:LineFault.lengthFromTerminal1>/g, obj, "lengthFromTerminal1", base.to_string, sub, context);
+
             /**
              * The line segment of this line fault.
              *
              */
-            obj["ACLineSegment"] = base.parse_attribute (/<cim:LineFault.ACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:LineFault.ACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ACLineSegment", sub, context, true);
+
             bucket = context.parsed.LineFault;
             if (null == bucket)
                 context.parsed.LineFault = bucket = {};
@@ -111,22 +116,26 @@ define
              * The resistance of the fault between phases and ground.
              *
              */
-            obj["rGround"] = base.parse_element (/<cim:FaultImpedance.rGround>([\s\S]*?)<\/cim:FaultImpedance.rGround>/g, sub, context, true);
+            base.parse_element (/<cim:FaultImpedance.rGround>([\s\S]*?)<\/cim:FaultImpedance.rGround>/g, obj, "rGround", base.to_string, sub, context);
+
             /**
              * The resistance of the fault between phases.
              *
              */
-            obj["rLineToLine"] = base.parse_element (/<cim:FaultImpedance.rLineToLine>([\s\S]*?)<\/cim:FaultImpedance.rLineToLine>/g, sub, context, true);
+            base.parse_element (/<cim:FaultImpedance.rLineToLine>([\s\S]*?)<\/cim:FaultImpedance.rLineToLine>/g, obj, "rLineToLine", base.to_string, sub, context);
+
             /**
              * The reactance of the fault between phases and ground.
              *
              */
-            obj["xGround"] = base.parse_element (/<cim:FaultImpedance.xGround>([\s\S]*?)<\/cim:FaultImpedance.xGround>/g, sub, context, true);
+            base.parse_element (/<cim:FaultImpedance.xGround>([\s\S]*?)<\/cim:FaultImpedance.xGround>/g, obj, "xGround", base.to_string, sub, context);
+
             /**
              * The reactance of the fault between phases.
              *
              */
-            obj["xLineToLine"] = base.parse_element (/<cim:FaultImpedance.xLineToLine>([\s\S]*?)<\/cim:FaultImpedance.xLineToLine>/g, sub, context, true);
+            base.parse_element (/<cim:FaultImpedance.xLineToLine>([\s\S]*?)<\/cim:FaultImpedance.xLineToLine>/g, obj, "xLineToLine", base.to_string, sub, context);
+
             bucket = context.parsed.FaultImpedance;
             if (null == bucket)
                 context.parsed.FaultImpedance = bucket = {};
@@ -152,7 +161,8 @@ define
              * The terminal connecting to the bus to which the fault is applied.
              *
              */
-            obj["Terminal"] = base.parse_attribute (/<cim:EquipmentFault.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:EquipmentFault.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context, true);
+
             bucket = context.parsed.EquipmentFault;
             if (null == bucket)
                 context.parsed.EquipmentFault = bucket = {};
@@ -176,31 +186,36 @@ define
              * The kind of phase fault.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:Fault.kind>([\s\S]*?)<\/cim:Fault.kind>/g, sub, context, true);
+            base.parse_element (/<cim:Fault.kind>([\s\S]*?)<\/cim:Fault.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * The phases participating in the fault.
              *
              * The fault connections into these phases are further specified by the type of fault.
              *
              */
-            obj["phases"] = base.parse_element (/<cim:Fault.phases>([\s\S]*?)<\/cim:Fault.phases>/g, sub, context, true);
+            base.parse_element (/<cim:Fault.phases>([\s\S]*?)<\/cim:Fault.phases>/g, obj, "phases", base.to_string, sub, context);
+
             /**
              * Fault impedance.
              *
              * Its usage is described by 'kind'.
              *
              */
-            obj["impedance"] = base.parse_element (/<cim:Fault.impedance>([\s\S]*?)<\/cim:Fault.impedance>/g, sub, context, true);
+            base.parse_element (/<cim:Fault.impedance>([\s\S]*?)<\/cim:Fault.impedance>/g, obj, "impedance", base.to_string, sub, context);
+
             /**
              * Equipment carrying this fault.
              *
              */
-            obj["FaultyEquipment"] = base.parse_attribute (/<cim:Fault.FaultyEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Fault.FaultyEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FaultyEquipment", sub, context, true);
+
             /**
              * Outage associated with this fault.
              *
              */
-            obj["Outage"] = base.parse_attribute (/<cim:Fault.Outage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Fault.Outage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Outage", sub, context, true);
+
             bucket = context.parsed.Fault;
             if (null == bucket)
                 context.parsed.Fault = bucket = {};

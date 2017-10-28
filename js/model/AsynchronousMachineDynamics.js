@@ -31,22 +31,26 @@ define
              * Turbine-governor model associated with this asynchronous machine model.
              *
              */
-            obj["TurbineGovernorDynamics"] = base.parse_attribute (/<cim:AsynchronousMachineDynamics.TurbineGovernorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:AsynchronousMachineDynamics.TurbineGovernorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TurbineGovernorDynamics", sub, context, true);
+
             /**
              * Asynchronous machine to which this asynchronous machine dynamics model applies.
              *
              */
-            obj["AsynchronousMachine"] = base.parse_attribute (/<cim:AsynchronousMachineDynamics.AsynchronousMachine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:AsynchronousMachineDynamics.AsynchronousMachine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AsynchronousMachine", sub, context, true);
+
             /**
              * Wind generator type 1 or 2 model associated with this asynchronous machine model.
              *
              */
-            obj["WindTurbineType1or2Dynamics"] = base.parse_attribute (/<cim:AsynchronousMachineDynamics.WindTurbineType1or2Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:AsynchronousMachineDynamics.WindTurbineType1or2Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType1or2Dynamics", sub, context, true);
+
             /**
              * Mechanical load model associated with this asynchronous machine model.
              *
              */
-            obj["MechanicalLoadDynamics"] = base.parse_attribute (/<cim:AsynchronousMachineDynamics.MechanicalLoadDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:AsynchronousMachineDynamics.MechanicalLoadDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MechanicalLoadDynamics", sub, context, true);
+
             bucket = context.parsed.AsynchronousMachineDynamics;
             if (null == bucket)
                 context.parsed.AsynchronousMachineDynamics = bucket = {};
@@ -85,27 +89,32 @@ define
              * Damper 1 winding resistance.
              *
              */
-            obj["rr1"] = base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.rr1>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.rr1>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.rr1>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.rr1>/g, obj, "rr1", base.to_string, sub, context);
+
             /**
              * Damper 2 winding resistance.
              *
              */
-            obj["rr2"] = base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.rr2>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.rr2>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.rr2>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.rr2>/g, obj, "rr2", base.to_string, sub, context);
+
             /**
              * Damper 1 winding leakage reactance.
              *
              */
-            obj["xlr1"] = base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xlr1>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xlr1>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xlr1>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xlr1>/g, obj, "xlr1", base.to_string, sub, context);
+
             /**
              * Damper 2 winding leakage reactance.
              *
              */
-            obj["xlr2"] = base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xlr2>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xlr2>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xlr2>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xlr2>/g, obj, "xlr2", base.to_string, sub, context);
+
             /**
              * Magnetizing reactance.
              *
              */
-            obj["xm"] = base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xm>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xm>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xm>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xm>/g, obj, "xm", base.to_string, sub, context);
+
             bucket = context.parsed.AsynchronousMachineEquivalentCircuit;
             if (null == bucket)
                 context.parsed.AsynchronousMachineEquivalentCircuit = bucket = {};
@@ -152,35 +161,40 @@ define
              * Typical Value = 5.
              *
              */
-            obj["tpo"] = base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.tpo>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.tpo>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.tpo>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.tpo>/g, obj, "tpo", base.to_string, sub, context);
+
             /**
              * Subtransient rotor time constant (T''o) (&gt; 0).
              *
              * Typical Value = 0.03.
              *
              */
-            obj["tppo"] = base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.tppo>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.tppo>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.tppo>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.tppo>/g, obj, "tppo", base.to_string, sub, context);
+
             /**
              * Transient reactance (unsaturated) (X') (&gt;=X'').
              *
              * Typical Value = 0.5.
              *
              */
-            obj["xp"] = base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xp>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xp>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xp>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xp>/g, obj, "xp", base.to_string, sub, context);
+
             /**
              * Subtransient reactance (unsaturated) (X'') (&gt; Xl).
              *
              * Typical Value = 0.2.
              *
              */
-            obj["xpp"] = base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xpp>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xpp>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xpp>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xpp>/g, obj, "xpp", base.to_string, sub, context);
+
             /**
              * Synchronous reactance (Xs) (&gt;= X').
              *
              * Typical Value = 1.8.
              *
              */
-            obj["xs"] = base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xs>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xs>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xs>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xs>/g, obj, "xs", base.to_string, sub, context);
+
             bucket = context.parsed.AsynchronousMachineTimeConstantReactance;
             if (null == bucket)
                 context.parsed.AsynchronousMachineTimeConstantReactance = bucket = {};

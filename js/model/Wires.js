@@ -27,27 +27,32 @@ define
              * Resistance of the transformer end.
              *
              */
-            obj["r"] = base.parse_element (/<cim:TransformerStarImpedance.r>([\s\S]*?)<\/cim:TransformerStarImpedance.r>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerStarImpedance.r>([\s\S]*?)<\/cim:TransformerStarImpedance.r>/g, obj, "r", base.to_string, sub, context);
+
             /**
              * Zero sequence series resistance of the transformer end.
              *
              */
-            obj["r0"] = base.parse_element (/<cim:TransformerStarImpedance.r0>([\s\S]*?)<\/cim:TransformerStarImpedance.r0>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerStarImpedance.r0>([\s\S]*?)<\/cim:TransformerStarImpedance.r0>/g, obj, "r0", base.to_string, sub, context);
+
             /**
              * Positive sequence series reactance of the transformer end.
              *
              */
-            obj["x"] = base.parse_element (/<cim:TransformerStarImpedance.x>([\s\S]*?)<\/cim:TransformerStarImpedance.x>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerStarImpedance.x>([\s\S]*?)<\/cim:TransformerStarImpedance.x>/g, obj, "x", base.to_string, sub, context);
+
             /**
              * Zero sequence series reactance of the transformer end.
              *
              */
-            obj["x0"] = base.parse_element (/<cim:TransformerStarImpedance.x0>([\s\S]*?)<\/cim:TransformerStarImpedance.x0>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerStarImpedance.x0>([\s\S]*?)<\/cim:TransformerStarImpedance.x0>/g, obj, "x0", base.to_string, sub, context);
+
             /**
              * Transformer end datasheet used to calculate this transformer star impedance.
              *
              */
-            obj["TransformerEndInfo"] = base.parse_attribute (/<cim:TransformerStarImpedance.TransformerEndInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TransformerStarImpedance.TransformerEndInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerEndInfo", sub, context, true);
+
             bucket = context.parsed.TransformerStarImpedance;
             if (null == bucket)
                 context.parsed.TransformerStarImpedance = bucket = {};
@@ -115,7 +120,8 @@ define
              * Transformer end to which this phase tap changer belongs.
              *
              */
-            obj["TransformerEnd"] = base.parse_attribute (/<cim:PhaseTapChanger.TransformerEnd\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:PhaseTapChanger.TransformerEnd\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerEnd", sub, context, true);
+
             bucket = context.parsed.PhaseTapChanger;
             if (null == bucket)
                 context.parsed.PhaseTapChanger = bucket = {};
@@ -139,54 +145,64 @@ define
              * Zero sequence mutual coupling shunt (charging) susceptance, uniformly distributed, of the entire line section.
              *
              */
-            obj["b0ch"] = base.parse_element (/<cim:MutualCoupling.b0ch>([\s\S]*?)<\/cim:MutualCoupling.b0ch>/g, sub, context, true);
+            base.parse_element (/<cim:MutualCoupling.b0ch>([\s\S]*?)<\/cim:MutualCoupling.b0ch>/g, obj, "b0ch", base.to_string, sub, context);
+
             /**
              * Distance to the start of the coupled region from the first line's terminal having sequence number equal to 1.
              *
              */
-            obj["distance11"] = base.parse_element (/<cim:MutualCoupling.distance11>([\s\S]*?)<\/cim:MutualCoupling.distance11>/g, sub, context, true);
+            base.parse_element (/<cim:MutualCoupling.distance11>([\s\S]*?)<\/cim:MutualCoupling.distance11>/g, obj, "distance11", base.to_string, sub, context);
+
             /**
              * Distance to the end of the coupled region from the first line's terminal with sequence number equal to 1.
              *
              */
-            obj["distance12"] = base.parse_element (/<cim:MutualCoupling.distance12>([\s\S]*?)<\/cim:MutualCoupling.distance12>/g, sub, context, true);
+            base.parse_element (/<cim:MutualCoupling.distance12>([\s\S]*?)<\/cim:MutualCoupling.distance12>/g, obj, "distance12", base.to_string, sub, context);
+
             /**
              * Distance to the start of coupled region from the second line's terminal with sequence number equal to 1.
              *
              */
-            obj["distance21"] = base.parse_element (/<cim:MutualCoupling.distance21>([\s\S]*?)<\/cim:MutualCoupling.distance21>/g, sub, context, true);
+            base.parse_element (/<cim:MutualCoupling.distance21>([\s\S]*?)<\/cim:MutualCoupling.distance21>/g, obj, "distance21", base.to_string, sub, context);
+
             /**
              * Distance to the end of coupled region from the second line's terminal with sequence number equal to 1.
              *
              */
-            obj["distance22"] = base.parse_element (/<cim:MutualCoupling.distance22>([\s\S]*?)<\/cim:MutualCoupling.distance22>/g, sub, context, true);
+            base.parse_element (/<cim:MutualCoupling.distance22>([\s\S]*?)<\/cim:MutualCoupling.distance22>/g, obj, "distance22", base.to_string, sub, context);
+
             /**
              * Zero sequence mutual coupling shunt (charging) conductance, uniformly distributed, of the entire line section.
              *
              */
-            obj["g0ch"] = base.parse_element (/<cim:MutualCoupling.g0ch>([\s\S]*?)<\/cim:MutualCoupling.g0ch>/g, sub, context, true);
+            base.parse_element (/<cim:MutualCoupling.g0ch>([\s\S]*?)<\/cim:MutualCoupling.g0ch>/g, obj, "g0ch", base.to_string, sub, context);
+
             /**
              * Zero sequence branch-to-branch mutual impedance coupling, resistance.
              *
              */
-            obj["r0"] = base.parse_element (/<cim:MutualCoupling.r0>([\s\S]*?)<\/cim:MutualCoupling.r0>/g, sub, context, true);
+            base.parse_element (/<cim:MutualCoupling.r0>([\s\S]*?)<\/cim:MutualCoupling.r0>/g, obj, "r0", base.to_string, sub, context);
+
             /**
              * Zero sequence branch-to-branch mutual impedance coupling, reactance.
              *
              */
-            obj["x0"] = base.parse_element (/<cim:MutualCoupling.x0>([\s\S]*?)<\/cim:MutualCoupling.x0>/g, sub, context, true);
+            base.parse_element (/<cim:MutualCoupling.x0>([\s\S]*?)<\/cim:MutualCoupling.x0>/g, obj, "x0", base.to_string, sub, context);
+
             /**
              * The starting terminal for the calculation of distances along the second branch of the mutual coupling.
              *
              */
-            obj["Second_Terminal"] = base.parse_attribute (/<cim:MutualCoupling.Second_Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:MutualCoupling.Second_Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Second_Terminal", sub, context, true);
+
             /**
              * The starting terminal for the calculation of distances along the first branch of the mutual coupling.
              *
              * Normally MutualCoupling would only be used for terminals of AC line segments.  The first and second terminals of a mutual coupling should point to different AC line segments.
              *
              */
-            obj["First_Terminal"] = base.parse_attribute (/<cim:MutualCoupling.First_Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:MutualCoupling.First_Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "First_Terminal", sub, context, true);
+
             bucket = context.parsed.MutualCoupling;
             if (null == bucket)
                 context.parsed.MutualCoupling = bucket = {};
@@ -210,78 +226,90 @@ define
              * Number of individual customers represented by this demand.
              *
              */
-            obj["customerCount"] = base.parse_element (/<cim:EnergyConsumer.customerCount>([\s\S]*?)<\/cim:EnergyConsumer.customerCount>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyConsumer.customerCount>([\s\S]*?)<\/cim:EnergyConsumer.customerCount>/g, obj, "customerCount", base.to_string, sub, context);
+
             /**
              * Used for Yn and Zn connections.
              *
              * True if the neutral is solidly grounded.
              *
              */
-            obj["grounded"] = base.to_boolean (base.parse_element (/<cim:EnergyConsumer.grounded>([\s\S]*?)<\/cim:EnergyConsumer.grounded>/g, sub, context, true));
+            base.parse_element (/<cim:EnergyConsumer.grounded>([\s\S]*?)<\/cim:EnergyConsumer.grounded>/g, obj, "grounded", base.to_boolean, sub, context);
+
             /**
              * Active power of the load that is a fixed quantity.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["pfixed"] = base.parse_element (/<cim:EnergyConsumer.pfixed>([\s\S]*?)<\/cim:EnergyConsumer.pfixed>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyConsumer.pfixed>([\s\S]*?)<\/cim:EnergyConsumer.pfixed>/g, obj, "pfixed", base.to_string, sub, context);
+
             /**
              * Fixed active power as per cent of load group fixed active power.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["pfixedPct"] = base.parse_element (/<cim:EnergyConsumer.pfixedPct>([\s\S]*?)<\/cim:EnergyConsumer.pfixedPct>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyConsumer.pfixedPct>([\s\S]*?)<\/cim:EnergyConsumer.pfixedPct>/g, obj, "pfixedPct", base.to_string, sub, context);
+
             /**
              * The type of phase connection, such as wye or delta.
              *
              */
-            obj["phaseConnection"] = base.parse_element (/<cim:EnergyConsumer.phaseConnection>([\s\S]*?)<\/cim:EnergyConsumer.phaseConnection>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyConsumer.phaseConnection>([\s\S]*?)<\/cim:EnergyConsumer.phaseConnection>/g, obj, "phaseConnection", base.to_string, sub, context);
+
             /**
              * Reactive power of the load that is a fixed quantity.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["qfixed"] = base.parse_element (/<cim:EnergyConsumer.qfixed>([\s\S]*?)<\/cim:EnergyConsumer.qfixed>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyConsumer.qfixed>([\s\S]*?)<\/cim:EnergyConsumer.qfixed>/g, obj, "qfixed", base.to_string, sub, context);
+
             /**
              * Fixed reactive power as per cent of load group fixed reactive power.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["qfixedPct"] = base.parse_element (/<cim:EnergyConsumer.qfixedPct>([\s\S]*?)<\/cim:EnergyConsumer.qfixedPct>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyConsumer.qfixedPct>([\s\S]*?)<\/cim:EnergyConsumer.qfixedPct>/g, obj, "qfixedPct", base.to_string, sub, context);
+
             /**
              * Active power of the load.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["p"] = base.parse_element (/<cim:EnergyConsumer.p>([\s\S]*?)<\/cim:EnergyConsumer.p>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyConsumer.p>([\s\S]*?)<\/cim:EnergyConsumer.p>/g, obj, "p", base.to_string, sub, context);
+
             /**
              * Reactive power of the load.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["q"] = base.parse_element (/<cim:EnergyConsumer.q>([\s\S]*?)<\/cim:EnergyConsumer.q>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyConsumer.q>([\s\S]*?)<\/cim:EnergyConsumer.q>/g, obj, "q", base.to_string, sub, context);
+
             /**
              * The  energy consumer is assigned to this power cut zone.
              *
              */
-            obj["PowerCutZone"] = base.parse_attribute (/<cim:EnergyConsumer.PowerCutZone\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:EnergyConsumer.PowerCutZone\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerCutZone", sub, context, true);
+
             /**
              * Load dynamics model used to describe dynamic behavior of this energy consumer.
              *
              */
-            obj["LoadDynamics"] = base.parse_attribute (/<cim:EnergyConsumer.LoadDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:EnergyConsumer.LoadDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadDynamics", sub, context, true);
+
             /**
              * The load response characteristic of this load.
              *
              * If missing, this load is assumed to be constant power.
              *
              */
-            obj["LoadResponse"] = base.parse_attribute (/<cim:EnergyConsumer.LoadResponse\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:EnergyConsumer.LoadResponse\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadResponse", sub, context, true);
+
             bucket = context.parsed.EnergyConsumer;
             if (null == bucket)
                 context.parsed.EnergyConsumer = bucket = {};
@@ -305,17 +333,20 @@ define
              * Fixed position.
              *
              */
-            obj["fixed"] = base.parse_element (/<cim:PetersenCoilModeKind.fixed>([\s\S]*?)<\/cim:PetersenCoilModeKind.fixed>/g, sub, context, true);
+            base.parse_element (/<cim:PetersenCoilModeKind.fixed>([\s\S]*?)<\/cim:PetersenCoilModeKind.fixed>/g, obj, "fixed", base.to_string, sub, context);
+
             /**
              * Manual positioning.
              *
              */
-            obj["manual"] = base.parse_element (/<cim:PetersenCoilModeKind.manual>([\s\S]*?)<\/cim:PetersenCoilModeKind.manual>/g, sub, context, true);
+            base.parse_element (/<cim:PetersenCoilModeKind.manual>([\s\S]*?)<\/cim:PetersenCoilModeKind.manual>/g, obj, "manual", base.to_string, sub, context);
+
             /**
              * Automatic positioning.
              *
              */
-            obj["automaticPositioning"] = base.parse_element (/<cim:PetersenCoilModeKind.automaticPositioning>([\s\S]*?)<\/cim:PetersenCoilModeKind.automaticPositioning>/g, sub, context, true);
+            base.parse_element (/<cim:PetersenCoilModeKind.automaticPositioning>([\s\S]*?)<\/cim:PetersenCoilModeKind.automaticPositioning>/g, obj, "automaticPositioning", base.to_string, sub, context);
+
             bucket = context.parsed.PetersenCoilModeKind;
             if (null == bucket)
                 context.parsed.PetersenCoilModeKind = bucket = {};
@@ -341,37 +372,44 @@ define
              * Positive sequence resistance.
              *
              */
-            obj["r"] = base.parse_element (/<cim:SeriesCompensator.r>([\s\S]*?)<\/cim:SeriesCompensator.r>/g, sub, context, true);
+            base.parse_element (/<cim:SeriesCompensator.r>([\s\S]*?)<\/cim:SeriesCompensator.r>/g, obj, "r", base.to_string, sub, context);
+
             /**
              * Zero sequence resistance.
              *
              */
-            obj["r0"] = base.parse_element (/<cim:SeriesCompensator.r0>([\s\S]*?)<\/cim:SeriesCompensator.r0>/g, sub, context, true);
+            base.parse_element (/<cim:SeriesCompensator.r0>([\s\S]*?)<\/cim:SeriesCompensator.r0>/g, obj, "r0", base.to_string, sub, context);
+
             /**
              * Positive sequence reactance.
              *
              */
-            obj["x"] = base.parse_element (/<cim:SeriesCompensator.x>([\s\S]*?)<\/cim:SeriesCompensator.x>/g, sub, context, true);
+            base.parse_element (/<cim:SeriesCompensator.x>([\s\S]*?)<\/cim:SeriesCompensator.x>/g, obj, "x", base.to_string, sub, context);
+
             /**
              * Zero sequence reactance.
              *
              */
-            obj["x0"] = base.parse_element (/<cim:SeriesCompensator.x0>([\s\S]*?)<\/cim:SeriesCompensator.x0>/g, sub, context, true);
+            base.parse_element (/<cim:SeriesCompensator.x0>([\s\S]*?)<\/cim:SeriesCompensator.x0>/g, obj, "x0", base.to_string, sub, context);
+
             /**
              * Describe if a metal oxide varistor (mov) for over voltage protection is configured at the series compensator.
              *
              */
-            obj["varistorPresent"] = base.to_boolean (base.parse_element (/<cim:SeriesCompensator.varistorPresent>([\s\S]*?)<\/cim:SeriesCompensator.varistorPresent>/g, sub, context, true));
+            base.parse_element (/<cim:SeriesCompensator.varistorPresent>([\s\S]*?)<\/cim:SeriesCompensator.varistorPresent>/g, obj, "varistorPresent", base.to_boolean, sub, context);
+
             /**
              * The maximum current the varistor is designed to handle at specified duration.
              *
              */
-            obj["varistorRatedCurrent"] = base.parse_element (/<cim:SeriesCompensator.varistorRatedCurrent>([\s\S]*?)<\/cim:SeriesCompensator.varistorRatedCurrent>/g, sub, context, true);
+            base.parse_element (/<cim:SeriesCompensator.varistorRatedCurrent>([\s\S]*?)<\/cim:SeriesCompensator.varistorRatedCurrent>/g, obj, "varistorRatedCurrent", base.to_string, sub, context);
+
             /**
              * The dc voltage at which the varistor start conducting.
              *
              */
-            obj["varistorVoltageThreshold"] = base.parse_element (/<cim:SeriesCompensator.varistorVoltageThreshold>([\s\S]*?)<\/cim:SeriesCompensator.varistorVoltageThreshold>/g, sub, context, true);
+            base.parse_element (/<cim:SeriesCompensator.varistorVoltageThreshold>([\s\S]*?)<\/cim:SeriesCompensator.varistorVoltageThreshold>/g, obj, "varistorVoltageThreshold", base.to_string, sub, context);
+
             bucket = context.parsed.SeriesCompensator;
             if (null == bucket)
                 context.parsed.SeriesCompensator = bucket = {};
@@ -397,47 +435,54 @@ define
              * It is primarily used for short circuit data exchange according to IEC 60909.
              *
              */
-            obj["ratedPowerFactor"] = base.to_float (base.parse_element (/<cim:RotatingMachine.ratedPowerFactor>([\s\S]*?)<\/cim:RotatingMachine.ratedPowerFactor>/g, sub, context, true));
+            base.parse_element (/<cim:RotatingMachine.ratedPowerFactor>([\s\S]*?)<\/cim:RotatingMachine.ratedPowerFactor>/g, obj, "ratedPowerFactor", base.to_float, sub, context);
+
             /**
              * Nameplate apparent power rating for the unit.
              *
              * The attribute shall have a positive value.
              *
              */
-            obj["ratedS"] = base.parse_element (/<cim:RotatingMachine.ratedS>([\s\S]*?)<\/cim:RotatingMachine.ratedS>/g, sub, context, true);
+            base.parse_element (/<cim:RotatingMachine.ratedS>([\s\S]*?)<\/cim:RotatingMachine.ratedS>/g, obj, "ratedS", base.to_string, sub, context);
+
             /**
              * Rated voltage (nameplate data, Ur in IEC 60909-0).
              *
              * It is primarily used for short circuit data exchange according to IEC 60909.
              *
              */
-            obj["ratedU"] = base.parse_element (/<cim:RotatingMachine.ratedU>([\s\S]*?)<\/cim:RotatingMachine.ratedU>/g, sub, context, true);
+            base.parse_element (/<cim:RotatingMachine.ratedU>([\s\S]*?)<\/cim:RotatingMachine.ratedU>/g, obj, "ratedU", base.to_string, sub, context);
+
             /**
              * Active power injection.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["p"] = base.parse_element (/<cim:RotatingMachine.p>([\s\S]*?)<\/cim:RotatingMachine.p>/g, sub, context, true);
+            base.parse_element (/<cim:RotatingMachine.p>([\s\S]*?)<\/cim:RotatingMachine.p>/g, obj, "p", base.to_string, sub, context);
+
             /**
              * Reactive power injection.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["q"] = base.parse_element (/<cim:RotatingMachine.q>([\s\S]*?)<\/cim:RotatingMachine.q>/g, sub, context, true);
+            base.parse_element (/<cim:RotatingMachine.q>([\s\S]*?)<\/cim:RotatingMachine.q>/g, obj, "q", base.to_string, sub, context);
+
             /**
              * A synchronous machine may operate as a generator and as such becomes a member of a generating unit.
              *
              */
-            obj["GeneratingUnit"] = base.parse_attribute (/<cim:RotatingMachine.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RotatingMachine.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingUnit", sub, context, true);
+
             /**
              * The synchronous machine drives the turbine which moves the water from a low elevation to a higher elevation.
              *
              * The direction of machine rotation for pumping may or may not be the same as for generating.
              *
              */
-            obj["HydroPump"] = base.parse_attribute (/<cim:RotatingMachine.HydroPump\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RotatingMachine.HydroPump\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroPump", sub, context, true);
+
             bucket = context.parsed.RotatingMachine;
             if (null == bucket)
                 context.parsed.RotatingMachine = bucket = {};
@@ -465,49 +510,58 @@ define
              * If the Switch has a status measurement the Discrete.normalValue is expected to match with the Switch.normalOpen.
              *
              */
-            obj["normalOpen"] = base.to_boolean (base.parse_element (/<cim:Switch.normalOpen>([\s\S]*?)<\/cim:Switch.normalOpen>/g, sub, context, true));
+            base.parse_element (/<cim:Switch.normalOpen>([\s\S]*?)<\/cim:Switch.normalOpen>/g, obj, "normalOpen", base.to_boolean, sub, context);
+
             /**
              * The maximum continuous current carrying capacity in amps governed by the device material and construction.
              *
              */
-            obj["ratedCurrent"] = base.parse_element (/<cim:Switch.ratedCurrent>([\s\S]*?)<\/cim:Switch.ratedCurrent>/g, sub, context, true);
+            base.parse_element (/<cim:Switch.ratedCurrent>([\s\S]*?)<\/cim:Switch.ratedCurrent>/g, obj, "ratedCurrent", base.to_string, sub, context);
+
             /**
              * Branch is retained in a bus branch model.
              *
              * The flow through retained switches will normally be calculated in power flow.
              *
              */
-            obj["retained"] = base.to_boolean (base.parse_element (/<cim:Switch.retained>([\s\S]*?)<\/cim:Switch.retained>/g, sub, context, true));
+            base.parse_element (/<cim:Switch.retained>([\s\S]*?)<\/cim:Switch.retained>/g, obj, "retained", base.to_boolean, sub, context);
+
             /**
              * The switch on count since the switch was last reset or initialized.
              *
              */
-            obj["switchOnCount"] = base.parse_element (/<cim:Switch.switchOnCount>([\s\S]*?)<\/cim:Switch.switchOnCount>/g, sub, context, true);
+            base.parse_element (/<cim:Switch.switchOnCount>([\s\S]*?)<\/cim:Switch.switchOnCount>/g, obj, "switchOnCount", base.to_string, sub, context);
+
             /**
              * The date and time when the switch was last switched on.
              *
              */
-            obj["switchOnDate"] = base.to_datetime (base.parse_element (/<cim:Switch.switchOnDate>([\s\S]*?)<\/cim:Switch.switchOnDate>/g, sub, context, true));
+            base.parse_element (/<cim:Switch.switchOnDate>([\s\S]*?)<\/cim:Switch.switchOnDate>/g, obj, "switchOnDate", base.to_datetime, sub, context);
+
             /**
              * The attribute tells if the switch is considered open when used as input to topology processing.
              *
              */
-            obj["open"] = base.to_boolean (base.parse_element (/<cim:Switch.open>([\s\S]*?)<\/cim:Switch.open>/g, sub, context, true));
+            base.parse_element (/<cim:Switch.open>([\s\S]*?)<\/cim:Switch.open>/g, obj, "open", base.to_boolean, sub, context);
+
             /**
              * Current outage of this protective device.
              *
              */
-            obj["Outage"] = base.parse_attribute (/<cim:Switch.Outage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Switch.Outage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Outage", sub, context, true);
+
             /**
              * Composite switch to which this Switch belongs.
              *
              */
-            obj["CompositeSwitch"] = base.parse_attribute (/<cim:Switch.CompositeSwitch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Switch.CompositeSwitch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CompositeSwitch", sub, context, true);
+
             /**
              * Action changing status of this switch.
              *
              */
-            obj["SwitchAction"] = base.parse_attribute (/<cim:Switch.SwitchAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Switch.SwitchAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchAction", sub, context, true);
+
             bucket = context.parsed.Switch;
             if (null == bucket)
                 context.parsed.Switch = bucket = {};
@@ -535,27 +589,32 @@ define
              * The value can be positive or negative.
              *
              */
-            obj["b"] = base.parse_element (/<cim:TransformerCoreAdmittance.b>([\s\S]*?)<\/cim:TransformerCoreAdmittance.b>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerCoreAdmittance.b>([\s\S]*?)<\/cim:TransformerCoreAdmittance.b>/g, obj, "b", base.to_string, sub, context);
+
             /**
              * Zero sequence magnetizing branch susceptance.
              *
              */
-            obj["b0"] = base.parse_element (/<cim:TransformerCoreAdmittance.b0>([\s\S]*?)<\/cim:TransformerCoreAdmittance.b0>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerCoreAdmittance.b0>([\s\S]*?)<\/cim:TransformerCoreAdmittance.b0>/g, obj, "b0", base.to_string, sub, context);
+
             /**
              * Magnetizing branch conductance (G mag).
              *
              */
-            obj["g"] = base.parse_element (/<cim:TransformerCoreAdmittance.g>([\s\S]*?)<\/cim:TransformerCoreAdmittance.g>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerCoreAdmittance.g>([\s\S]*?)<\/cim:TransformerCoreAdmittance.g>/g, obj, "g", base.to_string, sub, context);
+
             /**
              * Zero sequence magnetizing branch conductance.
              *
              */
-            obj["g0"] = base.parse_element (/<cim:TransformerCoreAdmittance.g0>([\s\S]*?)<\/cim:TransformerCoreAdmittance.g0>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerCoreAdmittance.g0>([\s\S]*?)<\/cim:TransformerCoreAdmittance.g0>/g, obj, "g0", base.to_string, sub, context);
+
             /**
              * Transformer end datasheet used to calculate this core admittance.
              *
              */
-            obj["TransformerEndInfo"] = base.parse_attribute (/<cim:TransformerCoreAdmittance.TransformerEndInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TransformerCoreAdmittance.TransformerEndInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerEndInfo", sub, context, true);
+
             bucket = context.parsed.TransformerCoreAdmittance;
             if (null == bucket)
                 context.parsed.TransformerCoreAdmittance = bucket = {};
@@ -581,12 +640,14 @@ define
              * A VoltageControlZone may have a  voltage regulation schedule.
              *
              */
-            obj["RegulationSchedule"] = base.parse_attribute (/<cim:VoltageControlZone.RegulationSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:VoltageControlZone.RegulationSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegulationSchedule", sub, context, true);
+
             /**
              * A VoltageControlZone is controlled by a designated BusbarSection.
              *
              */
-            obj["BusbarSection"] = base.parse_attribute (/<cim:VoltageControlZone.BusbarSection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:VoltageControlZone.BusbarSection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BusbarSection", sub, context, true);
+
             bucket = context.parsed.VoltageControlZone;
             if (null == bucket)
                 context.parsed.VoltageControlZone = bucket = {};
@@ -612,7 +673,8 @@ define
              * Constrains the number of matrix elements and the phase codes that can be used with this matrix.
              *
              */
-            obj["conductorCount"] = base.parse_element (/<cim:PerLengthPhaseImpedance.conductorCount>([\s\S]*?)<\/cim:PerLengthPhaseImpedance.conductorCount>/g, sub, context, true);
+            base.parse_element (/<cim:PerLengthPhaseImpedance.conductorCount>([\s\S]*?)<\/cim:PerLengthPhaseImpedance.conductorCount>/g, obj, "conductorCount", base.to_string, sub, context);
+
             bucket = context.parsed.PerLengthPhaseImpedance;
             if (null == bucket)
                 context.parsed.PerLengthPhaseImpedance = bucket = {};
@@ -636,12 +698,14 @@ define
              * Voltage control
              *
              */
-            obj["volt"] = base.parse_element (/<cim:TransformerControlMode.volt>([\s\S]*?)<\/cim:TransformerControlMode.volt>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerControlMode.volt>([\s\S]*?)<\/cim:TransformerControlMode.volt>/g, obj, "volt", base.to_string, sub, context);
+
             /**
              * Reactive power flow control
              *
              */
-            obj["reactive"] = base.parse_element (/<cim:TransformerControlMode.reactive>([\s\S]*?)<\/cim:TransformerControlMode.reactive>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerControlMode.reactive>([\s\S]*?)<\/cim:TransformerControlMode.reactive>/g, obj, "reactive", base.to_string, sub, context);
+
             bucket = context.parsed.TransformerControlMode;
             if (null == bucket)
                 context.parsed.TransformerControlMode = bucket = {};
@@ -667,36 +731,42 @@ define
              * Resistance between the 'from' and the 'to' end, seen from the 'from' end.
              *
              */
-            obj["r"] = base.parse_element (/<cim:TransformerMeshImpedance.r>([\s\S]*?)<\/cim:TransformerMeshImpedance.r>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerMeshImpedance.r>([\s\S]*?)<\/cim:TransformerMeshImpedance.r>/g, obj, "r", base.to_string, sub, context);
+
             /**
              * Zero-sequence resistance between the 'from' and the 'to' end, seen from the 'from' end.
              *
              */
-            obj["r0"] = base.parse_element (/<cim:TransformerMeshImpedance.r0>([\s\S]*?)<\/cim:TransformerMeshImpedance.r0>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerMeshImpedance.r0>([\s\S]*?)<\/cim:TransformerMeshImpedance.r0>/g, obj, "r0", base.to_string, sub, context);
+
             /**
              * Reactance between the 'from' and the 'to' end, seen from the 'from' end.
              *
              */
-            obj["x"] = base.parse_element (/<cim:TransformerMeshImpedance.x>([\s\S]*?)<\/cim:TransformerMeshImpedance.x>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerMeshImpedance.x>([\s\S]*?)<\/cim:TransformerMeshImpedance.x>/g, obj, "x", base.to_string, sub, context);
+
             /**
              * Zero-sequence reactance between the 'from' and the 'to' end, seen from the 'from' end.
              *
              */
-            obj["x0"] = base.parse_element (/<cim:TransformerMeshImpedance.x0>([\s\S]*?)<\/cim:TransformerMeshImpedance.x0>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerMeshImpedance.x0>([\s\S]*?)<\/cim:TransformerMeshImpedance.x0>/g, obj, "x0", base.to_string, sub, context);
+
             /**
              * 'from' transformer end datasheet this mesh impedance is calculated from.
              *
              * It determines the voltage reference.
              *
              */
-            obj["FromTransformerEndInfo"] = base.parse_attribute (/<cim:TransformerMeshImpedance.FromTransformerEndInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TransformerMeshImpedance.FromTransformerEndInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FromTransformerEndInfo", sub, context, true);
+
             /**
              * From end this mesh impedance is connected to.
              *
              * It determines the voltage reference.
              *
              */
-            obj["FromTransformerEnd"] = base.parse_attribute (/<cim:TransformerMeshImpedance.FromTransformerEnd\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TransformerMeshImpedance.FromTransformerEnd\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FromTransformerEnd", sub, context, true);
+
             bucket = context.parsed.TransformerMeshImpedance;
             if (null == bucket)
                 context.parsed.TransformerMeshImpedance = bucket = {};
@@ -720,32 +790,38 @@ define
              * Positive sequence shunt (charging) conductance per section
              *
              */
-            obj["g"] = base.parse_element (/<cim:NonlinearShuntCompensatorPoint.g>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPoint.g>/g, sub, context, true);
+            base.parse_element (/<cim:NonlinearShuntCompensatorPoint.g>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPoint.g>/g, obj, "g", base.to_string, sub, context);
+
             /**
              * Zero sequence shunt (charging) susceptance per section
              *
              */
-            obj["b0"] = base.parse_element (/<cim:NonlinearShuntCompensatorPoint.b0>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPoint.b0>/g, sub, context, true);
+            base.parse_element (/<cim:NonlinearShuntCompensatorPoint.b0>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPoint.b0>/g, obj, "b0", base.to_string, sub, context);
+
             /**
              * Positive sequence shunt (charging) susceptance per section
              *
              */
-            obj["b"] = base.parse_element (/<cim:NonlinearShuntCompensatorPoint.b>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPoint.b>/g, sub, context, true);
+            base.parse_element (/<cim:NonlinearShuntCompensatorPoint.b>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPoint.b>/g, obj, "b", base.to_string, sub, context);
+
             /**
              * Zero sequence shunt (charging) conductance per section
              *
              */
-            obj["g0"] = base.parse_element (/<cim:NonlinearShuntCompensatorPoint.g0>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPoint.g0>/g, sub, context, true);
+            base.parse_element (/<cim:NonlinearShuntCompensatorPoint.g0>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPoint.g0>/g, obj, "g0", base.to_string, sub, context);
+
             /**
              * The number of the section.
              *
              */
-            obj["sectionNumber"] = base.parse_element (/<cim:NonlinearShuntCompensatorPoint.sectionNumber>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPoint.sectionNumber>/g, sub, context, true);
+            base.parse_element (/<cim:NonlinearShuntCompensatorPoint.sectionNumber>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPoint.sectionNumber>/g, obj, "sectionNumber", base.to_string, sub, context);
+
             /**
              * Non-linear shunt compensator owning this point.
              *
              */
-            obj["NonlinearShuntCompensator"] = base.parse_attribute (/<cim:NonlinearShuntCompensatorPoint.NonlinearShuntCompensator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:NonlinearShuntCompensatorPoint.NonlinearShuntCompensator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "NonlinearShuntCompensator", sub, context, true);
+
             bucket = context.parsed.NonlinearShuntCompensatorPoint;
             if (null == bucket)
                 context.parsed.NonlinearShuntCompensatorPoint = bucket = {};
@@ -773,12 +849,14 @@ define
              * Mechanical limit of the busbar in the substation itself. Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["ipMax"] = base.parse_element (/<cim:BusbarSection.ipMax>([\s\S]*?)<\/cim:BusbarSection.ipMax>/g, sub, context, true);
+            base.parse_element (/<cim:BusbarSection.ipMax>([\s\S]*?)<\/cim:BusbarSection.ipMax>/g, obj, "ipMax", base.to_string, sub, context);
+
             /**
              * A VoltageControlZone is controlled by a designated BusbarSection.
              *
              */
-            obj["VoltageControlZone"] = base.parse_attribute (/<cim:BusbarSection.VoltageControlZone\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:BusbarSection.VoltageControlZone\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VoltageControlZone", sub, context, true);
+
             bucket = context.parsed.BusbarSection;
             if (null == bucket)
                 context.parsed.BusbarSection = bucket = {};
@@ -802,22 +880,26 @@ define
              * The number of the section.
              *
              */
-            obj["sectionNumber"] = base.parse_element (/<cim:NonlinearShuntCompensatorPhasePoint.sectionNumber>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPhasePoint.sectionNumber>/g, sub, context, true);
+            base.parse_element (/<cim:NonlinearShuntCompensatorPhasePoint.sectionNumber>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPhasePoint.sectionNumber>/g, obj, "sectionNumber", base.to_string, sub, context);
+
             /**
              * Positive sequence shunt (charging) susceptance per section
              *
              */
-            obj["b"] = base.parse_element (/<cim:NonlinearShuntCompensatorPhasePoint.b>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPhasePoint.b>/g, sub, context, true);
+            base.parse_element (/<cim:NonlinearShuntCompensatorPhasePoint.b>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPhasePoint.b>/g, obj, "b", base.to_string, sub, context);
+
             /**
              * Positive sequence shunt (charging) conductance per section
              *
              */
-            obj["g"] = base.parse_element (/<cim:NonlinearShuntCompensatorPhasePoint.g>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPhasePoint.g>/g, sub, context, true);
+            base.parse_element (/<cim:NonlinearShuntCompensatorPhasePoint.g>([\s\S]*?)<\/cim:NonlinearShuntCompensatorPhasePoint.g>/g, obj, "g", base.to_string, sub, context);
+
             /**
              * Non-linear shunt compensator phase owning this point.
              *
              */
-            obj["NonlinearShuntCompensatorPhase"] = base.parse_attribute (/<cim:NonlinearShuntCompensatorPhasePoint.NonlinearShuntCompensatorPhase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:NonlinearShuntCompensatorPhasePoint.NonlinearShuntCompensatorPhase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "NonlinearShuntCompensatorPhase", sub, context, true);
+
             bucket = context.parsed.NonlinearShuntCompensatorPhasePoint;
             if (null == bucket)
                 context.parsed.NonlinearShuntCompensatorPhasePoint = bucket = {};
@@ -839,40 +921,46 @@ define
              * The actual susceptance is calculated as follows:
              *
              */
-            obj["b"] = base.parse_element (/<cim:TapChangerTablePoint.b>([\s\S]*?)<\/cim:TapChangerTablePoint.b>/g, sub, context, true);
+            base.parse_element (/<cim:TapChangerTablePoint.b>([\s\S]*?)<\/cim:TapChangerTablePoint.b>/g, obj, "b", base.to_string, sub, context);
+
             /**
              * The magnetizing branch conductance deviation in percent of nominal value.
              *
              * The actual conductance is calculated as follows:
              *
              */
-            obj["g"] = base.parse_element (/<cim:TapChangerTablePoint.g>([\s\S]*?)<\/cim:TapChangerTablePoint.g>/g, sub, context, true);
+            base.parse_element (/<cim:TapChangerTablePoint.g>([\s\S]*?)<\/cim:TapChangerTablePoint.g>/g, obj, "g", base.to_string, sub, context);
+
             /**
              * The resistance deviation in percent of nominal value.
              *
              * The actual reactance is calculated as follows:
              *
              */
-            obj["r"] = base.parse_element (/<cim:TapChangerTablePoint.r>([\s\S]*?)<\/cim:TapChangerTablePoint.r>/g, sub, context, true);
+            base.parse_element (/<cim:TapChangerTablePoint.r>([\s\S]*?)<\/cim:TapChangerTablePoint.r>/g, obj, "r", base.to_string, sub, context);
+
             /**
              * The voltage ratio in per unit.
              *
              * Hence this is a value close to one.
              *
              */
-            obj["ratio"] = base.to_float (base.parse_element (/<cim:TapChangerTablePoint.ratio>([\s\S]*?)<\/cim:TapChangerTablePoint.ratio>/g, sub, context, true));
+            base.parse_element (/<cim:TapChangerTablePoint.ratio>([\s\S]*?)<\/cim:TapChangerTablePoint.ratio>/g, obj, "ratio", base.to_float, sub, context);
+
             /**
              * The tap step.
              *
              */
-            obj["step"] = base.parse_element (/<cim:TapChangerTablePoint.step>([\s\S]*?)<\/cim:TapChangerTablePoint.step>/g, sub, context, true);
+            base.parse_element (/<cim:TapChangerTablePoint.step>([\s\S]*?)<\/cim:TapChangerTablePoint.step>/g, obj, "step", base.to_string, sub, context);
+
             /**
              * The series reactance deviation in percent of nominal value.
              *
              * The actual reactance is calculated as follows:
              *
              */
-            obj["x"] = base.parse_element (/<cim:TapChangerTablePoint.x>([\s\S]*?)<\/cim:TapChangerTablePoint.x>/g, sub, context, true);
+            base.parse_element (/<cim:TapChangerTablePoint.x>([\s\S]*?)<\/cim:TapChangerTablePoint.x>/g, obj, "x", base.to_string, sub, context);
+
             bucket = context.parsed.TapChangerTablePoint;
             if (null == bucket)
                 context.parsed.TapChangerTablePoint = bucket = {};
@@ -896,12 +984,14 @@ define
              * The Asynchronous Machine is a generator.
              *
              */
-            obj["generator"] = base.parse_element (/<cim:AsynchronousMachineKind.generator>([\s\S]*?)<\/cim:AsynchronousMachineKind.generator>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachineKind.generator>([\s\S]*?)<\/cim:AsynchronousMachineKind.generator>/g, obj, "generator", base.to_string, sub, context);
+
             /**
              * The Asynchronous Machine is a motor.
              *
              */
-            obj["motor"] = base.parse_element (/<cim:AsynchronousMachineKind.motor>([\s\S]*?)<\/cim:AsynchronousMachineKind.motor>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachineKind.motor>([\s\S]*?)<\/cim:AsynchronousMachineKind.motor>/g, obj, "motor", base.to_string, sub, context);
+
             bucket = context.parsed.AsynchronousMachineKind;
             if (null == bucket)
                 context.parsed.AsynchronousMachineKind = bucket = {};
@@ -927,12 +1017,14 @@ define
              * The machine's coolant temperature (e.g., ambient air or stator circulating water).
              *
              */
-            obj["coolantTemperature"] = base.parse_element (/<cim:ReactiveCapabilityCurve.coolantTemperature>([\s\S]*?)<\/cim:ReactiveCapabilityCurve.coolantTemperature>/g, sub, context, true);
+            base.parse_element (/<cim:ReactiveCapabilityCurve.coolantTemperature>([\s\S]*?)<\/cim:ReactiveCapabilityCurve.coolantTemperature>/g, obj, "coolantTemperature", base.to_string, sub, context);
+
             /**
              * The hydrogen coolant pressure
              *
              */
-            obj["hydrogenPressure"] = base.parse_element (/<cim:ReactiveCapabilityCurve.hydrogenPressure>([\s\S]*?)<\/cim:ReactiveCapabilityCurve.hydrogenPressure>/g, sub, context, true);
+            base.parse_element (/<cim:ReactiveCapabilityCurve.hydrogenPressure>([\s\S]*?)<\/cim:ReactiveCapabilityCurve.hydrogenPressure>/g, obj, "hydrogenPressure", base.to_string, sub, context);
+
             bucket = context.parsed.ReactiveCapabilityCurve;
             if (null == bucket)
                 context.parsed.ReactiveCapabilityCurve = bucket = {};
@@ -1000,21 +1092,24 @@ define
              * A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).
              *
              */
-            obj["stepPhaseShiftIncrement"] = base.parse_element (/<cim:PhaseTapChangerLinear.stepPhaseShiftIncrement>([\s\S]*?)<\/cim:PhaseTapChangerLinear.stepPhaseShiftIncrement>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseTapChangerLinear.stepPhaseShiftIncrement>([\s\S]*?)<\/cim:PhaseTapChangerLinear.stepPhaseShiftIncrement>/g, obj, "stepPhaseShiftIncrement", base.to_string, sub, context);
+
             /**
              * The reactance depend on the tap position according to a "u" shaped curve.
              *
              * The maximum reactance (xMax) appear at the low and high tap positions.
              *
              */
-            obj["xMax"] = base.parse_element (/<cim:PhaseTapChangerLinear.xMax>([\s\S]*?)<\/cim:PhaseTapChangerLinear.xMax>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseTapChangerLinear.xMax>([\s\S]*?)<\/cim:PhaseTapChangerLinear.xMax>/g, obj, "xMax", base.to_string, sub, context);
+
             /**
              * The reactance depend on the tap position according to a "u" shaped curve.
              *
              * The minimum reactance (xMin) appear at the mid tap position.
              *
              */
-            obj["xMin"] = base.parse_element (/<cim:PhaseTapChangerLinear.xMin>([\s\S]*?)<\/cim:PhaseTapChangerLinear.xMin>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseTapChangerLinear.xMin>([\s\S]*?)<\/cim:PhaseTapChangerLinear.xMin>/g, obj, "xMin", base.to_string, sub, context);
+
             bucket = context.parsed.PhaseTapChangerLinear;
             if (null == bucket)
                 context.parsed.PhaseTapChangerLinear = bucket = {};
@@ -1038,7 +1133,8 @@ define
              * Reactance of device.
              *
              */
-            obj["x"] = base.parse_element (/<cim:GroundingImpedance.x>([\s\S]*?)<\/cim:GroundingImpedance.x>/g, sub, context, true);
+            base.parse_element (/<cim:GroundingImpedance.x>([\s\S]*?)<\/cim:GroundingImpedance.x>/g, obj, "x", base.to_string, sub, context);
+
             bucket = context.parsed.GroundingImpedance;
             if (null == bucket)
                 context.parsed.GroundingImpedance = bucket = {};
@@ -1104,66 +1200,78 @@ define
              * Zero sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
              *
              */
-            obj["b0ch"] = base.parse_element (/<cim:ACLineSegment.b0ch>([\s\S]*?)<\/cim:ACLineSegment.b0ch>/g, sub, context, true);
+            base.parse_element (/<cim:ACLineSegment.b0ch>([\s\S]*?)<\/cim:ACLineSegment.b0ch>/g, obj, "b0ch", base.to_string, sub, context);
+
             /**
              * Positive sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
              *
              * This value represents the full charging over the full length of the line.
              *
              */
-            obj["bch"] = base.parse_element (/<cim:ACLineSegment.bch>([\s\S]*?)<\/cim:ACLineSegment.bch>/g, sub, context, true);
+            base.parse_element (/<cim:ACLineSegment.bch>([\s\S]*?)<\/cim:ACLineSegment.bch>/g, obj, "bch", base.to_string, sub, context);
+
             /**
              * Zero sequence shunt (charging) conductance, uniformly distributed, of the entire line section.
              *
              */
-            obj["g0ch"] = base.parse_element (/<cim:ACLineSegment.g0ch>([\s\S]*?)<\/cim:ACLineSegment.g0ch>/g, sub, context, true);
+            base.parse_element (/<cim:ACLineSegment.g0ch>([\s\S]*?)<\/cim:ACLineSegment.g0ch>/g, obj, "g0ch", base.to_string, sub, context);
+
             /**
              * Positive sequence shunt (charging) conductance, uniformly distributed, of the entire line section.
              *
              */
-            obj["gch"] = base.parse_element (/<cim:ACLineSegment.gch>([\s\S]*?)<\/cim:ACLineSegment.gch>/g, sub, context, true);
+            base.parse_element (/<cim:ACLineSegment.gch>([\s\S]*?)<\/cim:ACLineSegment.gch>/g, obj, "gch", base.to_string, sub, context);
+
             /**
              * Positive sequence series resistance of the entire line section.
              *
              */
-            obj["r"] = base.parse_element (/<cim:ACLineSegment.r>([\s\S]*?)<\/cim:ACLineSegment.r>/g, sub, context, true);
+            base.parse_element (/<cim:ACLineSegment.r>([\s\S]*?)<\/cim:ACLineSegment.r>/g, obj, "r", base.to_string, sub, context);
+
             /**
              * Zero sequence series resistance of the entire line section.
              *
              */
-            obj["r0"] = base.parse_element (/<cim:ACLineSegment.r0>([\s\S]*?)<\/cim:ACLineSegment.r0>/g, sub, context, true);
+            base.parse_element (/<cim:ACLineSegment.r0>([\s\S]*?)<\/cim:ACLineSegment.r0>/g, obj, "r0", base.to_string, sub, context);
+
             /**
              * Maximum permitted temperature at the end of SC for the calculation of minimum short-circuit currents.
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["shortCircuitEndTemperature"] = base.parse_element (/<cim:ACLineSegment.shortCircuitEndTemperature>([\s\S]*?)<\/cim:ACLineSegment.shortCircuitEndTemperature>/g, sub, context, true);
+            base.parse_element (/<cim:ACLineSegment.shortCircuitEndTemperature>([\s\S]*?)<\/cim:ACLineSegment.shortCircuitEndTemperature>/g, obj, "shortCircuitEndTemperature", base.to_string, sub, context);
+
             /**
              * Positive sequence series reactance of the entire line section.
              *
              */
-            obj["x"] = base.parse_element (/<cim:ACLineSegment.x>([\s\S]*?)<\/cim:ACLineSegment.x>/g, sub, context, true);
+            base.parse_element (/<cim:ACLineSegment.x>([\s\S]*?)<\/cim:ACLineSegment.x>/g, obj, "x", base.to_string, sub, context);
+
             /**
              * Zero sequence series reactance of the entire line section.
              *
              */
-            obj["x0"] = base.parse_element (/<cim:ACLineSegment.x0>([\s\S]*?)<\/cim:ACLineSegment.x0>/g, sub, context, true);
+            base.parse_element (/<cim:ACLineSegment.x0>([\s\S]*?)<\/cim:ACLineSegment.x0>/g, obj, "x0", base.to_string, sub, context);
+
             /**
              * Ground action involving clamp usage (for the case when the ground is applied along the line segment instead of at its terminals).
              *
              */
-            obj["LineGroundingAction"] = base.parse_attribute (/<cim:ACLineSegment.LineGroundingAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ACLineSegment.LineGroundingAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LineGroundingAction", sub, context, true);
+
             /**
              * Jumper action involving clamp usage (for the case when the jumper is applied along the line segment instead of at its terminals).
              *
              */
-            obj["LineJumpingAction"] = base.parse_attribute (/<cim:ACLineSegment.LineJumpingAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ACLineSegment.LineJumpingAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LineJumpingAction", sub, context, true);
+
             /**
              * Per-length impedance of this line segment.
              *
              */
-            obj["PerLengthImpedance"] = base.parse_attribute (/<cim:ACLineSegment.PerLengthImpedance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ACLineSegment.PerLengthImpedance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PerLengthImpedance", sub, context, true);
+
             bucket = context.parsed.ACLineSegment;
             if (null == bucket)
                 context.parsed.ACLineSegment = bucket = {};
@@ -1189,27 +1297,32 @@ define
              * Frequency on the AC side.
              *
              */
-            obj["frequency"] = base.parse_element (/<cim:FrequencyConverter.frequency>([\s\S]*?)<\/cim:FrequencyConverter.frequency>/g, sub, context, true);
+            base.parse_element (/<cim:FrequencyConverter.frequency>([\s\S]*?)<\/cim:FrequencyConverter.frequency>/g, obj, "frequency", base.to_string, sub, context);
+
             /**
              * The maximum active power on the DC side at which the frequence converter should operate.
              *
              */
-            obj["maxP"] = base.parse_element (/<cim:FrequencyConverter.maxP>([\s\S]*?)<\/cim:FrequencyConverter.maxP>/g, sub, context, true);
+            base.parse_element (/<cim:FrequencyConverter.maxP>([\s\S]*?)<\/cim:FrequencyConverter.maxP>/g, obj, "maxP", base.to_string, sub, context);
+
             /**
              * The maximum voltage on the DC side at which the frequency converter should operate.
              *
              */
-            obj["maxU"] = base.parse_element (/<cim:FrequencyConverter.maxU>([\s\S]*?)<\/cim:FrequencyConverter.maxU>/g, sub, context, true);
+            base.parse_element (/<cim:FrequencyConverter.maxU>([\s\S]*?)<\/cim:FrequencyConverter.maxU>/g, obj, "maxU", base.to_string, sub, context);
+
             /**
              * The minimum active power on the DC side at which the frequence converter should operate.
              *
              */
-            obj["minP"] = base.parse_element (/<cim:FrequencyConverter.minP>([\s\S]*?)<\/cim:FrequencyConverter.minP>/g, sub, context, true);
+            base.parse_element (/<cim:FrequencyConverter.minP>([\s\S]*?)<\/cim:FrequencyConverter.minP>/g, obj, "minP", base.to_string, sub, context);
+
             /**
              * The minimum voltage on the DC side at which the frequency converter should operate.
              *
              */
-            obj["minU"] = base.parse_element (/<cim:FrequencyConverter.minU>([\s\S]*?)<\/cim:FrequencyConverter.minU>/g, sub, context, true);
+            base.parse_element (/<cim:FrequencyConverter.minU>([\s\S]*?)<\/cim:FrequencyConverter.minU>/g, obj, "minU", base.to_string, sub, context);
+
             bucket = context.parsed.FrequencyConverter;
             if (null == bucket)
                 context.parsed.FrequencyConverter = bucket = {};
@@ -1237,49 +1350,56 @@ define
              * It is used for calculation of the impedance correction factor KT defined in IEC 60909-0.
              *
              */
-            obj["beforeShCircuitHighestOperatingCurrent"] = base.parse_element (/<cim:PowerTransformer.beforeShCircuitHighestOperatingCurrent>([\s\S]*?)<\/cim:PowerTransformer.beforeShCircuitHighestOperatingCurrent>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformer.beforeShCircuitHighestOperatingCurrent>([\s\S]*?)<\/cim:PowerTransformer.beforeShCircuitHighestOperatingCurrent>/g, obj, "beforeShCircuitHighestOperatingCurrent", base.to_string, sub, context);
+
             /**
              * The highest operating voltage (Ub in the IEC 60909-0) before short circuit.
              *
              * It is used for calculation of the impedance correction factor KT defined in IEC 60909-0. This is worst case voltage on the low side winding (Section 3.7.1 in the standard). Used to define operating conditions.
              *
              */
-            obj["beforeShCircuitHighestOperatingVoltage"] = base.parse_element (/<cim:PowerTransformer.beforeShCircuitHighestOperatingVoltage>([\s\S]*?)<\/cim:PowerTransformer.beforeShCircuitHighestOperatingVoltage>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformer.beforeShCircuitHighestOperatingVoltage>([\s\S]*?)<\/cim:PowerTransformer.beforeShCircuitHighestOperatingVoltage>/g, obj, "beforeShCircuitHighestOperatingVoltage", base.to_string, sub, context);
+
             /**
              * The angle of power factor before short circuit (phib in the IEC 60909-0).
              *
              * It is used for calculation of the impedance correction factor KT defined in IEC 60909-0. This is the worst case power factor. Used to define operating conditions.
              *
              */
-            obj["beforeShortCircuitAnglePf"] = base.parse_element (/<cim:PowerTransformer.beforeShortCircuitAnglePf>([\s\S]*?)<\/cim:PowerTransformer.beforeShortCircuitAnglePf>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformer.beforeShortCircuitAnglePf>([\s\S]*?)<\/cim:PowerTransformer.beforeShortCircuitAnglePf>/g, obj, "beforeShortCircuitAnglePf", base.to_string, sub, context);
+
             /**
              * The minimum operating voltage (uQmin in the IEC 60909-0) at the high voltage side (Q side) of the unit transformer of the power station unit.
              *
              * A value well established from long-term operating experience of the system. It is used for calculation of the impedance correction factor KG defined in IEC 60909-0
              *
              */
-            obj["highSideMinOperatingU"] = base.parse_element (/<cim:PowerTransformer.highSideMinOperatingU>([\s\S]*?)<\/cim:PowerTransformer.highSideMinOperatingU>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformer.highSideMinOperatingU>([\s\S]*?)<\/cim:PowerTransformer.highSideMinOperatingU>/g, obj, "highSideMinOperatingU", base.to_string, sub, context);
+
             /**
              * Indicates whether the machine is part of a power station unit.
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["isPartOfGeneratorUnit"] = base.to_boolean (base.parse_element (/<cim:PowerTransformer.isPartOfGeneratorUnit>([\s\S]*?)<\/cim:PowerTransformer.isPartOfGeneratorUnit>/g, sub, context, true));
+            base.parse_element (/<cim:PowerTransformer.isPartOfGeneratorUnit>([\s\S]*?)<\/cim:PowerTransformer.isPartOfGeneratorUnit>/g, obj, "isPartOfGeneratorUnit", base.to_boolean, sub, context);
+
             /**
              * It is used to define if the data (other attributes related to short circuit data exchange) defines long term operational conditions or not.
              *
              * Used for short circuit data exchange according to IEC 60909.
              *
              */
-            obj["operationalValuesConsidered"] = base.to_boolean (base.parse_element (/<cim:PowerTransformer.operationalValuesConsidered>([\s\S]*?)<\/cim:PowerTransformer.operationalValuesConsidered>/g, sub, context, true));
+            base.parse_element (/<cim:PowerTransformer.operationalValuesConsidered>([\s\S]*?)<\/cim:PowerTransformer.operationalValuesConsidered>/g, obj, "operationalValuesConsidered", base.to_boolean, sub, context);
+
             /**
              * Vector group of the transformer for protective relaying, e.g., Dyn1.
              *
              * For unbalanced transformers, this may not be simply determined from the constituent winding connections and phase angle dispacements.
              *
              */
-            obj["vectorGroup"] = base.parse_element (/<cim:PowerTransformer.vectorGroup>([\s\S]*?)<\/cim:PowerTransformer.vectorGroup>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformer.vectorGroup>([\s\S]*?)<\/cim:PowerTransformer.vectorGroup>/g, obj, "vectorGroup", base.to_string, sub, context);
+
             bucket = context.parsed.PowerTransformer;
             if (null == bucket)
                 context.parsed.PowerTransformer = bucket = {};
@@ -1307,75 +1427,88 @@ define
              * The value can be positive or negative.
              *
              */
-            obj["b"] = base.parse_element (/<cim:PowerTransformerEnd.b>([\s\S]*?)<\/cim:PowerTransformerEnd.b>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformerEnd.b>([\s\S]*?)<\/cim:PowerTransformerEnd.b>/g, obj, "b", base.to_string, sub, context);
+
             /**
              * Zero sequence magnetizing branch susceptance.
              *
              */
-            obj["b0"] = base.parse_element (/<cim:PowerTransformerEnd.b0>([\s\S]*?)<\/cim:PowerTransformerEnd.b0>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformerEnd.b0>([\s\S]*?)<\/cim:PowerTransformerEnd.b0>/g, obj, "b0", base.to_string, sub, context);
+
             /**
              * Kind of connection.
              *
              */
-            obj["connectionKind"] = base.parse_element (/<cim:PowerTransformerEnd.connectionKind>([\s\S]*?)<\/cim:PowerTransformerEnd.connectionKind>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformerEnd.connectionKind>([\s\S]*?)<\/cim:PowerTransformerEnd.connectionKind>/g, obj, "connectionKind", base.to_string, sub, context);
+
             /**
              * Magnetizing branch conductance.
              *
              */
-            obj["g"] = base.parse_element (/<cim:PowerTransformerEnd.g>([\s\S]*?)<\/cim:PowerTransformerEnd.g>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformerEnd.g>([\s\S]*?)<\/cim:PowerTransformerEnd.g>/g, obj, "g", base.to_string, sub, context);
+
             /**
              * Zero sequence magnetizing branch conductance (star-model).
              *
              */
-            obj["g0"] = base.parse_element (/<cim:PowerTransformerEnd.g0>([\s\S]*?)<\/cim:PowerTransformerEnd.g0>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformerEnd.g0>([\s\S]*?)<\/cim:PowerTransformerEnd.g0>/g, obj, "g0", base.to_string, sub, context);
+
             /**
              * Terminal voltage phase angle displacement where 360 degrees are represented with clock hours.
              *
              * The valid values are 0 to 11. For example, for the secondary side end of a transformer with vector group code of 'Dyn11', specify the connection kind as wye with neutral and specify the phase angle of the clock as 11.  The clock value of the transformer end number specified as 1, is assumed to be zero.  Note the transformer end number is not assumed to be the same as the terminal sequence number.
              *
              */
-            obj["phaseAngleClock"] = base.parse_element (/<cim:PowerTransformerEnd.phaseAngleClock>([\s\S]*?)<\/cim:PowerTransformerEnd.phaseAngleClock>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformerEnd.phaseAngleClock>([\s\S]*?)<\/cim:PowerTransformerEnd.phaseAngleClock>/g, obj, "phaseAngleClock", base.to_string, sub, context);
+
             /**
              * Resistance (star-model) of the transformer end.
              *
              * The attribute shall be equal or greater than zero for non-equivalent transformers.
              *
              */
-            obj["r"] = base.parse_element (/<cim:PowerTransformerEnd.r>([\s\S]*?)<\/cim:PowerTransformerEnd.r>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformerEnd.r>([\s\S]*?)<\/cim:PowerTransformerEnd.r>/g, obj, "r", base.to_string, sub, context);
+
             /**
              * Zero sequence series resistance (star-model) of the transformer end.
              *
              */
-            obj["r0"] = base.parse_element (/<cim:PowerTransformerEnd.r0>([\s\S]*?)<\/cim:PowerTransformerEnd.r0>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformerEnd.r0>([\s\S]*?)<\/cim:PowerTransformerEnd.r0>/g, obj, "r0", base.to_string, sub, context);
+
             /**
              * Normal apparent power rating.
              *
              * The attribute shall be a positive value. For a two-winding transformer the values for the high and low voltage sides shall be identical.
              *
              */
-            obj["ratedS"] = base.parse_element (/<cim:PowerTransformerEnd.ratedS>([\s\S]*?)<\/cim:PowerTransformerEnd.ratedS>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformerEnd.ratedS>([\s\S]*?)<\/cim:PowerTransformerEnd.ratedS>/g, obj, "ratedS", base.to_string, sub, context);
+
             /**
              * Rated voltage: phase-phase for three-phase windings, and either phase-phase or phase-neutral for single-phase windings.
              *
              * A high voltage side, as given by TransformerEnd.endNumber, shall have a ratedU that is greater or equal than ratedU for the lower voltage sides.
              *
              */
-            obj["ratedU"] = base.parse_element (/<cim:PowerTransformerEnd.ratedU>([\s\S]*?)<\/cim:PowerTransformerEnd.ratedU>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformerEnd.ratedU>([\s\S]*?)<\/cim:PowerTransformerEnd.ratedU>/g, obj, "ratedU", base.to_string, sub, context);
+
             /**
              * Positive sequence series reactance (star-model) of the transformer end.
              *
              */
-            obj["x"] = base.parse_element (/<cim:PowerTransformerEnd.x>([\s\S]*?)<\/cim:PowerTransformerEnd.x>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformerEnd.x>([\s\S]*?)<\/cim:PowerTransformerEnd.x>/g, obj, "x", base.to_string, sub, context);
+
             /**
              * Zero sequence series reactance of the transformer end.
              *
              */
-            obj["x0"] = base.parse_element (/<cim:PowerTransformerEnd.x0>([\s\S]*?)<\/cim:PowerTransformerEnd.x0>/g, sub, context, true);
+            base.parse_element (/<cim:PowerTransformerEnd.x0>([\s\S]*?)<\/cim:PowerTransformerEnd.x0>/g, obj, "x0", base.to_string, sub, context);
+
             /**
              * The power transformer of this power transformer end.
              *
              */
-            obj["PowerTransformer"] = base.parse_attribute (/<cim:PowerTransformerEnd.PowerTransformer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:PowerTransformerEnd.PowerTransformer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerTransformer", sub, context, true);
+
             bucket = context.parsed.PowerTransformerEnd;
             if (null == bucket)
                 context.parsed.PowerTransformerEnd = bucket = {};
@@ -1399,22 +1532,26 @@ define
              * Tap step increment, in per cent of nominal voltage, per step position.
              *
              */
-            obj["stepVoltageIncrement"] = base.parse_element (/<cim:RatioTapChanger.stepVoltageIncrement>([\s\S]*?)<\/cim:RatioTapChanger.stepVoltageIncrement>/g, sub, context, true);
+            base.parse_element (/<cim:RatioTapChanger.stepVoltageIncrement>([\s\S]*?)<\/cim:RatioTapChanger.stepVoltageIncrement>/g, obj, "stepVoltageIncrement", base.to_string, sub, context);
+
             /**
              * Specifies the regulation control mode (voltage or reactive) of the RatioTapChanger.
              *
              */
-            obj["tculControlMode"] = base.parse_element (/<cim:RatioTapChanger.tculControlMode>([\s\S]*?)<\/cim:RatioTapChanger.tculControlMode>/g, sub, context, true);
+            base.parse_element (/<cim:RatioTapChanger.tculControlMode>([\s\S]*?)<\/cim:RatioTapChanger.tculControlMode>/g, obj, "tculControlMode", base.to_string, sub, context);
+
             /**
              * The tap ratio table for this ratio  tap changer.
              *
              */
-            obj["RatioTapChangerTable"] = base.parse_attribute (/<cim:RatioTapChanger.RatioTapChangerTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RatioTapChanger.RatioTapChangerTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RatioTapChangerTable", sub, context, true);
+
             /**
              * Transformer end to which this ratio tap changer belongs.
              *
              */
-            obj["TransformerEnd"] = base.parse_attribute (/<cim:RatioTapChanger.TransformerEnd\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RatioTapChanger.TransformerEnd\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerEnd", sub, context, true);
+
             bucket = context.parsed.RatioTapChanger;
             if (null == bucket)
                 context.parsed.RatioTapChanger = bucket = {};
@@ -1440,40 +1577,46 @@ define
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["pfixed"] = base.parse_element (/<cim:EnergyConsumerPhase.pfixed>([\s\S]*?)<\/cim:EnergyConsumerPhase.pfixed>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyConsumerPhase.pfixed>([\s\S]*?)<\/cim:EnergyConsumerPhase.pfixed>/g, obj, "pfixed", base.to_string, sub, context);
+
             /**
              * Fixed active power as per cent of load group fixed active power.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["pfixedPct"] = base.parse_element (/<cim:EnergyConsumerPhase.pfixedPct>([\s\S]*?)<\/cim:EnergyConsumerPhase.pfixedPct>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyConsumerPhase.pfixedPct>([\s\S]*?)<\/cim:EnergyConsumerPhase.pfixedPct>/g, obj, "pfixedPct", base.to_string, sub, context);
+
             /**
              * Phase of this energy consumer component.
              *
              * If the energy consumer is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the energy consumer is delta connected, the phase indicates an energy consumer connected from the indicated phase to the next logical non-neutral phase.
              *
              */
-            obj["phase"] = base.parse_element (/<cim:EnergyConsumerPhase.phase>([\s\S]*?)<\/cim:EnergyConsumerPhase.phase>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyConsumerPhase.phase>([\s\S]*?)<\/cim:EnergyConsumerPhase.phase>/g, obj, "phase", base.to_string, sub, context);
+
             /**
              * Reactive power of the load that is a fixed quantity.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["qfixed"] = base.parse_element (/<cim:EnergyConsumerPhase.qfixed>([\s\S]*?)<\/cim:EnergyConsumerPhase.qfixed>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyConsumerPhase.qfixed>([\s\S]*?)<\/cim:EnergyConsumerPhase.qfixed>/g, obj, "qfixed", base.to_string, sub, context);
+
             /**
              * Fixed reactive power as per cent of load group fixed reactive power.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["qfixedPct"] = base.parse_element (/<cim:EnergyConsumerPhase.qfixedPct>([\s\S]*?)<\/cim:EnergyConsumerPhase.qfixedPct>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyConsumerPhase.qfixedPct>([\s\S]*?)<\/cim:EnergyConsumerPhase.qfixedPct>/g, obj, "qfixedPct", base.to_string, sub, context);
+
             /**
              * The energy consumer to which this phase belongs.
              *
              */
-            obj["EnergyConsumer"] = base.parse_attribute (/<cim:EnergyConsumerPhase.EnergyConsumer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:EnergyConsumerPhase.EnergyConsumer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyConsumer", sub, context, true);
+
             bucket = context.parsed.EnergyConsumerPhase;
             if (null == bucket)
                 context.parsed.EnergyConsumerPhase = bucket = {};
@@ -1499,55 +1642,64 @@ define
              * Time delay required when switching from Automatic Voltage Regulation (AVR) to Manual for a lagging MVAr violation.
              *
              */
-            obj["aVRToManualLag"] = base.parse_element (/<cim:SynchronousMachine.aVRToManualLag>([\s\S]*?)<\/cim:SynchronousMachine.aVRToManualLag>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.aVRToManualLag>([\s\S]*?)<\/cim:SynchronousMachine.aVRToManualLag>/g, obj, "aVRToManualLag", base.to_string, sub, context);
+
             /**
              * Time delay required when switching from Automatic Voltage Regulation (AVR) to Manual for a leading MVAr violation.
              *
              */
-            obj["aVRToManualLead"] = base.parse_element (/<cim:SynchronousMachine.aVRToManualLead>([\s\S]*?)<\/cim:SynchronousMachine.aVRToManualLead>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.aVRToManualLead>([\s\S]*?)<\/cim:SynchronousMachine.aVRToManualLead>/g, obj, "aVRToManualLead", base.to_string, sub, context);
+
             /**
              * Default base reactive power value.
              *
              * This value represents the initial reactive power that can be used by any application function.
              *
              */
-            obj["baseQ"] = base.parse_element (/<cim:SynchronousMachine.baseQ>([\s\S]*?)<\/cim:SynchronousMachine.baseQ>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.baseQ>([\s\S]*?)<\/cim:SynchronousMachine.baseQ>/g, obj, "baseQ", base.to_string, sub, context);
+
             /**
              * Active power consumed when in condenser mode operation.
              *
              */
-            obj["condenserP"] = base.parse_element (/<cim:SynchronousMachine.condenserP>([\s\S]*?)<\/cim:SynchronousMachine.condenserP>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.condenserP>([\s\S]*?)<\/cim:SynchronousMachine.condenserP>/g, obj, "condenserP", base.to_string, sub, context);
+
             /**
              * Temperature or pressure of coolant medium
              *
              */
-            obj["coolantCondition"] = base.to_float (base.parse_element (/<cim:SynchronousMachine.coolantCondition>([\s\S]*?)<\/cim:SynchronousMachine.coolantCondition>/g, sub, context, true));
+            base.parse_element (/<cim:SynchronousMachine.coolantCondition>([\s\S]*?)<\/cim:SynchronousMachine.coolantCondition>/g, obj, "coolantCondition", base.to_float, sub, context);
+
             /**
              * Method of cooling the machine.
              *
              */
-            obj["coolantType"] = base.parse_element (/<cim:SynchronousMachine.coolantType>([\s\S]*?)<\/cim:SynchronousMachine.coolantType>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.coolantType>([\s\S]*?)<\/cim:SynchronousMachine.coolantType>/g, obj, "coolantType", base.to_string, sub, context);
+
             /**
              * Indicates whether or not the generator is earthed.
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["earthing"] = base.to_boolean (base.parse_element (/<cim:SynchronousMachine.earthing>([\s\S]*?)<\/cim:SynchronousMachine.earthing>/g, sub, context, true));
+            base.parse_element (/<cim:SynchronousMachine.earthing>([\s\S]*?)<\/cim:SynchronousMachine.earthing>/g, obj, "earthing", base.to_boolean, sub, context);
+
             /**
              * Generator star point earthing resistance (Re).
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["earthingStarPointR"] = base.parse_element (/<cim:SynchronousMachine.earthingStarPointR>([\s\S]*?)<\/cim:SynchronousMachine.earthingStarPointR>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.earthingStarPointR>([\s\S]*?)<\/cim:SynchronousMachine.earthingStarPointR>/g, obj, "earthingStarPointR", base.to_string, sub, context);
+
             /**
              * Generator star point earthing reactance (Xe).
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["earthingStarPointX"] = base.parse_element (/<cim:SynchronousMachine.earthingStarPointX>([\s\S]*?)<\/cim:SynchronousMachine.earthingStarPointX>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.earthingStarPointX>([\s\S]*?)<\/cim:SynchronousMachine.earthingStarPointX>/g, obj, "earthingStarPointX", base.to_string, sub, context);
+
             /**
              * Steady-state short-circuit current (in A for the profile) of generator with compound excitation during 3-phase short circuit.
              * - Ikk=0: Generator with no compound excitation.
@@ -1556,131 +1708,154 @@ define
              * Ikk is used to calculate the minimum steady-state short-circuit current for generators with compound excitation
              *
              */
-            obj["ikk"] = base.parse_element (/<cim:SynchronousMachine.ikk>([\s\S]*?)<\/cim:SynchronousMachine.ikk>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.ikk>([\s\S]*?)<\/cim:SynchronousMachine.ikk>/g, obj, "ikk", base.to_string, sub, context);
+
             /**
              * Time delay required when switching from Manual to Automatic Voltage Regulation.
              *
              * This value is used in the accelerating power reference frame for powerflow solutions
              *
              */
-            obj["manualToAVR"] = base.parse_element (/<cim:SynchronousMachine.manualToAVR>([\s\S]*?)<\/cim:SynchronousMachine.manualToAVR>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.manualToAVR>([\s\S]*?)<\/cim:SynchronousMachine.manualToAVR>/g, obj, "manualToAVR", base.to_string, sub, context);
+
             /**
              * Maximum reactive power limit.
              *
              * This is the maximum (nameplate) limit for the unit.
              *
              */
-            obj["maxQ"] = base.parse_element (/<cim:SynchronousMachine.maxQ>([\s\S]*?)<\/cim:SynchronousMachine.maxQ>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.maxQ>([\s\S]*?)<\/cim:SynchronousMachine.maxQ>/g, obj, "maxQ", base.to_string, sub, context);
+
             /**
              * Maximum voltage limit for the unit.
              *
              */
-            obj["maxU"] = base.parse_element (/<cim:SynchronousMachine.maxU>([\s\S]*?)<\/cim:SynchronousMachine.maxU>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.maxU>([\s\S]*?)<\/cim:SynchronousMachine.maxU>/g, obj, "maxU", base.to_string, sub, context);
+
             /**
              * Minimum reactive power limit for the unit.
              *
              */
-            obj["minQ"] = base.parse_element (/<cim:SynchronousMachine.minQ>([\s\S]*?)<\/cim:SynchronousMachine.minQ>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.minQ>([\s\S]*?)<\/cim:SynchronousMachine.minQ>/g, obj, "minQ", base.to_string, sub, context);
+
             /**
              * Minimum voltage  limit for the unit.
              *
              */
-            obj["minU"] = base.parse_element (/<cim:SynchronousMachine.minU>([\s\S]*?)<\/cim:SynchronousMachine.minU>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.minU>([\s\S]*?)<\/cim:SynchronousMachine.minU>/g, obj, "minU", base.to_string, sub, context);
+
             /**
              * Factor to calculate the breaking current (Section 4.5.2.1 in the IEC 60909-0).
              *
              * Used only for single fed short circuit on a generator (Section 4.3.4.2. in the IEC 60909-0).
              *
              */
-            obj["mu"] = base.to_float (base.parse_element (/<cim:SynchronousMachine.mu>([\s\S]*?)<\/cim:SynchronousMachine.mu>/g, sub, context, true));
+            base.parse_element (/<cim:SynchronousMachine.mu>([\s\S]*?)<\/cim:SynchronousMachine.mu>/g, obj, "mu", base.to_float, sub, context);
+
             /**
              * Current mode of operation.
              *
              */
-            obj["operatingMode"] = base.parse_element (/<cim:SynchronousMachine.operatingMode>([\s\S]*?)<\/cim:SynchronousMachine.operatingMode>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.operatingMode>([\s\S]*?)<\/cim:SynchronousMachine.operatingMode>/g, obj, "operatingMode", base.to_string, sub, context);
+
             /**
              * Percent of the coordinated reactive control that comes from this machine.
              *
              */
-            obj["qPercent"] = base.parse_element (/<cim:SynchronousMachine.qPercent>([\s\S]*?)<\/cim:SynchronousMachine.qPercent>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.qPercent>([\s\S]*?)<\/cim:SynchronousMachine.qPercent>/g, obj, "qPercent", base.to_string, sub, context);
+
             /**
              * Equivalent resistance (RG) of generator.
              *
              * RG is considered for the calculation of all currents, except for the calculation of the peak current ip. Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["r"] = base.parse_element (/<cim:SynchronousMachine.r>([\s\S]*?)<\/cim:SynchronousMachine.r>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.r>([\s\S]*?)<\/cim:SynchronousMachine.r>/g, obj, "r", base.to_string, sub, context);
+
             /**
              * Zero sequence resistance of the synchronous machine.
              *
              */
-            obj["r0"] = base.parse_element (/<cim:SynchronousMachine.r0>([\s\S]*?)<\/cim:SynchronousMachine.r0>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.r0>([\s\S]*?)<\/cim:SynchronousMachine.r0>/g, obj, "r0", base.to_string, sub, context);
+
             /**
              * Negative sequence resistance.
              *
              */
-            obj["r2"] = base.parse_element (/<cim:SynchronousMachine.r2>([\s\S]*?)<\/cim:SynchronousMachine.r2>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.r2>([\s\S]*?)<\/cim:SynchronousMachine.r2>/g, obj, "r2", base.to_string, sub, context);
+
             /**
              * Priority of unit for use as powerflow voltage phase angle reference bus selection. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
              *
              */
-            obj["referencePriority"] = base.parse_element (/<cim:SynchronousMachine.referencePriority>([\s\S]*?)<\/cim:SynchronousMachine.referencePriority>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.referencePriority>([\s\S]*?)<\/cim:SynchronousMachine.referencePriority>/g, obj, "referencePriority", base.to_string, sub, context);
+
             /**
              * Direct-axis subtransient reactance saturated, also known as Xd"sat.
              *
              */
-            obj["satDirectSubtransX"] = base.parse_element (/<cim:SynchronousMachine.satDirectSubtransX>([\s\S]*?)<\/cim:SynchronousMachine.satDirectSubtransX>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.satDirectSubtransX>([\s\S]*?)<\/cim:SynchronousMachine.satDirectSubtransX>/g, obj, "satDirectSubtransX", base.to_string, sub, context);
+
             /**
              * Direct-axes saturated synchronous reactance (xdsat); reciprocal of short-circuit ration.
              *
              * Used for short circuit data exchange, only for single fed short circuit on a generator. (Section 4.3.4.2. in the IEC 60909-0).
              *
              */
-            obj["satDirectSyncX"] = base.parse_element (/<cim:SynchronousMachine.satDirectSyncX>([\s\S]*?)<\/cim:SynchronousMachine.satDirectSyncX>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.satDirectSyncX>([\s\S]*?)<\/cim:SynchronousMachine.satDirectSyncX>/g, obj, "satDirectSyncX", base.to_string, sub, context);
+
             /**
              * Saturated Direct-axis transient reactance.
              *
              * The attribute is primarily used for short circuit calculations according to ANSI.
              *
              */
-            obj["satDirectTransX"] = base.parse_element (/<cim:SynchronousMachine.satDirectTransX>([\s\S]*?)<\/cim:SynchronousMachine.satDirectTransX>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.satDirectTransX>([\s\S]*?)<\/cim:SynchronousMachine.satDirectTransX>/g, obj, "satDirectTransX", base.to_string, sub, context);
+
             /**
              * Type of rotor, used by short circuit applications, only for single fed short circuit according to IEC 60909.
              *
              */
-            obj["shortCircuitRotorType"] = base.parse_element (/<cim:SynchronousMachine.shortCircuitRotorType>([\s\S]*?)<\/cim:SynchronousMachine.shortCircuitRotorType>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.shortCircuitRotorType>([\s\S]*?)<\/cim:SynchronousMachine.shortCircuitRotorType>/g, obj, "shortCircuitRotorType", base.to_string, sub, context);
+
             /**
              * Modes that this synchronous machine can operate in.
              *
              */
-            obj["type"] = base.parse_element (/<cim:SynchronousMachine.type>([\s\S]*?)<\/cim:SynchronousMachine.type>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.type>([\s\S]*?)<\/cim:SynchronousMachine.type>/g, obj, "type", base.to_string, sub, context);
+
             /**
              * Range of generator voltage regulation (PG in the IEC 60909-0) used for calculation of the impedance correction factor KG defined in IEC 60909-0
              *
              * This attribute is used to describe the operating voltage of the generating unit.
              *
              */
-            obj["voltageRegulationRange"] = base.parse_element (/<cim:SynchronousMachine.voltageRegulationRange>([\s\S]*?)<\/cim:SynchronousMachine.voltageRegulationRange>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.voltageRegulationRange>([\s\S]*?)<\/cim:SynchronousMachine.voltageRegulationRange>/g, obj, "voltageRegulationRange", base.to_string, sub, context);
+
             /**
              * Zero sequence reactance of the synchronous machine.
              *
              */
-            obj["x0"] = base.parse_element (/<cim:SynchronousMachine.x0>([\s\S]*?)<\/cim:SynchronousMachine.x0>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.x0>([\s\S]*?)<\/cim:SynchronousMachine.x0>/g, obj, "x0", base.to_string, sub, context);
+
             /**
              * Negative sequence reactance.
              *
              */
-            obj["x2"] = base.parse_element (/<cim:SynchronousMachine.x2>([\s\S]*?)<\/cim:SynchronousMachine.x2>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachine.x2>([\s\S]*?)<\/cim:SynchronousMachine.x2>/g, obj, "x2", base.to_string, sub, context);
+
             /**
              * Synchronous machine dynamics model used to describe dynamic behavior of this synchronous machine.
              *
              */
-            obj["SynchronousMachineDynamics"] = base.parse_attribute (/<cim:SynchronousMachine.SynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SynchronousMachine.SynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SynchronousMachineDynamics", sub, context, true);
+
             /**
              * The default reactive capability curve for use by a synchronous machine.
              *
              */
-            obj["InitialReactiveCapabilityCurve"] = base.parse_attribute (/<cim:SynchronousMachine.InitialReactiveCapabilityCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SynchronousMachine.InitialReactiveCapabilityCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InitialReactiveCapabilityCurve", sub, context, true);
+
             bucket = context.parsed.SynchronousMachine;
             if (null == bucket)
                 context.parsed.SynchronousMachine = bucket = {};
@@ -1704,7 +1879,8 @@ define
              * Wire spacing datasheet used to calculate this per-length parameter.
              *
              */
-            obj["WireSpacingInfo"] = base.parse_attribute (/<cim:PerLengthLineParameter.WireSpacingInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:PerLengthLineParameter.WireSpacingInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WireSpacingInfo", sub, context, true);
+
             bucket = context.parsed.PerLengthLineParameter;
             if (null == bucket)
                 context.parsed.PerLengthLineParameter = bucket = {};
@@ -1728,22 +1904,26 @@ define
              * Salient pole 1 in the IEC 60909
              *
              */
-            obj["salientPole1"] = base.parse_element (/<cim:ShortCircuitRotorKind.salientPole1>([\s\S]*?)<\/cim:ShortCircuitRotorKind.salientPole1>/g, sub, context, true);
+            base.parse_element (/<cim:ShortCircuitRotorKind.salientPole1>([\s\S]*?)<\/cim:ShortCircuitRotorKind.salientPole1>/g, obj, "salientPole1", base.to_string, sub, context);
+
             /**
              * Salient pole 2 in IEC 60909
              *
              */
-            obj["salientPole2"] = base.parse_element (/<cim:ShortCircuitRotorKind.salientPole2>([\s\S]*?)<\/cim:ShortCircuitRotorKind.salientPole2>/g, sub, context, true);
+            base.parse_element (/<cim:ShortCircuitRotorKind.salientPole2>([\s\S]*?)<\/cim:ShortCircuitRotorKind.salientPole2>/g, obj, "salientPole2", base.to_string, sub, context);
+
             /**
              * Turbo Series 1 in the IEC 60909
              *
              */
-            obj["turboSeries1"] = base.parse_element (/<cim:ShortCircuitRotorKind.turboSeries1>([\s\S]*?)<\/cim:ShortCircuitRotorKind.turboSeries1>/g, sub, context, true);
+            base.parse_element (/<cim:ShortCircuitRotorKind.turboSeries1>([\s\S]*?)<\/cim:ShortCircuitRotorKind.turboSeries1>/g, obj, "turboSeries1", base.to_string, sub, context);
+
             /**
              * Turbo series 2 in IEC 60909
              *
              */
-            obj["turboSeries2"] = base.parse_element (/<cim:ShortCircuitRotorKind.turboSeries2>([\s\S]*?)<\/cim:ShortCircuitRotorKind.turboSeries2>/g, sub, context, true);
+            base.parse_element (/<cim:ShortCircuitRotorKind.turboSeries2>([\s\S]*?)<\/cim:ShortCircuitRotorKind.turboSeries2>/g, obj, "turboSeries2", base.to_string, sub, context);
+
             bucket = context.parsed.ShortCircuitRotorKind;
             if (null == bucket)
                 context.parsed.ShortCircuitRotorKind = bucket = {};
@@ -1767,29 +1947,34 @@ define
              * Susceptance matrix element value, per length of unit.
              *
              */
-            obj["b"] = base.parse_element (/<cim:PhaseImpedanceData.b>([\s\S]*?)<\/cim:PhaseImpedanceData.b>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseImpedanceData.b>([\s\S]*?)<\/cim:PhaseImpedanceData.b>/g, obj, "b", base.to_string, sub, context);
+
             /**
              * Resistance matrix element value, per length of unit.
              *
              */
-            obj["r"] = base.parse_element (/<cim:PhaseImpedanceData.r>([\s\S]*?)<\/cim:PhaseImpedanceData.r>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseImpedanceData.r>([\s\S]*?)<\/cim:PhaseImpedanceData.r>/g, obj, "r", base.to_string, sub, context);
+
             /**
              * Column-wise element index, assuming a symmetrical matrix.
              *
              * Ranges from 1 to N + N*(N-1)/2.
              *
              */
-            obj["sequenceNumber"] = base.parse_element (/<cim:PhaseImpedanceData.sequenceNumber>([\s\S]*?)<\/cim:PhaseImpedanceData.sequenceNumber>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseImpedanceData.sequenceNumber>([\s\S]*?)<\/cim:PhaseImpedanceData.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
+
             /**
              * Reactance matrix element value, per length of unit.
              *
              */
-            obj["x"] = base.parse_element (/<cim:PhaseImpedanceData.x>([\s\S]*?)<\/cim:PhaseImpedanceData.x>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseImpedanceData.x>([\s\S]*?)<\/cim:PhaseImpedanceData.x>/g, obj, "x", base.to_string, sub, context);
+
             /**
              * Conductor phase impedance to which this data belongs.
              *
              */
-            obj["PhaseImpedance"] = base.parse_attribute (/<cim:PhaseImpedanceData.PhaseImpedance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:PhaseImpedanceData.PhaseImpedance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PhaseImpedance", sub, context, true);
+
             bucket = context.parsed.PhaseImpedanceData;
             if (null == bucket)
                 context.parsed.PhaseImpedanceData = bucket = {};
@@ -1815,36 +2000,42 @@ define
              * Maximum available capacitive reactance.
              *
              */
-            obj["capacitiveRating"] = base.parse_element (/<cim:StaticVarCompensator.capacitiveRating>([\s\S]*?)<\/cim:StaticVarCompensator.capacitiveRating>/g, sub, context, true);
+            base.parse_element (/<cim:StaticVarCompensator.capacitiveRating>([\s\S]*?)<\/cim:StaticVarCompensator.capacitiveRating>/g, obj, "capacitiveRating", base.to_string, sub, context);
+
             /**
              * Maximum available inductive reactance.
              *
              */
-            obj["inductiveRating"] = base.parse_element (/<cim:StaticVarCompensator.inductiveRating>([\s\S]*?)<\/cim:StaticVarCompensator.inductiveRating>/g, sub, context, true);
+            base.parse_element (/<cim:StaticVarCompensator.inductiveRating>([\s\S]*?)<\/cim:StaticVarCompensator.inductiveRating>/g, obj, "inductiveRating", base.to_string, sub, context);
+
             /**
              * The characteristics slope of an SVC defines how the reactive power output changes in proportion to the difference between the regulated bus voltage and the voltage setpoint.
              *
              */
-            obj["slope"] = base.parse_element (/<cim:StaticVarCompensator.slope>([\s\S]*?)<\/cim:StaticVarCompensator.slope>/g, sub, context, true);
+            base.parse_element (/<cim:StaticVarCompensator.slope>([\s\S]*?)<\/cim:StaticVarCompensator.slope>/g, obj, "slope", base.to_string, sub, context);
+
             /**
              * SVC control mode.
              *
              */
-            obj["sVCControlMode"] = base.parse_element (/<cim:StaticVarCompensator.sVCControlMode>([\s\S]*?)<\/cim:StaticVarCompensator.sVCControlMode>/g, sub, context, true);
+            base.parse_element (/<cim:StaticVarCompensator.sVCControlMode>([\s\S]*?)<\/cim:StaticVarCompensator.sVCControlMode>/g, obj, "sVCControlMode", base.to_string, sub, context);
+
             /**
              * The reactive power output of the SVC is proportional to the difference between the voltage at the regulated bus and the voltage setpoint.
              *
              * When the regulated bus voltage is equal to the voltage setpoint, the reactive power output is zero.
              *
              */
-            obj["voltageSetPoint"] = base.parse_element (/<cim:StaticVarCompensator.voltageSetPoint>([\s\S]*?)<\/cim:StaticVarCompensator.voltageSetPoint>/g, sub, context, true);
+            base.parse_element (/<cim:StaticVarCompensator.voltageSetPoint>([\s\S]*?)<\/cim:StaticVarCompensator.voltageSetPoint>/g, obj, "voltageSetPoint", base.to_string, sub, context);
+
             /**
              * Reactive power injection.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["q"] = base.parse_element (/<cim:StaticVarCompensator.q>([\s\S]*?)<\/cim:StaticVarCompensator.q>/g, sub, context, true);
+            base.parse_element (/<cim:StaticVarCompensator.q>([\s\S]*?)<\/cim:StaticVarCompensator.q>/g, obj, "q", base.to_string, sub, context);
+
             bucket = context.parsed.StaticVarCompensator;
             if (null == bucket)
                 context.parsed.StaticVarCompensator = bucket = {};
@@ -1887,12 +2078,14 @@ define
              * Describes the phases carried by a conducting equipment.
              *
              */
-            obj["phases"] = base.parse_element (/<cim:TransformerTankEnd.phases>([\s\S]*?)<\/cim:TransformerTankEnd.phases>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerTankEnd.phases>([\s\S]*?)<\/cim:TransformerTankEnd.phases>/g, obj, "phases", base.to_string, sub, context);
+
             /**
              * Transformer this winding belongs to.
              *
              */
-            obj["TransformerTank"] = base.parse_attribute (/<cim:TransformerTankEnd.TransformerTank\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TransformerTankEnd.TransformerTank\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerTank", sub, context, true);
+
             bucket = context.parsed.TransformerTankEnd;
             if (null == bucket)
                 context.parsed.TransformerTankEnd = bucket = {};
@@ -1916,7 +2109,8 @@ define
              * The sub-geographical region of the line.
              *
              */
-            obj["Region"] = base.parse_attribute (/<cim:Line.Region\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Line.Region\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Region", sub, context, true);
+
             bucket = context.parsed.Line;
             if (null == bucket)
                 context.parsed.Line = bucket = {};
@@ -1942,21 +2136,24 @@ define
              * The voltage step increment on the out of phase winding specified in percent of nominal voltage of the transformer end.
              *
              */
-            obj["voltageStepIncrement"] = base.parse_element (/<cim:PhaseTapChangerNonLinear.voltageStepIncrement>([\s\S]*?)<\/cim:PhaseTapChangerNonLinear.voltageStepIncrement>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseTapChangerNonLinear.voltageStepIncrement>([\s\S]*?)<\/cim:PhaseTapChangerNonLinear.voltageStepIncrement>/g, obj, "voltageStepIncrement", base.to_string, sub, context);
+
             /**
              * The reactance depend on the tap position according to a "u" shaped curve.
              *
              * The maximum reactance (xMax) appear at the low and high tap positions.
              *
              */
-            obj["xMax"] = base.parse_element (/<cim:PhaseTapChangerNonLinear.xMax>([\s\S]*?)<\/cim:PhaseTapChangerNonLinear.xMax>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseTapChangerNonLinear.xMax>([\s\S]*?)<\/cim:PhaseTapChangerNonLinear.xMax>/g, obj, "xMax", base.to_string, sub, context);
+
             /**
              * The reactance depend on the tap position according to a "u" shaped curve.
              *
              * The minimum reactance (xMin) appear at the mid tap position.
              *
              */
-            obj["xMin"] = base.parse_element (/<cim:PhaseTapChangerNonLinear.xMin>([\s\S]*?)<\/cim:PhaseTapChangerNonLinear.xMin>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseTapChangerNonLinear.xMin>([\s\S]*?)<\/cim:PhaseTapChangerNonLinear.xMin>/g, obj, "xMin", base.to_string, sub, context);
+
             bucket = context.parsed.PhaseTapChangerNonLinear;
             if (null == bucket)
                 context.parsed.PhaseTapChangerNonLinear = bucket = {};
@@ -1982,7 +2179,8 @@ define
              * Bank this transformer belongs to.
              *
              */
-            obj["PowerTransformer"] = base.parse_attribute (/<cim:TransformerTank.PowerTransformer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TransformerTank.PowerTransformer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerTransformer", sub, context, true);
+
             bucket = context.parsed.TransformerTank;
             if (null == bucket)
                 context.parsed.TransformerTank = bucket = {};
@@ -2044,7 +2242,8 @@ define
              * A TapSchedule is associated with a TapChanger.
              *
              */
-            obj["TapChanger"] = base.parse_attribute (/<cim:TapSchedule.TapChanger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TapSchedule.TapChanger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TapChanger", sub, context, true);
+
             bucket = context.parsed.TapSchedule;
             if (null == bucket)
                 context.parsed.TapSchedule = bucket = {};
@@ -2064,7 +2263,8 @@ define
              * The phase tap changer table for this phase tap changer.
              *
              */
-            obj["PhaseTapChangerTable"] = base.parse_attribute (/<cim:PhaseTapChangerTabular.PhaseTapChangerTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:PhaseTapChangerTabular.PhaseTapChangerTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PhaseTapChangerTable", sub, context, true);
+
             bucket = context.parsed.PhaseTapChangerTabular;
             if (null == bucket)
                 context.parsed.PhaseTapChangerTabular = bucket = {};
@@ -2109,42 +2309,50 @@ define
              * Zero sequence shunt (charging) susceptance, per unit of length.
              *
              */
-            obj["b0ch"] = base.parse_element (/<cim:PerLengthSequenceImpedance.b0ch>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.b0ch>/g, sub, context, true);
+            base.parse_element (/<cim:PerLengthSequenceImpedance.b0ch>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.b0ch>/g, obj, "b0ch", base.to_string, sub, context);
+
             /**
              * Positive sequence shunt (charging) susceptance, per unit of length.
              *
              */
-            obj["bch"] = base.parse_element (/<cim:PerLengthSequenceImpedance.bch>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.bch>/g, sub, context, true);
+            base.parse_element (/<cim:PerLengthSequenceImpedance.bch>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.bch>/g, obj, "bch", base.to_string, sub, context);
+
             /**
              * Zero sequence shunt (charging) conductance, per unit of length.
              *
              */
-            obj["g0ch"] = base.parse_element (/<cim:PerLengthSequenceImpedance.g0ch>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.g0ch>/g, sub, context, true);
+            base.parse_element (/<cim:PerLengthSequenceImpedance.g0ch>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.g0ch>/g, obj, "g0ch", base.to_string, sub, context);
+
             /**
              * Positive sequence shunt (charging) conductance, per unit of length.
              *
              */
-            obj["gch"] = base.parse_element (/<cim:PerLengthSequenceImpedance.gch>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.gch>/g, sub, context, true);
+            base.parse_element (/<cim:PerLengthSequenceImpedance.gch>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.gch>/g, obj, "gch", base.to_string, sub, context);
+
             /**
              * Positive sequence series resistance, per unit of length.
              *
              */
-            obj["r"] = base.parse_element (/<cim:PerLengthSequenceImpedance.r>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.r>/g, sub, context, true);
+            base.parse_element (/<cim:PerLengthSequenceImpedance.r>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.r>/g, obj, "r", base.to_string, sub, context);
+
             /**
              * Zero sequence series resistance, per unit of length.
              *
              */
-            obj["r0"] = base.parse_element (/<cim:PerLengthSequenceImpedance.r0>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.r0>/g, sub, context, true);
+            base.parse_element (/<cim:PerLengthSequenceImpedance.r0>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.r0>/g, obj, "r0", base.to_string, sub, context);
+
             /**
              * Positive sequence series reactance, per unit of length.
              *
              */
-            obj["x"] = base.parse_element (/<cim:PerLengthSequenceImpedance.x>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.x>/g, sub, context, true);
+            base.parse_element (/<cim:PerLengthSequenceImpedance.x>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.x>/g, obj, "x", base.to_string, sub, context);
+
             /**
              * Zero sequence series reactance, per unit of length.
              *
              */
-            obj["x0"] = base.parse_element (/<cim:PerLengthSequenceImpedance.x0>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.x0>/g, sub, context, true);
+            base.parse_element (/<cim:PerLengthSequenceImpedance.x0>([\s\S]*?)<\/cim:PerLengthSequenceImpedance.x0>/g, obj, "x0", base.to_string, sub, context);
+
             bucket = context.parsed.PerLengthSequenceImpedance;
             if (null == bucket)
                 context.parsed.PerLengthSequenceImpedance = bucket = {};
@@ -2189,7 +2397,8 @@ define
              * Nominal resistance of device.
              *
              */
-            obj["r"] = base.parse_element (/<cim:EarthFaultCompensator.r>([\s\S]*?)<\/cim:EarthFaultCompensator.r>/g, sub, context, true);
+            base.parse_element (/<cim:EarthFaultCompensator.r>([\s\S]*?)<\/cim:EarthFaultCompensator.r>/g, obj, "r", base.to_string, sub, context);
+
             bucket = context.parsed.EarthFaultCompensator;
             if (null == bucket)
                 context.parsed.EarthFaultCompensator = bucket = {};
@@ -2215,12 +2424,14 @@ define
              * The length to the place where the clamp is located starting from side one of the line segment, i.e. the line segment terminal with sequence number equal to 1.
              *
              */
-            obj["lengthFromTerminal1"] = base.parse_element (/<cim:Clamp.lengthFromTerminal1>([\s\S]*?)<\/cim:Clamp.lengthFromTerminal1>/g, sub, context, true);
+            base.parse_element (/<cim:Clamp.lengthFromTerminal1>([\s\S]*?)<\/cim:Clamp.lengthFromTerminal1>/g, obj, "lengthFromTerminal1", base.to_string, sub, context);
+
             /**
              * The line segment to which the clamp is connected.
              *
              */
-            obj["ACLineSegment"] = base.parse_attribute (/<cim:Clamp.ACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Clamp.ACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ACLineSegment", sub, context, true);
+
             bucket = context.parsed.Clamp;
             if (null == bucket)
                 context.parsed.Clamp = bucket = {};
@@ -2244,12 +2455,14 @@ define
              * The angle difference in degrees.
              *
              */
-            obj["angle"] = base.parse_element (/<cim:PhaseTapChangerTablePoint.angle>([\s\S]*?)<\/cim:PhaseTapChangerTablePoint.angle>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseTapChangerTablePoint.angle>([\s\S]*?)<\/cim:PhaseTapChangerTablePoint.angle>/g, obj, "angle", base.to_string, sub, context);
+
             /**
              * The table of this point.
              *
              */
-            obj["PhaseTapChangerTable"] = base.parse_attribute (/<cim:PhaseTapChangerTablePoint.PhaseTapChangerTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:PhaseTapChangerTablePoint.PhaseTapChangerTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PhaseTapChangerTable", sub, context, true);
+
             bucket = context.parsed.PhaseTapChangerTablePoint;
             if (null == bucket)
                 context.parsed.PhaseTapChangerTablePoint = bucket = {};
@@ -2273,7 +2486,8 @@ define
              * The maximum fault current a breaking device can break safely under prescribed conditions of use.
              *
              */
-            obj["breakingCapacity"] = base.parse_element (/<cim:ProtectedSwitch.breakingCapacity>([\s\S]*?)<\/cim:ProtectedSwitch.breakingCapacity>/g, sub, context, true);
+            base.parse_element (/<cim:ProtectedSwitch.breakingCapacity>([\s\S]*?)<\/cim:ProtectedSwitch.breakingCapacity>/g, obj, "breakingCapacity", base.to_string, sub, context);
+
             bucket = context.parsed.ProtectedSwitch;
             if (null == bucket)
                 context.parsed.ProtectedSwitch = bucket = {};
@@ -2293,13 +2507,20 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "SynchronousMachineKind";
-            obj["generator"] = base.parse_element (/<cim:SynchronousMachineKind.generator>([\s\S]*?)<\/cim:SynchronousMachineKind.generator>/g, sub, context, true);
-            obj["condenser"] = base.parse_element (/<cim:SynchronousMachineKind.condenser>([\s\S]*?)<\/cim:SynchronousMachineKind.condenser>/g, sub, context, true);
-            obj["generatorOrCondenser"] = base.parse_element (/<cim:SynchronousMachineKind.generatorOrCondenser>([\s\S]*?)<\/cim:SynchronousMachineKind.generatorOrCondenser>/g, sub, context, true);
-            obj["motor"] = base.parse_element (/<cim:SynchronousMachineKind.motor>([\s\S]*?)<\/cim:SynchronousMachineKind.motor>/g, sub, context, true);
-            obj["generatorOrMotor"] = base.parse_element (/<cim:SynchronousMachineKind.generatorOrMotor>([\s\S]*?)<\/cim:SynchronousMachineKind.generatorOrMotor>/g, sub, context, true);
-            obj["motorOrCondenser"] = base.parse_element (/<cim:SynchronousMachineKind.motorOrCondenser>([\s\S]*?)<\/cim:SynchronousMachineKind.motorOrCondenser>/g, sub, context, true);
-            obj["generatorOrCondenserOrMotor"] = base.parse_element (/<cim:SynchronousMachineKind.generatorOrCondenserOrMotor>([\s\S]*?)<\/cim:SynchronousMachineKind.generatorOrCondenserOrMotor>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineKind.generator>([\s\S]*?)<\/cim:SynchronousMachineKind.generator>/g, obj, "generator", base.to_string, sub, context);
+
+            base.parse_element (/<cim:SynchronousMachineKind.condenser>([\s\S]*?)<\/cim:SynchronousMachineKind.condenser>/g, obj, "condenser", base.to_string, sub, context);
+
+            base.parse_element (/<cim:SynchronousMachineKind.generatorOrCondenser>([\s\S]*?)<\/cim:SynchronousMachineKind.generatorOrCondenser>/g, obj, "generatorOrCondenser", base.to_string, sub, context);
+
+            base.parse_element (/<cim:SynchronousMachineKind.motor>([\s\S]*?)<\/cim:SynchronousMachineKind.motor>/g, obj, "motor", base.to_string, sub, context);
+
+            base.parse_element (/<cim:SynchronousMachineKind.generatorOrMotor>([\s\S]*?)<\/cim:SynchronousMachineKind.generatorOrMotor>/g, obj, "generatorOrMotor", base.to_string, sub, context);
+
+            base.parse_element (/<cim:SynchronousMachineKind.motorOrCondenser>([\s\S]*?)<\/cim:SynchronousMachineKind.motorOrCondenser>/g, obj, "motorOrCondenser", base.to_string, sub, context);
+
+            base.parse_element (/<cim:SynchronousMachineKind.generatorOrCondenserOrMotor>([\s\S]*?)<\/cim:SynchronousMachineKind.generatorOrCondenserOrMotor>/g, obj, "generatorOrCondenserOrMotor", base.to_string, sub, context);
+
             bucket = context.parsed.SynchronousMachineKind;
             if (null == bucket)
                 context.parsed.SynchronousMachineKind = bucket = {};
@@ -2323,22 +2544,26 @@ define
              * Delta connection.
              *
              */
-            obj["D"] = base.parse_element (/<cim:PhaseShuntConnectionKind.D>([\s\S]*?)<\/cim:PhaseShuntConnectionKind.D>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseShuntConnectionKind.D>([\s\S]*?)<\/cim:PhaseShuntConnectionKind.D>/g, obj, "D", base.to_string, sub, context);
+
             /**
              * Wye connection.
              *
              */
-            obj["Y"] = base.parse_element (/<cim:PhaseShuntConnectionKind.Y>([\s\S]*?)<\/cim:PhaseShuntConnectionKind.Y>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseShuntConnectionKind.Y>([\s\S]*?)<\/cim:PhaseShuntConnectionKind.Y>/g, obj, "Y", base.to_string, sub, context);
+
             /**
              * Wye, with neutral brought out for grounding.
              *
              */
-            obj["Yn"] = base.parse_element (/<cim:PhaseShuntConnectionKind.Yn>([\s\S]*?)<\/cim:PhaseShuntConnectionKind.Yn>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseShuntConnectionKind.Yn>([\s\S]*?)<\/cim:PhaseShuntConnectionKind.Yn>/g, obj, "Yn", base.to_string, sub, context);
+
             /**
              * Independent winding, for single-phase connections.
              *
              */
-            obj["I"] = base.parse_element (/<cim:PhaseShuntConnectionKind.I>([\s\S]*?)<\/cim:PhaseShuntConnectionKind.I>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseShuntConnectionKind.I>([\s\S]*?)<\/cim:PhaseShuntConnectionKind.I>/g, obj, "I", base.to_string, sub, context);
+
             bucket = context.parsed.PhaseShuntConnectionKind;
             if (null == bucket)
                 context.parsed.PhaseShuntConnectionKind = bucket = {};
@@ -2364,17 +2589,20 @@ define
              * The length to the place where the cut is located starting from side one of the cut line segment, i.e. the line segment Terminal with sequenceNumber equal to 1.
              *
              */
-            obj["lengthFromTerminal1"] = base.parse_element (/<cim:Cut.lengthFromTerminal1>([\s\S]*?)<\/cim:Cut.lengthFromTerminal1>/g, sub, context, true);
+            base.parse_element (/<cim:Cut.lengthFromTerminal1>([\s\S]*?)<\/cim:Cut.lengthFromTerminal1>/g, obj, "lengthFromTerminal1", base.to_string, sub, context);
+
             /**
              * The line segment to which the cut is applied.
              *
              */
-            obj["ACLineSegment"] = base.parse_attribute (/<cim:Cut.ACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Cut.ACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ACLineSegment", sub, context, true);
+
             /**
              * Action taken with this cut.
              *
              */
-            obj["CutAction"] = base.parse_attribute (/<cim:Cut.CutAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Cut.CutAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CutAction", sub, context, true);
+
             bucket = context.parsed.Cut;
             if (null == bucket)
                 context.parsed.Cut = bucket = {};
@@ -2398,7 +2626,8 @@ define
              * Regulating controls that have this Schedule.
              *
              */
-            obj["RegulatingControl"] = base.parse_attribute (/<cim:RegulationSchedule.RegulatingControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RegulationSchedule.RegulatingControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegulatingControl", sub, context, true);
+
             bucket = context.parsed.RegulationSchedule;
             if (null == bucket)
                 context.parsed.RegulationSchedule = bucket = {};
@@ -2422,12 +2651,14 @@ define
              * The phase connection of the wire at both ends.
              *
              */
-            obj["phase"] = base.parse_element (/<cim:ACLineSegmentPhase.phase>([\s\S]*?)<\/cim:ACLineSegmentPhase.phase>/g, sub, context, true);
+            base.parse_element (/<cim:ACLineSegmentPhase.phase>([\s\S]*?)<\/cim:ACLineSegmentPhase.phase>/g, obj, "phase", base.to_string, sub, context);
+
             /**
              * The line segment to which the phase belongs.
              *
              */
-            obj["ACLineSegment"] = base.parse_attribute (/<cim:ACLineSegmentPhase.ACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ACLineSegmentPhase.ACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ACLineSegment", sub, context, true);
+
             bucket = context.parsed.ACLineSegmentPhase;
             if (null == bucket)
                 context.parsed.ACLineSegmentPhase = bucket = {};
@@ -2451,7 +2682,8 @@ define
              * The transition time from open to close.
              *
              */
-            obj["inTransitTime"] = base.parse_element (/<cim:Breaker.inTransitTime>([\s\S]*?)<\/cim:Breaker.inTransitTime>/g, sub, context, true);
+            base.parse_element (/<cim:Breaker.inTransitTime>([\s\S]*?)<\/cim:Breaker.inTransitTime>/g, obj, "inTransitTime", base.to_string, sub, context);
+
             bucket = context.parsed.Breaker;
             if (null == bucket)
                 context.parsed.Breaker = bucket = {};
@@ -2477,7 +2709,8 @@ define
              * Action taken with this jumper.
              *
              */
-            obj["JumperAction"] = base.parse_attribute (/<cim:Jumper.JumperAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Jumper.JumperAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "JumperAction", sub, context, true);
+
             bucket = context.parsed.Jumper;
             if (null == bucket)
                 context.parsed.Jumper = bucket = {};
@@ -2503,75 +2736,88 @@ define
              * Core shunt magnetizing susceptance in the saturation region.
              *
              */
-            obj["bmagSat"] = base.parse_element (/<cim:TransformerEnd.bmagSat>([\s\S]*?)<\/cim:TransformerEnd.bmagSat>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerEnd.bmagSat>([\s\S]*?)<\/cim:TransformerEnd.bmagSat>/g, obj, "bmagSat", base.to_string, sub, context);
+
             /**
              * Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock number.
              *
              * Highest voltage winding should be 1.  Each end within a power transformer should have a unique subsequent end number.   Note the transformer end number need not match the terminal sequence number.
              *
              */
-            obj["endNumber"] = base.parse_element (/<cim:TransformerEnd.endNumber>([\s\S]*?)<\/cim:TransformerEnd.endNumber>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerEnd.endNumber>([\s\S]*?)<\/cim:TransformerEnd.endNumber>/g, obj, "endNumber", base.to_string, sub, context);
+
             /**
              * (for Yn and Zn connections) True if the neutral is solidly grounded.
              *
              */
-            obj["grounded"] = base.to_boolean (base.parse_element (/<cim:TransformerEnd.grounded>([\s\S]*?)<\/cim:TransformerEnd.grounded>/g, sub, context, true));
+            base.parse_element (/<cim:TransformerEnd.grounded>([\s\S]*?)<\/cim:TransformerEnd.grounded>/g, obj, "grounded", base.to_boolean, sub, context);
+
             /**
              * The reference voltage at which the magnetizing saturation measurements were made
              *
              */
-            obj["magBaseU"] = base.parse_element (/<cim:TransformerEnd.magBaseU>([\s\S]*?)<\/cim:TransformerEnd.magBaseU>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerEnd.magBaseU>([\s\S]*?)<\/cim:TransformerEnd.magBaseU>/g, obj, "magBaseU", base.to_string, sub, context);
+
             /**
              * Core magnetizing saturation curve knee flux level.
              *
              */
-            obj["magSatFlux"] = base.parse_element (/<cim:TransformerEnd.magSatFlux>([\s\S]*?)<\/cim:TransformerEnd.magSatFlux>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerEnd.magSatFlux>([\s\S]*?)<\/cim:TransformerEnd.magSatFlux>/g, obj, "magSatFlux", base.to_string, sub, context);
+
             /**
              * (for Yn and Zn connections) Resistance part of neutral impedance where 'grounded' is true.
              *
              */
-            obj["rground"] = base.parse_element (/<cim:TransformerEnd.rground>([\s\S]*?)<\/cim:TransformerEnd.rground>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerEnd.rground>([\s\S]*?)<\/cim:TransformerEnd.rground>/g, obj, "rground", base.to_string, sub, context);
+
             /**
              * (for Yn and Zn connections) Reactive part of neutral impedance where 'grounded' is true.
              *
              */
-            obj["xground"] = base.parse_element (/<cim:TransformerEnd.xground>([\s\S]*?)<\/cim:TransformerEnd.xground>/g, sub, context, true);
+            base.parse_element (/<cim:TransformerEnd.xground>([\s\S]*?)<\/cim:TransformerEnd.xground>/g, obj, "xground", base.to_string, sub, context);
+
             /**
              * Core admittance of this transformer end, representing magnetising current and core losses.
              *
              * The full values of the transformer should be supplied for one transformer end only.
              *
              */
-            obj["CoreAdmittance"] = base.parse_attribute (/<cim:TransformerEnd.CoreAdmittance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TransformerEnd.CoreAdmittance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CoreAdmittance", sub, context, true);
+
             /**
              * Phase tap changer associated with this transformer end.
              *
              */
-            obj["PhaseTapChanger"] = base.parse_attribute (/<cim:TransformerEnd.PhaseTapChanger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TransformerEnd.PhaseTapChanger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PhaseTapChanger", sub, context, true);
+
             /**
              * Base voltage of the transformer end.
              *
              * This is essential for PU calculation.
              *
              */
-            obj["BaseVoltage"] = base.parse_attribute (/<cim:TransformerEnd.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TransformerEnd.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BaseVoltage", sub, context, true);
+
             /**
              * Ratio tap changer associated with this transformer end.
              *
              */
-            obj["RatioTapChanger"] = base.parse_attribute (/<cim:TransformerEnd.RatioTapChanger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TransformerEnd.RatioTapChanger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RatioTapChanger", sub, context, true);
+
             /**
              * (accurate for 2- or 3-winding transformers only) Pi-model impedances of this transformer end.
              *
              * By convention, for a two winding transformer, the full values of the transformer should be entered on the high voltage end (endNumber=1).
              *
              */
-            obj["StarImpedance"] = base.parse_attribute (/<cim:TransformerEnd.StarImpedance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TransformerEnd.StarImpedance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StarImpedance", sub, context, true);
+
             /**
              * Terminal of the power transformer to which this transformer end belongs.
              *
              */
-            obj["Terminal"] = base.parse_attribute (/<cim:TransformerEnd.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TransformerEnd.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context, true);
+
             bucket = context.parsed.TransformerEnd;
             if (null == bucket)
                 context.parsed.TransformerEnd = bucket = {};
@@ -2635,7 +2881,8 @@ define
              * A SwitchSchedule is associated with a Switch.
              *
              */
-            obj["Switch"] = base.parse_attribute (/<cim:SwitchSchedule.Switch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SwitchSchedule.Switch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Switch", sub, context, true);
+
             bucket = context.parsed.SwitchSchedule;
             if (null == bucket)
                 context.parsed.SwitchSchedule = bucket = {};
@@ -2663,50 +2910,58 @@ define
              * This applies to equipment with discrete controls, e.g. tap changers and shunt compensators.
              *
              */
-            obj["discrete"] = base.to_boolean (base.parse_element (/<cim:RegulatingControl.discrete>([\s\S]*?)<\/cim:RegulatingControl.discrete>/g, sub, context, true));
+            base.parse_element (/<cim:RegulatingControl.discrete>([\s\S]*?)<\/cim:RegulatingControl.discrete>/g, obj, "discrete", base.to_boolean, sub, context);
+
             /**
              * The regulating control mode presently available.
              *
              * This specification allows for determining the kind of regulation without need for obtaining the units from a schedule.
              *
              */
-            obj["mode"] = base.parse_element (/<cim:RegulatingControl.mode>([\s\S]*?)<\/cim:RegulatingControl.mode>/g, sub, context, true);
+            base.parse_element (/<cim:RegulatingControl.mode>([\s\S]*?)<\/cim:RegulatingControl.mode>/g, obj, "mode", base.to_string, sub, context);
+
             /**
              * Phase voltage controlling this regulator, measured at regulator location.
              *
              */
-            obj["monitoredPhase"] = base.parse_element (/<cim:RegulatingControl.monitoredPhase>([\s\S]*?)<\/cim:RegulatingControl.monitoredPhase>/g, sub, context, true);
+            base.parse_element (/<cim:RegulatingControl.monitoredPhase>([\s\S]*?)<\/cim:RegulatingControl.monitoredPhase>/g, obj, "monitoredPhase", base.to_string, sub, context);
+
             /**
              * This is a deadband used with discrete control to avoid excessive update of controls like tap changers and shunt compensator banks while regulating.
              *
              * The units of those appropriate for the mode.
              *
              */
-            obj["targetDeadband"] = base.to_float (base.parse_element (/<cim:RegulatingControl.targetDeadband>([\s\S]*?)<\/cim:RegulatingControl.targetDeadband>/g, sub, context, true));
+            base.parse_element (/<cim:RegulatingControl.targetDeadband>([\s\S]*?)<\/cim:RegulatingControl.targetDeadband>/g, obj, "targetDeadband", base.to_float, sub, context);
+
             /**
              * The target value specified for case input.
              *
              * This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.
              *
              */
-            obj["targetValue"] = base.to_float (base.parse_element (/<cim:RegulatingControl.targetValue>([\s\S]*?)<\/cim:RegulatingControl.targetValue>/g, sub, context, true));
+            base.parse_element (/<cim:RegulatingControl.targetValue>([\s\S]*?)<\/cim:RegulatingControl.targetValue>/g, obj, "targetValue", base.to_float, sub, context);
+
             /**
              * Specify the multiplier for used for the targetValue.
              *
              */
-            obj["targetValueUnitMultiplier"] = base.parse_element (/<cim:RegulatingControl.targetValueUnitMultiplier>([\s\S]*?)<\/cim:RegulatingControl.targetValueUnitMultiplier>/g, sub, context, true);
+            base.parse_element (/<cim:RegulatingControl.targetValueUnitMultiplier>([\s\S]*?)<\/cim:RegulatingControl.targetValueUnitMultiplier>/g, obj, "targetValueUnitMultiplier", base.to_string, sub, context);
+
             /**
              * The flag tells if regulation is enabled.
              *
              */
-            obj["enabled"] = base.to_boolean (base.parse_element (/<cim:RegulatingControl.enabled>([\s\S]*?)<\/cim:RegulatingControl.enabled>/g, sub, context, true));
+            base.parse_element (/<cim:RegulatingControl.enabled>([\s\S]*?)<\/cim:RegulatingControl.enabled>/g, obj, "enabled", base.to_boolean, sub, context);
+
             /**
              * The terminal associated with this regulating control.
              *
              * The terminal is associated instead of a node, since the terminal could connect into either a topological node (bus in bus-branch model) or a connectivity node (detailed switch model).  Sometimes it is useful to model regulation at a terminal of a bus bar object since the bus bar can be present in both a bus-branch model or a model with switch detail.
              *
              */
-            obj["Terminal"] = base.parse_attribute (/<cim:RegulatingControl.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RegulatingControl.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context, true);
+
             bucket = context.parsed.RegulatingControl;
             if (null == bucket)
                 context.parsed.RegulatingControl = bucket = {};
@@ -2732,70 +2987,82 @@ define
              * The attribute shall be greater than lowStep.
              *
              */
-            obj["highStep"] = base.parse_element (/<cim:TapChanger.highStep>([\s\S]*?)<\/cim:TapChanger.highStep>/g, sub, context, true);
+            base.parse_element (/<cim:TapChanger.highStep>([\s\S]*?)<\/cim:TapChanger.highStep>/g, obj, "highStep", base.to_string, sub, context);
+
             /**
              * For an LTC, the delay for initial tap changer operation (first step change)
              *
              */
-            obj["initialDelay"] = base.parse_element (/<cim:TapChanger.initialDelay>([\s\S]*?)<\/cim:TapChanger.initialDelay>/g, sub, context, true);
+            base.parse_element (/<cim:TapChanger.initialDelay>([\s\S]*?)<\/cim:TapChanger.initialDelay>/g, obj, "initialDelay", base.to_string, sub, context);
+
             /**
              * Lowest possible tap step position, retard from neutral
              *
              */
-            obj["lowStep"] = base.parse_element (/<cim:TapChanger.lowStep>([\s\S]*?)<\/cim:TapChanger.lowStep>/g, sub, context, true);
+            base.parse_element (/<cim:TapChanger.lowStep>([\s\S]*?)<\/cim:TapChanger.lowStep>/g, obj, "lowStep", base.to_string, sub, context);
+
             /**
              * Specifies whether or not a TapChanger has load tap changing capabilities.
              *
              */
-            obj["ltcFlag"] = base.to_boolean (base.parse_element (/<cim:TapChanger.ltcFlag>([\s\S]*?)<\/cim:TapChanger.ltcFlag>/g, sub, context, true));
+            base.parse_element (/<cim:TapChanger.ltcFlag>([\s\S]*?)<\/cim:TapChanger.ltcFlag>/g, obj, "ltcFlag", base.to_boolean, sub, context);
+
             /**
              * The neutral tap step position for this winding.
              *
              * The attribute shall be equal or greater than lowStep and equal or less than highStep.
              *
              */
-            obj["neutralStep"] = base.parse_element (/<cim:TapChanger.neutralStep>([\s\S]*?)<\/cim:TapChanger.neutralStep>/g, sub, context, true);
+            base.parse_element (/<cim:TapChanger.neutralStep>([\s\S]*?)<\/cim:TapChanger.neutralStep>/g, obj, "neutralStep", base.to_string, sub, context);
+
             /**
              * Voltage at which the winding operates at the neutral tap setting.
              *
              */
-            obj["neutralU"] = base.parse_element (/<cim:TapChanger.neutralU>([\s\S]*?)<\/cim:TapChanger.neutralU>/g, sub, context, true);
+            base.parse_element (/<cim:TapChanger.neutralU>([\s\S]*?)<\/cim:TapChanger.neutralU>/g, obj, "neutralU", base.to_string, sub, context);
+
             /**
              * The tap step position used in "normal" network operation for this winding.
              *
              * For a "Fixed" tap changer indicates the current physical tap setting.
              *
              */
-            obj["normalStep"] = base.parse_element (/<cim:TapChanger.normalStep>([\s\S]*?)<\/cim:TapChanger.normalStep>/g, sub, context, true);
+            base.parse_element (/<cim:TapChanger.normalStep>([\s\S]*?)<\/cim:TapChanger.normalStep>/g, obj, "normalStep", base.to_string, sub, context);
+
             /**
              * For an LTC, the delay for subsequent tap changer operation (second and later step changes)
              *
              */
-            obj["subsequentDelay"] = base.parse_element (/<cim:TapChanger.subsequentDelay>([\s\S]*?)<\/cim:TapChanger.subsequentDelay>/g, sub, context, true);
+            base.parse_element (/<cim:TapChanger.subsequentDelay>([\s\S]*?)<\/cim:TapChanger.subsequentDelay>/g, obj, "subsequentDelay", base.to_string, sub, context);
+
             /**
              * Specifies the regulation status of the equipment.
              *
              * True is regulating, false is not regulating.
              *
              */
-            obj["controlEnabled"] = base.to_boolean (base.parse_element (/<cim:TapChanger.controlEnabled>([\s\S]*?)<\/cim:TapChanger.controlEnabled>/g, sub, context, true));
+            base.parse_element (/<cim:TapChanger.controlEnabled>([\s\S]*?)<\/cim:TapChanger.controlEnabled>/g, obj, "controlEnabled", base.to_boolean, sub, context);
+
             /**
              * Tap changer position.
              *
              * Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changers has yet been designed, a solutions where a narrow voltage band force the tap step to oscillate or accommodate for a continuous solution as input.
              *
              */
-            obj["step"] = base.to_float (base.parse_element (/<cim:TapChanger.step>([\s\S]*?)<\/cim:TapChanger.step>/g, sub, context, true));
+            base.parse_element (/<cim:TapChanger.step>([\s\S]*?)<\/cim:TapChanger.step>/g, obj, "step", base.to_float, sub, context);
+
             /**
              * The regulating control scheme in which this tap changer participates.
              *
              */
-            obj["TapChangerControl"] = base.parse_attribute (/<cim:TapChanger.TapChangerControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TapChanger.TapChangerControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TapChangerControl", sub, context, true);
+
             /**
              * The tap step state associated with the tap changer.
              *
              */
-            obj["SvTapStep"] = base.parse_attribute (/<cim:TapChanger.SvTapStep\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TapChanger.SvTapStep\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SvTapStep", sub, context, true);
+
             bucket = context.parsed.TapChanger;
             if (null == bucket)
                 context.parsed.TapChanger = bucket = {};
@@ -2821,74 +3088,88 @@ define
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["activePower"] = base.parse_element (/<cim:EnergySource.activePower>([\s\S]*?)<\/cim:EnergySource.activePower>/g, sub, context, true);
+            base.parse_element (/<cim:EnergySource.activePower>([\s\S]*?)<\/cim:EnergySource.activePower>/g, obj, "activePower", base.to_string, sub, context);
+
             /**
              * Phase-to-phase nominal voltage.
              *
              */
-            obj["nominalVoltage"] = base.parse_element (/<cim:EnergySource.nominalVoltage>([\s\S]*?)<\/cim:EnergySource.nominalVoltage>/g, sub, context, true);
+            base.parse_element (/<cim:EnergySource.nominalVoltage>([\s\S]*?)<\/cim:EnergySource.nominalVoltage>/g, obj, "nominalVoltage", base.to_string, sub, context);
+
             /**
              * Positive sequence Thevenin resistance.
              *
              */
-            obj["r"] = base.parse_element (/<cim:EnergySource.r>([\s\S]*?)<\/cim:EnergySource.r>/g, sub, context, true);
+            base.parse_element (/<cim:EnergySource.r>([\s\S]*?)<\/cim:EnergySource.r>/g, obj, "r", base.to_string, sub, context);
+
             /**
              * Zero sequence Thevenin resistance.
              *
              */
-            obj["r0"] = base.parse_element (/<cim:EnergySource.r0>([\s\S]*?)<\/cim:EnergySource.r0>/g, sub, context, true);
+            base.parse_element (/<cim:EnergySource.r0>([\s\S]*?)<\/cim:EnergySource.r0>/g, obj, "r0", base.to_string, sub, context);
+
             /**
              * Negative sequence Thevenin resistance.
              *
              */
-            obj["rn"] = base.parse_element (/<cim:EnergySource.rn>([\s\S]*?)<\/cim:EnergySource.rn>/g, sub, context, true);
+            base.parse_element (/<cim:EnergySource.rn>([\s\S]*?)<\/cim:EnergySource.rn>/g, obj, "rn", base.to_string, sub, context);
+
             /**
              * Phase angle of a-phase open circuit.
              *
              */
-            obj["voltageAngle"] = base.parse_element (/<cim:EnergySource.voltageAngle>([\s\S]*?)<\/cim:EnergySource.voltageAngle>/g, sub, context, true);
+            base.parse_element (/<cim:EnergySource.voltageAngle>([\s\S]*?)<\/cim:EnergySource.voltageAngle>/g, obj, "voltageAngle", base.to_string, sub, context);
+
             /**
              * Phase-to-phase open circuit voltage magnitude.
              *
              */
-            obj["voltageMagnitude"] = base.parse_element (/<cim:EnergySource.voltageMagnitude>([\s\S]*?)<\/cim:EnergySource.voltageMagnitude>/g, sub, context, true);
+            base.parse_element (/<cim:EnergySource.voltageMagnitude>([\s\S]*?)<\/cim:EnergySource.voltageMagnitude>/g, obj, "voltageMagnitude", base.to_string, sub, context);
+
             /**
              * Positive sequence Thevenin reactance.
              *
              */
-            obj["x"] = base.parse_element (/<cim:EnergySource.x>([\s\S]*?)<\/cim:EnergySource.x>/g, sub, context, true);
+            base.parse_element (/<cim:EnergySource.x>([\s\S]*?)<\/cim:EnergySource.x>/g, obj, "x", base.to_string, sub, context);
+
             /**
              * Zero sequence Thevenin reactance.
              *
              */
-            obj["x0"] = base.parse_element (/<cim:EnergySource.x0>([\s\S]*?)<\/cim:EnergySource.x0>/g, sub, context, true);
+            base.parse_element (/<cim:EnergySource.x0>([\s\S]*?)<\/cim:EnergySource.x0>/g, obj, "x0", base.to_string, sub, context);
+
             /**
              * Negative sequence Thevenin reactance.
              *
              */
-            obj["xn"] = base.parse_element (/<cim:EnergySource.xn>([\s\S]*?)<\/cim:EnergySource.xn>/g, sub, context, true);
+            base.parse_element (/<cim:EnergySource.xn>([\s\S]*?)<\/cim:EnergySource.xn>/g, obj, "xn", base.to_string, sub, context);
+
             /**
              * High voltage source reactive injection.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["reactivePower"] = base.parse_element (/<cim:EnergySource.reactivePower>([\s\S]*?)<\/cim:EnergySource.reactivePower>/g, sub, context, true);
+            base.parse_element (/<cim:EnergySource.reactivePower>([\s\S]*?)<\/cim:EnergySource.reactivePower>/g, obj, "reactivePower", base.to_string, sub, context);
+
             /**
              * Wind generator Type 3 or 4 dynamics model associated with this energy source.
              *
              */
-            obj["WindTurbineType3or4Dynamics"] = base.parse_attribute (/<cim:EnergySource.WindTurbineType3or4Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:EnergySource.WindTurbineType3or4Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3or4Dynamics", sub, context, true);
+
             /**
              * Action taken with this energy source.
              *
              */
-            obj["EnergySourceAction"] = base.parse_attribute (/<cim:EnergySource.EnergySourceAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:EnergySource.EnergySourceAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergySourceAction", sub, context, true);
+
             /**
              * Energy Scheduling Type of an Energy Source
              *
              */
-            obj["EnergySchedulingType"] = base.parse_attribute (/<cim:EnergySource.EnergySchedulingType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:EnergySource.EnergySchedulingType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergySchedulingType", sub, context, true);
+
             bucket = context.parsed.EnergySource;
             if (null == bucket)
                 context.parsed.EnergySource = bucket = {};
@@ -2908,8 +3189,10 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "SVCControlMode";
-            obj["reactivePower"] = base.parse_element (/<cim:SVCControlMode.reactivePower>([\s\S]*?)<\/cim:SVCControlMode.reactivePower>/g, sub, context, true);
-            obj["voltage"] = base.parse_element (/<cim:SVCControlMode.voltage>([\s\S]*?)<\/cim:SVCControlMode.voltage>/g, sub, context, true);
+            base.parse_element (/<cim:SVCControlMode.reactivePower>([\s\S]*?)<\/cim:SVCControlMode.reactivePower>/g, obj, "reactivePower", base.to_string, sub, context);
+
+            base.parse_element (/<cim:SVCControlMode.voltage>([\s\S]*?)<\/cim:SVCControlMode.voltage>/g, obj, "voltage", base.to_string, sub, context);
+
             bucket = context.parsed.SVCControlMode;
             if (null == bucket)
                 context.parsed.SVCControlMode = bucket = {};
@@ -2933,7 +3216,8 @@ define
              * Table of this point.
              *
              */
-            obj["RatioTapChangerTable"] = base.parse_attribute (/<cim:RatioTapChangerTablePoint.RatioTapChangerTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RatioTapChangerTablePoint.RatioTapChangerTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RatioTapChangerTable", sub, context, true);
+
             bucket = context.parsed.RatioTapChangerTablePoint;
             if (null == bucket)
                 context.parsed.RatioTapChangerTablePoint = bucket = {};
@@ -2957,24 +3241,28 @@ define
              * The maximum number of sections that may be switched in for this phase.
              *
              */
-            obj["maximumSections"] = base.parse_element (/<cim:ShuntCompensatorPhase.maximumSections>([\s\S]*?)<\/cim:ShuntCompensatorPhase.maximumSections>/g, sub, context, true);
+            base.parse_element (/<cim:ShuntCompensatorPhase.maximumSections>([\s\S]*?)<\/cim:ShuntCompensatorPhase.maximumSections>/g, obj, "maximumSections", base.to_string, sub, context);
+
             /**
              * For the capacitor phase, the normal number of sections switched in.
              *
              */
-            obj["normalSections"] = base.parse_element (/<cim:ShuntCompensatorPhase.normalSections>([\s\S]*?)<\/cim:ShuntCompensatorPhase.normalSections>/g, sub, context, true);
+            base.parse_element (/<cim:ShuntCompensatorPhase.normalSections>([\s\S]*?)<\/cim:ShuntCompensatorPhase.normalSections>/g, obj, "normalSections", base.to_string, sub, context);
+
             /**
              * Phase of this shunt compensator component.
              *
              * If the shunt compensator is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the shunt compensator is delta connected, the phase indicates a shunt compensator connected from the indicated phase to the next logical non-neutral phase.
              *
              */
-            obj["phase"] = base.parse_element (/<cim:ShuntCompensatorPhase.phase>([\s\S]*?)<\/cim:ShuntCompensatorPhase.phase>/g, sub, context, true);
+            base.parse_element (/<cim:ShuntCompensatorPhase.phase>([\s\S]*?)<\/cim:ShuntCompensatorPhase.phase>/g, obj, "phase", base.to_string, sub, context);
+
             /**
              * Shunt compensator of this shunt compensator phase.
              *
              */
-            obj["ShuntCompensator"] = base.parse_attribute (/<cim:ShuntCompensatorPhase.ShuntCompensator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ShuntCompensatorPhase.ShuntCompensator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ShuntCompensator", sub, context, true);
+
             bucket = context.parsed.ShuntCompensatorPhase;
             if (null == bucket)
                 context.parsed.ShuntCompensatorPhase = bucket = {};
@@ -3000,31 +3288,36 @@ define
              * If the SwitchPhase has a status measurement the Discrete.normalValue is expected to match with this value.
              *
              */
-            obj["normalOpen"] = base.to_boolean (base.parse_element (/<cim:SwitchPhase.normalOpen>([\s\S]*?)<\/cim:SwitchPhase.normalOpen>/g, sub, context, true));
+            base.parse_element (/<cim:SwitchPhase.normalOpen>([\s\S]*?)<\/cim:SwitchPhase.normalOpen>/g, obj, "normalOpen", base.to_boolean, sub, context);
+
             /**
              * Phase of this SwitchPhase on the side with terminal sequence number equal 1.
              *
              * Should be a phase contained in that terminal&rsquo;s phases attribute.
              *
              */
-            obj["phaseSide1"] = base.parse_element (/<cim:SwitchPhase.phaseSide1>([\s\S]*?)<\/cim:SwitchPhase.phaseSide1>/g, sub, context, true);
+            base.parse_element (/<cim:SwitchPhase.phaseSide1>([\s\S]*?)<\/cim:SwitchPhase.phaseSide1>/g, obj, "phaseSide1", base.to_string, sub, context);
+
             /**
              * Phase of this SwitchPhase on the side with terminal sequence number equal 2.
              *
              * Should be a phase contained in that terminal&rsquo;s Terminal.phases attribute.
              *
              */
-            obj["phaseSide2"] = base.parse_element (/<cim:SwitchPhase.phaseSide2>([\s\S]*?)<\/cim:SwitchPhase.phaseSide2>/g, sub, context, true);
+            base.parse_element (/<cim:SwitchPhase.phaseSide2>([\s\S]*?)<\/cim:SwitchPhase.phaseSide2>/g, obj, "phaseSide2", base.to_string, sub, context);
+
             /**
              * The attribute tells if the switch is considered closed when used as input to topology processing.
              *
              */
-            obj["closed"] = base.to_boolean (base.parse_element (/<cim:SwitchPhase.closed>([\s\S]*?)<\/cim:SwitchPhase.closed>/g, sub, context, true));
+            base.parse_element (/<cim:SwitchPhase.closed>([\s\S]*?)<\/cim:SwitchPhase.closed>/g, obj, "closed", base.to_boolean, sub, context);
+
             /**
              * The switch of the switch phase.
              *
              */
-            obj["Switch"] = base.parse_attribute (/<cim:SwitchPhase.Switch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:SwitchPhase.Switch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Switch", sub, context, true);
+
             bucket = context.parsed.SwitchPhase;
             if (null == bucket)
                 context.parsed.SwitchPhase = bucket = {};
@@ -3050,116 +3343,134 @@ define
              * This is the change in power injection divided by the change in frequency and negated.  A positive value of the power frequency bias provides additional power injection upon a drop in frequency.
              *
              */
-            obj["governorSCD"] = base.parse_element (/<cim:ExternalNetworkInjection.governorSCD>([\s\S]*?)<\/cim:ExternalNetworkInjection.governorSCD>/g, sub, context, true);
+            base.parse_element (/<cim:ExternalNetworkInjection.governorSCD>([\s\S]*?)<\/cim:ExternalNetworkInjection.governorSCD>/g, obj, "governorSCD", base.to_string, sub, context);
+
             /**
              * Indicates whether initial symmetrical short-circuit current and power have been calculated according to IEC (Ik").
              *
              */
-            obj["ikSecond"] = base.to_boolean (base.parse_element (/<cim:ExternalNetworkInjection.ikSecond>([\s\S]*?)<\/cim:ExternalNetworkInjection.ikSecond>/g, sub, context, true));
+            base.parse_element (/<cim:ExternalNetworkInjection.ikSecond>([\s\S]*?)<\/cim:ExternalNetworkInjection.ikSecond>/g, obj, "ikSecond", base.to_boolean, sub, context);
+
             /**
              * Maximum initial symmetrical short-circuit currents (Ik" max) in A (Ik" = Sk"/(SQRT(3) Un)).
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["maxInitialSymShCCurrent"] = base.parse_element (/<cim:ExternalNetworkInjection.maxInitialSymShCCurrent>([\s\S]*?)<\/cim:ExternalNetworkInjection.maxInitialSymShCCurrent>/g, sub, context, true);
+            base.parse_element (/<cim:ExternalNetworkInjection.maxInitialSymShCCurrent>([\s\S]*?)<\/cim:ExternalNetworkInjection.maxInitialSymShCCurrent>/g, obj, "maxInitialSymShCCurrent", base.to_string, sub, context);
+
             /**
              * Maximum active power of the injection.
              *
              */
-            obj["maxP"] = base.parse_element (/<cim:ExternalNetworkInjection.maxP>([\s\S]*?)<\/cim:ExternalNetworkInjection.maxP>/g, sub, context, true);
+            base.parse_element (/<cim:ExternalNetworkInjection.maxP>([\s\S]*?)<\/cim:ExternalNetworkInjection.maxP>/g, obj, "maxP", base.to_string, sub, context);
+
             /**
              * Not for short circuit modelling; It is used for modelling of infeed for load flow exchange.
              *
              * If maxQ and minQ are not used ReactiveCapabilityCurve can be used
              *
              */
-            obj["maxQ"] = base.parse_element (/<cim:ExternalNetworkInjection.maxQ>([\s\S]*?)<\/cim:ExternalNetworkInjection.maxQ>/g, sub, context, true);
+            base.parse_element (/<cim:ExternalNetworkInjection.maxQ>([\s\S]*?)<\/cim:ExternalNetworkInjection.maxQ>/g, obj, "maxQ", base.to_string, sub, context);
+
             /**
              * Maximum ratio of zero sequence resistance of Network Feeder to its zero sequence reactance (R(0)/X(0) max).
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["maxR0ToX0Ratio"] = base.to_float (base.parse_element (/<cim:ExternalNetworkInjection.maxR0ToX0Ratio>([\s\S]*?)<\/cim:ExternalNetworkInjection.maxR0ToX0Ratio>/g, sub, context, true));
+            base.parse_element (/<cim:ExternalNetworkInjection.maxR0ToX0Ratio>([\s\S]*?)<\/cim:ExternalNetworkInjection.maxR0ToX0Ratio>/g, obj, "maxR0ToX0Ratio", base.to_float, sub, context);
+
             /**
              * Maximum ratio of positive sequence resistance of Network Feeder to its positive sequence reactance (R(1)/X(1) max).
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["maxR1ToX1Ratio"] = base.to_float (base.parse_element (/<cim:ExternalNetworkInjection.maxR1ToX1Ratio>([\s\S]*?)<\/cim:ExternalNetworkInjection.maxR1ToX1Ratio>/g, sub, context, true));
+            base.parse_element (/<cim:ExternalNetworkInjection.maxR1ToX1Ratio>([\s\S]*?)<\/cim:ExternalNetworkInjection.maxR1ToX1Ratio>/g, obj, "maxR1ToX1Ratio", base.to_float, sub, context);
+
             /**
              * Maximum ratio of zero sequence impedance to its positive sequence impedance (Z(0)/Z(1) max).
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["maxZ0ToZ1Ratio"] = base.to_float (base.parse_element (/<cim:ExternalNetworkInjection.maxZ0ToZ1Ratio>([\s\S]*?)<\/cim:ExternalNetworkInjection.maxZ0ToZ1Ratio>/g, sub, context, true));
+            base.parse_element (/<cim:ExternalNetworkInjection.maxZ0ToZ1Ratio>([\s\S]*?)<\/cim:ExternalNetworkInjection.maxZ0ToZ1Ratio>/g, obj, "maxZ0ToZ1Ratio", base.to_float, sub, context);
+
             /**
              * Minimum initial symmetrical short-circuit currents (Ik" min) in A (Ik" = Sk"/(SQRT(3) Un)).
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["minInitialSymShCCurrent"] = base.parse_element (/<cim:ExternalNetworkInjection.minInitialSymShCCurrent>([\s\S]*?)<\/cim:ExternalNetworkInjection.minInitialSymShCCurrent>/g, sub, context, true);
+            base.parse_element (/<cim:ExternalNetworkInjection.minInitialSymShCCurrent>([\s\S]*?)<\/cim:ExternalNetworkInjection.minInitialSymShCCurrent>/g, obj, "minInitialSymShCCurrent", base.to_string, sub, context);
+
             /**
              * Minimum active power of the injection.
              *
              */
-            obj["minP"] = base.parse_element (/<cim:ExternalNetworkInjection.minP>([\s\S]*?)<\/cim:ExternalNetworkInjection.minP>/g, sub, context, true);
+            base.parse_element (/<cim:ExternalNetworkInjection.minP>([\s\S]*?)<\/cim:ExternalNetworkInjection.minP>/g, obj, "minP", base.to_string, sub, context);
+
             /**
              * Not for short circuit modelling; It is used for modelling of infeed for load flow exchange.
              *
              * If maxQ and minQ are not used ReactiveCapabilityCurve can be used
              *
              */
-            obj["minQ"] = base.parse_element (/<cim:ExternalNetworkInjection.minQ>([\s\S]*?)<\/cim:ExternalNetworkInjection.minQ>/g, sub, context, true);
+            base.parse_element (/<cim:ExternalNetworkInjection.minQ>([\s\S]*?)<\/cim:ExternalNetworkInjection.minQ>/g, obj, "minQ", base.to_string, sub, context);
+
             /**
              * Indicates whether initial symmetrical short-circuit current and power have been calculated according to IEC (Ik").
              *
              * Used for short circuit data exchange according to IEC 6090
              *
              */
-            obj["minR0ToX0Ratio"] = base.to_float (base.parse_element (/<cim:ExternalNetworkInjection.minR0ToX0Ratio>([\s\S]*?)<\/cim:ExternalNetworkInjection.minR0ToX0Ratio>/g, sub, context, true));
+            base.parse_element (/<cim:ExternalNetworkInjection.minR0ToX0Ratio>([\s\S]*?)<\/cim:ExternalNetworkInjection.minR0ToX0Ratio>/g, obj, "minR0ToX0Ratio", base.to_float, sub, context);
+
             /**
              * Minimum ratio of positive sequence resistance of Network Feeder to its positive sequence reactance (R(1)/X(1) min).
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["minR1ToX1Ratio"] = base.to_float (base.parse_element (/<cim:ExternalNetworkInjection.minR1ToX1Ratio>([\s\S]*?)<\/cim:ExternalNetworkInjection.minR1ToX1Ratio>/g, sub, context, true));
+            base.parse_element (/<cim:ExternalNetworkInjection.minR1ToX1Ratio>([\s\S]*?)<\/cim:ExternalNetworkInjection.minR1ToX1Ratio>/g, obj, "minR1ToX1Ratio", base.to_float, sub, context);
+
             /**
              * Minimum ratio of zero sequence impedance to its positive sequence impedance (Z(0)/Z(1) min).
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["minZ0ToZ1Ratio"] = base.to_float (base.parse_element (/<cim:ExternalNetworkInjection.minZ0ToZ1Ratio>([\s\S]*?)<\/cim:ExternalNetworkInjection.minZ0ToZ1Ratio>/g, sub, context, true));
+            base.parse_element (/<cim:ExternalNetworkInjection.minZ0ToZ1Ratio>([\s\S]*?)<\/cim:ExternalNetworkInjection.minZ0ToZ1Ratio>/g, obj, "minZ0ToZ1Ratio", base.to_float, sub, context);
+
             /**
              * Priority of unit for use as powerflow voltage phase angle reference bus selection. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
              *
              */
-            obj["referencePriority"] = base.parse_element (/<cim:ExternalNetworkInjection.referencePriority>([\s\S]*?)<\/cim:ExternalNetworkInjection.referencePriority>/g, sub, context, true);
+            base.parse_element (/<cim:ExternalNetworkInjection.referencePriority>([\s\S]*?)<\/cim:ExternalNetworkInjection.referencePriority>/g, obj, "referencePriority", base.to_string, sub, context);
+
             /**
              * Voltage factor in pu, which was used to calculate short-circuit current Ik" and power Sk".
              *
              */
-            obj["voltageFactor"] = base.parse_element (/<cim:ExternalNetworkInjection.voltageFactor>([\s\S]*?)<\/cim:ExternalNetworkInjection.voltageFactor>/g, sub, context, true);
+            base.parse_element (/<cim:ExternalNetworkInjection.voltageFactor>([\s\S]*?)<\/cim:ExternalNetworkInjection.voltageFactor>/g, obj, "voltageFactor", base.to_string, sub, context);
+
             /**
              * Active power injection.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["p"] = base.parse_element (/<cim:ExternalNetworkInjection.p>([\s\S]*?)<\/cim:ExternalNetworkInjection.p>/g, sub, context, true);
+            base.parse_element (/<cim:ExternalNetworkInjection.p>([\s\S]*?)<\/cim:ExternalNetworkInjection.p>/g, obj, "p", base.to_string, sub, context);
+
             /**
              * Reactive power injection.
              *
              * Load sign convention is used, i.e. positive sign means flow out from a node.
              *
              */
-            obj["q"] = base.parse_element (/<cim:ExternalNetworkInjection.q>([\s\S]*?)<\/cim:ExternalNetworkInjection.q>/g, sub, context, true);
+            base.parse_element (/<cim:ExternalNetworkInjection.q>([\s\S]*?)<\/cim:ExternalNetworkInjection.q>/g, obj, "q", base.to_string, sub, context);
+
             bucket = context.parsed.ExternalNetworkInjection;
             if (null == bucket)
                 context.parsed.ExternalNetworkInjection = bucket = {};
@@ -3185,32 +3496,38 @@ define
              * Sometimes referred to as first-house protection.
              *
              */
-            obj["limitVoltage"] = base.parse_element (/<cim:TapChangerControl.limitVoltage>([\s\S]*?)<\/cim:TapChangerControl.limitVoltage>/g, sub, context, true);
+            base.parse_element (/<cim:TapChangerControl.limitVoltage>([\s\S]*?)<\/cim:TapChangerControl.limitVoltage>/g, obj, "limitVoltage", base.to_string, sub, context);
+
             /**
              * If true, the line drop compensation is to be applied.
              *
              */
-            obj["lineDropCompensation"] = base.to_boolean (base.parse_element (/<cim:TapChangerControl.lineDropCompensation>([\s\S]*?)<\/cim:TapChangerControl.lineDropCompensation>/g, sub, context, true));
+            base.parse_element (/<cim:TapChangerControl.lineDropCompensation>([\s\S]*?)<\/cim:TapChangerControl.lineDropCompensation>/g, obj, "lineDropCompensation", base.to_boolean, sub, context);
+
             /**
              * Line drop compensator resistance setting for normal (forward) power flow.
              *
              */
-            obj["lineDropR"] = base.parse_element (/<cim:TapChangerControl.lineDropR>([\s\S]*?)<\/cim:TapChangerControl.lineDropR>/g, sub, context, true);
+            base.parse_element (/<cim:TapChangerControl.lineDropR>([\s\S]*?)<\/cim:TapChangerControl.lineDropR>/g, obj, "lineDropR", base.to_string, sub, context);
+
             /**
              * Line drop compensator reactance setting for normal (forward) power flow.
              *
              */
-            obj["lineDropX"] = base.parse_element (/<cim:TapChangerControl.lineDropX>([\s\S]*?)<\/cim:TapChangerControl.lineDropX>/g, sub, context, true);
+            base.parse_element (/<cim:TapChangerControl.lineDropX>([\s\S]*?)<\/cim:TapChangerControl.lineDropX>/g, obj, "lineDropX", base.to_string, sub, context);
+
             /**
              * Line drop compensator resistance setting for reverse power flow.
              *
              */
-            obj["reverseLineDropR"] = base.parse_element (/<cim:TapChangerControl.reverseLineDropR>([\s\S]*?)<\/cim:TapChangerControl.reverseLineDropR>/g, sub, context, true);
+            base.parse_element (/<cim:TapChangerControl.reverseLineDropR>([\s\S]*?)<\/cim:TapChangerControl.reverseLineDropR>/g, obj, "reverseLineDropR", base.to_string, sub, context);
+
             /**
              * Line drop compensator reactance setting for reverse power flow.
              *
              */
-            obj["reverseLineDropX"] = base.parse_element (/<cim:TapChangerControl.reverseLineDropX>([\s\S]*?)<\/cim:TapChangerControl.reverseLineDropX>/g, sub, context, true);
+            base.parse_element (/<cim:TapChangerControl.reverseLineDropX>([\s\S]*?)<\/cim:TapChangerControl.reverseLineDropX>/g, obj, "reverseLineDropX", base.to_string, sub, context);
+
             bucket = context.parsed.TapChangerControl;
             if (null == bucket)
                 context.parsed.TapChangerControl = bucket = {};
@@ -3236,32 +3553,38 @@ define
              * Phase A.
              *
              */
-            obj["A"] = base.parse_element (/<cim:SinglePhaseKind.A>([\s\S]*?)<\/cim:SinglePhaseKind.A>/g, sub, context, true);
+            base.parse_element (/<cim:SinglePhaseKind.A>([\s\S]*?)<\/cim:SinglePhaseKind.A>/g, obj, "A", base.to_string, sub, context);
+
             /**
              * Phase B.
              *
              */
-            obj["B"] = base.parse_element (/<cim:SinglePhaseKind.B>([\s\S]*?)<\/cim:SinglePhaseKind.B>/g, sub, context, true);
+            base.parse_element (/<cim:SinglePhaseKind.B>([\s\S]*?)<\/cim:SinglePhaseKind.B>/g, obj, "B", base.to_string, sub, context);
+
             /**
              * Phase C.
              *
              */
-            obj["C"] = base.parse_element (/<cim:SinglePhaseKind.C>([\s\S]*?)<\/cim:SinglePhaseKind.C>/g, sub, context, true);
+            base.parse_element (/<cim:SinglePhaseKind.C>([\s\S]*?)<\/cim:SinglePhaseKind.C>/g, obj, "C", base.to_string, sub, context);
+
             /**
              * Neutral.
              *
              */
-            obj["N"] = base.parse_element (/<cim:SinglePhaseKind.N>([\s\S]*?)<\/cim:SinglePhaseKind.N>/g, sub, context, true);
+            base.parse_element (/<cim:SinglePhaseKind.N>([\s\S]*?)<\/cim:SinglePhaseKind.N>/g, obj, "N", base.to_string, sub, context);
+
             /**
              * Secondary phase 1.
              *
              */
-            obj["s1"] = base.parse_element (/<cim:SinglePhaseKind.s1>([\s\S]*?)<\/cim:SinglePhaseKind.s1>/g, sub, context, true);
+            base.parse_element (/<cim:SinglePhaseKind.s1>([\s\S]*?)<\/cim:SinglePhaseKind.s1>/g, obj, "s1", base.to_string, sub, context);
+
             /**
              * Secondary phase 2.
              *
              */
-            obj["s2"] = base.parse_element (/<cim:SinglePhaseKind.s2>([\s\S]*?)<\/cim:SinglePhaseKind.s2>/g, sub, context, true);
+            base.parse_element (/<cim:SinglePhaseKind.s2>([\s\S]*?)<\/cim:SinglePhaseKind.s2>/g, obj, "s2", base.to_string, sub, context);
+
             bucket = context.parsed.SinglePhaseKind;
             if (null == bucket)
                 context.parsed.SinglePhaseKind = bucket = {};
@@ -3287,7 +3610,8 @@ define
              * An alphanumeric code that can be used as a reference to extra information such as the description of the interlocking scheme if any.
              *
              */
-            obj["compositeSwitchType"] = base.parse_element (/<cim:CompositeSwitch.compositeSwitchType>([\s\S]*?)<\/cim:CompositeSwitch.compositeSwitchType>/g, sub, context, true);
+            base.parse_element (/<cim:CompositeSwitch.compositeSwitchType>([\s\S]*?)<\/cim:CompositeSwitch.compositeSwitchType>/g, obj, "compositeSwitchType", base.to_string, sub, context);
+
             bucket = context.parsed.CompositeSwitch;
             if (null == bucket)
                 context.parsed.CompositeSwitch = bucket = {};
@@ -3313,14 +3637,16 @@ define
              * Conductance per section phase to phase if shunt compensator is delta connected.
              *
              */
-            obj["gPerSection"] = base.parse_element (/<cim:LinearShuntCompensatorPhase.gPerSection>([\s\S]*?)<\/cim:LinearShuntCompensatorPhase.gPerSection>/g, sub, context, true);
+            base.parse_element (/<cim:LinearShuntCompensatorPhase.gPerSection>([\s\S]*?)<\/cim:LinearShuntCompensatorPhase.gPerSection>/g, obj, "gPerSection", base.to_string, sub, context);
+
             /**
              * Susceptance per section of the phase if shunt compensator is wye connected.
              *
              * Susceptance per section phase to phase if shunt compensator is delta connected.
              *
              */
-            obj["bPerSection"] = base.parse_element (/<cim:LinearShuntCompensatorPhase.bPerSection>([\s\S]*?)<\/cim:LinearShuntCompensatorPhase.bPerSection>/g, sub, context, true);
+            base.parse_element (/<cim:LinearShuntCompensatorPhase.bPerSection>([\s\S]*?)<\/cim:LinearShuntCompensatorPhase.bPerSection>/g, obj, "bPerSection", base.to_string, sub, context);
+
             bucket = context.parsed.LinearShuntCompensatorPhase;
             if (null == bucket)
                 context.parsed.LinearShuntCompensatorPhase = bucket = {};
@@ -3346,12 +3672,14 @@ define
              * True is regulating, false is not regulating.
              *
              */
-            obj["controlEnabled"] = base.to_boolean (base.parse_element (/<cim:RegulatingCondEq.controlEnabled>([\s\S]*?)<\/cim:RegulatingCondEq.controlEnabled>/g, sub, context, true));
+            base.parse_element (/<cim:RegulatingCondEq.controlEnabled>([\s\S]*?)<\/cim:RegulatingCondEq.controlEnabled>/g, obj, "controlEnabled", base.to_boolean, sub, context);
+
             /**
              * The regulating control scheme in which this equipment participates.
              *
              */
-            obj["RegulatingControl"] = base.parse_attribute (/<cim:RegulatingCondEq.RegulatingControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:RegulatingCondEq.RegulatingControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegulatingControl", sub, context, true);
+
             bucket = context.parsed.RegulatingCondEq;
             if (null == bucket)
                 context.parsed.RegulatingCondEq = bucket = {};
@@ -3377,7 +3705,8 @@ define
              * Action taken with this ground.
              *
              */
-            obj["GroundAction"] = base.parse_attribute (/<cim:Ground.GroundAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Ground.GroundAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GroundAction", sub, context, true);
+
             bucket = context.parsed.Ground;
             if (null == bucket)
                 context.parsed.Ground = bucket = {};
@@ -3401,22 +3730,26 @@ define
              * Zero sequence shunt (charging) susceptance per section
              *
              */
-            obj["b0PerSection"] = base.parse_element (/<cim:LinearShuntCompensator.b0PerSection>([\s\S]*?)<\/cim:LinearShuntCompensator.b0PerSection>/g, sub, context, true);
+            base.parse_element (/<cim:LinearShuntCompensator.b0PerSection>([\s\S]*?)<\/cim:LinearShuntCompensator.b0PerSection>/g, obj, "b0PerSection", base.to_string, sub, context);
+
             /**
              * Positive sequence shunt (charging) susceptance per section
              *
              */
-            obj["bPerSection"] = base.parse_element (/<cim:LinearShuntCompensator.bPerSection>([\s\S]*?)<\/cim:LinearShuntCompensator.bPerSection>/g, sub, context, true);
+            base.parse_element (/<cim:LinearShuntCompensator.bPerSection>([\s\S]*?)<\/cim:LinearShuntCompensator.bPerSection>/g, obj, "bPerSection", base.to_string, sub, context);
+
             /**
              * Zero sequence shunt (charging) conductance per section
              *
              */
-            obj["g0PerSection"] = base.parse_element (/<cim:LinearShuntCompensator.g0PerSection>([\s\S]*?)<\/cim:LinearShuntCompensator.g0PerSection>/g, sub, context, true);
+            base.parse_element (/<cim:LinearShuntCompensator.g0PerSection>([\s\S]*?)<\/cim:LinearShuntCompensator.g0PerSection>/g, obj, "g0PerSection", base.to_string, sub, context);
+
             /**
              * Positive sequence shunt (charging) conductance per section
              *
              */
-            obj["gPerSection"] = base.parse_element (/<cim:LinearShuntCompensator.gPerSection>([\s\S]*?)<\/cim:LinearShuntCompensator.gPerSection>/g, sub, context, true);
+            base.parse_element (/<cim:LinearShuntCompensator.gPerSection>([\s\S]*?)<\/cim:LinearShuntCompensator.gPerSection>/g, obj, "gPerSection", base.to_string, sub, context);
+
             bucket = context.parsed.LinearShuntCompensator;
             if (null == bucket)
                 context.parsed.LinearShuntCompensator = bucket = {};
@@ -3444,121 +3777,142 @@ define
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["converterFedDrive"] = base.to_boolean (base.parse_element (/<cim:AsynchronousMachine.converterFedDrive>([\s\S]*?)<\/cim:AsynchronousMachine.converterFedDrive>/g, sub, context, true));
+            base.parse_element (/<cim:AsynchronousMachine.converterFedDrive>([\s\S]*?)<\/cim:AsynchronousMachine.converterFedDrive>/g, obj, "converterFedDrive", base.to_boolean, sub, context);
+
             /**
              * Efficiency of the asynchronous machine at nominal operation in percent.
              *
              * Indicator for converter drive motors. Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["efficiency"] = base.parse_element (/<cim:AsynchronousMachine.efficiency>([\s\S]*?)<\/cim:AsynchronousMachine.efficiency>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.efficiency>([\s\S]*?)<\/cim:AsynchronousMachine.efficiency>/g, obj, "efficiency", base.to_string, sub, context);
+
             /**
              * Ratio of locked-rotor current to the rated current of the motor (Ia/Ir).
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["iaIrRatio"] = base.to_float (base.parse_element (/<cim:AsynchronousMachine.iaIrRatio>([\s\S]*?)<\/cim:AsynchronousMachine.iaIrRatio>/g, sub, context, true));
+            base.parse_element (/<cim:AsynchronousMachine.iaIrRatio>([\s\S]*?)<\/cim:AsynchronousMachine.iaIrRatio>/g, obj, "iaIrRatio", base.to_float, sub, context);
+
             /**
              * Nameplate data indicates if the machine is 50 or 60 Hz.
              *
              */
-            obj["nominalFrequency"] = base.parse_element (/<cim:AsynchronousMachine.nominalFrequency>([\s\S]*?)<\/cim:AsynchronousMachine.nominalFrequency>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.nominalFrequency>([\s\S]*?)<\/cim:AsynchronousMachine.nominalFrequency>/g, obj, "nominalFrequency", base.to_string, sub, context);
+
             /**
              * Nameplate data.
              *
              * Depends on the slip and number of pole pairs.
              *
              */
-            obj["nominalSpeed"] = base.parse_element (/<cim:AsynchronousMachine.nominalSpeed>([\s\S]*?)<\/cim:AsynchronousMachine.nominalSpeed>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.nominalSpeed>([\s\S]*?)<\/cim:AsynchronousMachine.nominalSpeed>/g, obj, "nominalSpeed", base.to_string, sub, context);
+
             /**
              * Number of pole pairs of stator.
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["polePairNumber"] = base.parse_element (/<cim:AsynchronousMachine.polePairNumber>([\s\S]*?)<\/cim:AsynchronousMachine.polePairNumber>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.polePairNumber>([\s\S]*?)<\/cim:AsynchronousMachine.polePairNumber>/g, obj, "polePairNumber", base.to_string, sub, context);
+
             /**
              * Rated mechanical power (Pr in the IEC 60909-0).
              *
              * Used for short circuit data exchange according to IEC 60909.
              *
              */
-            obj["ratedMechanicalPower"] = base.parse_element (/<cim:AsynchronousMachine.ratedMechanicalPower>([\s\S]*?)<\/cim:AsynchronousMachine.ratedMechanicalPower>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.ratedMechanicalPower>([\s\S]*?)<\/cim:AsynchronousMachine.ratedMechanicalPower>/g, obj, "ratedMechanicalPower", base.to_string, sub, context);
+
             /**
              * Indicates for converter drive motors if the power can be reversible.
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["reversible"] = base.to_boolean (base.parse_element (/<cim:AsynchronousMachine.reversible>([\s\S]*?)<\/cim:AsynchronousMachine.reversible>/g, sub, context, true));
+            base.parse_element (/<cim:AsynchronousMachine.reversible>([\s\S]*?)<\/cim:AsynchronousMachine.reversible>/g, obj, "reversible", base.to_boolean, sub, context);
+
             /**
              * Damper 1 winding resistance.
              *
              */
-            obj["rr1"] = base.parse_element (/<cim:AsynchronousMachine.rr1>([\s\S]*?)<\/cim:AsynchronousMachine.rr1>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.rr1>([\s\S]*?)<\/cim:AsynchronousMachine.rr1>/g, obj, "rr1", base.to_string, sub, context);
+
             /**
              * Damper 2 winding resistance.
              *
              */
-            obj["rr2"] = base.parse_element (/<cim:AsynchronousMachine.rr2>([\s\S]*?)<\/cim:AsynchronousMachine.rr2>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.rr2>([\s\S]*?)<\/cim:AsynchronousMachine.rr2>/g, obj, "rr2", base.to_string, sub, context);
+
             /**
              * Locked rotor ratio (R/X).
              *
              * Used for short circuit data exchange according to IEC 60909
              *
              */
-            obj["rxLockedRotorRatio"] = base.to_float (base.parse_element (/<cim:AsynchronousMachine.rxLockedRotorRatio>([\s\S]*?)<\/cim:AsynchronousMachine.rxLockedRotorRatio>/g, sub, context, true));
+            base.parse_element (/<cim:AsynchronousMachine.rxLockedRotorRatio>([\s\S]*?)<\/cim:AsynchronousMachine.rxLockedRotorRatio>/g, obj, "rxLockedRotorRatio", base.to_float, sub, context);
+
             /**
              * Transient rotor time constant (greater than tppo).
              *
              */
-            obj["tpo"] = base.parse_element (/<cim:AsynchronousMachine.tpo>([\s\S]*?)<\/cim:AsynchronousMachine.tpo>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.tpo>([\s\S]*?)<\/cim:AsynchronousMachine.tpo>/g, obj, "tpo", base.to_string, sub, context);
+
             /**
              * Sub-transient rotor time constant (greater than 0).
              *
              */
-            obj["tppo"] = base.parse_element (/<cim:AsynchronousMachine.tppo>([\s\S]*?)<\/cim:AsynchronousMachine.tppo>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.tppo>([\s\S]*?)<\/cim:AsynchronousMachine.tppo>/g, obj, "tppo", base.to_string, sub, context);
+
             /**
              * Damper 1 winding leakage reactance.
              *
              */
-            obj["xlr1"] = base.parse_element (/<cim:AsynchronousMachine.xlr1>([\s\S]*?)<\/cim:AsynchronousMachine.xlr1>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.xlr1>([\s\S]*?)<\/cim:AsynchronousMachine.xlr1>/g, obj, "xlr1", base.to_string, sub, context);
+
             /**
              * Damper 2 winding leakage reactance.
              *
              */
-            obj["xlr2"] = base.parse_element (/<cim:AsynchronousMachine.xlr2>([\s\S]*?)<\/cim:AsynchronousMachine.xlr2>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.xlr2>([\s\S]*?)<\/cim:AsynchronousMachine.xlr2>/g, obj, "xlr2", base.to_string, sub, context);
+
             /**
              * Magnetizing reactance.
              *
              */
-            obj["xm"] = base.parse_element (/<cim:AsynchronousMachine.xm>([\s\S]*?)<\/cim:AsynchronousMachine.xm>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.xm>([\s\S]*?)<\/cim:AsynchronousMachine.xm>/g, obj, "xm", base.to_string, sub, context);
+
             /**
              * Transient reactance (unsaturated) (greater than or equal to xpp).
              *
              */
-            obj["xp"] = base.parse_element (/<cim:AsynchronousMachine.xp>([\s\S]*?)<\/cim:AsynchronousMachine.xp>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.xp>([\s\S]*?)<\/cim:AsynchronousMachine.xp>/g, obj, "xp", base.to_string, sub, context);
+
             /**
              * Sub-transient reactance (unsaturated) (greather than Xl).
              *
              */
-            obj["xpp"] = base.parse_element (/<cim:AsynchronousMachine.xpp>([\s\S]*?)<\/cim:AsynchronousMachine.xpp>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.xpp>([\s\S]*?)<\/cim:AsynchronousMachine.xpp>/g, obj, "xpp", base.to_string, sub, context);
+
             /**
              * Synchronous reactance (greather than xp).
              *
              */
-            obj["xs"] = base.parse_element (/<cim:AsynchronousMachine.xs>([\s\S]*?)<\/cim:AsynchronousMachine.xs>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.xs>([\s\S]*?)<\/cim:AsynchronousMachine.xs>/g, obj, "xs", base.to_string, sub, context);
+
             /**
              * Indicates the type of Asynchronous Machine (motor or generator).
              *
              */
-            obj["asynchronousMachineType"] = base.parse_element (/<cim:AsynchronousMachine.asynchronousMachineType>([\s\S]*?)<\/cim:AsynchronousMachine.asynchronousMachineType>/g, sub, context, true);
+            base.parse_element (/<cim:AsynchronousMachine.asynchronousMachineType>([\s\S]*?)<\/cim:AsynchronousMachine.asynchronousMachineType>/g, obj, "asynchronousMachineType", base.to_string, sub, context);
+
             /**
              * Asynchronous machine dynamics model used to describe dynamic behavior of this asynchronous machine.
              *
              */
-            obj["AsynchronousMachineDynamics"] = base.parse_attribute (/<cim:AsynchronousMachine.AsynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:AsynchronousMachine.AsynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AsynchronousMachineDynamics", sub, context, true);
+
             bucket = context.parsed.AsynchronousMachine;
             if (null == bucket)
                 context.parsed.AsynchronousMachine = bucket = {};
@@ -3582,7 +3936,8 @@ define
              * Segment length for calculating line section capabilities
              *
              */
-            obj["length"] = base.parse_element (/<cim:Conductor.length>([\s\S]*?)<\/cim:Conductor.length>/g, sub, context, true);
+            base.parse_element (/<cim:Conductor.length>([\s\S]*?)<\/cim:Conductor.length>/g, obj, "length", base.to_string, sub, context);
+
             bucket = context.parsed.Conductor;
             if (null == bucket)
                 context.parsed.Conductor = bucket = {};
@@ -3606,37 +3961,44 @@ define
              * Delta
              *
              */
-            obj["D"] = base.parse_element (/<cim:WindingConnection.D>([\s\S]*?)<\/cim:WindingConnection.D>/g, sub, context, true);
+            base.parse_element (/<cim:WindingConnection.D>([\s\S]*?)<\/cim:WindingConnection.D>/g, obj, "D", base.to_string, sub, context);
+
             /**
              * Wye
              *
              */
-            obj["Y"] = base.parse_element (/<cim:WindingConnection.Y>([\s\S]*?)<\/cim:WindingConnection.Y>/g, sub, context, true);
+            base.parse_element (/<cim:WindingConnection.Y>([\s\S]*?)<\/cim:WindingConnection.Y>/g, obj, "Y", base.to_string, sub, context);
+
             /**
              * ZigZag
              *
              */
-            obj["Z"] = base.parse_element (/<cim:WindingConnection.Z>([\s\S]*?)<\/cim:WindingConnection.Z>/g, sub, context, true);
+            base.parse_element (/<cim:WindingConnection.Z>([\s\S]*?)<\/cim:WindingConnection.Z>/g, obj, "Z", base.to_string, sub, context);
+
             /**
              * Wye, with neutral brought out for grounding.
              *
              */
-            obj["Yn"] = base.parse_element (/<cim:WindingConnection.Yn>([\s\S]*?)<\/cim:WindingConnection.Yn>/g, sub, context, true);
+            base.parse_element (/<cim:WindingConnection.Yn>([\s\S]*?)<\/cim:WindingConnection.Yn>/g, obj, "Yn", base.to_string, sub, context);
+
             /**
              * ZigZag, with neutral brought out for grounding.
              *
              */
-            obj["Zn"] = base.parse_element (/<cim:WindingConnection.Zn>([\s\S]*?)<\/cim:WindingConnection.Zn>/g, sub, context, true);
+            base.parse_element (/<cim:WindingConnection.Zn>([\s\S]*?)<\/cim:WindingConnection.Zn>/g, obj, "Zn", base.to_string, sub, context);
+
             /**
              * Autotransformer common winding
              *
              */
-            obj["A"] = base.parse_element (/<cim:WindingConnection.A>([\s\S]*?)<\/cim:WindingConnection.A>/g, sub, context, true);
+            base.parse_element (/<cim:WindingConnection.A>([\s\S]*?)<\/cim:WindingConnection.A>/g, obj, "A", base.to_string, sub, context);
+
             /**
              * Independent winding, for single-phase connections
              *
              */
-            obj["I"] = base.parse_element (/<cim:WindingConnection.I>([\s\S]*?)<\/cim:WindingConnection.I>/g, sub, context, true);
+            base.parse_element (/<cim:WindingConnection.I>([\s\S]*?)<\/cim:WindingConnection.I>/g, obj, "I", base.to_string, sub, context);
+
             bucket = context.parsed.WindingConnection;
             if (null == bucket)
                 context.parsed.WindingConnection = bucket = {};
@@ -3679,17 +4041,20 @@ define
              * Air.
              *
              */
-            obj["air"] = base.parse_element (/<cim:CoolantType.air>([\s\S]*?)<\/cim:CoolantType.air>/g, sub, context, true);
+            base.parse_element (/<cim:CoolantType.air>([\s\S]*?)<\/cim:CoolantType.air>/g, obj, "air", base.to_string, sub, context);
+
             /**
              * Hydrogen gas.
              *
              */
-            obj["hydrogenGas"] = base.parse_element (/<cim:CoolantType.hydrogenGas>([\s\S]*?)<\/cim:CoolantType.hydrogenGas>/g, sub, context, true);
+            base.parse_element (/<cim:CoolantType.hydrogenGas>([\s\S]*?)<\/cim:CoolantType.hydrogenGas>/g, obj, "hydrogenGas", base.to_string, sub, context);
+
             /**
              * Water.
              *
              */
-            obj["water"] = base.parse_element (/<cim:CoolantType.water>([\s\S]*?)<\/cim:CoolantType.water>/g, sub, context, true);
+            base.parse_element (/<cim:CoolantType.water>([\s\S]*?)<\/cim:CoolantType.water>/g, obj, "water", base.to_string, sub, context);
+
             bucket = context.parsed.CoolantType;
             if (null == bucket)
                 context.parsed.CoolantType = bucket = {};
@@ -3715,63 +4080,74 @@ define
              * Time delay required for the device to be connected or disconnected by automatic voltage regulation (AVR).
              *
              */
-            obj["aVRDelay"] = base.parse_element (/<cim:ShuntCompensator.aVRDelay>([\s\S]*?)<\/cim:ShuntCompensator.aVRDelay>/g, sub, context, true);
+            base.parse_element (/<cim:ShuntCompensator.aVRDelay>([\s\S]*?)<\/cim:ShuntCompensator.aVRDelay>/g, obj, "aVRDelay", base.to_string, sub, context);
+
             /**
              * Used for Yn and Zn connections.
              *
              * True if the neutral is solidly grounded.
              *
              */
-            obj["grounded"] = base.to_boolean (base.parse_element (/<cim:ShuntCompensator.grounded>([\s\S]*?)<\/cim:ShuntCompensator.grounded>/g, sub, context, true));
+            base.parse_element (/<cim:ShuntCompensator.grounded>([\s\S]*?)<\/cim:ShuntCompensator.grounded>/g, obj, "grounded", base.to_boolean, sub, context);
+
             /**
              * The maximum number of sections that may be switched in.
              *
              */
-            obj["maximumSections"] = base.parse_element (/<cim:ShuntCompensator.maximumSections>([\s\S]*?)<\/cim:ShuntCompensator.maximumSections>/g, sub, context, true);
+            base.parse_element (/<cim:ShuntCompensator.maximumSections>([\s\S]*?)<\/cim:ShuntCompensator.maximumSections>/g, obj, "maximumSections", base.to_string, sub, context);
+
             /**
              * The voltage at which the nominal reactive power may be calculated.
              *
              * This should normally be within 10% of the voltage at which the capacitor is connected to the network.
              *
              */
-            obj["nomU"] = base.parse_element (/<cim:ShuntCompensator.nomU>([\s\S]*?)<\/cim:ShuntCompensator.nomU>/g, sub, context, true);
+            base.parse_element (/<cim:ShuntCompensator.nomU>([\s\S]*?)<\/cim:ShuntCompensator.nomU>/g, obj, "nomU", base.to_string, sub, context);
+
             /**
              * The normal number of sections switched in.
              *
              */
-            obj["normalSections"] = base.parse_element (/<cim:ShuntCompensator.normalSections>([\s\S]*?)<\/cim:ShuntCompensator.normalSections>/g, sub, context, true);
+            base.parse_element (/<cim:ShuntCompensator.normalSections>([\s\S]*?)<\/cim:ShuntCompensator.normalSections>/g, obj, "normalSections", base.to_string, sub, context);
+
             /**
              * The type of phase connection, such as wye or delta.
              *
              */
-            obj["phaseConnection"] = base.parse_element (/<cim:ShuntCompensator.phaseConnection>([\s\S]*?)<\/cim:ShuntCompensator.phaseConnection>/g, sub, context, true);
+            base.parse_element (/<cim:ShuntCompensator.phaseConnection>([\s\S]*?)<\/cim:ShuntCompensator.phaseConnection>/g, obj, "phaseConnection", base.to_string, sub, context);
+
             /**
              * The switch on count since the capacitor count was last reset or initialized.
              *
              */
-            obj["switchOnCount"] = base.parse_element (/<cim:ShuntCompensator.switchOnCount>([\s\S]*?)<\/cim:ShuntCompensator.switchOnCount>/g, sub, context, true);
+            base.parse_element (/<cim:ShuntCompensator.switchOnCount>([\s\S]*?)<\/cim:ShuntCompensator.switchOnCount>/g, obj, "switchOnCount", base.to_string, sub, context);
+
             /**
              * The date and time when the capacitor bank was last switched on.
              *
              */
-            obj["switchOnDate"] = base.to_datetime (base.parse_element (/<cim:ShuntCompensator.switchOnDate>([\s\S]*?)<\/cim:ShuntCompensator.switchOnDate>/g, sub, context, true));
+            base.parse_element (/<cim:ShuntCompensator.switchOnDate>([\s\S]*?)<\/cim:ShuntCompensator.switchOnDate>/g, obj, "switchOnDate", base.to_datetime, sub, context);
+
             /**
              * Voltage sensitivity required for the device to regulate the bus voltage, in voltage/reactive power.
              *
              */
-            obj["voltageSensitivity"] = base.parse_element (/<cim:ShuntCompensator.voltageSensitivity>([\s\S]*?)<\/cim:ShuntCompensator.voltageSensitivity>/g, sub, context, true);
+            base.parse_element (/<cim:ShuntCompensator.voltageSensitivity>([\s\S]*?)<\/cim:ShuntCompensator.voltageSensitivity>/g, obj, "voltageSensitivity", base.to_string, sub, context);
+
             /**
              * Shunt compensator sections in use.
              *
              * Starting value for steady state solution. Non integer values are allowed to support continuous variables. The reasons for continuous value are to support study cases where no discrete shunt compensators has yet been designed, a solutions where a narrow voltage band force the sections to oscillate or accommodate for a continuous solution as input.
              *
              */
-            obj["sections"] = base.to_float (base.parse_element (/<cim:ShuntCompensator.sections>([\s\S]*?)<\/cim:ShuntCompensator.sections>/g, sub, context, true));
+            base.parse_element (/<cim:ShuntCompensator.sections>([\s\S]*?)<\/cim:ShuntCompensator.sections>/g, obj, "sections", base.to_float, sub, context);
+
             /**
              * The state for the number of shunt compensator sections in service.
              *
              */
-            obj["SvShuntCompensatorSections"] = base.parse_attribute (/<cim:ShuntCompensator.SvShuntCompensatorSections\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ShuntCompensator.SvShuntCompensatorSections\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SvShuntCompensatorSections", sub, context, true);
+
             bucket = context.parsed.ShuntCompensator;
             if (null == bucket)
                 context.parsed.ShuntCompensator = bucket = {};
@@ -3791,9 +4167,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "SynchronousMachineOperatingMode";
-            obj["generator"] = base.parse_element (/<cim:SynchronousMachineOperatingMode.generator>([\s\S]*?)<\/cim:SynchronousMachineOperatingMode.generator>/g, sub, context, true);
-            obj["condenser"] = base.parse_element (/<cim:SynchronousMachineOperatingMode.condenser>([\s\S]*?)<\/cim:SynchronousMachineOperatingMode.condenser>/g, sub, context, true);
-            obj["motor"] = base.parse_element (/<cim:SynchronousMachineOperatingMode.motor>([\s\S]*?)<\/cim:SynchronousMachineOperatingMode.motor>/g, sub, context, true);
+            base.parse_element (/<cim:SynchronousMachineOperatingMode.generator>([\s\S]*?)<\/cim:SynchronousMachineOperatingMode.generator>/g, obj, "generator", base.to_string, sub, context);
+
+            base.parse_element (/<cim:SynchronousMachineOperatingMode.condenser>([\s\S]*?)<\/cim:SynchronousMachineOperatingMode.condenser>/g, obj, "condenser", base.to_string, sub, context);
+
+            base.parse_element (/<cim:SynchronousMachineOperatingMode.motor>([\s\S]*?)<\/cim:SynchronousMachineOperatingMode.motor>/g, obj, "motor", base.to_string, sub, context);
+
             bucket = context.parsed.SynchronousMachineOperatingMode;
             if (null == bucket)
                 context.parsed.SynchronousMachineOperatingMode = bucket = {};
@@ -3819,44 +4198,52 @@ define
              * Voltage is specified.
              *
              */
-            obj["voltage"] = base.parse_element (/<cim:RegulatingControlModeKind.voltage>([\s\S]*?)<\/cim:RegulatingControlModeKind.voltage>/g, sub, context, true);
+            base.parse_element (/<cim:RegulatingControlModeKind.voltage>([\s\S]*?)<\/cim:RegulatingControlModeKind.voltage>/g, obj, "voltage", base.to_string, sub, context);
+
             /**
              * Active power is specified.
              *
              */
-            obj["activePower"] = base.parse_element (/<cim:RegulatingControlModeKind.activePower>([\s\S]*?)<\/cim:RegulatingControlModeKind.activePower>/g, sub, context, true);
+            base.parse_element (/<cim:RegulatingControlModeKind.activePower>([\s\S]*?)<\/cim:RegulatingControlModeKind.activePower>/g, obj, "activePower", base.to_string, sub, context);
+
             /**
              * Reactive power is specified.
              *
              */
-            obj["reactivePower"] = base.parse_element (/<cim:RegulatingControlModeKind.reactivePower>([\s\S]*?)<\/cim:RegulatingControlModeKind.reactivePower>/g, sub, context, true);
+            base.parse_element (/<cim:RegulatingControlModeKind.reactivePower>([\s\S]*?)<\/cim:RegulatingControlModeKind.reactivePower>/g, obj, "reactivePower", base.to_string, sub, context);
+
             /**
              * Current flow is specified.
              *
              */
-            obj["currentFlow"] = base.parse_element (/<cim:RegulatingControlModeKind.currentFlow>([\s\S]*?)<\/cim:RegulatingControlModeKind.currentFlow>/g, sub, context, true);
+            base.parse_element (/<cim:RegulatingControlModeKind.currentFlow>([\s\S]*?)<\/cim:RegulatingControlModeKind.currentFlow>/g, obj, "currentFlow", base.to_string, sub, context);
+
             /**
              * Admittance is specified.
              *
              */
-            obj["admittance"] = base.parse_element (/<cim:RegulatingControlModeKind.admittance>([\s\S]*?)<\/cim:RegulatingControlModeKind.admittance>/g, sub, context, true);
+            base.parse_element (/<cim:RegulatingControlModeKind.admittance>([\s\S]*?)<\/cim:RegulatingControlModeKind.admittance>/g, obj, "admittance", base.to_string, sub, context);
+
             /**
              * Control switches on/off by time of day.
              *
              * The times may change on the weekend, or in different seasons.
              *
              */
-            obj["timeScheduled"] = base.parse_element (/<cim:RegulatingControlModeKind.timeScheduled>([\s\S]*?)<\/cim:RegulatingControlModeKind.timeScheduled>/g, sub, context, true);
+            base.parse_element (/<cim:RegulatingControlModeKind.timeScheduled>([\s\S]*?)<\/cim:RegulatingControlModeKind.timeScheduled>/g, obj, "timeScheduled", base.to_string, sub, context);
+
             /**
              * Control switches on/off based on the local temperature (i.e., a thermostat).
              *
              */
-            obj["temperature"] = base.parse_element (/<cim:RegulatingControlModeKind.temperature>([\s\S]*?)<\/cim:RegulatingControlModeKind.temperature>/g, sub, context, true);
+            base.parse_element (/<cim:RegulatingControlModeKind.temperature>([\s\S]*?)<\/cim:RegulatingControlModeKind.temperature>/g, obj, "temperature", base.to_string, sub, context);
+
             /**
              * Power factor is specified.
              *
              */
-            obj["powerFactor"] = base.parse_element (/<cim:RegulatingControlModeKind.powerFactor>([\s\S]*?)<\/cim:RegulatingControlModeKind.powerFactor>/g, sub, context, true);
+            base.parse_element (/<cim:RegulatingControlModeKind.powerFactor>([\s\S]*?)<\/cim:RegulatingControlModeKind.powerFactor>/g, obj, "powerFactor", base.to_string, sub, context);
+
             bucket = context.parsed.RegulatingControlModeKind;
             if (null == bucket)
                 context.parsed.RegulatingControlModeKind = bucket = {};
@@ -3899,43 +4286,50 @@ define
              * The mode of operation of the Petersen coil.
              *
              */
-            obj["mode"] = base.parse_element (/<cim:PetersenCoil.mode>([\s\S]*?)<\/cim:PetersenCoil.mode>/g, sub, context, true);
+            base.parse_element (/<cim:PetersenCoil.mode>([\s\S]*?)<\/cim:PetersenCoil.mode>/g, obj, "mode", base.to_string, sub, context);
+
             /**
              * The nominal voltage for which the coil is designed.
              *
              */
-            obj["nominalU"] = base.parse_element (/<cim:PetersenCoil.nominalU>([\s\S]*?)<\/cim:PetersenCoil.nominalU>/g, sub, context, true);
+            base.parse_element (/<cim:PetersenCoil.nominalU>([\s\S]*?)<\/cim:PetersenCoil.nominalU>/g, obj, "nominalU", base.to_string, sub, context);
+
             /**
              * The offset current that the Petersen coil controller is operating from the resonant point.
              *
              * This is normally a fixed amount for which the controller is configured and could be positive or negative.  Typically 0 to 60 Amperes depending on voltage and resonance conditions.
              *
              */
-            obj["offsetCurrent"] = base.parse_element (/<cim:PetersenCoil.offsetCurrent>([\s\S]*?)<\/cim:PetersenCoil.offsetCurrent>/g, sub, context, true);
+            base.parse_element (/<cim:PetersenCoil.offsetCurrent>([\s\S]*?)<\/cim:PetersenCoil.offsetCurrent>/g, obj, "offsetCurrent", base.to_string, sub, context);
+
             /**
              * The control current used to control the Petersen coil also known as the position current.
              *
              * Typically in the range of 20-200mA.
              *
              */
-            obj["positionCurrent"] = base.parse_element (/<cim:PetersenCoil.positionCurrent>([\s\S]*?)<\/cim:PetersenCoil.positionCurrent>/g, sub, context, true);
+            base.parse_element (/<cim:PetersenCoil.positionCurrent>([\s\S]*?)<\/cim:PetersenCoil.positionCurrent>/g, obj, "positionCurrent", base.to_string, sub, context);
+
             /**
              * The maximum reactance.
              *
              */
-            obj["xGroundMax"] = base.parse_element (/<cim:PetersenCoil.xGroundMax>([\s\S]*?)<\/cim:PetersenCoil.xGroundMax>/g, sub, context, true);
+            base.parse_element (/<cim:PetersenCoil.xGroundMax>([\s\S]*?)<\/cim:PetersenCoil.xGroundMax>/g, obj, "xGroundMax", base.to_string, sub, context);
+
             /**
              * The minimum reactance.
              *
              */
-            obj["xGroundMin"] = base.parse_element (/<cim:PetersenCoil.xGroundMin>([\s\S]*?)<\/cim:PetersenCoil.xGroundMin>/g, sub, context, true);
+            base.parse_element (/<cim:PetersenCoil.xGroundMin>([\s\S]*?)<\/cim:PetersenCoil.xGroundMin>/g, obj, "xGroundMin", base.to_string, sub, context);
+
             /**
              * The nominal reactance.
              *
              * This is the operating point (normally over compensation) that is defined based on the resonance point in the healthy network condition.  The impedance is calculated based on nominal voltage divided by position current.
              *
              */
-            obj["xGroundNominal"] = base.parse_element (/<cim:PetersenCoil.xGroundNominal>([\s\S]*?)<\/cim:PetersenCoil.xGroundNominal>/g, sub, context, true);
+            base.parse_element (/<cim:PetersenCoil.xGroundNominal>([\s\S]*?)<\/cim:PetersenCoil.xGroundNominal>/g, obj, "xGroundNominal", base.to_string, sub, context);
+
             bucket = context.parsed.PetersenCoil;
             if (null == bucket)
                 context.parsed.PetersenCoil = bucket = {};
@@ -3963,7 +4357,8 @@ define
              * The out-of-phase winding produces what is known as the difference voltage.  Setting this angle to 90 degrees is not the same as a symmemtrical transformer.
              *
              */
-            obj["windingConnectionAngle"] = base.parse_element (/<cim:PhaseTapChangerAsymmetrical.windingConnectionAngle>([\s\S]*?)<\/cim:PhaseTapChangerAsymmetrical.windingConnectionAngle>/g, sub, context, true);
+            base.parse_element (/<cim:PhaseTapChangerAsymmetrical.windingConnectionAngle>([\s\S]*?)<\/cim:PhaseTapChangerAsymmetrical.windingConnectionAngle>/g, obj, "windingConnectionAngle", base.to_string, sub, context);
+
             bucket = context.parsed.PhaseTapChangerAsymmetrical;
             if (null == bucket)
                 context.parsed.PhaseTapChangerAsymmetrical = bucket = {};

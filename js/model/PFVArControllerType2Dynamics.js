@@ -33,43 +33,50 @@ define
              * false = 0 (in the overexcitation or underexcitation state, so integral action is disabled to allow the limiter to play its role).
              *
              */
-            obj["exlon"] = base.to_boolean (base.parse_element (/<cim:PFVArType2IEEEPFController.exlon>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.exlon>/g, sub, context, true));
+            base.parse_element (/<cim:PFVArType2IEEEPFController.exlon>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.exlon>/g, obj, "exlon", base.to_boolean, sub, context);
+
             /**
              * Integral gain of the pf controller (<i>K</i><i><sub>I</sub></i>).
              *
              * Typical Value = 1.
              *
              */
-            obj["ki"] = base.parse_element (/<cim:PFVArType2IEEEPFController.ki>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.ki>/g, sub, context, true);
+            base.parse_element (/<cim:PFVArType2IEEEPFController.ki>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.ki>/g, obj, "ki", base.to_string, sub, context);
+
             /**
              * Proportional gain of the pf controller (<i>K</i><i><sub>P</sub></i>).
              *
              * Typical Value = 1.
              *
              */
-            obj["kp"] = base.parse_element (/<cim:PFVArType2IEEEPFController.kp>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.kp>/g, sub, context, true);
+            base.parse_element (/<cim:PFVArType2IEEEPFController.kp>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * Power factor reference (<i>P</i><i><sub>FREF</sub></i>).
              *
              */
-            obj["pfref"] = base.parse_element (/<cim:PFVArType2IEEEPFController.pfref>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.pfref>/g, sub, context, true);
+            base.parse_element (/<cim:PFVArType2IEEEPFController.pfref>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.pfref>/g, obj, "pfref", base.to_string, sub, context);
+
             /**
              * Maximum output of the pf controller (<i>V</i><i><sub>CLMT</sub></i>).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["vclmt"] = base.parse_element (/<cim:PFVArType2IEEEPFController.vclmt>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.vclmt>/g, sub, context, true);
+            base.parse_element (/<cim:PFVArType2IEEEPFController.vclmt>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.vclmt>/g, obj, "vclmt", base.to_string, sub, context);
+
             /**
              * Voltage regulator reference (<i>V</i><i><sub>REF</sub></i>).
              *
              */
-            obj["vref"] = base.parse_element (/<cim:PFVArType2IEEEPFController.vref>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.vref>/g, sub, context, true);
+            base.parse_element (/<cim:PFVArType2IEEEPFController.vref>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.vref>/g, obj, "vref", base.to_string, sub, context);
+
             /**
              * Generator sensing voltage (<i>V</i><i><sub>S</sub></i>).
              *
              */
-            obj["vs"] = base.to_float (base.parse_element (/<cim:PFVArType2IEEEPFController.vs>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.vs>/g, sub, context, true));
+            base.parse_element (/<cim:PFVArType2IEEEPFController.vs>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.vs>/g, obj, "vs", base.to_float, sub, context);
+
             bucket = context.parsed.PFVArType2IEEEPFController;
             if (null == bucket)
                 context.parsed.PFVArType2IEEEPFController = bucket = {};
@@ -93,7 +100,8 @@ define
              * Excitation system model with which this Power Factor or VAr controller Type II is associated.
              *
              */
-            obj["ExcitationSystemDynamics"] = base.parse_attribute (/<cim:PFVArControllerType2Dynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:PFVArControllerType2Dynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context, true);
+
             bucket = context.parsed.PFVArControllerType2Dynamics;
             if (null == bucket)
                 context.parsed.PFVArControllerType2Dynamics = bucket = {};
@@ -122,29 +130,34 @@ define
              * false = control mode for power factor.
              *
              */
-            obj["j"] = base.to_boolean (base.parse_element (/<cim:PFVArType2Common1.j>([\s\S]*?)<\/cim:PFVArType2Common1.j>/g, sub, context, true));
+            base.parse_element (/<cim:PFVArType2Common1.j>([\s\S]*?)<\/cim:PFVArType2Common1.j>/g, obj, "j", base.to_boolean, sub, context);
+
             /**
              * Reset gain (Ki).
              *
              */
-            obj["ki"] = base.parse_element (/<cim:PFVArType2Common1.ki>([\s\S]*?)<\/cim:PFVArType2Common1.ki>/g, sub, context, true);
+            base.parse_element (/<cim:PFVArType2Common1.ki>([\s\S]*?)<\/cim:PFVArType2Common1.ki>/g, obj, "ki", base.to_string, sub, context);
+
             /**
              * Proportional gain (Kp).
              *
              */
-            obj["kp"] = base.parse_element (/<cim:PFVArType2Common1.kp>([\s\S]*?)<\/cim:PFVArType2Common1.kp>/g, sub, context, true);
+            base.parse_element (/<cim:PFVArType2Common1.kp>([\s\S]*?)<\/cim:PFVArType2Common1.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * Output limit (max).
              *
              */
-            obj["max"] = base.parse_element (/<cim:PFVArType2Common1.max>([\s\S]*?)<\/cim:PFVArType2Common1.max>/g, sub, context, true);
+            base.parse_element (/<cim:PFVArType2Common1.max>([\s\S]*?)<\/cim:PFVArType2Common1.max>/g, obj, "max", base.to_string, sub, context);
+
             /**
              * Reference value of reactive power or power factor (Ref).
              *
              * The reference value is initialised by this model. This initialisation may override the value exchanged by this attribute to represent a plant operator's change of the reference setting.
              *
              */
-            obj["ref"] = base.parse_element (/<cim:PFVArType2Common1.ref>([\s\S]*?)<\/cim:PFVArType2Common1.ref>/g, sub, context, true);
+            base.parse_element (/<cim:PFVArType2Common1.ref>([\s\S]*?)<\/cim:PFVArType2Common1.ref>/g, obj, "ref", base.to_string, sub, context);
+
             bucket = context.parsed.PFVArType2Common1;
             if (null == bucket)
                 context.parsed.PFVArType2Common1 = bucket = {};
@@ -173,37 +186,44 @@ define
              * false = 0 (in the overexcitation or underexcitation state, so integral action is disabled to allow the limiter to play its role).
              *
              */
-            obj["exlon"] = base.to_boolean (base.parse_element (/<cim:PFVArType2IEEEVArController.exlon>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.exlon>/g, sub, context, true));
+            base.parse_element (/<cim:PFVArType2IEEEVArController.exlon>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.exlon>/g, obj, "exlon", base.to_boolean, sub, context);
+
             /**
              * Integral gain of the pf controller (<i>K</i><i><sub>I</sub></i>).
              *
              */
-            obj["ki"] = base.parse_element (/<cim:PFVArType2IEEEVArController.ki>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.ki>/g, sub, context, true);
+            base.parse_element (/<cim:PFVArType2IEEEVArController.ki>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.ki>/g, obj, "ki", base.to_string, sub, context);
+
             /**
              * Proportional gain of the pf controller (<i>K</i><i><sub>P</sub></i>).
              *
              */
-            obj["kp"] = base.parse_element (/<cim:PFVArType2IEEEVArController.kp>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.kp>/g, sub, context, true);
+            base.parse_element (/<cim:PFVArType2IEEEVArController.kp>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.kp>/g, obj, "kp", base.to_string, sub, context);
+
             /**
              * Reactive power reference (<i>Q</i><i><sub>REF</sub></i>).
              *
              */
-            obj["qref"] = base.parse_element (/<cim:PFVArType2IEEEVArController.qref>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.qref>/g, sub, context, true);
+            base.parse_element (/<cim:PFVArType2IEEEVArController.qref>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.qref>/g, obj, "qref", base.to_string, sub, context);
+
             /**
              * Maximum output of the pf controller (<i>V</i><i><sub>CLMT</sub></i>).
              *
              */
-            obj["vclmt"] = base.parse_element (/<cim:PFVArType2IEEEVArController.vclmt>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.vclmt>/g, sub, context, true);
+            base.parse_element (/<cim:PFVArType2IEEEVArController.vclmt>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.vclmt>/g, obj, "vclmt", base.to_string, sub, context);
+
             /**
              * Voltage regulator reference (<i>V</i><i><sub>REF</sub></i>).
              *
              */
-            obj["vref"] = base.parse_element (/<cim:PFVArType2IEEEVArController.vref>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.vref>/g, sub, context, true);
+            base.parse_element (/<cim:PFVArType2IEEEVArController.vref>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.vref>/g, obj, "vref", base.to_string, sub, context);
+
             /**
              * Generator sensing voltage (<i>V</i><i><sub>S</sub></i>).
              *
              */
-            obj["vs"] = base.to_float (base.parse_element (/<cim:PFVArType2IEEEVArController.vs>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.vs>/g, sub, context, true));
+            base.parse_element (/<cim:PFVArType2IEEEVArController.vs>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.vs>/g, obj, "vs", base.to_float, sub, context);
+
             bucket = context.parsed.PFVArType2IEEEVArController;
             if (null == bucket)
                 context.parsed.PFVArType2IEEEVArController = bucket = {};

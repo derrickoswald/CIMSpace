@@ -29,42 +29,48 @@ define
              * Typical Value = 0.03.
              *
              */
-            obj["hyst"] = base.parse_element (/<cim:OverexcLimIEEE.hyst>([\s\S]*?)<\/cim:OverexcLimIEEE.hyst>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimIEEE.hyst>([\s\S]*?)<\/cim:OverexcLimIEEE.hyst>/g, obj, "hyst", base.to_string, sub, context);
+
             /**
              * OEL timed field current limit (I<sub>FDLIM</sub>).
              *
              * Typical Value = 1.05.
              *
              */
-            obj["ifdlim"] = base.parse_element (/<cim:OverexcLimIEEE.ifdlim>([\s\S]*?)<\/cim:OverexcLimIEEE.ifdlim>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimIEEE.ifdlim>([\s\S]*?)<\/cim:OverexcLimIEEE.ifdlim>/g, obj, "ifdlim", base.to_string, sub, context);
+
             /**
              * OEL instantaneous field current limit (I<sub>FDMAX</sub>).
              *
              * Typical Value = 1.5.
              *
              */
-            obj["ifdmax"] = base.parse_element (/<cim:OverexcLimIEEE.ifdmax>([\s\S]*?)<\/cim:OverexcLimIEEE.ifdmax>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimIEEE.ifdmax>([\s\S]*?)<\/cim:OverexcLimIEEE.ifdmax>/g, obj, "ifdmax", base.to_string, sub, context);
+
             /**
              * OEL timed field current limiter pickup level (I<sub>TFPU</sub>).
              *
              * Typical Value = 1.05.
              *
              */
-            obj["itfpu"] = base.parse_element (/<cim:OverexcLimIEEE.itfpu>([\s\S]*?)<\/cim:OverexcLimIEEE.itfpu>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimIEEE.itfpu>([\s\S]*?)<\/cim:OverexcLimIEEE.itfpu>/g, obj, "itfpu", base.to_string, sub, context);
+
             /**
              * OEL cooldown gain (K<sub>CD</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["kcd"] = base.parse_element (/<cim:OverexcLimIEEE.kcd>([\s\S]*?)<\/cim:OverexcLimIEEE.kcd>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimIEEE.kcd>([\s\S]*?)<\/cim:OverexcLimIEEE.kcd>/g, obj, "kcd", base.to_string, sub, context);
+
             /**
              * OEL ramped limit rate (K<sub>RAMP</sub>).
              *
              * Unit = PU/sec.  Typical Value = 10.
              *
              */
-            obj["kramp"] = base.to_float (base.parse_element (/<cim:OverexcLimIEEE.kramp>([\s\S]*?)<\/cim:OverexcLimIEEE.kramp>/g, sub, context, true));
+            base.parse_element (/<cim:OverexcLimIEEE.kramp>([\s\S]*?)<\/cim:OverexcLimIEEE.kramp>/g, obj, "kramp", base.to_float, sub, context);
+
             bucket = context.parsed.OverexcLimIEEE;
             if (null == bucket)
                 context.parsed.OverexcLimIEEE = bucket = {};
@@ -90,68 +96,78 @@ define
              * Typical Value = 1.1.
              *
              */
-            obj["efd1"] = base.parse_element (/<cim:OverexcLimX1.efd1>([\s\S]*?)<\/cim:OverexcLimX1.efd1>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX1.efd1>([\s\S]*?)<\/cim:OverexcLimX1.efd1>/g, obj, "efd1", base.to_string, sub, context);
+
             /**
              * Mid voltage point on the inverse time characteristic (EFD<sub>2</sub>).
              *
              * Typical Value = 1.2.
              *
              */
-            obj["efd2"] = base.parse_element (/<cim:OverexcLimX1.efd2>([\s\S]*?)<\/cim:OverexcLimX1.efd2>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX1.efd2>([\s\S]*?)<\/cim:OverexcLimX1.efd2>/g, obj, "efd2", base.to_string, sub, context);
+
             /**
              * High voltage point on the inverse time characteristic (EFD<sub>3</sub>).
              *
              * Typical Value = 1.5.
              *
              */
-            obj["efd3"] = base.parse_element (/<cim:OverexcLimX1.efd3>([\s\S]*?)<\/cim:OverexcLimX1.efd3>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX1.efd3>([\s\S]*?)<\/cim:OverexcLimX1.efd3>/g, obj, "efd3", base.to_string, sub, context);
+
             /**
              * Desired field voltage (EFD<sub>DES</sub>).
              *
              * Typical Value = 0.9.
              *
              */
-            obj["efddes"] = base.parse_element (/<cim:OverexcLimX1.efddes>([\s\S]*?)<\/cim:OverexcLimX1.efddes>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX1.efddes>([\s\S]*?)<\/cim:OverexcLimX1.efddes>/g, obj, "efddes", base.to_string, sub, context);
+
             /**
              * Rated field voltage (EFD<sub>RATED</sub>).
              *
              * Typical Value = 1.05.
              *
              */
-            obj["efdrated"] = base.parse_element (/<cim:OverexcLimX1.efdrated>([\s\S]*?)<\/cim:OverexcLimX1.efdrated>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX1.efdrated>([\s\S]*?)<\/cim:OverexcLimX1.efdrated>/g, obj, "efdrated", base.to_string, sub, context);
+
             /**
              * Gain (K<sub>MX</sub>).
              *
              * Typical Value = 0.01.
              *
              */
-            obj["kmx"] = base.parse_element (/<cim:OverexcLimX1.kmx>([\s\S]*?)<\/cim:OverexcLimX1.kmx>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX1.kmx>([\s\S]*?)<\/cim:OverexcLimX1.kmx>/g, obj, "kmx", base.to_string, sub, context);
+
             /**
              * Time to trip the exciter at the low voltage point on the inverse time characteristic (TIME<sub>1</sub>).
              *
              * Typical Value = 120.
              *
              */
-            obj["t1"] = base.parse_element (/<cim:OverexcLimX1.t1>([\s\S]*?)<\/cim:OverexcLimX1.t1>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX1.t1>([\s\S]*?)<\/cim:OverexcLimX1.t1>/g, obj, "t1", base.to_string, sub, context);
+
             /**
              * Time to trip the exciter at the mid voltage point on the inverse time characteristic (TIME<sub>2</sub>).
              *
              * Typical Value = 40.
              *
              */
-            obj["t2"] = base.parse_element (/<cim:OverexcLimX1.t2>([\s\S]*?)<\/cim:OverexcLimX1.t2>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX1.t2>([\s\S]*?)<\/cim:OverexcLimX1.t2>/g, obj, "t2", base.to_string, sub, context);
+
             /**
              * Time to trip the exciter at the high voltage point on the inverse time characteristic (TIME<sub>3</sub>).
              *
              * Typical Value = 15.
              *
              */
-            obj["t3"] = base.parse_element (/<cim:OverexcLimX1.t3>([\s\S]*?)<\/cim:OverexcLimX1.t3>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX1.t3>([\s\S]*?)<\/cim:OverexcLimX1.t3>/g, obj, "t3", base.to_string, sub, context);
+
             /**
              * Low voltage limit (V<sub>LOW</sub>) (&gt;0).
              *
              */
-            obj["vlow"] = base.parse_element (/<cim:OverexcLimX1.vlow>([\s\S]*?)<\/cim:OverexcLimX1.vlow>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX1.vlow>([\s\S]*?)<\/cim:OverexcLimX1.vlow>/g, obj, "vlow", base.to_string, sub, context);
+
             bucket = context.parsed.OverexcLimX1;
             if (null == bucket)
                 context.parsed.OverexcLimX1 = bucket = {};
@@ -177,42 +193,48 @@ define
              * Typical Value = 1.1.
              *
              */
-            obj["efd1"] = base.parse_element (/<cim:OverexcLimX2.efd1>([\s\S]*?)<\/cim:OverexcLimX2.efd1>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX2.efd1>([\s\S]*?)<\/cim:OverexcLimX2.efd1>/g, obj, "efd1", base.to_string, sub, context);
+
             /**
              * Mid voltage or current point on the inverse time characteristic (EFD<sub>2</sub>).
              *
              * Typical Value = 1.2.
              *
              */
-            obj["efd2"] = base.parse_element (/<cim:OverexcLimX2.efd2>([\s\S]*?)<\/cim:OverexcLimX2.efd2>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX2.efd2>([\s\S]*?)<\/cim:OverexcLimX2.efd2>/g, obj, "efd2", base.to_string, sub, context);
+
             /**
              * High voltage or current point on the inverse time characteristic (EFD<sub>3</sub>).
              *
              * Typical Value = 1.5.
              *
              */
-            obj["efd3"] = base.parse_element (/<cim:OverexcLimX2.efd3>([\s\S]*?)<\/cim:OverexcLimX2.efd3>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX2.efd3>([\s\S]*?)<\/cim:OverexcLimX2.efd3>/g, obj, "efd3", base.to_string, sub, context);
+
             /**
              * Desired field voltage if m=F or field current if m=T (EFD<sub>DES</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["efddes"] = base.parse_element (/<cim:OverexcLimX2.efddes>([\s\S]*?)<\/cim:OverexcLimX2.efddes>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX2.efddes>([\s\S]*?)<\/cim:OverexcLimX2.efddes>/g, obj, "efddes", base.to_string, sub, context);
+
             /**
              * Rated field voltage if m=F or field current if m=T (EFD<sub>RATED</sub>).
              *
              * Typical Value = 1.05.
              *
              */
-            obj["efdrated"] = base.parse_element (/<cim:OverexcLimX2.efdrated>([\s\S]*?)<\/cim:OverexcLimX2.efdrated>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX2.efdrated>([\s\S]*?)<\/cim:OverexcLimX2.efdrated>/g, obj, "efdrated", base.to_string, sub, context);
+
             /**
              * Gain (K<sub>MX</sub>).
              *
              * Typical Value = 0.002.
              *
              */
-            obj["kmx"] = base.parse_element (/<cim:OverexcLimX2.kmx>([\s\S]*?)<\/cim:OverexcLimX2.kmx>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX2.kmx>([\s\S]*?)<\/cim:OverexcLimX2.kmx>/g, obj, "kmx", base.to_string, sub, context);
+
             /**
              * (m).
              * true = IFD limiting
@@ -220,33 +242,38 @@ define
              * false = EFD limiting.
              *
              */
-            obj["m"] = base.to_boolean (base.parse_element (/<cim:OverexcLimX2.m>([\s\S]*?)<\/cim:OverexcLimX2.m>/g, sub, context, true));
+            base.parse_element (/<cim:OverexcLimX2.m>([\s\S]*?)<\/cim:OverexcLimX2.m>/g, obj, "m", base.to_boolean, sub, context);
+
             /**
              * Time to trip the exciter at the low voltage or current point on the inverse time characteristic (TIME<sub>1</sub>).
              *
              * Typical Value = 120.
              *
              */
-            obj["t1"] = base.parse_element (/<cim:OverexcLimX2.t1>([\s\S]*?)<\/cim:OverexcLimX2.t1>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX2.t1>([\s\S]*?)<\/cim:OverexcLimX2.t1>/g, obj, "t1", base.to_string, sub, context);
+
             /**
              * Time to trip the exciter at the mid voltage or current point on the inverse time characteristic (TIME<sub>2</sub>).
              *
              * Typical Value = 40.
              *
              */
-            obj["t2"] = base.parse_element (/<cim:OverexcLimX2.t2>([\s\S]*?)<\/cim:OverexcLimX2.t2>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX2.t2>([\s\S]*?)<\/cim:OverexcLimX2.t2>/g, obj, "t2", base.to_string, sub, context);
+
             /**
              * Time to trip the exciter at the high voltage or current point on the inverse time characteristic (TIME<sub>3</sub>).
              *
              * Typical Value = 15.
              *
              */
-            obj["t3"] = base.parse_element (/<cim:OverexcLimX2.t3>([\s\S]*?)<\/cim:OverexcLimX2.t3>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX2.t3>([\s\S]*?)<\/cim:OverexcLimX2.t3>/g, obj, "t3", base.to_string, sub, context);
+
             /**
              * Low voltage limit (V<sub>LOW</sub>) (&gt;0).
              *
              */
-            obj["vlow"] = base.parse_element (/<cim:OverexcLimX2.vlow>([\s\S]*?)<\/cim:OverexcLimX2.vlow>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLimX2.vlow>([\s\S]*?)<\/cim:OverexcLimX2.vlow>/g, obj, "vlow", base.to_string, sub, context);
+
             bucket = context.parsed.OverexcLimX2;
             if (null == bucket)
                 context.parsed.OverexcLimX2 = bucket = {};
@@ -270,7 +297,8 @@ define
              * Excitation system model with which this overexcitation limiter model is associated.
              *
              */
-            obj["ExcitationSystemDynamics"] = base.parse_attribute (/<cim:OverexcitationLimiterDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:OverexcitationLimiterDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context, true);
+
             bucket = context.parsed.OverexcitationLimiterDynamics;
             if (null == bucket)
                 context.parsed.OverexcitationLimiterDynamics = bucket = {};
@@ -298,28 +326,32 @@ define
              * Typical Value = 1.05.
              *
              */
-            obj["ifdlim"] = base.parse_element (/<cim:OverexcLim2.ifdlim>([\s\S]*?)<\/cim:OverexcLim2.ifdlim>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLim2.ifdlim>([\s\S]*?)<\/cim:OverexcLim2.ifdlim>/g, obj, "ifdlim", base.to_string, sub, context);
+
             /**
              * Gain Over excitation limiter (K<sub>OI</sub>).
              *
              * Typical Value = 0.1.
              *
              */
-            obj["koi"] = base.parse_element (/<cim:OverexcLim2.koi>([\s\S]*?)<\/cim:OverexcLim2.koi>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLim2.koi>([\s\S]*?)<\/cim:OverexcLim2.koi>/g, obj, "koi", base.to_string, sub, context);
+
             /**
              * Maximum error signal (V<sub>OIMAX</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["voimax"] = base.parse_element (/<cim:OverexcLim2.voimax>([\s\S]*?)<\/cim:OverexcLim2.voimax>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLim2.voimax>([\s\S]*?)<\/cim:OverexcLim2.voimax>/g, obj, "voimax", base.to_string, sub, context);
+
             /**
              * Minimum error signal (V<sub>OIMIN</sub>).
              *
              * Typical Value = -9999.
              *
              */
-            obj["voimin"] = base.parse_element (/<cim:OverexcLim2.voimin>([\s\S]*?)<\/cim:OverexcLim2.voimin>/g, sub, context, true);
+            base.parse_element (/<cim:OverexcLim2.voimin>([\s\S]*?)<\/cim:OverexcLim2.voimin>/g, obj, "voimin", base.to_string, sub, context);
+
             bucket = context.parsed.OverexcLim2;
             if (null == bucket)
                 context.parsed.OverexcLim2 = bucket = {};

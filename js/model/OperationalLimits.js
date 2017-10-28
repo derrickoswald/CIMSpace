@@ -25,7 +25,8 @@ define
              * High or low limit nature of the limit depends upon the properties of the operational limit type.
              *
              */
-            obj["value"] = base.parse_element (/<cim:VoltageLimit.value>([\s\S]*?)<\/cim:VoltageLimit.value>/g, sub, context, true);
+            base.parse_element (/<cim:VoltageLimit.value>([\s\S]*?)<\/cim:VoltageLimit.value>/g, obj, "value", base.to_string, sub, context);
+
             bucket = context.parsed.VoltageLimit;
             if (null == bucket)
                 context.parsed.VoltageLimit = bucket = {};
@@ -47,12 +48,14 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "OperationalLimitSet";
-            obj["Terminal"] = base.parse_attribute (/<cim:OperationalLimitSet.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:OperationalLimitSet.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context, true);
+
             /**
              * The equipment to which the limit set applies.
              *
              */
-            obj["Equipment"] = base.parse_attribute (/<cim:OperationalLimitSet.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:OperationalLimitSet.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context, true);
+
             bucket = context.parsed.OperationalLimitSet;
             if (null == bucket)
                 context.parsed.OperationalLimitSet = bucket = {};
@@ -76,7 +79,8 @@ define
              * Value of active power limit.
              *
              */
-            obj["value"] = base.parse_element (/<cim:ActivePowerLimit.value>([\s\S]*?)<\/cim:ActivePowerLimit.value>/g, sub, context, true);
+            base.parse_element (/<cim:ActivePowerLimit.value>([\s\S]*?)<\/cim:ActivePowerLimit.value>/g, obj, "value", base.to_string, sub, context);
+
             bucket = context.parsed.ActivePowerLimit;
             if (null == bucket)
                 context.parsed.ActivePowerLimit = bucket = {};
@@ -102,12 +106,14 @@ define
              * The limit set to which the limit values belong.
              *
              */
-            obj["OperationalLimitSet"] = base.parse_attribute (/<cim:OperationalLimit.OperationalLimitSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:OperationalLimit.OperationalLimitSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperationalLimitSet", sub, context, true);
+
             /**
              * The limit type associated with this limit.
              *
              */
-            obj["OperationalLimitType"] = base.parse_attribute (/<cim:OperationalLimit.OperationalLimitType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:OperationalLimit.OperationalLimitType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperationalLimitType", sub, context, true);
+
             bucket = context.parsed.OperationalLimit;
             if (null == bucket)
                 context.parsed.OperationalLimit = bucket = {};
@@ -131,7 +137,8 @@ define
              * Limit on current flow.
              *
              */
-            obj["value"] = base.parse_element (/<cim:CurrentLimit.value>([\s\S]*?)<\/cim:CurrentLimit.value>/g, sub, context, true);
+            base.parse_element (/<cim:CurrentLimit.value>([\s\S]*?)<\/cim:CurrentLimit.value>/g, obj, "value", base.to_string, sub, context);
+
             bucket = context.parsed.CurrentLimit;
             if (null == bucket)
                 context.parsed.CurrentLimit = bucket = {};
@@ -157,17 +164,20 @@ define
              * The flow out of the terminanl is summed if set false.
              *
              */
-            obj["positiveFlowIn"] = base.to_boolean (base.parse_element (/<cim:BranchGroupTerminal.positiveFlowIn>([\s\S]*?)<\/cim:BranchGroupTerminal.positiveFlowIn>/g, sub, context, true));
+            base.parse_element (/<cim:BranchGroupTerminal.positiveFlowIn>([\s\S]*?)<\/cim:BranchGroupTerminal.positiveFlowIn>/g, obj, "positiveFlowIn", base.to_boolean, sub, context);
+
             /**
              * The branch group to which the directed branch group terminals belong.
              *
              */
-            obj["BranchGroup"] = base.parse_attribute (/<cim:BranchGroupTerminal.BranchGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:BranchGroupTerminal.BranchGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BranchGroup", sub, context, true);
+
             /**
              * The terminal to be summed.
              *
              */
-            obj["Terminal"] = base.parse_attribute (/<cim:BranchGroupTerminal.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:BranchGroupTerminal.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context, true);
+
             bucket = context.parsed.BranchGroupTerminal;
             if (null == bucket)
                 context.parsed.BranchGroupTerminal = bucket = {};
@@ -193,32 +203,38 @@ define
              * The maximum active power flow.
              *
              */
-            obj["maximumActivePower"] = base.parse_element (/<cim:BranchGroup.maximumActivePower>([\s\S]*?)<\/cim:BranchGroup.maximumActivePower>/g, sub, context, true);
+            base.parse_element (/<cim:BranchGroup.maximumActivePower>([\s\S]*?)<\/cim:BranchGroup.maximumActivePower>/g, obj, "maximumActivePower", base.to_string, sub, context);
+
             /**
              * The maximum reactive power flow.
              *
              */
-            obj["maximumReactivePower"] = base.parse_element (/<cim:BranchGroup.maximumReactivePower>([\s\S]*?)<\/cim:BranchGroup.maximumReactivePower>/g, sub, context, true);
+            base.parse_element (/<cim:BranchGroup.maximumReactivePower>([\s\S]*?)<\/cim:BranchGroup.maximumReactivePower>/g, obj, "maximumReactivePower", base.to_string, sub, context);
+
             /**
              * The minimum active power flow.
              *
              */
-            obj["minimumActivePower"] = base.parse_element (/<cim:BranchGroup.minimumActivePower>([\s\S]*?)<\/cim:BranchGroup.minimumActivePower>/g, sub, context, true);
+            base.parse_element (/<cim:BranchGroup.minimumActivePower>([\s\S]*?)<\/cim:BranchGroup.minimumActivePower>/g, obj, "minimumActivePower", base.to_string, sub, context);
+
             /**
              * The minimum reactive power flow.
              *
              */
-            obj["minimumReactivePower"] = base.parse_element (/<cim:BranchGroup.minimumReactivePower>([\s\S]*?)<\/cim:BranchGroup.minimumReactivePower>/g, sub, context, true);
+            base.parse_element (/<cim:BranchGroup.minimumReactivePower>([\s\S]*?)<\/cim:BranchGroup.minimumReactivePower>/g, obj, "minimumReactivePower", base.to_string, sub, context);
+
             /**
              * Monitor the active power flow.
              *
              */
-            obj["monitorActivePower"] = base.to_boolean (base.parse_element (/<cim:BranchGroup.monitorActivePower>([\s\S]*?)<\/cim:BranchGroup.monitorActivePower>/g, sub, context, true));
+            base.parse_element (/<cim:BranchGroup.monitorActivePower>([\s\S]*?)<\/cim:BranchGroup.monitorActivePower>/g, obj, "monitorActivePower", base.to_boolean, sub, context);
+
             /**
              * Monitor the reactive power flow.
              *
              */
-            obj["monitorReactivePower"] = base.to_boolean (base.parse_element (/<cim:BranchGroup.monitorReactivePower>([\s\S]*?)<\/cim:BranchGroup.monitorReactivePower>/g, sub, context, true));
+            base.parse_element (/<cim:BranchGroup.monitorReactivePower>([\s\S]*?)<\/cim:BranchGroup.monitorReactivePower>/g, obj, "monitorReactivePower", base.to_boolean, sub, context);
+
             bucket = context.parsed.BranchGroup;
             if (null == bucket)
                 context.parsed.BranchGroup = bucket = {};
@@ -244,13 +260,16 @@ define
              * Limits are commonly expressed in terms of the a time limit for which the limit is normally acceptable.   The actual acceptable duration of a specific limit may depend on other local factors such as temperature or wind speed.
              *
              */
-            obj["acceptableDuration"] = base.parse_element (/<cim:OperationalLimitType.acceptableDuration>([\s\S]*?)<\/cim:OperationalLimitType.acceptableDuration>/g, sub, context, true);
+            base.parse_element (/<cim:OperationalLimitType.acceptableDuration>([\s\S]*?)<\/cim:OperationalLimitType.acceptableDuration>/g, obj, "acceptableDuration", base.to_string, sub, context);
+
             /**
              * The direction of the limit.
              *
              */
-            obj["direction"] = base.parse_element (/<cim:OperationalLimitType.direction>([\s\S]*?)<\/cim:OperationalLimitType.direction>/g, sub, context, true);
-            obj["TargetOperationalLimitmTypeScaling"] = base.parse_attribute (/<cim:OperationalLimitType.TargetOperationalLimitmTypeScaling\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_element (/<cim:OperationalLimitType.direction>([\s\S]*?)<\/cim:OperationalLimitType.direction>/g, obj, "direction", base.to_string, sub, context);
+
+            base.parse_attribute (/<cim:OperationalLimitType.TargetOperationalLimitmTypeScaling\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TargetOperationalLimitmTypeScaling", sub, context, true);
+
             bucket = context.parsed.OperationalLimitType;
             if (null == bucket)
                 context.parsed.OperationalLimitType = bucket = {};
@@ -276,19 +295,22 @@ define
              * If applied to a terminal flow, the positive direction is into the terminal.
              *
              */
-            obj["high"] = base.parse_element (/<cim:OperationalLimitDirectionKind.high>([\s\S]*?)<\/cim:OperationalLimitDirectionKind.high>/g, sub, context, true);
+            base.parse_element (/<cim:OperationalLimitDirectionKind.high>([\s\S]*?)<\/cim:OperationalLimitDirectionKind.high>/g, obj, "high", base.to_string, sub, context);
+
             /**
              * Low means a monitored value below the limit is a violation.
              *
              * If applied to a terminal flow, the positive direction is into the terminal.
              *
              */
-            obj["low"] = base.parse_element (/<cim:OperationalLimitDirectionKind.low>([\s\S]*?)<\/cim:OperationalLimitDirectionKind.low>/g, sub, context, true);
+            base.parse_element (/<cim:OperationalLimitDirectionKind.low>([\s\S]*?)<\/cim:OperationalLimitDirectionKind.low>/g, obj, "low", base.to_string, sub, context);
+
             /**
              * An absoluteValue limit means that a monitored absolute value above the limit value is a violation.
              *
              */
-            obj["absoluteValue"] = base.parse_element (/<cim:OperationalLimitDirectionKind.absoluteValue>([\s\S]*?)<\/cim:OperationalLimitDirectionKind.absoluteValue>/g, sub, context, true);
+            base.parse_element (/<cim:OperationalLimitDirectionKind.absoluteValue>([\s\S]*?)<\/cim:OperationalLimitDirectionKind.absoluteValue>/g, obj, "absoluteValue", base.to_string, sub, context);
+
             bucket = context.parsed.OperationalLimitDirectionKind;
             if (null == bucket)
                 context.parsed.OperationalLimitDirectionKind = bucket = {};
@@ -312,7 +334,8 @@ define
              * The apparent power limit.
              *
              */
-            obj["value"] = base.parse_element (/<cim:ApparentPowerLimit.value>([\s\S]*?)<\/cim:ApparentPowerLimit.value>/g, sub, context, true);
+            base.parse_element (/<cim:ApparentPowerLimit.value>([\s\S]*?)<\/cim:ApparentPowerLimit.value>/g, obj, "value", base.to_string, sub, context);
+
             bucket = context.parsed.ApparentPowerLimit;
             if (null == bucket)
                 context.parsed.ApparentPowerLimit = bucket = {};

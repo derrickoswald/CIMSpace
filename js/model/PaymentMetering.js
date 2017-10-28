@@ -25,22 +25,26 @@ define
              * True if this receipted payment is manually bankable, otherwise it is an electronic funds transfer.
              *
              */
-            obj["isBankable"] = base.to_boolean (base.parse_element (/<cim:Receipt.isBankable>([\s\S]*?)<\/cim:Receipt.isBankable>/g, sub, context, true));
+            base.parse_element (/<cim:Receipt.isBankable>([\s\S]*?)<\/cim:Receipt.isBankable>/g, obj, "isBankable", base.to_boolean, sub, context);
+
             /**
              * Receipted amount with rounding, date and note.
              *
              */
-            obj["line"] = base.parse_element (/<cim:Receipt.line>([\s\S]*?)<\/cim:Receipt.line>/g, sub, context, true);
+            base.parse_element (/<cim:Receipt.line>([\s\S]*?)<\/cim:Receipt.line>/g, obj, "line", base.to_string, sub, context);
+
             /**
              * Vendor shift during which this receipt was recorded.
              *
              */
-            obj["VendorShift"] = base.parse_attribute (/<cim:Receipt.VendorShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Receipt.VendorShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VendorShift", sub, context, true);
+
             /**
              * Cashier shift during which this receipt was recorded.
              *
              */
-            obj["CashierShift"] = base.parse_attribute (/<cim:Receipt.CashierShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Receipt.CashierShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CashierShift", sub, context, true);
+
             bucket = context.parsed.Receipt;
             if (null == bucket)
                 context.parsed.Receipt = bucket = {};
@@ -64,27 +68,32 @@ define
              * Name of account holder.
              *
              */
-            obj["accountHolderName"] = base.parse_element (/<cim:Card.accountHolderName>([\s\S]*?)<\/cim:Card.accountHolderName>/g, sub, context, true);
+            base.parse_element (/<cim:Card.accountHolderName>([\s\S]*?)<\/cim:Card.accountHolderName>/g, obj, "accountHolderName", base.to_string, sub, context);
+
             /**
              * The card verification number.
              *
              */
-            obj["cvNumber"] = base.parse_element (/<cim:Card.cvNumber>([\s\S]*?)<\/cim:Card.cvNumber>/g, sub, context, true);
+            base.parse_element (/<cim:Card.cvNumber>([\s\S]*?)<\/cim:Card.cvNumber>/g, obj, "cvNumber", base.to_string, sub, context);
+
             /**
              * The date when this card expires.
              *
              */
-            obj["expiryDate"] = base.parse_element (/<cim:Card.expiryDate>([\s\S]*?)<\/cim:Card.expiryDate>/g, sub, context, true);
+            base.parse_element (/<cim:Card.expiryDate>([\s\S]*?)<\/cim:Card.expiryDate>/g, obj, "expiryDate", base.to_string, sub, context);
+
             /**
              * The primary account number.
              *
              */
-            obj["pan"] = base.parse_element (/<cim:Card.pan>([\s\S]*?)<\/cim:Card.pan>/g, sub, context, true);
+            base.parse_element (/<cim:Card.pan>([\s\S]*?)<\/cim:Card.pan>/g, obj, "pan", base.to_string, sub, context);
+
             /**
              * Payment tender this card is being used for.
              *
              */
-            obj["Tender"] = base.parse_attribute (/<cim:Card.Tender\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Card.Tender\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Tender", sub, context, true);
+
             bucket = context.parsed.Card;
             if (null == bucket)
                 context.parsed.Card = bucket = {};
@@ -108,29 +117,34 @@ define
              * Part of 'current' that constitutes the arrears portion.
              *
              */
-            obj["arrears"] = base.parse_element (/<cim:Due.arrears>([\s\S]*?)<\/cim:Due.arrears>/g, sub, context, true);
+            base.parse_element (/<cim:Due.arrears>([\s\S]*?)<\/cim:Due.arrears>/g, obj, "arrears", base.to_string, sub, context);
+
             /**
              * Part of 'current' that constitutes the charge portion: 'charges' = 'Charge.fixedPortion' + 'Charge.variablePortion'.
              *
              */
-            obj["charges"] = base.parse_element (/<cim:Due.charges>([\s\S]*?)<\/cim:Due.charges>/g, sub, context, true);
+            base.parse_element (/<cim:Due.charges>([\s\S]*?)<\/cim:Due.charges>/g, obj, "charges", base.to_string, sub, context);
+
             /**
              * Current total amount now due: current = principle + arrears + interest + charges.
              *
              * Typically the rule for settlement priority is: interest dues, then arrears dues, then current dues, then charge dues.
              *
              */
-            obj["current"] = base.parse_element (/<cim:Due.current>([\s\S]*?)<\/cim:Due.current>/g, sub, context, true);
+            base.parse_element (/<cim:Due.current>([\s\S]*?)<\/cim:Due.current>/g, obj, "current", base.to_string, sub, context);
+
             /**
              * Part of 'current' that constitutes the interest portion.
              *
              */
-            obj["interest"] = base.parse_element (/<cim:Due.interest>([\s\S]*?)<\/cim:Due.interest>/g, sub, context, true);
+            base.parse_element (/<cim:Due.interest>([\s\S]*?)<\/cim:Due.interest>/g, obj, "interest", base.to_string, sub, context);
+
             /**
              * Part of 'current' that constitutes the portion of the principle amount currently due.
              *
              */
-            obj["principle"] = base.parse_element (/<cim:Due.principle>([\s\S]*?)<\/cim:Due.principle>/g, sub, context, true);
+            base.parse_element (/<cim:Due.principle>([\s\S]*?)<\/cim:Due.principle>/g, obj, "principle", base.to_string, sub, context);
+
             bucket = context.parsed.Due;
             if (null == bucket)
                 context.parsed.Due = bucket = {};
@@ -158,22 +172,26 @@ define
              * This amount reflects the sum(PaymentTransaction.transactionAmount).
              *
              */
-            obj["merchantDebitAmount"] = base.parse_element (/<cim:VendorShift.merchantDebitAmount>([\s\S]*?)<\/cim:VendorShift.merchantDebitAmount>/g, sub, context, true);
+            base.parse_element (/<cim:VendorShift.merchantDebitAmount>([\s\S]*?)<\/cim:VendorShift.merchantDebitAmount>/g, obj, "merchantDebitAmount", base.to_string, sub, context);
+
             /**
              * If true, merchantDebitAmount has been debited from MerchantAccount; typically happens at the end of VendorShift when it closes.
              *
              */
-            obj["posted"] = base.to_boolean (base.parse_element (/<cim:VendorShift.posted>([\s\S]*?)<\/cim:VendorShift.posted>/g, sub, context, true));
+            base.parse_element (/<cim:VendorShift.posted>([\s\S]*?)<\/cim:VendorShift.posted>/g, obj, "posted", base.to_boolean, sub, context);
+
             /**
              * Vendor that opens and owns this vendor shift.
              *
              */
-            obj["Vendor"] = base.parse_attribute (/<cim:VendorShift.Vendor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:VendorShift.Vendor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Vendor", sub, context, true);
+
             /**
              * Merchant account this vendor shift periodically debits (based on aggregated transactions).
              *
              */
-            obj["MerchantAccount"] = base.parse_attribute (/<cim:VendorShift.MerchantAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:VendorShift.MerchantAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MerchantAccount", sub, context, true);
+
             bucket = context.parsed.VendorShift;
             if (null == bucket)
                 context.parsed.VendorShift = bucket = {};
@@ -199,22 +217,26 @@ define
              * The fixed portion of this charge element.
              *
              */
-            obj["fixedPortion"] = base.parse_element (/<cim:Charge.fixedPortion>([\s\S]*?)<\/cim:Charge.fixedPortion>/g, sub, context, true);
+            base.parse_element (/<cim:Charge.fixedPortion>([\s\S]*?)<\/cim:Charge.fixedPortion>/g, obj, "fixedPortion", base.to_string, sub, context);
+
             /**
              * The kind of charge to be applied.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:Charge.kind>([\s\S]*?)<\/cim:Charge.kind>/g, sub, context, true);
+            base.parse_element (/<cim:Charge.kind>([\s\S]*?)<\/cim:Charge.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * The variable portion of this charge element, calculated as a percentage of the total amount of a parent charge.
              *
              */
-            obj["variablePortion"] = base.parse_element (/<cim:Charge.variablePortion>([\s\S]*?)<\/cim:Charge.variablePortion>/g, sub, context, true);
+            base.parse_element (/<cim:Charge.variablePortion>([\s\S]*?)<\/cim:Charge.variablePortion>/g, obj, "variablePortion", base.to_string, sub, context);
+
             /**
              * Parent of this charge sub-component.
              *
              */
-            obj["ParentCharge"] = base.parse_attribute (/<cim:Charge.ParentCharge\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Charge.ParentCharge\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ParentCharge", sub, context, true);
+
             bucket = context.parsed.Charge;
             if (null == bucket)
                 context.parsed.Charge = bucket = {};
@@ -238,17 +260,20 @@ define
              * Payment order used by institutions other than banks.
              *
              */
-            obj["postalOrder"] = base.parse_element (/<cim:ChequeKind.postalOrder>([\s\S]*?)<\/cim:ChequeKind.postalOrder>/g, sub, context, true);
+            base.parse_element (/<cim:ChequeKind.postalOrder>([\s\S]*?)<\/cim:ChequeKind.postalOrder>/g, obj, "postalOrder", base.to_string, sub, context);
+
             /**
              * Payment order used by a bank.
              *
              */
-            obj["bankOrder"] = base.parse_element (/<cim:ChequeKind.bankOrder>([\s\S]*?)<\/cim:ChequeKind.bankOrder>/g, sub, context, true);
+            base.parse_element (/<cim:ChequeKind.bankOrder>([\s\S]*?)<\/cim:ChequeKind.bankOrder>/g, obj, "bankOrder", base.to_string, sub, context);
+
             /**
              * Other kind of cheque.
              *
              */
-            obj["other"] = base.parse_element (/<cim:ChequeKind.other>([\s\S]*?)<\/cim:ChequeKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:ChequeKind.other>([\s\S]*?)<\/cim:ChequeKind.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.ChequeKind;
             if (null == bucket)
                 context.parsed.ChequeKind = bucket = {};
@@ -276,7 +301,8 @@ define
              * Examples are: once off on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc. At the end of each cycle, the business rules are reset to start from the beginning again.
              *
              */
-            obj["tariffCycle"] = base.parse_element (/<cim:TariffProfile.tariffCycle>([\s\S]*?)<\/cim:TariffProfile.tariffCycle>/g, sub, context, true);
+            base.parse_element (/<cim:TariffProfile.tariffCycle>([\s\S]*?)<\/cim:TariffProfile.tariffCycle>/g, obj, "tariffCycle", base.to_string, sub, context);
+
             bucket = context.parsed.TariffProfile;
             if (null == bucket)
                 context.parsed.TariffProfile = bucket = {};
@@ -302,19 +328,22 @@ define
              * For example: payment received/interest charge on arrears.
              *
              */
-            obj["amount"] = base.parse_element (/<cim:AccountMovement.amount>([\s\S]*?)<\/cim:AccountMovement.amount>/g, sub, context, true);
+            base.parse_element (/<cim:AccountMovement.amount>([\s\S]*?)<\/cim:AccountMovement.amount>/g, obj, "amount", base.to_string, sub, context);
+
             /**
              * Date and time when the credit/debit transaction was performed.
              *
              */
-            obj["dateTime"] = base.to_datetime (base.parse_element (/<cim:AccountMovement.dateTime>([\s\S]*?)<\/cim:AccountMovement.dateTime>/g, sub, context, true));
+            base.parse_element (/<cim:AccountMovement.dateTime>([\s\S]*?)<\/cim:AccountMovement.dateTime>/g, obj, "dateTime", base.to_datetime, sub, context);
+
             /**
              * Reason for credit/debit transaction on an account.
              *
              * Example: payment received/arrears interest levied.
              *
              */
-            obj["reason"] = base.parse_element (/<cim:AccountMovement.reason>([\s\S]*?)<\/cim:AccountMovement.reason>/g, sub, context, true);
+            base.parse_element (/<cim:AccountMovement.reason>([\s\S]*?)<\/cim:AccountMovement.reason>/g, obj, "reason", base.to_string, sub, context);
+
             bucket = context.parsed.AccountMovement;
             if (null == bucket)
                 context.parsed.AccountMovement = bucket = {};
@@ -340,14 +369,16 @@ define
              * A sequential reference that defines the identity of this interval and its relative position with respect to other intervals in a sequence of intervals.
              *
              */
-            obj["sequenceNumber"] = base.parse_element (/<cim:ConsumptionTariffInterval.sequenceNumber>([\s\S]*?)<\/cim:ConsumptionTariffInterval.sequenceNumber>/g, sub, context, true);
+            base.parse_element (/<cim:ConsumptionTariffInterval.sequenceNumber>([\s\S]*?)<\/cim:ConsumptionTariffInterval.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
+
             /**
              * The lowest level of consumption that defines the starting point of this interval.
              *
              * The interval extends to the start of the next interval or until it is reset to the start of the first interval by TariffProfile.tariffCycle.
              *
              */
-            obj["startValue"] = base.parse_element (/<cim:ConsumptionTariffInterval.startValue>([\s\S]*?)<\/cim:ConsumptionTariffInterval.startValue>/g, sub, context, true);
+            base.parse_element (/<cim:ConsumptionTariffInterval.startValue>([\s\S]*?)<\/cim:ConsumptionTariffInterval.startValue>/g, obj, "startValue", base.to_string, sub, context);
+
             bucket = context.parsed.ConsumptionTariffInterval;
             if (null == bucket)
                 context.parsed.ConsumptionTariffInterval = bucket = {};
@@ -371,27 +402,32 @@ define
              * Payment method by means of a cheque.
              *
              */
-            obj["cheque"] = base.parse_element (/<cim:TenderKind.cheque>([\s\S]*?)<\/cim:TenderKind.cheque>/g, sub, context, true);
+            base.parse_element (/<cim:TenderKind.cheque>([\s\S]*?)<\/cim:TenderKind.cheque>/g, obj, "cheque", base.to_string, sub, context);
+
             /**
              * Payment method by means of a credit or debit card.
              *
              */
-            obj["card"] = base.parse_element (/<cim:TenderKind.card>([\s\S]*?)<\/cim:TenderKind.card>/g, sub, context, true);
+            base.parse_element (/<cim:TenderKind.card>([\s\S]*?)<\/cim:TenderKind.card>/g, obj, "card", base.to_string, sub, context);
+
             /**
              * Payment method by means of cash.
              *
              */
-            obj["cash"] = base.parse_element (/<cim:TenderKind.cash>([\s\S]*?)<\/cim:TenderKind.cash>/g, sub, context, true);
+            base.parse_element (/<cim:TenderKind.cash>([\s\S]*?)<\/cim:TenderKind.cash>/g, obj, "cash", base.to_string, sub, context);
+
             /**
              * Payment method is not known.
              *
              */
-            obj["unspecified"] = base.parse_element (/<cim:TenderKind.unspecified>([\s\S]*?)<\/cim:TenderKind.unspecified>/g, sub, context, true);
+            base.parse_element (/<cim:TenderKind.unspecified>([\s\S]*?)<\/cim:TenderKind.unspecified>/g, obj, "unspecified", base.to_string, sub, context);
+
             /**
              * Other payment method such as electronic finds transfer.
              *
              */
-            obj["other"] = base.parse_element (/<cim:TenderKind.other>([\s\S]*?)<\/cim:TenderKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:TenderKind.other>([\s\S]*?)<\/cim:TenderKind.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.TenderKind;
             if (null == bucket)
                 context.parsed.TenderKind = bucket = {};
@@ -417,14 +453,16 @@ define
              * A sequential reference that defines the identity of this interval and its relative position with respect to other intervals in a sequence of intervals.
              *
              */
-            obj["sequenceNumber"] = base.parse_element (/<cim:TimeTariffInterval.sequenceNumber>([\s\S]*?)<\/cim:TimeTariffInterval.sequenceNumber>/g, sub, context, true);
+            base.parse_element (/<cim:TimeTariffInterval.sequenceNumber>([\s\S]*?)<\/cim:TimeTariffInterval.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
+
             /**
              * A real time marker that defines the starting time (typically it is the time of day) for this interval.
              *
              * The interval extends to the start of the next interval or until it is reset to the start of the first interval by TariffProfile.tariffCycle.
              *
              */
-            obj["startTime"] = base.parse_element (/<cim:TimeTariffInterval.startTime>([\s\S]*?)<\/cim:TimeTariffInterval.startTime>/g, sub, context, true);
+            base.parse_element (/<cim:TimeTariffInterval.startTime>([\s\S]*?)<\/cim:TimeTariffInterval.startTime>/g, obj, "startTime", base.to_string, sub, context);
+
             bucket = context.parsed.TimeTariffInterval;
             if (null == bucket)
                 context.parsed.TimeTariffInterval = bucket = {};
@@ -450,62 +488,72 @@ define
              * The interest per annum to be charged prorata on 'AuxiliaryAccount.dueArrears' at the end of each 'payCycle'.
              *
              */
-            obj["arrearsInterest"] = base.parse_element (/<cim:AuxiliaryAgreement.arrearsInterest>([\s\S]*?)<\/cim:AuxiliaryAgreement.arrearsInterest>/g, sub, context, true);
+            base.parse_element (/<cim:AuxiliaryAgreement.arrearsInterest>([\s\S]*?)<\/cim:AuxiliaryAgreement.arrearsInterest>/g, obj, "arrearsInterest", base.to_string, sub, context);
+
             /**
              * The frequency for automatically recurring auxiliary charges, where 'AuxiliaryAccount.initialCharge' is recursively added to 'AuxiliaryAccount.dueCurrent' at the start of each 'auxCycle'.
              *
              * For example: on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc.
              *
              */
-            obj["auxCycle"] = base.parse_element (/<cim:AuxiliaryAgreement.auxCycle>([\s\S]*?)<\/cim:AuxiliaryAgreement.auxCycle>/g, sub, context, true);
+            base.parse_element (/<cim:AuxiliaryAgreement.auxCycle>([\s\S]*?)<\/cim:AuxiliaryAgreement.auxCycle>/g, obj, "auxCycle", base.to_string, sub, context);
+
             /**
              * The coded priority indicating the priority that this auxiliary agreement has above other auxiliary agreements (associated with the same customer agreement) when it comes to competing for settlement from a payment transaction or token purchase.
              *
              */
-            obj["auxPriorityCode"] = base.parse_element (/<cim:AuxiliaryAgreement.auxPriorityCode>([\s\S]*?)<\/cim:AuxiliaryAgreement.auxPriorityCode>/g, sub, context, true);
+            base.parse_element (/<cim:AuxiliaryAgreement.auxPriorityCode>([\s\S]*?)<\/cim:AuxiliaryAgreement.auxPriorityCode>/g, obj, "auxPriorityCode", base.to_string, sub, context);
+
             /**
              * The fixed amount that has to be collected from each vending transaction towards settlement of this auxiliary agreement.
              *
              * Note that there may be multiple tokens vended per vending transaction, but this is not relevant.
              *
              */
-            obj["fixedAmount"] = base.parse_element (/<cim:AuxiliaryAgreement.fixedAmount>([\s\S]*?)<\/cim:AuxiliaryAgreement.fixedAmount>/g, sub, context, true);
+            base.parse_element (/<cim:AuxiliaryAgreement.fixedAmount>([\s\S]*?)<\/cim:AuxiliaryAgreement.fixedAmount>/g, obj, "fixedAmount", base.to_string, sub, context);
+
             /**
              * The minimum amount that has to be paid at any transaction towards settling this auxiliary agreement or reducing the balance.
              *
              */
-            obj["minAmount"] = base.parse_element (/<cim:AuxiliaryAgreement.minAmount>([\s\S]*?)<\/cim:AuxiliaryAgreement.minAmount>/g, sub, context, true);
+            base.parse_element (/<cim:AuxiliaryAgreement.minAmount>([\s\S]*?)<\/cim:AuxiliaryAgreement.minAmount>/g, obj, "minAmount", base.to_string, sub, context);
+
             /**
              * The contractually expected payment frequency (by the customer).
              *
              * Examples are: ad-hoc; on specified date; hourly, daily, weekly, monthly. etc.
              *
              */
-            obj["payCycle"] = base.parse_element (/<cim:AuxiliaryAgreement.payCycle>([\s\S]*?)<\/cim:AuxiliaryAgreement.payCycle>/g, sub, context, true);
+            base.parse_element (/<cim:AuxiliaryAgreement.payCycle>([\s\S]*?)<\/cim:AuxiliaryAgreement.payCycle>/g, obj, "payCycle", base.to_string, sub, context);
+
             /**
              * Sub-classification of the inherited 'type' for this AuxiliaryAgreement.
              *
              */
-            obj["subType"] = base.parse_element (/<cim:AuxiliaryAgreement.subType>([\s\S]*?)<\/cim:AuxiliaryAgreement.subType>/g, sub, context, true);
+            base.parse_element (/<cim:AuxiliaryAgreement.subType>([\s\S]*?)<\/cim:AuxiliaryAgreement.subType>/g, obj, "subType", base.to_string, sub, context);
+
             /**
              * The percentage of the transaction amount that has to be collected from each vending transaction towards settlement of this auxiliary agreement when payments are not in arrears.
              *
              * Note that there may be multiple tokens vended per vending transaction, but this is not relevant.
              *
              */
-            obj["vendPortion"] = base.parse_element (/<cim:AuxiliaryAgreement.vendPortion>([\s\S]*?)<\/cim:AuxiliaryAgreement.vendPortion>/g, sub, context, true);
+            base.parse_element (/<cim:AuxiliaryAgreement.vendPortion>([\s\S]*?)<\/cim:AuxiliaryAgreement.vendPortion>/g, obj, "vendPortion", base.to_string, sub, context);
+
             /**
              * The percentage of the transaction amount that has to be collected from each vending transaction towards settlement of this auxiliary agreement when payments are in arrears.
              *
              * Note that there may be multiple tokens vended per vending transaction, but this is not relevant.
              *
              */
-            obj["vendPortionArrear"] = base.parse_element (/<cim:AuxiliaryAgreement.vendPortionArrear>([\s\S]*?)<\/cim:AuxiliaryAgreement.vendPortionArrear>/g, sub, context, true);
+            base.parse_element (/<cim:AuxiliaryAgreement.vendPortionArrear>([\s\S]*?)<\/cim:AuxiliaryAgreement.vendPortionArrear>/g, obj, "vendPortionArrear", base.to_string, sub, context);
+
             /**
              * Customer agreement this (non-service related) auxiliary agreement refers to.
              *
              */
-            obj["CustomerAgreement"] = base.parse_attribute (/<cim:AuxiliaryAgreement.CustomerAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:AuxiliaryAgreement.CustomerAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAgreement", sub, context, true);
+
             bucket = context.parsed.AuxiliaryAgreement;
             if (null == bucket)
                 context.parsed.AuxiliaryAgreement = bucket = {};
@@ -550,27 +598,32 @@ define
              * Operational account reference number.
              *
              */
-            obj["accountNumber"] = base.parse_element (/<cim:BankAccountDetail.accountNumber>([\s\S]*?)<\/cim:BankAccountDetail.accountNumber>/g, sub, context, true);
+            base.parse_element (/<cim:BankAccountDetail.accountNumber>([\s\S]*?)<\/cim:BankAccountDetail.accountNumber>/g, obj, "accountNumber", base.to_string, sub, context);
+
             /**
              * Name of bank where account is held.
              *
              */
-            obj["bankName"] = base.parse_element (/<cim:BankAccountDetail.bankName>([\s\S]*?)<\/cim:BankAccountDetail.bankName>/g, sub, context, true);
+            base.parse_element (/<cim:BankAccountDetail.bankName>([\s\S]*?)<\/cim:BankAccountDetail.bankName>/g, obj, "bankName", base.to_string, sub, context);
+
             /**
              * Branch of bank where account is held.
              *
              */
-            obj["branchCode"] = base.parse_element (/<cim:BankAccountDetail.branchCode>([\s\S]*?)<\/cim:BankAccountDetail.branchCode>/g, sub, context, true);
+            base.parse_element (/<cim:BankAccountDetail.branchCode>([\s\S]*?)<\/cim:BankAccountDetail.branchCode>/g, obj, "branchCode", base.to_string, sub, context);
+
             /**
              * National identity number (or equivalent) of account holder.
              *
              */
-            obj["holderID"] = base.parse_element (/<cim:BankAccountDetail.holderID>([\s\S]*?)<\/cim:BankAccountDetail.holderID>/g, sub, context, true);
+            base.parse_element (/<cim:BankAccountDetail.holderID>([\s\S]*?)<\/cim:BankAccountDetail.holderID>/g, obj, "holderID", base.to_string, sub, context);
+
             /**
              * Name of account holder.
              *
              */
-            obj["holderName"] = base.parse_element (/<cim:BankAccountDetail.holderName>([\s\S]*?)<\/cim:BankAccountDetail.holderName>/g, sub, context, true);
+            base.parse_element (/<cim:BankAccountDetail.holderName>([\s\S]*?)<\/cim:BankAccountDetail.holderName>/g, obj, "holderName", base.to_string, sub, context);
+
             bucket = context.parsed.BankAccountDetail;
             if (null == bucket)
                 context.parsed.BankAccountDetail = bucket = {};
@@ -594,7 +647,8 @@ define
              * Local description for where this point of sale is physically located.
              *
              */
-            obj["location"] = base.parse_element (/<cim:PointOfSale.location>([\s\S]*?)<\/cim:PointOfSale.location>/g, sub, context, true);
+            base.parse_element (/<cim:PointOfSale.location>([\s\S]*?)<\/cim:PointOfSale.location>/g, obj, "location", base.to_string, sub, context);
+
             bucket = context.parsed.PointOfSale;
             if (null == bucket)
                 context.parsed.PointOfSale = bucket = {};
@@ -620,33 +674,38 @@ define
              * For example: usage x price per kWh = total charge for consumption.
              *
              */
-            obj["consumptionCharge"] = base.parse_element (/<cim:ChargeKind.consumptionCharge>([\s\S]*?)<\/cim:ChargeKind.consumptionCharge>/g, sub, context, true);
+            base.parse_element (/<cim:ChargeKind.consumptionCharge>([\s\S]*?)<\/cim:ChargeKind.consumptionCharge>/g, obj, "consumptionCharge", base.to_string, sub, context);
+
             /**
              * The charge related to the usage within a defined time interval, normally expressed in terms of a tariff.
              *
              * For example: a maximum-demand tariff will levy an additional charge on top of the consumption charge if the usage exceeds a defined limit per hour.
              *
              */
-            obj["demandCharge"] = base.parse_element (/<cim:ChargeKind.demandCharge>([\s\S]*?)<\/cim:ChargeKind.demandCharge>/g, sub, context, true);
+            base.parse_element (/<cim:ChargeKind.demandCharge>([\s\S]*?)<\/cim:ChargeKind.demandCharge>/g, obj, "demandCharge", base.to_string, sub, context);
+
             /**
              * Any other charge which is not a consumptionCharge or demandCharge.
              *
              * For example: debt recovery, arrears, standing charge or charge for another service such as street lighting.
              *
              */
-            obj["auxiliaryCharge"] = base.parse_element (/<cim:ChargeKind.auxiliaryCharge>([\s\S]*?)<\/cim:ChargeKind.auxiliaryCharge>/g, sub, context, true);
+            base.parse_element (/<cim:ChargeKind.auxiliaryCharge>([\s\S]*?)<\/cim:ChargeKind.auxiliaryCharge>/g, obj, "auxiliaryCharge", base.to_string, sub, context);
+
             /**
              * Any charge that is classified as a tax of a kind.
              *
              * For example: VAT, GST, TV tax, etc.
              *
              */
-            obj["taxCharge"] = base.parse_element (/<cim:ChargeKind.taxCharge>([\s\S]*?)<\/cim:ChargeKind.taxCharge>/g, sub, context, true);
+            base.parse_element (/<cim:ChargeKind.taxCharge>([\s\S]*?)<\/cim:ChargeKind.taxCharge>/g, obj, "taxCharge", base.to_string, sub, context);
+
             /**
              * Other kind of charge.
              *
              */
-            obj["other"] = base.parse_element (/<cim:ChargeKind.other>([\s\S]*?)<\/cim:ChargeKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:ChargeKind.other>([\s\S]*?)<\/cim:ChargeKind.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.ChargeKind;
             if (null == bucket)
                 context.parsed.ChargeKind = bucket = {};
@@ -672,42 +731,48 @@ define
              * Interval for activity of this shift.
              *
              */
-            obj["activityInterval"] = base.parse_element (/<cim:Shift.activityInterval>([\s\S]*?)<\/cim:Shift.activityInterval>/g, sub, context, true);
+            base.parse_element (/<cim:Shift.activityInterval>([\s\S]*?)<\/cim:Shift.activityInterval>/g, obj, "activityInterval", base.to_string, sub, context);
+
             /**
              * Total of amounts receipted during this shift that can be manually banked (cash and cheques for example).
              *
              * Values are obtained from Receipt attributes:
              *
              */
-            obj["receiptsGrandTotalBankable"] = base.parse_element (/<cim:Shift.receiptsGrandTotalBankable>([\s\S]*?)<\/cim:Shift.receiptsGrandTotalBankable>/g, sub, context, true);
+            base.parse_element (/<cim:Shift.receiptsGrandTotalBankable>([\s\S]*?)<\/cim:Shift.receiptsGrandTotalBankable>/g, obj, "receiptsGrandTotalBankable", base.to_string, sub, context);
+
             /**
              * Total of amounts receipted during this shift that cannot be manually banked (card payments for example).
              *
              * Values are obtained from Receipt attributes:
              *
              */
-            obj["receiptsGrandTotalNonBankable"] = base.parse_element (/<cim:Shift.receiptsGrandTotalNonBankable>([\s\S]*?)<\/cim:Shift.receiptsGrandTotalNonBankable>/g, sub, context, true);
+            base.parse_element (/<cim:Shift.receiptsGrandTotalNonBankable>([\s\S]*?)<\/cim:Shift.receiptsGrandTotalNonBankable>/g, obj, "receiptsGrandTotalNonBankable", base.to_string, sub, context);
+
             /**
              * Cumulative amount in error due to process rounding not reflected in receiptsGrandTotal.
              *
              * Values are obtained from Receipt attributes:
              *
              */
-            obj["receiptsGrandTotalRounding"] = base.parse_element (/<cim:Shift.receiptsGrandTotalRounding>([\s\S]*?)<\/cim:Shift.receiptsGrandTotalRounding>/g, sub, context, true);
+            base.parse_element (/<cim:Shift.receiptsGrandTotalRounding>([\s\S]*?)<\/cim:Shift.receiptsGrandTotalRounding>/g, obj, "receiptsGrandTotalRounding", base.to_string, sub, context);
+
             /**
              * Cumulative total of transacted amounts during this shift.
              *
              * Values are obtained from transaction:
              *
              */
-            obj["transactionsGrandTotal"] = base.parse_element (/<cim:Shift.transactionsGrandTotal>([\s\S]*?)<\/cim:Shift.transactionsGrandTotal>/g, sub, context, true);
+            base.parse_element (/<cim:Shift.transactionsGrandTotal>([\s\S]*?)<\/cim:Shift.transactionsGrandTotal>/g, obj, "transactionsGrandTotal", base.to_string, sub, context);
+
             /**
              * Cumulative amount in error due to process rounding not reflected in transactionsGandTotal.
              *
              * Values are obtained from Transaction attributes:
              *
              */
-            obj["transactionsGrandTotalRounding"] = base.parse_element (/<cim:Shift.transactionsGrandTotalRounding>([\s\S]*?)<\/cim:Shift.transactionsGrandTotalRounding>/g, sub, context, true);
+            base.parse_element (/<cim:Shift.transactionsGrandTotalRounding>([\s\S]*?)<\/cim:Shift.transactionsGrandTotalRounding>/g, obj, "transactionsGrandTotalRounding", base.to_string, sub, context);
+
             bucket = context.parsed.Shift;
             if (null == bucket)
                 context.parsed.Shift = bucket = {};
@@ -731,17 +796,20 @@ define
              * The amount of cash that the cashier brings to start the shift and that will be taken away at the end of the shift; i.e. the cash float does not get banked.
              *
              */
-            obj["cashFloat"] = base.parse_element (/<cim:CashierShift.cashFloat>([\s\S]*?)<\/cim:CashierShift.cashFloat>/g, sub, context, true);
+            base.parse_element (/<cim:CashierShift.cashFloat>([\s\S]*?)<\/cim:CashierShift.cashFloat>/g, obj, "cashFloat", base.to_string, sub, context);
+
             /**
              * Cashier operating this shift.
              *
              */
-            obj["Cashier"] = base.parse_attribute (/<cim:CashierShift.Cashier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:CashierShift.Cashier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Cashier", sub, context, true);
+
             /**
              * Point of sale that is in operation during this shift.
              *
              */
-            obj["PointOfSale"] = base.parse_attribute (/<cim:CashierShift.PointOfSale\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:CashierShift.PointOfSale\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PointOfSale", sub, context, true);
+
             bucket = context.parsed.CashierShift;
             if (null == bucket)
                 context.parsed.CashierShift = bucket = {};
@@ -765,22 +833,26 @@ define
              * Amount for this line item.
              *
              */
-            obj["amount"] = base.parse_element (/<cim:LineDetail.amount>([\s\S]*?)<\/cim:LineDetail.amount>/g, sub, context, true);
+            base.parse_element (/<cim:LineDetail.amount>([\s\S]*?)<\/cim:LineDetail.amount>/g, obj, "amount", base.to_string, sub, context);
+
             /**
              * Date and time when this line was created in the application process.
              *
              */
-            obj["dateTime"] = base.to_datetime (base.parse_element (/<cim:LineDetail.dateTime>([\s\S]*?)<\/cim:LineDetail.dateTime>/g, sub, context, true));
+            base.parse_element (/<cim:LineDetail.dateTime>([\s\S]*?)<\/cim:LineDetail.dateTime>/g, obj, "dateTime", base.to_datetime, sub, context);
+
             /**
              * Free format note relevant to this line.
              *
              */
-            obj["note"] = base.parse_element (/<cim:LineDetail.note>([\s\S]*?)<\/cim:LineDetail.note>/g, sub, context, true);
+            base.parse_element (/<cim:LineDetail.note>([\s\S]*?)<\/cim:LineDetail.note>/g, obj, "note", base.to_string, sub, context);
+
             /**
              * Totalised monetary value of all errors due to process rounding or truncating that is not reflected in 'amount'.
              *
              */
-            obj["rounding"] = base.parse_element (/<cim:LineDetail.rounding>([\s\S]*?)<\/cim:LineDetail.rounding>/g, sub, context, true);
+            base.parse_element (/<cim:LineDetail.rounding>([\s\S]*?)<\/cim:LineDetail.rounding>/g, obj, "rounding", base.to_string, sub, context);
+
             bucket = context.parsed.LineDetail;
             if (null == bucket)
                 context.parsed.LineDetail = bucket = {};
@@ -806,7 +878,8 @@ define
              * Electronic address.
              *
              */
-            obj["electronicAddress"] = base.parse_element (/<cim:Cashier.electronicAddress>([\s\S]*?)<\/cim:Cashier.electronicAddress>/g, sub, context, true);
+            base.parse_element (/<cim:Cashier.electronicAddress>([\s\S]*?)<\/cim:Cashier.electronicAddress>/g, obj, "electronicAddress", base.to_string, sub, context);
+
             bucket = context.parsed.Cashier;
             if (null == bucket)
                 context.parsed.Cashier = bucket = {};
@@ -830,12 +903,14 @@ define
              * Unique transaction reference prefix number issued to an entity by the International Organization for Standardization for the purpose of tagging onto electronic financial transactions, as defined in ISO/IEC 7812-1 and ISO/IEC 7812-2.
              *
              */
-            obj["issuerIdentificationNumber"] = base.parse_element (/<cim:ServiceSupplier.issuerIdentificationNumber>([\s\S]*?)<\/cim:ServiceSupplier.issuerIdentificationNumber>/g, sub, context, true);
+            base.parse_element (/<cim:ServiceSupplier.issuerIdentificationNumber>([\s\S]*?)<\/cim:ServiceSupplier.issuerIdentificationNumber>/g, obj, "issuerIdentificationNumber", base.to_string, sub, context);
+
             /**
              * Kind of supplier.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:ServiceSupplier.kind>([\s\S]*?)<\/cim:ServiceSupplier.kind>/g, sub, context, true);
+            base.parse_element (/<cim:ServiceSupplier.kind>([\s\S]*?)<\/cim:ServiceSupplier.kind>/g, obj, "kind", base.to_string, sub, context);
+
             bucket = context.parsed.ServiceSupplier;
             if (null == bucket)
                 context.parsed.ServiceSupplier = bucket = {};
@@ -859,32 +934,38 @@ define
              * Details of the account holder and bank.
              *
              */
-            obj["bankAccountDetail"] = base.parse_element (/<cim:Cheque.bankAccountDetail>([\s\S]*?)<\/cim:Cheque.bankAccountDetail>/g, sub, context, true);
+            base.parse_element (/<cim:Cheque.bankAccountDetail>([\s\S]*?)<\/cim:Cheque.bankAccountDetail>/g, obj, "bankAccountDetail", base.to_string, sub, context);
+
             /**
              * Cheque reference number as printed on the cheque.
              *
              */
-            obj["chequeNumber"] = base.parse_element (/<cim:Cheque.chequeNumber>([\s\S]*?)<\/cim:Cheque.chequeNumber>/g, sub, context, true);
+            base.parse_element (/<cim:Cheque.chequeNumber>([\s\S]*?)<\/cim:Cheque.chequeNumber>/g, obj, "chequeNumber", base.to_string, sub, context);
+
             /**
              * Date when cheque becomes valid.
              *
              */
-            obj["date"] = base.parse_element (/<cim:Cheque.date>([\s\S]*?)<\/cim:Cheque.date>/g, sub, context, true);
+            base.parse_element (/<cim:Cheque.date>([\s\S]*?)<\/cim:Cheque.date>/g, obj, "date", base.to_string, sub, context);
+
             /**
              * Kind of cheque.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:Cheque.kind>([\s\S]*?)<\/cim:Cheque.kind>/g, sub, context, true);
+            base.parse_element (/<cim:Cheque.kind>([\s\S]*?)<\/cim:Cheque.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * The magnetic ink character recognition number printed on the cheque.
              *
              */
-            obj["micrNumber"] = base.parse_element (/<cim:Cheque.micrNumber>([\s\S]*?)<\/cim:Cheque.micrNumber>/g, sub, context, true);
+            base.parse_element (/<cim:Cheque.micrNumber>([\s\S]*?)<\/cim:Cheque.micrNumber>/g, obj, "micrNumber", base.to_string, sub, context);
+
             /**
              * Payment tender the cheque is being used for.
              *
              */
-            obj["Tender"] = base.parse_attribute (/<cim:Cheque.Tender\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Cheque.Tender\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Tender", sub, context, true);
+
             bucket = context.parsed.Cheque;
             if (null == bucket)
                 context.parsed.Cheque = bucket = {};
@@ -908,17 +989,20 @@ define
              * Entity that delivers the service to the customer.
              *
              */
-            obj["utility"] = base.parse_element (/<cim:SupplierKind.utility>([\s\S]*?)<\/cim:SupplierKind.utility>/g, sub, context, true);
+            base.parse_element (/<cim:SupplierKind.utility>([\s\S]*?)<\/cim:SupplierKind.utility>/g, obj, "utility", base.to_string, sub, context);
+
             /**
              * Entity that sells the service, but does not deliver to the customer; applies to the deregulated markets.
              *
              */
-            obj["retailer"] = base.parse_element (/<cim:SupplierKind.retailer>([\s\S]*?)<\/cim:SupplierKind.retailer>/g, sub, context, true);
+            base.parse_element (/<cim:SupplierKind.retailer>([\s\S]*?)<\/cim:SupplierKind.retailer>/g, obj, "retailer", base.to_string, sub, context);
+
             /**
              * Other kind of supplier.
              *
              */
-            obj["other"] = base.parse_element (/<cim:SupplierKind.other>([\s\S]*?)<\/cim:SupplierKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:SupplierKind.other>([\s\S]*?)<\/cim:SupplierKind.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.SupplierKind;
             if (null == bucket)
                 context.parsed.SupplierKind = bucket = {};
@@ -944,32 +1028,38 @@ define
              * Amount tendered by customer.
              *
              */
-            obj["amount"] = base.parse_element (/<cim:Tender.amount>([\s\S]*?)<\/cim:Tender.amount>/g, sub, context, true);
+            base.parse_element (/<cim:Tender.amount>([\s\S]*?)<\/cim:Tender.amount>/g, obj, "amount", base.to_string, sub, context);
+
             /**
              * Difference between amount tendered by customer and the amount charged by point of sale.
              *
              */
-            obj["change"] = base.parse_element (/<cim:Tender.change>([\s\S]*?)<\/cim:Tender.change>/g, sub, context, true);
+            base.parse_element (/<cim:Tender.change>([\s\S]*?)<\/cim:Tender.change>/g, obj, "change", base.to_string, sub, context);
+
             /**
              * Kind of tender from customer.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:Tender.kind>([\s\S]*?)<\/cim:Tender.kind>/g, sub, context, true);
+            base.parse_element (/<cim:Tender.kind>([\s\S]*?)<\/cim:Tender.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * Cheque used to tender payment.
              *
              */
-            obj["Cheque"] = base.parse_attribute (/<cim:Tender.Cheque\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Tender.Cheque\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Cheque", sub, context, true);
+
             /**
              * Card used to tender payment.
              *
              */
-            obj["Card"] = base.parse_attribute (/<cim:Tender.Card\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Tender.Card\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Card", sub, context, true);
+
             /**
              * Receipt that recorded this receiving of a payment in the form of tenders.
              *
              */
-            obj["Receipt"] = base.parse_attribute (/<cim:Tender.Receipt\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Tender.Receipt\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Receipt", sub, context, true);
+
             bucket = context.parsed.Tender;
             if (null == bucket)
                 context.parsed.Tender = bucket = {};
@@ -1014,32 +1104,38 @@ define
              * This excludes any due amounts not yet paid.
              *
              */
-            obj["balance"] = base.parse_element (/<cim:AuxiliaryAccount.balance>([\s\S]*?)<\/cim:AuxiliaryAccount.balance>/g, sub, context, true);
+            base.parse_element (/<cim:AuxiliaryAccount.balance>([\s\S]*?)<\/cim:AuxiliaryAccount.balance>/g, obj, "balance", base.to_string, sub, context);
+
             /**
              * Current amounts now due for payment on this account.
              *
              */
-            obj["due"] = base.parse_element (/<cim:AuxiliaryAccount.due>([\s\S]*?)<\/cim:AuxiliaryAccount.due>/g, sub, context, true);
+            base.parse_element (/<cim:AuxiliaryAccount.due>([\s\S]*?)<\/cim:AuxiliaryAccount.due>/g, obj, "due", base.to_string, sub, context);
+
             /**
              * Details of the last credit transaction performed on this account.
              *
              */
-            obj["lastCredit"] = base.parse_element (/<cim:AuxiliaryAccount.lastCredit>([\s\S]*?)<\/cim:AuxiliaryAccount.lastCredit>/g, sub, context, true);
+            base.parse_element (/<cim:AuxiliaryAccount.lastCredit>([\s\S]*?)<\/cim:AuxiliaryAccount.lastCredit>/g, obj, "lastCredit", base.to_string, sub, context);
+
             /**
              * Details of the last debit transaction performed on this account.
              *
              */
-            obj["lastDebit"] = base.parse_element (/<cim:AuxiliaryAccount.lastDebit>([\s\S]*?)<\/cim:AuxiliaryAccount.lastDebit>/g, sub, context, true);
+            base.parse_element (/<cim:AuxiliaryAccount.lastDebit>([\s\S]*?)<\/cim:AuxiliaryAccount.lastDebit>/g, obj, "lastDebit", base.to_string, sub, context);
+
             /**
              * The initial principle amount, with which this account was instantiated.
              *
              */
-            obj["principleAmount"] = base.parse_element (/<cim:AuxiliaryAccount.principleAmount>([\s\S]*?)<\/cim:AuxiliaryAccount.principleAmount>/g, sub, context, true);
+            base.parse_element (/<cim:AuxiliaryAccount.principleAmount>([\s\S]*?)<\/cim:AuxiliaryAccount.principleAmount>/g, obj, "principleAmount", base.to_string, sub, context);
+
             /**
              * Auxiliary agreement regulating this account.
              *
              */
-            obj["AuxiliaryAgreement"] = base.parse_attribute (/<cim:AuxiliaryAccount.AuxiliaryAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:AuxiliaryAccount.AuxiliaryAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxiliaryAgreement", sub, context, true);
+
             bucket = context.parsed.AuxiliaryAccount;
             if (null == bucket)
                 context.parsed.AuxiliaryAccount = bucket = {};
@@ -1063,22 +1159,26 @@ define
              * Unit of service.
              *
              */
-            obj["energyUnit"] = base.parse_element (/<cim:AccountingUnit.energyUnit>([\s\S]*?)<\/cim:AccountingUnit.energyUnit>/g, sub, context, true);
+            base.parse_element (/<cim:AccountingUnit.energyUnit>([\s\S]*?)<\/cim:AccountingUnit.energyUnit>/g, obj, "energyUnit", base.to_string, sub, context);
+
             /**
              * Unit of currency.
              *
              */
-            obj["monetaryUnit"] = base.parse_element (/<cim:AccountingUnit.monetaryUnit>([\s\S]*?)<\/cim:AccountingUnit.monetaryUnit>/g, sub, context, true);
+            base.parse_element (/<cim:AccountingUnit.monetaryUnit>([\s\S]*?)<\/cim:AccountingUnit.monetaryUnit>/g, obj, "monetaryUnit", base.to_string, sub, context);
+
             /**
              * Multiplier for the 'energyUnit' or 'monetaryUnit'.
              *
              */
-            obj["multiplier"] = base.parse_element (/<cim:AccountingUnit.multiplier>([\s\S]*?)<\/cim:AccountingUnit.multiplier>/g, sub, context, true);
+            base.parse_element (/<cim:AccountingUnit.multiplier>([\s\S]*?)<\/cim:AccountingUnit.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+
             /**
              * Value expressed in applicable units.
              *
              */
-            obj["value"] = base.to_float (base.parse_element (/<cim:AccountingUnit.value>([\s\S]*?)<\/cim:AccountingUnit.value>/g, sub, context, true));
+            base.parse_element (/<cim:AccountingUnit.value>([\s\S]*?)<\/cim:AccountingUnit.value>/g, obj, "value", base.to_float, sub, context);
+
             bucket = context.parsed.AccountingUnit;
             if (null == bucket)
                 context.parsed.AccountingUnit = bucket = {};
@@ -1123,67 +1223,80 @@ define
              * Payment for a service.
              *
              */
-            obj["serviceChargePayment"] = base.parse_element (/<cim:TransactionKind.serviceChargePayment>([\s\S]*?)<\/cim:TransactionKind.serviceChargePayment>/g, sub, context, true);
+            base.parse_element (/<cim:TransactionKind.serviceChargePayment>([\s\S]*?)<\/cim:TransactionKind.serviceChargePayment>/g, obj, "serviceChargePayment", base.to_string, sub, context);
+
             /**
              * Payment for a tax.
              *
              */
-            obj["taxChargePayment"] = base.parse_element (/<cim:TransactionKind.taxChargePayment>([\s\S]*?)<\/cim:TransactionKind.taxChargePayment>/g, sub, context, true);
+            base.parse_element (/<cim:TransactionKind.taxChargePayment>([\s\S]*?)<\/cim:TransactionKind.taxChargePayment>/g, obj, "taxChargePayment", base.to_string, sub, context);
+
             /**
              * Payment against a specified auxiliary account.
              *
              */
-            obj["auxiliaryChargePayment"] = base.parse_element (/<cim:TransactionKind.auxiliaryChargePayment>([\s\S]*?)<\/cim:TransactionKind.auxiliaryChargePayment>/g, sub, context, true);
+            base.parse_element (/<cim:TransactionKind.auxiliaryChargePayment>([\s\S]*?)<\/cim:TransactionKind.auxiliaryChargePayment>/g, obj, "auxiliaryChargePayment", base.to_string, sub, context);
+
             /**
              * Payment against a specified account.
              *
              */
-            obj["accountPayment"] = base.parse_element (/<cim:TransactionKind.accountPayment>([\s\S]*?)<\/cim:TransactionKind.accountPayment>/g, sub, context, true);
+            base.parse_element (/<cim:TransactionKind.accountPayment>([\s\S]*?)<\/cim:TransactionKind.accountPayment>/g, obj, "accountPayment", base.to_string, sub, context);
+
             /**
              * Payment against an item other than an account.
              *
              */
-            obj["diversePayment"] = base.parse_element (/<cim:TransactionKind.diversePayment>([\s\S]*?)<\/cim:TransactionKind.diversePayment>/g, sub, context, true);
+            base.parse_element (/<cim:TransactionKind.diversePayment>([\s\S]*?)<\/cim:TransactionKind.diversePayment>/g, obj, "diversePayment", base.to_string, sub, context);
+
             /**
              * Reversal of a previous transaction.
              *
              */
-            obj["transactionReversal"] = base.parse_element (/<cim:TransactionKind.transactionReversal>([\s\S]*?)<\/cim:TransactionKind.transactionReversal>/g, sub, context, true);
+            base.parse_element (/<cim:TransactionKind.transactionReversal>([\s\S]*?)<\/cim:TransactionKind.transactionReversal>/g, obj, "transactionReversal", base.to_string, sub, context);
+
             /**
              * Payment for a credit token sale to a customer.
              *
              */
-            obj["tokenSalePayment"] = base.parse_element (/<cim:TransactionKind.tokenSalePayment>([\s\S]*?)<\/cim:TransactionKind.tokenSalePayment>/g, sub, context, true);
+            base.parse_element (/<cim:TransactionKind.tokenSalePayment>([\s\S]*?)<\/cim:TransactionKind.tokenSalePayment>/g, obj, "tokenSalePayment", base.to_string, sub, context);
+
             /**
              * Issue of a free credit token where the donor is the supplier.
              *
              */
-            obj["tokenFreeIssue"] = base.parse_element (/<cim:TransactionKind.tokenFreeIssue>([\s\S]*?)<\/cim:TransactionKind.tokenFreeIssue>/g, sub, context, true);
+            base.parse_element (/<cim:TransactionKind.tokenFreeIssue>([\s\S]*?)<\/cim:TransactionKind.tokenFreeIssue>/g, obj, "tokenFreeIssue", base.to_string, sub, context);
+
             /**
              * Issue of a free credit token where the donor is a 3<sup>rd</sup> party.
              *
              */
-            obj["tokenGrant"] = base.parse_element (/<cim:TransactionKind.tokenGrant>([\s\S]*?)<\/cim:TransactionKind.tokenGrant>/g, sub, context, true);
+            base.parse_element (/<cim:TransactionKind.tokenGrant>([\s\S]*?)<\/cim:TransactionKind.tokenGrant>/g, obj, "tokenGrant", base.to_string, sub, context);
+
             /**
              * Exchange of a previously issued token for a new token.
              *
              */
-            obj["tokenExchange"] = base.parse_element (/<cim:TransactionKind.tokenExchange>([\s\S]*?)<\/cim:TransactionKind.tokenExchange>/g, sub, context, true);
+            base.parse_element (/<cim:TransactionKind.tokenExchange>([\s\S]*?)<\/cim:TransactionKind.tokenExchange>/g, obj, "tokenExchange", base.to_string, sub, context);
+
             /**
              * Cancellation of a previously issued token.
              *
              */
-            obj["tokenCancellation"] = base.parse_element (/<cim:TransactionKind.tokenCancellation>([\s\S]*?)<\/cim:TransactionKind.tokenCancellation>/g, sub, context, true);
+            base.parse_element (/<cim:TransactionKind.tokenCancellation>([\s\S]*?)<\/cim:TransactionKind.tokenCancellation>/g, obj, "tokenCancellation", base.to_string, sub, context);
+
             /**
              * Issue of token that will alter the meter configuration.
              *
              */
-            obj["meterConfigurationToken"] = base.parse_element (/<cim:TransactionKind.meterConfigurationToken>([\s\S]*?)<\/cim:TransactionKind.meterConfigurationToken>/g, sub, context, true);
+            base.parse_element (/<cim:TransactionKind.meterConfigurationToken>([\s\S]*?)<\/cim:TransactionKind.meterConfigurationToken>/g, obj, "meterConfigurationToken", base.to_string, sub, context);
+
             /**
              * Other kind of transaction.
              *
              */
-            obj["other"] = base.parse_element (/<cim:TransactionKind.other>([\s\S]*?)<\/cim:TransactionKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:TransactionKind.other>([\s\S]*?)<\/cim:TransactionKind.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.TransactionKind;
             if (null == bucket)
                 context.parsed.TransactionKind = bucket = {};
@@ -1207,77 +1320,92 @@ define
              * Formal reference for use with diverse payment (traffic fine for example).
              *
              */
-            obj["diverseReference"] = base.parse_element (/<cim:Transaction.diverseReference>([\s\S]*?)<\/cim:Transaction.diverseReference>/g, sub, context, true);
+            base.parse_element (/<cim:Transaction.diverseReference>([\s\S]*?)<\/cim:Transaction.diverseReference>/g, obj, "diverseReference", base.to_string, sub, context);
+
             /**
              * Reference to the entity that is the source of 'amount' (for example: customer for token purchase; or supplier for free issue token).
              *
              */
-            obj["donorReference"] = base.parse_element (/<cim:Transaction.donorReference>([\s\S]*?)<\/cim:Transaction.donorReference>/g, sub, context, true);
+            base.parse_element (/<cim:Transaction.donorReference>([\s\S]*?)<\/cim:Transaction.donorReference>/g, obj, "donorReference", base.to_string, sub, context);
+
             /**
              * Kind of transaction.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:Transaction.kind>([\s\S]*?)<\/cim:Transaction.kind>/g, sub, context, true);
+            base.parse_element (/<cim:Transaction.kind>([\s\S]*?)<\/cim:Transaction.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * Transaction amount, rounding, date and note for this transaction line.
              *
              */
-            obj["line"] = base.parse_element (/<cim:Transaction.line>([\s\S]*?)<\/cim:Transaction.line>/g, sub, context, true);
+            base.parse_element (/<cim:Transaction.line>([\s\S]*?)<\/cim:Transaction.line>/g, obj, "line", base.to_string, sub, context);
+
             /**
              * Reference to the entity that is the recipient of 'amount' (for example, supplier for service charge payment; or tax receiver for VAT).
              *
              */
-            obj["receiverReference"] = base.parse_element (/<cim:Transaction.receiverReference>([\s\S]*?)<\/cim:Transaction.receiverReference>/g, sub, context, true);
+            base.parse_element (/<cim:Transaction.receiverReference>([\s\S]*?)<\/cim:Transaction.receiverReference>/g, obj, "receiverReference", base.to_string, sub, context);
+
             /**
              * (if 'kind' is transactionReversal) Reference to the original transaction that is being reversed by this transaction.
              *
              */
-            obj["reversedId"] = base.parse_element (/<cim:Transaction.reversedId>([\s\S]*?)<\/cim:Transaction.reversedId>/g, sub, context, true);
+            base.parse_element (/<cim:Transaction.reversedId>([\s\S]*?)<\/cim:Transaction.reversedId>/g, obj, "reversedId", base.to_string, sub, context);
+
             /**
              * Actual amount of service units that is being paid for.
              *
              */
-            obj["serviceUnitsEnergy"] = base.parse_element (/<cim:Transaction.serviceUnitsEnergy>([\s\S]*?)<\/cim:Transaction.serviceUnitsEnergy>/g, sub, context, true);
+            base.parse_element (/<cim:Transaction.serviceUnitsEnergy>([\s\S]*?)<\/cim:Transaction.serviceUnitsEnergy>/g, obj, "serviceUnitsEnergy", base.to_string, sub, context);
+
             /**
              * Number of service units not reflected in 'serviceUnitsEnergy' due to process rounding or truncating errors.
              *
              */
-            obj["serviceUnitsError"] = base.parse_element (/<cim:Transaction.serviceUnitsError>([\s\S]*?)<\/cim:Transaction.serviceUnitsError>/g, sub, context, true);
+            base.parse_element (/<cim:Transaction.serviceUnitsError>([\s\S]*?)<\/cim:Transaction.serviceUnitsError>/g, obj, "serviceUnitsError", base.to_string, sub, context);
+
             /**
              * Pricing structure applicable for this transaction.
              *
              */
-            obj["PricingStructure"] = base.parse_attribute (/<cim:Transaction.PricingStructure\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Transaction.PricingStructure\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PricingStructure", sub, context, true);
+
             /**
              * Auxiliary account for this payment transaction.
              *
              */
-            obj["AuxiliaryAccount"] = base.parse_attribute (/<cim:Transaction.AuxiliaryAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Transaction.AuxiliaryAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxiliaryAccount", sub, context, true);
+
             /**
              * The receipted payment for which this transaction has been recorded.
              *
              */
-            obj["Receipt"] = base.parse_attribute (/<cim:Transaction.Receipt\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Transaction.Receipt\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Receipt", sub, context, true);
+
             /**
              * Vendor shift during which this transaction was recorded.
              *
              */
-            obj["VendorShift"] = base.parse_attribute (/<cim:Transaction.VendorShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Transaction.VendorShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VendorShift", sub, context, true);
+
             /**
              * Cashier shift during which this transaction was recorded.
              *
              */
-            obj["CashierShift"] = base.parse_attribute (/<cim:Transaction.CashierShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Transaction.CashierShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CashierShift", sub, context, true);
+
             /**
              * Meter for this vending transaction.
              *
              */
-            obj["Meter"] = base.parse_attribute (/<cim:Transaction.Meter\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Transaction.Meter\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Meter", sub, context, true);
+
             /**
              * Customer account for this payment transaction.
              *
              */
-            obj["CustomerAccount"] = base.parse_attribute (/<cim:Transaction.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Transaction.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAccount", sub, context, true);
+
             bucket = context.parsed.Transaction;
             if (null == bucket)
                 context.parsed.Transaction = bucket = {};
@@ -1303,17 +1431,20 @@ define
              * The current operating balance of this account.
              *
              */
-            obj["currentBalance"] = base.parse_element (/<cim:MerchantAccount.currentBalance>([\s\S]*?)<\/cim:MerchantAccount.currentBalance>/g, sub, context, true);
+            base.parse_element (/<cim:MerchantAccount.currentBalance>([\s\S]*?)<\/cim:MerchantAccount.currentBalance>/g, obj, "currentBalance", base.to_string, sub, context);
+
             /**
              * The balance of this account after taking into account any pending debits from VendorShift.merchantDebitAmount and pending credits from BankStatement.merchantCreditAmount or credits (see also BankStatement attributes and VendorShift attributes).
              *
              */
-            obj["provisionalBalance"] = base.parse_element (/<cim:MerchantAccount.provisionalBalance>([\s\S]*?)<\/cim:MerchantAccount.provisionalBalance>/g, sub, context, true);
+            base.parse_element (/<cim:MerchantAccount.provisionalBalance>([\s\S]*?)<\/cim:MerchantAccount.provisionalBalance>/g, obj, "provisionalBalance", base.to_string, sub, context);
+
             /**
              * Merchant agreement that instantiated this merchant account.
              *
              */
-            obj["MerchantAgreement"] = base.parse_attribute (/<cim:MerchantAccount.MerchantAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:MerchantAccount.MerchantAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MerchantAgreement", sub, context, true);
+
             bucket = context.parsed.MerchantAccount;
             if (null == bucket)
                 context.parsed.MerchantAccount = bucket = {};

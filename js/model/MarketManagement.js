@@ -23,25 +23,30 @@ define
              * A sequential value representing the relative position within a given time interval.
              *
              */
-            obj["position"] = base.parse_element (/<cim:Point.position>([\s\S]*?)<\/cim:Point.position>/g, sub, context, true);
+            base.parse_element (/<cim:Point.position>([\s\S]*?)<\/cim:Point.position>/g, obj, "position", base.to_string, sub, context);
+
             /**
              * The quality of the information being provided.
              *
              * This quality may be estimated, not available, as provided, etc.
              *
              */
-            obj["quality"] = base.parse_element (/<cim:Point.quality>([\s\S]*?)<\/cim:Point.quality>/g, sub, context, true);
+            base.parse_element (/<cim:Point.quality>([\s\S]*?)<\/cim:Point.quality>/g, obj, "quality", base.to_string, sub, context);
+
             /**
              * Principal quantity identified for a point.
              *
              */
-            obj["quantity"] = base.parse_element (/<cim:Point.quantity>([\s\S]*?)<\/cim:Point.quantity>/g, sub, context, true);
+            base.parse_element (/<cim:Point.quantity>([\s\S]*?)<\/cim:Point.quantity>/g, obj, "quantity", base.to_string, sub, context);
+
             /**
              * Secondary quantity identified for a point.
              *
              */
-            obj["secondaryQuantity"] = base.parse_element (/<cim:Point.secondaryQuantity>([\s\S]*?)<\/cim:Point.secondaryQuantity>/g, sub, context, true);
-            obj["Period"] = base.parse_attribute (/<cim:Point.Period\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_element (/<cim:Point.secondaryQuantity>([\s\S]*?)<\/cim:Point.secondaryQuantity>/g, obj, "secondaryQuantity", base.to_string, sub, context);
+
+            base.parse_attribute (/<cim:Point.Period\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Period", sub, context, true);
+
             bucket = context.parsed.Point;
             if (null == bucket)
                 context.parsed.Point = bucket = {};
@@ -65,12 +70,14 @@ define
              * The motivation of an act in coded form.
              *
              */
-            obj["code"] = base.parse_element (/<cim:Reason.code>([\s\S]*?)<\/cim:Reason.code>/g, sub, context, true);
+            base.parse_element (/<cim:Reason.code>([\s\S]*?)<\/cim:Reason.code>/g, obj, "code", base.to_string, sub, context);
+
             /**
              * The textual explanation corresponding to the reason code.
              *
              */
-            obj["text"] = base.parse_element (/<cim:Reason.text>([\s\S]*?)<\/cim:Reason.text>/g, sub, context, true);
+            base.parse_element (/<cim:Reason.text>([\s\S]*?)<\/cim:Reason.text>/g, obj, "text", base.to_string, sub, context);
+
             bucket = context.parsed.Reason;
             if (null == bucket)
                 context.parsed.Reason = bucket = {};
@@ -94,7 +101,8 @@ define
              * The coded representation of the unit.
              *
              */
-            obj["name"] = base.parse_element (/<cim:Unit.name>([\s\S]*?)<\/cim:Unit.name>/g, sub, context, true);
+            base.parse_element (/<cim:Unit.name>([\s\S]*?)<\/cim:Unit.name>/g, obj, "name", base.to_string, sub, context);
+
             bucket = context.parsed.Unit;
             if (null == bucket)
                 context.parsed.Unit = bucket = {};
@@ -118,12 +126,14 @@ define
              * Date as "yyyy-mm-dd", which conforms with ISO 8601
              *
              */
-            obj["date"] = base.parse_element (/<cim:DateAndOrTime.date>([\s\S]*?)<\/cim:DateAndOrTime.date>/g, sub, context, true);
+            base.parse_element (/<cim:DateAndOrTime.date>([\s\S]*?)<\/cim:DateAndOrTime.date>/g, obj, "date", base.to_string, sub, context);
+
             /**
              * Time as "hh:mm:ss.sssZ", which conforms with ISO 8601.
              *
              */
-            obj["time"] = base.parse_element (/<cim:DateAndOrTime.time>([\s\S]*?)<\/cim:DateAndOrTime.time>/g, sub, context, true);
+            base.parse_element (/<cim:DateAndOrTime.time>([\s\S]*?)<\/cim:DateAndOrTime.time>/g, obj, "time", base.to_string, sub, context);
+
             bucket = context.parsed.DateAndOrTime;
             if (null == bucket)
                 context.parsed.DateAndOrTime = bucket = {};
@@ -147,7 +157,8 @@ define
              * The coded type of a power system resource.
              *
              */
-            obj["psrType"] = base.parse_element (/<cim:MktPSRType.psrType>([\s\S]*?)<\/cim:MktPSRType.psrType>/g, sub, context, true);
+            base.parse_element (/<cim:MktPSRType.psrType>([\s\S]*?)<\/cim:MktPSRType.psrType>/g, obj, "psrType", base.to_string, sub, context);
+
             bucket = context.parsed.MktPSRType;
             if (null == bucket)
                 context.parsed.MktPSRType = bucket = {};
@@ -171,7 +182,8 @@ define
              * The coded type of an ACE tariff.
              *
              */
-            obj["type"] = base.parse_element (/<cim:AceTariffType.type>([\s\S]*?)<\/cim:AceTariffType.type>/g, sub, context, true);
+            base.parse_element (/<cim:AceTariffType.type>([\s\S]*?)<\/cim:AceTariffType.type>/g, obj, "type", base.to_string, sub, context);
+
             bucket = context.parsed.AceTariffType;
             if (null == bucket)
                 context.parsed.AceTariffType = bucket = {};
@@ -271,12 +283,14 @@ define
              * The number of units of time that compose an individual step within a period.
              *
              */
-            obj["resolution"] = base.parse_element (/<cim:Period.resolution>([\s\S]*?)<\/cim:Period.resolution>/g, sub, context, true);
+            base.parse_element (/<cim:Period.resolution>([\s\S]*?)<\/cim:Period.resolution>/g, obj, "resolution", base.to_string, sub, context);
+
             /**
              * The start and end date and time for a given interval.
              *
              */
-            obj["timeInterval"] = base.parse_element (/<cim:Period.timeInterval>([\s\S]*?)<\/cim:Period.timeInterval>/g, sub, context, true);
+            base.parse_element (/<cim:Period.timeInterval>([\s\S]*?)<\/cim:Period.timeInterval>/g, obj, "timeInterval", base.to_string, sub, context);
+
             bucket = context.parsed.Period;
             if (null == bucket)
                 context.parsed.Period = bucket = {};
@@ -300,7 +314,8 @@ define
              * The coded condition or position of an object with regard to its standing.
              *
              */
-            obj["status"] = base.parse_element (/<cim:MarketObjectStatus.status>([\s\S]*?)<\/cim:MarketObjectStatus.status>/g, sub, context, true);
+            base.parse_element (/<cim:MarketObjectStatus.status>([\s\S]*?)<\/cim:MarketObjectStatus.status>/g, obj, "status", base.to_string, sub, context);
+
             bucket = context.parsed.MarketObjectStatus;
             if (null == bucket)
                 context.parsed.MarketObjectStatus = bucket = {};
@@ -324,17 +339,20 @@ define
              * The identification of the formal name of an attribute.
              *
              */
-            obj["attribute"] = base.parse_element (/<cim:AttributeInstanceComponent.attribute>([\s\S]*?)<\/cim:AttributeInstanceComponent.attribute>/g, sub, context, true);
+            base.parse_element (/<cim:AttributeInstanceComponent.attribute>([\s\S]*?)<\/cim:AttributeInstanceComponent.attribute>/g, obj, "attribute", base.to_string, sub, context);
+
             /**
              * The instance value of the attribute.
              *
              */
-            obj["attributeValue"] = base.parse_element (/<cim:AttributeInstanceComponent.attributeValue>([\s\S]*?)<\/cim:AttributeInstanceComponent.attributeValue>/g, sub, context, true);
+            base.parse_element (/<cim:AttributeInstanceComponent.attributeValue>([\s\S]*?)<\/cim:AttributeInstanceComponent.attributeValue>/g, obj, "attributeValue", base.to_string, sub, context);
+
             /**
              * A sequential value representing a relative sequence number.
              *
              */
-            obj["position"] = base.parse_element (/<cim:AttributeInstanceComponent.position>([\s\S]*?)<\/cim:AttributeInstanceComponent.position>/g, sub, context, true);
+            base.parse_element (/<cim:AttributeInstanceComponent.position>([\s\S]*?)<\/cim:AttributeInstanceComponent.position>/g, obj, "position", base.to_string, sub, context);
+
             bucket = context.parsed.AttributeInstanceComponent;
             if (null == bucket)
                 context.parsed.AttributeInstanceComponent = bucket = {};
@@ -358,32 +376,38 @@ define
              * Identification of the method of allocation in an auction.
              *
              */
-            obj["allocationMode"] = base.parse_element (/<cim:Auction.allocationMode>([\s\S]*?)<\/cim:Auction.allocationMode>/g, sub, context, true);
+            base.parse_element (/<cim:Auction.allocationMode>([\s\S]*?)<\/cim:Auction.allocationMode>/g, obj, "allocationMode", base.to_string, sub, context);
+
             /**
              * An indicator that signifies that the auction has been cancelled.
              *
              */
-            obj["cancelled"] = base.parse_element (/<cim:Auction.cancelled>([\s\S]*?)<\/cim:Auction.cancelled>/g, sub, context, true);
+            base.parse_element (/<cim:Auction.cancelled>([\s\S]*?)<\/cim:Auction.cancelled>/g, obj, "cancelled", base.to_string, sub, context);
+
             /**
              * The product category of an auction.
              *
              */
-            obj["category"] = base.parse_element (/<cim:Auction.category>([\s\S]*?)<\/cim:Auction.category>/g, sub, context, true);
+            base.parse_element (/<cim:Auction.category>([\s\S]*?)<\/cim:Auction.category>/g, obj, "category", base.to_string, sub, context);
+
             /**
              * The terms which dictate the determination of the bid payment price.
              *
              */
-            obj["paymentTerms"] = base.parse_element (/<cim:Auction.paymentTerms>([\s\S]*?)<\/cim:Auction.paymentTerms>/g, sub, context, true);
+            base.parse_element (/<cim:Auction.paymentTerms>([\s\S]*?)<\/cim:Auction.paymentTerms>/g, obj, "paymentTerms", base.to_string, sub, context);
+
             /**
              * The rights of use the transmission capacity acquired in an auction.
              *
              */
-            obj["rights"] = base.parse_element (/<cim:Auction.rights>([\s\S]*?)<\/cim:Auction.rights>/g, sub, context, true);
+            base.parse_element (/<cim:Auction.rights>([\s\S]*?)<\/cim:Auction.rights>/g, obj, "rights", base.to_string, sub, context);
+
             /**
              * The kind of the Auction (e.g. implicit, explicit ...).
              *
              */
-            obj["type"] = base.parse_element (/<cim:Auction.type>([\s\S]*?)<\/cim:Auction.type>/g, sub, context, true);
+            base.parse_element (/<cim:Auction.type>([\s\S]*?)<\/cim:Auction.type>/g, obj, "type", base.to_string, sub, context);
+
             bucket = context.parsed.Auction;
             if (null == bucket)
                 context.parsed.Auction = bucket = {};
@@ -407,20 +431,24 @@ define
              * A number of monetary units specified in a unit of currency.
              *
              */
-            obj["amount"] = base.parse_element (/<cim:Price.amount>([\s\S]*?)<\/cim:Price.amount>/g, sub, context, true);
+            base.parse_element (/<cim:Price.amount>([\s\S]*?)<\/cim:Price.amount>/g, obj, "amount", base.to_string, sub, context);
+
             /**
              * The category of a price to be used in a price calculation.
              *
              * The price category is mutually agreed between System Operators.
              *
              */
-            obj["category"] = base.parse_element (/<cim:Price.category>([\s\S]*?)<\/cim:Price.category>/g, sub, context, true);
+            base.parse_element (/<cim:Price.category>([\s\S]*?)<\/cim:Price.category>/g, obj, "category", base.to_string, sub, context);
+
             /**
              * The direction indicates whether a System Operator pays the Market Parties or inverse.
              *
              */
-            obj["direction"] = base.parse_element (/<cim:Price.direction>([\s\S]*?)<\/cim:Price.direction>/g, sub, context, true);
-            obj["Point"] = base.parse_attribute (/<cim:Price.Point\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_element (/<cim:Price.direction>([\s\S]*?)<\/cim:Price.direction>/g, obj, "direction", base.to_string, sub, context);
+
+            base.parse_attribute (/<cim:Price.Point\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Point", sub, context, true);
+
             bucket = context.parsed.Price;
             if (null == bucket)
                 context.parsed.Price = bucket = {};
@@ -446,12 +474,14 @@ define
              * The grouping may be of a detailed or a summary nature.
              *
              */
-            obj["classificationType"] = base.parse_element (/<cim:Process.classificationType>([\s\S]*?)<\/cim:Process.classificationType>/g, sub, context, true);
+            base.parse_element (/<cim:Process.classificationType>([\s\S]*?)<\/cim:Process.classificationType>/g, obj, "classificationType", base.to_string, sub, context);
+
             /**
              * The kind of business process.
              *
              */
-            obj["processType"] = base.parse_element (/<cim:Process.processType>([\s\S]*?)<\/cim:Process.processType>/g, sub, context, true);
+            base.parse_element (/<cim:Process.processType>([\s\S]*?)<\/cim:Process.processType>/g, obj, "processType", base.to_string, sub, context);
+
             bucket = context.parsed.Process;
             if (null == bucket)
                 context.parsed.Process = bucket = {};
@@ -475,32 +505,38 @@ define
              * The identification of the nature of the time series.
              *
              */
-            obj["businessType"] = base.parse_element (/<cim:TimeSeries.businessType>([\s\S]*?)<\/cim:TimeSeries.businessType>/g, sub, context, true);
+            base.parse_element (/<cim:TimeSeries.businessType>([\s\S]*?)<\/cim:TimeSeries.businessType>/g, obj, "businessType", base.to_string, sub, context);
+
             /**
              * An indicator stating that the TimeSeries, identified by the mRID, is cancelled as well as all the values sent in a previous version of the TimeSeries in a previous document.
              *
              */
-            obj["cancelledTS"] = base.parse_element (/<cim:TimeSeries.cancelledTS>([\s\S]*?)<\/cim:TimeSeries.cancelledTS>/g, sub, context, true);
+            base.parse_element (/<cim:TimeSeries.cancelledTS>([\s\S]*?)<\/cim:TimeSeries.cancelledTS>/g, obj, "cancelledTS", base.to_string, sub, context);
+
             /**
              * The coded representation of the type of curve being described.
              *
              */
-            obj["curveType"] = base.parse_element (/<cim:TimeSeries.curveType>([\s\S]*?)<\/cim:TimeSeries.curveType>/g, sub, context, true);
+            base.parse_element (/<cim:TimeSeries.curveType>([\s\S]*?)<\/cim:TimeSeries.curveType>/g, obj, "curveType", base.to_string, sub, context);
+
             /**
              * Identification of the object that is the common dominator used to aggregate a time series.
              *
              */
-            obj["objectAggregation"] = base.parse_element (/<cim:TimeSeries.objectAggregation>([\s\S]*?)<\/cim:TimeSeries.objectAggregation>/g, sub, context, true);
+            base.parse_element (/<cim:TimeSeries.objectAggregation>([\s\S]*?)<\/cim:TimeSeries.objectAggregation>/g, obj, "objectAggregation", base.to_string, sub, context);
+
             /**
              * The type of the product such as Power, energy, reactive power, transport capacity that is the subject of the time series.
              *
              */
-            obj["product"] = base.parse_element (/<cim:TimeSeries.product>([\s\S]*?)<\/cim:TimeSeries.product>/g, sub, context, true);
+            base.parse_element (/<cim:TimeSeries.product>([\s\S]*?)<\/cim:TimeSeries.product>/g, obj, "product", base.to_string, sub, context);
+
             /**
              * Version of the time series.
              *
              */
-            obj["version"] = base.parse_element (/<cim:TimeSeries.version>([\s\S]*?)<\/cim:TimeSeries.version>/g, sub, context, true);
+            base.parse_element (/<cim:TimeSeries.version>([\s\S]*?)<\/cim:TimeSeries.version>/g, obj, "version", base.to_string, sub, context);
+
             bucket = context.parsed.TimeSeries;
             if (null == bucket)
                 context.parsed.TimeSeries = bucket = {};
@@ -524,7 +560,8 @@ define
              * The coded identification of the direction of energy flow.
              *
              */
-            obj["direction"] = base.parse_element (/<cim:FlowDirection.direction>([\s\S]*?)<\/cim:FlowDirection.direction>/g, sub, context, true);
+            base.parse_element (/<cim:FlowDirection.direction>([\s\S]*?)<\/cim:FlowDirection.direction>/g, obj, "direction", base.to_string, sub, context);
+
             bucket = context.parsed.FlowDirection;
             if (null == bucket)
                 context.parsed.FlowDirection = bucket = {};
@@ -550,32 +587,38 @@ define
              * They cannot be changed or subdivided.
              *
              */
-            obj["blockBid"] = base.parse_element (/<cim:BidTimeSeries.blockBid>([\s\S]*?)<\/cim:BidTimeSeries.blockBid>/g, sub, context, true);
+            base.parse_element (/<cim:BidTimeSeries.blockBid>([\s\S]*?)<\/cim:BidTimeSeries.blockBid>/g, obj, "blockBid", base.to_string, sub, context);
+
             /**
              * The coded identification of the energy flow.
              *
              */
-            obj["direction"] = base.parse_element (/<cim:BidTimeSeries.direction>([\s\S]*?)<\/cim:BidTimeSeries.direction>/g, sub, context, true);
+            base.parse_element (/<cim:BidTimeSeries.direction>([\s\S]*?)<\/cim:BidTimeSeries.direction>/g, obj, "direction", base.to_string, sub, context);
+
             /**
              * An indication whether or not each element of the bid may be partially accepted or not.
              *
              */
-            obj["divisible"] = base.parse_element (/<cim:BidTimeSeries.divisible>([\s\S]*?)<\/cim:BidTimeSeries.divisible>/g, sub, context, true);
+            base.parse_element (/<cim:BidTimeSeries.divisible>([\s\S]*?)<\/cim:BidTimeSeries.divisible>/g, obj, "divisible", base.to_string, sub, context);
+
             /**
              * Unique identification associated with all linked bids.
              *
              */
-            obj["linkedBidsIdentification"] = base.parse_element (/<cim:BidTimeSeries.linkedBidsIdentification>([\s\S]*?)<\/cim:BidTimeSeries.linkedBidsIdentification>/g, sub, context, true);
+            base.parse_element (/<cim:BidTimeSeries.linkedBidsIdentification>([\s\S]*?)<\/cim:BidTimeSeries.linkedBidsIdentification>/g, obj, "linkedBidsIdentification", base.to_string, sub, context);
+
             /**
              * The minimum quantity of energy that can be activated at a given time interval.
              *
              */
-            obj["minimumActivationQuantity"] = base.parse_element (/<cim:BidTimeSeries.minimumActivationQuantity>([\s\S]*?)<\/cim:BidTimeSeries.minimumActivationQuantity>/g, sub, context, true);
+            base.parse_element (/<cim:BidTimeSeries.minimumActivationQuantity>([\s\S]*?)<\/cim:BidTimeSeries.minimumActivationQuantity>/g, obj, "minimumActivationQuantity", base.to_string, sub, context);
+
             /**
              * The minimum increment that can be applied for an increase in an activation request.
              *
              */
-            obj["stepIncrementQuantity"] = base.parse_element (/<cim:BidTimeSeries.stepIncrementQuantity>([\s\S]*?)<\/cim:BidTimeSeries.stepIncrementQuantity>/g, sub, context, true);
+            base.parse_element (/<cim:BidTimeSeries.stepIncrementQuantity>([\s\S]*?)<\/cim:BidTimeSeries.stepIncrementQuantity>/g, obj, "stepIncrementQuantity", base.to_string, sub, context);
+
             bucket = context.parsed.BidTimeSeries;
             if (null == bucket)
                 context.parsed.BidTimeSeries = bucket = {};

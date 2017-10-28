@@ -30,7 +30,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:PFVArControllerType2UserDefined.proprietary>([\s\S]*?)<\/cim:PFVArControllerType2UserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:PFVArControllerType2UserDefined.proprietary>([\s\S]*?)<\/cim:PFVArControllerType2UserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.PFVArControllerType2UserDefined;
             if (null == bucket)
                 context.parsed.PFVArControllerType2UserDefined = bucket = {};
@@ -57,7 +58,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:TurbineLoadControllerUserDefined.proprietary>([\s\S]*?)<\/cim:TurbineLoadControllerUserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:TurbineLoadControllerUserDefined.proprietary>([\s\S]*?)<\/cim:TurbineLoadControllerUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.TurbineLoadControllerUserDefined;
             if (null == bucket)
                 context.parsed.TurbineLoadControllerUserDefined = bucket = {};
@@ -84,7 +86,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:VoltageAdjusterUserDefined.proprietary>([\s\S]*?)<\/cim:VoltageAdjusterUserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:VoltageAdjusterUserDefined.proprietary>([\s\S]*?)<\/cim:VoltageAdjusterUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.VoltageAdjusterUserDefined;
             if (null == bucket)
                 context.parsed.VoltageAdjusterUserDefined = bucket = {};
@@ -111,7 +114,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:TurbineGovernorUserDefined.proprietary>([\s\S]*?)<\/cim:TurbineGovernorUserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:TurbineGovernorUserDefined.proprietary>([\s\S]*?)<\/cim:TurbineGovernorUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.TurbineGovernorUserDefined;
             if (null == bucket)
                 context.parsed.TurbineGovernorUserDefined = bucket = {};
@@ -138,7 +142,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:LoadUserDefined.proprietary>([\s\S]*?)<\/cim:LoadUserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:LoadUserDefined.proprietary>([\s\S]*?)<\/cim:LoadUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.LoadUserDefined;
             if (null == bucket)
                 context.parsed.LoadUserDefined = bucket = {};
@@ -165,7 +170,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:ExcitationSystemUserDefined.proprietary>([\s\S]*?)<\/cim:ExcitationSystemUserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:ExcitationSystemUserDefined.proprietary>([\s\S]*?)<\/cim:ExcitationSystemUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.ExcitationSystemUserDefined;
             if (null == bucket)
                 context.parsed.ExcitationSystemUserDefined = bucket = {};
@@ -192,7 +198,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:WindPlantUserDefined.proprietary>([\s\S]*?)<\/cim:WindPlantUserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:WindPlantUserDefined.proprietary>([\s\S]*?)<\/cim:WindPlantUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.WindPlantUserDefined;
             if (null == bucket)
                 context.parsed.WindPlantUserDefined = bucket = {};
@@ -219,7 +226,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:PowerSystemStabilizerUserDefined.proprietary>([\s\S]*?)<\/cim:PowerSystemStabilizerUserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:PowerSystemStabilizerUserDefined.proprietary>([\s\S]*?)<\/cim:PowerSystemStabilizerUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.PowerSystemStabilizerUserDefined;
             if (null == bucket)
                 context.parsed.PowerSystemStabilizerUserDefined = bucket = {};
@@ -246,7 +254,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:WindType3or4UserDefined.proprietary>([\s\S]*?)<\/cim:WindType3or4UserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:WindType3or4UserDefined.proprietary>([\s\S]*?)<\/cim:WindType3or4UserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.WindType3or4UserDefined;
             if (null == bucket)
                 context.parsed.WindType3or4UserDefined = bucket = {};
@@ -273,7 +282,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:AsynchronousMachineUserDefined.proprietary>([\s\S]*?)<\/cim:AsynchronousMachineUserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:AsynchronousMachineUserDefined.proprietary>([\s\S]*?)<\/cim:AsynchronousMachineUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.AsynchronousMachineUserDefined;
             if (null == bucket)
                 context.parsed.AsynchronousMachineUserDefined = bucket = {};
@@ -300,7 +310,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:PFVArControllerType1UserDefined.proprietary>([\s\S]*?)<\/cim:PFVArControllerType1UserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:PFVArControllerType1UserDefined.proprietary>([\s\S]*?)<\/cim:PFVArControllerType1UserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.PFVArControllerType1UserDefined;
             if (null == bucket)
                 context.parsed.PFVArControllerType1UserDefined = bucket = {};
@@ -327,7 +338,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:MechanicalLoadUserDefined.proprietary>([\s\S]*?)<\/cim:MechanicalLoadUserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:MechanicalLoadUserDefined.proprietary>([\s\S]*?)<\/cim:MechanicalLoadUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.MechanicalLoadUserDefined;
             if (null == bucket)
                 context.parsed.MechanicalLoadUserDefined = bucket = {};
@@ -354,7 +366,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:VoltageCompensatorUserDefined.proprietary>([\s\S]*?)<\/cim:VoltageCompensatorUserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:VoltageCompensatorUserDefined.proprietary>([\s\S]*?)<\/cim:VoltageCompensatorUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.VoltageCompensatorUserDefined;
             if (null == bucket)
                 context.parsed.VoltageCompensatorUserDefined = bucket = {};
@@ -381,7 +394,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:UnderexcitationLimiterUserDefined.proprietary>([\s\S]*?)<\/cim:UnderexcitationLimiterUserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:UnderexcitationLimiterUserDefined.proprietary>([\s\S]*?)<\/cim:UnderexcitationLimiterUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.UnderexcitationLimiterUserDefined;
             if (null == bucket)
                 context.parsed.UnderexcitationLimiterUserDefined = bucket = {};
@@ -408,7 +422,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:WindType1or2UserDefined.proprietary>([\s\S]*?)<\/cim:WindType1or2UserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:WindType1or2UserDefined.proprietary>([\s\S]*?)<\/cim:WindType1or2UserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.WindType1or2UserDefined;
             if (null == bucket)
                 context.parsed.WindType1or2UserDefined = bucket = {};
@@ -435,7 +450,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:OverexcitationLimiterUserDefined.proprietary>([\s\S]*?)<\/cim:OverexcitationLimiterUserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:OverexcitationLimiterUserDefined.proprietary>([\s\S]*?)<\/cim:OverexcitationLimiterUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.OverexcitationLimiterUserDefined;
             if (null == bucket)
                 context.parsed.OverexcitationLimiterUserDefined = bucket = {};
@@ -463,116 +479,138 @@ define
              * If this attribute is populated, integerParameterValue and floatParameterValue will not be.
              *
              */
-            obj["booleanParameterValue"] = base.to_boolean (base.parse_element (/<cim:ProprietaryParameterDynamics.booleanParameterValue>([\s\S]*?)<\/cim:ProprietaryParameterDynamics.booleanParameterValue>/g, sub, context, true));
+            base.parse_element (/<cim:ProprietaryParameterDynamics.booleanParameterValue>([\s\S]*?)<\/cim:ProprietaryParameterDynamics.booleanParameterValue>/g, obj, "booleanParameterValue", base.to_boolean, sub, context);
+
             /**
              * Used for floating point parameter value.
              *
              * If this attribute is populated, booleanParameterValue and integerParameterValue will not be.
              *
              */
-            obj["floatParameterValue"] = base.to_float (base.parse_element (/<cim:ProprietaryParameterDynamics.floatParameterValue>([\s\S]*?)<\/cim:ProprietaryParameterDynamics.floatParameterValue>/g, sub, context, true));
+            base.parse_element (/<cim:ProprietaryParameterDynamics.floatParameterValue>([\s\S]*?)<\/cim:ProprietaryParameterDynamics.floatParameterValue>/g, obj, "floatParameterValue", base.to_float, sub, context);
+
             /**
              * Used for integer parameter value.
              *
              * If this attribute is populated, booleanParameterValue and floatParameterValue will not be.
              *
              */
-            obj["integerParameterValue"] = base.parse_element (/<cim:ProprietaryParameterDynamics.integerParameterValue>([\s\S]*?)<\/cim:ProprietaryParameterDynamics.integerParameterValue>/g, sub, context, true);
+            base.parse_element (/<cim:ProprietaryParameterDynamics.integerParameterValue>([\s\S]*?)<\/cim:ProprietaryParameterDynamics.integerParameterValue>/g, obj, "integerParameterValue", base.to_string, sub, context);
+
             /**
              * Sequence number of the parameter among the set of parameters associated with the related proprietary user-defined model.
              *
              */
-            obj["parameterNumber"] = base.parse_element (/<cim:ProprietaryParameterDynamics.parameterNumber>([\s\S]*?)<\/cim:ProprietaryParameterDynamics.parameterNumber>/g, sub, context, true);
+            base.parse_element (/<cim:ProprietaryParameterDynamics.parameterNumber>([\s\S]*?)<\/cim:ProprietaryParameterDynamics.parameterNumber>/g, obj, "parameterNumber", base.to_string, sub, context);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["TurbineGovernorUserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.TurbineGovernorUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.TurbineGovernorUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TurbineGovernorUserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["PFVArControllerType2UserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.PFVArControllerType2UserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.PFVArControllerType2UserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType2UserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["WindType1or2UserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.WindType1or2UserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.WindType1or2UserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindType1or2UserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["VoltageAdjusterUserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.VoltageAdjusterUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.VoltageAdjusterUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VoltageAdjusterUserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["TurbineLoadControllerUserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.TurbineLoadControllerUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.TurbineLoadControllerUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TurbineLoadControllerUserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["DiscontinuousExcitationControlUserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.DiscontinuousExcitationControlUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.DiscontinuousExcitationControlUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DiscontinuousExcitationControlUserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["PowerSystemStabilizerUserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.PowerSystemStabilizerUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.PowerSystemStabilizerUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemStabilizerUserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["ExcitationSystemUserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.ExcitationSystemUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.ExcitationSystemUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemUserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["LoadUserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.LoadUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.LoadUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadUserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["AsynchronousMachineUserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.AsynchronousMachineUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.AsynchronousMachineUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AsynchronousMachineUserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["VoltageCompensatorUserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.VoltageCompensatorUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.VoltageCompensatorUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VoltageCompensatorUserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["SynchronousMachineUserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.SynchronousMachineUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.SynchronousMachineUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SynchronousMachineUserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["MechanicalLoadUserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.MechanicalLoadUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.MechanicalLoadUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MechanicalLoadUserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["WindType3or4UserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.WindType3or4UserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.WindType3or4UserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindType3or4UserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["PFVArControllerType1UserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.PFVArControllerType1UserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.PFVArControllerType1UserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType1UserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["WindPlantUserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.WindPlantUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.WindPlantUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindPlantUserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["UnderexcitationLimiterUserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.UnderexcitationLimiterUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.UnderexcitationLimiterUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UnderexcitationLimiterUserDefined", sub, context, true);
+
             /**
              * Proprietary user-defined model with which this parameter is associated.
              *
              */
-            obj["OverexcitationLimiterUserDefined"] = base.parse_attribute (/<cim:ProprietaryParameterDynamics.OverexcitationLimiterUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProprietaryParameterDynamics.OverexcitationLimiterUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OverexcitationLimiterUserDefined", sub, context, true);
+
             bucket = context.parsed.ProprietaryParameterDynamics;
             if (null == bucket)
                 context.parsed.ProprietaryParameterDynamics = bucket = {};
@@ -599,7 +637,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:SynchronousMachineUserDefined.proprietary>([\s\S]*?)<\/cim:SynchronousMachineUserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:SynchronousMachineUserDefined.proprietary>([\s\S]*?)<\/cim:SynchronousMachineUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.SynchronousMachineUserDefined;
             if (null == bucket)
                 context.parsed.SynchronousMachineUserDefined = bucket = {};
@@ -626,7 +665,8 @@ define
              * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
              *
              */
-            obj["proprietary"] = base.to_boolean (base.parse_element (/<cim:DiscontinuousExcitationControlUserDefined.proprietary>([\s\S]*?)<\/cim:DiscontinuousExcitationControlUserDefined.proprietary>/g, sub, context, true));
+            base.parse_element (/<cim:DiscontinuousExcitationControlUserDefined.proprietary>([\s\S]*?)<\/cim:DiscontinuousExcitationControlUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
+
             bucket = context.parsed.DiscontinuousExcitationControlUserDefined;
             if (null == bucket)
                 context.parsed.DiscontinuousExcitationControlUserDefined = bucket = {};

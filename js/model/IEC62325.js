@@ -23,14 +23,16 @@ define
              * Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
              *
              */
-            obj["date"] = base.parse_element (/<cim:IEC62325CIMVersion.date>([\s\S]*?)<\/cim:IEC62325CIMVersion.date>/g, sub, context, true);
+            base.parse_element (/<cim:IEC62325CIMVersion.date>([\s\S]*?)<\/cim:IEC62325CIMVersion.date>/g, obj, "date", base.to_string, sub, context);
+
             /**
              * Form is IEC62325CIMXXvYY where XX is the major CIM package version and the YY is the minor version.
              *
              * For example IEC62325CIM10v03.
              *
              */
-            obj["version"] = base.parse_element (/<cim:IEC62325CIMVersion.version>([\s\S]*?)<\/cim:IEC62325CIMVersion.version>/g, sub, context, true);
+            base.parse_element (/<cim:IEC62325CIMVersion.version>([\s\S]*?)<\/cim:IEC62325CIMVersion.version>/g, obj, "version", base.to_string, sub, context);
+
             bucket = context.parsed.IEC62325CIMVersion;
             if (null == bucket)
                 context.parsed.IEC62325CIMVersion = bucket = {};

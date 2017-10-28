@@ -17,7 +17,8 @@ define
 
             obj = ParticipantInterfaces.parse_BidHourlySchedule (context, sub);
             obj.cls = "WheelingReferenceSchedule";
-            obj["value"] = base.parse_element (/<cim:WheelingReferenceSchedule.value>([\s\S]*?)<\/cim:WheelingReferenceSchedule.value>/g, sub, context, true);
+            base.parse_element (/<cim:WheelingReferenceSchedule.value>([\s\S]*?)<\/cim:WheelingReferenceSchedule.value>/g, obj, "value", base.to_string, sub, context);
+
             bucket = context.parsed.WheelingReferenceSchedule;
             if (null == bucket)
                 context.parsed.WheelingReferenceSchedule = bucket = {};

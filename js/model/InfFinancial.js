@@ -27,7 +27,8 @@ define
              * A ControlAreaCompany controls a ControlArea.
              *
              */
-            obj["ControlledBy"] = base.parse_attribute (/<cim:ControlAreaOperator.ControlledBy\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ControlAreaOperator.ControlledBy\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlledBy", sub, context, true);
+
             bucket = context.parsed.ControlAreaOperator;
             if (null == bucket)
                 context.parsed.ControlAreaOperator = bucket = {};
@@ -68,12 +69,14 @@ define
              * This could be a transmission service class (firm, total transmission capability, or non-firm), transmission service period (on-peak, full-period, off-peak), transmission service increments (yearly extended, hourly fixed, monthly sliding, etc.), transmission service type (network, available transmission capability, or point-to-point, or a transmission service window (fixed hourly, sliding weekly, extended monthly, etc.).
              *
              */
-            obj["transmissionProductType"] = base.parse_element (/<cim:TransmissionProduct.transmissionProductType>([\s\S]*?)<\/cim:TransmissionProduct.transmissionProductType>/g, sub, context, true);
+            base.parse_element (/<cim:TransmissionProduct.transmissionProductType>([\s\S]*?)<\/cim:TransmissionProduct.transmissionProductType>/g, obj, "transmissionProductType", base.to_string, sub, context);
+
             /**
              * A TransmissionProvider offers a TransmissionProduct.
              *
              */
-            obj["TransmissionProvider"] = base.parse_attribute (/<cim:TransmissionProduct.TransmissionProvider\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:TransmissionProduct.TransmissionProvider\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionProvider", sub, context, true);
+
             bucket = context.parsed.TransmissionProduct;
             if (null == bucket)
                 context.parsed.TransmissionProduct = bucket = {};
@@ -99,7 +102,8 @@ define
              * Method #1 is to integrate the instantaneous schedule between the hourly boundaries. Method #2 compensates for any up/down ramping that occurs across the hourly boundary (this is called block accounting).
              *
              */
-            obj["defaultIntegrationMethod"] = base.parse_element (/<cim:IntSchedAgreement.defaultIntegrationMethod>([\s\S]*?)<\/cim:IntSchedAgreement.defaultIntegrationMethod>/g, sub, context, true);
+            base.parse_element (/<cim:IntSchedAgreement.defaultIntegrationMethod>([\s\S]*?)<\/cim:IntSchedAgreement.defaultIntegrationMethod>/g, obj, "defaultIntegrationMethod", base.to_string, sub, context);
+
             bucket = context.parsed.IntSchedAgreement;
             if (null == bucket)
                 context.parsed.IntSchedAgreement = bucket = {};

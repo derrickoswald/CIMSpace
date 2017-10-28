@@ -29,256 +29,296 @@ define
              * Typical Value = 2.
              *
              */
-            obj["k1"] = base.to_float (base.parse_element (/<cim:UnderexcLimIEEE2.k1>([\s\S]*?)<\/cim:UnderexcLimIEEE2.k1>/g, sub, context, true));
+            base.parse_element (/<cim:UnderexcLimIEEE2.k1>([\s\S]*?)<\/cim:UnderexcLimIEEE2.k1>/g, obj, "k1", base.to_float, sub, context);
+
             /**
              * UEL terminal voltage exponent applied to reactive power output from UEL limit look-up table (k2).
              *
              * Typical Value = 2.
              *
              */
-            obj["k2"] = base.to_float (base.parse_element (/<cim:UnderexcLimIEEE2.k2>([\s\S]*?)<\/cim:UnderexcLimIEEE2.k2>/g, sub, context, true));
+            base.parse_element (/<cim:UnderexcLimIEEE2.k2>([\s\S]*?)<\/cim:UnderexcLimIEEE2.k2>/g, obj, "k2", base.to_float, sub, context);
+
             /**
              * Gain associated with optional integrator feedback input signal to UEL (K<sub>FB</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["kfb"] = base.parse_element (/<cim:UnderexcLimIEEE2.kfb>([\s\S]*?)<\/cim:UnderexcLimIEEE2.kfb>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.kfb>([\s\S]*?)<\/cim:UnderexcLimIEEE2.kfb>/g, obj, "kfb", base.to_string, sub, context);
+
             /**
              * UEL excitation system stabilizer gain (K<sub>UF</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["kuf"] = base.parse_element (/<cim:UnderexcLimIEEE2.kuf>([\s\S]*?)<\/cim:UnderexcLimIEEE2.kuf>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.kuf>([\s\S]*?)<\/cim:UnderexcLimIEEE2.kuf>/g, obj, "kuf", base.to_string, sub, context);
+
             /**
              * UEL integral gain (K<sub>UI</sub>).
              *
              * Typical Value = 0.5.
              *
              */
-            obj["kui"] = base.parse_element (/<cim:UnderexcLimIEEE2.kui>([\s\S]*?)<\/cim:UnderexcLimIEEE2.kui>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.kui>([\s\S]*?)<\/cim:UnderexcLimIEEE2.kui>/g, obj, "kui", base.to_string, sub, context);
+
             /**
              * UEL proportional gain (K<sub>UL</sub>).
              *
              * Typical Value = 0.8.
              *
              */
-            obj["kul"] = base.parse_element (/<cim:UnderexcLimIEEE2.kul>([\s\S]*?)<\/cim:UnderexcLimIEEE2.kul>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.kul>([\s\S]*?)<\/cim:UnderexcLimIEEE2.kul>/g, obj, "kul", base.to_string, sub, context);
+
             /**
              * Real power values for endpoints (P<sub>0</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["p0"] = base.parse_element (/<cim:UnderexcLimIEEE2.p0>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p0>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.p0>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p0>/g, obj, "p0", base.to_string, sub, context);
+
             /**
              * Real power values for endpoints (P<sub>1</sub>).
              *
              * Typical Value = 0.3.
              *
              */
-            obj["p1"] = base.parse_element (/<cim:UnderexcLimIEEE2.p1>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p1>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.p1>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p1>/g, obj, "p1", base.to_string, sub, context);
+
             /**
              * Real power values for endpoints (P<sub>10</sub>).
              *
              */
-            obj["p10"] = base.parse_element (/<cim:UnderexcLimIEEE2.p10>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p10>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.p10>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p10>/g, obj, "p10", base.to_string, sub, context);
+
             /**
              * Real power values for endpoints (P<sub>2</sub>).
              *
              * Typical Value = 0.6.
              *
              */
-            obj["p2"] = base.parse_element (/<cim:UnderexcLimIEEE2.p2>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p2>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.p2>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p2>/g, obj, "p2", base.to_string, sub, context);
+
             /**
              * Real power values for endpoints (P<sub>3</sub>).
              *
              * Typical Value = 0.9.
              *
              */
-            obj["p3"] = base.parse_element (/<cim:UnderexcLimIEEE2.p3>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p3>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.p3>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p3>/g, obj, "p3", base.to_string, sub, context);
+
             /**
              * Real power values for endpoints (P<sub>4</sub>).
              *
              * Typical Value = 1.02.
              *
              */
-            obj["p4"] = base.parse_element (/<cim:UnderexcLimIEEE2.p4>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p4>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.p4>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p4>/g, obj, "p4", base.to_string, sub, context);
+
             /**
              * Real power values for endpoints (P<sub>5</sub>).
              *
              */
-            obj["p5"] = base.parse_element (/<cim:UnderexcLimIEEE2.p5>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p5>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.p5>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p5>/g, obj, "p5", base.to_string, sub, context);
+
             /**
              * Real power values for endpoints (P<sub>6</sub>).
              *
              */
-            obj["p6"] = base.parse_element (/<cim:UnderexcLimIEEE2.p6>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p6>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.p6>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p6>/g, obj, "p6", base.to_string, sub, context);
+
             /**
              * Real power values for endpoints (P<sub>7</sub>).
              *
              */
-            obj["p7"] = base.parse_element (/<cim:UnderexcLimIEEE2.p7>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p7>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.p7>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p7>/g, obj, "p7", base.to_string, sub, context);
+
             /**
              * Real power values for endpoints (P<sub>8</sub>).
              *
              */
-            obj["p8"] = base.parse_element (/<cim:UnderexcLimIEEE2.p8>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p8>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.p8>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p8>/g, obj, "p8", base.to_string, sub, context);
+
             /**
              * Real power values for endpoints (P<sub>9</sub>).
              *
              */
-            obj["p9"] = base.parse_element (/<cim:UnderexcLimIEEE2.p9>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p9>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.p9>([\s\S]*?)<\/cim:UnderexcLimIEEE2.p9>/g, obj, "p9", base.to_string, sub, context);
+
             /**
              * Reactive power values for endpoints (Q<sub>0</sub>).
              *
              * Typical Value = -0.31.
              *
              */
-            obj["q0"] = base.parse_element (/<cim:UnderexcLimIEEE2.q0>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q0>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.q0>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q0>/g, obj, "q0", base.to_string, sub, context);
+
             /**
              * Reactive power values for endpoints (Q<sub>1</sub>).
              *
              * Typical Value = -0.31.
              *
              */
-            obj["q1"] = base.parse_element (/<cim:UnderexcLimIEEE2.q1>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q1>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.q1>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q1>/g, obj, "q1", base.to_string, sub, context);
+
             /**
              * Reactive power values for endpoints (Q<sub>10</sub>).
              *
              */
-            obj["q10"] = base.parse_element (/<cim:UnderexcLimIEEE2.q10>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q10>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.q10>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q10>/g, obj, "q10", base.to_string, sub, context);
+
             /**
              * Reactive power values for endpoints (Q<sub>2</sub>).
              *
              * Typical Value = -0.28.
              *
              */
-            obj["q2"] = base.parse_element (/<cim:UnderexcLimIEEE2.q2>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q2>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.q2>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q2>/g, obj, "q2", base.to_string, sub, context);
+
             /**
              * Reactive power values for endpoints (Q<sub>3</sub>).
              *
              * Typical Value = -0.21.
              *
              */
-            obj["q3"] = base.parse_element (/<cim:UnderexcLimIEEE2.q3>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q3>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.q3>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q3>/g, obj, "q3", base.to_string, sub, context);
+
             /**
              * Reactive power values for endpoints (Q<sub>4</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["q4"] = base.parse_element (/<cim:UnderexcLimIEEE2.q4>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q4>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.q4>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q4>/g, obj, "q4", base.to_string, sub, context);
+
             /**
              * Reactive power values for endpoints (Q<sub>5</sub>).
              *
              */
-            obj["q5"] = base.parse_element (/<cim:UnderexcLimIEEE2.q5>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q5>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.q5>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q5>/g, obj, "q5", base.to_string, sub, context);
+
             /**
              * Reactive power values for endpoints (Q<sub>6</sub>).
              *
              */
-            obj["q6"] = base.parse_element (/<cim:UnderexcLimIEEE2.q6>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q6>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.q6>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q6>/g, obj, "q6", base.to_string, sub, context);
+
             /**
              * Reactive power values for endpoints (Q<sub>7</sub>).
              *
              */
-            obj["q7"] = base.parse_element (/<cim:UnderexcLimIEEE2.q7>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q7>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.q7>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q7>/g, obj, "q7", base.to_string, sub, context);
+
             /**
              * Reactive power values for endpoints (Q<sub>8</sub>).
              *
              */
-            obj["q8"] = base.parse_element (/<cim:UnderexcLimIEEE2.q8>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q8>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.q8>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q8>/g, obj, "q8", base.to_string, sub, context);
+
             /**
              * Reactive power values for endpoints (Q<sub>9</sub>).
              *
              */
-            obj["q9"] = base.parse_element (/<cim:UnderexcLimIEEE2.q9>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q9>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.q9>([\s\S]*?)<\/cim:UnderexcLimIEEE2.q9>/g, obj, "q9", base.to_string, sub, context);
+
             /**
              * UEL lead time constant (T<sub>U1</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tu1"] = base.parse_element (/<cim:UnderexcLimIEEE2.tu1>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tu1>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.tu1>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tu1>/g, obj, "tu1", base.to_string, sub, context);
+
             /**
              * UEL lag time constant (T<sub>U2</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tu2"] = base.parse_element (/<cim:UnderexcLimIEEE2.tu2>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tu2>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.tu2>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tu2>/g, obj, "tu2", base.to_string, sub, context);
+
             /**
              * UEL lead time constant (T<sub>U3</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tu3"] = base.parse_element (/<cim:UnderexcLimIEEE2.tu3>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tu3>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.tu3>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tu3>/g, obj, "tu3", base.to_string, sub, context);
+
             /**
              * UEL lag time constant (T<sub>U4</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tu4"] = base.parse_element (/<cim:UnderexcLimIEEE2.tu4>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tu4>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.tu4>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tu4>/g, obj, "tu4", base.to_string, sub, context);
+
             /**
              * Time constant associated with optional integrator feedback input signal to UEL (T<sub>UL</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tul"] = base.parse_element (/<cim:UnderexcLimIEEE2.tul>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tul>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.tul>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tul>/g, obj, "tul", base.to_string, sub, context);
+
             /**
              * Real power filter time constant (T<sub>UP</sub>).
              *
              * Typical Value = 5.
              *
              */
-            obj["tup"] = base.parse_element (/<cim:UnderexcLimIEEE2.tup>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tup>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.tup>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tup>/g, obj, "tup", base.to_string, sub, context);
+
             /**
              * Reactive power filter time constant (T<sub>UQ</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tuq"] = base.parse_element (/<cim:UnderexcLimIEEE2.tuq>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tuq>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.tuq>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tuq>/g, obj, "tuq", base.to_string, sub, context);
+
             /**
              * Voltage filter time constant (T<sub>UV</sub>).
              *
              * Typical Value = 5.
              *
              */
-            obj["tuv"] = base.parse_element (/<cim:UnderexcLimIEEE2.tuv>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tuv>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.tuv>([\s\S]*?)<\/cim:UnderexcLimIEEE2.tuv>/g, obj, "tuv", base.to_string, sub, context);
+
             /**
              * UEL integrator output maximum limit (V<sub>UIMAX</sub>).
              *
              * Typical Value = 0.25.
              *
              */
-            obj["vuimax"] = base.parse_element (/<cim:UnderexcLimIEEE2.vuimax>([\s\S]*?)<\/cim:UnderexcLimIEEE2.vuimax>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.vuimax>([\s\S]*?)<\/cim:UnderexcLimIEEE2.vuimax>/g, obj, "vuimax", base.to_string, sub, context);
+
             /**
              * UEL integrator output minimum limit (V<sub>UIMIN</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["vuimin"] = base.parse_element (/<cim:UnderexcLimIEEE2.vuimin>([\s\S]*?)<\/cim:UnderexcLimIEEE2.vuimin>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.vuimin>([\s\S]*?)<\/cim:UnderexcLimIEEE2.vuimin>/g, obj, "vuimin", base.to_string, sub, context);
+
             /**
              * UEL output maximum limit (V<sub>ULMAX</sub>).
              *
              * Typical Value = 0.25.
              *
              */
-            obj["vulmax"] = base.parse_element (/<cim:UnderexcLimIEEE2.vulmax>([\s\S]*?)<\/cim:UnderexcLimIEEE2.vulmax>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.vulmax>([\s\S]*?)<\/cim:UnderexcLimIEEE2.vulmax>/g, obj, "vulmax", base.to_string, sub, context);
+
             /**
              * UEL output minimum limit (V<sub>ULMIN</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["vulmin"] = base.parse_element (/<cim:UnderexcLimIEEE2.vulmin>([\s\S]*?)<\/cim:UnderexcLimIEEE2.vulmin>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE2.vulmin>([\s\S]*?)<\/cim:UnderexcLimIEEE2.vulmin>/g, obj, "vulmin", base.to_string, sub, context);
+
             bucket = context.parsed.UnderexcLimIEEE2;
             if (null == bucket)
                 context.parsed.UnderexcLimIEEE2 = bucket = {};
@@ -302,32 +342,38 @@ define
              * Minimum excitation limit slope (K) (&gt;0).
              *
              */
-            obj["k"] = base.parse_element (/<cim:UnderexcLimX1.k>([\s\S]*?)<\/cim:UnderexcLimX1.k>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimX1.k>([\s\S]*?)<\/cim:UnderexcLimX1.k>/g, obj, "k", base.to_string, sub, context);
+
             /**
              * Differential gain (Kf2).
              *
              */
-            obj["kf2"] = base.parse_element (/<cim:UnderexcLimX1.kf2>([\s\S]*?)<\/cim:UnderexcLimX1.kf2>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimX1.kf2>([\s\S]*?)<\/cim:UnderexcLimX1.kf2>/g, obj, "kf2", base.to_string, sub, context);
+
             /**
              * Minimum excitation limit gain (Km).
              *
              */
-            obj["km"] = base.parse_element (/<cim:UnderexcLimX1.km>([\s\S]*?)<\/cim:UnderexcLimX1.km>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimX1.km>([\s\S]*?)<\/cim:UnderexcLimX1.km>/g, obj, "km", base.to_string, sub, context);
+
             /**
              * Minimum excitation limit value (MELMAX).
              *
              */
-            obj["melmax"] = base.parse_element (/<cim:UnderexcLimX1.melmax>([\s\S]*?)<\/cim:UnderexcLimX1.melmax>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimX1.melmax>([\s\S]*?)<\/cim:UnderexcLimX1.melmax>/g, obj, "melmax", base.to_string, sub, context);
+
             /**
              * Differential time constant (Tf2) (&gt;0).
              *
              */
-            obj["tf2"] = base.parse_element (/<cim:UnderexcLimX1.tf2>([\s\S]*?)<\/cim:UnderexcLimX1.tf2>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimX1.tf2>([\s\S]*?)<\/cim:UnderexcLimX1.tf2>/g, obj, "tf2", base.to_string, sub, context);
+
             /**
              * Minimum excitation limit time constant (Tm).
              *
              */
-            obj["tm"] = base.parse_element (/<cim:UnderexcLimX1.tm>([\s\S]*?)<\/cim:UnderexcLimX1.tm>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimX1.tm>([\s\S]*?)<\/cim:UnderexcLimX1.tm>/g, obj, "tm", base.to_string, sub, context);
+
             bucket = context.parsed.UnderexcLimX1;
             if (null == bucket)
                 context.parsed.UnderexcLimX1 = bucket = {};
@@ -351,37 +397,44 @@ define
              * Differential gain (Kf2).
              *
              */
-            obj["kf2"] = base.parse_element (/<cim:UnderexcLimX2.kf2>([\s\S]*?)<\/cim:UnderexcLimX2.kf2>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimX2.kf2>([\s\S]*?)<\/cim:UnderexcLimX2.kf2>/g, obj, "kf2", base.to_string, sub, context);
+
             /**
              * Minimum excitation limit gain (Km).
              *
              */
-            obj["km"] = base.parse_element (/<cim:UnderexcLimX2.km>([\s\S]*?)<\/cim:UnderexcLimX2.km>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimX2.km>([\s\S]*?)<\/cim:UnderexcLimX2.km>/g, obj, "km", base.to_string, sub, context);
+
             /**
              * Minimum excitation limit value (MELMAX).
              *
              */
-            obj["melmax"] = base.parse_element (/<cim:UnderexcLimX2.melmax>([\s\S]*?)<\/cim:UnderexcLimX2.melmax>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimX2.melmax>([\s\S]*?)<\/cim:UnderexcLimX2.melmax>/g, obj, "melmax", base.to_string, sub, context);
+
             /**
              * Excitation center setting (Qo).
              *
              */
-            obj["qo"] = base.parse_element (/<cim:UnderexcLimX2.qo>([\s\S]*?)<\/cim:UnderexcLimX2.qo>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimX2.qo>([\s\S]*?)<\/cim:UnderexcLimX2.qo>/g, obj, "qo", base.to_string, sub, context);
+
             /**
              * Excitation radius (R).
              *
              */
-            obj["r"] = base.parse_element (/<cim:UnderexcLimX2.r>([\s\S]*?)<\/cim:UnderexcLimX2.r>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimX2.r>([\s\S]*?)<\/cim:UnderexcLimX2.r>/g, obj, "r", base.to_string, sub, context);
+
             /**
              * Differential time constant (Tf2) (&gt;0).
              *
              */
-            obj["tf2"] = base.parse_element (/<cim:UnderexcLimX2.tf2>([\s\S]*?)<\/cim:UnderexcLimX2.tf2>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimX2.tf2>([\s\S]*?)<\/cim:UnderexcLimX2.tf2>/g, obj, "tf2", base.to_string, sub, context);
+
             /**
              * Minimum excitation limit time constant (Tm).
              *
              */
-            obj["tm"] = base.parse_element (/<cim:UnderexcLimX2.tm>([\s\S]*?)<\/cim:UnderexcLimX2.tm>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimX2.tm>([\s\S]*?)<\/cim:UnderexcLimX2.tm>/g, obj, "tm", base.to_string, sub, context);
+
             bucket = context.parsed.UnderexcLimX2;
             if (null == bucket)
                 context.parsed.UnderexcLimX2 = bucket = {};
@@ -409,101 +462,116 @@ define
              * Typical Value = 1.38.
              *
              */
-            obj["kuc"] = base.parse_element (/<cim:UnderexcLimIEEE1.kuc>([\s\S]*?)<\/cim:UnderexcLimIEEE1.kuc>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.kuc>([\s\S]*?)<\/cim:UnderexcLimIEEE1.kuc>/g, obj, "kuc", base.to_string, sub, context);
+
             /**
              * UEL excitation system stabilizer gain (K<sub>UF</sub>).
              *
              * Typical Value = 3.3.
              *
              */
-            obj["kuf"] = base.parse_element (/<cim:UnderexcLimIEEE1.kuf>([\s\S]*?)<\/cim:UnderexcLimIEEE1.kuf>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.kuf>([\s\S]*?)<\/cim:UnderexcLimIEEE1.kuf>/g, obj, "kuf", base.to_string, sub, context);
+
             /**
              * UEL integral gain (K<sub>UI</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["kui"] = base.parse_element (/<cim:UnderexcLimIEEE1.kui>([\s\S]*?)<\/cim:UnderexcLimIEEE1.kui>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.kui>([\s\S]*?)<\/cim:UnderexcLimIEEE1.kui>/g, obj, "kui", base.to_string, sub, context);
+
             /**
              * UEL proportional gain (K<sub>UL</sub>).
              *
              * Typical Value = 100.
              *
              */
-            obj["kul"] = base.parse_element (/<cim:UnderexcLimIEEE1.kul>([\s\S]*?)<\/cim:UnderexcLimIEEE1.kul>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.kul>([\s\S]*?)<\/cim:UnderexcLimIEEE1.kul>/g, obj, "kul", base.to_string, sub, context);
+
             /**
              * UEL radius setting (K<sub>UR</sub>).
              *
              * Typical Value = 1.95.
              *
              */
-            obj["kur"] = base.parse_element (/<cim:UnderexcLimIEEE1.kur>([\s\S]*?)<\/cim:UnderexcLimIEEE1.kur>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.kur>([\s\S]*?)<\/cim:UnderexcLimIEEE1.kur>/g, obj, "kur", base.to_string, sub, context);
+
             /**
              * UEL lead time constant (T<sub>U1</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tu1"] = base.parse_element (/<cim:UnderexcLimIEEE1.tu1>([\s\S]*?)<\/cim:UnderexcLimIEEE1.tu1>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.tu1>([\s\S]*?)<\/cim:UnderexcLimIEEE1.tu1>/g, obj, "tu1", base.to_string, sub, context);
+
             /**
              * UEL lag time constant (T<sub>U2</sub>).
              *
              * Typical Value = 0.05.
              *
              */
-            obj["tu2"] = base.parse_element (/<cim:UnderexcLimIEEE1.tu2>([\s\S]*?)<\/cim:UnderexcLimIEEE1.tu2>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.tu2>([\s\S]*?)<\/cim:UnderexcLimIEEE1.tu2>/g, obj, "tu2", base.to_string, sub, context);
+
             /**
              * UEL lead time constant (T<sub>U3</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tu3"] = base.parse_element (/<cim:UnderexcLimIEEE1.tu3>([\s\S]*?)<\/cim:UnderexcLimIEEE1.tu3>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.tu3>([\s\S]*?)<\/cim:UnderexcLimIEEE1.tu3>/g, obj, "tu3", base.to_string, sub, context);
+
             /**
              * UEL lag time constant (T<sub>U4</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["tu4"] = base.parse_element (/<cim:UnderexcLimIEEE1.tu4>([\s\S]*?)<\/cim:UnderexcLimIEEE1.tu4>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.tu4>([\s\S]*?)<\/cim:UnderexcLimIEEE1.tu4>/g, obj, "tu4", base.to_string, sub, context);
+
             /**
              * UEL maximum limit for operating point phasor magnitude (V<sub>UCMAX</sub>).
              *
              * Typical Value = 5.8.
              *
              */
-            obj["vucmax"] = base.parse_element (/<cim:UnderexcLimIEEE1.vucmax>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vucmax>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.vucmax>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vucmax>/g, obj, "vucmax", base.to_string, sub, context);
+
             /**
              * UEL integrator output maximum limit (V<sub>UIMAX</sub>).
              *
              */
-            obj["vuimax"] = base.parse_element (/<cim:UnderexcLimIEEE1.vuimax>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vuimax>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.vuimax>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vuimax>/g, obj, "vuimax", base.to_string, sub, context);
+
             /**
              * UEL integrator output minimum limit (V<sub>UIMIN</sub>).
              *
              */
-            obj["vuimin"] = base.parse_element (/<cim:UnderexcLimIEEE1.vuimin>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vuimin>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.vuimin>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vuimin>/g, obj, "vuimin", base.to_string, sub, context);
+
             /**
              * UEL output maximum limit (V<sub>ULMAX</sub>).
              *
              * Typical Value = 18.
              *
              */
-            obj["vulmax"] = base.parse_element (/<cim:UnderexcLimIEEE1.vulmax>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vulmax>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.vulmax>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vulmax>/g, obj, "vulmax", base.to_string, sub, context);
+
             /**
              * UEL output minimum limit (V<sub>ULMIN</sub>).
              *
              * Typical Value = -18.
              *
              */
-            obj["vulmin"] = base.parse_element (/<cim:UnderexcLimIEEE1.vulmin>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vulmin>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.vulmin>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vulmin>/g, obj, "vulmin", base.to_string, sub, context);
+
             /**
              * UEL maximum limit for radius phasor magnitude (V<sub>URMAX</sub>).
              *
              * Typical Value = 5.8.
              *
              */
-            obj["vurmax"] = base.parse_element (/<cim:UnderexcLimIEEE1.vurmax>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vurmax>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLimIEEE1.vurmax>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vurmax>/g, obj, "vurmax", base.to_string, sub, context);
+
             bucket = context.parsed.UnderexcLimIEEE1;
             if (null == bucket)
                 context.parsed.UnderexcLimIEEE1 = bucket = {};
@@ -531,49 +599,56 @@ define
              * Typical Value = 0.1.
              *
              */
-            obj["kui"] = base.parse_element (/<cim:UnderexcLim2Simplified.kui>([\s\S]*?)<\/cim:UnderexcLim2Simplified.kui>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLim2Simplified.kui>([\s\S]*?)<\/cim:UnderexcLim2Simplified.kui>/g, obj, "kui", base.to_string, sub, context);
+
             /**
              * Segment P initial point (P0).
              *
              * Typical Value = 0.
              *
              */
-            obj["p0"] = base.parse_element (/<cim:UnderexcLim2Simplified.p0>([\s\S]*?)<\/cim:UnderexcLim2Simplified.p0>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLim2Simplified.p0>([\s\S]*?)<\/cim:UnderexcLim2Simplified.p0>/g, obj, "p0", base.to_string, sub, context);
+
             /**
              * Segment P end point (P1).
              *
              * Typical Value = 1.
              *
              */
-            obj["p1"] = base.parse_element (/<cim:UnderexcLim2Simplified.p1>([\s\S]*?)<\/cim:UnderexcLim2Simplified.p1>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLim2Simplified.p1>([\s\S]*?)<\/cim:UnderexcLim2Simplified.p1>/g, obj, "p1", base.to_string, sub, context);
+
             /**
              * Segment Q initial point (Q0).
              *
              * Typical Value = -0.31.
              *
              */
-            obj["q0"] = base.parse_element (/<cim:UnderexcLim2Simplified.q0>([\s\S]*?)<\/cim:UnderexcLim2Simplified.q0>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLim2Simplified.q0>([\s\S]*?)<\/cim:UnderexcLim2Simplified.q0>/g, obj, "q0", base.to_string, sub, context);
+
             /**
              * Segment Q end point (Q1).
              *
              * Typical Value = -0.1.
              *
              */
-            obj["q1"] = base.parse_element (/<cim:UnderexcLim2Simplified.q1>([\s\S]*?)<\/cim:UnderexcLim2Simplified.q1>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLim2Simplified.q1>([\s\S]*?)<\/cim:UnderexcLim2Simplified.q1>/g, obj, "q1", base.to_string, sub, context);
+
             /**
              * Maximum error signal (V<sub>UImax</sub>).
              *
              * Typical Value = 1.
              *
              */
-            obj["vuimax"] = base.parse_element (/<cim:UnderexcLim2Simplified.vuimax>([\s\S]*?)<\/cim:UnderexcLim2Simplified.vuimax>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLim2Simplified.vuimax>([\s\S]*?)<\/cim:UnderexcLim2Simplified.vuimax>/g, obj, "vuimax", base.to_string, sub, context);
+
             /**
              * Minimum error signal (V<sub>UImin</sub>).
              *
              * Typical Value = 0.
              *
              */
-            obj["vuimin"] = base.parse_element (/<cim:UnderexcLim2Simplified.vuimin>([\s\S]*?)<\/cim:UnderexcLim2Simplified.vuimin>/g, sub, context, true);
+            base.parse_element (/<cim:UnderexcLim2Simplified.vuimin>([\s\S]*?)<\/cim:UnderexcLim2Simplified.vuimin>/g, obj, "vuimin", base.to_string, sub, context);
+
             bucket = context.parsed.UnderexcLim2Simplified;
             if (null == bucket)
                 context.parsed.UnderexcLim2Simplified = bucket = {};
@@ -597,12 +672,14 @@ define
              * Excitation system model with which this underexcitation limiter model is associated.
              *
              */
-            obj["ExcitationSystemDynamics"] = base.parse_attribute (/<cim:UnderexcitationLimiterDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:UnderexcitationLimiterDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context, true);
+
             /**
              * Remote input signal used by this underexcitation limiter model.
              *
              */
-            obj["RemoteInputSignal"] = base.parse_attribute (/<cim:UnderexcitationLimiterDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:UnderexcitationLimiterDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context, true);
+
             bucket = context.parsed.UnderexcitationLimiterDynamics;
             if (null == bucket)
                 context.parsed.UnderexcitationLimiterDynamics = bucket = {};

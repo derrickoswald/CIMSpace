@@ -44,84 +44,102 @@ define
              * Information on acceptance test.
              *
              */
-            obj["acceptanceTest"] = base.parse_element (/<cim:Asset.acceptanceTest>([\s\S]*?)<\/cim:Asset.acceptanceTest>/g, sub, context, true);
+            base.parse_element (/<cim:Asset.acceptanceTest>([\s\S]*?)<\/cim:Asset.acceptanceTest>/g, obj, "acceptanceTest", base.to_string, sub, context);
+
             /**
              * True if asset is considered critical for some reason (for example, a pole with critical attachments).
              *
              */
-            obj["critical"] = base.to_boolean (base.parse_element (/<cim:Asset.critical>([\s\S]*?)<\/cim:Asset.critical>/g, sub, context, true));
+            base.parse_element (/<cim:Asset.critical>([\s\S]*?)<\/cim:Asset.critical>/g, obj, "critical", base.to_boolean, sub, context);
+
             /**
              * Electronic address.
              *
              */
-            obj["electronicAddress"] = base.parse_element (/<cim:Asset.electronicAddress>([\s\S]*?)<\/cim:Asset.electronicAddress>/g, sub, context, true);
+            base.parse_element (/<cim:Asset.electronicAddress>([\s\S]*?)<\/cim:Asset.electronicAddress>/g, obj, "electronicAddress", base.to_string, sub, context);
+
             /**
              * Condition of asset in inventory or at time of installation.
              *
              * Examples include new, rebuilt, overhaul required, other. Refer to inspection data for information on the most current condition of the asset.
              *
              */
-            obj["initialCondition"] = base.parse_element (/<cim:Asset.initialCondition>([\s\S]*?)<\/cim:Asset.initialCondition>/g, sub, context, true);
+            base.parse_element (/<cim:Asset.initialCondition>([\s\S]*?)<\/cim:Asset.initialCondition>/g, obj, "initialCondition", base.to_string, sub, context);
+
             /**
              * Whenever an asset is reconditioned, percentage of expected life for the asset when it was new; zero for new devices.
              *
              */
-            obj["initialLossOfLife"] = base.parse_element (/<cim:Asset.initialLossOfLife>([\s\S]*?)<\/cim:Asset.initialLossOfLife>/g, sub, context, true);
+            base.parse_element (/<cim:Asset.initialLossOfLife>([\s\S]*?)<\/cim:Asset.initialLossOfLife>/g, obj, "initialLossOfLife", base.to_string, sub, context);
+
             /**
              * Lifecycle dates for this asset.
              *
              */
-            obj["lifecycle"] = base.parse_element (/<cim:Asset.lifecycle>([\s\S]*?)<\/cim:Asset.lifecycle>/g, sub, context, true);
+            base.parse_element (/<cim:Asset.lifecycle>([\s\S]*?)<\/cim:Asset.lifecycle>/g, obj, "lifecycle", base.to_string, sub, context);
+
             /**
              * Lot number for this asset.
              *
              * Even for the same model and version number, many assets are manufactured in lots.
              *
              */
-            obj["lotNumber"] = base.parse_element (/<cim:Asset.lotNumber>([\s\S]*?)<\/cim:Asset.lotNumber>/g, sub, context, true);
+            base.parse_element (/<cim:Asset.lotNumber>([\s\S]*?)<\/cim:Asset.lotNumber>/g, obj, "lotNumber", base.to_string, sub, context);
+
             /**
              * Purchase price of asset.
              *
              */
-            obj["purchasePrice"] = base.parse_element (/<cim:Asset.purchasePrice>([\s\S]*?)<\/cim:Asset.purchasePrice>/g, sub, context, true);
+            base.parse_element (/<cim:Asset.purchasePrice>([\s\S]*?)<\/cim:Asset.purchasePrice>/g, obj, "purchasePrice", base.to_string, sub, context);
+
             /**
              * Serial number of this asset.
              *
              */
-            obj["serialNumber"] = base.parse_element (/<cim:Asset.serialNumber>([\s\S]*?)<\/cim:Asset.serialNumber>/g, sub, context, true);
+            base.parse_element (/<cim:Asset.serialNumber>([\s\S]*?)<\/cim:Asset.serialNumber>/g, obj, "serialNumber", base.to_string, sub, context);
+
             /**
              * Status of this asset.
              *
              */
-            obj["status"] = base.parse_element (/<cim:Asset.status>([\s\S]*?)<\/cim:Asset.status>/g, sub, context, true);
+            base.parse_element (/<cim:Asset.status>([\s\S]*?)<\/cim:Asset.status>/g, obj, "status", base.to_string, sub, context);
+
             /**
              * Utility-specific classification of Asset and its subtypes, according to their corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
              *
              */
-            obj["type"] = base.parse_element (/<cim:Asset.type>([\s\S]*?)<\/cim:Asset.type>/g, sub, context, true);
+            base.parse_element (/<cim:Asset.type>([\s\S]*?)<\/cim:Asset.type>/g, obj, "type", base.to_string, sub, context);
+
             /**
              * Uniquely tracked commodity (UTC) number.
              *
              */
-            obj["utcNumber"] = base.parse_element (/<cim:Asset.utcNumber>([\s\S]*?)<\/cim:Asset.utcNumber>/g, sub, context, true);
-            obj["FinancialInfo"] = base.parse_attribute (/<cim:Asset.FinancialInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            obj["ErpItemMaster"] = base.parse_attribute (/<cim:Asset.ErpItemMaster\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_element (/<cim:Asset.utcNumber>([\s\S]*?)<\/cim:Asset.utcNumber>/g, obj, "utcNumber", base.to_string, sub, context);
+
+            base.parse_attribute (/<cim:Asset.FinancialInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FinancialInfo", sub, context, true);
+
+            base.parse_attribute (/<cim:Asset.ErpItemMaster\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpItemMaster", sub, context, true);
+
             /**
              * Container of this asset.
              *
              */
-            obj["AssetContainer"] = base.parse_attribute (/<cim:Asset.AssetContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Asset.AssetContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetContainer", sub, context, true);
+
             /**
              * Location of this asset.
              *
              */
-            obj["Location"] = base.parse_attribute (/<cim:Asset.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            obj["ErpInventory"] = base.parse_attribute (/<cim:Asset.ErpInventory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Asset.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Location", sub, context, true);
+
+            base.parse_attribute (/<cim:Asset.ErpInventory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInventory", sub, context, true);
+
             /**
              * Data applicable to this asset.
              *
              */
-            obj["AssetInfo"] = base.parse_attribute (/<cim:Asset.AssetInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Asset.AssetInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetInfo", sub, context, true);
+
             bucket = context.parsed.Asset;
             if (null == bucket)
                 context.parsed.Asset = bucket = {};
@@ -145,37 +163,44 @@ define
              * Kind of corporate standard for this asset model.
              *
              */
-            obj["corporateStandardKind"] = base.parse_element (/<cim:ProductAssetModel.corporateStandardKind>([\s\S]*?)<\/cim:ProductAssetModel.corporateStandardKind>/g, sub, context, true);
+            base.parse_element (/<cim:ProductAssetModel.corporateStandardKind>([\s\S]*?)<\/cim:ProductAssetModel.corporateStandardKind>/g, obj, "corporateStandardKind", base.to_string, sub, context);
+
             /**
              * Manufacturer's model number.
              *
              */
-            obj["modelNumber"] = base.parse_element (/<cim:ProductAssetModel.modelNumber>([\s\S]*?)<\/cim:ProductAssetModel.modelNumber>/g, sub, context, true);
+            base.parse_element (/<cim:ProductAssetModel.modelNumber>([\s\S]*?)<\/cim:ProductAssetModel.modelNumber>/g, obj, "modelNumber", base.to_string, sub, context);
+
             /**
              * Version number for product model, which indicates vintage of the product.
              *
              */
-            obj["modelVersion"] = base.parse_element (/<cim:ProductAssetModel.modelVersion>([\s\S]*?)<\/cim:ProductAssetModel.modelVersion>/g, sub, context, true);
+            base.parse_element (/<cim:ProductAssetModel.modelVersion>([\s\S]*?)<\/cim:ProductAssetModel.modelVersion>/g, obj, "modelVersion", base.to_string, sub, context);
+
             /**
              * Intended usage for this asset model.
              *
              */
-            obj["usageKind"] = base.parse_element (/<cim:ProductAssetModel.usageKind>([\s\S]*?)<\/cim:ProductAssetModel.usageKind>/g, sub, context, true);
+            base.parse_element (/<cim:ProductAssetModel.usageKind>([\s\S]*?)<\/cim:ProductAssetModel.usageKind>/g, obj, "usageKind", base.to_string, sub, context);
+
             /**
              * Total manufactured weight of asset.
              *
              */
-            obj["weightTotal"] = base.parse_element (/<cim:ProductAssetModel.weightTotal>([\s\S]*?)<\/cim:ProductAssetModel.weightTotal>/g, sub, context, true);
+            base.parse_element (/<cim:ProductAssetModel.weightTotal>([\s\S]*?)<\/cim:ProductAssetModel.weightTotal>/g, obj, "weightTotal", base.to_string, sub, context);
+
             /**
              * Generic asset model or material satisified by this product asset model.
              *
              */
-            obj["GenericAssetModelOrMaterial"] = base.parse_attribute (/<cim:ProductAssetModel.GenericAssetModelOrMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProductAssetModel.GenericAssetModelOrMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenericAssetModelOrMaterial", sub, context, true);
+
             /**
              * Manufacturer of this asset model.
              *
              */
-            obj["Manufacturer"] = base.parse_attribute (/<cim:ProductAssetModel.Manufacturer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProductAssetModel.Manufacturer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Manufacturer", sub, context, true);
+
             bucket = context.parsed.ProductAssetModel;
             if (null == bucket)
                 context.parsed.ProductAssetModel = bucket = {};
@@ -199,19 +224,22 @@ define
              * Date and time the asset was last tested using the 'type' of test and yielding the current status in 'success' attribute.
              *
              */
-            obj["dateTime"] = base.to_datetime (base.parse_element (/<cim:AcceptanceTest.dateTime>([\s\S]*?)<\/cim:AcceptanceTest.dateTime>/g, sub, context, true));
+            base.parse_element (/<cim:AcceptanceTest.dateTime>([\s\S]*?)<\/cim:AcceptanceTest.dateTime>/g, obj, "dateTime", base.to_datetime, sub, context);
+
             /**
              * True if asset has passed acceptance test and may be placed in or is in service.
              *
              * It is set to false if asset is removed from service and is required to be tested again before being placed back in service, possibly in a new location. Since asset may go through multiple tests during its lifecycle, the date of each acceptance test may be recorded in 'Asset.ActivityRecord.status.dateTime'.
              *
              */
-            obj["success"] = base.to_boolean (base.parse_element (/<cim:AcceptanceTest.success>([\s\S]*?)<\/cim:AcceptanceTest.success>/g, sub, context, true));
+            base.parse_element (/<cim:AcceptanceTest.success>([\s\S]*?)<\/cim:AcceptanceTest.success>/g, obj, "success", base.to_boolean, sub, context);
+
             /**
              * Type of test or group of tests that was conducted on 'dateTime'.
              *
              */
-            obj["type"] = base.parse_element (/<cim:AcceptanceTest.type>([\s\S]*?)<\/cim:AcceptanceTest.type>/g, sub, context, true);
+            base.parse_element (/<cim:AcceptanceTest.type>([\s\S]*?)<\/cim:AcceptanceTest.type>/g, obj, "type", base.to_string, sub, context);
+
             bucket = context.parsed.AcceptanceTest;
             if (null == bucket)
                 context.parsed.AcceptanceTest = bucket = {};
@@ -239,7 +267,8 @@ define
              * Asset model described by this data.
              *
              */
-            obj["AssetModel"] = base.parse_attribute (/<cim:AssetInfo.AssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:AssetInfo.AssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModel", sub, context, true);
+
             bucket = context.parsed.AssetInfo;
             if (null == bucket)
                 context.parsed.AssetInfo = bucket = {};
@@ -263,22 +292,26 @@ define
              * Asset model is used as corporate standard.
              *
              */
-            obj["standard"] = base.parse_element (/<cim:CorporateStandardKind.standard>([\s\S]*?)<\/cim:CorporateStandardKind.standard>/g, sub, context, true);
+            base.parse_element (/<cim:CorporateStandardKind.standard>([\s\S]*?)<\/cim:CorporateStandardKind.standard>/g, obj, "standard", base.to_string, sub, context);
+
             /**
              * Asset model is used experimentally.
              *
              */
-            obj["experimental"] = base.parse_element (/<cim:CorporateStandardKind.experimental>([\s\S]*?)<\/cim:CorporateStandardKind.experimental>/g, sub, context, true);
+            base.parse_element (/<cim:CorporateStandardKind.experimental>([\s\S]*?)<\/cim:CorporateStandardKind.experimental>/g, obj, "experimental", base.to_string, sub, context);
+
             /**
              * Asset model usage is under evaluation.
              *
              */
-            obj["underEvaluation"] = base.parse_element (/<cim:CorporateStandardKind.underEvaluation>([\s\S]*?)<\/cim:CorporateStandardKind.underEvaluation>/g, sub, context, true);
+            base.parse_element (/<cim:CorporateStandardKind.underEvaluation>([\s\S]*?)<\/cim:CorporateStandardKind.underEvaluation>/g, obj, "underEvaluation", base.to_string, sub, context);
+
             /**
              * Other kind of corporate standard for the asset model.
              *
              */
-            obj["other"] = base.parse_element (/<cim:CorporateStandardKind.other>([\s\S]*?)<\/cim:CorporateStandardKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:CorporateStandardKind.other>([\s\S]*?)<\/cim:CorporateStandardKind.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.CorporateStandardKind;
             if (null == bucket)
                 context.parsed.CorporateStandardKind = bucket = {};
@@ -317,11 +350,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ProcedureKind";
-            obj["inspection"] = base.parse_element (/<cim:ProcedureKind.inspection>([\s\S]*?)<\/cim:ProcedureKind.inspection>/g, sub, context, true);
-            obj["diagnosis"] = base.parse_element (/<cim:ProcedureKind.diagnosis>([\s\S]*?)<\/cim:ProcedureKind.diagnosis>/g, sub, context, true);
-            obj["maintenance"] = base.parse_element (/<cim:ProcedureKind.maintenance>([\s\S]*?)<\/cim:ProcedureKind.maintenance>/g, sub, context, true);
-            obj["test"] = base.parse_element (/<cim:ProcedureKind.test>([\s\S]*?)<\/cim:ProcedureKind.test>/g, sub, context, true);
-            obj["other"] = base.parse_element (/<cim:ProcedureKind.other>([\s\S]*?)<\/cim:ProcedureKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:ProcedureKind.inspection>([\s\S]*?)<\/cim:ProcedureKind.inspection>/g, obj, "inspection", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ProcedureKind.diagnosis>([\s\S]*?)<\/cim:ProcedureKind.diagnosis>/g, obj, "diagnosis", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ProcedureKind.maintenance>([\s\S]*?)<\/cim:ProcedureKind.maintenance>/g, obj, "maintenance", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ProcedureKind.test>([\s\S]*?)<\/cim:ProcedureKind.test>/g, obj, "test", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ProcedureKind.other>([\s\S]*?)<\/cim:ProcedureKind.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.ProcedureKind;
             if (null == bucket)
                 context.parsed.ProcedureKind = bucket = {};
@@ -345,42 +383,50 @@ define
              * Asset model is intended for use in distribution overhead network.
              *
              */
-            obj["distributionOverhead"] = base.parse_element (/<cim:AssetModelUsageKind.distributionOverhead>([\s\S]*?)<\/cim:AssetModelUsageKind.distributionOverhead>/g, sub, context, true);
+            base.parse_element (/<cim:AssetModelUsageKind.distributionOverhead>([\s\S]*?)<\/cim:AssetModelUsageKind.distributionOverhead>/g, obj, "distributionOverhead", base.to_string, sub, context);
+
             /**
              * Asset model is intended for use in underground distribution network.
              *
              */
-            obj["distributionUnderground"] = base.parse_element (/<cim:AssetModelUsageKind.distributionUnderground>([\s\S]*?)<\/cim:AssetModelUsageKind.distributionUnderground>/g, sub, context, true);
+            base.parse_element (/<cim:AssetModelUsageKind.distributionUnderground>([\s\S]*?)<\/cim:AssetModelUsageKind.distributionUnderground>/g, obj, "distributionUnderground", base.to_string, sub, context);
+
             /**
              * Asset model is intended for use in transmission network.
              *
              */
-            obj["transmission"] = base.parse_element (/<cim:AssetModelUsageKind.transmission>([\s\S]*?)<\/cim:AssetModelUsageKind.transmission>/g, sub, context, true);
+            base.parse_element (/<cim:AssetModelUsageKind.transmission>([\s\S]*?)<\/cim:AssetModelUsageKind.transmission>/g, obj, "transmission", base.to_string, sub, context);
+
             /**
              * Asset model is intended for use in substation.
              *
              */
-            obj["substation"] = base.parse_element (/<cim:AssetModelUsageKind.substation>([\s\S]*?)<\/cim:AssetModelUsageKind.substation>/g, sub, context, true);
+            base.parse_element (/<cim:AssetModelUsageKind.substation>([\s\S]*?)<\/cim:AssetModelUsageKind.substation>/g, obj, "substation", base.to_string, sub, context);
+
             /**
              * Asset model is intended for use as streetlight.
              *
              */
-            obj["streetlight"] = base.parse_element (/<cim:AssetModelUsageKind.streetlight>([\s\S]*?)<\/cim:AssetModelUsageKind.streetlight>/g, sub, context, true);
+            base.parse_element (/<cim:AssetModelUsageKind.streetlight>([\s\S]*?)<\/cim:AssetModelUsageKind.streetlight>/g, obj, "streetlight", base.to_string, sub, context);
+
             /**
              * Asset model is intended for use in customer substation.
              *
              */
-            obj["customerSubstation"] = base.parse_element (/<cim:AssetModelUsageKind.customerSubstation>([\s\S]*?)<\/cim:AssetModelUsageKind.customerSubstation>/g, sub, context, true);
+            base.parse_element (/<cim:AssetModelUsageKind.customerSubstation>([\s\S]*?)<\/cim:AssetModelUsageKind.customerSubstation>/g, obj, "customerSubstation", base.to_string, sub, context);
+
             /**
              * Usage of the asset model is unknown.
              *
              */
-            obj["unknown"] = base.parse_element (/<cim:AssetModelUsageKind.unknown>([\s\S]*?)<\/cim:AssetModelUsageKind.unknown>/g, sub, context, true);
+            base.parse_element (/<cim:AssetModelUsageKind.unknown>([\s\S]*?)<\/cim:AssetModelUsageKind.unknown>/g, obj, "unknown", base.to_string, sub, context);
+
             /**
              * Other kind of asset model usage.
              *
              */
-            obj["other"] = base.parse_element (/<cim:AssetModelUsageKind.other>([\s\S]*?)<\/cim:AssetModelUsageKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:AssetModelUsageKind.other>([\s\S]*?)<\/cim:AssetModelUsageKind.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.AssetModelUsageKind;
             if (null == bucket)
                 context.parsed.AssetModelUsageKind = bucket = {};
@@ -423,22 +469,26 @@ define
              * Steel seal.
              *
              */
-            obj["steel"] = base.parse_element (/<cim:SealKind.steel>([\s\S]*?)<\/cim:SealKind.steel>/g, sub, context, true);
+            base.parse_element (/<cim:SealKind.steel>([\s\S]*?)<\/cim:SealKind.steel>/g, obj, "steel", base.to_string, sub, context);
+
             /**
              * Lead seal.
              *
              */
-            obj["lead"] = base.parse_element (/<cim:SealKind.lead>([\s\S]*?)<\/cim:SealKind.lead>/g, sub, context, true);
+            base.parse_element (/<cim:SealKind.lead>([\s\S]*?)<\/cim:SealKind.lead>/g, obj, "lead", base.to_string, sub, context);
+
             /**
              * Lock seal.
              *
              */
-            obj["lock"] = base.parse_element (/<cim:SealKind.lock>([\s\S]*?)<\/cim:SealKind.lock>/g, sub, context, true);
+            base.parse_element (/<cim:SealKind.lock>([\s\S]*?)<\/cim:SealKind.lock>/g, obj, "lock", base.to_string, sub, context);
+
             /**
              * Other kind of seal.
              *
              */
-            obj["other"] = base.parse_element (/<cim:SealKind.other>([\s\S]*?)<\/cim:SealKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:SealKind.other>([\s\S]*?)<\/cim:SealKind.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.SealKind;
             if (null == bucket)
                 context.parsed.SealKind = bucket = {};
@@ -483,12 +533,14 @@ define
              * Date and time procedure was completed.
              *
              */
-            obj["completedDateTime"] = base.to_datetime (base.parse_element (/<cim:ProcedureDataSet.completedDateTime>([\s\S]*?)<\/cim:ProcedureDataSet.completedDateTime>/g, sub, context, true));
+            base.parse_element (/<cim:ProcedureDataSet.completedDateTime>([\s\S]*?)<\/cim:ProcedureDataSet.completedDateTime>/g, obj, "completedDateTime", base.to_datetime, sub, context);
+
             /**
              * Procedure capturing this data set.
              *
              */
-            obj["Procedure"] = base.parse_attribute (/<cim:ProcedureDataSet.Procedure\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:ProcedureDataSet.Procedure\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Procedure", sub, context, true);
+
             bucket = context.parsed.ProcedureDataSet;
             if (null == bucket)
                 context.parsed.ProcedureDataSet = bucket = {};
@@ -512,27 +564,32 @@ define
              * Configuration specified for this function.
              *
              */
-            obj["configID"] = base.parse_element (/<cim:AssetFunction.configID>([\s\S]*?)<\/cim:AssetFunction.configID>/g, sub, context, true);
+            base.parse_element (/<cim:AssetFunction.configID>([\s\S]*?)<\/cim:AssetFunction.configID>/g, obj, "configID", base.to_string, sub, context);
+
             /**
              * Firmware version.
              *
              */
-            obj["firmwareID"] = base.parse_element (/<cim:AssetFunction.firmwareID>([\s\S]*?)<\/cim:AssetFunction.firmwareID>/g, sub, context, true);
+            base.parse_element (/<cim:AssetFunction.firmwareID>([\s\S]*?)<\/cim:AssetFunction.firmwareID>/g, obj, "firmwareID", base.to_string, sub, context);
+
             /**
              * Hardware version.
              *
              */
-            obj["hardwareID"] = base.parse_element (/<cim:AssetFunction.hardwareID>([\s\S]*?)<\/cim:AssetFunction.hardwareID>/g, sub, context, true);
+            base.parse_element (/<cim:AssetFunction.hardwareID>([\s\S]*?)<\/cim:AssetFunction.hardwareID>/g, obj, "hardwareID", base.to_string, sub, context);
+
             /**
              * Password needed to access this function.
              *
              */
-            obj["password"] = base.parse_element (/<cim:AssetFunction.password>([\s\S]*?)<\/cim:AssetFunction.password>/g, sub, context, true);
+            base.parse_element (/<cim:AssetFunction.password>([\s\S]*?)<\/cim:AssetFunction.password>/g, obj, "password", base.to_string, sub, context);
+
             /**
              * Name of program.
              *
              */
-            obj["programID"] = base.parse_element (/<cim:AssetFunction.programID>([\s\S]*?)<\/cim:AssetFunction.programID>/g, sub, context, true);
+            base.parse_element (/<cim:AssetFunction.programID>([\s\S]*?)<\/cim:AssetFunction.programID>/g, obj, "programID", base.to_string, sub, context);
+
             bucket = context.parsed.AssetFunction;
             if (null == bucket)
                 context.parsed.AssetFunction = bucket = {};
@@ -594,27 +651,32 @@ define
              * Date and time this seal has been applied.
              *
              */
-            obj["appliedDateTime"] = base.to_datetime (base.parse_element (/<cim:Seal.appliedDateTime>([\s\S]*?)<\/cim:Seal.appliedDateTime>/g, sub, context, true));
+            base.parse_element (/<cim:Seal.appliedDateTime>([\s\S]*?)<\/cim:Seal.appliedDateTime>/g, obj, "appliedDateTime", base.to_datetime, sub, context);
+
             /**
              * Condition of seal.
              *
              */
-            obj["condition"] = base.parse_element (/<cim:Seal.condition>([\s\S]*?)<\/cim:Seal.condition>/g, sub, context, true);
+            base.parse_element (/<cim:Seal.condition>([\s\S]*?)<\/cim:Seal.condition>/g, obj, "condition", base.to_string, sub, context);
+
             /**
              * Kind of seal.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:Seal.kind>([\s\S]*?)<\/cim:Seal.kind>/g, sub, context, true);
+            base.parse_element (/<cim:Seal.kind>([\s\S]*?)<\/cim:Seal.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * (reserved word) Seal number.
              *
              */
-            obj["sealNumber"] = base.parse_element (/<cim:Seal.sealNumber>([\s\S]*?)<\/cim:Seal.sealNumber>/g, sub, context, true);
+            base.parse_element (/<cim:Seal.sealNumber>([\s\S]*?)<\/cim:Seal.sealNumber>/g, obj, "sealNumber", base.to_string, sub, context);
+
             /**
              * Asset container to which this seal is applied.
              *
              */
-            obj["AssetContainer"] = base.parse_attribute (/<cim:Seal.AssetContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Seal.AssetContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetContainer", sub, context, true);
+
             bucket = context.parsed.Seal;
             if (null == bucket)
                 context.parsed.Seal = bucket = {};
@@ -661,38 +723,44 @@ define
              * Asset may have been installed at other locations previously. Ignored if asset is (1) not currently installed (e.g., stored in a depot) or (2) not intended to be installed (e.g., vehicle, tool).
              *
              */
-            obj["installationDate"] = base.parse_element (/<cim:LifecycleDate.installationDate>([\s\S]*?)<\/cim:LifecycleDate.installationDate>/g, sub, context, true);
+            base.parse_element (/<cim:LifecycleDate.installationDate>([\s\S]*?)<\/cim:LifecycleDate.installationDate>/g, obj, "installationDate", base.to_string, sub, context);
+
             /**
              * Date the asset was manufactured.
              *
              */
-            obj["manufacturedDate"] = base.parse_element (/<cim:LifecycleDate.manufacturedDate>([\s\S]*?)<\/cim:LifecycleDate.manufacturedDate>/g, sub, context, true);
+            base.parse_element (/<cim:LifecycleDate.manufacturedDate>([\s\S]*?)<\/cim:LifecycleDate.manufacturedDate>/g, obj, "manufacturedDate", base.to_string, sub, context);
+
             /**
              * Date the asset was purchased.
              *
              * Note that even though an asset may have been purchased, it may not have been received into inventory at the time of purchase.
              *
              */
-            obj["purchaseDate"] = base.parse_element (/<cim:LifecycleDate.purchaseDate>([\s\S]*?)<\/cim:LifecycleDate.purchaseDate>/g, sub, context, true);
+            base.parse_element (/<cim:LifecycleDate.purchaseDate>([\s\S]*?)<\/cim:LifecycleDate.purchaseDate>/g, obj, "purchaseDate", base.to_string, sub, context);
+
             /**
              * Date the asset was received and first placed into inventory.
              *
              */
-            obj["receivedDate"] = base.parse_element (/<cim:LifecycleDate.receivedDate>([\s\S]*?)<\/cim:LifecycleDate.receivedDate>/g, sub, context, true);
+            base.parse_element (/<cim:LifecycleDate.receivedDate>([\s\S]*?)<\/cim:LifecycleDate.receivedDate>/g, obj, "receivedDate", base.to_string, sub, context);
+
             /**
              * (if applicable) Date when the asset was last removed from service.
              *
              * Ignored if (1) not intended to be in service, or (2) currently in service.
              *
              */
-            obj["removalDate"] = base.parse_element (/<cim:LifecycleDate.removalDate>([\s\S]*?)<\/cim:LifecycleDate.removalDate>/g, sub, context, true);
+            base.parse_element (/<cim:LifecycleDate.removalDate>([\s\S]*?)<\/cim:LifecycleDate.removalDate>/g, obj, "removalDate", base.to_string, sub, context);
+
             /**
              * (if applicable) Date the asset is permanently retired from service and may be scheduled for disposal.
              *
              * Ignored if asset is (1) currently in service, or (2) permanently removed from service.
              *
              */
-            obj["retiredDate"] = base.parse_element (/<cim:LifecycleDate.retiredDate>([\s\S]*?)<\/cim:LifecycleDate.retiredDate>/g, sub, context, true);
+            base.parse_element (/<cim:LifecycleDate.retiredDate>([\s\S]*?)<\/cim:LifecycleDate.retiredDate>/g, obj, "retiredDate", base.to_string, sub, context);
+
             bucket = context.parsed.LifecycleDate;
             if (null == bucket)
                 context.parsed.LifecycleDate = bucket = {};
@@ -718,7 +786,8 @@ define
              * Data applicable to this asset model.
              *
              */
-            obj["AssetInfo"] = base.parse_attribute (/<cim:AssetModel.AssetInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:AssetModel.AssetInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetInfo", sub, context, true);
+
             bucket = context.parsed.AssetModel;
             if (null == bucket)
                 context.parsed.AssetModel = bucket = {};
@@ -742,27 +811,32 @@ define
              * Seal is locked.
              *
              */
-            obj["locked"] = base.parse_element (/<cim:SealConditionKind.locked>([\s\S]*?)<\/cim:SealConditionKind.locked>/g, sub, context, true);
+            base.parse_element (/<cim:SealConditionKind.locked>([\s\S]*?)<\/cim:SealConditionKind.locked>/g, obj, "locked", base.to_string, sub, context);
+
             /**
              * Seal is open.
              *
              */
-            obj["open"] = base.parse_element (/<cim:SealConditionKind.open>([\s\S]*?)<\/cim:SealConditionKind.open>/g, sub, context, true);
+            base.parse_element (/<cim:SealConditionKind.open>([\s\S]*?)<\/cim:SealConditionKind.open>/g, obj, "open", base.to_string, sub, context);
+
             /**
              * Seal is broken.
              *
              */
-            obj["broken"] = base.parse_element (/<cim:SealConditionKind.broken>([\s\S]*?)<\/cim:SealConditionKind.broken>/g, sub, context, true);
+            base.parse_element (/<cim:SealConditionKind.broken>([\s\S]*?)<\/cim:SealConditionKind.broken>/g, obj, "broken", base.to_string, sub, context);
+
             /**
              * Seal is missing.
              *
              */
-            obj["missing"] = base.parse_element (/<cim:SealConditionKind.missing>([\s\S]*?)<\/cim:SealConditionKind.missing>/g, sub, context, true);
+            base.parse_element (/<cim:SealConditionKind.missing>([\s\S]*?)<\/cim:SealConditionKind.missing>/g, obj, "missing", base.to_string, sub, context);
+
             /**
              * Other kind of seal condition.
              *
              */
-            obj["other"] = base.parse_element (/<cim:SealConditionKind.other>([\s\S]*?)<\/cim:SealConditionKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:SealConditionKind.other>([\s\S]*?)<\/cim:SealConditionKind.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.SealConditionKind;
             if (null == bucket)
                 context.parsed.SealConditionKind = bucket = {};
@@ -805,17 +879,20 @@ define
              * Textual description of this procedure.
              *
              */
-            obj["instruction"] = base.parse_element (/<cim:Procedure.instruction>([\s\S]*?)<\/cim:Procedure.instruction>/g, sub, context, true);
+            base.parse_element (/<cim:Procedure.instruction>([\s\S]*?)<\/cim:Procedure.instruction>/g, obj, "instruction", base.to_string, sub, context);
+
             /**
              * Kind of procedure.
              *
              */
-            obj["kind"] = base.parse_element (/<cim:Procedure.kind>([\s\S]*?)<\/cim:Procedure.kind>/g, sub, context, true);
+            base.parse_element (/<cim:Procedure.kind>([\s\S]*?)<\/cim:Procedure.kind>/g, obj, "kind", base.to_string, sub, context);
+
             /**
              * Sequence number in a sequence of procedures being performed.
              *
              */
-            obj["sequenceNumber"] = base.parse_element (/<cim:Procedure.sequenceNumber>([\s\S]*?)<\/cim:Procedure.sequenceNumber>/g, sub, context, true);
+            base.parse_element (/<cim:Procedure.sequenceNumber>([\s\S]*?)<\/cim:Procedure.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
+
             bucket = context.parsed.Procedure;
             if (null == bucket)
                 context.parsed.Procedure = bucket = {};

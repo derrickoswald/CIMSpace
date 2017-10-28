@@ -22,6 +22,17 @@ define
         var UNIQUE_NUMBER = 0;
 
         /**
+         * Pass a string through unchanged.
+         * @param {String} str - the string
+         * @returns {String} the same string
+         * @memberOf module:model/base
+         */
+        function to_string (str)
+        {
+            return (str);
+        }
+
+        /**
          * Convert a string into a boolean value.
          * @param {String} str - the string to convert
          * @returns {Boolean} the boolean value
@@ -131,63 +142,47 @@ define
         /**
          * Parse an element value - the first capture group of a regular expression.
          * @param {Object} regex - the regular expression
+         * @param {Object} obj - the object to assign the attribute to
+         * @param {String} attribute - the attribute name
+         * @param {Function} fn - the conversion function (use to_string for no conversion)
          * @param {String} str - the string to look in
          * @param {Object} context - the context object
          * @param {Number[]} context.newlines - the index of newline positions within the text
          * @param {Number} context.start_character - the starting character position for this context
-         * @param {Boolean} optional - if <em>true</em> return <em>null</em> if not found rather than throw an exception
-         * @returns {String} the string found as the first capture group
          * @memberOf module:model/base
          */
-        function parse_element (regex, str, context, optional)
+        function parse_element (regex, obj, attribute, fn, str, context)
         {
             var result;
-            var ret;
-
-            ret = null;
 
             if (null != (result = regex.exec (str)))
-                ret = result[1];
-            else
-                if (!optional)
-                    throw ("regular expression " + regex.source + " not found while parsing at line " + line_number (context));
-//                else
-//                    console.log (regex.source + " not found at line " + line_number (context));
-
-            return (ret);
+                obj[attribute] = fn (result[1]);
         }
 
         /**
          * Parse an attribute - the second capture group of a regular expression.
+         *
          * @param {Object} regex - the regular expression
+         * @param {Object} obj - the object to assign the attribute to
+         * @param {String} attribute - the attribute name
          * @param {String} str - the string to look in
          * @param {Object} context - the context object
          * @param {Number[]} context.newlines - the index of newline positions within the text
          * @param {Number} context.start_character - the starting character position for this context
-         * @param {Boolean} optional - if <em>true</em> return <em>null</em> if not found rather than throw an exception
-         * @returns {String} the string found as the second capture group (the first is the quote character used)
          * @memberOf module:model/base
          */
-        function parse_attribute (regex, str, context, optional)
+        function parse_attribute (regex, obj, attribute, str, context)
         {
             var result;
-            var ret;
-
-            ret = null;
+            var value;
 
             if (null != (result = regex.exec (str)))
             {
-                ret = result[2];
-                if (ret.charAt (0) == '#') // remove '#'
-                    ret = ret.substring (1);
+                value = result[2];
+                if (value.charAt (0) == '#') // remove '#'
+                    value = value.substring (1);
+                obj[attribute] = value;
             }
-            else
-                if (!optional)
-                    throw ("regular expression " + regex.source + " not found while parsing at line " + line_number (context));
-//                else
-//                    console.log (regex.source + " not found at line " + line_number (context));
-
-            return (ret);
         }
 
         /**
@@ -203,23 +198,24 @@ define
             var elements;
             var ret;
 
-            id = parse_attribute (/rdf:ID=("|')([\s\S]*?)\1/g, sub, context, true);
-            if (null == id)
+            ret = { cls: "Element" };
+            parse_attribute (/rdf:ID=("|')([\s\S]*?)\1/g, ret, "id", sub, context);
+            if ("undefined" == typeof (ret.id))
             {
                 UNIQUE_NUMBER++;
-                id = "element_" + UNIQUE_NUMBER;
+                ret.id = "element_" + UNIQUE_NUMBER;
             }
             elements = context.parsed.Element;
             if (null == elements)
                 context.parsed.Element = elements = {};
-            ret = { id: id, cls: "Element" };
-            elements[id] = ret;
+            elements[ret.id] = ret;
 
             return (ret);
         }
 
         return (
             {
+                to_string: to_string,
                 to_boolean: to_boolean,
                 to_float: to_float,
                 to_datetime: to_datetime,

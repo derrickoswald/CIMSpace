@@ -27,14 +27,16 @@ define
              * This is also known as a right hand orientation.
              *
              */
-            obj["positive"] = base.parse_element (/<cim:OrientationKind.positive>([\s\S]*?)<\/cim:OrientationKind.positive>/g, sub, context, true);
+            base.parse_element (/<cim:OrientationKind.positive>([\s\S]*?)<\/cim:OrientationKind.positive>/g, obj, "positive", base.to_string, sub, context);
+
             /**
              * For 2D diagrams, a negative orientation gives the left-hand orientation (favoured by computer graphics displays) with X values increasing from left to right and Y values increasing from top to bottom.
              *
              * This is also known as a left hand orientation.
              *
              */
-            obj["negative"] = base.parse_element (/<cim:OrientationKind.negative>([\s\S]*?)<\/cim:OrientationKind.negative>/g, sub, context, true);
+            base.parse_element (/<cim:OrientationKind.negative>([\s\S]*?)<\/cim:OrientationKind.negative>/g, obj, "negative", base.to_string, sub, context);
+
             bucket = context.parsed.OrientationKind;
             if (null == bucket)
                 context.parsed.OrientationKind = bucket = {};
@@ -58,7 +60,8 @@ define
              * The text that is displayed by this text diagram object.
              *
              */
-            obj["text"] = base.parse_element (/<cim:TextDiagramObject.text>([\s\S]*?)<\/cim:TextDiagramObject.text>/g, sub, context, true);
+            base.parse_element (/<cim:TextDiagramObject.text>([\s\S]*?)<\/cim:TextDiagramObject.text>/g, obj, "text", base.to_string, sub, context);
+
             bucket = context.parsed.TextDiagramObject;
             if (null == bucket)
                 context.parsed.TextDiagramObject = bucket = {};
@@ -84,32 +87,38 @@ define
              * The sequence position of the point, used for defining the order of points for diagram objects acting as a polyline or polygon with more than one point.
              *
              */
-            obj["sequenceNumber"] = base.parse_element (/<cim:DiagramObjectPoint.sequenceNumber>([\s\S]*?)<\/cim:DiagramObjectPoint.sequenceNumber>/g, sub, context, true);
+            base.parse_element (/<cim:DiagramObjectPoint.sequenceNumber>([\s\S]*?)<\/cim:DiagramObjectPoint.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
+
             /**
              * The X coordinate of this point.
              *
              */
-            obj["xPosition"] = base.to_float (base.parse_element (/<cim:DiagramObjectPoint.xPosition>([\s\S]*?)<\/cim:DiagramObjectPoint.xPosition>/g, sub, context, true));
+            base.parse_element (/<cim:DiagramObjectPoint.xPosition>([\s\S]*?)<\/cim:DiagramObjectPoint.xPosition>/g, obj, "xPosition", base.to_float, sub, context);
+
             /**
              * The Y coordinate of this point.
              *
              */
-            obj["yPosition"] = base.to_float (base.parse_element (/<cim:DiagramObjectPoint.yPosition>([\s\S]*?)<\/cim:DiagramObjectPoint.yPosition>/g, sub, context, true));
+            base.parse_element (/<cim:DiagramObjectPoint.yPosition>([\s\S]*?)<\/cim:DiagramObjectPoint.yPosition>/g, obj, "yPosition", base.to_float, sub, context);
+
             /**
              * The Z coordinate of this point.
              *
              */
-            obj["zPosition"] = base.to_float (base.parse_element (/<cim:DiagramObjectPoint.zPosition>([\s\S]*?)<\/cim:DiagramObjectPoint.zPosition>/g, sub, context, true));
+            base.parse_element (/<cim:DiagramObjectPoint.zPosition>([\s\S]*?)<\/cim:DiagramObjectPoint.zPosition>/g, obj, "zPosition", base.to_float, sub, context);
+
             /**
              * The diagram object with which the points are associated.
              *
              */
-            obj["DiagramObject"] = base.parse_attribute (/<cim:DiagramObjectPoint.DiagramObject\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:DiagramObjectPoint.DiagramObject\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DiagramObject", sub, context, true);
+
             /**
              * The 'glue' point to which this point is associated.
              *
              */
-            obj["DiagramObjectGluePoint"] = base.parse_attribute (/<cim:DiagramObjectPoint.DiagramObjectGluePoint\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:DiagramObjectPoint.DiagramObjectGluePoint\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DiagramObjectGluePoint", sub, context, true);
+
             bucket = context.parsed.DiagramObjectPoint;
             if (null == bucket)
                 context.parsed.DiagramObjectPoint = bucket = {};
@@ -175,32 +184,38 @@ define
              * Coordinate system orientation of the diagram.
              *
              */
-            obj["orientation"] = base.parse_element (/<cim:Diagram.orientation>([\s\S]*?)<\/cim:Diagram.orientation>/g, sub, context, true);
+            base.parse_element (/<cim:Diagram.orientation>([\s\S]*?)<\/cim:Diagram.orientation>/g, obj, "orientation", base.to_string, sub, context);
+
             /**
              * X coordinate of the first corner of the initial view.
              *
              */
-            obj["x1InitialView"] = base.to_float (base.parse_element (/<cim:Diagram.x1InitialView>([\s\S]*?)<\/cim:Diagram.x1InitialView>/g, sub, context, true));
+            base.parse_element (/<cim:Diagram.x1InitialView>([\s\S]*?)<\/cim:Diagram.x1InitialView>/g, obj, "x1InitialView", base.to_float, sub, context);
+
             /**
              * X coordinate of the second corner of the initial view.
              *
              */
-            obj["x2InitialView"] = base.to_float (base.parse_element (/<cim:Diagram.x2InitialView>([\s\S]*?)<\/cim:Diagram.x2InitialView>/g, sub, context, true));
+            base.parse_element (/<cim:Diagram.x2InitialView>([\s\S]*?)<\/cim:Diagram.x2InitialView>/g, obj, "x2InitialView", base.to_float, sub, context);
+
             /**
              * Y coordinate of the first corner of the initial view.
              *
              */
-            obj["y1InitialView"] = base.to_float (base.parse_element (/<cim:Diagram.y1InitialView>([\s\S]*?)<\/cim:Diagram.y1InitialView>/g, sub, context, true));
+            base.parse_element (/<cim:Diagram.y1InitialView>([\s\S]*?)<\/cim:Diagram.y1InitialView>/g, obj, "y1InitialView", base.to_float, sub, context);
+
             /**
              * Y coordinate of the second corner of the initial view.
              *
              */
-            obj["y2InitialView"] = base.to_float (base.parse_element (/<cim:Diagram.y2InitialView>([\s\S]*?)<\/cim:Diagram.y2InitialView>/g, sub, context, true));
+            base.parse_element (/<cim:Diagram.y2InitialView>([\s\S]*?)<\/cim:Diagram.y2InitialView>/g, obj, "y2InitialView", base.to_float, sub, context);
+
             /**
              * A Diagram may have a DiagramStyle.
              *
              */
-            obj["DiagramStyle"] = base.parse_attribute (/<cim:Diagram.DiagramStyle\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:Diagram.DiagramStyle\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DiagramStyle", sub, context, true);
+
             bucket = context.parsed.Diagram;
             if (null == bucket)
                 context.parsed.Diagram = bucket = {};
@@ -228,7 +243,8 @@ define
              * The higher the number, the later the layer and the objects within it are rendered.
              *
              */
-            obj["drawingOrder"] = base.parse_element (/<cim:VisibilityLayer.drawingOrder>([\s\S]*?)<\/cim:VisibilityLayer.drawingOrder>/g, sub, context, true);
+            base.parse_element (/<cim:VisibilityLayer.drawingOrder>([\s\S]*?)<\/cim:VisibilityLayer.drawingOrder>/g, obj, "drawingOrder", base.to_string, sub, context);
+
             bucket = context.parsed.VisibilityLayer;
             if (null == bucket)
                 context.parsed.VisibilityLayer = bucket = {};
@@ -256,50 +272,58 @@ define
              * The higher the number, the later the element is drawn in sequence. This is used to ensure that elements that overlap are rendered in the correct order.
              *
              */
-            obj["drawingOrder"] = base.parse_element (/<cim:DiagramObject.drawingOrder>([\s\S]*?)<\/cim:DiagramObject.drawingOrder>/g, sub, context, true);
+            base.parse_element (/<cim:DiagramObject.drawingOrder>([\s\S]*?)<\/cim:DiagramObject.drawingOrder>/g, obj, "drawingOrder", base.to_string, sub, context);
+
             /**
              * Defines whether or not the diagram objects points define the boundaries of a polygon or the routing of a polyline.
              *
              * If this value is true then a receiving application should consider the first and last points to be connected.
              *
              */
-            obj["isPolygon"] = base.to_boolean (base.parse_element (/<cim:DiagramObject.isPolygon>([\s\S]*?)<\/cim:DiagramObject.isPolygon>/g, sub, context, true));
+            base.parse_element (/<cim:DiagramObject.isPolygon>([\s\S]*?)<\/cim:DiagramObject.isPolygon>/g, obj, "isPolygon", base.to_boolean, sub, context);
+
             /**
              * The offset in the X direction.
              *
              * This is used for defining the offset from centre for rendering an icon (the default is that a single point specifies the centre of the icon).
              *
              */
-            obj["offsetX"] = base.to_float (base.parse_element (/<cim:DiagramObject.offsetX>([\s\S]*?)<\/cim:DiagramObject.offsetX>/g, sub, context, true));
+            base.parse_element (/<cim:DiagramObject.offsetX>([\s\S]*?)<\/cim:DiagramObject.offsetX>/g, obj, "offsetX", base.to_float, sub, context);
+
             /**
              * The offset in the Y direction.
              *
              * This is used for defining the offset from centre for rendering an icon (the default is that a single point specifies the centre of the icon).
              *
              */
-            obj["offsetY"] = base.to_float (base.parse_element (/<cim:DiagramObject.offsetY>([\s\S]*?)<\/cim:DiagramObject.offsetY>/g, sub, context, true));
+            base.parse_element (/<cim:DiagramObject.offsetY>([\s\S]*?)<\/cim:DiagramObject.offsetY>/g, obj, "offsetY", base.to_float, sub, context);
+
             /**
              * Sets the angle of rotation of the diagram object.
              *
              * Zero degrees is pointing to the top of the diagram.  Rotation is clockwise.
              *
              */
-            obj["rotation"] = base.parse_element (/<cim:DiagramObject.rotation>([\s\S]*?)<\/cim:DiagramObject.rotation>/g, sub, context, true);
+            base.parse_element (/<cim:DiagramObject.rotation>([\s\S]*?)<\/cim:DiagramObject.rotation>/g, obj, "rotation", base.to_string, sub, context);
+
             /**
              * A diagram object is part of a diagram.
              *
              */
-            obj["Diagram"] = base.parse_attribute (/<cim:DiagramObject.Diagram\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:DiagramObject.Diagram\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Diagram", sub, context, true);
+
             /**
              * A diagram object has a style associated that provides a reference for the style used in the originating system.
              *
              */
-            obj["DiagramObjectStyle"] = base.parse_attribute (/<cim:DiagramObject.DiagramObjectStyle\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:DiagramObject.DiagramObjectStyle\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DiagramObjectStyle", sub, context, true);
+
             /**
              * The domain object to which this diagram object is associated.
              *
              */
-            obj["IdentifiedObject"] = base.parse_attribute (/<cim:DiagramObject.IdentifiedObject\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:DiagramObject.IdentifiedObject\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IdentifiedObject", sub, context, true);
+
             bucket = context.parsed.DiagramObject;
             if (null == bucket)
                 context.parsed.DiagramObject = bucket = {};

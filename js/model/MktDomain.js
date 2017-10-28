@@ -23,22 +23,26 @@ define
              * Firm
              *
              */
-            obj["FIRM"] = base.parse_element (/<cim:EnergyProductType.FIRM>([\s\S]*?)<\/cim:EnergyProductType.FIRM>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyProductType.FIRM>([\s\S]*?)<\/cim:EnergyProductType.FIRM>/g, obj, "FIRM", base.to_string, sub, context);
+
             /**
              * Non Firm
              *
              */
-            obj["NFRM"] = base.parse_element (/<cim:EnergyProductType.NFRM>([\s\S]*?)<\/cim:EnergyProductType.NFRM>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyProductType.NFRM>([\s\S]*?)<\/cim:EnergyProductType.NFRM>/g, obj, "NFRM", base.to_string, sub, context);
+
             /**
              * Dynamic
              *
              */
-            obj["DYN"] = base.parse_element (/<cim:EnergyProductType.DYN>([\s\S]*?)<\/cim:EnergyProductType.DYN>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyProductType.DYN>([\s\S]*?)<\/cim:EnergyProductType.DYN>/g, obj, "DYN", base.to_string, sub, context);
+
             /**
              * Wheeling
              *
              */
-            obj["WHL"] = base.parse_element (/<cim:EnergyProductType.WHL>([\s\S]*?)<\/cim:EnergyProductType.WHL>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyProductType.WHL>([\s\S]*?)<\/cim:EnergyProductType.WHL>/g, obj, "WHL", base.to_string, sub, context);
+
             bucket = context.parsed.EnergyProductType;
             if (null == bucket)
                 context.parsed.EnergyProductType = bucket = {};
@@ -66,17 +70,20 @@ define
              * 'N' - not an RMR unit
              *
              */
-            obj["N"] = base.parse_element (/<cim:FlagTypeRMR.N>([\s\S]*?)<\/cim:FlagTypeRMR.N>/g, sub, context, true);
+            base.parse_element (/<cim:FlagTypeRMR.N>([\s\S]*?)<\/cim:FlagTypeRMR.N>/g, obj, "N", base.to_string, sub, context);
+
             /**
              * '1' - RMR Condition 1 unit
              *
              */
-            obj["1"] = base.parse_element (/<cim:FlagTypeRMR.1>([\s\S]*?)<\/cim:FlagTypeRMR.1>/g, sub, context, true);
+            base.parse_element (/<cim:FlagTypeRMR.1>([\s\S]*?)<\/cim:FlagTypeRMR.1>/g, obj, "1", base.to_string, sub, context);
+
             /**
              * '2' - RMR Condition 2 unit
              *
              */
-            obj["2"] = base.parse_element (/<cim:FlagTypeRMR.2>([\s\S]*?)<\/cim:FlagTypeRMR.2>/g, sub, context, true);
+            base.parse_element (/<cim:FlagTypeRMR.2>([\s\S]*?)<\/cim:FlagTypeRMR.2>/g, obj, "2", base.to_string, sub, context);
+
             bucket = context.parsed.FlagTypeRMR;
             if (null == bucket)
                 context.parsed.FlagTypeRMR = bucket = {};
@@ -100,22 +107,26 @@ define
              * Day ahead market.
              *
              */
-            obj["DAM"] = base.parse_element (/<cim:MarketType.DAM>([\s\S]*?)<\/cim:MarketType.DAM>/g, sub, context, true);
+            base.parse_element (/<cim:MarketType.DAM>([\s\S]*?)<\/cim:MarketType.DAM>/g, obj, "DAM", base.to_string, sub, context);
+
             /**
              * Real time market.
              *
              */
-            obj["RTM"] = base.parse_element (/<cim:MarketType.RTM>([\s\S]*?)<\/cim:MarketType.RTM>/g, sub, context, true);
+            base.parse_element (/<cim:MarketType.RTM>([\s\S]*?)<\/cim:MarketType.RTM>/g, obj, "RTM", base.to_string, sub, context);
+
             /**
              * Hour Ahead Market.
              *
              */
-            obj["HAM"] = base.parse_element (/<cim:MarketType.HAM>([\s\S]*?)<\/cim:MarketType.HAM>/g, sub, context, true);
+            base.parse_element (/<cim:MarketType.HAM>([\s\S]*?)<\/cim:MarketType.HAM>/g, obj, "HAM", base.to_string, sub, context);
+
             /**
              * Residual Unit Commitment.
              *
              */
-            obj["RUC"] = base.parse_element (/<cim:MarketType.RUC>([\s\S]*?)<\/cim:MarketType.RUC>/g, sub, context, true);
+            base.parse_element (/<cim:MarketType.RUC>([\s\S]*?)<\/cim:MarketType.RUC>/g, obj, "RUC", base.to_string, sub, context);
+
             bucket = context.parsed.MarketType;
             if (null == bucket)
                 context.parsed.MarketType = bucket = {};
@@ -135,14 +146,18 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "RampRateCondition";
-            obj["WORST"] = base.parse_element (/<cim:RampRateCondition.WORST>([\s\S]*?)<\/cim:RampRateCondition.WORST>/g, sub, context, true);
-            obj["BEST"] = base.parse_element (/<cim:RampRateCondition.BEST>([\s\S]*?)<\/cim:RampRateCondition.BEST>/g, sub, context, true);
-            obj["NORMAL"] = base.parse_element (/<cim:RampRateCondition.NORMAL>([\s\S]*?)<\/cim:RampRateCondition.NORMAL>/g, sub, context, true);
+            base.parse_element (/<cim:RampRateCondition.WORST>([\s\S]*?)<\/cim:RampRateCondition.WORST>/g, obj, "WORST", base.to_string, sub, context);
+
+            base.parse_element (/<cim:RampRateCondition.BEST>([\s\S]*?)<\/cim:RampRateCondition.BEST>/g, obj, "BEST", base.to_string, sub, context);
+
+            base.parse_element (/<cim:RampRateCondition.NORMAL>([\s\S]*?)<\/cim:RampRateCondition.NORMAL>/g, obj, "NORMAL", base.to_string, sub, context);
+
             /**
              * not applicable
              *
              */
-            obj["NA"] = base.parse_element (/<cim:RampRateCondition.NA>([\s\S]*?)<\/cim:RampRateCondition.NA>/g, sub, context, true);
+            base.parse_element (/<cim:RampRateCondition.NA>([\s\S]*?)<\/cim:RampRateCondition.NA>/g, obj, "NA", base.to_string, sub, context);
+
             bucket = context.parsed.RampRateCondition;
             if (null == bucket)
                 context.parsed.RampRateCondition = bucket = {};
@@ -166,17 +181,20 @@ define
              * Based on prices paid at particular pricing location.
              *
              */
-            obj["LMP_BASED"] = base.parse_element (/<cim:BidCalculationBasis.LMP_BASED>([\s\S]*?)<\/cim:BidCalculationBasis.LMP_BASED>/g, sub, context, true);
+            base.parse_element (/<cim:BidCalculationBasis.LMP_BASED>([\s\S]*?)<\/cim:BidCalculationBasis.LMP_BASED>/g, obj, "LMP_BASED", base.to_string, sub, context);
+
             /**
              * Based on unit generation characteristics and a cost of fuel.
              *
              */
-            obj["COST_BASED"] = base.parse_element (/<cim:BidCalculationBasis.COST_BASED>([\s\S]*?)<\/cim:BidCalculationBasis.COST_BASED>/g, sub, context, true);
+            base.parse_element (/<cim:BidCalculationBasis.COST_BASED>([\s\S]*?)<\/cim:BidCalculationBasis.COST_BASED>/g, obj, "COST_BASED", base.to_string, sub, context);
+
             /**
              * An amount negotiated with the designated Independent Entity.
              *
              */
-            obj["NEGOTIATED"] = base.parse_element (/<cim:BidCalculationBasis.NEGOTIATED>([\s\S]*?)<\/cim:BidCalculationBasis.NEGOTIATED>/g, sub, context, true);
+            base.parse_element (/<cim:BidCalculationBasis.NEGOTIATED>([\s\S]*?)<\/cim:BidCalculationBasis.NEGOTIATED>/g, obj, "NEGOTIATED", base.to_string, sub, context);
+
             bucket = context.parsed.BidCalculationBasis;
             if (null == bucket)
                 context.parsed.BidCalculationBasis = bucket = {};
@@ -200,17 +218,20 @@ define
              * Approve
              *
              */
-            obj["approve"] = base.parse_element (/<cim:EnergyTransactionType.approve>([\s\S]*?)<\/cim:EnergyTransactionType.approve>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyTransactionType.approve>([\s\S]*?)<\/cim:EnergyTransactionType.approve>/g, obj, "approve", base.to_string, sub, context);
+
             /**
              * Deny
              *
              */
-            obj["deny"] = base.parse_element (/<cim:EnergyTransactionType.deny>([\s\S]*?)<\/cim:EnergyTransactionType.deny>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyTransactionType.deny>([\s\S]*?)<\/cim:EnergyTransactionType.deny>/g, obj, "deny", base.to_string, sub, context);
+
             /**
              * Study
              *
              */
-            obj["study"] = base.parse_element (/<cim:EnergyTransactionType.study>([\s\S]*?)<\/cim:EnergyTransactionType.study>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyTransactionType.study>([\s\S]*?)<\/cim:EnergyTransactionType.study>/g, obj, "study", base.to_string, sub, context);
+
             bucket = context.parsed.EnergyTransactionType;
             if (null == bucket)
                 context.parsed.EnergyTransactionType = bucket = {};
@@ -243,42 +264,50 @@ define
              * ETC - Existing Transmission Contract
              *
              */
-            obj["ETC"] = base.parse_element (/<cim:ContractType.ETC>([\s\S]*?)<\/cim:ContractType.ETC>/g, sub, context, true);
+            base.parse_element (/<cim:ContractType.ETC>([\s\S]*?)<\/cim:ContractType.ETC>/g, obj, "ETC", base.to_string, sub, context);
+
             /**
              * TOR - Transmission Ownership Right
              *
              */
-            obj["TOR"] = base.parse_element (/<cim:ContractType.TOR>([\s\S]*?)<\/cim:ContractType.TOR>/g, sub, context, true);
+            base.parse_element (/<cim:ContractType.TOR>([\s\S]*?)<\/cim:ContractType.TOR>/g, obj, "TOR", base.to_string, sub, context);
+
             /**
              * RMR - Reliability Must Run Contract
              *
              */
-            obj["RMR"] = base.parse_element (/<cim:ContractType.RMR>([\s\S]*?)<\/cim:ContractType.RMR>/g, sub, context, true);
+            base.parse_element (/<cim:ContractType.RMR>([\s\S]*?)<\/cim:ContractType.RMR>/g, obj, "RMR", base.to_string, sub, context);
+
             /**
              * RMT - RMT Contract
              *
              */
-            obj["RMT"] = base.parse_element (/<cim:ContractType.RMT>([\s\S]*?)<\/cim:ContractType.RMT>/g, sub, context, true);
+            base.parse_element (/<cim:ContractType.RMT>([\s\S]*?)<\/cim:ContractType.RMT>/g, obj, "RMT", base.to_string, sub, context);
+
             /**
              * O - Other
              *
              */
-            obj["O"] = base.parse_element (/<cim:ContractType.O>([\s\S]*?)<\/cim:ContractType.O>/g, sub, context, true);
+            base.parse_element (/<cim:ContractType.O>([\s\S]*?)<\/cim:ContractType.O>/g, obj, "O", base.to_string, sub, context);
+
             /**
              * TE - Transmission Export
              *
              */
-            obj["TE"] = base.parse_element (/<cim:ContractType.TE>([\s\S]*?)<\/cim:ContractType.TE>/g, sub, context, true);
+            base.parse_element (/<cim:ContractType.TE>([\s\S]*?)<\/cim:ContractType.TE>/g, obj, "TE", base.to_string, sub, context);
+
             /**
              * TI - Transmission Import
              *
              */
-            obj["TI"] = base.parse_element (/<cim:ContractType.TI>([\s\S]*?)<\/cim:ContractType.TI>/g, sub, context, true);
+            base.parse_element (/<cim:ContractType.TI>([\s\S]*?)<\/cim:ContractType.TI>/g, obj, "TI", base.to_string, sub, context);
+
             /**
              * CVR - Converted contract.
              *
              */
-            obj["CVR"] = base.parse_element (/<cim:ContractType.CVR>([\s\S]*?)<\/cim:ContractType.CVR>/g, sub, context, true);
+            base.parse_element (/<cim:ContractType.CVR>([\s\S]*?)<\/cim:ContractType.CVR>/g, obj, "CVR", base.to_string, sub, context);
+
             bucket = context.parsed.ContractType;
             if (null == bucket)
                 context.parsed.ContractType = bucket = {};
@@ -302,9 +331,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "BidType";
-            obj["DEFAULT_ENERGY_BID"] = base.parse_element (/<cim:BidType.DEFAULT_ENERGY_BID>([\s\S]*?)<\/cim:BidType.DEFAULT_ENERGY_BID>/g, sub, context, true);
-            obj["DEFAULT_STARTUP_BID"] = base.parse_element (/<cim:BidType.DEFAULT_STARTUP_BID>([\s\S]*?)<\/cim:BidType.DEFAULT_STARTUP_BID>/g, sub, context, true);
-            obj["DEFAULT_MINIMUM_LOAD_BID"] = base.parse_element (/<cim:BidType.DEFAULT_MINIMUM_LOAD_BID>([\s\S]*?)<\/cim:BidType.DEFAULT_MINIMUM_LOAD_BID>/g, sub, context, true);
+            base.parse_element (/<cim:BidType.DEFAULT_ENERGY_BID>([\s\S]*?)<\/cim:BidType.DEFAULT_ENERGY_BID>/g, obj, "DEFAULT_ENERGY_BID", base.to_string, sub, context);
+
+            base.parse_element (/<cim:BidType.DEFAULT_STARTUP_BID>([\s\S]*?)<\/cim:BidType.DEFAULT_STARTUP_BID>/g, obj, "DEFAULT_STARTUP_BID", base.to_string, sub, context);
+
+            base.parse_element (/<cim:BidType.DEFAULT_MINIMUM_LOAD_BID>([\s\S]*?)<\/cim:BidType.DEFAULT_MINIMUM_LOAD_BID>/g, obj, "DEFAULT_MINIMUM_LOAD_BID", base.to_string, sub, context);
+
             bucket = context.parsed.BidType;
             if (null == bucket)
                 context.parsed.BidType = bucket = {};
@@ -328,12 +360,14 @@ define
              * Equipment is in.
              *
              */
-            obj["In"] = base.parse_element (/<cim:EquipmentStatusType.In>([\s\S]*?)<\/cim:EquipmentStatusType.In>/g, sub, context, true);
+            base.parse_element (/<cim:EquipmentStatusType.In>([\s\S]*?)<\/cim:EquipmentStatusType.In>/g, obj, "In", base.to_string, sub, context);
+
             /**
              * Equipment is out.
              *
              */
-            obj["Out"] = base.parse_element (/<cim:EquipmentStatusType.Out>([\s\S]*?)<\/cim:EquipmentStatusType.Out>/g, sub, context, true);
+            base.parse_element (/<cim:EquipmentStatusType.Out>([\s\S]*?)<\/cim:EquipmentStatusType.Out>/g, obj, "Out", base.to_string, sub, context);
+
             bucket = context.parsed.EquipmentStatusType;
             if (null == bucket)
                 context.parsed.EquipmentStatusType = bucket = {};
@@ -357,47 +391,56 @@ define
              * Existing Transmission Contract.
              *
              */
-            obj["ETC"] = base.parse_element (/<cim:MarketProductSelfSchedType.ETC>([\s\S]*?)<\/cim:MarketProductSelfSchedType.ETC>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductSelfSchedType.ETC>([\s\S]*?)<\/cim:MarketProductSelfSchedType.ETC>/g, obj, "ETC", base.to_string, sub, context);
+
             /**
              * Transmission Ownership Right.
              *
              */
-            obj["TOR"] = base.parse_element (/<cim:MarketProductSelfSchedType.TOR>([\s\S]*?)<\/cim:MarketProductSelfSchedType.TOR>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductSelfSchedType.TOR>([\s\S]*?)<\/cim:MarketProductSelfSchedType.TOR>/g, obj, "TOR", base.to_string, sub, context);
+
             /**
              * Reliability Must Run.
              *
              */
-            obj["RMR"] = base.parse_element (/<cim:MarketProductSelfSchedType.RMR>([\s\S]*?)<\/cim:MarketProductSelfSchedType.RMR>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductSelfSchedType.RMR>([\s\S]*?)<\/cim:MarketProductSelfSchedType.RMR>/g, obj, "RMR", base.to_string, sub, context);
+
             /**
              * Regulatory must run.
              *
              */
-            obj["RGMR"] = base.parse_element (/<cim:MarketProductSelfSchedType.RGMR>([\s\S]*?)<\/cim:MarketProductSelfSchedType.RGMR>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductSelfSchedType.RGMR>([\s\S]*?)<\/cim:MarketProductSelfSchedType.RGMR>/g, obj, "RGMR", base.to_string, sub, context);
+
             /**
              * Reliability must take.
              *
              */
-            obj["RMT"] = base.parse_element (/<cim:MarketProductSelfSchedType.RMT>([\s\S]*?)<\/cim:MarketProductSelfSchedType.RMT>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductSelfSchedType.RMT>([\s\S]*?)<\/cim:MarketProductSelfSchedType.RMT>/g, obj, "RMT", base.to_string, sub, context);
+
             /**
              * Price taker.
              *
              */
-            obj["PT"] = base.parse_element (/<cim:MarketProductSelfSchedType.PT>([\s\S]*?)<\/cim:MarketProductSelfSchedType.PT>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductSelfSchedType.PT>([\s\S]*?)<\/cim:MarketProductSelfSchedType.PT>/g, obj, "PT", base.to_string, sub, context);
+
             /**
              * Low price taker.
              *
              */
-            obj["LPT"] = base.parse_element (/<cim:MarketProductSelfSchedType.LPT>([\s\S]*?)<\/cim:MarketProductSelfSchedType.LPT>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductSelfSchedType.LPT>([\s\S]*?)<\/cim:MarketProductSelfSchedType.LPT>/g, obj, "LPT", base.to_string, sub, context);
+
             /**
              * Self provision.
              *
              */
-            obj["SP"] = base.parse_element (/<cim:MarketProductSelfSchedType.SP>([\s\S]*?)<\/cim:MarketProductSelfSchedType.SP>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductSelfSchedType.SP>([\s\S]*?)<\/cim:MarketProductSelfSchedType.SP>/g, obj, "SP", base.to_string, sub, context);
+
             /**
              * Resource adequacy.
              *
              */
-            obj["RA"] = base.parse_element (/<cim:MarketProductSelfSchedType.RA>([\s\S]*?)<\/cim:MarketProductSelfSchedType.RA>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductSelfSchedType.RA>([\s\S]*?)<\/cim:MarketProductSelfSchedType.RA>/g, obj, "RA", base.to_string, sub, context);
+
             bucket = context.parsed.MarketProductSelfSchedType;
             if (null == bucket)
                 context.parsed.MarketProductSelfSchedType = bucket = {};
@@ -420,8 +463,10 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "MQSCHGType";
-            obj["ADD"] = base.parse_element (/<cim:MQSCHGType.ADD>([\s\S]*?)<\/cim:MQSCHGType.ADD>/g, sub, context, true);
-            obj["CHG"] = base.parse_element (/<cim:MQSCHGType.CHG>([\s\S]*?)<\/cim:MQSCHGType.CHG>/g, sub, context, true);
+            base.parse_element (/<cim:MQSCHGType.ADD>([\s\S]*?)<\/cim:MQSCHGType.ADD>/g, obj, "ADD", base.to_string, sub, context);
+
+            base.parse_element (/<cim:MQSCHGType.CHG>([\s\S]*?)<\/cim:MQSCHGType.CHG>/g, obj, "CHG", base.to_string, sub, context);
+
             bucket = context.parsed.MQSCHGType;
             if (null == bucket)
                 context.parsed.MQSCHGType = bucket = {};
@@ -445,12 +490,14 @@ define
              * Export.
              *
              */
-            obj["E"] = base.parse_element (/<cim:InterTieDirection.E>([\s\S]*?)<\/cim:InterTieDirection.E>/g, sub, context, true);
+            base.parse_element (/<cim:InterTieDirection.E>([\s\S]*?)<\/cim:InterTieDirection.E>/g, obj, "E", base.to_string, sub, context);
+
             /**
              * Import.
              *
              */
-            obj["I"] = base.parse_element (/<cim:InterTieDirection.I>([\s\S]*?)<\/cim:InterTieDirection.I>/g, sub, context, true);
+            base.parse_element (/<cim:InterTieDirection.I>([\s\S]*?)<\/cim:InterTieDirection.I>/g, obj, "I", base.to_string, sub, context);
+
             bucket = context.parsed.InterTieDirection;
             if (null == bucket)
                 context.parsed.InterTieDirection = bucket = {};
@@ -470,17 +517,20 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "AutomaticDispatchMode";
-            obj["INTERVAL"] = base.parse_element (/<cim:AutomaticDispatchMode.INTERVAL>([\s\S]*?)<\/cim:AutomaticDispatchMode.INTERVAL>/g, sub, context, true);
+            base.parse_element (/<cim:AutomaticDispatchMode.INTERVAL>([\s\S]*?)<\/cim:AutomaticDispatchMode.INTERVAL>/g, obj, "INTERVAL", base.to_string, sub, context);
+
             /**
              * Contingnency occurance, redispatch of contingency reserves
              *
              */
-            obj["CONTINGENCY"] = base.parse_element (/<cim:AutomaticDispatchMode.CONTINGENCY>([\s\S]*?)<\/cim:AutomaticDispatchMode.CONTINGENCY>/g, sub, context, true);
+            base.parse_element (/<cim:AutomaticDispatchMode.CONTINGENCY>([\s\S]*?)<\/cim:AutomaticDispatchMode.CONTINGENCY>/g, obj, "CONTINGENCY", base.to_string, sub, context);
+
             /**
              * Operator override
              *
              */
-            obj["MANUAL"] = base.parse_element (/<cim:AutomaticDispatchMode.MANUAL>([\s\S]*?)<\/cim:AutomaticDispatchMode.MANUAL>/g, sub, context, true);
+            base.parse_element (/<cim:AutomaticDispatchMode.MANUAL>([\s\S]*?)<\/cim:AutomaticDispatchMode.MANUAL>/g, obj, "MANUAL", base.to_string, sub, context);
+
             bucket = context.parsed.AutomaticDispatchMode;
             if (null == bucket)
                 context.parsed.AutomaticDispatchMode = bucket = {};
@@ -504,9 +554,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "CommitmentType";
-            obj["SELF"] = base.parse_element (/<cim:CommitmentType.SELF>([\s\S]*?)<\/cim:CommitmentType.SELF>/g, sub, context, true);
-            obj["ISO"] = base.parse_element (/<cim:CommitmentType.ISO>([\s\S]*?)<\/cim:CommitmentType.ISO>/g, sub, context, true);
-            obj["UC"] = base.parse_element (/<cim:CommitmentType.UC>([\s\S]*?)<\/cim:CommitmentType.UC>/g, sub, context, true);
+            base.parse_element (/<cim:CommitmentType.SELF>([\s\S]*?)<\/cim:CommitmentType.SELF>/g, obj, "SELF", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CommitmentType.ISO>([\s\S]*?)<\/cim:CommitmentType.ISO>/g, obj, "ISO", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CommitmentType.UC>([\s\S]*?)<\/cim:CommitmentType.UC>/g, obj, "UC", base.to_string, sub, context);
+
             bucket = context.parsed.CommitmentType;
             if (null == bucket)
                 context.parsed.CommitmentType = bucket = {};
@@ -526,8 +579,10 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "YesNo";
-            obj["YES"] = base.parse_element (/<cim:YesNo.YES>([\s\S]*?)<\/cim:YesNo.YES>/g, sub, context, true);
-            obj["NO"] = base.parse_element (/<cim:YesNo.NO>([\s\S]*?)<\/cim:YesNo.NO>/g, sub, context, true);
+            base.parse_element (/<cim:YesNo.YES>([\s\S]*?)<\/cim:YesNo.YES>/g, obj, "YES", base.to_string, sub, context);
+
+            base.parse_element (/<cim:YesNo.NO>([\s\S]*?)<\/cim:YesNo.NO>/g, obj, "NO", base.to_string, sub, context);
+
             bucket = context.parsed.YesNo;
             if (null == bucket)
                 context.parsed.YesNo = bucket = {};
@@ -553,11 +608,16 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ResourceAssnType";
-            obj["CSNK"] = base.parse_element (/<cim:ResourceAssnType.CSNK>([\s\S]*?)<\/cim:ResourceAssnType.CSNK>/g, sub, context, true);
-            obj["CSRC"] = base.parse_element (/<cim:ResourceAssnType.CSRC>([\s\S]*?)<\/cim:ResourceAssnType.CSRC>/g, sub, context, true);
-            obj["RMR"] = base.parse_element (/<cim:ResourceAssnType.RMR>([\s\S]*?)<\/cim:ResourceAssnType.RMR>/g, sub, context, true);
-            obj["SC"] = base.parse_element (/<cim:ResourceAssnType.SC>([\s\S]*?)<\/cim:ResourceAssnType.SC>/g, sub, context, true);
-            obj["LSE"] = base.parse_element (/<cim:ResourceAssnType.LSE>([\s\S]*?)<\/cim:ResourceAssnType.LSE>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceAssnType.CSNK>([\s\S]*?)<\/cim:ResourceAssnType.CSNK>/g, obj, "CSNK", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ResourceAssnType.CSRC>([\s\S]*?)<\/cim:ResourceAssnType.CSRC>/g, obj, "CSRC", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ResourceAssnType.RMR>([\s\S]*?)<\/cim:ResourceAssnType.RMR>/g, obj, "RMR", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ResourceAssnType.SC>([\s\S]*?)<\/cim:ResourceAssnType.SC>/g, obj, "SC", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ResourceAssnType.LSE>([\s\S]*?)<\/cim:ResourceAssnType.LSE>/g, obj, "LSE", base.to_string, sub, context);
+
             bucket = context.parsed.ResourceAssnType;
             if (null == bucket)
                 context.parsed.ResourceAssnType = bucket = {};
@@ -581,27 +641,32 @@ define
              * Branch Medium Term Limit
              *
              */
-            obj["BranchMediumTerm"] = base.parse_element (/<cim:AnalogLimitType.BranchMediumTerm>([\s\S]*?)<\/cim:AnalogLimitType.BranchMediumTerm>/g, sub, context, true);
+            base.parse_element (/<cim:AnalogLimitType.BranchMediumTerm>([\s\S]*?)<\/cim:AnalogLimitType.BranchMediumTerm>/g, obj, "BranchMediumTerm", base.to_string, sub, context);
+
             /**
              * Branch Long Term Limit
              *
              */
-            obj["BranchLongTerm"] = base.parse_element (/<cim:AnalogLimitType.BranchLongTerm>([\s\S]*?)<\/cim:AnalogLimitType.BranchLongTerm>/g, sub, context, true);
+            base.parse_element (/<cim:AnalogLimitType.BranchLongTerm>([\s\S]*?)<\/cim:AnalogLimitType.BranchLongTerm>/g, obj, "BranchLongTerm", base.to_string, sub, context);
+
             /**
              * Branch Short Term Limit
              *
              */
-            obj["BranchShortTerm"] = base.parse_element (/<cim:AnalogLimitType.BranchShortTerm>([\s\S]*?)<\/cim:AnalogLimitType.BranchShortTerm>/g, sub, context, true);
+            base.parse_element (/<cim:AnalogLimitType.BranchShortTerm>([\s\S]*?)<\/cim:AnalogLimitType.BranchShortTerm>/g, obj, "BranchShortTerm", base.to_string, sub, context);
+
             /**
              * Voltage High Limit
              *
              */
-            obj["VoltageHigh"] = base.parse_element (/<cim:AnalogLimitType.VoltageHigh>([\s\S]*?)<\/cim:AnalogLimitType.VoltageHigh>/g, sub, context, true);
+            base.parse_element (/<cim:AnalogLimitType.VoltageHigh>([\s\S]*?)<\/cim:AnalogLimitType.VoltageHigh>/g, obj, "VoltageHigh", base.to_string, sub, context);
+
             /**
              * Voltage Low Limit
              *
              */
-            obj["VoltageLow"] = base.parse_element (/<cim:AnalogLimitType.VoltageLow>([\s\S]*?)<\/cim:AnalogLimitType.VoltageLow>/g, sub, context, true);
+            base.parse_element (/<cim:AnalogLimitType.VoltageLow>([\s\S]*?)<\/cim:AnalogLimitType.VoltageLow>/g, obj, "VoltageLow", base.to_string, sub, context);
+
             bucket = context.parsed.AnalogLimitType;
             if (null == bucket)
                 context.parsed.AnalogLimitType = bucket = {};
@@ -627,12 +692,14 @@ define
              * Normal.
              *
              */
-            obj["NORMAL"] = base.parse_element (/<cim:MPMTestMethodType.NORMAL>([\s\S]*?)<\/cim:MPMTestMethodType.NORMAL>/g, sub, context, true);
+            base.parse_element (/<cim:MPMTestMethodType.NORMAL>([\s\S]*?)<\/cim:MPMTestMethodType.NORMAL>/g, obj, "NORMAL", base.to_string, sub, context);
+
             /**
              * Alternate.
              *
              */
-            obj["ALTERNATE"] = base.parse_element (/<cim:MPMTestMethodType.ALTERNATE>([\s\S]*?)<\/cim:MPMTestMethodType.ALTERNATE>/g, sub, context, true);
+            base.parse_element (/<cim:MPMTestMethodType.ALTERNATE>([\s\S]*?)<\/cim:MPMTestMethodType.ALTERNATE>/g, obj, "ALTERNATE", base.to_string, sub, context);
+
             bucket = context.parsed.MPMTestMethodType;
             if (null == bucket)
                 context.parsed.MPMTestMethodType = bucket = {};
@@ -656,12 +723,14 @@ define
              * Start up instruction type
              *
              */
-            obj["START_UP"] = base.parse_element (/<cim:AutomaticDispInstTypeCommitment.START_UP>([\s\S]*?)<\/cim:AutomaticDispInstTypeCommitment.START_UP>/g, sub, context, true);
+            base.parse_element (/<cim:AutomaticDispInstTypeCommitment.START_UP>([\s\S]*?)<\/cim:AutomaticDispInstTypeCommitment.START_UP>/g, obj, "START_UP", base.to_string, sub, context);
+
             /**
              * Shut down instruction type
              *
              */
-            obj["SHUT_DOWN"] = base.parse_element (/<cim:AutomaticDispInstTypeCommitment.SHUT_DOWN>([\s\S]*?)<\/cim:AutomaticDispInstTypeCommitment.SHUT_DOWN>/g, sub, context, true);
+            base.parse_element (/<cim:AutomaticDispInstTypeCommitment.SHUT_DOWN>([\s\S]*?)<\/cim:AutomaticDispInstTypeCommitment.SHUT_DOWN>/g, obj, "SHUT_DOWN", base.to_string, sub, context);
+
             bucket = context.parsed.AutomaticDispInstTypeCommitment;
             if (null == bucket)
                 context.parsed.AutomaticDispInstTypeCommitment = bucket = {};
@@ -685,47 +754,56 @@ define
              * Market Power Mitigation Pass 1
              *
              */
-            obj["MPM-1"] = base.parse_element (/<cim:PassIndicatorType.MPM-1>([\s\S]*?)<\/cim:PassIndicatorType.MPM-1>/g, sub, context, true);
+            base.parse_element (/<cim:PassIndicatorType.MPM-1>([\s\S]*?)<\/cim:PassIndicatorType.MPM-1>/g, obj, "MPM-1", base.to_string, sub, context);
+
             /**
              * Market Power Mitigation Pass 2
              *
              */
-            obj["MPM-2"] = base.parse_element (/<cim:PassIndicatorType.MPM-2>([\s\S]*?)<\/cim:PassIndicatorType.MPM-2>/g, sub, context, true);
+            base.parse_element (/<cim:PassIndicatorType.MPM-2>([\s\S]*?)<\/cim:PassIndicatorType.MPM-2>/g, obj, "MPM-2", base.to_string, sub, context);
+
             /**
              * Market Power Mitigation Pass 3
              *
              */
-            obj["MPM-3"] = base.parse_element (/<cim:PassIndicatorType.MPM-3>([\s\S]*?)<\/cim:PassIndicatorType.MPM-3>/g, sub, context, true);
+            base.parse_element (/<cim:PassIndicatorType.MPM-3>([\s\S]*?)<\/cim:PassIndicatorType.MPM-3>/g, obj, "MPM-3", base.to_string, sub, context);
+
             /**
              * Market Power Mitigation Pass 4
              *
              */
-            obj["MPM-4"] = base.parse_element (/<cim:PassIndicatorType.MPM-4>([\s\S]*?)<\/cim:PassIndicatorType.MPM-4>/g, sub, context, true);
+            base.parse_element (/<cim:PassIndicatorType.MPM-4>([\s\S]*?)<\/cim:PassIndicatorType.MPM-4>/g, obj, "MPM-4", base.to_string, sub, context);
+
             /**
              * Residual Unit Commitment
              *
              */
-            obj["RUC"] = base.parse_element (/<cim:PassIndicatorType.RUC>([\s\S]*?)<\/cim:PassIndicatorType.RUC>/g, sub, context, true);
+            base.parse_element (/<cim:PassIndicatorType.RUC>([\s\S]*?)<\/cim:PassIndicatorType.RUC>/g, obj, "RUC", base.to_string, sub, context);
+
             /**
              * Real Time Pre Dispatch
              *
              */
-            obj["RTPD"] = base.parse_element (/<cim:PassIndicatorType.RTPD>([\s\S]*?)<\/cim:PassIndicatorType.RTPD>/g, sub, context, true);
+            base.parse_element (/<cim:PassIndicatorType.RTPD>([\s\S]*?)<\/cim:PassIndicatorType.RTPD>/g, obj, "RTPD", base.to_string, sub, context);
+
             /**
              * Real Time Economic Dispatch
              *
              */
-            obj["RTED"] = base.parse_element (/<cim:PassIndicatorType.RTED>([\s\S]*?)<\/cim:PassIndicatorType.RTED>/g, sub, context, true);
+            base.parse_element (/<cim:PassIndicatorType.RTED>([\s\S]*?)<\/cim:PassIndicatorType.RTED>/g, obj, "RTED", base.to_string, sub, context);
+
             /**
              * Hour Ahead Security Constrained Unit Commitment
              *
              */
-            obj["HA-SCUC"] = base.parse_element (/<cim:PassIndicatorType.HA-SCUC>([\s\S]*?)<\/cim:PassIndicatorType.HA-SCUC>/g, sub, context, true);
+            base.parse_element (/<cim:PassIndicatorType.HA-SCUC>([\s\S]*?)<\/cim:PassIndicatorType.HA-SCUC>/g, obj, "HA-SCUC", base.to_string, sub, context);
+
             /**
              * Day Ahead
              *
              */
-            obj["DA"] = base.parse_element (/<cim:PassIndicatorType.DA>([\s\S]*?)<\/cim:PassIndicatorType.DA>/g, sub, context, true);
+            base.parse_element (/<cim:PassIndicatorType.DA>([\s\S]*?)<\/cim:PassIndicatorType.DA>/g, obj, "DA", base.to_string, sub, context);
+
             bucket = context.parsed.PassIndicatorType;
             if (null == bucket)
                 context.parsed.PassIndicatorType = bucket = {};
@@ -749,7 +827,8 @@ define
              * Cancel a trade.
              *
              */
-            obj["CANCEL"] = base.parse_element (/<cim:ActionType.CANCEL>([\s\S]*?)<\/cim:ActionType.CANCEL>/g, sub, context, true);
+            base.parse_element (/<cim:ActionType.CANCEL>([\s\S]*?)<\/cim:ActionType.CANCEL>/g, obj, "CANCEL", base.to_string, sub, context);
+
             bucket = context.parsed.ActionType;
             if (null == bucket)
                 context.parsed.ActionType = bucket = {};
@@ -773,22 +852,26 @@ define
              * Flowgate actual base case
              *
              */
-            obj["FG_act"] = base.parse_element (/<cim:ResultsConstraintType.FG_act>([\s\S]*?)<\/cim:ResultsConstraintType.FG_act>/g, sub, context, true);
+            base.parse_element (/<cim:ResultsConstraintType.FG_act>([\s\S]*?)<\/cim:ResultsConstraintType.FG_act>/g, obj, "FG_act", base.to_string, sub, context);
+
             /**
              * Contingency.
              *
              */
-            obj["Contingency"] = base.parse_element (/<cim:ResultsConstraintType.Contingency>([\s\S]*?)<\/cim:ResultsConstraintType.Contingency>/g, sub, context, true);
+            base.parse_element (/<cim:ResultsConstraintType.Contingency>([\s\S]*?)<\/cim:ResultsConstraintType.Contingency>/g, obj, "Contingency", base.to_string, sub, context);
+
             /**
              * Interface.
              *
              */
-            obj["Interface"] = base.parse_element (/<cim:ResultsConstraintType.Interface>([\s\S]*?)<\/cim:ResultsConstraintType.Interface>/g, sub, context, true);
+            base.parse_element (/<cim:ResultsConstraintType.Interface>([\s\S]*?)<\/cim:ResultsConstraintType.Interface>/g, obj, "Interface", base.to_string, sub, context);
+
             /**
              * Actual.
              *
              */
-            obj["Actual"] = base.parse_element (/<cim:ResultsConstraintType.Actual>([\s\S]*?)<\/cim:ResultsConstraintType.Actual>/g, sub, context, true);
+            base.parse_element (/<cim:ResultsConstraintType.Actual>([\s\S]*?)<\/cim:ResultsConstraintType.Actual>/g, obj, "Actual", base.to_string, sub, context);
+
             bucket = context.parsed.ResultsConstraintType;
             if (null == bucket)
                 context.parsed.ResultsConstraintType = bucket = {};
@@ -812,12 +895,14 @@ define
              * Forward direction.
              *
              */
-            obj["Forward"] = base.parse_element (/<cim:FlowDirectionType.Forward>([\s\S]*?)<\/cim:FlowDirectionType.Forward>/g, sub, context, true);
+            base.parse_element (/<cim:FlowDirectionType.Forward>([\s\S]*?)<\/cim:FlowDirectionType.Forward>/g, obj, "Forward", base.to_string, sub, context);
+
             /**
              * Reverse direction.
              *
              */
-            obj["Reverse"] = base.parse_element (/<cim:FlowDirectionType.Reverse>([\s\S]*?)<\/cim:FlowDirectionType.Reverse>/g, sub, context, true);
+            base.parse_element (/<cim:FlowDirectionType.Reverse>([\s\S]*?)<\/cim:FlowDirectionType.Reverse>/g, obj, "Reverse", base.to_string, sub, context);
+
             bucket = context.parsed.FlowDirectionType;
             if (null == bucket)
                 context.parsed.FlowDirectionType = bucket = {};
@@ -857,67 +942,84 @@ define
              * Natural Gas
              *
              */
-            obj["NG"] = base.parse_element (/<cim:FuelSource.NG>([\s\S]*?)<\/cim:FuelSource.NG>/g, sub, context, true);
+            base.parse_element (/<cim:FuelSource.NG>([\s\S]*?)<\/cim:FuelSource.NG>/g, obj, "NG", base.to_string, sub, context);
+
             /**
              * Non-Natural Gas
              *
              */
-            obj["NNG"] = base.parse_element (/<cim:FuelSource.NNG>([\s\S]*?)<\/cim:FuelSource.NNG>/g, sub, context, true);
+            base.parse_element (/<cim:FuelSource.NNG>([\s\S]*?)<\/cim:FuelSource.NNG>/g, obj, "NNG", base.to_string, sub, context);
+
             /**
              * Bio Gas (Landfill, Sewage, Digester, etc.)
              *
              */
-            obj["BGAS"] = base.parse_element (/<cim:FuelSource.BGAS>([\s\S]*?)<\/cim:FuelSource.BGAS>/g, sub, context, true);
+            base.parse_element (/<cim:FuelSource.BGAS>([\s\S]*?)<\/cim:FuelSource.BGAS>/g, obj, "BGAS", base.to_string, sub, context);
+
             /**
              * Biomass
              *
              */
-            obj["BIOM"] = base.parse_element (/<cim:FuelSource.BIOM>([\s\S]*?)<\/cim:FuelSource.BIOM>/g, sub, context, true);
+            base.parse_element (/<cim:FuelSource.BIOM>([\s\S]*?)<\/cim:FuelSource.BIOM>/g, obj, "BIOM", base.to_string, sub, context);
+
             /**
              * Coal
              *
              */
-            obj["COAL"] = base.parse_element (/<cim:FuelSource.COAL>([\s\S]*?)<\/cim:FuelSource.COAL>/g, sub, context, true);
-            obj["DIST"] = base.parse_element (/<cim:FuelSource.DIST>([\s\S]*?)<\/cim:FuelSource.DIST>/g, sub, context, true);
-            obj["GAS"] = base.parse_element (/<cim:FuelSource.GAS>([\s\S]*?)<\/cim:FuelSource.GAS>/g, sub, context, true);
+            base.parse_element (/<cim:FuelSource.COAL>([\s\S]*?)<\/cim:FuelSource.COAL>/g, obj, "COAL", base.to_string, sub, context);
+
+            base.parse_element (/<cim:FuelSource.DIST>([\s\S]*?)<\/cim:FuelSource.DIST>/g, obj, "DIST", base.to_string, sub, context);
+
+            base.parse_element (/<cim:FuelSource.GAS>([\s\S]*?)<\/cim:FuelSource.GAS>/g, obj, "GAS", base.to_string, sub, context);
+
             /**
              * GeoThermal
              *
              */
-            obj["GEOT"] = base.parse_element (/<cim:FuelSource.GEOT>([\s\S]*?)<\/cim:FuelSource.GEOT>/g, sub, context, true);
-            obj["HRCV"] = base.parse_element (/<cim:FuelSource.HRCV>([\s\S]*?)<\/cim:FuelSource.HRCV>/g, sub, context, true);
-            obj["NONE"] = base.parse_element (/<cim:FuelSource.NONE>([\s\S]*?)<\/cim:FuelSource.NONE>/g, sub, context, true);
+            base.parse_element (/<cim:FuelSource.GEOT>([\s\S]*?)<\/cim:FuelSource.GEOT>/g, obj, "GEOT", base.to_string, sub, context);
+
+            base.parse_element (/<cim:FuelSource.HRCV>([\s\S]*?)<\/cim:FuelSource.HRCV>/g, obj, "HRCV", base.to_string, sub, context);
+
+            base.parse_element (/<cim:FuelSource.NONE>([\s\S]*?)<\/cim:FuelSource.NONE>/g, obj, "NONE", base.to_string, sub, context);
+
             /**
              * Nuclear
              *
              */
-            obj["NUCL"] = base.parse_element (/<cim:FuelSource.NUCL>([\s\S]*?)<\/cim:FuelSource.NUCL>/g, sub, context, true);
-            obj["OIL"] = base.parse_element (/<cim:FuelSource.OIL>([\s\S]*?)<\/cim:FuelSource.OIL>/g, sub, context, true);
+            base.parse_element (/<cim:FuelSource.NUCL>([\s\S]*?)<\/cim:FuelSource.NUCL>/g, obj, "NUCL", base.to_string, sub, context);
+
+            base.parse_element (/<cim:FuelSource.OIL>([\s\S]*?)<\/cim:FuelSource.OIL>/g, obj, "OIL", base.to_string, sub, context);
+
             /**
              * Other
              *
              */
-            obj["OTHR"] = base.parse_element (/<cim:FuelSource.OTHR>([\s\S]*?)<\/cim:FuelSource.OTHR>/g, sub, context, true);
+            base.parse_element (/<cim:FuelSource.OTHR>([\s\S]*?)<\/cim:FuelSource.OTHR>/g, obj, "OTHR", base.to_string, sub, context);
+
             /**
              * Solar
              *
              */
-            obj["SOLR"] = base.parse_element (/<cim:FuelSource.SOLR>([\s\S]*?)<\/cim:FuelSource.SOLR>/g, sub, context, true);
+            base.parse_element (/<cim:FuelSource.SOLR>([\s\S]*?)<\/cim:FuelSource.SOLR>/g, obj, "SOLR", base.to_string, sub, context);
+
             /**
              * Waste to Energy
              *
              */
-            obj["WAST"] = base.parse_element (/<cim:FuelSource.WAST>([\s\S]*?)<\/cim:FuelSource.WAST>/g, sub, context, true);
+            base.parse_element (/<cim:FuelSource.WAST>([\s\S]*?)<\/cim:FuelSource.WAST>/g, obj, "WAST", base.to_string, sub, context);
+
             /**
              * Water
              *
              */
-            obj["WATR"] = base.parse_element (/<cim:FuelSource.WATR>([\s\S]*?)<\/cim:FuelSource.WATR>/g, sub, context, true);
+            base.parse_element (/<cim:FuelSource.WATR>([\s\S]*?)<\/cim:FuelSource.WATR>/g, obj, "WATR", base.to_string, sub, context);
+
             /**
              * Wind
              *
              */
-            obj["WIND"] = base.parse_element (/<cim:FuelSource.WIND>([\s\S]*?)<\/cim:FuelSource.WIND>/g, sub, context, true);
+            base.parse_element (/<cim:FuelSource.WIND>([\s\S]*?)<\/cim:FuelSource.WIND>/g, obj, "WIND", base.to_string, sub, context);
+
             bucket = context.parsed.FuelSource;
             if (null == bucket)
                 context.parsed.FuelSource = bucket = {};
@@ -943,17 +1045,20 @@ define
              * Time of use spans only the on peak hours of the day.
              *
              */
-            obj["ON"] = base.parse_element (/<cim:TimeOfUse.ON>([\s\S]*?)<\/cim:TimeOfUse.ON>/g, sub, context, true);
+            base.parse_element (/<cim:TimeOfUse.ON>([\s\S]*?)<\/cim:TimeOfUse.ON>/g, obj, "ON", base.to_string, sub, context);
+
             /**
              * Time of use spans only the off peak hours of the day.
              *
              */
-            obj["OFF"] = base.parse_element (/<cim:TimeOfUse.OFF>([\s\S]*?)<\/cim:TimeOfUse.OFF>/g, sub, context, true);
+            base.parse_element (/<cim:TimeOfUse.OFF>([\s\S]*?)<\/cim:TimeOfUse.OFF>/g, obj, "OFF", base.to_string, sub, context);
+
             /**
              * Time of use spans the entire day, 24 hours.
              *
              */
-            obj["24HR"] = base.parse_element (/<cim:TimeOfUse.24HR>([\s\S]*?)<\/cim:TimeOfUse.24HR>/g, sub, context, true);
+            base.parse_element (/<cim:TimeOfUse.24HR>([\s\S]*?)<\/cim:TimeOfUse.24HR>/g, obj, "24HR", base.to_string, sub, context);
+
             bucket = context.parsed.TimeOfUse;
             if (null == bucket)
                 context.parsed.TimeOfUse = bucket = {};
@@ -982,22 +1087,26 @@ define
              * Passed
              *
              */
-            obj["P"] = base.parse_element (/<cim:MPMTestOutcome.P>([\s\S]*?)<\/cim:MPMTestOutcome.P>/g, sub, context, true);
+            base.parse_element (/<cim:MPMTestOutcome.P>([\s\S]*?)<\/cim:MPMTestOutcome.P>/g, obj, "P", base.to_string, sub, context);
+
             /**
              * Failed
              *
              */
-            obj["F"] = base.parse_element (/<cim:MPMTestOutcome.F>([\s\S]*?)<\/cim:MPMTestOutcome.F>/g, sub, context, true);
+            base.parse_element (/<cim:MPMTestOutcome.F>([\s\S]*?)<\/cim:MPMTestOutcome.F>/g, obj, "F", base.to_string, sub, context);
+
             /**
              * Disabled
              *
              */
-            obj["D"] = base.parse_element (/<cim:MPMTestOutcome.D>([\s\S]*?)<\/cim:MPMTestOutcome.D>/g, sub, context, true);
+            base.parse_element (/<cim:MPMTestOutcome.D>([\s\S]*?)<\/cim:MPMTestOutcome.D>/g, obj, "D", base.to_string, sub, context);
+
             /**
              * Skipped
              *
              */
-            obj["S"] = base.parse_element (/<cim:MPMTestOutcome.S>([\s\S]*?)<\/cim:MPMTestOutcome.S>/g, sub, context, true);
+            base.parse_element (/<cim:MPMTestOutcome.S>([\s\S]*?)<\/cim:MPMTestOutcome.S>/g, obj, "S", base.to_string, sub, context);
+
             bucket = context.parsed.MPMTestOutcome;
             if (null == bucket)
                 context.parsed.MPMTestOutcome = bucket = {};
@@ -1025,17 +1134,20 @@ define
              * Ignore ramping limits
              *
              */
-            obj["0"] = base.parse_element (/<cim:RampModeType.0>([\s\S]*?)<\/cim:RampModeType.0>/g, sub, context, true);
+            base.parse_element (/<cim:RampModeType.0>([\s\S]*?)<\/cim:RampModeType.0>/g, obj, "0", base.to_string, sub, context);
+
             /**
              * 20-minute ramping rule,
              *
              */
-            obj["1"] = base.parse_element (/<cim:RampModeType.1>([\s\S]*?)<\/cim:RampModeType.1>/g, sub, context, true);
+            base.parse_element (/<cim:RampModeType.1>([\s\S]*?)<\/cim:RampModeType.1>/g, obj, "1", base.to_string, sub, context);
+
             /**
              * 60-minute ramping rule
              *
              */
-            obj["2"] = base.parse_element (/<cim:RampModeType.2>([\s\S]*?)<\/cim:RampModeType.2>/g, sub, context, true);
+            base.parse_element (/<cim:RampModeType.2>([\s\S]*?)<\/cim:RampModeType.2>/g, obj, "2", base.to_string, sub, context);
+
             bucket = context.parsed.RampModeType;
             if (null == bucket)
                 context.parsed.RampModeType = bucket = {};
@@ -1061,47 +1173,56 @@ define
              * energy type
              *
              */
-            obj["EN"] = base.parse_element (/<cim:MarketProductType.EN>([\s\S]*?)<\/cim:MarketProductType.EN>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductType.EN>([\s\S]*?)<\/cim:MarketProductType.EN>/g, obj, "EN", base.to_string, sub, context);
+
             /**
              * regulation up
              *
              */
-            obj["RU"] = base.parse_element (/<cim:MarketProductType.RU>([\s\S]*?)<\/cim:MarketProductType.RU>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductType.RU>([\s\S]*?)<\/cim:MarketProductType.RU>/g, obj, "RU", base.to_string, sub, context);
+
             /**
              * regulation down
              *
              */
-            obj["RD"] = base.parse_element (/<cim:MarketProductType.RD>([\s\S]*?)<\/cim:MarketProductType.RD>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductType.RD>([\s\S]*?)<\/cim:MarketProductType.RD>/g, obj, "RD", base.to_string, sub, context);
+
             /**
              * spinning reserve
              *
              */
-            obj["SR"] = base.parse_element (/<cim:MarketProductType.SR>([\s\S]*?)<\/cim:MarketProductType.SR>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductType.SR>([\s\S]*?)<\/cim:MarketProductType.SR>/g, obj, "SR", base.to_string, sub, context);
+
             /**
              * non spinning reserve
              *
              */
-            obj["NR"] = base.parse_element (/<cim:MarketProductType.NR>([\s\S]*?)<\/cim:MarketProductType.NR>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductType.NR>([\s\S]*?)<\/cim:MarketProductType.NR>/g, obj, "NR", base.to_string, sub, context);
+
             /**
              * Residual Unit Commitment
              *
              */
-            obj["RC"] = base.parse_element (/<cim:MarketProductType.RC>([\s\S]*?)<\/cim:MarketProductType.RC>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductType.RC>([\s\S]*?)<\/cim:MarketProductType.RC>/g, obj, "RC", base.to_string, sub, context);
+
             /**
              * Load following up
              *
              */
-            obj["LFU"] = base.parse_element (/<cim:MarketProductType.LFU>([\s\S]*?)<\/cim:MarketProductType.LFU>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductType.LFU>([\s\S]*?)<\/cim:MarketProductType.LFU>/g, obj, "LFU", base.to_string, sub, context);
+
             /**
              * Load following down
              *
              */
-            obj["LFD"] = base.parse_element (/<cim:MarketProductType.LFD>([\s\S]*?)<\/cim:MarketProductType.LFD>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductType.LFD>([\s\S]*?)<\/cim:MarketProductType.LFD>/g, obj, "LFD", base.to_string, sub, context);
+
             /**
              * Regulation
              *
              */
-            obj["REG"] = base.parse_element (/<cim:MarketProductType.REG>([\s\S]*?)<\/cim:MarketProductType.REG>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProductType.REG>([\s\S]*?)<\/cim:MarketProductType.REG>/g, obj, "REG", base.to_string, sub, context);
+
             bucket = context.parsed.MarketProductType;
             if (null == bucket)
                 context.parsed.MarketProductType = bucket = {};
@@ -1133,32 +1254,38 @@ define
              * 1 - Global Price Test.
              *
              */
-            obj["1"] = base.parse_element (/<cim:MPMTestIdentifierType.1>([\s\S]*?)<\/cim:MPMTestIdentifierType.1>/g, sub, context, true);
+            base.parse_element (/<cim:MPMTestIdentifierType.1>([\s\S]*?)<\/cim:MPMTestIdentifierType.1>/g, obj, "1", base.to_string, sub, context);
+
             /**
              * 2 - Global Conduct Test.
              *
              */
-            obj["2"] = base.parse_element (/<cim:MPMTestIdentifierType.2>([\s\S]*?)<\/cim:MPMTestIdentifierType.2>/g, sub, context, true);
+            base.parse_element (/<cim:MPMTestIdentifierType.2>([\s\S]*?)<\/cim:MPMTestIdentifierType.2>/g, obj, "2", base.to_string, sub, context);
+
             /**
              * 3 - Global Impact Test.
              *
              */
-            obj["3"] = base.parse_element (/<cim:MPMTestIdentifierType.3>([\s\S]*?)<\/cim:MPMTestIdentifierType.3>/g, sub, context, true);
+            base.parse_element (/<cim:MPMTestIdentifierType.3>([\s\S]*?)<\/cim:MPMTestIdentifierType.3>/g, obj, "3", base.to_string, sub, context);
+
             /**
              * 4 - Local Price Test.
              *
              */
-            obj["4"] = base.parse_element (/<cim:MPMTestIdentifierType.4>([\s\S]*?)<\/cim:MPMTestIdentifierType.4>/g, sub, context, true);
+            base.parse_element (/<cim:MPMTestIdentifierType.4>([\s\S]*?)<\/cim:MPMTestIdentifierType.4>/g, obj, "4", base.to_string, sub, context);
+
             /**
              * 5 - Local Conduct Test.
              *
              */
-            obj["5"] = base.parse_element (/<cim:MPMTestIdentifierType.5>([\s\S]*?)<\/cim:MPMTestIdentifierType.5>/g, sub, context, true);
+            base.parse_element (/<cim:MPMTestIdentifierType.5>([\s\S]*?)<\/cim:MPMTestIdentifierType.5>/g, obj, "5", base.to_string, sub, context);
+
             /**
              * 6 - Local Impact Test.
              *
              */
-            obj["6"] = base.parse_element (/<cim:MPMTestIdentifierType.6>([\s\S]*?)<\/cim:MPMTestIdentifierType.6>/g, sub, context, true);
+            base.parse_element (/<cim:MPMTestIdentifierType.6>([\s\S]*?)<\/cim:MPMTestIdentifierType.6>/g, obj, "6", base.to_string, sub, context);
+
             bucket = context.parsed.MPMTestIdentifierType;
             if (null == bucket)
                 context.parsed.MPMTestIdentifierType = bucket = {};
@@ -1182,12 +1309,14 @@ define
              * Existing transmission contract.
              *
              */
-            obj["ETC"] = base.parse_element (/<cim:SelfSchedReferenceType.ETC>([\s\S]*?)<\/cim:SelfSchedReferenceType.ETC>/g, sub, context, true);
+            base.parse_element (/<cim:SelfSchedReferenceType.ETC>([\s\S]*?)<\/cim:SelfSchedReferenceType.ETC>/g, obj, "ETC", base.to_string, sub, context);
+
             /**
              * Transmission ownership right.
              *
              */
-            obj["TOR"] = base.parse_element (/<cim:SelfSchedReferenceType.TOR>([\s\S]*?)<\/cim:SelfSchedReferenceType.TOR>/g, sub, context, true);
+            base.parse_element (/<cim:SelfSchedReferenceType.TOR>([\s\S]*?)<\/cim:SelfSchedReferenceType.TOR>/g, obj, "TOR", base.to_string, sub, context);
+
             bucket = context.parsed.SelfSchedReferenceType;
             if (null == bucket)
                 context.parsed.SelfSchedReferenceType = bucket = {};
@@ -1211,12 +1340,14 @@ define
              * Load forecast zone.
              *
              */
-            obj["LFZ"] = base.parse_element (/<cim:LoadForecastType.LFZ>([\s\S]*?)<\/cim:LoadForecastType.LFZ>/g, sub, context, true);
+            base.parse_element (/<cim:LoadForecastType.LFZ>([\s\S]*?)<\/cim:LoadForecastType.LFZ>/g, obj, "LFZ", base.to_string, sub, context);
+
             /**
              * Metered sub system zone.
              *
              */
-            obj["LZMS"] = base.parse_element (/<cim:LoadForecastType.LZMS>([\s\S]*?)<\/cim:LoadForecastType.LZMS>/g, sub, context, true);
+            base.parse_element (/<cim:LoadForecastType.LZMS>([\s\S]*?)<\/cim:LoadForecastType.LZMS>/g, obj, "LZMS", base.to_string, sub, context);
+
             bucket = context.parsed.LoadForecastType;
             if (null == bucket)
                 context.parsed.LoadForecastType = bucket = {};
@@ -1240,17 +1371,20 @@ define
              * InterSC Trade.
              *
              */
-            obj["IST"] = base.parse_element (/<cim:TradeType.IST>([\s\S]*?)<\/cim:TradeType.IST>/g, sub, context, true);
+            base.parse_element (/<cim:TradeType.IST>([\s\S]*?)<\/cim:TradeType.IST>/g, obj, "IST", base.to_string, sub, context);
+
             /**
              * Ancillary Services Trade.
              *
              */
-            obj["AST"] = base.parse_element (/<cim:TradeType.AST>([\s\S]*?)<\/cim:TradeType.AST>/g, sub, context, true);
+            base.parse_element (/<cim:TradeType.AST>([\s\S]*?)<\/cim:TradeType.AST>/g, obj, "AST", base.to_string, sub, context);
+
             /**
              * Unit Commitment Trade.
              *
              */
-            obj["UCT"] = base.parse_element (/<cim:TradeType.UCT>([\s\S]*?)<\/cim:TradeType.UCT>/g, sub, context, true);
+            base.parse_element (/<cim:TradeType.UCT>([\s\S]*?)<\/cim:TradeType.UCT>/g, obj, "UCT", base.to_string, sub, context);
+
             bucket = context.parsed.TradeType;
             if (null == bucket)
                 context.parsed.TradeType = bucket = {};
@@ -1274,22 +1408,26 @@ define
              * Day Ahead
              *
              */
-            obj["DA"] = base.parse_element (/<cim:ExecutionType.DA>([\s\S]*?)<\/cim:ExecutionType.DA>/g, sub, context, true);
+            base.parse_element (/<cim:ExecutionType.DA>([\s\S]*?)<\/cim:ExecutionType.DA>/g, obj, "DA", base.to_string, sub, context);
+
             /**
              * Real TIme Hour Ahead Execution
              *
              */
-            obj["HASP"] = base.parse_element (/<cim:ExecutionType.HASP>([\s\S]*?)<\/cim:ExecutionType.HASP>/g, sub, context, true);
+            base.parse_element (/<cim:ExecutionType.HASP>([\s\S]*?)<\/cim:ExecutionType.HASP>/g, obj, "HASP", base.to_string, sub, context);
+
             /**
              * Real Time Pre-dispatch
              *
              */
-            obj["RTPD"] = base.parse_element (/<cim:ExecutionType.RTPD>([\s\S]*?)<\/cim:ExecutionType.RTPD>/g, sub, context, true);
+            base.parse_element (/<cim:ExecutionType.RTPD>([\s\S]*?)<\/cim:ExecutionType.RTPD>/g, obj, "RTPD", base.to_string, sub, context);
+
             /**
              * Real Time Dispatch
              *
              */
-            obj["RTD"] = base.parse_element (/<cim:ExecutionType.RTD>([\s\S]*?)<\/cim:ExecutionType.RTD>/g, sub, context, true);
+            base.parse_element (/<cim:ExecutionType.RTD>([\s\S]*?)<\/cim:ExecutionType.RTD>/g, obj, "RTD", base.to_string, sub, context);
+
             bucket = context.parsed.ExecutionType;
             if (null == bucket)
                 context.parsed.ExecutionType = bucket = {};
@@ -1309,8 +1447,10 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ResourceLimitIndicator";
-            obj["UPPER"] = base.parse_element (/<cim:ResourceLimitIndicator.UPPER>([\s\S]*?)<\/cim:ResourceLimitIndicator.UPPER>/g, sub, context, true);
-            obj["LOWER"] = base.parse_element (/<cim:ResourceLimitIndicator.LOWER>([\s\S]*?)<\/cim:ResourceLimitIndicator.LOWER>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceLimitIndicator.UPPER>([\s\S]*?)<\/cim:ResourceLimitIndicator.UPPER>/g, obj, "UPPER", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ResourceLimitIndicator.LOWER>([\s\S]*?)<\/cim:ResourceLimitIndicator.LOWER>/g, obj, "LOWER", base.to_string, sub, context);
+
             bucket = context.parsed.ResourceLimitIndicator;
             if (null == bucket)
                 context.parsed.ResourceLimitIndicator = bucket = {};
@@ -1335,10 +1475,14 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ParticipationCategoryMPM";
-            obj["Y"] = base.parse_element (/<cim:ParticipationCategoryMPM.Y>([\s\S]*?)<\/cim:ParticipationCategoryMPM.Y>/g, sub, context, true);
-            obj["N"] = base.parse_element (/<cim:ParticipationCategoryMPM.N>([\s\S]*?)<\/cim:ParticipationCategoryMPM.N>/g, sub, context, true);
-            obj["S"] = base.parse_element (/<cim:ParticipationCategoryMPM.S>([\s\S]*?)<\/cim:ParticipationCategoryMPM.S>/g, sub, context, true);
-            obj["L"] = base.parse_element (/<cim:ParticipationCategoryMPM.L>([\s\S]*?)<\/cim:ParticipationCategoryMPM.L>/g, sub, context, true);
+            base.parse_element (/<cim:ParticipationCategoryMPM.Y>([\s\S]*?)<\/cim:ParticipationCategoryMPM.Y>/g, obj, "Y", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ParticipationCategoryMPM.N>([\s\S]*?)<\/cim:ParticipationCategoryMPM.N>/g, obj, "N", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ParticipationCategoryMPM.S>([\s\S]*?)<\/cim:ParticipationCategoryMPM.S>/g, obj, "S", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ParticipationCategoryMPM.L>([\s\S]*?)<\/cim:ParticipationCategoryMPM.L>/g, obj, "L", base.to_string, sub, context);
+
             bucket = context.parsed.ParticipationCategoryMPM;
             if (null == bucket)
                 context.parsed.ParticipationCategoryMPM = bucket = {};
@@ -1358,9 +1502,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "MktBillMediaKind";
-            obj["paper"] = base.parse_element (/<cim:MktBillMediaKind.paper>([\s\S]*?)<\/cim:MktBillMediaKind.paper>/g, sub, context, true);
-            obj["electronic"] = base.parse_element (/<cim:MktBillMediaKind.electronic>([\s\S]*?)<\/cim:MktBillMediaKind.electronic>/g, sub, context, true);
-            obj["other"] = base.parse_element (/<cim:MktBillMediaKind.other>([\s\S]*?)<\/cim:MktBillMediaKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:MktBillMediaKind.paper>([\s\S]*?)<\/cim:MktBillMediaKind.paper>/g, obj, "paper", base.to_string, sub, context);
+
+            base.parse_element (/<cim:MktBillMediaKind.electronic>([\s\S]*?)<\/cim:MktBillMediaKind.electronic>/g, obj, "electronic", base.to_string, sub, context);
+
+            base.parse_element (/<cim:MktBillMediaKind.other>([\s\S]*?)<\/cim:MktBillMediaKind.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.MktBillMediaKind;
             if (null == bucket)
                 context.parsed.MktBillMediaKind = bucket = {};
@@ -1387,12 +1534,18 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "BidMitigationStatus";
-            obj["S"] = base.parse_element (/<cim:BidMitigationStatus.S>([\s\S]*?)<\/cim:BidMitigationStatus.S>/g, sub, context, true);
-            obj["L"] = base.parse_element (/<cim:BidMitigationStatus.L>([\s\S]*?)<\/cim:BidMitigationStatus.L>/g, sub, context, true);
-            obj["R"] = base.parse_element (/<cim:BidMitigationStatus.R>([\s\S]*?)<\/cim:BidMitigationStatus.R>/g, sub, context, true);
-            obj["M"] = base.parse_element (/<cim:BidMitigationStatus.M>([\s\S]*?)<\/cim:BidMitigationStatus.M>/g, sub, context, true);
-            obj["B"] = base.parse_element (/<cim:BidMitigationStatus.B>([\s\S]*?)<\/cim:BidMitigationStatus.B>/g, sub, context, true);
-            obj["O"] = base.parse_element (/<cim:BidMitigationStatus.O>([\s\S]*?)<\/cim:BidMitigationStatus.O>/g, sub, context, true);
+            base.parse_element (/<cim:BidMitigationStatus.S>([\s\S]*?)<\/cim:BidMitigationStatus.S>/g, obj, "S", base.to_string, sub, context);
+
+            base.parse_element (/<cim:BidMitigationStatus.L>([\s\S]*?)<\/cim:BidMitigationStatus.L>/g, obj, "L", base.to_string, sub, context);
+
+            base.parse_element (/<cim:BidMitigationStatus.R>([\s\S]*?)<\/cim:BidMitigationStatus.R>/g, obj, "R", base.to_string, sub, context);
+
+            base.parse_element (/<cim:BidMitigationStatus.M>([\s\S]*?)<\/cim:BidMitigationStatus.M>/g, obj, "M", base.to_string, sub, context);
+
+            base.parse_element (/<cim:BidMitigationStatus.B>([\s\S]*?)<\/cim:BidMitigationStatus.B>/g, obj, "B", base.to_string, sub, context);
+
+            base.parse_element (/<cim:BidMitigationStatus.O>([\s\S]*?)<\/cim:BidMitigationStatus.O>/g, obj, "O", base.to_string, sub, context);
+
             bucket = context.parsed.BidMitigationStatus;
             if (null == bucket)
                 context.parsed.BidMitigationStatus = bucket = {};
@@ -1416,17 +1569,20 @@ define
              * Existing transmission contract.
              *
              */
-            obj["ETC"] = base.parse_element (/<cim:SelfScheduleBreakdownType.ETC>([\s\S]*?)<\/cim:SelfScheduleBreakdownType.ETC>/g, sub, context, true);
+            base.parse_element (/<cim:SelfScheduleBreakdownType.ETC>([\s\S]*?)<\/cim:SelfScheduleBreakdownType.ETC>/g, obj, "ETC", base.to_string, sub, context);
+
             /**
              * Transmission ownership right.
              *
              */
-            obj["TOR"] = base.parse_element (/<cim:SelfScheduleBreakdownType.TOR>([\s\S]*?)<\/cim:SelfScheduleBreakdownType.TOR>/g, sub, context, true);
+            base.parse_element (/<cim:SelfScheduleBreakdownType.TOR>([\s\S]*?)<\/cim:SelfScheduleBreakdownType.TOR>/g, obj, "TOR", base.to_string, sub, context);
+
             /**
              * Low price taker.
              *
              */
-            obj["LPT"] = base.parse_element (/<cim:SelfScheduleBreakdownType.LPT>([\s\S]*?)<\/cim:SelfScheduleBreakdownType.LPT>/g, sub, context, true);
+            base.parse_element (/<cim:SelfScheduleBreakdownType.LPT>([\s\S]*?)<\/cim:SelfScheduleBreakdownType.LPT>/g, obj, "LPT", base.to_string, sub, context);
+
             bucket = context.parsed.SelfScheduleBreakdownType;
             if (null == bucket)
                 context.parsed.SelfScheduleBreakdownType = bucket = {};
@@ -1446,10 +1602,14 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "MktAccountKind";
-            obj["normal"] = base.parse_element (/<cim:MktAccountKind.normal>([\s\S]*?)<\/cim:MktAccountKind.normal>/g, sub, context, true);
-            obj["reversal"] = base.parse_element (/<cim:MktAccountKind.reversal>([\s\S]*?)<\/cim:MktAccountKind.reversal>/g, sub, context, true);
-            obj["statistical"] = base.parse_element (/<cim:MktAccountKind.statistical>([\s\S]*?)<\/cim:MktAccountKind.statistical>/g, sub, context, true);
-            obj["estimate"] = base.parse_element (/<cim:MktAccountKind.estimate>([\s\S]*?)<\/cim:MktAccountKind.estimate>/g, sub, context, true);
+            base.parse_element (/<cim:MktAccountKind.normal>([\s\S]*?)<\/cim:MktAccountKind.normal>/g, obj, "normal", base.to_string, sub, context);
+
+            base.parse_element (/<cim:MktAccountKind.reversal>([\s\S]*?)<\/cim:MktAccountKind.reversal>/g, obj, "reversal", base.to_string, sub, context);
+
+            base.parse_element (/<cim:MktAccountKind.statistical>([\s\S]*?)<\/cim:MktAccountKind.statistical>/g, obj, "statistical", base.to_string, sub, context);
+
+            base.parse_element (/<cim:MktAccountKind.estimate>([\s\S]*?)<\/cim:MktAccountKind.estimate>/g, obj, "estimate", base.to_string, sub, context);
+
             bucket = context.parsed.MktAccountKind;
             if (null == bucket)
                 context.parsed.MktAccountKind = bucket = {};
@@ -1473,12 +1633,14 @@ define
              * Network Service
              *
              */
-            obj["NSR"] = base.parse_element (/<cim:CRRCategoryType.NSR>([\s\S]*?)<\/cim:CRRCategoryType.NSR>/g, sub, context, true);
+            base.parse_element (/<cim:CRRCategoryType.NSR>([\s\S]*?)<\/cim:CRRCategoryType.NSR>/g, obj, "NSR", base.to_string, sub, context);
+
             /**
              * Point to Point
              *
              */
-            obj["PTP"] = base.parse_element (/<cim:CRRCategoryType.PTP>([\s\S]*?)<\/cim:CRRCategoryType.PTP>/g, sub, context, true);
+            base.parse_element (/<cim:CRRCategoryType.PTP>([\s\S]*?)<\/cim:CRRCategoryType.PTP>/g, obj, "PTP", base.to_string, sub, context);
+
             bucket = context.parsed.CRRCategoryType;
             if (null == bucket)
                 context.parsed.CRRCategoryType = bucket = {};
@@ -1508,22 +1670,26 @@ define
              * Resource registration is active
              *
              */
-            obj["Active"] = base.parse_element (/<cim:ResourceRegistrationStatus.Active>([\s\S]*?)<\/cim:ResourceRegistrationStatus.Active>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceRegistrationStatus.Active>([\s\S]*?)<\/cim:ResourceRegistrationStatus.Active>/g, obj, "Active", base.to_string, sub, context);
+
             /**
              * Registration status is in the planning stage
              *
              */
-            obj["Planned"] = base.parse_element (/<cim:ResourceRegistrationStatus.Planned>([\s\S]*?)<\/cim:ResourceRegistrationStatus.Planned>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceRegistrationStatus.Planned>([\s\S]*?)<\/cim:ResourceRegistrationStatus.Planned>/g, obj, "Planned", base.to_string, sub, context);
+
             /**
              * Resource registration has been suspended
              *
              */
-            obj["Mothballed"] = base.parse_element (/<cim:ResourceRegistrationStatus.Mothballed>([\s\S]*?)<\/cim:ResourceRegistrationStatus.Mothballed>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceRegistrationStatus.Mothballed>([\s\S]*?)<\/cim:ResourceRegistrationStatus.Mothballed>/g, obj, "Mothballed", base.to_string, sub, context);
+
             /**
              * Resource registration status is decommissioned
              *
              */
-            obj["Decommissioned"] = base.parse_element (/<cim:ResourceRegistrationStatus.Decommissioned>([\s\S]*?)<\/cim:ResourceRegistrationStatus.Decommissioned>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceRegistrationStatus.Decommissioned>([\s\S]*?)<\/cim:ResourceRegistrationStatus.Decommissioned>/g, obj, "Decommissioned", base.to_string, sub, context);
+
             bucket = context.parsed.ResourceRegistrationStatus;
             if (null == bucket)
                 context.parsed.ResourceRegistrationStatus = bucket = {};
@@ -1545,8 +1711,10 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "OnOff";
-            obj["ON"] = base.parse_element (/<cim:OnOff.ON>([\s\S]*?)<\/cim:OnOff.ON>/g, sub, context, true);
-            obj["OFF"] = base.parse_element (/<cim:OnOff.OFF>([\s\S]*?)<\/cim:OnOff.OFF>/g, sub, context, true);
+            base.parse_element (/<cim:OnOff.ON>([\s\S]*?)<\/cim:OnOff.ON>/g, obj, "ON", base.to_string, sub, context);
+
+            base.parse_element (/<cim:OnOff.OFF>([\s\S]*?)<\/cim:OnOff.OFF>/g, obj, "OFF", base.to_string, sub, context);
+
             bucket = context.parsed.OnOff;
             if (null == bucket)
                 context.parsed.OnOff = bucket = {};
@@ -1566,9 +1734,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "CRRRoleType";
-            obj["SELLER"] = base.parse_element (/<cim:CRRRoleType.SELLER>([\s\S]*?)<\/cim:CRRRoleType.SELLER>/g, sub, context, true);
-            obj["BUYER"] = base.parse_element (/<cim:CRRRoleType.BUYER>([\s\S]*?)<\/cim:CRRRoleType.BUYER>/g, sub, context, true);
-            obj["OWNER"] = base.parse_element (/<cim:CRRRoleType.OWNER>([\s\S]*?)<\/cim:CRRRoleType.OWNER>/g, sub, context, true);
+            base.parse_element (/<cim:CRRRoleType.SELLER>([\s\S]*?)<\/cim:CRRRoleType.SELLER>/g, obj, "SELLER", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CRRRoleType.BUYER>([\s\S]*?)<\/cim:CRRRoleType.BUYER>/g, obj, "BUYER", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CRRRoleType.OWNER>([\s\S]*?)<\/cim:CRRRoleType.OWNER>/g, obj, "OWNER", base.to_string, sub, context);
+
             bucket = context.parsed.CRRRoleType;
             if (null == bucket)
                 context.parsed.CRRRoleType = bucket = {};
@@ -1626,57 +1797,68 @@ define
              * System Zone/Region;
              *
              */
-            obj["SYS"] = base.parse_element (/<cim:AnodeType.SYS>([\s\S]*?)<\/cim:AnodeType.SYS>/g, sub, context, true);
+            base.parse_element (/<cim:AnodeType.SYS>([\s\S]*?)<\/cim:AnodeType.SYS>/g, obj, "SYS", base.to_string, sub, context);
+
             /**
              * RUC Zone
              *
              */
-            obj["RUC"] = base.parse_element (/<cim:AnodeType.RUC>([\s\S]*?)<\/cim:AnodeType.RUC>/g, sub, context, true);
+            base.parse_element (/<cim:AnodeType.RUC>([\s\S]*?)<\/cim:AnodeType.RUC>/g, obj, "RUC", base.to_string, sub, context);
+
             /**
              * Load Forecast Zone
              *
              */
-            obj["LFZ"] = base.parse_element (/<cim:AnodeType.LFZ>([\s\S]*?)<\/cim:AnodeType.LFZ>/g, sub, context, true);
+            base.parse_element (/<cim:AnodeType.LFZ>([\s\S]*?)<\/cim:AnodeType.LFZ>/g, obj, "LFZ", base.to_string, sub, context);
+
             /**
              * Market Energy/Ancillary Service Region;
              *
              */
-            obj["REG"] = base.parse_element (/<cim:AnodeType.REG>([\s\S]*?)<\/cim:AnodeType.REG>/g, sub, context, true);
+            base.parse_element (/<cim:AnodeType.REG>([\s\S]*?)<\/cim:AnodeType.REG>/g, obj, "REG", base.to_string, sub, context);
+
             /**
              * Aggregate Generation Resource;
              *
              */
-            obj["AGR"] = base.parse_element (/<cim:AnodeType.AGR>([\s\S]*?)<\/cim:AnodeType.AGR>/g, sub, context, true);
+            base.parse_element (/<cim:AnodeType.AGR>([\s\S]*?)<\/cim:AnodeType.AGR>/g, obj, "AGR", base.to_string, sub, context);
+
             /**
              * Point of Delivery;
              *
              */
-            obj["POD"] = base.parse_element (/<cim:AnodeType.POD>([\s\S]*?)<\/cim:AnodeType.POD>/g, sub, context, true);
+            base.parse_element (/<cim:AnodeType.POD>([\s\S]*?)<\/cim:AnodeType.POD>/g, obj, "POD", base.to_string, sub, context);
+
             /**
              * Aggregate Load Resource;
              *
              */
-            obj["ALR"] = base.parse_element (/<cim:AnodeType.ALR>([\s\S]*?)<\/cim:AnodeType.ALR>/g, sub, context, true);
+            base.parse_element (/<cim:AnodeType.ALR>([\s\S]*?)<\/cim:AnodeType.ALR>/g, obj, "ALR", base.to_string, sub, context);
+
             /**
              * Load TransmissionAccessCharge (TAC) Group;
              *
              */
-            obj["LTAC"] = base.parse_element (/<cim:AnodeType.LTAC>([\s\S]*?)<\/cim:AnodeType.LTAC>/g, sub, context, true);
+            base.parse_element (/<cim:AnodeType.LTAC>([\s\S]*?)<\/cim:AnodeType.LTAC>/g, obj, "LTAC", base.to_string, sub, context);
+
             /**
              * Adjacent Control Area
              *
              */
-            obj["ACA"] = base.parse_element (/<cim:AnodeType.ACA>([\s\S]*?)<\/cim:AnodeType.ACA>/g, sub, context, true);
+            base.parse_element (/<cim:AnodeType.ACA>([\s\S]*?)<\/cim:AnodeType.ACA>/g, obj, "ACA", base.to_string, sub, context);
+
             /**
              * Aggregated System Resource
              *
              */
-            obj["ASR"] = base.parse_element (/<cim:AnodeType.ASR>([\s\S]*?)<\/cim:AnodeType.ASR>/g, sub, context, true);
+            base.parse_element (/<cim:AnodeType.ASR>([\s\S]*?)<\/cim:AnodeType.ASR>/g, obj, "ASR", base.to_string, sub, context);
+
             /**
              * Embedded Control Area
              *
              */
-            obj["ECA"] = base.parse_element (/<cim:AnodeType.ECA>([\s\S]*?)<\/cim:AnodeType.ECA>/g, sub, context, true);
+            base.parse_element (/<cim:AnodeType.ECA>([\s\S]*?)<\/cim:AnodeType.ECA>/g, obj, "ECA", base.to_string, sub, context);
+
             bucket = context.parsed.AnodeType;
             if (null == bucket)
                 context.parsed.AnodeType = bucket = {};
@@ -1700,32 +1882,38 @@ define
              * Operational ramp rate.
              *
              */
-            obj["OP"] = base.parse_element (/<cim:RampRateType.OP>([\s\S]*?)<\/cim:RampRateType.OP>/g, sub, context, true);
+            base.parse_element (/<cim:RampRateType.OP>([\s\S]*?)<\/cim:RampRateType.OP>/g, obj, "OP", base.to_string, sub, context);
+
             /**
              * Regulating ramp rate.
              *
              */
-            obj["REG"] = base.parse_element (/<cim:RampRateType.REG>([\s\S]*?)<\/cim:RampRateType.REG>/g, sub, context, true);
+            base.parse_element (/<cim:RampRateType.REG>([\s\S]*?)<\/cim:RampRateType.REG>/g, obj, "REG", base.to_string, sub, context);
+
             /**
              * Operating reserve ramp rate.
              *
              */
-            obj["OP_RES"] = base.parse_element (/<cim:RampRateType.OP_RES>([\s\S]*?)<\/cim:RampRateType.OP_RES>/g, sub, context, true);
+            base.parse_element (/<cim:RampRateType.OP_RES>([\s\S]*?)<\/cim:RampRateType.OP_RES>/g, obj, "OP_RES", base.to_string, sub, context);
+
             /**
              * Load drop ramp rate.
              *
              */
-            obj["LD_DROP"] = base.parse_element (/<cim:RampRateType.LD_DROP>([\s\S]*?)<\/cim:RampRateType.LD_DROP>/g, sub, context, true);
+            base.parse_element (/<cim:RampRateType.LD_DROP>([\s\S]*?)<\/cim:RampRateType.LD_DROP>/g, obj, "LD_DROP", base.to_string, sub, context);
+
             /**
              * Load pick up rate.
              *
              */
-            obj["LD_PICKUP"] = base.parse_element (/<cim:RampRateType.LD_PICKUP>([\s\S]*?)<\/cim:RampRateType.LD_PICKUP>/g, sub, context, true);
+            base.parse_element (/<cim:RampRateType.LD_PICKUP>([\s\S]*?)<\/cim:RampRateType.LD_PICKUP>/g, obj, "LD_PICKUP", base.to_string, sub, context);
+
             /**
              * Intertie ramp rate.
              *
              */
-            obj["INTERTIE"] = base.parse_element (/<cim:RampRateType.INTERTIE>([\s\S]*?)<\/cim:RampRateType.INTERTIE>/g, sub, context, true);
+            base.parse_element (/<cim:RampRateType.INTERTIE>([\s\S]*?)<\/cim:RampRateType.INTERTIE>/g, obj, "INTERTIE", base.to_string, sub, context);
+
             bucket = context.parsed.RampRateType;
             if (null == bucket)
                 context.parsed.RampRateType = bucket = {};
@@ -1749,9 +1937,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "EnergyPriceIndexType";
-            obj["WHOLESALE"] = base.parse_element (/<cim:EnergyPriceIndexType.WHOLESALE>([\s\S]*?)<\/cim:EnergyPriceIndexType.WHOLESALE>/g, sub, context, true);
-            obj["RETAIL"] = base.parse_element (/<cim:EnergyPriceIndexType.RETAIL>([\s\S]*?)<\/cim:EnergyPriceIndexType.RETAIL>/g, sub, context, true);
-            obj["BOTH"] = base.parse_element (/<cim:EnergyPriceIndexType.BOTH>([\s\S]*?)<\/cim:EnergyPriceIndexType.BOTH>/g, sub, context, true);
+            base.parse_element (/<cim:EnergyPriceIndexType.WHOLESALE>([\s\S]*?)<\/cim:EnergyPriceIndexType.WHOLESALE>/g, obj, "WHOLESALE", base.to_string, sub, context);
+
+            base.parse_element (/<cim:EnergyPriceIndexType.RETAIL>([\s\S]*?)<\/cim:EnergyPriceIndexType.RETAIL>/g, obj, "RETAIL", base.to_string, sub, context);
+
+            base.parse_element (/<cim:EnergyPriceIndexType.BOTH>([\s\S]*?)<\/cim:EnergyPriceIndexType.BOTH>/g, obj, "BOTH", base.to_string, sub, context);
+
             bucket = context.parsed.EnergyPriceIndexType;
             if (null == bucket)
                 context.parsed.EnergyPriceIndexType = bucket = {};
@@ -1790,67 +1981,80 @@ define
              * Aggregated Generation
              *
              */
-            obj["AG"] = base.parse_element (/<cim:ApnodeType.AG>([\s\S]*?)<\/cim:ApnodeType.AG>/g, sub, context, true);
+            base.parse_element (/<cim:ApnodeType.AG>([\s\S]*?)<\/cim:ApnodeType.AG>/g, obj, "AG", base.to_string, sub, context);
+
             /**
              * Custom Price Zone
              *
              */
-            obj["CPZ"] = base.parse_element (/<cim:ApnodeType.CPZ>([\s\S]*?)<\/cim:ApnodeType.CPZ>/g, sub, context, true);
+            base.parse_element (/<cim:ApnodeType.CPZ>([\s\S]*?)<\/cim:ApnodeType.CPZ>/g, obj, "CPZ", base.to_string, sub, context);
+
             /**
              * Default Price Zone
              *
              */
-            obj["DPZ"] = base.parse_element (/<cim:ApnodeType.DPZ>([\s\S]*?)<\/cim:ApnodeType.DPZ>/g, sub, context, true);
+            base.parse_element (/<cim:ApnodeType.DPZ>([\s\S]*?)<\/cim:ApnodeType.DPZ>/g, obj, "DPZ", base.to_string, sub, context);
+
             /**
              * Trading  Hub
              *
              */
-            obj["TH"] = base.parse_element (/<cim:ApnodeType.TH>([\s\S]*?)<\/cim:ApnodeType.TH>/g, sub, context, true);
+            base.parse_element (/<cim:ApnodeType.TH>([\s\S]*?)<\/cim:ApnodeType.TH>/g, obj, "TH", base.to_string, sub, context);
+
             /**
              * System Zone
              *
              */
-            obj["SYS"] = base.parse_element (/<cim:ApnodeType.SYS>([\s\S]*?)<\/cim:ApnodeType.SYS>/g, sub, context, true);
+            base.parse_element (/<cim:ApnodeType.SYS>([\s\S]*?)<\/cim:ApnodeType.SYS>/g, obj, "SYS", base.to_string, sub, context);
+
             /**
              * Control Area
              *
              */
-            obj["CA"] = base.parse_element (/<cim:ApnodeType.CA>([\s\S]*?)<\/cim:ApnodeType.CA>/g, sub, context, true);
+            base.parse_element (/<cim:ApnodeType.CA>([\s\S]*?)<\/cim:ApnodeType.CA>/g, obj, "CA", base.to_string, sub, context);
+
             /**
              * Designated Congestion Area
              *
              */
-            obj["DCA"] = base.parse_element (/<cim:ApnodeType.DCA>([\s\S]*?)<\/cim:ApnodeType.DCA>/g, sub, context, true);
+            base.parse_element (/<cim:ApnodeType.DCA>([\s\S]*?)<\/cim:ApnodeType.DCA>/g, obj, "DCA", base.to_string, sub, context);
+
             /**
              * generic aggregation
              *
              */
-            obj["GA"] = base.parse_element (/<cim:ApnodeType.GA>([\s\S]*?)<\/cim:ApnodeType.GA>/g, sub, context, true);
+            base.parse_element (/<cim:ApnodeType.GA>([\s\S]*?)<\/cim:ApnodeType.GA>/g, obj, "GA", base.to_string, sub, context);
+
             /**
              * generic hub
              *
              */
-            obj["GH"] = base.parse_element (/<cim:ApnodeType.GH>([\s\S]*?)<\/cim:ApnodeType.GH>/g, sub, context, true);
+            base.parse_element (/<cim:ApnodeType.GH>([\s\S]*?)<\/cim:ApnodeType.GH>/g, obj, "GH", base.to_string, sub, context);
+
             /**
              * 500 kV - Extra High Voltage aggregate price nodes
              *
              */
-            obj["EHV"] = base.parse_element (/<cim:ApnodeType.EHV>([\s\S]*?)<\/cim:ApnodeType.EHV>/g, sub, context, true);
+            base.parse_element (/<cim:ApnodeType.EHV>([\s\S]*?)<\/cim:ApnodeType.EHV>/g, obj, "EHV", base.to_string, sub, context);
+
             /**
              * Zone
              *
              */
-            obj["ZN"] = base.parse_element (/<cim:ApnodeType.ZN>([\s\S]*?)<\/cim:ApnodeType.ZN>/g, sub, context, true);
+            base.parse_element (/<cim:ApnodeType.ZN>([\s\S]*?)<\/cim:ApnodeType.ZN>/g, obj, "ZN", base.to_string, sub, context);
+
             /**
              * Interface
              *
              */
-            obj["INT"] = base.parse_element (/<cim:ApnodeType.INT>([\s\S]*?)<\/cim:ApnodeType.INT>/g, sub, context, true);
+            base.parse_element (/<cim:ApnodeType.INT>([\s\S]*?)<\/cim:ApnodeType.INT>/g, obj, "INT", base.to_string, sub, context);
+
             /**
              * Bus
              *
              */
-            obj["BUS"] = base.parse_element (/<cim:ApnodeType.BUS>([\s\S]*?)<\/cim:ApnodeType.BUS>/g, sub, context, true);
+            base.parse_element (/<cim:ApnodeType.BUS>([\s\S]*?)<\/cim:ApnodeType.BUS>/g, obj, "BUS", base.to_string, sub, context);
+
             bucket = context.parsed.ApnodeType;
             if (null == bucket)
                 context.parsed.ApnodeType = bucket = {};
@@ -1878,17 +2082,20 @@ define
              * Fixed ramp rate independent of rate function unit MW output
              *
              */
-            obj["0"] = base.parse_element (/<cim:RampCurveType.0>([\s\S]*?)<\/cim:RampCurveType.0>/g, sub, context, true);
+            base.parse_element (/<cim:RampCurveType.0>([\s\S]*?)<\/cim:RampCurveType.0>/g, obj, "0", base.to_string, sub, context);
+
             /**
              * Static ramp rates as a function of unit MW output only
              *
              */
-            obj["1"] = base.parse_element (/<cim:RampCurveType.1>([\s\S]*?)<\/cim:RampCurveType.1>/g, sub, context, true);
+            base.parse_element (/<cim:RampCurveType.1>([\s\S]*?)<\/cim:RampCurveType.1>/g, obj, "1", base.to_string, sub, context);
+
             /**
              * Dynamic ramp rates as a function of unit MW output and ramping time
              *
              */
-            obj["2"] = base.parse_element (/<cim:RampCurveType.2>([\s\S]*?)<\/cim:RampCurveType.2>/g, sub, context, true);
+            base.parse_element (/<cim:RampCurveType.2>([\s\S]*?)<\/cim:RampCurveType.2>/g, obj, "2", base.to_string, sub, context);
+
             bucket = context.parsed.RampCurveType;
             if (null == bucket)
                 context.parsed.RampCurveType = bucket = {};
@@ -1912,12 +2119,14 @@ define
              * Qualified pre-dispatch bid self schedule type.
              *
              */
-            obj["REQUIREMENTS"] = base.parse_element (/<cim:BidTypeRMR.REQUIREMENTS>([\s\S]*?)<\/cim:BidTypeRMR.REQUIREMENTS>/g, sub, context, true);
+            base.parse_element (/<cim:BidTypeRMR.REQUIREMENTS>([\s\S]*?)<\/cim:BidTypeRMR.REQUIREMENTS>/g, obj, "REQUIREMENTS", base.to_string, sub, context);
+
             /**
              * Output of requirements bid self schedule type.
              *
              */
-            obj["QUALIFIED_PREDISPATCH"] = base.parse_element (/<cim:BidTypeRMR.QUALIFIED_PREDISPATCH>([\s\S]*?)<\/cim:BidTypeRMR.QUALIFIED_PREDISPATCH>/g, sub, context, true);
+            base.parse_element (/<cim:BidTypeRMR.QUALIFIED_PREDISPATCH>([\s\S]*?)<\/cim:BidTypeRMR.QUALIFIED_PREDISPATCH>/g, obj, "QUALIFIED_PREDISPATCH", base.to_string, sub, context);
+
             bucket = context.parsed.BidTypeRMR;
             if (null == bucket)
                 context.parsed.BidTypeRMR = bucket = {};
@@ -1942,10 +2151,14 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "DispatchResponseType";
-            obj["NON_RESPONSE"] = base.parse_element (/<cim:DispatchResponseType.NON_RESPONSE>([\s\S]*?)<\/cim:DispatchResponseType.NON_RESPONSE>/g, sub, context, true);
-            obj["ACCEPT"] = base.parse_element (/<cim:DispatchResponseType.ACCEPT>([\s\S]*?)<\/cim:DispatchResponseType.ACCEPT>/g, sub, context, true);
-            obj["DECLINE"] = base.parse_element (/<cim:DispatchResponseType.DECLINE>([\s\S]*?)<\/cim:DispatchResponseType.DECLINE>/g, sub, context, true);
-            obj["PARTIAL"] = base.parse_element (/<cim:DispatchResponseType.PARTIAL>([\s\S]*?)<\/cim:DispatchResponseType.PARTIAL>/g, sub, context, true);
+            base.parse_element (/<cim:DispatchResponseType.NON_RESPONSE>([\s\S]*?)<\/cim:DispatchResponseType.NON_RESPONSE>/g, obj, "NON_RESPONSE", base.to_string, sub, context);
+
+            base.parse_element (/<cim:DispatchResponseType.ACCEPT>([\s\S]*?)<\/cim:DispatchResponseType.ACCEPT>/g, obj, "ACCEPT", base.to_string, sub, context);
+
+            base.parse_element (/<cim:DispatchResponseType.DECLINE>([\s\S]*?)<\/cim:DispatchResponseType.DECLINE>/g, obj, "DECLINE", base.to_string, sub, context);
+
+            base.parse_element (/<cim:DispatchResponseType.PARTIAL>([\s\S]*?)<\/cim:DispatchResponseType.PARTIAL>/g, obj, "PARTIAL", base.to_string, sub, context);
+
             bucket = context.parsed.DispatchResponseType;
             if (null == bucket)
                 context.parsed.DispatchResponseType = bucket = {};
@@ -1965,9 +2178,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "MktInvoiceLineItemKind";
-            obj["initial"] = base.parse_element (/<cim:MktInvoiceLineItemKind.initial>([\s\S]*?)<\/cim:MktInvoiceLineItemKind.initial>/g, sub, context, true);
-            obj["recalculation"] = base.parse_element (/<cim:MktInvoiceLineItemKind.recalculation>([\s\S]*?)<\/cim:MktInvoiceLineItemKind.recalculation>/g, sub, context, true);
-            obj["other"] = base.parse_element (/<cim:MktInvoiceLineItemKind.other>([\s\S]*?)<\/cim:MktInvoiceLineItemKind.other>/g, sub, context, true);
+            base.parse_element (/<cim:MktInvoiceLineItemKind.initial>([\s\S]*?)<\/cim:MktInvoiceLineItemKind.initial>/g, obj, "initial", base.to_string, sub, context);
+
+            base.parse_element (/<cim:MktInvoiceLineItemKind.recalculation>([\s\S]*?)<\/cim:MktInvoiceLineItemKind.recalculation>/g, obj, "recalculation", base.to_string, sub, context);
+
+            base.parse_element (/<cim:MktInvoiceLineItemKind.other>([\s\S]*?)<\/cim:MktInvoiceLineItemKind.other>/g, obj, "other", base.to_string, sub, context);
+
             bucket = context.parsed.MktInvoiceLineItemKind;
             if (null == bucket)
                 context.parsed.MktInvoiceLineItemKind = bucket = {};
@@ -1990,8 +2206,10 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ConstraintLimitType";
-            obj["MAXIMUM"] = base.parse_element (/<cim:ConstraintLimitType.MAXIMUM>([\s\S]*?)<\/cim:ConstraintLimitType.MAXIMUM>/g, sub, context, true);
-            obj["MINIMUM"] = base.parse_element (/<cim:ConstraintLimitType.MINIMUM>([\s\S]*?)<\/cim:ConstraintLimitType.MINIMUM>/g, sub, context, true);
+            base.parse_element (/<cim:ConstraintLimitType.MAXIMUM>([\s\S]*?)<\/cim:ConstraintLimitType.MAXIMUM>/g, obj, "MAXIMUM", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ConstraintLimitType.MINIMUM>([\s\S]*?)<\/cim:ConstraintLimitType.MINIMUM>/g, obj, "MINIMUM", base.to_string, sub, context);
+
             bucket = context.parsed.ConstraintLimitType;
             if (null == bucket)
                 context.parsed.ConstraintLimitType = bucket = {};
@@ -2015,42 +2233,50 @@ define
              * Regulation Up.
              *
              */
-            obj["RU"] = base.parse_element (/<cim:ResourceCapacityType.RU>([\s\S]*?)<\/cim:ResourceCapacityType.RU>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceCapacityType.RU>([\s\S]*?)<\/cim:ResourceCapacityType.RU>/g, obj, "RU", base.to_string, sub, context);
+
             /**
              * Regulation Down.
              *
              */
-            obj["RD"] = base.parse_element (/<cim:ResourceCapacityType.RD>([\s\S]*?)<\/cim:ResourceCapacityType.RD>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceCapacityType.RD>([\s\S]*?)<\/cim:ResourceCapacityType.RD>/g, obj, "RD", base.to_string, sub, context);
+
             /**
              * Spinning reserve.
              *
              */
-            obj["SR"] = base.parse_element (/<cim:ResourceCapacityType.SR>([\s\S]*?)<\/cim:ResourceCapacityType.SR>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceCapacityType.SR>([\s\S]*?)<\/cim:ResourceCapacityType.SR>/g, obj, "SR", base.to_string, sub, context);
+
             /**
              * Non spinning reserve.
              *
              */
-            obj["NR"] = base.parse_element (/<cim:ResourceCapacityType.NR>([\s\S]*?)<\/cim:ResourceCapacityType.NR>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceCapacityType.NR>([\s\S]*?)<\/cim:ResourceCapacityType.NR>/g, obj, "NR", base.to_string, sub, context);
+
             /**
              * Must Offer.
              *
              */
-            obj["MO"] = base.parse_element (/<cim:ResourceCapacityType.MO>([\s\S]*?)<\/cim:ResourceCapacityType.MO>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceCapacityType.MO>([\s\S]*?)<\/cim:ResourceCapacityType.MO>/g, obj, "MO", base.to_string, sub, context);
+
             /**
              * Flexible Offer.
              *
              */
-            obj["FO"] = base.parse_element (/<cim:ResourceCapacityType.FO>([\s\S]*?)<\/cim:ResourceCapacityType.FO>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceCapacityType.FO>([\s\S]*?)<\/cim:ResourceCapacityType.FO>/g, obj, "FO", base.to_string, sub, context);
+
             /**
              * Resource Adequacy.
              *
              */
-            obj["RA"] = base.parse_element (/<cim:ResourceCapacityType.RA>([\s\S]*?)<\/cim:ResourceCapacityType.RA>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceCapacityType.RA>([\s\S]*?)<\/cim:ResourceCapacityType.RA>/g, obj, "RA", base.to_string, sub, context);
+
             /**
              * Reliability Must Run.
              *
              */
-            obj["RMR"] = base.parse_element (/<cim:ResourceCapacityType.RMR>([\s\S]*?)<\/cim:ResourceCapacityType.RMR>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceCapacityType.RMR>([\s\S]*?)<\/cim:ResourceCapacityType.RMR>/g, obj, "RMR", base.to_string, sub, context);
+
             bucket = context.parsed.ResourceCapacityType;
             if (null == bucket)
                 context.parsed.ResourceCapacityType = bucket = {};
@@ -2074,12 +2300,14 @@ define
              * Closed status.
              *
              */
-            obj["Closed"] = base.parse_element (/<cim:SwitchStatusType.Closed>([\s\S]*?)<\/cim:SwitchStatusType.Closed>/g, sub, context, true);
+            base.parse_element (/<cim:SwitchStatusType.Closed>([\s\S]*?)<\/cim:SwitchStatusType.Closed>/g, obj, "Closed", base.to_string, sub, context);
+
             /**
              * Open status.
              *
              */
-            obj["Open"] = base.parse_element (/<cim:SwitchStatusType.Open>([\s\S]*?)<\/cim:SwitchStatusType.Open>/g, sub, context, true);
+            base.parse_element (/<cim:SwitchStatusType.Open>([\s\S]*?)<\/cim:SwitchStatusType.Open>/g, obj, "Open", base.to_string, sub, context);
+
             bucket = context.parsed.SwitchStatusType;
             if (null == bucket)
                 context.parsed.SwitchStatusType = bucket = {};
@@ -2105,12 +2333,14 @@ define
              * TR chain
              *
              */
-            obj["CHAIN"] = base.parse_element (/<cim:TRType.CHAIN>([\s\S]*?)<\/cim:TRType.CHAIN>/g, sub, context, true);
+            base.parse_element (/<cim:TRType.CHAIN>([\s\S]*?)<\/cim:TRType.CHAIN>/g, obj, "CHAIN", base.to_string, sub, context);
+
             /**
              * Individual TR
              *
              */
-            obj["INDIVIDUAL"] = base.parse_element (/<cim:TRType.INDIVIDUAL>([\s\S]*?)<\/cim:TRType.INDIVIDUAL>/g, sub, context, true);
+            base.parse_element (/<cim:TRType.INDIVIDUAL>([\s\S]*?)<\/cim:TRType.INDIVIDUAL>/g, obj, "INDIVIDUAL", base.to_string, sub, context);
+
             bucket = context.parsed.TRType;
             if (null == bucket)
                 context.parsed.TRType = bucket = {};
@@ -2130,8 +2360,10 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "CRRHedgeType";
-            obj["OBLIGATION"] = base.parse_element (/<cim:CRRHedgeType.OBLIGATION>([\s\S]*?)<\/cim:CRRHedgeType.OBLIGATION>/g, sub, context, true);
-            obj["OPTION"] = base.parse_element (/<cim:CRRHedgeType.OPTION>([\s\S]*?)<\/cim:CRRHedgeType.OPTION>/g, sub, context, true);
+            base.parse_element (/<cim:CRRHedgeType.OBLIGATION>([\s\S]*?)<\/cim:CRRHedgeType.OBLIGATION>/g, obj, "OBLIGATION", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CRRHedgeType.OPTION>([\s\S]*?)<\/cim:CRRHedgeType.OPTION>/g, obj, "OPTION", base.to_string, sub, context);
+
             bucket = context.parsed.CRRHedgeType;
             if (null == bucket)
                 context.parsed.CRRHedgeType = bucket = {};
@@ -2156,8 +2388,10 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "PurposeFlagType";
-            obj["M"] = base.parse_element (/<cim:PurposeFlagType.M>([\s\S]*?)<\/cim:PurposeFlagType.M>/g, sub, context, true);
-            obj["R"] = base.parse_element (/<cim:PurposeFlagType.R>([\s\S]*?)<\/cim:PurposeFlagType.R>/g, sub, context, true);
+            base.parse_element (/<cim:PurposeFlagType.M>([\s\S]*?)<\/cim:PurposeFlagType.M>/g, obj, "M", base.to_string, sub, context);
+
+            base.parse_element (/<cim:PurposeFlagType.R>([\s\S]*?)<\/cim:PurposeFlagType.R>/g, obj, "R", base.to_string, sub, context);
+
             bucket = context.parsed.PurposeFlagType;
             if (null == bucket)
                 context.parsed.PurposeFlagType = bucket = {};
@@ -2177,8 +2411,10 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ConstraintRampType";
-            obj["FAST"] = base.parse_element (/<cim:ConstraintRampType.FAST>([\s\S]*?)<\/cim:ConstraintRampType.FAST>/g, sub, context, true);
-            obj["SLOW"] = base.parse_element (/<cim:ConstraintRampType.SLOW>([\s\S]*?)<\/cim:ConstraintRampType.SLOW>/g, sub, context, true);
+            base.parse_element (/<cim:ConstraintRampType.FAST>([\s\S]*?)<\/cim:ConstraintRampType.FAST>/g, obj, "FAST", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ConstraintRampType.SLOW>([\s\S]*?)<\/cim:ConstraintRampType.SLOW>/g, obj, "SLOW", base.to_string, sub, context);
+
             bucket = context.parsed.ConstraintRampType;
             if (null == bucket)
                 context.parsed.ConstraintRampType = bucket = {};
@@ -2198,34 +2434,42 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "CRRSegmentType";
-            obj["AUC"] = base.parse_element (/<cim:CRRSegmentType.AUC>([\s\S]*?)<\/cim:CRRSegmentType.AUC>/g, sub, context, true);
-            obj["CAP"] = base.parse_element (/<cim:CRRSegmentType.CAP>([\s\S]*?)<\/cim:CRRSegmentType.CAP>/g, sub, context, true);
-            obj["CF"] = base.parse_element (/<cim:CRRSegmentType.CF>([\s\S]*?)<\/cim:CRRSegmentType.CF>/g, sub, context, true);
+            base.parse_element (/<cim:CRRSegmentType.AUC>([\s\S]*?)<\/cim:CRRSegmentType.AUC>/g, obj, "AUC", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CRRSegmentType.CAP>([\s\S]*?)<\/cim:CRRSegmentType.CAP>/g, obj, "CAP", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CRRSegmentType.CF>([\s\S]*?)<\/cim:CRRSegmentType.CF>/g, obj, "CF", base.to_string, sub, context);
+
             /**
              * Converted rights.
              *
              */
-            obj["CVR"] = base.parse_element (/<cim:CRRSegmentType.CVR>([\s\S]*?)<\/cim:CRRSegmentType.CVR>/g, sub, context, true);
+            base.parse_element (/<cim:CRRSegmentType.CVR>([\s\S]*?)<\/cim:CRRSegmentType.CVR>/g, obj, "CVR", base.to_string, sub, context);
+
             /**
              * Existing Transmission Contract.
              *
              */
-            obj["ETC"] = base.parse_element (/<cim:CRRSegmentType.ETC>([\s\S]*?)<\/cim:CRRSegmentType.ETC>/g, sub, context, true);
+            base.parse_element (/<cim:CRRSegmentType.ETC>([\s\S]*?)<\/cim:CRRSegmentType.ETC>/g, obj, "ETC", base.to_string, sub, context);
+
             /**
              * Load Serving Entity.
              *
              */
-            obj["LSE"] = base.parse_element (/<cim:CRRSegmentType.LSE>([\s\S]*?)<\/cim:CRRSegmentType.LSE>/g, sub, context, true);
+            base.parse_element (/<cim:CRRSegmentType.LSE>([\s\S]*?)<\/cim:CRRSegmentType.LSE>/g, obj, "LSE", base.to_string, sub, context);
+
             /**
              * Merchant transmission.
              *
              */
-            obj["MT"] = base.parse_element (/<cim:CRRSegmentType.MT>([\s\S]*?)<\/cim:CRRSegmentType.MT>/g, sub, context, true);
+            base.parse_element (/<cim:CRRSegmentType.MT>([\s\S]*?)<\/cim:CRRSegmentType.MT>/g, obj, "MT", base.to_string, sub, context);
+
             /**
              * Transmission Ownership Rights.
              *
              */
-            obj["TOR"] = base.parse_element (/<cim:CRRSegmentType.TOR>([\s\S]*?)<\/cim:CRRSegmentType.TOR>/g, sub, context, true);
+            base.parse_element (/<cim:CRRSegmentType.TOR>([\s\S]*?)<\/cim:CRRSegmentType.TOR>/g, obj, "TOR", base.to_string, sub, context);
+
             bucket = context.parsed.CRRSegmentType;
             if (null == bucket)
                 context.parsed.CRRSegmentType = bucket = {};
@@ -2249,48 +2493,58 @@ define
              * Regulation Up
              *
              */
-            obj["REGUP"] = base.parse_element (/<cim:ResourceAncillaryServiceType.REGUP>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.REGUP>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceAncillaryServiceType.REGUP>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.REGUP>/g, obj, "REGUP", base.to_string, sub, context);
+
             /**
              * Regulation Down
              *
              */
-            obj["REGDN"] = base.parse_element (/<cim:ResourceAncillaryServiceType.REGDN>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.REGDN>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceAncillaryServiceType.REGDN>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.REGDN>/g, obj, "REGDN", base.to_string, sub, context);
+
             /**
              * Spinning Reserve
              *
              */
-            obj["RRSPIN"] = base.parse_element (/<cim:ResourceAncillaryServiceType.RRSPIN>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.RRSPIN>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceAncillaryServiceType.RRSPIN>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.RRSPIN>/g, obj, "RRSPIN", base.to_string, sub, context);
+
             /**
              * Non Spinning Reserve
              *
              */
-            obj["NONSPIN"] = base.parse_element (/<cim:ResourceAncillaryServiceType.NONSPIN>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.NONSPIN>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceAncillaryServiceType.NONSPIN>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.NONSPIN>/g, obj, "NONSPIN", base.to_string, sub, context);
+
             /**
              * Reliability Must Run
              *
              */
-            obj["RMR"] = base.parse_element (/<cim:ResourceAncillaryServiceType.RMR>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.RMR>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceAncillaryServiceType.RMR>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.RMR>/g, obj, "RMR", base.to_string, sub, context);
+
             /**
              * Black start
              *
              */
-            obj["BLACKSTART"] = base.parse_element (/<cim:ResourceAncillaryServiceType.BLACKSTART>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.BLACKSTART>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceAncillaryServiceType.BLACKSTART>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.BLACKSTART>/g, obj, "BLACKSTART", base.to_string, sub, context);
+
             /**
              * Demand Side Reponse
              *
              */
-            obj["DSR"] = base.parse_element (/<cim:ResourceAncillaryServiceType.DSR>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.DSR>/g, sub, context, true);
-            obj["SYNCCOND"] = base.parse_element (/<cim:ResourceAncillaryServiceType.SYNCCOND>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.SYNCCOND>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceAncillaryServiceType.DSR>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.DSR>/g, obj, "DSR", base.to_string, sub, context);
+
+            base.parse_element (/<cim:ResourceAncillaryServiceType.SYNCCOND>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.SYNCCOND>/g, obj, "SYNCCOND", base.to_string, sub, context);
+
             /**
              * Intermittant resource
              *
              */
-            obj["PIRP"] = base.parse_element (/<cim:ResourceAncillaryServiceType.PIRP>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.PIRP>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceAncillaryServiceType.PIRP>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.PIRP>/g, obj, "PIRP", base.to_string, sub, context);
+
             /**
              * Reliability unit commitment
              *
              */
-            obj["RUC"] = base.parse_element (/<cim:ResourceAncillaryServiceType.RUC>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.RUC>/g, sub, context, true);
+            base.parse_element (/<cim:ResourceAncillaryServiceType.RUC>([\s\S]*?)<\/cim:ResourceAncillaryServiceType.RUC>/g, obj, "RUC", base.to_string, sub, context);
+
             bucket = context.parsed.ResourceAncillaryServiceType;
             if (null == bucket)
                 context.parsed.ResourceAncillaryServiceType = bucket = {};
@@ -2313,8 +2567,10 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "BidMitigationType";
-            obj["I"] = base.parse_element (/<cim:BidMitigationType.I>([\s\S]*?)<\/cim:BidMitigationType.I>/g, sub, context, true);
-            obj["F"] = base.parse_element (/<cim:BidMitigationType.F>([\s\S]*?)<\/cim:BidMitigationType.F>/g, sub, context, true);
+            base.parse_element (/<cim:BidMitigationType.I>([\s\S]*?)<\/cim:BidMitigationType.I>/g, obj, "I", base.to_string, sub, context);
+
+            base.parse_element (/<cim:BidMitigationType.F>([\s\S]*?)<\/cim:BidMitigationType.F>/g, obj, "F", base.to_string, sub, context);
+
             bucket = context.parsed.BidMitigationType;
             if (null == bucket)
                 context.parsed.BidMitigationType = bucket = {};
@@ -2340,17 +2596,20 @@ define
              * Operating Reserve
              *
              */
-            obj["OPRSV"] = base.parse_element (/<cim:ReserveRequirementType.OPRSV>([\s\S]*?)<\/cim:ReserveRequirementType.OPRSV>/g, sub, context, true);
+            base.parse_element (/<cim:ReserveRequirementType.OPRSV>([\s\S]*?)<\/cim:ReserveRequirementType.OPRSV>/g, obj, "OPRSV", base.to_string, sub, context);
+
             /**
              * Contingency
              *
              */
-            obj["CONT"] = base.parse_element (/<cim:ReserveRequirementType.CONT>([\s\S]*?)<\/cim:ReserveRequirementType.CONT>/g, sub, context, true);
+            base.parse_element (/<cim:ReserveRequirementType.CONT>([\s\S]*?)<\/cim:ReserveRequirementType.CONT>/g, obj, "CONT", base.to_string, sub, context);
+
             /**
              * Regulation
              *
              */
-            obj["REG"] = base.parse_element (/<cim:ReserveRequirementType.REG>([\s\S]*?)<\/cim:ReserveRequirementType.REG>/g, sub, context, true);
+            base.parse_element (/<cim:ReserveRequirementType.REG>([\s\S]*?)<\/cim:ReserveRequirementType.REG>/g, obj, "REG", base.to_string, sub, context);
+
             bucket = context.parsed.ReserveRequirementType;
             if (null == bucket)
                 context.parsed.ReserveRequirementType = bucket = {};
@@ -2373,8 +2632,10 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "MQSInstructionSource";
-            obj["INS"] = base.parse_element (/<cim:MQSInstructionSource.INS>([\s\S]*?)<\/cim:MQSInstructionSource.INS>/g, sub, context, true);
-            obj["ACT"] = base.parse_element (/<cim:MQSInstructionSource.ACT>([\s\S]*?)<\/cim:MQSInstructionSource.ACT>/g, sub, context, true);
+            base.parse_element (/<cim:MQSInstructionSource.INS>([\s\S]*?)<\/cim:MQSInstructionSource.INS>/g, obj, "INS", base.to_string, sub, context);
+
+            base.parse_element (/<cim:MQSInstructionSource.ACT>([\s\S]*?)<\/cim:MQSInstructionSource.ACT>/g, obj, "ACT", base.to_string, sub, context);
+
             bucket = context.parsed.MQSInstructionSource;
             if (null == bucket)
                 context.parsed.MQSInstructionSource = bucket = {};
@@ -2398,22 +2659,26 @@ define
              * CF = Constant Frequency
              *
              */
-            obj["CF"] = base.parse_element (/<cim:AreaControlMode.CF>([\s\S]*?)<\/cim:AreaControlMode.CF>/g, sub, context, true);
+            base.parse_element (/<cim:AreaControlMode.CF>([\s\S]*?)<\/cim:AreaControlMode.CF>/g, obj, "CF", base.to_string, sub, context);
+
             /**
              * Constant Tie-Line
              *
              */
-            obj["CTL"] = base.parse_element (/<cim:AreaControlMode.CTL>([\s\S]*?)<\/cim:AreaControlMode.CTL>/g, sub, context, true);
+            base.parse_element (/<cim:AreaControlMode.CTL>([\s\S]*?)<\/cim:AreaControlMode.CTL>/g, obj, "CTL", base.to_string, sub, context);
+
             /**
              * Tie-Line Bias
              *
              */
-            obj["TLB"] = base.parse_element (/<cim:AreaControlMode.TLB>([\s\S]*?)<\/cim:AreaControlMode.TLB>/g, sub, context, true);
+            base.parse_element (/<cim:AreaControlMode.TLB>([\s\S]*?)<\/cim:AreaControlMode.TLB>/g, obj, "TLB", base.to_string, sub, context);
+
             /**
              * Off control
              *
              */
-            obj["OFF"] = base.parse_element (/<cim:AreaControlMode.OFF>([\s\S]*?)<\/cim:AreaControlMode.OFF>/g, sub, context, true);
+            base.parse_element (/<cim:AreaControlMode.OFF>([\s\S]*?)<\/cim:AreaControlMode.OFF>/g, obj, "OFF", base.to_string, sub, context);
+
             bucket = context.parsed.AreaControlMode;
             if (null == bucket)
                 context.parsed.AreaControlMode = bucket = {};
@@ -2433,9 +2698,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "CheckOutType";
-            obj["PRE_HOUR"] = base.parse_element (/<cim:CheckOutType.PRE_HOUR>([\s\S]*?)<\/cim:CheckOutType.PRE_HOUR>/g, sub, context, true);
-            obj["PRE_SCHEDULE"] = base.parse_element (/<cim:CheckOutType.PRE_SCHEDULE>([\s\S]*?)<\/cim:CheckOutType.PRE_SCHEDULE>/g, sub, context, true);
-            obj["AFTER_THE_FACT"] = base.parse_element (/<cim:CheckOutType.AFTER_THE_FACT>([\s\S]*?)<\/cim:CheckOutType.AFTER_THE_FACT>/g, sub, context, true);
+            base.parse_element (/<cim:CheckOutType.PRE_HOUR>([\s\S]*?)<\/cim:CheckOutType.PRE_HOUR>/g, obj, "PRE_HOUR", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CheckOutType.PRE_SCHEDULE>([\s\S]*?)<\/cim:CheckOutType.PRE_SCHEDULE>/g, obj, "PRE_SCHEDULE", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CheckOutType.AFTER_THE_FACT>([\s\S]*?)<\/cim:CheckOutType.AFTER_THE_FACT>/g, obj, "AFTER_THE_FACT", base.to_string, sub, context);
+
             bucket = context.parsed.CheckOutType;
             if (null == bucket)
                 context.parsed.CheckOutType = bucket = {};
@@ -2469,52 +2737,62 @@ define
              * Combined Cycle
              *
              */
-            obj["CCYC"] = base.parse_element (/<cim:UnitType.CCYC>([\s\S]*?)<\/cim:UnitType.CCYC>/g, sub, context, true);
+            base.parse_element (/<cim:UnitType.CCYC>([\s\S]*?)<\/cim:UnitType.CCYC>/g, obj, "CCYC", base.to_string, sub, context);
+
             /**
              * Gas Turbine
              *
              */
-            obj["GTUR"] = base.parse_element (/<cim:UnitType.GTUR>([\s\S]*?)<\/cim:UnitType.GTUR>/g, sub, context, true);
+            base.parse_element (/<cim:UnitType.GTUR>([\s\S]*?)<\/cim:UnitType.GTUR>/g, obj, "GTUR", base.to_string, sub, context);
+
             /**
              * Hydro Turbine
              *
              */
-            obj["HYDR"] = base.parse_element (/<cim:UnitType.HYDR>([\s\S]*?)<\/cim:UnitType.HYDR>/g, sub, context, true);
+            base.parse_element (/<cim:UnitType.HYDR>([\s\S]*?)<\/cim:UnitType.HYDR>/g, obj, "HYDR", base.to_string, sub, context);
+
             /**
              * Other
              *
              */
-            obj["OTHR"] = base.parse_element (/<cim:UnitType.OTHR>([\s\S]*?)<\/cim:UnitType.OTHR>/g, sub, context, true);
+            base.parse_element (/<cim:UnitType.OTHR>([\s\S]*?)<\/cim:UnitType.OTHR>/g, obj, "OTHR", base.to_string, sub, context);
+
             /**
              * Photovoltaic
              *
              */
-            obj["PHOT"] = base.parse_element (/<cim:UnitType.PHOT>([\s\S]*?)<\/cim:UnitType.PHOT>/g, sub, context, true);
+            base.parse_element (/<cim:UnitType.PHOT>([\s\S]*?)<\/cim:UnitType.PHOT>/g, obj, "PHOT", base.to_string, sub, context);
+
             /**
              * Hydro Pump-Turbine
              *
              */
-            obj["PTUR"] = base.parse_element (/<cim:UnitType.PTUR>([\s\S]*?)<\/cim:UnitType.PTUR>/g, sub, context, true);
+            base.parse_element (/<cim:UnitType.PTUR>([\s\S]*?)<\/cim:UnitType.PTUR>/g, obj, "PTUR", base.to_string, sub, context);
+
             /**
              * Reciprocating Engine
              *
              */
-            obj["RECP"] = base.parse_element (/<cim:UnitType.RECP>([\s\S]*?)<\/cim:UnitType.RECP>/g, sub, context, true);
+            base.parse_element (/<cim:UnitType.RECP>([\s\S]*?)<\/cim:UnitType.RECP>/g, obj, "RECP", base.to_string, sub, context);
+
             /**
              * Steam Turbine
              *
              */
-            obj["STUR"] = base.parse_element (/<cim:UnitType.STUR>([\s\S]*?)<\/cim:UnitType.STUR>/g, sub, context, true);
+            base.parse_element (/<cim:UnitType.STUR>([\s\S]*?)<\/cim:UnitType.STUR>/g, obj, "STUR", base.to_string, sub, context);
+
             /**
              * Synchronous Condenser
              *
              */
-            obj["SYNC"] = base.parse_element (/<cim:UnitType.SYNC>([\s\S]*?)<\/cim:UnitType.SYNC>/g, sub, context, true);
+            base.parse_element (/<cim:UnitType.SYNC>([\s\S]*?)<\/cim:UnitType.SYNC>/g, obj, "SYNC", base.to_string, sub, context);
+
             /**
              * Wind Turbine
              *
              */
-            obj["WIND"] = base.parse_element (/<cim:UnitType.WIND>([\s\S]*?)<\/cim:UnitType.WIND>/g, sub, context, true);
+            base.parse_element (/<cim:UnitType.WIND>([\s\S]*?)<\/cim:UnitType.WIND>/g, obj, "WIND", base.to_string, sub, context);
+
             bucket = context.parsed.UnitType;
             if (null == bucket)
                 context.parsed.UnitType = bucket = {};
@@ -2538,9 +2816,12 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "CostBasis";
-            obj["BIDC"] = base.parse_element (/<cim:CostBasis.BIDC>([\s\S]*?)<\/cim:CostBasis.BIDC>/g, sub, context, true);
-            obj["PRXC"] = base.parse_element (/<cim:CostBasis.PRXC>([\s\S]*?)<\/cim:CostBasis.PRXC>/g, sub, context, true);
-            obj["REGC"] = base.parse_element (/<cim:CostBasis.REGC>([\s\S]*?)<\/cim:CostBasis.REGC>/g, sub, context, true);
+            base.parse_element (/<cim:CostBasis.BIDC>([\s\S]*?)<\/cim:CostBasis.BIDC>/g, obj, "BIDC", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostBasis.PRXC>([\s\S]*?)<\/cim:CostBasis.PRXC>/g, obj, "PRXC", base.to_string, sub, context);
+
+            base.parse_element (/<cim:CostBasis.REGC>([\s\S]*?)<\/cim:CostBasis.REGC>/g, obj, "REGC", base.to_string, sub, context);
+
             bucket = context.parsed.CostBasis;
             if (null == bucket)
                 context.parsed.CostBasis = bucket = {};

@@ -33,16 +33,20 @@ define
              * RC (RUC)
              *
              */
-            obj["marketProductType"] = base.parse_element (/<cim:MarketProduct.marketProductType>([\s\S]*?)<\/cim:MarketProduct.marketProductType>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProduct.marketProductType>([\s\S]*?)<\/cim:MarketProduct.marketProductType>/g, obj, "marketProductType", base.to_string, sub, context);
+
             /**
              * Ramping time interval for the specific market product type specified by marketProductType attribute.
              *
              * For example, if marketProductType = EN (from enumeration MarketProductType), then the rampInterval is the ramping time interval for Energy.
              *
              */
-            obj["rampInterval"] = base.to_float (base.parse_element (/<cim:MarketProduct.rampInterval>([\s\S]*?)<\/cim:MarketProduct.rampInterval>/g, sub, context, true));
-            obj["MarketRegionResults"] = base.parse_attribute (/<cim:MarketProduct.MarketRegionResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            obj["Market"] = base.parse_attribute (/<cim:MarketProduct.Market\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_element (/<cim:MarketProduct.rampInterval>([\s\S]*?)<\/cim:MarketProduct.rampInterval>/g, obj, "rampInterval", base.to_float, sub, context);
+
+            base.parse_attribute (/<cim:MarketProduct.MarketRegionResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketRegionResults", sub, context, true);
+
+            base.parse_attribute (/<cim:MarketProduct.Market\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Market", sub, context, true);
+
             bucket = context.parsed.MarketProduct;
             if (null == bucket)
                 context.parsed.MarketProduct = bucket = {};
@@ -68,24 +72,28 @@ define
              * Description of the planned event.
              *
              */
-            obj["description"] = base.parse_element (/<cim:PlannedMarketEvent.description>([\s\S]*?)<\/cim:PlannedMarketEvent.description>/g, sub, context, true);
+            base.parse_element (/<cim:PlannedMarketEvent.description>([\s\S]*?)<\/cim:PlannedMarketEvent.description>/g, obj, "description", base.to_string, sub, context);
+
             /**
              * Planned event type.
              *
              */
-            obj["eventType"] = base.parse_element (/<cim:PlannedMarketEvent.eventType>([\s\S]*?)<\/cim:PlannedMarketEvent.eventType>/g, sub, context, true);
+            base.parse_element (/<cim:PlannedMarketEvent.eventType>([\s\S]*?)<\/cim:PlannedMarketEvent.eventType>/g, obj, "eventType", base.to_string, sub, context);
+
             /**
              * Planned event identifier.
              *
              */
-            obj["plannedEventID"] = base.parse_element (/<cim:PlannedMarketEvent.plannedEventID>([\s\S]*?)<\/cim:PlannedMarketEvent.plannedEventID>/g, sub, context, true);
+            base.parse_element (/<cim:PlannedMarketEvent.plannedEventID>([\s\S]*?)<\/cim:PlannedMarketEvent.plannedEventID>/g, obj, "plannedEventID", base.to_string, sub, context);
+
             /**
              * This is relative time so that this attribute can be used by more than one planned market.
              *
              * For example the bid submission is 10am everyday.
              *
              */
-            obj["plannedTime"] = base.parse_element (/<cim:PlannedMarketEvent.plannedTime>([\s\S]*?)<\/cim:PlannedMarketEvent.plannedTime>/g, sub, context, true);
+            base.parse_element (/<cim:PlannedMarketEvent.plannedTime>([\s\S]*?)<\/cim:PlannedMarketEvent.plannedTime>/g, obj, "plannedTime", base.to_string, sub, context);
+
             bucket = context.parsed.PlannedMarketEvent;
             if (null == bucket)
                 context.parsed.PlannedMarketEvent = bucket = {};
@@ -111,22 +119,26 @@ define
              * Description of the planned market.
              *
              */
-            obj["description"] = base.parse_element (/<cim:MarketPlan.description>([\s\S]*?)<\/cim:MarketPlan.description>/g, sub, context, true);
+            base.parse_element (/<cim:MarketPlan.description>([\s\S]*?)<\/cim:MarketPlan.description>/g, obj, "description", base.to_string, sub, context);
+
             /**
              * Planned market identifier.
              *
              */
-            obj["marketPlanID"] = base.parse_element (/<cim:MarketPlan.marketPlanID>([\s\S]*?)<\/cim:MarketPlan.marketPlanID>/g, sub, context, true);
+            base.parse_element (/<cim:MarketPlan.marketPlanID>([\s\S]*?)<\/cim:MarketPlan.marketPlanID>/g, obj, "marketPlanID", base.to_string, sub, context);
+
             /**
              * Name of the planned market.
              *
              */
-            obj["name"] = base.parse_element (/<cim:MarketPlan.name>([\s\S]*?)<\/cim:MarketPlan.name>/g, sub, context, true);
+            base.parse_element (/<cim:MarketPlan.name>([\s\S]*?)<\/cim:MarketPlan.name>/g, obj, "name", base.to_string, sub, context);
+
             /**
              * Planned market trading day.
              *
              */
-            obj["tradingDay"] = base.to_datetime (base.parse_element (/<cim:MarketPlan.tradingDay>([\s\S]*?)<\/cim:MarketPlan.tradingDay>/g, sub, context, true));
+            base.parse_element (/<cim:MarketPlan.tradingDay>([\s\S]*?)<\/cim:MarketPlan.tradingDay>/g, obj, "tradingDay", base.to_datetime, sub, context);
+
             bucket = context.parsed.MarketPlan;
             if (null == bucket)
                 context.parsed.MarketPlan = bucket = {};
@@ -150,13 +162,16 @@ define
              * The end of the time interval for which requirement is defined.
              *
              */
-            obj["intervalEndTime"] = base.to_datetime (base.parse_element (/<cim:MarketFactors.intervalEndTime>([\s\S]*?)<\/cim:MarketFactors.intervalEndTime>/g, sub, context, true));
+            base.parse_element (/<cim:MarketFactors.intervalEndTime>([\s\S]*?)<\/cim:MarketFactors.intervalEndTime>/g, obj, "intervalEndTime", base.to_datetime, sub, context);
+
             /**
              * The start of the time interval for which requirement is defined.
              *
              */
-            obj["intervalStartTime"] = base.to_datetime (base.parse_element (/<cim:MarketFactors.intervalStartTime>([\s\S]*?)<\/cim:MarketFactors.intervalStartTime>/g, sub, context, true));
-            obj["Market"] = base.parse_attribute (/<cim:MarketFactors.Market\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_element (/<cim:MarketFactors.intervalStartTime>([\s\S]*?)<\/cim:MarketFactors.intervalStartTime>/g, obj, "intervalStartTime", base.to_datetime, sub, context);
+
+            base.parse_attribute (/<cim:MarketFactors.Market\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Market", sub, context, true);
+
             bucket = context.parsed.MarketFactors;
             if (null == bucket)
                 context.parsed.MarketFactors = bucket = {};
@@ -182,49 +197,58 @@ define
              * Market ending time - actual market end
              *
              */
-            obj["actualEnd"] = base.to_datetime (base.parse_element (/<cim:Market.actualEnd>([\s\S]*?)<\/cim:Market.actualEnd>/g, sub, context, true));
+            base.parse_element (/<cim:Market.actualEnd>([\s\S]*?)<\/cim:Market.actualEnd>/g, obj, "actualEnd", base.to_datetime, sub, context);
+
             /**
              * Market starting time - actual market start
              *
              */
-            obj["actualStart"] = base.to_datetime (base.parse_element (/<cim:Market.actualStart>([\s\S]*?)<\/cim:Market.actualStart>/g, sub, context, true));
+            base.parse_element (/<cim:Market.actualStart>([\s\S]*?)<\/cim:Market.actualStart>/g, obj, "actualStart", base.to_datetime, sub, context);
+
             /**
              * True if daylight savings time (DST) is in effect.
              *
              */
-            obj["dst"] = base.to_boolean (base.parse_element (/<cim:Market.dst>([\s\S]*?)<\/cim:Market.dst>/g, sub, context, true));
+            base.parse_element (/<cim:Market.dst>([\s\S]*?)<\/cim:Market.dst>/g, obj, "dst", base.to_boolean, sub, context);
+
             /**
              * Market end time.
              *
              */
-            obj["end"] = base.to_datetime (base.parse_element (/<cim:Market.end>([\s\S]*?)<\/cim:Market.end>/g, sub, context, true));
+            base.parse_element (/<cim:Market.end>([\s\S]*?)<\/cim:Market.end>/g, obj, "end", base.to_datetime, sub, context);
+
             /**
              * Local time zone.
              *
              */
-            obj["localTimeZone"] = base.parse_element (/<cim:Market.localTimeZone>([\s\S]*?)<\/cim:Market.localTimeZone>/g, sub, context, true);
+            base.parse_element (/<cim:Market.localTimeZone>([\s\S]*?)<\/cim:Market.localTimeZone>/g, obj, "localTimeZone", base.to_string, sub, context);
+
             /**
              * Market start time.
              *
              */
-            obj["start"] = base.to_datetime (base.parse_element (/<cim:Market.start>([\s\S]*?)<\/cim:Market.start>/g, sub, context, true));
+            base.parse_element (/<cim:Market.start>([\s\S]*?)<\/cim:Market.start>/g, obj, "start", base.to_datetime, sub, context);
+
             /**
              * Market Status
              *
              * 'OPEN', 'CLOSED', 'CLEARED', 'BLOCKED'
              *
              */
-            obj["status"] = base.parse_element (/<cim:Market.status>([\s\S]*?)<\/cim:Market.status>/g, sub, context, true);
+            base.parse_element (/<cim:Market.status>([\s\S]*?)<\/cim:Market.status>/g, obj, "status", base.to_string, sub, context);
+
             /**
              * Trading time interval length.
              *
              */
-            obj["timeIntervalLength"] = base.to_float (base.parse_element (/<cim:Market.timeIntervalLength>([\s\S]*?)<\/cim:Market.timeIntervalLength>/g, sub, context, true));
+            base.parse_element (/<cim:Market.timeIntervalLength>([\s\S]*?)<\/cim:Market.timeIntervalLength>/g, obj, "timeIntervalLength", base.to_float, sub, context);
+
             /**
              * Market trading date
              *
              */
-            obj["tradingDay"] = base.to_datetime (base.parse_element (/<cim:Market.tradingDay>([\s\S]*?)<\/cim:Market.tradingDay>/g, sub, context, true));
+            base.parse_element (/<cim:Market.tradingDay>([\s\S]*?)<\/cim:Market.tradingDay>/g, obj, "tradingDay", base.to_datetime, sub, context);
+
             /**
              * Trading period that describes the market, possibilities could be for an Energy Market:
              * Day
@@ -237,7 +261,8 @@ define
              * Season
              *
              */
-            obj["tradingPeriod"] = base.parse_element (/<cim:Market.tradingPeriod>([\s\S]*?)<\/cim:Market.tradingPeriod>/g, sub, context, true);
+            base.parse_element (/<cim:Market.tradingPeriod>([\s\S]*?)<\/cim:Market.tradingPeriod>/g, obj, "tradingPeriod", base.to_string, sub, context);
+
             bucket = context.parsed.Market;
             if (null == bucket)
                 context.parsed.Market = bucket = {};
@@ -259,8 +284,10 @@ define
 
             obj = parse_Market (context, sub);
             obj.cls = "EnergyMarket";
-            obj["MarketResults"] = base.parse_attribute (/<cim:EnergyMarket.MarketResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            obj["RTO"] = base.parse_attribute (/<cim:EnergyMarket.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:EnergyMarket.MarketResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketResults", sub, context, true);
+
+            base.parse_attribute (/<cim:EnergyMarket.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RTO", sub, context, true);
+
             bucket = context.parsed.EnergyMarket;
             if (null == bucket)
                 context.parsed.EnergyMarket = bucket = {};
@@ -284,29 +311,34 @@ define
              * Description of the event.
              *
              */
-            obj["description"] = base.parse_element (/<cim:MarketActualEvent.description>([\s\S]*?)<\/cim:MarketActualEvent.description>/g, sub, context, true);
+            base.parse_element (/<cim:MarketActualEvent.description>([\s\S]*?)<\/cim:MarketActualEvent.description>/g, obj, "description", base.to_string, sub, context);
+
             /**
              * Actual event ID.
              *
              */
-            obj["eventID"] = base.parse_element (/<cim:MarketActualEvent.eventID>([\s\S]*?)<\/cim:MarketActualEvent.eventID>/g, sub, context, true);
+            base.parse_element (/<cim:MarketActualEvent.eventID>([\s\S]*?)<\/cim:MarketActualEvent.eventID>/g, obj, "eventID", base.to_string, sub, context);
+
             /**
              * Start time of the event.
              *
              */
-            obj["eventTime"] = base.to_datetime (base.parse_element (/<cim:MarketActualEvent.eventTime>([\s\S]*?)<\/cim:MarketActualEvent.eventTime>/g, sub, context, true));
+            base.parse_element (/<cim:MarketActualEvent.eventTime>([\s\S]*?)<\/cim:MarketActualEvent.eventTime>/g, obj, "eventTime", base.to_datetime, sub, context);
+
             /**
              * Planned event executed by this actual event.
              *
              */
-            obj["PlannedMarketEvent"] = base.parse_attribute (/<cim:MarketActualEvent.PlannedMarketEvent\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:MarketActualEvent.PlannedMarketEvent\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PlannedMarketEvent", sub, context, true);
+
             /**
              * Market run triggered by this actual event.
              *
              * For example, the DA run is triggered by the actual open bid submission event and terminated by the actual close bid submission event.
              *
              */
-            obj["MarketRun"] = base.parse_attribute (/<cim:MarketActualEvent.MarketRun\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:MarketActualEvent.MarketRun\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketRun", sub, context, true);
+
             bucket = context.parsed.MarketActualEvent;
             if (null == bucket)
                 context.parsed.MarketActualEvent = bucket = {};
@@ -330,7 +362,8 @@ define
              * labelID - an ID for a set of apnodes/pnodes used in a CRR market
              *
              */
-            obj["labelID"] = base.parse_element (/<cim:CRRMarket.labelID>([\s\S]*?)<\/cim:CRRMarket.labelID>/g, sub, context, true);
+            base.parse_element (/<cim:CRRMarket.labelID>([\s\S]*?)<\/cim:CRRMarket.labelID>/g, obj, "labelID", base.to_string, sub, context);
+
             bucket = context.parsed.CRRMarket;
             if (null == bucket)
                 context.parsed.CRRMarket = bucket = {};
@@ -356,29 +389,34 @@ define
              * Market end time.
              *
              */
-            obj["marketEndTime"] = base.to_datetime (base.parse_element (/<cim:PlannedMarket.marketEndTime>([\s\S]*?)<\/cim:PlannedMarket.marketEndTime>/g, sub, context, true));
+            base.parse_element (/<cim:PlannedMarket.marketEndTime>([\s\S]*?)<\/cim:PlannedMarket.marketEndTime>/g, obj, "marketEndTime", base.to_datetime, sub, context);
+
             /**
              * An identification that defines the attributes of the Market.
              *
              * In todays terms: Market Type: DA, RTM, Trade Date:  1/25/04, Trade Hour: 1-25.
              *
              */
-            obj["marketID"] = base.parse_element (/<cim:PlannedMarket.marketID>([\s\S]*?)<\/cim:PlannedMarket.marketID>/g, sub, context, true);
+            base.parse_element (/<cim:PlannedMarket.marketID>([\s\S]*?)<\/cim:PlannedMarket.marketID>/g, obj, "marketID", base.to_string, sub, context);
+
             /**
              * Market start time.
              *
              */
-            obj["marketStartTime"] = base.to_datetime (base.parse_element (/<cim:PlannedMarket.marketStartTime>([\s\S]*?)<\/cim:PlannedMarket.marketStartTime>/g, sub, context, true));
+            base.parse_element (/<cim:PlannedMarket.marketStartTime>([\s\S]*?)<\/cim:PlannedMarket.marketStartTime>/g, obj, "marketStartTime", base.to_datetime, sub, context);
+
             /**
              * Market type.
              *
              */
-            obj["marketType"] = base.parse_element (/<cim:PlannedMarket.marketType>([\s\S]*?)<\/cim:PlannedMarket.marketType>/g, sub, context, true);
+            base.parse_element (/<cim:PlannedMarket.marketType>([\s\S]*?)<\/cim:PlannedMarket.marketType>/g, obj, "marketType", base.to_string, sub, context);
+
             /**
              * a market plan has a number of markets (DA, HA, RT)
              *
              */
-            obj["MarketPlan"] = base.parse_attribute (/<cim:PlannedMarket.MarketPlan\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:PlannedMarket.MarketPlan\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketPlan", sub, context, true);
+
             bucket = context.parsed.PlannedMarket;
             if (null == bucket)
                 context.parsed.PlannedMarket = bucket = {};
@@ -404,68 +442,80 @@ define
              * The execution type; Day Ahead, Intra Day, Real Time Pre-Dispatch, Real Time Dispatch
              *
              */
-            obj["executionType"] = base.parse_element (/<cim:MarketRun.executionType>([\s\S]*?)<\/cim:MarketRun.executionType>/g, sub, context, true);
+            base.parse_element (/<cim:MarketRun.executionType>([\s\S]*?)<\/cim:MarketRun.executionType>/g, obj, "executionType", base.to_string, sub, context);
+
             /**
              * Approved time for case.
              *
              * Identifies the time that the dispatcher approved a specific real time unit dispatch case
              *
              */
-            obj["marketApprovalTime"] = base.to_datetime (base.parse_element (/<cim:MarketRun.marketApprovalTime>([\s\S]*?)<\/cim:MarketRun.marketApprovalTime>/g, sub, context, true));
+            base.parse_element (/<cim:MarketRun.marketApprovalTime>([\s\S]*?)<\/cim:MarketRun.marketApprovalTime>/g, obj, "marketApprovalTime", base.to_datetime, sub, context);
+
             /**
              * Set to true when the plan is approved by authority and becomes the official plan for the day ahead market.
              *
              * Identifies the approved case for the market for the specified time interval.
              *
              */
-            obj["marketApprovedStatus"] = base.to_boolean (base.parse_element (/<cim:MarketRun.marketApprovedStatus>([\s\S]*?)<\/cim:MarketRun.marketApprovedStatus>/g, sub, context, true));
+            base.parse_element (/<cim:MarketRun.marketApprovedStatus>([\s\S]*?)<\/cim:MarketRun.marketApprovedStatus>/g, obj, "marketApprovedStatus", base.to_boolean, sub, context);
+
             /**
              * The end time defined as the end of the market, market end time.
              *
              */
-            obj["marketEndTime"] = base.to_datetime (base.parse_element (/<cim:MarketRun.marketEndTime>([\s\S]*?)<\/cim:MarketRun.marketEndTime>/g, sub, context, true));
+            base.parse_element (/<cim:MarketRun.marketEndTime>([\s\S]*?)<\/cim:MarketRun.marketEndTime>/g, obj, "marketEndTime", base.to_datetime, sub, context);
+
             /**
              * An identification that defines the attributes of the Market.
              *
              * In todays terms: Market Type: DA, RTM, Trade Date:  1/25/04, Trade Hour: 1-25
              *
              */
-            obj["marketID"] = base.parse_element (/<cim:MarketRun.marketID>([\s\S]*?)<\/cim:MarketRun.marketID>/g, sub, context, true);
+            base.parse_element (/<cim:MarketRun.marketID>([\s\S]*?)<\/cim:MarketRun.marketID>/g, obj, "marketID", base.to_string, sub, context);
+
             /**
              * A unique identifier that differentiates the different runs of the same Market ID.
              *
              * More specifically, if the market is re-opened and re-closed and rerun completely, the first set of results and the second set of results produced will have the same Market ID but will have different Market Run IDs since the multiple run is for the same market.
              *
              */
-            obj["marketRunID"] = base.parse_element (/<cim:MarketRun.marketRunID>([\s\S]*?)<\/cim:MarketRun.marketRunID>/g, sub, context, true);
+            base.parse_element (/<cim:MarketRun.marketRunID>([\s\S]*?)<\/cim:MarketRun.marketRunID>/g, obj, "marketRunID", base.to_string, sub, context);
+
             /**
              * The start time defined as the beginning of the market, market start time.
              *
              */
-            obj["marketStartTime"] = base.to_datetime (base.parse_element (/<cim:MarketRun.marketStartTime>([\s\S]*?)<\/cim:MarketRun.marketStartTime>/g, sub, context, true));
+            base.parse_element (/<cim:MarketRun.marketStartTime>([\s\S]*?)<\/cim:MarketRun.marketStartTime>/g, obj, "marketStartTime", base.to_datetime, sub, context);
+
             /**
              * The market type, Day Ahead Market or Real Time Market.
              *
              */
-            obj["marketType"] = base.parse_element (/<cim:MarketRun.marketType>([\s\S]*?)<\/cim:MarketRun.marketType>/g, sub, context, true);
+            base.parse_element (/<cim:MarketRun.marketType>([\s\S]*?)<\/cim:MarketRun.marketType>/g, obj, "marketType", base.to_string, sub, context);
+
             /**
              * This is the state of market run activitie as reported by market systems to the market definition services.
              *
              */
-            obj["reportedState"] = base.parse_element (/<cim:MarketRun.reportedState>([\s\S]*?)<\/cim:MarketRun.reportedState>/g, sub, context, true);
+            base.parse_element (/<cim:MarketRun.reportedState>([\s\S]*?)<\/cim:MarketRun.reportedState>/g, obj, "reportedState", base.to_string, sub, context);
+
             /**
              * This is the state controlled by market defintion service.
              *
              * possible values could be but not limited by: Open, Close.
              *
              */
-            obj["runState"] = base.parse_element (/<cim:MarketRun.runState>([\s\S]*?)<\/cim:MarketRun.runState>/g, sub, context, true);
+            base.parse_element (/<cim:MarketRun.runState>([\s\S]*?)<\/cim:MarketRun.runState>/g, obj, "runState", base.to_string, sub, context);
+
             /**
              * A planned market could have multiple market runs for the reason that a planned market could have a rerun.
              *
              */
-            obj["PlannedMarket"] = base.parse_attribute (/<cim:MarketRun.PlannedMarket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-            obj["Market"] = base.parse_attribute (/<cim:MarketRun.Market\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
+            base.parse_attribute (/<cim:MarketRun.PlannedMarket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PlannedMarket", sub, context, true);
+
+            base.parse_attribute (/<cim:MarketRun.Market\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Market", sub, context, true);
+
             bucket = context.parsed.MarketRun;
             if (null == bucket)
                 context.parsed.MarketRun = bucket = {};
