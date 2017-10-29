@@ -27,6 +27,16 @@ define
             return (obj);
         }
 
+        function export_ModelingAuthority (obj, exporters, full)
+        {
+            var fields = [];
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * A Modeling Authority Set is a group of objects in a network model where the data is supplied and maintained by the same Modeling Authority.
          *
@@ -40,12 +50,7 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ModelingAuthoritySet";
-            /**
-             * A Modeling Authority set supplies and maintains the data for the objects in a Modeling Authority Set.
-             *
-             */
-            base.parse_attribute (/<cim:ModelingAuthoritySet.ModelingAuthority\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ModelingAuthority", sub, context, true);
-
+            base.parse_attribute (/<cim:ModelingAuthoritySet.ModelingAuthority\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ModelingAuthority", sub, context);
             bucket = context.parsed.ModelingAuthoritySet;
             if (null == bucket)
                 context.parsed.ModelingAuthoritySet = bucket = {};
@@ -54,8 +59,21 @@ define
             return (obj);
         }
 
+        function export_ModelingAuthoritySet (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_attribute (obj, "ModelingAuthoritySet", "ModelingAuthority", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
+                export_ModelingAuthority: export_ModelingAuthority,
+                export_ModelingAuthoritySet: export_ModelingAuthoritySet,
                 parse_ModelingAuthority: parse_ModelingAuthority,
                 parse_ModelingAuthoritySet: parse_ModelingAuthoritySet
             }

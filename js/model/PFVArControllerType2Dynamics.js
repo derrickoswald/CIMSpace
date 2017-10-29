@@ -26,63 +26,36 @@ define
 
             obj = parse_PFVArControllerType2Dynamics (context, sub);
             obj.cls = "PFVArType2IEEEPFController";
-            /**
-             * Overexcitation or under excitation flag (<i>EXLON</i>)
-             * true = 1 (not in the overexcitation or underexcitation state, integral action is active)
-             *
-             * false = 0 (in the overexcitation or underexcitation state, so integral action is disabled to allow the limiter to play its role).
-             *
-             */
             base.parse_element (/<cim:PFVArType2IEEEPFController.exlon>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.exlon>/g, obj, "exlon", base.to_boolean, sub, context);
-
-            /**
-             * Integral gain of the pf controller (<i>K</i><i><sub>I</sub></i>).
-             *
-             * Typical Value = 1.
-             *
-             */
             base.parse_element (/<cim:PFVArType2IEEEPFController.ki>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.ki>/g, obj, "ki", base.to_string, sub, context);
-
-            /**
-             * Proportional gain of the pf controller (<i>K</i><i><sub>P</sub></i>).
-             *
-             * Typical Value = 1.
-             *
-             */
             base.parse_element (/<cim:PFVArType2IEEEPFController.kp>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.kp>/g, obj, "kp", base.to_string, sub, context);
-
-            /**
-             * Power factor reference (<i>P</i><i><sub>FREF</sub></i>).
-             *
-             */
             base.parse_element (/<cim:PFVArType2IEEEPFController.pfref>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.pfref>/g, obj, "pfref", base.to_string, sub, context);
-
-            /**
-             * Maximum output of the pf controller (<i>V</i><i><sub>CLMT</sub></i>).
-             *
-             * Typical Value = 0.1.
-             *
-             */
             base.parse_element (/<cim:PFVArType2IEEEPFController.vclmt>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.vclmt>/g, obj, "vclmt", base.to_string, sub, context);
-
-            /**
-             * Voltage regulator reference (<i>V</i><i><sub>REF</sub></i>).
-             *
-             */
             base.parse_element (/<cim:PFVArType2IEEEPFController.vref>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.vref>/g, obj, "vref", base.to_string, sub, context);
-
-            /**
-             * Generator sensing voltage (<i>V</i><i><sub>S</sub></i>).
-             *
-             */
             base.parse_element (/<cim:PFVArType2IEEEPFController.vs>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.vs>/g, obj, "vs", base.to_float, sub, context);
-
             bucket = context.parsed.PFVArType2IEEEPFController;
             if (null == bucket)
                 context.parsed.PFVArType2IEEEPFController = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_PFVArType2IEEEPFController (obj, exporters, full)
+        {
+            var fields = exporters["PFVArControllerType2Dynamics"](obj, exporters, false);
+
+            base.export_element (obj, "PFVArType2IEEEPFController", "exlon", base.from_boolean, fields);
+            base.export_element (obj, "PFVArType2IEEEPFController", "ki", base.from_string, fields);
+            base.export_element (obj, "PFVArType2IEEEPFController", "kp", base.from_string, fields);
+            base.export_element (obj, "PFVArType2IEEEPFController", "pfref", base.from_string, fields);
+            base.export_element (obj, "PFVArType2IEEEPFController", "vclmt", base.from_string, fields);
+            base.export_element (obj, "PFVArType2IEEEPFController", "vref", base.from_string, fields);
+            base.export_element (obj, "PFVArType2IEEEPFController", "vs", base.from_float, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -96,18 +69,24 @@ define
 
             obj = StandardModels.parse_DynamicsFunctionBlock (context, sub);
             obj.cls = "PFVArControllerType2Dynamics";
-            /**
-             * Excitation system model with which this Power Factor or VAr controller Type II is associated.
-             *
-             */
-            base.parse_attribute (/<cim:PFVArControllerType2Dynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context, true);
-
+            base.parse_attribute (/<cim:PFVArControllerType2Dynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
             bucket = context.parsed.PFVArControllerType2Dynamics;
             if (null == bucket)
                 context.parsed.PFVArControllerType2Dynamics = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_PFVArControllerType2Dynamics (obj, exporters, full)
+        {
+            var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+
+            base.export_attribute (obj, "PFVArControllerType2Dynamics", "ExcitationSystemDynamics", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -123,47 +102,32 @@ define
 
             obj = parse_PFVArControllerType2Dynamics (context, sub);
             obj.cls = "PFVArType2Common1";
-            /**
-             * Selector (J).
-             * true = control mode for reactive power
-             *
-             * false = control mode for power factor.
-             *
-             */
             base.parse_element (/<cim:PFVArType2Common1.j>([\s\S]*?)<\/cim:PFVArType2Common1.j>/g, obj, "j", base.to_boolean, sub, context);
-
-            /**
-             * Reset gain (Ki).
-             *
-             */
             base.parse_element (/<cim:PFVArType2Common1.ki>([\s\S]*?)<\/cim:PFVArType2Common1.ki>/g, obj, "ki", base.to_string, sub, context);
-
-            /**
-             * Proportional gain (Kp).
-             *
-             */
             base.parse_element (/<cim:PFVArType2Common1.kp>([\s\S]*?)<\/cim:PFVArType2Common1.kp>/g, obj, "kp", base.to_string, sub, context);
-
-            /**
-             * Output limit (max).
-             *
-             */
             base.parse_element (/<cim:PFVArType2Common1.max>([\s\S]*?)<\/cim:PFVArType2Common1.max>/g, obj, "max", base.to_string, sub, context);
-
-            /**
-             * Reference value of reactive power or power factor (Ref).
-             *
-             * The reference value is initialised by this model. This initialisation may override the value exchanged by this attribute to represent a plant operator's change of the reference setting.
-             *
-             */
             base.parse_element (/<cim:PFVArType2Common1.ref>([\s\S]*?)<\/cim:PFVArType2Common1.ref>/g, obj, "ref", base.to_string, sub, context);
-
             bucket = context.parsed.PFVArType2Common1;
             if (null == bucket)
                 context.parsed.PFVArType2Common1 = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_PFVArType2Common1 (obj, exporters, full)
+        {
+            var fields = exporters["PFVArControllerType2Dynamics"](obj, exporters, false);
+
+            base.export_element (obj, "PFVArType2Common1", "j", base.from_boolean, fields);
+            base.export_element (obj, "PFVArType2Common1", "ki", base.from_string, fields);
+            base.export_element (obj, "PFVArType2Common1", "kp", base.from_string, fields);
+            base.export_element (obj, "PFVArType2Common1", "max", base.from_string, fields);
+            base.export_element (obj, "PFVArType2Common1", "ref", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -179,51 +143,13 @@ define
 
             obj = parse_PFVArControllerType2Dynamics (context, sub);
             obj.cls = "PFVArType2IEEEVArController";
-            /**
-             * Overexcitation or under excitation flag (<i>EXLON</i>)
-             * true = 1 (not in the overexcitation or underexcitation state, integral action is active)
-             *
-             * false = 0 (in the overexcitation or underexcitation state, so integral action is disabled to allow the limiter to play its role).
-             *
-             */
             base.parse_element (/<cim:PFVArType2IEEEVArController.exlon>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.exlon>/g, obj, "exlon", base.to_boolean, sub, context);
-
-            /**
-             * Integral gain of the pf controller (<i>K</i><i><sub>I</sub></i>).
-             *
-             */
             base.parse_element (/<cim:PFVArType2IEEEVArController.ki>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.ki>/g, obj, "ki", base.to_string, sub, context);
-
-            /**
-             * Proportional gain of the pf controller (<i>K</i><i><sub>P</sub></i>).
-             *
-             */
             base.parse_element (/<cim:PFVArType2IEEEVArController.kp>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.kp>/g, obj, "kp", base.to_string, sub, context);
-
-            /**
-             * Reactive power reference (<i>Q</i><i><sub>REF</sub></i>).
-             *
-             */
             base.parse_element (/<cim:PFVArType2IEEEVArController.qref>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.qref>/g, obj, "qref", base.to_string, sub, context);
-
-            /**
-             * Maximum output of the pf controller (<i>V</i><i><sub>CLMT</sub></i>).
-             *
-             */
             base.parse_element (/<cim:PFVArType2IEEEVArController.vclmt>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.vclmt>/g, obj, "vclmt", base.to_string, sub, context);
-
-            /**
-             * Voltage regulator reference (<i>V</i><i><sub>REF</sub></i>).
-             *
-             */
             base.parse_element (/<cim:PFVArType2IEEEVArController.vref>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.vref>/g, obj, "vref", base.to_string, sub, context);
-
-            /**
-             * Generator sensing voltage (<i>V</i><i><sub>S</sub></i>).
-             *
-             */
             base.parse_element (/<cim:PFVArType2IEEEVArController.vs>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.vs>/g, obj, "vs", base.to_float, sub, context);
-
             bucket = context.parsed.PFVArType2IEEEVArController;
             if (null == bucket)
                 context.parsed.PFVArType2IEEEVArController = bucket = {};
@@ -232,12 +158,33 @@ define
             return (obj);
         }
 
+        function export_PFVArType2IEEEVArController (obj, exporters, full)
+        {
+            var fields = exporters["PFVArControllerType2Dynamics"](obj, exporters, false);
+
+            base.export_element (obj, "PFVArType2IEEEVArController", "exlon", base.from_boolean, fields);
+            base.export_element (obj, "PFVArType2IEEEVArController", "ki", base.from_string, fields);
+            base.export_element (obj, "PFVArType2IEEEVArController", "kp", base.from_string, fields);
+            base.export_element (obj, "PFVArType2IEEEVArController", "qref", base.from_string, fields);
+            base.export_element (obj, "PFVArType2IEEEVArController", "vclmt", base.from_string, fields);
+            base.export_element (obj, "PFVArType2IEEEVArController", "vref", base.from_string, fields);
+            base.export_element (obj, "PFVArType2IEEEVArController", "vs", base.from_float, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
                 parse_PFVArType2IEEEPFController: parse_PFVArType2IEEEPFController,
+                export_PFVArType2IEEEPFController: export_PFVArType2IEEEPFController,
                 parse_PFVArType2IEEEVArController: parse_PFVArType2IEEEVArController,
+                export_PFVArControllerType2Dynamics: export_PFVArControllerType2Dynamics,
                 parse_PFVArControllerType2Dynamics: parse_PFVArControllerType2Dynamics,
-                parse_PFVArType2Common1: parse_PFVArType2Common1
+                export_PFVArType2IEEEVArController: export_PFVArType2IEEEVArController,
+                parse_PFVArType2Common1: parse_PFVArType2Common1,
+                export_PFVArType2Common1: export_PFVArType2Common1
             }
         );
     }

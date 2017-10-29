@@ -21,32 +21,28 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "TieFlow";
-            /**
-             * True if the flow into the terminal (load convention) is also flow into the control area.
-             *
-             * For example, this attribute should be true if using the tie line terminal further away from the control area. For example to represent a tie to a shunt component (like a load or generator) in another area, this is the near end of a branch and this attribute would be specified as false.
-             *
-             */
             base.parse_element (/<cim:TieFlow.positiveFlowIn>([\s\S]*?)<\/cim:TieFlow.positiveFlowIn>/g, obj, "positiveFlowIn", base.to_boolean, sub, context);
-
-            /**
-             * The terminal to which this tie flow belongs.
-             *
-             */
-            base.parse_attribute (/<cim:TieFlow.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context, true);
-
-            /**
-             * The control area of the tie flows.
-             *
-             */
-            base.parse_attribute (/<cim:TieFlow.ControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlArea", sub, context, true);
-
+            base.parse_attribute (/<cim:TieFlow.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
+            base.parse_attribute (/<cim:TieFlow.ControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlArea", sub, context);
             bucket = context.parsed.TieFlow;
             if (null == bucket)
                 context.parsed.TieFlow = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_TieFlow (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "TieFlow", "positiveFlowIn", base.from_boolean, fields);
+            base.export_attribute (obj, "TieFlow", "Terminal", fields);
+            base.export_attribute (obj, "TieFlow", "ControlArea", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -62,26 +58,26 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "ControlAreaGeneratingUnit";
-            /**
-             * The parent control area for the generating unit specifications.
-             *
-             */
-            base.parse_attribute (/<cim:ControlAreaGeneratingUnit.ControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlArea", sub, context, true);
-
-            /**
-             * The generating unit specified for this control area.
-             *
-             * Note that a control area should include a GeneratingUnit only once.
-             *
-             */
-            base.parse_attribute (/<cim:ControlAreaGeneratingUnit.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingUnit", sub, context, true);
-
+            base.parse_attribute (/<cim:ControlAreaGeneratingUnit.ControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlArea", sub, context);
+            base.parse_attribute (/<cim:ControlAreaGeneratingUnit.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingUnit", sub, context);
             bucket = context.parsed.ControlAreaGeneratingUnit;
             if (null == bucket)
                 context.parsed.ControlAreaGeneratingUnit = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ControlAreaGeneratingUnit (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_attribute (obj, "ControlAreaGeneratingUnit", "ControlArea", fields);
+            base.export_attribute (obj, "ControlAreaGeneratingUnit", "GeneratingUnit", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -95,30 +91,28 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ControlAreaTypeKind";
-            /**
-             * Used for automatic generation control.
-             *
-             */
             base.parse_element (/<cim:ControlAreaTypeKind.AGC>([\s\S]*?)<\/cim:ControlAreaTypeKind.AGC>/g, obj, "AGC", base.to_string, sub, context);
-
-            /**
-             * Used for load forecast.
-             *
-             */
             base.parse_element (/<cim:ControlAreaTypeKind.Forecast>([\s\S]*?)<\/cim:ControlAreaTypeKind.Forecast>/g, obj, "Forecast", base.to_string, sub, context);
-
-            /**
-             * Used for interchange specification or control.
-             *
-             */
             base.parse_element (/<cim:ControlAreaTypeKind.Interchange>([\s\S]*?)<\/cim:ControlAreaTypeKind.Interchange>/g, obj, "Interchange", base.to_string, sub, context);
-
             bucket = context.parsed.ControlAreaTypeKind;
             if (null == bucket)
                 context.parsed.ControlAreaTypeKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ControlAreaTypeKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "ControlAreaTypeKind", "AGC", base.from_string, fields);
+            base.export_element (obj, "ControlAreaTypeKind", "Forecast", base.from_string, fields);
+            base.export_element (obj, "ControlAreaTypeKind", "Interchange", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -132,32 +126,28 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "AltTieMeas";
-            /**
-             * Priority of a measurement usage.
-             *
-             * Lower numbers have first priority.
-             *
-             */
             base.parse_element (/<cim:AltTieMeas.priority>([\s\S]*?)<\/cim:AltTieMeas.priority>/g, obj, "priority", base.to_string, sub, context);
-
-            /**
-             * The tie flow of the alternate measurements.
-             *
-             */
-            base.parse_attribute (/<cim:AltTieMeas.TieFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TieFlow", sub, context, true);
-
-            /**
-             * The specific analog value used as a source.
-             *
-             */
-            base.parse_attribute (/<cim:AltTieMeas.AnalogValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AnalogValue", sub, context, true);
-
+            base.parse_attribute (/<cim:AltTieMeas.TieFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TieFlow", sub, context);
+            base.parse_attribute (/<cim:AltTieMeas.AnalogValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AnalogValue", sub, context);
             bucket = context.parsed.AltTieMeas;
             if (null == bucket)
                 context.parsed.AltTieMeas = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AltTieMeas (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "AltTieMeas", "priority", base.from_string, fields);
+            base.export_attribute (obj, "AltTieMeas", "TieFlow", fields);
+            base.export_attribute (obj, "AltTieMeas", "AnalogValue", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -171,32 +161,28 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "AltGeneratingUnitMeas";
-            /**
-             * Priority of a measurement usage.
-             *
-             * Lower numbers have first priority.
-             *
-             */
             base.parse_element (/<cim:AltGeneratingUnitMeas.priority>([\s\S]*?)<\/cim:AltGeneratingUnitMeas.priority>/g, obj, "priority", base.to_string, sub, context);
-
-            /**
-             * The specific analog value used as a source.
-             *
-             */
-            base.parse_attribute (/<cim:AltGeneratingUnitMeas.AnalogValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AnalogValue", sub, context, true);
-
-            /**
-             * The control aread generating unit to which the prioritized measurement assignment is applied.
-             *
-             */
-            base.parse_attribute (/<cim:AltGeneratingUnitMeas.ControlAreaGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlAreaGeneratingUnit", sub, context, true);
-
+            base.parse_attribute (/<cim:AltGeneratingUnitMeas.AnalogValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AnalogValue", sub, context);
+            base.parse_attribute (/<cim:AltGeneratingUnitMeas.ControlAreaGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlAreaGeneratingUnit", sub, context);
             bucket = context.parsed.AltGeneratingUnitMeas;
             if (null == bucket)
                 context.parsed.AltGeneratingUnitMeas = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AltGeneratingUnitMeas (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "AltGeneratingUnitMeas", "priority", base.from_string, fields);
+            base.export_attribute (obj, "AltGeneratingUnitMeas", "AnalogValue", fields);
+            base.export_attribute (obj, "AltGeneratingUnitMeas", "ControlAreaGeneratingUnit", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -212,32 +198,10 @@ define
 
             obj = Core.parse_PowerSystemResource (context, sub);
             obj.cls = "ControlArea";
-            /**
-             * The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.
-             *
-             */
             base.parse_element (/<cim:ControlArea.netInterchange>([\s\S]*?)<\/cim:ControlArea.netInterchange>/g, obj, "netInterchange", base.to_string, sub, context);
-
-            /**
-             * Active power net interchange tolerance
-             *
-             */
             base.parse_element (/<cim:ControlArea.pTolerance>([\s\S]*?)<\/cim:ControlArea.pTolerance>/g, obj, "pTolerance", base.to_string, sub, context);
-
-            /**
-             * The primary type of control area definition used to determine if this is used for automatic generation control, for planning interchange control, or other purposes.
-             *
-             * A control area specified with primary type of automatic generation control could still be forecast and used as an interchange area in power flow analysis.
-             *
-             */
             base.parse_element (/<cim:ControlArea.type>([\s\S]*?)<\/cim:ControlArea.type>/g, obj, "type", base.to_string, sub, context);
-
-            /**
-             * The energy area that is forecast from this control area specification.
-             *
-             */
-            base.parse_attribute (/<cim:ControlArea.EnergyArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyArea", sub, context, true);
-
+            base.parse_attribute (/<cim:ControlArea.EnergyArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyArea", sub, context);
             bucket = context.parsed.ControlArea;
             if (null == bucket)
                 context.parsed.ControlArea = bucket = {};
@@ -246,13 +210,33 @@ define
             return (obj);
         }
 
+        function export_ControlArea (obj, exporters, full)
+        {
+            var fields = exporters["PowerSystemResource"](obj, exporters, false);
+
+            base.export_element (obj, "ControlArea", "netInterchange", base.from_string, fields);
+            base.export_element (obj, "ControlArea", "pTolerance", base.from_string, fields);
+            base.export_element (obj, "ControlArea", "type", base.from_string, fields);
+            base.export_attribute (obj, "ControlArea", "EnergyArea", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
                 parse_TieFlow: parse_TieFlow,
                 parse_ControlAreaGeneratingUnit: parse_ControlAreaGeneratingUnit,
                 parse_AltGeneratingUnitMeas: parse_AltGeneratingUnitMeas,
+                export_ControlArea: export_ControlArea,
                 parse_ControlArea: parse_ControlArea,
+                export_ControlAreaGeneratingUnit: export_ControlAreaGeneratingUnit,
+                export_AltGeneratingUnitMeas: export_AltGeneratingUnitMeas,
                 parse_AltTieMeas: parse_AltTieMeas,
+                export_TieFlow: export_TieFlow,
+                export_AltTieMeas: export_AltTieMeas,
+                export_ControlAreaTypeKind: export_ControlAreaTypeKind,
                 parse_ControlAreaTypeKind: parse_ControlAreaTypeKind
             }
         );

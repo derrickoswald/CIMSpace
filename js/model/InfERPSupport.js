@@ -24,15 +24,25 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpItemMaster";
             base.parse_element (/<cim:ErpItemMaster.status>([\s\S]*?)<\/cim:ErpItemMaster.status>/g, obj, "status", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:ErpItemMaster.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Asset", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpItemMaster.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Asset", sub, context);
             bucket = context.parsed.ErpItemMaster;
             if (null == bucket)
                 context.parsed.ErpItemMaster = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpItemMaster (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpItemMaster", "status", base.from_string, fields);
+            base.export_attribute (obj, "ErpItemMaster", "Asset", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -56,6 +66,16 @@ define
             return (obj);
         }
 
+        function export_ErpReceivable (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Of an ErpPayable, a line item references an ErpInvoiceLineitem or other source such as credit memos.
          *
@@ -68,17 +88,27 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpPayableLineItem";
             base.parse_element (/<cim:ErpPayableLineItem.status>([\s\S]*?)<\/cim:ErpPayableLineItem.status>/g, obj, "status", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:ErpPayableLineItem.ErpPayable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPayable", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpPayableLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpPayableLineItem.ErpPayable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPayable", sub, context);
+            base.parse_attribute (/<cim:ErpPayableLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context);
             bucket = context.parsed.ErpPayableLineItem;
             if (null == bucket)
                 context.parsed.ErpPayableLineItem = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpPayableLineItem (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpPayableLineItem", "status", base.from_string, fields);
+            base.export_attribute (obj, "ErpPayableLineItem", "ErpPayable", fields);
+            base.export_attribute (obj, "ErpPayableLineItem", "ErpInvoiceLineItem", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -100,6 +130,16 @@ define
             return (obj);
         }
 
+        function export_ErpEngChangeOrder (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Individual entry of an ErpReceivable, it is a particular transaction representing an invoice, credit memo or debit memo to a customer.
          *
@@ -112,17 +152,27 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpRecLineItem";
             base.parse_element (/<cim:ErpRecLineItem.status>([\s\S]*?)<\/cim:ErpRecLineItem.status>/g, obj, "status", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:ErpRecLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpRecLineItem.ErpReceivable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpReceivable", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpRecLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context);
+            base.parse_attribute (/<cim:ErpRecLineItem.ErpReceivable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpReceivable", sub, context);
             bucket = context.parsed.ErpRecLineItem;
             if (null == bucket)
                 context.parsed.ErpRecLineItem = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpRecLineItem (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpRecLineItem", "status", base.from_string, fields);
+            base.export_attribute (obj, "ErpRecLineItem", "ErpInvoiceLineItem", fields);
+            base.export_attribute (obj, "ErpRecLineItem", "ErpReceivable", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -146,6 +196,16 @@ define
             return (obj);
         }
 
+        function export_ErpPayable (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Can be used to request an application to process an issue or request information about an issue.
          *
@@ -158,17 +218,27 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpIssueInventory";
             base.parse_element (/<cim:ErpIssueInventory.status>([\s\S]*?)<\/cim:ErpIssueInventory.status>/g, obj, "status", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:ErpIssueInventory.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeMaterial", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpIssueInventory.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeAsset", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpIssueInventory.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeMaterial", sub, context);
+            base.parse_attribute (/<cim:ErpIssueInventory.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeAsset", sub, context);
             bucket = context.parsed.ErpIssueInventory;
             if (null == bucket)
                 context.parsed.ErpIssueInventory = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpIssueInventory (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpIssueInventory", "status", base.from_string, fields);
+            base.export_attribute (obj, "ErpIssueInventory", "TypeMaterial", fields);
+            base.export_attribute (obj, "ErpIssueInventory", "TypeAsset", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -183,19 +253,29 @@ define
             obj = base.parse_Element (context, sub);
             obj.cls = "ErpAccountKind";
             base.parse_element (/<cim:ErpAccountKind.normal>([\s\S]*?)<\/cim:ErpAccountKind.normal>/g, obj, "normal", base.to_string, sub, context);
-
             base.parse_element (/<cim:ErpAccountKind.reversal>([\s\S]*?)<\/cim:ErpAccountKind.reversal>/g, obj, "reversal", base.to_string, sub, context);
-
             base.parse_element (/<cim:ErpAccountKind.statistical>([\s\S]*?)<\/cim:ErpAccountKind.statistical>/g, obj, "statistical", base.to_string, sub, context);
-
             base.parse_element (/<cim:ErpAccountKind.estimate>([\s\S]*?)<\/cim:ErpAccountKind.estimate>/g, obj, "estimate", base.to_string, sub, context);
-
             bucket = context.parsed.ErpAccountKind;
             if (null == bucket)
                 context.parsed.ErpAccountKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpAccountKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "ErpAccountKind", "normal", base.from_string, fields);
+            base.export_element (obj, "ErpAccountKind", "reversal", base.from_string, fields);
+            base.export_element (obj, "ErpAccountKind", "statistical", base.from_string, fields);
+            base.export_element (obj, "ErpAccountKind", "estimate", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -212,15 +292,25 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpInventory";
             base.parse_element (/<cim:ErpInventory.status>([\s\S]*?)<\/cim:ErpInventory.status>/g, obj, "status", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:ErpInventory.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Asset", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpInventory.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Asset", sub, context);
             bucket = context.parsed.ErpInventory;
             if (null == bucket)
                 context.parsed.ErpInventory = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpInventory (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpInventory", "status", base.from_string, fields);
+            base.export_attribute (obj, "ErpInventory", "Asset", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -235,39 +325,41 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpReqLineItem";
             base.parse_element (/<cim:ErpReqLineItem.code>([\s\S]*?)<\/cim:ErpReqLineItem.code>/g, obj, "code", base.to_string, sub, context);
-
-            /**
-             * Cost of material.
-             *
-             */
             base.parse_element (/<cim:ErpReqLineItem.cost>([\s\S]*?)<\/cim:ErpReqLineItem.cost>/g, obj, "cost", base.to_string, sub, context);
-
             base.parse_element (/<cim:ErpReqLineItem.deliveryDate>([\s\S]*?)<\/cim:ErpReqLineItem.deliveryDate>/g, obj, "deliveryDate", base.to_string, sub, context);
-
-            /**
-             * Quantity of item requisitioned.
-             *
-             */
             base.parse_element (/<cim:ErpReqLineItem.quantity>([\s\S]*?)<\/cim:ErpReqLineItem.quantity>/g, obj, "quantity", base.to_string, sub, context);
-
             base.parse_element (/<cim:ErpReqLineItem.status>([\s\S]*?)<\/cim:ErpReqLineItem.status>/g, obj, "status", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:ErpReqLineItem.ErpPOLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPOLineItem", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpReqLineItem.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeMaterial", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpReqLineItem.ErpRequisition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpRequisition", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpReqLineItem.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeAsset", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpReqLineItem.ErpQuoteLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpQuoteLineItem", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpReqLineItem.ErpPOLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPOLineItem", sub, context);
+            base.parse_attribute (/<cim:ErpReqLineItem.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeMaterial", sub, context);
+            base.parse_attribute (/<cim:ErpReqLineItem.ErpRequisition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpRequisition", sub, context);
+            base.parse_attribute (/<cim:ErpReqLineItem.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeAsset", sub, context);
+            base.parse_attribute (/<cim:ErpReqLineItem.ErpQuoteLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpQuoteLineItem", sub, context);
             bucket = context.parsed.ErpReqLineItem;
             if (null == bucket)
                 context.parsed.ErpReqLineItem = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpReqLineItem (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpReqLineItem", "code", base.from_string, fields);
+            base.export_element (obj, "ErpReqLineItem", "cost", base.from_string, fields);
+            base.export_element (obj, "ErpReqLineItem", "deliveryDate", base.from_string, fields);
+            base.export_element (obj, "ErpReqLineItem", "quantity", base.from_string, fields);
+            base.export_element (obj, "ErpReqLineItem", "status", base.from_string, fields);
+            base.export_attribute (obj, "ErpReqLineItem", "ErpPOLineItem", fields);
+            base.export_attribute (obj, "ErpReqLineItem", "TypeMaterial", fields);
+            base.export_attribute (obj, "ErpReqLineItem", "ErpRequisition", fields);
+            base.export_attribute (obj, "ErpReqLineItem", "TypeAsset", fields);
+            base.export_attribute (obj, "ErpReqLineItem", "ErpQuoteLineItem", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -282,13 +374,23 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpPersonnel";
             base.parse_element (/<cim:ErpPersonnel.status>([\s\S]*?)<\/cim:ErpPersonnel.status>/g, obj, "status", base.to_string, sub, context);
-
             bucket = context.parsed.ErpPersonnel;
             if (null == bucket)
                 context.parsed.ErpPersonnel = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpPersonnel (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpPersonnel", "status", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -302,50 +404,40 @@ define
 
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpJournalEntry";
-            /**
-             * Account identifier for this entry.
-             *
-             */
             base.parse_element (/<cim:ErpJournalEntry.accountID>([\s\S]*?)<\/cim:ErpJournalEntry.accountID>/g, obj, "accountID", base.to_string, sub, context);
-
-            /**
-             * The amount of the debit or credit for this account.
-             *
-             */
             base.parse_element (/<cim:ErpJournalEntry.amount>([\s\S]*?)<\/cim:ErpJournalEntry.amount>/g, obj, "amount", base.to_string, sub, context);
-
-            /**
-             * Date and time this entry is to be posted to the ledger.
-             *
-             */
             base.parse_element (/<cim:ErpJournalEntry.postingDateTime>([\s\S]*?)<\/cim:ErpJournalEntry.postingDateTime>/g, obj, "postingDateTime", base.to_datetime, sub, context);
-
-            /**
-             * The identifer of the source for this entry.
-             *
-             */
             base.parse_element (/<cim:ErpJournalEntry.sourceID>([\s\S]*?)<\/cim:ErpJournalEntry.sourceID>/g, obj, "sourceID", base.to_string, sub, context);
-
             base.parse_element (/<cim:ErpJournalEntry.status>([\s\S]*?)<\/cim:ErpJournalEntry.status>/g, obj, "status", base.to_string, sub, context);
-
-            /**
-             * Date and time journal entry was recorded.
-             *
-             */
             base.parse_element (/<cim:ErpJournalEntry.transactionDateTime>([\s\S]*?)<\/cim:ErpJournalEntry.transactionDateTime>/g, obj, "transactionDateTime", base.to_datetime, sub, context);
-
-            base.parse_attribute (/<cim:ErpJournalEntry.ErpLedgerEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedgerEntry", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpJournalEntry.ErpJournal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpJournal", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpJournalEntry.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpJournalEntry.ErpLedgerEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedgerEntry", sub, context);
+            base.parse_attribute (/<cim:ErpJournalEntry.ErpJournal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpJournal", sub, context);
+            base.parse_attribute (/<cim:ErpJournalEntry.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context);
             bucket = context.parsed.ErpJournalEntry;
             if (null == bucket)
                 context.parsed.ErpJournalEntry = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpJournalEntry (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpJournalEntry", "accountID", base.from_string, fields);
+            base.export_element (obj, "ErpJournalEntry", "amount", base.from_string, fields);
+            base.export_element (obj, "ErpJournalEntry", "postingDateTime", base.from_datetime, fields);
+            base.export_element (obj, "ErpJournalEntry", "sourceID", base.from_string, fields);
+            base.export_element (obj, "ErpJournalEntry", "status", base.from_string, fields);
+            base.export_element (obj, "ErpJournalEntry", "transactionDateTime", base.from_datetime, fields);
+            base.export_attribute (obj, "ErpJournalEntry", "ErpLedgerEntry", fields);
+            base.export_attribute (obj, "ErpJournalEntry", "ErpJournal", fields);
+            base.export_attribute (obj, "ErpJournalEntry", "ErpInvoiceLineItem", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -369,6 +461,16 @@ define
             return (obj);
         }
 
+        function export_ErpLedgerBudget (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * An individual item on a bill of materials.
          *
@@ -380,18 +482,28 @@ define
 
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpBomItemData";
-            base.parse_attribute (/<cim:ErpBomItemData.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeAsset", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpBomItemData.DesignLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DesignLocation", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpBomItemData.ErpBOM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpBOM", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpBomItemData.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeAsset", sub, context);
+            base.parse_attribute (/<cim:ErpBomItemData.DesignLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DesignLocation", sub, context);
+            base.parse_attribute (/<cim:ErpBomItemData.ErpBOM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpBOM", sub, context);
             bucket = context.parsed.ErpBomItemData;
             if (null == bucket)
                 context.parsed.ErpBomItemData = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpBomItemData (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_attribute (obj, "ErpBomItemData", "TypeAsset", fields);
+            base.export_attribute (obj, "ErpBomItemData", "DesignLocation", fields);
+            base.export_attribute (obj, "ErpBomItemData", "ErpBOM", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -415,6 +527,16 @@ define
             return (obj);
         }
 
+        function export_ErpQuote (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * For a utility, general information that describes physical locations of organizations or the location codes and their meanings.
          *
@@ -429,15 +551,25 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpSiteLevelData";
             base.parse_element (/<cim:ErpSiteLevelData.status>([\s\S]*?)<\/cim:ErpSiteLevelData.status>/g, obj, "status", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:ErpSiteLevelData.LandProperty\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LandProperty", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpSiteLevelData.LandProperty\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LandProperty", sub, context);
             bucket = context.parsed.ErpSiteLevelData;
             if (null == bucket)
                 context.parsed.ErpSiteLevelData = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpSiteLevelData (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpSiteLevelData", "status", base.from_string, fields);
+            base.export_attribute (obj, "ErpSiteLevelData", "LandProperty", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -452,15 +584,25 @@ define
             obj = base.parse_Element (context, sub);
             obj.cls = "ErpInvoiceKind";
             base.parse_element (/<cim:ErpInvoiceKind.sale>([\s\S]*?)<\/cim:ErpInvoiceKind.sale>/g, obj, "sale", base.to_string, sub, context);
-
             base.parse_element (/<cim:ErpInvoiceKind.purchase>([\s\S]*?)<\/cim:ErpInvoiceKind.purchase>/g, obj, "purchase", base.to_string, sub, context);
-
             bucket = context.parsed.ErpInvoiceKind;
             if (null == bucket)
                 context.parsed.ErpInvoiceKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpInvoiceKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "ErpInvoiceKind", "sale", base.from_string, fields);
+            base.export_element (obj, "ErpInvoiceKind", "purchase", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -484,6 +626,16 @@ define
             return (obj);
         }
 
+        function export_ErpDocument (obj, exporters, full)
+        {
+            var fields = exporters["Document"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * General purpose Sales Order is used for utility service orders, etc.
          *
@@ -503,6 +655,16 @@ define
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpSalesOrder (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -526,6 +688,16 @@ define
             return (obj);
         }
 
+        function export_ErpTimeSheet (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Of an ErpPurchaseOrder, this is an individually ordered item or product along with the quantity, price and other descriptive information.
          *
@@ -537,20 +709,30 @@ define
 
             obj = parse_ErpDocument (context, sub);
             obj.cls = "ErpPOLineItem";
-            base.parse_attribute (/<cim:ErpPOLineItem.ErpRecDelLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpRecDelLineItem", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpPOLineItem.ErpReqLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpReqLineItem", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpPOLineItem.AssetModelCatalogueItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModelCatalogueItem", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpPOLineItem.ErpPurchaseOrder\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPurchaseOrder", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpPOLineItem.ErpRecDelLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpRecDelLineItem", sub, context);
+            base.parse_attribute (/<cim:ErpPOLineItem.ErpReqLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpReqLineItem", sub, context);
+            base.parse_attribute (/<cim:ErpPOLineItem.AssetModelCatalogueItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModelCatalogueItem", sub, context);
+            base.parse_attribute (/<cim:ErpPOLineItem.ErpPurchaseOrder\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPurchaseOrder", sub, context);
             bucket = context.parsed.ErpPOLineItem;
             if (null == bucket)
                 context.parsed.ErpPOLineItem = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpPOLineItem (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            base.export_attribute (obj, "ErpPOLineItem", "ErpRecDelLineItem", fields);
+            base.export_attribute (obj, "ErpPOLineItem", "ErpReqLineItem", fields);
+            base.export_attribute (obj, "ErpPOLineItem", "AssetModelCatalogueItem", fields);
+            base.export_attribute (obj, "ErpPOLineItem", "ErpPurchaseOrder", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -567,19 +749,29 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpRecDelvLineItem";
             base.parse_element (/<cim:ErpRecDelvLineItem.status>([\s\S]*?)<\/cim:ErpRecDelvLineItem.status>/g, obj, "status", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:ErpRecDelvLineItem.ErpPOLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPOLineItem", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpRecDelvLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpRecDelvLineItem.ErpReceiveDelivery\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpReceiveDelivery", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpRecDelvLineItem.ErpPOLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPOLineItem", sub, context);
+            base.parse_attribute (/<cim:ErpRecDelvLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context);
+            base.parse_attribute (/<cim:ErpRecDelvLineItem.ErpReceiveDelivery\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpReceiveDelivery", sub, context);
             bucket = context.parsed.ErpRecDelvLineItem;
             if (null == bucket)
                 context.parsed.ErpRecDelvLineItem = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpRecDelvLineItem (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpRecDelvLineItem", "status", base.from_string, fields);
+            base.export_attribute (obj, "ErpRecDelvLineItem", "ErpPOLineItem", fields);
+            base.export_attribute (obj, "ErpRecDelvLineItem", "ErpInvoiceLineItem", fields);
+            base.export_attribute (obj, "ErpRecDelvLineItem", "ErpReceiveDelivery", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -603,6 +795,16 @@ define
             return (obj);
         }
 
+        function export_ErpCompetency (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Kind of invoice line item.
          *
@@ -615,17 +817,27 @@ define
             obj = base.parse_Element (context, sub);
             obj.cls = "ErpInvoiceLineItemKind";
             base.parse_element (/<cim:ErpInvoiceLineItemKind.initial>([\s\S]*?)<\/cim:ErpInvoiceLineItemKind.initial>/g, obj, "initial", base.to_string, sub, context);
-
             base.parse_element (/<cim:ErpInvoiceLineItemKind.recalculation>([\s\S]*?)<\/cim:ErpInvoiceLineItemKind.recalculation>/g, obj, "recalculation", base.to_string, sub, context);
-
             base.parse_element (/<cim:ErpInvoiceLineItemKind.other>([\s\S]*?)<\/cim:ErpInvoiceLineItemKind.other>/g, obj, "other", base.to_string, sub, context);
-
             bucket = context.parsed.ErpInvoiceLineItemKind;
             if (null == bucket)
                 context.parsed.ErpInvoiceLineItemKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpInvoiceLineItemKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "ErpInvoiceLineItemKind", "initial", base.from_string, fields);
+            base.export_element (obj, "ErpInvoiceLineItemKind", "recalculation", base.from_string, fields);
+            base.export_element (obj, "ErpInvoiceLineItemKind", "other", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -649,6 +861,16 @@ define
             return (obj);
         }
 
+        function export_ErpIdentifiedObject (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Transaction for an Organisation receiving goods or services that may be used to indicate receipt of goods in conjunction with a purchase order.
          *
@@ -670,6 +892,16 @@ define
             return (obj);
         }
 
+        function export_ErpReceiveDelivery (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Kind of bill media.
          *
@@ -682,17 +914,27 @@ define
             obj = base.parse_Element (context, sub);
             obj.cls = "BillMediaKind";
             base.parse_element (/<cim:BillMediaKind.paper>([\s\S]*?)<\/cim:BillMediaKind.paper>/g, obj, "paper", base.to_string, sub, context);
-
             base.parse_element (/<cim:BillMediaKind.electronic>([\s\S]*?)<\/cim:BillMediaKind.electronic>/g, obj, "electronic", base.to_string, sub, context);
-
             base.parse_element (/<cim:BillMediaKind.other>([\s\S]*?)<\/cim:BillMediaKind.other>/g, obj, "other", base.to_string, sub, context);
-
             bucket = context.parsed.BillMediaKind;
             if (null == bucket)
                 context.parsed.BillMediaKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_BillMediaKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "BillMediaKind", "paper", base.from_string, fields);
+            base.export_element (obj, "BillMediaKind", "electronic", base.from_string, fields);
+            base.export_element (obj, "BillMediaKind", "other", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -708,18 +950,24 @@ define
 
             obj = parse_ErpDocument (context, sub);
             obj.cls = "ErpPayment";
-            /**
-             * Payment terms (e.g., net 30).
-             *
-             */
             base.parse_element (/<cim:ErpPayment.termsPayment>([\s\S]*?)<\/cim:ErpPayment.termsPayment>/g, obj, "termsPayment", base.to_string, sub, context);
-
             bucket = context.parsed.ErpPayment;
             if (null == bucket)
                 context.parsed.ErpPayment = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpPayment (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            base.export_element (obj, "ErpPayment", "termsPayment", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -743,6 +991,16 @@ define
             return (obj);
         }
 
+        function export_ErpJournal (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * A roll up of invoice line items.
          *
@@ -756,70 +1014,42 @@ define
 
             obj = parse_ErpDocument (context, sub);
             obj.cls = "ErpInvoice";
-            /**
-             * Total amount due on this invoice based on line items and applicable adjustments.
-             *
-             */
             base.parse_element (/<cim:ErpInvoice.amount>([\s\S]*?)<\/cim:ErpInvoice.amount>/g, obj, "amount", base.to_string, sub, context);
-
-            /**
-             * Kind of media by which the CustomerBillingInfo was delivered.
-             *
-             */
             base.parse_element (/<cim:ErpInvoice.billMediaKind>([\s\S]*?)<\/cim:ErpInvoice.billMediaKind>/g, obj, "billMediaKind", base.to_string, sub, context);
-
-            /**
-             * Calculated date upon which the Invoice amount is due.
-             *
-             */
             base.parse_element (/<cim:ErpInvoice.dueDate>([\s\S]*?)<\/cim:ErpInvoice.dueDate>/g, obj, "dueDate", base.to_string, sub, context);
-
-            /**
-             * Kind of invoice (default is 'sales').
-             *
-             */
             base.parse_element (/<cim:ErpInvoice.kind>([\s\S]*?)<\/cim:ErpInvoice.kind>/g, obj, "kind", base.to_string, sub, context);
-
-            /**
-             * Date on which the customer billing statement/invoice was printed/mailed.
-             *
-             */
             base.parse_element (/<cim:ErpInvoice.mailedDate>([\s\S]*?)<\/cim:ErpInvoice.mailedDate>/g, obj, "mailedDate", base.to_string, sub, context);
-
-            /**
-             * True if payment is to be paid by a Customer to accept a particular ErpQuote (with associated Design) and have work initiated, at which time an associated ErpInvoice should automatically be generated.
-             *
-             * EprPayment.subjectStatus satisfies terms specificed in the ErpQuote.
-             *
-             */
             base.parse_element (/<cim:ErpInvoice.proForma>([\s\S]*?)<\/cim:ErpInvoice.proForma>/g, obj, "proForma", base.to_boolean, sub, context);
-
-            /**
-             * Number of an invoice to be reference by this invoice.
-             *
-             */
             base.parse_element (/<cim:ErpInvoice.referenceNumber>([\s\S]*?)<\/cim:ErpInvoice.referenceNumber>/g, obj, "referenceNumber", base.to_string, sub, context);
-
-            /**
-             * Date and time when the invoice is issued.
-             *
-             */
             base.parse_element (/<cim:ErpInvoice.transactionDateTime>([\s\S]*?)<\/cim:ErpInvoice.transactionDateTime>/g, obj, "transactionDateTime", base.to_datetime, sub, context);
-
-            /**
-             * Type of invoice transfer.
-             *
-             */
             base.parse_element (/<cim:ErpInvoice.transferType>([\s\S]*?)<\/cim:ErpInvoice.transferType>/g, obj, "transferType", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:ErpInvoice.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAccount", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpInvoice.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAccount", sub, context);
             bucket = context.parsed.ErpInvoice;
             if (null == bucket)
                 context.parsed.ErpInvoice = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpInvoice (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            base.export_element (obj, "ErpInvoice", "amount", base.from_string, fields);
+            base.export_element (obj, "ErpInvoice", "billMediaKind", base.from_string, fields);
+            base.export_element (obj, "ErpInvoice", "dueDate", base.from_string, fields);
+            base.export_element (obj, "ErpInvoice", "kind", base.from_string, fields);
+            base.export_element (obj, "ErpInvoice", "mailedDate", base.from_string, fields);
+            base.export_element (obj, "ErpInvoice", "proForma", base.from_boolean, fields);
+            base.export_element (obj, "ErpInvoice", "referenceNumber", base.from_string, fields);
+            base.export_element (obj, "ErpInvoice", "transactionDateTime", base.from_datetime, fields);
+            base.export_element (obj, "ErpInvoice", "transferType", base.from_string, fields);
+            base.export_attribute (obj, "ErpInvoice", "CustomerAccount", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -835,18 +1065,24 @@ define
 
             obj = InfCommon.parse_BankAccount (context, sub);
             obj.cls = "ErpBankAccount";
-            /**
-             * Bank ABA.
-             *
-             */
             base.parse_element (/<cim:ErpBankAccount.bankABA>([\s\S]*?)<\/cim:ErpBankAccount.bankABA>/g, obj, "bankABA", base.to_string, sub, context);
-
             bucket = context.parsed.ErpBankAccount;
             if (null == bucket)
                 context.parsed.ErpBankAccount = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpBankAccount (obj, exporters, full)
+        {
+            var fields = exporters["BankAccount"](obj, exporters, false);
+
+            base.export_element (obj, "ErpBankAccount", "bankABA", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -870,6 +1106,16 @@ define
             return (obj);
         }
 
+        function export_ErpPurchaseOrder (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * In accounting transactions, a ledger is a book containing accounts to which debits and credits are posted from journals, where transactions are initially recorded.
          *
@@ -889,6 +1135,16 @@ define
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpLedger (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -912,6 +1168,16 @@ define
             return (obj);
         }
 
+        function export_ErpRequisition (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Information that generally describes the Bill of Material Structure and its contents for a utility.
          *
@@ -925,14 +1191,24 @@ define
 
             obj = parse_ErpDocument (context, sub);
             obj.cls = "ErpBOM";
-            base.parse_attribute (/<cim:ErpBOM.Design\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Design", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpBOM.Design\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Design", sub, context);
             bucket = context.parsed.ErpBOM;
             if (null == bucket)
                 context.parsed.ErpBOM = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpBOM (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            base.export_attribute (obj, "ErpBOM", "Design", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -947,17 +1223,27 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpLedBudLineItem";
             base.parse_element (/<cim:ErpLedBudLineItem.status>([\s\S]*?)<\/cim:ErpLedBudLineItem.status>/g, obj, "status", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:ErpLedBudLineItem.ErpLedgerBudget\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedgerBudget", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpLedBudLineItem.ErpLedBudLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedBudLineItem", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpLedBudLineItem.ErpLedgerBudget\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedgerBudget", sub, context);
+            base.parse_attribute (/<cim:ErpLedBudLineItem.ErpLedBudLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedBudLineItem", sub, context);
             bucket = context.parsed.ErpLedBudLineItem;
             if (null == bucket)
                 context.parsed.ErpLedBudLineItem = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpLedBudLineItem (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpLedBudLineItem", "status", base.from_string, fields);
+            base.export_attribute (obj, "ErpLedBudLineItem", "ErpLedgerBudget", fields);
+            base.export_attribute (obj, "ErpLedBudLineItem", "ErpLedBudLineItem", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -974,15 +1260,25 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpInventoryCount";
             base.parse_element (/<cim:ErpInventoryCount.status>([\s\S]*?)<\/cim:ErpInventoryCount.status>/g, obj, "status", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:ErpInventoryCount.AssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModel", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpInventoryCount.AssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModel", sub, context);
             bucket = context.parsed.ErpInventoryCount;
             if (null == bucket)
                 context.parsed.ErpInventoryCount = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpInventoryCount (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpInventoryCount", "status", base.from_string, fields);
+            base.export_attribute (obj, "ErpInventoryCount", "AssetModel", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -1006,6 +1302,16 @@ define
             return (obj);
         }
 
+        function export_ErpProjectAccounting (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * An individual line item on an invoice.
          *
@@ -1017,78 +1323,52 @@ define
 
             obj = parse_ErpDocument (context, sub);
             obj.cls = "ErpInvoiceLineItem";
-            /**
-             * Bill period for the line item.
-             *
-             */
             base.parse_element (/<cim:ErpInvoiceLineItem.billPeriod>([\s\S]*?)<\/cim:ErpInvoiceLineItem.billPeriod>/g, obj, "billPeriod", base.to_string, sub, context);
-
-            /**
-             * General Ledger account code, must be a valid combination.
-             *
-             */
             base.parse_element (/<cim:ErpInvoiceLineItem.glAccount>([\s\S]*?)<\/cim:ErpInvoiceLineItem.glAccount>/g, obj, "glAccount", base.to_string, sub, context);
-
-            /**
-             * Date and time line item will be posted to the General Ledger.
-             *
-             */
             base.parse_element (/<cim:ErpInvoiceLineItem.glDateTime>([\s\S]*?)<\/cim:ErpInvoiceLineItem.glDateTime>/g, obj, "glDateTime", base.to_datetime, sub, context);
-
-            /**
-             * Kind of line item.
-             *
-             */
             base.parse_element (/<cim:ErpInvoiceLineItem.kind>([\s\S]*?)<\/cim:ErpInvoiceLineItem.kind>/g, obj, "kind", base.to_string, sub, context);
-
-            /**
-             * Amount due for this line item.
-             *
-             */
             base.parse_element (/<cim:ErpInvoiceLineItem.lineAmount>([\s\S]*?)<\/cim:ErpInvoiceLineItem.lineAmount>/g, obj, "lineAmount", base.to_float, sub, context);
-
-            /**
-             * Line item number on invoice statement.
-             *
-             */
             base.parse_element (/<cim:ErpInvoiceLineItem.lineNumber>([\s\S]*?)<\/cim:ErpInvoiceLineItem.lineNumber>/g, obj, "lineNumber", base.to_string, sub, context);
-
-            /**
-             * Version number of the bill run.
-             *
-             */
             base.parse_element (/<cim:ErpInvoiceLineItem.lineVersion>([\s\S]*?)<\/cim:ErpInvoiceLineItem.lineVersion>/g, obj, "lineVersion", base.to_string, sub, context);
-
-            /**
-             * Net line item charge amount.
-             *
-             */
             base.parse_element (/<cim:ErpInvoiceLineItem.netAmount>([\s\S]*?)<\/cim:ErpInvoiceLineItem.netAmount>/g, obj, "netAmount", base.to_float, sub, context);
-
-            /**
-             * Previous line item charge amount.
-             *
-             */
             base.parse_element (/<cim:ErpInvoiceLineItem.previousAmount>([\s\S]*?)<\/cim:ErpInvoiceLineItem.previousAmount>/g, obj, "previousAmount", base.to_float, sub, context);
-
-            base.parse_attribute (/<cim:ErpInvoiceLineItem.ContainerErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ContainerErpInvoiceLineItem", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpPayableLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPayableLineItem", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpInvoice\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoice", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpRecLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpRecLineItem", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpRecDelvLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpRecDelvLineItem", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpQuoteLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpQuoteLineItem", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpInvoiceLineItem.ContainerErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ContainerErpInvoiceLineItem", sub, context);
+            base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpPayableLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPayableLineItem", sub, context);
+            base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpInvoice\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoice", sub, context);
+            base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpRecLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpRecLineItem", sub, context);
+            base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpRecDelvLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpRecDelvLineItem", sub, context);
+            base.parse_attribute (/<cim:ErpInvoiceLineItem.ErpQuoteLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpQuoteLineItem", sub, context);
             bucket = context.parsed.ErpInvoiceLineItem;
             if (null == bucket)
                 context.parsed.ErpInvoiceLineItem = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpInvoiceLineItem (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            base.export_element (obj, "ErpInvoiceLineItem", "billPeriod", base.from_string, fields);
+            base.export_element (obj, "ErpInvoiceLineItem", "glAccount", base.from_string, fields);
+            base.export_element (obj, "ErpInvoiceLineItem", "glDateTime", base.from_datetime, fields);
+            base.export_element (obj, "ErpInvoiceLineItem", "kind", base.from_string, fields);
+            base.export_element (obj, "ErpInvoiceLineItem", "lineAmount", base.from_float, fields);
+            base.export_element (obj, "ErpInvoiceLineItem", "lineNumber", base.from_string, fields);
+            base.export_element (obj, "ErpInvoiceLineItem", "lineVersion", base.from_string, fields);
+            base.export_element (obj, "ErpInvoiceLineItem", "netAmount", base.from_float, fields);
+            base.export_element (obj, "ErpInvoiceLineItem", "previousAmount", base.from_float, fields);
+            base.export_attribute (obj, "ErpInvoiceLineItem", "ContainerErpInvoiceLineItem", fields);
+            base.export_attribute (obj, "ErpInvoiceLineItem", "ErpPayableLineItem", fields);
+            base.export_attribute (obj, "ErpInvoiceLineItem", "ErpInvoice", fields);
+            base.export_attribute (obj, "ErpInvoiceLineItem", "ErpRecLineItem", fields);
+            base.export_attribute (obj, "ErpInvoiceLineItem", "ErpRecDelvLineItem", fields);
+            base.export_attribute (obj, "ErpInvoiceLineItem", "ErpQuoteLineItem", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -1103,17 +1383,27 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpTimeEntry";
             base.parse_element (/<cim:ErpTimeEntry.status>([\s\S]*?)<\/cim:ErpTimeEntry.status>/g, obj, "status", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:ErpTimeEntry.ErpTimeSheet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpTimeSheet", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpTimeEntry.ErpProjectAccounting\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpProjectAccounting", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpTimeEntry.ErpTimeSheet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpTimeSheet", sub, context);
+            base.parse_attribute (/<cim:ErpTimeEntry.ErpProjectAccounting\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpProjectAccounting", sub, context);
             bucket = context.parsed.ErpTimeEntry;
             if (null == bucket)
                 context.parsed.ErpTimeEntry = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpTimeEntry (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpTimeEntry", "status", base.from_string, fields);
+            base.export_attribute (obj, "ErpTimeEntry", "ErpTimeSheet", fields);
+            base.export_attribute (obj, "ErpTimeEntry", "ErpProjectAccounting", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -1137,6 +1427,16 @@ define
             return (obj);
         }
 
+        function export_ErpChartOfAccounts (obj, exporters, full)
+        {
+            var fields = exporters["ErpDocument"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Of an ErpQuote, the item or product quoted along with quantity, price and other descriptive information.
          *
@@ -1149,29 +1449,33 @@ define
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpQuoteLineItem";
             base.parse_element (/<cim:ErpQuoteLineItem.status>([\s\S]*?)<\/cim:ErpQuoteLineItem.status>/g, obj, "status", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:ErpQuoteLineItem.Design\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Design", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpQuoteLineItem.ErpQuote\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpQuote", sub, context, true);
-
-            /**
-             * Some utilities provide quotes to customer for services, where the customer accepts the quote by making a payment.
-             *
-             * An invoice is required for this to occur.
-             *
-             */
-            base.parse_attribute (/<cim:ErpQuoteLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpQuoteLineItem.ErpReqLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpReqLineItem", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpQuoteLineItem.AssetModelCatalogueItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModelCatalogueItem", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpQuoteLineItem.Design\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Design", sub, context);
+            base.parse_attribute (/<cim:ErpQuoteLineItem.ErpQuote\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpQuote", sub, context);
+            base.parse_attribute (/<cim:ErpQuoteLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context);
+            base.parse_attribute (/<cim:ErpQuoteLineItem.ErpReqLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpReqLineItem", sub, context);
+            base.parse_attribute (/<cim:ErpQuoteLineItem.AssetModelCatalogueItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModelCatalogueItem", sub, context);
             bucket = context.parsed.ErpQuoteLineItem;
             if (null == bucket)
                 context.parsed.ErpQuoteLineItem = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ErpQuoteLineItem (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpQuoteLineItem", "status", base.from_string, fields);
+            base.export_attribute (obj, "ErpQuoteLineItem", "Design", fields);
+            base.export_attribute (obj, "ErpQuoteLineItem", "ErpQuote", fields);
+            base.export_attribute (obj, "ErpQuoteLineItem", "ErpInvoiceLineItem", fields);
+            base.export_attribute (obj, "ErpQuoteLineItem", "ErpReqLineItem", fields);
+            base.export_attribute (obj, "ErpQuoteLineItem", "AssetModelCatalogueItem", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -1185,44 +1489,15 @@ define
 
             obj = parse_ErpIdentifiedObject (context, sub);
             obj.cls = "ErpLedgerEntry";
-            /**
-             * Account identifier for this entry.
-             *
-             */
             base.parse_element (/<cim:ErpLedgerEntry.accountID>([\s\S]*?)<\/cim:ErpLedgerEntry.accountID>/g, obj, "accountID", base.to_string, sub, context);
-
-            /**
-             * Kind of account for this entry.
-             *
-             */
             base.parse_element (/<cim:ErpLedgerEntry.accountKind>([\s\S]*?)<\/cim:ErpLedgerEntry.accountKind>/g, obj, "accountKind", base.to_string, sub, context);
-
-            /**
-             * The amount of the debit or credit for this account.
-             *
-             */
             base.parse_element (/<cim:ErpLedgerEntry.amount>([\s\S]*?)<\/cim:ErpLedgerEntry.amount>/g, obj, "amount", base.to_string, sub, context);
-
-            /**
-             * Date and time this entry was posted to the ledger.
-             *
-             */
             base.parse_element (/<cim:ErpLedgerEntry.postedDateTime>([\s\S]*?)<\/cim:ErpLedgerEntry.postedDateTime>/g, obj, "postedDateTime", base.to_datetime, sub, context);
-
             base.parse_element (/<cim:ErpLedgerEntry.status>([\s\S]*?)<\/cim:ErpLedgerEntry.status>/g, obj, "status", base.to_string, sub, context);
-
-            /**
-             * Date and time journal entry was recorded.
-             *
-             */
             base.parse_element (/<cim:ErpLedgerEntry.transactionDateTime>([\s\S]*?)<\/cim:ErpLedgerEntry.transactionDateTime>/g, obj, "transactionDateTime", base.to_datetime, sub, context);
-
-            base.parse_attribute (/<cim:ErpLedgerEntry.ErpJounalEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpJounalEntry", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpLedgerEntry.ErpLedgerEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedgerEntry", sub, context, true);
-
-            base.parse_attribute (/<cim:ErpLedgerEntry.ErpLedger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedger", sub, context, true);
-
+            base.parse_attribute (/<cim:ErpLedgerEntry.ErpJounalEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpJounalEntry", sub, context);
+            base.parse_attribute (/<cim:ErpLedgerEntry.ErpLedgerEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedgerEntry", sub, context);
+            base.parse_attribute (/<cim:ErpLedgerEntry.ErpLedger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedger", sub, context);
             bucket = context.parsed.ErpLedgerEntry;
             if (null == bucket)
                 context.parsed.ErpLedgerEntry = bucket = {};
@@ -1231,49 +1506,111 @@ define
             return (obj);
         }
 
+        function export_ErpLedgerEntry (obj, exporters, full)
+        {
+            var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ErpLedgerEntry", "accountID", base.from_string, fields);
+            base.export_element (obj, "ErpLedgerEntry", "accountKind", base.from_string, fields);
+            base.export_element (obj, "ErpLedgerEntry", "amount", base.from_string, fields);
+            base.export_element (obj, "ErpLedgerEntry", "postedDateTime", base.from_datetime, fields);
+            base.export_element (obj, "ErpLedgerEntry", "status", base.from_string, fields);
+            base.export_element (obj, "ErpLedgerEntry", "transactionDateTime", base.from_datetime, fields);
+            base.export_attribute (obj, "ErpLedgerEntry", "ErpJounalEntry", fields);
+            base.export_attribute (obj, "ErpLedgerEntry", "ErpLedgerEntry", fields);
+            base.export_attribute (obj, "ErpLedgerEntry", "ErpLedger", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
+                export_ErpBankAccount: export_ErpBankAccount,
                 parse_BillMediaKind: parse_BillMediaKind,
-                parse_ErpPersonnel: parse_ErpPersonnel,
-                parse_ErpQuoteLineItem: parse_ErpQuoteLineItem,
-                parse_ErpPurchaseOrder: parse_ErpPurchaseOrder,
                 parse_ErpEngChangeOrder: parse_ErpEngChangeOrder,
-                parse_ErpPOLineItem: parse_ErpPOLineItem,
-                parse_ErpReceivable: parse_ErpReceivable,
-                parse_ErpInventory: parse_ErpInventory,
+                export_ErpPOLineItem: export_ErpPOLineItem,
+                export_ErpLedBudLineItem: export_ErpLedBudLineItem,
+                export_ErpInvoiceLineItemKind: export_ErpInvoiceLineItemKind,
+                export_ErpEngChangeOrder: export_ErpEngChangeOrder,
                 parse_ErpPayment: parse_ErpPayment,
-                parse_ErpLedgerBudget: parse_ErpLedgerBudget,
-                parse_ErpInvoiceKind: parse_ErpInvoiceKind,
-                parse_ErpReqLineItem: parse_ErpReqLineItem,
-                parse_ErpSiteLevelData: parse_ErpSiteLevelData,
-                parse_ErpBankAccount: parse_ErpBankAccount,
-                parse_ErpBOM: parse_ErpBOM,
+                export_ErpChartOfAccounts: export_ErpChartOfAccounts,
                 parse_ErpJournalEntry: parse_ErpJournalEntry,
                 parse_ErpInvoiceLineItem: parse_ErpInvoiceLineItem,
-                parse_ErpJournal: parse_ErpJournal,
-                parse_ErpCompetency: parse_ErpCompetency,
+                export_ErpTimeEntry: export_ErpTimeEntry,
+                export_ErpInvoiceKind: export_ErpInvoiceKind,
+                export_ErpInventoryCount: export_ErpInventoryCount,
+                export_ErpPersonnel: export_ErpPersonnel,
                 parse_ErpItemMaster: parse_ErpItemMaster,
-                parse_ErpLedgerEntry: parse_ErpLedgerEntry,
-                parse_ErpTimeSheet: parse_ErpTimeSheet,
+                export_ErpInvoice: export_ErpInvoice,
                 parse_ErpReceiveDelivery: parse_ErpReceiveDelivery,
-                parse_ErpChartOfAccounts: parse_ErpChartOfAccounts,
+                export_ErpLedger: export_ErpLedger,
                 parse_ErpIdentifiedObject: parse_ErpIdentifiedObject,
-                parse_ErpInventoryCount: parse_ErpInventoryCount,
                 parse_ErpInvoiceLineItemKind: parse_ErpInvoiceLineItemKind,
-                parse_ErpQuote: parse_ErpQuote,
+                export_ErpQuoteLineItem: export_ErpQuoteLineItem,
                 parse_ErpPayable: parse_ErpPayable,
                 parse_ErpDocument: parse_ErpDocument,
                 parse_ErpProjectAccounting: parse_ErpProjectAccounting,
                 parse_ErpIssueInventory: parse_ErpIssueInventory,
-                parse_ErpLedBudLineItem: parse_ErpLedBudLineItem,
-                parse_ErpInvoice: parse_ErpInvoice,
-                parse_ErpSalesOrder: parse_ErpSalesOrder,
+                export_ErpSalesOrder: export_ErpSalesOrder,
                 parse_ErpRecLineItem: parse_ErpRecLineItem,
                 parse_ErpPayableLineItem: parse_ErpPayableLineItem,
+                export_ErpInvoiceLineItem: export_ErpInvoiceLineItem,
                 parse_ErpRequisition: parse_ErpRequisition,
                 parse_ErpTimeEntry: parse_ErpTimeEntry,
+                export_ErpBOM: export_ErpBOM,
+                export_BillMediaKind: export_BillMediaKind,
+                export_ErpJournal: export_ErpJournal,
+                export_ErpSiteLevelData: export_ErpSiteLevelData,
+                export_ErpIdentifiedObject: export_ErpIdentifiedObject,
+                export_ErpDocument: export_ErpDocument,
+                export_ErpProjectAccounting: export_ErpProjectAccounting,
+                export_ErpJournalEntry: export_ErpJournalEntry,
+                parse_ErpQuoteLineItem: parse_ErpQuoteLineItem,
+                parse_ErpPersonnel: parse_ErpPersonnel,
+                parse_ErpPurchaseOrder: parse_ErpPurchaseOrder,
+                parse_ErpPOLineItem: parse_ErpPOLineItem,
+                parse_ErpReceivable: parse_ErpReceivable,
+                export_ErpQuote: export_ErpQuote,
+                parse_ErpInventory: parse_ErpInventory,
+                export_ErpRecDelvLineItem: export_ErpRecDelvLineItem,
+                export_ErpItemMaster: export_ErpItemMaster,
+                export_ErpLedgerEntry: export_ErpLedgerEntry,
+                parse_ErpLedgerBudget: parse_ErpLedgerBudget,
+                parse_ErpInvoiceKind: parse_ErpInvoiceKind,
+                export_ErpPurchaseOrder: export_ErpPurchaseOrder,
+                parse_ErpReqLineItem: parse_ErpReqLineItem,
+                parse_ErpSiteLevelData: parse_ErpSiteLevelData,
+                parse_ErpBankAccount: parse_ErpBankAccount,
+                parse_ErpBOM: parse_ErpBOM,
+                export_ErpPayableLineItem: export_ErpPayableLineItem,
+                export_ErpBomItemData: export_ErpBomItemData,
+                export_ErpReceivable: export_ErpReceivable,
+                export_ErpLedgerBudget: export_ErpLedgerBudget,
+                parse_ErpJournal: parse_ErpJournal,
+                parse_ErpCompetency: parse_ErpCompetency,
+                export_ErpReceiveDelivery: export_ErpReceiveDelivery,
+                parse_ErpLedgerEntry: parse_ErpLedgerEntry,
+                parse_ErpTimeSheet: parse_ErpTimeSheet,
+                parse_ErpChartOfAccounts: parse_ErpChartOfAccounts,
+                export_ErpAccountKind: export_ErpAccountKind,
+                export_ErpIssueInventory: export_ErpIssueInventory,
+                parse_ErpInventoryCount: parse_ErpInventoryCount,
+                parse_ErpQuote: parse_ErpQuote,
+                export_ErpCompetency: export_ErpCompetency,
+                parse_ErpSalesOrder: parse_ErpSalesOrder,
+                parse_ErpLedBudLineItem: parse_ErpLedBudLineItem,
+                parse_ErpInvoice: parse_ErpInvoice,
+                export_ErpRecLineItem: export_ErpRecLineItem,
+                export_ErpReqLineItem: export_ErpReqLineItem,
+                export_ErpPayable: export_ErpPayable,
+                export_ErpPayment: export_ErpPayment,
                 parse_ErpBomItemData: parse_ErpBomItemData,
                 parse_ErpLedger: parse_ErpLedger,
+                export_ErpInventory: export_ErpInventory,
+                export_ErpRequisition: export_ErpRequisition,
+                export_ErpTimeSheet: export_ErpTimeSheet,
                 parse_ErpAccountKind: parse_ErpAccountKind,
                 parse_ErpRecDelvLineItem: parse_ErpRecDelvLineItem
             }

@@ -21,18 +21,24 @@ define
 
             obj = parse_EnergyArea (context, sub);
             obj.cls = "SubLoadArea";
-            /**
-             * The LoadArea where the SubLoadArea belongs.
-             *
-             */
-            base.parse_attribute (/<cim:SubLoadArea.LoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadArea", sub, context, true);
-
+            base.parse_attribute (/<cim:SubLoadArea.LoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadArea", sub, context);
             bucket = context.parsed.SubLoadArea;
             if (null == bucket)
                 context.parsed.SubLoadArea = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_SubLoadArea (obj, exporters, full)
+        {
+            var fields = exporters["EnergyArea"](obj, exporters, false);
+
+            base.export_attribute (obj, "SubLoadArea", "LoadArea", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -46,24 +52,26 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "Season";
-            /**
-             * Date season ends.
-             *
-             */
             base.parse_element (/<cim:Season.endDate>([\s\S]*?)<\/cim:Season.endDate>/g, obj, "endDate", base.to_string, sub, context);
-
-            /**
-             * Date season starts.
-             *
-             */
             base.parse_element (/<cim:Season.startDate>([\s\S]*?)<\/cim:Season.startDate>/g, obj, "startDate", base.to_string, sub, context);
-
             bucket = context.parsed.Season;
             if (null == bucket)
                 context.parsed.Season = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Season (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "Season", "endDate", base.from_string, fields);
+            base.export_element (obj, "Season", "startDate", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -77,24 +85,26 @@ define
 
             obj = Core.parse_RegularIntervalSchedule (context, sub);
             obj.cls = "SeasonDayTypeSchedule";
-            /**
-             * Season for the Schedule.
-             *
-             */
-            base.parse_attribute (/<cim:SeasonDayTypeSchedule.Season\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Season", sub, context, true);
-
-            /**
-             * DayType for the Schedule.
-             *
-             */
-            base.parse_attribute (/<cim:SeasonDayTypeSchedule.DayType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DayType", sub, context, true);
-
+            base.parse_attribute (/<cim:SeasonDayTypeSchedule.Season\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Season", sub, context);
+            base.parse_attribute (/<cim:SeasonDayTypeSchedule.DayType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DayType", sub, context);
             bucket = context.parsed.SeasonDayTypeSchedule;
             if (null == bucket)
                 context.parsed.SeasonDayTypeSchedule = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_SeasonDayTypeSchedule (obj, exporters, full)
+        {
+            var fields = exporters["RegularIntervalSchedule"](obj, exporters, false);
+
+            base.export_attribute (obj, "SeasonDayTypeSchedule", "Season", fields);
+            base.export_attribute (obj, "SeasonDayTypeSchedule", "DayType", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -108,18 +118,24 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "LoadGroup";
-            /**
-             * The SubLoadArea where the Loadgroup belongs.
-             *
-             */
-            base.parse_attribute (/<cim:LoadGroup.SubLoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubLoadArea", sub, context, true);
-
+            base.parse_attribute (/<cim:LoadGroup.SubLoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubLoadArea", sub, context);
             bucket = context.parsed.LoadGroup;
             if (null == bucket)
                 context.parsed.LoadGroup = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_LoadGroup (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_attribute (obj, "LoadGroup", "SubLoadArea", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -141,6 +157,16 @@ define
             return (obj);
         }
 
+        function export_LoadArea (obj, exporters, full)
+        {
+            var fields = exporters["EnergyArea"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Describes an area having energy production or consumption.
          *
@@ -154,18 +180,24 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "EnergyArea";
-            /**
-             * The control area specification that is used for the load forecast.
-             *
-             */
-            base.parse_attribute (/<cim:EnergyArea.ControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlArea", sub, context, true);
-
+            base.parse_attribute (/<cim:EnergyArea.ControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlArea", sub, context);
             bucket = context.parsed.EnergyArea;
             if (null == bucket)
                 context.parsed.EnergyArea = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_EnergyArea (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_attribute (obj, "EnergyArea", "ControlArea", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -179,18 +211,24 @@ define
 
             obj = Wires.parse_EnergyConsumer (context, sub);
             obj.cls = "NonConformLoad";
-            /**
-             * Group of this ConformLoad.
-             *
-             */
-            base.parse_attribute (/<cim:NonConformLoad.LoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadGroup", sub, context, true);
-
+            base.parse_attribute (/<cim:NonConformLoad.LoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadGroup", sub, context);
             bucket = context.parsed.NonConformLoad;
             if (null == bucket)
                 context.parsed.NonConformLoad = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_NonConformLoad (obj, exporters, full)
+        {
+            var fields = exporters["EnergyConsumer"](obj, exporters, false);
+
+            base.export_attribute (obj, "NonConformLoad", "LoadGroup", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -214,6 +252,16 @@ define
             return (obj);
         }
 
+        function export_DayType (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * ConformLoad represent loads that follow a daily load change pattern where the pattern can be used to scale the load with a system load.
          *
@@ -225,18 +273,24 @@ define
 
             obj = Wires.parse_EnergyConsumer (context, sub);
             obj.cls = "ConformLoad";
-            /**
-             * Group of this ConformLoad.
-             *
-             */
-            base.parse_attribute (/<cim:ConformLoad.LoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadGroup", sub, context, true);
-
+            base.parse_attribute (/<cim:ConformLoad.LoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadGroup", sub, context);
             bucket = context.parsed.ConformLoad;
             if (null == bucket)
                 context.parsed.ConformLoad = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ConformLoad (obj, exporters, full)
+        {
+            var fields = exporters["EnergyConsumer"](obj, exporters, false);
+
+            base.export_attribute (obj, "ConformLoad", "LoadGroup", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -250,18 +304,24 @@ define
 
             obj = parse_SeasonDayTypeSchedule (context, sub);
             obj.cls = "NonConformLoadSchedule";
-            /**
-             * The NonConformLoadGroup where the NonConformLoadSchedule belongs.
-             *
-             */
-            base.parse_attribute (/<cim:NonConformLoadSchedule.NonConformLoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "NonConformLoadGroup", sub, context, true);
-
+            base.parse_attribute (/<cim:NonConformLoadSchedule.NonConformLoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "NonConformLoadGroup", sub, context);
             bucket = context.parsed.NonConformLoadSchedule;
             if (null == bucket)
                 context.parsed.NonConformLoadSchedule = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_NonConformLoadSchedule (obj, exporters, full)
+        {
+            var fields = exporters["SeasonDayTypeSchedule"](obj, exporters, false);
+
+            base.export_attribute (obj, "NonConformLoadSchedule", "NonConformLoadGroup", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -283,6 +343,16 @@ define
             return (obj);
         }
 
+        function export_StationSupply (obj, exporters, full)
+        {
+            var fields = exporters["EnergyConsumer"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Loads that do not follow a daily and seasonal load variation pattern.
          *
@@ -302,6 +372,16 @@ define
             return (obj);
         }
 
+        function export_NonConformLoadGroup (obj, exporters, full)
+        {
+            var fields = exporters["LoadGroup"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Models the characteristic response of the load demand due to changes in system conditions such as voltage and frequency.
          *
@@ -315,80 +395,44 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "LoadResponseCharacteristic";
-            /**
-             * Indicates the exponential voltage dependency model is to be used.
-             *
-             * If false, the coefficient model is to be used.
-             *
-             */
             base.parse_element (/<cim:LoadResponseCharacteristic.exponentModel>([\s\S]*?)<\/cim:LoadResponseCharacteristic.exponentModel>/g, obj, "exponentModel", base.to_boolean, sub, context);
-
-            /**
-             * Portion of active power load modeled as constant current.
-             *
-             */
             base.parse_element (/<cim:LoadResponseCharacteristic.pConstantCurrent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pConstantCurrent>/g, obj, "pConstantCurrent", base.to_float, sub, context);
-
-            /**
-             * Portion of active power load modeled as constant impedance.
-             *
-             */
             base.parse_element (/<cim:LoadResponseCharacteristic.pConstantImpedance>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pConstantImpedance>/g, obj, "pConstantImpedance", base.to_float, sub, context);
-
-            /**
-             * Portion of active power load modeled as constant power.
-             *
-             */
             base.parse_element (/<cim:LoadResponseCharacteristic.pConstantPower>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pConstantPower>/g, obj, "pConstantPower", base.to_float, sub, context);
-
-            /**
-             * Exponent of per unit frequency effecting active power.
-             *
-             */
             base.parse_element (/<cim:LoadResponseCharacteristic.pFrequencyExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pFrequencyExponent>/g, obj, "pFrequencyExponent", base.to_float, sub, context);
-
-            /**
-             * Exponent of per unit voltage effecting real power.
-             *
-             */
             base.parse_element (/<cim:LoadResponseCharacteristic.pVoltageExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.pVoltageExponent>/g, obj, "pVoltageExponent", base.to_float, sub, context);
-
-            /**
-             * Portion of reactive power load modeled as constant current.
-             *
-             */
             base.parse_element (/<cim:LoadResponseCharacteristic.qConstantCurrent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qConstantCurrent>/g, obj, "qConstantCurrent", base.to_float, sub, context);
-
-            /**
-             * Portion of reactive power load modeled as constant impedance.
-             *
-             */
             base.parse_element (/<cim:LoadResponseCharacteristic.qConstantImpedance>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qConstantImpedance>/g, obj, "qConstantImpedance", base.to_float, sub, context);
-
-            /**
-             * Portion of reactive power load modeled as constant power.
-             *
-             */
             base.parse_element (/<cim:LoadResponseCharacteristic.qConstantPower>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qConstantPower>/g, obj, "qConstantPower", base.to_float, sub, context);
-
-            /**
-             * Exponent of per unit frequency effecting reactive power.
-             *
-             */
             base.parse_element (/<cim:LoadResponseCharacteristic.qFrequencyExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qFrequencyExponent>/g, obj, "qFrequencyExponent", base.to_float, sub, context);
-
-            /**
-             * Exponent of per unit voltage effecting reactive power.
-             *
-             */
             base.parse_element (/<cim:LoadResponseCharacteristic.qVoltageExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qVoltageExponent>/g, obj, "qVoltageExponent", base.to_float, sub, context);
-
             bucket = context.parsed.LoadResponseCharacteristic;
             if (null == bucket)
                 context.parsed.LoadResponseCharacteristic = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_LoadResponseCharacteristic (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "LoadResponseCharacteristic", "exponentModel", base.from_boolean, fields);
+            base.export_element (obj, "LoadResponseCharacteristic", "pConstantCurrent", base.from_float, fields);
+            base.export_element (obj, "LoadResponseCharacteristic", "pConstantImpedance", base.from_float, fields);
+            base.export_element (obj, "LoadResponseCharacteristic", "pConstantPower", base.from_float, fields);
+            base.export_element (obj, "LoadResponseCharacteristic", "pFrequencyExponent", base.from_float, fields);
+            base.export_element (obj, "LoadResponseCharacteristic", "pVoltageExponent", base.from_float, fields);
+            base.export_element (obj, "LoadResponseCharacteristic", "qConstantCurrent", base.from_float, fields);
+            base.export_element (obj, "LoadResponseCharacteristic", "qConstantImpedance", base.from_float, fields);
+            base.export_element (obj, "LoadResponseCharacteristic", "qConstantPower", base.from_float, fields);
+            base.export_element (obj, "LoadResponseCharacteristic", "qFrequencyExponent", base.from_float, fields);
+            base.export_element (obj, "LoadResponseCharacteristic", "qVoltageExponent", base.from_float, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -402,24 +446,26 @@ define
 
             obj = Core.parse_PowerSystemResource (context, sub);
             obj.cls = "PowerCutZone";
-            /**
-             * First level (amount) of load to cut as a percentage of total zone load.
-             *
-             */
             base.parse_element (/<cim:PowerCutZone.cutLevel1>([\s\S]*?)<\/cim:PowerCutZone.cutLevel1>/g, obj, "cutLevel1", base.to_string, sub, context);
-
-            /**
-             * Second level (amount) of load to cut as a percentage of total zone load.
-             *
-             */
             base.parse_element (/<cim:PowerCutZone.cutLevel2>([\s\S]*?)<\/cim:PowerCutZone.cutLevel2>/g, obj, "cutLevel2", base.to_string, sub, context);
-
             bucket = context.parsed.PowerCutZone;
             if (null == bucket)
                 context.parsed.PowerCutZone = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_PowerCutZone (obj, exporters, full)
+        {
+            var fields = exporters["PowerSystemResource"](obj, exporters, false);
+
+            base.export_element (obj, "PowerCutZone", "cutLevel1", base.from_string, fields);
+            base.export_element (obj, "PowerCutZone", "cutLevel2", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -441,6 +487,16 @@ define
             return (obj);
         }
 
+        function export_ConformLoadGroup (obj, exporters, full)
+        {
+            var fields = exporters["LoadGroup"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * A curve of load  versus time (X-axis) showing the active power values (Y1-axis) and reactive power (Y2-axis) for each unit of the period covered.
          *
@@ -454,12 +510,7 @@ define
 
             obj = parse_SeasonDayTypeSchedule (context, sub);
             obj.cls = "ConformLoadSchedule";
-            /**
-             * The ConformLoadGroup where the ConformLoadSchedule belongs.
-             *
-             */
-            base.parse_attribute (/<cim:ConformLoadSchedule.ConformLoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConformLoadGroup", sub, context, true);
-
+            base.parse_attribute (/<cim:ConformLoadSchedule.ConformLoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConformLoadGroup", sub, context);
             bucket = context.parsed.ConformLoadSchedule;
             if (null == bucket)
                 context.parsed.ConformLoadSchedule = bucket = {};
@@ -468,24 +519,51 @@ define
             return (obj);
         }
 
+        function export_ConformLoadSchedule (obj, exporters, full)
+        {
+            var fields = exporters["SeasonDayTypeSchedule"](obj, exporters, false);
+
+            base.export_attribute (obj, "ConformLoadSchedule", "ConformLoadGroup", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
-                parse_DayType: parse_DayType,
-                parse_ConformLoad: parse_ConformLoad,
-                parse_LoadGroup: parse_LoadGroup,
                 parse_NonConformLoad: parse_NonConformLoad,
-                parse_ConformLoadSchedule: parse_ConformLoadSchedule,
-                parse_SeasonDayTypeSchedule: parse_SeasonDayTypeSchedule,
+                parse_LoadGroup: parse_LoadGroup,
+                export_NonConformLoadGroup: export_NonConformLoadGroup,
+                export_Season: export_Season,
+                export_LoadGroup: export_LoadGroup,
                 parse_LoadResponseCharacteristic: parse_LoadResponseCharacteristic,
-                parse_LoadArea: parse_LoadArea,
+                export_ConformLoad: export_ConformLoad,
                 parse_ConformLoadGroup: parse_ConformLoadGroup,
+                export_SubLoadArea: export_SubLoadArea,
                 parse_Season: parse_Season,
-                parse_NonConformLoadSchedule: parse_NonConformLoadSchedule,
-                parse_SubLoadArea: parse_SubLoadArea,
                 parse_EnergyArea: parse_EnergyArea,
+                export_ConformLoadGroup: export_ConformLoadGroup,
+                export_EnergyArea: export_EnergyArea,
                 parse_PowerCutZone: parse_PowerCutZone,
                 parse_StationSupply: parse_StationSupply,
-                parse_NonConformLoadGroup: parse_NonConformLoadGroup
+                export_PowerCutZone: export_PowerCutZone,
+                export_NonConformLoad: export_NonConformLoad,
+                export_SeasonDayTypeSchedule: export_SeasonDayTypeSchedule,
+                parse_DayType: parse_DayType,
+                parse_ConformLoad: parse_ConformLoad,
+                parse_ConformLoadSchedule: parse_ConformLoadSchedule,
+                export_LoadResponseCharacteristic: export_LoadResponseCharacteristic,
+                parse_SeasonDayTypeSchedule: parse_SeasonDayTypeSchedule,
+                export_StationSupply: export_StationSupply,
+                parse_LoadArea: parse_LoadArea,
+                parse_NonConformLoadSchedule: parse_NonConformLoadSchedule,
+                parse_SubLoadArea: parse_SubLoadArea,
+                export_DayType: export_DayType,
+                export_NonConformLoadSchedule: export_NonConformLoadSchedule,
+                export_LoadArea: export_LoadArea,
+                parse_NonConformLoadGroup: parse_NonConformLoadGroup,
+                export_ConformLoadSchedule: export_ConformLoadSchedule
             }
         );
     }

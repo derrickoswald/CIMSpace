@@ -21,36 +21,30 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "Receipt";
-            /**
-             * True if this receipted payment is manually bankable, otherwise it is an electronic funds transfer.
-             *
-             */
             base.parse_element (/<cim:Receipt.isBankable>([\s\S]*?)<\/cim:Receipt.isBankable>/g, obj, "isBankable", base.to_boolean, sub, context);
-
-            /**
-             * Receipted amount with rounding, date and note.
-             *
-             */
             base.parse_element (/<cim:Receipt.line>([\s\S]*?)<\/cim:Receipt.line>/g, obj, "line", base.to_string, sub, context);
-
-            /**
-             * Vendor shift during which this receipt was recorded.
-             *
-             */
-            base.parse_attribute (/<cim:Receipt.VendorShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VendorShift", sub, context, true);
-
-            /**
-             * Cashier shift during which this receipt was recorded.
-             *
-             */
-            base.parse_attribute (/<cim:Receipt.CashierShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CashierShift", sub, context, true);
-
+            base.parse_attribute (/<cim:Receipt.VendorShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VendorShift", sub, context);
+            base.parse_attribute (/<cim:Receipt.CashierShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CashierShift", sub, context);
             bucket = context.parsed.Receipt;
             if (null == bucket)
                 context.parsed.Receipt = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Receipt (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "Receipt", "isBankable", base.from_boolean, fields);
+            base.export_element (obj, "Receipt", "line", base.from_string, fields);
+            base.export_attribute (obj, "Receipt", "VendorShift", fields);
+            base.export_attribute (obj, "Receipt", "CashierShift", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -64,42 +58,32 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Card";
-            /**
-             * Name of account holder.
-             *
-             */
             base.parse_element (/<cim:Card.accountHolderName>([\s\S]*?)<\/cim:Card.accountHolderName>/g, obj, "accountHolderName", base.to_string, sub, context);
-
-            /**
-             * The card verification number.
-             *
-             */
             base.parse_element (/<cim:Card.cvNumber>([\s\S]*?)<\/cim:Card.cvNumber>/g, obj, "cvNumber", base.to_string, sub, context);
-
-            /**
-             * The date when this card expires.
-             *
-             */
             base.parse_element (/<cim:Card.expiryDate>([\s\S]*?)<\/cim:Card.expiryDate>/g, obj, "expiryDate", base.to_string, sub, context);
-
-            /**
-             * The primary account number.
-             *
-             */
             base.parse_element (/<cim:Card.pan>([\s\S]*?)<\/cim:Card.pan>/g, obj, "pan", base.to_string, sub, context);
-
-            /**
-             * Payment tender this card is being used for.
-             *
-             */
-            base.parse_attribute (/<cim:Card.Tender\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Tender", sub, context, true);
-
+            base.parse_attribute (/<cim:Card.Tender\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Tender", sub, context);
             bucket = context.parsed.Card;
             if (null == bucket)
                 context.parsed.Card = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Card (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "Card", "accountHolderName", base.from_string, fields);
+            base.export_element (obj, "Card", "cvNumber", base.from_string, fields);
+            base.export_element (obj, "Card", "expiryDate", base.from_string, fields);
+            base.export_element (obj, "Card", "pan", base.from_string, fields);
+            base.export_attribute (obj, "Card", "Tender", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -113,44 +97,32 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Due";
-            /**
-             * Part of 'current' that constitutes the arrears portion.
-             *
-             */
             base.parse_element (/<cim:Due.arrears>([\s\S]*?)<\/cim:Due.arrears>/g, obj, "arrears", base.to_string, sub, context);
-
-            /**
-             * Part of 'current' that constitutes the charge portion: 'charges' = 'Charge.fixedPortion' + 'Charge.variablePortion'.
-             *
-             */
             base.parse_element (/<cim:Due.charges>([\s\S]*?)<\/cim:Due.charges>/g, obj, "charges", base.to_string, sub, context);
-
-            /**
-             * Current total amount now due: current = principle + arrears + interest + charges.
-             *
-             * Typically the rule for settlement priority is: interest dues, then arrears dues, then current dues, then charge dues.
-             *
-             */
             base.parse_element (/<cim:Due.current>([\s\S]*?)<\/cim:Due.current>/g, obj, "current", base.to_string, sub, context);
-
-            /**
-             * Part of 'current' that constitutes the interest portion.
-             *
-             */
             base.parse_element (/<cim:Due.interest>([\s\S]*?)<\/cim:Due.interest>/g, obj, "interest", base.to_string, sub, context);
-
-            /**
-             * Part of 'current' that constitutes the portion of the principle amount currently due.
-             *
-             */
             base.parse_element (/<cim:Due.principle>([\s\S]*?)<\/cim:Due.principle>/g, obj, "principle", base.to_string, sub, context);
-
             bucket = context.parsed.Due;
             if (null == bucket)
                 context.parsed.Due = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Due (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "Due", "arrears", base.from_string, fields);
+            base.export_element (obj, "Due", "charges", base.from_string, fields);
+            base.export_element (obj, "Due", "current", base.from_string, fields);
+            base.export_element (obj, "Due", "interest", base.from_string, fields);
+            base.export_element (obj, "Due", "principle", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -166,38 +138,30 @@ define
 
             obj = parse_Shift (context, sub);
             obj.cls = "VendorShift";
-            /**
-             * The amount that is to be debited from the merchant account for this vendor shift.
-             *
-             * This amount reflects the sum(PaymentTransaction.transactionAmount).
-             *
-             */
             base.parse_element (/<cim:VendorShift.merchantDebitAmount>([\s\S]*?)<\/cim:VendorShift.merchantDebitAmount>/g, obj, "merchantDebitAmount", base.to_string, sub, context);
-
-            /**
-             * If true, merchantDebitAmount has been debited from MerchantAccount; typically happens at the end of VendorShift when it closes.
-             *
-             */
             base.parse_element (/<cim:VendorShift.posted>([\s\S]*?)<\/cim:VendorShift.posted>/g, obj, "posted", base.to_boolean, sub, context);
-
-            /**
-             * Vendor that opens and owns this vendor shift.
-             *
-             */
-            base.parse_attribute (/<cim:VendorShift.Vendor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Vendor", sub, context, true);
-
-            /**
-             * Merchant account this vendor shift periodically debits (based on aggregated transactions).
-             *
-             */
-            base.parse_attribute (/<cim:VendorShift.MerchantAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MerchantAccount", sub, context, true);
-
+            base.parse_attribute (/<cim:VendorShift.Vendor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Vendor", sub, context);
+            base.parse_attribute (/<cim:VendorShift.MerchantAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MerchantAccount", sub, context);
             bucket = context.parsed.VendorShift;
             if (null == bucket)
                 context.parsed.VendorShift = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_VendorShift (obj, exporters, full)
+        {
+            var fields = exporters["Shift"](obj, exporters, false);
+
+            base.export_element (obj, "VendorShift", "merchantDebitAmount", base.from_string, fields);
+            base.export_element (obj, "VendorShift", "posted", base.from_boolean, fields);
+            base.export_attribute (obj, "VendorShift", "Vendor", fields);
+            base.export_attribute (obj, "VendorShift", "MerchantAccount", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -213,36 +177,30 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "Charge";
-            /**
-             * The fixed portion of this charge element.
-             *
-             */
             base.parse_element (/<cim:Charge.fixedPortion>([\s\S]*?)<\/cim:Charge.fixedPortion>/g, obj, "fixedPortion", base.to_string, sub, context);
-
-            /**
-             * The kind of charge to be applied.
-             *
-             */
             base.parse_element (/<cim:Charge.kind>([\s\S]*?)<\/cim:Charge.kind>/g, obj, "kind", base.to_string, sub, context);
-
-            /**
-             * The variable portion of this charge element, calculated as a percentage of the total amount of a parent charge.
-             *
-             */
             base.parse_element (/<cim:Charge.variablePortion>([\s\S]*?)<\/cim:Charge.variablePortion>/g, obj, "variablePortion", base.to_string, sub, context);
-
-            /**
-             * Parent of this charge sub-component.
-             *
-             */
-            base.parse_attribute (/<cim:Charge.ParentCharge\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ParentCharge", sub, context, true);
-
+            base.parse_attribute (/<cim:Charge.ParentCharge\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ParentCharge", sub, context);
             bucket = context.parsed.Charge;
             if (null == bucket)
                 context.parsed.Charge = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Charge (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "Charge", "fixedPortion", base.from_string, fields);
+            base.export_element (obj, "Charge", "kind", base.from_string, fields);
+            base.export_element (obj, "Charge", "variablePortion", base.from_string, fields);
+            base.export_attribute (obj, "Charge", "ParentCharge", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -256,30 +214,28 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ChequeKind";
-            /**
-             * Payment order used by institutions other than banks.
-             *
-             */
             base.parse_element (/<cim:ChequeKind.postalOrder>([\s\S]*?)<\/cim:ChequeKind.postalOrder>/g, obj, "postalOrder", base.to_string, sub, context);
-
-            /**
-             * Payment order used by a bank.
-             *
-             */
             base.parse_element (/<cim:ChequeKind.bankOrder>([\s\S]*?)<\/cim:ChequeKind.bankOrder>/g, obj, "bankOrder", base.to_string, sub, context);
-
-            /**
-             * Other kind of cheque.
-             *
-             */
             base.parse_element (/<cim:ChequeKind.other>([\s\S]*?)<\/cim:ChequeKind.other>/g, obj, "other", base.to_string, sub, context);
-
             bucket = context.parsed.ChequeKind;
             if (null == bucket)
                 context.parsed.ChequeKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ChequeKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "ChequeKind", "postalOrder", base.from_string, fields);
+            base.export_element (obj, "ChequeKind", "bankOrder", base.from_string, fields);
+            base.export_element (obj, "ChequeKind", "other", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -295,20 +251,24 @@ define
 
             obj = Common.parse_Document (context, sub);
             obj.cls = "TariffProfile";
-            /**
-             * The frequency at which the tariff charge schedule is repeated.
-             *
-             * Examples are: once off on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc. At the end of each cycle, the business rules are reset to start from the beginning again.
-             *
-             */
             base.parse_element (/<cim:TariffProfile.tariffCycle>([\s\S]*?)<\/cim:TariffProfile.tariffCycle>/g, obj, "tariffCycle", base.to_string, sub, context);
-
             bucket = context.parsed.TariffProfile;
             if (null == bucket)
                 context.parsed.TariffProfile = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_TariffProfile (obj, exporters, full)
+        {
+            var fields = exporters["Document"](obj, exporters, false);
+
+            base.export_element (obj, "TariffProfile", "tariffCycle", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -322,34 +282,28 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "AccountMovement";
-            /**
-             * Amount that was credited to/debited from an account.
-             *
-             * For example: payment received/interest charge on arrears.
-             *
-             */
             base.parse_element (/<cim:AccountMovement.amount>([\s\S]*?)<\/cim:AccountMovement.amount>/g, obj, "amount", base.to_string, sub, context);
-
-            /**
-             * Date and time when the credit/debit transaction was performed.
-             *
-             */
             base.parse_element (/<cim:AccountMovement.dateTime>([\s\S]*?)<\/cim:AccountMovement.dateTime>/g, obj, "dateTime", base.to_datetime, sub, context);
-
-            /**
-             * Reason for credit/debit transaction on an account.
-             *
-             * Example: payment received/arrears interest levied.
-             *
-             */
             base.parse_element (/<cim:AccountMovement.reason>([\s\S]*?)<\/cim:AccountMovement.reason>/g, obj, "reason", base.to_string, sub, context);
-
             bucket = context.parsed.AccountMovement;
             if (null == bucket)
                 context.parsed.AccountMovement = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AccountMovement (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "AccountMovement", "amount", base.from_string, fields);
+            base.export_element (obj, "AccountMovement", "dateTime", base.from_datetime, fields);
+            base.export_element (obj, "AccountMovement", "reason", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -365,26 +319,26 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ConsumptionTariffInterval";
-            /**
-             * A sequential reference that defines the identity of this interval and its relative position with respect to other intervals in a sequence of intervals.
-             *
-             */
             base.parse_element (/<cim:ConsumptionTariffInterval.sequenceNumber>([\s\S]*?)<\/cim:ConsumptionTariffInterval.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
-
-            /**
-             * The lowest level of consumption that defines the starting point of this interval.
-             *
-             * The interval extends to the start of the next interval or until it is reset to the start of the first interval by TariffProfile.tariffCycle.
-             *
-             */
             base.parse_element (/<cim:ConsumptionTariffInterval.startValue>([\s\S]*?)<\/cim:ConsumptionTariffInterval.startValue>/g, obj, "startValue", base.to_string, sub, context);
-
             bucket = context.parsed.ConsumptionTariffInterval;
             if (null == bucket)
                 context.parsed.ConsumptionTariffInterval = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ConsumptionTariffInterval (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "ConsumptionTariffInterval", "sequenceNumber", base.from_string, fields);
+            base.export_element (obj, "ConsumptionTariffInterval", "startValue", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -398,42 +352,32 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "TenderKind";
-            /**
-             * Payment method by means of a cheque.
-             *
-             */
             base.parse_element (/<cim:TenderKind.cheque>([\s\S]*?)<\/cim:TenderKind.cheque>/g, obj, "cheque", base.to_string, sub, context);
-
-            /**
-             * Payment method by means of a credit or debit card.
-             *
-             */
             base.parse_element (/<cim:TenderKind.card>([\s\S]*?)<\/cim:TenderKind.card>/g, obj, "card", base.to_string, sub, context);
-
-            /**
-             * Payment method by means of cash.
-             *
-             */
             base.parse_element (/<cim:TenderKind.cash>([\s\S]*?)<\/cim:TenderKind.cash>/g, obj, "cash", base.to_string, sub, context);
-
-            /**
-             * Payment method is not known.
-             *
-             */
             base.parse_element (/<cim:TenderKind.unspecified>([\s\S]*?)<\/cim:TenderKind.unspecified>/g, obj, "unspecified", base.to_string, sub, context);
-
-            /**
-             * Other payment method such as electronic finds transfer.
-             *
-             */
             base.parse_element (/<cim:TenderKind.other>([\s\S]*?)<\/cim:TenderKind.other>/g, obj, "other", base.to_string, sub, context);
-
             bucket = context.parsed.TenderKind;
             if (null == bucket)
                 context.parsed.TenderKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_TenderKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "TenderKind", "cheque", base.from_string, fields);
+            base.export_element (obj, "TenderKind", "card", base.from_string, fields);
+            base.export_element (obj, "TenderKind", "cash", base.from_string, fields);
+            base.export_element (obj, "TenderKind", "unspecified", base.from_string, fields);
+            base.export_element (obj, "TenderKind", "other", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -449,26 +393,26 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "TimeTariffInterval";
-            /**
-             * A sequential reference that defines the identity of this interval and its relative position with respect to other intervals in a sequence of intervals.
-             *
-             */
             base.parse_element (/<cim:TimeTariffInterval.sequenceNumber>([\s\S]*?)<\/cim:TimeTariffInterval.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
-
-            /**
-             * A real time marker that defines the starting time (typically it is the time of day) for this interval.
-             *
-             * The interval extends to the start of the next interval or until it is reset to the start of the first interval by TariffProfile.tariffCycle.
-             *
-             */
             base.parse_element (/<cim:TimeTariffInterval.startTime>([\s\S]*?)<\/cim:TimeTariffInterval.startTime>/g, obj, "startTime", base.to_string, sub, context);
-
             bucket = context.parsed.TimeTariffInterval;
             if (null == bucket)
                 context.parsed.TimeTariffInterval = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_TimeTariffInterval (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "TimeTariffInterval", "sequenceNumber", base.from_string, fields);
+            base.export_element (obj, "TimeTariffInterval", "startTime", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -484,82 +428,42 @@ define
 
             obj = Common.parse_Agreement (context, sub);
             obj.cls = "AuxiliaryAgreement";
-            /**
-             * The interest per annum to be charged prorata on 'AuxiliaryAccount.dueArrears' at the end of each 'payCycle'.
-             *
-             */
             base.parse_element (/<cim:AuxiliaryAgreement.arrearsInterest>([\s\S]*?)<\/cim:AuxiliaryAgreement.arrearsInterest>/g, obj, "arrearsInterest", base.to_string, sub, context);
-
-            /**
-             * The frequency for automatically recurring auxiliary charges, where 'AuxiliaryAccount.initialCharge' is recursively added to 'AuxiliaryAccount.dueCurrent' at the start of each 'auxCycle'.
-             *
-             * For example: on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc.
-             *
-             */
             base.parse_element (/<cim:AuxiliaryAgreement.auxCycle>([\s\S]*?)<\/cim:AuxiliaryAgreement.auxCycle>/g, obj, "auxCycle", base.to_string, sub, context);
-
-            /**
-             * The coded priority indicating the priority that this auxiliary agreement has above other auxiliary agreements (associated with the same customer agreement) when it comes to competing for settlement from a payment transaction or token purchase.
-             *
-             */
             base.parse_element (/<cim:AuxiliaryAgreement.auxPriorityCode>([\s\S]*?)<\/cim:AuxiliaryAgreement.auxPriorityCode>/g, obj, "auxPriorityCode", base.to_string, sub, context);
-
-            /**
-             * The fixed amount that has to be collected from each vending transaction towards settlement of this auxiliary agreement.
-             *
-             * Note that there may be multiple tokens vended per vending transaction, but this is not relevant.
-             *
-             */
             base.parse_element (/<cim:AuxiliaryAgreement.fixedAmount>([\s\S]*?)<\/cim:AuxiliaryAgreement.fixedAmount>/g, obj, "fixedAmount", base.to_string, sub, context);
-
-            /**
-             * The minimum amount that has to be paid at any transaction towards settling this auxiliary agreement or reducing the balance.
-             *
-             */
             base.parse_element (/<cim:AuxiliaryAgreement.minAmount>([\s\S]*?)<\/cim:AuxiliaryAgreement.minAmount>/g, obj, "minAmount", base.to_string, sub, context);
-
-            /**
-             * The contractually expected payment frequency (by the customer).
-             *
-             * Examples are: ad-hoc; on specified date; hourly, daily, weekly, monthly. etc.
-             *
-             */
             base.parse_element (/<cim:AuxiliaryAgreement.payCycle>([\s\S]*?)<\/cim:AuxiliaryAgreement.payCycle>/g, obj, "payCycle", base.to_string, sub, context);
-
-            /**
-             * Sub-classification of the inherited 'type' for this AuxiliaryAgreement.
-             *
-             */
             base.parse_element (/<cim:AuxiliaryAgreement.subType>([\s\S]*?)<\/cim:AuxiliaryAgreement.subType>/g, obj, "subType", base.to_string, sub, context);
-
-            /**
-             * The percentage of the transaction amount that has to be collected from each vending transaction towards settlement of this auxiliary agreement when payments are not in arrears.
-             *
-             * Note that there may be multiple tokens vended per vending transaction, but this is not relevant.
-             *
-             */
             base.parse_element (/<cim:AuxiliaryAgreement.vendPortion>([\s\S]*?)<\/cim:AuxiliaryAgreement.vendPortion>/g, obj, "vendPortion", base.to_string, sub, context);
-
-            /**
-             * The percentage of the transaction amount that has to be collected from each vending transaction towards settlement of this auxiliary agreement when payments are in arrears.
-             *
-             * Note that there may be multiple tokens vended per vending transaction, but this is not relevant.
-             *
-             */
             base.parse_element (/<cim:AuxiliaryAgreement.vendPortionArrear>([\s\S]*?)<\/cim:AuxiliaryAgreement.vendPortionArrear>/g, obj, "vendPortionArrear", base.to_string, sub, context);
-
-            /**
-             * Customer agreement this (non-service related) auxiliary agreement refers to.
-             *
-             */
-            base.parse_attribute (/<cim:AuxiliaryAgreement.CustomerAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAgreement", sub, context, true);
-
+            base.parse_attribute (/<cim:AuxiliaryAgreement.CustomerAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAgreement", sub, context);
             bucket = context.parsed.AuxiliaryAgreement;
             if (null == bucket)
                 context.parsed.AuxiliaryAgreement = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AuxiliaryAgreement (obj, exporters, full)
+        {
+            var fields = exporters["Agreement"](obj, exporters, false);
+
+            base.export_element (obj, "AuxiliaryAgreement", "arrearsInterest", base.from_string, fields);
+            base.export_element (obj, "AuxiliaryAgreement", "auxCycle", base.from_string, fields);
+            base.export_element (obj, "AuxiliaryAgreement", "auxPriorityCode", base.from_string, fields);
+            base.export_element (obj, "AuxiliaryAgreement", "fixedAmount", base.from_string, fields);
+            base.export_element (obj, "AuxiliaryAgreement", "minAmount", base.from_string, fields);
+            base.export_element (obj, "AuxiliaryAgreement", "payCycle", base.from_string, fields);
+            base.export_element (obj, "AuxiliaryAgreement", "subType", base.from_string, fields);
+            base.export_element (obj, "AuxiliaryAgreement", "vendPortion", base.from_string, fields);
+            base.export_element (obj, "AuxiliaryAgreement", "vendPortionArrear", base.from_string, fields);
+            base.export_attribute (obj, "AuxiliaryAgreement", "CustomerAgreement", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -583,6 +487,16 @@ define
             return (obj);
         }
 
+        function export_Vendor (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Details of a bank account.
          *
@@ -594,42 +508,32 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "BankAccountDetail";
-            /**
-             * Operational account reference number.
-             *
-             */
             base.parse_element (/<cim:BankAccountDetail.accountNumber>([\s\S]*?)<\/cim:BankAccountDetail.accountNumber>/g, obj, "accountNumber", base.to_string, sub, context);
-
-            /**
-             * Name of bank where account is held.
-             *
-             */
             base.parse_element (/<cim:BankAccountDetail.bankName>([\s\S]*?)<\/cim:BankAccountDetail.bankName>/g, obj, "bankName", base.to_string, sub, context);
-
-            /**
-             * Branch of bank where account is held.
-             *
-             */
             base.parse_element (/<cim:BankAccountDetail.branchCode>([\s\S]*?)<\/cim:BankAccountDetail.branchCode>/g, obj, "branchCode", base.to_string, sub, context);
-
-            /**
-             * National identity number (or equivalent) of account holder.
-             *
-             */
             base.parse_element (/<cim:BankAccountDetail.holderID>([\s\S]*?)<\/cim:BankAccountDetail.holderID>/g, obj, "holderID", base.to_string, sub, context);
-
-            /**
-             * Name of account holder.
-             *
-             */
             base.parse_element (/<cim:BankAccountDetail.holderName>([\s\S]*?)<\/cim:BankAccountDetail.holderName>/g, obj, "holderName", base.to_string, sub, context);
-
             bucket = context.parsed.BankAccountDetail;
             if (null == bucket)
                 context.parsed.BankAccountDetail = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_BankAccountDetail (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "BankAccountDetail", "accountNumber", base.from_string, fields);
+            base.export_element (obj, "BankAccountDetail", "bankName", base.from_string, fields);
+            base.export_element (obj, "BankAccountDetail", "branchCode", base.from_string, fields);
+            base.export_element (obj, "BankAccountDetail", "holderID", base.from_string, fields);
+            base.export_element (obj, "BankAccountDetail", "holderName", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -643,18 +547,24 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "PointOfSale";
-            /**
-             * Local description for where this point of sale is physically located.
-             *
-             */
             base.parse_element (/<cim:PointOfSale.location>([\s\S]*?)<\/cim:PointOfSale.location>/g, obj, "location", base.to_string, sub, context);
-
             bucket = context.parsed.PointOfSale;
             if (null == bucket)
                 context.parsed.PointOfSale = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_PointOfSale (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "PointOfSale", "location", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -668,50 +578,32 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ChargeKind";
-            /**
-             * The charge levied for the actual usage of the service, normally expressed in terms of a tariff.
-             *
-             * For example: usage x price per kWh = total charge for consumption.
-             *
-             */
             base.parse_element (/<cim:ChargeKind.consumptionCharge>([\s\S]*?)<\/cim:ChargeKind.consumptionCharge>/g, obj, "consumptionCharge", base.to_string, sub, context);
-
-            /**
-             * The charge related to the usage within a defined time interval, normally expressed in terms of a tariff.
-             *
-             * For example: a maximum-demand tariff will levy an additional charge on top of the consumption charge if the usage exceeds a defined limit per hour.
-             *
-             */
             base.parse_element (/<cim:ChargeKind.demandCharge>([\s\S]*?)<\/cim:ChargeKind.demandCharge>/g, obj, "demandCharge", base.to_string, sub, context);
-
-            /**
-             * Any other charge which is not a consumptionCharge or demandCharge.
-             *
-             * For example: debt recovery, arrears, standing charge or charge for another service such as street lighting.
-             *
-             */
             base.parse_element (/<cim:ChargeKind.auxiliaryCharge>([\s\S]*?)<\/cim:ChargeKind.auxiliaryCharge>/g, obj, "auxiliaryCharge", base.to_string, sub, context);
-
-            /**
-             * Any charge that is classified as a tax of a kind.
-             *
-             * For example: VAT, GST, TV tax, etc.
-             *
-             */
             base.parse_element (/<cim:ChargeKind.taxCharge>([\s\S]*?)<\/cim:ChargeKind.taxCharge>/g, obj, "taxCharge", base.to_string, sub, context);
-
-            /**
-             * Other kind of charge.
-             *
-             */
             base.parse_element (/<cim:ChargeKind.other>([\s\S]*?)<\/cim:ChargeKind.other>/g, obj, "other", base.to_string, sub, context);
-
             bucket = context.parsed.ChargeKind;
             if (null == bucket)
                 context.parsed.ChargeKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ChargeKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "ChargeKind", "consumptionCharge", base.from_string, fields);
+            base.export_element (obj, "ChargeKind", "demandCharge", base.from_string, fields);
+            base.export_element (obj, "ChargeKind", "auxiliaryCharge", base.from_string, fields);
+            base.export_element (obj, "ChargeKind", "taxCharge", base.from_string, fields);
+            base.export_element (obj, "ChargeKind", "other", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -727,58 +619,34 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "Shift";
-            /**
-             * Interval for activity of this shift.
-             *
-             */
             base.parse_element (/<cim:Shift.activityInterval>([\s\S]*?)<\/cim:Shift.activityInterval>/g, obj, "activityInterval", base.to_string, sub, context);
-
-            /**
-             * Total of amounts receipted during this shift that can be manually banked (cash and cheques for example).
-             *
-             * Values are obtained from Receipt attributes:
-             *
-             */
             base.parse_element (/<cim:Shift.receiptsGrandTotalBankable>([\s\S]*?)<\/cim:Shift.receiptsGrandTotalBankable>/g, obj, "receiptsGrandTotalBankable", base.to_string, sub, context);
-
-            /**
-             * Total of amounts receipted during this shift that cannot be manually banked (card payments for example).
-             *
-             * Values are obtained from Receipt attributes:
-             *
-             */
             base.parse_element (/<cim:Shift.receiptsGrandTotalNonBankable>([\s\S]*?)<\/cim:Shift.receiptsGrandTotalNonBankable>/g, obj, "receiptsGrandTotalNonBankable", base.to_string, sub, context);
-
-            /**
-             * Cumulative amount in error due to process rounding not reflected in receiptsGrandTotal.
-             *
-             * Values are obtained from Receipt attributes:
-             *
-             */
             base.parse_element (/<cim:Shift.receiptsGrandTotalRounding>([\s\S]*?)<\/cim:Shift.receiptsGrandTotalRounding>/g, obj, "receiptsGrandTotalRounding", base.to_string, sub, context);
-
-            /**
-             * Cumulative total of transacted amounts during this shift.
-             *
-             * Values are obtained from transaction:
-             *
-             */
             base.parse_element (/<cim:Shift.transactionsGrandTotal>([\s\S]*?)<\/cim:Shift.transactionsGrandTotal>/g, obj, "transactionsGrandTotal", base.to_string, sub, context);
-
-            /**
-             * Cumulative amount in error due to process rounding not reflected in transactionsGandTotal.
-             *
-             * Values are obtained from Transaction attributes:
-             *
-             */
             base.parse_element (/<cim:Shift.transactionsGrandTotalRounding>([\s\S]*?)<\/cim:Shift.transactionsGrandTotalRounding>/g, obj, "transactionsGrandTotalRounding", base.to_string, sub, context);
-
             bucket = context.parsed.Shift;
             if (null == bucket)
                 context.parsed.Shift = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Shift (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "Shift", "activityInterval", base.from_string, fields);
+            base.export_element (obj, "Shift", "receiptsGrandTotalBankable", base.from_string, fields);
+            base.export_element (obj, "Shift", "receiptsGrandTotalNonBankable", base.from_string, fields);
+            base.export_element (obj, "Shift", "receiptsGrandTotalRounding", base.from_string, fields);
+            base.export_element (obj, "Shift", "transactionsGrandTotal", base.from_string, fields);
+            base.export_element (obj, "Shift", "transactionsGrandTotalRounding", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -792,30 +660,28 @@ define
 
             obj = parse_Shift (context, sub);
             obj.cls = "CashierShift";
-            /**
-             * The amount of cash that the cashier brings to start the shift and that will be taken away at the end of the shift; i.e. the cash float does not get banked.
-             *
-             */
             base.parse_element (/<cim:CashierShift.cashFloat>([\s\S]*?)<\/cim:CashierShift.cashFloat>/g, obj, "cashFloat", base.to_string, sub, context);
-
-            /**
-             * Cashier operating this shift.
-             *
-             */
-            base.parse_attribute (/<cim:CashierShift.Cashier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Cashier", sub, context, true);
-
-            /**
-             * Point of sale that is in operation during this shift.
-             *
-             */
-            base.parse_attribute (/<cim:CashierShift.PointOfSale\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PointOfSale", sub, context, true);
-
+            base.parse_attribute (/<cim:CashierShift.Cashier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Cashier", sub, context);
+            base.parse_attribute (/<cim:CashierShift.PointOfSale\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PointOfSale", sub, context);
             bucket = context.parsed.CashierShift;
             if (null == bucket)
                 context.parsed.CashierShift = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_CashierShift (obj, exporters, full)
+        {
+            var fields = exporters["Shift"](obj, exporters, false);
+
+            base.export_element (obj, "CashierShift", "cashFloat", base.from_string, fields);
+            base.export_attribute (obj, "CashierShift", "Cashier", fields);
+            base.export_attribute (obj, "CashierShift", "PointOfSale", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -829,36 +695,30 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "LineDetail";
-            /**
-             * Amount for this line item.
-             *
-             */
             base.parse_element (/<cim:LineDetail.amount>([\s\S]*?)<\/cim:LineDetail.amount>/g, obj, "amount", base.to_string, sub, context);
-
-            /**
-             * Date and time when this line was created in the application process.
-             *
-             */
             base.parse_element (/<cim:LineDetail.dateTime>([\s\S]*?)<\/cim:LineDetail.dateTime>/g, obj, "dateTime", base.to_datetime, sub, context);
-
-            /**
-             * Free format note relevant to this line.
-             *
-             */
             base.parse_element (/<cim:LineDetail.note>([\s\S]*?)<\/cim:LineDetail.note>/g, obj, "note", base.to_string, sub, context);
-
-            /**
-             * Totalised monetary value of all errors due to process rounding or truncating that is not reflected in 'amount'.
-             *
-             */
             base.parse_element (/<cim:LineDetail.rounding>([\s\S]*?)<\/cim:LineDetail.rounding>/g, obj, "rounding", base.to_string, sub, context);
-
             bucket = context.parsed.LineDetail;
             if (null == bucket)
                 context.parsed.LineDetail = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_LineDetail (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "LineDetail", "amount", base.from_string, fields);
+            base.export_element (obj, "LineDetail", "dateTime", base.from_datetime, fields);
+            base.export_element (obj, "LineDetail", "note", base.from_string, fields);
+            base.export_element (obj, "LineDetail", "rounding", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -874,18 +734,24 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "Cashier";
-            /**
-             * Electronic address.
-             *
-             */
             base.parse_element (/<cim:Cashier.electronicAddress>([\s\S]*?)<\/cim:Cashier.electronicAddress>/g, obj, "electronicAddress", base.to_string, sub, context);
-
             bucket = context.parsed.Cashier;
             if (null == bucket)
                 context.parsed.Cashier = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Cashier (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "Cashier", "electronicAddress", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -899,24 +765,26 @@ define
 
             obj = Common.parse_OrganisationRole (context, sub);
             obj.cls = "ServiceSupplier";
-            /**
-             * Unique transaction reference prefix number issued to an entity by the International Organization for Standardization for the purpose of tagging onto electronic financial transactions, as defined in ISO/IEC 7812-1 and ISO/IEC 7812-2.
-             *
-             */
             base.parse_element (/<cim:ServiceSupplier.issuerIdentificationNumber>([\s\S]*?)<\/cim:ServiceSupplier.issuerIdentificationNumber>/g, obj, "issuerIdentificationNumber", base.to_string, sub, context);
-
-            /**
-             * Kind of supplier.
-             *
-             */
             base.parse_element (/<cim:ServiceSupplier.kind>([\s\S]*?)<\/cim:ServiceSupplier.kind>/g, obj, "kind", base.to_string, sub, context);
-
             bucket = context.parsed.ServiceSupplier;
             if (null == bucket)
                 context.parsed.ServiceSupplier = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ServiceSupplier (obj, exporters, full)
+        {
+            var fields = exporters["OrganisationRole"](obj, exporters, false);
+
+            base.export_element (obj, "ServiceSupplier", "issuerIdentificationNumber", base.from_string, fields);
+            base.export_element (obj, "ServiceSupplier", "kind", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -930,48 +798,34 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Cheque";
-            /**
-             * Details of the account holder and bank.
-             *
-             */
             base.parse_element (/<cim:Cheque.bankAccountDetail>([\s\S]*?)<\/cim:Cheque.bankAccountDetail>/g, obj, "bankAccountDetail", base.to_string, sub, context);
-
-            /**
-             * Cheque reference number as printed on the cheque.
-             *
-             */
             base.parse_element (/<cim:Cheque.chequeNumber>([\s\S]*?)<\/cim:Cheque.chequeNumber>/g, obj, "chequeNumber", base.to_string, sub, context);
-
-            /**
-             * Date when cheque becomes valid.
-             *
-             */
             base.parse_element (/<cim:Cheque.date>([\s\S]*?)<\/cim:Cheque.date>/g, obj, "date", base.to_string, sub, context);
-
-            /**
-             * Kind of cheque.
-             *
-             */
             base.parse_element (/<cim:Cheque.kind>([\s\S]*?)<\/cim:Cheque.kind>/g, obj, "kind", base.to_string, sub, context);
-
-            /**
-             * The magnetic ink character recognition number printed on the cheque.
-             *
-             */
             base.parse_element (/<cim:Cheque.micrNumber>([\s\S]*?)<\/cim:Cheque.micrNumber>/g, obj, "micrNumber", base.to_string, sub, context);
-
-            /**
-             * Payment tender the cheque is being used for.
-             *
-             */
-            base.parse_attribute (/<cim:Cheque.Tender\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Tender", sub, context, true);
-
+            base.parse_attribute (/<cim:Cheque.Tender\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Tender", sub, context);
             bucket = context.parsed.Cheque;
             if (null == bucket)
                 context.parsed.Cheque = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Cheque (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "Cheque", "bankAccountDetail", base.from_string, fields);
+            base.export_element (obj, "Cheque", "chequeNumber", base.from_string, fields);
+            base.export_element (obj, "Cheque", "date", base.from_string, fields);
+            base.export_element (obj, "Cheque", "kind", base.from_string, fields);
+            base.export_element (obj, "Cheque", "micrNumber", base.from_string, fields);
+            base.export_attribute (obj, "Cheque", "Tender", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -985,30 +839,28 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "SupplierKind";
-            /**
-             * Entity that delivers the service to the customer.
-             *
-             */
             base.parse_element (/<cim:SupplierKind.utility>([\s\S]*?)<\/cim:SupplierKind.utility>/g, obj, "utility", base.to_string, sub, context);
-
-            /**
-             * Entity that sells the service, but does not deliver to the customer; applies to the deregulated markets.
-             *
-             */
             base.parse_element (/<cim:SupplierKind.retailer>([\s\S]*?)<\/cim:SupplierKind.retailer>/g, obj, "retailer", base.to_string, sub, context);
-
-            /**
-             * Other kind of supplier.
-             *
-             */
             base.parse_element (/<cim:SupplierKind.other>([\s\S]*?)<\/cim:SupplierKind.other>/g, obj, "other", base.to_string, sub, context);
-
             bucket = context.parsed.SupplierKind;
             if (null == bucket)
                 context.parsed.SupplierKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_SupplierKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "SupplierKind", "utility", base.from_string, fields);
+            base.export_element (obj, "SupplierKind", "retailer", base.from_string, fields);
+            base.export_element (obj, "SupplierKind", "other", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -1024,48 +876,34 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "Tender";
-            /**
-             * Amount tendered by customer.
-             *
-             */
             base.parse_element (/<cim:Tender.amount>([\s\S]*?)<\/cim:Tender.amount>/g, obj, "amount", base.to_string, sub, context);
-
-            /**
-             * Difference between amount tendered by customer and the amount charged by point of sale.
-             *
-             */
             base.parse_element (/<cim:Tender.change>([\s\S]*?)<\/cim:Tender.change>/g, obj, "change", base.to_string, sub, context);
-
-            /**
-             * Kind of tender from customer.
-             *
-             */
             base.parse_element (/<cim:Tender.kind>([\s\S]*?)<\/cim:Tender.kind>/g, obj, "kind", base.to_string, sub, context);
-
-            /**
-             * Cheque used to tender payment.
-             *
-             */
-            base.parse_attribute (/<cim:Tender.Cheque\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Cheque", sub, context, true);
-
-            /**
-             * Card used to tender payment.
-             *
-             */
-            base.parse_attribute (/<cim:Tender.Card\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Card", sub, context, true);
-
-            /**
-             * Receipt that recorded this receiving of a payment in the form of tenders.
-             *
-             */
-            base.parse_attribute (/<cim:Tender.Receipt\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Receipt", sub, context, true);
-
+            base.parse_attribute (/<cim:Tender.Cheque\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Cheque", sub, context);
+            base.parse_attribute (/<cim:Tender.Card\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Card", sub, context);
+            base.parse_attribute (/<cim:Tender.Receipt\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Receipt", sub, context);
             bucket = context.parsed.Tender;
             if (null == bucket)
                 context.parsed.Tender = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Tender (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "Tender", "amount", base.from_string, fields);
+            base.export_element (obj, "Tender", "change", base.from_string, fields);
+            base.export_element (obj, "Tender", "kind", base.from_string, fields);
+            base.export_attribute (obj, "Tender", "Cheque", fields);
+            base.export_attribute (obj, "Tender", "Card", fields);
+            base.export_attribute (obj, "Tender", "Receipt", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -1087,6 +925,16 @@ define
             return (obj);
         }
 
+        function export_Transactor (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Variable and dynamic part of auxiliary agreement, generally representing the current state of the account related to the outstanding balance defined in auxiliary agreement.
          *
@@ -1098,50 +946,34 @@ define
 
             obj = Common.parse_Document (context, sub);
             obj.cls = "AuxiliaryAccount";
-            /**
-             * The total amount currently remaining on this account that is required to be paid in order to settle the account to zero.
-             *
-             * This excludes any due amounts not yet paid.
-             *
-             */
             base.parse_element (/<cim:AuxiliaryAccount.balance>([\s\S]*?)<\/cim:AuxiliaryAccount.balance>/g, obj, "balance", base.to_string, sub, context);
-
-            /**
-             * Current amounts now due for payment on this account.
-             *
-             */
             base.parse_element (/<cim:AuxiliaryAccount.due>([\s\S]*?)<\/cim:AuxiliaryAccount.due>/g, obj, "due", base.to_string, sub, context);
-
-            /**
-             * Details of the last credit transaction performed on this account.
-             *
-             */
             base.parse_element (/<cim:AuxiliaryAccount.lastCredit>([\s\S]*?)<\/cim:AuxiliaryAccount.lastCredit>/g, obj, "lastCredit", base.to_string, sub, context);
-
-            /**
-             * Details of the last debit transaction performed on this account.
-             *
-             */
             base.parse_element (/<cim:AuxiliaryAccount.lastDebit>([\s\S]*?)<\/cim:AuxiliaryAccount.lastDebit>/g, obj, "lastDebit", base.to_string, sub, context);
-
-            /**
-             * The initial principle amount, with which this account was instantiated.
-             *
-             */
             base.parse_element (/<cim:AuxiliaryAccount.principleAmount>([\s\S]*?)<\/cim:AuxiliaryAccount.principleAmount>/g, obj, "principleAmount", base.to_string, sub, context);
-
-            /**
-             * Auxiliary agreement regulating this account.
-             *
-             */
-            base.parse_attribute (/<cim:AuxiliaryAccount.AuxiliaryAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxiliaryAgreement", sub, context, true);
-
+            base.parse_attribute (/<cim:AuxiliaryAccount.AuxiliaryAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxiliaryAgreement", sub, context);
             bucket = context.parsed.AuxiliaryAccount;
             if (null == bucket)
                 context.parsed.AuxiliaryAccount = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AuxiliaryAccount (obj, exporters, full)
+        {
+            var fields = exporters["Document"](obj, exporters, false);
+
+            base.export_element (obj, "AuxiliaryAccount", "balance", base.from_string, fields);
+            base.export_element (obj, "AuxiliaryAccount", "due", base.from_string, fields);
+            base.export_element (obj, "AuxiliaryAccount", "lastCredit", base.from_string, fields);
+            base.export_element (obj, "AuxiliaryAccount", "lastDebit", base.from_string, fields);
+            base.export_element (obj, "AuxiliaryAccount", "principleAmount", base.from_string, fields);
+            base.export_attribute (obj, "AuxiliaryAccount", "AuxiliaryAgreement", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -1155,36 +987,30 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "AccountingUnit";
-            /**
-             * Unit of service.
-             *
-             */
             base.parse_element (/<cim:AccountingUnit.energyUnit>([\s\S]*?)<\/cim:AccountingUnit.energyUnit>/g, obj, "energyUnit", base.to_string, sub, context);
-
-            /**
-             * Unit of currency.
-             *
-             */
             base.parse_element (/<cim:AccountingUnit.monetaryUnit>([\s\S]*?)<\/cim:AccountingUnit.monetaryUnit>/g, obj, "monetaryUnit", base.to_string, sub, context);
-
-            /**
-             * Multiplier for the 'energyUnit' or 'monetaryUnit'.
-             *
-             */
             base.parse_element (/<cim:AccountingUnit.multiplier>([\s\S]*?)<\/cim:AccountingUnit.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-
-            /**
-             * Value expressed in applicable units.
-             *
-             */
             base.parse_element (/<cim:AccountingUnit.value>([\s\S]*?)<\/cim:AccountingUnit.value>/g, obj, "value", base.to_float, sub, context);
-
             bucket = context.parsed.AccountingUnit;
             if (null == bucket)
                 context.parsed.AccountingUnit = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AccountingUnit (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "AccountingUnit", "energyUnit", base.from_string, fields);
+            base.export_element (obj, "AccountingUnit", "monetaryUnit", base.from_string, fields);
+            base.export_element (obj, "AccountingUnit", "multiplier", base.from_string, fields);
+            base.export_element (obj, "AccountingUnit", "value", base.from_float, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -1208,6 +1034,16 @@ define
             return (obj);
         }
 
+        function export_MerchantAgreement (obj, exporters, full)
+        {
+            var fields = exporters["Agreement"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Kind of transaction.
          *
@@ -1219,90 +1055,48 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "TransactionKind";
-            /**
-             * Payment for a service.
-             *
-             */
             base.parse_element (/<cim:TransactionKind.serviceChargePayment>([\s\S]*?)<\/cim:TransactionKind.serviceChargePayment>/g, obj, "serviceChargePayment", base.to_string, sub, context);
-
-            /**
-             * Payment for a tax.
-             *
-             */
             base.parse_element (/<cim:TransactionKind.taxChargePayment>([\s\S]*?)<\/cim:TransactionKind.taxChargePayment>/g, obj, "taxChargePayment", base.to_string, sub, context);
-
-            /**
-             * Payment against a specified auxiliary account.
-             *
-             */
             base.parse_element (/<cim:TransactionKind.auxiliaryChargePayment>([\s\S]*?)<\/cim:TransactionKind.auxiliaryChargePayment>/g, obj, "auxiliaryChargePayment", base.to_string, sub, context);
-
-            /**
-             * Payment against a specified account.
-             *
-             */
             base.parse_element (/<cim:TransactionKind.accountPayment>([\s\S]*?)<\/cim:TransactionKind.accountPayment>/g, obj, "accountPayment", base.to_string, sub, context);
-
-            /**
-             * Payment against an item other than an account.
-             *
-             */
             base.parse_element (/<cim:TransactionKind.diversePayment>([\s\S]*?)<\/cim:TransactionKind.diversePayment>/g, obj, "diversePayment", base.to_string, sub, context);
-
-            /**
-             * Reversal of a previous transaction.
-             *
-             */
             base.parse_element (/<cim:TransactionKind.transactionReversal>([\s\S]*?)<\/cim:TransactionKind.transactionReversal>/g, obj, "transactionReversal", base.to_string, sub, context);
-
-            /**
-             * Payment for a credit token sale to a customer.
-             *
-             */
             base.parse_element (/<cim:TransactionKind.tokenSalePayment>([\s\S]*?)<\/cim:TransactionKind.tokenSalePayment>/g, obj, "tokenSalePayment", base.to_string, sub, context);
-
-            /**
-             * Issue of a free credit token where the donor is the supplier.
-             *
-             */
             base.parse_element (/<cim:TransactionKind.tokenFreeIssue>([\s\S]*?)<\/cim:TransactionKind.tokenFreeIssue>/g, obj, "tokenFreeIssue", base.to_string, sub, context);
-
-            /**
-             * Issue of a free credit token where the donor is a 3<sup>rd</sup> party.
-             *
-             */
             base.parse_element (/<cim:TransactionKind.tokenGrant>([\s\S]*?)<\/cim:TransactionKind.tokenGrant>/g, obj, "tokenGrant", base.to_string, sub, context);
-
-            /**
-             * Exchange of a previously issued token for a new token.
-             *
-             */
             base.parse_element (/<cim:TransactionKind.tokenExchange>([\s\S]*?)<\/cim:TransactionKind.tokenExchange>/g, obj, "tokenExchange", base.to_string, sub, context);
-
-            /**
-             * Cancellation of a previously issued token.
-             *
-             */
             base.parse_element (/<cim:TransactionKind.tokenCancellation>([\s\S]*?)<\/cim:TransactionKind.tokenCancellation>/g, obj, "tokenCancellation", base.to_string, sub, context);
-
-            /**
-             * Issue of token that will alter the meter configuration.
-             *
-             */
             base.parse_element (/<cim:TransactionKind.meterConfigurationToken>([\s\S]*?)<\/cim:TransactionKind.meterConfigurationToken>/g, obj, "meterConfigurationToken", base.to_string, sub, context);
-
-            /**
-             * Other kind of transaction.
-             *
-             */
             base.parse_element (/<cim:TransactionKind.other>([\s\S]*?)<\/cim:TransactionKind.other>/g, obj, "other", base.to_string, sub, context);
-
             bucket = context.parsed.TransactionKind;
             if (null == bucket)
                 context.parsed.TransactionKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_TransactionKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "TransactionKind", "serviceChargePayment", base.from_string, fields);
+            base.export_element (obj, "TransactionKind", "taxChargePayment", base.from_string, fields);
+            base.export_element (obj, "TransactionKind", "auxiliaryChargePayment", base.from_string, fields);
+            base.export_element (obj, "TransactionKind", "accountPayment", base.from_string, fields);
+            base.export_element (obj, "TransactionKind", "diversePayment", base.from_string, fields);
+            base.export_element (obj, "TransactionKind", "transactionReversal", base.from_string, fields);
+            base.export_element (obj, "TransactionKind", "tokenSalePayment", base.from_string, fields);
+            base.export_element (obj, "TransactionKind", "tokenFreeIssue", base.from_string, fields);
+            base.export_element (obj, "TransactionKind", "tokenGrant", base.from_string, fields);
+            base.export_element (obj, "TransactionKind", "tokenExchange", base.from_string, fields);
+            base.export_element (obj, "TransactionKind", "tokenCancellation", base.from_string, fields);
+            base.export_element (obj, "TransactionKind", "meterConfigurationToken", base.from_string, fields);
+            base.export_element (obj, "TransactionKind", "other", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -1316,102 +1110,52 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "Transaction";
-            /**
-             * Formal reference for use with diverse payment (traffic fine for example).
-             *
-             */
             base.parse_element (/<cim:Transaction.diverseReference>([\s\S]*?)<\/cim:Transaction.diverseReference>/g, obj, "diverseReference", base.to_string, sub, context);
-
-            /**
-             * Reference to the entity that is the source of 'amount' (for example: customer for token purchase; or supplier for free issue token).
-             *
-             */
             base.parse_element (/<cim:Transaction.donorReference>([\s\S]*?)<\/cim:Transaction.donorReference>/g, obj, "donorReference", base.to_string, sub, context);
-
-            /**
-             * Kind of transaction.
-             *
-             */
             base.parse_element (/<cim:Transaction.kind>([\s\S]*?)<\/cim:Transaction.kind>/g, obj, "kind", base.to_string, sub, context);
-
-            /**
-             * Transaction amount, rounding, date and note for this transaction line.
-             *
-             */
             base.parse_element (/<cim:Transaction.line>([\s\S]*?)<\/cim:Transaction.line>/g, obj, "line", base.to_string, sub, context);
-
-            /**
-             * Reference to the entity that is the recipient of 'amount' (for example, supplier for service charge payment; or tax receiver for VAT).
-             *
-             */
             base.parse_element (/<cim:Transaction.receiverReference>([\s\S]*?)<\/cim:Transaction.receiverReference>/g, obj, "receiverReference", base.to_string, sub, context);
-
-            /**
-             * (if 'kind' is transactionReversal) Reference to the original transaction that is being reversed by this transaction.
-             *
-             */
             base.parse_element (/<cim:Transaction.reversedId>([\s\S]*?)<\/cim:Transaction.reversedId>/g, obj, "reversedId", base.to_string, sub, context);
-
-            /**
-             * Actual amount of service units that is being paid for.
-             *
-             */
             base.parse_element (/<cim:Transaction.serviceUnitsEnergy>([\s\S]*?)<\/cim:Transaction.serviceUnitsEnergy>/g, obj, "serviceUnitsEnergy", base.to_string, sub, context);
-
-            /**
-             * Number of service units not reflected in 'serviceUnitsEnergy' due to process rounding or truncating errors.
-             *
-             */
             base.parse_element (/<cim:Transaction.serviceUnitsError>([\s\S]*?)<\/cim:Transaction.serviceUnitsError>/g, obj, "serviceUnitsError", base.to_string, sub, context);
-
-            /**
-             * Pricing structure applicable for this transaction.
-             *
-             */
-            base.parse_attribute (/<cim:Transaction.PricingStructure\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PricingStructure", sub, context, true);
-
-            /**
-             * Auxiliary account for this payment transaction.
-             *
-             */
-            base.parse_attribute (/<cim:Transaction.AuxiliaryAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxiliaryAccount", sub, context, true);
-
-            /**
-             * The receipted payment for which this transaction has been recorded.
-             *
-             */
-            base.parse_attribute (/<cim:Transaction.Receipt\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Receipt", sub, context, true);
-
-            /**
-             * Vendor shift during which this transaction was recorded.
-             *
-             */
-            base.parse_attribute (/<cim:Transaction.VendorShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VendorShift", sub, context, true);
-
-            /**
-             * Cashier shift during which this transaction was recorded.
-             *
-             */
-            base.parse_attribute (/<cim:Transaction.CashierShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CashierShift", sub, context, true);
-
-            /**
-             * Meter for this vending transaction.
-             *
-             */
-            base.parse_attribute (/<cim:Transaction.Meter\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Meter", sub, context, true);
-
-            /**
-             * Customer account for this payment transaction.
-             *
-             */
-            base.parse_attribute (/<cim:Transaction.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAccount", sub, context, true);
-
+            base.parse_attribute (/<cim:Transaction.PricingStructure\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PricingStructure", sub, context);
+            base.parse_attribute (/<cim:Transaction.AuxiliaryAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxiliaryAccount", sub, context);
+            base.parse_attribute (/<cim:Transaction.Receipt\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Receipt", sub, context);
+            base.parse_attribute (/<cim:Transaction.VendorShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VendorShift", sub, context);
+            base.parse_attribute (/<cim:Transaction.CashierShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CashierShift", sub, context);
+            base.parse_attribute (/<cim:Transaction.Meter\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Meter", sub, context);
+            base.parse_attribute (/<cim:Transaction.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAccount", sub, context);
             bucket = context.parsed.Transaction;
             if (null == bucket)
                 context.parsed.Transaction = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Transaction (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "Transaction", "diverseReference", base.from_string, fields);
+            base.export_element (obj, "Transaction", "donorReference", base.from_string, fields);
+            base.export_element (obj, "Transaction", "kind", base.from_string, fields);
+            base.export_element (obj, "Transaction", "line", base.from_string, fields);
+            base.export_element (obj, "Transaction", "receiverReference", base.from_string, fields);
+            base.export_element (obj, "Transaction", "reversedId", base.from_string, fields);
+            base.export_element (obj, "Transaction", "serviceUnitsEnergy", base.from_string, fields);
+            base.export_element (obj, "Transaction", "serviceUnitsError", base.from_string, fields);
+            base.export_attribute (obj, "Transaction", "PricingStructure", fields);
+            base.export_attribute (obj, "Transaction", "AuxiliaryAccount", fields);
+            base.export_attribute (obj, "Transaction", "Receipt", fields);
+            base.export_attribute (obj, "Transaction", "VendorShift", fields);
+            base.export_attribute (obj, "Transaction", "CashierShift", fields);
+            base.export_attribute (obj, "Transaction", "Meter", fields);
+            base.export_attribute (obj, "Transaction", "CustomerAccount", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -1427,24 +1171,9 @@ define
 
             obj = Common.parse_Document (context, sub);
             obj.cls = "MerchantAccount";
-            /**
-             * The current operating balance of this account.
-             *
-             */
             base.parse_element (/<cim:MerchantAccount.currentBalance>([\s\S]*?)<\/cim:MerchantAccount.currentBalance>/g, obj, "currentBalance", base.to_string, sub, context);
-
-            /**
-             * The balance of this account after taking into account any pending debits from VendorShift.merchantDebitAmount and pending credits from BankStatement.merchantCreditAmount or credits (see also BankStatement attributes and VendorShift attributes).
-             *
-             */
             base.parse_element (/<cim:MerchantAccount.provisionalBalance>([\s\S]*?)<\/cim:MerchantAccount.provisionalBalance>/g, obj, "provisionalBalance", base.to_string, sub, context);
-
-            /**
-             * Merchant agreement that instantiated this merchant account.
-             *
-             */
-            base.parse_attribute (/<cim:MerchantAccount.MerchantAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MerchantAgreement", sub, context, true);
-
+            base.parse_attribute (/<cim:MerchantAccount.MerchantAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MerchantAgreement", sub, context);
             bucket = context.parsed.MerchantAccount;
             if (null == bucket)
                 context.parsed.MerchantAccount = bucket = {};
@@ -1453,39 +1182,83 @@ define
             return (obj);
         }
 
+        function export_MerchantAccount (obj, exporters, full)
+        {
+            var fields = exporters["Document"](obj, exporters, false);
+
+            base.export_element (obj, "MerchantAccount", "currentBalance", base.from_string, fields);
+            base.export_element (obj, "MerchantAccount", "provisionalBalance", base.from_string, fields);
+            base.export_attribute (obj, "MerchantAccount", "MerchantAgreement", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
-                parse_Charge: parse_Charge,
+                export_TimeTariffInterval: export_TimeTariffInterval,
+                export_Vendor: export_Vendor,
                 parse_MerchantAgreement: parse_MerchantAgreement,
-                parse_Tender: parse_Tender,
                 parse_TimeTariffInterval: parse_TimeTariffInterval,
+                export_TenderKind: export_TenderKind,
                 parse_Due: parse_Due,
                 parse_ChequeKind: parse_ChequeKind,
-                parse_Vendor: parse_Vendor,
                 parse_AccountingUnit: parse_AccountingUnit,
-                parse_CashierShift: parse_CashierShift,
-                parse_TariffProfile: parse_TariffProfile,
-                parse_ConsumptionTariffInterval: parse_ConsumptionTariffInterval,
                 parse_MerchantAccount: parse_MerchantAccount,
                 parse_PointOfSale: parse_PointOfSale,
+                export_LineDetail: export_LineDetail,
+                export_Due: export_Due,
+                export_Card: export_Card,
+                export_TariffProfile: export_TariffProfile,
+                export_Charge: export_Charge,
+                export_ChequeKind: export_ChequeKind,
+                export_AuxiliaryAccount: export_AuxiliaryAccount,
+                export_Transactor: export_Transactor,
+                parse_Shift: parse_Shift,
+                export_ServiceSupplier: export_ServiceSupplier,
+                export_Transaction: export_Transaction,
+                parse_AuxiliaryAgreement: parse_AuxiliaryAgreement,
+                parse_VendorShift: parse_VendorShift,
+                export_Tender: export_Tender,
+                parse_BankAccountDetail: parse_BankAccountDetail,
+                export_BankAccountDetail: export_BankAccountDetail,
+                export_ConsumptionTariffInterval: export_ConsumptionTariffInterval,
+                export_AuxiliaryAgreement: export_AuxiliaryAgreement,
+                parse_Cheque: parse_Cheque,
+                parse_ServiceSupplier: parse_ServiceSupplier,
+                export_SupplierKind: export_SupplierKind,
+                parse_Charge: parse_Charge,
+                parse_Tender: parse_Tender,
+                export_Receipt: export_Receipt,
+                export_VendorShift: export_VendorShift,
+                export_AccountingUnit: export_AccountingUnit,
+                parse_Vendor: parse_Vendor,
+                export_TransactionKind: export_TransactionKind,
+                export_PointOfSale: export_PointOfSale,
+                parse_CashierShift: parse_CashierShift,
+                export_Cheque: export_Cheque,
+                export_ChargeKind: export_ChargeKind,
+                parse_TariffProfile: parse_TariffProfile,
+                parse_ConsumptionTariffInterval: parse_ConsumptionTariffInterval,
                 parse_SupplierKind: parse_SupplierKind,
+                export_CashierShift: export_CashierShift,
                 parse_Transactor: parse_Transactor,
                 parse_LineDetail: parse_LineDetail,
+                export_MerchantAccount: export_MerchantAccount,
                 parse_AccountMovement: parse_AccountMovement,
                 parse_ChargeKind: parse_ChargeKind,
                 parse_Cashier: parse_Cashier,
-                parse_Shift: parse_Shift,
+                export_MerchantAgreement: export_MerchantAgreement,
                 parse_TransactionKind: parse_TransactionKind,
                 parse_Transaction: parse_Transaction,
-                parse_AuxiliaryAgreement: parse_AuxiliaryAgreement,
-                parse_VendorShift: parse_VendorShift,
                 parse_AuxiliaryAccount: parse_AuxiliaryAccount,
                 parse_TenderKind: parse_TenderKind,
-                parse_BankAccountDetail: parse_BankAccountDetail,
                 parse_Receipt: parse_Receipt,
-                parse_Cheque: parse_Cheque,
-                parse_Card: parse_Card,
-                parse_ServiceSupplier: parse_ServiceSupplier
+                export_AccountMovement: export_AccountMovement,
+                export_Shift: export_Shift,
+                export_Cashier: export_Cashier,
+                parse_Card: parse_Card
             }
         );
     }

@@ -27,36 +27,30 @@ define
 
             obj = StandardModels.parse_RotatingMachineDynamics (context, sub);
             obj.cls = "AsynchronousMachineDynamics";
-            /**
-             * Turbine-governor model associated with this asynchronous machine model.
-             *
-             */
-            base.parse_attribute (/<cim:AsynchronousMachineDynamics.TurbineGovernorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TurbineGovernorDynamics", sub, context, true);
-
-            /**
-             * Asynchronous machine to which this asynchronous machine dynamics model applies.
-             *
-             */
-            base.parse_attribute (/<cim:AsynchronousMachineDynamics.AsynchronousMachine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AsynchronousMachine", sub, context, true);
-
-            /**
-             * Wind generator type 1 or 2 model associated with this asynchronous machine model.
-             *
-             */
-            base.parse_attribute (/<cim:AsynchronousMachineDynamics.WindTurbineType1or2Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType1or2Dynamics", sub, context, true);
-
-            /**
-             * Mechanical load model associated with this asynchronous machine model.
-             *
-             */
-            base.parse_attribute (/<cim:AsynchronousMachineDynamics.MechanicalLoadDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MechanicalLoadDynamics", sub, context, true);
-
+            base.parse_attribute (/<cim:AsynchronousMachineDynamics.TurbineGovernorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TurbineGovernorDynamics", sub, context);
+            base.parse_attribute (/<cim:AsynchronousMachineDynamics.AsynchronousMachine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AsynchronousMachine", sub, context);
+            base.parse_attribute (/<cim:AsynchronousMachineDynamics.WindTurbineType1or2Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType1or2Dynamics", sub, context);
+            base.parse_attribute (/<cim:AsynchronousMachineDynamics.MechanicalLoadDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MechanicalLoadDynamics", sub, context);
             bucket = context.parsed.AsynchronousMachineDynamics;
             if (null == bucket)
                 context.parsed.AsynchronousMachineDynamics = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AsynchronousMachineDynamics (obj, exporters, full)
+        {
+            var fields = exporters["RotatingMachineDynamics"](obj, exporters, false);
+
+            base.export_attribute (obj, "AsynchronousMachineDynamics", "TurbineGovernorDynamics", fields);
+            base.export_attribute (obj, "AsynchronousMachineDynamics", "AsynchronousMachine", fields);
+            base.export_attribute (obj, "AsynchronousMachineDynamics", "WindTurbineType1or2Dynamics", fields);
+            base.export_attribute (obj, "AsynchronousMachineDynamics", "MechanicalLoadDynamics", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -85,42 +79,32 @@ define
 
             obj = parse_AsynchronousMachineDynamics (context, sub);
             obj.cls = "AsynchronousMachineEquivalentCircuit";
-            /**
-             * Damper 1 winding resistance.
-             *
-             */
             base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.rr1>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.rr1>/g, obj, "rr1", base.to_string, sub, context);
-
-            /**
-             * Damper 2 winding resistance.
-             *
-             */
             base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.rr2>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.rr2>/g, obj, "rr2", base.to_string, sub, context);
-
-            /**
-             * Damper 1 winding leakage reactance.
-             *
-             */
             base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xlr1>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xlr1>/g, obj, "xlr1", base.to_string, sub, context);
-
-            /**
-             * Damper 2 winding leakage reactance.
-             *
-             */
             base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xlr2>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xlr2>/g, obj, "xlr2", base.to_string, sub, context);
-
-            /**
-             * Magnetizing reactance.
-             *
-             */
             base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xm>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xm>/g, obj, "xm", base.to_string, sub, context);
-
             bucket = context.parsed.AsynchronousMachineEquivalentCircuit;
             if (null == bucket)
                 context.parsed.AsynchronousMachineEquivalentCircuit = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AsynchronousMachineEquivalentCircuit (obj, exporters, full)
+        {
+            var fields = exporters["AsynchronousMachineDynamics"](obj, exporters, false);
+
+            base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "rr1", base.from_string, fields);
+            base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "rr2", base.from_string, fields);
+            base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xlr1", base.from_string, fields);
+            base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xlr2", base.from_string, fields);
+            base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xm", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -155,46 +139,11 @@ define
 
             obj = parse_AsynchronousMachineDynamics (context, sub);
             obj.cls = "AsynchronousMachineTimeConstantReactance";
-            /**
-             * Transient rotor time constant (T'o) (&gt; T''o).
-             *
-             * Typical Value = 5.
-             *
-             */
             base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.tpo>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.tpo>/g, obj, "tpo", base.to_string, sub, context);
-
-            /**
-             * Subtransient rotor time constant (T''o) (&gt; 0).
-             *
-             * Typical Value = 0.03.
-             *
-             */
             base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.tppo>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.tppo>/g, obj, "tppo", base.to_string, sub, context);
-
-            /**
-             * Transient reactance (unsaturated) (X') (&gt;=X'').
-             *
-             * Typical Value = 0.5.
-             *
-             */
             base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xp>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xp>/g, obj, "xp", base.to_string, sub, context);
-
-            /**
-             * Subtransient reactance (unsaturated) (X'') (&gt; Xl).
-             *
-             * Typical Value = 0.2.
-             *
-             */
             base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xpp>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xpp>/g, obj, "xpp", base.to_string, sub, context);
-
-            /**
-             * Synchronous reactance (Xs) (&gt;= X').
-             *
-             * Typical Value = 1.8.
-             *
-             */
             base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xs>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xs>/g, obj, "xs", base.to_string, sub, context);
-
             bucket = context.parsed.AsynchronousMachineTimeConstantReactance;
             if (null == bucket)
                 context.parsed.AsynchronousMachineTimeConstantReactance = bucket = {};
@@ -203,11 +152,29 @@ define
             return (obj);
         }
 
+        function export_AsynchronousMachineTimeConstantReactance (obj, exporters, full)
+        {
+            var fields = exporters["AsynchronousMachineDynamics"](obj, exporters, false);
+
+            base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "tpo", base.from_string, fields);
+            base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "tppo", base.from_string, fields);
+            base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xp", base.from_string, fields);
+            base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xpp", base.from_string, fields);
+            base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xs", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
+                export_AsynchronousMachineEquivalentCircuit: export_AsynchronousMachineEquivalentCircuit,
+                export_AsynchronousMachineDynamics: export_AsynchronousMachineDynamics,
                 parse_AsynchronousMachineEquivalentCircuit: parse_AsynchronousMachineEquivalentCircuit,
                 parse_AsynchronousMachineTimeConstantReactance: parse_AsynchronousMachineTimeConstantReactance,
-                parse_AsynchronousMachineDynamics: parse_AsynchronousMachineDynamics
+                parse_AsynchronousMachineDynamics: parse_AsynchronousMachineDynamics,
+                export_AsynchronousMachineTimeConstantReactance: export_AsynchronousMachineTimeConstantReactance
             }
         );
     }

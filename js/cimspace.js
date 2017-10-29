@@ -18,6 +18,9 @@ define
         // using Promise: backwards compatibility for older browsers
         es6_promise.polyfill ();
 
+        // the base name of the currently loaded file
+        var TheCurrentName = null;
+
         /**
          * @summary Parse a zip file.
          * @description Read in a CIM file.
@@ -81,6 +84,27 @@ define
         }
 
         /**
+         * @summary Extract the base file name.
+         * @description Strip off extension and remove any prefix.
+         * @param {String} name - the raw name or URL
+         * @function base_name
+         * @memberOf module:cimspace
+         */
+        function base_name (name)
+        {
+            var index;
+
+            index = name.lastIndexOf ("/");
+            if (-1 != index)
+                name = name.substring (index + 1);
+            index = name.lastIndexOf (".");
+            if (-1 != index)
+                name = name.substring (0, index);
+
+            return (name);
+        }
+
+        /**
          * @summary Handler for file change events.
          * @description Process files from the browse dialog.
          * @param {File[]} files - the list of files
@@ -91,6 +115,7 @@ define
         {
             if (0 < files.length)
             {
+                TheCurrentName = base_name (files[0].name);
                 if (files[0].name.endsWith (".zip"))
                     read_zip (files[0]);
                 else
@@ -152,6 +177,7 @@ define
                     if (4 == xmlhttp.readyState)
                         if (200 == xmlhttp.status || 201 == xmlhttp.status || 202 == xmlhttp.status)
                         {
+                            TheCurrentName = base_name (files[0].name);
                             if (url.endsWith (".zip"))
                                 read_zip (xmlhttp.response);
                             else
@@ -225,12 +251,132 @@ define
             event.dataTransfer.dropEffect = 'copy';
         }
 
+        /**
+         * @summary Blob to base64 conversion.
+         * @description Convert the blob into base64 characters.
+         * @param {Blob} blob - the blob of data
+         * @param {Function} callback - the callback to recieve the converted data: signature function (base64)
+         * @function blob2base64
+         * @memberOf module:cimspace
+         */
+        function blob2base64 (blob, callback)
+        {
+            var reader = new FileReader ();
+            reader.onload = function ()
+            {
+                var dataUrl = reader.result;
+                var base64 = dataUrl.split(',')[1];
+                callback (base64);
+            };
+            reader.readAsDataURL (blob);
+        }
+
+        /**
+         * @summary Event handler for changing the Save As file name.
+         * @description Attached to the input field for file name, sets the download attribute of the Save link.
+         * @param {object} event - the change event - <em>not used</em>
+         * @function save_name_change
+         * @memberOf module:cimspace
+         */
+        function save_name_change (event)
+        {
+            var name = document.getElementById ("save_name").value;
+            if (!name.toLowerCase ().endsWith (".zip"))
+                name = name + ".zip";
+            var a = document.getElementById ("save");
+            a.setAttribute ("download", name);
+        }
+
+
+        /**
+         * @summary Event handler for Save.
+         * @description Attached to the Save menu item, performs the CIM export and zipping.
+         * @param {object} event - the click event - <em>not used</em>
+         * @function generate_rdf
+         * @memberOf module:cimspace
+         */
+        function generate_rdf (event)
+        {
+            var name = TheCurrentName || "save";
+            return (
+                new Promise (
+                    function (resolve, reject)
+                    {
+                        // disable the link until it's ready
+                        var a = document.getElementById ("save");
+                        a.setAttribute ("disabled", "disabled");
+                        a.setAttribute ("download", name + ".zip");
+                        document.getElementById ("save_name").value = name + ".zip";
+                        a.onclick = function (event) { event.preventDefault (); event.stopPropagation (); alert ("sorry... not ready yet"); }
+                        var begin = new Date ().getTime ();
+                        console.log ("starting xml creation");
+                        var text = cim.write_xml (cimmap.get_data().Element);
+                        var start = new Date ().getTime ();
+                        console.log ("finished xml creation (" + (Math.round (start - begin) / 1000) + " seconds)");
+                        console.log ("starting zip");
+                        require (
+                            ["zip/zip", "zip/mime-types"],
+                            function (zip, mimeTypes)
+                            {
+                                //zip.workerScriptsPath = "js/zip/";
+                                zip.useWebWorkers = false;
+                                zip.createWriter (new zip.BlobWriter (),
+                                    function (writer)
+                                    {
+                                        writer.add (name + ".rdf", new zip.TextReader (text),
+                                            function ()
+                                            {
+                                                writer.close (
+                                                    function (blob) // blob contains the zip file as a Blob object
+                                                    {
+                                                        var end = new Date ().getTime ();
+                                                        console.log ("finished zip (" + (Math.round (end - start) / 1000) + " seconds)");
+
+                                                        // this is surprisingly not performant:
+                                                        // var url = URL.createObjectURL (blob);
+                                                        // a.setAttribute ("href", url);
+
+                                                        // so we do this instead
+                                                        console.log ("starting base64 conversion");
+                                                        blob2base64 (blob,
+                                                            function (data)
+                                                            {
+                                                                var finish = new Date ().getTime ();
+                                                                console.log ("finished base64 conversion (" + (Math.round (finish - end) / 1000) + " seconds)");
+                                                                a.setAttribute ("href", "data:application/zip;base64," + data);
+                                                                a.setAttribute ("type", "application/zip");
+                                                                a.onclick = function (event) { $('#save_modal').modal('hide'); }
+                                                                a.removeAttribute ("disabled");
+                                                                console.log ("ready (" + (Math.round (new Date ().getTime () - finish) / 1000) + " seconds)");
+                                                                resolve ("OK");
+                                                            }
+                                                        );
+                                                    }
+                                                );
+                                            }
+                                        );
+                                    },
+                                    function (error)
+                                    {
+                                       console.log (error);
+                                       reject (error);
+                                    }
+                                );
+                            }
+                        );
+                    }
+                )
+            );
+        }
+
         return (
             {
                 file_change: file_change,
                 file_drag: file_drag,
                 file_drop: file_drop,
-                process_url: process_url
+                process_url: process_url,
+                save_name_change: save_name_change,
+                generate_rdf: generate_rdf
             }
         );
     }

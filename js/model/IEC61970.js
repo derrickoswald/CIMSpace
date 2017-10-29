@@ -19,20 +19,8 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "IEC61970CIMVersion";
-            /**
-             * Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
-             *
-             */
             base.parse_element (/<cim:IEC61970CIMVersion.date>([\s\S]*?)<\/cim:IEC61970CIMVersion.date>/g, obj, "date", base.to_string, sub, context);
-
-            /**
-             * Form is IEC61970CIMXXvYY where XX is the major CIM package version and the YY is the minor version.
-             *
-             * For example IEC61970CIM13v18.
-             *
-             */
             base.parse_element (/<cim:IEC61970CIMVersion.version>([\s\S]*?)<\/cim:IEC61970CIMVersion.version>/g, obj, "version", base.to_string, sub, context);
-
             bucket = context.parsed.IEC61970CIMVersion;
             if (null == bucket)
                 context.parsed.IEC61970CIMVersion = bucket = {};
@@ -41,8 +29,21 @@ define
             return (obj);
         }
 
+        function export_IEC61970CIMVersion (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "IEC61970CIMVersion", "date", base.from_string, fields);
+            base.export_element (obj, "IEC61970CIMVersion", "version", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
+                export_IEC61970CIMVersion: export_IEC61970CIMVersion,
                 parse_IEC61970CIMVersion: parse_IEC61970CIMVersion
             }
         );

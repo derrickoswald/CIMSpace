@@ -19,26 +19,32 @@ define
 
             obj = parse_BaseWork (context, sub);
             obj.cls = "Work";
-            /**
-             * Date and time work was requested.
-             *
-             */
             base.parse_element (/<cim:Work.requestDateTime>([\s\S]*?)<\/cim:Work.requestDateTime>/g, obj, "requestDateTime", base.to_datetime, sub, context);
-
-            base.parse_attribute (/<cim:Work.WorkBillingInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkBillingInfo", sub, context, true);
-
-            base.parse_attribute (/<cim:Work.Project\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Project", sub, context, true);
-
-            base.parse_attribute (/<cim:Work.BusinessCase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BusinessCase", sub, context, true);
-
-            base.parse_attribute (/<cim:Work.ErpProjectAccounting\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpProjectAccounting", sub, context, true);
-
+            base.parse_attribute (/<cim:Work.WorkBillingInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkBillingInfo", sub, context);
+            base.parse_attribute (/<cim:Work.Project\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Project", sub, context);
+            base.parse_attribute (/<cim:Work.BusinessCase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BusinessCase", sub, context);
+            base.parse_attribute (/<cim:Work.ErpProjectAccounting\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpProjectAccounting", sub, context);
             bucket = context.parsed.Work;
             if (null == bucket)
                 context.parsed.Work = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Work (obj, exporters, full)
+        {
+            var fields = exporters["BaseWork"](obj, exporters, false);
+
+            base.export_element (obj, "Work", "requestDateTime", base.from_datetime, fields);
+            base.export_attribute (obj, "Work", "WorkBillingInfo", fields);
+            base.export_attribute (obj, "Work", "Project", fields);
+            base.export_attribute (obj, "Work", "BusinessCase", fields);
+            base.export_attribute (obj, "Work", "ErpProjectAccounting", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -52,84 +58,46 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "WorkStatusKind";
-            /**
-             * Work approval is pending.
-             *
-             */
             base.parse_element (/<cim:WorkStatusKind.waitingOnApproval>([\s\S]*?)<\/cim:WorkStatusKind.waitingOnApproval>/g, obj, "waitingOnApproval", base.to_string, sub, context);
-
-            /**
-             * Work has been approved.
-             *
-             */
             base.parse_element (/<cim:WorkStatusKind.approved>([\s\S]*?)<\/cim:WorkStatusKind.approved>/g, obj, "approved", base.to_string, sub, context);
-
-            /**
-             * Work has been canceled.
-             *
-             */
             base.parse_element (/<cim:WorkStatusKind.cancelled>([\s\S]*?)<\/cim:WorkStatusKind.cancelled>/g, obj, "cancelled", base.to_string, sub, context);
-
-            /**
-             * Work needs to be scheduled.
-             *
-             */
             base.parse_element (/<cim:WorkStatusKind.waitingToBeScheduled>([\s\S]*?)<\/cim:WorkStatusKind.waitingToBeScheduled>/g, obj, "waitingToBeScheduled", base.to_string, sub, context);
-
-            /**
-             * Work has been scheduled.
-             *
-             */
             base.parse_element (/<cim:WorkStatusKind.scheduled>([\s\S]*?)<\/cim:WorkStatusKind.scheduled>/g, obj, "scheduled", base.to_string, sub, context);
-
-            /**
-             * Work has been waiting on material.
-             *
-             */
             base.parse_element (/<cim:WorkStatusKind.waitingOnMaterial>([\s\S]*?)<\/cim:WorkStatusKind.waitingOnMaterial>/g, obj, "waitingOnMaterial", base.to_string, sub, context);
-
-            /**
-             * Work is in progress.
-             *
-             */
             base.parse_element (/<cim:WorkStatusKind.inProgress>([\s\S]*?)<\/cim:WorkStatusKind.inProgress>/g, obj, "inProgress", base.to_string, sub, context);
-
-            /**
-             * Work has been completed, i.e., crew can leave the work location and is available for another work.
-             *
-             */
             base.parse_element (/<cim:WorkStatusKind.completed>([\s\S]*?)<\/cim:WorkStatusKind.completed>/g, obj, "completed", base.to_string, sub, context);
-
-            /**
-             * Work has been closed (typically by a person responsible for work management) and is ready for billing.
-             *
-             */
             base.parse_element (/<cim:WorkStatusKind.closed>([\s\S]*?)<\/cim:WorkStatusKind.closed>/g, obj, "closed", base.to_string, sub, context);
-
-            /**
-             * Crew has been dispatched.
-             *
-             */
             base.parse_element (/<cim:WorkStatusKind.dispatched>([\s\S]*?)<\/cim:WorkStatusKind.dispatched>/g, obj, "dispatched", base.to_string, sub, context);
-
-            /**
-             * Crew is 'en route'.
-             *
-             */
             base.parse_element (/<cim:WorkStatusKind.enroute>([\s\S]*?)<\/cim:WorkStatusKind.enroute>/g, obj, "enroute", base.to_string, sub, context);
-
-            /**
-             * Crew is on the site.
-             *
-             */
             base.parse_element (/<cim:WorkStatusKind.onSite>([\s\S]*?)<\/cim:WorkStatusKind.onSite>/g, obj, "onSite", base.to_string, sub, context);
-
             bucket = context.parsed.WorkStatusKind;
             if (null == bucket)
                 context.parsed.WorkStatusKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_WorkStatusKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "WorkStatusKind", "waitingOnApproval", base.from_string, fields);
+            base.export_element (obj, "WorkStatusKind", "approved", base.from_string, fields);
+            base.export_element (obj, "WorkStatusKind", "cancelled", base.from_string, fields);
+            base.export_element (obj, "WorkStatusKind", "waitingToBeScheduled", base.from_string, fields);
+            base.export_element (obj, "WorkStatusKind", "scheduled", base.from_string, fields);
+            base.export_element (obj, "WorkStatusKind", "waitingOnMaterial", base.from_string, fields);
+            base.export_element (obj, "WorkStatusKind", "inProgress", base.from_string, fields);
+            base.export_element (obj, "WorkStatusKind", "completed", base.from_string, fields);
+            base.export_element (obj, "WorkStatusKind", "closed", base.from_string, fields);
+            base.export_element (obj, "WorkStatusKind", "dispatched", base.from_string, fields);
+            base.export_element (obj, "WorkStatusKind", "enroute", base.from_string, fields);
+            base.export_element (obj, "WorkStatusKind", "onSite", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -143,36 +111,30 @@ define
 
             obj = parse_WorkLocation (context, sub);
             obj.cls = "MaintenanceLocation";
-            /**
-             * (if applicable) Name, identifier, or description of the block in which work is to occur.
-             *
-             */
             base.parse_element (/<cim:MaintenanceLocation.block>([\s\S]*?)<\/cim:MaintenanceLocation.block>/g, obj, "block", base.to_string, sub, context);
-
-            /**
-             * (if applicable) Name, identifier, or description of the lot in which work is to occur.
-             *
-             */
             base.parse_element (/<cim:MaintenanceLocation.lot>([\s\S]*?)<\/cim:MaintenanceLocation.lot>/g, obj, "lot", base.to_string, sub, context);
-
-            /**
-             * The names of streets at the nearest intersection to work area.
-             *
-             */
             base.parse_element (/<cim:MaintenanceLocation.nearestIntersection>([\s\S]*?)<\/cim:MaintenanceLocation.nearestIntersection>/g, obj, "nearestIntersection", base.to_string, sub, context);
-
-            /**
-             * (if applicable) Name, identifier, or description of the subdivision in which work is to occur.
-             *
-             */
             base.parse_element (/<cim:MaintenanceLocation.subdivision>([\s\S]*?)<\/cim:MaintenanceLocation.subdivision>/g, obj, "subdivision", base.to_string, sub, context);
-
             bucket = context.parsed.MaintenanceLocation;
             if (null == bucket)
                 context.parsed.MaintenanceLocation = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_MaintenanceLocation (obj, exporters, full)
+        {
+            var fields = exporters["WorkLocation"](obj, exporters, false);
+
+            base.export_element (obj, "MaintenanceLocation", "block", base.from_string, fields);
+            base.export_element (obj, "MaintenanceLocation", "lot", base.from_string, fields);
+            base.export_element (obj, "MaintenanceLocation", "nearestIntersection", base.from_string, fields);
+            base.export_element (obj, "MaintenanceLocation", "subdivision", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -186,32 +148,28 @@ define
 
             obj = parse_WorkAsset (context, sub);
             obj.cls = "Vehicle";
-            /**
-             * Date and time the last odometer reading was recorded.
-             *
-             */
             base.parse_element (/<cim:Vehicle.odometerReadDateTime>([\s\S]*?)<\/cim:Vehicle.odometerReadDateTime>/g, obj, "odometerReadDateTime", base.to_datetime, sub, context);
-
-            /**
-             * Odometer reading of this vehicle as of the 'odometerReadingDateTime'.
-             *
-             * Refer to associated ActivityRecords for earlier readings.
-             *
-             */
             base.parse_element (/<cim:Vehicle.odometerReading>([\s\S]*?)<\/cim:Vehicle.odometerReading>/g, obj, "odometerReading", base.to_string, sub, context);
-
-            /**
-             * Kind of usage of the vehicle.
-             *
-             */
             base.parse_element (/<cim:Vehicle.usageKind>([\s\S]*?)<\/cim:Vehicle.usageKind>/g, obj, "usageKind", base.to_string, sub, context);
-
             bucket = context.parsed.Vehicle;
             if (null == bucket)
                 context.parsed.Vehicle = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Vehicle (obj, exporters, full)
+        {
+            var fields = exporters["WorkAsset"](obj, exporters, false);
+
+            base.export_element (obj, "Vehicle", "odometerReadDateTime", base.from_datetime, fields);
+            base.export_element (obj, "Vehicle", "odometerReading", base.from_string, fields);
+            base.export_element (obj, "Vehicle", "usageKind", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -225,24 +183,26 @@ define
 
             obj = Common.parse_TimeSchedule (context, sub);
             obj.cls = "WorkTimeSchedule";
-            /**
-             * Kind of this work schedule.
-             *
-             */
             base.parse_element (/<cim:WorkTimeSchedule.kind>([\s\S]*?)<\/cim:WorkTimeSchedule.kind>/g, obj, "kind", base.to_string, sub, context);
-
-            /**
-             * Time schedule for this work or work task.
-             *
-             */
-            base.parse_attribute (/<cim:WorkTimeSchedule.BaseWork\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BaseWork", sub, context, true);
-
+            base.parse_attribute (/<cim:WorkTimeSchedule.BaseWork\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BaseWork", sub, context);
             bucket = context.parsed.WorkTimeSchedule;
             if (null == bucket)
                 context.parsed.WorkTimeSchedule = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_WorkTimeSchedule (obj, exporters, full)
+        {
+            var fields = exporters["TimeSchedule"](obj, exporters, false);
+
+            base.export_element (obj, "WorkTimeSchedule", "kind", base.from_string, fields);
+            base.export_attribute (obj, "WorkTimeSchedule", "BaseWork", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -257,21 +217,31 @@ define
             obj = base.parse_Element (context, sub);
             obj.cls = "WorkTimeScheduleKind";
             base.parse_element (/<cim:WorkTimeScheduleKind.estimate>([\s\S]*?)<\/cim:WorkTimeScheduleKind.estimate>/g, obj, "estimate", base.to_string, sub, context);
-
             base.parse_element (/<cim:WorkTimeScheduleKind.request>([\s\S]*?)<\/cim:WorkTimeScheduleKind.request>/g, obj, "request", base.to_string, sub, context);
-
             base.parse_element (/<cim:WorkTimeScheduleKind.actual>([\s\S]*?)<\/cim:WorkTimeScheduleKind.actual>/g, obj, "actual", base.to_string, sub, context);
-
             base.parse_element (/<cim:WorkTimeScheduleKind.earliest>([\s\S]*?)<\/cim:WorkTimeScheduleKind.earliest>/g, obj, "earliest", base.to_string, sub, context);
-
             base.parse_element (/<cim:WorkTimeScheduleKind.latest>([\s\S]*?)<\/cim:WorkTimeScheduleKind.latest>/g, obj, "latest", base.to_string, sub, context);
-
             bucket = context.parsed.WorkTimeScheduleKind;
             if (null == bucket)
                 context.parsed.WorkTimeScheduleKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_WorkTimeScheduleKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "WorkTimeScheduleKind", "estimate", base.from_string, fields);
+            base.export_element (obj, "WorkTimeScheduleKind", "request", base.from_string, fields);
+            base.export_element (obj, "WorkTimeScheduleKind", "actual", base.from_string, fields);
+            base.export_element (obj, "WorkTimeScheduleKind", "earliest", base.from_string, fields);
+            base.export_element (obj, "WorkTimeScheduleKind", "latest", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -285,36 +255,30 @@ define
 
             obj = Common.parse_Document (context, sub);
             obj.cls = "BaseWork";
-            /**
-             * Kind of work.
-             *
-             */
             base.parse_element (/<cim:BaseWork.kind>([\s\S]*?)<\/cim:BaseWork.kind>/g, obj, "kind", base.to_string, sub, context);
-
-            /**
-             * Priority of work.
-             *
-             */
             base.parse_element (/<cim:BaseWork.priority>([\s\S]*?)<\/cim:BaseWork.priority>/g, obj, "priority", base.to_string, sub, context);
-
-            /**
-             * Kind of work status.
-             *
-             */
             base.parse_element (/<cim:BaseWork.statusKind>([\s\S]*?)<\/cim:BaseWork.statusKind>/g, obj, "statusKind", base.to_string, sub, context);
-
-            /**
-             * Location for this work/task.
-             *
-             */
-            base.parse_attribute (/<cim:BaseWork.WorkLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkLocation", sub, context, true);
-
+            base.parse_attribute (/<cim:BaseWork.WorkLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkLocation", sub, context);
             bucket = context.parsed.BaseWork;
             if (null == bucket)
                 context.parsed.BaseWork = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_BaseWork (obj, exporters, full)
+        {
+            var fields = exporters["Document"](obj, exporters, false);
+
+            base.export_element (obj, "BaseWork", "kind", base.from_string, fields);
+            base.export_element (obj, "BaseWork", "priority", base.from_string, fields);
+            base.export_element (obj, "BaseWork", "statusKind", base.from_string, fields);
+            base.export_attribute (obj, "BaseWork", "WorkLocation", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         function parse_WorkTask (context, sub)
@@ -324,54 +288,36 @@ define
 
             obj = parse_BaseWork (context, sub);
             obj.cls = "WorkTask";
-            /**
-             * Instructions for performing this task.
-             *
-             */
             base.parse_element (/<cim:WorkTask.instruction>([\s\S]*?)<\/cim:WorkTask.instruction>/g, obj, "instruction", base.to_string, sub, context);
-
-            /**
-             * If specified, override schedule and perform this task in accordance with instructions specified here.
-             *
-             */
             base.parse_element (/<cim:WorkTask.schedOverride>([\s\S]*?)<\/cim:WorkTask.schedOverride>/g, obj, "schedOverride", base.to_string, sub, context);
-
-            /**
-             * Kind of work.
-             *
-             */
             base.parse_element (/<cim:WorkTask.taskKind>([\s\S]*?)<\/cim:WorkTask.taskKind>/g, obj, "taskKind", base.to_string, sub, context);
-
-            /**
-             * Estimated time of arrival, so that customer or police/fire department can be informed when the crew will arrive.
-             *
-             */
             base.parse_element (/<cim:WorkTask.crewETA>([\s\S]*?)<\/cim:WorkTask.crewETA>/g, obj, "crewETA", base.to_datetime, sub, context);
-
-            /**
-             * Work this task belongs to.
-             *
-             */
-            base.parse_attribute (/<cim:WorkTask.Work\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Work", sub, context, true);
-
-            /**
-             * Old asset replaced by this work task.
-             *
-             */
-            base.parse_attribute (/<cim:WorkTask.OldAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OldAsset", sub, context, true);
-
-            /**
-             * Switching plan executed by this work task.
-             *
-             */
-            base.parse_attribute (/<cim:WorkTask.SwitchingPlan\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingPlan", sub, context, true);
-
+            base.parse_attribute (/<cim:WorkTask.Work\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Work", sub, context);
+            base.parse_attribute (/<cim:WorkTask.OldAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OldAsset", sub, context);
+            base.parse_attribute (/<cim:WorkTask.SwitchingPlan\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingPlan", sub, context);
             bucket = context.parsed.WorkTask;
             if (null == bucket)
                 context.parsed.WorkTask = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_WorkTask (obj, exporters, full)
+        {
+            var fields = exporters["BaseWork"](obj, exporters, false);
+
+            base.export_element (obj, "WorkTask", "instruction", base.from_string, fields);
+            base.export_element (obj, "WorkTask", "schedOverride", base.from_string, fields);
+            base.export_element (obj, "WorkTask", "taskKind", base.from_string, fields);
+            base.export_element (obj, "WorkTask", "crewETA", base.from_datetime, fields);
+            base.export_attribute (obj, "WorkTask", "Work", fields);
+            base.export_attribute (obj, "WorkTask", "OldAsset", fields);
+            base.export_attribute (obj, "WorkTask", "SwitchingPlan", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         function parse_WorkTaskKind (context, sub)
@@ -381,36 +327,30 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "WorkTaskKind";
-            /**
-             * Work task deals with installation of assets.
-             *
-             */
             base.parse_element (/<cim:WorkTaskKind.install>([\s\S]*?)<\/cim:WorkTaskKind.install>/g, obj, "install", base.to_string, sub, context);
-
-            /**
-             * Work task deals with removal of assets.
-             *
-             */
             base.parse_element (/<cim:WorkTaskKind.remove>([\s\S]*?)<\/cim:WorkTaskKind.remove>/g, obj, "remove", base.to_string, sub, context);
-
-            /**
-             * Work task deals with exchange of assets.
-             *
-             */
             base.parse_element (/<cim:WorkTaskKind.exchange>([\s\S]*?)<\/cim:WorkTaskKind.exchange>/g, obj, "exchange", base.to_string, sub, context);
-
-            /**
-             * Work task deals with investigation about assets.
-             *
-             */
             base.parse_element (/<cim:WorkTaskKind.investigate>([\s\S]*?)<\/cim:WorkTaskKind.investigate>/g, obj, "investigate", base.to_string, sub, context);
-
             bucket = context.parsed.WorkTaskKind;
             if (null == bucket)
                 context.parsed.WorkTaskKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_WorkTaskKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "WorkTaskKind", "install", base.from_string, fields);
+            base.export_element (obj, "WorkTaskKind", "remove", base.from_string, fields);
+            base.export_element (obj, "WorkTaskKind", "exchange", base.from_string, fields);
+            base.export_element (obj, "WorkTaskKind", "investigate", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -424,18 +364,24 @@ define
 
             obj = parse_WorkAsset (context, sub);
             obj.cls = "Tool";
-            /**
-             * (if applicable) Date the tool was last calibrated.
-             *
-             */
             base.parse_element (/<cim:Tool.lastCalibrationDate>([\s\S]*?)<\/cim:Tool.lastCalibrationDate>/g, obj, "lastCalibrationDate", base.to_string, sub, context);
-
             bucket = context.parsed.Tool;
             if (null == bucket)
                 context.parsed.Tool = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Tool (obj, exporters, full)
+        {
+            var fields = exporters["WorkAsset"](obj, exporters, false);
+
+            base.export_element (obj, "Tool", "lastCalibrationDate", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -449,14 +395,24 @@ define
 
             obj = Common.parse_Location (context, sub);
             obj.cls = "WorkLocation";
-            base.parse_attribute (/<cim:WorkLocation.OneCallRequest\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OneCallRequest", sub, context, true);
-
+            base.parse_attribute (/<cim:WorkLocation.OneCallRequest\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OneCallRequest", sub, context);
             bucket = context.parsed.WorkLocation;
             if (null == bucket)
                 context.parsed.WorkLocation = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_WorkLocation (obj, exporters, full)
+        {
+            var fields = exporters["Location"](obj, exporters, false);
+
+            base.export_attribute (obj, "WorkLocation", "OneCallRequest", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -470,72 +426,42 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "WorkKind";
-            /**
-             * Construction work.
-             *
-             */
             base.parse_element (/<cim:WorkKind.construction>([\s\S]*?)<\/cim:WorkKind.construction>/g, obj, "construction", base.to_string, sub, context);
-
-            /**
-             * Inspection work.
-             *
-             */
             base.parse_element (/<cim:WorkKind.inspection>([\s\S]*?)<\/cim:WorkKind.inspection>/g, obj, "inspection", base.to_string, sub, context);
-
-            /**
-             * Maintenance work.
-             *
-             */
             base.parse_element (/<cim:WorkKind.maintenance>([\s\S]*?)<\/cim:WorkKind.maintenance>/g, obj, "maintenance", base.to_string, sub, context);
-
-            /**
-             * Repair work.
-             *
-             */
             base.parse_element (/<cim:WorkKind.repair>([\s\S]*?)<\/cim:WorkKind.repair>/g, obj, "repair", base.to_string, sub, context);
-
-            /**
-             * Test work.
-             *
-             */
             base.parse_element (/<cim:WorkKind.test>([\s\S]*?)<\/cim:WorkKind.test>/g, obj, "test", base.to_string, sub, context);
-
-            /**
-             * Service work.
-             *
-             */
             base.parse_element (/<cim:WorkKind.service>([\s\S]*?)<\/cim:WorkKind.service>/g, obj, "service", base.to_string, sub, context);
-
-            /**
-             * Disconnect work.
-             *
-             */
             base.parse_element (/<cim:WorkKind.disconnect>([\s\S]*?)<\/cim:WorkKind.disconnect>/g, obj, "disconnect", base.to_string, sub, context);
-
-            /**
-             * (use 'connect' instead) Reconnect work.
-             *
-             */
             base.parse_element (/<cim:WorkKind.reconnect>([\s\S]*?)<\/cim:WorkKind.reconnect>/g, obj, "reconnect", base.to_string, sub, context);
-
-            /**
-             * Connect work.
-             *
-             */
             base.parse_element (/<cim:WorkKind.connect>([\s\S]*?)<\/cim:WorkKind.connect>/g, obj, "connect", base.to_string, sub, context);
-
-            /**
-             * Other kind of work.
-             *
-             */
             base.parse_element (/<cim:WorkKind.other>([\s\S]*?)<\/cim:WorkKind.other>/g, obj, "other", base.to_string, sub, context);
-
             bucket = context.parsed.WorkKind;
             if (null == bucket)
                 context.parsed.WorkKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_WorkKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "WorkKind", "construction", base.from_string, fields);
+            base.export_element (obj, "WorkKind", "inspection", base.from_string, fields);
+            base.export_element (obj, "WorkKind", "maintenance", base.from_string, fields);
+            base.export_element (obj, "WorkKind", "repair", base.from_string, fields);
+            base.export_element (obj, "WorkKind", "test", base.from_string, fields);
+            base.export_element (obj, "WorkKind", "service", base.from_string, fields);
+            base.export_element (obj, "WorkKind", "disconnect", base.from_string, fields);
+            base.export_element (obj, "WorkKind", "reconnect", base.from_string, fields);
+            base.export_element (obj, "WorkKind", "connect", base.from_string, fields);
+            base.export_element (obj, "WorkKind", "other", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -551,22 +477,28 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "MaterialItem";
-            /**
-             * Quantity of material used.
-             *
-             */
             base.parse_element (/<cim:MaterialItem.quantity>([\s\S]*?)<\/cim:MaterialItem.quantity>/g, obj, "quantity", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:MaterialItem.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeMaterial", sub, context, true);
-
-            base.parse_attribute (/<cim:MaterialItem.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTask", sub, context, true);
-
+            base.parse_attribute (/<cim:MaterialItem.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeMaterial", sub, context);
+            base.parse_attribute (/<cim:MaterialItem.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTask", sub, context);
             bucket = context.parsed.MaterialItem;
             if (null == bucket)
                 context.parsed.MaterialItem = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_MaterialItem (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "MaterialItem", "quantity", base.from_string, fields);
+            base.export_attribute (obj, "MaterialItem", "TypeMaterial", fields);
+            base.export_attribute (obj, "MaterialItem", "WorkTask", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -580,18 +512,24 @@ define
 
             obj = Assets.parse_Asset (context, sub);
             obj.cls = "WorkAsset";
-            /**
-             * Crew using this work asset.
-             *
-             */
-            base.parse_attribute (/<cim:WorkAsset.Crew\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Crew", sub, context, true);
-
+            base.parse_attribute (/<cim:WorkAsset.Crew\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Crew", sub, context);
             bucket = context.parsed.WorkAsset;
             if (null == bucket)
                 context.parsed.WorkAsset = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_WorkAsset (obj, exporters, full)
+        {
+            var fields = exporters["Asset"](obj, exporters, false);
+
+            base.export_attribute (obj, "WorkAsset", "Crew", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -606,13 +544,9 @@ define
             obj = base.parse_Element (context, sub);
             obj.cls = "VehicleUsageKind";
             base.parse_element (/<cim:VehicleUsageKind.crew>([\s\S]*?)<\/cim:VehicleUsageKind.crew>/g, obj, "crew", base.to_string, sub, context);
-
             base.parse_element (/<cim:VehicleUsageKind.user>([\s\S]*?)<\/cim:VehicleUsageKind.user>/g, obj, "user", base.to_string, sub, context);
-
             base.parse_element (/<cim:VehicleUsageKind.contractor>([\s\S]*?)<\/cim:VehicleUsageKind.contractor>/g, obj, "contractor", base.to_string, sub, context);
-
             base.parse_element (/<cim:VehicleUsageKind.other>([\s\S]*?)<\/cim:VehicleUsageKind.other>/g, obj, "other", base.to_string, sub, context);
-
             bucket = context.parsed.VehicleUsageKind;
             if (null == bucket)
                 context.parsed.VehicleUsageKind = bucket = {};
@@ -621,21 +555,50 @@ define
             return (obj);
         }
 
+        function export_VehicleUsageKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "VehicleUsageKind", "crew", base.from_string, fields);
+            base.export_element (obj, "VehicleUsageKind", "user", base.from_string, fields);
+            base.export_element (obj, "VehicleUsageKind", "contractor", base.from_string, fields);
+            base.export_element (obj, "VehicleUsageKind", "other", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
-                parse_WorkAsset: parse_WorkAsset,
-                parse_Work: parse_Work,
-                parse_WorkTimeSchedule: parse_WorkTimeSchedule,
+                export_WorkTimeScheduleKind: export_WorkTimeScheduleKind,
+                export_WorkTimeSchedule: export_WorkTimeSchedule,
                 parse_MaintenanceLocation: parse_MaintenanceLocation,
                 parse_MaterialItem: parse_MaterialItem,
+                export_WorkLocation: export_WorkLocation,
                 parse_Tool: parse_Tool,
                 parse_WorkKind: parse_WorkKind,
+                export_MaintenanceLocation: export_MaintenanceLocation,
+                parse_WorkTask: parse_WorkTask,
+                export_BaseWork: export_BaseWork,
+                parse_WorkTimeScheduleKind: parse_WorkTimeScheduleKind,
+                export_Work: export_Work,
+                export_WorkTask: export_WorkTask,
+                export_WorkTaskKind: export_WorkTaskKind,
+                parse_WorkAsset: parse_WorkAsset,
+                parse_Work: parse_Work,
+                export_VehicleUsageKind: export_VehicleUsageKind,
+                export_WorkKind: export_WorkKind,
+                parse_WorkTimeSchedule: parse_WorkTimeSchedule,
+                export_WorkAsset: export_WorkAsset,
+                export_Vehicle: export_Vehicle,
+                export_Tool: export_Tool,
+                export_WorkStatusKind: export_WorkStatusKind,
+                export_MaterialItem: export_MaterialItem,
                 parse_WorkStatusKind: parse_WorkStatusKind,
                 parse_VehicleUsageKind: parse_VehicleUsageKind,
-                parse_WorkTask: parse_WorkTask,
                 parse_WorkTaskKind: parse_WorkTaskKind,
                 parse_WorkLocation: parse_WorkLocation,
-                parse_WorkTimeScheduleKind: parse_WorkTimeScheduleKind,
                 parse_Vehicle: parse_Vehicle,
                 parse_BaseWork: parse_BaseWork
             }

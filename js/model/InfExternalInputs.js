@@ -15,14 +15,24 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "ResourceGroupReq";
-            base.parse_attribute (/<cim:ResourceGroupReq.ResourceGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceGroup", sub, context, true);
-
+            base.parse_attribute (/<cim:ResourceGroupReq.ResourceGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceGroup", sub, context);
             bucket = context.parsed.ResourceGroupReq;
             if (null == bucket)
                 context.parsed.ResourceGroupReq = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ResourceGroupReq (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_attribute (obj, "ResourceGroupReq", "ResourceGroup", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -36,22 +46,28 @@ define
 
             obj = parse_ResourceGroupReq (context, sub);
             obj.cls = "ReserveReq";
-            /**
-             * Market product associated with reserve requirement must be a reserve or regulation product.
-             *
-             */
-            base.parse_attribute (/<cim:ReserveReq.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context, true);
-
-            base.parse_attribute (/<cim:ReserveReq.SensitivityPriceCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SensitivityPriceCurve", sub, context, true);
-
-            base.parse_attribute (/<cim:ReserveReq.ReserveReqCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReqCurve", sub, context, true);
-
+            base.parse_attribute (/<cim:ReserveReq.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context);
+            base.parse_attribute (/<cim:ReserveReq.SensitivityPriceCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SensitivityPriceCurve", sub, context);
+            base.parse_attribute (/<cim:ReserveReq.ReserveReqCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReqCurve", sub, context);
             bucket = context.parsed.ReserveReq;
             if (null == bucket)
                 context.parsed.ReserveReq = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ReserveReq (obj, exporters, full)
+        {
+            var fields = exporters["ResourceGroupReq"](obj, exporters, false);
+
+            base.export_attribute (obj, "ReserveReq", "MarketProduct", fields);
+            base.export_attribute (obj, "ReserveReq", "SensitivityPriceCurve", fields);
+            base.export_attribute (obj, "ReserveReq", "ReserveReqCurve", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -67,14 +83,24 @@ define
 
             obj = Core.parse_Curve (context, sub);
             obj.cls = "ReserveReqCurve";
-            base.parse_attribute (/<cim:ReserveReqCurve.ReserveReq\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReq", sub, context, true);
-
+            base.parse_attribute (/<cim:ReserveReqCurve.ReserveReq\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReq", sub, context);
             bucket = context.parsed.ReserveReqCurve;
             if (null == bucket)
                 context.parsed.ReserveReqCurve = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ReserveReqCurve (obj, exporters, full)
+        {
+            var fields = exporters["Curve"](obj, exporters, false);
+
+            base.export_attribute (obj, "ReserveReqCurve", "ReserveReq", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -88,24 +114,26 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "ResourceGroup";
-            /**
-             * Type of this group.
-             *
-             */
             base.parse_element (/<cim:ResourceGroup.type>([\s\S]*?)<\/cim:ResourceGroup.type>/g, obj, "type", base.to_string, sub, context);
-
-            /**
-             * Status of this group.
-             *
-             */
             base.parse_element (/<cim:ResourceGroup.status>([\s\S]*?)<\/cim:ResourceGroup.status>/g, obj, "status", base.to_string, sub, context);
-
             bucket = context.parsed.ResourceGroup;
             if (null == bucket)
                 context.parsed.ResourceGroup = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ResourceGroup (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ResourceGroup", "type", base.from_string, fields);
+            base.export_element (obj, "ResourceGroup", "status", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -121,8 +149,7 @@ define
 
             obj = Core.parse_Curve (context, sub);
             obj.cls = "SensitivityPriceCurve";
-            base.parse_attribute (/<cim:SensitivityPriceCurve.ReserveReq\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReq", sub, context, true);
-
+            base.parse_attribute (/<cim:SensitivityPriceCurve.ReserveReq\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReq", sub, context);
             bucket = context.parsed.SensitivityPriceCurve;
             if (null == bucket)
                 context.parsed.SensitivityPriceCurve = bucket = {};
@@ -131,13 +158,29 @@ define
             return (obj);
         }
 
+        function export_SensitivityPriceCurve (obj, exporters, full)
+        {
+            var fields = exporters["Curve"](obj, exporters, false);
+
+            base.export_attribute (obj, "SensitivityPriceCurve", "ReserveReq", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
                 parse_SensitivityPriceCurve: parse_SensitivityPriceCurve,
                 parse_ReserveReq: parse_ReserveReq,
+                export_ResourceGroup: export_ResourceGroup,
+                export_ReserveReqCurve: export_ReserveReqCurve,
+                export_ResourceGroupReq: export_ResourceGroupReq,
                 parse_ResourceGroupReq: parse_ResourceGroupReq,
                 parse_ResourceGroup: parse_ResourceGroup,
-                parse_ReserveReqCurve: parse_ReserveReqCurve
+                export_SensitivityPriceCurve: export_SensitivityPriceCurve,
+                parse_ReserveReqCurve: parse_ReserveReqCurve,
+                export_ReserveReq: export_ReserveReq
             }
         );
     }

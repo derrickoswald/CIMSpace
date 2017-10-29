@@ -21,22 +21,8 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "PackageDependenciesCIMVersion";
-            /**
-             * Date of last change to the main package dependencies in format YYYY-MM-DD.
-             *
-             * This is updated when the version attribute is updated.
-             *
-             */
             base.parse_element (/<cim:PackageDependenciesCIMVersion.date>([\s\S]*?)<\/cim:PackageDependenciesCIMVersion.date>/g, obj, "date", base.to_string, sub, context);
-
-            /**
-             * The version of the main subpackages of the combined CIM model.
-             *
-             * The format is simply an integer.  The version (and date) initial values should be updated any time the dependencies in the model change and require an actual change to the diagrams within this package.
-             *
-             */
             base.parse_element (/<cim:PackageDependenciesCIMVersion.version>([\s\S]*?)<\/cim:PackageDependenciesCIMVersion.version>/g, obj, "version", base.to_string, sub, context);
-
             bucket = context.parsed.PackageDependenciesCIMVersion;
             if (null == bucket)
                 context.parsed.PackageDependenciesCIMVersion = bucket = {};
@@ -45,8 +31,21 @@ define
             return (obj);
         }
 
+        function export_PackageDependenciesCIMVersion (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "PackageDependenciesCIMVersion", "date", base.from_string, fields);
+            base.export_element (obj, "PackageDependenciesCIMVersion", "version", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
+                export_PackageDependenciesCIMVersion: export_PackageDependenciesCIMVersion,
                 parse_PackageDependenciesCIMVersion: parse_PackageDependenciesCIMVersion
             }
         );

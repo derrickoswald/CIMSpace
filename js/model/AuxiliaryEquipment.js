@@ -29,6 +29,16 @@ define
             return (obj);
         }
 
+        function export_SurgeArrester (obj, exporters, full)
+        {
+            var fields = exporters["AuxiliaryEquipment"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * AuxiliaryEquipment describe equipment that is not performing any primary functions but support for the equipment performing the primary function.
          *
@@ -42,18 +52,24 @@ define
 
             obj = Core.parse_Equipment (context, sub);
             obj.cls = "AuxiliaryEquipment";
-            /**
-             * The Terminal at the equipment where the AuxiliaryEquipment is attached.
-             *
-             */
-            base.parse_attribute (/<cim:AuxiliaryEquipment.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context, true);
-
+            base.parse_attribute (/<cim:AuxiliaryEquipment.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
             bucket = context.parsed.AuxiliaryEquipment;
             if (null == bucket)
                 context.parsed.AuxiliaryEquipment = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AuxiliaryEquipment (obj, exporters, full)
+        {
+            var fields = exporters["Equipment"](obj, exporters, false);
+
+            base.export_attribute (obj, "AuxiliaryEquipment", "Terminal", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -67,24 +83,26 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "PotentialTransformerKind";
-            /**
-             * The potential transformer is using induction coils to create secondary voltage.
-             *
-             */
             base.parse_element (/<cim:PotentialTransformerKind.inductive>([\s\S]*?)<\/cim:PotentialTransformerKind.inductive>/g, obj, "inductive", base.to_string, sub, context);
-
-            /**
-             * The potential transformer is using capacitive coupling to create secondary voltage.
-             *
-             */
             base.parse_element (/<cim:PotentialTransformerKind.capacitiveCoupling>([\s\S]*?)<\/cim:PotentialTransformerKind.capacitiveCoupling>/g, obj, "capacitiveCoupling", base.to_string, sub, context);
-
             bucket = context.parsed.PotentialTransformerKind;
             if (null == bucket)
                 context.parsed.PotentialTransformerKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_PotentialTransformerKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "PotentialTransformerKind", "inductive", base.from_string, fields);
+            base.export_element (obj, "PotentialTransformerKind", "capacitiveCoupling", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -106,6 +124,16 @@ define
             return (obj);
         }
 
+        function export_Sensor (obj, exporters, full)
+        {
+            var fields = exporters["AuxiliaryEquipment"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Line traps are devices that impede high frequency power line carrier signals yet present a negligible impedance at the main power frequency.
          *
@@ -125,6 +153,16 @@ define
             return (obj);
         }
 
+        function export_WaveTrap (obj, exporters, full)
+        {
+            var fields = exporters["AuxiliaryEquipment"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Instrument transformer (also known as Voltage Transformer) used to measure electrical qualities of the circuit that is being protected and/or monitored.
          *
@@ -138,36 +176,30 @@ define
 
             obj = parse_Sensor (context, sub);
             obj.cls = "PotentialTransformer";
-            /**
-             * PT accuracy classification.
-             *
-             */
             base.parse_element (/<cim:PotentialTransformer.accuracyClass>([\s\S]*?)<\/cim:PotentialTransformer.accuracyClass>/g, obj, "accuracyClass", base.to_string, sub, context);
-
-            /**
-             * Nominal ratio between the primary and secondary voltage.
-             *
-             */
             base.parse_element (/<cim:PotentialTransformer.nominalRatio>([\s\S]*?)<\/cim:PotentialTransformer.nominalRatio>/g, obj, "nominalRatio", base.to_float, sub, context);
-
-            /**
-             * Potential transformer (PT) classification covering burden.
-             *
-             */
             base.parse_element (/<cim:PotentialTransformer.ptClass>([\s\S]*?)<\/cim:PotentialTransformer.ptClass>/g, obj, "ptClass", base.to_string, sub, context);
-
-            /**
-             * Potential transformer construction type.
-             *
-             */
             base.parse_element (/<cim:PotentialTransformer.type>([\s\S]*?)<\/cim:PotentialTransformer.type>/g, obj, "type", base.to_string, sub, context);
-
             bucket = context.parsed.PotentialTransformer;
             if (null == bucket)
                 context.parsed.PotentialTransformer = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_PotentialTransformer (obj, exporters, full)
+        {
+            var fields = exporters["Sensor"](obj, exporters, false);
+
+            base.export_element (obj, "PotentialTransformer", "accuracyClass", base.from_string, fields);
+            base.export_element (obj, "PotentialTransformer", "nominalRatio", base.from_float, fields);
+            base.export_element (obj, "PotentialTransformer", "ptClass", base.from_string, fields);
+            base.export_element (obj, "PotentialTransformer", "type", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -191,6 +223,16 @@ define
             return (obj);
         }
 
+        function export_FaultIndicator (obj, exporters, full)
+        {
+            var fields = exporters["AuxiliaryEquipment"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Instrument transformer used to measure electrical qualities of the circuit that is being protected and/or monitored.
          *
@@ -204,42 +246,32 @@ define
 
             obj = parse_Sensor (context, sub);
             obj.cls = "CurrentTransformer";
-            /**
-             * CT accuracy classification.
-             *
-             */
             base.parse_element (/<cim:CurrentTransformer.accuracyClass>([\s\S]*?)<\/cim:CurrentTransformer.accuracyClass>/g, obj, "accuracyClass", base.to_string, sub, context);
-
-            /**
-             * Percent of rated current for which the CT remains accurate within specified limits.
-             *
-             */
             base.parse_element (/<cim:CurrentTransformer.accuracyLimit>([\s\S]*?)<\/cim:CurrentTransformer.accuracyLimit>/g, obj, "accuracyLimit", base.to_string, sub, context);
-
-            /**
-             * CT classification; i.e. class 10P.
-             *
-             */
             base.parse_element (/<cim:CurrentTransformer.ctClass>([\s\S]*?)<\/cim:CurrentTransformer.ctClass>/g, obj, "ctClass", base.to_string, sub, context);
-
-            /**
-             * Intended usage of the CT; i.e. metering, protection.
-             *
-             */
             base.parse_element (/<cim:CurrentTransformer.usage>([\s\S]*?)<\/cim:CurrentTransformer.usage>/g, obj, "usage", base.to_string, sub, context);
-
-            /**
-             * Power burden of the CT core.
-             *
-             */
             base.parse_element (/<cim:CurrentTransformer.coreBurden>([\s\S]*?)<\/cim:CurrentTransformer.coreBurden>/g, obj, "coreBurden", base.to_string, sub, context);
-
             bucket = context.parsed.CurrentTransformer;
             if (null == bucket)
                 context.parsed.CurrentTransformer = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_CurrentTransformer (obj, exporters, full)
+        {
+            var fields = exporters["Sensor"](obj, exporters, false);
+
+            base.export_element (obj, "CurrentTransformer", "accuracyClass", base.from_string, fields);
+            base.export_element (obj, "CurrentTransformer", "accuracyLimit", base.from_string, fields);
+            base.export_element (obj, "CurrentTransformer", "ctClass", base.from_string, fields);
+            base.export_element (obj, "CurrentTransformer", "usage", base.from_string, fields);
+            base.export_element (obj, "CurrentTransformer", "coreBurden", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -261,17 +293,36 @@ define
             return (obj);
         }
 
+        function export_PostLineSensor (obj, exporters, full)
+        {
+            var fields = exporters["Sensor"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
+                export_FaultIndicator: export_FaultIndicator,
+                export_PostLineSensor: export_PostLineSensor,
                 parse_PotentialTransformerKind: parse_PotentialTransformerKind,
                 parse_Sensor: parse_Sensor,
+                export_PotentialTransformer: export_PotentialTransformer,
+                parse_SurgeArrester: parse_SurgeArrester,
+                parse_PotentialTransformer: parse_PotentialTransformer,
+                export_PotentialTransformerKind: export_PotentialTransformerKind,
+                export_Sensor: export_Sensor,
+                parse_PostLineSensor: parse_PostLineSensor,
+                parse_AuxiliaryEquipment: parse_AuxiliaryEquipment,
+                parse_CurrentTransformer: parse_CurrentTransformer,
+                export_AuxiliaryEquipment: export_AuxiliaryEquipment,
+                export_CurrentTransformer: export_CurrentTransformer,
+                export_WaveTrap: export_WaveTrap,
                 parse_WaveTrap: parse_WaveTrap,
                 parse_FaultIndicator: parse_FaultIndicator,
-                parse_PostLineSensor: parse_PostLineSensor,
-                parse_PotentialTransformer: parse_PotentialTransformer,
-                parse_SurgeArrester: parse_SurgeArrester,
-                parse_AuxiliaryEquipment: parse_AuxiliaryEquipment,
-                parse_CurrentTransformer: parse_CurrentTransformer
+                export_SurgeArrester: export_SurgeArrester
             }
         );
     }

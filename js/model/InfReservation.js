@@ -17,12 +17,7 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "TiePoint";
-            /**
-             * The MW rating of the tie point.
-             *
-             */
             base.parse_element (/<cim:TiePoint.tiePointMWRating>([\s\S]*?)<\/cim:TiePoint.tiePointMWRating>/g, obj, "tiePointMWRating", base.to_string, sub, context);
-
             bucket = context.parsed.TiePoint;
             if (null == bucket)
                 context.parsed.TiePoint = bucket = {};
@@ -31,8 +26,20 @@ define
             return (obj);
         }
 
+        function export_TiePoint (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "TiePoint", "tiePointMWRating", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
+                export_TiePoint: export_TiePoint,
                 parse_TiePoint: parse_TiePoint
             }
         );

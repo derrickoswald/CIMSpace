@@ -23,9 +23,20 @@ define
             return (obj);
         }
 
+        function export_EnergySchedulingType (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
-                parse_EnergySchedulingType: parse_EnergySchedulingType
+                parse_EnergySchedulingType: parse_EnergySchedulingType,
+                export_EnergySchedulingType: export_EnergySchedulingType
             }
         );
     }

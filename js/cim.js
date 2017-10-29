@@ -35,15 +35,18 @@ define
             return (unescape (encodeURIComponent (str)));
         };
 
-        // create the mapping table
-        var theMap = {};
+        // create the mapping tables
+        var theParseMap = {};
+        var theExportMap = {};
         Array.prototype.map.call (arguments,
             function (x)
             {
                 for (var property in x)
                     if (x.hasOwnProperty (property))
                         if (property.startsWith ("parse_"))
-                            theMap["cim:" + property.substring (6)] = x[property];
+                            theParseMap["cim:" + property.substring (6)] = x[property];
+                        else if (property.startsWith ("export_"))
+                            theExportMap[property.substring (7)] = x[property];
             }
         );
 
@@ -101,7 +104,7 @@ define
                 // parse individual elements
                 var element = result[1];
                 var guts = result[2];
-                var parser = theMap[element];
+                var parser = theParseMap[element];
                 if ("undefined" != typeof (parser))
                     parser (subcontext, guts);
                 else
@@ -303,10 +306,61 @@ define
             );
         }
 
+        /**
+         * @summary Write the elements as a CIM RDF.
+         * @description Writes the RDF header, each element and the trailer to produce an RDF.
+         * @param {Object} elements - the object with elements to write stored as properties of their mRID
+         * (as returned from the parse context: context.parsed.Element[obj.mRID] = obj).
+         * @param {String} about - the about string for the CIM header.
+         * @param {String} date - the created string for the CIM header.
+         * @param {String} description - the description string for the CIM header.
+         * @returns The XML text.
+         * @function write_xml
+         * @memberOf module:cim
+         */
+        function write_xml (elements, about, date, description)
+        {
+            var xml = [];
+            var exporter;
+            var obj;
+
+            about = about || "CIMSpace";
+            date = date || new Date ().toISOString ();
+            description = description || "CIMSpace cim.js export";
+
+            var header = [
+                "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>",
+                "<rdf:RDF xmlns:cim='http://iec.ch/TC57/2013/CIM-schema-cim16#' xmlns:md='http://iec.ch/TC57/61970-552/ModelDescription/1#' xmlns:dm='http://iec.ch/2002/schema/CIM_difference_model#' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>",
+                "	<md:FullModel rdf:about=\"" + about + "\">",
+                "		<md:Model.created>" + date + "</md:Model.created>",
+                "		<md:Model.description>" + description + "</md:Model.description>",
+                "		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>",
+                "		<md:Model.profile>https://github.com/derrickoswald/CIMSpace</md:Model.profile>",
+                "	</md:FullModel>"
+                ];
+
+            var trailer = ["</rdf:RDF>"];
+
+            Array.prototype.push.apply (xml, header);
+            for (var property in elements)
+                if (elements.hasOwnProperty (property))
+                {
+                    obj = elements[property];
+                    exporter = theExportMap[obj.cls];
+                    if ("undefined" != typeof (exporter))
+                        Array.prototype.push.apply (xml, exporter (obj, theExportMap, true));
+                    else
+                        xml.push (JSON.stringify (obj, null, 4));
+                }
+            Array.prototype.push.apply (xml, trailer);
+            return (xml.join ("\n"));
+        }
+
         return (
             {
                 read_full_xml: read_full_xml,
-                read_xml_blob: read_xml_blob
+                read_xml_blob: read_xml_blob,
+                write_xml: write_xml
             }
         );
     }

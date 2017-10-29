@@ -45,8 +45,8 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a id="upload_files" href="#" class="waves-effect waves-light" data-toggle="modal" data-target="#file_modal">Upload Files</a></li>
-                    <li><a id="download_files" href="#" class="waves-effect waves-light" data-toggle="modal" data-target="#server_modal">Download Files</a></li>
+                    <li><a id="load_files" href="#" class="waves-effect waves-light" data-toggle="modal" data-target="#file_modal">Load</a></li>
+                    <li><a id="save_file" href="#" class="waves-effect waves-light" data-toggle="modal" data-target="#save_modal">Save</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" role="button" aria-expanded="false">Trace <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -121,11 +121,10 @@
     <!-- File Dialog Modal -->
     <div id="file_modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
             <div class="modal-content">
                 <div class="modal-header text-center" style="padding:35px 50px;">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h2><i class="fa fa-upload"></i> Upload files</h2>
+                    <h2><i class="fa fa-upload"></i> Load files</h2>
                 </div>
                 <div class="modal-body" style="padding:40px 50px;">
                     <div class="row">
@@ -151,35 +150,43 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="server_url">Server URL</label>
+                            <div class="col-sm-9">
+                                <input id="server_url" class="form-control" type="text" name="server_url" placeholder="http://9code.ch" value="http://9code.ch/data/NIS_CIM_Export_NS_INITIAL_FILL.zip">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
+                    <button id="connect" type="submit" class="btn btn-info" data-dismiss="modal">Load</button>
                     <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Server Dialog Modal -->
-    <div id="server_modal" class="modal fade" role="dialog">
+    <!-- Save Dialog Modal -->
+    <div id="save_modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
             <div class="modal-content">
                 <div class="modal-header text-center" style="padding:35px 50px;">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h2><i class="fa fa-download"></i> Download files</h2>
+                    <h2><i class="fa fa-download"></i> Save</h2>
                 </div>
                 <div class="modal-body" style="padding:40px 50px;">
                     <div class="row">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="server_url">Server URL</label>
+                            <label class="col-sm-3 control-label" for="save_name">File name (.zip)</label>
                             <div class="col-sm-9">
-                                <input id="server_url" class="form-control" type="text" name="server_url" placeholder="http://9code.ch">
+                                <input id="save_name" class="form-control" type="text" name="save_name" placeholder="save.zip">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="connect" type="submit" class="btn btn-info" data-dismiss="modal">Download</button>
+                    <a id="save" href="" class="btn btn-info">Save</a>
                     <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </div>

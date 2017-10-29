@@ -23,42 +23,32 @@ define
 
             obj = parse_DiscontinuousExcitationControlDynamics (context, sub);
             obj.cls = "DiscExcContIEEEDEC2A";
-            /**
-             * Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>).
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC2A.td1>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.td1>/g, obj, "td1", base.to_string, sub, context);
-
-            /**
-             * Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>).
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC2A.td2>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.td2>/g, obj, "td2", base.to_string, sub, context);
-
-            /**
-             * Limiter (<i>V</i><i><sub>DMAX</sub></i>).
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC2A.vdmax>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.vdmax>/g, obj, "vdmax", base.to_string, sub, context);
-
-            /**
-             * Limiter (<i>V</i><i><sub>DMIN</sub></i>).
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC2A.vdmin>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.vdmin>/g, obj, "vdmin", base.to_string, sub, context);
-
-            /**
-             * Discontinuous controller input reference (<i>V</i><i><sub>K</sub></i>).
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC2A.vk>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.vk>/g, obj, "vk", base.to_string, sub, context);
-
             bucket = context.parsed.DiscExcContIEEEDEC2A;
             if (null == bucket)
                 context.parsed.DiscExcContIEEEDEC2A = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_DiscExcContIEEEDEC2A (obj, exporters, full)
+        {
+            var fields = exporters["DiscontinuousExcitationControlDynamics"](obj, exporters, false);
+
+            base.export_element (obj, "DiscExcContIEEEDEC2A", "td1", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC2A", "td2", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC2A", "vdmax", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC2A", "vdmin", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC2A", "vk", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -74,154 +64,58 @@ define
 
             obj = parse_DiscontinuousExcitationControlDynamics (context, sub);
             obj.cls = "DiscExcContIEEEDEC1A";
-            /**
-             * Speed change reference (<i>E</i><i><sub>SC</sub></i>).
-             *
-             * Typical Value = 0.0015.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.esc>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.esc>/g, obj, "esc", base.to_string, sub, context);
-
-            /**
-             * Discontinuous controller gain (<i>K</i><i><sub>AN</sub></i>).
-             *
-             * Typical Value = 400.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.kan>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.kan>/g, obj, "kan", base.to_string, sub, context);
-
-            /**
-             * Terminal voltage limiter gain (<i>K</i><i><sub>ETL</sub></i>).
-             *
-             * Typical Value = 47.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.ketl>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.ketl>/g, obj, "ketl", base.to_string, sub, context);
-
-            /**
-             * Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>).
-             *
-             * Typical Value = 0.08.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.tan>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.tan>/g, obj, "tan", base.to_string, sub, context);
-
-            /**
-             * Time constant (<i>T</i><i><sub>D</sub></i>).
-             *
-             * Typical Value = 0.03.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.td>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.td>/g, obj, "td", base.to_string, sub, context);
-
-            /**
-             * Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>).
-             *
-             * Typical Value = 0.025.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.tl1>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.tl1>/g, obj, "tl1", base.to_string, sub, context);
-
-            /**
-             * Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>).
-             *
-             * Typical Value = 1.25.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.tl2>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.tl2>/g, obj, "tl2", base.to_string, sub, context);
-
-            /**
-             * DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>).
-             *
-             * Typical Value = 5.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.tw5>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.tw5>/g, obj, "tw5", base.to_string, sub, context);
-
-            /**
-             * Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
-             *
-             * Typical Value = 5.5.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.val>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.val>/g, obj, "val", base.to_string, sub, context);
-
-            /**
-             * Limiter for Van (<i>V</i><i><sub>ANMAX</sub></i>).
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.vanmax>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vanmax>/g, obj, "vanmax", base.to_string, sub, context);
-
-            /**
-             * Limiter (<i>V</i><i><sub>OMAX</sub></i>).
-             *
-             * Typical Value = 0.3.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.vomax>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vomax>/g, obj, "vomax", base.to_string, sub, context);
-
-            /**
-             * Limiter (<i>V</i><i><sub>OMIN</sub></i>).
-             *
-             * Typical Value = 0.1.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.vomin>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vomin>/g, obj, "vomin", base.to_string, sub, context);
-
-            /**
-             * Limiter (<i>V</i><i><sub>SMAX</sub></i>).
-             *
-             * Typical Value = 0.2.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.vsmax>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vsmax>/g, obj, "vsmax", base.to_string, sub, context);
-
-            /**
-             * Limiter (<i>V</i><i><sub>SMIN</sub></i>).
-             *
-             * Typical Value = -0.066.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.vsmin>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vsmin>/g, obj, "vsmin", base.to_string, sub, context);
-
-            /**
-             * Terminal voltage level reference (<i>V</i><i><sub>TC</sub></i>).
-             *
-             * Typical Value = 0.95.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.vtc>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vtc>/g, obj, "vtc", base.to_string, sub, context);
-
-            /**
-             * Voltage reference (<i>V</i><i><sub>TLMT</sub></i>).
-             *
-             * Typical Value = 1.1.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.vtlmt>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vtlmt>/g, obj, "vtlmt", base.to_string, sub, context);
-
-            /**
-             * Voltage limits (<i>V</i><i><sub>TM</sub></i>).
-             *
-             * Typical Value = 1.13.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.vtm>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vtm>/g, obj, "vtm", base.to_string, sub, context);
-
-            /**
-             * Voltage limits (<i>V</i><i><sub>TN</sub></i>).
-             *
-             * Typical Value = 1.12.
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC1A.vtn>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vtn>/g, obj, "vtn", base.to_string, sub, context);
-
             bucket = context.parsed.DiscExcContIEEEDEC1A;
             if (null == bucket)
                 context.parsed.DiscExcContIEEEDEC1A = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_DiscExcContIEEEDEC1A (obj, exporters, full)
+        {
+            var fields = exporters["DiscontinuousExcitationControlDynamics"](obj, exporters, false);
+
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "esc", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "kan", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "ketl", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "tan", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "td", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "tl1", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "tl2", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "tw5", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "val", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "vanmax", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "vomax", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "vomin", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "vsmax", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "vsmin", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "vtc", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "vtlmt", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "vtm", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC1A", "vtn", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -237,24 +131,26 @@ define
 
             obj = parse_DiscontinuousExcitationControlDynamics (context, sub);
             obj.cls = "DiscExcContIEEEDEC3A";
-            /**
-             * Reset time delay (<i>T</i><i><sub>DR</sub></i>).
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC3A.tdr>([\s\S]*?)<\/cim:DiscExcContIEEEDEC3A.tdr>/g, obj, "tdr", base.to_string, sub, context);
-
-            /**
-             * Terminal undervoltage comparison level (<i>V</i><i><sub>TMIN</sub></i>).
-             *
-             */
             base.parse_element (/<cim:DiscExcContIEEEDEC3A.vtmin>([\s\S]*?)<\/cim:DiscExcContIEEEDEC3A.vtmin>/g, obj, "vtmin", base.to_string, sub, context);
-
             bucket = context.parsed.DiscExcContIEEEDEC3A;
             if (null == bucket)
                 context.parsed.DiscExcContIEEEDEC3A = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_DiscExcContIEEEDEC3A (obj, exporters, full)
+        {
+            var fields = exporters["DiscontinuousExcitationControlDynamics"](obj, exporters, false);
+
+            base.export_element (obj, "DiscExcContIEEEDEC3A", "tdr", base.from_string, fields);
+            base.export_element (obj, "DiscExcContIEEEDEC3A", "vtmin", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -268,18 +164,8 @@ define
 
             obj = StandardModels.parse_DynamicsFunctionBlock (context, sub);
             obj.cls = "DiscontinuousExcitationControlDynamics";
-            /**
-             * Excitation system model with which this discontinuous excitation control model is associated.
-             *
-             */
-            base.parse_attribute (/<cim:DiscontinuousExcitationControlDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context, true);
-
-            /**
-             * Remote input signal used by this discontinuous excitation control system model.
-             *
-             */
-            base.parse_attribute (/<cim:DiscontinuousExcitationControlDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context, true);
-
+            base.parse_attribute (/<cim:DiscontinuousExcitationControlDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
+            base.parse_attribute (/<cim:DiscontinuousExcitationControlDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
             bucket = context.parsed.DiscontinuousExcitationControlDynamics;
             if (null == bucket)
                 context.parsed.DiscontinuousExcitationControlDynamics = bucket = {};
@@ -288,12 +174,28 @@ define
             return (obj);
         }
 
+        function export_DiscontinuousExcitationControlDynamics (obj, exporters, full)
+        {
+            var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+
+            base.export_attribute (obj, "DiscontinuousExcitationControlDynamics", "ExcitationSystemDynamics", fields);
+            base.export_attribute (obj, "DiscontinuousExcitationControlDynamics", "RemoteInputSignal", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
+                export_DiscExcContIEEEDEC2A: export_DiscExcContIEEEDEC2A,
                 parse_DiscExcContIEEEDEC2A: parse_DiscExcContIEEEDEC2A,
+                export_DiscExcContIEEEDEC3A: export_DiscExcContIEEEDEC3A,
                 parse_DiscontinuousExcitationControlDynamics: parse_DiscontinuousExcitationControlDynamics,
                 parse_DiscExcContIEEEDEC3A: parse_DiscExcContIEEEDEC3A,
-                parse_DiscExcContIEEEDEC1A: parse_DiscExcContIEEEDEC1A
+                export_DiscontinuousExcitationControlDynamics: export_DiscontinuousExcitationControlDynamics,
+                parse_DiscExcContIEEEDEC1A: parse_DiscExcContIEEEDEC1A,
+                export_DiscExcContIEEEDEC1A: export_DiscExcContIEEEDEC1A
             }
         );
     }

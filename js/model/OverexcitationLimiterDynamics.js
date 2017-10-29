@@ -23,60 +23,34 @@ define
 
             obj = parse_OverexcitationLimiterDynamics (context, sub);
             obj.cls = "OverexcLimIEEE";
-            /**
-             * OEL pickup/drop-out hysteresis (HYST).
-             *
-             * Typical Value = 0.03.
-             *
-             */
             base.parse_element (/<cim:OverexcLimIEEE.hyst>([\s\S]*?)<\/cim:OverexcLimIEEE.hyst>/g, obj, "hyst", base.to_string, sub, context);
-
-            /**
-             * OEL timed field current limit (I<sub>FDLIM</sub>).
-             *
-             * Typical Value = 1.05.
-             *
-             */
             base.parse_element (/<cim:OverexcLimIEEE.ifdlim>([\s\S]*?)<\/cim:OverexcLimIEEE.ifdlim>/g, obj, "ifdlim", base.to_string, sub, context);
-
-            /**
-             * OEL instantaneous field current limit (I<sub>FDMAX</sub>).
-             *
-             * Typical Value = 1.5.
-             *
-             */
             base.parse_element (/<cim:OverexcLimIEEE.ifdmax>([\s\S]*?)<\/cim:OverexcLimIEEE.ifdmax>/g, obj, "ifdmax", base.to_string, sub, context);
-
-            /**
-             * OEL timed field current limiter pickup level (I<sub>TFPU</sub>).
-             *
-             * Typical Value = 1.05.
-             *
-             */
             base.parse_element (/<cim:OverexcLimIEEE.itfpu>([\s\S]*?)<\/cim:OverexcLimIEEE.itfpu>/g, obj, "itfpu", base.to_string, sub, context);
-
-            /**
-             * OEL cooldown gain (K<sub>CD</sub>).
-             *
-             * Typical Value = 1.
-             *
-             */
             base.parse_element (/<cim:OverexcLimIEEE.kcd>([\s\S]*?)<\/cim:OverexcLimIEEE.kcd>/g, obj, "kcd", base.to_string, sub, context);
-
-            /**
-             * OEL ramped limit rate (K<sub>RAMP</sub>).
-             *
-             * Unit = PU/sec.  Typical Value = 10.
-             *
-             */
             base.parse_element (/<cim:OverexcLimIEEE.kramp>([\s\S]*?)<\/cim:OverexcLimIEEE.kramp>/g, obj, "kramp", base.to_float, sub, context);
-
             bucket = context.parsed.OverexcLimIEEE;
             if (null == bucket)
                 context.parsed.OverexcLimIEEE = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_OverexcLimIEEE (obj, exporters, full)
+        {
+            var fields = exporters["OverexcitationLimiterDynamics"](obj, exporters, false);
+
+            base.export_element (obj, "OverexcLimIEEE", "hyst", base.from_string, fields);
+            base.export_element (obj, "OverexcLimIEEE", "ifdlim", base.from_string, fields);
+            base.export_element (obj, "OverexcLimIEEE", "ifdmax", base.from_string, fields);
+            base.export_element (obj, "OverexcLimIEEE", "itfpu", base.from_string, fields);
+            base.export_element (obj, "OverexcLimIEEE", "kcd", base.from_string, fields);
+            base.export_element (obj, "OverexcLimIEEE", "kramp", base.from_float, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -90,90 +64,42 @@ define
 
             obj = parse_OverexcitationLimiterDynamics (context, sub);
             obj.cls = "OverexcLimX1";
-            /**
-             * Low voltage point on the inverse time characteristic (EFD<sub>1</sub>).
-             *
-             * Typical Value = 1.1.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX1.efd1>([\s\S]*?)<\/cim:OverexcLimX1.efd1>/g, obj, "efd1", base.to_string, sub, context);
-
-            /**
-             * Mid voltage point on the inverse time characteristic (EFD<sub>2</sub>).
-             *
-             * Typical Value = 1.2.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX1.efd2>([\s\S]*?)<\/cim:OverexcLimX1.efd2>/g, obj, "efd2", base.to_string, sub, context);
-
-            /**
-             * High voltage point on the inverse time characteristic (EFD<sub>3</sub>).
-             *
-             * Typical Value = 1.5.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX1.efd3>([\s\S]*?)<\/cim:OverexcLimX1.efd3>/g, obj, "efd3", base.to_string, sub, context);
-
-            /**
-             * Desired field voltage (EFD<sub>DES</sub>).
-             *
-             * Typical Value = 0.9.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX1.efddes>([\s\S]*?)<\/cim:OverexcLimX1.efddes>/g, obj, "efddes", base.to_string, sub, context);
-
-            /**
-             * Rated field voltage (EFD<sub>RATED</sub>).
-             *
-             * Typical Value = 1.05.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX1.efdrated>([\s\S]*?)<\/cim:OverexcLimX1.efdrated>/g, obj, "efdrated", base.to_string, sub, context);
-
-            /**
-             * Gain (K<sub>MX</sub>).
-             *
-             * Typical Value = 0.01.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX1.kmx>([\s\S]*?)<\/cim:OverexcLimX1.kmx>/g, obj, "kmx", base.to_string, sub, context);
-
-            /**
-             * Time to trip the exciter at the low voltage point on the inverse time characteristic (TIME<sub>1</sub>).
-             *
-             * Typical Value = 120.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX1.t1>([\s\S]*?)<\/cim:OverexcLimX1.t1>/g, obj, "t1", base.to_string, sub, context);
-
-            /**
-             * Time to trip the exciter at the mid voltage point on the inverse time characteristic (TIME<sub>2</sub>).
-             *
-             * Typical Value = 40.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX1.t2>([\s\S]*?)<\/cim:OverexcLimX1.t2>/g, obj, "t2", base.to_string, sub, context);
-
-            /**
-             * Time to trip the exciter at the high voltage point on the inverse time characteristic (TIME<sub>3</sub>).
-             *
-             * Typical Value = 15.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX1.t3>([\s\S]*?)<\/cim:OverexcLimX1.t3>/g, obj, "t3", base.to_string, sub, context);
-
-            /**
-             * Low voltage limit (V<sub>LOW</sub>) (&gt;0).
-             *
-             */
             base.parse_element (/<cim:OverexcLimX1.vlow>([\s\S]*?)<\/cim:OverexcLimX1.vlow>/g, obj, "vlow", base.to_string, sub, context);
-
             bucket = context.parsed.OverexcLimX1;
             if (null == bucket)
                 context.parsed.OverexcLimX1 = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_OverexcLimX1 (obj, exporters, full)
+        {
+            var fields = exporters["OverexcitationLimiterDynamics"](obj, exporters, false);
+
+            base.export_element (obj, "OverexcLimX1", "efd1", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX1", "efd2", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX1", "efd3", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX1", "efddes", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX1", "efdrated", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX1", "kmx", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX1", "t1", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX1", "t2", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX1", "t3", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX1", "vlow", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -187,99 +113,44 @@ define
 
             obj = parse_OverexcitationLimiterDynamics (context, sub);
             obj.cls = "OverexcLimX2";
-            /**
-             * Low voltage or current point on the inverse time characteristic (EFD<sub>1</sub>).
-             *
-             * Typical Value = 1.1.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX2.efd1>([\s\S]*?)<\/cim:OverexcLimX2.efd1>/g, obj, "efd1", base.to_string, sub, context);
-
-            /**
-             * Mid voltage or current point on the inverse time characteristic (EFD<sub>2</sub>).
-             *
-             * Typical Value = 1.2.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX2.efd2>([\s\S]*?)<\/cim:OverexcLimX2.efd2>/g, obj, "efd2", base.to_string, sub, context);
-
-            /**
-             * High voltage or current point on the inverse time characteristic (EFD<sub>3</sub>).
-             *
-             * Typical Value = 1.5.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX2.efd3>([\s\S]*?)<\/cim:OverexcLimX2.efd3>/g, obj, "efd3", base.to_string, sub, context);
-
-            /**
-             * Desired field voltage if m=F or field current if m=T (EFD<sub>DES</sub>).
-             *
-             * Typical Value = 1.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX2.efddes>([\s\S]*?)<\/cim:OverexcLimX2.efddes>/g, obj, "efddes", base.to_string, sub, context);
-
-            /**
-             * Rated field voltage if m=F or field current if m=T (EFD<sub>RATED</sub>).
-             *
-             * Typical Value = 1.05.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX2.efdrated>([\s\S]*?)<\/cim:OverexcLimX2.efdrated>/g, obj, "efdrated", base.to_string, sub, context);
-
-            /**
-             * Gain (K<sub>MX</sub>).
-             *
-             * Typical Value = 0.002.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX2.kmx>([\s\S]*?)<\/cim:OverexcLimX2.kmx>/g, obj, "kmx", base.to_string, sub, context);
-
-            /**
-             * (m).
-             * true = IFD limiting
-             *
-             * false = EFD limiting.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX2.m>([\s\S]*?)<\/cim:OverexcLimX2.m>/g, obj, "m", base.to_boolean, sub, context);
-
-            /**
-             * Time to trip the exciter at the low voltage or current point on the inverse time characteristic (TIME<sub>1</sub>).
-             *
-             * Typical Value = 120.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX2.t1>([\s\S]*?)<\/cim:OverexcLimX2.t1>/g, obj, "t1", base.to_string, sub, context);
-
-            /**
-             * Time to trip the exciter at the mid voltage or current point on the inverse time characteristic (TIME<sub>2</sub>).
-             *
-             * Typical Value = 40.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX2.t2>([\s\S]*?)<\/cim:OverexcLimX2.t2>/g, obj, "t2", base.to_string, sub, context);
-
-            /**
-             * Time to trip the exciter at the high voltage or current point on the inverse time characteristic (TIME<sub>3</sub>).
-             *
-             * Typical Value = 15.
-             *
-             */
             base.parse_element (/<cim:OverexcLimX2.t3>([\s\S]*?)<\/cim:OverexcLimX2.t3>/g, obj, "t3", base.to_string, sub, context);
-
-            /**
-             * Low voltage limit (V<sub>LOW</sub>) (&gt;0).
-             *
-             */
             base.parse_element (/<cim:OverexcLimX2.vlow>([\s\S]*?)<\/cim:OverexcLimX2.vlow>/g, obj, "vlow", base.to_string, sub, context);
-
             bucket = context.parsed.OverexcLimX2;
             if (null == bucket)
                 context.parsed.OverexcLimX2 = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_OverexcLimX2 (obj, exporters, full)
+        {
+            var fields = exporters["OverexcitationLimiterDynamics"](obj, exporters, false);
+
+            base.export_element (obj, "OverexcLimX2", "efd1", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX2", "efd2", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX2", "efd3", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX2", "efddes", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX2", "efdrated", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX2", "kmx", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX2", "m", base.from_boolean, fields);
+            base.export_element (obj, "OverexcLimX2", "t1", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX2", "t2", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX2", "t3", base.from_string, fields);
+            base.export_element (obj, "OverexcLimX2", "vlow", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -293,18 +164,24 @@ define
 
             obj = StandardModels.parse_DynamicsFunctionBlock (context, sub);
             obj.cls = "OverexcitationLimiterDynamics";
-            /**
-             * Excitation system model with which this overexcitation limiter model is associated.
-             *
-             */
-            base.parse_attribute (/<cim:OverexcitationLimiterDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context, true);
-
+            base.parse_attribute (/<cim:OverexcitationLimiterDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
             bucket = context.parsed.OverexcitationLimiterDynamics;
             if (null == bucket)
                 context.parsed.OverexcitationLimiterDynamics = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_OverexcitationLimiterDynamics (obj, exporters, full)
+        {
+            var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+
+            base.export_attribute (obj, "OverexcitationLimiterDynamics", "ExcitationSystemDynamics", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -320,38 +197,10 @@ define
 
             obj = parse_OverexcitationLimiterDynamics (context, sub);
             obj.cls = "OverexcLim2";
-            /**
-             * Limit value of rated field current (I<sub>FDLIM</sub>).
-             *
-             * Typical Value = 1.05.
-             *
-             */
             base.parse_element (/<cim:OverexcLim2.ifdlim>([\s\S]*?)<\/cim:OverexcLim2.ifdlim>/g, obj, "ifdlim", base.to_string, sub, context);
-
-            /**
-             * Gain Over excitation limiter (K<sub>OI</sub>).
-             *
-             * Typical Value = 0.1.
-             *
-             */
             base.parse_element (/<cim:OverexcLim2.koi>([\s\S]*?)<\/cim:OverexcLim2.koi>/g, obj, "koi", base.to_string, sub, context);
-
-            /**
-             * Maximum error signal (V<sub>OIMAX</sub>).
-             *
-             * Typical Value = 0.
-             *
-             */
             base.parse_element (/<cim:OverexcLim2.voimax>([\s\S]*?)<\/cim:OverexcLim2.voimax>/g, obj, "voimax", base.to_string, sub, context);
-
-            /**
-             * Minimum error signal (V<sub>OIMIN</sub>).
-             *
-             * Typical Value = -9999.
-             *
-             */
             base.parse_element (/<cim:OverexcLim2.voimin>([\s\S]*?)<\/cim:OverexcLim2.voimin>/g, obj, "voimin", base.to_string, sub, context);
-
             bucket = context.parsed.OverexcLim2;
             if (null == bucket)
                 context.parsed.OverexcLim2 = bucket = {};
@@ -360,13 +209,32 @@ define
             return (obj);
         }
 
+        function export_OverexcLim2 (obj, exporters, full)
+        {
+            var fields = exporters["OverexcitationLimiterDynamics"](obj, exporters, false);
+
+            base.export_element (obj, "OverexcLim2", "ifdlim", base.from_string, fields);
+            base.export_element (obj, "OverexcLim2", "koi", base.from_string, fields);
+            base.export_element (obj, "OverexcLim2", "voimax", base.from_string, fields);
+            base.export_element (obj, "OverexcLim2", "voimin", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
+                export_OverexcLimIEEE: export_OverexcLimIEEE,
                 parse_OverexcLimX2: parse_OverexcLimX2,
+                export_OverexcLimX2: export_OverexcLimX2,
                 parse_OverexcLim2: parse_OverexcLim2,
+                export_OverexcLim2: export_OverexcLim2,
                 parse_OverexcitationLimiterDynamics: parse_OverexcitationLimiterDynamics,
                 parse_OverexcLimX1: parse_OverexcLimX1,
-                parse_OverexcLimIEEE: parse_OverexcLimIEEE
+                export_OverexcitationLimiterDynamics: export_OverexcitationLimiterDynamics,
+                parse_OverexcLimIEEE: parse_OverexcLimIEEE,
+                export_OverexcLimX1: export_OverexcLimX1
             }
         );
     }

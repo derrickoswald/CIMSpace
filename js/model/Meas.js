@@ -19,34 +19,28 @@ define
 
             obj = parse_Control (context, sub);
             obj.cls = "AnalogControl";
-            /**
-             * Normal value range maximum for any of the Control.value.
-             *
-             * Used for scaling, e.g. in bar graphs.
-             *
-             */
             base.parse_element (/<cim:AnalogControl.maxValue>([\s\S]*?)<\/cim:AnalogControl.maxValue>/g, obj, "maxValue", base.to_float, sub, context);
-
-            /**
-             * Normal value range minimum for any of the Control.value.
-             *
-             * Used for scaling, e.g. in bar graphs.
-             *
-             */
             base.parse_element (/<cim:AnalogControl.minValue>([\s\S]*?)<\/cim:AnalogControl.minValue>/g, obj, "minValue", base.to_float, sub, context);
-
-            /**
-             * The MeasurementValue that is controlled.
-             *
-             */
-            base.parse_attribute (/<cim:AnalogControl.AnalogValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AnalogValue", sub, context, true);
-
+            base.parse_attribute (/<cim:AnalogControl.AnalogValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AnalogValue", sub, context);
             bucket = context.parsed.AnalogControl;
             if (null == bucket)
                 context.parsed.AnalogControl = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AnalogControl (obj, exporters, full)
+        {
+            var fields = exporters["Control"](obj, exporters, false);
+
+            base.export_element (obj, "AnalogControl", "maxValue", base.from_float, fields);
+            base.export_element (obj, "AnalogControl", "minValue", base.from_float, fields);
+            base.export_attribute (obj, "AnalogControl", "AnalogValue", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -70,6 +64,16 @@ define
             return (obj);
         }
 
+        function export_ValueAliasSet (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * An AnalogLimitSet specifies a set of Limits that are associated with an Analog measurement.
          *
@@ -89,6 +93,16 @@ define
             return (obj);
         }
 
+        function export_AnalogLimitSet (obj, exporters, full)
+        {
+            var fields = exporters["LimitSet"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * The current state for a measurement.
          *
@@ -102,48 +116,36 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "MeasurementValue";
-            /**
-             * The limit, expressed as a percentage of the sensor maximum, that errors will not exceed when the sensor is used under  reference conditions.
-             *
-             */
             base.parse_element (/<cim:MeasurementValue.sensorAccuracy>([\s\S]*?)<\/cim:MeasurementValue.sensorAccuracy>/g, obj, "sensorAccuracy", base.to_string, sub, context);
-
-            /**
-             * The time when the value was last updated
-             *
-             */
             base.parse_element (/<cim:MeasurementValue.timeStamp>([\s\S]*?)<\/cim:MeasurementValue.timeStamp>/g, obj, "timeStamp", base.to_datetime, sub, context);
-
-            base.parse_attribute (/<cim:MeasurementValue.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context, true);
-
-            /**
-             * A reference to the type of source that updates the MeasurementValue, e.g.
-             *
-             * SCADA, CCLink, manual, etc. User conventions for the names of sources are contained in the introduction to IEC 61970-301.
-             *
-             */
-            base.parse_attribute (/<cim:MeasurementValue.MeasurementValueSource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementValueSource", sub, context, true);
-
-            base.parse_attribute (/<cim:MeasurementValue.ErpPerson\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPerson", sub, context, true);
-
-            /**
-             * A MeasurementValue has a MeasurementValueQuality associated with it.
-             *
-             */
-            base.parse_attribute (/<cim:MeasurementValue.MeasurementValueQuality\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementValueQuality", sub, context, true);
-
-            /**
-             * Link to the physical telemetered point associated with this measurement.
-             *
-             */
-            base.parse_attribute (/<cim:MeasurementValue.RemoteSource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteSource", sub, context, true);
-
+            base.parse_attribute (/<cim:MeasurementValue.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
+            base.parse_attribute (/<cim:MeasurementValue.MeasurementValueSource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementValueSource", sub, context);
+            base.parse_attribute (/<cim:MeasurementValue.ErpPerson\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPerson", sub, context);
+            base.parse_attribute (/<cim:MeasurementValue.MeasurementValueQuality\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementValueQuality", sub, context);
+            base.parse_attribute (/<cim:MeasurementValue.RemoteSource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteSource", sub, context);
             bucket = context.parsed.MeasurementValue;
             if (null == bucket)
                 context.parsed.MeasurementValue = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_MeasurementValue (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "MeasurementValue", "sensorAccuracy", base.from_string, fields);
+            base.export_element (obj, "MeasurementValue", "timeStamp", base.from_datetime, fields);
+            base.export_attribute (obj, "MeasurementValue", "", fields);
+            base.export_attribute (obj, "MeasurementValue", "MeasurementValueSource", fields);
+            base.export_attribute (obj, "MeasurementValue", "ErpPerson", fields);
+            base.export_attribute (obj, "MeasurementValue", "MeasurementValueQuality", fields);
+            base.export_attribute (obj, "MeasurementValue", "RemoteSource", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -157,34 +159,28 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Validity";
-            /**
-             * The value is marked good if no abnormal condition of the acquisition function or the information source is detected.
-             *
-             */
             base.parse_element (/<cim:Validity.GOOD>([\s\S]*?)<\/cim:Validity.GOOD>/g, obj, "GOOD", base.to_string, sub, context);
-
-            /**
-             * The value is marked questionable if a supervision function detects an abnormal behaviour, however the value could still be valid.
-             *
-             * The client is responsible for determining whether or not values marked "questionable" should be used.
-             *
-             */
             base.parse_element (/<cim:Validity.QUESTIONABLE>([\s\S]*?)<\/cim:Validity.QUESTIONABLE>/g, obj, "QUESTIONABLE", base.to_string, sub, context);
-
-            /**
-             * The value is marked invalid when a supervision function recognises abnormal conditions of the acquisition function or the information source (missing or non-operating updating devices).
-             *
-             * The value is not defined under this condition. The mark invalid is used to indicate to the client that the value may be incorrect and shall not be used.
-             *
-             */
             base.parse_element (/<cim:Validity.INVALID>([\s\S]*?)<\/cim:Validity.INVALID>/g, obj, "INVALID", base.to_string, sub, context);
-
             bucket = context.parsed.Validity;
             if (null == bucket)
                 context.parsed.Validity = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Validity (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "Validity", "GOOD", base.from_string, fields);
+            base.export_element (obj, "Validity", "QUESTIONABLE", base.from_string, fields);
+            base.export_element (obj, "Validity", "INVALID", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -198,92 +194,46 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "Quality61850";
-            /**
-             * Measurement value may be incorrect due to a reference being out of calibration.
-             *
-             */
             base.parse_element (/<cim:Quality61850.badReference>([\s\S]*?)<\/cim:Quality61850.badReference>/g, obj, "badReference", base.to_boolean, sub, context);
-
-            /**
-             * Value has been replaced by State Estimator. estimatorReplaced is not an IEC61850 quality bit but has been put in this class for convenience.
-             *
-             */
             base.parse_element (/<cim:Quality61850.estimatorReplaced>([\s\S]*?)<\/cim:Quality61850.estimatorReplaced>/g, obj, "estimatorReplaced", base.to_boolean, sub, context);
-
-            /**
-             * This identifier indicates that a supervision function has detected an internal or external failure, e.g. communication failure.
-             *
-             */
             base.parse_element (/<cim:Quality61850.failure>([\s\S]*?)<\/cim:Quality61850.failure>/g, obj, "failure", base.to_boolean, sub, context);
-
-            /**
-             * Measurement value is old and possibly invalid, as it has not been successfully updated during a specified time interval.
-             *
-             */
             base.parse_element (/<cim:Quality61850.oldData>([\s\S]*?)<\/cim:Quality61850.oldData>/g, obj, "oldData", base.to_boolean, sub, context);
-
-            /**
-             * Measurement value is blocked and hence unavailable for transmission.
-             *
-             */
             base.parse_element (/<cim:Quality61850.operatorBlocked>([\s\S]*?)<\/cim:Quality61850.operatorBlocked>/g, obj, "operatorBlocked", base.to_boolean, sub, context);
-
-            /**
-             * To prevent some overload of the communication it is sensible to detect and suppress oscillating (fast changing) binary inputs.
-             *
-             * If a signal changes in a defined time (tosc) twice in the same direction (from 0 to 1 or from 1 to 0) then oscillation is detected and the detail quality identifier "oscillatory" is set. If it is detected a configured numbers of transient changes could be passed by. In this time the validity status "questionable" is set. If after this defined numbers of changes the signal is still in the oscillating state the value shall be set either to the opposite state of the previous stable value or to a defined default value. In this case the validity status "questionable" is reset and "invalid" is set as long as the signal is oscillating. If it is configured such that no transient changes should be passed by then the validity status "invalid" is set immediately in addition to the detail quality identifier "oscillatory" (used for status information only).
-             *
-             */
             base.parse_element (/<cim:Quality61850.oscillatory>([\s\S]*?)<\/cim:Quality61850.oscillatory>/g, obj, "oscillatory", base.to_boolean, sub, context);
-
-            /**
-             * Measurement value is beyond a predefined range of value.
-             *
-             */
             base.parse_element (/<cim:Quality61850.outOfRange>([\s\S]*?)<\/cim:Quality61850.outOfRange>/g, obj, "outOfRange", base.to_boolean, sub, context);
-
-            /**
-             * Measurement value is beyond the capability of being  represented properly.
-             *
-             * For example, a counter value overflows from maximum count back to a value of zero.
-             *
-             */
             base.parse_element (/<cim:Quality61850.overFlow>([\s\S]*?)<\/cim:Quality61850.overFlow>/g, obj, "overFlow", base.to_boolean, sub, context);
-
-            /**
-             * Source gives information related to the origin of a value.
-             *
-             * The value may be acquired from the process, defaulted or substituted.
-             *
-             */
             base.parse_element (/<cim:Quality61850.source>([\s\S]*?)<\/cim:Quality61850.source>/g, obj, "source", base.to_string, sub, context);
-
-            /**
-             * A correlation function has detected that the value is not consitent with other values.
-             *
-             * Typically set by a network State Estimator.
-             *
-             */
             base.parse_element (/<cim:Quality61850.suspect>([\s\S]*?)<\/cim:Quality61850.suspect>/g, obj, "suspect", base.to_boolean, sub, context);
-
-            /**
-             * Measurement value is transmitted for test purposes.
-             *
-             */
             base.parse_element (/<cim:Quality61850.test>([\s\S]*?)<\/cim:Quality61850.test>/g, obj, "test", base.to_boolean, sub, context);
-
-            /**
-             * Validity of the measurement value.
-             *
-             */
             base.parse_element (/<cim:Quality61850.validity>([\s\S]*?)<\/cim:Quality61850.validity>/g, obj, "validity", base.to_string, sub, context);
-
             bucket = context.parsed.Quality61850;
             if (null == bucket)
                 context.parsed.Quality61850 = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Quality61850 (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "Quality61850", "badReference", base.from_boolean, fields);
+            base.export_element (obj, "Quality61850", "estimatorReplaced", base.from_boolean, fields);
+            base.export_element (obj, "Quality61850", "failure", base.from_boolean, fields);
+            base.export_element (obj, "Quality61850", "oldData", base.from_boolean, fields);
+            base.export_element (obj, "Quality61850", "operatorBlocked", base.from_boolean, fields);
+            base.export_element (obj, "Quality61850", "oscillatory", base.from_boolean, fields);
+            base.export_element (obj, "Quality61850", "outOfRange", base.from_boolean, fields);
+            base.export_element (obj, "Quality61850", "overFlow", base.from_boolean, fields);
+            base.export_element (obj, "Quality61850", "source", base.from_string, fields);
+            base.export_element (obj, "Quality61850", "suspect", base.from_boolean, fields);
+            base.export_element (obj, "Quality61850", "test", base.from_boolean, fields);
+            base.export_element (obj, "Quality61850", "validity", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -307,6 +257,16 @@ define
             return (obj);
         }
 
+        function export_Limit (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * A Command is a discrete control used for supervisory control.
          *
@@ -318,36 +278,30 @@ define
 
             obj = parse_Control (context, sub);
             obj.cls = "Command";
-            /**
-             * Normal value for Control.value e.g. used for percentage scaling.
-             *
-             */
             base.parse_element (/<cim:Command.normalValue>([\s\S]*?)<\/cim:Command.normalValue>/g, obj, "normalValue", base.to_string, sub, context);
-
-            /**
-             * The value representing the actuator output.
-             *
-             */
             base.parse_element (/<cim:Command.value>([\s\S]*?)<\/cim:Command.value>/g, obj, "value", base.to_string, sub, context);
-
-            /**
-             * The MeasurementValue that is controlled.
-             *
-             */
-            base.parse_attribute (/<cim:Command.DiscreteValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DiscreteValue", sub, context, true);
-
-            /**
-             * The ValueAliasSet used for translation of a Control value to a name.
-             *
-             */
-            base.parse_attribute (/<cim:Command.ValueAliasSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ValueAliasSet", sub, context, true);
-
+            base.parse_attribute (/<cim:Command.DiscreteValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DiscreteValue", sub, context);
+            base.parse_attribute (/<cim:Command.ValueAliasSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ValueAliasSet", sub, context);
             bucket = context.parsed.Command;
             if (null == bucket)
                 context.parsed.Command = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Command (obj, exporters, full)
+        {
+            var fields = exporters["Control"](obj, exporters, false);
+
+            base.export_element (obj, "Command", "normalValue", base.from_string, fields);
+            base.export_element (obj, "Command", "value", base.from_string, fields);
+            base.export_attribute (obj, "Command", "DiscreteValue", fields);
+            base.export_attribute (obj, "Command", "ValueAliasSet", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -363,56 +317,36 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "Control";
-            /**
-             * Indicates that a client is currently sending control commands that has not completed.
-             *
-             */
             base.parse_element (/<cim:Control.operationInProgress>([\s\S]*?)<\/cim:Control.operationInProgress>/g, obj, "operationInProgress", base.to_boolean, sub, context);
-
-            /**
-             * The last time a control output was sent.
-             *
-             */
             base.parse_element (/<cim:Control.timeStamp>([\s\S]*?)<\/cim:Control.timeStamp>/g, obj, "timeStamp", base.to_datetime, sub, context);
-
-            /**
-             * The unit multiplier of the controlled quantity.
-             *
-             */
             base.parse_element (/<cim:Control.unitMultiplier>([\s\S]*?)<\/cim:Control.unitMultiplier>/g, obj, "unitMultiplier", base.to_string, sub, context);
-
-            /**
-             * The unit of measure of the controlled quantity.
-             *
-             */
             base.parse_element (/<cim:Control.unitSymbol>([\s\S]*?)<\/cim:Control.unitSymbol>/g, obj, "unitSymbol", base.to_string, sub, context);
-
-            /**
-             * Specifies the type of Control, e.g.
-             *
-             * BreakerOn/Off, GeneratorVoltageSetPoint, TieLineFlow etc. The ControlType.name shall be unique among all specified types and describe the type.
-             *
-             */
             base.parse_element (/<cim:Control.controlType>([\s\S]*?)<\/cim:Control.controlType>/g, obj, "controlType", base.to_string, sub, context);
-
-            /**
-             * Regulating device governed by this control output.
-             *
-             */
-            base.parse_attribute (/<cim:Control.PowerSystemResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResource", sub, context, true);
-
-            /**
-             * The remote point controlling the physical actuator.
-             *
-             */
-            base.parse_attribute (/<cim:Control.RemoteControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteControl", sub, context, true);
-
+            base.parse_attribute (/<cim:Control.PowerSystemResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResource", sub, context);
+            base.parse_attribute (/<cim:Control.RemoteControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteControl", sub, context);
             bucket = context.parsed.Control;
             if (null == bucket)
                 context.parsed.Control = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Control (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "Control", "operationInProgress", base.from_boolean, fields);
+            base.export_element (obj, "Control", "timeStamp", base.from_datetime, fields);
+            base.export_element (obj, "Control", "unitMultiplier", base.from_string, fields);
+            base.export_element (obj, "Control", "unitSymbol", base.from_string, fields);
+            base.export_element (obj, "Control", "controlType", base.from_string, fields);
+            base.export_attribute (obj, "Control", "PowerSystemResource", fields);
+            base.export_attribute (obj, "Control", "RemoteControl", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         function parse_DiscreteCommand (context, sub)
@@ -430,6 +364,16 @@ define
             return (obj);
         }
 
+        function export_DiscreteCommand (obj, exporters, full)
+        {
+            var fields = exporters["Command"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Limit values for Accumulator measurements.
          *
@@ -441,26 +385,26 @@ define
 
             obj = parse_Limit (context, sub);
             obj.cls = "AccumulatorLimit";
-            /**
-             * The value to supervise against.
-             *
-             * The value is positive.
-             *
-             */
             base.parse_element (/<cim:AccumulatorLimit.value>([\s\S]*?)<\/cim:AccumulatorLimit.value>/g, obj, "value", base.to_string, sub, context);
-
-            /**
-             * The set of limits.
-             *
-             */
-            base.parse_attribute (/<cim:AccumulatorLimit.LimitSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LimitSet", sub, context, true);
-
+            base.parse_attribute (/<cim:AccumulatorLimit.LimitSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LimitSet", sub, context);
             bucket = context.parsed.AccumulatorLimit;
             if (null == bucket)
                 context.parsed.AccumulatorLimit = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AccumulatorLimit (obj, exporters, full)
+        {
+            var fields = exporters["Limit"](obj, exporters, false);
+
+            base.export_element (obj, "AccumulatorLimit", "value", base.from_string, fields);
+            base.export_attribute (obj, "AccumulatorLimit", "LimitSet", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -474,30 +418,28 @@ define
 
             obj = parse_MeasurementValue (context, sub);
             obj.cls = "DiscreteValue";
-            /**
-             * The value to supervise.
-             *
-             */
             base.parse_element (/<cim:DiscreteValue.value>([\s\S]*?)<\/cim:DiscreteValue.value>/g, obj, "value", base.to_string, sub, context);
-
-            /**
-             * The Control variable associated with the MeasurementValue.
-             *
-             */
-            base.parse_attribute (/<cim:DiscreteValue.Command\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Command", sub, context, true);
-
-            /**
-             * Measurement to which this value is connected.
-             *
-             */
-            base.parse_attribute (/<cim:DiscreteValue.Discrete\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Discrete", sub, context, true);
-
+            base.parse_attribute (/<cim:DiscreteValue.Command\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Command", sub, context);
+            base.parse_attribute (/<cim:DiscreteValue.Discrete\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Discrete", sub, context);
             bucket = context.parsed.DiscreteValue;
             if (null == bucket)
                 context.parsed.DiscreteValue = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_DiscreteValue (obj, exporters, full)
+        {
+            var fields = exporters["MeasurementValue"](obj, exporters, false);
+
+            base.export_element (obj, "DiscreteValue", "value", base.from_string, fields);
+            base.export_attribute (obj, "DiscreteValue", "Command", fields);
+            base.export_attribute (obj, "DiscreteValue", "Discrete", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -511,18 +453,24 @@ define
 
             obj = parse_AnalogControl (context, sub);
             obj.cls = "RaiseLowerCommand";
-            /**
-             * The ValueAliasSet used for translation of a Control value to a name.
-             *
-             */
-            base.parse_attribute (/<cim:RaiseLowerCommand.ValueAliasSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ValueAliasSet", sub, context, true);
-
+            base.parse_attribute (/<cim:RaiseLowerCommand.ValueAliasSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ValueAliasSet", sub, context);
             bucket = context.parsed.RaiseLowerCommand;
             if (null == bucket)
                 context.parsed.RaiseLowerCommand = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_RaiseLowerCommand (obj, exporters, full)
+        {
+            var fields = exporters["AnalogControl"](obj, exporters, false);
+
+            base.export_attribute (obj, "RaiseLowerCommand", "ValueAliasSet", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -536,40 +484,30 @@ define
 
             obj = parse_Measurement (context, sub);
             obj.cls = "Analog";
-            /**
-             * Normal value range maximum for any of the MeasurementValue.values.
-             *
-             * Used for scaling, e.g. in bar graphs or of telemetered raw values.
-             *
-             */
             base.parse_element (/<cim:Analog.maxValue>([\s\S]*?)<\/cim:Analog.maxValue>/g, obj, "maxValue", base.to_float, sub, context);
-
-            /**
-             * Normal value range minimum for any of the MeasurementValue.values.
-             *
-             * Used for scaling, e.g. in bar graphs or of telemetered raw values.
-             *
-             */
             base.parse_element (/<cim:Analog.minValue>([\s\S]*?)<\/cim:Analog.minValue>/g, obj, "minValue", base.to_float, sub, context);
-
-            /**
-             * Normal measurement value, e.g., used for percentage calculations.
-             *
-             */
             base.parse_element (/<cim:Analog.normalValue>([\s\S]*?)<\/cim:Analog.normalValue>/g, obj, "normalValue", base.to_float, sub, context);
-
-            /**
-             * If true then this measurement is an active power, reactive power or current with the convention that a positive value measured at the Terminal means power is flowing into the related PowerSystemResource.
-             *
-             */
             base.parse_element (/<cim:Analog.positiveFlowIn>([\s\S]*?)<\/cim:Analog.positiveFlowIn>/g, obj, "positiveFlowIn", base.to_boolean, sub, context);
-
             bucket = context.parsed.Analog;
             if (null == bucket)
                 context.parsed.Analog = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Analog (obj, exporters, full)
+        {
+            var fields = exporters["Measurement"](obj, exporters, false);
+
+            base.export_element (obj, "Analog", "maxValue", base.from_float, fields);
+            base.export_element (obj, "Analog", "minValue", base.from_float, fields);
+            base.export_element (obj, "Analog", "normalValue", base.from_float, fields);
+            base.export_element (obj, "Analog", "positiveFlowIn", base.from_boolean, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -583,24 +521,26 @@ define
 
             obj = parse_MeasurementValue (context, sub);
             obj.cls = "StringMeasurementValue";
-            /**
-             * The value to supervise.
-             *
-             */
             base.parse_element (/<cim:StringMeasurementValue.value>([\s\S]*?)<\/cim:StringMeasurementValue.value>/g, obj, "value", base.to_string, sub, context);
-
-            /**
-             * Measurement to which this value is connected.
-             *
-             */
-            base.parse_attribute (/<cim:StringMeasurementValue.StringMeasurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StringMeasurement", sub, context, true);
-
+            base.parse_attribute (/<cim:StringMeasurementValue.StringMeasurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StringMeasurement", sub, context);
             bucket = context.parsed.StringMeasurementValue;
             if (null == bucket)
                 context.parsed.StringMeasurementValue = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_StringMeasurementValue (obj, exporters, full)
+        {
+            var fields = exporters["MeasurementValue"](obj, exporters, false);
+
+            base.export_element (obj, "StringMeasurementValue", "value", base.from_string, fields);
+            base.export_attribute (obj, "StringMeasurementValue", "StringMeasurement", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -616,18 +556,24 @@ define
 
             obj = parse_Quality61850 (context, sub);
             obj.cls = "MeasurementValueQuality";
-            /**
-             * A MeasurementValue has a MeasurementValueQuality associated with it.
-             *
-             */
-            base.parse_attribute (/<cim:MeasurementValueQuality.MeasurementValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementValue", sub, context, true);
-
+            base.parse_attribute (/<cim:MeasurementValueQuality.MeasurementValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementValue", sub, context);
             bucket = context.parsed.MeasurementValueQuality;
             if (null == bucket)
                 context.parsed.MeasurementValueQuality = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_MeasurementValueQuality (obj, exporters, full)
+        {
+            var fields = exporters["Quality61850"](obj, exporters, false);
+
+            base.export_attribute (obj, "MeasurementValueQuality", "MeasurementValue", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -641,24 +587,26 @@ define
 
             obj = parse_AnalogControl (context, sub);
             obj.cls = "SetPoint";
-            /**
-             * Normal value for Control.value e.g. used for percentage scaling.
-             *
-             */
             base.parse_element (/<cim:SetPoint.normalValue>([\s\S]*?)<\/cim:SetPoint.normalValue>/g, obj, "normalValue", base.to_float, sub, context);
-
-            /**
-             * The value representing the actuator output.
-             *
-             */
             base.parse_element (/<cim:SetPoint.value>([\s\S]*?)<\/cim:SetPoint.value>/g, obj, "value", base.to_float, sub, context);
-
             bucket = context.parsed.SetPoint;
             if (null == bucket)
                 context.parsed.SetPoint = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_SetPoint (obj, exporters, full)
+        {
+            var fields = exporters["AnalogControl"](obj, exporters, false);
+
+            base.export_element (obj, "SetPoint", "normalValue", base.from_float, fields);
+            base.export_element (obj, "SetPoint", "value", base.from_float, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -682,6 +630,16 @@ define
             return (obj);
         }
 
+        function export_MeasurementValueSource (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * AccumulatorValue represents an accumulated (counted) MeasurementValue.
          *
@@ -693,32 +651,28 @@ define
 
             obj = parse_MeasurementValue (context, sub);
             obj.cls = "AccumulatorValue";
-            /**
-             * The value to supervise.
-             *
-             * The value is positive.
-             *
-             */
             base.parse_element (/<cim:AccumulatorValue.value>([\s\S]*?)<\/cim:AccumulatorValue.value>/g, obj, "value", base.to_string, sub, context);
-
-            /**
-             * Measurement to which this value is connected.
-             *
-             */
-            base.parse_attribute (/<cim:AccumulatorValue.Accumulator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Accumulator", sub, context, true);
-
-            /**
-             * The command that reset the accumulator value.
-             *
-             */
-            base.parse_attribute (/<cim:AccumulatorValue.AccumulatorReset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AccumulatorReset", sub, context, true);
-
+            base.parse_attribute (/<cim:AccumulatorValue.Accumulator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Accumulator", sub, context);
+            base.parse_attribute (/<cim:AccumulatorValue.AccumulatorReset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AccumulatorReset", sub, context);
             bucket = context.parsed.AccumulatorValue;
             if (null == bucket)
                 context.parsed.AccumulatorValue = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AccumulatorValue (obj, exporters, full)
+        {
+            var fields = exporters["MeasurementValue"](obj, exporters, false);
+
+            base.export_element (obj, "AccumulatorValue", "value", base.from_string, fields);
+            base.export_attribute (obj, "AccumulatorValue", "Accumulator", fields);
+            base.export_attribute (obj, "AccumulatorValue", "AccumulatorReset", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -732,20 +686,24 @@ define
 
             obj = parse_Measurement (context, sub);
             obj.cls = "Accumulator";
-            /**
-             * Normal value range maximum for any of the MeasurementValue.values.
-             *
-             * Used for scaling, e.g. in bar graphs or of telemetered raw values.
-             *
-             */
             base.parse_element (/<cim:Accumulator.maxValue>([\s\S]*?)<\/cim:Accumulator.maxValue>/g, obj, "maxValue", base.to_string, sub, context);
-
             bucket = context.parsed.Accumulator;
             if (null == bucket)
                 context.parsed.Accumulator = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Accumulator (obj, exporters, full)
+        {
+            var fields = exporters["Measurement"](obj, exporters, false);
+
+            base.export_element (obj, "Accumulator", "maxValue", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -767,6 +725,16 @@ define
             return (obj);
         }
 
+        function export_StringMeasurement (obj, exporters, full)
+        {
+            var fields = exporters["Measurement"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Limit values for Analog measurements.
          *
@@ -778,24 +746,26 @@ define
 
             obj = parse_Limit (context, sub);
             obj.cls = "AnalogLimit";
-            /**
-             * The value to supervise against.
-             *
-             */
             base.parse_element (/<cim:AnalogLimit.value>([\s\S]*?)<\/cim:AnalogLimit.value>/g, obj, "value", base.to_float, sub, context);
-
-            /**
-             * The set of limits.
-             *
-             */
-            base.parse_attribute (/<cim:AnalogLimit.LimitSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LimitSet", sub, context, true);
-
+            base.parse_attribute (/<cim:AnalogLimit.LimitSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LimitSet", sub, context);
             bucket = context.parsed.AnalogLimit;
             if (null == bucket)
                 context.parsed.AnalogLimit = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AnalogLimit (obj, exporters, full)
+        {
+            var fields = exporters["Limit"](obj, exporters, false);
+
+            base.export_element (obj, "AnalogLimit", "value", base.from_float, fields);
+            base.export_attribute (obj, "AnalogLimit", "LimitSet", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -809,30 +779,28 @@ define
 
             obj = parse_MeasurementValue (context, sub);
             obj.cls = "AnalogValue";
-            /**
-             * The value to supervise.
-             *
-             */
             base.parse_element (/<cim:AnalogValue.value>([\s\S]*?)<\/cim:AnalogValue.value>/g, obj, "value", base.to_float, sub, context);
-
-            /**
-             * Measurement to which this value is connected.
-             *
-             */
-            base.parse_attribute (/<cim:AnalogValue.Analog\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Analog", sub, context, true);
-
-            /**
-             * The Control variable associated with the MeasurementValue.
-             *
-             */
-            base.parse_attribute (/<cim:AnalogValue.AnalogControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AnalogControl", sub, context, true);
-
+            base.parse_attribute (/<cim:AnalogValue.Analog\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Analog", sub, context);
+            base.parse_attribute (/<cim:AnalogValue.AnalogControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AnalogControl", sub, context);
             bucket = context.parsed.AnalogValue;
             if (null == bucket)
                 context.parsed.AnalogValue = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AnalogValue (obj, exporters, full)
+        {
+            var fields = exporters["MeasurementValue"](obj, exporters, false);
+
+            base.export_element (obj, "AnalogValue", "value", base.from_float, fields);
+            base.export_attribute (obj, "AnalogValue", "Analog", fields);
+            base.export_attribute (obj, "AnalogValue", "AnalogControl", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -848,54 +816,36 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "Measurement";
-            /**
-             * Specifies the type of measurement.
-             *
-             * For example, this specifies if the measurement represents an indoor temperature, outdoor temperature, bus voltage, line flow, etc.
-             *
-             */
             base.parse_element (/<cim:Measurement.measurementType>([\s\S]*?)<\/cim:Measurement.measurementType>/g, obj, "measurementType", base.to_string, sub, context);
-
-            /**
-             * Indicates to which phases the measurement applies and avoids the need to use 'measurementType' to also encode phase information (which would explode the types).
-             *
-             * The phase information in Measurement, along with 'measurementType' and 'phases' uniquely defines a Measurement for a device, based on normal network phase. Their meaning will not change when the computed energizing phasing is changed due to jumpers or other reasons.
-             *
-             */
             base.parse_element (/<cim:Measurement.phases>([\s\S]*?)<\/cim:Measurement.phases>/g, obj, "phases", base.to_string, sub, context);
-
-            /**
-             * The unit multiplier of the measured quantity.
-             *
-             */
             base.parse_element (/<cim:Measurement.unitMultiplier>([\s\S]*?)<\/cim:Measurement.unitMultiplier>/g, obj, "unitMultiplier", base.to_string, sub, context);
-
-            /**
-             * The unit of measure of the measured quantity.
-             *
-             */
             base.parse_element (/<cim:Measurement.unitSymbol>([\s\S]*?)<\/cim:Measurement.unitSymbol>/g, obj, "unitSymbol", base.to_string, sub, context);
-
-            /**
-             * One or more measurements may be associated with a terminal in the network.
-             *
-             */
-            base.parse_attribute (/<cim:Measurement.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context, true);
-
-            base.parse_attribute (/<cim:Measurement.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Asset", sub, context, true);
-
-            /**
-             * The power system resource that contains the measurement.
-             *
-             */
-            base.parse_attribute (/<cim:Measurement.PowerSystemResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResource", sub, context, true);
-
+            base.parse_attribute (/<cim:Measurement.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
+            base.parse_attribute (/<cim:Measurement.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Asset", sub, context);
+            base.parse_attribute (/<cim:Measurement.PowerSystemResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResource", sub, context);
             bucket = context.parsed.Measurement;
             if (null == bucket)
                 context.parsed.Measurement = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Measurement (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "Measurement", "measurementType", base.from_string, fields);
+            base.export_element (obj, "Measurement", "phases", base.from_string, fields);
+            base.export_element (obj, "Measurement", "unitMultiplier", base.from_string, fields);
+            base.export_element (obj, "Measurement", "unitSymbol", base.from_string, fields);
+            base.export_attribute (obj, "Measurement", "Terminal", fields);
+            base.export_attribute (obj, "Measurement", "Asset", fields);
+            base.export_attribute (obj, "Measurement", "PowerSystemResource", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -909,18 +859,24 @@ define
 
             obj = parse_Control (context, sub);
             obj.cls = "AccumulatorReset";
-            /**
-             * The accumulator value that is reset by the command.
-             *
-             */
-            base.parse_attribute (/<cim:AccumulatorReset.AccumulatorValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AccumulatorValue", sub, context, true);
-
+            base.parse_attribute (/<cim:AccumulatorReset.AccumulatorValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AccumulatorValue", sub, context);
             bucket = context.parsed.AccumulatorReset;
             if (null == bucket)
                 context.parsed.AccumulatorReset = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_AccumulatorReset (obj, exporters, full)
+        {
+            var fields = exporters["Control"](obj, exporters, false);
+
+            base.export_attribute (obj, "AccumulatorReset", "AccumulatorValue", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -934,40 +890,30 @@ define
 
             obj = parse_Measurement (context, sub);
             obj.cls = "Discrete";
-            /**
-             * Normal value range maximum for any of the MeasurementValue.values.
-             *
-             * Used for scaling, e.g. in bar graphs or of telemetered raw values.
-             *
-             */
             base.parse_element (/<cim:Discrete.maxValue>([\s\S]*?)<\/cim:Discrete.maxValue>/g, obj, "maxValue", base.to_string, sub, context);
-
-            /**
-             * Normal value range minimum for any of the MeasurementValue.values.
-             *
-             * Used for scaling, e.g. in bar graphs or of telemetered raw values.
-             *
-             */
             base.parse_element (/<cim:Discrete.minValue>([\s\S]*?)<\/cim:Discrete.minValue>/g, obj, "minValue", base.to_string, sub, context);
-
-            /**
-             * Normal measurement value, e.g., used for percentage calculations.
-             *
-             */
             base.parse_element (/<cim:Discrete.normalValue>([\s\S]*?)<\/cim:Discrete.normalValue>/g, obj, "normalValue", base.to_string, sub, context);
-
-            /**
-             * The ValueAliasSet used for translation of a MeasurementValue.value to a name.
-             *
-             */
-            base.parse_attribute (/<cim:Discrete.ValueAliasSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ValueAliasSet", sub, context, true);
-
+            base.parse_attribute (/<cim:Discrete.ValueAliasSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ValueAliasSet", sub, context);
             bucket = context.parsed.Discrete;
             if (null == bucket)
                 context.parsed.Discrete = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Discrete (obj, exporters, full)
+        {
+            var fields = exporters["Measurement"](obj, exporters, false);
+
+            base.export_element (obj, "Discrete", "maxValue", base.from_string, fields);
+            base.export_element (obj, "Discrete", "minValue", base.from_string, fields);
+            base.export_element (obj, "Discrete", "normalValue", base.from_string, fields);
+            base.export_attribute (obj, "Discrete", "ValueAliasSet", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -983,18 +929,24 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "LimitSet";
-            /**
-             * Tells if the limit values are in percentage of normalValue or the specified Unit for Measurements and Controls.
-             *
-             */
             base.parse_element (/<cim:LimitSet.isPercentageLimits>([\s\S]*?)<\/cim:LimitSet.isPercentageLimits>/g, obj, "isPercentageLimits", base.to_boolean, sub, context);
-
             bucket = context.parsed.LimitSet;
             if (null == bucket)
                 context.parsed.LimitSet = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_LimitSet (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "LimitSet", "isPercentageLimits", base.from_boolean, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -1008,24 +960,26 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "ValueToAlias";
-            /**
-             * The value that is mapped.
-             *
-             */
             base.parse_element (/<cim:ValueToAlias.value>([\s\S]*?)<\/cim:ValueToAlias.value>/g, obj, "value", base.to_string, sub, context);
-
-            /**
-             * The ValueAliasSet having the ValueToAlias mappings.
-             *
-             */
-            base.parse_attribute (/<cim:ValueToAlias.ValueAliasSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ValueAliasSet", sub, context, true);
-
+            base.parse_attribute (/<cim:ValueToAlias.ValueAliasSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ValueAliasSet", sub, context);
             bucket = context.parsed.ValueToAlias;
             if (null == bucket)
                 context.parsed.ValueToAlias = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ValueToAlias (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "ValueToAlias", "value", base.from_string, fields);
+            base.export_attribute (obj, "ValueToAlias", "ValueAliasSet", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -1047,37 +1001,76 @@ define
             return (obj);
         }
 
+        function export_AccumulatorLimitSet (obj, exporters, full)
+        {
+            var fields = exporters["LimitSet"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
-                parse_AnalogControl: parse_AnalogControl,
-                parse_AccumulatorReset: parse_AccumulatorReset,
                 parse_Validity: parse_Validity,
-                parse_Accumulator: parse_Accumulator,
-                parse_ValueToAlias: parse_ValueToAlias,
+                export_DiscreteCommand: export_DiscreteCommand,
                 parse_AccumulatorValue: parse_AccumulatorValue,
-                parse_Analog: parse_Analog,
+                export_MeasurementValueQuality: export_MeasurementValueQuality,
+                export_StringMeasurement: export_StringMeasurement,
+                export_Accumulator: export_Accumulator,
                 parse_AnalogValue: parse_AnalogValue,
+                export_AnalogLimit: export_AnalogLimit,
                 parse_StringMeasurement: parse_StringMeasurement,
+                export_Analog: export_Analog,
                 parse_MeasurementValueSource: parse_MeasurementValueSource,
-                parse_DiscreteValue: parse_DiscreteValue,
                 parse_Quality61850: parse_Quality61850,
-                parse_MeasurementValueQuality: parse_MeasurementValueQuality,
+                export_DiscreteValue: export_DiscreteValue,
                 parse_ValueAliasSet: parse_ValueAliasSet,
-                parse_Command: parse_Command,
                 parse_Limit: parse_Limit,
-                parse_AccumulatorLimitSet: parse_AccumulatorLimitSet,
                 parse_AnalogLimitSet: parse_AnalogLimitSet,
                 parse_Control: parse_Control,
+                export_Quality61850: export_Quality61850,
                 parse_AnalogLimit: parse_AnalogLimit,
                 parse_LimitSet: parse_LimitSet,
                 parse_SetPoint: parse_SetPoint,
+                export_MeasurementValue: export_MeasurementValue,
                 parse_MeasurementValue: parse_MeasurementValue,
                 parse_RaiseLowerCommand: parse_RaiseLowerCommand,
+                export_RaiseLowerCommand: export_RaiseLowerCommand,
+                export_LimitSet: export_LimitSet,
                 parse_Discrete: parse_Discrete,
-                parse_DiscreteCommand: parse_DiscreteCommand,
                 parse_Measurement: parse_Measurement,
-                parse_AccumulatorLimit: parse_AccumulatorLimit,
-                parse_StringMeasurementValue: parse_StringMeasurementValue
+                parse_StringMeasurementValue: parse_StringMeasurementValue,
+                export_SetPoint: export_SetPoint,
+                parse_AnalogControl: parse_AnalogControl,
+                parse_AccumulatorReset: parse_AccumulatorReset,
+                parse_Accumulator: parse_Accumulator,
+                parse_ValueToAlias: parse_ValueToAlias,
+                export_AccumulatorReset: export_AccumulatorReset,
+                export_AnalogLimitSet: export_AnalogLimitSet,
+                export_Limit: export_Limit,
+                parse_Analog: parse_Analog,
+                export_Control: export_Control,
+                export_ValueToAlias: export_ValueToAlias,
+                parse_DiscreteValue: parse_DiscreteValue,
+                parse_MeasurementValueQuality: parse_MeasurementValueQuality,
+                parse_Command: parse_Command,
+                parse_AccumulatorLimitSet: parse_AccumulatorLimitSet,
+                export_StringMeasurementValue: export_StringMeasurementValue,
+                export_ValueAliasSet: export_ValueAliasSet,
+                export_Validity: export_Validity,
+                export_AccumulatorLimitSet: export_AccumulatorLimitSet,
+                export_Command: export_Command,
+                export_AccumulatorValue: export_AccumulatorValue,
+                export_Discrete: export_Discrete,
+                export_AnalogControl: export_AnalogControl,
+                export_Measurement: export_Measurement,
+                export_AnalogValue: export_AnalogValue,
+                parse_DiscreteCommand: parse_DiscreteCommand,
+                export_AccumulatorLimit: export_AccumulatorLimit,
+                export_MeasurementValueSource: export_MeasurementValueSource,
+                parse_AccumulatorLimit: parse_AccumulatorLimit
             }
         );
     }

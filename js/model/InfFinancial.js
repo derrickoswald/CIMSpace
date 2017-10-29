@@ -23,18 +23,24 @@ define
 
             obj = Common.parse_Organisation (context, sub);
             obj.cls = "ControlAreaOperator";
-            /**
-             * A ControlAreaCompany controls a ControlArea.
-             *
-             */
-            base.parse_attribute (/<cim:ControlAreaOperator.ControlledBy\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlledBy", sub, context, true);
-
+            base.parse_attribute (/<cim:ControlAreaOperator.ControlledBy\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlledBy", sub, context);
             bucket = context.parsed.ControlAreaOperator;
             if (null == bucket)
                 context.parsed.ControlAreaOperator = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ControlAreaOperator (obj, exporters, full)
+        {
+            var fields = exporters["Organisation"](obj, exporters, false);
+
+            base.export_attribute (obj, "ControlAreaOperator", "ControlledBy", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -56,6 +62,16 @@ define
             return (obj);
         }
 
+        function export_OpenAccessProduct (obj, exporters, full)
+        {
+            var fields = exporters["Agreement"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         function parse_TransmissionProduct (context, sub)
         {
             var obj;
@@ -63,26 +79,26 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "TransmissionProduct";
-            /**
-             * Type of the transmission product.
-             *
-             * This could be a transmission service class (firm, total transmission capability, or non-firm), transmission service period (on-peak, full-period, off-peak), transmission service increments (yearly extended, hourly fixed, monthly sliding, etc.), transmission service type (network, available transmission capability, or point-to-point, or a transmission service window (fixed hourly, sliding weekly, extended monthly, etc.).
-             *
-             */
             base.parse_element (/<cim:TransmissionProduct.transmissionProductType>([\s\S]*?)<\/cim:TransmissionProduct.transmissionProductType>/g, obj, "transmissionProductType", base.to_string, sub, context);
-
-            /**
-             * A TransmissionProvider offers a TransmissionProduct.
-             *
-             */
-            base.parse_attribute (/<cim:TransmissionProduct.TransmissionProvider\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionProvider", sub, context, true);
-
+            base.parse_attribute (/<cim:TransmissionProduct.TransmissionProvider\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionProvider", sub, context);
             bucket = context.parsed.TransmissionProduct;
             if (null == bucket)
                 context.parsed.TransmissionProduct = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_TransmissionProduct (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "TransmissionProduct", "transmissionProductType", base.from_string, fields);
+            base.export_attribute (obj, "TransmissionProduct", "TransmissionProvider", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -96,20 +112,24 @@ define
 
             obj = Common.parse_Agreement (context, sub);
             obj.cls = "IntSchedAgreement";
-            /**
-             * The default method by which interchange schedules are to be integrated to obtain hourly MWh schedules for accounting.
-             *
-             * Method #1 is to integrate the instantaneous schedule between the hourly boundaries. Method #2 compensates for any up/down ramping that occurs across the hourly boundary (this is called block accounting).
-             *
-             */
             base.parse_element (/<cim:IntSchedAgreement.defaultIntegrationMethod>([\s\S]*?)<\/cim:IntSchedAgreement.defaultIntegrationMethod>/g, obj, "defaultIntegrationMethod", base.to_string, sub, context);
-
             bucket = context.parsed.IntSchedAgreement;
             if (null == bucket)
                 context.parsed.IntSchedAgreement = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_IntSchedAgreement (obj, exporters, full)
+        {
+            var fields = exporters["Agreement"](obj, exporters, false);
+
+            base.export_element (obj, "IntSchedAgreement", "defaultIntegrationMethod", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -129,6 +149,16 @@ define
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_CustomerConsumer (obj, exporters, full)
+        {
+            var fields = exporters["Organisation"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -152,6 +182,16 @@ define
             return (obj);
         }
 
+        function export_TransmissionProvider (obj, exporters, full)
+        {
+            var fields = exporters["Organisation"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Matches buyers and sellers, and secures transmission (and other ancillary services) needed to complete the energy transaction.
          *
@@ -169,6 +209,16 @@ define
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Marketer (obj, exporters, full)
+        {
+            var fields = exporters["Organisation"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -190,14 +240,32 @@ define
             return (obj);
         }
 
+        function export_GenerationProvider (obj, exporters, full)
+        {
+            var fields = exporters["Organisation"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
-                parse_GenerationProvider: parse_GenerationProvider,
+                export_GenerationProvider: export_GenerationProvider,
                 parse_IntSchedAgreement: parse_IntSchedAgreement,
                 parse_TransmissionProvider: parse_TransmissionProvider,
+                export_IntSchedAgreement: export_IntSchedAgreement,
                 parse_Marketer: parse_Marketer,
                 parse_TransmissionProduct: parse_TransmissionProduct,
+                parse_GenerationProvider: parse_GenerationProvider,
+                export_CustomerConsumer: export_CustomerConsumer,
+                export_OpenAccessProduct: export_OpenAccessProduct,
+                export_ControlAreaOperator: export_ControlAreaOperator,
+                export_TransmissionProvider: export_TransmissionProvider,
+                export_TransmissionProduct: export_TransmissionProduct,
                 parse_OpenAccessProduct: parse_OpenAccessProduct,
+                export_Marketer: export_Marketer,
                 parse_ControlAreaOperator: parse_ControlAreaOperator,
                 parse_CustomerConsumer: parse_CustomerConsumer
             }

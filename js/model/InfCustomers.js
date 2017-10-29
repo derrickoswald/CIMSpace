@@ -21,18 +21,24 @@ define
 
             obj = Common.parse_Document (context, sub);
             obj.cls = "StandardIndustryCode";
-            /**
-             * Standard alphanumeric code assigned to a particular product/service within an industry.
-             *
-             */
             base.parse_element (/<cim:StandardIndustryCode.code>([\s\S]*?)<\/cim:StandardIndustryCode.code>/g, obj, "code", base.to_string, sub, context);
-
             bucket = context.parsed.StandardIndustryCode;
             if (null == bucket)
                 context.parsed.StandardIndustryCode = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_StandardIndustryCode (obj, exporters, full)
+        {
+            var fields = exporters["Document"](obj, exporters, false);
+
+            base.export_element (obj, "StandardIndustryCode", "code", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -48,36 +54,30 @@ define
 
             obj = Common.parse_Document (context, sub);
             obj.cls = "ServiceGuarantee";
-            /**
-             * Period in which this service guantee applies.
-             *
-             */
             base.parse_element (/<cim:ServiceGuarantee.applicationPeriod>([\s\S]*?)<\/cim:ServiceGuarantee.applicationPeriod>/g, obj, "applicationPeriod", base.to_string, sub, context);
-
-            /**
-             * True if utility must autmatically pay the specified amount whenever the condition is not satisified, otherwise customer must make a claim to receive payment.
-             *
-             */
             base.parse_element (/<cim:ServiceGuarantee.automaticPay>([\s\S]*?)<\/cim:ServiceGuarantee.automaticPay>/g, obj, "automaticPay", base.to_boolean, sub, context);
-
-            /**
-             * Amount to be paid by the service provider to the customer for each violation of the 'serviceRequirement'.
-             *
-             */
             base.parse_element (/<cim:ServiceGuarantee.payAmount>([\s\S]*?)<\/cim:ServiceGuarantee.payAmount>/g, obj, "payAmount", base.to_string, sub, context);
-
-            /**
-             * Explanation of the requirement and conditions for satisfying it.
-             *
-             */
             base.parse_element (/<cim:ServiceGuarantee.serviceRequirement>([\s\S]*?)<\/cim:ServiceGuarantee.serviceRequirement>/g, obj, "serviceRequirement", base.to_string, sub, context);
-
             bucket = context.parsed.ServiceGuarantee;
             if (null == bucket)
                 context.parsed.ServiceGuarantee = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ServiceGuarantee (obj, exporters, full)
+        {
+            var fields = exporters["Document"](obj, exporters, false);
+
+            base.export_element (obj, "ServiceGuarantee", "applicationPeriod", base.from_string, fields);
+            base.export_element (obj, "ServiceGuarantee", "automaticPay", base.from_boolean, fields);
+            base.export_element (obj, "ServiceGuarantee", "payAmount", base.from_string, fields);
+            base.export_element (obj, "ServiceGuarantee", "serviceRequirement", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -93,18 +93,24 @@ define
 
             obj = Common.parse_ActivityRecord (context, sub);
             obj.cls = "ComplianceEvent";
-            /**
-             * The deadline for compliance.
-             *
-             */
             base.parse_element (/<cim:ComplianceEvent.deadline>([\s\S]*?)<\/cim:ComplianceEvent.deadline>/g, obj, "deadline", base.to_datetime, sub, context);
-
             bucket = context.parsed.ComplianceEvent;
             if (null == bucket)
                 context.parsed.ComplianceEvent = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ComplianceEvent (obj, exporters, full)
+        {
+            var fields = exporters["ActivityRecord"](obj, exporters, false);
+
+            base.export_element (obj, "ComplianceEvent", "deadline", base.from_datetime, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -120,56 +126,38 @@ define
 
             obj = Common.parse_Document (context, sub);
             obj.cls = "WorkBillingInfo";
-            /**
-             * Estimated cost for work.
-             *
-             */
             base.parse_element (/<cim:WorkBillingInfo.costEstimate>([\s\S]*?)<\/cim:WorkBillingInfo.costEstimate>/g, obj, "costEstimate", base.to_string, sub, context);
-
-            /**
-             * Amount of price on deposit.
-             *
-             */
             base.parse_element (/<cim:WorkBillingInfo.deposit>([\s\S]*?)<\/cim:WorkBillingInfo.deposit>/g, obj, "deposit", base.to_string, sub, context);
-
-            /**
-             * Discount from standard price.
-             *
-             */
             base.parse_element (/<cim:WorkBillingInfo.discount>([\s\S]*?)<\/cim:WorkBillingInfo.discount>/g, obj, "discount", base.to_float, sub, context);
-
-            /**
-             * Date and time by which payment for bill is expected from client.
-             *
-             */
             base.parse_element (/<cim:WorkBillingInfo.dueDateTime>([\s\S]*?)<\/cim:WorkBillingInfo.dueDateTime>/g, obj, "dueDateTime", base.to_datetime, sub, context);
-
-            /**
-             * Date and time bill was issued to client.
-             *
-             */
             base.parse_element (/<cim:WorkBillingInfo.issueDateTime>([\s\S]*?)<\/cim:WorkBillingInfo.issueDateTime>/g, obj, "issueDateTime", base.to_datetime, sub, context);
-
-            /**
-             * Date payment was received from client.
-             *
-             */
             base.parse_element (/<cim:WorkBillingInfo.receivedDateTime>([\s\S]*?)<\/cim:WorkBillingInfo.receivedDateTime>/g, obj, "receivedDateTime", base.to_datetime, sub, context);
-
-            /**
-             * Amount of bill.
-             *
-             */
             base.parse_element (/<cim:WorkBillingInfo.workPrice>([\s\S]*?)<\/cim:WorkBillingInfo.workPrice>/g, obj, "workPrice", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:WorkBillingInfo.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAccount", sub, context, true);
-
+            base.parse_attribute (/<cim:WorkBillingInfo.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAccount", sub, context);
             bucket = context.parsed.WorkBillingInfo;
             if (null == bucket)
                 context.parsed.WorkBillingInfo = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_WorkBillingInfo (obj, exporters, full)
+        {
+            var fields = exporters["Document"](obj, exporters, false);
+
+            base.export_element (obj, "WorkBillingInfo", "costEstimate", base.from_string, fields);
+            base.export_element (obj, "WorkBillingInfo", "deposit", base.from_string, fields);
+            base.export_element (obj, "WorkBillingInfo", "discount", base.from_float, fields);
+            base.export_element (obj, "WorkBillingInfo", "dueDateTime", base.from_datetime, fields);
+            base.export_element (obj, "WorkBillingInfo", "issueDateTime", base.from_datetime, fields);
+            base.export_element (obj, "WorkBillingInfo", "receivedDateTime", base.from_datetime, fields);
+            base.export_element (obj, "WorkBillingInfo", "workPrice", base.from_string, fields);
+            base.export_attribute (obj, "WorkBillingInfo", "CustomerAccount", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -193,6 +181,16 @@ define
             return (obj);
         }
 
+        function export_ExternalCustomerAgreement (obj, exporters, full)
+        {
+            var fields = exporters["Agreement"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Pricing can be based on power quality.
          *
@@ -204,66 +202,40 @@ define
 
             obj = Common.parse_Document (context, sub);
             obj.cls = "PowerQualityPricing";
-            /**
-             * Emergency high voltage limit.
-             *
-             */
             base.parse_element (/<cim:PowerQualityPricing.emergencyHighVoltLimit>([\s\S]*?)<\/cim:PowerQualityPricing.emergencyHighVoltLimit>/g, obj, "emergencyHighVoltLimit", base.to_string, sub, context);
-
-            /**
-             * Emergency low voltage limit.
-             *
-             */
             base.parse_element (/<cim:PowerQualityPricing.emergencyLowVoltLimit>([\s\S]*?)<\/cim:PowerQualityPricing.emergencyLowVoltLimit>/g, obj, "emergencyLowVoltLimit", base.to_string, sub, context);
-
-            /**
-             * Normal high voltage limit.
-             *
-             */
             base.parse_element (/<cim:PowerQualityPricing.normalHighVoltLimit>([\s\S]*?)<\/cim:PowerQualityPricing.normalHighVoltLimit>/g, obj, "normalHighVoltLimit", base.to_string, sub, context);
-
-            /**
-             * Normal low voltage limit.
-             *
-             */
             base.parse_element (/<cim:PowerQualityPricing.normalLowVoltLimit>([\s\S]*?)<\/cim:PowerQualityPricing.normalLowVoltLimit>/g, obj, "normalLowVoltLimit", base.to_string, sub, context);
-
-            /**
-             * Threshold minimum power factor for this PricingStructure, specified in instances where a special charge is levied if the actual power factor for a Service falls below the value specified here.
-             *
-             */
             base.parse_element (/<cim:PowerQualityPricing.powerFactorMin>([\s\S]*?)<\/cim:PowerQualityPricing.powerFactorMin>/g, obj, "powerFactorMin", base.to_float, sub, context);
-
-            /**
-             * Value of uninterrupted service (Cost per energy).
-             *
-             */
             base.parse_element (/<cim:PowerQualityPricing.valueUninterruptedServiceEnergy>([\s\S]*?)<\/cim:PowerQualityPricing.valueUninterruptedServiceEnergy>/g, obj, "valueUninterruptedServiceEnergy", base.to_string, sub, context);
-
-            /**
-             * Value of uninterrupted service (Cost per active power).
-             *
-             */
             base.parse_element (/<cim:PowerQualityPricing.valueUninterruptedServiceP>([\s\S]*?)<\/cim:PowerQualityPricing.valueUninterruptedServiceP>/g, obj, "valueUninterruptedServiceP", base.to_float, sub, context);
-
-            /**
-             * Voltage imbalance violation cost (Cost per unit Voltage).
-             *
-             */
             base.parse_element (/<cim:PowerQualityPricing.voltImbalanceViolCost>([\s\S]*?)<\/cim:PowerQualityPricing.voltImbalanceViolCost>/g, obj, "voltImbalanceViolCost", base.to_float, sub, context);
-
-            /**
-             * Voltage limit violation cost (Cost per unit Voltage).
-             *
-             */
             base.parse_element (/<cim:PowerQualityPricing.voltLimitViolCost>([\s\S]*?)<\/cim:PowerQualityPricing.voltLimitViolCost>/g, obj, "voltLimitViolCost", base.to_float, sub, context);
-
             bucket = context.parsed.PowerQualityPricing;
             if (null == bucket)
                 context.parsed.PowerQualityPricing = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_PowerQualityPricing (obj, exporters, full)
+        {
+            var fields = exporters["Document"](obj, exporters, false);
+
+            base.export_element (obj, "PowerQualityPricing", "emergencyHighVoltLimit", base.from_string, fields);
+            base.export_element (obj, "PowerQualityPricing", "emergencyLowVoltLimit", base.from_string, fields);
+            base.export_element (obj, "PowerQualityPricing", "normalHighVoltLimit", base.from_string, fields);
+            base.export_element (obj, "PowerQualityPricing", "normalLowVoltLimit", base.from_string, fields);
+            base.export_element (obj, "PowerQualityPricing", "powerFactorMin", base.from_float, fields);
+            base.export_element (obj, "PowerQualityPricing", "valueUninterruptedServiceEnergy", base.from_string, fields);
+            base.export_element (obj, "PowerQualityPricing", "valueUninterruptedServiceP", base.from_float, fields);
+            base.export_element (obj, "PowerQualityPricing", "voltImbalanceViolCost", base.from_float, fields);
+            base.export_element (obj, "PowerQualityPricing", "voltLimitViolCost", base.from_float, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -285,6 +257,16 @@ define
             return (obj);
         }
 
+        function export_SubscribePowerCurve (obj, exporters, full)
+        {
+            var fields = exporters["Curve"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * Kind of customer billing.
          *
@@ -296,32 +278,30 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "CustomerBillingKind";
-            /**
-             * Consolidated bill from energy service supplier (ESS).
-             *
-             */
             base.parse_element (/<cim:CustomerBillingKind.consolidatedEss>([\s\S]*?)<\/cim:CustomerBillingKind.consolidatedEss>/g, obj, "consolidatedEss", base.to_string, sub, context);
-
-            /**
-             * Consolidated bill from utility distribution company (UDC).
-             *
-             */
             base.parse_element (/<cim:CustomerBillingKind.consolidatedUdc>([\s\S]*?)<\/cim:CustomerBillingKind.consolidatedUdc>/g, obj, "consolidatedUdc", base.to_string, sub, context);
-
-            /**
-             * Separate bills from ESS and UDC.
-             *
-             */
             base.parse_element (/<cim:CustomerBillingKind.separateEssUdc>([\s\S]*?)<\/cim:CustomerBillingKind.separateEssUdc>/g, obj, "separateEssUdc", base.to_string, sub, context);
-
             base.parse_element (/<cim:CustomerBillingKind.other>([\s\S]*?)<\/cim:CustomerBillingKind.other>/g, obj, "other", base.to_string, sub, context);
-
             bucket = context.parsed.CustomerBillingKind;
             if (null == bucket)
                 context.parsed.CustomerBillingKind = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_CustomerBillingKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "CustomerBillingKind", "consolidatedEss", base.from_string, fields);
+            base.export_element (obj, "CustomerBillingKind", "consolidatedUdc", base.from_string, fields);
+            base.export_element (obj, "CustomerBillingKind", "separateEssUdc", base.from_string, fields);
+            base.export_element (obj, "CustomerBillingKind", "other", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -337,62 +317,15 @@ define
 
             obj = Common.parse_Document (context, sub);
             obj.cls = "CustomerBillingInfo";
-            /**
-             * Business date designated for the billing run which produced this CustomerBillingInfo.
-             *
-             */
             base.parse_element (/<cim:CustomerBillingInfo.billingDate>([\s\S]*?)<\/cim:CustomerBillingInfo.billingDate>/g, obj, "billingDate", base.to_string, sub, context);
-
-            /**
-             * Calculated date upon which a customer billing amount is due, used in the invoicing process to determine when a Customer's Payment is delinquent.
-             *
-             * It takes into consideration the regulatory criteria and the Customer's requested due date. In the absence of a Customer requested due date, the due date is typically calculated from the regulated number of days and the 'billingDate'.
-             *
-             */
             base.parse_element (/<cim:CustomerBillingInfo.dueDate>([\s\S]*?)<\/cim:CustomerBillingInfo.dueDate>/g, obj, "dueDate", base.to_string, sub, context);
-
-            /**
-             * Kind of bill customer receives.
-             *
-             */
             base.parse_element (/<cim:CustomerBillingInfo.kind>([\s\S]*?)<\/cim:CustomerBillingInfo.kind>/g, obj, "kind", base.to_string, sub, context);
-
-            /**
-             * Amount of the last payment received from the customer.
-             *
-             * It is retained in the Customer Billing system, although the details of each payment are tracked in the ERP system.
-             *
-             */
             base.parse_element (/<cim:CustomerBillingInfo.lastPaymentAmt>([\s\S]*?)<\/cim:CustomerBillingInfo.lastPaymentAmt>/g, obj, "lastPaymentAmt", base.to_string, sub, context);
-
-            /**
-             * Date of the last payment received from the customer.
-             *
-             * It is retained in the Customer Billing system, although the details of each payment are tracked in the ERP system.
-             *
-             */
             base.parse_element (/<cim:CustomerBillingInfo.lastPaymentDate>([\s\S]*?)<\/cim:CustomerBillingInfo.lastPaymentDate>/g, obj, "lastPaymentDate", base.to_string, sub, context);
-
-            /**
-             * Outstanding balance on the CustomerAccount as of the statement date.
-             *
-             */
             base.parse_element (/<cim:CustomerBillingInfo.outBalance>([\s\S]*?)<\/cim:CustomerBillingInfo.outBalance>/g, obj, "outBalance", base.to_string, sub, context);
-
-            /**
-             * Monthly amortized amount due during each billing cycle for the CustomerAccount balance for which the Payment Plan is set-up.
-             *
-             */
             base.parse_element (/<cim:CustomerBillingInfo.pymtPlanAmt>([\s\S]*?)<\/cim:CustomerBillingInfo.pymtPlanAmt>/g, obj, "pymtPlanAmt", base.to_string, sub, context);
-
-            /**
-             * Type of payment plan.
-             *
-             */
             base.parse_element (/<cim:CustomerBillingInfo.pymtPlanType>([\s\S]*?)<\/cim:CustomerBillingInfo.pymtPlanType>/g, obj, "pymtPlanType", base.to_string, sub, context);
-
-            base.parse_attribute (/<cim:CustomerBillingInfo.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAccount", sub, context, true);
-
+            base.parse_attribute (/<cim:CustomerBillingInfo.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAccount", sub, context);
             bucket = context.parsed.CustomerBillingInfo;
             if (null == bucket)
                 context.parsed.CustomerBillingInfo = bucket = {};
@@ -401,16 +334,44 @@ define
             return (obj);
         }
 
+        function export_CustomerBillingInfo (obj, exporters, full)
+        {
+            var fields = exporters["Document"](obj, exporters, false);
+
+            base.export_element (obj, "CustomerBillingInfo", "billingDate", base.from_string, fields);
+            base.export_element (obj, "CustomerBillingInfo", "dueDate", base.from_string, fields);
+            base.export_element (obj, "CustomerBillingInfo", "kind", base.from_string, fields);
+            base.export_element (obj, "CustomerBillingInfo", "lastPaymentAmt", base.from_string, fields);
+            base.export_element (obj, "CustomerBillingInfo", "lastPaymentDate", base.from_string, fields);
+            base.export_element (obj, "CustomerBillingInfo", "outBalance", base.from_string, fields);
+            base.export_element (obj, "CustomerBillingInfo", "pymtPlanAmt", base.from_string, fields);
+            base.export_element (obj, "CustomerBillingInfo", "pymtPlanType", base.from_string, fields);
+            base.export_attribute (obj, "CustomerBillingInfo", "CustomerAccount", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
-                parse_PowerQualityPricing: parse_PowerQualityPricing,
                 parse_WorkBillingInfo: parse_WorkBillingInfo,
-                parse_ExternalCustomerAgreement: parse_ExternalCustomerAgreement,
-                parse_CustomerBillingInfo: parse_CustomerBillingInfo,
-                parse_ServiceGuarantee: parse_ServiceGuarantee,
-                parse_ComplianceEvent: parse_ComplianceEvent,
+                export_CustomerBillingInfo: export_CustomerBillingInfo,
+                export_StandardIndustryCode: export_StandardIndustryCode,
+                export_WorkBillingInfo: export_WorkBillingInfo,
+                export_ComplianceEvent: export_ComplianceEvent,
+                export_SubscribePowerCurve: export_SubscribePowerCurve,
                 parse_SubscribePowerCurve: parse_SubscribePowerCurve,
+                export_PowerQualityPricing: export_PowerQualityPricing,
                 parse_StandardIndustryCode: parse_StandardIndustryCode,
+                parse_PowerQualityPricing: parse_PowerQualityPricing,
+                parse_ExternalCustomerAgreement: parse_ExternalCustomerAgreement,
+                export_ExternalCustomerAgreement: export_ExternalCustomerAgreement,
+                parse_CustomerBillingInfo: parse_CustomerBillingInfo,
+                export_ServiceGuarantee: export_ServiceGuarantee,
+                parse_ServiceGuarantee: parse_ServiceGuarantee,
+                export_CustomerBillingKind: export_CustomerBillingKind,
+                parse_ComplianceEvent: parse_ComplianceEvent,
                 parse_CustomerBillingKind: parse_CustomerBillingKind
             }
         );

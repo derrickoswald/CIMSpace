@@ -23,58 +23,34 @@ define
 
             obj = parse_VoltageAdjusterDynamics (context, sub);
             obj.cls = "VAdjIEEE";
-            /**
-             * Rate at which output of adjuster changes (<i>ADJ_SLEW</i>).
-             *
-             * Unit = sec./PU.  Typical Value = 300.
-             *
-             */
             base.parse_element (/<cim:VAdjIEEE.adjslew>([\s\S]*?)<\/cim:VAdjIEEE.adjslew>/g, obj, "adjslew", base.to_float, sub, context);
-
-            /**
-             * Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>).
-             *
-             * Typical Value = 0.5.
-             *
-             */
             base.parse_element (/<cim:VAdjIEEE.taoff>([\s\S]*?)<\/cim:VAdjIEEE.taoff>/g, obj, "taoff", base.to_string, sub, context);
-
-            /**
-             * Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>).
-             *
-             * Typical Value = 0.1.
-             *
-             */
             base.parse_element (/<cim:VAdjIEEE.taon>([\s\S]*?)<\/cim:VAdjIEEE.taon>/g, obj, "taon", base.to_string, sub, context);
-
-            /**
-             * Set high to provide a continuous raise or lower (<i>V</i><i><sub>ADJF</sub></i>).
-             *
-             */
             base.parse_element (/<cim:VAdjIEEE.vadjf>([\s\S]*?)<\/cim:VAdjIEEE.vadjf>/g, obj, "vadjf", base.to_float, sub, context);
-
-            /**
-             * Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>).
-             *
-             * Typical Value = 1.1.
-             *
-             */
             base.parse_element (/<cim:VAdjIEEE.vadjmax>([\s\S]*?)<\/cim:VAdjIEEE.vadjmax>/g, obj, "vadjmax", base.to_string, sub, context);
-
-            /**
-             * Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>).
-             *
-             * Typical Value = 0.9.
-             *
-             */
             base.parse_element (/<cim:VAdjIEEE.vadjmin>([\s\S]*?)<\/cim:VAdjIEEE.vadjmin>/g, obj, "vadjmin", base.to_string, sub, context);
-
             bucket = context.parsed.VAdjIEEE;
             if (null == bucket)
                 context.parsed.VAdjIEEE = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_VAdjIEEE (obj, exporters, full)
+        {
+            var fields = exporters["VoltageAdjusterDynamics"](obj, exporters, false);
+
+            base.export_element (obj, "VAdjIEEE", "adjslew", base.from_float, fields);
+            base.export_element (obj, "VAdjIEEE", "taoff", base.from_string, fields);
+            base.export_element (obj, "VAdjIEEE", "taon", base.from_string, fields);
+            base.export_element (obj, "VAdjIEEE", "vadjf", base.from_float, fields);
+            base.export_element (obj, "VAdjIEEE", "vadjmax", base.from_string, fields);
+            base.export_element (obj, "VAdjIEEE", "vadjmin", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -88,12 +64,7 @@ define
 
             obj = StandardModels.parse_DynamicsFunctionBlock (context, sub);
             obj.cls = "VoltageAdjusterDynamics";
-            /**
-             * Power Factor or VAr controller Type I model with which this voltage adjuster is associated.
-             *
-             */
-            base.parse_attribute (/<cim:VoltageAdjusterDynamics.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType1Dynamics", sub, context, true);
-
+            base.parse_attribute (/<cim:VoltageAdjusterDynamics.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType1Dynamics", sub, context);
             bucket = context.parsed.VoltageAdjusterDynamics;
             if (null == bucket)
                 context.parsed.VoltageAdjusterDynamics = bucket = {};
@@ -102,10 +73,23 @@ define
             return (obj);
         }
 
+        function export_VoltageAdjusterDynamics (obj, exporters, full)
+        {
+            var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+
+            base.export_attribute (obj, "VoltageAdjusterDynamics", "PFVArControllerType1Dynamics", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
                 parse_VAdjIEEE: parse_VAdjIEEE,
-                parse_VoltageAdjusterDynamics: parse_VoltageAdjusterDynamics
+                parse_VoltageAdjusterDynamics: parse_VoltageAdjusterDynamics,
+                export_VoltageAdjusterDynamics: export_VoltageAdjusterDynamics,
+                export_VAdjIEEE: export_VAdjIEEE
             }
         );
     }

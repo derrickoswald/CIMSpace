@@ -12,6 +12,8 @@ requirejs
         // initialize buttons
         document.getElementById ("file_button").onchange = cimspace.file_change;
         document.getElementById ("connect").onclick = cimspace.process_url;
+        document.getElementById ("save_name").onchange = cimspace.save_name_change;
+        document.getElementById ("save_file").onclick = cimspace.generate_rdf;
         document.getElementById ("internal_features").onchange = cimmap.redraw;
         document.getElementById ("buildings_3d").onchange = cimmap.buildings_3d;
 

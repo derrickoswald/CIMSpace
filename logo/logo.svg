@@ -1,41 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:cc="http://creativecommons.org/ns#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:svg="http://www.w3.org/2000/svg"
      xmlns="http://www.w3.org/2000/svg"
-     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-     width="95.996338mm"
-     height="96.00103mm"
-     viewBox="0 0 95.996338 96.00103"
-     version="1.1"
      id="svg8"
-     sodipodi:docname="logo.svg"
-     inkscape:version="0.92.2 (30a58d1, 2017-08-07)">
+     version="1.1"
+     viewBox="0 0 95.996338 96.00103"
+     height="96.00103mm"
+     width="95.996338mm">
     <defs
          id="defs2" />
-    <sodipodi:namedview
-         id="base"
-         pagecolor="#ffffff"
-         bordercolor="#666666"
-         borderopacity="1.0"
-         inkscape:pageopacity="0.0"
-         inkscape:pageshadow="2"
-         inkscape:zoom="1.7321754"
-         inkscape:cx="89.740757"
-         inkscape:cy="271.86822"
-         inkscape:document-units="mm"
-         inkscape:current-layer="layer1"
-         showgrid="false"
-         inkscape:window-width="2495"
-         inkscape:window-height="1416"
-         inkscape:window-x="2625"
-         inkscape:window-y="24"
-         inkscape:window-maximized="1" />
     <metadata
          id="metadata5">
         <rdf:RDF>
@@ -49,28 +25,23 @@
         </rdf:RDF>
     </metadata>
     <g
-         inkscape:label="Layer 1"
-         inkscape:groupmode="layer"
-         id="layer1"
-         transform="translate(0.00218183,-200.99625)">
+         transform="translate(0.00218183,-200.99625)"
+         id="layer1">
         <g
-             id="g998"
-             transform="matrix(1.1078599,0,0,1.1011291,-5.015249,-24.029097)">
+             transform="matrix(1.1078599,0,0,1.1011291,-5.015249,-24.029097)"
+             id="g998">
             <path
-                 inkscape:connector-curvature="0"
-                 id="path850"
+                 style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:8;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
                  d="M 47.369141,208.36914 C 35.508694,208.4412 23.872038,214.18898 16.443359,223.40625 26.96224,229.47982 37.48112,235.55339 48,241.62695 58.338425,235.44773 69.623595,229.55847 79.390625,223.20508 71.69133,213.7689 59.561595,208.08398 47.369141,208.36914 Z"
-                 style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:8;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+                 id="path850" />
             <path
-                 inkscape:connector-curvature="0"
-                 id="path930"
+                 style="fill:none;fill-opacity:1;stroke:#0f3557;stroke-width:8;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
                  d="m 10.447266,237.22461 c -7.3155918,21.21711 7.51304,46.85372 29.90039,50.31836 0.0013,-11.3711 0.0026,-22.74219 0.0039,-34.11328 -9.940392,-5.57 -19.580162,-11.6812 -29.654296,-16.91992 z"
-                 style="fill:none;fill-opacity:1;stroke:#0f3557;stroke-width:8;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+                 id="path930" />
             <path
-                 inkscape:connector-curvature="0"
-                 id="path932"
+                 style="fill:none;fill-opacity:1;stroke:#9c301a;stroke-width:8;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
                  d="m 56.007812,253.61328 c 0.121276,11.17404 -0.253489,22.35235 0.134766,33.52344 21.873485,-4.02434 36.704737,-29.21037 28.873047,-50.26758 -9.669271,5.58138 -19.338542,11.16276 -29.007813,16.74414 z"
-                 style="fill:none;fill-opacity:1;stroke:#9c301a;stroke-width:8;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+                 id="path932" />
         </g>
     </g>
 </svg>

@@ -29,6 +29,16 @@ define
             return (obj);
         }
 
+        function export_EquivalentNetwork (obj, exporters, full)
+        {
+            var fields = exporters["ConnectivityNodeContainer"](obj, exporters, false);
+
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         /**
          * This class represents equivalent injections (generation or load).
          *
@@ -42,130 +52,54 @@ define
 
             obj = parse_EquivalentEquipment (context, sub);
             obj.cls = "EquivalentInjection";
-            /**
-             * Maximum active power of the injection.
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.maxP>([\s\S]*?)<\/cim:EquivalentInjection.maxP>/g, obj, "maxP", base.to_string, sub, context);
-
-            /**
-             * Used for modeling of infeed for load flow exchange.
-             *
-             * Not used for short circuit modeling.  If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.maxQ>([\s\S]*?)<\/cim:EquivalentInjection.maxQ>/g, obj, "maxQ", base.to_string, sub, context);
-
-            /**
-             * Minimum active power of the injection.
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.minP>([\s\S]*?)<\/cim:EquivalentInjection.minP>/g, obj, "minP", base.to_string, sub, context);
-
-            /**
-             * Used for modeling of infeed for load flow exchange.
-             *
-             * Not used for short circuit modeling.  If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.minQ>([\s\S]*?)<\/cim:EquivalentInjection.minQ>/g, obj, "minQ", base.to_string, sub, context);
-
-            /**
-             * Positive sequence resistance.
-             *
-             * Used to represent Extended-Ward (IEC 60909).
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.r>([\s\S]*?)<\/cim:EquivalentInjection.r>/g, obj, "r", base.to_string, sub, context);
-
-            /**
-             * Zero sequence resistance.
-             *
-             * Used to represent Extended-Ward (IEC 60909).
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.r0>([\s\S]*?)<\/cim:EquivalentInjection.r0>/g, obj, "r0", base.to_string, sub, context);
-
-            /**
-             * Negative sequence resistance.
-             *
-             * Used to represent Extended-Ward (IEC 60909).
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.r2>([\s\S]*?)<\/cim:EquivalentInjection.r2>/g, obj, "r2", base.to_string, sub, context);
-
-            /**
-             * Specifies whether or not the EquivalentInjection has the capability to regulate the local voltage.
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.regulationCapability>([\s\S]*?)<\/cim:EquivalentInjection.regulationCapability>/g, obj, "regulationCapability", base.to_boolean, sub, context);
-
-            /**
-             * Specifies the default regulation status of the EquivalentInjection.
-             *
-             * True is regulating.  False is not regulating.
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.regulationStatus>([\s\S]*?)<\/cim:EquivalentInjection.regulationStatus>/g, obj, "regulationStatus", base.to_boolean, sub, context);
-
-            /**
-             * The target voltage for voltage regulation.
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.regulationTarget>([\s\S]*?)<\/cim:EquivalentInjection.regulationTarget>/g, obj, "regulationTarget", base.to_string, sub, context);
-
-            /**
-             * Positive sequence reactance.
-             *
-             * Used to represent Extended-Ward (IEC 60909).
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.x>([\s\S]*?)<\/cim:EquivalentInjection.x>/g, obj, "x", base.to_string, sub, context);
-
-            /**
-             * Zero sequence reactance.
-             *
-             * Used to represent Extended-Ward (IEC 60909).
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.x0>([\s\S]*?)<\/cim:EquivalentInjection.x0>/g, obj, "x0", base.to_string, sub, context);
-
-            /**
-             * Negative sequence reactance.
-             *
-             * Used to represent Extended-Ward (IEC 60909).
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.x2>([\s\S]*?)<\/cim:EquivalentInjection.x2>/g, obj, "x2", base.to_string, sub, context);
-
-            /**
-             * Equivalent active power injection.
-             *
-             * Load sign convention is used, i.e. positive sign means flow out from a node.
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.p>([\s\S]*?)<\/cim:EquivalentInjection.p>/g, obj, "p", base.to_string, sub, context);
-
-            /**
-             * Equivalent reactive power injection.
-             *
-             * Load sign convention is used, i.e. positive sign means flow out from a node.
-             *
-             */
             base.parse_element (/<cim:EquivalentInjection.q>([\s\S]*?)<\/cim:EquivalentInjection.q>/g, obj, "q", base.to_string, sub, context);
-
-            /**
-             * The reactive capability curve used by this equivalent injection.
-             *
-             */
-            base.parse_attribute (/<cim:EquivalentInjection.ReactiveCapabilityCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReactiveCapabilityCurve", sub, context, true);
-
+            base.parse_attribute (/<cim:EquivalentInjection.ReactiveCapabilityCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReactiveCapabilityCurve", sub, context);
             bucket = context.parsed.EquivalentInjection;
             if (null == bucket)
                 context.parsed.EquivalentInjection = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_EquivalentInjection (obj, exporters, full)
+        {
+            var fields = exporters["EquivalentEquipment"](obj, exporters, false);
+
+            base.export_element (obj, "EquivalentInjection", "maxP", base.from_string, fields);
+            base.export_element (obj, "EquivalentInjection", "maxQ", base.from_string, fields);
+            base.export_element (obj, "EquivalentInjection", "minP", base.from_string, fields);
+            base.export_element (obj, "EquivalentInjection", "minQ", base.from_string, fields);
+            base.export_element (obj, "EquivalentInjection", "r", base.from_string, fields);
+            base.export_element (obj, "EquivalentInjection", "r0", base.from_string, fields);
+            base.export_element (obj, "EquivalentInjection", "r2", base.from_string, fields);
+            base.export_element (obj, "EquivalentInjection", "regulationCapability", base.from_boolean, fields);
+            base.export_element (obj, "EquivalentInjection", "regulationStatus", base.from_boolean, fields);
+            base.export_element (obj, "EquivalentInjection", "regulationTarget", base.from_string, fields);
+            base.export_element (obj, "EquivalentInjection", "x", base.from_string, fields);
+            base.export_element (obj, "EquivalentInjection", "x0", base.from_string, fields);
+            base.export_element (obj, "EquivalentInjection", "x2", base.from_string, fields);
+            base.export_element (obj, "EquivalentInjection", "p", base.from_string, fields);
+            base.export_element (obj, "EquivalentInjection", "q", base.from_string, fields);
+            base.export_attribute (obj, "EquivalentInjection", "ReactiveCapabilityCurve", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -181,18 +115,24 @@ define
 
             obj = Core.parse_ConductingEquipment (context, sub);
             obj.cls = "EquivalentEquipment";
-            /**
-             * The equivalent where the reduced model belongs.
-             *
-             */
-            base.parse_attribute (/<cim:EquivalentEquipment.EquivalentNetwork\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EquivalentNetwork", sub, context, true);
-
+            base.parse_attribute (/<cim:EquivalentEquipment.EquivalentNetwork\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EquivalentNetwork", sub, context);
             bucket = context.parsed.EquivalentEquipment;
             if (null == bucket)
                 context.parsed.EquivalentEquipment = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_EquivalentEquipment (obj, exporters, full)
+        {
+            var fields = exporters["ConductingEquipment"](obj, exporters, false);
+
+            base.export_attribute (obj, "EquivalentEquipment", "EquivalentNetwork", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -206,24 +146,26 @@ define
 
             obj = parse_EquivalentEquipment (context, sub);
             obj.cls = "EquivalentShunt";
-            /**
-             * Positive sequence shunt susceptance.
-             *
-             */
             base.parse_element (/<cim:EquivalentShunt.b>([\s\S]*?)<\/cim:EquivalentShunt.b>/g, obj, "b", base.to_string, sub, context);
-
-            /**
-             * Positive sequence shunt conductance.
-             *
-             */
             base.parse_element (/<cim:EquivalentShunt.g>([\s\S]*?)<\/cim:EquivalentShunt.g>/g, obj, "g", base.to_string, sub, context);
-
             bucket = context.parsed.EquivalentShunt;
             if (null == bucket)
                 context.parsed.EquivalentShunt = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_EquivalentShunt (obj, exporters, full)
+        {
+            var fields = exporters["EquivalentEquipment"](obj, exporters, false);
+
+            base.export_element (obj, "EquivalentShunt", "b", base.from_string, fields);
+            base.export_element (obj, "EquivalentShunt", "g", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -237,130 +179,22 @@ define
 
             obj = parse_EquivalentEquipment (context, sub);
             obj.cls = "EquivalentBranch";
-            /**
-             * Negative sequence series resistance from terminal sequence  1 to terminal sequence 2.
-             *
-             * Used for short circuit data exchange according to IEC 60909
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.negativeR12>([\s\S]*?)<\/cim:EquivalentBranch.negativeR12>/g, obj, "negativeR12", base.to_string, sub, context);
-
-            /**
-             * Negative sequence series resistance from terminal sequence 2 to terminal sequence 1.
-             *
-             * Used for short circuit data exchange according to IEC 60909
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.negativeR21>([\s\S]*?)<\/cim:EquivalentBranch.negativeR21>/g, obj, "negativeR21", base.to_string, sub, context);
-
-            /**
-             * Negative sequence series reactance from terminal sequence  1 to terminal sequence 2.
-             *
-             * Used for short circuit data exchange according to IEC 60909
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.negativeX12>([\s\S]*?)<\/cim:EquivalentBranch.negativeX12>/g, obj, "negativeX12", base.to_string, sub, context);
-
-            /**
-             * Negative sequence series reactance from terminal sequence 2 to terminal sequence 1.
-             *
-             * Used for short circuit data exchange according to IEC 60909.
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.negativeX21>([\s\S]*?)<\/cim:EquivalentBranch.negativeX21>/g, obj, "negativeX21", base.to_string, sub, context);
-
-            /**
-             * Positive sequence series resistance from terminal sequence  1 to terminal sequence 2 .
-             *
-             * Used for short circuit data exchange according to IEC 60909.
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.positiveR12>([\s\S]*?)<\/cim:EquivalentBranch.positiveR12>/g, obj, "positiveR12", base.to_string, sub, context);
-
-            /**
-             * Positive sequence series resistance from terminal sequence 2 to terminal sequence 1.
-             *
-             * Used for short circuit data exchange according to IEC 60909
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.positiveR21>([\s\S]*?)<\/cim:EquivalentBranch.positiveR21>/g, obj, "positiveR21", base.to_string, sub, context);
-
-            /**
-             * Positive sequence series reactance from terminal sequence  1 to terminal sequence 2.
-             *
-             * Used for short circuit data exchange according to IEC 60909
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.positiveX12>([\s\S]*?)<\/cim:EquivalentBranch.positiveX12>/g, obj, "positiveX12", base.to_string, sub, context);
-
-            /**
-             * Positive sequence series reactance from terminal sequence 2 to terminal sequence 1.
-             *
-             * Used for short circuit data exchange according to IEC 60909
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.positiveX21>([\s\S]*?)<\/cim:EquivalentBranch.positiveX21>/g, obj, "positiveX21", base.to_string, sub, context);
-
-            /**
-             * Positive sequence series resistance of the reduced branch.
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.r>([\s\S]*?)<\/cim:EquivalentBranch.r>/g, obj, "r", base.to_string, sub, context);
-
-            /**
-             * Resistance from terminal sequence 2 to terminal sequence 1 .
-             *
-             * Used for steady state power flow. This attribute is optional and represent unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.r is given, then EquivalentBranch.r21 is assumed equal to EquivalentBranch.r.
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.r21>([\s\S]*?)<\/cim:EquivalentBranch.r21>/g, obj, "r21", base.to_string, sub, context);
-
-            /**
-             * Positive sequence series reactance of the reduced branch.
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.x>([\s\S]*?)<\/cim:EquivalentBranch.x>/g, obj, "x", base.to_string, sub, context);
-
-            /**
-             * Reactance from terminal sequence 2 to terminal sequence 1 .
-             *
-             * Used for steady state power flow. This attribute is optional and represent unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.x is given, then EquivalentBranch.x21 is assumed equal to EquivalentBranch.x.
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.x21>([\s\S]*?)<\/cim:EquivalentBranch.x21>/g, obj, "x21", base.to_string, sub, context);
-
-            /**
-             * Zero sequence series resistance from terminal sequence  1 to terminal sequence 2.
-             *
-             * Used for short circuit data exchange according to IEC 60909
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.zeroR12>([\s\S]*?)<\/cim:EquivalentBranch.zeroR12>/g, obj, "zeroR12", base.to_string, sub, context);
-
-            /**
-             * Zero sequence series resistance from terminal sequence  2 to terminal sequence 1.
-             *
-             * Used for short circuit data exchange according to IEC 60909
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.zeroR21>([\s\S]*?)<\/cim:EquivalentBranch.zeroR21>/g, obj, "zeroR21", base.to_string, sub, context);
-
-            /**
-             * Zero sequence series reactance from terminal sequence  1 to terminal sequence 2.
-             *
-             * Used for short circuit data exchange according to IEC 60909
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.zeroX12>([\s\S]*?)<\/cim:EquivalentBranch.zeroX12>/g, obj, "zeroX12", base.to_string, sub, context);
-
-            /**
-             * Zero sequence series reactance from terminal sequence 2 to terminal sequence 1.
-             *
-             * Used for short circuit data exchange according to IEC 60909
-             *
-             */
             base.parse_element (/<cim:EquivalentBranch.zeroX21>([\s\S]*?)<\/cim:EquivalentBranch.zeroX21>/g, obj, "zeroX21", base.to_string, sub, context);
-
             bucket = context.parsed.EquivalentBranch;
             if (null == bucket)
                 context.parsed.EquivalentBranch = bucket = {};
@@ -369,13 +203,44 @@ define
             return (obj);
         }
 
+        function export_EquivalentBranch (obj, exporters, full)
+        {
+            var fields = exporters["EquivalentEquipment"](obj, exporters, false);
+
+            base.export_element (obj, "EquivalentBranch", "negativeR12", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "negativeR21", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "negativeX12", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "negativeX21", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "positiveR12", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "positiveR21", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "positiveX12", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "positiveX21", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "r", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "r21", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "x", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "x21", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "zeroR12", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "zeroR21", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "zeroX12", base.from_string, fields);
+            base.export_element (obj, "EquivalentBranch", "zeroX21", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
                 parse_EquivalentShunt: parse_EquivalentShunt,
+                export_EquivalentShunt: export_EquivalentShunt,
                 parse_EquivalentInjection: parse_EquivalentInjection,
+                export_EquivalentBranch: export_EquivalentBranch,
                 parse_EquivalentNetwork: parse_EquivalentNetwork,
                 parse_EquivalentBranch: parse_EquivalentBranch,
-                parse_EquivalentEquipment: parse_EquivalentEquipment
+                parse_EquivalentEquipment: parse_EquivalentEquipment,
+                export_EquivalentNetwork: export_EquivalentNetwork,
+                export_EquivalentInjection: export_EquivalentInjection,
+                export_EquivalentEquipment: export_EquivalentEquipment
             }
         );
     }

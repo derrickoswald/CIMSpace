@@ -213,6 +213,100 @@ define
             return (ret);
         }
 
+        /**
+         * Change the value into a string.
+         * @param {object} value - the value of the element
+         * @returns {String} the element value converted to a string
+         * @memberOf module:model/base
+         */
+        function from_string (value)
+        {
+            return (value.toString ());
+        }
+
+        /**
+         * Convert a boolean value into a string.
+         * @param {Boolean} value - the boolean value to convert
+         * @returns {String} the boolean value converted to a string
+         * @memberOf module:model/base
+         */
+        function from_boolean (value)
+        {
+            return (value.toString ());
+        }
+
+        /**
+         * Convert a floating point value into a string.
+         * @param {Number} value - the float or double value to convert
+         * @returns {String} str - the number as a string
+         * @memberOf module:model/base
+         */
+        function from_float (value)
+        {
+            return (value.toString ());
+        }
+
+        /**
+         * Convert a date into a string.
+         * @param {Date} date - the date and time value
+         * @returns {String} str - the datetime converted to a string
+         * @memberOf module:model/base
+         */
+        function from_datetime (date)
+        {
+            return (date.toISOString ());
+        }
+
+        /**
+         * Export one element.
+         * e.g. &lt;cim:Location.type&gt;geographic&lt;/cim:Location.type&gt;
+         * @param {Object} obj - the CIM object
+         * @param {String} cls - the CIM class being written e.g. Location in the example above
+         * Note that this is not necessarily the same as obj.cls due to hierarchy
+         * @param {String} attribute - the attribute being written, e.g. type in the example above
+         * @param {Function} fn - the conversion function to be applied to the attribute, e.g. from_datetime
+         * @param {String[]} fields - the forming element array of strings to add to
+         * @memberOf module:model/base
+         */
+        function export_element (obj, cls, attribute, fn, fields)
+        {
+            var value = obj[attribute];
+            if ("undefined" != typeof (value))
+            {
+                var element = "cim:" + cls + "." + attribute;
+                fields.push ("\t\t<" + element + ">" + fn (value) + "</" + element + ">");
+            }
+        }
+
+        /**
+         * Export one attribute.
+         * e.g. &lt;cim:Location.CoordinateSystem rdf:resource="#wgs84"/&gt;
+         * @param {Object} obj - the CIM object
+         * @param {String} cls - the CIM class being written e.g. Location in the example above
+         * Note that this is not necessarily the same as obj.cls due to hierarchy
+         * @param {String} attribute - the attribute being written, e.g. CoordinateSystem in the example above
+         * @param {String[]} fields - the forming element array of strings to add to
+         * @memberOf module:model/base
+         */
+        function export_attribute (obj, cls, attribute, fields)
+        {
+            var value = obj[attribute];
+            if ("undefined" != typeof (value))
+                fields.push ("\t\t<cim:" + cls + "." + attribute + " rdf:resource=\"#" + value.toString () + "\"/>");
+        }
+
+        /**
+         * Add the main element header and tail to the beginning and end, respectively, of the forming element.
+         * @param {Object} obj - the CIM object
+         * @param {String[]} fields - the forming element array of strings to add to
+         */
+        function export_Element (obj, fields)
+        {
+            var id = obj.id.startsWith ("element_") ? null : obj.id;
+            fields.splice (0, 0, "\t<cim:" + obj.cls + (id ? (" rdf:ID=\"" + id + "\">") : ">"));
+            fields.push ("\t</cim:" + obj.cls + ">");
+        }
+
         return (
             {
                 to_string: to_string,
@@ -223,7 +317,14 @@ define
                 line_number: line_number,
                 parse_element: parse_element,
                 parse_attribute: parse_attribute,
-                parse_Element: parse_Element
+                parse_Element: parse_Element,
+                from_string: from_string,
+                from_boolean: from_boolean,
+                from_float: from_float,
+                from_datetime: from_datetime,
+                export_element: export_element,
+                export_attribute: export_attribute,
+                export_Element: export_Element
             }
         );
     }

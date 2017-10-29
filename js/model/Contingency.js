@@ -19,18 +19,24 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "Contingency";
-            /**
-             * Set true if must study this contingency.
-             *
-             */
             base.parse_element (/<cim:Contingency.mustStudy>([\s\S]*?)<\/cim:Contingency.mustStudy>/g, obj, "mustStudy", base.to_boolean, sub, context);
-
             bucket = context.parsed.Contingency;
             if (null == bucket)
                 context.parsed.Contingency = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_Contingency (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_element (obj, "Contingency", "mustStudy", base.from_boolean, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -44,18 +50,24 @@ define
 
             obj = Core.parse_IdentifiedObject (context, sub);
             obj.cls = "ContingencyElement";
-            /**
-             * A contingency element belongs to one contingency.
-             *
-             */
-            base.parse_attribute (/<cim:ContingencyElement.Contingency\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Contingency", sub, context, true);
-
+            base.parse_attribute (/<cim:ContingencyElement.Contingency\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Contingency", sub, context);
             bucket = context.parsed.ContingencyElement;
             if (null == bucket)
                 context.parsed.ContingencyElement = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ContingencyElement (obj, exporters, full)
+        {
+            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+            base.export_attribute (obj, "ContingencyElement", "Contingency", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -69,26 +81,26 @@ define
 
             obj = parse_ContingencyElement (context, sub);
             obj.cls = "ContingencyEquipment";
-            /**
-             * The status for the associated equipment when in the contingency state.
-             *
-             * This status is independent of the case to which the contingency is originally applied, but defines the equipment status when the contingency is applied.
-             *
-             */
             base.parse_element (/<cim:ContingencyEquipment.contingentStatus>([\s\S]*?)<\/cim:ContingencyEquipment.contingentStatus>/g, obj, "contingentStatus", base.to_string, sub, context);
-
-            /**
-             * The single piece of equipment to which to apply the contingency.
-             *
-             */
-            base.parse_attribute (/<cim:ContingencyEquipment.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context, true);
-
+            base.parse_attribute (/<cim:ContingencyEquipment.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context);
             bucket = context.parsed.ContingencyEquipment;
             if (null == bucket)
                 context.parsed.ContingencyEquipment = bucket = {};
             bucket[obj.id] = obj;
 
             return (obj);
+        }
+
+        function export_ContingencyEquipment (obj, exporters, full)
+        {
+            var fields = exporters["ContingencyElement"](obj, exporters, false);
+
+            base.export_element (obj, "ContingencyEquipment", "contingentStatus", base.from_string, fields);
+            base.export_attribute (obj, "ContingencyEquipment", "Equipment", fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
         }
 
         /**
@@ -102,18 +114,8 @@ define
 
             obj = base.parse_Element (context, sub);
             obj.cls = "ContingencyEquipmentStatusKind";
-            /**
-             * The equipment is in service.
-             *
-             */
             base.parse_element (/<cim:ContingencyEquipmentStatusKind.inService>([\s\S]*?)<\/cim:ContingencyEquipmentStatusKind.inService>/g, obj, "inService", base.to_string, sub, context);
-
-            /**
-             * The equipment is to be taken out of service.
-             *
-             */
             base.parse_element (/<cim:ContingencyEquipmentStatusKind.outOfService>([\s\S]*?)<\/cim:ContingencyEquipmentStatusKind.outOfService>/g, obj, "outOfService", base.to_string, sub, context);
-
             bucket = context.parsed.ContingencyEquipmentStatusKind;
             if (null == bucket)
                 context.parsed.ContingencyEquipmentStatusKind = bucket = {};
@@ -122,12 +124,28 @@ define
             return (obj);
         }
 
+        function export_ContingencyEquipmentStatusKind (obj, exporters, full)
+        {
+            var fields = [];
+
+            base.export_element (obj, "ContingencyEquipmentStatusKind", "inService", base.from_string, fields);
+            base.export_element (obj, "ContingencyEquipmentStatusKind", "outOfService", base.from_string, fields);
+            if (full)
+                base.export_Element (obj, fields)
+
+            return (fields);
+        }
+
         return (
             {
+                export_ContingencyElement: export_ContingencyElement,
                 parse_ContingencyElement: parse_ContingencyElement,
+                export_Contingency: export_Contingency,
                 parse_Contingency: parse_Contingency,
                 parse_ContingencyEquipmentStatusKind: parse_ContingencyEquipmentStatusKind,
-                parse_ContingencyEquipment: parse_ContingencyEquipment
+                export_ContingencyEquipment: export_ContingencyEquipment,
+                parse_ContingencyEquipment: parse_ContingencyEquipment,
+                export_ContingencyEquipmentStatusKind: export_ContingencyEquipmentStatusKind
             }
         );
     }
