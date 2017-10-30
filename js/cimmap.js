@@ -765,7 +765,7 @@ define
                         transformers[transformer][Number(no)] = e
                 }
             }
-            // eliminate step-down
+            // eliminate transformers which have the same voltage on both ends
             for (var trans in transformers)
             {
                 var ends = transformers[trans];
@@ -831,6 +831,41 @@ define
                     }
                 }
 
+                // the list of things to trace
+                var todo = [];
+                var transformers = (!through_voltages) ? get_transformers () : {};
+
+                function stop (equipment)
+                {
+                    var ret = false;
+
+                    if (!through_opens && (("undefined" != typeof (equipment.normalOpen)) && equipment.normalOpen))
+                        ret = true;
+                    else if (!through_voltages && (null != transformers[equipment.mRID]))
+                        ret = true;
+
+                    return (ret);
+                }
+
+                function preload (source, terminal)
+                {
+                    if (null != source)
+                        // check for an open switch or step-down transformer, and if so, remove all but this terminal from the source
+                        if (stop (source))
+                        {
+                            terminals_by_equp[source.mRID] = [terminal.mRID];
+                            // add all connected equipment
+                            terminals_by_node[terminal.ConnectivityNode].forEach (
+                                function (t)
+                                {
+                                    var terminal = CIM_Data.Terminal[t];
+                                    if (terminal.ConductingEquipment != source.mRID)
+                                        todo.push (terminal.ConductingEquipment);
+                                }
+                            );
+                        }
+                }
+
                 // get the source equipment
                 source = CIM_Data.ConductingEquipment[CURRENT_FEATURE];
                 if (null == source)
@@ -838,6 +873,7 @@ define
                     // try for a terminal
                     var term = CIM_Data.Terminal[CURRENT_FEATURE];
                     source = term ? CIM_Data.ConductingEquipment[term.ConductingEquipment] : null;
+                    preload (source, term);
                 }
                 if (null == source)
                 {
@@ -848,29 +884,26 @@ define
                         {
                             var term = CIM_Data.Terminal[terms[i]];
                             source = term ? CIM_Data.ConductingEquipment[term.ConductingEquipment] : null;
+                            preload (source, term);
                         }
                 }
                 if (null == source)
                     alert ("feature is not part of the topology");
                 else
                 {
+                    todo.push (source.mRID);
+
                     // the list of traced conducting equipment
                     var equipment = [];
-                    // the list of things to trace
-                    var todo = [];
-                    todo.push (source.mRID);
-                    var transformers = (!through_voltages) ? get_transformers () : {};
                     // iterate until done
                     var count = number_of_elements ();
                     while ("undefined" != typeof (source = todo.pop ())) // if you call pop() on an empty array, it returns undefined
                     {
                         equipment.push (source);
                         var ce = CIM_Data.ConductingEquipment[source];
-                        if (!through_opens && ((null == ce) || (ce.normalOpen == "true")))
+                        if (null == ce || stop (ce))
                             continue;
                         var terms = terminals_by_equp[source];
-                        if (!through_voltages && (null != transformers[source]))
-                            continue;
                         if (null != terms)
                             for (var i = 0; i < terms.length; i++)
                             {
