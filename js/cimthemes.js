@@ -410,7 +410,6 @@ define
                 };
                 this.process_spatial_objects (data, locations, points, lines);
 
-
                 // update the map
                 map.addSource
                 (
@@ -446,10 +445,11 @@ define
             }
         }
 
-        class VoltageTheme
+        class VoltageTheme extends DefaultTheme
         {
             constructor()
             {
+                super ();
             }
 
             getName ()
@@ -476,7 +476,7 @@ define
              * @function process_spatial_objects
              * @memberOf module:cimmap
              */
-            process_spatial_objects (data, locations, points, lines)
+            process_spatial_objects_again (data, locations)
             {
                 var coordinates;
                 var location;
@@ -505,113 +505,8 @@ define
                             psr[id].color = colormap[psr[id].BaseVoltage];
                             if ("undefined" == typeof (psr[id].color))
                                 psr[id].color = "rgb(0, 0, 0)";
-
-                            if (2 == coordinates.length)
-                            {
-                                points.features.push
-                                (
-                                    {
-                                        type : "Feature",
-                                        geometry :
-                                        {
-                                            type : "Point",
-                                            coordinates : [ coordinates[0], coordinates[1] ]
-                                        },
-                                        properties : psr[id]
-                                    }
-                                );
-                                psr[id].id = id;
-                                psr[id].orientation = 0.0;
-
-                                // assign the symbol and color
-                                if ("PowerTransformer" == psr[id].cls)
-                                    psr[id].symbol = transformer_symbol;
-                                else if ("Fuse" == psr[id].cls)
-                                    psr[id].symbol = fuse_symbol;
-                                else if ("undefined" != typeof (psr[id].normalOpen)) // all switches have this attribute
-                                    psr[id].symbol = switch_symbol;
-                                else if ("EnergyConsumer" == psr[id].cls)
-                                {
-                                    if (psr[id].PSRType == "PSRType_StreetLight")
-                                        psr[id].symbol = street_light_symbol;
-                                    else
-                                        psr[id].symbol = energy_consumer_symbol;
-                                }
-                                else if ("Connector" == psr[id].cls)
-                                    psr[id].symbol = connector_symbol;
-                                else if ("Junction" == psr[id].cls)
-                                    psr[id].symbol = other_symbol;
-                                else if ("BusbarSection" == psr[id].cls)
-                                    psr[id].symbol = junction_symbol;
-                                else
-                                {
-                                    if ("undefined" != typeof (data.Substation[id]))
-                                    {
-                                        if (psr[id].PSRType == "PSRType_DistributionBox")
-                                            psr[id].symbol = distribution_box_symbol;
-                                        else if (psr[id].PSRType == "PSRType_Substation")
-                                            psr[id].symbol = substation_symbol;
-                                        else if (psr[id].PSRType == "PSRType_TransformerStation")
-                                            psr[id].symbol = transformer_station_symbol;
-                                        else
-                                            psr[id].symbol = other_symbol;
-                                    }
-                                    else
-                                        psr[id].symbol = other_symbol;
-                                }
-                            }
-                            else
-                            {
-                                lines.features.push
-                                (
-                                    {
-                                        type : "Feature",
-                                        geometry :
-                                        {
-                                            type : "LineString",
-                                            coordinates : coordinates.reduce
-                                            (
-                                                function (ret, item)
-                                                {
-                                                    var next;
-
-                                                    next = ret[ret.length - 1];
-                                                    if (!next || (2 <= next.length))
-                                                    {
-                                                        next = [];
-                                                        ret.push (next);
-                                                    }
-                                                    next.push (item);
-
-                                                    return (ret);
-                                                },
-                                                []
-                                            )
-                                        },
-                                        properties : psr[id]
-                                    }
-                                );
-                                psr[id].id = id;
-                            }
                         }
                     }
-                }
-            }
-
-            // remove layer data
-            remove_theme (map)
-            {
-
-                if (this._TheMap.getSource ("cim lines"))
-                {
-                    this._TheMap.removeLayer ("lines");
-                    this._TheMap.removeLayer ("lines_highlight");
-                    this._TheMap.removeLayer ("circle");
-                    this._TheMap.removeLayer ("circle_highlight");
-                    this._TheMap.removeLayer ("symbol");
-                    this._TheMap.removeLayer ("symbol_highlight");
-                    this._TheMap.removeSource ("cim lines");
-                    this._TheMap.removeSource ("cim points");
                 }
             }
 
@@ -632,8 +527,8 @@ define
                     "type" : "FeatureCollection",
                     "features" : []
                 };
-                this.process_spatial_objects (data, locations, points, lines);
-
+                super.process_spatial_objects (data, locations, points, lines);
+                this.process_spatial_objects_again (data, locations);
 
                 // update the map
                 map.addSource
