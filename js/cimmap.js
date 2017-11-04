@@ -4,7 +4,7 @@
 "use strict";
 define
 (
-    [],
+    ["cimnav"],
     /**
      * @summary Main entry point for the application.
      * @description Performs application initialization as the first step in the RequireJS load sequence.
@@ -13,7 +13,7 @@ define
      * @exports cimmap
      * @version 1.0
      */
-    function ()
+    function (cimnav)
     {
         /**
          * The map object.
@@ -507,9 +507,10 @@ define
 
         function zoom_extents ()
         {
-            TheMap.fitBounds (
-                [[TheExtents.xmin, TheExtents.ymin], [TheExtents.xmax, TheExtents.ymax]],
-                { linear: true, padding: 50 });
+            if (null != TheExtents)
+                TheMap.fitBounds (
+                    [[TheExtents.xmin, TheExtents.ymin], [TheExtents.xmax, TheExtents.ymax]],
+                    { linear: true, padding: 50 });
         }
 
         /**
@@ -1161,8 +1162,8 @@ define
                     transformRequest: toURL
                 }
             );
-            // add zoom and rotation controls to the map.
-            TheMap.addControl (new mapboxgl.NavigationControl ());
+            // add zoom and rotation controls to the map
+            TheMap.addControl (new cimnav.NavigationControl (zoom_extents));
             // handle mouse click
             TheMap.on
             (
