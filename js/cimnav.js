@@ -8,7 +8,7 @@ define
     [],
     /**
      * @summary Navigation control.
-     * @description UI element for zoom and compass.
+     * @description UI element for zoom buttons, a compass and theme setting toggle.
      * @see https://github.com/mapbox/mapbox-gl-js/blob/master/src/ui/control/navigation_control.js
      * @name cimnav
      * @exports cimmap
@@ -41,7 +41,7 @@ define
         }
 
         /**
-         * A `NavigationControl` control contains zoom buttons and a compass.
+         * A `NavigationControl` control contains zoom buttons, a compass and theme setting toggle.
          *
          * @implements {IControl}
          * @example
@@ -52,11 +52,9 @@ define
          */
         class NavigationControl {
 
-            constructor(zoome)
+            constructor(zoome, themer)
             {
-                bindAll([
-                    '_rotateCompassArrow'
-                ], this);
+                bindAll (["_rotateCompassArrow"], this);
 
                 this._container = create ('div', 'mapboxgl-ctrl mapboxgl-ctrl-group');
                 this._container.addEventListener ('contextmenu', (e) => e.preventDefault());
@@ -66,15 +64,16 @@ define
                 this._compass = this._createButton ('mapboxgl-ctrl-icon mapboxgl-ctrl-compass', 'Reset North', () => this._map.resetNorth ());
                 this._compassArrow = create ('span', 'mapboxgl-ctrl-compass-arrow', this._compass);
                 this._zoomExtents = this._createButton ('mapboxgl-ctrl-icon mapboxgl-ctrl-zoom-extents', 'Zoom Extents', zoome);
+                this._themeChooser = this._createButton ('mapboxgl-ctrl-icon mapboxgl-ctrl-themer', 'Themes', themer);
             }
 
-            _rotateCompassArrow()
+            _rotateCompassArrow ()
             {
                 const rotate = `rotate(${this._map.transform.angle * (180 / Math.PI)}deg)`;
                 this._compassArrow.style.transform = rotate;
             }
 
-            onAdd(map)
+            onAdd (map)
             {
                 this._map = map;
                 this._map.on ('rotate', this._rotateCompassArrow);
@@ -82,7 +81,7 @@ define
                 return (this._container);
             }
 
-            onRemove()
+            onRemove ()
             {
                 remove (this._container);
                 this._map.off ('rotate', this._rotateCompassArrow);
@@ -90,7 +89,7 @@ define
                 delete this._handler;
             }
 
-            _createButton(className, ariaLabel, fn)
+            _createButton (className, ariaLabel, fn)
             {
                 const a = create ('button', className, this._container);
                 a.type = 'button';
