@@ -97,24 +97,56 @@ define
         }
 
         /**
+         * Create a line layer object.
+         * @param {String} id - the layer id
+         * @param {String} color - the line color
+         * @param {Any[]} filter - optional filter to apply to the lines
+         * @returns {Object} the layer
+         * @function line_layer
+         * @memberOf module:cimmap
+         */
+        function line_layer (id, color, filter)
+        {
+            var ret =
+                {
+                    id: id,
+                    type: "line",
+                    source: "cim lines",
+                    layout:
+                    {
+                        "line-join": "round",
+                        "line-cap": "round"
+                    },
+                    paint:
+                    {
+                        "line-color": color,
+                        "line-width": 3
+                    }
+                };
+            if ("undefined" != typeof (filter) && (null != filter))
+                ret.filter = filter;
+
+            return (ret);
+        }
+
+        /**
          * Create a circle layer object.
          * @param {String} id - the layer id
-         * @param {Any[]} filter - the filter to apply to the points
-         * @param {String} color - the symbol color to use (doesn't work)
+         * @param {String} color - the symbol color
+         * @param {Any[]} filter - optional filter to apply to the points
          * @returns {Object} the layer
          * @function circle_layer
          * @memberOf module:cimmap
          */
-        function circle_layer (id, filter, color)
+        function circle_layer (id, color, filter)
         {
-            return (
+            var ret =
                 {
                     id: id,
                     type: "circle",
-                    source: "the cim points",
+                    source: "cim points",
                     minzoom: 14,
                     maxzoom: 17,
-                    filter: filter,
                     paint:
                     {
                         "circle-radius": 5, // Optional number. Units in pixels. Defaults to 5.
@@ -124,44 +156,41 @@ define
                         "circle-translate": [0, 0], // Optional array. Units in pixels. Defaults to 0,0. Values are [x, y] where negatives indicate left and up, respectively.
                         "circle-translate-anchor": "map", // Optional enum. One of map, viewport. Defaults to map. Requires circle-translate.
                     }
-                }
-            );
+                };
+            if ("undefined" != typeof (filter) && (null != filter))
+                ret.filter = filter;
+
+            return (ret);
         }
 
         /**
          * Create a symbol layer object.
          * @param {String} id - the layer id
-         * @param {Any[]} filter - the filter to apply to the points
-         * @param {String} symbol - the symbol name
-         * @param {Number} orientation - the symbol orientation
-         * @param {Number[]} offset - the symbol offset
-         * @param {String} color - the symbol color (doesn't work)
+         * @param {String} color - the symbol color
+         * @param {Any[]} filter - optional filter to apply to the points
          * @returns {Object} the layer
          * @function symbol_layer
          * @memberOf module:cimmap
          */
-        function symbol_layer (id, filter, symbol, orientation, offset, color)
+        function symbol_layer (id, color, filter)
         {
-            //console.log (id + " " + JSON.stringify (filter, null, 4));
-            return (
+            var ret =
                 {
                     id: id,
                     type: "symbol",
-                    source: "the cim points",
+                    source: "cim points",
                     minzoom: 17,
-                    filter: filter,
                     interactive: true,
                     layout:
                     {
-                        "icon-image": symbol,
+                        "icon-image": "{symbol}",
                         "icon-allow-overlap": true,
                         "icon-size":
                         {
-//                            stops: [[17, 1], [18, 1], [19, 1.2], [20, 1.4], [21, 1.6], [22, 1.8], [23, 2], [24, 2.2], [25, 2.4]]
                             stops: [[17, 0.1875], [18, 0.25], [19, 0.3], [20, 0.45], [21, 0.9], [22, 1.8], [23, 3.75], [24, 7.5], [25, 10.0]]
                         },
-                        "icon-rotate": orientation,
-                        "icon-offset": offset,
+                        "icon-rotate": 0.0,
+                        "icon-offset": [0, 0],
                         "text-field": "{name}",
                         "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
                         "text-offset": [0, 1],
@@ -177,17 +206,19 @@ define
                         "icon-color": color,
                         "text-color": color
                     }
-                }
-            );
+                };
+            if ("undefined" != typeof (filter) && (null != filter))
+                ret.filter = filter;
 
+            return (ret);
         }
 
         /**
          * Add stylization information to elements and make a list of point and linear features.
          * @param {Object} psr - the hash table object with properties that are (PowerSystemResource) elements keyed by mRID.
          * @param {Object} locations - the hash table object with properties that are locations with arrays of coordinates.
-         * @param {Object[]} points - the resultant list of point GeoJSON objects.
-         * @param {Object} psr - the resultant list of linear GeoJSON objects.
+         * @param {Object} points - the resultant list of point GeoJSON objects.
+         * @param {Object} lines - the resultant list of linear GeoJSON objects.
          * @function process_spatial_objects
          * @memberOf module:cimmap
          */
@@ -217,24 +248,46 @@ define
                             );
                             psr[id].id = id;
                             psr[id].orientation = 0.0;
-                            // assign the symbol
+
+                            // assign the symbol and color
                             if ("PowerTransformer" == psr[id].cls)
+                            {
                                 psr[id].symbol = transformer_symbol;
+                                psr[id].color = "rgb(0, 100, 0)";
+                            }
                             else if ("Fuse" == psr[id].cls)
+                            {
                                 psr[id].symbol = fuse_symbol;
+                                psr[id].color = "rgb(0, 0, 139)";
+                            }
                             else if ("undefined" != typeof (psr[id].normalOpen)) // all switches have this attribute
+                            {
                                 psr[id].symbol = switch_symbol;
+                                psr[id].color = "rgb(0, 0, 139)";
+                            }
                             else if ("EnergyConsumer" == psr[id].cls)
                             {
                                 if (psr[id].PSRType == "PSRType_StreetLight")
                                     psr[id].symbol = street_light_symbol;
                                 else
                                     psr[id].symbol = energy_consumer_symbol;
+                                psr[id].color = "rgb(0, 139, 139)";
                             }
                             else if ("Connector" == psr[id].cls)
+                            {
                                 psr[id].symbol = connector_symbol;
+                                psr[id].color = "rgb(139, 0, 0)";
+                            }
+                            else if ("Junction" == psr[id].cls)
+                            {
+                                psr[id].symbol = other_symbol;
+                                psr[id].color = "rgb(139, 0, 0)";
+                            }
                             else if ("BusbarSection" == psr[id].cls)
+                            {
                                 psr[id].symbol = junction_symbol;
+                                psr[id].color = "rgb(139, 0, 0)";
+                            }
                             else
                             {
                                 if ("undefined" != typeof (CIM_Data.Substation[id]))
@@ -247,9 +300,13 @@ define
                                         psr[id].symbol = transformer_station_symbol;
                                     else
                                         psr[id].symbol = other_symbol;
+                                    psr[id].color = "rgb(255, 0, 255)";
                                 }
                                 else
+                                {
                                     psr[id].symbol = other_symbol;
+                                    psr[id].color = "rgb(0, 0, 0)";
+                                }
                             }
                         }
                         else
@@ -392,27 +449,22 @@ define
             process_spatial_objects (CIM_Data.PowerSystemResource, locations, points, lines);
 
             // remove previous layer data
-            if (TheMap.getSource ("the cim lines"))
+            if (TheMap.getSource ("cim lines"))
             {
                 TheMap.removeLayer ("lines");
                 TheMap.removeLayer ("lines_highlight");
-                TheMap.removeLayer ("circle_junction");
-                TheMap.removeLayer ("circle_station");
-                TheMap.removeLayer ("circle_transformer");
-                TheMap.removeLayer ("circle_switch");
-                TheMap.removeLayer ("circle_energy_consumer");
-                TheMap.removeLayer ("circle_other");
+                TheMap.removeLayer ("circle");
                 TheMap.removeLayer ("circle_highlight");
                 TheMap.removeLayer ("symbol");
                 TheMap.removeLayer ("symbol_highlight");
-                TheMap.removeSource ("the cim lines");
-                TheMap.removeSource ("the cim points");
+                TheMap.removeSource ("cim lines");
+                TheMap.removeSource ("cim points");
             }
 
             // update the map
             TheMap.addSource
             (
-                "the cim lines",
+                "cim lines",
                 {
                     type: "geojson",
                     data: lines,
@@ -422,7 +474,7 @@ define
 
             TheMap.addSource
             (
-                "the cim points",
+                "cim points",
                 {
                     type: "geojson",
                     data: points,
@@ -430,60 +482,17 @@ define
                 }
             );
 
-            TheMap.addLayer
-            (
-                {
-                    id: "lines",
-                    type: "line",
-                    source: "the cim lines",
-                    layout:
-                    {
-                        "line-join": "round",
-                        "line-cap": "round"
-                    },
-                    paint:
-                    {
-                        "line-color": "#000",
-                        "line-width": 3
-                    }
-                }
-            );
-
-            TheMap.addLayer
-            (
-                {
-                    id: "lines_highlight",
-                    type: "line",
-                    source: "the cim lines",
-                    filter: ["==", "mRID", ""],
-                    layout:
-                    {
-                        "line-join": "round",
-                        "line-cap": "round"
-                    },
-                    paint:
-                    {
-                        "line-color": "#ffff00",
-                        "line-width": 3
-                    }
-                }
-            );
+            // lines 3 pixels wide
+            TheMap.addLayer (line_layer ("lines", "#000"));
+            TheMap.addLayer (line_layer ("lines_highlight", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
             // simple circle from 14 to 17
-            TheMap.addLayer (circle_layer ("circle_junction", ["in", "symbol", junction_symbol, connector_symbol], "rgb(255, 0, 0)"));
-            TheMap.addLayer (circle_layer ("circle_station", ["in", "symbol", distribution_box_symbol, substation_symbol, transformer_station_symbol], "rgb(255, 0, 255)"));
-            TheMap.addLayer (circle_layer ("circle_transformer", ["==", "symbol", transformer_symbol], "rgb(0, 255, 0)"));
-            TheMap.addLayer (circle_layer ("circle_switch", ["in", "symbol", switch_symbol, fuse_symbol], "rgb(0, 0, 255)"));
-            TheMap.addLayer (circle_layer ("circle_energy_consumer", ["in", "symbol", energy_consumer_symbol, street_light_symbol], "rgb(255, 0, 0)"));
-            TheMap.addLayer (circle_layer ("circle_other", ["==", "symbol", other_symbol], "black"));
-
-            TheMap.addLayer (circle_layer ("circle_highlight", ["==", "mRID", ""], "rgb(255, 255, 0)"));
+            TheMap.addLayer (circle_layer ("circle", { type: "identity", property: "color" }))
+            TheMap.addLayer (circle_layer ("circle_highlight", "rgb(255, 255, 0)", ["==", "mRID", ""]))
 
             // symbol icon from 17 and deeper
-            // ToDo: color the icons according to color on the object
-            TheMap.addLayer (symbol_layer ("symbol", ["!=", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(0, 0, 0)"));
-
-            TheMap.addLayer (symbol_layer ("symbol_highlight", ["==", "mRID", ""], "{symbol}", 0.0, [0, 0], "rgb(255, 255, 0)"));
+            TheMap.addLayer (symbol_layer ("symbol", { type: "identity", property: "color" }));
+            TheMap.addLayer (symbol_layer ("symbol_highlight", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
             buildings_3d ();
 
@@ -552,7 +561,7 @@ define
          */
         function glow (filter)
         {
-            if (TheMap.getSource ("the cim lines"))
+            if (TheMap.getSource ("cim lines"))
             {
                 TheMap.setFilter ("lines_highlight", filter);
                 TheMap.setFilter ("circle_highlight", filter);
