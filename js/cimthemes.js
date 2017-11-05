@@ -368,17 +368,22 @@ define
                                     }
                                 );
                                 psr[id].id = id;
+                                psr[id].color = "rgb(0, 0, 0)";
                             }
                         }
                     }
                 }
             }
 
+            process_spatial_objects_again (data)
+            {
+            }
+
             // remove layer data
-            remove_theme (map)
+            remove_theme ()
             {
 
-                if (this._TheMap.getSource ("cim lines"))
+                if ((null != this._TheMap) && this._TheMap.getSource ("cim lines"))
                 {
                     this._TheMap.removeLayer ("lines");
                     this._TheMap.removeLayer ("lines_highlight");
@@ -409,6 +414,7 @@ define
                     "features" : []
                 };
                 this.process_spatial_objects (data, locations, points, lines);
+                this.process_spatial_objects_again (data);
 
                 // update the map
                 map.addSource
@@ -432,7 +438,7 @@ define
                 );
 
                 // lines 3 pixels wide
-                map.addLayer (line_layer ("lines", "#000"));
+                map.addLayer (line_layer ("lines", { type: "identity", property: "color" }));
                 map.addLayer (line_layer ("lines_highlight", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
                 // simple circle from 14 to 17
@@ -476,10 +482,8 @@ define
              * @function process_spatial_objects
              * @memberOf module:cimmap
              */
-            process_spatial_objects_again (data, locations)
+            process_spatial_objects_again (data)
             {
-                var coordinates;
-                var location;
                 var colormap = {
                     BaseVoltage_Unknown: "rgb(0, 0, 0)",
 	                BaseVoltage_0: "rgb(0, 0, 0)",
@@ -495,73 +499,81 @@ define
 	                BaseVoltage_380000: "rgb(255, 255, 255)"
                 };
 
-                var psr = data.PowerSystemResource
+                var psr = data.PowerSystemResource;
                 for (var id in psr)
                 {
-                    if (null != (location = psr[id].Location))
-                    {
-                        if (null != (coordinates = locations[location]))
-                        {
-                            psr[id].color = colormap[psr[id].BaseVoltage];
-                            if ("undefined" == typeof (psr[id].color))
-                                psr[id].color = "rgb(0, 0, 0)";
-                        }
-                    }
+                    psr[id].color = colormap[psr[id].BaseVoltage];
+                    if ("undefined" == typeof (psr[id].color))
+                        psr[id].color = "rgb(0, 0, 0)";
                 }
             }
+        }
 
-            make_theme (map, data, options)
+        class IslandTheme extends DefaultTheme
+        {
+            constructor()
             {
-                this._TheMap = map; // to be able to remove it later
-                var locations = get_locations (data, options);
+                super ();
+            }
 
-                // the lines GeoJSON
-                var lines =
+            getName ()
+            {
+                return ("IslandTheme");
+            }
+
+            getTitle ()
+            {
+                return ("Topological island");
+            }
+
+            getDescription ()
+            {
+                return ("Topological islands (transformer service areas) by color.");
+            }
+
+            /**
+             * Add stylization information to elements and make a list of point and linear features.
+             * @param {Object} psr - the hash table object with properties that are (PowerSystemResource) elements keyed by mRID.
+             * @param {Object} locations - the hash table object with properties that are locations with arrays of coordinates.
+             * @param {Object} points - the resultant list of point GeoJSON objects.
+             * @param {Object} lines - the resultant list of linear GeoJSON objects.
+             * @function process_spatial_objects
+             * @memberOf module:cimmap
+             */
+            process_spatial_objects_again (data)
+            {
+                var colors = [
+	                "rgb(0, 0, 0)",
+	                "rgb(0, 139, 0)",
+	                "rgb(0, 0, 139)",
+	                "rgb(0, 139, 139)",
+	                "rgb(139, 139, 0)",
+	                "rgb(139, 0, 0)",
+	                "rgb(139, 0, 139)",
+	                "rgb(255, 0, 0)",
+	                "rgb(255, 0, 255)",
+	                "rgb(0, 255, 255)",
+	                "rgb(255, 255, 255)"
+                ];
+                var islands = data.TopologicalIsland;
+                var colormap = {};
+                var index = 0;
+                for (var id in islands)
                 {
-                    "type" : "FeatureCollection",
-                    "features" : []
-                };
-                // the points GeoJSON
-                var points =
+                    colormap[id] = colors[index % colors.length];
+                    index++;
+                }
+                var nodes = data.TopologicalNode;
+                var maptable = {};
+                for (var id in nodes)
+                    maptable[id] = colormap[nodes[id].TopologicalIsland];
+                var terminals = data.Terminal;
+                var psr = data.PowerSystemResource
+                for (var id in terminals)
                 {
-                    "type" : "FeatureCollection",
-                    "features" : []
-                };
-                super.process_spatial_objects (data, locations, points, lines);
-                this.process_spatial_objects_again (data, locations);
-
-                // update the map
-                map.addSource
-                (
-                    "cim lines",
-                    {
-                        type: "geojson",
-                        data: lines,
-                        maxzoom: 25
-                    }
-                );
-
-                map.addSource
-                (
-                    "cim points",
-                    {
-                        type: "geojson",
-                        data: points,
-                        maxzoom: 25
-                    }
-                );
-
-                // lines 3 pixels wide
-                map.addLayer (line_layer ("lines", { type: "identity", property: "color" }));
-                map.addLayer (line_layer ("lines_highlight", "rgb(255, 255, 0)", ["==", "mRID", ""]));
-
-                // simple circle from 14 to 17
-                map.addLayer (circle_layer ("circle", { type: "identity", property: "color" }))
-                map.addLayer (circle_layer ("circle_highlight", "rgb(255, 255, 0)", ["==", "mRID", ""]))
-
-                // symbol icon from 17 and deeper
-                map.addLayer (symbol_layer ("symbol", { type: "identity", property: "color" }));
-                map.addLayer (symbol_layer ("symbol_highlight", "rgb(255, 255, 0)", ["==", "mRID", ""]));
+                    var terminal = terminals[id];
+                    psr[terminal.ConductingEquipment].color = maptable[terminal.TopologicalNode];
+                }
             }
         }
 
@@ -570,7 +582,7 @@ define
             constructor()
             {
                 this._onMap = false;
-                this._themes = [new DefaultTheme (), new VoltageTheme ()];
+                this._themes = [new DefaultTheme (), new VoltageTheme (), new IslandTheme ()];
                 this._themer = this._themes[0];
                 this._template =
                 "<div class='well'>\n" +
@@ -649,6 +661,7 @@ define
 
             theme (map, data, options)
             {
+                this._themer.remove_theme ();
                 this._themer.make_theme (map, data, options);
             }
 
