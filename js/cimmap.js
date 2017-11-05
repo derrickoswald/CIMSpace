@@ -4,7 +4,7 @@
 "use strict";
 define
 (
-    ["cimnav", "cimthemes"],
+    ["cimnav", "cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
     /**
      * @summary Main entry point for the application.
      * @description Performs application initialization as the first step in the RequireJS load sequence.
@@ -13,7 +13,7 @@ define
      * @exports cimmap
      * @version 1.0
      */
-    function (cimnav, cimthemes)
+    function (cimnav, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
     {
         /**
          * The map object.
@@ -27,7 +27,7 @@ define
         var TheExtents = null;
 
         /**
-         * The theme setting object (cimthemes)
+         * The theme setting control object.
          */
         var TheThemer = null;
 
@@ -832,7 +832,7 @@ define
                     document.getElementById ("coordinates").innerHTML = "" + lng + "," + lat;
                 }
             );
-            TheThemer = new cimthemes.ThemeControl ();
+            TheThemer = new ThemeControl ([new DefaultTheme (), new VoltageTheme (), new IslandTheme (), new InServiceTheme ()]);
             TheThemer.theme_change_listener (redraw);
             // display any existing data
             redraw ();
