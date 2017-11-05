@@ -5,7 +5,7 @@
 
 define
 (
-    [],
+    ["mustache"],
     /**
      * @summary Theme control.
      * @description UI element for theming.
@@ -13,7 +13,7 @@ define
      * @exports cimthemes
      * @version 1.0
      */
-    function ()
+    function (mustache)
     {
         /**
          * symbology
@@ -641,24 +641,32 @@ define
                 this._themer = this._themes[0];
                 this._template =
                 "<div class='well'>\n" +
-                "  <h3>Themes</h3>\n";
-                for (var i = 0; i < this._themes.length; i++) // where is mustache when you need it
-                {
-                    var name = this._themes[i].getName ();
-                    var title = this._themes[i].getTitle ();
-                    var description = this._themes[i].getDescription ();
-                    this._template = this._template +
-                        "  <div class='form-check'>\n" +
-                        "    <label class='form-check-label'>\n" +
-                        "      <input id='" + name + "' class='form-check-input' type='radio' name='themeRadios' value='" + name + "' aria-describedby='" + name + "Description'>\n" +
-                        "      " + title + "\n" +
-                        "    </label>\n" +
-                        "  </div>\n" +
-                        "  <em><small id='" + name + "Description' class='form-text text-muted'>\n" +
-                        "    " + description + "\n" +
-                        "  </small></em>\n";
-                }
-                this._template = this._template + "</div>\n";
+                "  <h3>Themes</h3>\n" +
+                "{{#themes}}\n" +
+                "  <div class='form-check'>\n" +
+                "    <label class='form-check-label'>\n" +
+                "      <input id='{{name}}' class='form-check-input' type='radio' name='themeRadios' value='{{name}}' aria-describedby='{{name}}Description'>\n" +
+                "      {{title}}\n" +
+                "    </label>\n" +
+                "  </div>\n" +
+                "  <em><small id='{{name}}Description' class='form-text text-muted'>\n" +
+                "    {{description}}\n" +
+                "  </small></em>\n" +
+                "{{/themes}}\n" +
+                "</div>\n";
+                var list = this._themes.map (
+                    function (theme)
+                    {
+                        return (
+                            {
+                                name: theme.getName (),
+                                title: theme.getTitle (),
+                                description: theme.getDescription ()
+                            }
+                        );
+                    }
+                );
+                this._html = mustache.render (this._template, { themes: list });
             }
 
             onAdd (map)
@@ -666,7 +674,7 @@ define
                 this._map = map;
                 this._container = document.createElement ("div");
                 this._container.className = "mapboxgl-ctrl";
-                this._container.innerHTML = this._template;
+                this._container.innerHTML = this._html;
                 var current = this._themer.getName ();
                 var list = this._container.getElementsByTagName ("input")
                 for (var i = 0; i < list.length; i++)
@@ -728,6 +736,7 @@ define
 
         return (
             {
+                DefaultTheme: DefaultTheme,
                 ThemeControl: ThemeControl
             }
         );
