@@ -577,12 +577,67 @@ define
             }
         }
 
+        class InServiceTheme extends DefaultTheme
+        {
+            constructor()
+            {
+                super ();
+            }
+
+            getName ()
+            {
+                return ("InServiceTheme");
+            }
+
+            getTitle ()
+            {
+                return ("Service status");
+            }
+
+            getDescription ()
+            {
+                return ("In service status from SvStatus reference and normallyInService flag.");
+            }
+
+            /**
+             * Add stylization information to elements and make a list of point and linear features.
+             * @param {Object} psr - the hash table object with properties that are (PowerSystemResource) elements keyed by mRID.
+             * @param {Object} locations - the hash table object with properties that are locations with arrays of coordinates.
+             * @param {Object} points - the resultant list of point GeoJSON objects.
+             * @param {Object} lines - the resultant list of linear GeoJSON objects.
+             * @function process_spatial_objects
+             * @memberOf module:cimmap
+             */
+            process_spatial_objects_again (data)
+            {
+                var statuses = data.SvStatus;
+                var colormap = {};
+                for (var id in statuses)
+                    colormap[id] = statuses[id].inService ? "rgb(0, 255, 0)" : "rgb(255, 0, 0)";
+                var equipment = data.ConductingEquipment;
+                for (var id in equipment)
+                {
+                    var status = equipment[id].SvStatus;
+                    if ("undefined" != typeof (status))
+                        equipment[id].color = colormap[status];
+                    else
+                    {
+                        var normal = equipment[id].normallyInService;
+                        if ("undefined" != typeof (normal))
+                            equipment[id].color = normal ? "rgb(0, 255, 0)" : "rgb(255, 0, 0)";
+                        else
+                            equipment[id].color = "rgb(128, 128, 128)";
+                    }
+                }
+            }
+        }
+
         class ThemeControl
         {
             constructor()
             {
                 this._onMap = false;
-                this._themes = [new DefaultTheme (), new VoltageTheme (), new IslandTheme ()];
+                this._themes = [new DefaultTheme (), new VoltageTheme (), new IslandTheme (), new InServiceTheme ()];
                 this._themer = this._themes[0];
                 this._template =
                 "<div class='well'>\n" +
