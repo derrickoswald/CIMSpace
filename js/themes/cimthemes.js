@@ -21,7 +21,7 @@ define
             {
                 this._onMap = false;
                 this._themes = themes;
-                this._themer = this._themes[0];
+                this._theme = this._themes[0];
                 this._template =
                 "<div class='well'>\n" +
                 "  <h3>Themes</h3>\n" +
@@ -58,7 +58,7 @@ define
                 this._container = document.createElement ("div");
                 this._container.className = "mapboxgl-ctrl";
                 this._container.innerHTML = this._html;
-                var current = this._themer.getName ();
+                var current = this._theme.getName ();
                 var list = this._container.getElementsByTagName ("input")
                 for (var i = 0; i < list.length; i++)
                     if (current == list[i].value)
@@ -81,6 +81,11 @@ define
                 return ("bottom-right");
             }
 
+            getTheme ()
+            {
+                return (this._theme);
+            }
+
             visible ()
             {
                 return (this._onMap);
@@ -88,12 +93,15 @@ define
 
             theme_change (event)
             {
-                this._themer.remove_theme ();
+                var legend = this._theme.getLegend ().visible ();
+                if (legend)
+                    this._map.removeControl (this._theme.getLegend ());
+                this._theme.remove_theme ();
                 var name = event.target.value;
                 for (var i = 0; i < this._themes.length; i++)
                     if (name == this._themes[i].getName ())
                     {
-                        this._themer = this._themes[i];
+                        this._theme = this._themes[i];
                         break;
                     }
                 if (this._theme_listener)
@@ -107,13 +115,13 @@ define
 
             theme (map, data, options)
             {
-                this._themer.remove_theme ();
-                this._themer.make_theme (map, data, options);
+                this._theme.remove_theme ();
+                this._theme.make_theme (map, data, options);
             }
 
             getExtents ()
             {
-                return (this._themer.getExtents ());
+                return (this._theme.getExtents ());
             }
         }
 

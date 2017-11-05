@@ -11,7 +11,7 @@ define
      * @description UI element for zoom buttons, a compass and theme setting toggle.
      * @see https://github.com/mapbox/mapbox-gl-js/blob/master/src/ui/control/navigation_control.js
      * @name cimnav
-     * @exports cimmap
+     * @exports cimnav
      * @version 1.0
      */
     function ()
@@ -41,7 +41,7 @@ define
         }
 
         /**
-         * A `NavigationControl` control contains zoom buttons, a compass and theme setting toggle.
+         * A `NavigationControl` control contains zoom buttons, a compass and theme setting and legend toggles.
          *
          * @implements {IControl}
          * @example
@@ -52,7 +52,7 @@ define
          */
         class NavigationControl {
 
-            constructor(zoome, themer)
+            constructor(zoome, themer, legend)
             {
                 bindAll (["_rotateCompassArrow"], this);
 
@@ -65,6 +65,7 @@ define
                 this._compassArrow = create ('span', 'mapboxgl-ctrl-compass-arrow', this._compass);
                 this._zoomExtents = this._createButton ('mapboxgl-ctrl-icon mapboxgl-ctrl-zoom-extents', 'Zoom Extents', zoome);
                 this._themeChooser = this._createButton ('mapboxgl-ctrl-icon mapboxgl-ctrl-themer', 'Themes', themer);
+                this._legendDisplay = this._createButton ('mapboxgl-ctrl-icon mapboxgl-ctrl-legend', 'Legend', legend);
             }
 
             _rotateCompassArrow ()

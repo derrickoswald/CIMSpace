@@ -20,6 +20,20 @@ define
             constructor()
             {
                 super ();
+                this._colors = [
+	                "rgb(0, 0, 0)",
+	                "rgb(0, 139, 0)",
+	                "rgb(0, 0, 139)",
+	                "rgb(0, 139, 139)",
+	                "rgb(139, 139, 0)",
+	                "rgb(139, 0, 0)",
+	                "rgb(139, 0, 139)",
+	                "rgb(255, 0, 0)",
+	                "rgb(255, 0, 255)",
+	                "rgb(0, 255, 255)",
+	                "rgb(255, 255, 0)"
+                ];
+                this._items = [];
             }
 
             getName ()
@@ -38,6 +52,14 @@ define
             }
 
             /**
+             * Item list for the legend.
+             */
+            getItems ()
+            {
+                return (this._items);
+            }
+
+            /**
              * Override stylization information.
              * @param {Object} data - the hash table object of CIM classes by class name
              * @function process_spatial_objects_again
@@ -45,25 +67,12 @@ define
              */
             process_spatial_objects_again (data)
             {
-                var colors = [
-	                "rgb(0, 0, 0)",
-	                "rgb(0, 139, 0)",
-	                "rgb(0, 0, 139)",
-	                "rgb(0, 139, 139)",
-	                "rgb(139, 139, 0)",
-	                "rgb(139, 0, 0)",
-	                "rgb(139, 0, 139)",
-	                "rgb(255, 0, 0)",
-	                "rgb(255, 0, 255)",
-	                "rgb(0, 255, 255)",
-	                "rgb(255, 255, 255)"
-                ];
                 var islands = data.TopologicalIsland;
                 var colormap = {};
                 var index = 0;
                 for (var id in islands)
                 {
-                    colormap[id] = colors[index % colors.length];
+                    colormap[id] = this._colors[index % this._colors.length];
                     index++;
                 }
                 var nodes = data.TopologicalNode;
@@ -76,6 +85,29 @@ define
                 {
                     var terminal = terminals[id];
                     psr[terminal.ConductingEquipment].color = maptable[terminal.TopologicalNode];
+                }
+                this._items = [];
+                var i = 1;
+                for (var j = 0; j < this._colors.length; j++)
+                {
+                    var color = this._colors[j];
+                    var text = "";
+                    for (var island in colormap)
+                        if (colormap[island] == color)
+                            text += "," + island;
+                    if (text != "")
+                    {
+                        text = text.substring (1);
+                        this._items.push (
+                            {
+                                id: "islands" + i,
+                                description: "<span style='width: 15px; height: 15px; background: " + color + ";'>&nbsp;&nbsp;&nbsp;</span> " + text,
+                                checked: true,
+                                color: color
+                            }
+                        );
+                    }
+                    i++;
                 }
             }
         }

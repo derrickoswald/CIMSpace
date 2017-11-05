@@ -20,6 +20,30 @@ define
             constructor()
             {
                 super ();
+                this._colormap = {
+                    BaseVoltage_Unknown: "rgb(0, 0, 0)",
+	                BaseVoltage_0: "rgb(0, 0, 0)",
+	                BaseVoltage_230: "rgb(0, 139, 0)",
+	                BaseVoltage_400: "rgb(0, 0, 139)",
+	                BaseVoltage_1000: "rgb(0, 139, 139)",
+	                BaseVoltage_12000: "rgb(139, 139, 0)",
+	                BaseVoltage_16000: "rgb(139, 0, 0)",
+	                BaseVoltage_20000: "rgb(139, 0, 139)",
+	                BaseVoltage_50000: "rgb(255, 0, 0)",
+	                BaseVoltage_132000: "rgb(255, 0, 255)",
+	                BaseVoltage_220000: "rgb(0, 255, 255)",
+	                BaseVoltage_380000: "rgb(0, 0, 255)"
+                };
+                this._items = [];
+                for (var id in this._colormap)
+                    this._items.push (
+                        {
+                            id: id,
+                            description: "<span style='width: 15px; height: 15px; background: " + this._colormap[id] + ";'>&nbsp;&nbsp;&nbsp;</span> " + id,
+                            checked: true,
+                            color: this._colormap[id]
+                        }
+                    );
             }
 
             getName ()
@@ -38,6 +62,14 @@ define
             }
 
             /**
+             * Item list for the legend.
+             */
+            getItems ()
+            {
+                return (this._items);
+            }
+
+            /**
              * Override stylization information.
              * @param {Object} data - the hash table object of CIM classes by class name
              * @function process_spatial_objects_again
@@ -45,25 +77,20 @@ define
              */
             process_spatial_objects_again (data)
             {
-                var colormap = {
-                    BaseVoltage_Unknown: "rgb(0, 0, 0)",
-	                BaseVoltage_0: "rgb(0, 0, 0)",
-	                BaseVoltage_230: "rgb(0, 139, 0)",
-	                BaseVoltage_400: "rgb(0, 0, 139)",
-	                BaseVoltage_1000: "rgb(0, 139, 139)",
-	                BaseVoltage_12000: "rgb(139, 139, 0)",
-	                BaseVoltage_16000: "rgb(139, 0, 0)",
-	                BaseVoltage_20000: "rgb(139, 0, 139)",
-	                BaseVoltage_50000: "rgb(255, 0, 0)",
-	                BaseVoltage_132000: "rgb(255, 0, 255)",
-	                BaseVoltage_220000: "rgb(0, 255, 255)",
-	                BaseVoltage_380000: "rgb(255, 255, 255)"
-                };
-
+                this._items = [];
+                for (var id in data.BaseVoltage)
+                    this._items.push (
+                        {
+                            id: id,
+                            description: "<span style='width: 15px; height: 15px; background: " + this._colormap[id] + ";'>&nbsp;&nbsp;&nbsp;</span> " + id,
+                            checked: true,
+                            color: this._colormap[id]
+                        }
+                    );
                 var psr = data.PowerSystemResource;
                 for (var id in psr)
                 {
-                    psr[id].color = colormap[psr[id].BaseVoltage];
+                    psr[id].color = this._colormap[psr[id].BaseVoltage];
                     if ("undefined" == typeof (psr[id].color))
                         psr[id].color = "rgb(0, 0, 0)";
                 }

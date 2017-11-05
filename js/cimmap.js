@@ -105,6 +105,8 @@ define
                 await sleep (2000);
             while (!TheMap.loaded ())
 
+            if (TheThemer.getTheme ().getLegend ().visible ())
+                TheMap.removeControl (TheThemer.getTheme ().getLegend ());
             TheThemer.theme (TheMap, CIM_Data, { show_internal_features: show_internal_features () });
             TheExtents = TheThemer.getExtents ();
 
@@ -130,6 +132,14 @@ define
                 TheMap.removeControl (TheThemer);
             else
                 TheMap.addControl (TheThemer);
+        }
+
+        function toggle_legend ()
+        {
+            if (TheThemer.getTheme ().getLegend ().visible ())
+                TheMap.removeControl (TheThemer.getTheme ().getLegend ());
+            else
+                TheMap.addControl (TheThemer.getTheme ().getLegend ());
         }
 
         /**
@@ -782,7 +792,7 @@ define
                 }
             );
             // add zoom and rotation controls to the map
-            TheMap.addControl (new cimnav.NavigationControl (zoom_extents, toggle_themer));
+            TheMap.addControl (new cimnav.NavigationControl (zoom_extents, toggle_themer, toggle_legend));
             // handle mouse click
             TheMap.on
             (

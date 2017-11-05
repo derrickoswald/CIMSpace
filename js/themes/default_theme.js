@@ -5,7 +5,7 @@
 
 define
 (
-    ["../mustache"],
+    ["../mustache", "./legend"],
     /**
      * @summary Base class for themes.
      * @description Theme class for colorizing by equipment type.
@@ -13,7 +13,7 @@ define
      * @exports default_theme
      * @version 1.0
      */
-    function (mustache)
+    function (mustache, Legend)
     {
         /**
          * symbology
@@ -222,6 +222,47 @@ define
         {
             constructor()
             {
+                this._items =
+                    [
+                        {
+                            id: "consumers",
+                            description: "<span style='width: 15px; height: 15px; background: rgb(0, 139, 139);'>&nbsp;&nbsp;&nbsp;</span> energy consumer",
+                            checked: true,
+                            color: "rgb(0, 139, 139)"
+                        },
+                        {
+                            id: "connectors",
+                            description: "<span style='width: 15px; height: 15px; background: rgb(139, 0, 0);'>&nbsp;&nbsp;&nbsp;</span> connector",
+                            checked: true,
+                            color: "rgb(139, 0, 0)"
+                        },
+                        {
+                            id: "containers",
+                            description: "<span style='width: 15px; height: 15px; background: rgb(255, 0, 255);'>&nbsp;&nbsp;&nbsp;</span> container",
+                            checked: true,
+                            color: "rgb(255, 0, 255)"
+                        },
+                        {
+                            id: "switches",
+                            description: "<span style='width: 15px; height: 15px; background: rgb(0, 0, 139);'>&nbsp;&nbsp;&nbsp;</span> switch",
+                            checked: true,
+                            color: "rgb(0, 0, 139)"
+                        },
+                        {
+                            id: "transformers",
+                            description: "<span style='width: 15px; height: 15px; background: rgb(0, 100, 0);'>&nbsp;&nbsp;&nbsp;</span> transformer",
+                            checked: true,
+                            color: "rgb(0, 100, 0)"
+                        },
+                        {
+                            id: "cables",
+                            description: "<span style='width: 15px; height: 15px; background: rgb(0, 0, 0);'>&nbsp;&nbsp;&nbsp;</span> cable",
+                            checked: true,
+                            color: "rgb(0, 0, 0)"
+                        }
+                    ];
+                this._legend = new Legend (this);
+                this._legend.legend_change_listener (this.legend_changed.bind (this));
             }
 
             getName ()
@@ -242,6 +283,34 @@ define
             getExtents ()
             {
                 return (TheExtents);
+            }
+
+            /**
+             * The legend for this theme.
+             */
+            getLegend ()
+            {
+                return (this._legend);
+            }
+
+            /**
+             * Item list for the legend.
+             */
+            getItems ()
+            {
+                return (this._items);
+            }
+
+            legend_changed ()
+            {
+                if ((null != this._TheMap) && this._TheMap.getSource ("cim lines") && this._TheMap.getSource ("cim points"))
+                {
+                    var colors = this._items.filter (function (item) { return (item.checked); }).map (function (item) { return (item.color); });
+                    colors.unshift ("in", "color");
+                    this._TheMap.setFilter ("lines", colors);
+                    this._TheMap.setFilter ("circle", colors);
+                    this._TheMap.setFilter ("symbol", colors);
+                }
             }
 
             /**
@@ -397,7 +466,6 @@ define
              */
             remove_theme ()
             {
-
                 if ((null != this._TheMap) && this._TheMap.getSource ("cim lines"))
                 {
                     this._TheMap.removeLayer ("lines");
@@ -471,6 +539,9 @@ define
                 // symbol icon from 17 and deeper
                 map.addLayer (symbol_layer ("symbol", { type: "identity", property: "color" }));
                 map.addLayer (symbol_layer ("symbol_highlight", "rgb(255, 255, 0)", ["==", "mRID", ""]));
+
+                // set the current filter
+                this.legend_changed ();
             }
         }
 

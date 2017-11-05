@@ -20,6 +20,27 @@ define
             constructor()
             {
                 super ();
+                this._items =
+                    [
+                        {
+                            id: "inservice",
+                            description: "<span style='width: 15px; height: 15px; background: rgb(0, 255, 0);'>&nbsp;&nbsp;&nbsp;</span> In service",
+                            checked: true,
+                            color: "rgb(0, 255, 0)"
+                        },
+                        {
+                            id: "outofservice",
+                            description: "<span style='width: 15px; height: 15px; background: rgb(255, 0, 0);'>&nbsp;&nbsp;&nbsp;</span> Out of service",
+                            checked: true,
+                            color: "rgb(255, 0, 0)"
+                        },
+                        {
+                            id: "unknown",
+                            description: "<span style='width: 15px; height: 15px; background: rgb(128, 128, 128);'>&nbsp;&nbsp;&nbsp;</span> Status unknown",
+                            checked: true,
+                            color: "rgb(128, 128, 128)"
+                        }
+                    ];
             }
 
             getName ()
@@ -35,6 +56,14 @@ define
             getDescription ()
             {
                 return ("In service status from SvStatus reference and normallyInService flag.");
+            }
+
+            /**
+             * Item list for the legend.
+             */
+            getItems ()
+            {
+                return (this._items);
             }
 
             /**
