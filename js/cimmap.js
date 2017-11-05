@@ -4,7 +4,7 @@
 "use strict";
 define
 (
-    ["cimnav", "cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
+    ["cimnav", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
     /**
      * @summary Main entry point for the application.
      * @description Performs application initialization as the first step in the RequireJS load sequence.

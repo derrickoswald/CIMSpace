@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache"],
+    ["../mustache"],
     /**
      * @summary Theme control.
      * @description UI element for theming.
