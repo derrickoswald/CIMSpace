@@ -69,6 +69,35 @@ define
                 return (this._items);
             }
 
+            getVoltages (data)
+            {
+                var voltages = [];
+                for (var id in data.BaseVoltage)
+                    voltages.push (
+                        {
+                            id: id,
+                            voltage: data.BaseVoltage[id].nominalVoltage,
+                            color: this._colormap[id]
+                        }
+                    );
+                voltages.sort (function (a, b) { return (a.voltage - b.voltage); });
+                this._items = voltages.map (
+                    function (voltage)
+                    {
+                        var id = voltage.id;
+                        var color = voltage.color;
+                        return (
+                            {
+                                id: id,
+                                description: "<span style='width: 15px; height: 15px; background: " + color + ";'>&nbsp;&nbsp;&nbsp;</span> " + id,
+                                checked: true,
+                                color: color
+                            }
+                        );
+                    }
+                );
+            }
+
             /**
              * Override stylization information.
              * @param {Object} data - the hash table object of CIM classes by class name
@@ -77,16 +106,7 @@ define
              */
             process_spatial_objects_again (data)
             {
-                this._items = [];
-                for (var id in data.BaseVoltage)
-                    this._items.push (
-                        {
-                            id: id,
-                            description: "<span style='width: 15px; height: 15px; background: " + this._colormap[id] + ";'>&nbsp;&nbsp;&nbsp;</span> " + id,
-                            checked: true,
-                            color: this._colormap[id]
-                        }
-                    );
+                this.getVoltages (data);
                 var psr = data.PowerSystemResource;
                 for (var id in psr)
                 {
