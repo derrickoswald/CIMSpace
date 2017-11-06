@@ -177,10 +177,11 @@ define
                 for (var location in locations)
                 {
                     var l = locations[location];
-                    if (l.CoordinateSystem != "wgs84")
+                    if (l.CoordinateSystem == "pseudo_wgs84")
                         blacklist[location] = true;
                 }
             }
+            var offset = options.zero_based_point_sequence ? 0 : -1;
             for (var point in points)
             {
                 var p = points[point];
@@ -189,7 +190,7 @@ define
                 {
                     if (null == ret[location])
                         ret[location] = [];
-                    var seq = p.sequenceNumber;
+                    var seq = Number (p.sequenceNumber) + offset;
                     if (null != seq)
                     {
                         var x = Number (p.xPosition);
@@ -400,7 +401,7 @@ define
                                         else if (psr[id].PSRType == "PSRType_TransformerStation")
                                             psr[id].symbol = transformer_station_symbol;
                                         else
-                                            psr[id].symbol = other_symbol;
+                                            psr[id].symbol = substation_symbol;
                                         psr[id].color = "rgb(255, 0, 255)";
                                     }
                                     else

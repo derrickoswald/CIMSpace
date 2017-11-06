@@ -83,7 +83,29 @@ define
          */
         function show_internal_features ()
         {
-            return (document.getElementById ("internal_features").checked && mapboxgl.supported ());
+            return (document.getElementById ("internal_features").checked);
+        }
+
+        /**
+         * Get the user's choice for 3d buildings.
+         * @returns {boolean} <code>true</code> show buildings in 3D, <code>false</code> otherwise
+         * @function show_3d_buildings
+         * @memberOf module:cimmap
+         */
+        function show_3d_buildings ()
+        {
+            return (document.getElementById ("buildings_3d").checked);
+        }
+
+        /**
+         * Get the user's choice for whether PositionPoint.sequenceNumber is zero-based or not.
+         * @returns {boolean} <code>true</code> if PositionPoint sequenceNumber values start at zero, <code>false</code> otherwise
+         * @function zero_based_point_sequence
+         * @memberOf module:cimmap
+         */
+        function zero_based_point_sequence ()
+        {
+            return (document.getElementById ("zero_based_point_sequence").checked);
         }
 
         /**
@@ -107,7 +129,7 @@ define
 
             if (TheThemer.getTheme ().getLegend ().visible ())
                 TheMap.removeControl (TheThemer.getTheme ().getLegend ());
-            TheThemer.theme (TheMap, CIM_Data, { show_internal_features: show_internal_features () });
+            TheThemer.theme (TheMap, CIM_Data, { show_internal_features: show_internal_features (), zero_based_point_sequence: zero_based_point_sequence () });
             TheExtents = TheThemer.getExtents ();
 
             buildings_3d ();
@@ -278,17 +300,6 @@ define
                     CURRENT_SELECTION = [mrid];
                 highlight ();
             }
-        }
-
-        /**
-         * Get the user's choice for 3d buildings.
-         * @returns {boolean} <code>true</code> show buildings in 3D, <code>false</code> otherwise
-         * @function show_3d_buildings
-         * @memberOf module:cimmap
-         */
-        function show_3d_buildings ()
-        {
-            return (document.getElementById ("buildings_3d").checked);
         }
 
         /**

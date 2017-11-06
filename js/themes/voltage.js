@@ -20,8 +20,21 @@ define
             constructor()
             {
                 super ();
+                this._colors = [
+                    "rgb(0, 0, 0)",
+	                "rgb(0, 139, 0)",
+	                "rgb(0, 0, 139)",
+	                "rgb(0, 139, 139)",
+	                "rgb(139, 139, 0)",
+	                "rgb(139, 0, 0)",
+	                "rgb(139, 0, 139)",
+	                "rgb(255, 0, 0)",
+	                "rgb(255, 0, 255)",
+	                "rgb(0, 255, 255)",
+	                "rgb(0, 0, 255)"
+                ];
                 this._colormap = {
-                    BaseVoltage_Unknown: "rgb(0, 0, 0)",
+                    BaseVoltage_Unknown: "rgb(139, 139, 139)",
 	                BaseVoltage_0: "rgb(0, 0, 0)",
 	                BaseVoltage_230: "rgb(0, 139, 0)",
 	                BaseVoltage_400: "rgb(0, 0, 139)",
@@ -76,20 +89,28 @@ define
                     voltages.push (
                         {
                             id: id,
-                            voltage: data.BaseVoltage[id].nominalVoltage,
-                            color: this._colormap[id]
+                            name: data.BaseVoltage[id].name,
+                            voltage: data.BaseVoltage[id].nominalVoltage
                         }
                     );
                 voltages.sort (function (a, b) { return (a.voltage - b.voltage); });
+                this._colormap = {};
+                for (var i = 0; i < voltages.length; i++)
+                {
+                    var color = this._colors[i % this._colors.length];
+                    this._colormap[voltages[i].id] = color;
+                    voltages[i].color = color;
+                }
                 this._items = voltages.map (
                     function (voltage)
                     {
                         var id = voltage.id;
+                        var name = voltage.name;
                         var color = voltage.color;
                         return (
                             {
                                 id: id,
-                                description: "<span style='width: 15px; height: 15px; background: " + color + ";'>&nbsp;&nbsp;&nbsp;</span> " + id,
+                                description: "<span style='width: 15px; height: 15px; background: " + color + ";'>&nbsp;&nbsp;&nbsp;</span> " + name,
                                 checked: true,
                                 color: color
                             }
