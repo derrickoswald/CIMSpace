@@ -4,7 +4,7 @@
 "use strict";
 define
 (
-    ["cimnav", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
+    ["cimnav", "cimedit", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
     /**
      * @summary Main entry point for the application.
      * @description Performs application initialization as the first step in the RequireJS load sequence.
@@ -13,7 +13,7 @@ define
      * @exports cimmap
      * @version 1.0
      */
-    function (cimnav, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
+    function (cimnav, CIMEdit, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
     {
         /**
          * The map object.
@@ -30,6 +30,11 @@ define
          * The theme setting control object.
          */
         var TheThemer = null;
+
+        /**
+         * The editor control object.
+         */
+        var TheEditor = null;
 
         /**
          * The user specific token to access mapbox tiles.
@@ -73,6 +78,17 @@ define
         function get_data ()
         {
             return (CIM_Data);
+        }
+
+        /**
+         * Get the theming object for access to themes.
+         * @return {Object} The object handling theming.
+         * @function get_themer
+         * @memberOf module:cimmap
+         */
+        function get_themer ()
+        {
+            return (TheThemer);
         }
 
         /**
@@ -129,7 +145,12 @@ define
 
             if (TheThemer.getTheme ().getLegend ().visible ())
                 TheMap.removeControl (TheThemer.getTheme ().getLegend ());
-            TheThemer.theme (TheMap, CIM_Data, { show_internal_features: show_internal_features (), zero_based_point_sequence: zero_based_point_sequence () });
+            TheThemer.theme (TheMap, CIM_Data,
+                {
+                    show_internal_features: show_internal_features (),
+                    zero_based_point_sequence: zero_based_point_sequence (),
+                    editing: false
+                });
             TheExtents = TheThemer.getExtents ();
 
             buildings_3d ();
@@ -162,6 +183,18 @@ define
                 TheMap.removeControl (TheThemer.getTheme ().getLegend ());
             else
                 TheMap.addControl (TheThemer.getTheme ().getLegend ());
+        }
+
+        function edit ()
+        {
+            if (TheEditor.visible ())
+                TheMap.removeControl (TheEditor);
+            else
+            {
+                if (TheThemer.getTheme ().getLegend ().visible ())
+                    TheMap.removeControl (TheThemer.getTheme ().getLegend ());
+                TheMap.addControl (TheEditor);
+            }
         }
 
         /**
@@ -233,7 +266,7 @@ define
         function detail_helper (key, value)
         {
             var feature;
-            if ((key == "orientation") || (key == "symbol") || (key == "color"))
+            if ((key == "symbol") || (key == "color"))
                 return undefined;
             if (typeof value === "string")
                 if (null != (feature = CIM_Data.Element[value]))
@@ -774,6 +807,23 @@ define
         }
 
         /**
+         * @summary Shut down the map.
+         * @description Clean up and close the map.
+         * @param {object} event - <em>not used</em>
+         * @function terminate
+         * @memberOf module:cimmap
+         */
+        function terminate (event)
+        {
+            if (null != TheMap)
+            {
+                var map = TheMap;
+                map.remove ();
+                document.getElementById ("main").innerHTML = "";
+            }
+        }
+
+        /**
          * @summary Initialize the map.
          * @description Create the background map, centered on Bern and showing most of Switzerland.
          * @param {object} event - <em>not used</em>
@@ -803,7 +853,7 @@ define
                 }
             );
             // add zoom and rotation controls to the map
-            TheMap.addControl (new cimnav.NavigationControl (zoom_extents, toggle_themer, toggle_legend));
+            TheMap.addControl (new cimnav.NavigationControl (zoom_extents, toggle_themer, toggle_legend, edit));
             // handle mouse click
             TheMap.on
             (
@@ -855,41 +905,34 @@ define
             );
             TheThemer = new ThemeControl ([new DefaultTheme (), new VoltageTheme (), new IslandTheme (), new InServiceTheme ()]);
             TheThemer.theme_change_listener (redraw);
+            TheEditor = new CIMEdit (getInterface ());
             // display any existing data
             redraw ();
         }
 
-        /**
-         * @summary Shut down the map.
-         * @description Clean up and close the map.
-         * @param {object} event - <em>not used</em>
-         * @function terminate
-         * @memberOf module:cimmap
-         */
-        function terminate (event)
+        function getInterface ()
         {
-            if (null != TheMap)
-            {
-                var map = TheMap;
-                map.remove ();
-                document.getElementById ("main").innerHTML = "";
-            }
+            return (
+                {
+                     set_data: set_data,
+                     get_data: get_data,
+                     get_themer: get_themer,
+                     zoom_extents: zoom_extents,
+                     redraw: redraw,
+                     initialize: initialize,
+                     show_internal_features: show_internal_features,
+                     show_3d_buildings: show_3d_buildings,
+                     zero_based_point_sequence: zero_based_point_sequence,
+                     buildings_3d: buildings_3d,
+                     trace: trace,
+                     unhighlight: unhighlight,
+                     select: select,
+                     search: search,
+                     terminate: terminate
+                }
+            );
         }
 
-        return (
-            {
-                set_data: set_data,
-                get_data: get_data,
-                zoom_extents: zoom_extents,
-                redraw: redraw,
-                initialize: initialize,
-                buildings_3d: buildings_3d,
-                trace: trace,
-                unhighlight: unhighlight,
-                select: select,
-                search: search,
-                terminate: terminate
-            }
-        );
+        return (getInterface ());
     }
 );

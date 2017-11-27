@@ -52,7 +52,7 @@ define
                 for (var i = 0; i < list.length; i++)
                     list[i].onchange = this.legend_change.bind (this);
                 this._onMap = true;
-                return this._container;
+                return (this._container);
             }
 
             onRemove ()

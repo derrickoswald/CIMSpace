@@ -21,7 +21,7 @@ define
             {
                 super ();
                 this._colors = [
-                    "rgb(0, 0, 0)",
+                    "rgb(51, 51, 51)",
 	                "rgb(0, 139, 0)",
 	                "rgb(0, 0, 139)",
 	                "rgb(0, 139, 139)",
@@ -35,7 +35,7 @@ define
                 ];
                 this._colormap = {
                     BaseVoltage_Unknown: "rgb(139, 139, 139)",
-	                BaseVoltage_0: "rgb(0, 0, 0)",
+	                BaseVoltage_0: "rgb(51, 51, 51)",
 	                BaseVoltage_230: "rgb(0, 139, 0)",
 	                BaseVoltage_400: "rgb(0, 0, 139)",
 	                BaseVoltage_1000: "rgb(0, 139, 139)",
@@ -117,6 +117,14 @@ define
                         );
                     }
                 );
+                this._items.unshift (
+                    {
+                        id: "none",
+                        description: "<span style='width: 15px; height: 15px; background:rgb(139, 139, 139);'>&nbsp;&nbsp;&nbsp;</span> None",
+                        checked: true,
+                        color: "rgb(139, 139, 139)"
+                    }
+                )
             }
 
             /**
@@ -133,7 +141,7 @@ define
                 {
                     psr[id].color = this._colormap[psr[id].BaseVoltage];
                     if ("undefined" == typeof (psr[id].color))
-                        psr[id].color = "rgb(0, 0, 0)";
+                        psr[id].color = "rgb(139, 139, 139)";
                 }
             }
         }

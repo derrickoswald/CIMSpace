@@ -8,66 +8,50 @@ define
          * Ancillary service requirements for a market.
          *
          */
-        function parse_ResourceGroupReq (context, sub)
+        class ResourceGroupReq extends Core.IdentifiedObject
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.ResourceGroupReq;
+                if (null == bucket)
+                   cim_data.ResourceGroupReq = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = Core.parse_IdentifiedObject (context, sub);
-            obj.cls = "ResourceGroupReq";
-            base.parse_attribute (/<cim:ResourceGroupReq.ResourceGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceGroup", sub, context);
-            bucket = context.parsed.ResourceGroupReq;
-            if (null == bucket)
-                context.parsed.ResourceGroupReq = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.ResourceGroupReq[this._id];
+            }
 
-            return (obj);
-        }
+            parse (context, sub)
+            {
+                var obj;
 
-        function export_ResourceGroupReq (obj, exporters, full)
-        {
-            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "ResourceGroupReq";
+                base.parse_attribute (/<cim:ResourceGroupReq.ResourceGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceGroup", sub, context);
 
-            base.export_attribute (obj, "ResourceGroupReq", "ResourceGroup", fields);
-            if (full)
-                base.export_Element (obj, fields)
+                var bucket = context.parsed.ResourceGroupReq;
+                if (null == bucket)
+                   context.parsed.ResourceGroupReq = bucket = {};
+                bucket[obj.id] = obj;
 
-            return (fields);
-        }
+                return (obj);
+            }
 
-        /**
-         * Requirements for minimum amount of reserve and/or regulation to be supplied by a set of qualified resources.
-         *
-         */
-        function parse_ReserveReq (context, sub)
-        {
-            var obj;
-            var bucket;
+            export (obj, exporters, full)
+            {
+                var fields = exporters["IdentifiedObject"](obj, exporters, false);
 
-            obj = parse_ResourceGroupReq (context, sub);
-            obj.cls = "ReserveReq";
-            base.parse_attribute (/<cim:ReserveReq.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context);
-            base.parse_attribute (/<cim:ReserveReq.SensitivityPriceCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SensitivityPriceCurve", sub, context);
-            base.parse_attribute (/<cim:ReserveReq.ReserveReqCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReqCurve", sub, context);
-            bucket = context.parsed.ReserveReq;
-            if (null == bucket)
-                context.parsed.ReserveReq = bucket = {};
-            bucket[obj.id] = obj;
+                base.export_attribute (obj, "ResourceGroupReq", "ResourceGroup", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
 
-            return (obj);
-        }
-
-        function export_ReserveReq (obj, exporters, full)
-        {
-            var fields = exporters["ResourceGroupReq"](obj, exporters, false);
-
-            base.export_attribute (obj, "ReserveReq", "MarketProduct", fields);
-            base.export_attribute (obj, "ReserveReq", "SensitivityPriceCurve", fields);
-            base.export_attribute (obj, "ReserveReq", "ReserveReqCurve", fields);
-            if (full)
-                base.export_Element (obj, fields)
-
-            return (fields);
+                return (fields);
+            }
         }
 
         /**
@@ -76,64 +60,102 @@ define
          * The  curve can be based on "absolute" time or on "normalized' time.
          *
          */
-        function parse_ReserveReqCurve (context, sub)
+        class ReserveReqCurve extends Core.Curve
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.ReserveReqCurve;
+                if (null == bucket)
+                   cim_data.ReserveReqCurve = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = Core.parse_Curve (context, sub);
-            obj.cls = "ReserveReqCurve";
-            base.parse_attribute (/<cim:ReserveReqCurve.ReserveReq\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReq", sub, context);
-            bucket = context.parsed.ReserveReqCurve;
-            if (null == bucket)
-                context.parsed.ReserveReqCurve = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.ReserveReqCurve[this._id];
+            }
 
-            return (obj);
-        }
+            parse (context, sub)
+            {
+                var obj;
 
-        function export_ReserveReqCurve (obj, exporters, full)
-        {
-            var fields = exporters["Curve"](obj, exporters, false);
+                obj = Core.Curve.prototype.parse.call (this, context, sub);
+                obj.cls = "ReserveReqCurve";
+                base.parse_attribute (/<cim:ReserveReqCurve.ReserveReq\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReq", sub, context);
 
-            base.export_attribute (obj, "ReserveReqCurve", "ReserveReq", fields);
-            if (full)
-                base.export_Element (obj, fields)
+                var bucket = context.parsed.ReserveReqCurve;
+                if (null == bucket)
+                   context.parsed.ReserveReqCurve = bucket = {};
+                bucket[obj.id] = obj;
 
-            return (fields);
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = exporters["Curve"](obj, exporters, false);
+
+                base.export_attribute (obj, "ReserveReqCurve", "ReserveReq", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
         /**
          * A logical grouping of resources that are used to model location of types of requirements for ancillary services such as spinning reserve zones, regulation zones, etc.
          *
          */
-        function parse_ResourceGroup (context, sub)
+        class ResourceGroup extends Core.IdentifiedObject
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.ResourceGroup;
+                if (null == bucket)
+                   cim_data.ResourceGroup = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = Core.parse_IdentifiedObject (context, sub);
-            obj.cls = "ResourceGroup";
-            base.parse_element (/<cim:ResourceGroup.type>([\s\S]*?)<\/cim:ResourceGroup.type>/g, obj, "type", base.to_string, sub, context);
-            base.parse_element (/<cim:ResourceGroup.status>([\s\S]*?)<\/cim:ResourceGroup.status>/g, obj, "status", base.to_string, sub, context);
-            bucket = context.parsed.ResourceGroup;
-            if (null == bucket)
-                context.parsed.ResourceGroup = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.ResourceGroup[this._id];
+            }
 
-            return (obj);
-        }
+            parse (context, sub)
+            {
+                var obj;
 
-        function export_ResourceGroup (obj, exporters, full)
-        {
-            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "ResourceGroup";
+                base.parse_element (/<cim:ResourceGroup.type>([\s\S]*?)<\/cim:ResourceGroup.type>/g, obj, "type", base.to_string, sub, context);
+                base.parse_element (/<cim:ResourceGroup.status>([\s\S]*?)<\/cim:ResourceGroup.status>/g, obj, "status", base.to_string, sub, context);
 
-            base.export_element (obj, "ResourceGroup", "type", base.from_string, fields);
-            base.export_element (obj, "ResourceGroup", "status", base.from_string, fields);
-            if (full)
-                base.export_Element (obj, fields)
+                var bucket = context.parsed.ResourceGroup;
+                if (null == bucket)
+                   context.parsed.ResourceGroup = bucket = {};
+                bucket[obj.id] = obj;
 
-            return (fields);
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+                base.export_element (obj, "ResourceGroup", "type", base.from_string, fields);
+                base.export_element (obj, "ResourceGroup", "status", base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
         /**
@@ -142,45 +164,113 @@ define
          * For example, used to reduce requirements when clearing price exceeds reasonable values when the supply quantity becomes scarce. For example, a single point value of \$1000/MW for a spinning reserve will cause a reduction in the required spinning reserve.
          *
          */
-        function parse_SensitivityPriceCurve (context, sub)
+        class SensitivityPriceCurve extends Core.Curve
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.SensitivityPriceCurve;
+                if (null == bucket)
+                   cim_data.SensitivityPriceCurve = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = Core.parse_Curve (context, sub);
-            obj.cls = "SensitivityPriceCurve";
-            base.parse_attribute (/<cim:SensitivityPriceCurve.ReserveReq\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReq", sub, context);
-            bucket = context.parsed.SensitivityPriceCurve;
-            if (null == bucket)
-                context.parsed.SensitivityPriceCurve = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.SensitivityPriceCurve[this._id];
+            }
 
-            return (obj);
+            parse (context, sub)
+            {
+                var obj;
+
+                obj = Core.Curve.prototype.parse.call (this, context, sub);
+                obj.cls = "SensitivityPriceCurve";
+                base.parse_attribute (/<cim:SensitivityPriceCurve.ReserveReq\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReq", sub, context);
+
+                var bucket = context.parsed.SensitivityPriceCurve;
+                if (null == bucket)
+                   context.parsed.SensitivityPriceCurve = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = exporters["Curve"](obj, exporters, false);
+
+                base.export_attribute (obj, "SensitivityPriceCurve", "ReserveReq", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
-        function export_SensitivityPriceCurve (obj, exporters, full)
+        /**
+         * Requirements for minimum amount of reserve and/or regulation to be supplied by a set of qualified resources.
+         *
+         */
+        class ReserveReq extends ResourceGroupReq
         {
-            var fields = exporters["Curve"](obj, exporters, false);
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.ReserveReq;
+                if (null == bucket)
+                   cim_data.ReserveReq = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            base.export_attribute (obj, "SensitivityPriceCurve", "ReserveReq", fields);
-            if (full)
-                base.export_Element (obj, fields)
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.ReserveReq[this._id];
+            }
 
-            return (fields);
+            parse (context, sub)
+            {
+                var obj;
+
+                obj = ResourceGroupReq.prototype.parse.call (this, context, sub);
+                obj.cls = "ReserveReq";
+                base.parse_attribute (/<cim:ReserveReq.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context);
+                base.parse_attribute (/<cim:ReserveReq.SensitivityPriceCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SensitivityPriceCurve", sub, context);
+                base.parse_attribute (/<cim:ReserveReq.ReserveReqCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReqCurve", sub, context);
+
+                var bucket = context.parsed.ReserveReq;
+                if (null == bucket)
+                   context.parsed.ReserveReq = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = exporters["ResourceGroupReq"](obj, exporters, false);
+
+                base.export_attribute (obj, "ReserveReq", "MarketProduct", fields);
+                base.export_attribute (obj, "ReserveReq", "SensitivityPriceCurve", fields);
+                base.export_attribute (obj, "ReserveReq", "ReserveReqCurve", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
         return (
             {
-                parse_SensitivityPriceCurve: parse_SensitivityPriceCurve,
-                parse_ReserveReq: parse_ReserveReq,
-                export_ResourceGroup: export_ResourceGroup,
-                export_ReserveReqCurve: export_ReserveReqCurve,
-                export_ResourceGroupReq: export_ResourceGroupReq,
-                parse_ResourceGroupReq: parse_ResourceGroupReq,
-                parse_ResourceGroup: parse_ResourceGroup,
-                export_SensitivityPriceCurve: export_SensitivityPriceCurve,
-                parse_ReserveReqCurve: parse_ReserveReqCurve,
-                export_ReserveReq: export_ReserveReq
+                ReserveReq: ReserveReq,
+                ResourceGroup: ResourceGroup,
+                ReserveReqCurve: ReserveReqCurve,
+                ResourceGroupReq: ResourceGroupReq,
+                SensitivityPriceCurve: SensitivityPriceCurve
             }
         );
     }

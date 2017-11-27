@@ -5,7 +5,7 @@
 
 define
 (
-    ["../mustache", "./legend"],
+    ["../mustache", "./legend", "./layers"],
     /**
      * @summary Base class for themes.
      * @description Theme class for colorizing by equipment type.
@@ -13,7 +13,7 @@ define
      * @exports default_theme
      * @version 1.0
      */
-    function (mustache, Legend)
+    function (mustache, Legend, layers)
     {
         /**
          * symbology
@@ -31,127 +31,6 @@ define
         var transformer_symbol = "transformer";
 
         var TheExtents;
-
-        /**
-         * Create a line layer object.
-         * @param {String} id - the layer id
-         * @param {String} color - the line color
-         * @param {Any[]} filter - optional filter to apply to the lines
-         * @returns {Object} the layer
-         * @function line_layer
-         * @memberOf module:default_theme
-         */
-        function line_layer (id, color, filter)
-        {
-            var ret =
-                {
-                    id: id,
-                    type: "line",
-                    source: "cim lines",
-                    layout:
-                    {
-                        "line-join": "round",
-                        "line-cap": "round"
-                    },
-                    paint:
-                    {
-                        "line-color": color,
-                        "line-width": 3
-                    }
-                };
-            if ("undefined" != typeof (filter) && (null != filter))
-                ret.filter = filter;
-
-            return (ret);
-        }
-
-        /**
-         * Create a circle layer object.
-         * @param {String} id - the layer id
-         * @param {String} color - the symbol color
-         * @param {Any[]} filter - optional filter to apply to the points
-         * @returns {Object} the layer
-         * @function circle_layer
-         * @memberOf module:default_theme
-         */
-        function circle_layer (id, color, filter)
-        {
-            var ret =
-                {
-                    id: id,
-                    type: "circle",
-                    source: "cim points",
-                    minzoom: 14,
-                    maxzoom: 17,
-                    paint:
-                    {
-                        "circle-radius": 5, // Optional number. Units in pixels. Defaults to 5.
-                        "circle-color": color, // Optional color. Defaults to #000000.
-                        "circle-blur": 0, // Optional number. Defaults to 0. 1 blurs the circle such that only the centerpoint is full opacity.
-                        "circle-opacity": 1, // Optional number. Defaults to 1.
-                        "circle-translate": [0, 0], // Optional array. Units in pixels. Defaults to 0,0. Values are [x, y] where negatives indicate left and up, respectively.
-                        "circle-translate-anchor": "map", // Optional enum. One of map, viewport. Defaults to map. Requires circle-translate.
-                    }
-                };
-            if ("undefined" != typeof (filter) && (null != filter))
-                ret.filter = filter;
-
-            return (ret);
-        }
-
-        /**
-         * Create a symbol layer object.
-         * @param {String} id - the layer id
-         * @param {String} color - the symbol color
-         * @param {Any[]} filter - optional filter to apply to the points
-         * @returns {Object} the layer
-         * @function symbol_layer
-         * @memberOf module:default_theme
-         */
-        function symbol_layer (id, color, filter)
-        {
-            var ret =
-                {
-                    id: id,
-                    type: "symbol",
-                    source: "cim points",
-                    minzoom: 17,
-                    interactive: true,
-                    layout:
-                    {
-                        "icon-image": "{symbol}",
-                        "icon-allow-overlap": true,
-                        "icon-size":
-                        {
-                            stops: [[17, 0.1875], [18, 0.25], [19, 0.3], [20, 0.45], [21, 0.9], [22, 1.8], [23, 3.75], [24, 7.5], [25, 10.0]]
-                        },
-                        "icon-rotate": 0.0,
-                        "icon-offset": [0, 0],
-                        "text-field": "{name}",
-                        "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                        "text-offset":
-                        {
-                            stops: [[18, [0, 1.0]], [20, [0, 2.0]], [21, [0, 3.0]], [22, [0, 4.0]], [23, [0, 5.0]], [24, [0, 6.0]], [25, [0, 7.0]]]
-                        },
-                        "text-anchor": "top",
-                        "text-allow-overlap": true,
-                        "text-size":
-                        {
-                            stops: [[17, 4], [18, 8], [19, 12], [20, 14], [21, 18], [22, 24], [23, 30], [24, 38], [25, 48]]
-                        }
-                    },
-                    paint:
-                    {
-                        "icon-color": color,
-                        "text-color": color
-                    }
-                };
-            if ("undefined" != typeof (filter) && (null != filter))
-                ret.filter = filter;
-
-            return (ret);
-        }
-
 
         /**
          * @summary Gather position points into locations.
@@ -320,13 +199,15 @@ define
              * @param {Object} locations - the hash table object with properties that are locations with arrays of coordinates
              * @param {Object} points - the resultant list of point GeoJSON objects
              * @param {Object} lines - the resultant list of linear GeoJSON objects
+             * @param {Object} options - options for processing
              * @function process_spatial_objects
              * @memberOf module:default_theme
              */
-            process_spatial_objects (data, locations, points, lines)
+            process_spatial_objects (data, locations, points, lines, options)
             {
                 var coordinates;
                 var location;
+                var editing = options.editing || false;
                 var psr = data.PowerSystemResource
                 for (var id in psr)
                 {
@@ -334,6 +215,10 @@ define
                     {
                         if (null != (coordinates = locations[location]))
                         {
+                            if ((psr[id].EditDisposition && !editing) ||
+                                (!psr[id].EditDisposition && editing))
+                                continue;
+
                             if (2 == coordinates.length)
                             {
                                 points.features.push
@@ -349,7 +234,6 @@ define
                                     }
                                 );
                                 psr[id].id = id;
-                                psr[id].orientation = 0.0;
 
                                 // assign the symbol and color
                                 if ("PowerTransformer" == psr[id].cls)
@@ -461,6 +345,32 @@ define
             }
 
             /**
+             * Create the GeoJSON for the data with the given options.
+             * @param {Object} data - the hash table object of CIM classes by class name
+             * @function remove_theme
+             * @memberOf module:default_theme
+             */
+            make_geojson (data, options)
+            {
+                // the lines GeoJSON
+                var lines =
+                {
+                    "type" : "FeatureCollection",
+                    "features" : []
+                };
+                // the points GeoJSON
+                var points =
+                {
+                    "type" : "FeatureCollection",
+                    "features" : []
+                };
+                var locations = get_locations (data, options);
+                this.process_spatial_objects (data, locations, points, lines, options);
+                this.process_spatial_objects_again (data, options);
+                return ({ lines: lines, points: points });
+            }
+
+            /**
              * Remove layers and sourcs from the map.
              * @function remove_theme
              * @memberOf module:default_theme
@@ -484,29 +394,18 @@ define
              * Add sources and layers to the map.
              * @param {Object} map - the Mapbox map object
              * @param {Object} data - the hash table object of CIM classes by class name
-             * @param {Object} options - layer options (currently only show_internal_features flag)
+             * @param {Object} options - object with rendering options, e.g.
+             *   show_internal_features flag - render internal features
+             *   zero_based_point_sequence flag - use (incorrect) zero based PositionPoint sequenceNumber
+             *   editing flag - render new features or, if false, existing features
              * @function make_theme
              * @memberOf module:default_theme
              */
             make_theme (map, data, options)
             {
                 this._TheMap = map; // to be able to remove it later
-                var locations = get_locations (data, options);
 
-                // the lines GeoJSON
-                var lines =
-                {
-                    "type" : "FeatureCollection",
-                    "features" : []
-                };
-                // the points GeoJSON
-                var points =
-                {
-                    "type" : "FeatureCollection",
-                    "features" : []
-                };
-                this.process_spatial_objects (data, locations, points, lines);
-                this.process_spatial_objects_again (data);
+                var geo = this.make_geojson (data, options);
 
                 // update the map
                 map.addSource
@@ -514,7 +413,7 @@ define
                     "cim lines",
                     {
                         type: "geojson",
-                        data: lines,
+                        data: geo.lines,
                         maxzoom: 25
                     }
                 );
@@ -524,22 +423,22 @@ define
                     "cim points",
                     {
                         type: "geojson",
-                        data: points,
+                        data: geo.points,
                         maxzoom: 25
                     }
                 );
 
                 // lines 3 pixels wide
-                map.addLayer (line_layer ("lines", { type: "identity", property: "color" }));
-                map.addLayer (line_layer ("lines_highlight", "rgb(255, 255, 0)", ["==", "mRID", ""]));
+                map.addLayer (layers.line_layer ("lines", "cim lines", { type: "identity", property: "color" }, ["!has", "EditDisposition"]));
+                map.addLayer (layers.line_layer ("lines_highlight", "cim lines", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
                 // simple circle from 14 to 17
-                map.addLayer (circle_layer ("circle", { type: "identity", property: "color" }))
-                map.addLayer (circle_layer ("circle_highlight", "rgb(255, 255, 0)", ["==", "mRID", ""]))
+                map.addLayer (layers.circle_layer ("circle", "cim points", { type: "identity", property: "color" }, ["!has", "EditDisposition"]))
+                map.addLayer (layers.circle_layer ("circle_highlight", "cim points", "rgb(255, 255, 0)", ["==", "mRID", ""]))
 
                 // symbol icon from 17 and deeper
-                map.addLayer (symbol_layer ("symbol", { type: "identity", property: "color" }));
-                map.addLayer (symbol_layer ("symbol_highlight", "rgb(255, 255, 0)", ["==", "mRID", ""]));
+                map.addLayer (layers.symbol_layer ("symbol", "cim points", { type: "identity", property: "color" }, ["!has", "EditDisposition"]));
+                map.addLayer (layers.symbol_layer ("symbol_highlight", "cim points", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
                 // set the current filter
                 this.legend_changed ();

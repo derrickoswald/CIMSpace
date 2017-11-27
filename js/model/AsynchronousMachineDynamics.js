@@ -20,37 +20,56 @@ define
          * However, some references use the symbol L instead of X. </li>
          *
          */
-        function parse_AsynchronousMachineDynamics (context, sub)
+        class AsynchronousMachineDynamics extends StandardModels.RotatingMachineDynamics
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.AsynchronousMachineDynamics;
+                if (null == bucket)
+                   cim_data.AsynchronousMachineDynamics = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = StandardModels.parse_RotatingMachineDynamics (context, sub);
-            obj.cls = "AsynchronousMachineDynamics";
-            base.parse_attribute (/<cim:AsynchronousMachineDynamics.TurbineGovernorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TurbineGovernorDynamics", sub, context);
-            base.parse_attribute (/<cim:AsynchronousMachineDynamics.AsynchronousMachine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AsynchronousMachine", sub, context);
-            base.parse_attribute (/<cim:AsynchronousMachineDynamics.WindTurbineType1or2Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType1or2Dynamics", sub, context);
-            base.parse_attribute (/<cim:AsynchronousMachineDynamics.MechanicalLoadDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MechanicalLoadDynamics", sub, context);
-            bucket = context.parsed.AsynchronousMachineDynamics;
-            if (null == bucket)
-                context.parsed.AsynchronousMachineDynamics = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.AsynchronousMachineDynamics[this._id];
+            }
 
-            return (obj);
-        }
+            parse (context, sub)
+            {
+                var obj;
 
-        function export_AsynchronousMachineDynamics (obj, exporters, full)
-        {
-            var fields = exporters["RotatingMachineDynamics"](obj, exporters, false);
+                obj = StandardModels.RotatingMachineDynamics.prototype.parse.call (this, context, sub);
+                obj.cls = "AsynchronousMachineDynamics";
+                base.parse_attribute (/<cim:AsynchronousMachineDynamics.TurbineGovernorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TurbineGovernorDynamics", sub, context);
+                base.parse_attribute (/<cim:AsynchronousMachineDynamics.AsynchronousMachine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AsynchronousMachine", sub, context);
+                base.parse_attribute (/<cim:AsynchronousMachineDynamics.WindTurbineType1or2Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType1or2Dynamics", sub, context);
+                base.parse_attribute (/<cim:AsynchronousMachineDynamics.MechanicalLoadDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MechanicalLoadDynamics", sub, context);
 
-            base.export_attribute (obj, "AsynchronousMachineDynamics", "TurbineGovernorDynamics", fields);
-            base.export_attribute (obj, "AsynchronousMachineDynamics", "AsynchronousMachine", fields);
-            base.export_attribute (obj, "AsynchronousMachineDynamics", "WindTurbineType1or2Dynamics", fields);
-            base.export_attribute (obj, "AsynchronousMachineDynamics", "MechanicalLoadDynamics", fields);
-            if (full)
-                base.export_Element (obj, fields)
+                var bucket = context.parsed.AsynchronousMachineDynamics;
+                if (null == bucket)
+                   context.parsed.AsynchronousMachineDynamics = bucket = {};
+                bucket[obj.id] = obj;
 
-            return (fields);
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = exporters["RotatingMachineDynamics"](obj, exporters, false);
+
+                base.export_attribute (obj, "AsynchronousMachineDynamics", "TurbineGovernorDynamics", fields);
+                base.export_attribute (obj, "AsynchronousMachineDynamics", "AsynchronousMachine", fields);
+                base.export_attribute (obj, "AsynchronousMachineDynamics", "WindTurbineType1or2Dynamics", fields);
+                base.export_attribute (obj, "AsynchronousMachineDynamics", "MechanicalLoadDynamics", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
         /**
@@ -72,39 +91,58 @@ define
          * tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (xm + xlr1).
          *
          */
-        function parse_AsynchronousMachineEquivalentCircuit (context, sub)
+        class AsynchronousMachineEquivalentCircuit extends AsynchronousMachineDynamics
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.AsynchronousMachineEquivalentCircuit;
+                if (null == bucket)
+                   cim_data.AsynchronousMachineEquivalentCircuit = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = parse_AsynchronousMachineDynamics (context, sub);
-            obj.cls = "AsynchronousMachineEquivalentCircuit";
-            base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.rr1>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.rr1>/g, obj, "rr1", base.to_string, sub, context);
-            base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.rr2>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.rr2>/g, obj, "rr2", base.to_string, sub, context);
-            base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xlr1>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xlr1>/g, obj, "xlr1", base.to_string, sub, context);
-            base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xlr2>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xlr2>/g, obj, "xlr2", base.to_string, sub, context);
-            base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xm>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xm>/g, obj, "xm", base.to_string, sub, context);
-            bucket = context.parsed.AsynchronousMachineEquivalentCircuit;
-            if (null == bucket)
-                context.parsed.AsynchronousMachineEquivalentCircuit = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.AsynchronousMachineEquivalentCircuit[this._id];
+            }
 
-            return (obj);
-        }
+            parse (context, sub)
+            {
+                var obj;
 
-        function export_AsynchronousMachineEquivalentCircuit (obj, exporters, full)
-        {
-            var fields = exporters["AsynchronousMachineDynamics"](obj, exporters, false);
+                obj = AsynchronousMachineDynamics.prototype.parse.call (this, context, sub);
+                obj.cls = "AsynchronousMachineEquivalentCircuit";
+                base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.rr1>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.rr1>/g, obj, "rr1", base.to_string, sub, context);
+                base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.rr2>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.rr2>/g, obj, "rr2", base.to_string, sub, context);
+                base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xlr1>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xlr1>/g, obj, "xlr1", base.to_string, sub, context);
+                base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xlr2>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xlr2>/g, obj, "xlr2", base.to_string, sub, context);
+                base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xm>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xm>/g, obj, "xm", base.to_string, sub, context);
 
-            base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "rr1", base.from_string, fields);
-            base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "rr2", base.from_string, fields);
-            base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xlr1", base.from_string, fields);
-            base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xlr2", base.from_string, fields);
-            base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xm", base.from_string, fields);
-            if (full)
-                base.export_Element (obj, fields)
+                var bucket = context.parsed.AsynchronousMachineEquivalentCircuit;
+                if (null == bucket)
+                   context.parsed.AsynchronousMachineEquivalentCircuit = bucket = {};
+                bucket[obj.id] = obj;
 
-            return (fields);
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = exporters["AsynchronousMachineDynamics"](obj, exporters, false);
+
+                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "rr1", base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "rr2", base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xlr1", base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xlr2", base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xm", base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
         /**
@@ -132,49 +170,65 @@ define
          * </ul>
          *
          */
-        function parse_AsynchronousMachineTimeConstantReactance (context, sub)
+        class AsynchronousMachineTimeConstantReactance extends AsynchronousMachineDynamics
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.AsynchronousMachineTimeConstantReactance;
+                if (null == bucket)
+                   cim_data.AsynchronousMachineTimeConstantReactance = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = parse_AsynchronousMachineDynamics (context, sub);
-            obj.cls = "AsynchronousMachineTimeConstantReactance";
-            base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.tpo>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.tpo>/g, obj, "tpo", base.to_string, sub, context);
-            base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.tppo>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.tppo>/g, obj, "tppo", base.to_string, sub, context);
-            base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xp>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xp>/g, obj, "xp", base.to_string, sub, context);
-            base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xpp>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xpp>/g, obj, "xpp", base.to_string, sub, context);
-            base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xs>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xs>/g, obj, "xs", base.to_string, sub, context);
-            bucket = context.parsed.AsynchronousMachineTimeConstantReactance;
-            if (null == bucket)
-                context.parsed.AsynchronousMachineTimeConstantReactance = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.AsynchronousMachineTimeConstantReactance[this._id];
+            }
 
-            return (obj);
-        }
+            parse (context, sub)
+            {
+                var obj;
 
-        function export_AsynchronousMachineTimeConstantReactance (obj, exporters, full)
-        {
-            var fields = exporters["AsynchronousMachineDynamics"](obj, exporters, false);
+                obj = AsynchronousMachineDynamics.prototype.parse.call (this, context, sub);
+                obj.cls = "AsynchronousMachineTimeConstantReactance";
+                base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.tpo>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.tpo>/g, obj, "tpo", base.to_string, sub, context);
+                base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.tppo>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.tppo>/g, obj, "tppo", base.to_string, sub, context);
+                base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xp>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xp>/g, obj, "xp", base.to_string, sub, context);
+                base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xpp>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xpp>/g, obj, "xpp", base.to_string, sub, context);
+                base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xs>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xs>/g, obj, "xs", base.to_string, sub, context);
 
-            base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "tpo", base.from_string, fields);
-            base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "tppo", base.from_string, fields);
-            base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xp", base.from_string, fields);
-            base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xpp", base.from_string, fields);
-            base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xs", base.from_string, fields);
-            if (full)
-                base.export_Element (obj, fields)
+                var bucket = context.parsed.AsynchronousMachineTimeConstantReactance;
+                if (null == bucket)
+                   context.parsed.AsynchronousMachineTimeConstantReactance = bucket = {};
+                bucket[obj.id] = obj;
 
-            return (fields);
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = exporters["AsynchronousMachineDynamics"](obj, exporters, false);
+
+                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "tpo", base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "tppo", base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xp", base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xpp", base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xs", base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
         return (
             {
-                export_AsynchronousMachineEquivalentCircuit: export_AsynchronousMachineEquivalentCircuit,
-                export_AsynchronousMachineDynamics: export_AsynchronousMachineDynamics,
-                parse_AsynchronousMachineEquivalentCircuit: parse_AsynchronousMachineEquivalentCircuit,
-                parse_AsynchronousMachineTimeConstantReactance: parse_AsynchronousMachineTimeConstantReactance,
-                parse_AsynchronousMachineDynamics: parse_AsynchronousMachineDynamics,
-                export_AsynchronousMachineTimeConstantReactance: export_AsynchronousMachineTimeConstantReactance
+                AsynchronousMachineDynamics: AsynchronousMachineDynamics,
+                AsynchronousMachineEquivalentCircuit: AsynchronousMachineEquivalentCircuit,
+                AsynchronousMachineTimeConstantReactance: AsynchronousMachineTimeConstantReactance
             }
         );
     }

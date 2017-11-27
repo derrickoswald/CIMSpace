@@ -11,110 +11,111 @@ define
     {
 
         /**
-         * <font color="#0f0f0f">The class represents the terminal voltage transducer and the load compensator as defined in the IEEE Std 421.5-2005, Section 4.
-         *
-         * This model is common to all excitation system models described in the IEEE Standard. </font>
-         *
-         */
-        function parse_VCompIEEEType1 (context, sub)
-        {
-            var obj;
-            var bucket;
-
-            obj = parse_VoltageCompensatorDynamics (context, sub);
-            obj.cls = "VCompIEEEType1";
-            base.parse_element (/<cim:VCompIEEEType1.rc>([\s\S]*?)<\/cim:VCompIEEEType1.rc>/g, obj, "rc", base.to_string, sub, context);
-            base.parse_element (/<cim:VCompIEEEType1.tr>([\s\S]*?)<\/cim:VCompIEEEType1.tr>/g, obj, "tr", base.to_string, sub, context);
-            base.parse_element (/<cim:VCompIEEEType1.xc>([\s\S]*?)<\/cim:VCompIEEEType1.xc>/g, obj, "xc", base.to_string, sub, context);
-            bucket = context.parsed.VCompIEEEType1;
-            if (null == bucket)
-                context.parsed.VCompIEEEType1 = bucket = {};
-            bucket[obj.id] = obj;
-
-            return (obj);
-        }
-
-        function export_VCompIEEEType1 (obj, exporters, full)
-        {
-            var fields = exporters["VoltageCompensatorDynamics"](obj, exporters, false);
-
-            base.export_element (obj, "VCompIEEEType1", "rc", base.from_string, fields);
-            base.export_element (obj, "VCompIEEEType1", "tr", base.from_string, fields);
-            base.export_element (obj, "VCompIEEEType1", "xc", base.from_string, fields);
-            if (full)
-                base.export_Element (obj, fields)
-
-            return (fields);
-        }
-
-        /**
          * This class provides the resistive and reactive components of compensation for the generator associated with the IEEE Type 2 voltage compensator for current flow out of one of the other generators in the interconnection.
          *
          */
-        function parse_GenICompensationForGenJ (context, sub)
+        class GenICompensationForGenJ extends Core.IdentifiedObject
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.GenICompensationForGenJ;
+                if (null == bucket)
+                   cim_data.GenICompensationForGenJ = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = Core.parse_IdentifiedObject (context, sub);
-            obj.cls = "GenICompensationForGenJ";
-            base.parse_element (/<cim:GenICompensationForGenJ.rcij>([\s\S]*?)<\/cim:GenICompensationForGenJ.rcij>/g, obj, "rcij", base.to_string, sub, context);
-            base.parse_element (/<cim:GenICompensationForGenJ.xcij>([\s\S]*?)<\/cim:GenICompensationForGenJ.xcij>/g, obj, "xcij", base.to_string, sub, context);
-            base.parse_attribute (/<cim:GenICompensationForGenJ.VcompIEEEType2\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VcompIEEEType2", sub, context);
-            base.parse_attribute (/<cim:GenICompensationForGenJ.SynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SynchronousMachineDynamics", sub, context);
-            bucket = context.parsed.GenICompensationForGenJ;
-            if (null == bucket)
-                context.parsed.GenICompensationForGenJ = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.GenICompensationForGenJ[this._id];
+            }
 
-            return (obj);
-        }
+            parse (context, sub)
+            {
+                var obj;
 
-        function export_GenICompensationForGenJ (obj, exporters, full)
-        {
-            var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "GenICompensationForGenJ";
+                base.parse_element (/<cim:GenICompensationForGenJ.rcij>([\s\S]*?)<\/cim:GenICompensationForGenJ.rcij>/g, obj, "rcij", base.to_string, sub, context);
+                base.parse_element (/<cim:GenICompensationForGenJ.xcij>([\s\S]*?)<\/cim:GenICompensationForGenJ.xcij>/g, obj, "xcij", base.to_string, sub, context);
+                base.parse_attribute (/<cim:GenICompensationForGenJ.VcompIEEEType2\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VcompIEEEType2", sub, context);
+                base.parse_attribute (/<cim:GenICompensationForGenJ.SynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SynchronousMachineDynamics", sub, context);
 
-            base.export_element (obj, "GenICompensationForGenJ", "rcij", base.from_string, fields);
-            base.export_element (obj, "GenICompensationForGenJ", "xcij", base.from_string, fields);
-            base.export_attribute (obj, "GenICompensationForGenJ", "VcompIEEEType2", fields);
-            base.export_attribute (obj, "GenICompensationForGenJ", "SynchronousMachineDynamics", fields);
-            if (full)
-                base.export_Element (obj, fields)
+                var bucket = context.parsed.GenICompensationForGenJ;
+                if (null == bucket)
+                   context.parsed.GenICompensationForGenJ = bucket = {};
+                bucket[obj.id] = obj;
 
-            return (fields);
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+
+                base.export_element (obj, "GenICompensationForGenJ", "rcij", base.from_string, fields);
+                base.export_element (obj, "GenICompensationForGenJ", "xcij", base.from_string, fields);
+                base.export_attribute (obj, "GenICompensationForGenJ", "VcompIEEEType2", fields);
+                base.export_attribute (obj, "GenICompensationForGenJ", "SynchronousMachineDynamics", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
         /**
          * Voltage compensator function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
          *
          */
-        function parse_VoltageCompensatorDynamics (context, sub)
+        class VoltageCompensatorDynamics extends StandardModels.DynamicsFunctionBlock
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.VoltageCompensatorDynamics;
+                if (null == bucket)
+                   cim_data.VoltageCompensatorDynamics = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = StandardModels.parse_DynamicsFunctionBlock (context, sub);
-            obj.cls = "VoltageCompensatorDynamics";
-            base.parse_attribute (/<cim:VoltageCompensatorDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
-            base.parse_attribute (/<cim:VoltageCompensatorDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
-            bucket = context.parsed.VoltageCompensatorDynamics;
-            if (null == bucket)
-                context.parsed.VoltageCompensatorDynamics = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.VoltageCompensatorDynamics[this._id];
+            }
 
-            return (obj);
-        }
+            parse (context, sub)
+            {
+                var obj;
 
-        function export_VoltageCompensatorDynamics (obj, exporters, full)
-        {
-            var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
+                obj.cls = "VoltageCompensatorDynamics";
+                base.parse_attribute (/<cim:VoltageCompensatorDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
+                base.parse_attribute (/<cim:VoltageCompensatorDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
 
-            base.export_attribute (obj, "VoltageCompensatorDynamics", "RemoteInputSignal", fields);
-            base.export_attribute (obj, "VoltageCompensatorDynamics", "ExcitationSystemDynamics", fields);
-            if (full)
-                base.export_Element (obj, fields)
+                var bucket = context.parsed.VoltageCompensatorDynamics;
+                if (null == bucket)
+                   context.parsed.VoltageCompensatorDynamics = bucket = {};
+                bucket[obj.id] = obj;
 
-            return (fields);
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+
+                base.export_attribute (obj, "VoltageCompensatorDynamics", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "VoltageCompensatorDynamics", "ExcitationSystemDynamics", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
         /**
@@ -123,43 +124,114 @@ define
          * This model is designed to cover the following types of compensation: </font>
          *
          */
-        function parse_VCompIEEEType2 (context, sub)
+        class VCompIEEEType2 extends VoltageCompensatorDynamics
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.VCompIEEEType2;
+                if (null == bucket)
+                   cim_data.VCompIEEEType2 = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = parse_VoltageCompensatorDynamics (context, sub);
-            obj.cls = "VCompIEEEType2";
-            base.parse_element (/<cim:VCompIEEEType2.tr>([\s\S]*?)<\/cim:VCompIEEEType2.tr>/g, obj, "tr", base.to_string, sub, context);
-            bucket = context.parsed.VCompIEEEType2;
-            if (null == bucket)
-                context.parsed.VCompIEEEType2 = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.VCompIEEEType2[this._id];
+            }
 
-            return (obj);
+            parse (context, sub)
+            {
+                var obj;
+
+                obj = VoltageCompensatorDynamics.prototype.parse.call (this, context, sub);
+                obj.cls = "VCompIEEEType2";
+                base.parse_element (/<cim:VCompIEEEType2.tr>([\s\S]*?)<\/cim:VCompIEEEType2.tr>/g, obj, "tr", base.to_string, sub, context);
+
+                var bucket = context.parsed.VCompIEEEType2;
+                if (null == bucket)
+                   context.parsed.VCompIEEEType2 = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = exporters["VoltageCompensatorDynamics"](obj, exporters, false);
+
+                base.export_element (obj, "VCompIEEEType2", "tr", base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
-        function export_VCompIEEEType2 (obj, exporters, full)
+        /**
+         * <font color="#0f0f0f">The class represents the terminal voltage transducer and the load compensator as defined in the IEEE Std 421.5-2005, Section 4.
+         *
+         * This model is common to all excitation system models described in the IEEE Standard. </font>
+         *
+         */
+        class VCompIEEEType1 extends VoltageCompensatorDynamics
         {
-            var fields = exporters["VoltageCompensatorDynamics"](obj, exporters, false);
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.VCompIEEEType1;
+                if (null == bucket)
+                   cim_data.VCompIEEEType1 = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            base.export_element (obj, "VCompIEEEType2", "tr", base.from_string, fields);
-            if (full)
-                base.export_Element (obj, fields)
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.VCompIEEEType1[this._id];
+            }
 
-            return (fields);
+            parse (context, sub)
+            {
+                var obj;
+
+                obj = VoltageCompensatorDynamics.prototype.parse.call (this, context, sub);
+                obj.cls = "VCompIEEEType1";
+                base.parse_element (/<cim:VCompIEEEType1.rc>([\s\S]*?)<\/cim:VCompIEEEType1.rc>/g, obj, "rc", base.to_string, sub, context);
+                base.parse_element (/<cim:VCompIEEEType1.tr>([\s\S]*?)<\/cim:VCompIEEEType1.tr>/g, obj, "tr", base.to_string, sub, context);
+                base.parse_element (/<cim:VCompIEEEType1.xc>([\s\S]*?)<\/cim:VCompIEEEType1.xc>/g, obj, "xc", base.to_string, sub, context);
+
+                var bucket = context.parsed.VCompIEEEType1;
+                if (null == bucket)
+                   context.parsed.VCompIEEEType1 = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = exporters["VoltageCompensatorDynamics"](obj, exporters, false);
+
+                base.export_element (obj, "VCompIEEEType1", "rc", base.from_string, fields);
+                base.export_element (obj, "VCompIEEEType1", "tr", base.from_string, fields);
+                base.export_element (obj, "VCompIEEEType1", "xc", base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
         return (
             {
-                export_VCompIEEEType1: export_VCompIEEEType1,
-                parse_VoltageCompensatorDynamics: parse_VoltageCompensatorDynamics,
-                parse_VCompIEEEType1: parse_VCompIEEEType1,
-                parse_VCompIEEEType2: parse_VCompIEEEType2,
-                export_VCompIEEEType2: export_VCompIEEEType2,
-                export_GenICompensationForGenJ: export_GenICompensationForGenJ,
-                parse_GenICompensationForGenJ: parse_GenICompensationForGenJ,
-                export_VoltageCompensatorDynamics: export_VoltageCompensatorDynamics
+                VCompIEEEType1: VCompIEEEType1,
+                GenICompensationForGenJ: GenICompensationForGenJ,
+                VoltageCompensatorDynamics: VoltageCompensatorDynamics,
+                VCompIEEEType2: VCompIEEEType2
             }
         );
     }

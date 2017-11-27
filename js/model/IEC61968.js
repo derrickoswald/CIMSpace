@@ -14,39 +14,57 @@ define
          * IEC 61968 version number assigned to this UML model.
          *
          */
-        function parse_IEC61968CIMVersion (context, sub)
+        class IEC61968CIMVersion extends base.Element
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.IEC61968CIMVersion;
+                if (null == bucket)
+                   cim_data.IEC61968CIMVersion = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = base.parse_Element (context, sub);
-            obj.cls = "IEC61968CIMVersion";
-            base.parse_element (/<cim:IEC61968CIMVersion.date>([\s\S]*?)<\/cim:IEC61968CIMVersion.date>/g, obj, "date", base.to_string, sub, context);
-            base.parse_element (/<cim:IEC61968CIMVersion.version>([\s\S]*?)<\/cim:IEC61968CIMVersion.version>/g, obj, "version", base.to_string, sub, context);
-            bucket = context.parsed.IEC61968CIMVersion;
-            if (null == bucket)
-                context.parsed.IEC61968CIMVersion = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.IEC61968CIMVersion[this._id];
+            }
 
-            return (obj);
-        }
+            parse (context, sub)
+            {
+                var obj;
 
-        function export_IEC61968CIMVersion (obj, exporters, full)
-        {
-            var fields = [];
+                obj = base.Element.prototype.parse.call (this, context, sub);
+                obj.cls = "IEC61968CIMVersion";
+                base.parse_element (/<cim:IEC61968CIMVersion.date>([\s\S]*?)<\/cim:IEC61968CIMVersion.date>/g, obj, "date", base.to_string, sub, context);
+                base.parse_element (/<cim:IEC61968CIMVersion.version>([\s\S]*?)<\/cim:IEC61968CIMVersion.version>/g, obj, "version", base.to_string, sub, context);
 
-            base.export_element (obj, "IEC61968CIMVersion", "date", base.from_string, fields);
-            base.export_element (obj, "IEC61968CIMVersion", "version", base.from_string, fields);
-            if (full)
-                base.export_Element (obj, fields)
+                var bucket = context.parsed.IEC61968CIMVersion;
+                if (null == bucket)
+                   context.parsed.IEC61968CIMVersion = bucket = {};
+                bucket[obj.id] = obj;
 
-            return (fields);
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = [];
+
+                base.export_element (obj, "IEC61968CIMVersion", "date", base.from_string, fields);
+                base.export_element (obj, "IEC61968CIMVersion", "version", base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
         return (
             {
-                export_IEC61968CIMVersion: export_IEC61968CIMVersion,
-                parse_IEC61968CIMVersion: parse_IEC61968CIMVersion
+                IEC61968CIMVersion: IEC61968CIMVersion
             }
         );
     }

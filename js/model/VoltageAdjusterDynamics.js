@@ -11,85 +11,121 @@ define
     {
 
         /**
+         * Voltage adjuster function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+         *
+         */
+        class VoltageAdjusterDynamics extends StandardModels.DynamicsFunctionBlock
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.VoltageAdjusterDynamics;
+                if (null == bucket)
+                   cim_data.VoltageAdjusterDynamics = bucket = {};
+                bucket[this._id] = template;
+            }
+
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.VoltageAdjusterDynamics[this._id];
+            }
+
+            parse (context, sub)
+            {
+                var obj;
+
+                obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
+                obj.cls = "VoltageAdjusterDynamics";
+                base.parse_attribute (/<cim:VoltageAdjusterDynamics.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType1Dynamics", sub, context);
+
+                var bucket = context.parsed.VoltageAdjusterDynamics;
+                if (null == bucket)
+                   context.parsed.VoltageAdjusterDynamics = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+
+                base.export_attribute (obj, "VoltageAdjusterDynamics", "PFVArControllerType1Dynamics", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
+        }
+
+        /**
          * The class represents IEEE Voltage Adjuster which is used to represent the voltage adjuster in either a power factor or var control system.
          *
          * Reference: IEEE Standard 421.5-2005 Section 11.1.
          *
          */
-        function parse_VAdjIEEE (context, sub)
+        class VAdjIEEE extends VoltageAdjusterDynamics
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.VAdjIEEE;
+                if (null == bucket)
+                   cim_data.VAdjIEEE = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = parse_VoltageAdjusterDynamics (context, sub);
-            obj.cls = "VAdjIEEE";
-            base.parse_element (/<cim:VAdjIEEE.adjslew>([\s\S]*?)<\/cim:VAdjIEEE.adjslew>/g, obj, "adjslew", base.to_float, sub, context);
-            base.parse_element (/<cim:VAdjIEEE.taoff>([\s\S]*?)<\/cim:VAdjIEEE.taoff>/g, obj, "taoff", base.to_string, sub, context);
-            base.parse_element (/<cim:VAdjIEEE.taon>([\s\S]*?)<\/cim:VAdjIEEE.taon>/g, obj, "taon", base.to_string, sub, context);
-            base.parse_element (/<cim:VAdjIEEE.vadjf>([\s\S]*?)<\/cim:VAdjIEEE.vadjf>/g, obj, "vadjf", base.to_float, sub, context);
-            base.parse_element (/<cim:VAdjIEEE.vadjmax>([\s\S]*?)<\/cim:VAdjIEEE.vadjmax>/g, obj, "vadjmax", base.to_string, sub, context);
-            base.parse_element (/<cim:VAdjIEEE.vadjmin>([\s\S]*?)<\/cim:VAdjIEEE.vadjmin>/g, obj, "vadjmin", base.to_string, sub, context);
-            bucket = context.parsed.VAdjIEEE;
-            if (null == bucket)
-                context.parsed.VAdjIEEE = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.VAdjIEEE[this._id];
+            }
 
-            return (obj);
-        }
+            parse (context, sub)
+            {
+                var obj;
 
-        function export_VAdjIEEE (obj, exporters, full)
-        {
-            var fields = exporters["VoltageAdjusterDynamics"](obj, exporters, false);
+                obj = VoltageAdjusterDynamics.prototype.parse.call (this, context, sub);
+                obj.cls = "VAdjIEEE";
+                base.parse_element (/<cim:VAdjIEEE.adjslew>([\s\S]*?)<\/cim:VAdjIEEE.adjslew>/g, obj, "adjslew", base.to_float, sub, context);
+                base.parse_element (/<cim:VAdjIEEE.taoff>([\s\S]*?)<\/cim:VAdjIEEE.taoff>/g, obj, "taoff", base.to_string, sub, context);
+                base.parse_element (/<cim:VAdjIEEE.taon>([\s\S]*?)<\/cim:VAdjIEEE.taon>/g, obj, "taon", base.to_string, sub, context);
+                base.parse_element (/<cim:VAdjIEEE.vadjf>([\s\S]*?)<\/cim:VAdjIEEE.vadjf>/g, obj, "vadjf", base.to_float, sub, context);
+                base.parse_element (/<cim:VAdjIEEE.vadjmax>([\s\S]*?)<\/cim:VAdjIEEE.vadjmax>/g, obj, "vadjmax", base.to_string, sub, context);
+                base.parse_element (/<cim:VAdjIEEE.vadjmin>([\s\S]*?)<\/cim:VAdjIEEE.vadjmin>/g, obj, "vadjmin", base.to_string, sub, context);
 
-            base.export_element (obj, "VAdjIEEE", "adjslew", base.from_float, fields);
-            base.export_element (obj, "VAdjIEEE", "taoff", base.from_string, fields);
-            base.export_element (obj, "VAdjIEEE", "taon", base.from_string, fields);
-            base.export_element (obj, "VAdjIEEE", "vadjf", base.from_float, fields);
-            base.export_element (obj, "VAdjIEEE", "vadjmax", base.from_string, fields);
-            base.export_element (obj, "VAdjIEEE", "vadjmin", base.from_string, fields);
-            if (full)
-                base.export_Element (obj, fields)
+                var bucket = context.parsed.VAdjIEEE;
+                if (null == bucket)
+                   context.parsed.VAdjIEEE = bucket = {};
+                bucket[obj.id] = obj;
 
-            return (fields);
-        }
+                return (obj);
+            }
 
-        /**
-         * Voltage adjuster function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
-         *
-         */
-        function parse_VoltageAdjusterDynamics (context, sub)
-        {
-            var obj;
-            var bucket;
+            export (obj, exporters, full)
+            {
+                var fields = exporters["VoltageAdjusterDynamics"](obj, exporters, false);
 
-            obj = StandardModels.parse_DynamicsFunctionBlock (context, sub);
-            obj.cls = "VoltageAdjusterDynamics";
-            base.parse_attribute (/<cim:VoltageAdjusterDynamics.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType1Dynamics", sub, context);
-            bucket = context.parsed.VoltageAdjusterDynamics;
-            if (null == bucket)
-                context.parsed.VoltageAdjusterDynamics = bucket = {};
-            bucket[obj.id] = obj;
+                base.export_element (obj, "VAdjIEEE", "adjslew", base.from_float, fields);
+                base.export_element (obj, "VAdjIEEE", "taoff", base.from_string, fields);
+                base.export_element (obj, "VAdjIEEE", "taon", base.from_string, fields);
+                base.export_element (obj, "VAdjIEEE", "vadjf", base.from_float, fields);
+                base.export_element (obj, "VAdjIEEE", "vadjmax", base.from_string, fields);
+                base.export_element (obj, "VAdjIEEE", "vadjmin", base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
 
-            return (obj);
-        }
-
-        function export_VoltageAdjusterDynamics (obj, exporters, full)
-        {
-            var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
-
-            base.export_attribute (obj, "VoltageAdjusterDynamics", "PFVArControllerType1Dynamics", fields);
-            if (full)
-                base.export_Element (obj, fields)
-
-            return (fields);
+                return (fields);
+            }
         }
 
         return (
             {
-                parse_VAdjIEEE: parse_VAdjIEEE,
-                parse_VoltageAdjusterDynamics: parse_VoltageAdjusterDynamics,
-                export_VoltageAdjusterDynamics: export_VoltageAdjusterDynamics,
-                export_VAdjIEEE: export_VAdjIEEE
+                VoltageAdjusterDynamics: VoltageAdjusterDynamics,
+                VAdjIEEE: VAdjIEEE
             }
         );
     }

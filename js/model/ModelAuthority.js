@@ -12,29 +12,48 @@ define
          * A Modeling Authority is an entity responsible for supplying and maintaining the data defining a specific set of objects in a network model.
          *
          */
-        function parse_ModelingAuthority (context, sub)
+        class ModelingAuthority extends base.Element
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.ModelingAuthority;
+                if (null == bucket)
+                   cim_data.ModelingAuthority = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = base.parse_Element (context, sub);
-            obj.cls = "ModelingAuthority";
-            bucket = context.parsed.ModelingAuthority;
-            if (null == bucket)
-                context.parsed.ModelingAuthority = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.ModelingAuthority[this._id];
+            }
 
-            return (obj);
-        }
+            parse (context, sub)
+            {
+                var obj;
 
-        function export_ModelingAuthority (obj, exporters, full)
-        {
-            var fields = [];
+                obj = base.Element.prototype.parse.call (this, context, sub);
+                obj.cls = "ModelingAuthority";
 
-            if (full)
-                base.export_Element (obj, fields)
+                var bucket = context.parsed.ModelingAuthority;
+                if (null == bucket)
+                   context.parsed.ModelingAuthority = bucket = {};
+                bucket[obj.id] = obj;
 
-            return (fields);
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = [];
+
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
         /**
@@ -43,39 +62,56 @@ define
          * This class is typically not included in instance data exchange as this information is tracked by other mechanisms in the exchange.
          *
          */
-        function parse_ModelingAuthoritySet (context, sub)
+        class ModelingAuthoritySet extends base.Element
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.ModelingAuthoritySet;
+                if (null == bucket)
+                   cim_data.ModelingAuthoritySet = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = base.parse_Element (context, sub);
-            obj.cls = "ModelingAuthoritySet";
-            base.parse_attribute (/<cim:ModelingAuthoritySet.ModelingAuthority\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ModelingAuthority", sub, context);
-            bucket = context.parsed.ModelingAuthoritySet;
-            if (null == bucket)
-                context.parsed.ModelingAuthoritySet = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.ModelingAuthoritySet[this._id];
+            }
 
-            return (obj);
-        }
+            parse (context, sub)
+            {
+                var obj;
 
-        function export_ModelingAuthoritySet (obj, exporters, full)
-        {
-            var fields = [];
+                obj = base.Element.prototype.parse.call (this, context, sub);
+                obj.cls = "ModelingAuthoritySet";
+                base.parse_attribute (/<cim:ModelingAuthoritySet.ModelingAuthority\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ModelingAuthority", sub, context);
 
-            base.export_attribute (obj, "ModelingAuthoritySet", "ModelingAuthority", fields);
-            if (full)
-                base.export_Element (obj, fields)
+                var bucket = context.parsed.ModelingAuthoritySet;
+                if (null == bucket)
+                   context.parsed.ModelingAuthoritySet = bucket = {};
+                bucket[obj.id] = obj;
 
-            return (fields);
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = [];
+
+                base.export_attribute (obj, "ModelingAuthoritySet", "ModelingAuthority", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
         return (
             {
-                export_ModelingAuthority: export_ModelingAuthority,
-                export_ModelingAuthoritySet: export_ModelingAuthoritySet,
-                parse_ModelingAuthority: parse_ModelingAuthority,
-                parse_ModelingAuthoritySet: parse_ModelingAuthoritySet
+                ModelingAuthority: ModelingAuthority,
+                ModelingAuthoritySet: ModelingAuthoritySet
             }
         );
     }

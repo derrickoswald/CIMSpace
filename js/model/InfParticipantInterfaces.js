@@ -10,37 +10,55 @@ define
          * A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
          *
          */
-        function parse_WheelingReferenceSchedule (context, sub)
+        class WheelingReferenceSchedule extends ParticipantInterfaces.BidHourlySchedule
         {
-            var obj;
-            var bucket;
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                this._id = template.id;
+                var bucket = cim_data.WheelingReferenceSchedule;
+                if (null == bucket)
+                   cim_data.WheelingReferenceSchedule = bucket = {};
+                bucket[this._id] = template;
+            }
 
-            obj = ParticipantInterfaces.parse_BidHourlySchedule (context, sub);
-            obj.cls = "WheelingReferenceSchedule";
-            base.parse_element (/<cim:WheelingReferenceSchedule.value>([\s\S]*?)<\/cim:WheelingReferenceSchedule.value>/g, obj, "value", base.to_string, sub, context);
-            bucket = context.parsed.WheelingReferenceSchedule;
-            if (null == bucket)
-                context.parsed.WheelingReferenceSchedule = bucket = {};
-            bucket[obj.id] = obj;
+            remove (cim_data)
+            {
+               super.remove (cim_data);
+               delete cim_data.WheelingReferenceSchedule[this._id];
+            }
 
-            return (obj);
-        }
+            parse (context, sub)
+            {
+                var obj;
 
-        function export_WheelingReferenceSchedule (obj, exporters, full)
-        {
-            var fields = exporters["BidHourlySchedule"](obj, exporters, false);
+                obj = ParticipantInterfaces.BidHourlySchedule.prototype.parse.call (this, context, sub);
+                obj.cls = "WheelingReferenceSchedule";
+                base.parse_element (/<cim:WheelingReferenceSchedule.value>([\s\S]*?)<\/cim:WheelingReferenceSchedule.value>/g, obj, "value", base.to_string, sub, context);
 
-            base.export_element (obj, "WheelingReferenceSchedule", "value", base.from_string, fields);
-            if (full)
-                base.export_Element (obj, fields)
+                var bucket = context.parsed.WheelingReferenceSchedule;
+                if (null == bucket)
+                   context.parsed.WheelingReferenceSchedule = bucket = {};
+                bucket[obj.id] = obj;
 
-            return (fields);
+                return (obj);
+            }
+
+            export (obj, exporters, full)
+            {
+                var fields = exporters["BidHourlySchedule"](obj, exporters, false);
+
+                base.export_element (obj, "WheelingReferenceSchedule", "value", base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields)
+
+                return (fields);
+            }
         }
 
         return (
             {
-                parse_WheelingReferenceSchedule: parse_WheelingReferenceSchedule,
-                export_WheelingReferenceSchedule: export_WheelingReferenceSchedule
+                WheelingReferenceSchedule: WheelingReferenceSchedule
             }
         );
     }
