@@ -18,8 +18,17 @@ define
         // using Promise: backwards compatibility for older browsers
         es6_promise.polyfill ();
 
+        // the pending xml creation
+        var Pending = null;
+
         // the base name of the currently loaded file
         var TheCurrentName = null;
+
+        // the rdf:about text for saving
+        var TheCurrentAbout = null;
+
+        // the md:description text for saving
+        var TheCurrentDescription = null;
 
         /**
          * @summary Parse a zip file.
@@ -287,6 +296,43 @@ define
             a.setAttribute ("download", name);
         }
 
+        /**
+         * @summary Event handler for changing the rdf:about text.
+         * @description Attached to the about input field.
+         * @param {object} event - the change event - <em>not used</em>
+         * @function about_change
+         * @memberOf module:cimspace
+         */
+        function about_change (event)
+        {
+            TheCurrentAbout = document.getElementById ("about").value;
+            Pending.then (generate_rdf, generate_rdf);
+        }
+
+        /**
+         * @summary Event handler for changing changing the md:description text.
+         * @description Attached to the description input field.
+         * @param {object} event - the change event - <em>not used</em>
+         * @function description_change
+         * @memberOf module:cimspace
+         */
+        function description_change (event)
+        {
+            TheCurrentDescription = document.getElementById ("description").value;
+            Pending.then (generate_rdf, generate_rdf);
+        }
+
+        /**
+         * @summary Event handler for changing to or from a difference model.
+         * @description Attached to the difference_model checkbox.
+         * @param {object} event - the change event - <em>not used</em>
+         * @function difference_model_change
+         * @memberOf module:cimspace
+         */
+        function difference_model_change (event)
+        {
+            Pending.then (generate_rdf, generate_rdf);
+        }
 
         /**
          * @summary Event handler for Save.
@@ -298,75 +344,81 @@ define
         function generate_rdf (event)
         {
             var name = TheCurrentName || "save";
-            return (
-                new Promise (
-                    function (resolve, reject)
-                    {
-                        // disable the link until it's ready
-                        var a = document.getElementById ("save");
-                        a.setAttribute ("disabled", "disabled");
-                        a.setAttribute ("download", name + ".zip");
-                        document.getElementById ("save_name").value = name + ".zip";
-                        a.onclick = function (event) { event.preventDefault (); event.stopPropagation (); alert ("sorry... not ready yet"); }
-                        var begin = new Date ().getTime ();
-                        console.log ("starting xml creation");
-                        var text = cim.write_xml (cimmap.get_data().Element);
-                        var start = new Date ().getTime ();
-                        console.log ("finished xml creation (" + (Math.round (start - begin) / 1000) + " seconds)");
-                        console.log ("starting zip");
-                        require (
-                            ["zip/zip", "zip/mime-types"],
-                            function (zip, mimeTypes)
-                            {
-                                //zip.workerScriptsPath = "js/zip/";
-                                zip.useWebWorkers = false;
-                                zip.createWriter (new zip.BlobWriter (),
-                                    function (writer)
-                                    {
-                                        writer.add (name + ".rdf", new zip.TextReader (text),
-                                            function ()
-                                            {
-                                                writer.close (
-                                                    function (blob) // blob contains the zip file as a Blob object
-                                                    {
-                                                        var end = new Date ().getTime ();
-                                                        console.log ("finished zip (" + (Math.round (end - start) / 1000) + " seconds)");
+            var about = TheCurrentAbout || "";
+            var description = TheCurrentDescription || "";
+            if (null == cimmap.get_data ())
+                Pending = Promise.resolve ("no data");
+            else
+                Pending =
+                    new Promise (
+                        function (resolve, reject)
+                        {
+                            // disable the link until it's ready
+                            var a = document.getElementById ("save");
+                            var difference_model = document.getElementById ("difference_model").checked;
+                            a.setAttribute ("disabled", "disabled");
+                            var file = name + (difference_model ? "_diff" : "") + ".zip"
+                            a.setAttribute ("download", file);
+                            document.getElementById ("save_name").value = file;
+                            a.onclick = function (event) { event.preventDefault (); event.stopPropagation (); alert ("sorry... not ready yet"); }
+                            var begin = new Date ().getTime ();
+                            console.log ("starting xml creation");
+                            var text = cim.write_xml (cimmap.get_data ().Element, difference_model, about, description);
+                            var start = new Date ().getTime ();
+                            console.log ("finished xml creation (" + (Math.round (start - begin) / 1000) + " seconds)");
+                            console.log ("starting zip");
+                            require (
+                                ["zip/zip", "zip/mime-types"],
+                                function (zip, mimeTypes)
+                                {
+                                    //zip.workerScriptsPath = "js/zip/";
+                                    zip.useWebWorkers = false;
+                                    zip.createWriter (new zip.BlobWriter (),
+                                        function (writer)
+                                        {
+                                            writer.add (name + ".rdf", new zip.TextReader (text),
+                                                function ()
+                                                {
+                                                    writer.close (
+                                                        function (blob) // blob contains the zip file as a Blob object
+                                                        {
+                                                            var end = new Date ().getTime ();
+                                                            console.log ("finished zip (" + (Math.round (end - start) / 1000) + " seconds)");
 
-                                                        // this is surprisingly not performant:
-                                                        // var url = URL.createObjectURL (blob);
-                                                        // a.setAttribute ("href", url);
+                                                            // this is surprisingly not performant:
+                                                            // var url = URL.createObjectURL (blob);
+                                                            // a.setAttribute ("href", url);
 
-                                                        // so we do this instead
-                                                        console.log ("starting base64 conversion");
-                                                        blob2base64 (blob,
-                                                            function (data)
-                                                            {
-                                                                var finish = new Date ().getTime ();
-                                                                console.log ("finished base64 conversion (" + (Math.round (finish - end) / 1000) + " seconds)");
-                                                                a.setAttribute ("href", "data:application/zip;base64," + data);
-                                                                a.setAttribute ("type", "application/zip");
-                                                                a.onclick = function (event) { $('#save_modal').modal('hide'); }
-                                                                a.removeAttribute ("disabled");
-                                                                console.log ("ready (" + (Math.round (new Date ().getTime () - finish) / 1000) + " seconds)");
-                                                                resolve ("OK");
-                                                            }
-                                                        );
-                                                    }
-                                                );
-                                            }
-                                        );
-                                    },
-                                    function (error)
-                                    {
-                                       console.log (error);
-                                       reject (error);
-                                    }
-                                );
-                            }
-                        );
-                    }
-                )
-            );
+                                                            // so we do this instead
+                                                            console.log ("starting base64 conversion");
+                                                            blob2base64 (blob,
+                                                                function (data)
+                                                                {
+                                                                    var finish = new Date ().getTime ();
+                                                                    console.log ("finished base64 conversion (" + (Math.round (finish - end) / 1000) + " seconds)");
+                                                                    a.setAttribute ("href", "data:application/zip;base64," + data);
+                                                                    a.setAttribute ("type", "application/zip");
+                                                                    a.onclick = function (event) { $('#save_modal').modal('hide'); }
+                                                                    a.removeAttribute ("disabled");
+                                                                    console.log ("ready (" + (Math.round (new Date ().getTime () - finish) / 1000) + " seconds)");
+                                                                    resolve ("OK");
+                                                                }
+                                                            );
+                                                        }
+                                                    );
+                                                }
+                                            );
+                                        },
+                                        function (error)
+                                        {
+                                           console.log (error);
+                                           reject (error);
+                                        }
+                                    );
+                                }
+                            );
+                        }
+                    );
         }
 
         return (
@@ -376,6 +428,9 @@ define
                 file_drop: file_drop,
                 process_url: process_url,
                 save_name_change: save_name_change,
+                about_change: about_change,
+                description_change: description_change,
+                difference_model_change: difference_model_change,
                 generate_rdf: generate_rdf
             }
         );

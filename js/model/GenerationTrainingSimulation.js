@@ -46,9 +46,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "CTTempActivePowerCurve", "CombustionTurbine", fields);
                 if (full)
@@ -98,7 +98,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -151,7 +151,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -202,9 +202,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SteamSupply", "steamSupplyRating", base.from_float, fields);
                 if (full)
@@ -252,9 +252,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PrimeMover", "primeMoverRating", base.from_float, fields);
                 if (full)
@@ -322,9 +322,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SteamSupply"](obj, exporters, false);
+                var fields = SteamSupply.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BWRSteamSupply", "highPowerLimit", base.from_string, fields);
                 base.export_element (obj, "BWRSteamSupply", "inCoreThermalTC", base.from_string, fields);
@@ -417,9 +417,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SteamSupply"](obj, exporters, false);
+                var fields = SteamSupply.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "FossilSteamSupply", "auxPowerVersusFrequency", base.from_string, fields);
                 base.export_element (obj, "FossilSteamSupply", "auxPowerVersusVoltage", base.from_string, fields);
@@ -491,9 +491,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["FossilSteamSupply"](obj, exporters, false);
+                var fields = FossilSteamSupply.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -559,9 +559,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SteamSupply"](obj, exporters, false);
+                var fields = SteamSupply.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PWRSteamSupply", "coldLegFBLagTC", base.from_string, fields);
                 base.export_element (obj, "PWRSteamSupply", "coldLegFBLeadTC1", base.from_string, fields);
@@ -628,9 +628,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["FossilSteamSupply"](obj, exporters, false);
+                var fields = FossilSteamSupply.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "HeatRecoveryBoiler", "steamSupplyRating2", base.from_float, fields);
                 if (full)
@@ -678,9 +678,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["FossilSteamSupply"](obj, exporters, false);
+                var fields = FossilSteamSupply.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DrumBoiler", "drumBoilerRating", base.from_float, fields);
                 if (full)
@@ -727,9 +727,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["FossilSteamSupply"](obj, exporters, false);
+                var fields = FossilSteamSupply.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -788,9 +788,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PrimeMover"](obj, exporters, false);
+                var fields = PrimeMover.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "HydroTurbine", "gateRateLimit", base.from_float, fields);
                 base.export_element (obj, "HydroTurbine", "gateUpperLimit", base.from_string, fields);
@@ -859,9 +859,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PrimeMover"](obj, exporters, false);
+                var fields = PrimeMover.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SteamTurbine", "crossoverTC", base.from_string, fields);
                 base.export_element (obj, "SteamTurbine", "reheater1TC", base.from_string, fields);
@@ -930,9 +930,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PrimeMover"](obj, exporters, false);
+                var fields = PrimeMover.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CombustionTurbine", "ambientTemp", base.from_string, fields);
                 base.export_element (obj, "CombustionTurbine", "auxPowerVersusFrequency", base.from_string, fields);

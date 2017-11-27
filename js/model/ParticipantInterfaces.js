@@ -51,9 +51,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ChargeGroup", "marketCode", base.from_string, fields);
                 base.export_element (obj, "ChargeGroup", "effectiveDate", base.from_datetime, fields);
@@ -105,9 +105,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ProductBid", "MarketProduct", fields);
                 base.export_attribute (obj, "ProductBid", "Bid", fields);
@@ -160,7 +160,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -217,7 +217,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -272,9 +272,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "LoadReductionPriceCurve", "LoadBid", fields);
                 if (full)
@@ -322,9 +322,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["RegularIntervalSchedule"](obj, exporters, false);
+                var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "BidHourlyProductSchedule", "ProductBid", fields);
                 if (full)
@@ -374,9 +374,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "StartUpTimeCurve", "RegisteredGenerator", fields);
                 if (full)
@@ -423,7 +423,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -486,9 +486,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["RegularIntervalSchedule"](obj, exporters, false);
+                var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BidSelfSched", "balancingFlag", base.from_string, fields);
                 base.export_element (obj, "BidSelfSched", "bidType", base.from_string, fields);
@@ -553,9 +553,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["RegularIntervalSchedule"](obj, exporters, false);
+                var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BidPriceSchedule", "bidType", base.from_string, fields);
                 base.export_element (obj, "BidPriceSchedule", "mitigationStatus", base.from_string, fields);
@@ -613,9 +613,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ChargeComponent", "deleteStatus", base.from_string, fields);
                 base.export_element (obj, "ChargeComponent", "effectiveDate", base.from_datetime, fields);
@@ -679,9 +679,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MajorChargeGroup", "runType", base.from_string, fields);
                 base.export_element (obj, "MajorChargeGroup", "runVersion", base.from_string, fields);
@@ -744,9 +744,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ChargeType", "effectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "ChargeType", "terminationDate", base.from_datetime, fields);
@@ -801,9 +801,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -852,7 +852,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -914,7 +914,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -971,9 +971,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TradeError", "errPriority", base.from_string, fields);
                 base.export_element (obj, "TradeError", "errMessage", base.from_string, fields);
@@ -1033,9 +1033,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Bid", "startTime", base.from_datetime, fields);
                 base.export_element (obj, "Bid", "stopTime", base.from_datetime, fields);
@@ -1111,9 +1111,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Trade", "adjustedTradeQuantity", base.from_float, fields);
                 base.export_element (obj, "Trade", "counterTradeQuantity", base.from_float, fields);
@@ -1191,9 +1191,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BidError", "errPriority", base.from_string, fields);
                 base.export_element (obj, "BidError", "errMessage", base.from_string, fields);
@@ -1249,7 +1249,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1304,7 +1304,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1360,9 +1360,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1414,9 +1414,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RampRateCurve", "condition", base.from_string, fields);
                 base.export_element (obj, "RampRateCurve", "constraintRampType", base.from_string, fields);
@@ -1478,9 +1478,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DispatchInstReply", "acceptMW", base.from_string, fields);
                 base.export_element (obj, "DispatchInstReply", "acceptStatus", base.from_string, fields);
@@ -1538,9 +1538,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1590,9 +1590,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MarketScheduledEvent", "category", base.from_string, fields);
                 base.export_element (obj, "MarketScheduledEvent", "duration", base.from_string, fields);
@@ -1642,9 +1642,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1691,9 +1691,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["RegularIntervalSchedule"](obj, exporters, false);
+                var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "BidHourlySchedule", "Bid", fields);
                 if (full)
@@ -1743,9 +1743,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["BidHourlyProductSchedule"](obj, exporters, false);
+                var fields = BidHourlyProductSchedule.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PumpingLevelSchedule", "value", base.from_float, fields);
                 if (full)
@@ -1795,9 +1795,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["BidHourlyProductSchedule"](obj, exporters, false);
+                var fields = BidHourlyProductSchedule.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PumpingCostSchedule", "value", base.from_float, fields);
                 if (full)
@@ -1847,9 +1847,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["BidHourlyProductSchedule"](obj, exporters, false);
+                var fields = BidHourlyProductSchedule.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PumpingShutDownCostSchedule", "value", base.from_float, fields);
                 if (full)
@@ -1911,9 +1911,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Bid"](obj, exporters, false);
+                var fields = Bid.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ResourceBid", "aggregationFlag", base.from_string, fields);
                 base.export_element (obj, "ResourceBid", "bidStatus", base.from_string, fields);
@@ -1976,9 +1976,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ResourceBid"](obj, exporters, false);
+                var fields = ResourceBid.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "InterTieBid", "minHourlyBlock ", base.from_string, fields);
                 base.export_attribute (obj, "InterTieBid", "RegisteredInterTie", fields);
@@ -2032,9 +2032,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Bid"](obj, exporters, false);
+                var fields = Bid.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TransactionBid", "demandTransaction", base.from_boolean, fields);
                 base.export_element (obj, "TransactionBid", "dispatchable", base.from_boolean, fields);
@@ -2089,9 +2089,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Bid"](obj, exporters, false);
+                var fields = Bid.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AreaLoadBid", "demandBidMW", base.from_float, fields);
                 if (full)
@@ -2154,9 +2154,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ResourceBid"](obj, exporters, false);
+                var fields = ResourceBid.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LoadBid", "dropRampRate", base.from_string, fields);
                 base.export_element (obj, "LoadBid", "loadRedInitiationCost", base.from_string, fields);
@@ -2240,9 +2240,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ResourceBid"](obj, exporters, false);
+                var fields = ResourceBid.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GeneratingBid", "combinedCycleUnitOffer", base.from_string, fields);
                 base.export_element (obj, "GeneratingBid", "downTimeMax", base.from_float, fields);
@@ -2313,9 +2313,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["BidHourlySchedule"](obj, exporters, false);
+                var fields = BidHourlySchedule.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OpenTieSchedule", "value", base.from_boolean, fields);
                 if (full)
@@ -2365,9 +2365,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["BidHourlySchedule"](obj, exporters, false);
+                var fields = BidHourlySchedule.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "HourlyPreDispatchSchedule", "value", base.from_boolean, fields);
                 if (full)

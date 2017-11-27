@@ -50,7 +50,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -105,7 +105,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -156,7 +156,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -207,7 +207,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -258,9 +258,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PSRType"](obj, exporters, false);
+                var fields = Core.PSRType.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MktPSRType", "psrType", base.from_string, fields);
                 if (full)
@@ -308,7 +308,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -357,9 +357,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -405,9 +405,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -453,9 +453,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -503,7 +503,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -554,7 +554,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -606,7 +606,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -663,9 +663,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Auction", "allocationMode", base.from_string, fields);
                 base.export_element (obj, "Auction", "cancelled", base.from_string, fields);
@@ -721,7 +721,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -775,9 +775,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Process", "classificationType", base.from_string, fields);
                 base.export_element (obj, "Process", "processType", base.from_string, fields);
@@ -831,9 +831,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TimeSeries", "businessType", base.from_string, fields);
                 base.export_element (obj, "TimeSeries", "cancelledTS", base.from_string, fields);
@@ -886,7 +886,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -935,9 +935,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketDocument"](obj, exporters, false);
+                var fields = MarketDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -989,9 +989,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TimeSeries"](obj, exporters, false);
+                var fields = TimeSeries.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BidTimeSeries", "blockBid", base.from_string, fields);
                 base.export_element (obj, "BidTimeSeries", "direction", base.from_string, fields);

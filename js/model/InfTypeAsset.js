@@ -59,9 +59,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["GenericAssetModelOrMaterial"](obj, exporters, false);
+                var fields = InfAssets.GenericAssetModelOrMaterial.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GeneratorTypeAsset", "maxP", base.from_string, fields);
                 base.export_element (obj, "GeneratorTypeAsset", "maxQ", base.from_string, fields);
@@ -126,9 +126,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TypeAssetCatalogue", "status", base.from_string, fields);
                 if (full)

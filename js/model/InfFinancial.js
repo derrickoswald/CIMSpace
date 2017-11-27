@@ -50,9 +50,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Organisation"](obj, exporters, false);
+                var fields = Common.Organisation.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ControlAreaOperator", "ControlledBy", fields);
                 if (full)
@@ -99,9 +99,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Agreement"](obj, exporters, false);
+                var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -145,9 +145,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TransmissionProduct", "transmissionProductType", base.from_string, fields);
                 base.export_attribute (obj, "TransmissionProduct", "TransmissionProvider", fields);
@@ -196,9 +196,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Agreement"](obj, exporters, false);
+                var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "IntSchedAgreement", "defaultIntegrationMethod", base.from_string, fields);
                 if (full)
@@ -245,9 +245,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Organisation"](obj, exporters, false);
+                var fields = Common.Organisation.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -295,9 +295,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Organisation"](obj, exporters, false);
+                var fields = Common.Organisation.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -343,9 +343,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Organisation"](obj, exporters, false);
+                var fields = Common.Organisation.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -391,9 +391,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Organisation"](obj, exporters, false);
+                var fields = Common.Organisation.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

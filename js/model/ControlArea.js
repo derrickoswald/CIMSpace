@@ -50,7 +50,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -105,9 +105,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ControlAreaGeneratingUnit", "ControlArea", fields);
                 base.export_attribute (obj, "ControlAreaGeneratingUnit", "GeneratingUnit", fields);
@@ -158,7 +158,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -212,7 +212,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -266,7 +266,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -323,9 +323,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ControlArea", "netInterchange", base.from_string, fields);
                 base.export_element (obj, "ControlArea", "pTolerance", base.from_string, fields);

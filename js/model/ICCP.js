@@ -42,7 +42,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -94,7 +94,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -149,9 +149,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ICCPInformationMessage", "localReference", base.from_string, fields);
                 base.export_element (obj, "ICCPInformationMessage", "scope", base.from_string, fields);
@@ -197,7 +197,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -245,7 +245,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -299,9 +299,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ICCPPoint", "scope", base.from_string, fields);
                 base.export_attribute (obj, "ICCPPoint", "", fields);
@@ -347,7 +347,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -403,9 +403,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TASE2BilateralTable", "bilateralTableID", base.from_string, fields);
                 base.export_element (obj, "TASE2BilateralTable", "calling", base.from_boolean, fields);
@@ -454,7 +454,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -504,7 +504,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -553,9 +553,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IPAccessPoint"](obj, exporters, false);
+                var fields = IPAccessPoint.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TCPAcessPoint", "keepAliveTime", base.from_string, fields);
                 base.export_element (obj, "TCPAcessPoint", "port", base.from_string, fields);
@@ -603,9 +603,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TCPAcessPoint"](obj, exporters, false);
+                var fields = TCPAcessPoint.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ISOUpperLayer", "ap", base.from_string, fields);
                 base.export_element (obj, "ISOUpperLayer", "osiPsel", base.from_string, fields);
@@ -653,9 +653,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ICCPPoint"](obj, exporters, false);
+                var fields = ICCPPoint.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ICCPIndicationPoint", "type", base.from_string, fields);
                 base.export_attribute (obj, "ICCPIndicationPoint", "", fields);
@@ -701,9 +701,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ICCPPoint"](obj, exporters, false);
+                var fields = ICCPPoint.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ICCPControlPoint", "deviceClass", base.from_string, fields);
                 base.export_attribute (obj, "ICCPControlPoint", "", fields);
@@ -748,9 +748,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ICCPControlPoint"](obj, exporters, false);
+                var fields = ICCPControlPoint.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ICCPCommandPoint", "", fields);
                 if (full)
@@ -795,9 +795,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ICCPControlPoint"](obj, exporters, false);
+                var fields = ICCPControlPoint.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ICCPSetPoint", "type", base.from_string, fields);
                 base.export_attribute (obj, "ICCPSetPoint", "", fields);

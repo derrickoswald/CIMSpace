@@ -51,9 +51,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MarketProduct", "marketProductType", base.from_string, fields);
                 base.export_element (obj, "MarketProduct", "rampInterval", base.from_float, fields);
@@ -109,7 +109,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -167,7 +167,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -222,9 +222,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MarketFactors", "intervalEndTime", base.from_datetime, fields);
                 base.export_element (obj, "MarketFactors", "intervalStartTime", base.from_datetime, fields);
@@ -285,9 +285,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Market", "actualEnd", base.from_datetime, fields);
                 base.export_element (obj, "Market", "actualStart", base.from_datetime, fields);
@@ -348,7 +348,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -408,7 +408,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -475,7 +475,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -539,9 +539,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Market"](obj, exporters, false);
+                var fields = Market.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "EnergyMarket", "MarketResults", fields);
                 base.export_attribute (obj, "EnergyMarket", "RTO", fields);
@@ -590,9 +590,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Market"](obj, exporters, false);
+                var fields = Market.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CRRMarket", "labelID", base.from_string, fields);
                 if (full)

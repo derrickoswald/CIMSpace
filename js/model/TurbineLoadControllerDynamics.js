@@ -46,9 +46,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "TurbineLoadControllerDynamics", "TurbineGovernorDynamics", fields);
                 if (full)
@@ -109,9 +109,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineLoadControllerDynamics"](obj, exporters, false);
+                var fields = TurbineLoadControllerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TurbLCFB1", "db", base.from_string, fields);
                 base.export_element (obj, "TurbLCFB1", "emax", base.from_string, fields);

@@ -44,9 +44,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RedLine", "status", base.from_string, fields);
                 if (full)
@@ -96,9 +96,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Location"](obj, exporters, false);
+                var fields = Common.Location.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Zone", "kind", base.from_string, fields);
                 if (full)
@@ -149,7 +149,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -205,9 +205,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Agreement"](obj, exporters, false);
+                var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LocationGrant", "propertyData", base.from_string, fields);
                 base.export_attribute (obj, "LocationGrant", "LandProperty", fields);
@@ -257,9 +257,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Route", "status", base.from_string, fields);
                 base.export_element (obj, "Route", "type", base.from_string, fields);
@@ -314,7 +314,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -372,7 +372,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -429,9 +429,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LandProperty", "demographicKind", base.from_string, fields);
                 base.export_element (obj, "LandProperty", "externalRecordReference", base.from_string, fields);
@@ -484,9 +484,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Agreement"](obj, exporters, false);
+                var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RightOfWay", "propertyData", base.from_string, fields);
                 if (full)

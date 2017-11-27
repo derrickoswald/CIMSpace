@@ -196,6 +196,7 @@ define
                 regex = new RegExp ("\\s*<md:FullModel ([\\s\\S]*?)<\\/md:FullModel>\\s*", "g");
                 if (null != (result = regex.exec (subxml)))
                 {
+                    // ToDo: how to get the header attributes from here to the caller
                     context.offset += regex.lastIndex;
                     context.newlines = base.index_string (subxml.substring (0, regex.lastIndex), context.start_character, context.newlines);
                     context.start_character += regex.lastIndex;
@@ -319,52 +320,106 @@ define
         }
 
         /**
+         * @summary Write the elements selected by the filter.
+         * @description Writes each element where filter(element) returns <code>true</code>.
+         * @param {Object} elements - the object with elements to write stored as properties of their mRID
+         * (as returned from the parse context: context.parsed.Element[obj.mRID] = obj).
+         * @param {Function} filter - pedicate to determine if the element should be written or not.
+         * @returns The XML text as an array of Strings.
+         * @function write_elements
+         * @memberOf module:cim
+         */
+        function write_elements (elements, filter)
+        {
+            var ret = [];
+
+            for (var property in elements)
+                if (elements.hasOwnProperty (property))
+                {
+                    obj = elements[property];
+                    if (filter (obj))
+                    {
+                        exporter = theExportMap[obj.cls];
+                        if ("undefined" != typeof (exporter))
+                            Array.prototype.push.apply (ret, exporter.prototype.export (obj, true));
+                        else
+                            ret.push (JSON.stringify (obj, null, 4));
+                    }
+                }
+
+            return (ret);
+        }
+
+        /**
          * @summary Write the elements as a CIM RDF.
          * @description Writes the RDF header, each element and the trailer to produce an RDF.
          * @param {Object} elements - the object with elements to write stored as properties of their mRID
          * (as returned from the parse context: context.parsed.Element[obj.mRID] = obj).
+         * @param {Boolean} difference_model - if <code>true</code> output a CIM Difference Model rather than a full model.
          * @param {String} about - the about string for the CIM header.
-         * @param {String} date - the created string for the CIM header.
          * @param {String} description - the description string for the CIM header.
+         * @param {String} date - the created string for the CIM header.
          * @returns The XML text.
          * @function write_xml
          * @memberOf module:cim
          */
-        function write_xml (elements, about, date, description)
+        function write_xml (elements, difference_model, about, description, date)
         {
             var xml = [];
             var exporter;
             var obj;
 
             about = about || "CIMSpace";
-            date = date || new Date ().toISOString ();
             description = description || "CIMSpace cim.js export";
+            date = date || new Date ().toISOString ();
 
-            var header = [
-                "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>",
-                "<rdf:RDF xmlns:cim='http://iec.ch/TC57/2013/CIM-schema-cim16#' xmlns:md='http://iec.ch/TC57/61970-552/ModelDescription/1#' xmlns:dm='http://iec.ch/2002/schema/CIM_difference_model#' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>",
-                "	<md:FullModel rdf:about=\"" + about + "\">",
-                "		<md:Model.created>" + date + "</md:Model.created>",
-                "		<md:Model.description>" + description + "</md:Model.description>",
-                "		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>",
-                "		<md:Model.profile>https://github.com/derrickoswald/CIMSpace</md:Model.profile>",
-                "	</md:FullModel>"
+            var header;
+            var trailer;
+            if (difference_model)
+            {
+                header = [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>",
+                    "<rdf:RDF xmlns:cim='http://iec.ch/TC57/2013/CIM-schema-cim16#' xmlns:md='http://iec.ch/TC57/61970-552/ModelDescription/1#' xmlns:dm='http://iec.ch/TC57/61970-552/DifferenceModel/1#' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>",
+                    "	<dm:DifferenceModel rdf:about=\"" + about + "\">",
+                    "		<md:Model.created>" + date + "</md:Model.created>",
+                    "		<md:Model.description>" + description + "</md:Model.description>",
+                    "		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>",
+                    "		<md:Model.profile>https://github.com/derrickoswald/CIMSpace</md:Model.profile>"
                 ];
-
-            var trailer = ["</rdf:RDF>"];
-
+                trailer = [
+                    "	</dm:DifferenceModel>",
+                    "</rdf:RDF>"
+                ];
+            }
+            else
+            {
+                header = [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>",
+                    "<rdf:RDF xmlns:cim='http://iec.ch/TC57/2013/CIM-schema-cim16#' xmlns:md='http://iec.ch/TC57/61970-552/ModelDescription/1#' xmlns:dm='http://iec.ch/2002/schema/CIM_difference_model#' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>",
+                    "	<md:FullModel rdf:about=\"" + about + "\">",
+                    "		<md:Model.created>" + date + "</md:Model.created>",
+                    "		<md:Model.description>" + description + "</md:Model.description>",
+                    "		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>",
+                    "		<md:Model.profile>https://github.com/derrickoswald/CIMSpace</md:Model.profile>",
+                    "	</md:FullModel>"
+                ];
+                trailer = ["</rdf:RDF>"];
+            }
             Array.prototype.push.apply (xml, header);
-            for (var property in elements)
-                if (elements.hasOwnProperty (property))
-                {
-                    obj = elements[property];
-                    exporter = theExportMap[obj.cls];
-                    if ("undefined" != typeof (exporter))
-                        Array.prototype.push.apply (xml, exporter.prototype.export (obj, theExportMap, true));
-                    else
-                        xml.push (JSON.stringify (obj, null, 4));
-                }
+            if (difference_model)
+            {
+                // ToDo: check if we need to handle individual attributes with "rdf:Description rdf:about", or if we can use the sledgehammer: delete then new
+                xml.push ("		<dm:reverseDifferences parseType=\"Statements\">");
+                Array.prototype.push.apply (xml, write_elements (elements, function (obj) { var disp = obj.EditDisposition; return (disp == "delete" || disp == "edit"); }));
+                xml.push ("		</dm:reverseDifferences>");
+                xml.push ("		<dm:forwardDifferences parseType=\"Statements\">");
+                Array.prototype.push.apply (xml, write_elements (elements, function (obj) { var disp = obj.EditDisposition; return (disp == "new" || disp == "edit"); }));
+                xml.push ("		</dm:forwardDifferences>");
+            }
+            else
+                Array.prototype.push.apply (xml, write_elements (elements, function (obj) { return (true); }));
             Array.prototype.push.apply (xml, trailer);
+
             return (xml.join ("\n"));
         }
 

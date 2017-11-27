@@ -50,9 +50,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "PFVArControllerType1Dynamics", "VoltageAdjusterDynamics", fields);
                 base.export_attribute (obj, "PFVArControllerType1Dynamics", "ExcitationSystemDynamics", fields);
@@ -109,9 +109,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PFVArControllerType1Dynamics"](obj, exporters, false);
+                var fields = PFVArControllerType1Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PFVArType1IEEEVArController", "tvarc", base.from_string, fields);
                 base.export_element (obj, "PFVArType1IEEEVArController", "vvar", base.from_string, fields);
@@ -173,9 +173,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PFVArControllerType1Dynamics"](obj, exporters, false);
+                var fields = PFVArControllerType1Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PFVArType1IEEEPFController", "ovex", base.from_boolean, fields);
                 base.export_element (obj, "PFVArType1IEEEPFController", "tpfc", base.from_string, fields);

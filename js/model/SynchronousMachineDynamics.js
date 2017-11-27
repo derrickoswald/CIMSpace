@@ -62,9 +62,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["RotatingMachineDynamics"](obj, exporters, false);
+                var fields = StandardModels.RotatingMachineDynamics.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "SynchronousMachineDynamics", "MechanicalLoadDynamics", fields);
                 base.export_attribute (obj, "SynchronousMachineDynamics", "ExcitationSystemDynamics", fields);
@@ -115,7 +115,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -170,7 +170,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -226,7 +226,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -283,9 +283,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SynchronousMachineDynamics"](obj, exporters, false);
+                var fields = SynchronousMachineDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SynchronousMachineDetailed", "efdBaseRatio", base.from_float, fields);
                 base.export_element (obj, "SynchronousMachineDetailed", "ifdBaseType", base.from_string, fields);
@@ -372,9 +372,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SynchronousMachineDetailed"](obj, exporters, false);
+                var fields = SynchronousMachineDetailed.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SynchronousMachineEquivalentCircuit", "r1d", base.from_string, fields);
                 base.export_element (obj, "SynchronousMachineEquivalentCircuit", "r1q", base.from_string, fields);
@@ -433,9 +433,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SynchronousMachineDynamics"](obj, exporters, false);
+                var fields = SynchronousMachineDynamics.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -529,9 +529,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SynchronousMachineDetailed"](obj, exporters, false);
+                var fields = SynchronousMachineDetailed.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SynchronousMachineTimeConstantReactance", "ks", base.from_float, fields);
                 base.export_element (obj, "SynchronousMachineTimeConstantReactance", "modelType", base.from_string, fields);

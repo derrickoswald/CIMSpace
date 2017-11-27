@@ -51,9 +51,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BusNameMarker", "priority", base.from_string, fields);
                 base.export_attribute (obj, "BusNameMarker", "ReportingGroup", fields);
@@ -103,9 +103,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "DCTopologicalNode", "DCEquipmentContainer", fields);
                 base.export_attribute (obj, "DCTopologicalNode", "DCTopologicalIsland", fields);
@@ -164,9 +164,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TopologicalNode", "pInjection", base.from_string, fields);
                 base.export_element (obj, "TopologicalNode", "qInjection", base.from_string, fields);
@@ -224,9 +224,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "TopologicalIsland", "AngleRefTopologicalNode", fields);
                 if (full)

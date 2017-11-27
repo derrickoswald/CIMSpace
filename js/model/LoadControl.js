@@ -59,7 +59,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -127,9 +127,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EndDeviceFunction"](obj, exporters, false);
+                var fields = Metering.EndDeviceFunction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ConnectDisconnectFunction", "eventCount", base.from_string, fields);
                 base.export_element (obj, "ConnectDisconnectFunction", "isConnected", base.from_boolean, fields);

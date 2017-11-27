@@ -57,9 +57,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["RotatingMachineDynamics"](obj, exporters, false);
+                var fields = StandardModels.RotatingMachineDynamics.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "AsynchronousMachineDynamics", "TurbineGovernorDynamics", fields);
                 base.export_attribute (obj, "AsynchronousMachineDynamics", "AsynchronousMachine", fields);
@@ -129,9 +129,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AsynchronousMachineDynamics"](obj, exporters, false);
+                var fields = AsynchronousMachineDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "rr1", base.from_string, fields);
                 base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "rr2", base.from_string, fields);
@@ -208,9 +208,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AsynchronousMachineDynamics"](obj, exporters, false);
+                var fields = AsynchronousMachineDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "tpo", base.from_string, fields);
                 base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "tppo", base.from_string, fields);

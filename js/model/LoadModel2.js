@@ -48,9 +48,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EnergyConsumer"](obj, exporters, false);
+                var fields = Wires.EnergyConsumer.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "NonConformLoad", "LoadGroup", fields);
                 if (full)
@@ -98,9 +98,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EnergyConsumer"](obj, exporters, false);
+                var fields = Wires.EnergyConsumer.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ConformLoad", "LoadGroup", fields);
                 if (full)
@@ -147,9 +147,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EnergyConsumer"](obj, exporters, false);
+                var fields = Wires.EnergyConsumer.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

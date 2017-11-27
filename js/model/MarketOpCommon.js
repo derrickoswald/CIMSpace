@@ -50,9 +50,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ConnectivityNode"](obj, exporters, false);
+                var fields = Core.ConnectivityNode.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MktConnectivityNode", "endEffectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "MktConnectivityNode", "startEffectiveDate", base.from_datetime, fields);
@@ -103,9 +103,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["UserAttribute"](obj, exporters, false);
+                var fields = Common.UserAttribute.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -152,9 +152,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["GeneratingUnit"](obj, exporters, false);
+                var fields = Production.GeneratingUnit.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "MktGeneratingUnit", "RegisteredGenerator", fields);
                 if (full)
@@ -201,9 +201,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ActivityRecord"](obj, exporters, false);
+                var fields = Common.ActivityRecord.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -249,9 +249,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["LoadArea"](obj, exporters, false);
+                var fields = LoadModel.LoadArea.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -298,9 +298,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Line"](obj, exporters, false);
+                var fields = Wires.Line.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "MktLine", "TransmissionRightOfWay", fields);
                 if (full)
@@ -349,7 +349,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -399,9 +399,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerTransformer"](obj, exporters, false);
+                var fields = Wires.PowerTransformer.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "MktPowerTransformer", "EndBFlow", fields);
                 base.export_attribute (obj, "MktPowerTransformer", "EndAFlow", fields);
@@ -460,7 +460,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -524,7 +524,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -590,7 +590,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -652,9 +652,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Terminal"](obj, exporters, false);
+                var fields = Core.Terminal.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MktTerminal", "startEffectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "MktTerminal", "endEffectiveDate", base.from_datetime, fields);
@@ -710,9 +710,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Organisation"](obj, exporters, false);
+                var fields = Common.Organisation.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MktOrganisation", "creditFlag", base.from_string, fields);
                 base.export_element (obj, "MktOrganisation", "creditStartEffectiveDate", base.from_datetime, fields);
@@ -766,9 +766,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EnergyConsumer"](obj, exporters, false);
+                var fields = Wires.EnergyConsumer.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "MktEnergyConsumer", "RegisteredLoad", fields);
                 if (full)
@@ -818,9 +818,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Measurement"](obj, exporters, false);
+                var fields = Meas.Measurement.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "MktMeasurement", "Pnode", fields);
                 base.export_attribute (obj, "MktMeasurement", "ForTiePoint", fields);

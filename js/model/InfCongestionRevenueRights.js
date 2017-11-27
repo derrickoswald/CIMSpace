@@ -44,9 +44,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Limit"](obj, exporters, false);
+                var fields = Meas.Limit.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ViolationLimit", "enforced", base.from_boolean, fields);
                 base.export_attribute (obj, "ViolationLimit", "MktMeasurement", fields);
@@ -102,9 +102,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Agreement"](obj, exporters, false);
+                var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "FTR", "optimized", base.from_string, fields);
                 base.export_element (obj, "FTR", "action", base.from_string, fields);

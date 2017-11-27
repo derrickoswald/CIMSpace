@@ -49,9 +49,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Season", "endDate", base.from_string, fields);
                 base.export_element (obj, "Season", "startDate", base.from_string, fields);
@@ -101,9 +101,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["RegularIntervalSchedule"](obj, exporters, false);
+                var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "SeasonDayTypeSchedule", "Season", fields);
                 base.export_attribute (obj, "SeasonDayTypeSchedule", "DayType", fields);
@@ -152,9 +152,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "LoadGroup", "SubLoadArea", fields);
                 if (full)
@@ -204,9 +204,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "EnergyArea", "ControlArea", fields);
                 if (full)
@@ -255,9 +255,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -316,9 +316,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LoadResponseCharacteristic", "exponentModel", base.from_boolean, fields);
                 base.export_element (obj, "LoadResponseCharacteristic", "pConstantCurrent", base.from_float, fields);
@@ -377,9 +377,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PowerCutZone", "cutLevel1", base.from_string, fields);
                 base.export_element (obj, "PowerCutZone", "cutLevel2", base.from_string, fields);
@@ -428,9 +428,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SeasonDayTypeSchedule"](obj, exporters, false);
+                var fields = SeasonDayTypeSchedule.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "NonConformLoadSchedule", "NonConformLoadGroup", fields);
                 if (full)
@@ -480,9 +480,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SeasonDayTypeSchedule"](obj, exporters, false);
+                var fields = SeasonDayTypeSchedule.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ConformLoadSchedule", "ConformLoadGroup", fields);
                 if (full)
@@ -529,9 +529,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["LoadGroup"](obj, exporters, false);
+                var fields = LoadGroup.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -577,9 +577,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["LoadGroup"](obj, exporters, false);
+                var fields = LoadGroup.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -626,9 +626,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EnergyArea"](obj, exporters, false);
+                var fields = EnergyArea.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "SubLoadArea", "LoadArea", fields);
                 if (full)
@@ -675,9 +675,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EnergyArea"](obj, exporters, false);
+                var fields = EnergyArea.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

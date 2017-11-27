@@ -47,9 +47,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ConnectivityNodeContainer"](obj, exporters, false);
+                var fields = Core.ConnectivityNodeContainer.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -98,9 +98,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ConductingEquipment"](obj, exporters, false);
+                var fields = Core.ConductingEquipment.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "EquivalentEquipment", "EquivalentNetwork", fields);
                 if (full)
@@ -149,9 +149,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EquivalentEquipment"](obj, exporters, false);
+                var fields = EquivalentEquipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EquivalentShunt", "b", base.from_string, fields);
                 base.export_element (obj, "EquivalentShunt", "g", base.from_string, fields);
@@ -215,9 +215,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EquivalentEquipment"](obj, exporters, false);
+                var fields = EquivalentEquipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EquivalentBranch", "negativeR12", base.from_string, fields);
                 base.export_element (obj, "EquivalentBranch", "negativeR21", base.from_string, fields);
@@ -297,9 +297,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EquivalentEquipment"](obj, exporters, false);
+                var fields = EquivalentEquipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EquivalentInjection", "maxP", base.from_string, fields);
                 base.export_element (obj, "EquivalentInjection", "maxQ", base.from_string, fields);

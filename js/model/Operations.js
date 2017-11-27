@@ -48,9 +48,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SwitchingStepGroup", "isFreeSequence", base.from_boolean, fields);
                 base.export_element (obj, "SwitchingStepGroup", "sequenceNumber", base.from_string, fields);
@@ -98,9 +98,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "OperationTag", "Asset", fields);
                 base.export_attribute (obj, "OperationTag", "TagAction", fields);
@@ -151,9 +151,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ActivityRecord"](obj, exporters, false);
+                var fields = Common.ActivityRecord.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PSREvent", "kind", base.from_string, fields);
                 base.export_attribute (obj, "PSREvent", "PowerSystemResource", fields);
@@ -211,9 +211,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Outage", "cause", base.from_string, fields);
                 base.export_element (obj, "Outage", "estimatedPeriod", base.from_string, fields);
@@ -271,7 +271,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -328,9 +328,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Incident", "cause", base.from_string, fields);
                 base.export_attribute (obj, "Incident", "Owner", fields);
@@ -381,7 +381,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -436,9 +436,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OperationalRestriction", "activePeriod", base.from_string, fields);
                 base.export_element (obj, "OperationalRestriction", "restrictedValue", base.from_string, fields);
@@ -490,7 +490,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -542,9 +542,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "SafetyDocument", "SwitchingPlan", fields);
                 if (full)
@@ -595,7 +595,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -652,7 +652,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -709,9 +709,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -760,7 +760,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -818,7 +818,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -879,9 +879,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SwitchingStepGroup"](obj, exporters, false);
+                var fields = SwitchingStepGroup.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SwitchingPlan", "rank", base.from_string, fields);
                 base.export_element (obj, "SwitchingPlan", "purpose", base.from_string, fields);
@@ -932,9 +932,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OperationalRestriction"](obj, exporters, false);
+                var fields = OperationalRestriction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OperationalUpdatedRating", "changeType", base.from_string, fields);
                 base.export_attribute (obj, "OperationalUpdatedRating", "PlannedOutage", fields);
@@ -987,9 +987,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SafetyDocument"](obj, exporters, false);
+                var fields = SafetyDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ClearanceDocument", "mustBeDeenergised", base.from_boolean, fields);
                 base.export_element (obj, "ClearanceDocument", "mustBeGrounded", base.from_boolean, fields);
@@ -1039,9 +1039,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SwitchingStep"](obj, exporters, false);
+                var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "GenericAction", "SwitchingStepGroup", fields);
                 if (full)
@@ -1091,9 +1091,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SwitchingStep"](obj, exporters, false);
+                var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ClearanceAction", "kind", base.from_string, fields);
                 base.export_attribute (obj, "ClearanceAction", "Clearance", fields);
@@ -1147,9 +1147,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SwitchingStep"](obj, exporters, false);
+                var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GroundAction", "kind", base.from_string, fields);
                 base.export_attribute (obj, "GroundAction", "Ground", fields);
@@ -1203,9 +1203,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SwitchingStep"](obj, exporters, false);
+                var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CutAction", "kind", base.from_string, fields);
                 base.export_attribute (obj, "CutAction", "SwitchingStepGroup", fields);
@@ -1258,9 +1258,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SwitchingStep"](obj, exporters, false);
+                var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SwitchAction", "kind", base.from_string, fields);
                 base.export_attribute (obj, "SwitchAction", "PlannedOutage", fields);
@@ -1313,9 +1313,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SwitchingStep"](obj, exporters, false);
+                var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "JumperAction", "kind", base.from_string, fields);
                 base.export_attribute (obj, "JumperAction", "Jumper", fields);
@@ -1367,9 +1367,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SwitchingStep"](obj, exporters, false);
+                var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TagAction", "kind", base.from_string, fields);
                 base.export_attribute (obj, "TagAction", "OperationTag", fields);
@@ -1421,9 +1421,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SwitchingStep"](obj, exporters, false);
+                var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EnergySourceAction", "kind", base.from_string, fields);
                 base.export_attribute (obj, "EnergySourceAction", "EnergySource", fields);

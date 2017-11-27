@@ -49,9 +49,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DemandResponseProgram", "type", base.from_string, fields);
                 base.export_element (obj, "DemandResponseProgram", "validityInterval", base.from_string, fields);
@@ -102,9 +102,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EndDeviceGroup", "type", base.from_string, fields);
                 if (full)
@@ -163,7 +163,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -229,9 +229,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Register", "isVirtual", base.from_boolean, fields);
                 base.export_element (obj, "Register", "leftDigitCount", base.from_string, fields);
@@ -294,9 +294,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EndDeviceControl", "drProgramLevel", base.from_string, fields);
                 base.export_element (obj, "EndDeviceControl", "drProgramMandatory", base.from_boolean, fields);
@@ -367,7 +367,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -453,9 +453,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "UsagePoint", "amiBillingReady", base.from_string, fields);
                 base.export_element (obj, "UsagePoint", "checkBilling", base.from_boolean, fields);
@@ -529,7 +529,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -585,7 +585,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -638,7 +638,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -694,9 +694,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MeterReading", "isCoincidentTrigger", base.from_boolean, fields);
                 base.export_element (obj, "MeterReading", "valuesInterval", base.from_string, fields);
@@ -752,9 +752,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Channel", "isVirtual", base.from_boolean, fields);
                 base.export_attribute (obj, "Channel", "Register", fields);
@@ -806,7 +806,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -864,7 +864,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -920,7 +920,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -974,9 +974,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MeterMultiplier", "kind", base.from_string, fields);
                 base.export_element (obj, "MeterMultiplier", "value", base.from_float, fields);
@@ -1028,9 +1028,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Location"](obj, exporters, false);
+                var fields = Common.Location.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "UsagePointLocation", "accessMethod", base.from_string, fields);
                 base.export_element (obj, "UsagePointLocation", "remark", base.from_string, fields);
@@ -1086,7 +1086,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1142,9 +1142,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MetrologyRequirement", "reason", base.from_string, fields);
                 if (full)
@@ -1193,9 +1193,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AssetFunction"](obj, exporters, false);
+                var fields = Assets.AssetFunction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EndDeviceFunction", "enabled", base.from_boolean, fields);
                 base.export_attribute (obj, "EndDeviceFunction", "EndDevice", fields);
@@ -1248,9 +1248,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Asset"](obj, exporters, false);
+                var fields = Assets.Asset.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ComModule", "amrSystem", base.from_string, fields);
                 base.export_element (obj, "ComModule", "supportsAutonomousDst", base.from_boolean, fields);
@@ -1302,7 +1302,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1373,9 +1373,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ReadingType", "accumulation", base.from_string, fields);
                 base.export_element (obj, "ReadingType", "aggregate", base.from_string, fields);
@@ -1444,7 +1444,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1505,7 +1505,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1567,7 +1567,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1624,7 +1624,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1683,9 +1683,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MeasurementValue"](obj, exporters, false);
+                var fields = Meas.MeasurementValue.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BaseReading", "reportedDateTime", base.from_datetime, fields);
                 base.export_element (obj, "BaseReading", "source", base.from_string, fields);
@@ -1742,9 +1742,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ActivityRecord"](obj, exporters, false);
+                var fields = Common.ActivityRecord.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EndDeviceEvent", "issuerID", base.from_string, fields);
                 base.export_element (obj, "EndDeviceEvent", "issuerTrackingID", base.from_string, fields);
@@ -1809,7 +1809,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1872,9 +1872,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ServiceMultiplier", "kind", base.from_string, fields);
                 base.export_element (obj, "ServiceMultiplier", "value", base.from_float, fields);
@@ -1931,7 +1931,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1987,7 +1987,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -2043,9 +2043,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EndDeviceControlType", "domain", base.from_string, fields);
                 base.export_element (obj, "EndDeviceControlType", "eventOrAction", base.from_string, fields);
@@ -2102,7 +2102,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -2158,9 +2158,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "UsagePointGroup", "type", base.from_string, fields);
                 if (full)
@@ -2210,9 +2210,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Work"](obj, exporters, false);
+                var fields = Work.Work.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "MeterServiceWork", "Meter", fields);
                 base.export_attribute (obj, "MeterServiceWork", "OldMeter", fields);
@@ -2264,7 +2264,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -2320,9 +2320,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ReadingQualityType", "category", base.from_string, fields);
                 base.export_element (obj, "ReadingQualityType", "subCategory", base.from_string, fields);
@@ -2377,9 +2377,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EndDeviceEventType", "domain", base.from_string, fields);
                 base.export_element (obj, "EndDeviceEventType", "eventOrAction", base.from_string, fields);
@@ -2440,9 +2440,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AssetContainer"](obj, exporters, false);
+                var fields = Assets.AssetContainer.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EndDevice", "amrSystem", base.from_string, fields);
                 base.export_element (obj, "EndDevice", "installCode", base.from_string, fields);
@@ -2506,7 +2506,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -2581,7 +2581,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -2652,9 +2652,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AssetInfo"](obj, exporters, false);
+                var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EndDeviceInfo", "capability", base.from_string, fields);
                 base.export_element (obj, "EndDeviceInfo", "isSolidState", base.from_boolean, fields);
@@ -2708,9 +2708,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EndDeviceFunction"](obj, exporters, false);
+                var fields = EndDeviceFunction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SimpleEndDeviceFunction", "kind", base.from_string, fields);
                 if (full)
@@ -2762,9 +2762,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EndDeviceFunction"](obj, exporters, false);
+                var fields = EndDeviceFunction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ComFunction", "amrAddress", base.from_string, fields);
                 base.export_element (obj, "ComFunction", "amrRouter", base.from_string, fields);
@@ -2819,9 +2819,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EndDeviceAction"](obj, exporters, false);
+                var fields = EndDeviceAction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PanDisplay", "confirmationRequired", base.from_boolean, fields);
                 base.export_element (obj, "PanDisplay", "priority", base.from_string, fields);
@@ -2883,9 +2883,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EndDeviceAction"](obj, exporters, false);
+                var fields = EndDeviceAction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PanDemandResponse", "appliance", base.from_string, fields);
                 base.export_element (obj, "PanDemandResponse", "avgLoadAdjustment", base.from_string, fields);
@@ -2944,9 +2944,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EndDeviceAction"](obj, exporters, false);
+                var fields = EndDeviceAction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PanPricing", "providerID", base.from_string, fields);
                 if (full)
@@ -2995,9 +2995,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["BaseReading"](obj, exporters, false);
+                var fields = BaseReading.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3047,9 +3047,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["BaseReading"](obj, exporters, false);
+                var fields = BaseReading.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Reading", "reason", base.from_string, fields);
                 base.export_attribute (obj, "Reading", "ReadingType", fields);
@@ -3100,9 +3100,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EndDevice"](obj, exporters, false);
+                var fields = EndDevice.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Meter", "formNumber", base.from_string, fields);
                 if (full)

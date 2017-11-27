@@ -48,9 +48,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "PowerSystemStabilizerDynamics", "ExcitationSystemDynamics", fields);
                 if (full)
@@ -109,7 +109,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -178,9 +178,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PssPTIST1", "dtc", base.from_string, fields);
                 base.export_element (obj, "PssPTIST1", "dtf", base.from_string, fields);
@@ -266,9 +266,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PssIEEE2B", "inputSignal1Type", base.from_string, fields);
                 base.export_element (obj, "PssIEEE2B", "inputSignal2Type", base.from_string, fields);
@@ -359,9 +359,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Pss2ST", "inputSignal1Type", base.from_string, fields);
                 base.export_element (obj, "Pss2ST", "inputSignal2Type", base.from_string, fields);
@@ -440,9 +440,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Pss1", "kf", base.from_float, fields);
                 base.export_element (obj, "Pss1", "kpe", base.from_float, fields);
@@ -516,9 +516,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PssSH", "k", base.from_string, fields);
                 base.export_element (obj, "PssSH", "k0", base.from_string, fields);
@@ -601,9 +601,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Pss1A", "a1", base.from_string, fields);
                 base.export_element (obj, "Pss1A", "a2", base.from_string, fields);
@@ -682,9 +682,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PssSK", "k1", base.from_string, fields);
                 base.export_element (obj, "PssSK", "k2", base.from_string, fields);
@@ -755,9 +755,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PssIEEE1A", "a1", base.from_string, fields);
                 base.export_element (obj, "PssIEEE1A", "a2", base.from_string, fields);
@@ -849,9 +849,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PssPTIST3", "a0", base.from_string, fields);
                 base.export_element (obj, "PssPTIST3", "a1", base.from_string, fields);
@@ -1000,9 +1000,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PssIEEE4B", "bwh1", base.from_float, fields);
                 base.export_element (obj, "PssIEEE4B", "bwh2", base.from_float, fields);
@@ -1132,9 +1132,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Pss5", "ctw2", base.from_boolean, fields);
                 base.export_element (obj, "Pss5", "deadband", base.from_string, fields);
@@ -1208,9 +1208,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PssSB4", "kx", base.from_string, fields);
                 base.export_element (obj, "PssSB4", "ta", base.from_string, fields);
@@ -1288,9 +1288,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PssIEEE3B", "a1", base.from_string, fields);
                 base.export_element (obj, "PssIEEE3B", "a2", base.from_string, fields);
@@ -1366,9 +1366,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PssELIN2", "apss", base.from_string, fields);
                 base.export_element (obj, "PssELIN2", "ks1", base.from_string, fields);
@@ -1458,9 +1458,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Pss2B", "a", base.from_float, fields);
                 base.export_element (obj, "Pss2B", "inputSignal1Type", base.from_string, fields);
@@ -1555,9 +1555,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PssWECC", "inputSignal1Type", base.from_string, fields);
                 base.export_element (obj, "PssWECC", "inputSignal2Type", base.from_string, fields);

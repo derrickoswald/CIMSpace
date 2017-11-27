@@ -49,9 +49,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "OperationalLimitSet", "Terminal", fields);
                 base.export_attribute (obj, "OperationalLimitSet", "Equipment", fields);
@@ -103,9 +103,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "OperationalLimit", "OperationalLimitSet", fields);
                 base.export_attribute (obj, "OperationalLimit", "OperationalLimitType", fields);
@@ -156,7 +156,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -215,9 +215,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BranchGroup", "maximumActivePower", base.from_string, fields);
                 base.export_element (obj, "BranchGroup", "maximumReactivePower", base.from_string, fields);
@@ -272,9 +272,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OperationalLimitType", "acceptableDuration", base.from_string, fields);
                 base.export_element (obj, "OperationalLimitType", "direction", base.from_string, fields);
@@ -326,7 +326,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -378,9 +378,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OperationalLimit"](obj, exporters, false);
+                var fields = OperationalLimit.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CurrentLimit", "value", base.from_string, fields);
                 if (full)
@@ -428,9 +428,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OperationalLimit"](obj, exporters, false);
+                var fields = OperationalLimit.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ApparentPowerLimit", "value", base.from_string, fields);
                 if (full)
@@ -478,9 +478,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OperationalLimit"](obj, exporters, false);
+                var fields = OperationalLimit.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "VoltageLimit", "value", base.from_string, fields);
                 if (full)
@@ -528,9 +528,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OperationalLimit"](obj, exporters, false);
+                var fields = OperationalLimit.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ActivePowerLimit", "value", base.from_string, fields);
                 if (full)

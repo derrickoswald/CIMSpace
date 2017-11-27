@@ -43,7 +43,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -97,7 +97,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -150,9 +150,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AssetInfo"](obj, exporters, false);
+                var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "FaultIndicatorInfo", "resetKind", base.from_string, fields);
                 if (full)
@@ -204,9 +204,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AssetModelCatalogueItem", "unitCost", base.from_string, fields);
                 base.export_attribute (obj, "AssetModelCatalogueItem", "AssetModel", fields);
@@ -262,9 +262,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SwitchInfo"](obj, exporters, false);
+                var fields = AssetInfo.SwitchInfo.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OldSwitchInfo", "dielectricStrength", base.from_string, fields);
                 base.export_element (obj, "OldSwitchInfo", "loadBreak", base.from_boolean, fields);
@@ -333,9 +333,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AssetInfo"](obj, exporters, false);
+                var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CurrentTransformerInfo", "accuracyClass", base.from_string, fields);
                 base.export_element (obj, "CurrentTransformerInfo", "accuracyLimit", base.from_string, fields);
@@ -406,9 +406,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AssetInfo"](obj, exporters, false);
+                var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SurgeArresterInfo", "continuousOperatingVoltage", base.from_string, fields);
                 base.export_element (obj, "SurgeArresterInfo", "isPolymer", base.from_boolean, fields);
@@ -470,7 +470,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -528,9 +528,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AssetModelCatalogue", "status", base.from_string, fields);
                 if (full)
@@ -579,9 +579,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AssetInfo"](obj, exporters, false);
+                var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ProtectionEquipmentInfo", "groundTrip", base.from_string, fields);
                 base.export_element (obj, "ProtectionEquipmentInfo", "phaseTrip", base.from_string, fields);
@@ -645,7 +645,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -713,7 +713,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -767,9 +767,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TransformerTankInfo"](obj, exporters, false);
+                var fields = AssetInfo.TransformerTankInfo.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OldTransformerTankInfo", "constructionKind", base.from_string, fields);
                 base.export_element (obj, "OldTransformerTankInfo", "coreCoilsWeight", base.from_string, fields);
@@ -830,9 +830,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AssetInfo"](obj, exporters, false);
+                var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CompositeSwitchInfo", "ganged", base.from_boolean, fields);
                 base.export_element (obj, "CompositeSwitchInfo", "initOpMode", base.from_string, fields);
@@ -894,7 +894,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -953,7 +953,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1012,9 +1012,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AssetInfo"](obj, exporters, false);
+                var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PotentialTransformerInfo", "accuracyClass", base.from_string, fields);
                 base.export_element (obj, "PotentialTransformerInfo", "nominalRatio", base.from_string, fields);
@@ -1072,7 +1072,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1125,9 +1125,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TransformerEndInfo"](obj, exporters, false);
+                var fields = AssetInfo.TransformerEndInfo.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OldTransformerEndInfo", "dayOverLoadRating", base.from_string, fields);
                 base.export_element (obj, "OldTransformerEndInfo", "hourOverLoadRating", base.from_string, fields);
@@ -1185,7 +1185,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1245,7 +1245,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1302,9 +1302,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OldSwitchInfo"](obj, exporters, false);
+                var fields = OldSwitchInfo.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RecloserInfo", "groundTripCapable", base.from_boolean, fields);
                 base.export_element (obj, "RecloserInfo", "groundTripNormalEnabled", base.from_boolean, fields);
@@ -1356,9 +1356,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OldSwitchInfo"](obj, exporters, false);
+                var fields = OldSwitchInfo.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BreakerInfo", "phaseTrip", base.from_string, fields);
                 if (full)

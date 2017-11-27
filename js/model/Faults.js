@@ -48,7 +48,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -99,9 +99,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -151,7 +151,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -208,9 +208,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Fault", "kind", base.from_string, fields);
                 base.export_element (obj, "Fault", "phases", base.from_string, fields);
@@ -263,9 +263,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Fault"](obj, exporters, false);
+                var fields = Fault.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LineFault", "lengthFromTerminal1", base.from_string, fields);
                 base.export_attribute (obj, "LineFault", "ACLineSegment", fields);
@@ -316,9 +316,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Fault"](obj, exporters, false);
+                var fields = Fault.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "EquipmentFault", "Terminal", fields);
                 if (full)

@@ -57,7 +57,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -119,9 +119,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TimeSchedule"](obj, exporters, false);
+                var fields = Common.TimeSchedule.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WorkTimeSchedule", "kind", base.from_string, fields);
                 base.export_attribute (obj, "WorkTimeSchedule", "BaseWork", fields);
@@ -174,7 +174,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -231,9 +231,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BaseWork", "kind", base.from_string, fields);
                 base.export_element (obj, "BaseWork", "priority", base.from_string, fields);
@@ -283,7 +283,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -336,9 +336,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Location"](obj, exporters, false);
+                var fields = Common.Location.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WorkLocation", "OneCallRequest", fields);
                 if (full)
@@ -395,7 +395,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -458,9 +458,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MaterialItem", "quantity", base.from_string, fields);
                 base.export_attribute (obj, "MaterialItem", "TypeMaterial", fields);
@@ -510,9 +510,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Asset"](obj, exporters, false);
+                var fields = Assets.Asset.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WorkAsset", "Crew", fields);
                 if (full)
@@ -563,7 +563,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -618,9 +618,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["BaseWork"](obj, exporters, false);
+                var fields = BaseWork.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WorkTask", "instruction", base.from_string, fields);
                 base.export_element (obj, "WorkTask", "schedOverride", base.from_string, fields);
@@ -678,9 +678,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["BaseWork"](obj, exporters, false);
+                var fields = BaseWork.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Work", "requestDateTime", base.from_datetime, fields);
                 base.export_attribute (obj, "Work", "WorkBillingInfo", fields);
@@ -735,9 +735,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkLocation"](obj, exporters, false);
+                var fields = WorkLocation.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MaintenanceLocation", "block", base.from_string, fields);
                 base.export_element (obj, "MaintenanceLocation", "lot", base.from_string, fields);
@@ -790,9 +790,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkAsset"](obj, exporters, false);
+                var fields = WorkAsset.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Vehicle", "odometerReadDateTime", base.from_datetime, fields);
                 base.export_element (obj, "Vehicle", "odometerReading", base.from_string, fields);
@@ -842,9 +842,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkAsset"](obj, exporters, false);
+                var fields = WorkAsset.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Tool", "lastCalibrationDate", base.from_string, fields);
                 if (full)

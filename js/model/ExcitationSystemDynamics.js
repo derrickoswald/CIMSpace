@@ -51,7 +51,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -107,7 +107,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -167,9 +167,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ExcitationSystemDynamics", "PowerSystemStabilizerDynamics", fields);
                 base.export_attribute (obj, "ExcitationSystemDynamics", "UnderexcitationLimiterDynamics", fields);
@@ -226,7 +226,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -281,7 +281,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -336,7 +336,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -405,9 +405,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEDC1A", "efd1", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEDC1A", "efd2", base.from_string, fields);
@@ -477,9 +477,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcSCRX", "cswitch", base.from_boolean, fields);
                 base.export_element (obj, "ExcSCRX", "emax", base.from_string, fields);
@@ -554,9 +554,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEDC4B", "efd1", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEDC4B", "efd2", base.from_string, fields);
@@ -644,9 +644,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEAC3A", "efdn", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEAC3A", "ka", base.from_string, fields);
@@ -718,9 +718,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcAVR5", "ka", base.from_string, fields);
                 base.export_element (obj, "ExcAVR5", "rex", base.from_string, fields);
@@ -784,9 +784,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcST2A", "efdmax", base.from_string, fields);
                 base.export_element (obj, "ExcST2A", "ka", base.from_string, fields);
@@ -876,9 +876,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcELIN2", "efdbas", base.from_string, fields);
                 base.export_element (obj, "ExcELIN2", "iefmax", base.from_string, fields);
@@ -964,9 +964,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEDC3A", "efd1", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEDC3A", "efd2", base.from_string, fields);
@@ -1046,9 +1046,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEAC2A", "ka", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEAC2A", "kb", base.from_string, fields);
@@ -1137,9 +1137,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcAC1A", "hvlvgates", base.from_boolean, fields);
                 base.export_element (obj, "ExcAC1A", "ka", base.from_string, fields);
@@ -1217,9 +1217,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcSEXS", "efdmax", base.from_string, fields);
                 base.export_element (obj, "ExcSEXS", "efdmin", base.from_string, fields);
@@ -1290,9 +1290,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcAVR2", "e1", base.from_string, fields);
                 base.export_element (obj, "ExcAVR2", "e2", base.from_string, fields);
@@ -1369,9 +1369,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcDC3A", "edfmax", base.from_string, fields);
                 base.export_element (obj, "ExcDC3A", "efd1", base.from_string, fields);
@@ -1456,9 +1456,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcST6B", "ilr", base.from_string, fields);
                 base.export_element (obj, "ExcST6B", "k1", base.from_boolean, fields);
@@ -1552,9 +1552,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcPIC", "e1", base.from_string, fields);
                 base.export_element (obj, "ExcPIC", "e2", base.from_string, fields);
@@ -1633,9 +1633,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcCZ", "efdmax", base.from_string, fields);
                 base.export_element (obj, "ExcCZ", "efdmin", base.from_string, fields);
@@ -1718,9 +1718,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcAC8B", "inlim", base.from_boolean, fields);
                 base.export_element (obj, "ExcAC8B", "ka", base.from_string, fields);
@@ -1809,9 +1809,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEAC5A", "efd1", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEAC5A", "efd2", base.from_string, fields);
@@ -1886,9 +1886,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEST2A", "efdmax", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST2A", "ka", base.from_string, fields);
@@ -1966,9 +1966,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEST5B", "kc", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST5B", "kr", base.from_string, fields);
@@ -2040,9 +2040,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcAC4A", "ka", base.from_string, fields);
                 base.export_element (obj, "ExcAC4A", "kc", base.from_string, fields);
@@ -2117,9 +2117,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEAC8B", "ka", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEAC8B", "kc", base.from_string, fields);
@@ -2217,9 +2217,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcSK", "efdmax", base.from_string, fields);
                 base.export_element (obj, "ExcSK", "efdmin", base.from_string, fields);
@@ -2335,9 +2335,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcREXS", "e1", base.from_string, fields);
                 base.export_element (obj, "ExcREXS", "e2", base.from_string, fields);
@@ -2435,9 +2435,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcANS", "blint", base.from_string, fields);
                 base.export_element (obj, "ExcANS", "ifmn", base.from_string, fields);
@@ -2525,9 +2525,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEAC7B", "kc", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEAC7B", "kd", base.from_string, fields);
@@ -2617,9 +2617,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEST4B", "kc", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST4B", "kg", base.from_string, fields);
@@ -2697,9 +2697,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcST7B", "kh", base.from_string, fields);
                 base.export_element (obj, "ExcST7B", "kia", base.from_string, fields);
@@ -2779,9 +2779,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcDC1A", "edfmax", base.from_string, fields);
                 base.export_element (obj, "ExcDC1A", "efd1", base.from_string, fields);
@@ -2865,9 +2865,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcST3A", "efdmax", base.from_string, fields);
                 base.export_element (obj, "ExcST3A", "kc", base.from_string, fields);
@@ -2953,9 +2953,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEAC1A", "ka", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEAC1A", "kc", base.from_string, fields);
@@ -3037,9 +3037,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcAC5A", "a", base.from_float, fields);
                 base.export_element (obj, "ExcAC5A", "efd1", base.from_string, fields);
@@ -3115,9 +3115,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcHU", "ae", base.from_string, fields);
                 base.export_element (obj, "ExcHU", "ai", base.from_string, fields);
@@ -3196,9 +3196,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcAVR7", "a1", base.from_string, fields);
                 base.export_element (obj, "ExcAVR7", "a2", base.from_string, fields);
@@ -3282,9 +3282,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEST7B", "kh", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST7B", "kia", base.from_string, fields);
@@ -3363,9 +3363,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEDC2A", "efd1", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEDC2A", "efd2", base.from_string, fields);
@@ -3441,9 +3441,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcAVR3", "e1", base.from_string, fields);
                 base.export_element (obj, "ExcAVR3", "e2", base.from_string, fields);
@@ -3512,9 +3512,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEAC4A", "ka", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEAC4A", "kc", base.from_string, fields);
@@ -3597,9 +3597,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcAC2A", "hvgate", base.from_boolean, fields);
                 base.export_element (obj, "ExcAC2A", "ka", base.from_string, fields);
@@ -3687,9 +3687,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcDC3A1", "exclim", base.from_boolean, fields);
                 base.export_element (obj, "ExcDC3A1", "ka", base.from_string, fields);
@@ -3770,9 +3770,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEST1A", "ilr", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST1A", "ka", base.from_string, fields);
@@ -3850,9 +3850,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcBBC", "efdmax", base.from_string, fields);
                 base.export_element (obj, "ExcBBC", "efdmin", base.from_string, fields);
@@ -3928,9 +3928,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcST4B", "kc", base.from_string, fields);
                 base.export_element (obj, "ExcST4B", "kg", base.from_string, fields);
@@ -4018,9 +4018,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcAC6A", "ka", base.from_string, fields);
                 base.export_element (obj, "ExcAC6A", "kc", base.from_string, fields);
@@ -4108,9 +4108,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcOEX3T", "e1", base.from_string, fields);
                 base.export_element (obj, "ExcOEX3T", "e2", base.from_string, fields);
@@ -4201,9 +4201,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcAC3A", "efdn", base.from_string, fields);
                 base.export_element (obj, "ExcAC3A", "ka", base.from_string, fields);
@@ -4299,9 +4299,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEAC6A", "ka", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEAC6A", "kc", base.from_string, fields);
@@ -4387,9 +4387,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcST1A", "ilr", base.from_string, fields);
                 base.export_element (obj, "ExcST1A", "ka", base.from_string, fields);
@@ -4470,9 +4470,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcELIN1", "dpnf", base.from_string, fields);
                 base.export_element (obj, "ExcELIN1", "efmax", base.from_string, fields);
@@ -4549,9 +4549,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcAVR4", "imul", base.from_boolean, fields);
                 base.export_element (obj, "ExcAVR4", "ka", base.from_float, fields);
@@ -4633,9 +4633,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEST3A", "ka", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST3A", "kc", base.from_string, fields);
@@ -4721,9 +4721,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcDC2A", "efd1", base.from_string, fields);
                 base.export_element (obj, "ExcDC2A", "efd2", base.from_string, fields);
@@ -4801,9 +4801,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcAVR1", "e1", base.from_string, fields);
                 base.export_element (obj, "ExcAVR1", "e2", base.from_string, fields);
@@ -4877,9 +4877,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcIEEEST6B", "ilr", base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST6B", "kci", base.from_string, fields);

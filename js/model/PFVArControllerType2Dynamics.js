@@ -51,9 +51,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "PFVArControllerType2Dynamics", "ExcitationSystemDynamics", fields);
                 if (full)
@@ -107,9 +107,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PFVArControllerType2Dynamics"](obj, exporters, false);
+                var fields = PFVArControllerType2Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PFVArType2Common1", "j", base.from_boolean, fields);
                 base.export_element (obj, "PFVArType2Common1", "ki", base.from_string, fields);
@@ -169,9 +169,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PFVArControllerType2Dynamics"](obj, exporters, false);
+                var fields = PFVArControllerType2Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PFVArType2IEEEVArController", "exlon", base.from_boolean, fields);
                 base.export_element (obj, "PFVArType2IEEEVArController", "ki", base.from_string, fields);
@@ -233,9 +233,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PFVArControllerType2Dynamics"](obj, exporters, false);
+                var fields = PFVArControllerType2Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PFVArType2IEEEPFController", "exlon", base.from_boolean, fields);
                 base.export_element (obj, "PFVArType2IEEEPFController", "ki", base.from_string, fields);

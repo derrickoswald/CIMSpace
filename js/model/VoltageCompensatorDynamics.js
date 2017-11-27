@@ -51,9 +51,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GenICompensationForGenJ", "rcij", base.from_string, fields);
                 base.export_element (obj, "GenICompensationForGenJ", "xcij", base.from_string, fields);
@@ -105,9 +105,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "VoltageCompensatorDynamics", "RemoteInputSignal", fields);
                 base.export_attribute (obj, "VoltageCompensatorDynamics", "ExcitationSystemDynamics", fields);
@@ -158,9 +158,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["VoltageCompensatorDynamics"](obj, exporters, false);
+                var fields = VoltageCompensatorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "VCompIEEEType2", "tr", base.from_string, fields);
                 if (full)
@@ -212,9 +212,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["VoltageCompensatorDynamics"](obj, exporters, false);
+                var fields = VoltageCompensatorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "VCompIEEEType1", "rc", base.from_string, fields);
                 base.export_element (obj, "VCompIEEEType1", "tr", base.from_string, fields);

@@ -47,9 +47,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "MechanicalLoadDynamics", "SynchronousMachineDynamics", fields);
                 base.export_attribute (obj, "MechanicalLoadDynamics", "AsynchronousMachineDynamics", fields);
@@ -101,9 +101,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MechanicalLoadDynamics"](obj, exporters, false);
+                var fields = MechanicalLoadDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MechLoad1", "a", base.from_float, fields);
                 base.export_element (obj, "MechLoad1", "b", base.from_float, fields);

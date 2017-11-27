@@ -56,9 +56,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GateInputPin", "absoluteValue", base.from_boolean, fields);
                 base.export_element (obj, "GateInputPin", "aDLogicKind", base.from_string, fields);
@@ -115,9 +115,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RemedialActionScheme", "armed", base.from_boolean, fields);
                 base.export_element (obj, "RemedialActionScheme", "kind", base.from_string, fields);
@@ -175,9 +175,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "StageTrigger", "armed", base.from_boolean, fields);
                 base.export_element (obj, "StageTrigger", "normalArmed", base.from_boolean, fields);
@@ -237,9 +237,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ProtectiveAction", "enabled", base.from_boolean, fields);
                 base.export_element (obj, "ProtectiveAction", "normalEnabled", base.from_boolean, fields);
@@ -297,9 +297,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MeasurementCalculatorInput", "absoluteValue", base.from_boolean, fields);
                 base.export_element (obj, "MeasurementCalculatorInput", "order", base.from_string, fields);
@@ -355,7 +355,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -413,7 +413,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -467,7 +467,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -518,9 +518,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Gate", "kind", base.from_string, fields);
                 if (full)
@@ -571,7 +571,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -625,9 +625,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Stage", "priority", base.from_string, fields);
                 base.export_attribute (obj, "Stage", "RemedialActionScheme", fields);
@@ -676,9 +676,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MeasurementCalculator", "kind", base.from_string, fields);
                 if (full)
@@ -727,7 +727,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -784,7 +784,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -841,9 +841,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "TriggerCondition", "RemedialActionScheme", fields);
                 base.export_attribute (obj, "TriggerCondition", "GateTrigger", fields);
@@ -895,7 +895,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -954,7 +954,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1009,9 +1009,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1059,9 +1059,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["GateInputPin"](obj, exporters, false);
+                var fields = GateInputPin.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PinEquipment", "kind", base.from_string, fields);
                 base.export_attribute (obj, "PinEquipment", "Equipment", fields);
@@ -1110,9 +1110,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["GateInputPin"](obj, exporters, false);
+                var fields = GateInputPin.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "PinGate", "GateOutput", fields);
                 if (full)
@@ -1161,9 +1161,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["GateInputPin"](obj, exporters, false);
+                var fields = GateInputPin.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PinTerminal", "kind", base.from_string, fields);
                 base.export_attribute (obj, "PinTerminal", "Terminal", fields);
@@ -1213,9 +1213,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["GateInputPin"](obj, exporters, false);
+                var fields = GateInputPin.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PinBranchGroup", "kind", base.from_string, fields);
                 base.export_attribute (obj, "PinBranchGroup", "BranchGroup", fields);
@@ -1265,9 +1265,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["GateInputPin"](obj, exporters, false);
+                var fields = GateInputPin.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "PinMeasurement", "Measurement", fields);
                 base.export_attribute (obj, "PinMeasurement", "MeasurementCalculator", fields);
@@ -1318,9 +1318,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ProtectiveAction"](obj, exporters, false);
+                var fields = ProtectiveAction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ProtectiveActionRegulation", "isRegulating", base.from_boolean, fields);
                 base.export_element (obj, "ProtectiveActionRegulation", "targetValue", base.from_float, fields);
@@ -1379,9 +1379,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ProtectiveAction"](obj, exporters, false);
+                var fields = ProtectiveAction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ProtectiveActionAdjustment", "byPercentage", base.from_string, fields);
                 base.export_element (obj, "ProtectiveActionAdjustment", "byValue", base.from_float, fields);
@@ -1437,9 +1437,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ProtectiveAction"](obj, exporters, false);
+                var fields = ProtectiveAction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ProtectiveActionEquipment", "inService", base.from_boolean, fields);
                 base.export_attribute (obj, "ProtectiveActionEquipment", "Equipment", fields);

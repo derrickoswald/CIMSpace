@@ -50,9 +50,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RecloseSequence", "recloseDelay", base.from_string, fields);
                 base.export_element (obj, "RecloseSequence", "recloseStep", base.from_string, fields);
@@ -109,9 +109,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Equipment"](obj, exporters, false);
+                var fields = Core.Equipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ProtectionEquipment", "highLimit", base.from_float, fields);
                 base.export_element (obj, "ProtectionEquipment", "lowLimit", base.from_float, fields);
@@ -170,9 +170,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ProtectionEquipment"](obj, exporters, false);
+                var fields = ProtectionEquipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CurrentRelay", "currentLimit1", base.from_string, fields);
                 base.export_element (obj, "CurrentRelay", "currentLimit2", base.from_string, fields);
@@ -230,9 +230,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ProtectionEquipment"](obj, exporters, false);
+                var fields = ProtectionEquipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SynchrocheckRelay", "maxAngleDiff", base.from_string, fields);
                 base.export_element (obj, "SynchrocheckRelay", "maxFreqDiff", base.from_string, fields);

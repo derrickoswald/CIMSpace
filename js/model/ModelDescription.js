@@ -45,7 +45,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -91,7 +91,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -137,7 +137,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -188,7 +188,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -241,7 +241,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -291,9 +291,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["FullModelDocumentElement"](obj, exporters, false);
+                var fields = FullModelDocumentElement.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -335,9 +335,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["FullModelDocumentElement"](obj, exporters, false);
+                var fields = FullModelDocumentElement.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -380,9 +380,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Description"](obj, exporters, false);
+                var fields = Description.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DescriptionID", "uri", base.from_string, fields);
                 if (full)
@@ -427,9 +427,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Model"](obj, exporters, false);
+                var fields = Model.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "DifferenceModel", "forwardDifferences", fields);
                 base.export_attribute (obj, "DifferenceModel", "reverseDifferences", fields);

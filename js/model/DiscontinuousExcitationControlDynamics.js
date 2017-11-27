@@ -49,9 +49,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "DiscontinuousExcitationControlDynamics", "ExcitationSystemDynamics", fields);
                 base.export_attribute (obj, "DiscontinuousExcitationControlDynamics", "RemoteInputSignal", fields);
@@ -106,9 +106,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DiscontinuousExcitationControlDynamics"](obj, exporters, false);
+                var fields = DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DiscExcContIEEEDEC2A", "td1", base.from_string, fields);
                 base.export_element (obj, "DiscExcContIEEEDEC2A", "td2", base.from_string, fields);
@@ -179,9 +179,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DiscontinuousExcitationControlDynamics"](obj, exporters, false);
+                var fields = DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DiscExcContIEEEDEC1A", "esc", base.from_string, fields);
                 base.export_element (obj, "DiscExcContIEEEDEC1A", "kan", base.from_string, fields);
@@ -249,9 +249,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DiscontinuousExcitationControlDynamics"](obj, exporters, false);
+                var fields = DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DiscExcContIEEEDEC3A", "tdr", base.from_string, fields);
                 base.export_element (obj, "DiscExcContIEEEDEC3A", "vtmin", base.from_string, fields);

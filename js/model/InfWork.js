@@ -48,9 +48,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ActivityRecord"](obj, exporters, false);
+                var fields = Common.ActivityRecord.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WorkStatusEntry", "percentComplete", base.from_string, fields);
                 if (full)
@@ -101,7 +101,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -155,9 +155,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -208,7 +208,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -263,9 +263,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -314,9 +314,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkTask"](obj, exporters, false);
+                var fields = Work.WorkTask.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "OldWorkTask", "Design", fields);
                 base.export_attribute (obj, "OldWorkTask", "WorkFlowStep", fields);
@@ -368,7 +368,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -420,9 +420,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkDocument"](obj, exporters, false);
+                var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BusinessCase", "corporateCode", base.from_string, fields);
                 if (full)
@@ -472,9 +472,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkDocument"](obj, exporters, false);
+                var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Regulation", "referenceNumber", base.from_string, fields);
                 if (full)
@@ -524,9 +524,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkDocument"](obj, exporters, false);
+                var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Assignment", "effectivePeriod", base.from_string, fields);
                 if (full)
@@ -579,9 +579,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkDocument"](obj, exporters, false);
+                var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Project", "budget", base.from_string, fields);
                 base.export_attribute (obj, "Project", "ParentProject", fields);
@@ -634,9 +634,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkDocument"](obj, exporters, false);
+                var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WorkCostSummary", "WorkCostDetail", fields);
                 if (full)
@@ -692,9 +692,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkDocument"](obj, exporters, false);
+                var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WorkCostDetail", "amount", base.from_string, fields);
                 base.export_element (obj, "WorkCostDetail", "isDebit", base.from_boolean, fields);
@@ -755,9 +755,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkDocument"](obj, exporters, false);
+                var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CompatibleUnit", "estCost", base.from_string, fields);
                 base.export_element (obj, "CompatibleUnit", "quantity", base.from_string, fields);
@@ -818,9 +818,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkDocument"](obj, exporters, false);
+                var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "InfoQuestion", "answer", base.from_string, fields);
                 base.export_element (obj, "InfoQuestion", "answerDateTime", base.from_datetime, fields);
@@ -879,9 +879,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkDocument"](obj, exporters, false);
+                var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TypeMaterial", "costType", base.from_string, fields);
                 base.export_element (obj, "TypeMaterial", "estUnitCost", base.from_string, fields);
@@ -932,9 +932,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkDocument"](obj, exporters, false);
+                var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "NonStandardItem", "amount", base.from_string, fields);
                 if (full)
@@ -988,9 +988,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkDocument"](obj, exporters, false);
+                var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AccessPermit", "applicationNumber", base.from_string, fields);
                 base.export_element (obj, "AccessPermit", "effectiveDate", base.from_string, fields);
@@ -1044,9 +1044,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkDocument"](obj, exporters, false);
+                var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OneCallRequest", "explosivesUsed", base.from_boolean, fields);
                 base.export_element (obj, "OneCallRequest", "markedIndicator", base.from_boolean, fields);
@@ -1102,9 +1102,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkDocument"](obj, exporters, false);
+                var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Design", "costEstimate", base.from_string, fields);
                 base.export_element (obj, "Design", "kind", base.from_string, fields);
@@ -1162,9 +1162,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LaborItem", "activityCode", base.from_string, fields);
                 base.export_element (obj, "LaborItem", "cost", base.from_string, fields);
@@ -1220,9 +1220,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ConditionFactor", "cfValue", base.from_string, fields);
                 base.export_element (obj, "ConditionFactor", "kind", base.from_string, fields);
@@ -1275,9 +1275,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Usage", "status", base.from_string, fields);
                 base.export_attribute (obj, "Usage", "WorkTask", fields);
@@ -1333,9 +1333,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CostType", "amountAssignable", base.from_boolean, fields);
                 base.export_element (obj, "CostType", "code", base.from_string, fields);
@@ -1389,9 +1389,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CULaborCode", "code", base.from_string, fields);
                 base.export_element (obj, "CULaborCode", "status", base.from_string, fields);
@@ -1443,9 +1443,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DesignLocation", "spanLength", base.from_string, fields);
                 base.export_element (obj, "DesignLocation", "status", base.from_string, fields);
@@ -1497,9 +1497,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CUWorkEquipmentItem", "equipCode", base.from_string, fields);
                 base.export_element (obj, "CUWorkEquipmentItem", "rate", base.from_string, fields);
@@ -1555,9 +1555,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CUMaterialItem", "corporateCode", base.from_string, fields);
                 base.export_element (obj, "CUMaterialItem", "quantity", base.from_string, fields);
@@ -1610,9 +1610,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OverheadCost", "code", base.from_string, fields);
                 base.export_element (obj, "OverheadCost", "cost", base.from_string, fields);
@@ -1664,9 +1664,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WorkFlowStep", "sequenceNumber", base.from_string, fields);
                 base.export_element (obj, "WorkFlowStep", "status", base.from_string, fields);
@@ -1716,9 +1716,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CUAllowableAction", "status", base.from_string, fields);
                 if (full)
@@ -1766,9 +1766,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "QualificationRequirement", "qualificationID", base.from_string, fields);
                 if (full)
@@ -1821,9 +1821,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ContractorItem", "activityCode", base.from_string, fields);
                 base.export_element (obj, "ContractorItem", "bidAmount", base.from_string, fields);
@@ -1876,9 +1876,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CUGroup", "status", base.from_string, fields);
                 if (full)
@@ -1929,9 +1929,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ShiftPattern", "assignmentType", base.from_string, fields);
                 base.export_element (obj, "ShiftPattern", "cycleCount", base.from_string, fields);
@@ -1986,9 +1986,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CULaborItem", "activityCode", base.from_string, fields);
                 base.export_element (obj, "CULaborItem", "laborDuration", base.from_string, fields);
@@ -2043,9 +2043,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PropertyUnit", "accountingUsage", base.from_string, fields);
                 base.export_element (obj, "PropertyUnit", "activityCode", base.from_string, fields);
@@ -2100,9 +2100,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Capability", "performanceFactor", base.from_string, fields);
                 base.export_element (obj, "Capability", "status", base.from_string, fields);
@@ -2161,9 +2161,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DesignLocationCU", "cuAccount", base.from_string, fields);
                 base.export_element (obj, "DesignLocationCU", "cuAction", base.from_string, fields);
@@ -2228,9 +2228,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MiscCostItem", "account", base.from_string, fields);
                 base.export_element (obj, "MiscCostItem", "costPerUnit", base.from_string, fields);
@@ -2288,9 +2288,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CUContractorItem", "activityCode", base.from_string, fields);
                 base.export_element (obj, "CUContractorItem", "bidAmount", base.from_string, fields);
@@ -2343,9 +2343,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkIdentifiedObject"](obj, exporters, false);
+                var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CUAsset", "quantity", base.from_string, fields);
                 base.export_element (obj, "CUAsset", "status", base.from_string, fields);

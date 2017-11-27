@@ -49,9 +49,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "UnderexcitationLimiterDynamics", "ExcitationSystemDynamics", fields);
                 base.export_attribute (obj, "UnderexcitationLimiterDynamics", "RemoteInputSignal", fields);
@@ -141,9 +141,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["UnderexcitationLimiterDynamics"](obj, exporters, false);
+                var fields = UnderexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "UnderexcLimIEEE2", "k1", base.from_float, fields);
                 base.export_element (obj, "UnderexcLimIEEE2", "k2", base.from_float, fields);
@@ -235,9 +235,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["UnderexcitationLimiterDynamics"](obj, exporters, false);
+                var fields = UnderexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "UnderexcLimX1", "k", base.from_string, fields);
                 base.export_element (obj, "UnderexcLimX1", "kf2", base.from_string, fields);
@@ -296,9 +296,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["UnderexcitationLimiterDynamics"](obj, exporters, false);
+                var fields = UnderexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "UnderexcLimX2", "kf2", base.from_string, fields);
                 base.export_element (obj, "UnderexcLimX2", "km", base.from_string, fields);
@@ -368,9 +368,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["UnderexcitationLimiterDynamics"](obj, exporters, false);
+                var fields = UnderexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "UnderexcLimIEEE1", "kuc", base.from_string, fields);
                 base.export_element (obj, "UnderexcLimIEEE1", "kuf", base.from_string, fields);
@@ -440,9 +440,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["UnderexcitationLimiterDynamics"](obj, exporters, false);
+                var fields = UnderexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "UnderexcLim2Simplified", "kui", base.from_string, fields);
                 base.export_element (obj, "UnderexcLim2Simplified", "p0", base.from_string, fields);

@@ -50,9 +50,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PFVArControllerType2Dynamics"](obj, exporters, false);
+                var fields = PFVArControllerType2Dynamics.PFVArControllerType2Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PFVArControllerType2UserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -100,9 +100,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineLoadControllerDynamics"](obj, exporters, false);
+                var fields = TurbineLoadControllerDynamics.TurbineLoadControllerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TurbineLoadControllerUserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -150,9 +150,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["VoltageAdjusterDynamics"](obj, exporters, false);
+                var fields = VoltageAdjusterDynamics.VoltageAdjusterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "VoltageAdjusterUserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -200,9 +200,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TurbineGovernorUserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -250,9 +250,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["LoadDynamics"](obj, exporters, false);
+                var fields = LoadDynamics.LoadDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LoadUserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -300,9 +300,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ExcitationSystemDynamics"](obj, exporters, false);
+                var fields = ExcitationSystemDynamics.ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcitationSystemUserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -350,9 +350,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindPlantDynamics"](obj, exporters, false);
+                var fields = WindDynamics.WindPlantDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindPlantUserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -400,9 +400,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemStabilizerDynamics"](obj, exporters, false);
+                var fields = PowerSystemStabilizerDynamics.PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PowerSystemStabilizerUserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -450,9 +450,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindTurbineType3or4Dynamics"](obj, exporters, false);
+                var fields = WindDynamics.WindTurbineType3or4Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindType3or4UserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -500,9 +500,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AsynchronousMachineDynamics"](obj, exporters, false);
+                var fields = AsynchronousMachineDynamics.AsynchronousMachineDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AsynchronousMachineUserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -550,9 +550,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PFVArControllerType1Dynamics"](obj, exporters, false);
+                var fields = PFVArControllerType1Dynamics.PFVArControllerType1Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PFVArControllerType1UserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -600,9 +600,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MechanicalLoadDynamics"](obj, exporters, false);
+                var fields = MechanicalLoadDynamics.MechanicalLoadDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MechanicalLoadUserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -650,9 +650,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["VoltageCompensatorDynamics"](obj, exporters, false);
+                var fields = VoltageCompensatorDynamics.VoltageCompensatorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "VoltageCompensatorUserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -700,9 +700,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["UnderexcitationLimiterDynamics"](obj, exporters, false);
+                var fields = UnderexcitationLimiterDynamics.UnderexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "UnderexcitationLimiterUserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -750,9 +750,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindTurbineType1or2Dynamics"](obj, exporters, false);
+                var fields = WindDynamics.WindTurbineType1or2Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindType1or2UserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -800,9 +800,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OverexcitationLimiterDynamics"](obj, exporters, false);
+                var fields = OverexcitationLimiterDynamics.OverexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OverexcitationLimiterUserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -873,7 +873,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -944,9 +944,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["SynchronousMachineDynamics"](obj, exporters, false);
+                var fields = SynchronousMachineDynamics.SynchronousMachineDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SynchronousMachineUserDefined", "proprietary", base.from_boolean, fields);
                 if (full)
@@ -994,9 +994,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DiscontinuousExcitationControlDynamics"](obj, exporters, false);
+                var fields = DiscontinuousExcitationControlDynamics.DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DiscontinuousExcitationControlUserDefined", "proprietary", base.from_boolean, fields);
                 if (full)

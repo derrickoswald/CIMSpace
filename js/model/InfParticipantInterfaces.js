@@ -44,9 +44,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["BidHourlySchedule"](obj, exporters, false);
+                var fields = ParticipantInterfaces.BidHourlySchedule.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WheelingReferenceSchedule", "value", base.from_string, fields);
                 if (full)

@@ -49,7 +49,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -104,7 +104,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -159,7 +159,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -216,9 +216,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Equipment"](obj, exporters, false);
+                var fields = Core.Equipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "HydroPump", "pumpDischAtMaxHead", base.from_string, fields);
                 base.export_element (obj, "HydroPump", "pumpDischAtMinHead", base.from_string, fields);
@@ -274,9 +274,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "PenstockLossCurve", "HydroGeneratingUnit", fields);
                 if (full)
@@ -331,9 +331,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CogenerationPlant", "cogenHPSendoutRating", base.from_float, fields);
                 base.export_element (obj, "CogenerationPlant", "cogenHPSteamRating", base.from_float, fields);
@@ -389,9 +389,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "IncrementalHeatRateCurve", "isNetGrossP", base.from_boolean, fields);
                 base.export_attribute (obj, "IncrementalHeatRateCurve", "ThermalGeneratingUnit", fields);
@@ -442,7 +442,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -508,9 +508,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Reservoir", "activeStorageCapacity", base.from_string, fields);
                 base.export_element (obj, "Reservoir", "energyStorageRating", base.from_float, fields);
@@ -574,7 +574,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -627,9 +627,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "StartIgnFuelCurve", "ignitionFuelType", base.from_string, fields);
                 base.export_attribute (obj, "StartIgnFuelCurve", "StartupModel", fields);
@@ -680,9 +680,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "LevelVsVolumeCurve", "Reservoir", fields);
                 if (full)
@@ -732,9 +732,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "GrossToNetActivePowerCurve", "GeneratingUnit", fields);
                 if (full)
@@ -784,9 +784,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AirCompressor", "airCompressorRating", base.from_float, fields);
                 base.export_attribute (obj, "AirCompressor", "CombustionTurbine", fields);
@@ -840,7 +840,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -900,9 +900,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "FuelAllocationSchedule", "fuelAllocationEndDate", base.from_datetime, fields);
                 base.export_element (obj, "FuelAllocationSchedule", "fuelAllocationStartDate", base.from_datetime, fields);
@@ -959,7 +959,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1017,7 +1017,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1074,9 +1074,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "HydroGeneratingEfficiencyCurve", "HydroGeneratingUnit", fields);
                 if (full)
@@ -1126,9 +1126,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["RegularIntervalSchedule"](obj, exporters, false);
+                var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "GenUnitOpSchedule", "GeneratingUnit", fields);
                 if (full)
@@ -1179,9 +1179,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "HeatRateCurve", "isNetGrossP", base.from_boolean, fields);
                 base.export_attribute (obj, "HeatRateCurve", "ThermalGeneratingUnit", fields);
@@ -1235,7 +1235,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1293,9 +1293,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GenUnitOpCostCurve", "isNetGrossP", base.from_boolean, fields);
                 base.export_attribute (obj, "GenUnitOpCostCurve", "GeneratingUnit", fields);
@@ -1344,9 +1344,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["RegularIntervalSchedule"](obj, exporters, false);
+                var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "SteamSendoutSchedule", "CogenerationPlant", fields);
                 if (full)
@@ -1396,9 +1396,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "TailbayLossCurve", "HydroGeneratingUnit", fields);
                 if (full)
@@ -1449,9 +1449,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CAESPlant", "energyStorageCapacity", base.from_string, fields);
                 base.export_element (obj, "CAESPlant", "ratedCapacityP", base.from_string, fields);
@@ -1503,7 +1503,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1559,9 +1559,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EmissionCurve", "emissionContent", base.from_string, fields);
                 base.export_element (obj, "EmissionCurve", "emissionType", base.from_string, fields);
@@ -1613,7 +1613,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1665,9 +1665,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "StartMainFuelCurve", "mainFuelType", base.from_string, fields);
                 base.export_attribute (obj, "StartMainFuelCurve", "StartupModel", fields);
@@ -1717,9 +1717,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "StartRampCurve", "hotStandbyRamp", base.from_string, fields);
                 base.export_attribute (obj, "StartRampCurve", "StartupModel", fields);
@@ -1780,9 +1780,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "FossilFuel", "fossilFuelType", base.from_string, fields);
                 base.export_element (obj, "FossilFuel", "fuelCost", base.from_string, fields);
@@ -1879,9 +1879,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Equipment"](obj, exporters, false);
+                var fields = Core.Equipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GeneratingUnit", "allocSpinResP", base.from_string, fields);
                 base.export_element (obj, "GeneratingUnit", "autoCntrlMarginP", base.from_string, fields);
@@ -1978,9 +1978,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "HydroPowerPlant", "dischargeTravelDelay", base.from_string, fields);
                 base.export_element (obj, "HydroPowerPlant", "genRatedP", base.from_string, fields);
@@ -2040,9 +2040,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["RegularIntervalSchedule"](obj, exporters, false);
+                var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "HydroPumpOpSchedule", "HydroPump", fields);
                 if (full)
@@ -2092,9 +2092,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ShutdownCurve", "shutdownCost", base.from_string, fields);
                 base.export_element (obj, "ShutdownCurve", "shutdownDate", base.from_datetime, fields);
@@ -2148,9 +2148,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EmissionAccount", "emissionType", base.from_string, fields);
                 base.export_element (obj, "EmissionAccount", "emissionValueSource", base.from_string, fields);
@@ -2207,9 +2207,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "HeatInputCurve", "auxPowerMult", base.from_string, fields);
                 base.export_element (obj, "HeatInputCurve", "auxPowerOffset", base.from_string, fields);
@@ -2275,9 +2275,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "StartupModel", "fixedMaintCost", base.from_string, fields);
                 base.export_element (obj, "StartupModel", "hotStandbyHeat", base.from_string, fields);
@@ -2342,7 +2342,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -2396,9 +2396,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CombinedCyclePlant", "combCyclePlantRating", base.from_string, fields);
                 if (full)
@@ -2450,9 +2450,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TargetLevelSchedule", "highLevelLimit", base.from_string, fields);
                 base.export_element (obj, "TargetLevelSchedule", "lowLevelLimit", base.from_string, fields);
@@ -2504,9 +2504,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["RegularIntervalSchedule"](obj, exporters, false);
+                var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "InflowForecast", "Reservoir", fields);
                 if (full)
@@ -2562,9 +2562,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["GeneratingUnit"](obj, exporters, false);
+                var fields = GeneratingUnit.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ThermalGeneratingUnit", "oMCost", base.from_string, fields);
                 base.export_attribute (obj, "ThermalGeneratingUnit", "ShutdownCurve", fields);
@@ -2623,9 +2623,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["GeneratingUnit"](obj, exporters, false);
+                var fields = GeneratingUnit.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "HydroGeneratingUnit", "energyConversionCapability", base.from_string, fields);
                 base.export_element (obj, "HydroGeneratingUnit", "hydroUnitWaterCost", base.from_string, fields);
@@ -2678,9 +2678,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["GeneratingUnit"](obj, exporters, false);
+                var fields = GeneratingUnit.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindGeneratingUnit", "windGenUnitType", base.from_string, fields);
                 if (full)
@@ -2727,9 +2727,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["GeneratingUnit"](obj, exporters, false);
+                var fields = GeneratingUnit.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2775,9 +2775,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["GeneratingUnit"](obj, exporters, false);
+                var fields = GeneratingUnit.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

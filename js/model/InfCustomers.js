@@ -48,9 +48,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "StandardIndustryCode", "code", base.from_string, fields);
                 if (full)
@@ -103,9 +103,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ServiceGuarantee", "applicationPeriod", base.from_string, fields);
                 base.export_element (obj, "ServiceGuarantee", "automaticPay", base.from_boolean, fields);
@@ -158,9 +158,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ActivityRecord"](obj, exporters, false);
+                var fields = Common.ActivityRecord.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ComplianceEvent", "deadline", base.from_datetime, fields);
                 if (full)
@@ -217,9 +217,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WorkBillingInfo", "costEstimate", base.from_string, fields);
                 base.export_element (obj, "WorkBillingInfo", "deposit", base.from_string, fields);
@@ -275,9 +275,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Agreement"](obj, exporters, false);
+                var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -332,9 +332,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PowerQualityPricing", "emergencyHighVoltLimit", base.from_string, fields);
                 base.export_element (obj, "PowerQualityPricing", "emergencyLowVoltLimit", base.from_string, fields);
@@ -389,9 +389,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -441,7 +441,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -504,9 +504,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CustomerBillingInfo", "billingDate", base.from_string, fields);
                 base.export_element (obj, "CustomerBillingInfo", "dueDate", base.from_string, fields);

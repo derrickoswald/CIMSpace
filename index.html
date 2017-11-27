@@ -184,12 +184,29 @@
                     <h2><i class="fa fa-download"></i> Save</h2>
                 </div>
                 <div class="modal-body" style="padding:40px 50px;">
-                    <div class="row">
+                    <div class="form-row">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="save_name">File name (.zip)</label>
-                            <div class="col-sm-9">
-                                <input id="save_name" class="form-control" type="text" name="save_name" placeholder="save.zip">
-                            </div>
+                            <label class="col-form-label" for="save_name">File name (.zip)</label>
+                            <input id="save_name" class="form-control" type="text" name="save_name" placeholder="save.zip">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="col-form-label" for="about">About</label>
+                            <input id="about" class="form-control" type="text" name="about" placeholder="rdf:about contents">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="col-form-label" for="description">Description</label>
+                            <input id="description" class="form-control" type="text" name="description" placeholder="md:description contents">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <label class="form-check-label" for="difference_model">
+                                <input id="difference_model" type="checkbox" class="form-check-input" style="margin-right: 20px;">Difference
+                            </label>
                         </div>
                     </div>
                 </div>

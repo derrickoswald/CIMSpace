@@ -42,9 +42,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ResourceGroupReq", "ResourceGroup", fields);
                 if (full)
@@ -94,9 +94,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ReserveReqCurve", "ReserveReq", fields);
                 if (full)
@@ -145,9 +145,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ResourceGroup", "type", base.from_string, fields);
                 base.export_element (obj, "ResourceGroup", "status", base.from_string, fields);
@@ -198,9 +198,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "SensitivityPriceCurve", "ReserveReq", fields);
                 if (full)
@@ -250,9 +250,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ResourceGroupReq"](obj, exporters, false);
+                var fields = ResourceGroupReq.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ReserveReq", "MarketProduct", fields);
                 base.export_attribute (obj, "ReserveReq", "SensitivityPriceCurve", fields);

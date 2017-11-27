@@ -47,9 +47,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OrganisationRole"](obj, exporters, false);
+                var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Bank", "bic", base.from_string, fields);
                 base.export_element (obj, "Bank", "iban", base.from_string, fields);
@@ -101,7 +101,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -157,9 +157,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OrganisationRole"](obj, exporters, false);
+                var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BusinessRole", "status", base.from_string, fields);
                 base.export_element (obj, "BusinessRole", "type", base.from_string, fields);
@@ -207,9 +207,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OrganisationRole"](obj, exporters, false);
+                var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -257,9 +257,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Crew"](obj, exporters, false);
+                var fields = Common.Crew.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OldCrew", "type", base.from_string, fields);
                 base.export_attribute (obj, "OldCrew", "Route", fields);
@@ -310,9 +310,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OrganisationRole"](obj, exporters, false);
+                var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OrgOrgRole", "clientID", base.from_string, fields);
                 if (full)
@@ -363,9 +363,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Skill", "certificationPeriod", base.from_string, fields);
                 base.export_element (obj, "Skill", "effectiveDateTime", base.from_datetime, fields);
@@ -417,9 +417,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -467,9 +467,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Role", "status", base.from_string, fields);
                 base.export_element (obj, "Role", "type", base.from_string, fields);
@@ -517,9 +517,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OrganisationRole"](obj, exporters, false);
+                var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -567,7 +567,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -621,9 +621,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Craft", "status", base.from_string, fields);
                 base.export_element (obj, "Craft", "type", base.from_string, fields);
@@ -676,9 +676,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Person"](obj, exporters, false);
+                var fields = Common.Person.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OldPerson", "status", base.from_string, fields);
                 base.export_element (obj, "OldPerson", "type", base.from_string, fields);
@@ -731,9 +731,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OrganisationRole"](obj, exporters, false);
+                var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PersonOrganisationRole", "clientID", base.from_string, fields);
                 base.export_attribute (obj, "PersonOrganisationRole", "ErpPerson", fields);
@@ -784,9 +784,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BankAccount", "accountNumber", base.from_string, fields);
                 base.export_attribute (obj, "BankAccount", "ServiceSupplier", fields);
@@ -836,9 +836,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Role"](obj, exporters, false);
+                var fields = Role.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "PersonDocumentRole", "Person", fields);
                 if (full)
@@ -889,9 +889,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Role"](obj, exporters, false);
+                var fields = Role.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "PersonPropertyRole", "LandProperty", fields);
                 base.export_attribute (obj, "PersonPropertyRole", "Person", fields);

@@ -50,7 +50,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -105,7 +105,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -159,9 +159,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "TurbineGovernorDynamics", "AsynchronousMachineDynamics", fields);
                 base.export_attribute (obj, "TurbineGovernorDynamics", "TurbineLoadControllerDynamics", fields);
@@ -226,9 +226,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovSteamCC", "dhp", base.from_string, fields);
                 base.export_element (obj, "GovSteamCC", "dlp", base.from_string, fields);
@@ -324,9 +324,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovHydroPID", "aturb", base.from_string, fields);
                 base.export_element (obj, "GovHydroPID", "bturb", base.from_string, fields);
@@ -463,9 +463,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovCT2", "aset", base.from_float, fields);
                 base.export_element (obj, "GovCT2", "db", base.from_string, fields);
@@ -596,9 +596,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovHydro2", "aturb", base.from_string, fields);
                 base.export_element (obj, "GovHydro2", "bturb", base.from_string, fields);
@@ -701,9 +701,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovHydroIEEE2", "aturb", base.from_string, fields);
                 base.export_element (obj, "GovHydroIEEE2", "bturb", base.from_string, fields);
@@ -797,9 +797,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovHydroWPID", "d", base.from_string, fields);
                 base.export_element (obj, "GovHydroWPID", "gatmax", base.from_string, fields);
@@ -918,9 +918,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovSteamFV4", "cpsmn", base.from_string, fields);
                 base.export_element (obj, "GovSteamFV4", "cpsmx", base.from_string, fields);
@@ -1041,9 +1041,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovHydroPID2", "atw", base.from_string, fields);
                 base.export_element (obj, "GovHydroPID2", "d", base.from_string, fields);
@@ -1121,9 +1121,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovGAST", "at", base.from_string, fields);
                 base.export_element (obj, "GovGAST", "dturb", base.from_string, fields);
@@ -1214,9 +1214,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovSteamEU", "chc", base.from_float, fields);
                 base.export_element (obj, "GovSteamEU", "cho", base.from_float, fields);
@@ -1335,9 +1335,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovHydro3", "at", base.from_string, fields);
                 base.export_element (obj, "GovHydro3", "db1", base.from_string, fields);
@@ -1442,9 +1442,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovSteamIEEE1", "k", base.from_string, fields);
                 base.export_element (obj, "GovSteamIEEE1", "k1", base.from_float, fields);
@@ -1544,9 +1544,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovGASTWD", "a", base.from_float, fields);
                 base.export_element (obj, "GovGASTWD", "af1", base.from_string, fields);
@@ -1646,9 +1646,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovGAST3", "bca", base.from_float, fields);
                 base.export_element (obj, "GovGAST3", "bp", base.from_string, fields);
@@ -1728,9 +1728,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovSteamFV2", "dt", base.from_string, fields);
                 base.export_element (obj, "GovSteamFV2", "k", base.from_string, fields);
@@ -1819,9 +1819,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovHydroPelton", "av0", base.from_string, fields);
                 base.export_element (obj, "GovHydroPelton", "av1", base.from_string, fields);
@@ -1932,9 +1932,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovCT1", "aset", base.from_float, fields);
                 base.export_element (obj, "GovCT1", "db", base.from_string, fields);
@@ -2029,9 +2029,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovHydro1", "at", base.from_string, fields);
                 base.export_element (obj, "GovHydro1", "dturb", base.from_string, fields);
@@ -2099,9 +2099,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovSteam2", "dbf", base.from_string, fields);
                 base.export_element (obj, "GovSteam2", "k", base.from_float, fields);
@@ -2190,9 +2190,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovHydroDD", "aturb", base.from_string, fields);
                 base.export_element (obj, "GovHydroDD", "bturb", base.from_string, fields);
@@ -2283,9 +2283,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovHydroIEEE0", "k", base.from_string, fields);
                 base.export_element (obj, "GovHydroIEEE0", "mwbase", base.from_string, fields);
@@ -2347,9 +2347,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovSteam0", "dt", base.from_string, fields);
                 base.export_element (obj, "GovSteam0", "mwbase", base.from_string, fields);
@@ -2415,9 +2415,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovSteamSGO", "k1", base.from_string, fields);
                 base.export_element (obj, "GovSteamSGO", "k2", base.from_string, fields);
@@ -2517,9 +2517,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovHydroR", "at", base.from_string, fields);
                 base.export_element (obj, "GovHydroR", "db1", base.from_string, fields);
@@ -2647,9 +2647,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovHydro4", "at", base.from_string, fields);
                 base.export_element (obj, "GovHydro4", "bgv0", base.from_string, fields);
@@ -2767,9 +2767,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovGAST1", "a", base.from_float, fields);
                 base.export_element (obj, "GovGAST1", "b", base.from_float, fields);
@@ -2888,9 +2888,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovSteam1", "db1", base.from_string, fields);
                 base.export_element (obj, "GovSteam1", "db2", base.from_string, fields);
@@ -3004,9 +3004,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovHydroFrancis", "am", base.from_string, fields);
                 base.export_element (obj, "GovHydroFrancis", "av0", base.from_string, fields);
@@ -3090,9 +3090,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovGAST4", "bp", base.from_string, fields);
                 base.export_element (obj, "GovGAST4", "ktm", base.from_string, fields);
@@ -3168,9 +3168,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovSteamFV3", "k", base.from_string, fields);
                 base.export_element (obj, "GovSteamFV3", "k1", base.from_string, fields);
@@ -3286,9 +3286,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovHydroWEH", "db", base.from_string, fields);
                 base.export_element (obj, "GovHydroWEH", "dicn", base.from_string, fields);
@@ -3417,9 +3417,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["TurbineGovernorDynamics"](obj, exporters, false);
+                var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GovGAST2", "a", base.from_float, fields);
                 base.export_element (obj, "GovGAST2", "af1", base.from_string, fields);

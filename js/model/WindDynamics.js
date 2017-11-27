@@ -60,9 +60,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindContPitchAngleIEC", "dthetamax", base.from_float, fields);
                 base.export_element (obj, "WindContPitchAngleIEC", "dthetamin", base.from_float, fields);
@@ -130,9 +130,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindPitchContPowerIEC", "dpmax", base.from_string, fields);
                 base.export_element (obj, "WindPitchContPowerIEC", "dpmin", base.from_string, fields);
@@ -195,9 +195,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindGenType4IEC", "dipmax", base.from_string, fields);
                 base.export_element (obj, "WindGenType4IEC", "diqmax", base.from_string, fields);
@@ -270,9 +270,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindPlantReactiveControlIEC", "dxrefmax", base.from_string, fields);
                 base.export_element (obj, "WindPlantReactiveControlIEC", "dxrefmin", base.from_string, fields);
@@ -363,9 +363,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindContPType3IEC", "dpmax", base.from_string, fields);
                 base.export_element (obj, "WindContPType3IEC", "dprefmax", base.from_string, fields);
@@ -440,7 +440,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -519,9 +519,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindContQIEC", "iqh1", base.from_string, fields);
                 base.export_element (obj, "WindContQIEC", "iqmax", base.from_string, fields);
@@ -594,9 +594,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WindAeroConstIEC", "WindGenTurbineType1aIEC", fields);
                 if (full)
@@ -646,9 +646,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WindTurbineType3or4Dynamics", "EnergySource", fields);
                 base.export_attribute (obj, "WindTurbineType3or4Dynamics", "WindPlantDynamics", fields);
@@ -702,9 +702,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindContQPQULimIEC", "tpfiltql", base.from_string, fields);
                 base.export_element (obj, "WindContQPQULimIEC", "tufiltql", base.from_string, fields);
@@ -757,7 +757,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -818,9 +818,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindMechIEC", "cdrt", base.from_string, fields);
                 base.export_element (obj, "WindMechIEC", "hgen", base.from_string, fields);
@@ -889,7 +889,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -963,9 +963,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindAeroTwoDimIEC", "dpomega", base.from_string, fields);
                 base.export_element (obj, "WindAeroTwoDimIEC", "dptheta", base.from_string, fields);
@@ -1024,9 +1024,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindContQLimIEC", "qmax", base.from_string, fields);
                 base.export_element (obj, "WindContQLimIEC", "qmin", base.from_string, fields);
@@ -1079,9 +1079,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindGenType3IEC", "dipmax", base.from_string, fields);
                 base.export_element (obj, "WindGenType3IEC", "diqmax", base.from_string, fields);
@@ -1142,9 +1142,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindProtectionIEC", "dfimax", base.from_string, fields);
                 base.export_element (obj, "WindProtectionIEC", "fover", base.from_string, fields);
@@ -1210,9 +1210,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindContRotorRIEC", "kirr", base.from_string, fields);
                 base.export_element (obj, "WindContRotorRIEC", "komegafilt", base.from_float, fields);
@@ -1274,9 +1274,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindContPType4bIEC", "dpmaxp4b", base.from_string, fields);
                 base.export_element (obj, "WindContPType4bIEC", "tpaero", base.from_string, fields);
@@ -1333,9 +1333,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindRefFrameRotIEC", "tpll", base.from_string, fields);
                 base.export_element (obj, "WindRefFrameRotIEC", "upll1", base.from_string, fields);
@@ -1398,9 +1398,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindDynamicsLookupTable", "input", base.from_float, fields);
                 base.export_element (obj, "WindDynamicsLookupTable", "lookupTableFunctionType", base.from_string, fields);
@@ -1461,9 +1461,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WindTurbineType1or2Dynamics", "AsynchronousMachineDynamics", fields);
                 base.export_attribute (obj, "WindTurbineType1or2Dynamics", "RemoteInputSignal", fields);
@@ -1529,9 +1529,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindPlantFreqPcontrolIEC", "dprefmax", base.from_string, fields);
                 base.export_element (obj, "WindPlantFreqPcontrolIEC", "dprefmin", base.from_string, fields);
@@ -1599,9 +1599,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindContPType4aIEC", "dpmaxp4a", base.from_string, fields);
                 base.export_element (obj, "WindContPType4aIEC", "tpordp4a", base.from_string, fields);
@@ -1654,7 +1654,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1715,9 +1715,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindContCurrLimIEC", "imax", base.from_string, fields);
                 base.export_element (obj, "WindContCurrLimIEC", "imaxdip", base.from_string, fields);
@@ -1776,9 +1776,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindAeroOneDimIEC", "ka", base.from_float, fields);
                 base.export_element (obj, "WindAeroOneDimIEC", "thetaomega", base.from_string, fields);
@@ -1828,9 +1828,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WindPlantDynamics", "RemoteInputSignal", fields);
                 if (full)
@@ -1883,9 +1883,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindTurbineType3or4Dynamics"](obj, exporters, false);
+                var fields = WindTurbineType3or4Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WindTurbineType3or4IEC", "WindRefFrameRotIEC", fields);
                 base.export_attribute (obj, "WindTurbineType3or4IEC", "WindContQPQULimIEC", fields);
@@ -1938,9 +1938,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindTurbineType3or4IEC"](obj, exporters, false);
+                var fields = WindTurbineType3or4IEC.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WindTurbineType4IEC", "WindGenType3aIEC", fields);
                 if (full)
@@ -1993,9 +1993,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindTurbineType3or4IEC"](obj, exporters, false);
+                var fields = WindTurbineType3or4IEC.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WindTurbineType3IEC", "WindGenType3IEC", fields);
                 base.export_attribute (obj, "WindTurbineType3IEC", "WindContPitchAngleIEC", fields);
@@ -2051,9 +2051,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindTurbineType4IEC"](obj, exporters, false);
+                var fields = WindTurbineType4IEC.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WindTurbineType4aIEC", "WindGenType4IEC", fields);
                 base.export_attribute (obj, "WindTurbineType4aIEC", "WindContPType4aIEC", fields);
@@ -2106,9 +2106,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindTurbineType4IEC"](obj, exporters, false);
+                var fields = WindTurbineType4IEC.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WindTurbineType4bIEC", "WindContPType4bIEC", fields);
                 base.export_attribute (obj, "WindTurbineType4bIEC", "WindGenType4IEC", fields);
@@ -2162,9 +2162,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindGenType3IEC"](obj, exporters, false);
+                var fields = WindGenType3IEC.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindGenType3aIEC", "kpc", base.from_float, fields);
                 base.export_element (obj, "WindGenType3aIEC", "tic", base.from_string, fields);
@@ -2218,9 +2218,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindGenType3IEC"](obj, exporters, false);
+                var fields = WindGenType3IEC.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindGenType3bIEC", "mwtcwp", base.from_boolean, fields);
                 base.export_element (obj, "WindGenType3bIEC", "tg", base.from_string, fields);
@@ -2273,9 +2273,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindTurbineType1or2Dynamics"](obj, exporters, false);
+                var fields = WindTurbineType1or2Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WindTurbineType1or2IEC", "WindProtectionIEC", fields);
                 base.export_attribute (obj, "WindTurbineType1or2IEC", "WindMechIEC", fields);
@@ -2326,9 +2326,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindTurbineType1or2IEC"](obj, exporters, false);
+                var fields = WindTurbineType1or2IEC.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WindGenTurbineType1bIEC", "WindPitchContPowerIEC", fields);
                 if (full)
@@ -2378,9 +2378,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindTurbineType1or2IEC"](obj, exporters, false);
+                var fields = WindTurbineType1or2IEC.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WindGenTurbineType1aIEC", "WindAeroConstIEC", fields);
                 if (full)
@@ -2431,9 +2431,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindTurbineType1or2IEC"](obj, exporters, false);
+                var fields = WindTurbineType1or2IEC.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WindGenTurbineType2IEC", "WindContRotorRIEC", fields);
                 base.export_attribute (obj, "WindGenTurbineType2IEC", "WindPitchContPowerIEC", fields);
@@ -2485,9 +2485,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WindPlantDynamics"](obj, exporters, false);
+                var fields = WindPlantDynamics.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "WindPlantIEC", "WindPlantReactiveControlIEC", fields);
                 base.export_attribute (obj, "WindPlantIEC", "WindPlantFreqPcontrolIEC", fields);

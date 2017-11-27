@@ -55,9 +55,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CRRSegment", "amount", base.from_string, fields);
                 base.export_element (obj, "CRRSegment", "clearingPrice", base.from_string, fields);
@@ -118,9 +118,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CRR", "cRRcategory", base.from_string, fields);
                 base.export_element (obj, "CRR", "cRRtype", base.from_string, fields);
@@ -177,9 +177,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OrganisationRole"](obj, exporters, false);
+                var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CRROrgRole", "kind", base.from_string, fields);
                 base.export_element (obj, "CRROrgRole", "status", base.from_string, fields);

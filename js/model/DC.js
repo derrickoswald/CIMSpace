@@ -47,9 +47,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "DCNode", "DCTopologicalNode", fields);
                 base.export_attribute (obj, "DCNode", "DCEquipmentContainer", fields);
@@ -99,9 +99,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -150,7 +150,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -204,7 +204,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -254,7 +254,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -309,9 +309,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ACDCTerminal"](obj, exporters, false);
+                var fields = Core.ACDCTerminal.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "DCBaseTerminal", "DCNode", fields);
                 base.export_attribute (obj, "DCBaseTerminal", "DCTopologicalNode", fields);
@@ -377,9 +377,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ConductingEquipment"](obj, exporters, false);
+                var fields = Core.ConductingEquipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ACDCConverter", "baseS", base.from_string, fields);
                 base.export_element (obj, "ACDCConverter", "switchingLoss", base.from_string, fields);
@@ -442,9 +442,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PerLengthLineParameter"](obj, exporters, false);
+                var fields = Wires.PerLengthLineParameter.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PerLengthDCLineParameter", "capacitance", base.from_string, fields);
                 base.export_element (obj, "PerLengthDCLineParameter", "inductance", base.from_string, fields);
@@ -498,7 +498,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -553,9 +553,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EquipmentContainer"](obj, exporters, false);
+                var fields = Core.EquipmentContainer.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -601,9 +601,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Curve"](obj, exporters, false);
+                var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -651,7 +651,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -704,7 +704,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -755,9 +755,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Equipment"](obj, exporters, false);
+                var fields = Core.Equipment.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -807,9 +807,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DCBaseTerminal"](obj, exporters, false);
+                var fields = DCBaseTerminal.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ACDCConverterDCTerminal", "polarity", base.from_string, fields);
                 base.export_attribute (obj, "ACDCConverterDCTerminal", "DCConductingEquipment", fields);
@@ -858,9 +858,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DCBaseTerminal"](obj, exporters, false);
+                var fields = DCBaseTerminal.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "DCTerminal", "DCConductingEquipment", fields);
                 if (full)
@@ -921,9 +921,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ACDCConverter"](obj, exporters, false);
+                var fields = ACDCConverter.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CsConverter", "maxIdc", base.from_string, fields);
                 base.export_element (obj, "CsConverter", "ratedIdc", base.from_string, fields);
@@ -995,9 +995,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ACDCConverter"](obj, exporters, false);
+                var fields = ACDCConverter.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "VsConverter", "pPccControl", base.from_string, fields);
                 base.export_element (obj, "VsConverter", "qShare", base.from_string, fields);
@@ -1056,9 +1056,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DCEquipmentContainer"](obj, exporters, false);
+                var fields = DCEquipmentContainer.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "DCLine", "Region", fields);
                 if (full)
@@ -1107,9 +1107,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DCEquipmentContainer"](obj, exporters, false);
+                var fields = DCEquipmentContainer.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DCConverterUnit", "operationMode", base.from_string, fields);
                 base.export_attribute (obj, "DCConverterUnit", "Substation", fields);
@@ -1157,9 +1157,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DCConductingEquipment"](obj, exporters, false);
+                var fields = DCConductingEquipment.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1205,9 +1205,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DCSwitch"](obj, exporters, false);
+                var fields = DCSwitch.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1258,9 +1258,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DCConductingEquipment"](obj, exporters, false);
+                var fields = DCConductingEquipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DCSeriesDevice", "resistance", base.from_string, fields);
                 base.export_element (obj, "DCSeriesDevice", "inductance", base.from_string, fields);
@@ -1309,9 +1309,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DCConductingEquipment"](obj, exporters, false);
+                var fields = DCConductingEquipment.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1362,9 +1362,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DCConductingEquipment"](obj, exporters, false);
+                var fields = DCConductingEquipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DCShunt", "capacitance", base.from_string, fields);
                 base.export_element (obj, "DCShunt", "ratedUdc", base.from_string, fields);
@@ -1418,9 +1418,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DCConductingEquipment"](obj, exporters, false);
+                var fields = DCConductingEquipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DCLineSegment", "resistance", base.from_string, fields);
                 base.export_element (obj, "DCLineSegment", "capacitance", base.from_string, fields);
@@ -1473,9 +1473,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DCConductingEquipment"](obj, exporters, false);
+                var fields = DCConductingEquipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DCGround", "r", base.from_string, fields);
                 base.export_element (obj, "DCGround", "inductance", base.from_string, fields);
@@ -1523,9 +1523,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DCSwitch"](obj, exporters, false);
+                var fields = DCSwitch.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1573,9 +1573,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DCConductingEquipment"](obj, exporters, false);
+                var fields = DCConductingEquipment.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

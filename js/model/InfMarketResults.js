@@ -44,9 +44,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SecurityConstraintsClearing", "mwLimit", base.from_string, fields);
                 base.export_element (obj, "SecurityConstraintsClearing", "mwFlow", base.from_string, fields);
@@ -98,9 +98,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MarketCaseClearing", "caseType", base.from_string, fields);
                 base.export_element (obj, "MarketCaseClearing", "postedDate", base.from_datetime, fields);
@@ -151,9 +151,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -205,7 +205,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 

@@ -47,9 +47,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -104,9 +104,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MeasurementValue", "sensorAccuracy", base.from_string, fields);
                 base.export_element (obj, "MeasurementValue", "timeStamp", base.from_datetime, fields);
@@ -162,7 +162,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -225,7 +225,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -287,9 +287,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -344,9 +344,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Control", "operationInProgress", base.from_boolean, fields);
                 base.export_element (obj, "Control", "timeStamp", base.from_datetime, fields);
@@ -401,9 +401,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -458,9 +458,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Measurement", "measurementType", base.from_string, fields);
                 base.export_element (obj, "Measurement", "phases", base.from_string, fields);
@@ -516,9 +516,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LimitSet", "isPercentageLimits", base.from_boolean, fields);
                 if (full)
@@ -567,9 +567,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ValueToAlias", "value", base.from_string, fields);
                 base.export_attribute (obj, "ValueToAlias", "ValueAliasSet", fields);
@@ -620,9 +620,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MeasurementValue"](obj, exporters, false);
+                var fields = MeasurementValue.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DiscreteValue", "value", base.from_string, fields);
                 base.export_attribute (obj, "DiscreteValue", "Command", fields);
@@ -673,9 +673,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MeasurementValue"](obj, exporters, false);
+                var fields = MeasurementValue.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "StringMeasurementValue", "value", base.from_string, fields);
                 base.export_attribute (obj, "StringMeasurementValue", "StringMeasurement", fields);
@@ -726,9 +726,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MeasurementValue"](obj, exporters, false);
+                var fields = MeasurementValue.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AccumulatorValue", "value", base.from_string, fields);
                 base.export_attribute (obj, "AccumulatorValue", "Accumulator", fields);
@@ -780,9 +780,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MeasurementValue"](obj, exporters, false);
+                var fields = MeasurementValue.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AnalogValue", "value", base.from_float, fields);
                 base.export_attribute (obj, "AnalogValue", "Analog", fields);
@@ -834,9 +834,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Quality61850"](obj, exporters, false);
+                var fields = Quality61850.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "MeasurementValueQuality", "MeasurementValue", fields);
                 if (full)
@@ -885,9 +885,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Limit"](obj, exporters, false);
+                var fields = Limit.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AccumulatorLimit", "value", base.from_string, fields);
                 base.export_attribute (obj, "AccumulatorLimit", "LimitSet", fields);
@@ -937,9 +937,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Limit"](obj, exporters, false);
+                var fields = Limit.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AnalogLimit", "value", base.from_float, fields);
                 base.export_attribute (obj, "AnalogLimit", "LimitSet", fields);
@@ -988,9 +988,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Control"](obj, exporters, false);
+                var fields = Control.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "AccumulatorReset", "AccumulatorValue", fields);
                 if (full)
@@ -1040,9 +1040,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Control"](obj, exporters, false);
+                var fields = Control.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AnalogControl", "maxValue", base.from_float, fields);
                 base.export_element (obj, "AnalogControl", "minValue", base.from_float, fields);
@@ -1095,9 +1095,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Control"](obj, exporters, false);
+                var fields = Control.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Command", "normalValue", base.from_string, fields);
                 base.export_element (obj, "Command", "value", base.from_string, fields);
@@ -1143,9 +1143,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Command"](obj, exporters, false);
+                var fields = Command.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1192,9 +1192,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AnalogControl"](obj, exporters, false);
+                var fields = AnalogControl.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "RaiseLowerCommand", "ValueAliasSet", fields);
                 if (full)
@@ -1243,9 +1243,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AnalogControl"](obj, exporters, false);
+                var fields = AnalogControl.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SetPoint", "normalValue", base.from_float, fields);
                 base.export_element (obj, "SetPoint", "value", base.from_float, fields);
@@ -1297,9 +1297,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Measurement"](obj, exporters, false);
+                var fields = Measurement.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Discrete", "maxValue", base.from_string, fields);
                 base.export_element (obj, "Discrete", "minValue", base.from_string, fields);
@@ -1353,9 +1353,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Measurement"](obj, exporters, false);
+                var fields = Measurement.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Analog", "maxValue", base.from_float, fields);
                 base.export_element (obj, "Analog", "minValue", base.from_float, fields);
@@ -1406,9 +1406,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Measurement"](obj, exporters, false);
+                var fields = Measurement.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Accumulator", "maxValue", base.from_string, fields);
                 if (full)
@@ -1455,9 +1455,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Measurement"](obj, exporters, false);
+                var fields = Measurement.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1503,9 +1503,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["LimitSet"](obj, exporters, false);
+                var fields = LimitSet.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1551,9 +1551,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["LimitSet"](obj, exporters, false);
+                var fields = LimitSet.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

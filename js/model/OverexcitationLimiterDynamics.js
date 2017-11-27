@@ -48,9 +48,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "OverexcitationLimiterDynamics", "ExcitationSystemDynamics", fields);
                 if (full)
@@ -103,9 +103,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OverexcitationLimiterDynamics"](obj, exporters, false);
+                var fields = OverexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OverexcLim2", "ifdlim", base.from_string, fields);
                 base.export_element (obj, "OverexcLim2", "koi", base.from_string, fields);
@@ -163,9 +163,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OverexcitationLimiterDynamics"](obj, exporters, false);
+                var fields = OverexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OverexcLimIEEE", "hyst", base.from_string, fields);
                 base.export_element (obj, "OverexcLimIEEE", "ifdlim", base.from_string, fields);
@@ -227,9 +227,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OverexcitationLimiterDynamics"](obj, exporters, false);
+                var fields = OverexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OverexcLimX1", "efd1", base.from_string, fields);
                 base.export_element (obj, "OverexcLimX1", "efd2", base.from_string, fields);
@@ -296,9 +296,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OverexcitationLimiterDynamics"](obj, exporters, false);
+                var fields = OverexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OverexcLimX2", "efd1", base.from_string, fields);
                 base.export_element (obj, "OverexcLimX2", "efd2", base.from_string, fields);

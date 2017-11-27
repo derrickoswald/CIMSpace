@@ -48,9 +48,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DynamicsFunctionBlock", "enabled", base.from_boolean, fields);
                 if (full)
@@ -103,9 +103,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["DynamicsFunctionBlock"](obj, exporters, false);
+                var fields = DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RotatingMachineDynamics", "damping", base.from_float, fields);
                 base.export_element (obj, "RotatingMachineDynamics", "inertia", base.from_string, fields);

@@ -44,9 +44,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ProcedureDataSet"](obj, exporters, false);
+                var fields = Assets.ProcedureDataSet.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MaintenanceDataSet", "conditionAfter", base.from_string, fields);
                 base.export_element (obj, "MaintenanceDataSet", "conditionBefore", base.from_string, fields);
@@ -96,9 +96,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ProcedureDataSet"](obj, exporters, false);
+                var fields = Assets.ProcedureDataSet.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "InspectionDataSet", "locationCondition", base.from_string, fields);
                 if (full)
@@ -158,9 +158,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ProcedureDataSet"](obj, exporters, false);
+                var fields = Assets.ProcedureDataSet.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DiagnosisDataSet", "effect", base.from_string, fields);
                 base.export_element (obj, "DiagnosisDataSet", "failureMode", base.from_string, fields);
@@ -222,9 +222,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ProcedureDataSet"](obj, exporters, false);
+                var fields = Assets.ProcedureDataSet.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TestDataSet", "conclusion", base.from_string, fields);
                 base.export_element (obj, "TestDataSet", "specimenID", base.from_string, fields);

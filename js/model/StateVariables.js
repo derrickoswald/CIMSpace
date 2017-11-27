@@ -45,7 +45,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -98,9 +98,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["StateVariable"](obj, exporters, false);
+                var fields = StateVariable.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SvInjection", "pInjection", base.from_string, fields);
                 base.export_element (obj, "SvInjection", "qInjection", base.from_string, fields);
@@ -151,9 +151,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["StateVariable"](obj, exporters, false);
+                var fields = StateVariable.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SvStatus", "inService", base.from_boolean, fields);
                 base.export_attribute (obj, "SvStatus", "ConductingEquipment", fields);
@@ -205,9 +205,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["StateVariable"](obj, exporters, false);
+                var fields = StateVariable.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SvTapStep", "position", base.from_float, fields);
                 base.export_attribute (obj, "SvTapStep", "TapChanger", fields);
@@ -257,9 +257,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["StateVariable"](obj, exporters, false);
+                var fields = StateVariable.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SvShuntCompensatorSections", "sections", base.from_float, fields);
                 base.export_attribute (obj, "SvShuntCompensatorSections", "ShuntCompensator", fields);
@@ -312,9 +312,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["StateVariable"](obj, exporters, false);
+                var fields = StateVariable.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SvPowerFlow", "p", base.from_string, fields);
                 base.export_element (obj, "SvPowerFlow", "q", base.from_string, fields);
@@ -366,9 +366,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["StateVariable"](obj, exporters, false);
+                var fields = StateVariable.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SvVoltage", "angle", base.from_string, fields);
                 base.export_element (obj, "SvVoltage", "v", base.from_string, fields);

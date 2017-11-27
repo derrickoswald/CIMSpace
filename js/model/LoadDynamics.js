@@ -63,9 +63,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LoadMotor", "d", base.from_float, fields);
                 base.export_element (obj, "LoadMotor", "h", base.from_string, fields);
@@ -127,7 +127,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -181,9 +181,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -247,9 +247,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LoadStatic", "ep1", base.from_float, fields);
                 base.export_element (obj, "LoadStatic", "ep2", base.from_float, fields);
@@ -317,7 +317,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -382,9 +382,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["LoadDynamics"](obj, exporters, false);
+                var fields = LoadDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LoadComposite", "epfd", base.from_float, fields);
                 base.export_element (obj, "LoadComposite", "epfs", base.from_float, fields);
@@ -450,9 +450,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["LoadDynamics"](obj, exporters, false);
+                var fields = LoadDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LoadGenericNonLinear", "bs", base.from_float, fields);
                 base.export_element (obj, "LoadGenericNonLinear", "bt", base.from_float, fields);
@@ -511,9 +511,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["LoadDynamics"](obj, exporters, false);
+                var fields = LoadDynamics.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "LoadAggregate", "LoadMotor", fields);
                 base.export_attribute (obj, "LoadAggregate", "LoadStatic", fields);

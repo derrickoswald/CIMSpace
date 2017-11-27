@@ -43,9 +43,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ShuntCompensator"](obj, exporters, false);
+                var fields = Wires.ShuntCompensator.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SVC", "capacitiveRating", base.from_string, fields);
                 base.export_element (obj, "SVC", "inductiveRating", base.from_string, fields);
@@ -111,9 +111,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["RegulatingControl"](obj, exporters, false);
+                var fields = Wires.RegulatingControl.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ShuntCompensatorControl", "branchDirect", base.from_string, fields);
                 base.export_element (obj, "ShuntCompensatorControl", "cellSize", base.from_string, fields);

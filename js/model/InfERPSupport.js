@@ -51,7 +51,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -105,7 +105,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -157,9 +157,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -208,7 +208,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -261,9 +261,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -312,7 +312,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -366,9 +366,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["BankAccount"](obj, exporters, false);
+                var fields = InfCommon.BankAccount.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpBankAccount", "bankABA", base.from_string, fields);
                 if (full)
@@ -417,9 +417,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -467,9 +467,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -519,9 +519,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ErpPOLineItem", "ErpRecDelLineItem", fields);
                 base.export_attribute (obj, "ErpPOLineItem", "ErpReqLineItem", fields);
@@ -573,9 +573,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -624,9 +624,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpPayment", "termsPayment", base.from_string, fields);
                 if (full)
@@ -675,9 +675,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -735,9 +735,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpInvoice", "amount", base.from_string, fields);
                 base.export_element (obj, "ErpInvoice", "billMediaKind", base.from_string, fields);
@@ -795,9 +795,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -845,9 +845,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -895,9 +895,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -946,9 +946,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ErpBOM", "Design", fields);
                 if (full)
@@ -997,9 +997,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1060,9 +1060,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpInvoiceLineItem", "billPeriod", base.from_string, fields);
                 base.export_element (obj, "ErpInvoiceLineItem", "glAccount", base.from_string, fields);
@@ -1125,9 +1125,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1175,9 +1175,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1223,9 +1223,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1273,9 +1273,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1323,9 +1323,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1373,9 +1373,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpDocument"](obj, exporters, false);
+                var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1424,9 +1424,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpLedBudLineItem", "status", base.from_string, fields);
                 base.export_attribute (obj, "ErpLedBudLineItem", "ErpLedgerBudget", fields);
@@ -1479,9 +1479,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpInventoryCount", "status", base.from_string, fields);
                 base.export_attribute (obj, "ErpInventoryCount", "AssetModel", fields);
@@ -1532,9 +1532,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpTimeEntry", "status", base.from_string, fields);
                 base.export_attribute (obj, "ErpTimeEntry", "ErpTimeSheet", fields);
@@ -1589,9 +1589,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpQuoteLineItem", "status", base.from_string, fields);
                 base.export_attribute (obj, "ErpQuoteLineItem", "Design", fields);
@@ -1652,9 +1652,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpLedgerEntry", "accountID", base.from_string, fields);
                 base.export_element (obj, "ErpLedgerEntry", "accountKind", base.from_string, fields);
@@ -1713,9 +1713,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpItemMaster", "status", base.from_string, fields);
                 base.export_attribute (obj, "ErpItemMaster", "Asset", fields);
@@ -1766,9 +1766,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpPayableLineItem", "status", base.from_string, fields);
                 base.export_attribute (obj, "ErpPayableLineItem", "ErpPayable", fields);
@@ -1820,9 +1820,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpRecLineItem", "status", base.from_string, fields);
                 base.export_attribute (obj, "ErpRecLineItem", "ErpInvoiceLineItem", fields);
@@ -1874,9 +1874,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpIssueInventory", "status", base.from_string, fields);
                 base.export_attribute (obj, "ErpIssueInventory", "TypeMaterial", fields);
@@ -1929,9 +1929,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpInventory", "status", base.from_string, fields);
                 base.export_attribute (obj, "ErpInventory", "Asset", fields);
@@ -1989,9 +1989,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpReqLineItem", "code", base.from_string, fields);
                 base.export_element (obj, "ErpReqLineItem", "cost", base.from_string, fields);
@@ -2048,9 +2048,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpPersonnel", "status", base.from_string, fields);
                 if (full)
@@ -2106,9 +2106,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpJournalEntry", "accountID", base.from_string, fields);
                 base.export_element (obj, "ErpJournalEntry", "amount", base.from_string, fields);
@@ -2166,9 +2166,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ErpBomItemData", "TypeAsset", fields);
                 base.export_attribute (obj, "ErpBomItemData", "DesignLocation", fields);
@@ -2221,9 +2221,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpSiteLevelData", "status", base.from_string, fields);
                 base.export_attribute (obj, "ErpSiteLevelData", "LandProperty", fields);
@@ -2277,9 +2277,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpRecDelvLineItem", "status", base.from_string, fields);
                 base.export_attribute (obj, "ErpRecDelvLineItem", "ErpPOLineItem", fields);
@@ -2331,9 +2331,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ErpIdentifiedObject"](obj, exporters, false);
+                var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

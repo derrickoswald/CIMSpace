@@ -47,9 +47,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "TieLine", "SideA_SubControlArea", fields);
                 base.export_attribute (obj, "TieLine", "EnergyTransaction", fields);
@@ -102,9 +102,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Profile"](obj, exporters, false);
+                var fields = ExternalInputs.Profile.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "CurtailmentProfile", "EnergyTransaction", fields);
                 if (full)
@@ -151,9 +151,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -202,7 +202,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -253,9 +253,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Profile"](obj, exporters, false);
+                var fields = ExternalInputs.Profile.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "LossProfile", "HasLoss_", fields);
                 base.export_attribute (obj, "LossProfile", "EnergyTransaction", fields);
@@ -306,7 +306,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -361,9 +361,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CurrentEmergencyScheduledInterchange", "emergencyScheduleMW", base.from_float, fields);
                 base.export_element (obj, "CurrentEmergencyScheduledInterchange", "emergencyScheduleStartTime", base.from_datetime, fields);
@@ -419,7 +419,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -480,9 +480,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["BasicIntervalSchedule"](obj, exporters, false);
+                var fields = Core.BasicIntervalSchedule.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DynamicSchedule", "dynSchedSignRev", base.from_boolean, fields);
                 base.export_element (obj, "DynamicSchedule", "dynSchedStatus", base.from_string, fields);
@@ -535,9 +535,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Agreement"](obj, exporters, false);
+                var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "EnergyProduct", "GenerationProvider", fields);
                 base.export_attribute (obj, "EnergyProduct", "TitleHeldBy_Marketer", fields);
@@ -586,9 +586,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "TransmissionRightOfWay", "TransmissionCorridor", fields);
                 if (full)
@@ -638,9 +638,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "InternalControlArea", "CurrentScheduledInterchange", fields);
                 if (full)

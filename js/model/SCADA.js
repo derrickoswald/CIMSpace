@@ -51,7 +51,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -106,9 +106,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "RemotePoint", "RemoteUnit", fields);
                 if (full)
@@ -158,9 +158,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RemoteUnit", "remoteUnitType", base.from_string, fields);
                 if (full)
@@ -210,7 +210,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -263,9 +263,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -316,9 +316,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["RemotePoint"](obj, exporters, false);
+                var fields = RemotePoint.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RemoteSource", "deadband", base.from_float, fields);
                 base.export_element (obj, "RemoteSource", "scanInterval", base.from_string, fields);
@@ -373,9 +373,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["RemotePoint"](obj, exporters, false);
+                var fields = RemotePoint.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RemoteControl", "actuatorMaximum", base.from_float, fields);
                 base.export_element (obj, "RemoteControl", "actuatorMinimum", base.from_float, fields);

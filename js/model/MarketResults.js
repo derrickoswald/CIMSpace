@@ -47,9 +47,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -105,7 +105,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -173,7 +173,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -231,9 +231,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -281,9 +281,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -334,7 +334,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -391,7 +391,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -464,7 +464,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -554,7 +554,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -630,7 +630,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -688,9 +688,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RMROperatorInput", "manuallySchedRMRMw", base.from_float, fields);
                 base.export_element (obj, "RMROperatorInput", "updateUser", base.from_string, fields);
@@ -773,7 +773,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -860,7 +860,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -918,7 +918,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -976,7 +976,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1036,9 +1036,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MarketStatement", "tradeDate", base.from_datetime, fields);
                 base.export_element (obj, "MarketStatement", "referenceNumber", base.from_string, fields);
@@ -1096,7 +1096,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1151,9 +1151,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1203,9 +1203,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "InstructionClearingDOT", "contingencyActive", base.from_string, fields);
                 base.export_element (obj, "InstructionClearingDOT", "dispatchMode", base.from_string, fields);
@@ -1258,7 +1258,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1320,7 +1320,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1382,9 +1382,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MPMClearing", "LMPMFinalFlag", base.from_string, fields);
                 base.export_element (obj, "MPMClearing", "SMPMFinalFlag", base.from_string, fields);
@@ -1451,9 +1451,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BillDeterminant", "calculationLevel", base.from_string, fields);
                 base.export_element (obj, "BillDeterminant", "configVersion", base.from_string, fields);
@@ -1518,9 +1518,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExPostPricing", "energyPrice", base.from_float, fields);
                 if (full)
@@ -1571,9 +1571,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TransactionBidResults", "clearedMW", base.from_float, fields);
                 base.export_element (obj, "TransactionBidResults", "clearedPrice", base.from_float, fields);
@@ -1624,9 +1624,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "AncillaryServiceClearing", "MarketCaseClearing", fields);
                 if (full)
@@ -1678,7 +1678,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1744,7 +1744,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -1804,9 +1804,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "MitigatedBid", "Bid", fields);
                 if (full)
@@ -1853,9 +1853,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1903,9 +1903,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1980,9 +1980,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PassThroughBill", "adjustedAmount", base.from_string, fields);
                 base.export_element (obj, "PassThroughBill", "amount", base.from_string, fields);
@@ -2066,7 +2066,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -2127,9 +2127,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2177,9 +2177,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Settlement", "tradeDate", base.from_datetime, fields);
                 base.export_attribute (obj, "Settlement", "EnergyMarket", fields);
@@ -2234,7 +2234,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -2301,7 +2301,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -2365,9 +2365,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ResourceAwardClearing", "dispatchMode", base.from_string, fields);
                 base.export_element (obj, "ResourceAwardClearing", "contingencyActive", base.from_string, fields);
@@ -2420,7 +2420,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -2472,9 +2472,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ExPostMarketRegion", "ExPostMarketRegionResults", fields);
                 if (full)
@@ -2528,9 +2528,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Profile"](obj, exporters, false);
+                var fields = ExternalInputs.Profile.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ChargeProfile", "type", base.from_string, fields);
                 base.export_element (obj, "ChargeProfile", "frequency", base.from_string, fields);
@@ -2583,9 +2583,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2632,7 +2632,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -2683,9 +2683,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2751,9 +2751,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ConstraintResults", "baseFlow", base.from_float, fields);
                 base.export_element (obj, "ConstraintResults", "BGLimit", base.from_float, fields);
@@ -2836,7 +2836,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -2911,7 +2911,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -2967,9 +2967,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3036,9 +3036,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MarketStatementLineItem", "intervalNumber", base.from_string, fields);
                 base.export_element (obj, "MarketStatementLineItem", "intervalDate", base.from_datetime, fields);
@@ -3107,9 +3107,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3160,7 +3160,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -3213,9 +3213,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["MarketFactors"](obj, exporters, false);
+                var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

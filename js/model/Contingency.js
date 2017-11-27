@@ -46,9 +46,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Contingency", "mustStudy", base.from_boolean, fields);
                 if (full)
@@ -96,9 +96,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ContingencyElement", "Contingency", fields);
                 if (full)
@@ -147,7 +147,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -199,9 +199,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ContingencyElement"](obj, exporters, false);
+                var fields = ContingencyElement.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ContingencyEquipment", "contingentStatus", base.from_string, fields);
                 base.export_attribute (obj, "ContingencyEquipment", "Equipment", fields);

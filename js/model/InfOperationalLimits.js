@@ -50,7 +50,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -106,7 +106,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -159,9 +159,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ScheduledLimitValue", "Season", fields);
                 base.export_attribute (obj, "ScheduledLimitValue", "ScheduledLimitDependency", fields);
@@ -209,9 +209,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["PowerSystemResource"](obj, exporters, false);
+                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -260,9 +260,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "LimitDependency", "Equipment", fields);
                 if (full)
@@ -311,9 +311,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "EquipmentLimitSeriesComponent", "SeriesEquipmentDependentLimit", fields);
                 base.export_attribute (obj, "EquipmentLimitSeriesComponent", "Equipment", fields);
@@ -362,9 +362,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ScheduledLimitValue"](obj, exporters, false);
+                var fields = ScheduledLimitValue.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ScheduledCurrentLimitValue", "value", base.from_string, fields);
                 if (full)
@@ -412,9 +412,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ScheduledLimitValue"](obj, exporters, false);
+                var fields = ScheduledLimitValue.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ScheduledVoltageLimitValue", "value", base.from_string, fields);
                 if (full)
@@ -458,9 +458,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ScheduledLimitValue"](obj, exporters, false);
+                var fields = ScheduledLimitValue.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ScheduledActivePowerLimitValue", "value", base.from_string, fields);
                 if (full)
@@ -508,9 +508,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["ScheduledLimitValue"](obj, exporters, false);
+                var fields = ScheduledLimitValue.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ScheduledApparentPowerLimitValue", "value", base.from_string, fields);
                 if (full)
@@ -559,9 +559,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["LimitDependency"](obj, exporters, false);
+                var fields = LimitDependency.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LimitScalingLimit", "limitScalingPercent", base.from_string, fields);
                 base.export_attribute (obj, "LimitScalingLimit", "SourceOperationalLimit", fields);
@@ -609,9 +609,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["LimitDependency"](obj, exporters, false);
+                var fields = LimitDependency.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -653,9 +653,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["LimitDependency"](obj, exporters, false);
+                var fields = LimitDependency.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -703,9 +703,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["LimitDependency"](obj, exporters, false);
+                var fields = LimitDependency.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -756,9 +756,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EnvironmentalDependentLimit"](obj, exporters, false);
+                var fields = EnvironmentalDependentLimit.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TemperaturePolynomialLimit", "coefficient0", base.from_float, fields);
                 base.export_element (obj, "TemperaturePolynomialLimit", "coefficient1", base.from_float, fields);
@@ -809,9 +809,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["EnvironmentalDependentLimit"](obj, exporters, false);
+                var fields = EnvironmentalDependentLimit.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

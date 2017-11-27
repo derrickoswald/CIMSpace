@@ -50,9 +50,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Equipment"](obj, exporters, false);
+                var fields = Core.Equipment.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "AuxiliaryEquipment", "Terminal", fields);
                 if (full)
@@ -101,7 +101,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -151,9 +151,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AuxiliaryEquipment"](obj, exporters, false);
+                var fields = AuxiliaryEquipment.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -199,9 +199,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AuxiliaryEquipment"](obj, exporters, false);
+                var fields = AuxiliaryEquipment.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -253,9 +253,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Sensor"](obj, exporters, false);
+                var fields = Sensor.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PotentialTransformer", "accuracyClass", base.from_string, fields);
                 base.export_element (obj, "PotentialTransformer", "nominalRatio", base.from_float, fields);
@@ -307,9 +307,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AuxiliaryEquipment"](obj, exporters, false);
+                var fields = AuxiliaryEquipment.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -362,9 +362,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Sensor"](obj, exporters, false);
+                var fields = Sensor.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CurrentTransformer", "accuracyClass", base.from_string, fields);
                 base.export_element (obj, "CurrentTransformer", "accuracyLimit", base.from_string, fields);
@@ -415,9 +415,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Sensor"](obj, exporters, false);
+                var fields = Sensor.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -463,9 +463,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["AuxiliaryEquipment"](obj, exporters, false);
+                var fields = AuxiliaryEquipment.prototype.export.call (this, obj, false);
 
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

@@ -52,7 +52,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -116,9 +116,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PricingStructure", "code", base.from_string, fields);
                 base.export_element (obj, "PricingStructure", "dailyCeilingUsage", base.from_string, fields);
@@ -183,7 +183,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -247,9 +247,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Tariff", "endDate", base.from_string, fields);
                 base.export_element (obj, "Tariff", "startDate", base.from_string, fields);
@@ -304,9 +304,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["OrganisationRole"](obj, exporters, false);
+                var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Customer", "kind", base.from_string, fields);
                 base.export_element (obj, "Customer", "pucNumber", base.from_string, fields);
@@ -364,7 +364,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -428,7 +428,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -491,9 +491,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Hazard"](obj, exporters, false);
+                var fields = Common.Hazard.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "IncidentHazard", "Incident", fields);
                 base.export_attribute (obj, "IncidentHazard", "TroubleTicket", fields);
@@ -546,7 +546,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -607,9 +607,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Agreement"](obj, exporters, false);
+                var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CustomerAgreement", "loadMgmt", base.from_string, fields);
                 base.export_attribute (obj, "CustomerAgreement", "ServiceCategory", fields);
@@ -664,9 +664,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["WorkLocation"](obj, exporters, false);
+                var fields = Work.WorkLocation.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ServiceLocation", "accessMethod", base.from_string, fields);
                 base.export_element (obj, "ServiceLocation", "needsInspection", base.from_boolean, fields);
@@ -716,9 +716,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["IdentifiedObject"](obj, exporters, false);
+                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ServiceCategory", "kind", base.from_string, fields);
                 if (full)
@@ -772,7 +772,7 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
                 var fields = [];
 
@@ -831,9 +831,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TroubleTicket", "dateTimeOfReport", base.from_datetime, fields);
                 base.export_element (obj, "TroubleTicket", "troubleCode", base.from_string, fields);
@@ -892,9 +892,9 @@ define
                 return (obj);
             }
 
-            export (obj, exporters, full)
+            export (obj, full)
             {
-                var fields = exporters["Document"](obj, exporters, false);
+                var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CustomerAccount", "billingCycle", base.from_string, fields);
                 base.export_element (obj, "CustomerAccount", "budgetBill", base.from_string, fields);
