@@ -860,9 +860,14 @@ define
                 'mousedown',
                 function (event)
                 {
+                    var width = 4;
+                    var height = 4;
                     var features = TheMap.queryRenderedFeatures
                     (
-                        event.point,
+                        [
+                          [event.point.x - width / 2, event.point.y - height / 2],
+                          [event.point.x + width / 2, event.point.y + height / 2]
+                        ],
                         {}
                     );
                     if ((null != features) && (0 != features.length))

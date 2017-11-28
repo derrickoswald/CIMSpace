@@ -13,7 +13,11 @@ body {
     -o-background-size: cover;
 }
 
-/* allow div in dropdown menus, not just a */  
+.intro canvas {
+    cursor: crosshair;
+}
+
+/* allow div in dropdown menus, not just a */
 .dropdown-menu > li > div
 {
     padding-left: 16px;
