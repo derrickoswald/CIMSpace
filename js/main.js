@@ -17,6 +17,7 @@ requirejs
         document.getElementById ("save_file").onclick = cimspace.generate_rdf;
         document.getElementById ("internal_features").onchange = cimmap.redraw;
         document.getElementById ("buildings_3d").onchange = cimmap.buildings_3d;
+        document.getElementById ("scale_bar").onchange = cimmap.scale_bar;
 
         // drag and drop listeners
         document.getElementById ("files_drop_zone").ondragover = cimspace.file_drag;

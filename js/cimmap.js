@@ -37,6 +37,11 @@ define
         var TheEditor = null;
 
         /**
+         * The scale bar control.
+         */
+        var TheScaleBar = null;
+
+        /**
          * The user specific token to access mapbox tiles.
          */
         var TheToken = "pk.eyJ1IjoiZGVycmlja29zd2FsZCIsImEiOiJjaWV6b2szd3MwMHFidDRtNDZoejMyc3hsIn0.wnEkePEuhYiNcXDLACSxVw";
@@ -144,6 +149,17 @@ define
         function zero_based_point_sequence ()
         {
             return (document.getElementById ("zero_based_point_sequence").checked);
+        }
+
+        /**
+         * Get the user's choice for whether a scle bar is displayed or not.
+         * @returns {boolean} <code>true</code> if a sclae bar should be shown, <code>false</code> otherwise
+         * @function show_scale_bar
+         * @memberOf module:cimmap
+         */
+        function show_scale_bar ()
+        {
+            return (document.getElementById ("scale_bar").checked);
         }
 
         /**
@@ -416,6 +432,33 @@ define
             else
                 if ("undefined" != typeof (TheMap.getLayer ("3d-buildings")))
                     TheMap.removeLayer ("3d-buildings");
+        }
+
+        /**
+         * Turn on or off the scale bar.
+         * @description Add or remove the scale bar control.
+         * @ param {object} event - optional event trigger <em>not used</em>
+         * @function scale_bar
+         * @memberOf module:cimmap
+         */
+        function scale_bar (event)
+        {
+            if (show_scale_bar ())
+            {
+                if (null == TheScaleBar)
+                {
+                    TheScaleBar = new mapboxgl.ScaleControl ();
+                    TheMap.addControl (TheScaleBar);
+                }
+            }
+            else
+            {
+                if (null != TheScaleBar)
+                {
+                    TheMap.removeControl (TheScaleBar);
+                    TheScaleBar = null;
+                }
+            }
         }
 
         /**
@@ -959,6 +1002,7 @@ define
                      show_3d_buildings: show_3d_buildings,
                      zero_based_point_sequence: zero_based_point_sequence,
                      buildings_3d: buildings_3d,
+                     scale_bar: scale_bar,
                      trace: trace,
                      unhighlight: unhighlight,
                      select: select,
