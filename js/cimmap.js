@@ -81,6 +81,28 @@ define
         }
 
         /**
+         * Set the extents of the CIM data for the map to draw.
+         * @param {Object} new extents value { xmin: , ymin: , xmax: , ymax: }
+         * @function set_extents
+         * @memberOf module:cimmap
+         */
+        function set_extents (extents)
+        {
+            TheExtents = extents;
+        }
+
+        /**
+         * Get the extents of the CIM data the map is displaying.
+         * @return {Object} current extents value { xmin: , ymin: , xmax: , ymax: }
+         * @function get_extents
+         * @memberOf module:cimmap
+         */
+        function get_extents ()
+        {
+            return (TheExtents);
+        }
+
+        /**
          * Get the theming object for access to themes.
          * @return {Object} The object handling theming.
          * @function get_themer
@@ -254,6 +276,12 @@ define
                 TheMap.setFilter ("lines_highlight", filter);
                 TheMap.setFilter ("circle_highlight", filter);
                 TheMap.setFilter ("symbol_highlight", filter);
+            }
+            if (TheMap.getSource ("edit lines"))
+            {
+                TheMap.setFilter ("edit_lines_highlight", filter);
+                TheMap.setFilter ("edit_circle_highlight", filter);
+                TheMap.setFilter ("edit_symbol_highlight", filter);
             }
         }
 
@@ -921,6 +949,8 @@ define
                 {
                      set_data: set_data,
                      get_data: get_data,
+                     set_extents: set_extents,
+                     get_extents: get_extents,
                      get_themer: get_themer,
                      zoom_extents: zoom_extents,
                      redraw: redraw,

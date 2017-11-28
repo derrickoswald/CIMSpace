@@ -97,6 +97,17 @@ define
                 var geo = this._cimmap.get_themer ().getTheme ().make_geojson (this._cimmap.get_data (), options);
                 this._map.getSource ("edit points").setData (geo.points);
                 this._map.getSource ("edit lines").setData (geo.lines);
+                // update the extents
+                var extents =  this._cimmap.get_themer ().getExtents ();
+                var old_extents = this._cimmap.get_extents ();
+                var new_extents =
+                {
+                    xmin: Math.min (extents.xmin, old_extents.xmin),
+                    ymin: Math.min (extents.ymin, old_extents.ymin),
+                    xmax: Math.max (extents.xmax, old_extents.xmax),
+                    ymax: Math.max (extents.ymax, old_extents.ymax)
+                };
+                this._cimmap.set_extents (new_extents);
             }
 
             add_cable (event)
@@ -255,12 +266,15 @@ define
 
                 // lines 3 pixels wide
                 this._map.addLayer (layers.line_layer ("edit_lines", "edit lines" , "rgb(255, 0, 0)"));
+                this._map.addLayer (layers.line_layer ("edit_lines_highlight", "edit lines", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
                 // simple circle from 14 to 17
                 this._map.addLayer (layers.circle_layer ("edit_circle", "edit points", "rgb(255, 0, 0)"))
+                this._map.addLayer (layers.circle_layer ("edit_circle_highlight", "edit points", "rgb(255, 255, 0)", ["==", "mRID", ""]))
 
                 // symbol icon from 17 and deeper
                 this._map.addLayer (layers.symbol_layer ("edit_symbol", "edit points", "rgb(255, 0, 0)"));
+                this._map.addLayer (layers.symbol_layer ("edit_symbol_highlight", "edit points", "rgb(255, 255, 0)", ["==", "mRID", ""]));
             }
         }
 
