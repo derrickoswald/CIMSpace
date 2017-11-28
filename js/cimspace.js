@@ -4,7 +4,7 @@
 "use strict";
 define
 (
-    ["es6-promise", "cim", "cimmap"],
+    ["cim", "cimmap"],
     /**
      * @summary Main entry point for the application.
      * @description Performs application initialization as the first step in the RequireJS load sequence.
@@ -13,11 +13,8 @@ define
      * @exports cimspace
      * @version 1.0
      */
-    function (es6_promise, cim, cimmap)
+    function (cim, cimmap)
     {
-        // using Promise: backwards compatibility for older browsers
-        es6_promise.polyfill ();
-
         // the pending xml creation
         var Pending = null;
 
