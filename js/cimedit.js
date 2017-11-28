@@ -43,17 +43,26 @@ define
                 this._map = map;
                 this._container = document.createElement ("div");
                 this._container.className = "mapboxgl-ctrl";
-                var infos = this._cimmap.get_data ().WireInfo;
-                var cabletypes = [];
-                for (var property in infos)
-                    if (infos.hasOwnProperty (property))
-                    {
-                        var info = infos[property];
-                        cabletypes.push ({ mRID: info.mRID, name: info.name });
-                    }
-                this._container.innerHTML = mustache.render (this._template, { cabletypes: cabletypes });
-                this._container.getElementsByClassName ("btn btn-primary")[0].onclick = this.add_cable.bind (this);
-                this._container.getElementsByClassName ("btn btn-success")[0].onclick = this.remove_cable.bind (this);
+                if (null != this._cimmap.get_data ())
+                {
+                    var infos = this._cimmap.get_data ().WireInfo;
+                    var cabletypes = [];
+                    for (var property in infos)
+                        if (infos.hasOwnProperty (property))
+                        {
+                            var info = infos[property];
+                            cabletypes.push ({ mRID: info.mRID, name: info.name });
+                        }
+                    this._container.innerHTML = mustache.render (this._template, { cabletypes: cabletypes });
+                    this._container.getElementsByClassName ("btn btn-primary")[0].onclick = this.add_cable.bind (this);
+                    this._container.getElementsByClassName ("btn btn-success")[0].onclick = this.remove_cable.bind (this);
+                }
+                else
+                {
+                    this._container.innerHTML = mustache.render (this._template, { cabletypes: [] });
+                    this._container.getElementsByClassName ("btn btn-primary")[0].disabled=true;
+                    this._container.getElementsByClassName ("btn btn-success")[0].disabled=true;
+                }
                 if (null == this._map.getSource ("edit lines"))
                     this.add_layers ();
                 this._onMap = true;

@@ -7,8 +7,6 @@ requirejs
     ["cimspace", "cimmap"],
     function (cimspace, cimmap)
     {
-        // initialize material design for bootstrap (https://github.com/FezVrasta/bootstrap-material-design)
-        $.material.init ();
         // initialize widgets
         document.getElementById ("file_button").onchange = cimspace.file_change;
         document.getElementById ("connect").onclick = cimspace.process_url;
