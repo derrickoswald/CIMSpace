@@ -56,7 +56,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Contingency_collapse" aria-expanded="true" aria-controls="Contingency_collapse">Contingency</a>
+<div id="Contingency_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#mustStudy}}<div><b>mustStudy</b>: {{mustStudy}}</div>{{/mustStudy}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An element of a system event to be studied by contingency analysis, representing a change in status of a single piece of equipment.
@@ -106,7 +121,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ContingencyElement_collapse" aria-expanded="true" aria-controls="ContingencyElement_collapse">ContingencyElement</a>
+<div id="ContingencyElement_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#Contingency}}<div><b>Contingency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Contingency}}&quot;);})'>{{Contingency}}</a></div>{{/Contingency}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Indicates the state which the contingency equipment is to be in when the contingency is applied.
@@ -158,7 +188,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ContingencyEquipmentStatusKind_collapse" aria-expanded="true" aria-controls="ContingencyEquipmentStatusKind_collapse">ContingencyEquipmentStatusKind</a>
+<div id="ContingencyEquipmentStatusKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#inService}}<div><b>inService</b>: {{inService}}</div>{{/inService}}
+{{#outOfService}}<div><b>outOfService</b>: {{outOfService}}</div>{{/outOfService}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A equipment to which the in service status is to change such as a power transformer or AC line segment.
@@ -210,7 +256,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ContingencyEquipment_collapse" aria-expanded="true" aria-controls="ContingencyEquipment_collapse">ContingencyEquipment</a>
+<div id="ContingencyEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ContingencyElement.prototype.template.call (this) +
+`
+{{#contingentStatus}}<div><b>contingentStatus</b>: {{contingentStatus}}</div>{{/contingentStatus}}
+{{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

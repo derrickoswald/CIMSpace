@@ -64,7 +64,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#NameType_collapse" aria-expanded="true" aria-controls="NameType_collapse">NameType</a>
+<div id="NameType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+{{#NameTypeAuthority}}<div><b>NameTypeAuthority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NameTypeAuthority}}&quot;);})'>{{NameTypeAuthority}}</a></div>{{/NameTypeAuthority}}
+</div>
+`
+                );
+           }        }
 
         /**
          * TimePoints for a schedule where the time between the points varies.
@@ -120,7 +137,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#IrregularTimePoint_collapse" aria-expanded="true" aria-controls="IrregularTimePoint_collapse">IrregularTimePoint</a>
+<div id="IrregularTimePoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#time}}<div><b>time</b>: {{time}}</div>{{/time}}
+{{#value1}}<div><b>value1</b>: {{value1}}</div>{{/value1}}
+{{#value2}}<div><b>value2</b>: {{value2}}</div>{{/value2}}
+{{#IntervalSchedule}}<div><b>IntervalSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IntervalSchedule}}&quot;);})'>{{IntervalSchedule}}</a></div>{{/IntervalSchedule}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Enumeration of phase identifiers.
@@ -212,7 +247,42 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PhaseCode_collapse" aria-expanded="true" aria-controls="PhaseCode_collapse">PhaseCode</a>
+<div id="PhaseCode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ABCN}}<div><b>ABCN</b>: {{ABCN}}</div>{{/ABCN}}
+{{#ABC}}<div><b>ABC</b>: {{ABC}}</div>{{/ABC}}
+{{#ABN}}<div><b>ABN</b>: {{ABN}}</div>{{/ABN}}
+{{#ACN}}<div><b>ACN</b>: {{ACN}}</div>{{/ACN}}
+{{#BCN}}<div><b>BCN</b>: {{BCN}}</div>{{/BCN}}
+{{#AB}}<div><b>AB</b>: {{AB}}</div>{{/AB}}
+{{#AC}}<div><b>AC</b>: {{AC}}</div>{{/AC}}
+{{#BC}}<div><b>BC</b>: {{BC}}</div>{{/BC}}
+{{#AN}}<div><b>AN</b>: {{AN}}</div>{{/AN}}
+{{#BN}}<div><b>BN</b>: {{BN}}</div>{{/BN}}
+{{#CN}}<div><b>CN</b>: {{CN}}</div>{{/CN}}
+{{#A}}<div><b>A</b>: {{A}}</div>{{/A}}
+{{#B}}<div><b>B</b>: {{B}}</div>{{/B}}
+{{#C}}<div><b>C</b>: {{C}}</div>{{/C}}
+{{#N}}<div><b>N</b>: {{N}}</div>{{/N}}
+{{#s1N}}<div><b>s1N</b>: {{s1N}}</div>{{/s1N}}
+{{#s2N}}<div><b>s2N</b>: {{s2N}}</div>{{/s2N}}
+{{#s12N}}<div><b>s12N</b>: {{s12N}}</div>{{/s12N}}
+{{#s1}}<div><b>s1</b>: {{s1}}</div>{{/s1}}
+{{#s2}}<div><b>s2</b>: {{s2}}</div>{{/s2}}
+{{#s12}}<div><b>s12</b>: {{s12}}</div>{{/s12}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Time point for a schedule where the time between the consecutive points is constant.
@@ -268,7 +338,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RegularTimePoint_collapse" aria-expanded="true" aria-controls="RegularTimePoint_collapse">RegularTimePoint</a>
+<div id="RegularTimePoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+{{#value1}}<div><b>value1</b>: {{value1}}</div>{{/value1}}
+{{#value2}}<div><b>value2</b>: {{value2}}</div>{{/value2}}
+{{#IntervalSchedule}}<div><b>IntervalSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IntervalSchedule}}&quot;);})'>{{IntervalSchedule}}</a></div>{{/IntervalSchedule}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The Name class provides the means to define any number of human readable  names for an object.
@@ -324,7 +412,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Name_collapse" aria-expanded="true" aria-controls="Name_collapse">Name</a>
+<div id="Name_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+{{#NameType}}<div><b>NameType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NameType}}&quot;);})'>{{NameType}}</a></div>{{/NameType}}
+{{#IdentifiedObject}}<div><b>IdentifiedObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IdentifiedObject}}&quot;);})'>{{IdentifiedObject}}</a></div>{{/IdentifiedObject}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This is a root class to provide common identification for all classes needing identification and naming attributes.
@@ -389,7 +494,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#IdentifiedObject_collapse" aria-expanded="true" aria-controls="IdentifiedObject_collapse">IdentifiedObject</a>
+<div id="IdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#aliasName}}<div><b>aliasName</b>: {{aliasName}}</div>{{/aliasName}}
+{{#mRID}}<div><b>mRID</b>: {{mRID}}</div>{{/mRID}}
+{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Multi-purpose data points for defining a curve.
@@ -449,7 +572,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CurveData_collapse" aria-expanded="true" aria-controls="CurveData_collapse">CurveData</a>
+<div id="CurveData_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#xvalue}}<div><b>xvalue</b>: {{xvalue}}</div>{{/xvalue}}
+{{#y1value}}<div><b>y1value</b>: {{y1value}}</div>{{/y1value}}
+{{#y2value}}<div><b>y2value</b>: {{y2value}}</div>{{/y2value}}
+{{#y3value}}<div><b>y3value</b>: {{y3value}}</div>{{/y3value}}
+{{#Curve}}<div><b>Curve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Curve}}&quot;);})'>{{Curve}}</a></div>{{/Curve}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Authority responsible for creation and management of names of a given type; typically an organization or an enterprise system.
@@ -501,7 +643,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#NameTypeAuthority_collapse" aria-expanded="true" aria-controls="NameTypeAuthority_collapse">NameTypeAuthority</a>
+<div id="NameTypeAuthority_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Switching arrangement for bay.
@@ -557,7 +715,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BreakerConfiguration_collapse" aria-expanded="true" aria-controls="BreakerConfiguration_collapse">BreakerConfiguration</a>
+<div id="BreakerConfiguration_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#singleBreaker}}<div><b>singleBreaker</b>: {{singleBreaker}}</div>{{/singleBreaker}}
+{{#breakerAndAHalf}}<div><b>breakerAndAHalf</b>: {{breakerAndAHalf}}</div>{{/breakerAndAHalf}}
+{{#doubleBreaker}}<div><b>doubleBreaker</b>: {{doubleBreaker}}</div>{{/doubleBreaker}}
+{{#noBreaker}}<div><b>noBreaker</b>: {{noBreaker}}</div>{{/noBreaker}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Specifies the operations contract relationship between a power system resource and a contract participant.
@@ -611,7 +787,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OperatingShare_collapse" aria-expanded="true" aria-controls="OperatingShare_collapse">OperatingShare</a>
+<div id="OperatingShare_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#percentage}}<div><b>percentage</b>: {{percentage}}</div>{{/percentage}}
+{{#OperatingParticipant}}<div><b>OperatingParticipant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperatingParticipant}}&quot;);})'>{{OperatingParticipant}}</a></div>{{/OperatingParticipant}}
+{{#PowerSystemResource}}<div><b>PowerSystemResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemResource}}&quot;);})'>{{PowerSystemResource}}</a></div>{{/PowerSystemResource}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Style or shape of curve.
@@ -663,7 +856,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CurveStyle_collapse" aria-expanded="true" aria-controls="CurveStyle_collapse">CurveStyle</a>
+<div id="CurveStyle_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#constantYValue}}<div><b>constantYValue</b>: {{constantYValue}}</div>{{/constantYValue}}
+{{#straightLineYValues}}<div><b>straightLineYValues</b>: {{straightLineYValues}}</div>{{/straightLineYValues}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Busbar layout for bay.
@@ -719,7 +928,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BusbarConfiguration_collapse" aria-expanded="true" aria-controls="BusbarConfiguration_collapse">BusbarConfiguration</a>
+<div id="BusbarConfiguration_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#singleBus}}<div><b>singleBus</b>: {{singleBus}}</div>{{/singleBus}}
+{{#doubleBus}}<div><b>doubleBus</b>: {{doubleBus}}</div>{{/doubleBus}}
+{{#mainWithTransfer}}<div><b>mainWithTransfer</b>: {{mainWithTransfer}}</div>{{/mainWithTransfer}}
+{{#ringBus}}<div><b>ringBus</b>: {{ringBus}}</div>{{/ringBus}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A multi-purpose curve or functional relationship between an independent variable (X-axis) and dependent (Y-axis) variables.
@@ -785,7 +1012,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Curve_collapse" aria-expanded="true" aria-controls="Curve_collapse">Curve</a>
+<div id="Curve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IdentifiedObject.prototype.template.call (this) +
+`
+{{#curveStyle}}<div><b>curveStyle</b>: {{curveStyle}}</div>{{/curveStyle}}
+{{#xMultiplier}}<div><b>xMultiplier</b>: {{xMultiplier}}</div>{{/xMultiplier}}
+{{#xUnit}}<div><b>xUnit</b>: {{xUnit}}</div>{{/xUnit}}
+{{#y1Multiplier}}<div><b>y1Multiplier</b>: {{y1Multiplier}}</div>{{/y1Multiplier}}
+{{#y1Unit}}<div><b>y1Unit</b>: {{y1Unit}}</div>{{/y1Unit}}
+{{#y2Multiplier}}<div><b>y2Multiplier</b>: {{y2Multiplier}}</div>{{/y2Multiplier}}
+{{#y2Unit}}<div><b>y2Unit</b>: {{y2Unit}}</div>{{/y2Unit}}
+{{#y3Multiplier}}<div><b>y3Multiplier</b>: {{y3Multiplier}}</div>{{/y3Multiplier}}
+{{#y3Unit}}<div><b>y3Unit</b>: {{y3Unit}}</div>{{/y3Unit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Classifying instances of the same class, e.g. overhead and underground ACLineSegments.
@@ -835,7 +1085,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PSRType_collapse" aria-expanded="true" aria-controls="PSRType_collapse">PSRType</a>
+<div id="PSRType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Defines a system base voltage which is referenced.
@@ -885,7 +1149,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BaseVoltage_collapse" aria-expanded="true" aria-controls="BaseVoltage_collapse">BaseVoltage</a>
+<div id="BaseVoltage_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IdentifiedObject.prototype.template.call (this) +
+`
+{{#nominalVoltage}}<div><b>nominalVoltage</b>: {{nominalVoltage}}</div>{{/nominalVoltage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Connectivity nodes are points where terminals of AC conducting equipment are connected together with zero impedance.
@@ -937,7 +1216,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ConnectivityNode_collapse" aria-expanded="true" aria-controls="ConnectivityNode_collapse">ConnectivityNode</a>
+<div id="ConnectivityNode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IdentifiedObject.prototype.template.call (this) +
+`
+{{#ConnectivityNodeContainer}}<div><b>ConnectivityNodeContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConnectivityNodeContainer}}&quot;);})'>{{ConnectivityNodeContainer}}</a></div>{{/ConnectivityNodeContainer}}
+{{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);})'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A geographical region of a power system network model.
@@ -985,7 +1280,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GeographicalRegion_collapse" aria-expanded="true" aria-controls="GeographicalRegion_collapse">GeographicalRegion</a>
+<div id="GeographicalRegion_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Schedule of values at points in time.
@@ -1043,7 +1352,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BasicIntervalSchedule_collapse" aria-expanded="true" aria-controls="BasicIntervalSchedule_collapse">BasicIntervalSchedule</a>
+<div id="BasicIntervalSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IdentifiedObject.prototype.template.call (this) +
+`
+{{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+{{#value1Multiplier}}<div><b>value1Multiplier</b>: {{value1Multiplier}}</div>{{/value1Multiplier}}
+{{#value1Unit}}<div><b>value1Unit</b>: {{value1Unit}}</div>{{/value1Unit}}
+{{#value2Multiplier}}<div><b>value2Multiplier</b>: {{value2Multiplier}}</div>{{/value2Multiplier}}
+{{#value2Unit}}<div><b>value2Unit</b>: {{value2Unit}}</div>{{/value2Unit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An electrical connection point (AC or DC) to a piece of conducting equipment.
@@ -1099,7 +1427,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ACDCTerminal_collapse" aria-expanded="true" aria-controls="ACDCTerminal_collapse">ACDCTerminal</a>
+<div id="ACDCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IdentifiedObject.prototype.template.call (this) +
+`
+{{#connected}}<div><b>connected</b>: {{connected}}</div>{{/connected}}
+{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+{{#BusNameMarker}}<div><b>BusNameMarker</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BusNameMarker}}&quot;);})'>{{BusNameMarker}}</a></div>{{/BusNameMarker}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An operator of multiple power system resource objects.
@@ -1149,7 +1494,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OperatingParticipant_collapse" aria-expanded="true" aria-controls="OperatingParticipant_collapse">OperatingParticipant</a>
+<div id="OperatingParticipant_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * The BasePower class defines the base power used in the per unit calculations.
@@ -1199,7 +1558,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BasePower_collapse" aria-expanded="true" aria-controls="BasePower_collapse">BasePower</a>
+<div id="BasePower_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IdentifiedObject.prototype.template.call (this) +
+`
+{{#basePower}}<div><b>basePower</b>: {{basePower}}</div>{{/basePower}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A reporting super group, groups reporting groups for a higher level report.
@@ -1247,7 +1621,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ReportingSuperGroup_collapse" aria-expanded="true" aria-controls="ReportingSuperGroup_collapse">ReportingSuperGroup</a>
+<div id="ReportingSuperGroup_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * An AC electrical connection point to a piece of conducting equipment.
@@ -1309,7 +1697,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Terminal_collapse" aria-expanded="true" aria-controls="Terminal_collapse">Terminal</a>
+<div id="Terminal_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ACDCTerminal.prototype.template.call (this) +
+`
+{{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
+{{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);})'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
+{{#ConductingEquipment}}<div><b>ConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConductingEquipment}}&quot;);})'>{{ConductingEquipment}}</a></div>{{/ConductingEquipment}}
+{{#SvPowerFlow}}<div><b>SvPowerFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SvPowerFlow}}&quot;);})'>{{SvPowerFlow}}</a></div>{{/SvPowerFlow}}
+{{#Bushing}}<div><b>Bushing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bushing}}&quot;);})'>{{Bushing}}</a></div>{{/Bushing}}
+{{#ConnectivityNode}}<div><b>ConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConnectivityNode}}&quot;);})'>{{ConnectivityNode}}</a></div>{{/ConnectivityNode}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A subset of a geographical region of a power system network model.
@@ -1359,7 +1767,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SubGeographicalRegion_collapse" aria-expanded="true" aria-controls="SubGeographicalRegion_collapse">SubGeographicalRegion</a>
+<div id="SubGeographicalRegion_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IdentifiedObject.prototype.template.call (this) +
+`
+{{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);})'>{{Region}}</a></div>{{/Region}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A power system resource can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area.
@@ -1415,7 +1838,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PowerSystemResource_collapse" aria-expanded="true" aria-controls="PowerSystemResource_collapse">PowerSystemResource</a>
+<div id="PowerSystemResource_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IdentifiedObject.prototype.template.call (this) +
+`
+{{#AssetDatasheet}}<div><b>AssetDatasheet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetDatasheet}}&quot;);})'>{{AssetDatasheet}}</a></div>{{/AssetDatasheet}}
+{{#Location}}<div><b>Location</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Location}}&quot;);})'>{{Location}}</a></div>{{/Location}}
+{{#PSRType}}<div><b>PSRType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PSRType}}&quot;);})'>{{PSRType}}</a></div>{{/PSRType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The schedule has time points where the time between them varies.
@@ -1463,7 +1903,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#IrregularIntervalSchedule_collapse" aria-expanded="true" aria-controls="IrregularIntervalSchedule_collapse">IrregularIntervalSchedule</a>
+<div id="IrregularIntervalSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + BasicIntervalSchedule.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * The class describe a base frequency for a power system network.
@@ -1515,7 +1969,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BaseFrequency_collapse" aria-expanded="true" aria-controls="BaseFrequency_collapse">BaseFrequency</a>
+<div id="BaseFrequency_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IdentifiedObject.prototype.template.call (this) +
+`
+{{#frequency}}<div><b>frequency</b>: {{frequency}}</div>{{/frequency}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A reporting group is used for various ad-hoc groupings used for reporting.
@@ -1565,7 +2034,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ReportingGroup_collapse" aria-expanded="true" aria-controls="ReportingGroup_collapse">ReportingGroup</a>
+<div id="ReportingGroup_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IdentifiedObject.prototype.template.call (this) +
+`
+{{#ReportingSuperGroup}}<div><b>ReportingSuperGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReportingSuperGroup}}&quot;);})'>{{ReportingSuperGroup}}</a></div>{{/ReportingSuperGroup}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The schedule has time points where the time between them is constant.
@@ -1617,7 +2101,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RegularIntervalSchedule_collapse" aria-expanded="true" aria-controls="RegularIntervalSchedule_collapse">RegularIntervalSchedule</a>
+<div id="RegularIntervalSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + BasicIntervalSchedule.prototype.template.call (this) +
+`
+{{#endTime}}<div><b>endTime</b>: {{endTime}}</div>{{/endTime}}
+{{#timeStep}}<div><b>timeStep</b>: {{timeStep}}</div>{{/timeStep}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A base class for all objects that may contain connectivity nodes or topological nodes.
@@ -1665,7 +2165,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ConnectivityNodeContainer_collapse" aria-expanded="true" aria-controls="ConnectivityNodeContainer_collapse">ConnectivityNodeContainer</a>
+<div id="ConnectivityNodeContainer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PowerSystemResource.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * The parts of a power system that are physical devices, electronic or mechanical.
@@ -1719,7 +2233,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Equipment_collapse" aria-expanded="true" aria-controls="Equipment_collapse">Equipment</a>
+<div id="Equipment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PowerSystemResource.prototype.template.call (this) +
+`
+{{#normallyInService}}<div><b>normallyInService</b>: {{normallyInService}}</div>{{/normallyInService}}
+{{#aggregate}}<div><b>aggregate</b>: {{aggregate}}</div>{{/aggregate}}
+{{#EquipmentContainer}}<div><b>EquipmentContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EquipmentContainer}}&quot;);})'>{{EquipmentContainer}}</a></div>{{/EquipmentContainer}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A modeling construct to provide a root class for containing equipment.
@@ -1767,7 +2298,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EquipmentContainer_collapse" aria-expanded="true" aria-controls="EquipmentContainer_collapse">EquipmentContainer</a>
+<div id="EquipmentContainer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ConnectivityNodeContainer.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A collection of equipment at one common system voltage forming a switchgear.
@@ -1825,7 +2370,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VoltageLevel_collapse" aria-expanded="true" aria-controls="VoltageLevel_collapse">VoltageLevel</a>
+<div id="VoltageLevel_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EquipmentContainer.prototype.template.call (this) +
+`
+{{#highVoltageLimit}}<div><b>highVoltageLimit</b>: {{highVoltageLimit}}</div>{{/highVoltageLimit}}
+{{#lowVoltageLimit}}<div><b>lowVoltageLimit</b>: {{lowVoltageLimit}}</div>{{/lowVoltageLimit}}
+{{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseVoltage}}&quot;);})'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
+{{#Substation}}<div><b>Substation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Substation}}&quot;);})'>{{Substation}}</a></div>{{/Substation}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The parts of the AC power system that are designed to carry current or that are conductively connected through terminals.
@@ -1881,7 +2444,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ConductingEquipment_collapse" aria-expanded="true" aria-controls="ConductingEquipment_collapse">ConductingEquipment</a>
+<div id="ConductingEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Equipment.prototype.template.call (this) +
+`
+{{#GroundingAction}}<div><b>GroundingAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GroundingAction}}&quot;);})'>{{GroundingAction}}</a></div>{{/GroundingAction}}
+{{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseVoltage}}&quot;);})'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
+{{#SvStatus}}<div><b>SvStatus</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SvStatus}}&quot;);})'>{{SvStatus}}</a></div>{{/SvStatus}}
+{{#JumpingAction}}<div><b>JumpingAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{JumpingAction}}&quot;);})'>{{JumpingAction}}</a></div>{{/JumpingAction}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A collection of equipment for purposes other than generation or utilization, through which electric energy in bulk is passed for the purposes of switching or modifying its characteristics.
@@ -1931,7 +2512,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Substation_collapse" aria-expanded="true" aria-controls="Substation_collapse">Substation</a>
+<div id="Substation_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EquipmentContainer.prototype.template.call (this) +
+`
+{{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);})'>{{Region}}</a></div>{{/Region}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A collection of power system resources (within a given substation) including conducting equipment, protection relays, measurements, and telemetry.
@@ -1993,7 +2589,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Bay_collapse" aria-expanded="true" aria-controls="Bay_collapse">Bay</a>
+<div id="Bay_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EquipmentContainer.prototype.template.call (this) +
+`
+{{#bayEnergyMeasFlag}}<div><b>bayEnergyMeasFlag</b>: {{bayEnergyMeasFlag}}</div>{{/bayEnergyMeasFlag}}
+{{#bayPowerMeasFlag}}<div><b>bayPowerMeasFlag</b>: {{bayPowerMeasFlag}}</div>{{/bayPowerMeasFlag}}
+{{#breakerConfiguration}}<div><b>breakerConfiguration</b>: {{breakerConfiguration}}</div>{{/breakerConfiguration}}
+{{#busBarConfiguration}}<div><b>busBarConfiguration</b>: {{busBarConfiguration}}</div>{{/busBarConfiguration}}
+{{#Substation}}<div><b>Substation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Substation}}&quot;);})'>{{Substation}}</a></div>{{/Substation}}
+{{#VoltageLevel}}<div><b>VoltageLevel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageLevel}}&quot;);})'>{{VoltageLevel}}</a></div>{{/VoltageLevel}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

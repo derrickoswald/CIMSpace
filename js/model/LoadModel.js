@@ -60,7 +60,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Season_collapse" aria-expanded="true" aria-controls="Season_collapse">Season</a>
+<div id="Season_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#endDate}}<div><b>endDate</b>: {{endDate}}</div>{{/endDate}}
+{{#startDate}}<div><b>startDate</b>: {{startDate}}</div>{{/startDate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A time schedule covering a 24 hour period, with curve data for a specific type of season and day.
@@ -112,7 +128,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SeasonDayTypeSchedule_collapse" aria-expanded="true" aria-controls="SeasonDayTypeSchedule_collapse">SeasonDayTypeSchedule</a>
+<div id="SeasonDayTypeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.RegularIntervalSchedule.prototype.template.call (this) +
+`
+{{#Season}}<div><b>Season</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Season}}&quot;);})'>{{Season}}</a></div>{{/Season}}
+{{#DayType}}<div><b>DayType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DayType}}&quot;);})'>{{DayType}}</a></div>{{/DayType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class is the third level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
@@ -162,7 +194,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadGroup_collapse" aria-expanded="true" aria-controls="LoadGroup_collapse">LoadGroup</a>
+<div id="LoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#SubLoadArea}}<div><b>SubLoadArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SubLoadArea}}&quot;);})'>{{SubLoadArea}}</a></div>{{/SubLoadArea}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Describes an area having energy production or consumption.
@@ -214,7 +261,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EnergyArea_collapse" aria-expanded="true" aria-controls="EnergyArea_collapse">EnergyArea</a>
+<div id="EnergyArea_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#ControlArea}}<div><b>ControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlArea}}&quot;);})'>{{ControlArea}}</a></div>{{/ControlArea}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Group of similar days.
@@ -264,7 +326,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DayType_collapse" aria-expanded="true" aria-controls="DayType_collapse">DayType</a>
+<div id="DayType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Models the characteristic response of the load demand due to changes in system conditions such as voltage and frequency.
@@ -336,7 +412,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadResponseCharacteristic_collapse" aria-expanded="true" aria-controls="LoadResponseCharacteristic_collapse">LoadResponseCharacteristic</a>
+<div id="LoadResponseCharacteristic_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#exponentModel}}<div><b>exponentModel</b>: {{exponentModel}}</div>{{/exponentModel}}
+{{#pConstantCurrent}}<div><b>pConstantCurrent</b>: {{pConstantCurrent}}</div>{{/pConstantCurrent}}
+{{#pConstantImpedance}}<div><b>pConstantImpedance</b>: {{pConstantImpedance}}</div>{{/pConstantImpedance}}
+{{#pConstantPower}}<div><b>pConstantPower</b>: {{pConstantPower}}</div>{{/pConstantPower}}
+{{#pFrequencyExponent}}<div><b>pFrequencyExponent</b>: {{pFrequencyExponent}}</div>{{/pFrequencyExponent}}
+{{#pVoltageExponent}}<div><b>pVoltageExponent</b>: {{pVoltageExponent}}</div>{{/pVoltageExponent}}
+{{#qConstantCurrent}}<div><b>qConstantCurrent</b>: {{qConstantCurrent}}</div>{{/qConstantCurrent}}
+{{#qConstantImpedance}}<div><b>qConstantImpedance</b>: {{qConstantImpedance}}</div>{{/qConstantImpedance}}
+{{#qConstantPower}}<div><b>qConstantPower</b>: {{qConstantPower}}</div>{{/qConstantPower}}
+{{#qFrequencyExponent}}<div><b>qFrequencyExponent</b>: {{qFrequencyExponent}}</div>{{/qFrequencyExponent}}
+{{#qVoltageExponent}}<div><b>qVoltageExponent</b>: {{qVoltageExponent}}</div>{{/qVoltageExponent}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An area or zone of the power system which is used for load shedding purposes.
@@ -388,7 +489,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PowerCutZone_collapse" aria-expanded="true" aria-controls="PowerCutZone_collapse">PowerCutZone</a>
+<div id="PowerCutZone_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#cutLevel1}}<div><b>cutLevel1</b>: {{cutLevel1}}</div>{{/cutLevel1}}
+{{#cutLevel2}}<div><b>cutLevel2</b>: {{cutLevel2}}</div>{{/cutLevel2}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An active power (Y1-axis) and reactive power (Y2-axis) schedule (curves) versus time (X-axis) for non-conforming loads, e.g., large industrial load or power station service (where modeled).
@@ -438,7 +555,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#NonConformLoadSchedule_collapse" aria-expanded="true" aria-controls="NonConformLoadSchedule_collapse">NonConformLoadSchedule</a>
+<div id="NonConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SeasonDayTypeSchedule.prototype.template.call (this) +
+`
+{{#NonConformLoadGroup}}<div><b>NonConformLoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NonConformLoadGroup}}&quot;);})'>{{NonConformLoadGroup}}</a></div>{{/NonConformLoadGroup}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A curve of load  versus time (X-axis) showing the active power values (Y1-axis) and reactive power (Y2-axis) for each unit of the period covered.
@@ -490,7 +622,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ConformLoadSchedule_collapse" aria-expanded="true" aria-controls="ConformLoadSchedule_collapse">ConformLoadSchedule</a>
+<div id="ConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SeasonDayTypeSchedule.prototype.template.call (this) +
+`
+{{#ConformLoadGroup}}<div><b>ConformLoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConformLoadGroup}}&quot;);})'>{{ConformLoadGroup}}</a></div>{{/ConformLoadGroup}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Loads that do not follow a daily and seasonal load variation pattern.
@@ -538,7 +685,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#NonConformLoadGroup_collapse" aria-expanded="true" aria-controls="NonConformLoadGroup_collapse">NonConformLoadGroup</a>
+<div id="NonConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LoadGroup.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A group of loads conforming to an allocation pattern.
@@ -586,7 +747,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ConformLoadGroup_collapse" aria-expanded="true" aria-controls="ConformLoadGroup_collapse">ConformLoadGroup</a>
+<div id="ConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LoadGroup.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * The class is the second level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
@@ -636,7 +811,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SubLoadArea_collapse" aria-expanded="true" aria-controls="SubLoadArea_collapse">SubLoadArea</a>
+<div id="SubLoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EnergyArea.prototype.template.call (this) +
+`
+{{#LoadArea}}<div><b>LoadArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadArea}}&quot;);})'>{{LoadArea}}</a></div>{{/LoadArea}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class is the root or first level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
@@ -684,7 +874,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadArea_collapse" aria-expanded="true" aria-controls="LoadArea_collapse">LoadArea</a>
+<div id="LoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EnergyArea.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         return (
             {

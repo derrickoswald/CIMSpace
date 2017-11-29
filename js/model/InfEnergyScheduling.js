@@ -60,7 +60,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TieLine_collapse" aria-expanded="true" aria-controls="TieLine_collapse">TieLine</a>
+<div id="TieLine_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#SideA_SubControlArea}}<div><b>SideA_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SideA_SubControlArea}}&quot;);})'>{{SideA_SubControlArea}}</a></div>{{/SideA_SubControlArea}}
+{{#EnergyTransaction}}<div><b>EnergyTransaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyTransaction}}&quot;);})'>{{EnergyTransaction}}</a></div>{{/EnergyTransaction}}
+{{#ParentOfB}}<div><b>ParentOfB</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentOfB}}&quot;);})'>{{ParentOfB}}</a></div>{{/ParentOfB}}
+{{#SideB_SubControlArea}}<div><b>SideB_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SideB_SubControlArea}}&quot;);})'>{{SideB_SubControlArea}}</a></div>{{/SideB_SubControlArea}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Curtailing entity must be providing at least one service to the EnergyTransaction.
@@ -112,7 +130,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CurtailmentProfile_collapse" aria-expanded="true" aria-controls="CurtailmentProfile_collapse">CurtailmentProfile</a>
+<div id="CurtailmentProfile_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExternalInputs.Profile.prototype.template.call (this) +
+`
+{{#EnergyTransaction}}<div><b>EnergyTransaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyTransaction}}&quot;);})'>{{EnergyTransaction}}</a></div>{{/EnergyTransaction}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A corridor containing one or more rights of way
@@ -160,7 +193,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransmissionCorridor_collapse" aria-expanded="true" aria-controls="TransmissionCorridor_collapse">TransmissionCorridor</a>
+<div id="TransmissionCorridor_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * An account for tracking inadvertent interchange versus time for each control area.
@@ -212,7 +259,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#InadvertentAccount_collapse" aria-expanded="true" aria-controls="InadvertentAccount_collapse">InadvertentAccount</a>
+<div id="InadvertentAccount_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#SubControlArea}}<div><b>SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SubControlArea}}&quot;);})'>{{SubControlArea}}</a></div>{{/SubControlArea}}
+</div>
+`
+                );
+           }        }
 
         /**
          * LossProfile is associated with an EnerrgyTransaction and must be completely contained within the time frame of the EnergyProfile associated with this EnergyTransaction.
@@ -264,7 +326,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LossProfile_collapse" aria-expanded="true" aria-controls="LossProfile_collapse">LossProfile</a>
+<div id="LossProfile_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExternalInputs.Profile.prototype.template.call (this) +
+`
+{{#HasLoss_}}<div><b>HasLoss_</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HasLoss_}}&quot;);})'>{{HasLoss_}}</a></div>{{/HasLoss_}}
+{{#EnergyTransaction}}<div><b>EnergyTransaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyTransaction}}&quot;);})'>{{EnergyTransaction}}</a></div>{{/EnergyTransaction}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Control area current net tie (scheduled interchange) sent to real time dispatch.
@@ -318,7 +396,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CurrentScheduledInterchange_collapse" aria-expanded="true" aria-controls="CurrentScheduledInterchange_collapse">CurrentScheduledInterchange</a>
+<div id="CurrentScheduledInterchange_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#currentNetTieMW}}<div><b>currentNetTieMW</b>: {{currentNetTieMW}}</div>{{/currentNetTieMW}}
+{{#useEmergencySchedule}}<div><b>useEmergencySchedule</b>: {{useEmergencySchedule}}</div>{{/useEmergencySchedule}}
+{{#InternalControlArea}}<div><b>InternalControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InternalControlArea}}&quot;);})'>{{InternalControlArea}}</a></div>{{/InternalControlArea}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Control area emergency schedules
@@ -374,7 +469,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CurrentEmergencyScheduledInterchange_collapse" aria-expanded="true" aria-controls="CurrentEmergencyScheduledInterchange_collapse">CurrentEmergencyScheduledInterchange</a>
+<div id="CurrentEmergencyScheduledInterchange_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#emergencyScheduleMW}}<div><b>emergencyScheduleMW</b>: {{emergencyScheduleMW}}</div>{{/emergencyScheduleMW}}
+{{#emergencyScheduleStartTime}}<div><b>emergencyScheduleStartTime</b>: {{emergencyScheduleStartTime}}</div>{{/emergencyScheduleStartTime}}
+{{#emergencyScheduleRampTime}}<div><b>emergencyScheduleRampTime</b>: {{emergencyScheduleRampTime}}</div>{{/emergencyScheduleRampTime}}
+{{#InternalControlArea}}<div><b>InternalControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InternalControlArea}}&quot;);})'>{{InternalControlArea}}</a></div>{{/InternalControlArea}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The control area's reserve specification.
@@ -434,7 +547,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AreaReserveSpec_collapse" aria-expanded="true" aria-controls="AreaReserveSpec_collapse">AreaReserveSpec</a>
+<div id="AreaReserveSpec_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#Description}}<div><b>Description</b>: {{Description}}</div>{{/Description}}
+{{#lowerRegMarginReqt}}<div><b>lowerRegMarginReqt</b>: {{lowerRegMarginReqt}}</div>{{/lowerRegMarginReqt}}
+{{#opReserveReqt}}<div><b>opReserveReqt</b>: {{opReserveReqt}}</div>{{/opReserveReqt}}
+{{#primaryReserveReqt}}<div><b>primaryReserveReqt</b>: {{primaryReserveReqt}}</div>{{/primaryReserveReqt}}
+{{#raiseRegMarginReqt}}<div><b>raiseRegMarginReqt</b>: {{raiseRegMarginReqt}}</div>{{/raiseRegMarginReqt}}
+{{#spinningReserveReqt}}<div><b>spinningReserveReqt</b>: {{spinningReserveReqt}}</div>{{/spinningReserveReqt}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A continuously variable component of a control area's MW net interchange schedule.
@@ -494,7 +627,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DynamicSchedule_collapse" aria-expanded="true" aria-controls="DynamicSchedule_collapse">DynamicSchedule</a>
+<div id="DynamicSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.BasicIntervalSchedule.prototype.template.call (this) +
+`
+{{#dynSchedSignRev}}<div><b>dynSchedSignRev</b>: {{dynSchedSignRev}}</div>{{/dynSchedSignRev}}
+{{#dynSchedStatus}}<div><b>dynSchedStatus</b>: {{dynSchedStatus}}</div>{{/dynSchedStatus}}
+{{#MktMeasurement}}<div><b>MktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktMeasurement}}&quot;);})'>{{MktMeasurement}}</a></div>{{/MktMeasurement}}
+{{#Receive_SubControlArea}}<div><b>Receive_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Receive_SubControlArea}}&quot;);})'>{{Receive_SubControlArea}}</a></div>{{/Receive_SubControlArea}}
+{{#Send_SubControlArea}}<div><b>Send_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Send_SubControlArea}}&quot;);})'>{{Send_SubControlArea}}</a></div>{{/Send_SubControlArea}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An EnergyProduct is offered commercially as a ContractOrTariff.
@@ -546,7 +698,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EnergyProduct_collapse" aria-expanded="true" aria-controls="EnergyProduct_collapse">EnergyProduct</a>
+<div id="EnergyProduct_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Agreement.prototype.template.call (this) +
+`
+{{#GenerationProvider}}<div><b>GenerationProvider</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenerationProvider}}&quot;);})'>{{GenerationProvider}}</a></div>{{/GenerationProvider}}
+{{#TitleHeldBy_Marketer}}<div><b>TitleHeldBy_Marketer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TitleHeldBy_Marketer}}&quot;);})'>{{TitleHeldBy_Marketer}}</a></div>{{/TitleHeldBy_Marketer}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A collection of transmission lines that are close proximity to each other.
@@ -596,7 +764,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransmissionRightOfWay_collapse" aria-expanded="true" aria-controls="TransmissionRightOfWay_collapse">TransmissionRightOfWay</a>
+<div id="TransmissionRightOfWay_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#TransmissionCorridor}}<div><b>TransmissionCorridor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionCorridor}}&quot;);})'>{{TransmissionCorridor}}</a></div>{{/TransmissionCorridor}}
+</div>
+`
+                );
+           }        }
 
         /**
          * There is one internal control area in the system, which is the single control area in the primary network company.
@@ -648,7 +831,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#InternalControlArea_collapse" aria-expanded="true" aria-controls="InternalControlArea_collapse">InternalControlArea</a>
+<div id="InternalControlArea_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#CurrentScheduledInterchange}}<div><b>CurrentScheduledInterchange</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CurrentScheduledInterchange}}&quot;);})'>{{CurrentScheduledInterchange}}</a></div>{{/CurrentScheduledInterchange}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

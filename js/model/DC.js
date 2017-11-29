@@ -58,7 +58,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCNode_collapse" aria-expanded="true" aria-controls="DCNode_collapse">DCNode</a>
+<div id="DCNode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCTopologicalNode}}&quot;);})'>{{DCTopologicalNode}}</a></div>{{/DCTopologicalNode}}
+{{#DCEquipmentContainer}}<div><b>DCEquipmentContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCEquipmentContainer}}&quot;);})'>{{DCEquipmentContainer}}</a></div>{{/DCEquipmentContainer}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An electrically connected subset of the network.
@@ -108,7 +124,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCTopologicalIsland_collapse" aria-expanded="true" aria-controls="DCTopologicalIsland_collapse">DCTopologicalIsland</a>
+<div id="DCTopologicalIsland_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Active power control modes for HVDC line operating as Current Source Converter.
@@ -162,7 +192,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CsPpccControlKind_collapse" aria-expanded="true" aria-controls="CsPpccControlKind_collapse">CsPpccControlKind</a>
+<div id="CsPpccControlKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#activePower}}<div><b>activePower</b>: {{activePower}}</div>{{/activePower}}
+{{#dcVoltage}}<div><b>dcVoltage</b>: {{dcVoltage}}</div>{{/dcVoltage}}
+{{#dcCurrent}}<div><b>dcCurrent</b>: {{dcCurrent}}</div>{{/dcCurrent}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The operating mode of an HVDC bipole.
@@ -216,7 +263,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCConverterOperatingModeKind_collapse" aria-expanded="true" aria-controls="DCConverterOperatingModeKind_collapse">DCConverterOperatingModeKind</a>
+<div id="DCConverterOperatingModeKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#bipolar}}<div><b>bipolar</b>: {{bipolar}}</div>{{/bipolar}}
+{{#monopolarMetallicReturn}}<div><b>monopolarMetallicReturn</b>: {{monopolarMetallicReturn}}</div>{{/monopolarMetallicReturn}}
+{{#monopolarGroundReturn}}<div><b>monopolarGroundReturn</b>: {{monopolarGroundReturn}}</div>{{/monopolarGroundReturn}}
+</div>
+`
+                );
+           }        }
 
         class VsQpccControlKind extends base.Element
         {
@@ -266,7 +330,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VsQpccControlKind_collapse" aria-expanded="true" aria-controls="VsQpccControlKind_collapse">VsQpccControlKind</a>
+<div id="VsQpccControlKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#reactivePcc}}<div><b>reactivePcc</b>: {{reactivePcc}}</div>{{/reactivePcc}}
+{{#voltagePcc}}<div><b>voltagePcc</b>: {{voltagePcc}}</div>{{/voltagePcc}}
+{{#powerFactorPcc}}<div><b>powerFactorPcc</b>: {{powerFactorPcc}}</div>{{/powerFactorPcc}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An electrical connection point at a piece of DC conducting equipment.
@@ -320,7 +401,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCBaseTerminal_collapse" aria-expanded="true" aria-controls="DCBaseTerminal_collapse">DCBaseTerminal</a>
+<div id="DCBaseTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ACDCTerminal.prototype.template.call (this) +
+`
+{{#DCNode}}<div><b>DCNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCNode}}&quot;);})'>{{DCNode}}</a></div>{{/DCNode}}
+{{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCTopologicalNode}}&quot;);})'>{{DCTopologicalNode}}</a></div>{{/DCTopologicalNode}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A unit with valves for three phases, together with unit control equipment, essential protective and switching devices, DC storage capacitors, phase reactors and auxiliaries, if any, used for conversion.
@@ -404,7 +501,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ACDCConverter_collapse" aria-expanded="true" aria-controls="ACDCConverter_collapse">ACDCConverter</a>
+<div id="ACDCConverter_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConductingEquipment.prototype.template.call (this) +
+`
+{{#baseS}}<div><b>baseS</b>: {{baseS}}</div>{{/baseS}}
+{{#switchingLoss}}<div><b>switchingLoss</b>: {{switchingLoss}}</div>{{/switchingLoss}}
+{{#targetPpcc}}<div><b>targetPpcc</b>: {{targetPpcc}}</div>{{/targetPpcc}}
+{{#targetUdc}}<div><b>targetUdc</b>: {{targetUdc}}</div>{{/targetUdc}}
+{{#idc}}<div><b>idc</b>: {{idc}}</div>{{/idc}}
+{{#idleLoss}}<div><b>idleLoss</b>: {{idleLoss}}</div>{{/idleLoss}}
+{{#maxUdc}}<div><b>maxUdc</b>: {{maxUdc}}</div>{{/maxUdc}}
+{{#minUdc}}<div><b>minUdc</b>: {{minUdc}}</div>{{/minUdc}}
+{{#poleLossP}}<div><b>poleLossP</b>: {{poleLossP}}</div>{{/poleLossP}}
+{{#ratedUdc}}<div><b>ratedUdc</b>: {{ratedUdc}}</div>{{/ratedUdc}}
+{{#resistiveLoss}}<div><b>resistiveLoss</b>: {{resistiveLoss}}</div>{{/resistiveLoss}}
+{{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
+{{#udc}}<div><b>udc</b>: {{udc}}</div>{{/udc}}
+{{#valveU0}}<div><b>valveU0</b>: {{valveU0}}</div>{{/valveU0}}
+{{#numberOfValves}}<div><b>numberOfValves</b>: {{numberOfValves}}</div>{{/numberOfValves}}
+{{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
+{{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
+{{#PccTerminal}}<div><b>PccTerminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PccTerminal}}&quot;);})'>{{PccTerminal}}</a></div>{{/PccTerminal}}
+</div>
+`
+                );
+           }        }
 
         class PerLengthDCLineParameter extends Wires.PerLengthLineParameter
         {
@@ -454,7 +583,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PerLengthDCLineParameter_collapse" aria-expanded="true" aria-controls="PerLengthDCLineParameter_collapse">PerLengthDCLineParameter</a>
+<div id="PerLengthDCLineParameter_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Wires.PerLengthLineParameter.prototype.template.call (this) +
+`
+{{#capacitance}}<div><b>capacitance</b>: {{capacitance}}</div>{{/capacitance}}
+{{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
+{{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Types applicable to the control of real power and/or DC voltage by voltage source converter.
@@ -512,7 +658,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VsPpccControlKind_collapse" aria-expanded="true" aria-controls="VsPpccControlKind_collapse">VsPpccControlKind</a>
+<div id="VsPpccControlKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#pPcc}}<div><b>pPcc</b>: {{pPcc}}</div>{{/pPcc}}
+{{#udc}}<div><b>udc</b>: {{udc}}</div>{{/udc}}
+{{#pPccAndUdcDroop}}<div><b>pPccAndUdcDroop</b>: {{pPccAndUdcDroop}}</div>{{/pPccAndUdcDroop}}
+{{#pPccAndUdcDroopWithCompensation}}<div><b>pPccAndUdcDroopWithCompensation</b>: {{pPccAndUdcDroopWithCompensation}}</div>{{/pPccAndUdcDroopWithCompensation}}
+{{#pPccAndUdcDroopPilot}}<div><b>pPccAndUdcDroopPilot</b>: {{pPccAndUdcDroopPilot}}</div>{{/pPccAndUdcDroopPilot}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A modeling construct to provide a root class for containment of DC as well as AC equipment.
@@ -562,7 +727,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCEquipmentContainer_collapse" aria-expanded="true" aria-controls="DCEquipmentContainer_collapse">DCEquipmentContainer</a>
+<div id="DCEquipmentContainer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.EquipmentContainer.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * The P-Q capability curve for a voltage source converter, with P on x-axis and Qmin and Qmax on y1-axis and y2-axis.
@@ -610,7 +789,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VsCapabilityCurve_collapse" aria-expanded="true" aria-controls="VsCapabilityCurve_collapse">VsCapabilityCurve</a>
+<div id="VsCapabilityCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Operating mode for HVDC line operating as Current Source Converter.
@@ -662,7 +855,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CsOperatingModeKind_collapse" aria-expanded="true" aria-controls="CsOperatingModeKind_collapse">CsOperatingModeKind</a>
+<div id="CsOperatingModeKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#inverter}}<div><b>inverter</b>: {{inverter}}</div>{{/inverter}}
+{{#rectifier}}<div><b>rectifier</b>: {{rectifier}}</div>{{/rectifier}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Polarity for DC circuits.
@@ -716,7 +925,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCPolarityKind_collapse" aria-expanded="true" aria-controls="DCPolarityKind_collapse">DCPolarityKind</a>
+<div id="DCPolarityKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#positive}}<div><b>positive</b>: {{positive}}</div>{{/positive}}
+{{#middle}}<div><b>middle</b>: {{middle}}</div>{{/middle}}
+{{#negative}}<div><b>negative</b>: {{negative}}</div>{{/negative}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The parts of the DC power system that are designed to carry current or that are conductively connected through DC terminals.
@@ -764,7 +990,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCConductingEquipment_collapse" aria-expanded="true" aria-controls="DCConductingEquipment_collapse">DCConductingEquipment</a>
+<div id="DCConductingEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Equipment.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A DC electrical connection point at the AC/DC converter.
@@ -818,7 +1058,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ACDCConverterDCTerminal_collapse" aria-expanded="true" aria-controls="ACDCConverterDCTerminal_collapse">ACDCConverterDCTerminal</a>
+<div id="ACDCConverterDCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DCBaseTerminal.prototype.template.call (this) +
+`
+{{#polarity}}<div><b>polarity</b>: {{polarity}}</div>{{/polarity}}
+{{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCConductingEquipment}}&quot;);})'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An electrical connection point to generic DC conducting equipment.
@@ -868,7 +1124,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCTerminal_collapse" aria-expanded="true" aria-controls="DCTerminal_collapse">DCTerminal</a>
+<div id="DCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DCBaseTerminal.prototype.template.call (this) +
+`
+{{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCConductingEquipment}}&quot;);})'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
+</div>
+`
+                );
+           }        }
 
         /**
          * DC side of the current source converter (CSC).
@@ -944,7 +1215,35 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CsConverter_collapse" aria-expanded="true" aria-controls="CsConverter_collapse">CsConverter</a>
+<div id="CsConverter_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ACDCConverter.prototype.template.call (this) +
+`
+{{#maxIdc}}<div><b>maxIdc</b>: {{maxIdc}}</div>{{/maxIdc}}
+{{#ratedIdc}}<div><b>ratedIdc</b>: {{ratedIdc}}</div>{{/ratedIdc}}
+{{#pPccControl}}<div><b>pPccControl</b>: {{pPccControl}}</div>{{/pPccControl}}
+{{#alpha}}<div><b>alpha</b>: {{alpha}}</div>{{/alpha}}
+{{#gamma}}<div><b>gamma</b>: {{gamma}}</div>{{/gamma}}
+{{#maxAlpha}}<div><b>maxAlpha</b>: {{maxAlpha}}</div>{{/maxAlpha}}
+{{#maxGamma}}<div><b>maxGamma</b>: {{maxGamma}}</div>{{/maxGamma}}
+{{#minAlpha}}<div><b>minAlpha</b>: {{minAlpha}}</div>{{/minAlpha}}
+{{#minGamma}}<div><b>minGamma</b>: {{minGamma}}</div>{{/minGamma}}
+{{#targetAlpha}}<div><b>targetAlpha</b>: {{targetAlpha}}</div>{{/targetAlpha}}
+{{#targetGamma}}<div><b>targetGamma</b>: {{targetGamma}}</div>{{/targetGamma}}
+{{#targetIdc}}<div><b>targetIdc</b>: {{targetIdc}}</div>{{/targetIdc}}
+{{#minIdc}}<div><b>minIdc</b>: {{minIdc}}</div>{{/minIdc}}
+{{#operatingMode}}<div><b>operatingMode</b>: {{operatingMode}}</div>{{/operatingMode}}
+</div>
+`
+                );
+           }        }
 
         /**
          * DC side of the voltage source converter (VSC).
@@ -1016,7 +1315,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VsConverter_collapse" aria-expanded="true" aria-controls="VsConverter_collapse">VsConverter</a>
+<div id="VsConverter_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ACDCConverter.prototype.template.call (this) +
+`
+{{#pPccControl}}<div><b>pPccControl</b>: {{pPccControl}}</div>{{/pPccControl}}
+{{#qShare}}<div><b>qShare</b>: {{qShare}}</div>{{/qShare}}
+{{#targetQpcc}}<div><b>targetQpcc</b>: {{targetQpcc}}</div>{{/targetQpcc}}
+{{#targetUpcc}}<div><b>targetUpcc</b>: {{targetUpcc}}</div>{{/targetUpcc}}
+{{#droopCompensation}}<div><b>droopCompensation</b>: {{droopCompensation}}</div>{{/droopCompensation}}
+{{#droop}}<div><b>droop</b>: {{droop}}</div>{{/droop}}
+{{#delta}}<div><b>delta</b>: {{delta}}</div>{{/delta}}
+{{#uf}}<div><b>uf</b>: {{uf}}</div>{{/uf}}
+{{#maxValveCurrent}}<div><b>maxValveCurrent</b>: {{maxValveCurrent}}</div>{{/maxValveCurrent}}
+{{#maxModulationIndex}}<div><b>maxModulationIndex</b>: {{maxModulationIndex}}</div>{{/maxModulationIndex}}
+{{#qPccControl}}<div><b>qPccControl</b>: {{qPccControl}}</div>{{/qPccControl}}
+{{#CapabilityCurve}}<div><b>CapabilityCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CapabilityCurve}}&quot;);})'>{{CapabilityCurve}}</a></div>{{/CapabilityCurve}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Overhead lines and/or cables connecting two or more HVDC substations.
@@ -1066,7 +1391,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCLine_collapse" aria-expanded="true" aria-controls="DCLine_collapse">DCLine</a>
+<div id="DCLine_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DCEquipmentContainer.prototype.template.call (this) +
+`
+{{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);})'>{{Region}}</a></div>{{/Region}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Indivisible operative unit comprising all equipment between the point of common coupling on the AC side and the point of common coupling � DC side, essentially one or more converters, together with one or more converter transformers, converter control equipment, essential protective and switching devices and auxiliaries, if any, used for conversion.
@@ -1118,7 +1458,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCConverterUnit_collapse" aria-expanded="true" aria-controls="DCConverterUnit_collapse">DCConverterUnit</a>
+<div id="DCConverterUnit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DCEquipmentContainer.prototype.template.call (this) +
+`
+{{#operationMode}}<div><b>operationMode</b>: {{operationMode}}</div>{{/operationMode}}
+{{#Substation}}<div><b>Substation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Substation}}&quot;);})'>{{Substation}}</a></div>{{/Substation}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A switch within the DC system.
@@ -1166,7 +1522,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCSwitch_collapse" aria-expanded="true" aria-controls="DCSwitch_collapse">DCSwitch</a>
+<div id="DCSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DCConductingEquipment.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A disconnector within a DC system.
@@ -1214,7 +1584,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCDisconnector_collapse" aria-expanded="true" aria-controls="DCDisconnector_collapse">DCDisconnector</a>
+<div id="DCDisconnector_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DCSwitch.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A series device within the DC system, typically a reactor used for filtering or smoothing.
@@ -1270,7 +1654,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCSeriesDevice_collapse" aria-expanded="true" aria-controls="DCSeriesDevice_collapse">DCSeriesDevice</a>
+<div id="DCSeriesDevice_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DCConductingEquipment.prototype.template.call (this) +
+`
+{{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
+{{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
+{{#ratedUdc}}<div><b>ratedUdc</b>: {{ratedUdc}}</div>{{/ratedUdc}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A busbar within a DC system.
@@ -1318,7 +1719,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCBusbar_collapse" aria-expanded="true" aria-controls="DCBusbar_collapse">DCBusbar</a>
+<div id="DCBusbar_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DCConductingEquipment.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A shunt device within the DC system, typically used for filtering.
@@ -1374,7 +1789,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCShunt_collapse" aria-expanded="true" aria-controls="DCShunt_collapse">DCShunt</a>
+<div id="DCShunt_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DCConductingEquipment.prototype.template.call (this) +
+`
+{{#capacitance}}<div><b>capacitance</b>: {{capacitance}}</div>{{/capacitance}}
+{{#ratedUdc}}<div><b>ratedUdc</b>: {{ratedUdc}}</div>{{/ratedUdc}}
+{{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A wire or combination of wires not insulated from one another, with consistent electrical characteristics, used to carry direct current between points in the DC region of the power system.
@@ -1432,7 +1864,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCLineSegment_collapse" aria-expanded="true" aria-controls="DCLineSegment_collapse">DCLineSegment</a>
+<div id="DCLineSegment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DCConductingEquipment.prototype.template.call (this) +
+`
+{{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
+{{#capacitance}}<div><b>capacitance</b>: {{capacitance}}</div>{{/capacitance}}
+{{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
+{{#length}}<div><b>length</b>: {{length}}</div>{{/length}}
+{{#PerLengthParameter}}<div><b>PerLengthParameter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PerLengthParameter}}&quot;);})'>{{PerLengthParameter}}</a></div>{{/PerLengthParameter}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A ground within a DC system.
@@ -1484,7 +1935,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCGround_collapse" aria-expanded="true" aria-controls="DCGround_collapse">DCGround</a>
+<div id="DCGround_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DCConductingEquipment.prototype.template.call (this) +
+`
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A breaker within a DC system.
@@ -1532,7 +1999,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCBreaker_collapse" aria-expanded="true" aria-controls="DCBreaker_collapse">DCBreaker</a>
+<div id="DCBreaker_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DCSwitch.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Low resistance equipment used in the internal DC circuit to balance voltages.
@@ -1582,7 +2063,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DCChopper_collapse" aria-expanded="true" aria-controls="DCChopper_collapse">DCChopper</a>
+<div id="DCChopper_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DCConductingEquipment.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         return (
             {

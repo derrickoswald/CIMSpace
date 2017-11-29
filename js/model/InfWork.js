@@ -58,7 +58,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkStatusEntry_collapse" aria-expanded="true" aria-controls="WorkStatusEntry_collapse">WorkStatusEntry</a>
+<div id="WorkStatusEntry_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.ActivityRecord.prototype.template.call (this) +
+`
+{{#percentComplete}}<div><b>percentComplete</b>: {{percentComplete}}</div>{{/percentComplete}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kinds of activities to be performed on a Compatible Unit.
@@ -114,7 +129,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkActionKind_collapse" aria-expanded="true" aria-controls="WorkActionKind_collapse">WorkActionKind</a>
+<div id="WorkActionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#install}}<div><b>install</b>: {{install}}</div>{{/install}}
+{{#remove}}<div><b>remove</b>: {{remove}}</div>{{/remove}}
+{{#abandon}}<div><b>abandon</b>: {{abandon}}</div>{{/abandon}}
+{{#transfer}}<div><b>transfer</b>: {{transfer}}</div>{{/transfer}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Shadow class for Document, to isolate subclassing from this package.
@@ -164,7 +197,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkDocument_collapse" aria-expanded="true" aria-controls="WorkDocument_collapse">WorkDocument</a>
+<div id="WorkDocument_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of condition factor.
@@ -222,7 +269,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ConditionFactorKind_collapse" aria-expanded="true" aria-controls="ConditionFactorKind_collapse">ConditionFactorKind</a>
+<div id="ConditionFactorKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#labor}}<div><b>labor</b>: {{labor}}</div>{{/labor}}
+{{#accountAllocation}}<div><b>accountAllocation</b>: {{accountAllocation}}</div>{{/accountAllocation}}
+{{#material}}<div><b>material</b>: {{material}}</div>{{/material}}
+{{#travel}}<div><b>travel</b>: {{travel}}</div>{{/travel}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Shadow class for IdentifiedObject, to isolate subclassing from this package.
@@ -272,7 +338,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkIdentifiedObject_collapse" aria-expanded="true" aria-controls="WorkIdentifiedObject_collapse">WorkIdentifiedObject</a>
+<div id="WorkIdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A set of tasks is required to implement a design.
@@ -326,7 +406,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OldWorkTask_collapse" aria-expanded="true" aria-controls="OldWorkTask_collapse">OldWorkTask</a>
+<div id="OldWorkTask_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Work.WorkTask.prototype.template.call (this) +
+`
+{{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);})'>{{Design}}</a></div>{{/Design}}
+{{#WorkFlowStep}}<div><b>WorkFlowStep</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkFlowStep}}&quot;);})'>{{WorkFlowStep}}</a></div>{{/WorkFlowStep}}
+{{#OverheadCost}}<div><b>OverheadCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverheadCost}}&quot;);})'>{{OverheadCost}}</a></div>{{/OverheadCost}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of design.
@@ -380,7 +477,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DesignKind_collapse" aria-expanded="true" aria-controls="DesignKind_collapse">DesignKind</a>
+<div id="DesignKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#estimated}}<div><b>estimated</b>: {{estimated}}</div>{{/estimated}}
+{{#asBuilt}}<div><b>asBuilt</b>: {{asBuilt}}</div>{{/asBuilt}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Business justification for capital expenditures, usually addressing operations and maintenance costs as well.
@@ -430,7 +544,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BusinessCase_collapse" aria-expanded="true" aria-controls="BusinessCase_collapse">BusinessCase</a>
+<div id="BusinessCase_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkDocument.prototype.template.call (this) +
+`
+{{#corporateCode}}<div><b>corporateCode</b>: {{corporateCode}}</div>{{/corporateCode}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Special requirements and/or regulations may pertain to certain types of assets or work.
@@ -482,7 +611,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Regulation_collapse" aria-expanded="true" aria-controls="Regulation_collapse">Regulation</a>
+<div id="Regulation_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkDocument.prototype.template.call (this) +
+`
+{{#referenceNumber}}<div><b>referenceNumber</b>: {{referenceNumber}}</div>{{/referenceNumber}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An assignment is given to an ErpPerson, Crew, Organisation, Equipment Item, Tool, etc. and may be used to perform Work, WorkTasks, Procedures, etc.
@@ -534,7 +678,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Assignment_collapse" aria-expanded="true" aria-controls="Assignment_collapse">Assignment</a>
+<div id="Assignment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkDocument.prototype.template.call (this) +
+`
+{{#effectivePeriod}}<div><b>effectivePeriod</b>: {{effectivePeriod}}</div>{{/effectivePeriod}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A collection of related work.
@@ -592,7 +751,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Project_collapse" aria-expanded="true" aria-controls="Project_collapse">Project</a>
+<div id="Project_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkDocument.prototype.template.call (this) +
+`
+{{#budget}}<div><b>budget</b>: {{budget}}</div>{{/budget}}
+{{#ParentProject}}<div><b>ParentProject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentProject}}&quot;);})'>{{ParentProject}}</a></div>{{/ParentProject}}
+{{#BusinessCase}}<div><b>BusinessCase</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BusinessCase}}&quot;);})'>{{BusinessCase}}</a></div>{{/BusinessCase}}
+{{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);})'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A roll up by cost type for the entire cost of a work order.
@@ -644,7 +821,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkCostSummary_collapse" aria-expanded="true" aria-controls="WorkCostSummary_collapse">WorkCostSummary</a>
+<div id="WorkCostSummary_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkDocument.prototype.template.call (this) +
+`
+{{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);})'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A collection of all of the individual cost items collected from multiple sources.
@@ -710,7 +902,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkCostDetail_collapse" aria-expanded="true" aria-controls="WorkCostDetail_collapse">WorkCostDetail</a>
+<div id="WorkCostDetail_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkDocument.prototype.template.call (this) +
+`
+{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+{{#isDebit}}<div><b>isDebit</b>: {{isDebit}}</div>{{/isDebit}}
+{{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
+{{#CostType}}<div><b>CostType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CostType}}&quot;);})'>{{CostType}}</a></div>{{/CostType}}
+{{#OverheadCost}}<div><b>OverheadCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverheadCost}}&quot;);})'>{{OverheadCost}}</a></div>{{/OverheadCost}}
+{{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
+{{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);})'>{{Design}}</a></div>{{/Design}}
+{{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);})'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
+{{#WorkCostSummary}}<div><b>WorkCostSummary</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostSummary}}&quot;);})'>{{WorkCostSummary}}</a></div>{{/WorkCostSummary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A pre-planned job model containing labor, material, and accounting requirements for standardized job planning.
@@ -770,7 +985,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CompatibleUnit_collapse" aria-expanded="true" aria-controls="CompatibleUnit_collapse">CompatibleUnit</a>
+<div id="CompatibleUnit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkDocument.prototype.template.call (this) +
+`
+{{#estCost}}<div><b>estCost</b>: {{estCost}}</div>{{/estCost}}
+{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+{{#CUGroup}}<div><b>CUGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUGroup}}&quot;);})'>{{CUGroup}}</a></div>{{/CUGroup}}
+{{#PropertyUnit}}<div><b>PropertyUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PropertyUnit}}&quot;);})'>{{PropertyUnit}}</a></div>{{/PropertyUnit}}
+{{#CostType}}<div><b>CostType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CostType}}&quot;);})'>{{CostType}}</a></div>{{/CostType}}
+{{#CUAllowableAction}}<div><b>CUAllowableAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUAllowableAction}}&quot;);})'>{{CUAllowableAction}}</a></div>{{/CUAllowableAction}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Questions and answers associated with a type of document for purposes of clarification.
@@ -834,7 +1069,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#InfoQuestion_collapse" aria-expanded="true" aria-controls="InfoQuestion_collapse">InfoQuestion</a>
+<div id="InfoQuestion_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkDocument.prototype.template.call (this) +
+`
+{{#answer}}<div><b>answer</b>: {{answer}}</div>{{/answer}}
+{{#answerDateTime}}<div><b>answerDateTime</b>: {{answerDateTime}}</div>{{/answerDateTime}}
+{{#answerRemark}}<div><b>answerRemark</b>: {{answerRemark}}</div>{{/answerRemark}}
+{{#questionCode}}<div><b>questionCode</b>: {{questionCode}}</div>{{/questionCode}}
+{{#questionRemark}}<div><b>questionRemark</b>: {{questionRemark}}</div>{{/questionRemark}}
+{{#questionText}}<div><b>questionText</b>: {{questionText}}</div>{{/questionText}}
+{{#questionType}}<div><b>questionType</b>: {{questionType}}</div>{{/questionType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Documentation for a generic material item that may be used for design, work and other purposes.
@@ -892,7 +1148,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TypeMaterial_collapse" aria-expanded="true" aria-controls="TypeMaterial_collapse">TypeMaterial</a>
+<div id="TypeMaterial_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkDocument.prototype.template.call (this) +
+`
+{{#costType}}<div><b>costType</b>: {{costType}}</div>{{/costType}}
+{{#estUnitCost}}<div><b>estUnitCost</b>: {{estUnitCost}}</div>{{/estUnitCost}}
+{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+{{#stockItem}}<div><b>stockItem</b>: {{stockItem}}</div>{{/stockItem}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This document provides information for non-standard items like customer contributions (e.g., customer digs trench), vouchers (e.g., credit), and contractor bids.
@@ -942,7 +1216,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#NonStandardItem_collapse" aria-expanded="true" aria-controls="NonStandardItem_collapse">NonStandardItem</a>
+<div id="NonStandardItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkDocument.prototype.template.call (this) +
+`
+{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A permit is sometimes needed to provide legal access to land or equipment.
@@ -1002,7 +1291,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AccessPermit_collapse" aria-expanded="true" aria-controls="AccessPermit_collapse">AccessPermit</a>
+<div id="AccessPermit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkDocument.prototype.template.call (this) +
+`
+{{#applicationNumber}}<div><b>applicationNumber</b>: {{applicationNumber}}</div>{{/applicationNumber}}
+{{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
+{{#expirationDate}}<div><b>expirationDate</b>: {{expirationDate}}</div>{{/expirationDate}}
+{{#payment}}<div><b>payment</b>: {{payment}}</div>{{/payment}}
+{{#permitID}}<div><b>permitID</b>: {{permitID}}</div>{{/permitID}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A request for other utilities to mark their underground facilities prior to commencement of construction and/or maintenance.
@@ -1056,7 +1364,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OneCallRequest_collapse" aria-expanded="true" aria-controls="OneCallRequest_collapse">OneCallRequest</a>
+<div id="OneCallRequest_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkDocument.prototype.template.call (this) +
+`
+{{#explosivesUsed}}<div><b>explosivesUsed</b>: {{explosivesUsed}}</div>{{/explosivesUsed}}
+{{#markedIndicator}}<div><b>markedIndicator</b>: {{markedIndicator}}</div>{{/markedIndicator}}
+{{#markingInstruction}}<div><b>markingInstruction</b>: {{markingInstruction}}</div>{{/markingInstruction}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A design for consideration by customers, potential customers, or internal work.
@@ -1116,7 +1441,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Design_collapse" aria-expanded="true" aria-controls="Design_collapse">Design</a>
+<div id="Design_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkDocument.prototype.template.call (this) +
+`
+{{#costEstimate}}<div><b>costEstimate</b>: {{costEstimate}}</div>{{/costEstimate}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#price}}<div><b>price</b>: {{price}}</div>{{/price}}
+{{#Work}}<div><b>Work</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Work}}&quot;);})'>{{Work}}</a></div>{{/Work}}
+{{#ErpQuoteLineItem}}<div><b>ErpQuoteLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuoteLineItem}}&quot;);})'>{{ErpQuoteLineItem}}</a></div>{{/ErpQuoteLineItem}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Labor used for work order.
@@ -1178,7 +1522,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LaborItem_collapse" aria-expanded="true" aria-controls="LaborItem_collapse">LaborItem</a>
+<div id="LaborItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
+{{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
+{{#laborDuration}}<div><b>laborDuration</b>: {{laborDuration}}</div>{{/laborDuration}}
+{{#laborRate}}<div><b>laborRate</b>: {{laborRate}}</div>{{/laborRate}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);})'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
+{{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This is to specify the various condition factors for a design that may alter the cost estimate or the allocation.
@@ -1232,7 +1597,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ConditionFactor_collapse" aria-expanded="true" aria-controls="ConditionFactor_collapse">ConditionFactor</a>
+<div id="ConditionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#cfValue}}<div><b>cfValue</b>: {{cfValue}}</div>{{/cfValue}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The way material and assets are used to perform a certain type of work task.
@@ -1286,7 +1668,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Usage_collapse" aria-expanded="true" aria-controls="Usage_collapse">Usage</a>
+<div id="Usage_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A categorization for resources, often costs, in accounting transactions.
@@ -1348,7 +1746,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CostType_collapse" aria-expanded="true" aria-controls="CostType_collapse">CostType</a>
+<div id="CostType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#amountAssignable}}<div><b>amountAssignable</b>: {{amountAssignable}}</div>{{/amountAssignable}}
+{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+{{#level}}<div><b>level</b>: {{level}}</div>{{/level}}
+{{#stage}}<div><b>stage</b>: {{stage}}</div>{{/stage}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#ParentCostType}}<div><b>ParentCostType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentCostType}}&quot;);})'>{{ParentCostType}}</a></div>{{/ParentCostType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Labor code associated with various compatible unit labor items.
@@ -1400,7 +1818,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CULaborCode_collapse" aria-expanded="true" aria-controls="CULaborCode_collapse">CULaborCode</a>
+<div id="CULaborCode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A logical part of the design (e.g., pole and all equipment on a pole).
@@ -1454,7 +1888,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DesignLocation_collapse" aria-expanded="true" aria-controls="DesignLocation_collapse">DesignLocation</a>
+<div id="DesignLocation_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#spanLength}}<div><b>spanLength</b>: {{spanLength}}</div>{{/spanLength}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Compatible unit for various types of WorkEquipmentAssets, including vehicles.
@@ -1510,7 +1960,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CUWorkEquipmentItem_collapse" aria-expanded="true" aria-controls="CUWorkEquipmentItem_collapse">CUWorkEquipmentItem</a>
+<div id="CUWorkEquipmentItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#equipCode}}<div><b>equipCode</b>: {{equipCode}}</div>{{/equipCode}}
+{{#rate}}<div><b>rate</b>: {{rate}}</div>{{/rate}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Compatible unit of a consumable supply item.
@@ -1568,7 +2036,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CUMaterialItem_collapse" aria-expanded="true" aria-controls="CUMaterialItem_collapse">CUMaterialItem</a>
+<div id="CUMaterialItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#corporateCode}}<div><b>corporateCode</b>: {{corporateCode}}</div>{{/corporateCode}}
+{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);})'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Overhead cost applied to work order.
@@ -1622,7 +2108,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OverheadCost_collapse" aria-expanded="true" aria-controls="OverheadCost_collapse">OverheadCost</a>
+<div id="OverheadCost_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+{{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A pre-defined set of work steps for a given type of work.
@@ -1676,7 +2179,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkFlowStep_collapse" aria-expanded="true" aria-controls="WorkFlowStep_collapse">WorkFlowStep</a>
+<div id="WorkFlowStep_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#Work}}<div><b>Work</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Work}}&quot;);})'>{{Work}}</a></div>{{/Work}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Allowed actions: Install, Remove, Transfer, Abandon, etc.
@@ -1726,7 +2246,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CUAllowableAction_collapse" aria-expanded="true" aria-controls="CUAllowableAction_collapse">CUAllowableAction</a>
+<div id="CUAllowableAction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Certain skills are required and must be certified in order for a person (typically a member of a crew) to be qualified to work on types of equipment.
@@ -1776,7 +2311,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#QualificationRequirement_collapse" aria-expanded="true" aria-controls="QualificationRequirement_collapse">QualificationRequirement</a>
+<div id="QualificationRequirement_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#qualificationID}}<div><b>qualificationID</b>: {{qualificationID}}</div>{{/qualificationID}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Contractor information for work task.
@@ -1836,7 +2386,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ContractorItem_collapse" aria-expanded="true" aria-controls="ContractorItem_collapse">ContractorItem</a>
+<div id="ContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
+{{#bidAmount}}<div><b>bidAmount</b>: {{bidAmount}}</div>{{/bidAmount}}
+{{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);})'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
+{{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A Compatible Unit Group identifies a set of compatible units which may be jointly utilized for estimating and designating jobs.
@@ -1886,7 +2456,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CUGroup_collapse" aria-expanded="true" aria-controls="CUGroup_collapse">CUGroup</a>
+<div id="CUGroup_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The patterns of shifts worked by people or crews.
@@ -1942,7 +2527,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ShiftPattern_collapse" aria-expanded="true" aria-controls="ShiftPattern_collapse">ShiftPattern</a>
+<div id="ShiftPattern_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#assignmentType}}<div><b>assignmentType</b>: {{assignmentType}}</div>{{/assignmentType}}
+{{#cycleCount}}<div><b>cycleCount</b>: {{cycleCount}}</div>{{/cycleCount}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Compatible unit labor item.
@@ -2000,7 +2603,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CULaborItem_collapse" aria-expanded="true" aria-controls="CULaborItem_collapse">CULaborItem</a>
+<div id="CULaborItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
+{{#laborDuration}}<div><b>laborDuration</b>: {{laborDuration}}</div>{{/laborDuration}}
+{{#laborRate}}<div><b>laborRate</b>: {{laborRate}}</div>{{/laborRate}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#CULaborCode}}<div><b>CULaborCode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CULaborCode}}&quot;);})'>{{CULaborCode}}</a></div>{{/CULaborCode}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Unit of property for reporting purposes.
@@ -2056,7 +2678,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PropertyUnit_collapse" aria-expanded="true" aria-controls="PropertyUnit_collapse">PropertyUnit</a>
+<div id="PropertyUnit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#accountingUsage}}<div><b>accountingUsage</b>: {{accountingUsage}}</div>{{/accountingUsage}}
+{{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
+{{#propertyAccount}}<div><b>propertyAccount</b>: {{propertyAccount}}</div>{{/propertyAccount}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Capabilities of a crew.
@@ -2114,7 +2754,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Capability_collapse" aria-expanded="true" aria-controls="Capability_collapse">Capability</a>
+<div id="Capability_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#performanceFactor}}<div><b>performanceFactor</b>: {{performanceFactor}}</div>{{/performanceFactor}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
+{{#Crew}}<div><b>Crew</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Crew}}&quot;);})'>{{Crew}}</a></div>{{/Crew}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Compatible unit at a given design location.
@@ -2178,7 +2837,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DesignLocationCU_collapse" aria-expanded="true" aria-controls="DesignLocationCU_collapse">DesignLocationCU</a>
+<div id="DesignLocationCU_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#cuAccount}}<div><b>cuAccount</b>: {{cuAccount}}</div>{{/cuAccount}}
+{{#cuAction}}<div><b>cuAction</b>: {{cuAction}}</div>{{/cuAction}}
+{{#cuQuantity}}<div><b>cuQuantity</b>: {{cuQuantity}}</div>{{/cuQuantity}}
+{{#cuUsage}}<div><b>cuUsage</b>: {{cuUsage}}</div>{{/cuUsage}}
+{{#removalDate}}<div><b>removalDate</b>: {{removalDate}}</div>{{/removalDate}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#toBeEnergised}}<div><b>toBeEnergised</b>: {{toBeEnergised}}</div>{{/toBeEnergised}}
+{{#DesignLocation}}<div><b>DesignLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DesignLocation}}&quot;);})'>{{DesignLocation}}</a></div>{{/DesignLocation}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Various cost items that are not associated with compatible units.
@@ -2246,7 +2927,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MiscCostItem_collapse" aria-expanded="true" aria-controls="MiscCostItem_collapse">MiscCostItem</a>
+<div id="MiscCostItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#account}}<div><b>account</b>: {{account}}</div>{{/account}}
+{{#costPerUnit}}<div><b>costPerUnit</b>: {{costPerUnit}}</div>{{/costPerUnit}}
+{{#costType}}<div><b>costType</b>: {{costType}}</div>{{/costType}}
+{{#externalRefID}}<div><b>externalRefID</b>: {{externalRefID}}</div>{{/externalRefID}}
+{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
+{{#DesignLocation}}<div><b>DesignLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DesignLocation}}&quot;);})'>{{DesignLocation}}</a></div>{{/DesignLocation}}
+{{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);})'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Compatible unit contractor item.
@@ -2300,7 +3004,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CUContractorItem_collapse" aria-expanded="true" aria-controls="CUContractorItem_collapse">CUContractorItem</a>
+<div id="CUContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
+{{#bidAmount}}<div><b>bidAmount</b>: {{bidAmount}}</div>{{/bidAmount}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Compatible unit for various types of assets such as transformers switches, substation fences, poles, etc..
@@ -2356,7 +3077,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CUAsset_collapse" aria-expanded="true" aria-controls="CUAsset_collapse">CUAsset</a>
+<div id="CUAsset_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkIdentifiedObject.prototype.template.call (this) +
+`
+{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#typeAssetCode}}<div><b>typeAssetCode</b>: {{typeAssetCode}}</div>{{/typeAssetCode}}
+{{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

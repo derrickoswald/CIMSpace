@@ -54,7 +54,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TiePoint_collapse" aria-expanded="true" aria-controls="TiePoint_collapse">TiePoint</a>
+<div id="TiePoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#tiePointMWRating}}<div><b>tiePointMWRating</b>: {{tiePointMWRating}}</div>{{/tiePointMWRating}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

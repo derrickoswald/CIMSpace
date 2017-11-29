@@ -60,7 +60,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OperationalLimitSet_collapse" aria-expanded="true" aria-controls="OperationalLimitSet_collapse">OperationalLimitSet</a>
+<div id="OperationalLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+{{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A value associated with a specific kind of limit.
@@ -114,7 +130,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OperationalLimit_collapse" aria-expanded="true" aria-controls="OperationalLimit_collapse">OperationalLimit</a>
+<div id="OperationalLimit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#OperationalLimitSet}}<div><b>OperationalLimitSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperationalLimitSet}}&quot;);})'>{{OperationalLimitSet}}</a></div>{{/OperationalLimitSet}}
+{{#OperationalLimitType}}<div><b>OperationalLimitType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperationalLimitType}}&quot;);})'>{{OperationalLimitType}}</a></div>{{/OperationalLimitType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A specific directed terminal flow for a branch group.
@@ -168,7 +200,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BranchGroupTerminal_collapse" aria-expanded="true" aria-controls="BranchGroupTerminal_collapse">BranchGroupTerminal</a>
+<div id="BranchGroupTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#positiveFlowIn}}<div><b>positiveFlowIn</b>: {{positiveFlowIn}}</div>{{/positiveFlowIn}}
+{{#BranchGroup}}<div><b>BranchGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BranchGroup}}&quot;);})'>{{BranchGroup}}</a></div>{{/BranchGroup}}
+{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A group of branch terminals whose directed flow summation is to be monitored.
@@ -230,7 +279,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BranchGroup_collapse" aria-expanded="true" aria-controls="BranchGroup_collapse">BranchGroup</a>
+<div id="BranchGroup_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#maximumActivePower}}<div><b>maximumActivePower</b>: {{maximumActivePower}}</div>{{/maximumActivePower}}
+{{#maximumReactivePower}}<div><b>maximumReactivePower</b>: {{maximumReactivePower}}</div>{{/maximumReactivePower}}
+{{#minimumActivePower}}<div><b>minimumActivePower</b>: {{minimumActivePower}}</div>{{/minimumActivePower}}
+{{#minimumReactivePower}}<div><b>minimumReactivePower</b>: {{minimumReactivePower}}</div>{{/minimumReactivePower}}
+{{#monitorActivePower}}<div><b>monitorActivePower</b>: {{monitorActivePower}}</div>{{/monitorActivePower}}
+{{#monitorReactivePower}}<div><b>monitorReactivePower</b>: {{monitorReactivePower}}</div>{{/monitorReactivePower}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The operational meaning of a category of limits.
@@ -284,7 +353,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OperationalLimitType_collapse" aria-expanded="true" aria-controls="OperationalLimitType_collapse">OperationalLimitType</a>
+<div id="OperationalLimitType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#acceptableDuration}}<div><b>acceptableDuration</b>: {{acceptableDuration}}</div>{{/acceptableDuration}}
+{{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
+{{#TargetOperationalLimitmTypeScaling}}<div><b>TargetOperationalLimitmTypeScaling</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetOperationalLimitmTypeScaling}}&quot;);})'>{{TargetOperationalLimitmTypeScaling}}</a></div>{{/TargetOperationalLimitmTypeScaling}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The direction attribute describes the side of  a limit that is a violation.
@@ -338,7 +424,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OperationalLimitDirectionKind_collapse" aria-expanded="true" aria-controls="OperationalLimitDirectionKind_collapse">OperationalLimitDirectionKind</a>
+<div id="OperationalLimitDirectionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#high}}<div><b>high</b>: {{high}}</div>{{/high}}
+{{#low}}<div><b>low</b>: {{low}}</div>{{/low}}
+{{#absoluteValue}}<div><b>absoluteValue</b>: {{absoluteValue}}</div>{{/absoluteValue}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Operational limit on current.
@@ -388,7 +491,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CurrentLimit_collapse" aria-expanded="true" aria-controls="CurrentLimit_collapse">CurrentLimit</a>
+<div id="CurrentLimit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + OperationalLimit.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Apparent power limit.
@@ -438,7 +556,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ApparentPowerLimit_collapse" aria-expanded="true" aria-controls="ApparentPowerLimit_collapse">ApparentPowerLimit</a>
+<div id="ApparentPowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + OperationalLimit.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Operational limit applied to voltage.
@@ -488,7 +621,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VoltageLimit_collapse" aria-expanded="true" aria-controls="VoltageLimit_collapse">VoltageLimit</a>
+<div id="VoltageLimit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + OperationalLimit.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Limit on active power flow.
@@ -538,7 +686,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ActivePowerLimit_collapse" aria-expanded="true" aria-controls="ActivePowerLimit_collapse">ActivePowerLimit</a>
+<div id="ActivePowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + OperationalLimit.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

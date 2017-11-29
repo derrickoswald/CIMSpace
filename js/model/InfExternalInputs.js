@@ -52,7 +52,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ResourceGroupReq_collapse" aria-expanded="true" aria-controls="ResourceGroupReq_collapse">ResourceGroupReq</a>
+<div id="ResourceGroupReq_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#ResourceGroup}}<div><b>ResourceGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ResourceGroup}}&quot;);})'>{{ResourceGroup}}</a></div>{{/ResourceGroup}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A curve relating  reserve requirement versus time, showing the values of a specific reserve requirement for each unit of the period covered.
@@ -104,7 +119,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ReserveReqCurve_collapse" aria-expanded="true" aria-controls="ReserveReqCurve_collapse">ReserveReqCurve</a>
+<div id="ReserveReqCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#ReserveReq}}<div><b>ReserveReq</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReserveReq}}&quot;);})'>{{ReserveReq}}</a></div>{{/ReserveReq}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A logical grouping of resources that are used to model location of types of requirements for ancillary services such as spinning reserve zones, regulation zones, etc.
@@ -156,7 +186,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ResourceGroup_collapse" aria-expanded="true" aria-controls="ResourceGroup_collapse">ResourceGroup</a>
+<div id="ResourceGroup_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Optionally, this curve expresses elasticity of the associated requirement.
@@ -208,7 +254,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SensitivityPriceCurve_collapse" aria-expanded="true" aria-controls="SensitivityPriceCurve_collapse">SensitivityPriceCurve</a>
+<div id="SensitivityPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#ReserveReq}}<div><b>ReserveReq</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReserveReq}}&quot;);})'>{{ReserveReq}}</a></div>{{/ReserveReq}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Requirements for minimum amount of reserve and/or regulation to be supplied by a set of qualified resources.
@@ -262,7 +323,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ReserveReq_collapse" aria-expanded="true" aria-controls="ReserveReq_collapse">ReserveReq</a>
+<div id="ReserveReq_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ResourceGroupReq.prototype.template.call (this) +
+`
+{{#MarketProduct}}<div><b>MarketProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketProduct}}&quot;);})'>{{MarketProduct}}</a></div>{{/MarketProduct}}
+{{#SensitivityPriceCurve}}<div><b>SensitivityPriceCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SensitivityPriceCurve}}&quot;);})'>{{SensitivityPriceCurve}}</a></div>{{/SensitivityPriceCurve}}
+{{#ReserveReqCurve}}<div><b>ReserveReqCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReserveReqCurve}}&quot;);})'>{{ReserveReqCurve}}</a></div>{{/ReserveReqCurve}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

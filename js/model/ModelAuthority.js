@@ -54,7 +54,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ModelingAuthority_collapse" aria-expanded="true" aria-controls="ModelingAuthority_collapse">ModelingAuthority</a>
+<div id="ModelingAuthority_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A Modeling Authority Set is a group of objects in a network model where the data is supplied and maintained by the same Modeling Authority.
@@ -106,7 +120,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ModelingAuthoritySet_collapse" aria-expanded="true" aria-controls="ModelingAuthoritySet_collapse">ModelingAuthoritySet</a>
+<div id="ModelingAuthoritySet_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ModelingAuthority}}<div><b>ModelingAuthority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ModelingAuthority}}&quot;);})'>{{ModelingAuthority}}</a></div>{{/ModelingAuthority}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

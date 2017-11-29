@@ -300,7 +300,146 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExtUnitSymbolKind_collapse" aria-expanded="true" aria-controls="ExtUnitSymbolKind_collapse">ExtUnitSymbolKind</a>
+<div id="ExtUnitSymbolKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#VA}}<div><b>VA</b>: {{VA}}</div>{{/VA}}
+{{#W}}<div><b>W</b>: {{W}}</div>{{/W}}
+{{#VAr}}<div><b>VAr</b>: {{VAr}}</div>{{/VAr}}
+{{#VAh}}<div><b>VAh</b>: {{VAh}}</div>{{/VAh}}
+{{#Wh}}<div><b>Wh</b>: {{Wh}}</div>{{/Wh}}
+{{#VArh}}<div><b>VArh</b>: {{VArh}}</div>{{/VArh}}
+{{#V}}<div><b>V</b>: {{V}}</div>{{/V}}
+{{#ohm}}<div><b>ohm</b>: {{ohm}}</div>{{/ohm}}
+{{#A}}<div><b>A</b>: {{A}}</div>{{/A}}
+{{#F}}<div><b>F</b>: {{F}}</div>{{/F}}
+{{#H}}<div><b>H</b>: {{H}}</div>{{/H}}
+{{#degC}}<div><b>degC</b>: {{degC}}</div>{{/degC}}
+{{#sec}}<div><b>sec</b>: {{sec}}</div>{{/sec}}
+{{#min}}<div><b>min</b>: {{min}}</div>{{/min}}
+{{#h}}<div><b>h</b>: {{h}}</div>{{/h}}
+{{#deg}}<div><b>deg</b>: {{deg}}</div>{{/deg}}
+{{#rad}}<div><b>rad</b>: {{rad}}</div>{{/rad}}
+{{#J}}<div><b>J</b>: {{J}}</div>{{/J}}
+{{#n}}<div><b>n</b>: {{n}}</div>{{/n}}
+{{#siemens}}<div><b>siemens</b>: {{siemens}}</div>{{/siemens}}
+{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
+{{#Hz}}<div><b>Hz</b>: {{Hz}}</div>{{/Hz}}
+{{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
+{{#pa}}<div><b>pa</b>: {{pa}}</div>{{/pa}}
+{{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
+{{#m2}}<div><b>m2</b>: {{m2}}</div>{{/m2}}
+{{#m3}}<div><b>m3</b>: {{m3}}</div>{{/m3}}
+{{#A2}}<div><b>A2</b>: {{A2}}</div>{{/A2}}
+{{#A2h}}<div><b>A2h</b>: {{A2h}}</div>{{/A2h}}
+{{#A2s}}<div><b>A2s</b>: {{A2s}}</div>{{/A2s}}
+{{#Ah}}<div><b>Ah</b>: {{Ah}}</div>{{/Ah}}
+{{#APerA}}<div><b>APerA</b>: {{APerA}}</div>{{/APerA}}
+{{#aPerM}}<div><b>aPerM</b>: {{aPerM}}</div>{{/aPerM}}
+{{#As}}<div><b>As</b>: {{As}}</div>{{/As}}
+{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+{{#bm}}<div><b>bm</b>: {{bm}}</div>{{/bm}}
+{{#bq}}<div><b>bq</b>: {{bq}}</div>{{/bq}}
+{{#btu}}<div><b>btu</b>: {{btu}}</div>{{/btu}}
+{{#btuPerH}}<div><b>btuPerH</b>: {{btuPerH}}</div>{{/btuPerH}}
+{{#cd}}<div><b>cd</b>: {{cd}}</div>{{/cd}}
+{{#char}}<div><b>char</b>: {{char}}</div>{{/char}}
+{{#HzPerSec}}<div><b>HzPerSec</b>: {{HzPerSec}}</div>{{/HzPerSec}}
+{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+{{#cosTheta}}<div><b>cosTheta</b>: {{cosTheta}}</div>{{/cosTheta}}
+{{#count}}<div><b>count</b>: {{count}}</div>{{/count}}
+{{#ft3}}<div><b>ft3</b>: {{ft3}}</div>{{/ft3}}
+{{#ft3compensated}}<div><b>ft3compensated</b>: {{ft3compensated}}</div>{{/ft3compensated}}
+{{#ft3compensatedPerH}}<div><b>ft3compensatedPerH</b>: {{ft3compensatedPerH}}</div>{{/ft3compensatedPerH}}
+{{#gM2}}<div><b>gM2</b>: {{gM2}}</div>{{/gM2}}
+{{#gPerG}}<div><b>gPerG</b>: {{gPerG}}</div>{{/gPerG}}
+{{#gy}}<div><b>gy</b>: {{gy}}</div>{{/gy}}
+{{#HzPerHz}}<div><b>HzPerHz</b>: {{HzPerHz}}</div>{{/HzPerHz}}
+{{#charPerSec}}<div><b>charPerSec</b>: {{charPerSec}}</div>{{/charPerSec}}
+{{#imperialGal}}<div><b>imperialGal</b>: {{imperialGal}}</div>{{/imperialGal}}
+{{#imperialGalPerH}}<div><b>imperialGalPerH</b>: {{imperialGalPerH}}</div>{{/imperialGalPerH}}
+{{#jPerK}}<div><b>jPerK</b>: {{jPerK}}</div>{{/jPerK}}
+{{#jPerKg}}<div><b>jPerKg</b>: {{jPerKg}}</div>{{/jPerKg}}
+{{#K}}<div><b>K</b>: {{K}}</div>{{/K}}
+{{#kat}}<div><b>kat</b>: {{kat}}</div>{{/kat}}
+{{#kgM}}<div><b>kgM</b>: {{kgM}}</div>{{/kgM}}
+{{#kgPerM3}}<div><b>kgPerM3</b>: {{kgPerM3}}</div>{{/kgPerM3}}
+{{#litre}}<div><b>litre</b>: {{litre}}</div>{{/litre}}
+{{#litreCompensated}}<div><b>litreCompensated</b>: {{litreCompensated}}</div>{{/litreCompensated}}
+{{#litreCompensatedPerH}}<div><b>litreCompensatedPerH</b>: {{litreCompensatedPerH}}</div>{{/litreCompensatedPerH}}
+{{#litrePerH}}<div><b>litrePerH</b>: {{litrePerH}}</div>{{/litrePerH}}
+{{#litrePerLitre}}<div><b>litrePerLitre</b>: {{litrePerLitre}}</div>{{/litrePerLitre}}
+{{#litrePerSec}}<div><b>litrePerSec</b>: {{litrePerSec}}</div>{{/litrePerSec}}
+{{#litreUncompensated}}<div><b>litreUncompensated</b>: {{litreUncompensated}}</div>{{/litreUncompensated}}
+{{#litreUncompensatedPerH}}<div><b>litreUncompensatedPerH</b>: {{litreUncompensatedPerH}}</div>{{/litreUncompensatedPerH}}
+{{#lm}}<div><b>lm</b>: {{lm}}</div>{{/lm}}
+{{#lx}}<div><b>lx</b>: {{lx}}</div>{{/lx}}
+{{#m2PerSec}}<div><b>m2PerSec</b>: {{m2PerSec}}</div>{{/m2PerSec}}
+{{#m3compensated}}<div><b>m3compensated</b>: {{m3compensated}}</div>{{/m3compensated}}
+{{#m3compensatedPerH}}<div><b>m3compensatedPerH</b>: {{m3compensatedPerH}}</div>{{/m3compensatedPerH}}
+{{#m3PerH}}<div><b>m3PerH</b>: {{m3PerH}}</div>{{/m3PerH}}
+{{#m3PerSec}}<div><b>m3PerSec</b>: {{m3PerSec}}</div>{{/m3PerSec}}
+{{#m3uncompensated}}<div><b>m3uncompensated</b>: {{m3uncompensated}}</div>{{/m3uncompensated}}
+{{#m3uncompensatedPerH}}<div><b>m3uncompensatedPerH</b>: {{m3uncompensatedPerH}}</div>{{/m3uncompensatedPerH}}
+{{#meCode}}<div><b>meCode</b>: {{meCode}}</div>{{/meCode}}
+{{#mol}}<div><b>mol</b>: {{mol}}</div>{{/mol}}
+{{#molPerKg}}<div><b>molPerKg</b>: {{molPerKg}}</div>{{/molPerKg}}
+{{#molPerM3}}<div><b>molPerM3</b>: {{molPerM3}}</div>{{/molPerM3}}
+{{#molPerMol}}<div><b>molPerMol</b>: {{molPerMol}}</div>{{/molPerMol}}
+{{#money}}<div><b>money</b>: {{money}}</div>{{/money}}
+{{#mPerM}}<div><b>mPerM</b>: {{mPerM}}</div>{{/mPerM}}
+{{#mPerM3}}<div><b>mPerM3</b>: {{mPerM3}}</div>{{/mPerM3}}
+{{#mPerSec}}<div><b>mPerSec</b>: {{mPerSec}}</div>{{/mPerSec}}
+{{#mPerSec2}}<div><b>mPerSec2</b>: {{mPerSec2}}</div>{{/mPerSec2}}
+{{#ohmM}}<div><b>ohmM</b>: {{ohmM}}</div>{{/ohmM}}
+{{#paA}}<div><b>paA</b>: {{paA}}</div>{{/paA}}
+{{#paG}}<div><b>paG</b>: {{paG}}</div>{{/paG}}
+{{#psiA}}<div><b>psiA</b>: {{psiA}}</div>{{/psiA}}
+{{#psiG}}<div><b>psiG</b>: {{psiG}}</div>{{/psiG}}
+{{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
+{{#q45}}<div><b>q45</b>: {{q45}}</div>{{/q45}}
+{{#q45h}}<div><b>q45h</b>: {{q45h}}</div>{{/q45h}}
+{{#q60}}<div><b>q60</b>: {{q60}}</div>{{/q60}}
+{{#q60h}}<div><b>q60h</b>: {{q60h}}</div>{{/q60h}}
+{{#qh}}<div><b>qh</b>: {{qh}}</div>{{/qh}}
+{{#radPerSec}}<div><b>radPerSec</b>: {{radPerSec}}</div>{{/radPerSec}}
+{{#rev}}<div><b>rev</b>: {{rev}}</div>{{/rev}}
+{{#revPerSec}}<div><b>revPerSec</b>: {{revPerSec}}</div>{{/revPerSec}}
+{{#secPerSec}}<div><b>secPerSec</b>: {{secPerSec}}</div>{{/secPerSec}}
+{{#sr}}<div><b>sr</b>: {{sr}}</div>{{/sr}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#sv}}<div><b>sv</b>: {{sv}}</div>{{/sv}}
+{{#t}}<div><b>t</b>: {{t}}</div>{{/t}}
+{{#therm}}<div><b>therm</b>: {{therm}}</div>{{/therm}}
+{{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
+{{#usGal}}<div><b>usGal</b>: {{usGal}}</div>{{/usGal}}
+{{#usGalPerH}}<div><b>usGalPerH</b>: {{usGalPerH}}</div>{{/usGalPerH}}
+{{#V2}}<div><b>V2</b>: {{V2}}</div>{{/V2}}
+{{#V2h}}<div><b>V2h</b>: {{V2h}}</div>{{/V2h}}
+{{#VAhPerRev}}<div><b>VAhPerRev</b>: {{VAhPerRev}}</div>{{/VAhPerRev}}
+{{#VArhPerRev}}<div><b>VArhPerRev</b>: {{VArhPerRev}}</div>{{/VArhPerRev}}
+{{#VPerHz}}<div><b>VPerHz</b>: {{VPerHz}}</div>{{/VPerHz}}
+{{#VPerV}}<div><b>VPerV</b>: {{VPerV}}</div>{{/VPerV}}
+{{#Vs}}<div><b>Vs</b>: {{Vs}}</div>{{/Vs}}
+{{#wb}}<div><b>wb</b>: {{wb}}</div>{{/wb}}
+{{#WhPerM3}}<div><b>WhPerM3</b>: {{WhPerM3}}</div>{{/WhPerM3}}
+{{#WhPerRev}}<div><b>WhPerRev</b>: {{WhPerRev}}</div>{{/WhPerRev}}
+{{#wPerMK}}<div><b>wPerMK</b>: {{wPerMK}}</div>{{/wPerMK}}
+{{#WPerSec}}<div><b>WPerSec</b>: {{WPerSec}}</div>{{/WPerSec}}
+{{#WPerVA}}<div><b>WPerVA</b>: {{WPerVA}}</div>{{/WPerVA}}
+{{#WPerW}}<div><b>WPerW</b>: {{WPerW}}</div>{{/WPerW}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The unit multipliers defined for the CIM.
@@ -374,7 +513,34 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExtUnitMultiplierKind_collapse" aria-expanded="true" aria-controls="ExtUnitMultiplierKind_collapse">ExtUnitMultiplierKind</a>
+<div id="ExtUnitMultiplierKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
+{{#n}}<div><b>n</b>: {{n}}</div>{{/n}}
+{{#micro}}<div><b>micro</b>: {{micro}}</div>{{/micro}}
+{{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
+{{#c}}<div><b>c</b>: {{c}}</div>{{/c}}
+{{#d}}<div><b>d</b>: {{d}}</div>{{/d}}
+{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+{{#M}}<div><b>M</b>: {{M}}</div>{{/M}}
+{{#G}}<div><b>G</b>: {{G}}</div>{{/G}}
+{{#T}}<div><b>T</b>: {{T}}</div>{{/T}}
+{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
+{{#da}}<div><b>da</b>: {{da}}</div>{{/da}}
+{{#h}}<div><b>h</b>: {{h}}</div>{{/h}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Enumeration of phase identifiers.
@@ -478,7 +644,48 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExtPhaseCodeKind_collapse" aria-expanded="true" aria-controls="ExtPhaseCodeKind_collapse">ExtPhaseCodeKind</a>
+<div id="ExtPhaseCodeKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ABCN}}<div><b>ABCN</b>: {{ABCN}}</div>{{/ABCN}}
+{{#ABC}}<div><b>ABC</b>: {{ABC}}</div>{{/ABC}}
+{{#ABN}}<div><b>ABN</b>: {{ABN}}</div>{{/ABN}}
+{{#ACN}}<div><b>ACN</b>: {{ACN}}</div>{{/ACN}}
+{{#BCN}}<div><b>BCN</b>: {{BCN}}</div>{{/BCN}}
+{{#AB}}<div><b>AB</b>: {{AB}}</div>{{/AB}}
+{{#AC}}<div><b>AC</b>: {{AC}}</div>{{/AC}}
+{{#BC}}<div><b>BC</b>: {{BC}}</div>{{/BC}}
+{{#AN}}<div><b>AN</b>: {{AN}}</div>{{/AN}}
+{{#BN}}<div><b>BN</b>: {{BN}}</div>{{/BN}}
+{{#CN}}<div><b>CN</b>: {{CN}}</div>{{/CN}}
+{{#A}}<div><b>A</b>: {{A}}</div>{{/A}}
+{{#B}}<div><b>B</b>: {{B}}</div>{{/B}}
+{{#C}}<div><b>C</b>: {{C}}</div>{{/C}}
+{{#N}}<div><b>N</b>: {{N}}</div>{{/N}}
+{{#S2N}}<div><b>S2N</b>: {{S2N}}</div>{{/S2N}}
+{{#S12N}}<div><b>S12N</b>: {{S12N}}</div>{{/S12N}}
+{{#S1N}}<div><b>S1N</b>: {{S1N}}</div>{{/S1N}}
+{{#S2}}<div><b>S2</b>: {{S2}}</div>{{/S2}}
+{{#S12}}<div><b>S12</b>: {{S12}}</div>{{/S12}}
+{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
+{{#AtoAv}}<div><b>AtoAv</b>: {{AtoAv}}</div>{{/AtoAv}}
+{{#BAv}}<div><b>BAv</b>: {{BAv}}</div>{{/BAv}}
+{{#CAN}}<div><b>CAN</b>: {{CAN}}</div>{{/CAN}}
+{{#CAv}}<div><b>CAv</b>: {{CAv}}</div>{{/CAv}}
+{{#NG}}<div><b>NG</b>: {{NG}}</div>{{/NG}}
+{{#S1}}<div><b>S1</b>: {{S1}}</div>{{/S1}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

@@ -50,7 +50,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EnergySchedulingType_collapse" aria-expanded="true" aria-controls="EnergySchedulingType_collapse">EnergySchedulingType</a>
+<div id="EnergySchedulingType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         return (
             {

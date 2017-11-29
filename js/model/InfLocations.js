@@ -54,7 +54,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RedLine_collapse" aria-expanded="true" aria-controls="RedLine_collapse">RedLine</a>
+<div id="RedLine_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Area divided off from other areas.
@@ -106,7 +121,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Zone_collapse" aria-expanded="true" aria-controls="Zone_collapse">Zone</a>
+<div id="Zone_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Location.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of zone.
@@ -162,7 +192,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ZoneKind_collapse" aria-expanded="true" aria-controls="ZoneKind_collapse">ZoneKind</a>
+<div id="ZoneKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#electricalNetwork}}<div><b>electricalNetwork</b>: {{electricalNetwork}}</div>{{/electricalNetwork}}
+{{#specialRestrictionLand}}<div><b>specialRestrictionLand</b>: {{specialRestrictionLand}}</div>{{/specialRestrictionLand}}
+{{#weatherZone}}<div><b>weatherZone</b>: {{weatherZone}}</div>{{/weatherZone}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A grant provides a right, as defined by type, for a parcel of land.
@@ -216,7 +264,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LocationGrant_collapse" aria-expanded="true" aria-controls="LocationGrant_collapse">LocationGrant</a>
+<div id="LocationGrant_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Agreement.prototype.template.call (this) +
+`
+{{#propertyData}}<div><b>propertyData</b>: {{propertyData}}</div>{{/propertyData}}
+{{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LandProperty}}&quot;);})'>{{LandProperty}}</a></div>{{/LandProperty}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Route that is followed, for example by service crews.
@@ -268,7 +332,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Route_collapse" aria-expanded="true" aria-controls="Route_collapse">Route</a>
+<div id="Route_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of (land) property.
@@ -330,7 +410,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LandPropertyKind_collapse" aria-expanded="true" aria-controls="LandPropertyKind_collapse">LandPropertyKind</a>
+<div id="LandPropertyKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#building}}<div><b>building</b>: {{building}}</div>{{/building}}
+{{#customerPremise}}<div><b>customerPremise</b>: {{customerPremise}}</div>{{/customerPremise}}
+{{#depot}}<div><b>depot</b>: {{depot}}</div>{{/depot}}
+{{#store}}<div><b>store</b>: {{store}}</div>{{/store}}
+{{#substation}}<div><b>substation</b>: {{substation}}</div>{{/substation}}
+{{#gridSupplyPoint}}<div><b>gridSupplyPoint</b>: {{gridSupplyPoint}}</div>{{/gridSupplyPoint}}
+{{#external}}<div><b>external</b>: {{external}}</div>{{/external}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Demographic kind of a land property.
@@ -384,7 +485,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DemographicKind_collapse" aria-expanded="true" aria-controls="DemographicKind_collapse">DemographicKind</a>
+<div id="DemographicKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#urban}}<div><b>urban</b>: {{urban}}</div>{{/urban}}
+{{#rural}}<div><b>rural</b>: {{rural}}</div>{{/rural}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Information about a particular piece of (land) property such as its use.
@@ -442,7 +560,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LandProperty_collapse" aria-expanded="true" aria-controls="LandProperty_collapse">LandProperty</a>
+<div id="LandProperty_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#demographicKind}}<div><b>demographicKind</b>: {{demographicKind}}</div>{{/demographicKind}}
+{{#externalRecordReference}}<div><b>externalRecordReference</b>: {{externalRecordReference}}</div>{{/externalRecordReference}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A right-of-way (ROW) is for land where it is lawful to use for a public road, an electric power line, etc.
@@ -494,7 +630,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RightOfWay_collapse" aria-expanded="true" aria-controls="RightOfWay_collapse">RightOfWay</a>
+<div id="RightOfWay_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Agreement.prototype.template.call (this) +
+`
+{{#propertyData}}<div><b>propertyData</b>: {{propertyData}}</div>{{/propertyData}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

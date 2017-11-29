@@ -60,7 +60,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PhaseConnectedFaultKind_collapse" aria-expanded="true" aria-controls="PhaseConnectedFaultKind_collapse">PhaseConnectedFaultKind</a>
+<div id="PhaseConnectedFaultKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#lineToGround}}<div><b>lineToGround</b>: {{lineToGround}}</div>{{/lineToGround}}
+{{#lineToLine}}<div><b>lineToLine</b>: {{lineToLine}}</div>{{/lineToLine}}
+{{#lineToLineToGround}}<div><b>lineToLineToGround</b>: {{lineToLineToGround}}</div>{{/lineToLineToGround}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Type of cause of the fault.
@@ -108,7 +125,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FaultCauseType_collapse" aria-expanded="true" aria-controls="FaultCauseType_collapse">FaultCauseType</a>
+<div id="FaultCauseType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Impedance description for the fault.
@@ -164,7 +195,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FaultImpedance_collapse" aria-expanded="true" aria-controls="FaultImpedance_collapse">FaultImpedance</a>
+<div id="FaultImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#rGround}}<div><b>rGround</b>: {{rGround}}</div>{{/rGround}}
+{{#rLineToLine}}<div><b>rLineToLine</b>: {{rLineToLine}}</div>{{/rLineToLine}}
+{{#xGround}}<div><b>xGround</b>: {{xGround}}</div>{{/xGround}}
+{{#xLineToLine}}<div><b>xLineToLine</b>: {{xLineToLine}}</div>{{/xLineToLine}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Abnormal condition causing current flow through conducting equipment, such as caused by equipment failure or short circuits from objects not typically modeled (for example, a tree falling on a line).
@@ -222,7 +271,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Fault_collapse" aria-expanded="true" aria-controls="Fault_collapse">Fault</a>
+<div id="Fault_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
+{{#impedance}}<div><b>impedance</b>: {{impedance}}</div>{{/impedance}}
+{{#FaultyEquipment}}<div><b>FaultyEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FaultyEquipment}}&quot;);})'>{{FaultyEquipment}}</a></div>{{/FaultyEquipment}}
+{{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Outage}}&quot;);})'>{{Outage}}</a></div>{{/Outage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A fault that occurs on an AC line segment at some point along the length.
@@ -274,7 +342,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LineFault_collapse" aria-expanded="true" aria-controls="LineFault_collapse">LineFault</a>
+<div id="LineFault_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Fault.prototype.template.call (this) +
+`
+{{#lengthFromTerminal1}}<div><b>lengthFromTerminal1</b>: {{lengthFromTerminal1}}</div>{{/lengthFromTerminal1}}
+{{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ACLineSegment}}&quot;);})'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A fault applied at the terminal, external to the equipment.
@@ -326,7 +410,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EquipmentFault_collapse" aria-expanded="true" aria-controls="EquipmentFault_collapse">EquipmentFault</a>
+<div id="EquipmentFault_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Fault.prototype.template.call (this) +
+`
+{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

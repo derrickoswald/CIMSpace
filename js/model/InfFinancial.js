@@ -60,7 +60,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ControlAreaOperator_collapse" aria-expanded="true" aria-controls="ControlAreaOperator_collapse">ControlAreaOperator</a>
+<div id="ControlAreaOperator_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Organisation.prototype.template.call (this) +
+`
+{{#ControlledBy}}<div><b>ControlledBy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlledBy}}&quot;);})'>{{ControlledBy}}</a></div>{{/ControlledBy}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Contracts for services offered commercially.
@@ -108,7 +123,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OpenAccessProduct_collapse" aria-expanded="true" aria-controls="OpenAccessProduct_collapse">OpenAccessProduct</a>
+<div id="OpenAccessProduct_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Agreement.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         class TransmissionProduct extends Core.IdentifiedObject
         {
@@ -156,7 +185,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransmissionProduct_collapse" aria-expanded="true" aria-controls="TransmissionProduct_collapse">TransmissionProduct</a>
+<div id="TransmissionProduct_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#transmissionProductType}}<div><b>transmissionProductType</b>: {{transmissionProductType}}</div>{{/transmissionProductType}}
+{{#TransmissionProvider}}<div><b>TransmissionProvider</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionProvider}}&quot;);})'>{{TransmissionProvider}}</a></div>{{/TransmissionProvider}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A type of agreement that provides the default method by which interchange schedules are to be integrated to obtain hourly MWh schedules for accounting.
@@ -206,7 +251,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#IntSchedAgreement_collapse" aria-expanded="true" aria-controls="IntSchedAgreement_collapse">IntSchedAgreement</a>
+<div id="IntSchedAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Agreement.prototype.template.call (this) +
+`
+{{#defaultIntegrationMethod}}<div><b>defaultIntegrationMethod</b>: {{defaultIntegrationMethod}}</div>{{/defaultIntegrationMethod}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The energy buyer in the energy marketplace.
@@ -254,7 +314,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CustomerConsumer_collapse" aria-expanded="true" aria-controls="CustomerConsumer_collapse">CustomerConsumer</a>
+<div id="CustomerConsumer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Organisation.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Provider of  the transmission capacity (interconnecting wires between Generation and Consumption) required  to fulfill and Energy Transaction's energy exchange.
@@ -304,7 +378,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransmissionProvider_collapse" aria-expanded="true" aria-controls="TransmissionProvider_collapse">TransmissionProvider</a>
+<div id="TransmissionProvider_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Organisation.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Matches buyers and sellers, and secures transmission (and other ancillary services) needed to complete the energy transaction.
@@ -352,7 +440,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Marketer_collapse" aria-expanded="true" aria-controls="Marketer_collapse">Marketer</a>
+<div id="Marketer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Organisation.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * The energy seller in the energy marketplace.
@@ -400,7 +502,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GenerationProvider_collapse" aria-expanded="true" aria-controls="GenerationProvider_collapse">GenerationProvider</a>
+<div id="GenerationProvider_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Organisation.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         return (
             {

@@ -56,7 +56,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ValueAliasSet_collapse" aria-expanded="true" aria-controls="ValueAliasSet_collapse">ValueAliasSet</a>
+<div id="ValueAliasSet_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * The current state for a measurement.
@@ -120,7 +134,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MeasurementValue_collapse" aria-expanded="true" aria-controls="MeasurementValue_collapse">MeasurementValue</a>
+<div id="MeasurementValue_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#sensorAccuracy}}<div><b>sensorAccuracy</b>: {{sensorAccuracy}}</div>{{/sensorAccuracy}}
+{{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
+{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+{{#MeasurementValueSource}}<div><b>MeasurementValueSource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValueSource}}&quot;);})'>{{MeasurementValueSource}}</a></div>{{/MeasurementValueSource}}
+{{#ErpPerson}}<div><b>ErpPerson</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPerson}}&quot;);})'>{{ErpPerson}}</a></div>{{/ErpPerson}}
+{{#MeasurementValueQuality}}<div><b>MeasurementValueQuality</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValueQuality}}&quot;);})'>{{MeasurementValueQuality}}</a></div>{{/MeasurementValueQuality}}
+{{#RemoteSource}}<div><b>RemoteSource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteSource}}&quot;);})'>{{RemoteSource}}</a></div>{{/RemoteSource}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Validity for MeasurementValue.
@@ -174,7 +209,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Validity_collapse" aria-expanded="true" aria-controls="Validity_collapse">Validity</a>
+<div id="Validity_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#GOOD}}<div><b>GOOD</b>: {{GOOD}}</div>{{/GOOD}}
+{{#QUESTIONABLE}}<div><b>QUESTIONABLE</b>: {{QUESTIONABLE}}</div>{{/QUESTIONABLE}}
+{{#INVALID}}<div><b>INVALID</b>: {{INVALID}}</div>{{/INVALID}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Quality flags in this class are as defined in IEC 61850, except for estimatorReplaced, which has been included in this class for convenience.
@@ -246,7 +298,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Quality61850_collapse" aria-expanded="true" aria-controls="Quality61850_collapse">Quality61850</a>
+<div id="Quality61850_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#badReference}}<div><b>badReference</b>: {{badReference}}</div>{{/badReference}}
+{{#estimatorReplaced}}<div><b>estimatorReplaced</b>: {{estimatorReplaced}}</div>{{/estimatorReplaced}}
+{{#failure}}<div><b>failure</b>: {{failure}}</div>{{/failure}}
+{{#oldData}}<div><b>oldData</b>: {{oldData}}</div>{{/oldData}}
+{{#operatorBlocked}}<div><b>operatorBlocked</b>: {{operatorBlocked}}</div>{{/operatorBlocked}}
+{{#oscillatory}}<div><b>oscillatory</b>: {{oscillatory}}</div>{{/oscillatory}}
+{{#outOfRange}}<div><b>outOfRange</b>: {{outOfRange}}</div>{{/outOfRange}}
+{{#overFlow}}<div><b>overFlow</b>: {{overFlow}}</div>{{/overFlow}}
+{{#source}}<div><b>source</b>: {{source}}</div>{{/source}}
+{{#suspect}}<div><b>suspect</b>: {{suspect}}</div>{{/suspect}}
+{{#test}}<div><b>test</b>: {{test}}</div>{{/test}}
+{{#validity}}<div><b>validity</b>: {{validity}}</div>{{/validity}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Specifies one limit value for a Measurement.
@@ -296,7 +374,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Limit_collapse" aria-expanded="true" aria-controls="Limit_collapse">Limit</a>
+<div id="Limit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Control is used for supervisory/device control.
@@ -360,7 +452,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Control_collapse" aria-expanded="true" aria-controls="Control_collapse">Control</a>
+<div id="Control_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#operationInProgress}}<div><b>operationInProgress</b>: {{operationInProgress}}</div>{{/operationInProgress}}
+{{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
+{{#unitMultiplier}}<div><b>unitMultiplier</b>: {{unitMultiplier}}</div>{{/unitMultiplier}}
+{{#unitSymbol}}<div><b>unitSymbol</b>: {{unitSymbol}}</div>{{/unitSymbol}}
+{{#controlType}}<div><b>controlType</b>: {{controlType}}</div>{{/controlType}}
+{{#PowerSystemResource}}<div><b>PowerSystemResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemResource}}&quot;);})'>{{PowerSystemResource}}</a></div>{{/PowerSystemResource}}
+{{#RemoteControl}}<div><b>RemoteControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteControl}}&quot;);})'>{{RemoteControl}}</a></div>{{/RemoteControl}}
+</div>
+`
+                );
+           }        }
 
         /**
          * MeasurementValueSource describes the alternative sources updating a MeasurementValue.
@@ -410,7 +523,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MeasurementValueSource_collapse" aria-expanded="true" aria-controls="MeasurementValueSource_collapse">MeasurementValueSource</a>
+<div id="MeasurementValueSource_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A Measurement represents any measured, calculated or non-measured non-calculated quantity.
@@ -474,7 +601,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Measurement_collapse" aria-expanded="true" aria-controls="Measurement_collapse">Measurement</a>
+<div id="Measurement_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#measurementType}}<div><b>measurementType</b>: {{measurementType}}</div>{{/measurementType}}
+{{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
+{{#unitMultiplier}}<div><b>unitMultiplier</b>: {{unitMultiplier}}</div>{{/unitMultiplier}}
+{{#unitSymbol}}<div><b>unitSymbol</b>: {{unitSymbol}}</div>{{/unitSymbol}}
+{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+{{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
+{{#PowerSystemResource}}<div><b>PowerSystemResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemResource}}&quot;);})'>{{PowerSystemResource}}</a></div>{{/PowerSystemResource}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Specifies a set of Limits that are associated with a Measurement.
@@ -526,7 +674,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LimitSet_collapse" aria-expanded="true" aria-controls="LimitSet_collapse">LimitSet</a>
+<div id="LimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#isPercentageLimits}}<div><b>isPercentageLimits</b>: {{isPercentageLimits}}</div>{{/isPercentageLimits}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Describes the translation of one particular value into a name, e.g. 1 as "Open".
@@ -578,7 +741,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ValueToAlias_collapse" aria-expanded="true" aria-controls="ValueToAlias_collapse">ValueToAlias</a>
+<div id="ValueToAlias_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);})'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
+</div>
+`
+                );
+           }        }
 
         /**
          * DiscreteValue represents a discrete MeasurementValue.
@@ -632,7 +811,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DiscreteValue_collapse" aria-expanded="true" aria-controls="DiscreteValue_collapse">DiscreteValue</a>
+<div id="DiscreteValue_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + MeasurementValue.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#Command}}<div><b>Command</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Command}}&quot;);})'>{{Command}}</a></div>{{/Command}}
+{{#Discrete}}<div><b>Discrete</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Discrete}}&quot;);})'>{{Discrete}}</a></div>{{/Discrete}}
+</div>
+`
+                );
+           }        }
 
         /**
          * StringMeasurementValue represents a measurement value of type string.
@@ -684,7 +880,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StringMeasurementValue_collapse" aria-expanded="true" aria-controls="StringMeasurementValue_collapse">StringMeasurementValue</a>
+<div id="StringMeasurementValue_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + MeasurementValue.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#StringMeasurement}}<div><b>StringMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StringMeasurement}}&quot;);})'>{{StringMeasurement}}</a></div>{{/StringMeasurement}}
+</div>
+`
+                );
+           }        }
 
         /**
          * AccumulatorValue represents an accumulated (counted) MeasurementValue.
@@ -738,7 +950,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AccumulatorValue_collapse" aria-expanded="true" aria-controls="AccumulatorValue_collapse">AccumulatorValue</a>
+<div id="AccumulatorValue_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + MeasurementValue.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#Accumulator}}<div><b>Accumulator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Accumulator}}&quot;);})'>{{Accumulator}}</a></div>{{/Accumulator}}
+{{#AccumulatorReset}}<div><b>AccumulatorReset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AccumulatorReset}}&quot;);})'>{{AccumulatorReset}}</a></div>{{/AccumulatorReset}}
+</div>
+`
+                );
+           }        }
 
         /**
          * AnalogValue represents an analog MeasurementValue.
@@ -792,7 +1021,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AnalogValue_collapse" aria-expanded="true" aria-controls="AnalogValue_collapse">AnalogValue</a>
+<div id="AnalogValue_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + MeasurementValue.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#Analog}}<div><b>Analog</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Analog}}&quot;);})'>{{Analog}}</a></div>{{/Analog}}
+{{#AnalogControl}}<div><b>AnalogControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AnalogControl}}&quot;);})'>{{AnalogControl}}</a></div>{{/AnalogControl}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Measurement quality flags.
@@ -844,7 +1090,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MeasurementValueQuality_collapse" aria-expanded="true" aria-controls="MeasurementValueQuality_collapse">MeasurementValueQuality</a>
+<div id="MeasurementValueQuality_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Quality61850.prototype.template.call (this) +
+`
+{{#MeasurementValue}}<div><b>MeasurementValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValue}}&quot;);})'>{{MeasurementValue}}</a></div>{{/MeasurementValue}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Limit values for Accumulator measurements.
@@ -896,7 +1157,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AccumulatorLimit_collapse" aria-expanded="true" aria-controls="AccumulatorLimit_collapse">AccumulatorLimit</a>
+<div id="AccumulatorLimit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Limit.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#LimitSet}}<div><b>LimitSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LimitSet}}&quot;);})'>{{LimitSet}}</a></div>{{/LimitSet}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Limit values for Analog measurements.
@@ -948,7 +1225,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AnalogLimit_collapse" aria-expanded="true" aria-controls="AnalogLimit_collapse">AnalogLimit</a>
+<div id="AnalogLimit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Limit.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#LimitSet}}<div><b>LimitSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LimitSet}}&quot;);})'>{{LimitSet}}</a></div>{{/LimitSet}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This command reset the counter value to zero.
@@ -998,7 +1291,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AccumulatorReset_collapse" aria-expanded="true" aria-controls="AccumulatorReset_collapse">AccumulatorReset</a>
+<div id="AccumulatorReset_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Control.prototype.template.call (this) +
+`
+{{#AccumulatorValue}}<div><b>AccumulatorValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AccumulatorValue}}&quot;);})'>{{AccumulatorValue}}</a></div>{{/AccumulatorValue}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An analog control used for supervisory control.
@@ -1052,7 +1360,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AnalogControl_collapse" aria-expanded="true" aria-controls="AnalogControl_collapse">AnalogControl</a>
+<div id="AnalogControl_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Control.prototype.template.call (this) +
+`
+{{#maxValue}}<div><b>maxValue</b>: {{maxValue}}</div>{{/maxValue}}
+{{#minValue}}<div><b>minValue</b>: {{minValue}}</div>{{/minValue}}
+{{#AnalogValue}}<div><b>AnalogValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AnalogValue}}&quot;);})'>{{AnalogValue}}</a></div>{{/AnalogValue}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A Command is a discrete control used for supervisory control.
@@ -1108,7 +1433,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Command_collapse" aria-expanded="true" aria-controls="Command_collapse">Command</a>
+<div id="Command_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Control.prototype.template.call (this) +
+`
+{{#normalValue}}<div><b>normalValue</b>: {{normalValue}}</div>{{/normalValue}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#DiscreteValue}}<div><b>DiscreteValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscreteValue}}&quot;);})'>{{DiscreteValue}}</a></div>{{/DiscreteValue}}
+{{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);})'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
+</div>
+`
+                );
+           }        }
 
         class DiscreteCommand extends Command
         {
@@ -1152,7 +1495,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DiscreteCommand_collapse" aria-expanded="true" aria-controls="DiscreteCommand_collapse">DiscreteCommand</a>
+<div id="DiscreteCommand_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Command.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * An analog control that increase or decrease a set point value with pulses.
@@ -1202,7 +1559,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RaiseLowerCommand_collapse" aria-expanded="true" aria-controls="RaiseLowerCommand_collapse">RaiseLowerCommand</a>
+<div id="RaiseLowerCommand_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AnalogControl.prototype.template.call (this) +
+`
+{{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);})'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An analog control that issue a set point value.
@@ -1254,7 +1626,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SetPoint_collapse" aria-expanded="true" aria-controls="SetPoint_collapse">SetPoint</a>
+<div id="SetPoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AnalogControl.prototype.template.call (this) +
+`
+{{#normalValue}}<div><b>normalValue</b>: {{normalValue}}</div>{{/normalValue}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Discrete represents a discrete Measurement, i.e. a Measurement representing discrete values, e.g. a Breaker position.
@@ -1310,7 +1698,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Discrete_collapse" aria-expanded="true" aria-controls="Discrete_collapse">Discrete</a>
+<div id="Discrete_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Measurement.prototype.template.call (this) +
+`
+{{#maxValue}}<div><b>maxValue</b>: {{maxValue}}</div>{{/maxValue}}
+{{#minValue}}<div><b>minValue</b>: {{minValue}}</div>{{/minValue}}
+{{#normalValue}}<div><b>normalValue</b>: {{normalValue}}</div>{{/normalValue}}
+{{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);})'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Analog represents an analog Measurement.
@@ -1366,7 +1772,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Analog_collapse" aria-expanded="true" aria-controls="Analog_collapse">Analog</a>
+<div id="Analog_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Measurement.prototype.template.call (this) +
+`
+{{#maxValue}}<div><b>maxValue</b>: {{maxValue}}</div>{{/maxValue}}
+{{#minValue}}<div><b>minValue</b>: {{minValue}}</div>{{/minValue}}
+{{#normalValue}}<div><b>normalValue</b>: {{normalValue}}</div>{{/normalValue}}
+{{#positiveFlowIn}}<div><b>positiveFlowIn</b>: {{positiveFlowIn}}</div>{{/positiveFlowIn}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Accumulator represents an accumulated (counted) Measurement, e.g. an energy value.
@@ -1416,7 +1840,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Accumulator_collapse" aria-expanded="true" aria-controls="Accumulator_collapse">Accumulator</a>
+<div id="Accumulator_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Measurement.prototype.template.call (this) +
+`
+{{#maxValue}}<div><b>maxValue</b>: {{maxValue}}</div>{{/maxValue}}
+</div>
+`
+                );
+           }        }
 
         /**
          * StringMeasurement represents a measurement with values of type string.
@@ -1464,7 +1903,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StringMeasurement_collapse" aria-expanded="true" aria-controls="StringMeasurement_collapse">StringMeasurement</a>
+<div id="StringMeasurement_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Measurement.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * An AccumulatorLimitSet specifies a set of Limits that are associated with an Accumulator measurement.
@@ -1512,7 +1965,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AccumulatorLimitSet_collapse" aria-expanded="true" aria-controls="AccumulatorLimitSet_collapse">AccumulatorLimitSet</a>
+<div id="AccumulatorLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LimitSet.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * An AnalogLimitSet specifies a set of Limits that are associated with an Analog measurement.
@@ -1560,7 +2027,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AnalogLimitSet_collapse" aria-expanded="true" aria-controls="AnalogLimitSet_collapse">AnalogLimitSet</a>
+<div id="AnalogLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LimitSet.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         return (
             {

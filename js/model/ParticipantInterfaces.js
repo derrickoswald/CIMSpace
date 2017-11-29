@@ -64,7 +64,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ChargeGroup_collapse" aria-expanded="true" aria-controls="ChargeGroup_collapse">ChargeGroup</a>
+<div id="ChargeGroup_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#marketCode}}<div><b>marketCode</b>: {{marketCode}}</div>{{/marketCode}}
+{{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
+{{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
+{{#ChargeGroupParent}}<div><b>ChargeGroupParent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChargeGroupParent}}&quot;);})'>{{ChargeGroupParent}}</a></div>{{/ChargeGroupParent}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Component of a bid that pertains to one market product.
@@ -116,7 +134,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProductBid_collapse" aria-expanded="true" aria-controls="ProductBid_collapse">ProductBid</a>
+<div id="ProductBid_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#MarketProduct}}<div><b>MarketProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketProduct}}&quot;);})'>{{MarketProduct}}</a></div>{{/MarketProduct}}
+{{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bid}}&quot;);})'>{{Bid}}</a></div>{{/Bid}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Metered SubSystem Load Following Instruction
@@ -174,7 +208,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadFollowingInst_collapse" aria-expanded="true" aria-controls="LoadFollowingInst_collapse">LoadFollowingInst</a>
+<div id="LoadFollowingInst_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#mssInstructionID}}<div><b>mssInstructionID</b>: {{mssInstructionID}}</div>{{/mssInstructionID}}
+{{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+{{#endTime}}<div><b>endTime</b>: {{endTime}}</div>{{/endTime}}
+{{#loadFollowingMW}}<div><b>loadFollowingMW</b>: {{loadFollowingMW}}</div>{{/loadFollowingMW}}
+{{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Property for a particular attribute that contains name and value
@@ -230,7 +283,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AttributeProperty_collapse" aria-expanded="true" aria-controls="AttributeProperty_collapse">AttributeProperty</a>
+<div id="AttributeProperty_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#sequence}}<div><b>sequence</b>: {{sequence}}</div>{{/sequence}}
+{{#propertyName}}<div><b>propertyName</b>: {{propertyName}}</div>{{/propertyName}}
+{{#propertyValue}}<div><b>propertyValue</b>: {{propertyValue}}</div>{{/propertyValue}}
+{{#MktUserAttribute}}<div><b>MktUserAttribute</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktUserAttribute}}&quot;);})'>{{MktUserAttribute}}</a></div>{{/MktUserAttribute}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This is the price sensitivity that bidder expresses for allowing market load interruption.
@@ -282,7 +353,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadReductionPriceCurve_collapse" aria-expanded="true" aria-controls="LoadReductionPriceCurve_collapse">LoadReductionPriceCurve</a>
+<div id="LoadReductionPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#LoadBid}}<div><b>LoadBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadBid}}&quot;);})'>{{LoadBid}}</a></div>{{/LoadBid}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Containment for bid parameters that are dependent on a market product type.
@@ -332,7 +418,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidHourlyProductSchedule_collapse" aria-expanded="true" aria-controls="BidHourlyProductSchedule_collapse">BidHourlyProductSchedule</a>
+<div id="BidHourlyProductSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.RegularIntervalSchedule.prototype.template.call (this) +
+`
+{{#ProductBid}}<div><b>ProductBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProductBid}}&quot;);})'>{{ProductBid}}</a></div>{{/ProductBid}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Startup time curve as a function of down time, where time is specified in minutes.
@@ -384,7 +485,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StartUpTimeCurve_collapse" aria-expanded="true" aria-controls="StartUpTimeCurve_collapse">StartUpTimeCurve</a>
+<div id="StartUpTimeCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);})'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Relationship between a price in \$(or other monetary unit) /hour (Y-axis) and a MW value (X-axis).
@@ -432,7 +548,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EnergyPriceCurve_collapse" aria-expanded="true" aria-controls="EnergyPriceCurve_collapse">EnergyPriceCurve</a>
+<div id="EnergyPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Defines self schedule values to be used for specified time intervals.
@@ -510,7 +640,36 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidSelfSched_collapse" aria-expanded="true" aria-controls="BidSelfSched_collapse">BidSelfSched</a>
+<div id="BidSelfSched_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.RegularIntervalSchedule.prototype.template.call (this) +
+`
+{{#balancingFlag}}<div><b>balancingFlag</b>: {{balancingFlag}}</div>{{/balancingFlag}}
+{{#bidType}}<div><b>bidType</b>: {{bidType}}</div>{{/bidType}}
+{{#priorityFlag}}<div><b>priorityFlag</b>: {{priorityFlag}}</div>{{/priorityFlag}}
+{{#pumpSelfSchedMw}}<div><b>pumpSelfSchedMw</b>: {{pumpSelfSchedMw}}</div>{{/pumpSelfSchedMw}}
+{{#referenceType}}<div><b>referenceType</b>: {{referenceType}}</div>{{/referenceType}}
+{{#selfSchedMw}}<div><b>selfSchedMw</b>: {{selfSchedMw}}</div>{{/selfSchedMw}}
+{{#selfSchedSptResource}}<div><b>selfSchedSptResource</b>: {{selfSchedSptResource}}</div>{{/selfSchedSptResource}}
+{{#selfSchedType}}<div><b>selfSchedType</b>: {{selfSchedType}}</div>{{/selfSchedType}}
+{{#updateType}}<div><b>updateType</b>: {{updateType}}</div>{{/updateType}}
+{{#wheelingTransactionReference}}<div><b>wheelingTransactionReference</b>: {{wheelingTransactionReference}}</div>{{/wheelingTransactionReference}}
+{{#ProductBid}}<div><b>ProductBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProductBid}}&quot;);})'>{{ProductBid}}</a></div>{{/ProductBid}}
+{{#TransmissionContractRight}}<div><b>TransmissionContractRight</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionContractRight}}&quot;);})'>{{TransmissionContractRight}}</a></div>{{/TransmissionContractRight}}
+{{#HostControlArea}}<div><b>HostControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HostControlArea}}&quot;);})'>{{HostControlArea}}</a></div>{{/HostControlArea}}
+{{#AdjacentCASet}}<div><b>AdjacentCASet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AdjacentCASet}}&quot;);})'>{{AdjacentCASet}}</a></div>{{/AdjacentCASet}}
+{{#SubControlArea}}<div><b>SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SubControlArea}}&quot;);})'>{{SubControlArea}}</a></div>{{/SubControlArea}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Defines bid schedules to allow a product bid to use specified bid price curves for different time intervals.
@@ -566,7 +725,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidPriceSchedule_collapse" aria-expanded="true" aria-controls="BidPriceSchedule_collapse">BidPriceSchedule</a>
+<div id="BidPriceSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.RegularIntervalSchedule.prototype.template.call (this) +
+`
+{{#bidType}}<div><b>bidType</b>: {{bidType}}</div>{{/bidType}}
+{{#mitigationStatus}}<div><b>mitigationStatus</b>: {{mitigationStatus}}</div>{{/mitigationStatus}}
+{{#BidPriceCurve}}<div><b>BidPriceCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BidPriceCurve}}&quot;);})'>{{BidPriceCurve}}</a></div>{{/BidPriceCurve}}
+{{#ProductBid}}<div><b>ProductBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProductBid}}&quot;);})'>{{ProductBid}}</a></div>{{/ProductBid}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A Charge Component is a list of configurable charge quality items to feed into settlement calculation and/or bill determinants.
@@ -630,7 +807,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ChargeComponent_collapse" aria-expanded="true" aria-controls="ChargeComponent_collapse">ChargeComponent</a>
+<div id="ChargeComponent_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#deleteStatus}}<div><b>deleteStatus</b>: {{deleteStatus}}</div>{{/deleteStatus}}
+{{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
+{{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
+{{#message}}<div><b>message</b>: {{message}}</div>{{/message}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#sum}}<div><b>sum</b>: {{sum}}</div>{{/sum}}
+{{#roundOff}}<div><b>roundOff</b>: {{roundOff}}</div>{{/roundOff}}
+{{#equation}}<div><b>equation</b>: {{equation}}</div>{{/equation}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A Major Charge Group is the same as Invocie Type which provides the highest level of grouping for charge types configration.
@@ -696,7 +895,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MajorChargeGroup_collapse" aria-expanded="true" aria-controls="MajorChargeGroup_collapse">MajorChargeGroup</a>
+<div id="MajorChargeGroup_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#runType}}<div><b>runType</b>: {{runType}}</div>{{/runType}}
+{{#runVersion}}<div><b>runVersion</b>: {{runVersion}}</div>{{/runVersion}}
+{{#frequencyType}}<div><b>frequencyType</b>: {{frequencyType}}</div>{{/frequencyType}}
+{{#invoiceType}}<div><b>invoiceType</b>: {{invoiceType}}</div>{{/invoiceType}}
+{{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
+{{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
+{{#requireAutorun}}<div><b>requireAutorun</b>: {{requireAutorun}}</div>{{/requireAutorun}}
+{{#revisionNumber}}<div><b>revisionNumber</b>: {{revisionNumber}}</div>{{/revisionNumber}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Charge Type is the basic level configuration for settlement to process specific charges for invoicing purpose.
@@ -760,7 +981,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ChargeType_collapse" aria-expanded="true" aria-controls="ChargeType_collapse">ChargeType</a>
+<div id="ChargeType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
+{{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
+{{#factor}}<div><b>factor</b>: {{factor}}</div>{{/factor}}
+{{#chargeOrder}}<div><b>chargeOrder</b>: {{chargeOrder}}</div>{{/chargeOrder}}
+{{#frequencyType}}<div><b>frequencyType</b>: {{frequencyType}}</div>{{/frequencyType}}
+{{#chargeVersion}}<div><b>chargeVersion</b>: {{chargeVersion}}</div>{{/chargeVersion}}
+{{#totalInterval}}<div><b>totalInterval</b>: {{totalInterval}}</div>{{/totalInterval}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Startup costs and time as a function of down time.
@@ -810,7 +1052,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StartUpCostCurve_collapse" aria-expanded="true" aria-controls="StartUpCostCurve_collapse">StartUpCostCurve</a>
+<div id="StartUpCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * This class allows SC to input different time intervals for distribution factors
@@ -864,7 +1120,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidDistributionFactor_collapse" aria-expanded="true" aria-controls="BidDistributionFactor_collapse">BidDistributionFactor</a>
+<div id="BidDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#timeIntervalStart}}<div><b>timeIntervalStart</b>: {{timeIntervalStart}}</div>{{/timeIntervalStart}}
+{{#timeIntervalEnd}}<div><b>timeIntervalEnd</b>: {{timeIntervalEnd}}</div>{{/timeIntervalEnd}}
+{{#ProductBid}}<div><b>ProductBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProductBid}}&quot;);})'>{{ProductBid}}</a></div>{{/ProductBid}}
+</div>
+`
+                );
+           }        }
 
         /**
          * <b>TradeType</b>                                        <b>TradeProduct</b>
@@ -925,7 +1198,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TradeProduct_collapse" aria-expanded="true" aria-controls="TradeProduct_collapse">TradeProduct</a>
+<div id="TradeProduct_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#tradeType}}<div><b>tradeType</b>: {{tradeType}}</div>{{/tradeType}}
+{{#tradeProductType}}<div><b>tradeProductType</b>: {{tradeProductType}}</div>{{/tradeProductType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Trade error and warning messages associated with the rule engine processing of the submitted trade.
@@ -987,7 +1276,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TradeError_collapse" aria-expanded="true" aria-controls="TradeError_collapse">TradeError</a>
+<div id="TradeError_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#errPriority}}<div><b>errPriority</b>: {{errPriority}}</div>{{/errPriority}}
+{{#errMessage}}<div><b>errMessage</b>: {{errMessage}}</div>{{/errMessage}}
+{{#ruleID}}<div><b>ruleID</b>: {{ruleID}}</div>{{/ruleID}}
+{{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+{{#endTime}}<div><b>endTime</b>: {{endTime}}</div>{{/endTime}}
+{{#logTimeStamp}}<div><b>logTimeStamp</b>: {{logTimeStamp}}</div>{{/logTimeStamp}}
+{{#Trade}}<div><b>Trade</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Trade}}&quot;);})'>{{Trade}}</a></div>{{/Trade}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Represents both bids to purchase and offers to sell energy or ancillary services in an RTO-sponsored market.
@@ -1049,7 +1359,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Bid_collapse" aria-expanded="true" aria-controls="Bid_collapse">Bid</a>
+<div id="Bid_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+{{#stopTime}}<div><b>stopTime</b>: {{stopTime}}</div>{{/stopTime}}
+{{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+{{#ActionRequest}}<div><b>ActionRequest</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ActionRequest}}&quot;);})'>{{ActionRequest}}</a></div>{{/ActionRequest}}
+{{#MarketParticipant}}<div><b>MarketParticipant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketParticipant}}&quot;);})'>{{MarketParticipant}}</a></div>{{/MarketParticipant}}
+{{#EnergyMarket}}<div><b>EnergyMarket</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyMarket}}&quot;);})'>{{EnergyMarket}}</a></div>{{/EnergyMarket}}
+{{#SchedulingCoordinator}}<div><b>SchedulingCoordinator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SchedulingCoordinator}}&quot;);})'>{{SchedulingCoordinator}}</a></div>{{/SchedulingCoordinator}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Inter Scheduling Coordinator Trades to model financial trades which may impact settlement
@@ -1143,7 +1474,44 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Trade_collapse" aria-expanded="true" aria-controls="Trade_collapse">Trade</a>
+<div id="Trade_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#adjustedTradeQuantity}}<div><b>adjustedTradeQuantity</b>: {{adjustedTradeQuantity}}</div>{{/adjustedTradeQuantity}}
+{{#counterTradeQuantity}}<div><b>counterTradeQuantity</b>: {{counterTradeQuantity}}</div>{{/counterTradeQuantity}}
+{{#dependOnTradeName}}<div><b>dependOnTradeName</b>: {{dependOnTradeName}}</div>{{/dependOnTradeName}}
+{{#lastModified}}<div><b>lastModified</b>: {{lastModified}}</div>{{/lastModified}}
+{{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+{{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+{{#stopTime}}<div><b>stopTime</b>: {{stopTime}}</div>{{/stopTime}}
+{{#submitFromTimeStamp}}<div><b>submitFromTimeStamp</b>: {{submitFromTimeStamp}}</div>{{/submitFromTimeStamp}}
+{{#submitFromUser}}<div><b>submitFromUser</b>: {{submitFromUser}}</div>{{/submitFromUser}}
+{{#submitToTimeStamp}}<div><b>submitToTimeStamp</b>: {{submitToTimeStamp}}</div>{{/submitToTimeStamp}}
+{{#submitToUser }}<div><b>submitToUser </b>: {{submitToUser }}</div>{{/submitToUser }}
+{{#tradeQuantity}}<div><b>tradeQuantity</b>: {{tradeQuantity}}</div>{{/tradeQuantity}}
+{{#tradeStatus}}<div><b>tradeStatus</b>: {{tradeStatus}}</div>{{/tradeStatus}}
+{{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+{{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+{{#TradeProduct}}<div><b>TradeProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TradeProduct}}&quot;);})'>{{TradeProduct}}</a></div>{{/TradeProduct}}
+{{#submitFromSchedulingCoordinator}}<div><b>submitFromSchedulingCoordinator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{submitFromSchedulingCoordinator}}&quot;);})'>{{submitFromSchedulingCoordinator}}</a></div>{{/submitFromSchedulingCoordinator}}
+{{#ActionRequest}}<div><b>ActionRequest</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ActionRequest}}&quot;);})'>{{ActionRequest}}</a></div>{{/ActionRequest}}
+{{#To_SC}}<div><b>To_SC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{To_SC}}&quot;);})'>{{To_SC}}</a></div>{{/To_SC}}
+{{#Pnode}}<div><b>Pnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Pnode}}&quot;);})'>{{Pnode}}</a></div>{{/Pnode}}
+{{#submitToSchedulingCoordinator}}<div><b>submitToSchedulingCoordinator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{submitToSchedulingCoordinator}}&quot;);})'>{{submitToSchedulingCoordinator}}</a></div>{{/submitToSchedulingCoordinator}}
+{{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);})'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
+{{#From_SC}}<div><b>From_SC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{From_SC}}&quot;);})'>{{From_SC}}</a></div>{{/From_SC}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This class represent the error information for a bid that is detected during bid validation
@@ -1209,7 +1577,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidError_collapse" aria-expanded="true" aria-controls="BidError_collapse">BidError</a>
+<div id="BidError_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#errPriority}}<div><b>errPriority</b>: {{errPriority}}</div>{{/errPriority}}
+{{#errMessage}}<div><b>errMessage</b>: {{errMessage}}</div>{{/errMessage}}
+{{#ruleID}}<div><b>ruleID</b>: {{ruleID}}</div>{{/ruleID}}
+{{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+{{#endTime}}<div><b>endTime</b>: {{endTime}}</div>{{/endTime}}
+{{#logTimeStamp}}<div><b>logTimeStamp</b>: {{logTimeStamp}}</div>{{/logTimeStamp}}
+{{#componentType}}<div><b>componentType</b>: {{componentType}}</div>{{/componentType}}
+{{#msgLevel}}<div><b>msgLevel</b>: {{msgLevel}}</div>{{/msgLevel}}
+{{#MarketProduct}}<div><b>MarketProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketProduct}}&quot;);})'>{{MarketProduct}}</a></div>{{/MarketProduct}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Action request against an existing Trade.
@@ -1259,7 +1650,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ActionRequest_collapse" aria-expanded="true" aria-controls="ActionRequest_collapse">ActionRequest</a>
+<div id="ActionRequest_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#actionName}}<div><b>actionName</b>: {{actionName}}</div>{{/actionName}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Response from an intertie resource acknowleging receipt of dispatch instructions
@@ -1319,7 +1725,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#InterTieDispatchResponse_collapse" aria-expanded="true" aria-controls="InterTieDispatchResponse_collapse">InterTieDispatchResponse</a>
+<div id="InterTieDispatchResponse_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#acceptStatus}}<div><b>acceptStatus</b>: {{acceptStatus}}</div>{{/acceptStatus}}
+{{#acceptMW}}<div><b>acceptMW</b>: {{acceptMW}}</div>{{/acceptMW}}
+{{#clearedMW}}<div><b>clearedMW</b>: {{clearedMW}}</div>{{/clearedMW}}
+{{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+{{#passIndicator}}<div><b>passIndicator</b>: {{passIndicator}}</div>{{/passIndicator}}
+{{#RegisteredInterTie}}<div><b>RegisteredInterTie</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredInterTie}}&quot;);})'>{{RegisteredInterTie}}</a></div>{{/RegisteredInterTie}}
+</div>
+`
+                );
+           }        }
 
         /**
          * As set of mutually exclusive bids for which a maximum of one may be scheduled.
@@ -1369,7 +1795,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidSet_collapse" aria-expanded="true" aria-controls="BidSet_collapse">BidSet</a>
+<div id="BidSet_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Ramp rate as a function of resource MW output
@@ -1429,7 +1869,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RampRateCurve_collapse" aria-expanded="true" aria-controls="RampRateCurve_collapse">RampRateCurve</a>
+<div id="RampRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#condition}}<div><b>condition</b>: {{condition}}</div>{{/condition}}
+{{#constraintRampType}}<div><b>constraintRampType</b>: {{constraintRampType}}</div>{{/constraintRampType}}
+{{#rampRateType}}<div><b>rampRateType</b>: {{rampRateType}}</div>{{/rampRateType}}
+{{#GeneratingBid}}<div><b>GeneratingBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingBid}}&quot;);})'>{{GeneratingBid}}</a></div>{{/GeneratingBid}}
+{{#LoadBid}}<div><b>LoadBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadBid}}&quot;);})'>{{LoadBid}}</a></div>{{/LoadBid}}
+{{#InterTieBid}}<div><b>InterTieBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InterTieBid}}&quot;);})'>{{InterTieBid}}</a></div>{{/InterTieBid}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Response from registered resource acknowleging receipt of dispatch instructions
@@ -1497,7 +1957,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DispatchInstReply_collapse" aria-expanded="true" aria-controls="DispatchInstReply_collapse">DispatchInstReply</a>
+<div id="DispatchInstReply_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#acceptMW}}<div><b>acceptMW</b>: {{acceptMW}}</div>{{/acceptMW}}
+{{#acceptStatus}}<div><b>acceptStatus</b>: {{acceptStatus}}</div>{{/acceptStatus}}
+{{#certificationName}}<div><b>certificationName</b>: {{certificationName}}</div>{{/certificationName}}
+{{#clearedMW}}<div><b>clearedMW</b>: {{clearedMW}}</div>{{/clearedMW}}
+{{#instructionTime}}<div><b>instructionTime</b>: {{instructionTime}}</div>{{/instructionTime}}
+{{#instructionType}}<div><b>instructionType</b>: {{instructionType}}</div>{{/instructionType}}
+{{#passIndicator}}<div><b>passIndicator</b>: {{passIndicator}}</div>{{/passIndicator}}
+{{#receivedTime}}<div><b>receivedTime</b>: {{receivedTime}}</div>{{/receivedTime}}
+{{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+{{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Notification time curve as a function of down time.
@@ -1547,7 +2031,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#NotificationTimeCurve_collapse" aria-expanded="true" aria-controls="NotificationTimeCurve_collapse">NotificationTimeCurve</a>
+<div id="NotificationTimeCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Signifies an event to trigger one or more activities, such as reading a meter, recalculating a bill, requesting work, when generating units shall be scheduled for maintenance, when a transformer is scheduled to be refurbished, etc.
@@ -1603,7 +2101,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketScheduledEvent_collapse" aria-expanded="true" aria-controls="MarketScheduledEvent_collapse">MarketScheduledEvent</a>
+<div id="MarketScheduledEvent_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#category}}<div><b>category</b>: {{category}}</div>{{/category}}
+{{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#MajorChargeGroup}}<div><b>MajorChargeGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MajorChargeGroup}}&quot;);})'>{{MajorChargeGroup}}</a></div>{{/MajorChargeGroup}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Relationship between unit operating price in \$/hour (Y-axis) and unit output in MW (X-axis).
@@ -1651,7 +2167,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidPriceCurve_collapse" aria-expanded="true" aria-controls="BidPriceCurve_collapse">BidPriceCurve</a>
+<div id="BidPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Containment for bid hourly parameters that are not product dependent.
@@ -1701,7 +2231,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidHourlySchedule_collapse" aria-expanded="true" aria-controls="BidHourlySchedule_collapse">BidHourlySchedule</a>
+<div id="BidHourlySchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.RegularIntervalSchedule.prototype.template.call (this) +
+`
+{{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bid}}&quot;);})'>{{Bid}}</a></div>{{/Bid}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The fixed operating level of a Pump Storage Hydro Unit operating as a hydro pump.
@@ -1753,7 +2298,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PumpingLevelSchedule_collapse" aria-expanded="true" aria-controls="PumpingLevelSchedule_collapse">PumpingLevelSchedule</a>
+<div id="PumpingLevelSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + BidHourlyProductSchedule.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The operating cost of a Pump Storage Hydro Unit operating as a hydro pump.
@@ -1805,7 +2365,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PumpingCostSchedule_collapse" aria-expanded="true" aria-controls="PumpingCostSchedule_collapse">PumpingCostSchedule</a>
+<div id="PumpingCostSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + BidHourlyProductSchedule.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The cost to shutdown a Pump Storage Hydro Unit (in pump mode) or a pump.
@@ -1857,7 +2432,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PumpingShutDownCostSchedule_collapse" aria-expanded="true" aria-controls="PumpingShutDownCostSchedule_collapse">PumpingShutDownCostSchedule</a>
+<div id="PumpingShutDownCostSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + BidHourlyProductSchedule.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Energy bid for generation, load, or virtual type for the whole of the market-trading period (i.e., one day in day ahead market or one hour in the real time market)
@@ -1935,7 +2525,36 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ResourceBid_collapse" aria-expanded="true" aria-controls="ResourceBid_collapse">ResourceBid</a>
+<div id="ResourceBid_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Bid.prototype.template.call (this) +
+`
+{{#aggregationFlag}}<div><b>aggregationFlag</b>: {{aggregationFlag}}</div>{{/aggregationFlag}}
+{{#bidStatus}}<div><b>bidStatus</b>: {{bidStatus}}</div>{{/bidStatus}}
+{{#commodityType}}<div><b>commodityType</b>: {{commodityType}}</div>{{/commodityType}}
+{{#contingencyAvailFlag}}<div><b>contingencyAvailFlag</b>: {{contingencyAvailFlag}}</div>{{/contingencyAvailFlag}}
+{{#createdISO}}<div><b>createdISO</b>: {{createdISO}}</div>{{/createdISO}}
+{{#energyMaxDay}}<div><b>energyMaxDay</b>: {{energyMaxDay}}</div>{{/energyMaxDay}}
+{{#energyMinDay}}<div><b>energyMinDay</b>: {{energyMinDay}}</div>{{/energyMinDay}}
+{{#marketSepFlag}}<div><b>marketSepFlag</b>: {{marketSepFlag}}</div>{{/marketSepFlag}}
+{{#minDispatchTime}}<div><b>minDispatchTime</b>: {{minDispatchTime}}</div>{{/minDispatchTime}}
+{{#resourceLoadingType}}<div><b>resourceLoadingType</b>: {{resourceLoadingType}}</div>{{/resourceLoadingType}}
+{{#shutDownsMaxDay}}<div><b>shutDownsMaxDay</b>: {{shutDownsMaxDay}}</div>{{/shutDownsMaxDay}}
+{{#shutDownsMaxWeek}}<div><b>shutDownsMaxWeek</b>: {{shutDownsMaxWeek}}</div>{{/shutDownsMaxWeek}}
+{{#startUpsMaxDay}}<div><b>startUpsMaxDay</b>: {{startUpsMaxDay}}</div>{{/startUpsMaxDay}}
+{{#startUpsMaxWeek}}<div><b>startUpsMaxWeek</b>: {{startUpsMaxWeek}}</div>{{/startUpsMaxWeek}}
+{{#virtual}}<div><b>virtual</b>: {{virtual}}</div>{{/virtual}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This class represents the inter tie bid
@@ -1987,7 +2606,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#InterTieBid_collapse" aria-expanded="true" aria-controls="InterTieBid_collapse">InterTieBid</a>
+<div id="InterTieBid_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ResourceBid.prototype.template.call (this) +
+`
+{{#minHourlyBlock }}<div><b>minHourlyBlock </b>: {{minHourlyBlock }}</div>{{/minHourlyBlock }}
+{{#RegisteredInterTie}}<div><b>RegisteredInterTie</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredInterTie}}&quot;);})'>{{RegisteredInterTie}}</a></div>{{/RegisteredInterTie}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Bilateral or scheduled transactions for energy and ancillary services considered by market clearing process
@@ -2047,7 +2682,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransactionBid_collapse" aria-expanded="true" aria-controls="TransactionBid_collapse">TransactionBid</a>
+<div id="TransactionBid_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Bid.prototype.template.call (this) +
+`
+{{#demandTransaction}}<div><b>demandTransaction</b>: {{demandTransaction}}</div>{{/demandTransaction}}
+{{#dispatchable}}<div><b>dispatchable</b>: {{dispatchable}}</div>{{/dispatchable}}
+{{#payCongestion}}<div><b>payCongestion</b>: {{payCongestion}}</div>{{/payCongestion}}
+{{#Receipt_Pnode}}<div><b>Receipt_Pnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Receipt_Pnode}}&quot;);})'>{{Receipt_Pnode}}</a></div>{{/Receipt_Pnode}}
+{{#Delivery_Pnode}}<div><b>Delivery_Pnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Delivery_Pnode}}&quot;);})'>{{Delivery_Pnode}}</a></div>{{/Delivery_Pnode}}
+{{#TransmissionReservation}}<div><b>TransmissionReservation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionReservation}}&quot;);})'>{{TransmissionReservation}}</a></div>{{/TransmissionReservation}}
+</div>
+`
+                );
+           }        }
 
         /**
          * AreaLoadBid is not submitted by a market participant into the Markets.
@@ -2099,7 +2754,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AreaLoadBid_collapse" aria-expanded="true" aria-controls="AreaLoadBid_collapse">AreaLoadBid</a>
+<div id="AreaLoadBid_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Bid.prototype.template.call (this) +
+`
+{{#demandBidMW}}<div><b>demandBidMW</b>: {{demandBidMW}}</div>{{/demandBidMW}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Offer to supply energy/ancillary services from a load resource (participating load reduces consumption)
@@ -2179,7 +2849,37 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadBid_collapse" aria-expanded="true" aria-controls="LoadBid_collapse">LoadBid</a>
+<div id="LoadBid_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ResourceBid.prototype.template.call (this) +
+`
+{{#dropRampRate}}<div><b>dropRampRate</b>: {{dropRampRate}}</div>{{/dropRampRate}}
+{{#loadRedInitiationCost}}<div><b>loadRedInitiationCost</b>: {{loadRedInitiationCost}}</div>{{/loadRedInitiationCost}}
+{{#loadRedInitiationTime}}<div><b>loadRedInitiationTime</b>: {{loadRedInitiationTime}}</div>{{/loadRedInitiationTime}}
+{{#marketDate}}<div><b>marketDate</b>: {{marketDate}}</div>{{/marketDate}}
+{{#meteredValue}}<div><b>meteredValue</b>: {{meteredValue}}</div>{{/meteredValue}}
+{{#minLoad}}<div><b>minLoad</b>: {{minLoad}}</div>{{/minLoad}}
+{{#minLoadReduction}}<div><b>minLoadReduction</b>: {{minLoadReduction}}</div>{{/minLoadReduction}}
+{{#minLoadReductionCost}}<div><b>minLoadReductionCost</b>: {{minLoadReductionCost}}</div>{{/minLoadReductionCost}}
+{{#minLoadReductionInterval}}<div><b>minLoadReductionInterval</b>: {{minLoadReductionInterval}}</div>{{/minLoadReductionInterval}}
+{{#minTimeBetLoadRed}}<div><b>minTimeBetLoadRed</b>: {{minTimeBetLoadRed}}</div>{{/minTimeBetLoadRed}}
+{{#pickUpRampRate}}<div><b>pickUpRampRate</b>: {{pickUpRampRate}}</div>{{/pickUpRampRate}}
+{{#priceSetting}}<div><b>priceSetting</b>: {{priceSetting}}</div>{{/priceSetting}}
+{{#reqNoticeTime}}<div><b>reqNoticeTime</b>: {{reqNoticeTime}}</div>{{/reqNoticeTime}}
+{{#shutdownCost}}<div><b>shutdownCost</b>: {{shutdownCost}}</div>{{/shutdownCost}}
+{{#AreaLoadBid}}<div><b>AreaLoadBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AreaLoadBid}}&quot;);})'>{{AreaLoadBid}}</a></div>{{/AreaLoadBid}}
+{{#RegisteredLoad}}<div><b>RegisteredLoad</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredLoad}}&quot;);})'>{{RegisteredLoad}}</a></div>{{/RegisteredLoad}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Offer to supply energy/ancillary services from a generating unit or resource
@@ -2271,7 +2971,43 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GeneratingBid_collapse" aria-expanded="true" aria-controls="GeneratingBid_collapse">GeneratingBid</a>
+<div id="GeneratingBid_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ResourceBid.prototype.template.call (this) +
+`
+{{#combinedCycleUnitOffer}}<div><b>combinedCycleUnitOffer</b>: {{combinedCycleUnitOffer}}</div>{{/combinedCycleUnitOffer}}
+{{#downTimeMax}}<div><b>downTimeMax</b>: {{downTimeMax}}</div>{{/downTimeMax}}
+{{#installedCapacity}}<div><b>installedCapacity</b>: {{installedCapacity}}</div>{{/installedCapacity}}
+{{#lowerRampRate}}<div><b>lowerRampRate</b>: {{lowerRampRate}}</div>{{/lowerRampRate}}
+{{#maxEmergencyMW}}<div><b>maxEmergencyMW</b>: {{maxEmergencyMW}}</div>{{/maxEmergencyMW}}
+{{#maximumEconomicMW}}<div><b>maximumEconomicMW</b>: {{maximumEconomicMW}}</div>{{/maximumEconomicMW}}
+{{#minEmergencyMW}}<div><b>minEmergencyMW</b>: {{minEmergencyMW}}</div>{{/minEmergencyMW}}
+{{#minimumEconomicMW}}<div><b>minimumEconomicMW</b>: {{minimumEconomicMW}}</div>{{/minimumEconomicMW}}
+{{#noLoadCost}}<div><b>noLoadCost</b>: {{noLoadCost}}</div>{{/noLoadCost}}
+{{#notificationTime}}<div><b>notificationTime</b>: {{notificationTime}}</div>{{/notificationTime}}
+{{#operatingMode}}<div><b>operatingMode</b>: {{operatingMode}}</div>{{/operatingMode}}
+{{#raiseRampRate}}<div><b>raiseRampRate</b>: {{raiseRampRate}}</div>{{/raiseRampRate}}
+{{#rampCurveType}}<div><b>rampCurveType</b>: {{rampCurveType}}</div>{{/rampCurveType}}
+{{#startupCost}}<div><b>startupCost</b>: {{startupCost}}</div>{{/startupCost}}
+{{#startUpRampRate}}<div><b>startUpRampRate</b>: {{startUpRampRate}}</div>{{/startUpRampRate}}
+{{#startUpType}}<div><b>startUpType</b>: {{startUpType}}</div>{{/startUpType}}
+{{#upTimeMax}}<div><b>upTimeMax</b>: {{upTimeMax}}</div>{{/upTimeMax}}
+{{#NotificationTimeCurve}}<div><b>NotificationTimeCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NotificationTimeCurve}}&quot;);})'>{{NotificationTimeCurve}}</a></div>{{/NotificationTimeCurve}}
+{{#StartUpCostCurve}}<div><b>StartUpCostCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartUpCostCurve}}&quot;);})'>{{StartUpCostCurve}}</a></div>{{/StartUpCostCurve}}
+{{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);})'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
+{{#StartUpTimeCurve}}<div><b>StartUpTimeCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartUpTimeCurve}}&quot;);})'>{{StartUpTimeCurve}}</a></div>{{/StartUpTimeCurve}}
+{{#BidSet}}<div><b>BidSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BidSet}}&quot;);})'>{{BidSet}}</a></div>{{/BidSet}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Result of bid validation against conditions that may exist on an interchange that becomes disconnected or is heavily discounted with respect the MW flow.
@@ -2323,7 +3059,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OpenTieSchedule_collapse" aria-expanded="true" aria-controls="OpenTieSchedule_collapse">OpenTieSchedule</a>
+<div id="OpenTieSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + BidHourlySchedule.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An indicator specifying that a resource shall have an Hourly Pre-Dispatch.
@@ -2375,7 +3126,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#HourlyPreDispatchSchedule_collapse" aria-expanded="true" aria-controls="HourlyPreDispatchSchedule_collapse">HourlyPreDispatchSchedule</a>
+<div id="HourlyPreDispatchSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + BidHourlySchedule.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

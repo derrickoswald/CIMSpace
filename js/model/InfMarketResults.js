@@ -56,7 +56,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SecurityConstraintsClearing_collapse" aria-expanded="true" aria-controls="SecurityConstraintsClearing_collapse">SecurityConstraintsClearing</a>
+<div id="SecurityConstraintsClearing_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + MarketPlan.MarketFactors.prototype.template.call (this) +
+`
+{{#mwLimit}}<div><b>mwLimit</b>: {{mwLimit}}</div>{{/mwLimit}}
+{{#mwFlow}}<div><b>mwFlow</b>: {{mwFlow}}</div>{{/mwFlow}}
+{{#shadowPrice}}<div><b>shadowPrice</b>: {{shadowPrice}}</div>{{/shadowPrice}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Market case clearing results are posted for a given settlement period.
@@ -110,7 +127,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketCaseClearing_collapse" aria-expanded="true" aria-controls="MarketCaseClearing_collapse">MarketCaseClearing</a>
+<div id="MarketCaseClearing_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + MarketPlan.MarketFactors.prototype.template.call (this) +
+`
+{{#caseType}}<div><b>caseType</b>: {{caseType}}</div>{{/caseType}}
+{{#postedDate}}<div><b>postedDate</b>: {{postedDate}}</div>{{/postedDate}}
+{{#modifiedDate}}<div><b>modifiedDate</b>: {{modifiedDate}}</div>{{/modifiedDate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Model of market clearing related to results at the inter-ties.
@@ -160,7 +194,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#InterTieClearing_collapse" aria-expanded="true" aria-controls="InterTieClearing_collapse">InterTieClearing</a>
+<div id="InterTieClearing_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + MarketPlan.MarketFactors.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Provides the tie point specific output from the market applications.
@@ -218,7 +266,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#InterTieResults_collapse" aria-expanded="true" aria-controls="InterTieResults_collapse">InterTieResults</a>
+<div id="InterTieResults_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#clearedValue}}<div><b>clearedValue</b>: {{clearedValue}}</div>{{/clearedValue}}
+{{#baseMW}}<div><b>baseMW</b>: {{baseMW}}</div>{{/baseMW}}
+{{#InterTieClearing}}<div><b>InterTieClearing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InterTieClearing}}&quot;);})'>{{InterTieClearing}}</a></div>{{/InterTieClearing}}
+{{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

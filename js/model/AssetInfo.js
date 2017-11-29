@@ -68,7 +68,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WireSpacingInfo_collapse" aria-expanded="true" aria-controls="WireSpacingInfo_collapse">WireSpacingInfo</a>
+<div id="WireSpacingInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#isCable}}<div><b>isCable</b>: {{isCable}}</div>{{/isCable}}
+{{#phaseWireCount}}<div><b>phaseWireCount</b>: {{phaseWireCount}}</div>{{/phaseWireCount}}
+{{#phaseWireSpacing}}<div><b>phaseWireSpacing</b>: {{phaseWireSpacing}}</div>{{/phaseWireSpacing}}
+{{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
+{{#DuctBank}}<div><b>DuctBank</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DuctBank}}&quot;);})'>{{DuctBank}}</a></div>{{/DuctBank}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of cable outer jacket.
@@ -130,7 +149,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CableOuterJacketKind_collapse" aria-expanded="true" aria-controls="CableOuterJacketKind_collapse">CableOuterJacketKind</a>
+<div id="CableOuterJacketKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
+{{#linearLowDensityPolyethylene}}<div><b>linearLowDensityPolyethylene</b>: {{linearLowDensityPolyethylene}}</div>{{/linearLowDensityPolyethylene}}
+{{#pvc}}<div><b>pvc</b>: {{pvc}}</div>{{/pvc}}
+{{#polyethylene}}<div><b>polyethylene</b>: {{polyethylene}}</div>{{/polyethylene}}
+{{#insulating}}<div><b>insulating</b>: {{insulating}}</div>{{/insulating}}
+{{#semiconducting}}<div><b>semiconducting</b>: {{semiconducting}}</div>{{/semiconducting}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Tap changer data.
@@ -208,7 +248,36 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TapChangerInfo_collapse" aria-expanded="true" aria-controls="TapChangerInfo_collapse">TapChangerInfo</a>
+<div id="TapChangerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#bil}}<div><b>bil</b>: {{bil}}</div>{{/bil}}
+{{#ctRating}}<div><b>ctRating</b>: {{ctRating}}</div>{{/ctRating}}
+{{#ctRatio}}<div><b>ctRatio</b>: {{ctRatio}}</div>{{/ctRatio}}
+{{#frequency}}<div><b>frequency</b>: {{frequency}}</div>{{/frequency}}
+{{#highStep}}<div><b>highStep</b>: {{highStep}}</div>{{/highStep}}
+{{#isTcul}}<div><b>isTcul</b>: {{isTcul}}</div>{{/isTcul}}
+{{#lowStep}}<div><b>lowStep</b>: {{lowStep}}</div>{{/lowStep}}
+{{#neutralStep}}<div><b>neutralStep</b>: {{neutralStep}}</div>{{/neutralStep}}
+{{#neutralU}}<div><b>neutralU</b>: {{neutralU}}</div>{{/neutralU}}
+{{#ptRatio}}<div><b>ptRatio</b>: {{ptRatio}}</div>{{/ptRatio}}
+{{#ratedApparentPower}}<div><b>ratedApparentPower</b>: {{ratedApparentPower}}</div>{{/ratedApparentPower}}
+{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+{{#stepPhaseIncrement}}<div><b>stepPhaseIncrement</b>: {{stepPhaseIncrement}}</div>{{/stepPhaseIncrement}}
+{{#stepVoltageIncrement}}<div><b>stepVoltageIncrement</b>: {{stepVoltageIncrement}}</div>{{/stepVoltageIncrement}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Set of transformer tank data, from an equipment library.
@@ -258,7 +327,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransformerTankInfo_collapse" aria-expanded="true" aria-controls="TransformerTankInfo_collapse">TransformerTankInfo</a>
+<div id="TransformerTankInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#PowerTransformerInfo}}<div><b>PowerTransformerInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerTransformerInfo}}&quot;);})'>{{PowerTransformerInfo}}</a></div>{{/PowerTransformerInfo}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of wire insulation.
@@ -342,7 +426,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WireInsulationKind_collapse" aria-expanded="true" aria-controls="WireInsulationKind_collapse">WireInsulationKind</a>
+<div id="WireInsulationKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#asbestosAndVarnishedCambric}}<div><b>asbestosAndVarnishedCambric</b>: {{asbestosAndVarnishedCambric}}</div>{{/asbestosAndVarnishedCambric}}
+{{#butyl}}<div><b>butyl</b>: {{butyl}}</div>{{/butyl}}
+{{#ethylenePropyleneRubber}}<div><b>ethylenePropyleneRubber</b>: {{ethylenePropyleneRubber}}</div>{{/ethylenePropyleneRubber}}
+{{#highMolecularWeightPolyethylene}}<div><b>highMolecularWeightPolyethylene</b>: {{highMolecularWeightPolyethylene}}</div>{{/highMolecularWeightPolyethylene}}
+{{#treeResistantHighMolecularWeightPolyethylene}}<div><b>treeResistantHighMolecularWeightPolyethylene</b>: {{treeResistantHighMolecularWeightPolyethylene}}</div>{{/treeResistantHighMolecularWeightPolyethylene}}
+{{#lowCapacitanceRubber}}<div><b>lowCapacitanceRubber</b>: {{lowCapacitanceRubber}}</div>{{/lowCapacitanceRubber}}
+{{#oilPaper}}<div><b>oilPaper</b>: {{oilPaper}}</div>{{/oilPaper}}
+{{#ozoneResistantRubber}}<div><b>ozoneResistantRubber</b>: {{ozoneResistantRubber}}</div>{{/ozoneResistantRubber}}
+{{#beltedPilc}}<div><b>beltedPilc</b>: {{beltedPilc}}</div>{{/beltedPilc}}
+{{#unbeltedPilc}}<div><b>unbeltedPilc</b>: {{unbeltedPilc}}</div>{{/unbeltedPilc}}
+{{#rubber}}<div><b>rubber</b>: {{rubber}}</div>{{/rubber}}
+{{#siliconRubber}}<div><b>siliconRubber</b>: {{siliconRubber}}</div>{{/siliconRubber}}
+{{#varnishedCambricCloth}}<div><b>varnishedCambricCloth</b>: {{varnishedCambricCloth}}</div>{{/varnishedCambricCloth}}
+{{#varnishedDacronGlass}}<div><b>varnishedDacronGlass</b>: {{varnishedDacronGlass}}</div>{{/varnishedDacronGlass}}
+{{#crosslinkedPolyethylene}}<div><b>crosslinkedPolyethylene</b>: {{crosslinkedPolyethylene}}</div>{{/crosslinkedPolyethylene}}
+{{#treeRetardantCrosslinkedPolyethylene}}<div><b>treeRetardantCrosslinkedPolyethylene</b>: {{treeRetardantCrosslinkedPolyethylene}}</div>{{/treeRetardantCrosslinkedPolyethylene}}
+{{#highPressureFluidFilled}}<div><b>highPressureFluidFilled</b>: {{highPressureFluidFilled}}</div>{{/highPressureFluidFilled}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Busbar section data.
@@ -394,7 +510,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BusbarSectionInfo_collapse" aria-expanded="true" aria-controls="BusbarSectionInfo_collapse">BusbarSectionInfo</a>
+<div id="BusbarSectionInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Set of power transformer data, from an equipment library.
@@ -442,7 +574,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PowerTransformerInfo_collapse" aria-expanded="true" aria-controls="PowerTransformerInfo_collapse">PowerTransformerInfo</a>
+<div id="PowerTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Wire data that can be specified per line segment phase, or for the line segment as a whole in case its phases all have the same wire characteristics.
@@ -520,7 +666,36 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WireInfo_collapse" aria-expanded="true" aria-controls="WireInfo_collapse">WireInfo</a>
+<div id="WireInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#coreRadius}}<div><b>coreRadius</b>: {{coreRadius}}</div>{{/coreRadius}}
+{{#coreStrandCount}}<div><b>coreStrandCount</b>: {{coreStrandCount}}</div>{{/coreStrandCount}}
+{{#gmr}}<div><b>gmr</b>: {{gmr}}</div>{{/gmr}}
+{{#insulated}}<div><b>insulated</b>: {{insulated}}</div>{{/insulated}}
+{{#insulationMaterial}}<div><b>insulationMaterial</b>: {{insulationMaterial}}</div>{{/insulationMaterial}}
+{{#insulationThickness}}<div><b>insulationThickness</b>: {{insulationThickness}}</div>{{/insulationThickness}}
+{{#material}}<div><b>material</b>: {{material}}</div>{{/material}}
+{{#rAC25}}<div><b>rAC25</b>: {{rAC25}}</div>{{/rAC25}}
+{{#rAC50}}<div><b>rAC50</b>: {{rAC50}}</div>{{/rAC50}}
+{{#rAC75}}<div><b>rAC75</b>: {{rAC75}}</div>{{/rAC75}}
+{{#radius}}<div><b>radius</b>: {{radius}}</div>{{/radius}}
+{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+{{#rDC20}}<div><b>rDC20</b>: {{rDC20}}</div>{{/rDC20}}
+{{#sizeDescription}}<div><b>sizeDescription</b>: {{sizeDescription}}</div>{{/sizeDescription}}
+{{#strandCount}}<div><b>strandCount</b>: {{strandCount}}</div>{{/strandCount}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Properties of shunt capacitor, shunt reactor or switchable bank of shunt capacitor or reactor assets.
@@ -578,7 +753,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ShuntCompensatorInfo_collapse" aria-expanded="true" aria-controls="ShuntCompensatorInfo_collapse">ShuntCompensatorInfo</a>
+<div id="ShuntCompensatorInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#maxPowerLoss}}<div><b>maxPowerLoss</b>: {{maxPowerLoss}}</div>{{/maxPowerLoss}}
+{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+{{#ratedReactivePower}}<div><b>ratedReactivePower</b>: {{ratedReactivePower}}</div>{{/ratedReactivePower}}
+{{#ShuntCompensatorControl}}<div><b>ShuntCompensatorControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensatorControl}}&quot;);})'>{{ShuntCompensatorControl}}</a></div>{{/ShuntCompensatorControl}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Switch data.
@@ -636,7 +830,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SwitchInfo_collapse" aria-expanded="true" aria-controls="SwitchInfo_collapse">SwitchInfo</a>
+<div id="SwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#breakingCapacity}}<div><b>breakingCapacity</b>: {{breakingCapacity}}</div>{{/breakingCapacity}}
+{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+{{#isSinglePhase}}<div><b>isSinglePhase</b>: {{isSinglePhase}}</div>{{/isSinglePhase}}
+{{#isUnganged}}<div><b>isUnganged</b>: {{isUnganged}}</div>{{/isUnganged}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Identification, spacing and configuration of the wires of a conductor with respect to a structure.
@@ -692,7 +905,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WirePosition_collapse" aria-expanded="true" aria-controls="WirePosition_collapse">WirePosition</a>
+<div id="WirePosition_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
+{{#xCoord}}<div><b>xCoord</b>: {{xCoord}}</div>{{/xCoord}}
+{{#yCoord}}<div><b>yCoord</b>: {{yCoord}}</div>{{/yCoord}}
+{{#WireSpacingInfo}}<div><b>WireSpacingInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WireSpacingInfo}}&quot;);})'>{{WireSpacingInfo}}</a></div>{{/WireSpacingInfo}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Transformer end data.
@@ -764,7 +995,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransformerEndInfo_collapse" aria-expanded="true" aria-controls="TransformerEndInfo_collapse">TransformerEndInfo</a>
+<div id="TransformerEndInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#connectionKind}}<div><b>connectionKind</b>: {{connectionKind}}</div>{{/connectionKind}}
+{{#emergencyS}}<div><b>emergencyS</b>: {{emergencyS}}</div>{{/emergencyS}}
+{{#endNumber}}<div><b>endNumber</b>: {{endNumber}}</div>{{/endNumber}}
+{{#insulationU}}<div><b>insulationU</b>: {{insulationU}}</div>{{/insulationU}}
+{{#phaseAngleClock}}<div><b>phaseAngleClock</b>: {{phaseAngleClock}}</div>{{/phaseAngleClock}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#ratedS}}<div><b>ratedS</b>: {{ratedS}}</div>{{/ratedS}}
+{{#ratedU}}<div><b>ratedU</b>: {{ratedU}}</div>{{/ratedU}}
+{{#shortTermS}}<div><b>shortTermS</b>: {{shortTermS}}</div>{{/shortTermS}}
+{{#TransformerStarImpedance}}<div><b>TransformerStarImpedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerStarImpedance}}&quot;);})'>{{TransformerStarImpedance}}</a></div>{{/TransformerStarImpedance}}
+{{#TransformerTankInfo}}<div><b>TransformerTankInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerTankInfo}}&quot;);})'>{{TransformerTankInfo}}</a></div>{{/TransformerTankInfo}}
+{{#CoreAdmittance}}<div><b>CoreAdmittance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CoreAdmittance}}&quot;);})'>{{CoreAdmittance}}</a></div>{{/CoreAdmittance}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Test result for transformer ends, such as short-circuit, open-circuit (excitation) or no-load test.
@@ -816,7 +1073,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransformerTest_collapse" aria-expanded="true" aria-controls="TransformerTest_collapse">TransformerTest</a>
+<div id="TransformerTest_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#basePower}}<div><b>basePower</b>: {{basePower}}</div>{{/basePower}}
+{{#temperature}}<div><b>temperature</b>: {{temperature}}</div>{{/temperature}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of wire material.
@@ -882,7 +1155,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WireMaterialKind_collapse" aria-expanded="true" aria-controls="WireMaterialKind_collapse">WireMaterialKind</a>
+<div id="WireMaterialKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#copper}}<div><b>copper</b>: {{copper}}</div>{{/copper}}
+{{#steel}}<div><b>steel</b>: {{steel}}</div>{{/steel}}
+{{#aluminum}}<div><b>aluminum</b>: {{aluminum}}</div>{{/aluminum}}
+{{#aluminumSteel}}<div><b>aluminumSteel</b>: {{aluminumSteel}}</div>{{/aluminumSteel}}
+{{#acsr}}<div><b>acsr</b>: {{acsr}}</div>{{/acsr}}
+{{#aluminumAlloy}}<div><b>aluminumAlloy</b>: {{aluminumAlloy}}</div>{{/aluminumAlloy}}
+{{#aluminumAlloySteel}}<div><b>aluminumAlloySteel</b>: {{aluminumAlloySteel}}</div>{{/aluminumAlloySteel}}
+{{#aaac}}<div><b>aaac</b>: {{aaac}}</div>{{/aaac}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of cable construction.
@@ -944,7 +1240,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CableConstructionKind_collapse" aria-expanded="true" aria-controls="CableConstructionKind_collapse">CableConstructionKind</a>
+<div id="CableConstructionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#compacted}}<div><b>compacted</b>: {{compacted}}</div>{{/compacted}}
+{{#compressed}}<div><b>compressed</b>: {{compressed}}</div>{{/compressed}}
+{{#sector}}<div><b>sector</b>: {{sector}}</div>{{/sector}}
+{{#segmental}}<div><b>segmental</b>: {{segmental}}</div>{{/segmental}}
+{{#solid}}<div><b>solid</b>: {{solid}}</div>{{/solid}}
+{{#stranded}}<div><b>stranded</b>: {{stranded}}</div>{{/stranded}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of cable shield material.
@@ -1002,7 +1319,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CableShieldMaterialKind_collapse" aria-expanded="true" aria-controls="CableShieldMaterialKind_collapse">CableShieldMaterialKind</a>
+<div id="CableShieldMaterialKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#lead}}<div><b>lead</b>: {{lead}}</div>{{/lead}}
+{{#copper}}<div><b>copper</b>: {{copper}}</div>{{/copper}}
+{{#steel}}<div><b>steel</b>: {{steel}}</div>{{/steel}}
+{{#aluminum}}<div><b>aluminum</b>: {{aluminum}}</div>{{/aluminum}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of wire usage.
@@ -1058,7 +1394,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WireUsageKind_collapse" aria-expanded="true" aria-controls="WireUsageKind_collapse">WireUsageKind</a>
+<div id="WireUsageKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#transmission}}<div><b>transmission</b>: {{transmission}}</div>{{/transmission}}
+{{#distribution}}<div><b>distribution</b>: {{distribution}}</div>{{/distribution}}
+{{#secondary}}<div><b>secondary</b>: {{secondary}}</div>{{/secondary}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Cable data.
@@ -1126,7 +1480,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CableInfo_collapse" aria-expanded="true" aria-controls="CableInfo_collapse">CableInfo</a>
+<div id="CableInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WireInfo.prototype.template.call (this) +
+`
+{{#constructionKind}}<div><b>constructionKind</b>: {{constructionKind}}</div>{{/constructionKind}}
+{{#diameterOverCore}}<div><b>diameterOverCore</b>: {{diameterOverCore}}</div>{{/diameterOverCore}}
+{{#diameterOverInsulation}}<div><b>diameterOverInsulation</b>: {{diameterOverInsulation}}</div>{{/diameterOverInsulation}}
+{{#diameterOverJacket}}<div><b>diameterOverJacket</b>: {{diameterOverJacket}}</div>{{/diameterOverJacket}}
+{{#diameterOverScreen}}<div><b>diameterOverScreen</b>: {{diameterOverScreen}}</div>{{/diameterOverScreen}}
+{{#isStrandFill}}<div><b>isStrandFill</b>: {{isStrandFill}}</div>{{/isStrandFill}}
+{{#nominalTemperature}}<div><b>nominalTemperature</b>: {{nominalTemperature}}</div>{{/nominalTemperature}}
+{{#outerJacketKind}}<div><b>outerJacketKind</b>: {{outerJacketKind}}</div>{{/outerJacketKind}}
+{{#sheathAsNeutral}}<div><b>sheathAsNeutral</b>: {{sheathAsNeutral}}</div>{{/sheathAsNeutral}}
+{{#shieldMaterial}}<div><b>shieldMaterial</b>: {{shieldMaterial}}</div>{{/shieldMaterial}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Concentric neutral cable data.
@@ -1184,7 +1562,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ConcentricNeutralCableInfo_collapse" aria-expanded="true" aria-controls="ConcentricNeutralCableInfo_collapse">ConcentricNeutralCableInfo</a>
+<div id="ConcentricNeutralCableInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + CableInfo.prototype.template.call (this) +
+`
+{{#diameterOverNeutral}}<div><b>diameterOverNeutral</b>: {{diameterOverNeutral}}</div>{{/diameterOverNeutral}}
+{{#neutralStrandCount}}<div><b>neutralStrandCount</b>: {{neutralStrandCount}}</div>{{/neutralStrandCount}}
+{{#neutralStrandGmr}}<div><b>neutralStrandGmr</b>: {{neutralStrandGmr}}</div>{{/neutralStrandGmr}}
+{{#neutralStrandRadius}}<div><b>neutralStrandRadius</b>: {{neutralStrandRadius}}</div>{{/neutralStrandRadius}}
+{{#neutralStrandRDC20}}<div><b>neutralStrandRDC20</b>: {{neutralStrandRDC20}}</div>{{/neutralStrandRDC20}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Overhead wire data.
@@ -1232,7 +1629,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OverheadWireInfo_collapse" aria-expanded="true" aria-controls="OverheadWireInfo_collapse">OverheadWireInfo</a>
+<div id="OverheadWireInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WireInfo.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Tape shield cable data.
@@ -1284,7 +1695,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TapeShieldCableInfo_collapse" aria-expanded="true" aria-controls="TapeShieldCableInfo_collapse">TapeShieldCableInfo</a>
+<div id="TapeShieldCableInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + CableInfo.prototype.template.call (this) +
+`
+{{#tapeLap}}<div><b>tapeLap</b>: {{tapeLap}}</div>{{/tapeLap}}
+{{#tapeThickness}}<div><b>tapeThickness</b>: {{tapeThickness}}</div>{{/tapeThickness}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Short-circuit test results determine mesh impedance parameters.
@@ -1348,7 +1775,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ShortCircuitTest_collapse" aria-expanded="true" aria-controls="ShortCircuitTest_collapse">ShortCircuitTest</a>
+<div id="ShortCircuitTest_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TransformerTest.prototype.template.call (this) +
+`
+{{#energisedEndStep}}<div><b>energisedEndStep</b>: {{energisedEndStep}}</div>{{/energisedEndStep}}
+{{#groundedEndStep}}<div><b>groundedEndStep</b>: {{groundedEndStep}}</div>{{/groundedEndStep}}
+{{#leakageImpedance}}<div><b>leakageImpedance</b>: {{leakageImpedance}}</div>{{/leakageImpedance}}
+{{#leakageImpedanceZero}}<div><b>leakageImpedanceZero</b>: {{leakageImpedanceZero}}</div>{{/leakageImpedanceZero}}
+{{#loss}}<div><b>loss</b>: {{loss}}</div>{{/loss}}
+{{#lossZero}}<div><b>lossZero</b>: {{lossZero}}</div>{{/lossZero}}
+{{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);})'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
+</div>
+`
+                );
+           }        }
 
         /**
          * No-load test results determine core admittance parameters.
@@ -1410,7 +1858,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#NoLoadTest_collapse" aria-expanded="true" aria-controls="NoLoadTest_collapse">NoLoadTest</a>
+<div id="NoLoadTest_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TransformerTest.prototype.template.call (this) +
+`
+{{#energisedEndVoltage}}<div><b>energisedEndVoltage</b>: {{energisedEndVoltage}}</div>{{/energisedEndVoltage}}
+{{#excitingCurrent}}<div><b>excitingCurrent</b>: {{excitingCurrent}}</div>{{/excitingCurrent}}
+{{#excitingCurrentZero}}<div><b>excitingCurrentZero</b>: {{excitingCurrentZero}}</div>{{/excitingCurrentZero}}
+{{#loss}}<div><b>loss</b>: {{loss}}</div>{{/loss}}
+{{#lossZero}}<div><b>lossZero</b>: {{lossZero}}</div>{{/lossZero}}
+{{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);})'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Open-circuit test results verify winding turn ratios and phase shifts.
@@ -1474,7 +1942,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OpenCircuitTest_collapse" aria-expanded="true" aria-controls="OpenCircuitTest_collapse">OpenCircuitTest</a>
+<div id="OpenCircuitTest_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TransformerTest.prototype.template.call (this) +
+`
+{{#energisedEndStep}}<div><b>energisedEndStep</b>: {{energisedEndStep}}</div>{{/energisedEndStep}}
+{{#energisedEndVoltage}}<div><b>energisedEndVoltage</b>: {{energisedEndVoltage}}</div>{{/energisedEndVoltage}}
+{{#openEndStep}}<div><b>openEndStep</b>: {{openEndStep}}</div>{{/openEndStep}}
+{{#openEndVoltage}}<div><b>openEndVoltage</b>: {{openEndVoltage}}</div>{{/openEndVoltage}}
+{{#phaseShift}}<div><b>phaseShift</b>: {{phaseShift}}</div>{{/phaseShift}}
+{{#OpenEnd}}<div><b>OpenEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OpenEnd}}&quot;);})'>{{OpenEnd}}</a></div>{{/OpenEnd}}
+{{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);})'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

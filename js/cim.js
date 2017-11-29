@@ -55,6 +55,18 @@ define
         );
 
         /**
+         * Get the class for a given object.
+         * @param {Object} obj the JavaScript bucket-o-properies' object.
+         * @return the ES6 class for the object
+         * @function class_map
+         * @memberOf module:cim
+         */
+        function class_map (obj)
+        {
+            return (theExportMap[obj.cls]);
+        }
+
+        /**
          * Parse an XML file into constituent parts
          * @param {String} xml - the string to parse
          * @param {Object} context - the file reading context
@@ -425,6 +437,7 @@ define
 
         return (
             {
+                class_map: class_map,
                 read_full_xml: read_full_xml,
                 read_xml_blob: read_xml_blob,
                 write_xml: write_xml

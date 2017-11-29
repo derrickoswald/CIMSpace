@@ -92,7 +92,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Asset_collapse" aria-expanded="true" aria-controls="Asset_collapse">Asset</a>
+<div id="Asset_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#acceptanceTest}}<div><b>acceptanceTest</b>: {{acceptanceTest}}</div>{{/acceptanceTest}}
+{{#critical}}<div><b>critical</b>: {{critical}}</div>{{/critical}}
+{{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
+{{#initialCondition}}<div><b>initialCondition</b>: {{initialCondition}}</div>{{/initialCondition}}
+{{#initialLossOfLife}}<div><b>initialLossOfLife</b>: {{initialLossOfLife}}</div>{{/initialLossOfLife}}
+{{#lifecycle}}<div><b>lifecycle</b>: {{lifecycle}}</div>{{/lifecycle}}
+{{#lotNumber}}<div><b>lotNumber</b>: {{lotNumber}}</div>{{/lotNumber}}
+{{#purchasePrice}}<div><b>purchasePrice</b>: {{purchasePrice}}</div>{{/purchasePrice}}
+{{#serialNumber}}<div><b>serialNumber</b>: {{serialNumber}}</div>{{/serialNumber}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#utcNumber}}<div><b>utcNumber</b>: {{utcNumber}}</div>{{/utcNumber}}
+{{#FinancialInfo}}<div><b>FinancialInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FinancialInfo}}&quot;);})'>{{FinancialInfo}}</a></div>{{/FinancialInfo}}
+{{#ErpItemMaster}}<div><b>ErpItemMaster</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpItemMaster}}&quot;);})'>{{ErpItemMaster}}</a></div>{{/ErpItemMaster}}
+{{#AssetContainer}}<div><b>AssetContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetContainer}}&quot;);})'>{{AssetContainer}}</a></div>{{/AssetContainer}}
+{{#Location}}<div><b>Location</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Location}}&quot;);})'>{{Location}}</a></div>{{/Location}}
+{{#ErpInventory}}<div><b>ErpInventory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInventory}}&quot;);})'>{{ErpInventory}}</a></div>{{/ErpInventory}}
+{{#AssetInfo}}<div><b>AssetInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetInfo}}&quot;);})'>{{AssetInfo}}</a></div>{{/AssetInfo}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Acceptance test for assets.
@@ -146,7 +178,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AcceptanceTest_collapse" aria-expanded="true" aria-controls="AcceptanceTest_collapse">AcceptanceTest</a>
+<div id="AcceptanceTest_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
+{{#success}}<div><b>success</b>: {{success}}</div>{{/success}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Set of attributes of an asset, representing typical datasheet information of a physical device that can be instantiated and shared in different data exchange contexts:
@@ -200,7 +249,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AssetInfo_collapse" aria-expanded="true" aria-controls="AssetInfo_collapse">AssetInfo</a>
+<div id="AssetInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModel}}&quot;);})'>{{AssetModel}}</a></div>{{/AssetModel}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of corporate standard.
@@ -256,7 +320,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CorporateStandardKind_collapse" aria-expanded="true" aria-controls="CorporateStandardKind_collapse">CorporateStandardKind</a>
+<div id="CorporateStandardKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#standard}}<div><b>standard</b>: {{standard}}</div>{{/standard}}
+{{#experimental}}<div><b>experimental</b>: {{experimental}}</div>{{/experimental}}
+{{#underEvaluation}}<div><b>underEvaluation</b>: {{underEvaluation}}</div>{{/underEvaluation}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of procedure.
@@ -314,7 +396,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProcedureKind_collapse" aria-expanded="true" aria-controls="ProcedureKind_collapse">ProcedureKind</a>
+<div id="ProcedureKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#inspection}}<div><b>inspection</b>: {{inspection}}</div>{{/inspection}}
+{{#diagnosis}}<div><b>diagnosis</b>: {{diagnosis}}</div>{{/diagnosis}}
+{{#maintenance}}<div><b>maintenance</b>: {{maintenance}}</div>{{/maintenance}}
+{{#test}}<div><b>test</b>: {{test}}</div>{{/test}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Usage for an asset model.
@@ -378,7 +479,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AssetModelUsageKind_collapse" aria-expanded="true" aria-controls="AssetModelUsageKind_collapse">AssetModelUsageKind</a>
+<div id="AssetModelUsageKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#distributionOverhead}}<div><b>distributionOverhead</b>: {{distributionOverhead}}</div>{{/distributionOverhead}}
+{{#distributionUnderground}}<div><b>distributionUnderground</b>: {{distributionUnderground}}</div>{{/distributionUnderground}}
+{{#transmission}}<div><b>transmission</b>: {{transmission}}</div>{{/transmission}}
+{{#substation}}<div><b>substation</b>: {{substation}}</div>{{/substation}}
+{{#streetlight}}<div><b>streetlight</b>: {{streetlight}}</div>{{/streetlight}}
+{{#customerSubstation}}<div><b>customerSubstation</b>: {{customerSubstation}}</div>{{/customerSubstation}}
+{{#unknown}}<div><b>unknown</b>: {{unknown}}</div>{{/unknown}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Role an organisation plays with respect to asset.
@@ -426,7 +549,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AssetOrganisationRole_collapse" aria-expanded="true" aria-controls="AssetOrganisationRole_collapse">AssetOrganisationRole</a>
+<div id="AssetOrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.OrganisationRole.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of seal.
@@ -482,7 +619,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SealKind_collapse" aria-expanded="true" aria-controls="SealKind_collapse">SealKind</a>
+<div id="SealKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#steel}}<div><b>steel</b>: {{steel}}</div>{{/steel}}
+{{#lead}}<div><b>lead</b>: {{lead}}</div>{{/lead}}
+{{#lock}}<div><b>lock</b>: {{lock}}</div>{{/lock}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Organisation that manufactures asset products.
@@ -530,7 +685,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Manufacturer_collapse" aria-expanded="true" aria-controls="Manufacturer_collapse">Manufacturer</a>
+<div id="Manufacturer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.OrganisationRole.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A data set recorded each time a procedure is executed.
@@ -584,7 +753,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProcedureDataSet_collapse" aria-expanded="true" aria-controls="ProcedureDataSet_collapse">ProcedureDataSet</a>
+<div id="ProcedureDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#completedDateTime}}<div><b>completedDateTime</b>: {{completedDateTime}}</div>{{/completedDateTime}}
+{{#Procedure}}<div><b>Procedure</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Procedure}}&quot;);})'>{{Procedure}}</a></div>{{/Procedure}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Function performed by an asset.
@@ -642,7 +827,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AssetFunction_collapse" aria-expanded="true" aria-controls="AssetFunction_collapse">AssetFunction</a>
+<div id="AssetFunction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#configID}}<div><b>configID</b>: {{configID}}</div>{{/configID}}
+{{#firmwareID}}<div><b>firmwareID</b>: {{firmwareID}}</div>{{/firmwareID}}
+{{#hardwareID}}<div><b>hardwareID</b>: {{hardwareID}}</div>{{/hardwareID}}
+{{#password}}<div><b>password</b>: {{password}}</div>{{/password}}
+{{#programID}}<div><b>programID</b>: {{programID}}</div>{{/programID}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Physically controls access to AssetContainers.
@@ -700,7 +904,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Seal_collapse" aria-expanded="true" aria-controls="Seal_collapse">Seal</a>
+<div id="Seal_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#appliedDateTime}}<div><b>appliedDateTime</b>: {{appliedDateTime}}</div>{{/appliedDateTime}}
+{{#condition}}<div><b>condition</b>: {{condition}}</div>{{/condition}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#sealNumber}}<div><b>sealNumber</b>: {{sealNumber}}</div>{{/sealNumber}}
+{{#AssetContainer}}<div><b>AssetContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetContainer}}&quot;);})'>{{AssetContainer}}</a></div>{{/AssetContainer}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Potential hazard related to the location of an asset.
@@ -750,7 +973,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AssetLocationHazard_collapse" aria-expanded="true" aria-controls="AssetLocationHazard_collapse">AssetLocationHazard</a>
+<div id="AssetLocationHazard_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Hazard.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Dates for lifecycle events of an asset.
@@ -810,7 +1047,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LifecycleDate_collapse" aria-expanded="true" aria-controls="LifecycleDate_collapse">LifecycleDate</a>
+<div id="LifecycleDate_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#installationDate}}<div><b>installationDate</b>: {{installationDate}}</div>{{/installationDate}}
+{{#manufacturedDate}}<div><b>manufacturedDate</b>: {{manufacturedDate}}</div>{{/manufacturedDate}}
+{{#purchaseDate}}<div><b>purchaseDate</b>: {{purchaseDate}}</div>{{/purchaseDate}}
+{{#receivedDate}}<div><b>receivedDate</b>: {{receivedDate}}</div>{{/receivedDate}}
+{{#removalDate}}<div><b>removalDate</b>: {{removalDate}}</div>{{/removalDate}}
+{{#retiredDate}}<div><b>retiredDate</b>: {{retiredDate}}</div>{{/retiredDate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Model of an asset, either a product of a specific manufacturer or a generic asset model or material item.
@@ -862,7 +1119,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AssetModel_collapse" aria-expanded="true" aria-controls="AssetModel_collapse">AssetModel</a>
+<div id="AssetModel_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#AssetInfo}}<div><b>AssetInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetInfo}}&quot;);})'>{{AssetInfo}}</a></div>{{/AssetInfo}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of seal condition.
@@ -920,7 +1192,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SealConditionKind_collapse" aria-expanded="true" aria-controls="SealConditionKind_collapse">SealConditionKind</a>
+<div id="SealConditionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#locked}}<div><b>locked</b>: {{locked}}</div>{{/locked}}
+{{#open}}<div><b>open</b>: {{open}}</div>{{/open}}
+{{#broken}}<div><b>broken</b>: {{broken}}</div>{{/broken}}
+{{#missing}}<div><b>missing</b>: {{missing}}</div>{{/missing}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Documented procedure for various types of work or work tasks on assets.
@@ -974,7 +1265,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Procedure_collapse" aria-expanded="true" aria-controls="Procedure_collapse">Procedure</a>
+<div id="Procedure_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#instruction}}<div><b>instruction</b>: {{instruction}}</div>{{/instruction}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Asset that is aggregation of other assets such as conductors, transformers, switchgear, land, fences, buildings, equipment, vehicles, etc.
@@ -1022,7 +1330,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AssetContainer_collapse" aria-expanded="true" aria-controls="AssetContainer_collapse">AssetContainer</a>
+<div id="AssetContainer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Asset.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Communication media such as fibre optic cable, power-line, telephone, etc.
@@ -1070,7 +1392,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ComMedia_collapse" aria-expanded="true" aria-controls="ComMedia_collapse">ComMedia</a>
+<div id="ComMedia_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Asset.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Organisation that is a user of the asset.
@@ -1118,7 +1454,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AssetUser_collapse" aria-expanded="true" aria-controls="AssetUser_collapse">AssetUser</a>
+<div id="AssetUser_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AssetOrganisationRole.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Owner of the asset.
@@ -1166,7 +1516,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AssetOwner_collapse" aria-expanded="true" aria-controls="AssetOwner_collapse">AssetOwner</a>
+<div id="AssetOwner_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AssetOrganisationRole.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Organisation that maintains assets.
@@ -1214,7 +1578,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Maintainer_collapse" aria-expanded="true" aria-controls="Maintainer_collapse">Maintainer</a>
+<div id="Maintainer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AssetOrganisationRole.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Asset model by a specific manufacturer.
@@ -1276,7 +1654,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProductAssetModel_collapse" aria-expanded="true" aria-controls="ProductAssetModel_collapse">ProductAssetModel</a>
+<div id="ProductAssetModel_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AssetModel.prototype.template.call (this) +
+`
+{{#corporateStandardKind}}<div><b>corporateStandardKind</b>: {{corporateStandardKind}}</div>{{/corporateStandardKind}}
+{{#modelNumber}}<div><b>modelNumber</b>: {{modelNumber}}</div>{{/modelNumber}}
+{{#modelVersion}}<div><b>modelVersion</b>: {{modelVersion}}</div>{{/modelVersion}}
+{{#usageKind}}<div><b>usageKind</b>: {{usageKind}}</div>{{/usageKind}}
+{{#weightTotal}}<div><b>weightTotal</b>: {{weightTotal}}</div>{{/weightTotal}}
+{{#GenericAssetModelOrMaterial}}<div><b>GenericAssetModelOrMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenericAssetModelOrMaterial}}&quot;);})'>{{GenericAssetModelOrMaterial}}</a></div>{{/GenericAssetModelOrMaterial}}
+{{#Manufacturer}}<div><b>Manufacturer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Manufacturer}}&quot;);})'>{{Manufacturer}}</a></div>{{/Manufacturer}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

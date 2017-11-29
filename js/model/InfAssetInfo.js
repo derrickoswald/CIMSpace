@@ -54,7 +54,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransformerCoreKind_collapse" aria-expanded="true" aria-controls="TransformerCoreKind_collapse">TransformerCoreKind</a>
+<div id="TransformerCoreKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#core}}<div><b>core</b>: {{core}}</div>{{/core}}
+{{#shell}}<div><b>shell</b>: {{shell}}</div>{{/shell}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of control for shunt impedance.
@@ -110,7 +126,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ShuntImpedanceControlKind_collapse" aria-expanded="true" aria-controls="ShuntImpedanceControlKind_collapse">ShuntImpedanceControlKind</a>
+<div id="ShuntImpedanceControlKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#fixed}}<div><b>fixed</b>: {{fixed}}</div>{{/fixed}}
+{{#localOnly}}<div><b>localOnly</b>: {{localOnly}}</div>{{/localOnly}}
+{{#remoteOnly}}<div><b>remoteOnly</b>: {{remoteOnly}}</div>{{/remoteOnly}}
+{{#remoteWithLocalOverride}}<div><b>remoteWithLocalOverride</b>: {{remoteWithLocalOverride}}</div>{{/remoteWithLocalOverride}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Parameters of fault indicator asset.
@@ -160,7 +194,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FaultIndicatorInfo_collapse" aria-expanded="true" aria-controls="FaultIndicatorInfo_collapse">FaultIndicatorInfo</a>
+<div id="FaultIndicatorInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#resetKind}}<div><b>resetKind</b>: {{resetKind}}</div>{{/resetKind}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Provides pricing and other relevant information about a specific manufacturer's product (i.e., AssetModel), and its price from a given supplier.
@@ -216,7 +265,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AssetModelCatalogueItem_collapse" aria-expanded="true" aria-controls="AssetModelCatalogueItem_collapse">AssetModelCatalogueItem</a>
+<div id="AssetModelCatalogueItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#unitCost}}<div><b>unitCost</b>: {{unitCost}}</div>{{/unitCost}}
+{{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModel}}&quot;);})'>{{AssetModel}}</a></div>{{/AssetModel}}
+{{#AssetModelCatalogue}}<div><b>AssetModelCatalogue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogue}}&quot;);})'>{{AssetModelCatalogue}}</a></div>{{/AssetModelCatalogue}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Properties of switch assets.
@@ -278,7 +344,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OldSwitchInfo_collapse" aria-expanded="true" aria-controls="OldSwitchInfo_collapse">OldSwitchInfo</a>
+<div id="OldSwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AssetInfo.SwitchInfo.prototype.template.call (this) +
+`
+{{#dielectricStrength}}<div><b>dielectricStrength</b>: {{dielectricStrength}}</div>{{/dielectricStrength}}
+{{#loadBreak}}<div><b>loadBreak</b>: {{loadBreak}}</div>{{/loadBreak}}
+{{#makingCapacity}}<div><b>makingCapacity</b>: {{makingCapacity}}</div>{{/makingCapacity}}
+{{#minimumCurrent}}<div><b>minimumCurrent</b>: {{minimumCurrent}}</div>{{/minimumCurrent}}
+{{#poleCount}}<div><b>poleCount</b>: {{poleCount}}</div>{{/poleCount}}
+{{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
+{{#withstandCurrent}}<div><b>withstandCurrent</b>: {{withstandCurrent}}</div>{{/withstandCurrent}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Properties of current transformer asset.
@@ -358,7 +445,37 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CurrentTransformerInfo_collapse" aria-expanded="true" aria-controls="CurrentTransformerInfo_collapse">CurrentTransformerInfo</a>
+<div id="CurrentTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
+{{#accuracyLimit}}<div><b>accuracyLimit</b>: {{accuracyLimit}}</div>{{/accuracyLimit}}
+{{#coreCount}}<div><b>coreCount</b>: {{coreCount}}</div>{{/coreCount}}
+{{#ctClass}}<div><b>ctClass</b>: {{ctClass}}</div>{{/ctClass}}
+{{#kneePointCurrent}}<div><b>kneePointCurrent</b>: {{kneePointCurrent}}</div>{{/kneePointCurrent}}
+{{#kneePointVoltage}}<div><b>kneePointVoltage</b>: {{kneePointVoltage}}</div>{{/kneePointVoltage}}
+{{#maxRatio}}<div><b>maxRatio</b>: {{maxRatio}}</div>{{/maxRatio}}
+{{#nominalRatio}}<div><b>nominalRatio</b>: {{nominalRatio}}</div>{{/nominalRatio}}
+{{#primaryFlsRating}}<div><b>primaryFlsRating</b>: {{primaryFlsRating}}</div>{{/primaryFlsRating}}
+{{#primaryRatio}}<div><b>primaryRatio</b>: {{primaryRatio}}</div>{{/primaryRatio}}
+{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+{{#secondaryFlsRating}}<div><b>secondaryFlsRating</b>: {{secondaryFlsRating}}</div>{{/secondaryFlsRating}}
+{{#secondaryRatio}}<div><b>secondaryRatio</b>: {{secondaryRatio}}</div>{{/secondaryRatio}}
+{{#tertiaryFlsRating}}<div><b>tertiaryFlsRating</b>: {{tertiaryFlsRating}}</div>{{/tertiaryFlsRating}}
+{{#tertiaryRatio}}<div><b>tertiaryRatio</b>: {{tertiaryRatio}}</div>{{/tertiaryRatio}}
+{{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Properties of surge arrester.
@@ -424,7 +541,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SurgeArresterInfo_collapse" aria-expanded="true" aria-controls="SurgeArresterInfo_collapse">SurgeArresterInfo</a>
+<div id="SurgeArresterInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#continuousOperatingVoltage}}<div><b>continuousOperatingVoltage</b>: {{continuousOperatingVoltage}}</div>{{/continuousOperatingVoltage}}
+{{#isPolymer}}<div><b>isPolymer</b>: {{isPolymer}}</div>{{/isPolymer}}
+{{#lightningImpulseDischargeVoltage}}<div><b>lightningImpulseDischargeVoltage</b>: {{lightningImpulseDischargeVoltage}}</div>{{/lightningImpulseDischargeVoltage}}
+{{#lineDischargeClass}}<div><b>lineDischargeClass</b>: {{lineDischargeClass}}</div>{{/lineDischargeClass}}
+{{#nominalDischargeCurrent}}<div><b>nominalDischargeCurrent</b>: {{nominalDischargeCurrent}}</div>{{/nominalDischargeCurrent}}
+{{#pressureReliefClass}}<div><b>pressureReliefClass</b>: {{pressureReliefClass}}</div>{{/pressureReliefClass}}
+{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+{{#steepFrontDischargeVoltage}}<div><b>steepFrontDischargeVoltage</b>: {{steepFrontDischargeVoltage}}</div>{{/steepFrontDischargeVoltage}}
+{{#switchingImpulseDischargeVoltage}}<div><b>switchingImpulseDischargeVoltage</b>: {{switchingImpulseDischargeVoltage}}</div>{{/switchingImpulseDischargeVoltage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of composite switch.
@@ -486,7 +626,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CompositeSwitchKind_collapse" aria-expanded="true" aria-controls="CompositeSwitchKind_collapse">CompositeSwitchKind</a>
+<div id="CompositeSwitchKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#throwOver}}<div><b>throwOver</b>: {{throwOver}}</div>{{/throwOver}}
+{{#escoThrowOver}}<div><b>escoThrowOver</b>: {{escoThrowOver}}</div>{{/escoThrowOver}}
+{{#ral}}<div><b>ral</b>: {{ral}}</div>{{/ral}}
+{{#gral}}<div><b>gral</b>: {{gral}}</div>{{/gral}}
+{{#regulatorBypass}}<div><b>regulatorBypass</b>: {{regulatorBypass}}</div>{{/regulatorBypass}}
+{{#ugMultiSwitch}}<div><b>ugMultiSwitch</b>: {{ugMultiSwitch}}</div>{{/ugMultiSwitch}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Catalogue of available types of products and materials that are used to build or install, maintain or operate an Asset.
@@ -538,7 +699,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AssetModelCatalogue_collapse" aria-expanded="true" aria-controls="AssetModelCatalogue_collapse">AssetModelCatalogue</a>
+<div id="AssetModelCatalogue_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Properties of protection equipment asset.
@@ -590,7 +766,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProtectionEquipmentInfo_collapse" aria-expanded="true" aria-controls="ProtectionEquipmentInfo_collapse">ProtectionEquipmentInfo</a>
+<div id="ProtectionEquipmentInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#groundTrip}}<div><b>groundTrip</b>: {{groundTrip}}</div>{{/groundTrip}}
+{{#phaseTrip}}<div><b>phaseTrip</b>: {{phaseTrip}}</div>{{/phaseTrip}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of transformer construction.
@@ -670,7 +862,37 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransformerConstructionKind_collapse" aria-expanded="true" aria-controls="TransformerConstructionKind_collapse">TransformerConstructionKind</a>
+<div id="TransformerConstructionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#onePhase}}<div><b>onePhase</b>: {{onePhase}}</div>{{/onePhase}}
+{{#threePhase}}<div><b>threePhase</b>: {{threePhase}}</div>{{/threePhase}}
+{{#aerial}}<div><b>aerial</b>: {{aerial}}</div>{{/aerial}}
+{{#overhead}}<div><b>overhead</b>: {{overhead}}</div>{{/overhead}}
+{{#dryType}}<div><b>dryType</b>: {{dryType}}</div>{{/dryType}}
+{{#network}}<div><b>network</b>: {{network}}</div>{{/network}}
+{{#padmountDeadFront}}<div><b>padmountDeadFront</b>: {{padmountDeadFront}}</div>{{/padmountDeadFront}}
+{{#padmountFeedThrough}}<div><b>padmountFeedThrough</b>: {{padmountFeedThrough}}</div>{{/padmountFeedThrough}}
+{{#padmountLiveFront}}<div><b>padmountLiveFront</b>: {{padmountLiveFront}}</div>{{/padmountLiveFront}}
+{{#padmountLoopThrough}}<div><b>padmountLoopThrough</b>: {{padmountLoopThrough}}</div>{{/padmountLoopThrough}}
+{{#padmounted}}<div><b>padmounted</b>: {{padmounted}}</div>{{/padmounted}}
+{{#subway}}<div><b>subway</b>: {{subway}}</div>{{/subway}}
+{{#underground}}<div><b>underground</b>: {{underground}}</div>{{/underground}}
+{{#vault}}<div><b>vault</b>: {{vault}}</div>{{/vault}}
+{{#vaultThreePhase}}<div><b>vaultThreePhase</b>: {{vaultThreePhase}}</div>{{/vaultThreePhase}}
+{{#unknown}}<div><b>unknown</b>: {{unknown}}</div>{{/unknown}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Insulation kind for windings.
@@ -726,7 +948,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WindingInsulationKind_collapse" aria-expanded="true" aria-controls="WindingInsulationKind_collapse">WindingInsulationKind</a>
+<div id="WindingInsulationKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#paper}}<div><b>paper</b>: {{paper}}</div>{{/paper}}
+{{#thermallyUpgradedPaper}}<div><b>thermallyUpgradedPaper</b>: {{thermallyUpgradedPaper}}</div>{{/thermallyUpgradedPaper}}
+{{#nomex}}<div><b>nomex</b>: {{nomex}}</div>{{/nomex}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         class OldTransformerTankInfo extends AssetInfo.TransformerTankInfo
         {
@@ -782,7 +1022,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OldTransformerTankInfo_collapse" aria-expanded="true" aria-controls="OldTransformerTankInfo_collapse">OldTransformerTankInfo</a>
+<div id="OldTransformerTankInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AssetInfo.TransformerTankInfo.prototype.template.call (this) +
+`
+{{#constructionKind}}<div><b>constructionKind</b>: {{constructionKind}}</div>{{/constructionKind}}
+{{#coreCoilsWeight}}<div><b>coreCoilsWeight</b>: {{coreCoilsWeight}}</div>{{/coreCoilsWeight}}
+{{#coreKind}}<div><b>coreKind</b>: {{coreKind}}</div>{{/coreKind}}
+{{#function}}<div><b>function</b>: {{function}}</div>{{/function}}
+{{#neutralBIL}}<div><b>neutralBIL</b>: {{neutralBIL}}</div>{{/neutralBIL}}
+{{#oilPreservationKind}}<div><b>oilPreservationKind</b>: {{oilPreservationKind}}</div>{{/oilPreservationKind}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Properties of a composite switch.
@@ -848,7 +1108,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CompositeSwitchInfo_collapse" aria-expanded="true" aria-controls="CompositeSwitchInfo_collapse">CompositeSwitchInfo</a>
+<div id="CompositeSwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#ganged}}<div><b>ganged</b>: {{ganged}}</div>{{/ganged}}
+{{#initOpMode}}<div><b>initOpMode</b>: {{initOpMode}}</div>{{/initOpMode}}
+{{#interruptingRating}}<div><b>interruptingRating</b>: {{interruptingRating}}</div>{{/interruptingRating}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#phaseCode}}<div><b>phaseCode</b>: {{phaseCode}}</div>{{/phaseCode}}
+{{#phaseCount}}<div><b>phaseCount</b>: {{phaseCount}}</div>{{/phaseCount}}
+{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+{{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
+{{#switchStateCount}}<div><b>switchStateCount</b>: {{switchStateCount}}</div>{{/switchStateCount}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of local control for shunt impedance.
@@ -910,7 +1193,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ShuntImpedanceLocalControlKind_collapse" aria-expanded="true" aria-controls="ShuntImpedanceLocalControlKind_collapse">ShuntImpedanceLocalControlKind</a>
+<div id="ShuntImpedanceLocalControlKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
+{{#powerFactor}}<div><b>powerFactor</b>: {{powerFactor}}</div>{{/powerFactor}}
+{{#time}}<div><b>time</b>: {{time}}</div>{{/time}}
+{{#temperature}}<div><b>temperature</b>: {{temperature}}</div>{{/temperature}}
+{{#reactivePower}}<div><b>reactivePower</b>: {{reactivePower}}</div>{{/reactivePower}}
+{{#current}}<div><b>current</b>: {{current}}</div>{{/current}}
+{{#voltage}}<div><b>voltage</b>: {{voltage}}</div>{{/voltage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of resetting the fault indicators.
@@ -966,7 +1270,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FaultIndicatorResetKind_collapse" aria-expanded="true" aria-controls="FaultIndicatorResetKind_collapse">FaultIndicatorResetKind</a>
+<div id="FaultIndicatorResetKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#automatic}}<div><b>automatic</b>: {{automatic}}</div>{{/automatic}}
+{{#manual}}<div><b>manual</b>: {{manual}}</div>{{/manual}}
+{{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Properties of potential transformer asset.
@@ -1028,7 +1350,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PotentialTransformerInfo_collapse" aria-expanded="true" aria-controls="PotentialTransformerInfo_collapse">PotentialTransformerInfo</a>
+<div id="PotentialTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
+{{#nominalRatio}}<div><b>nominalRatio</b>: {{nominalRatio}}</div>{{/nominalRatio}}
+{{#primaryRatio}}<div><b>primaryRatio</b>: {{primaryRatio}}</div>{{/primaryRatio}}
+{{#ptClass}}<div><b>ptClass</b>: {{ptClass}}</div>{{/ptClass}}
+{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+{{#secondaryRatio}}<div><b>secondaryRatio</b>: {{secondaryRatio}}</div>{{/secondaryRatio}}
+{{#tertiaryRatio}}<div><b>tertiaryRatio</b>: {{tertiaryRatio}}</div>{{/tertiaryRatio}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Function of a transformer.
@@ -1086,7 +1429,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransformerFunctionKind_collapse" aria-expanded="true" aria-controls="TransformerFunctionKind_collapse">TransformerFunctionKind</a>
+<div id="TransformerFunctionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#powerTransformer}}<div><b>powerTransformer</b>: {{powerTransformer}}</div>{{/powerTransformer}}
+{{#voltageRegulator}}<div><b>voltageRegulator</b>: {{voltageRegulator}}</div>{{/voltageRegulator}}
+{{#autotransformer}}<div><b>autotransformer</b>: {{autotransformer}}</div>{{/autotransformer}}
+{{#secondaryTransformer}}<div><b>secondaryTransformer</b>: {{secondaryTransformer}}</div>{{/secondaryTransformer}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         class OldTransformerEndInfo extends AssetInfo.TransformerEndInfo
         {
@@ -1138,7 +1500,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OldTransformerEndInfo_collapse" aria-expanded="true" aria-controls="OldTransformerEndInfo_collapse">OldTransformerEndInfo</a>
+<div id="OldTransformerEndInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AssetInfo.TransformerEndInfo.prototype.template.call (this) +
+`
+{{#dayOverLoadRating}}<div><b>dayOverLoadRating</b>: {{dayOverLoadRating}}</div>{{/dayOverLoadRating}}
+{{#hourOverLoadRating}}<div><b>hourOverLoadRating</b>: {{hourOverLoadRating}}</div>{{/hourOverLoadRating}}
+{{#solidInsulationWeight}}<div><b>solidInsulationWeight</b>: {{solidInsulationWeight}}</div>{{/solidInsulationWeight}}
+{{#windingInsulationKind}}<div><b>windingInsulationKind</b>: {{windingInsulationKind}}</div>{{/windingInsulationKind}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of regulation branch for shunt impedance.
@@ -1202,7 +1582,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RegulationBranchKind_collapse" aria-expanded="true" aria-controls="RegulationBranchKind_collapse">RegulationBranchKind</a>
+<div id="RegulationBranchKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#line}}<div><b>line</b>: {{line}}</div>{{/line}}
+{{#transformer}}<div><b>transformer</b>: {{transformer}}</div>{{/transformer}}
+{{#switch}}<div><b>switch</b>: {{switch}}</div>{{/switch}}
+{{#breaker}}<div><b>breaker</b>: {{breaker}}</div>{{/breaker}}
+{{#recloser}}<div><b>recloser</b>: {{recloser}}</div>{{/recloser}}
+{{#fuse}}<div><b>fuse</b>: {{fuse}}</div>{{/fuse}}
+{{#sectionner}}<div><b>sectionner</b>: {{sectionner}}</div>{{/sectionner}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of oil preservation.
@@ -1258,7 +1660,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OilPreservationKind_collapse" aria-expanded="true" aria-controls="OilPreservationKind_collapse">OilPreservationKind</a>
+<div id="OilPreservationKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#freeBreathing}}<div><b>freeBreathing</b>: {{freeBreathing}}</div>{{/freeBreathing}}
+{{#nitrogenBlanket}}<div><b>nitrogenBlanket</b>: {{nitrogenBlanket}}</div>{{/nitrogenBlanket}}
+{{#conservator}}<div><b>conservator</b>: {{conservator}}</div>{{/conservator}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Properties of recloser assets.
@@ -1316,7 +1736,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RecloserInfo_collapse" aria-expanded="true" aria-controls="RecloserInfo_collapse">RecloserInfo</a>
+<div id="RecloserInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + OldSwitchInfo.prototype.template.call (this) +
+`
+{{#groundTripCapable}}<div><b>groundTripCapable</b>: {{groundTripCapable}}</div>{{/groundTripCapable}}
+{{#groundTripNormalEnabled}}<div><b>groundTripNormalEnabled</b>: {{groundTripNormalEnabled}}</div>{{/groundTripNormalEnabled}}
+{{#groundTripRating}}<div><b>groundTripRating</b>: {{groundTripRating}}</div>{{/groundTripRating}}
+{{#phaseTripRating}}<div><b>phaseTripRating</b>: {{phaseTripRating}}</div>{{/phaseTripRating}}
+{{#recloseLockoutCount}}<div><b>recloseLockoutCount</b>: {{recloseLockoutCount}}</div>{{/recloseLockoutCount}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Properties of breaker assets.
@@ -1366,7 +1805,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BreakerInfo_collapse" aria-expanded="true" aria-controls="BreakerInfo_collapse">BreakerInfo</a>
+<div id="BreakerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + OldSwitchInfo.prototype.template.call (this) +
+`
+{{#phaseTrip}}<div><b>phaseTrip</b>: {{phaseTrip}}</div>{{/phaseTrip}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

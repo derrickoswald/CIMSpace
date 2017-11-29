@@ -66,7 +66,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CapacitancePerLength_collapse" aria-expanded="true" aria-controls="CapacitancePerLength_collapse">CapacitancePerLength</a>
+<div id="CapacitancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Cost per unit volume.
@@ -124,7 +143,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CostPerVolume_collapse" aria-expanded="true" aria-controls="CostPerVolume_collapse">CostPerVolume</a>
+<div id="CostPerVolume_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A floating point number.
@@ -174,7 +212,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Float_collapse" aria-expanded="true" aria-controls="Float_collapse">Float</a>
+<div id="Float_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * The unit multipliers defined for the CIM.
@@ -244,7 +296,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#UnitMultiplier_collapse" aria-expanded="true" aria-controls="UnitMultiplier_collapse">UnitMultiplier</a>
+<div id="UnitMultiplier_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
+{{#n}}<div><b>n</b>: {{n}}</div>{{/n}}
+{{#micro}}<div><b>micro</b>: {{micro}}</div>{{/micro}}
+{{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
+{{#c}}<div><b>c</b>: {{c}}</div>{{/c}}
+{{#d}}<div><b>d</b>: {{d}}</div>{{/d}}
+{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+{{#M}}<div><b>M</b>: {{M}}</div>{{/M}}
+{{#G}}<div><b>G</b>: {{G}}</div>{{/G}}
+{{#T}}<div><b>T</b>: {{T}}</div>{{/T}}
+{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Product of RMS value of the voltage and the RMS value of the quadrature component of the current.
@@ -298,7 +375,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ReactivePower_collapse" aria-expanded="true" aria-controls="ReactivePower_collapse">ReactivePower</a>
+<div id="ReactivePower_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Interval between two times specified as mont and date.
@@ -350,7 +444,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MonthDayInterval_collapse" aria-expanded="true" aria-controls="MonthDayInterval_collapse">MonthDayInterval</a>
+<div id="MonthDayInterval_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
+{{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Reactance (imaginary part of impedance), at rated frequency.
@@ -404,7 +514,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Reactance_collapse" aria-expanded="true" aria-controls="Reactance_collapse">Reactance</a>
+<div id="Reactance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Resistance (real part of impedance) per unit of length.
@@ -462,7 +589,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ResistancePerLength_collapse" aria-expanded="true" aria-controls="ResistancePerLength_collapse">ResistancePerLength</a>
+<div id="ResistancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Phase angle in radians.
@@ -516,7 +662,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AngleRadians_collapse" aria-expanded="true" aria-controls="AngleRadians_collapse">AngleRadians</a>
+<div id="AngleRadians_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Electrical voltage, can be both AC and DC.
@@ -570,7 +733,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Voltage_collapse" aria-expanded="true" aria-controls="Voltage_collapse">Voltage</a>
+<div id="Voltage_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Rate of change of active power per time.
@@ -628,7 +808,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ActivePowerChangeRate_collapse" aria-expanded="true" aria-controls="ActivePowerChangeRate_collapse">ActivePowerChangeRate</a>
+<div id="ActivePowerChangeRate_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         class ActivePowerPerCurrentFlow extends base.Element
         {
@@ -682,7 +881,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ActivePowerPerCurrentFlow_collapse" aria-expanded="true" aria-controls="ActivePowerPerCurrentFlow_collapse">ActivePowerPerCurrentFlow</a>
+<div id="ActivePowerPerCurrentFlow_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#demoninatorUnit}}<div><b>demoninatorUnit</b>: {{demoninatorUnit}}</div>{{/demoninatorUnit}}
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Cost, in units of currency, per elapsed time.
@@ -740,7 +958,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CostRate_collapse" aria-expanded="true" aria-controls="CostRate_collapse">CostRate</a>
+<div id="CostRate_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Reservoir water level referred to a given datum such as mean sea level.
@@ -794,7 +1031,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WaterLevel_collapse" aria-expanded="true" aria-controls="WaterLevel_collapse">WaterLevel</a>
+<div id="WaterLevel_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An integer number.
@@ -844,7 +1098,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Integer_collapse" aria-expanded="true" aria-controls="Integer_collapse">Integer</a>
+<div id="Integer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Ratio of current to voltage.
@@ -898,7 +1166,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Admittance_collapse" aria-expanded="true" aria-controls="Admittance_collapse">Admittance</a>
+<div id="Admittance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Cost, in units of currency, per quantity of electrical energy generated.
@@ -956,7 +1241,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CostPerEnergyUnit_collapse" aria-expanded="true" aria-controls="CostPerEnergyUnit_collapse">CostPerEnergyUnit</a>
+<div id="CostPerEnergyUnit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Reactance (imaginary part of impedance) per unit of length, at rated frequency.
@@ -1014,7 +1318,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ReactancePerLength_collapse" aria-expanded="true" aria-controls="ReactancePerLength_collapse">ReactancePerLength</a>
+<div id="ReactancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Duration as "PnYnMnDTnHnMnS" which conforms to ISO 8601, where nY expresses a number of years, nM a number of months, nD a number of days.
@@ -1064,7 +1387,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Duration_collapse" aria-expanded="true" aria-controls="Duration_collapse">Duration</a>
+<div id="Duration_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Time as "hh:mm:ss.sss", which conforms with ISO 8601.
@@ -1114,7 +1451,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Time_collapse" aria-expanded="true" aria-controls="Time_collapse">Time</a>
+<div id="Time_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Per-unit active power variation with frequency referenced on the system apparent power base.
@@ -1174,7 +1525,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Damping_collapse" aria-expanded="true" aria-controls="Damping_collapse">Damping</a>
+<div id="Damping_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Per Unit - a positive or negative value referred to a defined base.
@@ -1230,7 +1600,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PU_collapse" aria-expanded="true" aria-controls="PU_collapse">PU</a>
+<div id="PU_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Monetary currencies.
@@ -1308,7 +1695,35 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Currency_collapse" aria-expanded="true" aria-controls="Currency_collapse">Currency</a>
+<div id="Currency_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#USD}}<div><b>USD</b>: {{USD}}</div>{{/USD}}
+{{#EUR}}<div><b>EUR</b>: {{EUR}}</div>{{/EUR}}
+{{#AUD}}<div><b>AUD</b>: {{AUD}}</div>{{/AUD}}
+{{#CAD}}<div><b>CAD</b>: {{CAD}}</div>{{/CAD}}
+{{#CHF}}<div><b>CHF</b>: {{CHF}}</div>{{/CHF}}
+{{#CNY}}<div><b>CNY</b>: {{CNY}}</div>{{/CNY}}
+{{#DKK}}<div><b>DKK</b>: {{DKK}}</div>{{/DKK}}
+{{#GBP}}<div><b>GBP</b>: {{GBP}}</div>{{/GBP}}
+{{#JPY}}<div><b>JPY</b>: {{JPY}}</div>{{/JPY}}
+{{#NOK}}<div><b>NOK</b>: {{NOK}}</div>{{/NOK}}
+{{#RUR}}<div><b>RUR</b>: {{RUR}}</div>{{/RUR}}
+{{#SEK}}<div><b>SEK</b>: {{SEK}}</div>{{/SEK}}
+{{#INR}}<div><b>INR</b>: {{INR}}</div>{{/INR}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Product of RMS value of the voltage and the RMS value of the in-phase component of the current.
@@ -1362,7 +1777,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ActivePower_collapse" aria-expanded="true" aria-controls="ActivePower_collapse">ActivePower</a>
+<div id="ActivePower_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Capacitive part of reactance (imaginary part of impedance), at rated frequency.
@@ -1416,7 +1848,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Capacitance_collapse" aria-expanded="true" aria-controls="Capacitance_collapse">Capacitance</a>
+<div id="Capacitance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Factor by which voltage must be multiplied to give corresponding power lost from a circuit.
@@ -1472,7 +1921,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Conductance_collapse" aria-expanded="true" aria-controls="Conductance_collapse">Conductance</a>
+<div id="Conductance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Inductance per unit of length.
@@ -1530,7 +1996,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#InductancePerLength_collapse" aria-expanded="true" aria-controls="InductancePerLength_collapse">InductancePerLength</a>
+<div id="InductancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Volume per time.
@@ -1588,7 +2073,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VolumeFlowRate_collapse" aria-expanded="true" aria-controls="VolumeFlowRate_collapse">VolumeFlowRate</a>
+<div id="VolumeFlowRate_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Date and time as "yyyy-mm-ddThh:mm:ss.sss", which conforms with ISO 8601.
@@ -1638,7 +2142,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DateTime_collapse" aria-expanded="true" aria-controls="DateTime_collapse">DateTime</a>
+<div id="DateTime_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * MonthDay format as "--mm-dd", which conforms with XSD data type gMonthDay.
@@ -1686,7 +2204,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MonthDay_collapse" aria-expanded="true" aria-controls="MonthDay_collapse">MonthDay</a>
+<div id="MonthDay_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Electrical current with sign convention: positive flow is out of the conducting equipment into the connectivity node.
@@ -1742,7 +2274,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CurrentFlow_collapse" aria-expanded="true" aria-controls="CurrentFlow_collapse">CurrentFlow</a>
+<div id="CurrentFlow_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Active power in kilowatts.
@@ -1796,7 +2345,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#KiloActivePower_collapse" aria-expanded="true" aria-controls="KiloActivePower_collapse">KiloActivePower</a>
+<div id="KiloActivePower_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Ratio of voltage to current.
@@ -1850,7 +2416,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Impedance_collapse" aria-expanded="true" aria-controls="Impedance_collapse">Impedance</a>
+<div id="Impedance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Percentage on a defined base.
@@ -1906,7 +2489,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PerCent_collapse" aria-expanded="true" aria-controls="PerCent_collapse">PerCent</a>
+<div id="PerCent_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Time, in seconds.
@@ -1960,7 +2560,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Seconds_collapse" aria-expanded="true" aria-controls="Seconds_collapse">Seconds</a>
+<div id="Seconds_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Active power variation with frequency.
@@ -2018,7 +2635,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ActivePowerPerFrequency_collapse" aria-expanded="true" aria-controls="ActivePowerPerFrequency_collapse">ActivePowerPerFrequency</a>
+<div id="ActivePowerPerFrequency_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Amount of money.
@@ -2072,7 +2708,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Money_collapse" aria-expanded="true" aria-controls="Money_collapse">Money</a>
+<div id="Money_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Interval between two date and time points.
@@ -2124,7 +2777,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DateTimeInterval_collapse" aria-expanded="true" aria-controls="DateTimeInterval_collapse">DateTimeInterval</a>
+<div id="DateTimeInterval_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
+{{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Product of the RMS value of the voltage and the RMS value of the current.
@@ -2178,7 +2847,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ApparentPower_collapse" aria-expanded="true" aria-controls="ApparentPower_collapse">ApparentPower</a>
+<div id="ApparentPower_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Volume.
@@ -2232,7 +2918,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Volume_collapse" aria-expanded="true" aria-controls="Volume_collapse">Volume</a>
+<div id="Volume_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Measurement of angle in degrees.
@@ -2286,7 +2989,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AngleDegrees_collapse" aria-expanded="true" aria-controls="AngleDegrees_collapse">AngleDegrees</a>
+<div id="AngleDegrees_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Date as "yyyy-mm-dd", which conforms with ISO 8601.
@@ -2336,7 +3056,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Date_collapse" aria-expanded="true" aria-controls="Date_collapse">Date</a>
+<div id="Date_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         class DecimalQuantity extends base.Element
         {
@@ -2388,7 +3122,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DecimalQuantity_collapse" aria-expanded="true" aria-controls="DecimalQuantity_collapse">DecimalQuantity</a>
+<div id="DecimalQuantity_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#currency}}<div><b>currency</b>: {{currency}}</div>{{/currency}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Real electrical energy.
@@ -2442,7 +3194,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RealEnergy_collapse" aria-expanded="true" aria-controls="RealEnergy_collapse">RealEnergy</a>
+<div id="RealEnergy_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Decimal is the base-10 notational system for representing real numbers.
@@ -2490,7 +3259,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Decimal_collapse" aria-expanded="true" aria-controls="Decimal_collapse">Decimal</a>
+<div id="Decimal_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Unit of length.
@@ -2546,7 +3329,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Length_collapse" aria-expanded="true" aria-controls="Length_collapse">Length</a>
+<div id="Length_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Value of temperature in degrees Celsius.
@@ -2600,7 +3400,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Temperature_collapse" aria-expanded="true" aria-controls="Temperature_collapse">Temperature</a>
+<div id="Temperature_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Quantity with float value and associated unit information.
@@ -2654,7 +3471,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FloatQuantity_collapse" aria-expanded="true" aria-controls="FloatQuantity_collapse">FloatQuantity</a>
+<div id="FloatQuantity_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Imaginary part of admittance.
@@ -2708,7 +3542,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Susceptance_collapse" aria-expanded="true" aria-controls="Susceptance_collapse">Susceptance</a>
+<div id="Susceptance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Cycles per second.
@@ -2762,7 +3613,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Frequency_collapse" aria-expanded="true" aria-controls="Frequency_collapse">Frequency</a>
+<div id="Frequency_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Area.
@@ -2816,7 +3684,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Area_collapse" aria-expanded="true" aria-controls="Area_collapse">Area</a>
+<div id="Area_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Time in minutes.
@@ -2870,7 +3755,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Minutes_collapse" aria-expanded="true" aria-controls="Minutes_collapse">Minutes</a>
+<div id="Minutes_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Interval between two dates.
@@ -2922,7 +3824,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DateInterval_collapse" aria-expanded="true" aria-controls="DateInterval_collapse">DateInterval</a>
+<div id="DateInterval_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
+{{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Voltage variation with reactive power.
@@ -2980,7 +3898,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VoltagePerReactivePower_collapse" aria-expanded="true" aria-controls="VoltagePerReactivePower_collapse">VoltagePerReactivePower</a>
+<div id="VoltagePerReactivePower_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Time specified in hours.
@@ -3034,7 +3971,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Hours_collapse" aria-expanded="true" aria-controls="Hours_collapse">Hours</a>
+<div id="Hours_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Distance per unit of time.
@@ -3092,7 +4046,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Speed_collapse" aria-expanded="true" aria-controls="Speed_collapse">Speed</a>
+<div id="Speed_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Unit of displacement relative a reference position, hence can be negative.
@@ -3146,7 +4119,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Displacement_collapse" aria-expanded="true" aria-controls="Displacement_collapse">Displacement</a>
+<div id="Displacement_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A string consisting of a sequence of characters.
@@ -3196,7 +4186,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#String_collapse" aria-expanded="true" aria-controls="String_collapse">String</a>
+<div id="String_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * The units defined for usage in the CIM.
@@ -3298,7 +4302,48 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#UnitSymbol_collapse" aria-expanded="true" aria-controls="UnitSymbol_collapse">UnitSymbol</a>
+<div id="UnitSymbol_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#VA}}<div><b>VA</b>: {{VA}}</div>{{/VA}}
+{{#W}}<div><b>W</b>: {{W}}</div>{{/W}}
+{{#VAr}}<div><b>VAr</b>: {{VAr}}</div>{{/VAr}}
+{{#VAh}}<div><b>VAh</b>: {{VAh}}</div>{{/VAh}}
+{{#Wh}}<div><b>Wh</b>: {{Wh}}</div>{{/Wh}}
+{{#VArh}}<div><b>VArh</b>: {{VArh}}</div>{{/VArh}}
+{{#V}}<div><b>V</b>: {{V}}</div>{{/V}}
+{{#ohm}}<div><b>ohm</b>: {{ohm}}</div>{{/ohm}}
+{{#A}}<div><b>A</b>: {{A}}</div>{{/A}}
+{{#F}}<div><b>F</b>: {{F}}</div>{{/F}}
+{{#H}}<div><b>H</b>: {{H}}</div>{{/H}}
+{{#degC}}<div><b>degC</b>: {{degC}}</div>{{/degC}}
+{{#s}}<div><b>s</b>: {{s}}</div>{{/s}}
+{{#min}}<div><b>min</b>: {{min}}</div>{{/min}}
+{{#h}}<div><b>h</b>: {{h}}</div>{{/h}}
+{{#deg}}<div><b>deg</b>: {{deg}}</div>{{/deg}}
+{{#rad}}<div><b>rad</b>: {{rad}}</div>{{/rad}}
+{{#J}}<div><b>J</b>: {{J}}</div>{{/J}}
+{{#N}}<div><b>N</b>: {{N}}</div>{{/N}}
+{{#S}}<div><b>S</b>: {{S}}</div>{{/S}}
+{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
+{{#Hz}}<div><b>Hz</b>: {{Hz}}</div>{{/Hz}}
+{{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
+{{#Pa}}<div><b>Pa</b>: {{Pa}}</div>{{/Pa}}
+{{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
+{{#m2}}<div><b>m2</b>: {{m2}}</div>{{/m2}}
+{{#m3}}<div><b>m3</b>: {{m3}}</div>{{/m3}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Number of revolutions per second.
@@ -3356,7 +4401,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RotationSpeed_collapse" aria-expanded="true" aria-controls="RotationSpeed_collapse">RotationSpeed</a>
+<div id="RotationSpeed_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Resistance (real part of impedance).
@@ -3410,7 +4474,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Resistance_collapse" aria-expanded="true" aria-controls="Resistance_collapse">Resistance</a>
+<div id="Resistance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The weight of an object.
@@ -3464,7 +4545,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Weight_collapse" aria-expanded="true" aria-controls="Weight_collapse">Weight</a>
+<div id="Weight_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Pressure in Pascal.
@@ -3518,7 +4616,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Pressure_collapse" aria-expanded="true" aria-controls="Pressure_collapse">Pressure</a>
+<div id="Pressure_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Real part of admittance per unit of length.
@@ -3576,7 +4691,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ConductancePerLength_collapse" aria-expanded="true" aria-controls="ConductancePerLength_collapse">ConductancePerLength</a>
+<div id="ConductancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A type with the value space "true" and "false".
@@ -3624,7 +4758,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Boolean_collapse" aria-expanded="true" aria-controls="Boolean_collapse">Boolean</a>
+<div id="Boolean_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Imaginary part of admittance per unit of length.
@@ -3682,7 +4830,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SusceptancePerLength_collapse" aria-expanded="true" aria-controls="SusceptancePerLength_collapse">SusceptancePerLength</a>
+<div id="SusceptancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Quantity with string value (when it is not important whether it is an integral or a floating point number) and associated unit information.
@@ -3736,7 +4903,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StringQuantity_collapse" aria-expanded="true" aria-controls="StringQuantity_collapse">StringQuantity</a>
+<div id="StringQuantity_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Quantity with integer value and associated unit information.
@@ -3790,7 +4974,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#IntegerQuantity_collapse" aria-expanded="true" aria-controls="IntegerQuantity_collapse">IntegerQuantity</a>
+<div id="IntegerQuantity_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Interval between two times.
@@ -3842,7 +5043,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TimeInterval_collapse" aria-expanded="true" aria-controls="TimeInterval_collapse">TimeInterval</a>
+<div id="TimeInterval_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
+{{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Inductive part of reactance (imaginary part of impedance), at rated frequency.
@@ -3896,7 +5113,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Inductance_collapse" aria-expanded="true" aria-controls="Inductance_collapse">Inductance</a>
+<div id="Inductance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

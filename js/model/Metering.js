@@ -60,7 +60,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DemandResponseProgram_collapse" aria-expanded="true" aria-controls="DemandResponseProgram_collapse">DemandResponseProgram</a>
+<div id="DemandResponseProgram_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Abstraction for management of group communications within a two-way AMR system or the data for a group of related end devices.
@@ -112,7 +128,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EndDeviceGroup_collapse" aria-expanded="true" aria-controls="EndDeviceGroup_collapse">EndDeviceGroup</a>
+<div id="EndDeviceGroup_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Appliance controlled with a PAN device control.
@@ -184,7 +215,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ControlledAppliance_collapse" aria-expanded="true" aria-controls="ControlledAppliance_collapse">ControlledAppliance</a>
+<div id="ControlledAppliance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#isElectricVehicle}}<div><b>isElectricVehicle</b>: {{isElectricVehicle}}</div>{{/isElectricVehicle}}
+{{#isExteriorLighting}}<div><b>isExteriorLighting</b>: {{isExteriorLighting}}</div>{{/isExteriorLighting}}
+{{#isGenerationSystem}}<div><b>isGenerationSystem</b>: {{isGenerationSystem}}</div>{{/isGenerationSystem}}
+{{#isHvacCompressorOrFurnace}}<div><b>isHvacCompressorOrFurnace</b>: {{isHvacCompressorOrFurnace}}</div>{{/isHvacCompressorOrFurnace}}
+{{#isInteriorLighting}}<div><b>isInteriorLighting</b>: {{isInteriorLighting}}</div>{{/isInteriorLighting}}
+{{#isIrrigationPump}}<div><b>isIrrigationPump</b>: {{isIrrigationPump}}</div>{{/isIrrigationPump}}
+{{#isManagedCommercialIndustrialLoad}}<div><b>isManagedCommercialIndustrialLoad</b>: {{isManagedCommercialIndustrialLoad}}</div>{{/isManagedCommercialIndustrialLoad}}
+{{#isPoolPumpSpaJacuzzi}}<div><b>isPoolPumpSpaJacuzzi</b>: {{isPoolPumpSpaJacuzzi}}</div>{{/isPoolPumpSpaJacuzzi}}
+{{#isSimpleMiscLoad}}<div><b>isSimpleMiscLoad</b>: {{isSimpleMiscLoad}}</div>{{/isSimpleMiscLoad}}
+{{#isSmartAppliance}}<div><b>isSmartAppliance</b>: {{isSmartAppliance}}</div>{{/isSmartAppliance}}
+{{#isStripAndBaseboardHeater}}<div><b>isStripAndBaseboardHeater</b>: {{isStripAndBaseboardHeater}}</div>{{/isStripAndBaseboardHeater}}
+{{#isWaterHeater}}<div><b>isWaterHeater</b>: {{isWaterHeater}}</div>{{/isWaterHeater}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A device that indicates or records units of the commodity or other quantity measured.
@@ -244,7 +301,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Register_collapse" aria-expanded="true" aria-controls="Register_collapse">Register</a>
+<div id="Register_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#isVirtual}}<div><b>isVirtual</b>: {{isVirtual}}</div>{{/isVirtual}}
+{{#leftDigitCount}}<div><b>leftDigitCount</b>: {{leftDigitCount}}</div>{{/leftDigitCount}}
+{{#rightDigitCount}}<div><b>rightDigitCount</b>: {{rightDigitCount}}</div>{{/rightDigitCount}}
+{{#touTier}}<div><b>touTier</b>: {{touTier}}</div>{{/touTier}}
+{{#touTierName}}<div><b>touTierName</b>: {{touTierName}}</div>{{/touTierName}}
+{{#EndDeviceFunction}}<div><b>EndDeviceFunction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceFunction}}&quot;);})'>{{EndDeviceFunction}}</a></div>{{/EndDeviceFunction}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Instructs an end device (or an end device group) to perform a specified action.
@@ -314,7 +391,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EndDeviceControl_collapse" aria-expanded="true" aria-controls="EndDeviceControl_collapse">EndDeviceControl</a>
+<div id="EndDeviceControl_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#drProgramLevel}}<div><b>drProgramLevel</b>: {{drProgramLevel}}</div>{{/drProgramLevel}}
+{{#drProgramMandatory}}<div><b>drProgramMandatory</b>: {{drProgramMandatory}}</div>{{/drProgramMandatory}}
+{{#issuerID}}<div><b>issuerID</b>: {{issuerID}}</div>{{/issuerID}}
+{{#issuerTrackingID}}<div><b>issuerTrackingID</b>: {{issuerTrackingID}}</div>{{/issuerTrackingID}}
+{{#priceSignal}}<div><b>priceSignal</b>: {{priceSignal}}</div>{{/priceSignal}}
+{{#primaryDeviceTiming}}<div><b>primaryDeviceTiming</b>: {{primaryDeviceTiming}}</div>{{/primaryDeviceTiming}}
+{{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
+{{#scheduledInterval}}<div><b>scheduledInterval</b>: {{scheduledInterval}}</div>{{/scheduledInterval}}
+{{#secondaryDeviceTiming}}<div><b>secondaryDeviceTiming</b>: {{secondaryDeviceTiming}}</div>{{/secondaryDeviceTiming}}
+{{#EndDeviceControlType}}<div><b>EndDeviceControlType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceControlType}}&quot;);})'>{{EndDeviceControlType}}</a></div>{{/EndDeviceControlType}}
+{{#EndDeviceAction}}<div><b>EndDeviceAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceAction}}&quot;);})'>{{EndDeviceAction}}</a></div>{{/EndDeviceAction}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Detail for a single price command/action.
@@ -390,7 +492,35 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PanPricingDetail_collapse" aria-expanded="true" aria-controls="PanPricingDetail_collapse">PanPricingDetail</a>
+<div id="PanPricingDetail_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#alternateCostDelivered}}<div><b>alternateCostDelivered</b>: {{alternateCostDelivered}}</div>{{/alternateCostDelivered}}
+{{#alternateCostUnit}}<div><b>alternateCostUnit</b>: {{alternateCostUnit}}</div>{{/alternateCostUnit}}
+{{#currentTimeDate}}<div><b>currentTimeDate</b>: {{currentTimeDate}}</div>{{/currentTimeDate}}
+{{#generationPrice}}<div><b>generationPrice</b>: {{generationPrice}}</div>{{/generationPrice}}
+{{#generationPriceRatio}}<div><b>generationPriceRatio</b>: {{generationPriceRatio}}</div>{{/generationPriceRatio}}
+{{#price}}<div><b>price</b>: {{price}}</div>{{/price}}
+{{#priceRatio}}<div><b>priceRatio</b>: {{priceRatio}}</div>{{/priceRatio}}
+{{#priceTier}}<div><b>priceTier</b>: {{priceTier}}</div>{{/priceTier}}
+{{#priceTierCount}}<div><b>priceTierCount</b>: {{priceTierCount}}</div>{{/priceTierCount}}
+{{#priceTierLabel}}<div><b>priceTierLabel</b>: {{priceTierLabel}}</div>{{/priceTierLabel}}
+{{#rateLabel}}<div><b>rateLabel</b>: {{rateLabel}}</div>{{/rateLabel}}
+{{#registerTier}}<div><b>registerTier</b>: {{registerTier}}</div>{{/registerTier}}
+{{#unitOfMeasure}}<div><b>unitOfMeasure</b>: {{unitOfMeasure}}</div>{{/unitOfMeasure}}
+{{#PanPricing}}<div><b>PanPricing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PanPricing}}&quot;);})'>{{PanPricing}}</a></div>{{/PanPricing}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Logical or physical point in the network to which readings or events may be attributed.
@@ -484,7 +614,43 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#UsagePoint_collapse" aria-expanded="true" aria-controls="UsagePoint_collapse">UsagePoint</a>
+<div id="UsagePoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#amiBillingReady}}<div><b>amiBillingReady</b>: {{amiBillingReady}}</div>{{/amiBillingReady}}
+{{#checkBilling}}<div><b>checkBilling</b>: {{checkBilling}}</div>{{/checkBilling}}
+{{#connectionState}}<div><b>connectionState</b>: {{connectionState}}</div>{{/connectionState}}
+{{#estimatedLoad}}<div><b>estimatedLoad</b>: {{estimatedLoad}}</div>{{/estimatedLoad}}
+{{#grounded}}<div><b>grounded</b>: {{grounded}}</div>{{/grounded}}
+{{#isSdp}}<div><b>isSdp</b>: {{isSdp}}</div>{{/isSdp}}
+{{#isVirtual}}<div><b>isVirtual</b>: {{isVirtual}}</div>{{/isVirtual}}
+{{#minimalUsageExpected}}<div><b>minimalUsageExpected</b>: {{minimalUsageExpected}}</div>{{/minimalUsageExpected}}
+{{#nominalServiceVoltage}}<div><b>nominalServiceVoltage</b>: {{nominalServiceVoltage}}</div>{{/nominalServiceVoltage}}
+{{#outageRegion}}<div><b>outageRegion</b>: {{outageRegion}}</div>{{/outageRegion}}
+{{#phaseCode}}<div><b>phaseCode</b>: {{phaseCode}}</div>{{/phaseCode}}
+{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+{{#ratedPower}}<div><b>ratedPower</b>: {{ratedPower}}</div>{{/ratedPower}}
+{{#readCycle}}<div><b>readCycle</b>: {{readCycle}}</div>{{/readCycle}}
+{{#readRoute}}<div><b>readRoute</b>: {{readRoute}}</div>{{/readRoute}}
+{{#serviceDeliveryRemark}}<div><b>serviceDeliveryRemark</b>: {{serviceDeliveryRemark}}</div>{{/serviceDeliveryRemark}}
+{{#servicePriority}}<div><b>servicePriority</b>: {{servicePriority}}</div>{{/servicePriority}}
+{{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAgreement}}&quot;);})'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
+{{#ServiceSupplier}}<div><b>ServiceSupplier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceSupplier}}&quot;);})'>{{ServiceSupplier}}</a></div>{{/ServiceSupplier}}
+{{#UsagePointLocation}}<div><b>UsagePointLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePointLocation}}&quot;);})'>{{UsagePointLocation}}</a></div>{{/UsagePointLocation}}
+{{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceCategory}}&quot;);})'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
+{{#ServiceLocation}}<div><b>ServiceLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceLocation}}&quot;);})'>{{ServiceLocation}}</a></div>{{/ServiceLocation}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of meter multiplier.
@@ -544,7 +710,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MeterMultiplierKind_collapse" aria-expanded="true" aria-controls="MeterMultiplierKind_collapse">MeterMultiplierKind</a>
+<div id="MeterMultiplierKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#kH}}<div><b>kH</b>: {{kH}}</div>{{/kH}}
+{{#kR}}<div><b>kR</b>: {{kR}}</div>{{/kR}}
+{{#kE}}<div><b>kE</b>: {{kE}}</div>{{/kE}}
+{{#ctRatio}}<div><b>ctRatio</b>: {{ctRatio}}</div>{{/ctRatio}}
+{{#ptRatio}}<div><b>ptRatio</b>: {{ptRatio}}</div>{{/ptRatio}}
+{{#transformerRatio}}<div><b>transformerRatio</b>: {{transformerRatio}}</div>{{/transformerRatio}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Rational number = 'numerator' / 'denominator'.
@@ -596,7 +782,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RationalNumber_collapse" aria-expanded="true" aria-controls="RationalNumber_collapse">RationalNumber</a>
+<div id="RationalNumber_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominator}}<div><b>denominator</b>: {{denominator}}</div>{{/denominator}}
+{{#numerator}}<div><b>numerator</b>: {{numerator}}</div>{{/numerator}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Name-value pair, specific to end device events.
@@ -650,7 +852,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EndDeviceEventDetail_collapse" aria-expanded="true" aria-controls="EndDeviceEventDetail_collapse">EndDeviceEventDetail</a>
+<div id="EndDeviceEventDetail_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#EndDeviceEvent}}<div><b>EndDeviceEvent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceEvent}}&quot;);})'>{{EndDeviceEvent}}</a></div>{{/EndDeviceEvent}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Set of values obtained from the meter.
@@ -708,7 +927,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MeterReading_collapse" aria-expanded="true" aria-controls="MeterReading_collapse">MeterReading</a>
+<div id="MeterReading_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#isCoincidentTrigger}}<div><b>isCoincidentTrigger</b>: {{isCoincidentTrigger}}</div>{{/isCoincidentTrigger}}
+{{#valuesInterval}}<div><b>valuesInterval</b>: {{valuesInterval}}</div>{{/valuesInterval}}
+{{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+{{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);})'>{{Meter}}</a></div>{{/Meter}}
+{{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAgreement}}&quot;);})'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A single path for the collection or reporting of register values over a period of time.
@@ -764,7 +1002,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Channel_collapse" aria-expanded="true" aria-controls="Channel_collapse">Channel</a>
+<div id="Channel_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#isVirtual}}<div><b>isVirtual</b>: {{isVirtual}}</div>{{/isVirtual}}
+{{#Register}}<div><b>Register</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Register}}&quot;);})'>{{Register}}</a></div>{{/Register}}
+{{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of service multiplier.
@@ -818,7 +1073,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ServiceMultiplierKind_collapse" aria-expanded="true" aria-controls="ServiceMultiplierKind_collapse">ServiceMultiplierKind</a>
+<div id="ServiceMultiplierKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ctRatio}}<div><b>ctRatio</b>: {{ctRatio}}</div>{{/ctRatio}}
+{{#ptRatio}}<div><b>ptRatio</b>: {{ptRatio}}</div>{{/ptRatio}}
+{{#transformerRatio}}<div><b>transformerRatio</b>: {{transformerRatio}}</div>{{/transformerRatio}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Quality of a specific reading value or interval reading value.
@@ -878,7 +1150,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ReadingQuality_collapse" aria-expanded="true" aria-controls="ReadingQuality_collapse">ReadingQuality</a>
+<div id="ReadingQuality_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#comment}}<div><b>comment</b>: {{comment}}</div>{{/comment}}
+{{#source}}<div><b>source</b>: {{source}}</div>{{/source}}
+{{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
+{{#ReadingQualityType}}<div><b>ReadingQualityType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingQualityType}}&quot;);})'>{{ReadingQualityType}}</a></div>{{/ReadingQualityType}}
+{{#Reading}}<div><b>Reading</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reading}}&quot;);})'>{{Reading}}</a></div>{{/Reading}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of communication direction.
@@ -932,7 +1223,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ComDirectionKind_collapse" aria-expanded="true" aria-controls="ComDirectionKind_collapse">ComDirectionKind</a>
+<div id="ComDirectionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#fromDevice}}<div><b>fromDevice</b>: {{fromDevice}}</div>{{/fromDevice}}
+{{#toDevice}}<div><b>toDevice</b>: {{toDevice}}</div>{{/toDevice}}
+{{#biDirectional}}<div><b>biDirectional</b>: {{biDirectional}}</div>{{/biDirectional}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Multiplier applied at the meter.
@@ -986,7 +1294,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MeterMultiplier_collapse" aria-expanded="true" aria-controls="MeterMultiplier_collapse">MeterMultiplier</a>
+<div id="MeterMultiplier_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);})'>{{Meter}}</a></div>{{/Meter}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Location of an individual usage point.
@@ -1040,7 +1365,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#UsagePointLocation_collapse" aria-expanded="true" aria-controls="UsagePointLocation_collapse">UsagePointLocation</a>
+<div id="UsagePointLocation_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Location.prototype.template.call (this) +
+`
+{{#accessMethod}}<div><b>accessMethod</b>: {{accessMethod}}</div>{{/accessMethod}}
+{{#remark}}<div><b>remark</b>: {{remark}}</div>{{/remark}}
+{{#siteAccessProblem}}<div><b>siteAccessProblem</b>: {{siteAccessProblem}}</div>{{/siteAccessProblem}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Lifecycle states of the metering installation at a usage point with respect to readiness for billing via advanced metering infrastructure reads.
@@ -1102,7 +1444,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AmiBillingReadyKind_collapse" aria-expanded="true" aria-controls="AmiBillingReadyKind_collapse">AmiBillingReadyKind</a>
+<div id="AmiBillingReadyKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
+{{#operable}}<div><b>operable</b>: {{operable}}</div>{{/operable}}
+{{#billingApproved}}<div><b>billingApproved</b>: {{billingApproved}}</div>{{/billingApproved}}
+{{#nonAmi}}<div><b>nonAmi</b>: {{nonAmi}}</div>{{/nonAmi}}
+{{#amiDisabled}}<div><b>amiDisabled</b>: {{amiDisabled}}</div>{{/amiDisabled}}
+{{#amiCapable}}<div><b>amiCapable</b>: {{amiCapable}}</div>{{/amiCapable}}
+{{#nonMetered}}<div><b>nonMetered</b>: {{nonMetered}}</div>{{/nonMetered}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A specification of the metering requirements for a particular point within a network.
@@ -1152,7 +1515,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MetrologyRequirement_collapse" aria-expanded="true" aria-controls="MetrologyRequirement_collapse">MetrologyRequirement</a>
+<div id="MetrologyRequirement_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Function performed by an end device such as a meter, communication equipment, controllers, etc.
@@ -1204,7 +1582,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EndDeviceFunction_collapse" aria-expanded="true" aria-controls="EndDeviceFunction_collapse">EndDeviceFunction</a>
+<div id="EndDeviceFunction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetFunction.prototype.template.call (this) +
+`
+{{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
+{{#EndDevice}}<div><b>EndDevice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDevice}}&quot;);})'>{{EndDevice}}</a></div>{{/EndDevice}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An asset having communications capabilities that can be paired with a meter or other end device to provide the device with communication ability, through associated communication function.
@@ -1260,7 +1654,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ComModule_collapse" aria-expanded="true" aria-controls="ComModule_collapse">ComModule</a>
+<div id="ComModule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.Asset.prototype.template.call (this) +
+`
+{{#amrSystem}}<div><b>amrSystem</b>: {{amrSystem}}</div>{{/amrSystem}}
+{{#supportsAutonomousDst}}<div><b>supportsAutonomousDst</b>: {{supportsAutonomousDst}}</div>{{/supportsAutonomousDst}}
+{{#timeZoneOffset}}<div><b>timeZoneOffset</b>: {{timeZoneOffset}}</div>{{/timeZoneOffset}}
+</div>
+`
+                );
+           }        }
 
         /**
          * State of the usage point with respect to connection to the network.
@@ -1314,7 +1725,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#UsagePointConnectedKind_collapse" aria-expanded="true" aria-controls="UsagePointConnectedKind_collapse">UsagePointConnectedKind</a>
+<div id="UsagePointConnectedKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#connected}}<div><b>connected</b>: {{connected}}</div>{{/connected}}
+{{#physicallyDisconnected}}<div><b>physicallyDisconnected</b>: {{physicallyDisconnected}}</div>{{/physicallyDisconnected}}
+{{#logicallyDisconnected}}<div><b>logicallyDisconnected</b>: {{logicallyDisconnected}}</div>{{/logicallyDisconnected}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Detailed description for a type of a reading value.
@@ -1400,7 +1828,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ReadingType_collapse" aria-expanded="true" aria-controls="ReadingType_collapse">ReadingType</a>
+<div id="ReadingType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#accumulation}}<div><b>accumulation</b>: {{accumulation}}</div>{{/accumulation}}
+{{#aggregate}}<div><b>aggregate</b>: {{aggregate}}</div>{{/aggregate}}
+{{#argument}}<div><b>argument</b>: {{argument}}</div>{{/argument}}
+{{#commodity}}<div><b>commodity</b>: {{commodity}}</div>{{/commodity}}
+{{#consumptionTier}}<div><b>consumptionTier</b>: {{consumptionTier}}</div>{{/consumptionTier}}
+{{#cpp}}<div><b>cpp</b>: {{cpp}}</div>{{/cpp}}
+{{#currency}}<div><b>currency</b>: {{currency}}</div>{{/currency}}
+{{#flowDirection}}<div><b>flowDirection</b>: {{flowDirection}}</div>{{/flowDirection}}
+{{#interharmonic}}<div><b>interharmonic</b>: {{interharmonic}}</div>{{/interharmonic}}
+{{#macroPeriod}}<div><b>macroPeriod</b>: {{macroPeriod}}</div>{{/macroPeriod}}
+{{#measurementKind}}<div><b>measurementKind</b>: {{measurementKind}}</div>{{/measurementKind}}
+{{#measuringPeriod}}<div><b>measuringPeriod</b>: {{measuringPeriod}}</div>{{/measuringPeriod}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
+{{#tou}}<div><b>tou</b>: {{tou}}</div>{{/tou}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#PendingCalculation}}<div><b>PendingCalculation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PendingCalculation}}&quot;);})'>{{PendingCalculation}}</a></div>{{/PendingCalculation}}
+{{#Channel}}<div><b>Channel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Channel}}&quot;);})'>{{Channel}}</a></div>{{/Channel}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Time sequence of readings of the same reading type.
@@ -1456,7 +1916,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#IntervalBlock_collapse" aria-expanded="true" aria-controls="IntervalBlock_collapse">IntervalBlock</a>
+<div id="IntervalBlock_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#PendingCalculation}}<div><b>PendingCalculation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PendingCalculation}}&quot;);})'>{{PendingCalculation}}</a></div>{{/PendingCalculation}}
+{{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
+{{#MeterReading}}<div><b>MeterReading</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeterReading}}&quot;);})'>{{MeterReading}}</a></div>{{/MeterReading}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of end device function.
@@ -1524,7 +2001,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EndDeviceFunctionKind_collapse" aria-expanded="true" aria-controls="EndDeviceFunctionKind_collapse">EndDeviceFunctionKind</a>
+<div id="EndDeviceFunctionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#reverseFlow}}<div><b>reverseFlow</b>: {{reverseFlow}}</div>{{/reverseFlow}}
+{{#demandResponse}}<div><b>demandResponse</b>: {{demandResponse}}</div>{{/demandResponse}}
+{{#metrology}}<div><b>metrology</b>: {{metrology}}</div>{{/metrology}}
+{{#outageHistory}}<div><b>outageHistory</b>: {{outageHistory}}</div>{{/outageHistory}}
+{{#relaysProgramming}}<div><b>relaysProgramming</b>: {{relaysProgramming}}</div>{{/relaysProgramming}}
+{{#onRequestRead}}<div><b>onRequestRead</b>: {{onRequestRead}}</div>{{/onRequestRead}}
+{{#autonomousDst}}<div><b>autonomousDst</b>: {{autonomousDst}}</div>{{/autonomousDst}}
+{{#electricMetering}}<div><b>electricMetering</b>: {{electricMetering}}</div>{{/electricMetering}}
+{{#gasMetering}}<div><b>gasMetering</b>: {{gasMetering}}</div>{{/gasMetering}}
+{{#waterMetering}}<div><b>waterMetering</b>: {{waterMetering}}</div>{{/waterMetering}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Timing for the control actions of end devices.
@@ -1580,7 +2081,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EndDeviceTiming_collapse" aria-expanded="true" aria-controls="EndDeviceTiming_collapse">EndDeviceTiming</a>
+<div id="EndDeviceTiming_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
+{{#durationIndefinite}}<div><b>durationIndefinite</b>: {{durationIndefinite}}</div>{{/durationIndefinite}}
+{{#interval}}<div><b>interval</b>: {{interval}}</div>{{/interval}}
+{{#randomisation}}<div><b>randomisation</b>: {{randomisation}}</div>{{/randomisation}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Action/command performed by an end device on a device other than the end device.
@@ -1638,7 +2157,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EndDeviceAction_collapse" aria-expanded="true" aria-controls="EndDeviceAction_collapse">EndDeviceAction</a>
+<div id="EndDeviceAction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#command}}<div><b>command</b>: {{command}}</div>{{/command}}
+{{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
+{{#durationIndefinite}}<div><b>durationIndefinite</b>: {{durationIndefinite}}</div>{{/durationIndefinite}}
+{{#startDateTime}}<div><b>startDateTime</b>: {{startDateTime}}</div>{{/startDateTime}}
+{{#EndDeviceControl}}<div><b>EndDeviceControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceControl}}&quot;);})'>{{EndDeviceControl}}</a></div>{{/EndDeviceControl}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Common representation for reading values.
@@ -1696,7 +2234,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BaseReading_collapse" aria-expanded="true" aria-controls="BaseReading_collapse">BaseReading</a>
+<div id="BaseReading_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Meas.MeasurementValue.prototype.template.call (this) +
+`
+{{#reportedDateTime}}<div><b>reportedDateTime</b>: {{reportedDateTime}}</div>{{/reportedDateTime}}
+{{#source}}<div><b>source</b>: {{source}}</div>{{/source}}
+{{#timePeriod}}<div><b>timePeriod</b>: {{timePeriod}}</div>{{/timePeriod}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Event detected by a device function associated with the end device.
@@ -1758,7 +2314,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EndDeviceEvent_collapse" aria-expanded="true" aria-controls="EndDeviceEvent_collapse">EndDeviceEvent</a>
+<div id="EndDeviceEvent_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.ActivityRecord.prototype.template.call (this) +
+`
+{{#issuerID}}<div><b>issuerID</b>: {{issuerID}}</div>{{/issuerID}}
+{{#issuerTrackingID}}<div><b>issuerTrackingID</b>: {{issuerTrackingID}}</div>{{/issuerTrackingID}}
+{{#userID}}<div><b>userID</b>: {{userID}}</div>{{/userID}}
+{{#EndDevice}}<div><b>EndDevice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDevice}}&quot;);})'>{{EndDevice}}</a></div>{{/EndDevice}}
+{{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+{{#MeterReading}}<div><b>MeterReading</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeterReading}}&quot;);})'>{{MeterReading}}</a></div>{{/MeterReading}}
+{{#EndDeviceEventType}}<div><b>EndDeviceEventType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceEventType}}&quot;);})'>{{EndDeviceEventType}}</a></div>{{/EndDeviceEventType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Reason for the reading being taken.
@@ -1830,7 +2407,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ReadingReasonKind_collapse" aria-expanded="true" aria-controls="ReadingReasonKind_collapse">ReadingReasonKind</a>
+<div id="ReadingReasonKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#installation}}<div><b>installation</b>: {{installation}}</div>{{/installation}}
+{{#removal}}<div><b>removal</b>: {{removal}}</div>{{/removal}}
+{{#inquiry}}<div><b>inquiry</b>: {{inquiry}}</div>{{/inquiry}}
+{{#billing}}<div><b>billing</b>: {{billing}}</div>{{/billing}}
+{{#moveIn}}<div><b>moveIn</b>: {{moveIn}}</div>{{/moveIn}}
+{{#moveOut}}<div><b>moveOut</b>: {{moveOut}}</div>{{/moveOut}}
+{{#demandReset}}<div><b>demandReset</b>: {{demandReset}}</div>{{/demandReset}}
+{{#serviceDisconnect}}<div><b>serviceDisconnect</b>: {{serviceDisconnect}}</div>{{/serviceDisconnect}}
+{{#serviceConnect}}<div><b>serviceConnect</b>: {{serviceConnect}}</div>{{/serviceConnect}}
+{{#loadManagement}}<div><b>loadManagement</b>: {{loadManagement}}</div>{{/loadManagement}}
+{{#loadResearch}}<div><b>loadResearch</b>: {{loadResearch}}</div>{{/loadResearch}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Multiplier applied at the usage point.
@@ -1884,7 +2487,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ServiceMultiplier_collapse" aria-expanded="true" aria-controls="ServiceMultiplier_collapse">ServiceMultiplier</a>
+<div id="ServiceMultiplier_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+</div>
+`
+                );
+           }        }
 
         /**
          * When present, a scalar conversion that needs to be applied to every IntervalReading.value contained in IntervalBlock.
@@ -1946,7 +2566,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PendingCalculation_collapse" aria-expanded="true" aria-controls="PendingCalculation_collapse">PendingCalculation</a>
+<div id="PendingCalculation_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplyBeforeAdd}}<div><b>multiplyBeforeAdd</b>: {{multiplyBeforeAdd}}</div>{{/multiplyBeforeAdd}}
+{{#offset}}<div><b>offset</b>: {{offset}}</div>{{/offset}}
+{{#scalarDenominator}}<div><b>scalarDenominator</b>: {{scalarDenominator}}</div>{{/scalarDenominator}}
+{{#scalarFloat}}<div><b>scalarFloat</b>: {{scalarFloat}}</div>{{/scalarFloat}}
+{{#scalarNumerator}}<div><b>scalarNumerator</b>: {{scalarNumerator}}</div>{{/scalarNumerator}}
+{{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Interharmonics are represented as a rational number 'numerator' / 'denominator', and harmonics are represented using the same mechanism and identified by 'denominator'=1.
@@ -1998,7 +2638,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ReadingInterharmonic_collapse" aria-expanded="true" aria-controls="ReadingInterharmonic_collapse">ReadingInterharmonic</a>
+<div id="ReadingInterharmonic_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominator}}<div><b>denominator</b>: {{denominator}}</div>{{/denominator}}
+{{#numerator}}<div><b>numerator</b>: {{numerator}}</div>{{/numerator}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Detailed description for a control produced by an end device.
@@ -2056,7 +2712,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EndDeviceControlType_collapse" aria-expanded="true" aria-controls="EndDeviceControlType_collapse">EndDeviceControlType</a>
+<div id="EndDeviceControlType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#domain}}<div><b>domain</b>: {{domain}}</div>{{/domain}}
+{{#eventOrAction}}<div><b>eventOrAction</b>: {{eventOrAction}}</div>{{/eventOrAction}}
+{{#subDomain}}<div><b>subDomain</b>: {{subDomain}}</div>{{/subDomain}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of randomisation to be applied to control the timing of end device control commands and/or the definition of demand response and load control events.
@@ -2116,7 +2790,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RandomisationKind_collapse" aria-expanded="true" aria-controls="RandomisationKind_collapse">RandomisationKind</a>
+<div id="RandomisationKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
+{{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
+{{#startAndEnd}}<div><b>startAndEnd</b>: {{startAndEnd}}</div>{{/startAndEnd}}
+{{#default}}<div><b>default</b>: {{default}}</div>{{/default}}
+{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Abstraction for management of group communications within a two-way AMR system or the data for a group of related usage points.
@@ -2168,7 +2861,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#UsagePointGroup_collapse" aria-expanded="true" aria-controls="UsagePointGroup_collapse">UsagePointGroup</a>
+<div id="UsagePointGroup_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Work involving meters.
@@ -2222,7 +2930,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MeterServiceWork_collapse" aria-expanded="true" aria-controls="MeterServiceWork_collapse">MeterServiceWork</a>
+<div id="MeterServiceWork_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Work.Work.prototype.template.call (this) +
+`
+{{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);})'>{{Meter}}</a></div>{{/Meter}}
+{{#OldMeter}}<div><b>OldMeter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OldMeter}}&quot;);})'>{{OldMeter}}</a></div>{{/OldMeter}}
+{{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Transmission mode for end device display controls, applicable to premises area network (PAN) devices.
@@ -2276,7 +3001,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransmissionModeKind_collapse" aria-expanded="true" aria-controls="TransmissionModeKind_collapse">TransmissionModeKind</a>
+<div id="TransmissionModeKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#normal}}<div><b>normal</b>: {{normal}}</div>{{/normal}}
+{{#anonymous}}<div><b>anonymous</b>: {{anonymous}}</div>{{/anonymous}}
+{{#both}}<div><b>both</b>: {{both}}</div>{{/both}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Detailed description for a quality of a reading value, produced by an end device or a system.
@@ -2332,7 +3074,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ReadingQualityType_collapse" aria-expanded="true" aria-controls="ReadingQualityType_collapse">ReadingQualityType</a>
+<div id="ReadingQualityType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#category}}<div><b>category</b>: {{category}}</div>{{/category}}
+{{#subCategory}}<div><b>subCategory</b>: {{subCategory}}</div>{{/subCategory}}
+{{#systemId}}<div><b>systemId</b>: {{systemId}}</div>{{/systemId}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Detailed description for an event produced by an end device.
@@ -2390,7 +3149,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EndDeviceEventType_collapse" aria-expanded="true" aria-controls="EndDeviceEventType_collapse">EndDeviceEventType</a>
+<div id="EndDeviceEventType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#domain}}<div><b>domain</b>: {{domain}}</div>{{/domain}}
+{{#eventOrAction}}<div><b>eventOrAction</b>: {{eventOrAction}}</div>{{/eventOrAction}}
+{{#subDomain}}<div><b>subDomain</b>: {{subDomain}}</div>{{/subDomain}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Asset container that performs one or more end device functions.
@@ -2458,7 +3235,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EndDevice_collapse" aria-expanded="true" aria-controls="EndDevice_collapse">EndDevice</a>
+<div id="EndDevice_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetContainer.prototype.template.call (this) +
+`
+{{#amrSystem}}<div><b>amrSystem</b>: {{amrSystem}}</div>{{/amrSystem}}
+{{#installCode}}<div><b>installCode</b>: {{installCode}}</div>{{/installCode}}
+{{#isPan}}<div><b>isPan</b>: {{isPan}}</div>{{/isPan}}
+{{#isVirtual}}<div><b>isVirtual</b>: {{isVirtual}}</div>{{/isVirtual}}
+{{#timeZoneOffset}}<div><b>timeZoneOffset</b>: {{timeZoneOffset}}</div>{{/timeZoneOffset}}
+{{#EndDeviceInfo}}<div><b>EndDeviceInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceInfo}}&quot;);})'>{{EndDeviceInfo}}</a></div>{{/EndDeviceInfo}}
+{{#ServiceLocation}}<div><b>ServiceLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceLocation}}&quot;);})'>{{ServiceLocation}}</a></div>{{/ServiceLocation}}
+{{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
+{{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of communication technology.
@@ -2524,7 +3324,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ComTechnologyKind_collapse" aria-expanded="true" aria-controls="ComTechnologyKind_collapse">ComTechnologyKind</a>
+<div id="ComTechnologyKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#cellular}}<div><b>cellular</b>: {{cellular}}</div>{{/cellular}}
+{{#ethernet}}<div><b>ethernet</b>: {{ethernet}}</div>{{/ethernet}}
+{{#homePlug}}<div><b>homePlug</b>: {{homePlug}}</div>{{/homePlug}}
+{{#pager}}<div><b>pager</b>: {{pager}}</div>{{/pager}}
+{{#phone}}<div><b>phone</b>: {{phone}}</div>{{/phone}}
+{{#plc}}<div><b>plc</b>: {{plc}}</div>{{/plc}}
+{{#rf}}<div><b>rf</b>: {{rf}}</div>{{/rf}}
+{{#rfMesh}}<div><b>rfMesh</b>: {{rfMesh}}</div>{{/rfMesh}}
+{{#zigbee}}<div><b>zigbee</b>: {{zigbee}}</div>{{/zigbee}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Inherent capabilities of an end device (i.e., the functions it supports).
@@ -2608,7 +3431,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EndDeviceCapability_collapse" aria-expanded="true" aria-controls="EndDeviceCapability_collapse">EndDeviceCapability</a>
+<div id="EndDeviceCapability_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#autonomousDst}}<div><b>autonomousDst</b>: {{autonomousDst}}</div>{{/autonomousDst}}
+{{#communication}}<div><b>communication</b>: {{communication}}</div>{{/communication}}
+{{#connectDisconnect}}<div><b>connectDisconnect</b>: {{connectDisconnect}}</div>{{/connectDisconnect}}
+{{#demandResponse}}<div><b>demandResponse</b>: {{demandResponse}}</div>{{/demandResponse}}
+{{#electricMetering}}<div><b>electricMetering</b>: {{electricMetering}}</div>{{/electricMetering}}
+{{#gasMetering}}<div><b>gasMetering</b>: {{gasMetering}}</div>{{/gasMetering}}
+{{#metrology}}<div><b>metrology</b>: {{metrology}}</div>{{/metrology}}
+{{#onRequestRead}}<div><b>onRequestRead</b>: {{onRequestRead}}</div>{{/onRequestRead}}
+{{#outageHistory}}<div><b>outageHistory</b>: {{outageHistory}}</div>{{/outageHistory}}
+{{#pressureCompensation}}<div><b>pressureCompensation</b>: {{pressureCompensation}}</div>{{/pressureCompensation}}
+{{#pricingInfo}}<div><b>pricingInfo</b>: {{pricingInfo}}</div>{{/pricingInfo}}
+{{#pulseOutput}}<div><b>pulseOutput</b>: {{pulseOutput}}</div>{{/pulseOutput}}
+{{#relaysProgramming}}<div><b>relaysProgramming</b>: {{relaysProgramming}}</div>{{/relaysProgramming}}
+{{#reverseFlow}}<div><b>reverseFlow</b>: {{reverseFlow}}</div>{{/reverseFlow}}
+{{#superCompressibilityCompensation}}<div><b>superCompressibilityCompensation</b>: {{superCompressibilityCompensation}}</div>{{/superCompressibilityCompensation}}
+{{#temperatureCompensation}}<div><b>temperatureCompensation</b>: {{temperatureCompensation}}</div>{{/temperatureCompensation}}
+{{#textMessage}}<div><b>textMessage</b>: {{textMessage}}</div>{{/textMessage}}
+{{#waterMetering}}<div><b>waterMetering</b>: {{waterMetering}}</div>{{/waterMetering}}
+</div>
+`
+                );
+           }        }
 
         /**
          * End device data.
@@ -2666,7 +3521,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EndDeviceInfo_collapse" aria-expanded="true" aria-controls="EndDeviceInfo_collapse">EndDeviceInfo</a>
+<div id="EndDeviceInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetInfo.prototype.template.call (this) +
+`
+{{#capability}}<div><b>capability</b>: {{capability}}</div>{{/capability}}
+{{#isSolidState}}<div><b>isSolidState</b>: {{isSolidState}}</div>{{/isSolidState}}
+{{#phaseCount}}<div><b>phaseCount</b>: {{phaseCount}}</div>{{/phaseCount}}
+{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Simple end device function distinguished by 'kind'.
@@ -2718,7 +3592,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SimpleEndDeviceFunction_collapse" aria-expanded="true" aria-controls="SimpleEndDeviceFunction_collapse">SimpleEndDeviceFunction</a>
+<div id="SimpleEndDeviceFunction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EndDeviceFunction.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Communication function of communication equipment or a device such as a meter.
@@ -2776,7 +3665,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ComFunction_collapse" aria-expanded="true" aria-controls="ComFunction_collapse">ComFunction</a>
+<div id="ComFunction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EndDeviceFunction.prototype.template.call (this) +
+`
+{{#amrAddress}}<div><b>amrAddress</b>: {{amrAddress}}</div>{{/amrAddress}}
+{{#amrRouter}}<div><b>amrRouter</b>: {{amrRouter}}</div>{{/amrRouter}}
+{{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
+{{#technology}}<div><b>technology</b>: {{technology}}</div>{{/technology}}
+{{#ComModule}}<div><b>ComModule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ComModule}}&quot;);})'>{{ComModule}}</a></div>{{/ComModule}}
+</div>
+`
+                );
+           }        }
 
         /**
          * PAN action/command used to issue the displaying of text messages on PAN devices.
@@ -2832,7 +3740,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PanDisplay_collapse" aria-expanded="true" aria-controls="PanDisplay_collapse">PanDisplay</a>
+<div id="PanDisplay_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EndDeviceAction.prototype.template.call (this) +
+`
+{{#confirmationRequired}}<div><b>confirmationRequired</b>: {{confirmationRequired}}</div>{{/confirmationRequired}}
+{{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+{{#textMessage}}<div><b>textMessage</b>: {{textMessage}}</div>{{/textMessage}}
+{{#transmissionMode}}<div><b>transmissionMode</b>: {{transmissionMode}}</div>{{/transmissionMode}}
+</div>
+`
+                );
+           }        }
 
         /**
          * PAN control used to issue action/command to PAN devices during a demand response/load control event.
@@ -2904,7 +3830,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PanDemandResponse_collapse" aria-expanded="true" aria-controls="PanDemandResponse_collapse">PanDemandResponse</a>
+<div id="PanDemandResponse_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EndDeviceAction.prototype.template.call (this) +
+`
+{{#appliance}}<div><b>appliance</b>: {{appliance}}</div>{{/appliance}}
+{{#avgLoadAdjustment}}<div><b>avgLoadAdjustment</b>: {{avgLoadAdjustment}}</div>{{/avgLoadAdjustment}}
+{{#cancelControlMode}}<div><b>cancelControlMode</b>: {{cancelControlMode}}</div>{{/cancelControlMode}}
+{{#cancelDateTime}}<div><b>cancelDateTime</b>: {{cancelDateTime}}</div>{{/cancelDateTime}}
+{{#cancelNow}}<div><b>cancelNow</b>: {{cancelNow}}</div>{{/cancelNow}}
+{{#coolingOffset}}<div><b>coolingOffset</b>: {{coolingOffset}}</div>{{/coolingOffset}}
+{{#coolingSetpoint}}<div><b>coolingSetpoint</b>: {{coolingSetpoint}}</div>{{/coolingSetpoint}}
+{{#criticalityLevel}}<div><b>criticalityLevel</b>: {{criticalityLevel}}</div>{{/criticalityLevel}}
+{{#dutyCycle}}<div><b>dutyCycle</b>: {{dutyCycle}}</div>{{/dutyCycle}}
+{{#enrollmentGroup}}<div><b>enrollmentGroup</b>: {{enrollmentGroup}}</div>{{/enrollmentGroup}}
+{{#heatingOffset}}<div><b>heatingOffset</b>: {{heatingOffset}}</div>{{/heatingOffset}}
+{{#heatingSetpoint}}<div><b>heatingSetpoint</b>: {{heatingSetpoint}}</div>{{/heatingSetpoint}}
+</div>
+`
+                );
+           }        }
 
         /**
          * PAN action/command used to issue pricing information to a PAN device.
@@ -2954,7 +3906,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PanPricing_collapse" aria-expanded="true" aria-controls="PanPricing_collapse">PanPricing</a>
+<div id="PanPricing_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EndDeviceAction.prototype.template.call (this) +
+`
+{{#providerID}}<div><b>providerID</b>: {{providerID}}</div>{{/providerID}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Data captured at regular intervals of time.
@@ -3004,7 +3971,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#IntervalReading_collapse" aria-expanded="true" aria-controls="IntervalReading_collapse">IntervalReading</a>
+<div id="IntervalReading_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + BaseReading.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Specific value measured by a meter or other asset, or calculated by a system.
@@ -3058,7 +4039,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Reading_collapse" aria-expanded="true" aria-controls="Reading_collapse">Reading</a>
+<div id="Reading_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + BaseReading.prototype.template.call (this) +
+`
+{{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
+{{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Physical asset that performs the metering role of the usage point.
@@ -3110,7 +4107,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Meter_collapse" aria-expanded="true" aria-controls="Meter_collapse">Meter</a>
+<div id="Meter_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EndDevice.prototype.template.call (this) +
+`
+{{#formNumber}}<div><b>formNumber</b>: {{formNumber}}</div>{{/formNumber}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

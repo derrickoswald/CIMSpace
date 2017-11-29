@@ -64,7 +64,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RemoteUnitType_collapse" aria-expanded="true" aria-controls="RemoteUnitType_collapse">RemoteUnitType</a>
+<div id="RemoteUnitType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#RTU}}<div><b>RTU</b>: {{RTU}}</div>{{/RTU}}
+{{#SubstationControlSystem}}<div><b>SubstationControlSystem</b>: {{SubstationControlSystem}}</div>{{/SubstationControlSystem}}
+{{#ControlCenter}}<div><b>ControlCenter</b>: {{ControlCenter}}</div>{{/ControlCenter}}
+{{#IED}}<div><b>IED</b>: {{IED}}</div>{{/IED}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For a RTU remote points correspond to telemetered values or control outputs.
@@ -116,7 +134,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RemotePoint_collapse" aria-expanded="true" aria-controls="RemotePoint_collapse">RemotePoint</a>
+<div id="RemotePoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#RemoteUnit}}<div><b>RemoteUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteUnit}}&quot;);})'>{{RemoteUnit}}</a></div>{{/RemoteUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A remote unit can be a RTU, IED, substation control system, control center etc.
@@ -168,7 +201,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RemoteUnit_collapse" aria-expanded="true" aria-controls="RemoteUnit_collapse">RemoteUnit</a>
+<div id="RemoteUnit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#remoteUnitType}}<div><b>remoteUnitType</b>: {{remoteUnitType}}</div>{{/remoteUnitType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Source gives information related to the origin of a value.
@@ -222,7 +270,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Source_collapse" aria-expanded="true" aria-controls="Source_collapse">Source</a>
+<div id="Source_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#PROCESS}}<div><b>PROCESS</b>: {{PROCESS}}</div>{{/PROCESS}}
+{{#DEFAULTED}}<div><b>DEFAULTED</b>: {{DEFAULTED}}</div>{{/DEFAULTED}}
+{{#SUBSTITUTED}}<div><b>SUBSTITUTED</b>: {{SUBSTITUTED}}</div>{{/SUBSTITUTED}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The connection to remote units is through one or more communication links.
@@ -272,7 +337,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CommunicationLink_collapse" aria-expanded="true" aria-controls="CommunicationLink_collapse">CommunicationLink</a>
+<div id="CommunicationLink_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Remote sources are state variables that are telemetered or calculated within the remote unit.
@@ -330,7 +409,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RemoteSource_collapse" aria-expanded="true" aria-controls="RemoteSource_collapse">RemoteSource</a>
+<div id="RemoteSource_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + RemotePoint.prototype.template.call (this) +
+`
+{{#deadband}}<div><b>deadband</b>: {{deadband}}</div>{{/deadband}}
+{{#scanInterval}}<div><b>scanInterval</b>: {{scanInterval}}</div>{{/scanInterval}}
+{{#sensorMaximum}}<div><b>sensorMaximum</b>: {{sensorMaximum}}</div>{{/sensorMaximum}}
+{{#sensorMinimum}}<div><b>sensorMinimum</b>: {{sensorMinimum}}</div>{{/sensorMinimum}}
+{{#MeasurementValue}}<div><b>MeasurementValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValue}}&quot;);})'>{{MeasurementValue}}</a></div>{{/MeasurementValue}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Remote controls are ouputs that are sent by the remote unit to actuators in the process.
@@ -386,7 +484,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RemoteControl_collapse" aria-expanded="true" aria-controls="RemoteControl_collapse">RemoteControl</a>
+<div id="RemoteControl_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + RemotePoint.prototype.template.call (this) +
+`
+{{#actuatorMaximum}}<div><b>actuatorMaximum</b>: {{actuatorMaximum}}</div>{{/actuatorMaximum}}
+{{#actuatorMinimum}}<div><b>actuatorMinimum</b>: {{actuatorMinimum}}</div>{{/actuatorMinimum}}
+{{#remoteControlled}}<div><b>remoteControlled</b>: {{remoteControlled}}</div>{{/remoteControlled}}
+{{#Control}}<div><b>Control</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Control}}&quot;);})'>{{Control}}</a></div>{{/Control}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

@@ -78,7 +78,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Document_collapse" aria-expanded="true" aria-controls="Document_collapse">Document</a>
+<div id="Document_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#authorName}}<div><b>authorName</b>: {{authorName}}</div>{{/authorName}}
+{{#createdDateTime}}<div><b>createdDateTime</b>: {{createdDateTime}}</div>{{/createdDateTime}}
+{{#docStatus}}<div><b>docStatus</b>: {{docStatus}}</div>{{/docStatus}}
+{{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
+{{#lastModifiedDateTime}}<div><b>lastModifiedDateTime</b>: {{lastModifiedDateTime}}</div>{{/lastModifiedDateTime}}
+{{#revisionNumber}}<div><b>revisionNumber</b>: {{revisionNumber}}</div>{{/revisionNumber}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#subject}}<div><b>subject</b>: {{subject}}</div>{{/subject}}
+{{#title}}<div><b>title</b>: {{title}}</div>{{/title}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#comment}}<div><b>comment</b>: {{comment}}</div>{{/comment}}
+</div>
+`
+                );
+           }        }
 
         /**
          * General purpose street address information.
@@ -132,7 +157,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StreetAddress_collapse" aria-expanded="true" aria-controls="StreetAddress_collapse">StreetAddress</a>
+<div id="StreetAddress_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#streetDetail}}<div><b>streetDetail</b>: {{streetDetail}}</div>{{/streetDetail}}
+{{#townDetail}}<div><b>townDetail</b>: {{townDetail}}</div>{{/townDetail}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Identifies a way in which an organisation may participate in the utility enterprise (e.g., customer, manufacturer, etc).
@@ -182,7 +224,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OrganisationRole_collapse" aria-expanded="true" aria-controls="OrganisationRole_collapse">OrganisationRole</a>
+<div id="OrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#Organisation}}<div><b>Organisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Organisation}}&quot;);})'>{{Organisation}}</a></div>{{/Organisation}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Electronic address information.
@@ -246,7 +303,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ElectronicAddress_collapse" aria-expanded="true" aria-controls="ElectronicAddress_collapse">ElectronicAddress</a>
+<div id="ElectronicAddress_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#email1}}<div><b>email1</b>: {{email1}}</div>{{/email1}}
+{{#email2}}<div><b>email2</b>: {{email2}}</div>{{/email2}}
+{{#lan}}<div><b>lan</b>: {{lan}}</div>{{/lan}}
+{{#mac}}<div><b>mac</b>: {{mac}}</div>{{/mac}}
+{{#password}}<div><b>password</b>: {{password}}</div>{{/password}}
+{{#radio}}<div><b>radio</b>: {{radio}}</div>{{/radio}}
+{{#userID}}<div><b>userID</b>: {{userID}}</div>{{/userID}}
+{{#web}}<div><b>web</b>: {{web}}</div>{{/web}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Group of people with specific skills, tools, and vehicles.
@@ -298,7 +377,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Crew_collapse" aria-expanded="true" aria-controls="Crew_collapse">Crew</a>
+<div id="Crew_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#CrewType}}<div><b>CrewType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CrewType}}&quot;);})'>{{CrewType}}</a></div>{{/CrewType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An event to trigger one or more activities, such as reading a meter, recalculating a bill, requesting work, when generating units must be scheduled for maintenance, when a transformer is scheduled to be refurbished, etc.
@@ -354,7 +449,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ScheduledEvent_collapse" aria-expanded="true" aria-controls="ScheduledEvent_collapse">ScheduledEvent</a>
+<div id="ScheduledEvent_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#ScheduledEventData}}<div><b>ScheduledEventData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ScheduledEventData}}&quot;);})'>{{ScheduledEventData}}</a></div>{{/ScheduledEventData}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Priority definition.
@@ -408,7 +521,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Priority_collapse" aria-expanded="true" aria-controls="Priority_collapse">Priority</a>
+<div id="Priority_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#justification}}<div><b>justification</b>: {{justification}}</div>{{/justification}}
+{{#rank}}<div><b>rank</b>: {{rank}}</div>{{/rank}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A point in time within a sequence of points in time relative to a time schedule.
@@ -468,7 +598,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TimePoint_collapse" aria-expanded="true" aria-controls="TimePoint_collapse">TimePoint</a>
+<div id="TimePoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
+{{#relativeTimeInterval}}<div><b>relativeTimeInterval</b>: {{relativeTimeInterval}}</div>{{/relativeTimeInterval}}
+{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#window}}<div><b>window</b>: {{window}}</div>{{/window}}
+{{#TimeSchedule}}<div><b>TimeSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TimeSchedule}}&quot;);})'>{{TimeSchedule}}</a></div>{{/TimeSchedule}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Records activity for an entity at a point in time; activity may be for an event that has already occurred or for a planned activity.
@@ -526,7 +676,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ActivityRecord_collapse" aria-expanded="true" aria-controls="ActivityRecord_collapse">ActivityRecord</a>
+<div id="ActivityRecord_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#createdDateTime}}<div><b>createdDateTime</b>: {{createdDateTime}}</div>{{/createdDateTime}}
+{{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
+{{#severity}}<div><b>severity</b>: {{severity}}</div>{{/severity}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * General purpose postal address information.
@@ -582,7 +751,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PostalAddress_collapse" aria-expanded="true" aria-controls="PostalAddress_collapse">PostalAddress</a>
+<div id="PostalAddress_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#poBox}}<div><b>poBox</b>: {{poBox}}</div>{{/poBox}}
+{{#postalCode}}<div><b>postalCode</b>: {{postalCode}}</div>{{/postalCode}}
+{{#streetDetail}}<div><b>streetDetail</b>: {{streetDetail}}</div>{{/streetDetail}}
+{{#townDetail}}<div><b>townDetail</b>: {{townDetail}}</div>{{/townDetail}}
+</div>
+`
+                );
+           }        }
 
         class PersonRole extends Core.IdentifiedObject
         {
@@ -628,7 +815,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PersonRole_collapse" aria-expanded="true" aria-controls="PersonRole_collapse">PersonRole</a>
+<div id="PersonRole_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#Person}}<div><b>Person</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Person}}&quot;);})'>{{Person}}</a></div>{{/Person}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Coordinate reference system.
@@ -678,7 +880,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CoordinateSystem_collapse" aria-expanded="true" aria-controls="CoordinateSystem_collapse">CoordinateSystem</a>
+<div id="CoordinateSystem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#crsUrn}}<div><b>crsUrn</b>: {{crsUrn}}</div>{{/crsUrn}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An object or a condition that is a danger for causing loss or perils to an asset and/or people.
@@ -730,7 +947,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Hazard_collapse" aria-expanded="true" aria-controls="Hazard_collapse">Hazard</a>
+<div id="Hazard_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Town details, in the context of address.
@@ -788,7 +1021,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TownDetail_collapse" aria-expanded="true" aria-controls="TownDetail_collapse">TownDetail</a>
+<div id="TownDetail_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+{{#country}}<div><b>country</b>: {{country}}</div>{{/country}}
+{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+{{#section}}<div><b>section</b>: {{section}}</div>{{/section}}
+{{#stateOrProvince}}<div><b>stateOrProvince</b>: {{stateOrProvince}}</div>{{/stateOrProvince}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Organisation that might have roles as utility, contractor, supplier, manufacturer, customer, etc.
@@ -846,7 +1098,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Organisation_collapse" aria-expanded="true" aria-controls="Organisation_collapse">Organisation</a>
+<div id="Organisation_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
+{{#phone1}}<div><b>phone1</b>: {{phone1}}</div>{{/phone1}}
+{{#phone2}}<div><b>phone2</b>: {{phone2}}</div>{{/phone2}}
+{{#postalAddress}}<div><b>postalAddress</b>: {{postalAddress}}</div>{{/postalAddress}}
+{{#streetAddress}}<div><b>streetAddress</b>: {{streetAddress}}</div>{{/streetAddress}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Custom description of the type of crew.
@@ -896,7 +1167,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CrewType_collapse" aria-expanded="true" aria-controls="CrewType_collapse">CrewType</a>
+<div id="CrewType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * The place, scene, or point of something where someone or something has been, is, and/or will be at a given moment in time.
@@ -966,7 +1251,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Location_collapse" aria-expanded="true" aria-controls="Location_collapse">Location</a>
+<div id="Location_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
+{{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
+{{#geoInfoReference}}<div><b>geoInfoReference</b>: {{geoInfoReference}}</div>{{/geoInfoReference}}
+{{#mainAddress}}<div><b>mainAddress</b>: {{mainAddress}}</div>{{/mainAddress}}
+{{#phone1}}<div><b>phone1</b>: {{phone1}}</div>{{/phone1}}
+{{#phone2}}<div><b>phone2</b>: {{phone2}}</div>{{/phone2}}
+{{#secondaryAddress}}<div><b>secondaryAddress</b>: {{secondaryAddress}}</div>{{/secondaryAddress}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#CoordinateSystem}}<div><b>CoordinateSystem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CoordinateSystem}}&quot;);})'>{{CoordinateSystem}}</a></div>{{/CoordinateSystem}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Ownership of e.g. asset.
@@ -1020,7 +1329,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Ownership_collapse" aria-expanded="true" aria-controls="Ownership_collapse">Ownership</a>
+<div id="Ownership_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#share}}<div><b>share</b>: {{share}}</div>{{/share}}
+{{#AssetOwner}}<div><b>AssetOwner</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetOwner}}&quot;);})'>{{AssetOwner}}</a></div>{{/AssetOwner}}
+{{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Telephone number.
@@ -1078,7 +1404,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TelephoneNumber_collapse" aria-expanded="true" aria-controls="TelephoneNumber_collapse">TelephoneNumber</a>
+<div id="TelephoneNumber_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#areaCode}}<div><b>areaCode</b>: {{areaCode}}</div>{{/areaCode}}
+{{#cityCode}}<div><b>cityCode</b>: {{cityCode}}</div>{{/cityCode}}
+{{#countryCode}}<div><b>countryCode</b>: {{countryCode}}</div>{{/countryCode}}
+{{#extension}}<div><b>extension</b>: {{extension}}</div>{{/extension}}
+{{#localNumber}}<div><b>localNumber</b>: {{localNumber}}</div>{{/localNumber}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Set of spatial coordinates that determine a point, defined in the coordinate system specified in 'Location.
@@ -1138,7 +1483,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PositionPoint_collapse" aria-expanded="true" aria-controls="PositionPoint_collapse">PositionPoint</a>
+<div id="PositionPoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+{{#xPosition}}<div><b>xPosition</b>: {{xPosition}}</div>{{/xPosition}}
+{{#yPosition}}<div><b>yPosition</b>: {{yPosition}}</div>{{/yPosition}}
+{{#zPosition}}<div><b>zPosition</b>: {{zPosition}}</div>{{/zPosition}}
+{{#Location}}<div><b>Location</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Location}}&quot;);})'>{{Location}}</a></div>{{/Location}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Generic name-value pair class, with optional sequence number and units for value; can be used to model parts of information exchange when concrete types are not known in advance.
@@ -1198,7 +1562,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#UserAttribute_collapse" aria-expanded="true" aria-controls="UserAttribute_collapse">UserAttribute</a>
+<div id="UserAttribute_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#Transaction}}<div><b>Transaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Transaction}}&quot;);})'>{{Transaction}}</a></div>{{/Transaction}}
+{{#RatingSpecification}}<div><b>RatingSpecification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RatingSpecification}}&quot;);})'>{{RatingSpecification}}</a></div>{{/RatingSpecification}}
+{{#PropertySpecification}}<div><b>PropertySpecification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PropertySpecification}}&quot;);})'>{{PropertySpecification}}</a></div>{{/PropertySpecification}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Schedule parameters for an activity that is to occur, is occurring, or has completed.
@@ -1254,7 +1638,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ScheduledEventData_collapse" aria-expanded="true" aria-controls="ScheduledEventData_collapse">ScheduledEventData</a>
+<div id="ScheduledEventData_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#estimatedWindow}}<div><b>estimatedWindow</b>: {{estimatedWindow}}</div>{{/estimatedWindow}}
+{{#requestedWindow}}<div><b>requestedWindow</b>: {{requestedWindow}}</div>{{/requestedWindow}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#InspectionDataSet}}<div><b>InspectionDataSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InspectionDataSet}}&quot;);})'>{{InspectionDataSet}}</a></div>{{/InspectionDataSet}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Current status information relevant to an entity.
@@ -1310,7 +1712,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Status_collapse" aria-expanded="true" aria-controls="Status_collapse">Status</a>
+<div id="Status_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
+{{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
+{{#remark}}<div><b>remark</b>: {{remark}}</div>{{/remark}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * General purpose information for name and other information to contact people.
@@ -1376,7 +1796,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Person_collapse" aria-expanded="true" aria-controls="Person_collapse">Person</a>
+<div id="Person_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
+{{#firstName}}<div><b>firstName</b>: {{firstName}}</div>{{/firstName}}
+{{#landlinePhone}}<div><b>landlinePhone</b>: {{landlinePhone}}</div>{{/landlinePhone}}
+{{#lastName}}<div><b>lastName</b>: {{lastName}}</div>{{/lastName}}
+{{#mName}}<div><b>mName</b>: {{mName}}</div>{{/mName}}
+{{#mobilePhone}}<div><b>mobilePhone</b>: {{mobilePhone}}</div>{{/mobilePhone}}
+{{#prefix}}<div><b>prefix</b>: {{prefix}}</div>{{/prefix}}
+{{#specialNeed}}<div><b>specialNeed</b>: {{specialNeed}}</div>{{/specialNeed}}
+{{#suffix}}<div><b>suffix</b>: {{suffix}}</div>{{/suffix}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Meeting time and location.
@@ -1428,7 +1871,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Appointment_collapse" aria-expanded="true" aria-controls="Appointment_collapse">Appointment</a>
+<div id="Appointment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#callAhead}}<div><b>callAhead</b>: {{callAhead}}</div>{{/callAhead}}
+{{#meetingInterval}}<div><b>meetingInterval</b>: {{meetingInterval}}</div>{{/meetingInterval}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Street details, in the context of address.
@@ -1496,7 +1955,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StreetDetail_collapse" aria-expanded="true" aria-controls="StreetDetail_collapse">StreetDetail</a>
+<div id="StreetDetail_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#addressGeneral}}<div><b>addressGeneral</b>: {{addressGeneral}}</div>{{/addressGeneral}}
+{{#buildingName}}<div><b>buildingName</b>: {{buildingName}}</div>{{/buildingName}}
+{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+{{#number}}<div><b>number</b>: {{number}}</div>{{/number}}
+{{#prefix}}<div><b>prefix</b>: {{prefix}}</div>{{/prefix}}
+{{#suffix}}<div><b>suffix</b>: {{suffix}}</div>{{/suffix}}
+{{#suiteNumber}}<div><b>suiteNumber</b>: {{suiteNumber}}</div>{{/suiteNumber}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#withinTownLimits}}<div><b>withinTownLimits</b>: {{withinTownLimits}}</div>{{/withinTownLimits}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Description of anything that changes through time.
@@ -1556,7 +2039,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TimeSchedule_collapse" aria-expanded="true" aria-controls="TimeSchedule_collapse">TimeSchedule</a>
+<div id="TimeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Document.prototype.template.call (this) +
+`
+{{#disabled}}<div><b>disabled</b>: {{disabled}}</div>{{/disabled}}
+{{#offset}}<div><b>offset</b>: {{offset}}</div>{{/offset}}
+{{#recurrencePattern}}<div><b>recurrencePattern</b>: {{recurrencePattern}}</div>{{/recurrencePattern}}
+{{#recurrencePeriod}}<div><b>recurrencePeriod</b>: {{recurrencePeriod}}</div>{{/recurrencePeriod}}
+{{#scheduleInterval}}<div><b>scheduleInterval</b>: {{scheduleInterval}}</div>{{/scheduleInterval}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Formal agreement between two parties defining the terms and conditions for a set of services.
@@ -1610,7 +2112,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Agreement_collapse" aria-expanded="true" aria-controls="Agreement_collapse">Agreement</a>
+<div id="Agreement_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Document.prototype.template.call (this) +
+`
+{{#signDate}}<div><b>signDate</b>: {{signDate}}</div>{{/signDate}}
+{{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Used to report details on creation, change or deletion of an entity or its configuration.
@@ -1678,7 +2196,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ConfigurationEvent_collapse" aria-expanded="true" aria-controls="ConfigurationEvent_collapse">ConfigurationEvent</a>
+<div id="ConfigurationEvent_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ActivityRecord.prototype.template.call (this) +
+`
+{{#effectiveDateTime}}<div><b>effectiveDateTime</b>: {{effectiveDateTime}}</div>{{/effectiveDateTime}}
+{{#modifiedBy}}<div><b>modifiedBy</b>: {{modifiedBy}}</div>{{/modifiedBy}}
+{{#remark}}<div><b>remark</b>: {{remark}}</div>{{/remark}}
+{{#ChangedPersonRole}}<div><b>ChangedPersonRole</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedPersonRole}}&quot;);})'>{{ChangedPersonRole}}</a></div>{{/ChangedPersonRole}}
+{{#ChangedOrganisationRole}}<div><b>ChangedOrganisationRole</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedOrganisationRole}}&quot;);})'>{{ChangedOrganisationRole}}</a></div>{{/ChangedOrganisationRole}}
+{{#ChangedAsset}}<div><b>ChangedAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedAsset}}&quot;);})'>{{ChangedAsset}}</a></div>{{/ChangedAsset}}
+{{#ChangedLocation}}<div><b>ChangedLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedLocation}}&quot;);})'>{{ChangedLocation}}</a></div>{{/ChangedLocation}}
+{{#ChangedServiceCategory}}<div><b>ChangedServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedServiceCategory}}&quot;);})'>{{ChangedServiceCategory}}</a></div>{{/ChangedServiceCategory}}
+{{#ChangedUsagePoint}}<div><b>ChangedUsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedUsagePoint}}&quot;);})'>{{ChangedUsagePoint}}</a></div>{{/ChangedUsagePoint}}
+{{#ChangedDocument}}<div><b>ChangedDocument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedDocument}}&quot;);})'>{{ChangedDocument}}</a></div>{{/ChangedDocument}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Person role in the context of utility operations.
@@ -1726,7 +2268,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OperationPersonRole_collapse" aria-expanded="true" aria-controls="OperationPersonRole_collapse">OperationPersonRole</a>
+<div id="OperationPersonRole_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PersonRole.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Member of a crew.
@@ -1776,7 +2332,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CrewMember_collapse" aria-expanded="true" aria-controls="CrewMember_collapse">CrewMember</a>
+<div id="CrewMember_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + OperationPersonRole.prototype.template.call (this) +
+`
+{{#Crew}}<div><b>Crew</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Crew}}&quot;);})'>{{Crew}}</a></div>{{/Crew}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Control room operator.
@@ -1824,7 +2395,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Operator_collapse" aria-expanded="true" aria-controls="Operator_collapse">Operator</a>
+<div id="Operator_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + OperationPersonRole.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         return (
             {

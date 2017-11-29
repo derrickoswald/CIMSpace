@@ -76,7 +76,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#JointFillKind_collapse" aria-expanded="true" aria-controls="JointFillKind_collapse">JointFillKind</a>
+<div id="JointFillKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#noFillPrefab}}<div><b>noFillPrefab</b>: {{noFillPrefab}}</div>{{/noFillPrefab}}
+{{#airNoFilling}}<div><b>airNoFilling</b>: {{airNoFilling}}</div>{{/airNoFilling}}
+{{#petrolatum}}<div><b>petrolatum</b>: {{petrolatum}}</div>{{/petrolatum}}
+{{#asphaltic}}<div><b>asphaltic</b>: {{asphaltic}}</div>{{/asphaltic}}
+{{#oil}}<div><b>oil</b>: {{oil}}</div>{{/oil}}
+{{#bluefill254}}<div><b>bluefill254</b>: {{bluefill254}}</div>{{/bluefill254}}
+{{#noVoid}}<div><b>noVoid</b>: {{noVoid}}</div>{{/noVoid}}
+{{#epoxy}}<div><b>epoxy</b>: {{epoxy}}</div>{{/epoxy}}
+{{#insoluseal}}<div><b>insoluseal</b>: {{insoluseal}}</div>{{/insoluseal}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * FACTS device asset.
@@ -126,7 +150,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FACTSDevice_collapse" aria-expanded="true" aria-controls="FACTSDevice_collapse">FACTSDevice</a>
+<div id="FACTSDevice_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.Asset.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Insulation kind for bushings.
@@ -182,7 +221,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BushingInsulationKind_collapse" aria-expanded="true" aria-controls="BushingInsulationKind_collapse">BushingInsulationKind</a>
+<div id="BushingInsulationKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#paperoil}}<div><b>paperoil</b>: {{paperoil}}</div>{{/paperoil}}
+{{#compound}}<div><b>compound</b>: {{compound}}</div>{{/compound}}
+{{#solidPorcelain}}<div><b>solidPorcelain</b>: {{solidPorcelain}}</div>{{/solidPorcelain}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Specification can be used for various purposes relative to an asset, a logical device (PowerSystemResource), location, etc.
@@ -232,7 +289,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Specification_collapse" aria-expanded="true" aria-controls="Specification_collapse">Specification</a>
+<div id="Specification_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * An event where an asset has failed to perform its functions within specified parameters.
@@ -288,7 +359,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FailureEvent_collapse" aria-expanded="true" aria-controls="FailureEvent_collapse">FailureEvent</a>
+<div id="FailureEvent_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.ActivityRecord.prototype.template.call (this) +
+`
+{{#corporateCode}}<div><b>corporateCode</b>: {{corporateCode}}</div>{{/corporateCode}}
+{{#failureIsolationMethod}}<div><b>failureIsolationMethod</b>: {{failureIsolationMethod}}</div>{{/failureIsolationMethod}}
+{{#faultLocatingMethod}}<div><b>faultLocatingMethod</b>: {{faultLocatingMethod}}</div>{{/faultLocatingMethod}}
+{{#location}}<div><b>location</b>: {{location}}</div>{{/location}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of anchor.
@@ -350,7 +439,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AnchorKind_collapse" aria-expanded="true" aria-controls="AnchorKind_collapse">AnchorKind</a>
+<div id="AnchorKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#concrete}}<div><b>concrete</b>: {{concrete}}</div>{{/concrete}}
+{{#helix}}<div><b>helix</b>: {{helix}}</div>{{/helix}}
+{{#multiHelix}}<div><b>multiHelix</b>: {{multiHelix}}</div>{{/multiHelix}}
+{{#rod}}<div><b>rod</b>: {{rod}}</div>{{/rod}}
+{{#screw}}<div><b>screw</b>: {{screw}}</div>{{/screw}}
+{{#unknown}}<div><b>unknown</b>: {{unknown}}</div>{{/unknown}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Construction holding assets such as conductors, transformers, switchgear, etc.
@@ -414,7 +524,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Structure_collapse" aria-expanded="true" aria-controls="Structure_collapse">Structure</a>
+<div id="Structure_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetContainer.prototype.template.call (this) +
+`
+{{#fumigantAppliedDate}}<div><b>fumigantAppliedDate</b>: {{fumigantAppliedDate}}</div>{{/fumigantAppliedDate}}
+{{#fumigantName}}<div><b>fumigantName</b>: {{fumigantName}}</div>{{/fumigantName}}
+{{#height}}<div><b>height</b>: {{height}}</div>{{/height}}
+{{#materialKind}}<div><b>materialKind</b>: {{materialKind}}</div>{{/materialKind}}
+{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+{{#removeWeed}}<div><b>removeWeed</b>: {{removeWeed}}</div>{{/removeWeed}}
+{{#weedRemovedDate}}<div><b>weedRemovedDate</b>: {{weedRemovedDate}}</div>{{/weedRemovedDate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of treatment for poles.
@@ -478,7 +609,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PoleTreatmentKind_collapse" aria-expanded="true" aria-controls="PoleTreatmentKind_collapse">PoleTreatmentKind</a>
+<div id="PoleTreatmentKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#full}}<div><b>full</b>: {{full}}</div>{{/full}}
+{{#butt}}<div><b>butt</b>: {{butt}}</div>{{/butt}}
+{{#natural}}<div><b>natural</b>: {{natural}}</div>{{/natural}}
+{{#grayStain}}<div><b>grayStain</b>: {{grayStain}}</div>{{/grayStain}}
+{{#greenStain}}<div><b>greenStain</b>: {{greenStain}}</div>{{/greenStain}}
+{{#penta}}<div><b>penta</b>: {{penta}}</div>{{/penta}}
+{{#unknown}}<div><b>unknown</b>: {{unknown}}</div>{{/unknown}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Generic asset or material item that may be used for planning, work or design purposes.
@@ -538,7 +691,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GenericAssetModelOrMaterial_collapse" aria-expanded="true" aria-controls="GenericAssetModelOrMaterial_collapse">GenericAssetModelOrMaterial</a>
+<div id="GenericAssetModelOrMaterial_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetModel.prototype.template.call (this) +
+`
+{{#estimatedUnitCost}}<div><b>estimatedUnitCost</b>: {{estimatedUnitCost}}</div>{{/estimatedUnitCost}}
+{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+{{#stockItem}}<div><b>stockItem</b>: {{stockItem}}</div>{{/stockItem}}
+{{#CUWorkEquipmentAsset}}<div><b>CUWorkEquipmentAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUWorkEquipmentAsset}}&quot;);})'>{{CUWorkEquipmentAsset}}</a></div>{{/CUWorkEquipmentAsset}}
+{{#TypeAssetCatalogue}}<div><b>TypeAssetCatalogue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAssetCatalogue}}&quot;);})'>{{TypeAssetCatalogue}}</a></div>{{/TypeAssetCatalogue}}
+{{#CUAsset}}<div><b>CUAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUAsset}}&quot;);})'>{{CUAsset}}</a></div>{{/CUAsset}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of cooling.
@@ -594,7 +767,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CoolingKind_collapse" aria-expanded="true" aria-controls="CoolingKind_collapse">CoolingKind</a>
+<div id="CoolingKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#selfCooling}}<div><b>selfCooling</b>: {{selfCooling}}</div>{{/selfCooling}}
+{{#forcedAir}}<div><b>forcedAir</b>: {{forcedAir}}</div>{{/forcedAir}}
+{{#forcedOilAndAir}}<div><b>forcedOilAndAir</b>: {{forcedOilAndAir}}</div>{{/forcedOilAndAir}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * There are often stages of power which are associated with stages of cooling.
@@ -650,7 +841,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CoolingPowerRating_collapse" aria-expanded="true" aria-controls="CoolingPowerRating_collapse">CoolingPowerRating</a>
+<div id="CoolingPowerRating_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#coolingKind}}<div><b>coolingKind</b>: {{coolingKind}}</div>{{/coolingKind}}
+{{#powerRating}}<div><b>powerRating</b>: {{powerRating}}</div>{{/powerRating}}
+{{#stage}}<div><b>stage</b>: {{stage}}</div>{{/stage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of structure support.
@@ -702,7 +910,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StructureSupportKind_collapse" aria-expanded="true" aria-controls="StructureSupportKind_collapse">StructureSupportKind</a>
+<div id="StructureSupportKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#anchor}}<div><b>anchor</b>: {{anchor}}</div>{{/anchor}}
+{{#guy}}<div><b>guy</b>: {{guy}}</div>{{/guy}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Various current financial properties associated with a particular asset.
@@ -776,7 +1000,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FinancialInfo_collapse" aria-expanded="true" aria-controls="FinancialInfo_collapse">FinancialInfo</a>
+<div id="FinancialInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#account}}<div><b>account</b>: {{account}}</div>{{/account}}
+{{#actualPurchaseCost}}<div><b>actualPurchaseCost</b>: {{actualPurchaseCost}}</div>{{/actualPurchaseCost}}
+{{#costDescription}}<div><b>costDescription</b>: {{costDescription}}</div>{{/costDescription}}
+{{#costType}}<div><b>costType</b>: {{costType}}</div>{{/costType}}
+{{#financialValue}}<div><b>financialValue</b>: {{financialValue}}</div>{{/financialValue}}
+{{#plantTransferDateTime}}<div><b>plantTransferDateTime</b>: {{plantTransferDateTime}}</div>{{/plantTransferDateTime}}
+{{#purchaseDateTime}}<div><b>purchaseDateTime</b>: {{purchaseDateTime}}</div>{{/purchaseDateTime}}
+{{#purchaseOrderNumber}}<div><b>purchaseOrderNumber</b>: {{purchaseOrderNumber}}</div>{{/purchaseOrderNumber}}
+{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+{{#valueDateTime}}<div><b>valueDateTime</b>: {{valueDateTime}}</div>{{/valueDateTime}}
+{{#warrantyEndDateTime}}<div><b>warrantyEndDateTime</b>: {{warrantyEndDateTime}}</div>{{/warrantyEndDateTime}}
+{{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Preservative kind for poles.
@@ -838,7 +1088,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PolePreservativeKind_collapse" aria-expanded="true" aria-controls="PolePreservativeKind_collapse">PolePreservativeKind</a>
+<div id="PolePreservativeKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#creosote}}<div><b>creosote</b>: {{creosote}}</div>{{/creosote}}
+{{#cellon}}<div><b>cellon</b>: {{cellon}}</div>{{/cellon}}
+{{#naphthena}}<div><b>naphthena</b>: {{naphthena}}</div>{{/naphthena}}
+{{#penta}}<div><b>penta</b>: {{penta}}</div>{{/penta}}
+{{#chemonite}}<div><b>chemonite</b>: {{chemonite}}</div>{{/chemonite}}
+{{#unknown}}<div><b>unknown</b>: {{unknown}}</div>{{/unknown}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Support for structure assets.
@@ -902,7 +1173,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StructureSupport_collapse" aria-expanded="true" aria-controls="StructureSupport_collapse">StructureSupport</a>
+<div id="StructureSupport_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.Asset.prototype.template.call (this) +
+`
+{{#anchorKind}}<div><b>anchorKind</b>: {{anchorKind}}</div>{{/anchorKind}}
+{{#anchorRodCount}}<div><b>anchorRodCount</b>: {{anchorRodCount}}</div>{{/anchorRodCount}}
+{{#anchorRodLength}}<div><b>anchorRodLength</b>: {{anchorRodLength}}</div>{{/anchorRodLength}}
+{{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#length}}<div><b>length</b>: {{length}}</div>{{/length}}
+{{#size}}<div><b>size</b>: {{size}}</div>{{/size}}
+{{#SecuredStructure}}<div><b>SecuredStructure</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecuredStructure}}&quot;);})'>{{SecuredStructure}}</a></div>{{/SecuredStructure}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A duct contains individual wires in the layout as specified with associated wire spacing instances; number of them gives the number of conductors in this duct.
@@ -952,7 +1245,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DuctBank_collapse" aria-expanded="true" aria-controls="DuctBank_collapse">DuctBank</a>
+<div id="DuctBank_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetContainer.prototype.template.call (this) +
+`
+{{#circuitCount}}<div><b>circuitCount</b>: {{circuitCount}}</div>{{/circuitCount}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of configuration for joints.
@@ -1008,7 +1316,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#JointConfigurationKind_collapse" aria-expanded="true" aria-controls="JointConfigurationKind_collapse">JointConfigurationKind</a>
+<div id="JointConfigurationKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#wires3to1}}<div><b>wires3to1</b>: {{wires3to1}}</div>{{/wires3to1}}
+{{#wires2to1}}<div><b>wires2to1</b>: {{wires2to1}}</div>{{/wires2to1}}
+{{#wires1to1}}<div><b>wires1to1</b>: {{wires1to1}}</div>{{/wires1to1}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Bushing asset.
@@ -1068,7 +1394,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Bushing_collapse" aria-expanded="true" aria-controls="Bushing_collapse">Bushing</a>
+<div id="Bushing_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.Asset.prototype.template.call (this) +
+`
+{{#c1Capacitance}}<div><b>c1Capacitance</b>: {{c1Capacitance}}</div>{{/c1Capacitance}}
+{{#c1PowerFactor}}<div><b>c1PowerFactor</b>: {{c1PowerFactor}}</div>{{/c1PowerFactor}}
+{{#c2Capacitance}}<div><b>c2Capacitance</b>: {{c2Capacitance}}</div>{{/c2Capacitance}}
+{{#c2PowerFactor}}<div><b>c2PowerFactor</b>: {{c2PowerFactor}}</div>{{/c2PowerFactor}}
+{{#insulationKind}}<div><b>insulationKind</b>: {{insulationKind}}</div>{{/insulationKind}}
+{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Information regarding the experienced and expected reliability of a specific asset, type of asset, or asset model.
@@ -1122,7 +1468,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ReliabilityInfo_collapse" aria-expanded="true" aria-controls="ReliabilityInfo_collapse">ReliabilityInfo</a>
+<div id="ReliabilityInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#momFailureRate}}<div><b>momFailureRate</b>: {{momFailureRate}}</div>{{/momFailureRate}}
+{{#mTTR}}<div><b>mTTR</b>: {{mTTR}}</div>{{/mTTR}}
+{{#Specification}}<div><b>Specification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Specification}}&quot;);})'>{{Specification}}</a></div>{{/Specification}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of tower construction.
@@ -1174,7 +1537,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TowerConstructionKind_collapse" aria-expanded="true" aria-controls="TowerConstructionKind_collapse">TowerConstructionKind</a>
+<div id="TowerConstructionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#suspension}}<div><b>suspension</b>: {{suspension}}</div>{{/suspension}}
+{{#tension}}<div><b>tension</b>: {{tension}}</div>{{/tension}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of lamp for the streetlight.
@@ -1230,7 +1609,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StreetlightLampKind_collapse" aria-expanded="true" aria-controls="StreetlightLampKind_collapse">StreetlightLampKind</a>
+<div id="StreetlightLampKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#highPressureSodium}}<div><b>highPressureSodium</b>: {{highPressureSodium}}</div>{{/highPressureSodium}}
+{{#mercuryVapor}}<div><b>mercuryVapor</b>: {{mercuryVapor}}</div>{{/mercuryVapor}}
+{{#metalHalide}}<div><b>metalHalide</b>: {{metalHalide}}</div>{{/metalHalide}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of PF test for bushing insulation.
@@ -1282,7 +1679,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BushingInsulationPfTestKind_collapse" aria-expanded="true" aria-controls="BushingInsulationPfTestKind_collapse">BushingInsulationPfTestKind</a>
+<div id="BushingInsulationPfTestKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#c1}}<div><b>c1</b>: {{c1}}</div>{{/c1}}
+{{#c2}}<div><b>c2</b>: {{c2}}</div>{{/c2}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of FACTS device.
@@ -1346,7 +1759,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FACTSDeviceKind_collapse" aria-expanded="true" aria-controls="FACTSDeviceKind_collapse">FACTSDeviceKind</a>
+<div id="FACTSDeviceKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#svc}}<div><b>svc</b>: {{svc}}</div>{{/svc}}
+{{#statcom}}<div><b>statcom</b>: {{statcom}}</div>{{/statcom}}
+{{#tcpar}}<div><b>tcpar</b>: {{tcpar}}</div>{{/tcpar}}
+{{#tcsc}}<div><b>tcsc</b>: {{tcsc}}</div>{{/tcsc}}
+{{#tcvl}}<div><b>tcvl</b>: {{tcvl}}</div>{{/tcvl}}
+{{#tsbr}}<div><b>tsbr</b>: {{tsbr}}</div>{{/tsbr}}
+{{#tssc}}<div><b>tssc</b>: {{tssc}}</div>{{/tssc}}
+{{#upfc}}<div><b>upfc</b>: {{upfc}}</div>{{/upfc}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of medium.
@@ -1400,7 +1835,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MediumKind_collapse" aria-expanded="true" aria-controls="MediumKind_collapse">MediumKind</a>
+<div id="MediumKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#gas}}<div><b>gas</b>: {{gas}}</div>{{/gas}}
+{{#liquid}}<div><b>liquid</b>: {{liquid}}</div>{{/liquid}}
+{{#solid}}<div><b>solid</b>: {{solid}}</div>{{/solid}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Winding insulation condition as a result of a test.
@@ -1462,7 +1914,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WindingInsulation_collapse" aria-expanded="true" aria-controls="WindingInsulation_collapse">WindingInsulation</a>
+<div id="WindingInsulation_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#insulationPFStatus}}<div><b>insulationPFStatus</b>: {{insulationPFStatus}}</div>{{/insulationPFStatus}}
+{{#insulationResistance}}<div><b>insulationResistance</b>: {{insulationResistance}}</div>{{/insulationResistance}}
+{{#leakageReactance}}<div><b>leakageReactance</b>: {{leakageReactance}}</div>{{/leakageReactance}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#ToWinding}}<div><b>ToWinding</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ToWinding}}&quot;);})'>{{ToWinding}}</a></div>{{/ToWinding}}
+{{#FromWinding}}<div><b>FromWinding</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FromWinding}}&quot;);})'>{{FromWinding}}</a></div>{{/FromWinding}}
+{{#TransformerObservation}}<div><b>TransformerObservation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerObservation}}&quot;);})'>{{TransformerObservation}}</a></div>{{/TransformerObservation}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Enclosure that offers protection to the equipment it contains and/or safety to people/animals outside it.
@@ -1510,7 +1983,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Cabinet_collapse" aria-expanded="true" aria-controls="Cabinet_collapse">Cabinet</a>
+<div id="Cabinet_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetContainer.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of underground structure.
@@ -1578,7 +2065,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#UndergroundStructureKind_collapse" aria-expanded="true" aria-controls="UndergroundStructureKind_collapse">UndergroundStructureKind</a>
+<div id="UndergroundStructureKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#burd}}<div><b>burd</b>: {{burd}}</div>{{/burd}}
+{{#enclosure}}<div><b>enclosure</b>: {{enclosure}}</div>{{/enclosure}}
+{{#handhole}}<div><b>handhole</b>: {{handhole}}</div>{{/handhole}}
+{{#manhole}}<div><b>manhole</b>: {{manhole}}</div>{{/manhole}}
+{{#pad}}<div><b>pad</b>: {{pad}}</div>{{/pad}}
+{{#subsurfaceEnclosure}}<div><b>subsurfaceEnclosure</b>: {{subsurfaceEnclosure}}</div>{{/subsurfaceEnclosure}}
+{{#trench}}<div><b>trench</b>: {{trench}}</div>{{/trench}}
+{{#tunnel}}<div><b>tunnel</b>: {{tunnel}}</div>{{/tunnel}}
+{{#vault}}<div><b>vault</b>: {{vault}}</div>{{/vault}}
+{{#pullbox}}<div><b>pullbox</b>: {{pullbox}}</div>{{/pullbox}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of base for poles.
@@ -1636,7 +2147,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PoleBaseKind_collapse" aria-expanded="true" aria-controls="PoleBaseKind_collapse">PoleBaseKind</a>
+<div id="PoleBaseKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#asphalt}}<div><b>asphalt</b>: {{asphalt}}</div>{{/asphalt}}
+{{#cement}}<div><b>cement</b>: {{cement}}</div>{{/cement}}
+{{#dirt}}<div><b>dirt</b>: {{dirt}}</div>{{/dirt}}
+{{#unknown}}<div><b>unknown</b>: {{unknown}}</div>{{/unknown}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * How the failure has been isolated.
@@ -1694,7 +2224,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FailureIsolationMethodKind_collapse" aria-expanded="true" aria-controls="FailureIsolationMethodKind_collapse">FailureIsolationMethodKind</a>
+<div id="FailureIsolationMethodKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#breakerOperation}}<div><b>breakerOperation</b>: {{breakerOperation}}</div>{{/breakerOperation}}
+{{#fuse}}<div><b>fuse</b>: {{fuse}}</div>{{/fuse}}
+{{#burnedInTheClear}}<div><b>burnedInTheClear</b>: {{burnedInTheClear}}</div>{{/burnedInTheClear}}
+{{#manuallyIsolated}}<div><b>manuallyIsolated</b>: {{manuallyIsolated}}</div>{{/manuallyIsolated}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An Asset Property that is described through curves rather than as a data point.
@@ -1746,7 +2295,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AssetPropertyCurve_collapse" aria-expanded="true" aria-controls="AssetPropertyCurve_collapse">AssetPropertyCurve</a>
+<div id="AssetPropertyCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#Specification}}<div><b>Specification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Specification}}&quot;);})'>{{Specification}}</a></div>{{/Specification}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of material used for structures.
@@ -1802,7 +2366,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StructureMaterialKind_collapse" aria-expanded="true" aria-controls="StructureMaterialKind_collapse">StructureMaterialKind</a>
+<div id="StructureMaterialKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#wood}}<div><b>wood</b>: {{wood}}</div>{{/wood}}
+{{#steel}}<div><b>steel</b>: {{steel}}</div>{{/steel}}
+{{#concrete}}<div><b>concrete</b>: {{concrete}}</div>{{/concrete}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * As applicable, the basic linear, area, or volume dimensions of an asset, asset type (AssetModel) or other type of object (such as land area).
@@ -1862,7 +2444,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DimensionsInfo_collapse" aria-expanded="true" aria-controls="DimensionsInfo_collapse">DimensionsInfo</a>
+<div id="DimensionsInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#orientation}}<div><b>orientation</b>: {{orientation}}</div>{{/orientation}}
+{{#sizeDepth}}<div><b>sizeDepth</b>: {{sizeDepth}}</div>{{/sizeDepth}}
+{{#sizeDiameter}}<div><b>sizeDiameter</b>: {{sizeDiameter}}</div>{{/sizeDiameter}}
+{{#sizeLength}}<div><b>sizeLength</b>: {{sizeLength}}</div>{{/sizeLength}}
+{{#sizeWidth}}<div><b>sizeWidth</b>: {{sizeWidth}}</div>{{/sizeWidth}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Common information captured during transformer inspections and/or diagnostics.
@@ -1944,7 +2545,37 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransformerObservation_collapse" aria-expanded="true" aria-controls="TransformerObservation_collapse">TransformerObservation</a>
+<div id="TransformerObservation_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#bushingTemp}}<div><b>bushingTemp</b>: {{bushingTemp}}</div>{{/bushingTemp}}
+{{#dga}}<div><b>dga</b>: {{dga}}</div>{{/dga}}
+{{#freqResp}}<div><b>freqResp</b>: {{freqResp}}</div>{{/freqResp}}
+{{#furfuralDP}}<div><b>furfuralDP</b>: {{furfuralDP}}</div>{{/furfuralDP}}
+{{#hotSpotTemp}}<div><b>hotSpotTemp</b>: {{hotSpotTemp}}</div>{{/hotSpotTemp}}
+{{#oilColor}}<div><b>oilColor</b>: {{oilColor}}</div>{{/oilColor}}
+{{#oilDielectricStrength}}<div><b>oilDielectricStrength</b>: {{oilDielectricStrength}}</div>{{/oilDielectricStrength}}
+{{#oilIFT}}<div><b>oilIFT</b>: {{oilIFT}}</div>{{/oilIFT}}
+{{#oilLevel}}<div><b>oilLevel</b>: {{oilLevel}}</div>{{/oilLevel}}
+{{#oilNeutralizationNumber}}<div><b>oilNeutralizationNumber</b>: {{oilNeutralizationNumber}}</div>{{/oilNeutralizationNumber}}
+{{#pumpVibration}}<div><b>pumpVibration</b>: {{pumpVibration}}</div>{{/pumpVibration}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#topOilTemp}}<div><b>topOilTemp</b>: {{topOilTemp}}</div>{{/topOilTemp}}
+{{#waterContent}}<div><b>waterContent</b>: {{waterContent}}</div>{{/waterContent}}
+{{#Reconditioning}}<div><b>Reconditioning</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reconditioning}}&quot;);})'>{{Reconditioning}}</a></div>{{/Reconditioning}}
+{{#Transformer}}<div><b>Transformer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Transformer}}&quot;);})'>{{Transformer}}</a></div>{{/Transformer}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Joint connects two or more cables.
@@ -2000,7 +2631,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Joint_collapse" aria-expanded="true" aria-controls="Joint_collapse">Joint</a>
+<div id="Joint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.Asset.prototype.template.call (this) +
+`
+{{#configurationKind}}<div><b>configurationKind</b>: {{configurationKind}}</div>{{/configurationKind}}
+{{#fillKind}}<div><b>fillKind</b>: {{fillKind}}</div>{{/fillKind}}
+{{#insulation}}<div><b>insulation</b>: {{insulation}}</div>{{/insulation}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Reconditioning information for an asset.
@@ -2052,7 +2700,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Reconditioning_collapse" aria-expanded="true" aria-controls="Reconditioning_collapse">Reconditioning</a>
+<div id="Reconditioning_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
+{{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A substance that either (1) provides the means of transmission of a force or effect, such as hydraulic fluid, or (2) is used for a surrounding or enveloping substance, such as oil in a transformer or circuit breaker.
@@ -2106,7 +2770,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Medium_collapse" aria-expanded="true" aria-controls="Medium_collapse">Medium</a>
+<div id="Medium_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#volumeSpec}}<div><b>volumeSpec</b>: {{volumeSpec}}</div>{{/volumeSpec}}
+{{#Specification}}<div><b>Specification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Specification}}&quot;);})'>{{Specification}}</a></div>{{/Specification}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A facility may contain buildings, storage facilities, switching facilities, power generation, manufacturing facilities, maintenance facilities, etc.
@@ -2156,7 +2837,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Facility_collapse" aria-expanded="true" aria-controls="Facility_collapse">Facility</a>
+<div id="Facility_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.AssetContainer.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Bushing insulation power factor condition as a result of a test.
@@ -2214,7 +2910,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BushingInsulationPF_collapse" aria-expanded="true" aria-controls="BushingInsulationPF_collapse">BushingInsulationPF</a>
+<div id="BushingInsulationPF_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#testKind}}<div><b>testKind</b>: {{testKind}}</div>{{/testKind}}
+{{#Bushing}}<div><b>Bushing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bushing}}&quot;);})'>{{Bushing}}</a></div>{{/Bushing}}
+{{#TransformerObservation}}<div><b>TransformerObservation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerObservation}}&quot;);})'>{{TransformerObservation}}</a></div>{{/TransformerObservation}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Streetlight asset.
@@ -2270,7 +2984,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Streetlight_collapse" aria-expanded="true" aria-controls="Streetlight_collapse">Streetlight</a>
+<div id="Streetlight_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.Asset.prototype.template.call (this) +
+`
+{{#armLength}}<div><b>armLength</b>: {{armLength}}</div>{{/armLength}}
+{{#lampKind}}<div><b>lampKind</b>: {{lampKind}}</div>{{/lampKind}}
+{{#lightRating}}<div><b>lightRating</b>: {{lightRating}}</div>{{/lightRating}}
+{{#Pole}}<div><b>Pole</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Pole}}&quot;);})'>{{Pole}}</a></div>{{/Pole}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Pole asset.
@@ -2340,7 +3072,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Pole_collapse" aria-expanded="true" aria-controls="Pole_collapse">Pole</a>
+<div id="Pole_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Structure.prototype.template.call (this) +
+`
+{{#baseKind}}<div><b>baseKind</b>: {{baseKind}}</div>{{/baseKind}}
+{{#breastBlock}}<div><b>breastBlock</b>: {{breastBlock}}</div>{{/breastBlock}}
+{{#classification}}<div><b>classification</b>: {{classification}}</div>{{/classification}}
+{{#construction}}<div><b>construction</b>: {{construction}}</div>{{/construction}}
+{{#diameter}}<div><b>diameter</b>: {{diameter}}</div>{{/diameter}}
+{{#jpaReference}}<div><b>jpaReference</b>: {{jpaReference}}</div>{{/jpaReference}}
+{{#length}}<div><b>length</b>: {{length}}</div>{{/length}}
+{{#preservativeKind}}<div><b>preservativeKind</b>: {{preservativeKind}}</div>{{/preservativeKind}}
+{{#speciesType}}<div><b>speciesType</b>: {{speciesType}}</div>{{/speciesType}}
+{{#treatedDateTime}}<div><b>treatedDateTime</b>: {{treatedDateTime}}</div>{{/treatedDateTime}}
+{{#treatmentKind}}<div><b>treatmentKind</b>: {{treatmentKind}}</div>{{/treatmentKind}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Tower asset.
@@ -2392,7 +3149,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Tower_collapse" aria-expanded="true" aria-controls="Tower_collapse">Tower</a>
+<div id="Tower_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Structure.prototype.template.call (this) +
+`
+{{#constructionKind}}<div><b>constructionKind</b>: {{constructionKind}}</div>{{/constructionKind}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Underground structure.
@@ -2448,7 +3220,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#UndergroundStructure_collapse" aria-expanded="true" aria-controls="UndergroundStructure_collapse">UndergroundStructure</a>
+<div id="UndergroundStructure_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Structure.prototype.template.call (this) +
+`
+{{#hasVentilation}}<div><b>hasVentilation</b>: {{hasVentilation}}</div>{{/hasVentilation}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#material}}<div><b>material</b>: {{material}}</div>{{/material}}
+{{#sealingWarrantyExpiresDate}}<div><b>sealingWarrantyExpiresDate</b>: {{sealingWarrantyExpiresDate}}</div>{{/sealingWarrantyExpiresDate}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

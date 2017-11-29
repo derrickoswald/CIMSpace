@@ -54,7 +54,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#URI_collapse" aria-expanded="true" aria-controls="URI_collapse">URI</a>
+<div id="URI_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         class ModelDescriptionCIMVersion extends base.Element
         {
@@ -102,7 +116,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ModelDescriptionCIMVersion_collapse" aria-expanded="true" aria-controls="ModelDescriptionCIMVersion_collapse">ModelDescriptionCIMVersion</a>
+<div id="ModelDescriptionCIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#date}}<div><b>date</b>: {{date}}</div>{{/date}}
+{{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+</div>
+`
+                );
+           }        }
 
         class FullModelDocumentElement extends base.Element
         {
@@ -146,7 +176,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FullModelDocumentElement_collapse" aria-expanded="true" aria-controls="FullModelDocumentElement_collapse">FullModelDocumentElement</a>
+<div id="FullModelDocumentElement_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Identity contain comon descriptive information.
@@ -200,7 +244,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Description_collapse" aria-expanded="true" aria-controls="Description_collapse">Description</a>
+<div id="Description_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+{{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+</div>
+`
+                );
+           }        }
 
         class Model extends base.Element
         {
@@ -256,7 +317,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Model_collapse" aria-expanded="true" aria-controls="Model_collapse">Model</a>
+<div id="Model_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#created}}<div><b>created</b>: {{created}}</div>{{/created}}
+{{#scenarioTime}}<div><b>scenarioTime</b>: {{scenarioTime}}</div>{{/scenarioTime}}
+{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+{{#modelingAuthoritySet}}<div><b>modelingAuthoritySet</b>: {{modelingAuthoritySet}}</div>{{/modelingAuthoritySet}}
+{{#profile}}<div><b>profile</b>: {{profile}}</div>{{/profile}}
+{{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+</div>
+`
+                );
+           }        }
 
         class FullModel extends FullModelDocumentElement
         {
@@ -300,7 +381,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FullModel_collapse" aria-expanded="true" aria-controls="FullModel_collapse">FullModel</a>
+<div id="FullModel_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + FullModelDocumentElement.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         class Statements extends FullModelDocumentElement
         {
@@ -344,7 +439,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Statements_collapse" aria-expanded="true" aria-controls="Statements_collapse">Statements</a>
+<div id="Statements_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + FullModelDocumentElement.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         class DescriptionID extends Description
         {
@@ -390,7 +499,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DescriptionID_collapse" aria-expanded="true" aria-controls="DescriptionID_collapse">DescriptionID</a>
+<div id="DescriptionID_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Description.prototype.template.call (this) +
+`
+{{#uri}}<div><b>uri</b>: {{uri}}</div>{{/uri}}
+</div>
+`
+                );
+           }        }
 
         class DifferenceModel extends Model
         {
@@ -438,7 +562,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DifferenceModel_collapse" aria-expanded="true" aria-controls="DifferenceModel_collapse">DifferenceModel</a>
+<div id="DifferenceModel_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Model.prototype.template.call (this) +
+`
+{{#forwardDifferences}}<div><b>forwardDifferences</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{forwardDifferences}}&quot;);})'>{{forwardDifferences}}</a></div>{{/forwardDifferences}}
+{{#reverseDifferences}}<div><b>reverseDifferences</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{reverseDifferences}}&quot;);})'>{{reverseDifferences}}</a></div>{{/reverseDifferences}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

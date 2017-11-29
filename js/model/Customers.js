@@ -68,7 +68,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CustomerNotification_collapse" aria-expanded="true" aria-controls="CustomerNotification_collapse">CustomerNotification</a>
+<div id="CustomerNotification_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#trigger}}<div><b>trigger</b>: {{trigger}}</div>{{/trigger}}
+{{#earliestDateTimeToCall}}<div><b>earliestDateTimeToCall</b>: {{earliestDateTimeToCall}}</div>{{/earliestDateTimeToCall}}
+{{#latestDateTimeToCall}}<div><b>latestDateTimeToCall</b>: {{latestDateTimeToCall}}</div>{{/latestDateTimeToCall}}
+{{#contactType}}<div><b>contactType</b>: {{contactType}}</div>{{/contactType}}
+{{#contactValue}}<div><b>contactValue</b>: {{contactValue}}</div>{{/contactValue}}
+{{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
+{{#Incident}}<div><b>Incident</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Incident}}&quot;);})'>{{Incident}}</a></div>{{/Incident}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Grouping of pricing components and prices used in the creation of customer charges and the eligibility criteria under which these terms may be offered to a customer.
@@ -132,7 +153,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PricingStructure_collapse" aria-expanded="true" aria-controls="PricingStructure_collapse">PricingStructure</a>
+<div id="PricingStructure_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+{{#dailyCeilingUsage}}<div><b>dailyCeilingUsage</b>: {{dailyCeilingUsage}}</div>{{/dailyCeilingUsage}}
+{{#dailyEstimatedUsage}}<div><b>dailyEstimatedUsage</b>: {{dailyEstimatedUsage}}</div>{{/dailyEstimatedUsage}}
+{{#dailyFloorUsage}}<div><b>dailyFloorUsage</b>: {{dailyFloorUsage}}</div>{{/dailyFloorUsage}}
+{{#revenueKind}}<div><b>revenueKind</b>: {{revenueKind}}</div>{{/revenueKind}}
+{{#taxExemption}}<div><b>taxExemption</b>: {{taxExemption}}</div>{{/taxExemption}}
+{{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceCategory}}&quot;);})'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of customer.
@@ -204,7 +246,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CustomerKind_collapse" aria-expanded="true" aria-controls="CustomerKind_collapse">CustomerKind</a>
+<div id="CustomerKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#residential}}<div><b>residential</b>: {{residential}}</div>{{/residential}}
+{{#residentialAndCommercial}}<div><b>residentialAndCommercial</b>: {{residentialAndCommercial}}</div>{{/residentialAndCommercial}}
+{{#residentialAndStreetlight}}<div><b>residentialAndStreetlight</b>: {{residentialAndStreetlight}}</div>{{/residentialAndStreetlight}}
+{{#residentialStreetlightOthers}}<div><b>residentialStreetlightOthers</b>: {{residentialStreetlightOthers}}</div>{{/residentialStreetlightOthers}}
+{{#residentialFarmService}}<div><b>residentialFarmService</b>: {{residentialFarmService}}</div>{{/residentialFarmService}}
+{{#commercialIndustrial}}<div><b>commercialIndustrial</b>: {{commercialIndustrial}}</div>{{/commercialIndustrial}}
+{{#pumpingLoad}}<div><b>pumpingLoad</b>: {{pumpingLoad}}</div>{{/pumpingLoad}}
+{{#windMachine}}<div><b>windMachine</b>: {{windMachine}}</div>{{/windMachine}}
+{{#energyServiceSupplier}}<div><b>energyServiceSupplier</b>: {{energyServiceSupplier}}</div>{{/energyServiceSupplier}}
+{{#energyServiceScheduler}}<div><b>energyServiceScheduler</b>: {{energyServiceScheduler}}</div>{{/energyServiceScheduler}}
+{{#internalUse}}<div><b>internalUse</b>: {{internalUse}}</div>{{/internalUse}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Document, approved by the responsible regulatory agency, listing the terms and conditions, including a schedule of prices, under which utility services will be provided.
@@ -258,7 +326,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Tariff_collapse" aria-expanded="true" aria-controls="Tariff_collapse">Tariff</a>
+<div id="Tariff_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#endDate}}<div><b>endDate</b>: {{endDate}}</div>{{/endDate}}
+{{#startDate}}<div><b>startDate</b>: {{startDate}}</div>{{/startDate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Organisation receiving services from service supplier.
@@ -320,7 +404,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Customer_collapse" aria-expanded="true" aria-controls="Customer_collapse">Customer</a>
+<div id="Customer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.OrganisationRole.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#pucNumber}}<div><b>pucNumber</b>: {{pucNumber}}</div>{{/pucNumber}}
+{{#specialNeed}}<div><b>specialNeed</b>: {{specialNeed}}</div>{{/specialNeed}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#vip}}<div><b>vip</b>: {{vip}}</div>{{/vip}}
+{{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+{{#locale}}<div><b>locale</b>: {{locale}}</div>{{/locale}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of trouble reporting.
@@ -378,7 +483,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TroubleReportingKind_collapse" aria-expanded="true" aria-controls="TroubleReportingKind_collapse">TroubleReportingKind</a>
+<div id="TroubleReportingKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#call}}<div><b>call</b>: {{call}}</div>{{/call}}
+{{#email}}<div><b>email</b>: {{email}}</div>{{/email}}
+{{#letter}}<div><b>letter</b>: {{letter}}</div>{{/letter}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+{{#ivr}}<div><b>ivr</b>: {{ivr}}</div>{{/ivr}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of service.
@@ -448,7 +572,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ServiceKind_collapse" aria-expanded="true" aria-controls="ServiceKind_collapse">ServiceKind</a>
+<div id="ServiceKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#electricity}}<div><b>electricity</b>: {{electricity}}</div>{{/electricity}}
+{{#gas}}<div><b>gas</b>: {{gas}}</div>{{/gas}}
+{{#water}}<div><b>water</b>: {{water}}</div>{{/water}}
+{{#time}}<div><b>time</b>: {{time}}</div>{{/time}}
+{{#heat}}<div><b>heat</b>: {{heat}}</div>{{/heat}}
+{{#refuse}}<div><b>refuse</b>: {{refuse}}</div>{{/refuse}}
+{{#sewerage}}<div><b>sewerage</b>: {{sewerage}}</div>{{/sewerage}}
+{{#rates}}<div><b>rates</b>: {{rates}}</div>{{/rates}}
+{{#tvLicence}}<div><b>tvLicence</b>: {{tvLicence}}</div>{{/tvLicence}}
+{{#internet}}<div><b>internet</b>: {{internet}}</div>{{/internet}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Hazardous situation associated with an incident.
@@ -502,7 +651,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#IncidentHazard_collapse" aria-expanded="true" aria-controls="IncidentHazard_collapse">IncidentHazard</a>
+<div id="IncidentHazard_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Hazard.prototype.template.call (this) +
+`
+{{#Incident}}<div><b>Incident</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Incident}}&quot;);})'>{{Incident}}</a></div>{{/Incident}}
+{{#TroubleTicket}}<div><b>TroubleTicket</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TroubleTicket}}&quot;);})'>{{TroubleTicket}}</a></div>{{/TroubleTicket}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of trigger to notify customer.
@@ -560,7 +725,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#NotificationTriggerKind_collapse" aria-expanded="true" aria-controls="NotificationTriggerKind_collapse">NotificationTriggerKind</a>
+<div id="NotificationTriggerKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#initialEtr}}<div><b>initialEtr</b>: {{initialEtr}}</div>{{/initialEtr}}
+{{#etrChange}}<div><b>etrChange</b>: {{etrChange}}</div>{{/etrChange}}
+{{#powerRestored}}<div><b>powerRestored</b>: {{powerRestored}}</div>{{/powerRestored}}
+{{#powerOut}}<div><b>powerOut</b>: {{powerOut}}</div>{{/powerOut}}
+{{#informDispatched}}<div><b>informDispatched</b>: {{informDispatched}}</div>{{/informDispatched}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Agreement between the customer and the service supplier to pay for service at a specific service location.
@@ -622,7 +806,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CustomerAgreement_collapse" aria-expanded="true" aria-controls="CustomerAgreement_collapse">CustomerAgreement</a>
+<div id="CustomerAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Agreement.prototype.template.call (this) +
+`
+{{#loadMgmt}}<div><b>loadMgmt</b>: {{loadMgmt}}</div>{{/loadMgmt}}
+{{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceCategory}}&quot;);})'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
+{{#ServiceSupplier}}<div><b>ServiceSupplier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceSupplier}}&quot;);})'>{{ServiceSupplier}}</a></div>{{/ServiceSupplier}}
+{{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
+{{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
+{{#StandardIndustryCode}}<div><b>StandardIndustryCode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StandardIndustryCode}}&quot;);})'>{{StandardIndustryCode}}</a></div>{{/StandardIndustryCode}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A real estate location, commonly referred to as premises.
@@ -676,7 +880,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ServiceLocation_collapse" aria-expanded="true" aria-controls="ServiceLocation_collapse">ServiceLocation</a>
+<div id="ServiceLocation_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Work.WorkLocation.prototype.template.call (this) +
+`
+{{#accessMethod}}<div><b>accessMethod</b>: {{accessMethod}}</div>{{/accessMethod}}
+{{#needsInspection}}<div><b>needsInspection</b>: {{needsInspection}}</div>{{/needsInspection}}
+{{#siteAccessProblem}}<div><b>siteAccessProblem</b>: {{siteAccessProblem}}</div>{{/siteAccessProblem}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Category of service provided to the customer.
@@ -726,7 +947,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ServiceCategory_collapse" aria-expanded="true" aria-controls="ServiceCategory_collapse">ServiceCategory</a>
+<div id="ServiceCategory_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Accounting classification of the type of revenue collected for the customer agreement, typically used to break down accounts for revenue accounting.
@@ -788,7 +1024,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RevenueKind_collapse" aria-expanded="true" aria-controls="RevenueKind_collapse">RevenueKind</a>
+<div id="RevenueKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#residential}}<div><b>residential</b>: {{residential}}</div>{{/residential}}
+{{#nonResidential}}<div><b>nonResidential</b>: {{nonResidential}}</div>{{/nonResidential}}
+{{#commercial}}<div><b>commercial</b>: {{commercial}}</div>{{/commercial}}
+{{#industrial}}<div><b>industrial</b>: {{industrial}}</div>{{/industrial}}
+{{#irrigation}}<div><b>irrigation</b>: {{irrigation}}</div>{{/irrigation}}
+{{#streetLight}}<div><b>streetLight</b>: {{streetLight}}</div>{{/streetLight}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         class TroubleTicket extends Common.Document
         {
@@ -848,7 +1105,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TroubleTicket_collapse" aria-expanded="true" aria-controls="TroubleTicket_collapse">TroubleTicket</a>
+<div id="TroubleTicket_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#dateTimeOfReport}}<div><b>dateTimeOfReport</b>: {{dateTimeOfReport}}</div>{{/dateTimeOfReport}}
+{{#troubleCode}}<div><b>troubleCode</b>: {{troubleCode}}</div>{{/troubleCode}}
+{{#reportingKind}}<div><b>reportingKind</b>: {{reportingKind}}</div>{{/reportingKind}}
+{{#resolvedDateTime}}<div><b>resolvedDateTime</b>: {{resolvedDateTime}}</div>{{/resolvedDateTime}}
+{{#firstResponder}}<div><b>firstResponder</b>: {{firstResponder}}</div>{{/firstResponder}}
+{{#Notification}}<div><b>Notification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Notification}}&quot;);})'>{{Notification}}</a></div>{{/Notification}}
+{{#Incident}}<div><b>Incident</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Incident}}&quot;);})'>{{Incident}}</a></div>{{/Incident}}
+{{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Assignment of a group of products and services purchased by the customer through a customer agreement, used as a mechanism for customer billing and payment.
@@ -904,7 +1183,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CustomerAccount_collapse" aria-expanded="true" aria-controls="CustomerAccount_collapse">CustomerAccount</a>
+<div id="CustomerAccount_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#billingCycle}}<div><b>billingCycle</b>: {{billingCycle}}</div>{{/billingCycle}}
+{{#budgetBill}}<div><b>budgetBill</b>: {{budgetBill}}</div>{{/budgetBill}}
+{{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

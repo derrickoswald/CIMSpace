@@ -4,7 +4,7 @@
 "use strict";
 define
 (
-    ["cimnav", "cimedit", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
+    ["cimnav", "cimedit", "cim", "mustache", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
     /**
      * @summary Main entry point for the application.
      * @description Performs application initialization as the first step in the RequireJS load sequence.
@@ -13,7 +13,7 @@ define
      * @exports cimmap
      * @version 1.0
      */
-    function (cimnav, CIMEdit, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
+    function (cimnav, CIMEdit, cim, mustache, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
     {
         /**
          * The map object.
@@ -271,9 +271,9 @@ define
         function showDetails (content)
         {
             var text =
-                 "        <pre>" +
+                 "<div class='well'>\n" +
                  content +
-                 "        </pre>";
+                "</div>\n";
             document.getElementById ("feature_detail_contents").innerHTML = text;
             show_details ();
         }
@@ -306,27 +306,8 @@ define
         }
 
         /**
-         * @summary JSON replacer function for element details display.
-         * @description Makes links out of strings that are also element id values.
-         * @function detail_helper
-         * @memberOf module:cimmap
-         */
-        function detail_helper (key, value)
-        {
-            var feature;
-            if ((key == "symbol") || (key == "color"))
-                return undefined;
-            if (typeof value === "string")
-                if (null != (feature = CIM_Data.Element[value]))
-                {
-                    value = "<a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;" + value + "&quot;);})'>" + value + "</a>"
-                }
-            return (value);
-        }
-
-        /**
          * @summary Display the current feature properties and highlight it on the map.
-         * @description Shows a JSON properties sheet in the details window,
+         * @description Shows a properties sheet in the details window,
          * and highlights the current feature in the map.
          * Other features in the current selection are provided links in the details window
          * to make them the current feature.
@@ -339,13 +320,65 @@ define
             if ((null != CIM_Data) && (null != CURRENT_FEATURE))
                 if (null != (feature = CIM_Data.Element[CURRENT_FEATURE]))
                 {
-                    var text = JSON.stringify (feature, detail_helper, 2);
-                    if (null != CURRENT_SELECTION)
-                        for (var i = 0; i < CURRENT_SELECTION.length; i++)
+                    var cls = cim.class_map (feature);
+                    var template = cls.prototype.template ();
+                    var text = mustache.render (template, feature);
+
+                    var conducting = CIM_Data.ConductingEquipment[CURRENT_FEATURE];
+                    if ("undefined" != typeof (conducting))
+                    {
+                        var terminals = CIM_Data.Terminal;
+                        var terms = [];
+                        for (var property in terminals)
+                            if (terminals.hasOwnProperty (property))
+                            {
+                                var terminal = terminals[property];
+                                if (CURRENT_FEATURE == terminal.ConductingEquipment)
+                                    terms.push (terminal);
+                            }
+                        if (0 != terms.length)
                         {
-                            if (CURRENT_SELECTION[i] != CURRENT_FEATURE)
-                                text = text + "\n<a href='#' onclick='require([\"cimmap\"], function(cimmap) {cimmap.select (\"" + CURRENT_SELECTION[i] + "\");})'>" + CURRENT_SELECTION[i] + "</a>";
+                            var connected = terms.map (
+                                function (terminal)
+                                {
+                                    var node = terminal.ConnectivityNode;
+                                    var equipment = [];
+                                    for (var property in terminals)
+                                        if (terminals.hasOwnProperty (property))
+                                        {
+                                            var term = terminals[property];
+                                            if (node == term.ConnectivityNode)
+                                                if (CURRENT_FEATURE != term.ConductingEquipment)
+                                                    equipment.push (term.ConductingEquipment);
+                                        }
+                                    return ({ terminal: terminal, equipment: equipment });
+                                }
+                            );
+                            text = text + "<div>Connected:</div>\n";
+                            for (var i = 0; i < connected.length; i++)
+                            {
+                                var terminal = connected[i].terminal.mRID;
+                                var equipment = connected[i].equipment;
+                                var links = "";
+                                for (var j = 0; j < equipment.length; j++)
+                                    links = links + " <a href='#' onclick='require([\"cimmap\"], function(cimmap) {cimmap.select (\"" + equipment[j] + "\");})'>" + equipment[j] + "</a>";
+                                text = text + "<div>" + terminal + ": " + links + "</div>\n";
+                            }
                         }
+                    }
+
+                    if (null != CURRENT_SELECTION)
+                    {
+                        if (1 < CURRENT_SELECTION.length)
+                        {
+                            text = text + "<div>Also selected:</div>\n";
+                            for (var i = 0; i < CURRENT_SELECTION.length; i++)
+                            {
+                                if (CURRENT_SELECTION[i] != CURRENT_FEATURE)
+                                    text = text + "<div><a href='#' onclick='require([\"cimmap\"], function(cimmap) {cimmap.select (\"" + CURRENT_SELECTION[i] + "\");})'>" + CURRENT_SELECTION[i] + "</a></div>\n";
+                            }
+                        }
+                    }
                     showDetails (text);
                     glow (["in", "mRID", CURRENT_FEATURE]);
                 }

@@ -58,7 +58,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MechanicalLoadDynamics_collapse" aria-expanded="true" aria-controls="MechanicalLoadDynamics_collapse">MechanicalLoadDynamics</a>
+<div id="MechanicalLoadDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+`
+{{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineDynamics}}&quot;);})'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
+{{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineDynamics}}&quot;);})'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Mechanical load model type 1.
@@ -114,7 +130,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MechLoad1_collapse" aria-expanded="true" aria-controls="MechLoad1_collapse">MechLoad1</a>
+<div id="MechLoad1_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + MechanicalLoadDynamics.prototype.template.call (this) +
+`
+{{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
+{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+{{#d}}<div><b>d</b>: {{d}}</div>{{/d}}
+{{#e}}<div><b>e</b>: {{e}}</div>{{/e}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

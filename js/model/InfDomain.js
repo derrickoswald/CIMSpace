@@ -58,7 +58,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OASISStatusType_collapse" aria-expanded="true" aria-controls="OASISStatusType_collapse">OASISStatusType</a>
+<div id="OASISStatusType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#Data_Transfer_Procedure_Initiated}}<div><b>Data_Transfer_Procedure_Initiated</b>: {{Data_Transfer_Procedure_Initiated}}</div>{{/Data_Transfer_Procedure_Initiated}}
+{{#Valid}}<div><b>Valid</b>: {{Valid}}</div>{{/Valid}}
+{{#Obsolete}}<div><b>Obsolete</b>: {{Obsolete}}</div>{{/Obsolete}}
+{{#Data_Transfer_Succesful}}<div><b>Data_Transfer_Succesful</b>: {{Data_Transfer_Succesful}}</div>{{/Data_Transfer_Succesful}}
+{{#Push_Failed}}<div><b>Push_Failed</b>: {{Push_Failed}}</div>{{/Push_Failed}}
+{{#Forced_Termination}}<div><b>Forced_Termination</b>: {{Forced_Termination}}</div>{{/Forced_Termination}}
+</div>
+`
+                );
+           }        }
 
         class OASISDataItems extends base.Element
         {
@@ -314,7 +334,127 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OASISDataItems_collapse" aria-expanded="true" aria-controls="OASISDataItems_collapse">OASISDataItems</a>
+<div id="OASISDataItems_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#AS_CLEAR_ASMP_IFM}}<div><b>AS_CLEAR_ASMP_IFM</b>: {{AS_CLEAR_ASMP_IFM}}</div>{{/AS_CLEAR_ASMP_IFM}}
+{{#AS_CLEAR_ASMP_RTM}}<div><b>AS_CLEAR_ASMP_RTM</b>: {{AS_CLEAR_ASMP_RTM}}</div>{{/AS_CLEAR_ASMP_RTM}}
+{{#AS_CLEAR_COST_IFM}}<div><b>AS_CLEAR_COST_IFM</b>: {{AS_CLEAR_COST_IFM}}</div>{{/AS_CLEAR_COST_IFM}}
+{{#AS_CLEAR_COST_RTM}}<div><b>AS_CLEAR_COST_RTM</b>: {{AS_CLEAR_COST_RTM}}</div>{{/AS_CLEAR_COST_RTM}}
+{{#AS_CLEAR_MW_IFM}}<div><b>AS_CLEAR_MW_IFM</b>: {{AS_CLEAR_MW_IFM}}</div>{{/AS_CLEAR_MW_IFM}}
+{{#AS_CLEAR_MW_RTM}}<div><b>AS_CLEAR_MW_RTM</b>: {{AS_CLEAR_MW_RTM}}</div>{{/AS_CLEAR_MW_RTM}}
+{{#AS_GEN_TOTAL_MW_IFM}}<div><b>AS_GEN_TOTAL_MW_IFM</b>: {{AS_GEN_TOTAL_MW_IFM}}</div>{{/AS_GEN_TOTAL_MW_IFM}}
+{{#AS_GEN_TOTAL_MW_RTM}}<div><b>AS_GEN_TOTAL_MW_RTM</b>: {{AS_GEN_TOTAL_MW_RTM}}</div>{{/AS_GEN_TOTAL_MW_RTM}}
+{{#AS_IMP_TOTAL_MW_IFM}}<div><b>AS_IMP_TOTAL_MW_IFM</b>: {{AS_IMP_TOTAL_MW_IFM}}</div>{{/AS_IMP_TOTAL_MW_IFM}}
+{{#AS_IMP_TOTAL_MW_RTM}}<div><b>AS_IMP_TOTAL_MW_RTM</b>: {{AS_IMP_TOTAL_MW_RTM}}</div>{{/AS_IMP_TOTAL_MW_RTM}}
+{{#AS_LOAD_TOTAL_MW_IFM}}<div><b>AS_LOAD_TOTAL_MW_IFM</b>: {{AS_LOAD_TOTAL_MW_IFM}}</div>{{/AS_LOAD_TOTAL_MW_IFM}}
+{{#AS_LOAD_TOTAL_MW_RTM}}<div><b>AS_LOAD_TOTAL_MW_RTM</b>: {{AS_LOAD_TOTAL_MW_RTM}}</div>{{/AS_LOAD_TOTAL_MW_RTM}}
+{{#AS_REGION_value}}<div><b>AS_REGION_value</b>: {{AS_REGION_value}}</div>{{/AS_REGION_value}}
+{{#AS_REGION_REQ_MAX}}<div><b>AS_REGION_REQ_MAX</b>: {{AS_REGION_REQ_MAX}}</div>{{/AS_REGION_REQ_MAX}}
+{{#AS_REGION_REQ_MIN}}<div><b>AS_REGION_REQ_MIN</b>: {{AS_REGION_REQ_MIN}}</div>{{/AS_REGION_REQ_MIN}}
+{{#AS_SELF_MW_IFM}}<div><b>AS_SELF_MW_IFM</b>: {{AS_SELF_MW_IFM}}</div>{{/AS_SELF_MW_IFM}}
+{{#AS_SELF_MW_RTM}}<div><b>AS_SELF_MW_RTM</b>: {{AS_SELF_MW_RTM}}</div>{{/AS_SELF_MW_RTM}}
+{{#AS_TOTAL_MW}}<div><b>AS_TOTAL_MW</b>: {{AS_TOTAL_MW}}</div>{{/AS_TOTAL_MW}}
+{{#AS_TOTAL_MW_IFM}}<div><b>AS_TOTAL_MW_IFM</b>: {{AS_TOTAL_MW_IFM}}</div>{{/AS_TOTAL_MW_IFM}}
+{{#AS_TOTAL_MW_RTM}}<div><b>AS_TOTAL_MW_RTM</b>: {{AS_TOTAL_MW_RTM}}</div>{{/AS_TOTAL_MW_RTM}}
+{{#AS_TYPE}}<div><b>AS_TYPE</b>: {{AS_TYPE}}</div>{{/AS_TYPE}}
+{{#AS_USER_RATE}}<div><b>AS_USER_RATE</b>: {{AS_USER_RATE}}</div>{{/AS_USER_RATE}}
+{{#CA_value}}<div><b>CA_value</b>: {{CA_value}}</div>{{/CA_value}}
+{{#CMMT_MINLOAD_MLC}}<div><b>CMMT_MINLOAD_MLC</b>: {{CMMT_MINLOAD_MLC}}</div>{{/CMMT_MINLOAD_MLC}}
+{{#CMMT_MINLOAD_MW}}<div><b>CMMT_MINLOAD_MW</b>: {{CMMT_MINLOAD_MW}}</div>{{/CMMT_MINLOAD_MW}}
+{{#CMMT_RA_MLC}}<div><b>CMMT_RA_MLC</b>: {{CMMT_RA_MLC}}</div>{{/CMMT_RA_MLC}}
+{{#CMMT_RA_MW}}<div><b>CMMT_RA_MW</b>: {{CMMT_RA_MW}}</div>{{/CMMT_RA_MW}}
+{{#CMMT_RA_START_COST}}<div><b>CMMT_RA_START_COST</b>: {{CMMT_RA_START_COST}}</div>{{/CMMT_RA_START_COST}}
+{{#CMMT_RA_UNITS}}<div><b>CMMT_RA_UNITS</b>: {{CMMT_RA_UNITS}}</div>{{/CMMT_RA_UNITS}}
+{{#CMMT_TOTAL_START_COST}}<div><b>CMMT_TOTAL_START_COST</b>: {{CMMT_TOTAL_START_COST}}</div>{{/CMMT_TOTAL_START_COST}}
+{{#CMMT_TOTAL_MW}}<div><b>CMMT_TOTAL_MW</b>: {{CMMT_TOTAL_MW}}</div>{{/CMMT_TOTAL_MW}}
+{{#CMMT_TOTAL_UNITS}}<div><b>CMMT_TOTAL_UNITS</b>: {{CMMT_TOTAL_UNITS}}</div>{{/CMMT_TOTAL_UNITS}}
+{{#CRR_CAT}}<div><b>CRR_CAT</b>: {{CRR_CAT}}</div>{{/CRR_CAT}}
+{{#CRR_MARKET_value}}<div><b>CRR_MARKET_value</b>: {{CRR_MARKET_value}}</div>{{/CRR_MARKET_value}}
+{{#CRR_MW}}<div><b>CRR_MW</b>: {{CRR_MW}}</div>{{/CRR_MW}}
+{{#CRR_NSR}}<div><b>CRR_NSR</b>: {{CRR_NSR}}</div>{{/CRR_NSR}}
+{{#CRR_OPTION}}<div><b>CRR_OPTION</b>: {{CRR_OPTION}}</div>{{/CRR_OPTION}}
+{{#CRR_OWNER}}<div><b>CRR_OWNER</b>: {{CRR_OWNER}}</div>{{/CRR_OWNER}}
+{{#CRR_SEGMENT}}<div><b>CRR_SEGMENT</b>: {{CRR_SEGMENT}}</div>{{/CRR_SEGMENT}}
+{{#CRR_TERM}}<div><b>CRR_TERM</b>: {{CRR_TERM}}</div>{{/CRR_TERM}}
+{{#CRR_TOU}}<div><b>CRR_TOU</b>: {{CRR_TOU}}</div>{{/CRR_TOU}}
+{{#CRR_TYPE}}<div><b>CRR_TYPE</b>: {{CRR_TYPE}}</div>{{/CRR_TYPE}}
+{{#ENE_EA_DA}}<div><b>ENE_EA_DA</b>: {{ENE_EA_DA}}</div>{{/ENE_EA_DA}}
+{{#ENE_EA_EXCEPT}}<div><b>ENE_EA_EXCEPT</b>: {{ENE_EA_EXCEPT}}</div>{{/ENE_EA_EXCEPT}}
+{{#ENE_EA_HASP}}<div><b>ENE_EA_HASP</b>: {{ENE_EA_HASP}}</div>{{/ENE_EA_HASP}}
+{{#ENE_EA_MLE}}<div><b>ENE_EA_MLE</b>: {{ENE_EA_MLE}}</div>{{/ENE_EA_MLE}}
+{{#ENE_EA_MSSLF}}<div><b>ENE_EA_MSSLF</b>: {{ENE_EA_MSSLF}}</div>{{/ENE_EA_MSSLF}}
+{{#ENE_EA_OPTIMAL}}<div><b>ENE_EA_OPTIMAL</b>: {{ENE_EA_OPTIMAL}}</div>{{/ENE_EA_OPTIMAL}}
+{{#ENE_EA_RAMP_DEV}}<div><b>ENE_EA_RAMP_DEV</b>: {{ENE_EA_RAMP_DEV}}</div>{{/ENE_EA_RAMP_DEV}}
+{{#ENE_EA_RAMP_STD}}<div><b>ENE_EA_RAMP_STD</b>: {{ENE_EA_RAMP_STD}}</div>{{/ENE_EA_RAMP_STD}}
+{{#ENE_EA_RESIDUAL}}<div><b>ENE_EA_RESIDUAL</b>: {{ENE_EA_RESIDUAL}}</div>{{/ENE_EA_RESIDUAL}}
+{{#ENE_EA_RMR}}<div><b>ENE_EA_RMR</b>: {{ENE_EA_RMR}}</div>{{/ENE_EA_RMR}}
+{{#ENE_EA_SELF}}<div><b>ENE_EA_SELF</b>: {{ENE_EA_SELF}}</div>{{/ENE_EA_SELF}}
+{{#ENE_EA_SLIC}}<div><b>ENE_EA_SLIC</b>: {{ENE_EA_SLIC}}</div>{{/ENE_EA_SLIC}}
+{{#ENE_EXP_CLEAR_HASP}}<div><b>ENE_EXP_CLEAR_HASP</b>: {{ENE_EXP_CLEAR_HASP}}</div>{{/ENE_EXP_CLEAR_HASP}}
+{{#ENE_EXP_CLEAR_IFM}}<div><b>ENE_EXP_CLEAR_IFM</b>: {{ENE_EXP_CLEAR_IFM}}</div>{{/ENE_EXP_CLEAR_IFM}}
+{{#ENE_EXP_CLEAR_RTM}}<div><b>ENE_EXP_CLEAR_RTM</b>: {{ENE_EXP_CLEAR_RTM}}</div>{{/ENE_EXP_CLEAR_RTM}}
+{{#ENE_GEN_CLEAR_HASP}}<div><b>ENE_GEN_CLEAR_HASP</b>: {{ENE_GEN_CLEAR_HASP}}</div>{{/ENE_GEN_CLEAR_HASP}}
+{{#ENE_GEN_CLEAR_IFM}}<div><b>ENE_GEN_CLEAR_IFM</b>: {{ENE_GEN_CLEAR_IFM}}</div>{{/ENE_GEN_CLEAR_IFM}}
+{{#ENE_GEN_CLEAR_RTM}}<div><b>ENE_GEN_CLEAR_RTM</b>: {{ENE_GEN_CLEAR_RTM}}</div>{{/ENE_GEN_CLEAR_RTM}}
+{{#ENE_IMP_CLEAR_HASP}}<div><b>ENE_IMP_CLEAR_HASP</b>: {{ENE_IMP_CLEAR_HASP}}</div>{{/ENE_IMP_CLEAR_HASP}}
+{{#ENE_IMP_CLEAR_IFM}}<div><b>ENE_IMP_CLEAR_IFM</b>: {{ENE_IMP_CLEAR_IFM}}</div>{{/ENE_IMP_CLEAR_IFM}}
+{{#ENE_IMP_CLEAR_RTM}}<div><b>ENE_IMP_CLEAR_RTM</b>: {{ENE_IMP_CLEAR_RTM}}</div>{{/ENE_IMP_CLEAR_RTM}}
+{{#ENE_LOAD_ACTUAL}}<div><b>ENE_LOAD_ACTUAL</b>: {{ENE_LOAD_ACTUAL}}</div>{{/ENE_LOAD_ACTUAL}}
+{{#ENE_LOAD_CLEAR_HASP}}<div><b>ENE_LOAD_CLEAR_HASP</b>: {{ENE_LOAD_CLEAR_HASP}}</div>{{/ENE_LOAD_CLEAR_HASP}}
+{{#ENE_LOAD_CLEAR_IFM}}<div><b>ENE_LOAD_CLEAR_IFM</b>: {{ENE_LOAD_CLEAR_IFM}}</div>{{/ENE_LOAD_CLEAR_IFM}}
+{{#ENE_LOAD_CLEAR_RTM}}<div><b>ENE_LOAD_CLEAR_RTM</b>: {{ENE_LOAD_CLEAR_RTM}}</div>{{/ENE_LOAD_CLEAR_RTM}}
+{{#ENE_LOAD_FCST}}<div><b>ENE_LOAD_FCST</b>: {{ENE_LOAD_FCST}}</div>{{/ENE_LOAD_FCST}}
+{{#ENE_PEAK_HOUR}}<div><b>ENE_PEAK_HOUR</b>: {{ENE_PEAK_HOUR}}</div>{{/ENE_PEAK_HOUR}}
+{{#ENE_PEAK_LOAD}}<div><b>ENE_PEAK_LOAD</b>: {{ENE_PEAK_LOAD}}</div>{{/ENE_PEAK_LOAD}}
+{{#FUEL_REGION_value}}<div><b>FUEL_REGION_value</b>: {{FUEL_REGION_value}}</div>{{/FUEL_REGION_value}}
+{{#INVT_DATETIME}}<div><b>INVT_DATETIME</b>: {{INVT_DATETIME}}</div>{{/INVT_DATETIME}}
+{{#LOAD_ACTUAL}}<div><b>LOAD_ACTUAL</b>: {{LOAD_ACTUAL}}</div>{{/LOAD_ACTUAL}}
+{{#LOAD_CLEAR_RTM}}<div><b>LOAD_CLEAR_RTM</b>: {{LOAD_CLEAR_RTM}}</div>{{/LOAD_CLEAR_RTM}}
+{{#LOSS_TOTAL_COST_HASP}}<div><b>LOSS_TOTAL_COST_HASP</b>: {{LOSS_TOTAL_COST_HASP}}</div>{{/LOSS_TOTAL_COST_HASP}}
+{{#LOSS_TOTAL_COST_RTM}}<div><b>LOSS_TOTAL_COST_RTM</b>: {{LOSS_TOTAL_COST_RTM}}</div>{{/LOSS_TOTAL_COST_RTM}}
+{{#LOSS_TOTAL_MW_HASP}}<div><b>LOSS_TOTAL_MW_HASP</b>: {{LOSS_TOTAL_MW_HASP}}</div>{{/LOSS_TOTAL_MW_HASP}}
+{{#LOSS_TOTAL_MW_RTM}}<div><b>LOSS_TOTAL_MW_RTM</b>: {{LOSS_TOTAL_MW_RTM}}</div>{{/LOSS_TOTAL_MW_RTM}}
+{{#MPM_FLAG}}<div><b>MPM_FLAG</b>: {{MPM_FLAG}}</div>{{/MPM_FLAG}}
+{{#OP_RSRV_TOTAL}}<div><b>OP_RSRV_TOTAL</b>: {{OP_RSRV_TOTAL}}</div>{{/OP_RSRV_TOTAL}}
+{{#PRC_NG}}<div><b>PRC_NG</b>: {{PRC_NG}}</div>{{/PRC_NG}}
+{{#PRC_SHADOW}}<div><b>PRC_SHADOW</b>: {{PRC_SHADOW}}</div>{{/PRC_SHADOW}}
+{{#RATING_ATC}}<div><b>RATING_ATC</b>: {{RATING_ATC}}</div>{{/RATING_ATC}}
+{{#RMR_DETER_DAM}}<div><b>RMR_DETER_DAM</b>: {{RMR_DETER_DAM}}</div>{{/RMR_DETER_DAM}}
+{{#RMR_DETER_HASP}}<div><b>RMR_DETER_HASP</b>: {{RMR_DETER_HASP}}</div>{{/RMR_DETER_HASP}}
+{{#RMR_DISPATCH_DAM}}<div><b>RMR_DISPATCH_DAM</b>: {{RMR_DISPATCH_DAM}}</div>{{/RMR_DISPATCH_DAM}}
+{{#RMR_DISPATCH_HASP}}<div><b>RMR_DISPATCH_HASP</b>: {{RMR_DISPATCH_HASP}}</div>{{/RMR_DISPATCH_HASP}}
+{{#RMR_TOTAL}}<div><b>RMR_TOTAL</b>: {{RMR_TOTAL}}</div>{{/RMR_TOTAL}}
+{{#RMR_TOTAL_AVAIL}}<div><b>RMR_TOTAL_AVAIL</b>: {{RMR_TOTAL_AVAIL}}</div>{{/RMR_TOTAL_AVAIL}}
+{{#RUC_GEN_CLEAR_RUC}}<div><b>RUC_GEN_CLEAR_RUC</b>: {{RUC_GEN_CLEAR_RUC}}</div>{{/RUC_GEN_CLEAR_RUC}}
+{{#RUC_IMP_CLEAR_RUC}}<div><b>RUC_IMP_CLEAR_RUC</b>: {{RUC_IMP_CLEAR_RUC}}</div>{{/RUC_IMP_CLEAR_RUC}}
+{{#RUC_LOAD_CLEAR_RUC}}<div><b>RUC_LOAD_CLEAR_RUC</b>: {{RUC_LOAD_CLEAR_RUC}}</div>{{/RUC_LOAD_CLEAR_RUC}}
+{{#RUC_ZONE_value}}<div><b>RUC_ZONE_value</b>: {{RUC_ZONE_value}}</div>{{/RUC_ZONE_value}}
+{{#TAC_AREA_value}}<div><b>TAC_AREA_value</b>: {{TAC_AREA_value}}</div>{{/TAC_AREA_value}}
+{{#TINTRFCE_value}}<div><b>TINTRFCE_value</b>: {{TINTRFCE_value}}</div>{{/TINTRFCE_value}}
+{{#TRNS_AS_IMPORT}}<div><b>TRNS_AS_IMPORT</b>: {{TRNS_AS_IMPORT}}</div>{{/TRNS_AS_IMPORT}}
+{{#TRNS_ENE_IMPORT}}<div><b>TRNS_ENE_IMPORT</b>: {{TRNS_ENE_IMPORT}}</div>{{/TRNS_ENE_IMPORT}}
+{{#TRNS_EQUIP_value}}<div><b>TRNS_EQUIP_value</b>: {{TRNS_EQUIP_value}}</div>{{/TRNS_EQUIP_value}}
+{{#TRNS_RATING_CBM}}<div><b>TRNS_RATING_CBM</b>: {{TRNS_RATING_CBM}}</div>{{/TRNS_RATING_CBM}}
+{{#TRNS_RATING_DIRECTION}}<div><b>TRNS_RATING_DIRECTION</b>: {{TRNS_RATING_DIRECTION}}</div>{{/TRNS_RATING_DIRECTION}}
+{{#TRNS_RATING_OTC}}<div><b>TRNS_RATING_OTC</b>: {{TRNS_RATING_OTC}}</div>{{/TRNS_RATING_OTC}}
+{{#TRNS_RATING_OTC_DERATE}}<div><b>TRNS_RATING_OTC_DERATE</b>: {{TRNS_RATING_OTC_DERATE}}</div>{{/TRNS_RATING_OTC_DERATE}}
+{{#TRNS_RATING_TTC}}<div><b>TRNS_RATING_TTC</b>: {{TRNS_RATING_TTC}}</div>{{/TRNS_RATING_TTC}}
+{{#TRNS_TI_value}}<div><b>TRNS_TI_value</b>: {{TRNS_TI_value}}</div>{{/TRNS_TI_value}}
+{{#TRNS_TR_ENTMTS}}<div><b>TRNS_TR_ENTMTS</b>: {{TRNS_TR_ENTMTS}}</div>{{/TRNS_TR_ENTMTS}}
+{{#TRNS_TR_USEAGE}}<div><b>TRNS_TR_USEAGE</b>: {{TRNS_TR_USEAGE}}</div>{{/TRNS_TR_USEAGE}}
+</div>
+`
+                );
+           }        }
 
         class JobFlagType extends base.Element
         {
@@ -364,7 +504,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#JobFlagType_collapse" aria-expanded="true" aria-controls="JobFlagType_collapse">JobFlagType</a>
+<div id="JobFlagType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#CREATED}}<div><b>CREATED</b>: {{CREATED}}</div>{{/CREATED}}
+{{#MODIFIED}}<div><b>MODIFIED</b>: {{MODIFIED}}</div>{{/MODIFIED}}
+{{#DELETED}}<div><b>DELETED</b>: {{DELETED}}</div>{{/DELETED}}
+</div>
+`
+                );
+           }        }
 
         /**
          * S - Scheduling
@@ -418,7 +575,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#runTypeCAISO_collapse" aria-expanded="true" aria-controls="runTypeCAISO_collapse">runTypeCAISO</a>
+<div id="runTypeCAISO_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#S}}<div><b>S</b>: {{S}}</div>{{/S}}
+{{#P}}<div><b>P</b>: {{P}}</div>{{/P}}
+</div>
+`
+                );
+           }        }
 
         /**
          * BASELI NE
@@ -472,7 +645,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AdderType_collapse" aria-expanded="true" aria-controls="AdderType_collapse">AdderType</a>
+<div id="AdderType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#BASELINE}}<div><b>BASELINE</b>: {{BASELINE}}</div>{{/BASELINE}}
+{{#NEGOTIATED}}<div><b>NEGOTIATED</b>: {{NEGOTIATED}}</div>{{/NEGOTIATED}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Description of market statement
@@ -530,7 +719,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketStatementDescription_collapse" aria-expanded="true" aria-controls="MarketStatementDescription_collapse">MarketStatementDescription</a>
+<div id="MarketStatementDescription_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#DAILY_INITIAL_CREDIT}}<div><b>DAILY_INITIAL_CREDIT</b>: {{DAILY_INITIAL_CREDIT}}</div>{{/DAILY_INITIAL_CREDIT}}
+{{#DAILY_INITIAL_MARKET}}<div><b>DAILY_INITIAL_MARKET</b>: {{DAILY_INITIAL_MARKET}}</div>{{/DAILY_INITIAL_MARKET}}
+{{#MONTHLY_INITIAL_MARKET}}<div><b>MONTHLY_INITIAL_MARKET</b>: {{MONTHLY_INITIAL_MARKET}}</div>{{/MONTHLY_INITIAL_MARKET}}
+{{#DAILY_RECALC_MARKET}}<div><b>DAILY_RECALC_MARKET</b>: {{DAILY_RECALC_MARKET}}</div>{{/DAILY_RECALC_MARKET}}
+{{#MONTHLY_RECALC_MARKET}}<div><b>MONTHLY_RECALC_MARKET</b>: {{MONTHLY_RECALC_MARKET}}</div>{{/MONTHLY_RECALC_MARKET}}
+</div>
+`
+                );
+           }        }
 
         /**
          * ADD - add
@@ -587,7 +795,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MQSDELType_collapse" aria-expanded="true" aria-controls="MQSDELType_collapse">MQSDELType</a>
+<div id="MQSDELType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ADD}}<div><b>ADD</b>: {{ADD}}</div>{{/ADD}}
+{{#DEL}}<div><b>DEL</b>: {{DEL}}</div>{{/DEL}}
+{{#CHG}}<div><b>CHG</b>: {{CHG}}</div>{{/CHG}}
+</div>
+`
+                );
+           }        }
 
         class TimeZoneType extends base.Element
         {
@@ -633,7 +858,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TimeZoneType_collapse" aria-expanded="true" aria-controls="TimeZoneType_collapse">TimeZoneType</a>
+<div id="TimeZoneType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#PPT}}<div><b>PPT</b>: {{PPT}}</div>{{/PPT}}
+</div>
+`
+                );
+           }        }
 
         class SchedClassType extends base.Element
         {
@@ -683,7 +923,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SchedClassType_collapse" aria-expanded="true" aria-controls="SchedClassType_collapse">SchedClassType</a>
+<div id="SchedClassType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#P}}<div><b>P</b>: {{P}}</div>{{/P}}
+{{#R}}<div><b>R</b>: {{R}}</div>{{/R}}
+{{#F}}<div><b>F</b>: {{F}}</div>{{/F}}
+</div>
+`
+                );
+           }        }
 
         class OASISMarketType extends base.Element
         {
@@ -739,7 +996,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OASISMarketType_collapse" aria-expanded="true" aria-controls="OASISMarketType_collapse">OASISMarketType</a>
+<div id="OASISMarketType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#IFM}}<div><b>IFM</b>: {{IFM}}</div>{{/IFM}}
+{{#RUC}}<div><b>RUC</b>: {{RUC}}</div>{{/RUC}}
+{{#HASP}}<div><b>HASP</b>: {{HASP}}</div>{{/HASP}}
+{{#RTM}}<div><b>RTM</b>: {{RTM}}</div>{{/RTM}}
+{{#N/A}}<div><b>N/A</b>: {{N/A}}</div>{{/N/A}}
+{{#All}}<div><b>All</b>: {{All}}</div>{{/All}}
+</div>
+`
+                );
+           }        }
 
         class AllocationEnergyTypeCode extends base.Element
         {
@@ -855,7 +1132,57 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AllocationEnergyTypeCode_collapse" aria-expanded="true" aria-controls="AllocationEnergyTypeCode_collapse">AllocationEnergyTypeCode</a>
+<div id="AllocationEnergyTypeCode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#DASE}}<div><b>DASE</b>: {{DASE}}</div>{{/DASE}}
+{{#OE}}<div><b>OE</b>: {{OE}}</div>{{/OE}}
+{{#HASE}}<div><b>HASE</b>: {{HASE}}</div>{{/HASE}}
+{{#SRE}}<div><b>SRE</b>: {{SRE}}</div>{{/SRE}}
+{{#RED}}<div><b>RED</b>: {{RED}}</div>{{/RED}}
+{{#MSSLFE}}<div><b>MSSLFE</b>: {{MSSLFE}}</div>{{/MSSLFE}}
+{{#RE}}<div><b>RE</b>: {{RE}}</div>{{/RE}}
+{{#MLE}}<div><b>MLE</b>: {{MLE}}</div>{{/MLE}}
+{{#SE}}<div><b>SE</b>: {{SE}}</div>{{/SE}}
+{{#RTSSE}}<div><b>RTSSE</b>: {{RTSSE}}</div>{{/RTSSE}}
+{{#PE}}<div><b>PE</b>: {{PE}}</div>{{/PE}}
+{{#DAPE}}<div><b>DAPE</b>: {{DAPE}}</div>{{/DAPE}}
+{{#ESRT}}<div><b>ESRT</b>: {{ESRT}}</div>{{/ESRT}}
+{{#ESYS}}<div><b>ESYS</b>: {{ESYS}}</div>{{/ESYS}}
+{{#RMRD}}<div><b>RMRD</b>: {{RMRD}}</div>{{/RMRD}}
+{{#RMRR}}<div><b>RMRR</b>: {{RMRR}}</div>{{/RMRR}}
+{{#RMRS}}<div><b>RMRS</b>: {{RMRS}}</div>{{/RMRS}}
+{{#RMRT}}<div><b>RMRT</b>: {{RMRT}}</div>{{/RMRT}}
+{{#STRT}}<div><b>STRT</b>: {{STRT}}</div>{{/STRT}}
+{{#SDWN}}<div><b>SDWN</b>: {{SDWN}}</div>{{/SDWN}}
+{{#TEST}}<div><b>TEST</b>: {{TEST}}</div>{{/TEST}}
+{{#OVGN}}<div><b>OVGN</b>: {{OVGN}}</div>{{/OVGN}}
+{{#VS}}<div><b>VS</b>: {{VS}}</div>{{/VS}}
+{{#ETC}}<div><b>ETC</b>: {{ETC}}</div>{{/ETC}}
+{{#TOR}}<div><b>TOR</b>: {{TOR}}</div>{{/TOR}}
+{{#RSYS}}<div><b>RSYS</b>: {{RSYS}}</div>{{/RSYS}}
+{{#RCNG}}<div><b>RCNG</b>: {{RCNG}}</div>{{/RCNG}}
+{{#ACNG}}<div><b>ACNG</b>: {{ACNG}}</div>{{/ACNG}}
+{{#TCNG}}<div><b>TCNG</b>: {{TCNG}}</div>{{/TCNG}}
+{{#LMPM}}<div><b>LMPM</b>: {{LMPM}}</div>{{/LMPM}}
+{{#BS}}<div><b>BS</b>: {{BS}}</div>{{/BS}}
+{{#MINL}}<div><b>MINL</b>: {{MINL}}</div>{{/MINL}}
+{{#SUMR}}<div><b>SUMR</b>: {{SUMR}}</div>{{/SUMR}}
+{{#RMRH}}<div><b>RMRH</b>: {{RMRH}}</div>{{/RMRH}}
+{{#SLIC}}<div><b>SLIC</b>: {{SLIC}}</div>{{/SLIC}}
+{{#OTHER}}<div><b>OTHER</b>: {{OTHER}}</div>{{/OTHER}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Status indication for bids
@@ -935,7 +1262,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidStatusType_collapse" aria-expanded="true" aria-controls="BidStatusType_collapse">BidStatusType</a>
+<div id="BidStatusType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#CL}}<div><b>CL</b>: {{CL}}</div>{{/CL}}
+{{#RP}}<div><b>RP</b>: {{RP}}</div>{{/RP}}
+{{#RJ}}<div><b>RJ</b>: {{RJ}}</div>{{/RJ}}
+{{#I}}<div><b>I</b>: {{I}}</div>{{/I}}
+{{#CV}}<div><b>CV</b>: {{CV}}</div>{{/CV}}
+{{#CM}}<div><b>CM</b>: {{CM}}</div>{{/CM}}
+{{#V}}<div><b>V</b>: {{V}}</div>{{/V}}
+{{#M}}<div><b>M</b>: {{M}}</div>{{/M}}
+{{#CX}}<div><b>CX</b>: {{CX}}</div>{{/CX}}
+{{#O}}<div><b>O</b>: {{O}}</div>{{/O}}
+</div>
+`
+                );
+           }        }
 
         class OASISBidReportType extends base.Element
         {
@@ -981,7 +1332,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OASISBidReportType_collapse" aria-expanded="true" aria-controls="OASISBidReportType_collapse">OASISBidReportType</a>
+<div id="OASISBidReportType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#BIDS_PUBLIC}}<div><b>BIDS_PUBLIC</b>: {{BIDS_PUBLIC}}</div>{{/BIDS_PUBLIC}}
+</div>
+`
+                );
+           }        }
 
         class SegmentCurveType extends base.Element
         {
@@ -1029,7 +1395,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SegmentCurveType_collapse" aria-expanded="true" aria-controls="SegmentCurveType_collapse">SegmentCurveType</a>
+<div id="SegmentCurveType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#COST}}<div><b>COST</b>: {{COST}}</div>{{/COST}}
+{{#CONSULTATIVE}}<div><b>CONSULTATIVE</b>: {{CONSULTATIVE}}</div>{{/CONSULTATIVE}}
+</div>
+`
+                );
+           }        }
 
         class JobStartEndType extends base.Element
         {
@@ -1079,7 +1461,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#JobStartEndType_collapse" aria-expanded="true" aria-controls="JobStartEndType_collapse">JobStartEndType</a>
+<div id="JobStartEndType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#NA}}<div><b>NA</b>: {{NA}}</div>{{/NA}}
+{{#START}}<div><b>START</b>: {{START}}</div>{{/START}}
+{{#END}}<div><b>END</b>: {{END}}</div>{{/END}}
+</div>
+`
+                );
+           }        }
 
         class LoadFollowingCapacityType extends base.Element
         {
@@ -1127,7 +1526,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadFollowingCapacityType_collapse" aria-expanded="true" aria-controls="LoadFollowingCapacityType_collapse">LoadFollowingCapacityType</a>
+<div id="LoadFollowingCapacityType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#UP}}<div><b>UP</b>: {{UP}}</div>{{/UP}}
+{{#DOWN}}<div><b>DOWN</b>: {{DOWN}}</div>{{/DOWN}}
+</div>
+`
+                );
+           }        }
 
         class DAMMarketType extends base.Element
         {
@@ -1173,7 +1588,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DAMMarketType_collapse" aria-expanded="true" aria-controls="DAMMarketType_collapse">DAMMarketType</a>
+<div id="DAMMarketType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#DAM}}<div><b>DAM</b>: {{DAM}}</div>{{/DAM}}
+</div>
+`
+                );
+           }        }
 
         /**
          * market statement document status
@@ -1225,7 +1655,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketStatementDocStatus_collapse" aria-expanded="true" aria-controls="MarketStatementDocStatus_collapse">MarketStatementDocStatus</a>
+<div id="MarketStatementDocStatus_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#APPROVED}}<div><b>APPROVED</b>: {{APPROVED}}</div>{{/APPROVED}}
+{{#CANCELLED}}<div><b>CANCELLED</b>: {{CANCELLED}}</div>{{/CANCELLED}}
+</div>
+`
+                );
+           }        }
 
         /**
          * MP
@@ -1279,7 +1725,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RequestorRmrTest_collapse" aria-expanded="true" aria-controls="RequestorRmrTest_collapse">RequestorRmrTest</a>
+<div id="RequestorRmrTest_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#MP}}<div><b>MP</b>: {{MP}}</div>{{/MP}}
+{{#ISO}}<div><b>ISO</b>: {{ISO}}</div>{{/ISO}}
+</div>
+`
+                );
+           }        }
 
         /**
          * market statement line item alias name
@@ -1339,7 +1801,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketStatementLineItemAliasName_collapse" aria-expanded="true" aria-controls="MarketStatementLineItemAliasName_collapse">MarketStatementLineItemAliasName</a>
+<div id="MarketStatementLineItemAliasName_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#TRADE_DATE}}<div><b>TRADE_DATE</b>: {{TRADE_DATE}}</div>{{/TRADE_DATE}}
+{{#PARENT_CHARGE_GROUP}}<div><b>PARENT_CHARGE_GROUP</b>: {{PARENT_CHARGE_GROUP}}</div>{{/PARENT_CHARGE_GROUP}}
+{{#CHARGE_GROUP}}<div><b>CHARGE_GROUP</b>: {{CHARGE_GROUP}}</div>{{/CHARGE_GROUP}}
+{{#CHARGE_CODE_SUMMARY}}<div><b>CHARGE_CODE_SUMMARY</b>: {{CHARGE_CODE_SUMMARY}}</div>{{/CHARGE_CODE_SUMMARY}}
+{{#CHARGE_CODE_INTERVAL_TOTAL}}<div><b>CHARGE_CODE_INTERVAL_TOTAL</b>: {{CHARGE_CODE_INTERVAL_TOTAL}}</div>{{/CHARGE_CODE_INTERVAL_TOTAL}}
+{{#CHARGE_CODE_INTERVAL_DETAIL}}<div><b>CHARGE_CODE_INTERVAL_DETAIL</b>: {{CHARGE_CODE_INTERVAL_DETAIL}}</div>{{/CHARGE_CODE_INTERVAL_DETAIL}}
+</div>
+`
+                );
+           }        }
 
         class CleanTradeProductType extends base.Element
         {
@@ -1397,7 +1879,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CleanTradeProductType_collapse" aria-expanded="true" aria-controls="CleanTradeProductType_collapse">CleanTradeProductType</a>
+<div id="CleanTradeProductType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#PHY}}<div><b>PHY</b>: {{PHY}}</div>{{/PHY}}
+{{#APN}}<div><b>APN</b>: {{APN}}</div>{{/APN}}
+{{#CPT}}<div><b>CPT</b>: {{CPT}}</div>{{/CPT}}
+{{#RUT}}<div><b>RUT</b>: {{RUT}}</div>{{/RUT}}
+{{#RDT}}<div><b>RDT</b>: {{RDT}}</div>{{/RDT}}
+{{#SRT}}<div><b>SRT</b>: {{SRT}}</div>{{/SRT}}
+{{#NRT}}<div><b>NRT</b>: {{NRT}}</div>{{/NRT}}
+</div>
+`
+                );
+           }        }
 
         class OASISIntervalType extends base.Element
         {
@@ -1445,7 +1948,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OASISIntervalType_collapse" aria-expanded="true" aria-controls="OASISIntervalType_collapse">OASISIntervalType</a>
+<div id="OASISIntervalType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#BEGINNING}}<div><b>BEGINNING</b>: {{BEGINNING}}</div>{{/BEGINNING}}
+{{#ENDING}}<div><b>ENDING</b>: {{ENDING}}</div>{{/ENDING}}
+</div>
+`
+                );
+           }        }
 
         /**
          * market statement document type
@@ -1499,7 +2018,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketStatementDocType_collapse" aria-expanded="true" aria-controls="MarketStatementDocType_collapse">MarketStatementDocType</a>
+<div id="MarketStatementDocType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#CREDIT}}<div><b>CREDIT</b>: {{CREDIT}}</div>{{/CREDIT}}
+{{#MARKET_INITIAL}}<div><b>MARKET_INITIAL</b>: {{MARKET_INITIAL}}</div>{{/MARKET_INITIAL}}
+{{#MARKET_RECALC}}<div><b>MARKET_RECALC</b>: {{MARKET_RECALC}}</div>{{/MARKET_RECALC}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Path Flow - PF
@@ -1595,7 +2131,37 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MeasurementTypeEMS_collapse" aria-expanded="true" aria-controls="MeasurementTypeEMS_collapse">MeasurementTypeEMS</a>
+<div id="MeasurementTypeEMS_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#PF}}<div><b>PF</b>: {{PF}}</div>{{/PF}}
+{{#PIL}}<div><b>PIL</b>: {{PIL}}</div>{{/PIL}}
+{{#PIAL}}<div><b>PIAL</b>: {{PIAL}}</div>{{/PIAL}}
+{{#PIML}}<div><b>PIML</b>: {{PIML}}</div>{{/PIML}}
+{{#POL}}<div><b>POL</b>: {{POL}}</div>{{/POL}}
+{{#POAL}}<div><b>POAL</b>: {{POAL}}</div>{{/POAL}}
+{{#OARL}}<div><b>OARL</b>: {{OARL}}</div>{{/OARL}}
+{{#GO}}<div><b>GO</b>: {{GO}}</div>{{/GO}}
+{{#GMOL}}<div><b>GMOL</b>: {{GMOL}}</div>{{/GMOL}}
+{{#GNOL}}<div><b>GNOL</b>: {{GNOL}}</div>{{/GNOL}}
+{{#GR}}<div><b>GR</b>: {{GR}}</div>{{/GR}}
+{{#GS}}<div><b>GS</b>: {{GS}}</div>{{/GS}}
+{{#PP}}<div><b>PP</b>: {{PP}}</div>{{/PP}}
+{{#SL}}<div><b>SL</b>: {{SL}}</div>{{/SL}}
+{{#ACE}}<div><b>ACE</b>: {{ACE}}</div>{{/ACE}}
+{{#INADV}}<div><b>INADV</b>: {{INADV}}</div>{{/INADV}}
+</div>
+`
+                );
+           }        }
 
         class ResourceCertificationType extends base.Element
         {
@@ -1649,7 +2215,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ResourceCertificationType_collapse" aria-expanded="true" aria-controls="ResourceCertificationType_collapse">ResourceCertificationType</a>
+<div id="ResourceCertificationType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#GT}}<div><b>GT</b>: {{GT}}</div>{{/GT}}
+{{#RG}}<div><b>RG</b>: {{RG}}</div>{{/RG}}
+{{#SR}}<div><b>SR</b>: {{SR}}</div>{{/SR}}
+{{#NR}}<div><b>NR</b>: {{NR}}</div>{{/NR}}
+{{#IR}}<div><b>IR</b>: {{IR}}</div>{{/IR}}
+</div>
+`
+                );
+           }        }
 
         class SelfSchedTypeRawBid extends base.Element
         {
@@ -1713,7 +2298,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SelfSchedTypeRawBid_collapse" aria-expanded="true" aria-controls="SelfSchedTypeRawBid_collapse">SelfSchedTypeRawBid</a>
+<div id="SelfSchedTypeRawBid_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#PT}}<div><b>PT</b>: {{PT}}</div>{{/PT}}
+{{#ETC}}<div><b>ETC</b>: {{ETC}}</div>{{/ETC}}
+{{#TOR}}<div><b>TOR</b>: {{TOR}}</div>{{/TOR}}
+{{#RMT}}<div><b>RMT</b>: {{RMT}}</div>{{/RMT}}
+{{#SP}}<div><b>SP</b>: {{SP}}</div>{{/SP}}
+{{#RA}}<div><b>RA</b>: {{RA}}</div>{{/RA}}
+{{#BAS}}<div><b>BAS</b>: {{BAS}}</div>{{/BAS}}
+{{#LOF}}<div><b>LOF</b>: {{LOF}}</div>{{/LOF}}
+{{#WHL}}<div><b>WHL</b>: {{WHL}}</div>{{/WHL}}
+{{#LPT}}<div><b>LPT</b>: {{LPT}}</div>{{/LPT}}
+</div>
+`
+                );
+           }        }
 
         class DispatchTransactionType extends base.Element
         {
@@ -1761,7 +2370,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DispatchTransactionType_collapse" aria-expanded="true" aria-controls="DispatchTransactionType_collapse">DispatchTransactionType</a>
+<div id="DispatchTransactionType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#Purchase}}<div><b>Purchase</b>: {{Purchase}}</div>{{/Purchase}}
+{{#Sale}}<div><b>Sale</b>: {{Sale}}</div>{{/Sale}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Self Schedule Types applicable to Mitigated Bid
@@ -1811,7 +2436,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SelfScheduleTypeMB_collapse" aria-expanded="true" aria-controls="SelfScheduleTypeMB_collapse">SelfScheduleTypeMB</a>
+<div id="SelfScheduleTypeMB_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#RMR}}<div><b>RMR</b>: {{RMR}}</div>{{/RMR}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Y - indicates a resource is capable of setting the Markte Clearing Price
@@ -1868,7 +2508,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PriceSetFlag_collapse" aria-expanded="true" aria-controls="PriceSetFlag_collapse">PriceSetFlag</a>
+<div id="PriceSetFlag_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#Y}}<div><b>Y</b>: {{Y}}</div>{{/Y}}
+{{#S}}<div><b>S</b>: {{S}}</div>{{/S}}
+{{#N}}<div><b>N</b>: {{N}}</div>{{/N}}
+</div>
+`
+                );
+           }        }
 
         class LFCResourceType extends base.Element
         {
@@ -1916,7 +2573,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LFCResourceType_collapse" aria-expanded="true" aria-controls="LFCResourceType_collapse">LFCResourceType</a>
+<div id="LFCResourceType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#GEN}}<div><b>GEN</b>: {{GEN}}</div>{{/GEN}}
+{{#PUMP}}<div><b>PUMP</b>: {{PUMP}}</div>{{/PUMP}}
+</div>
+`
+                );
+           }        }
 
         class UOMType extends base.Element
         {
@@ -1982,7 +2655,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#UOMType_collapse" aria-expanded="true" aria-controls="UOMType_collapse">UOMType</a>
+<div id="UOMType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#MW}}<div><b>MW</b>: {{MW}}</div>{{/MW}}
+{{#MWh}}<div><b>MWh</b>: {{MWh}}</div>{{/MWh}}
+{{#US$}}<div><b>US$</b>: {{US$}}</div>{{/US$}}
+{{#%}}<div><b>%</b>: {{%}}</div>{{/%}}
+{{#INTEGER}}<div><b>INTEGER</b>: {{INTEGER}}</div>{{/INTEGER}}
+{{#FLAG}}<div><b>FLAG</b>: {{FLAG}}</div>{{/FLAG}}
+{{#$/mmBTU}}<div><b>$/mmBTU</b>: {{$/mmBTU}}</div>{{/$/mmBTU}}
+{{#$/lb}}<div><b>$/lb</b>: {{$/lb}}</div>{{/$/lb}}
+{{#US$/MW}}<div><b>US$/MW</b>: {{US$/MW}}</div>{{/US$/MW}}
+{{#US$/MWh}}<div><b>US$/MWh</b>: {{US$/MWh}}</div>{{/US$/MWh}}
+{{#FACTOR}}<div><b>FACTOR</b>: {{FACTOR}}</div>{{/FACTOR}}
+</div>
+`
+                );
+           }        }
 
         /**
          * zone type
@@ -2040,7 +2738,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ZoneType_collapse" aria-expanded="true" aria-controls="ZoneType_collapse">ZoneType</a>
+<div id="ZoneType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#LOADZONE}}<div><b>LOADZONE</b>: {{LOADZONE}}</div>{{/LOADZONE}}
+{{#TRADINGHUB}}<div><b>TRADINGHUB</b>: {{TRADINGHUB}}</div>{{/TRADINGHUB}}
+{{#RUCZONE}}<div><b>RUCZONE</b>: {{RUCZONE}}</div>{{/RUCZONE}}
+{{#ASREGION}}<div><b>ASREGION</b>: {{ASREGION}}</div>{{/ASREGION}}
+{{#DCA}}<div><b>DCA</b>: {{DCA}}</div>{{/DCA}}
+</div>
+`
+                );
+           }        }
 
         class JobScheduleType extends base.Element
         {
@@ -2088,7 +2805,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#JobScheduleType_collapse" aria-expanded="true" aria-controls="JobScheduleType_collapse">JobScheduleType</a>
+<div id="JobScheduleType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#CRITICAL}}<div><b>CRITICAL</b>: {{CRITICAL}}</div>{{/CRITICAL}}
+{{#NONCRITICAL}}<div><b>NONCRITICAL</b>: {{NONCRITICAL}}</div>{{/NONCRITICAL}}
+</div>
+`
+                );
+           }        }
 
         class DispatchAcceptStatus extends base.Element
         {
@@ -2144,7 +2877,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DispatchAcceptStatus_collapse" aria-expanded="true" aria-controls="DispatchAcceptStatus_collapse">DispatchAcceptStatus</a>
+<div id="DispatchAcceptStatus_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#NON_RESPONSE}}<div><b>NON_RESPONSE</b>: {{NON_RESPONSE}}</div>{{/NON_RESPONSE}}
+{{#OK}}<div><b>OK</b>: {{OK}}</div>{{/OK}}
+{{#CANNOT}}<div><b>CANNOT</b>: {{CANNOT}}</div>{{/CANNOT}}
+{{#ACCEPT}}<div><b>ACCEPT</b>: {{ACCEPT}}</div>{{/ACCEPT}}
+{{#DECLINE}}<div><b>DECLINE</b>: {{DECLINE}}</div>{{/DECLINE}}
+{{#PARTIAL}}<div><b>PARTIAL</b>: {{PARTIAL}}</div>{{/PARTIAL}}
+</div>
+`
+                );
+           }        }
 
         class MktSubClassType extends base.Element
         {
@@ -2212,7 +2965,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktSubClassType_collapse" aria-expanded="true" aria-controls="MktSubClassType_collapse">MktSubClassType</a>
+<div id="MktSubClassType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#Forecasted_UDC_Direct_Access_Load}}<div><b>Forecasted_UDC_Direct_Access_Load</b>: {{Forecasted_UDC_Direct_Access_Load}}</div>{{/Forecasted_UDC_Direct_Access_Load}}
+{{#Day_Ahead_RMR}}<div><b>Day_Ahead_RMR</b>: {{Day_Ahead_RMR}}</div>{{/Day_Ahead_RMR}}
+{{#Ten_Min_Expost_Market_Info}}<div><b>Ten_Min_Expost_Market_Info</b>: {{Ten_Min_Expost_Market_Info}}</div>{{/Ten_Min_Expost_Market_Info}}
+{{#Day_Ahead_Interim_Market_Info}}<div><b>Day_Ahead_Interim_Market_Info</b>: {{Day_Ahead_Interim_Market_Info}}</div>{{/Day_Ahead_Interim_Market_Info}}
+{{#Day_Ahead_Final_Market_Info}}<div><b>Day_Ahead_Final_Market_Info</b>: {{Day_Ahead_Final_Market_Info}}</div>{{/Day_Ahead_Final_Market_Info}}
+{{#TTC/ATC_Forecast_Information}}<div><b>TTC/ATC_Forecast_Information</b>: {{TTC/ATC_Forecast_Information}}</div>{{/TTC/ATC_Forecast_Information}}
+{{#TTC/ATC_Hourly_Forecast}}<div><b>TTC/ATC_Hourly_Forecast</b>: {{TTC/ATC_Hourly_Forecast}}</div>{{/TTC/ATC_Hourly_Forecast}}
+{{#Branch_Group_Derates}}<div><b>Branch_Group_Derates</b>: {{Branch_Group_Derates}}</div>{{/Branch_Group_Derates}}
+{{#Hour_Ahead_Market_Info}}<div><b>Hour_Ahead_Market_Info</b>: {{Hour_Ahead_Market_Info}}</div>{{/Hour_Ahead_Market_Info}}
+{{#Hourly_Expost_Market_Info}}<div><b>Hourly_Expost_Market_Info</b>: {{Hourly_Expost_Market_Info}}</div>{{/Hourly_Expost_Market_Info}}
+{{#Public_Bid_Data}}<div><b>Public_Bid_Data</b>: {{Public_Bid_Data}}</div>{{/Public_Bid_Data}}
+{{#Day_Ahead_Forecast_Information}}<div><b>Day_Ahead_Forecast_Information</b>: {{Day_Ahead_Forecast_Information}}</div>{{/Day_Ahead_Forecast_Information}}
+</div>
+`
+                );
+           }        }
 
         class SpinningEventType extends base.Element
         {
@@ -2262,7 +3041,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SpinningEventType_collapse" aria-expanded="true" aria-controls="SpinningEventType_collapse">SpinningEventType</a>
+<div id="SpinningEventType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#RZ}}<div><b>RZ</b>: {{RZ}}</div>{{/RZ}}
+{{#AA}}<div><b>AA</b>: {{AA}}</div>{{/AA}}
+{{#CA}}<div><b>CA</b>: {{CA}}</div>{{/CA}}
+</div>
+`
+                );
+           }        }
 
         class BidPriceCapType extends base.Element
         {
@@ -2312,7 +3108,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidPriceCapType_collapse" aria-expanded="true" aria-controls="BidPriceCapType_collapse">BidPriceCapType</a>
+<div id="BidPriceCapType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ENERGY}}<div><b>ENERGY</b>: {{ENERGY}}</div>{{/ENERGY}}
+{{#AS}}<div><b>AS</b>: {{AS}}</div>{{/AS}}
+{{#RUC}}<div><b>RUC</b>: {{RUC}}</div>{{/RUC}}
+</div>
+`
+                );
+           }        }
 
         /**
          * MIN_CONSTRAINT
@@ -2369,7 +3182,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ADSInstructionTypeOOS_collapse" aria-expanded="true" aria-controls="ADSInstructionTypeOOS_collapse">ADSInstructionTypeOOS</a>
+<div id="ADSInstructionTypeOOS_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#MIN_CONSTRAINT}}<div><b>MIN_CONSTRAINT</b>: {{MIN_CONSTRAINT}}</div>{{/MIN_CONSTRAINT}}
+{{#MAX_CONSTRAINT}}<div><b>MAX_CONSTRAINT</b>: {{MAX_CONSTRAINT}}</div>{{/MAX_CONSTRAINT}}
+{{#FIXED_CONSTRAINT}}<div><b>FIXED_CONSTRAINT</b>: {{FIXED_CONSTRAINT}}</div>{{/FIXED_CONSTRAINT}}
+</div>
+`
+                );
+           }        }
 
         class AlarmDisplayType extends base.Element
         {
@@ -2419,7 +3249,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AlarmDisplayType_collapse" aria-expanded="true" aria-controls="AlarmDisplayType_collapse">AlarmDisplayType</a>
+<div id="AlarmDisplayType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#Disappear}}<div><b>Disappear</b>: {{Disappear}}</div>{{/Disappear}}
+{{#Appear}}<div><b>Appear</b>: {{Appear}}</div>{{/Appear}}
+{{#Fleeting}}<div><b>Fleeting</b>: {{Fleeting}}</div>{{/Fleeting}}
+</div>
+`
+                );
+           }        }
 
         class OASISMeasType extends base.Element
         {
@@ -2481,7 +3328,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OASISMeasType_collapse" aria-expanded="true" aria-controls="OASISMeasType_collapse">OASISMeasType</a>
+<div id="OASISMeasType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#MW}}<div><b>MW</b>: {{MW}}</div>{{/MW}}
+{{#MWh}}<div><b>MWh</b>: {{MWh}}</div>{{/MWh}}
+{{#US$}}<div><b>US$</b>: {{US$}}</div>{{/US$}}
+{{#%}}<div><b>%</b>: {{%}}</div>{{/%}}
+{{#INTEGER}}<div><b>INTEGER</b>: {{INTEGER}}</div>{{/INTEGER}}
+{{#FLAG}}<div><b>FLAG</b>: {{FLAG}}</div>{{/FLAG}}
+{{#US$/MW}}<div><b>US$/MW</b>: {{US$/MW}}</div>{{/US$/MW}}
+{{#US$/MWh}}<div><b>US$/MWh</b>: {{US$/MWh}}</div>{{/US$/MWh}}
+{{#FACTOR}}<div><b>FACTOR</b>: {{FACTOR}}</div>{{/FACTOR}}
+</div>
+`
+                );
+           }        }
 
         class ADSInstructionTypeCommitment extends base.Element
         {
@@ -2529,7 +3399,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ADSInstructionTypeCommitment_collapse" aria-expanded="true" aria-controls="ADSInstructionTypeCommitment_collapse">ADSInstructionTypeCommitment</a>
+<div id="ADSInstructionTypeCommitment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#START_UP}}<div><b>START_UP</b>: {{START_UP}}</div>{{/START_UP}}
+{{#SHUT_DOWN}}<div><b>SHUT_DOWN</b>: {{SHUT_DOWN}}</div>{{/SHUT_DOWN}}
+</div>
+`
+                );
+           }        }
 
         class OASISReportType extends base.Element
         {
@@ -2629,7 +3515,49 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OASISReportType_collapse" aria-expanded="true" aria-controls="OASISReportType_collapse">OASISReportType</a>
+<div id="OASISReportType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#AS_DA_RESULT}}<div><b>AS_DA_RESULT</b>: {{AS_DA_RESULT}}</div>{{/AS_DA_RESULT}}
+{{#AS_OP_RSRV}}<div><b>AS_OP_RSRV</b>: {{AS_OP_RSRV}}</div>{{/AS_OP_RSRV}}
+{{#AS_REQ}}<div><b>AS_REQ</b>: {{AS_REQ}}</div>{{/AS_REQ}}
+{{#AS_RTM_RESULT}}<div><b>AS_RTM_RESULT</b>: {{AS_RTM_RESULT}}</div>{{/AS_RTM_RESULT}}
+{{#BIDS_PUBLIC}}<div><b>BIDS_PUBLIC</b>: {{BIDS_PUBLIC}}</div>{{/BIDS_PUBLIC}}
+{{#CMMT_RA_MLC}}<div><b>CMMT_RA_MLC</b>: {{CMMT_RA_MLC}}</div>{{/CMMT_RA_MLC}}
+{{#CMMT_RMR}}<div><b>CMMT_RMR</b>: {{CMMT_RMR}}</div>{{/CMMT_RMR}}
+{{#CRR_CLEARING}}<div><b>CRR_CLEARING</b>: {{CRR_CLEARING}}</div>{{/CRR_CLEARING}}
+{{#CRR_INVENTORY}}<div><b>CRR_INVENTORY</b>: {{CRR_INVENTORY}}</div>{{/CRR_INVENTORY}}
+{{#ENE_EA}}<div><b>ENE_EA</b>: {{ENE_EA}}</div>{{/ENE_EA}}
+{{#ENE_HASP}}<div><b>ENE_HASP</b>: {{ENE_HASP}}</div>{{/ENE_HASP}}
+{{#ENE_IFM}}<div><b>ENE_IFM</b>: {{ENE_IFM}}</div>{{/ENE_IFM}}
+{{#ENE_MPM}}<div><b>ENE_MPM</b>: {{ENE_MPM}}</div>{{/ENE_MPM}}
+{{#ENE_RTM}}<div><b>ENE_RTM</b>: {{ENE_RTM}}</div>{{/ENE_RTM}}
+{{#ENE_RUC}}<div><b>ENE_RUC</b>: {{ENE_RUC}}</div>{{/ENE_RUC}}
+{{#LOSS_DA_HASP}}<div><b>LOSS_DA_HASP</b>: {{LOSS_DA_HASP}}</div>{{/LOSS_DA_HASP}}
+{{#LOSS_RTM}}<div><b>LOSS_RTM</b>: {{LOSS_RTM}}</div>{{/LOSS_RTM}}
+{{#PRC_AS}}<div><b>PRC_AS</b>: {{PRC_AS}}</div>{{/PRC_AS}}
+{{#PRC_FUEL}}<div><b>PRC_FUEL</b>: {{PRC_FUEL}}</div>{{/PRC_FUEL}}
+{{#PRC_HRLY_LMP}}<div><b>PRC_HRLY_LMP</b>: {{PRC_HRLY_LMP}}</div>{{/PRC_HRLY_LMP}}
+{{#PRC_INTVL_LMP}}<div><b>PRC_INTVL_LMP</b>: {{PRC_INTVL_LMP}}</div>{{/PRC_INTVL_LMP}}
+{{#PRC_CNSTR}}<div><b>PRC_CNSTR</b>: {{PRC_CNSTR}}</div>{{/PRC_CNSTR}}
+{{#SLD_FCST}}<div><b>SLD_FCST</b>: {{SLD_FCST}}</div>{{/SLD_FCST}}
+{{#SLD_FCST_PEAK}}<div><b>SLD_FCST_PEAK</b>: {{SLD_FCST_PEAK}}</div>{{/SLD_FCST_PEAK}}
+{{#SLD_MKTS}}<div><b>SLD_MKTS</b>: {{SLD_MKTS}}</div>{{/SLD_MKTS}}
+{{#TRNS_ATC}}<div><b>TRNS_ATC</b>: {{TRNS_ATC}}</div>{{/TRNS_ATC}}
+{{#TRNS_OUTAGE}}<div><b>TRNS_OUTAGE</b>: {{TRNS_OUTAGE}}</div>{{/TRNS_OUTAGE}}
+{{#TRNS_USAGE}}<div><b>TRNS_USAGE</b>: {{TRNS_USAGE}}</div>{{/TRNS_USAGE}}
+</div>
+`
+                );
+           }        }
 
         class SourceSinkFlag extends base.Element
         {
@@ -2677,7 +3605,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SourceSinkFlag_collapse" aria-expanded="true" aria-controls="SourceSinkFlag_collapse">SourceSinkFlag</a>
+<div id="SourceSinkFlag_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#CSNK}}<div><b>CSNK</b>: {{CSNK}}</div>{{/CSNK}}
+{{#CSRC}}<div><b>CSRC</b>: {{CSRC}}</div>{{/CSRC}}
+</div>
+`
+                );
+           }        }
 
         /**
          * MW
@@ -2731,7 +3675,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#UnitTypeEMS_collapse" aria-expanded="true" aria-controls="UnitTypeEMS_collapse">UnitTypeEMS</a>
+<div id="UnitTypeEMS_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#MW}}<div><b>MW</b>: {{MW}}</div>{{/MW}}
+{{#FLAG}}<div><b>FLAG</b>: {{FLAG}}</div>{{/FLAG}}
+</div>
+`
+                );
+           }        }
 
         /**
          * RU - Regulation Up
@@ -2794,7 +3754,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketProductTypeAsReq_collapse" aria-expanded="true" aria-controls="MarketProductTypeAsReq_collapse">MarketProductTypeAsReq</a>
+<div id="MarketProductTypeAsReq_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#RU}}<div><b>RU</b>: {{RU}}</div>{{/RU}}
+{{#RD}}<div><b>RD</b>: {{RD}}</div>{{/RD}}
+{{#SR}}<div><b>SR</b>: {{SR}}</div>{{/SR}}
+{{#NR}}<div><b>NR</b>: {{NR}}</div>{{/NR}}
+{{#AS}}<div><b>AS</b>: {{AS}}</div>{{/AS}}
+</div>
+`
+                );
+           }        }
 
         /**
          * ancillary serivce types
@@ -2850,7 +3829,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AncillaryCommodityType_collapse" aria-expanded="true" aria-controls="AncillaryCommodityType_collapse">AncillaryCommodityType</a>
+<div id="AncillaryCommodityType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#REGUP}}<div><b>REGUP</b>: {{REGUP}}</div>{{/REGUP}}
+{{#REGDN}}<div><b>REGDN</b>: {{REGDN}}</div>{{/REGDN}}
+{{#SPIN}}<div><b>SPIN</b>: {{SPIN}}</div>{{/SPIN}}
+{{#NONSPIN}}<div><b>NONSPIN</b>: {{NONSPIN}}</div>{{/NONSPIN}}
+</div>
+`
+                );
+           }        }
 
         class OASISErrDescription extends base.Element
         {
@@ -2914,7 +3911,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OASISErrDescription_collapse" aria-expanded="true" aria-controls="OASISErrDescription_collapse">OASISErrDescription</a>
+<div id="OASISErrDescription_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#No data returned for the specified selection}}<div><b>No data returned for the specified selection</b>: {{No data returned for the specified selection}}</div>{{/No data returned for the specified selection}}
+{{#Invalid date format, please use valid date format}}<div><b>Invalid date format, please use valid date format</b>: {{Invalid date format, please use valid date format}}</div>{{/Invalid date format, please use valid date format}}
+{{#Timed out waiting for query response}}<div><b>Timed out waiting for query response</b>: {{Timed out waiting for query response}}</div>{{/Timed out waiting for query response}}
+{{#Data can be requested for period of 31 days only}}<div><b>Data can be requested for period of 31 days only</b>: {{Data can be requested for period of 31 days only}}</div>{{/Data can be requested for period of 31 days only}}
+{{#Report name does not exit, please use valid report name}}<div><b>Report name does not exit, please use valid report name</b>: {{Report name does not exit, please use valid report name}}</div>{{/Report name does not exit, please use valid report name}}
+{{#Validation exception during transformation of XML}}<div><b>Validation exception during transformation of XML</b>: {{Validation exception during transformation of XML}}</div>{{/Validation exception during transformation of XML}}
+{{#Required file does not exist}}<div><b>Required file does not exist</b>: {{Required file does not exist}}</div>{{/Required file does not exist}}
+{{#Out of memory exception}}<div><b>Out of memory exception</b>: {{Out of memory exception}}</div>{{/Out of memory exception}}
+{{#Exceptions in reading and writing of XML files}}<div><b>Exceptions in reading and writing of XML files</b>: {{Exceptions in reading and writing of XML files}}</div>{{/Exceptions in reading and writing of XML files}}
+{{#System Error}}<div><b>System Error</b>: {{System Error}}</div>{{/System Error}}
+</div>
+`
+                );
+           }        }
 
         class SpinningEventNameType extends base.Element
         {
@@ -2966,7 +3987,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SpinningEventNameType_collapse" aria-expanded="true" aria-controls="SpinningEventNameType_collapse">SpinningEventNameType</a>
+<div id="SpinningEventNameType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#EASTERN}}<div><b>EASTERN</b>: {{EASTERN}}</div>{{/EASTERN}}
+{{#RFC-SR}}<div><b>RFC-SR</b>: {{RFC-SR}}</div>{{/RFC-SR}}
+{{#SOUTH-S}}<div><b>SOUTH-S</b>: {{SOUTH-S}}</div>{{/SOUTH-S}}
+{{#PJM}}<div><b>PJM</b>: {{PJM}}</div>{{/PJM}}
+</div>
+`
+                );
+           }        }
 
         class OASISMasterType extends base.Element
         {
@@ -3048,7 +4087,40 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OASISMasterType_collapse" aria-expanded="true" aria-controls="OASISMasterType_collapse">OASISMasterType</a>
+<div id="OASISMasterType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ATL_PNODE}}<div><b>ATL_PNODE</b>: {{ATL_PNODE}}</div>{{/ATL_PNODE}}
+{{#ATL_APNODE}}<div><b>ATL_APNODE</b>: {{ATL_APNODE}}</div>{{/ATL_APNODE}}
+{{#ATL_LDF}}<div><b>ATL_LDF</b>: {{ATL_LDF}}</div>{{/ATL_LDF}}
+{{#ATL_LAP}}<div><b>ATL_LAP</b>: {{ATL_LAP}}</div>{{/ATL_LAP}}
+{{#ATL_RESOURCE}}<div><b>ATL_RESOURCE</b>: {{ATL_RESOURCE}}</div>{{/ATL_RESOURCE}}
+{{#ATL_HUB}}<div><b>ATL_HUB</b>: {{ATL_HUB}}</div>{{/ATL_HUB}}
+{{#ATL_PNODE_MAP}}<div><b>ATL_PNODE_MAP</b>: {{ATL_PNODE_MAP}}</div>{{/ATL_PNODE_MAP}}
+{{#ATL_AS_REGION}}<div><b>ATL_AS_REGION</b>: {{ATL_AS_REGION}}</div>{{/ATL_AS_REGION}}
+{{#ATL_AS_REGION_MAP}}<div><b>ATL_AS_REGION_MAP</b>: {{ATL_AS_REGION_MAP}}</div>{{/ATL_AS_REGION_MAP}}
+{{#ATL_RUC_ZONE}}<div><b>ATL_RUC_ZONE</b>: {{ATL_RUC_ZONE}}</div>{{/ATL_RUC_ZONE}}
+{{#ATL_RUC_ZONE_MAP}}<div><b>ATL_RUC_ZONE_MAP</b>: {{ATL_RUC_ZONE_MAP}}</div>{{/ATL_RUC_ZONE_MAP}}
+{{#ATL_TAC_AREA}}<div><b>ATL_TAC_AREA</b>: {{ATL_TAC_AREA}}</div>{{/ATL_TAC_AREA}}
+{{#ATL_TAC_AREA_MAP}}<div><b>ATL_TAC_AREA_MAP</b>: {{ATL_TAC_AREA_MAP}}</div>{{/ATL_TAC_AREA_MAP}}
+{{#ATL_TIEPOINT}}<div><b>ATL_TIEPOINT</b>: {{ATL_TIEPOINT}}</div>{{/ATL_TIEPOINT}}
+{{#ATL_TI}}<div><b>ATL_TI</b>: {{ATL_TI}}</div>{{/ATL_TI}}
+{{#ATL_PUB}}<div><b>ATL_PUB</b>: {{ATL_PUB}}</div>{{/ATL_PUB}}
+{{#ATL_STAT}}<div><b>ATL_STAT</b>: {{ATL_STAT}}</div>{{/ATL_STAT}}
+{{#ATL_PUB_SCHED}}<div><b>ATL_PUB_SCHED</b>: {{ATL_PUB_SCHED}}</div>{{/ATL_PUB_SCHED}}
+{{#ATL_XREF}}<div><b>ATL_XREF</b>: {{ATL_XREF}}</div>{{/ATL_XREF}}
+</div>
+`
+                );
+           }        }
 
         class OASISErrCode extends base.Element
         {
@@ -3114,7 +4186,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OASISErrCode_collapse" aria-expanded="true" aria-controls="OASISErrCode_collapse">OASISErrCode</a>
+<div id="OASISErrCode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#1000}}<div><b>1000</b>: {{1000}}</div>{{/1000}}
+{{#1001}}<div><b>1001</b>: {{1001}}</div>{{/1001}}
+{{#1002}}<div><b>1002</b>: {{1002}}</div>{{/1002}}
+{{#1003}}<div><b>1003</b>: {{1003}}</div>{{/1003}}
+{{#1004}}<div><b>1004</b>: {{1004}}</div>{{/1004}}
+{{#1005}}<div><b>1005</b>: {{1005}}</div>{{/1005}}
+{{#1006}}<div><b>1006</b>: {{1006}}</div>{{/1006}}
+{{#1007}}<div><b>1007</b>: {{1007}}</div>{{/1007}}
+{{#1008}}<div><b>1008</b>: {{1008}}</div>{{/1008}}
+{{#1009}}<div><b>1009</b>: {{1009}}</div>{{/1009}}
+{{#1010}}<div><b>1010</b>: {{1010}}</div>{{/1010}}
+</div>
+`
+                );
+           }        }
 
         /**
          * organization type
@@ -3166,7 +4263,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OrganisationType_collapse" aria-expanded="true" aria-controls="OrganisationType_collapse">OrganisationType</a>
+<div id="OrganisationType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#CUSTOMER}}<div><b>CUSTOMER</b>: {{CUSTOMER}}</div>{{/CUSTOMER}}
+{{#RTO}}<div><b>RTO</b>: {{RTO}}</div>{{/RTO}}
+</div>
+`
+                );
+           }        }
 
         /**
          * self schedule types
@@ -3256,7 +4369,37 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SelfScheduleType_collapse" aria-expanded="true" aria-controls="SelfScheduleType_collapse">SelfScheduleType</a>
+<div id="SelfScheduleType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#PT}}<div><b>PT</b>: {{PT}}</div>{{/PT}}
+{{#ETC}}<div><b>ETC</b>: {{ETC}}</div>{{/ETC}}
+{{#TOR}}<div><b>TOR</b>: {{TOR}}</div>{{/TOR}}
+{{#RMR}}<div><b>RMR</b>: {{RMR}}</div>{{/RMR}}
+{{#RMT}}<div><b>RMT</b>: {{RMT}}</div>{{/RMT}}
+{{#RGMR}}<div><b>RGMR</b>: {{RGMR}}</div>{{/RGMR}}
+{{#ORFC}}<div><b>ORFC</b>: {{ORFC}}</div>{{/ORFC}}
+{{#SP}}<div><b>SP</b>: {{SP}}</div>{{/SP}}
+{{#IFM}}<div><b>IFM</b>: {{IFM}}</div>{{/IFM}}
+{{#RUC}}<div><b>RUC</b>: {{RUC}}</div>{{/RUC}}
+{{#RA}}<div><b>RA</b>: {{RA}}</div>{{/RA}}
+{{#PUMP_ETC}}<div><b>PUMP_ETC</b>: {{PUMP_ETC}}</div>{{/PUMP_ETC}}
+{{#PUMP_TOR}}<div><b>PUMP_TOR</b>: {{PUMP_TOR}}</div>{{/PUMP_TOR}}
+{{#BAS}}<div><b>BAS</b>: {{BAS}}</div>{{/BAS}}
+{{#LOF}}<div><b>LOF</b>: {{LOF}}</div>{{/LOF}}
+{{#WHL}}<div><b>WHL</b>: {{WHL}}</div>{{/WHL}}
+</div>
+`
+                );
+           }        }
 
         class SourceSinkType extends base.Element
         {
@@ -3306,7 +4449,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SourceSinkType_collapse" aria-expanded="true" aria-controls="SourceSinkType_collapse">SourceSinkType</a>
+<div id="SourceSinkType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#Source}}<div><b>Source</b>: {{Source}}</div>{{/Source}}
+{{#Sink}}<div><b>Sink</b>: {{Sink}}</div>{{/Sink}}
+{{#Neither}}<div><b>Neither</b>: {{Neither}}</div>{{/Neither}}
+</div>
+`
+                );
+           }        }
 
         class SelfSchedTypeCleanBid extends base.Element
         {
@@ -3372,7 +4532,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SelfSchedTypeCleanBid_collapse" aria-expanded="true" aria-controls="SelfSchedTypeCleanBid_collapse">SelfSchedTypeCleanBid</a>
+<div id="SelfSchedTypeCleanBid_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#PT}}<div><b>PT</b>: {{PT}}</div>{{/PT}}
+{{#ETC}}<div><b>ETC</b>: {{ETC}}</div>{{/ETC}}
+{{#TOR}}<div><b>TOR</b>: {{TOR}}</div>{{/TOR}}
+{{#RMT}}<div><b>RMT</b>: {{RMT}}</div>{{/RMT}}
+{{#SP}}<div><b>SP</b>: {{SP}}</div>{{/SP}}
+{{#RA}}<div><b>RA</b>: {{RA}}</div>{{/RA}}
+{{#IFM}}<div><b>IFM</b>: {{IFM}}</div>{{/IFM}}
+{{#BAS}}<div><b>BAS</b>: {{BAS}}</div>{{/BAS}}
+{{#LOF}}<div><b>LOF</b>: {{LOF}}</div>{{/LOF}}
+{{#WHL}}<div><b>WHL</b>: {{WHL}}</div>{{/WHL}}
+{{#LPT}}<div><b>LPT</b>: {{LPT}}</div>{{/LPT}}
+</div>
+`
+                );
+           }        }
 
         class TradeProductType extends base.Element
         {
@@ -3430,7 +4615,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TradeProductType_collapse" aria-expanded="true" aria-controls="TradeProductType_collapse">TradeProductType</a>
+<div id="TradeProductType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#PHY}}<div><b>PHY</b>: {{PHY}}</div>{{/PHY}}
+{{#APN}}<div><b>APN</b>: {{APN}}</div>{{/APN}}
+{{#RUT}}<div><b>RUT</b>: {{RUT}}</div>{{/RUT}}
+{{#RDT}}<div><b>RDT</b>: {{RDT}}</div>{{/RDT}}
+{{#SRT}}<div><b>SRT</b>: {{SRT}}</div>{{/SRT}}
+{{#NRT}}<div><b>NRT</b>: {{NRT}}</div>{{/NRT}}
+{{#CAP}}<div><b>CAP</b>: {{CAP}}</div>{{/CAP}}
+</div>
+`
+                );
+           }        }
 
         class MarketScheduleServices extends base.Element
         {
@@ -3484,7 +4690,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketScheduleServices_collapse" aria-expanded="true" aria-controls="MarketScheduleServices_collapse">MarketScheduleServices</a>
+<div id="MarketScheduleServices_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#retrieveDefaultBidCurves}}<div><b>retrieveDefaultBidCurves</b>: {{retrieveDefaultBidCurves}}</div>{{/retrieveDefaultBidCurves}}
+{{#retrieveMarketAwards}}<div><b>retrieveMarketAwards</b>: {{retrieveMarketAwards}}</div>{{/retrieveMarketAwards}}
+{{#retrieveMPMResults}}<div><b>retrieveMPMResults</b>: {{retrieveMPMResults}}</div>{{/retrieveMPMResults}}
+{{#retrieveSchedulePrices}}<div><b>retrieveSchedulePrices</b>: {{retrieveSchedulePrices}}</div>{{/retrieveSchedulePrices}}
+{{#retrieveStartUpShutDownInstructions}}<div><b>retrieveStartUpShutDownInstructions</b>: {{retrieveStartUpShutDownInstructions}}</div>{{/retrieveStartUpShutDownInstructions}}
+</div>
+`
+                );
+           }        }
 
         class SystemType extends base.Element
         {
@@ -3530,7 +4755,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SystemType_collapse" aria-expanded="true" aria-controls="SystemType_collapse">SystemType</a>
+<div id="SystemType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#OASIS}}<div><b>OASIS</b>: {{OASIS}}</div>{{/OASIS}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Valid Enumerations:
@@ -3633,7 +4873,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EnergyTypeCode_collapse" aria-expanded="true" aria-controls="EnergyTypeCode_collapse">EnergyTypeCode</a>
+<div id="EnergyTypeCode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#DASE}}<div><b>DASE</b>: {{DASE}}</div>{{/DASE}}
+{{#DSSE}}<div><b>DSSE</b>: {{DSSE}}</div>{{/DSSE}}
+{{#DABE}}<div><b>DABE</b>: {{DABE}}</div>{{/DABE}}
+{{#OE}}<div><b>OE</b>: {{OE}}</div>{{/OE}}
+{{#HASE}}<div><b>HASE</b>: {{HASE}}</div>{{/HASE}}
+{{#SRE}}<div><b>SRE</b>: {{SRE}}</div>{{/SRE}}
+{{#RED}}<div><b>RED</b>: {{RED}}</div>{{/RED}}
+{{#EDE}}<div><b>EDE</b>: {{EDE}}</div>{{/EDE}}
+{{#RMRE}}<div><b>RMRE</b>: {{RMRE}}</div>{{/RMRE}}
+{{#MSSLFE}}<div><b>MSSLFE</b>: {{MSSLFE}}</div>{{/MSSLFE}}
+{{#RE}}<div><b>RE</b>: {{RE}}</div>{{/RE}}
+{{#MLE}}<div><b>MLE</b>: {{MLE}}</div>{{/MLE}}
+{{#SE}}<div><b>SE</b>: {{SE}}</div>{{/SE}}
+{{#RTSSE}}<div><b>RTSSE</b>: {{RTSSE}}</div>{{/RTSSE}}
+{{#DMLE}}<div><b>DMLE</b>: {{DMLE}}</div>{{/DMLE}}
+{{#PE}}<div><b>PE</b>: {{PE}}</div>{{/PE}}
+{{#TEE}}<div><b>TEE</b>: {{TEE}}</div>{{/TEE}}
+{{#DAPE}}<div><b>DAPE</b>: {{DAPE}}</div>{{/DAPE}}
+</div>
+`
+                );
+           }        }
 
         /**
          * ACTIVE
@@ -3687,7 +4959,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CurrentStatusSC_collapse" aria-expanded="true" aria-controls="CurrentStatusSC_collapse">CurrentStatusSC</a>
+<div id="CurrentStatusSC_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ACTIVE}}<div><b>ACTIVE</b>: {{ACTIVE}}</div>{{/ACTIVE}}
+{{#INACTIVE}}<div><b>INACTIVE</b>: {{INACTIVE}}</div>{{/INACTIVE}}
+</div>
+`
+                );
+           }        }
 
         /**
          * RJ - Rejected Trade
@@ -3768,7 +5056,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TradeStatusType_collapse" aria-expanded="true" aria-controls="TradeStatusType_collapse">TradeStatusType</a>
+<div id="TradeStatusType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#RJ}}<div><b>RJ</b>: {{RJ}}</div>{{/RJ}}
+{{#I}}<div><b>I</b>: {{I}}</div>{{/I}}
+{{#V}}<div><b>V</b>: {{V}}</div>{{/V}}
+{{#M}}<div><b>M</b>: {{M}}</div>{{/M}}
+{{#CV}}<div><b>CV</b>: {{CV}}</div>{{/CV}}
+{{#CM}}<div><b>CM</b>: {{CM}}</div>{{/CM}}
+{{#CI}}<div><b>CI</b>: {{CI}}</div>{{/CI}}
+{{#CX}}<div><b>CX</b>: {{CX}}</div>{{/CX}}
+{{#O}}<div><b>O</b>: {{O}}</div>{{/O}}
+{{#MT}}<div><b>MT</b>: {{MT}}</div>{{/MT}}
+{{#U}}<div><b>U</b>: {{U}}</div>{{/U}}
+</div>
+`
+                );
+           }        }
 
         class ResourceCertificationCategory extends base.Element
         {
@@ -3820,7 +5133,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ResourceCertificationCategory_collapse" aria-expanded="true" aria-controls="ResourceCertificationCategory_collapse">ResourceCertificationCategory</a>
+<div id="ResourceCertificationCategory_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#DAM}}<div><b>DAM</b>: {{DAM}}</div>{{/DAM}}
+{{#RTM}}<div><b>RTM</b>: {{RTM}}</div>{{/RTM}}
+{{#RC}}<div><b>RC</b>: {{RC}}</div>{{/RC}}
+{{#GT}}<div><b>GT</b>: {{GT}}</div>{{/GT}}
+</div>
+`
+                );
+           }        }
 
         /**
          * organization code
@@ -3876,7 +5207,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OrganisationCode_collapse" aria-expanded="true" aria-controls="OrganisationCode_collapse">OrganisationCode</a>
+<div id="OrganisationCode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#BILL_TO}}<div><b>BILL_TO</b>: {{BILL_TO}}</div>{{/BILL_TO}}
+{{#PAY_TO}}<div><b>PAY_TO</b>: {{PAY_TO}}</div>{{/PAY_TO}}
+{{#SOLD_TO}}<div><b>SOLD_TO</b>: {{SOLD_TO}}</div>{{/SOLD_TO}}
+{{#PROVIDED_BY}}<div><b>PROVIDED_BY</b>: {{PROVIDED_BY}}</div>{{/PROVIDED_BY}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

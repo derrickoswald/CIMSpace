@@ -56,7 +56,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MaintenanceDataSet_collapse" aria-expanded="true" aria-controls="MaintenanceDataSet_collapse">MaintenanceDataSet</a>
+<div id="MaintenanceDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.ProcedureDataSet.prototype.template.call (this) +
+`
+{{#conditionAfter}}<div><b>conditionAfter</b>: {{conditionAfter}}</div>{{/conditionAfter}}
+{{#conditionBefore}}<div><b>conditionBefore</b>: {{conditionBefore}}</div>{{/conditionBefore}}
+{{#maintCode}}<div><b>maintCode</b>: {{maintCode}}</div>{{/maintCode}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Documents the result of one inspection, for a given attribute of an asset.
@@ -106,7 +123,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#InspectionDataSet_collapse" aria-expanded="true" aria-controls="InspectionDataSet_collapse">InspectionDataSet</a>
+<div id="InspectionDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.ProcedureDataSet.prototype.template.call (this) +
+`
+{{#locationCondition}}<div><b>locationCondition</b>: {{locationCondition}}</div>{{/locationCondition}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The result of a problem (typically an asset failure) diagnosis.
@@ -180,7 +212,34 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DiagnosisDataSet_collapse" aria-expanded="true" aria-controls="DiagnosisDataSet_collapse">DiagnosisDataSet</a>
+<div id="DiagnosisDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.ProcedureDataSet.prototype.template.call (this) +
+`
+{{#effect}}<div><b>effect</b>: {{effect}}</div>{{/effect}}
+{{#failureMode}}<div><b>failureMode</b>: {{failureMode}}</div>{{/failureMode}}
+{{#finalCause}}<div><b>finalCause</b>: {{finalCause}}</div>{{/finalCause}}
+{{#finalCode}}<div><b>finalCode</b>: {{finalCode}}</div>{{/finalCode}}
+{{#finalOrigin}}<div><b>finalOrigin</b>: {{finalOrigin}}</div>{{/finalOrigin}}
+{{#finalRemark}}<div><b>finalRemark</b>: {{finalRemark}}</div>{{/finalRemark}}
+{{#phaseCode}}<div><b>phaseCode</b>: {{phaseCode}}</div>{{/phaseCode}}
+{{#preliminaryCode}}<div><b>preliminaryCode</b>: {{preliminaryCode}}</div>{{/preliminaryCode}}
+{{#preliminaryDateTime}}<div><b>preliminaryDateTime</b>: {{preliminaryDateTime}}</div>{{/preliminaryDateTime}}
+{{#preliminaryRemark}}<div><b>preliminaryRemark</b>: {{preliminaryRemark}}</div>{{/preliminaryRemark}}
+{{#rootCause}}<div><b>rootCause</b>: {{rootCause}}</div>{{/rootCause}}
+{{#rootOrigin}}<div><b>rootOrigin</b>: {{rootOrigin}}</div>{{/rootOrigin}}
+{{#rootRemark}}<div><b>rootRemark</b>: {{rootRemark}}</div>{{/rootRemark}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Test results, usually obtained by a lab or other independent organisation.
@@ -234,7 +293,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TestDataSet_collapse" aria-expanded="true" aria-controls="TestDataSet_collapse">TestDataSet</a>
+<div id="TestDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.ProcedureDataSet.prototype.template.call (this) +
+`
+{{#conclusion}}<div><b>conclusion</b>: {{conclusion}}</div>{{/conclusion}}
+{{#specimenID}}<div><b>specimenID</b>: {{specimenID}}</div>{{/specimenID}}
+{{#specimenToLabDateTime}}<div><b>specimenToLabDateTime</b>: {{specimenToLabDateTime}}</div>{{/specimenToLabDateTime}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

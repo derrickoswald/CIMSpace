@@ -58,7 +58,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VoltageAdjusterDynamics_collapse" aria-expanded="true" aria-controls="VoltageAdjusterDynamics_collapse">VoltageAdjusterDynamics</a>
+<div id="VoltageAdjusterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+`
+{{#PFVArControllerType1Dynamics}}<div><b>PFVArControllerType1Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1Dynamics}}&quot;);})'>{{PFVArControllerType1Dynamics}}</a></div>{{/PFVArControllerType1Dynamics}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Voltage Adjuster which is used to represent the voltage adjuster in either a power factor or var control system.
@@ -120,7 +135,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VAdjIEEE_collapse" aria-expanded="true" aria-controls="VAdjIEEE_collapse">VAdjIEEE</a>
+<div id="VAdjIEEE_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + VoltageAdjusterDynamics.prototype.template.call (this) +
+`
+{{#adjslew}}<div><b>adjslew</b>: {{adjslew}}</div>{{/adjslew}}
+{{#taoff}}<div><b>taoff</b>: {{taoff}}</div>{{/taoff}}
+{{#taon}}<div><b>taon</b>: {{taon}}</div>{{/taon}}
+{{#vadjf}}<div><b>vadjf</b>: {{vadjf}}</div>{{/vadjf}}
+{{#vadjmax}}<div><b>vadjmax</b>: {{vadjmax}}</div>{{/vadjmax}}
+{{#vadjmin}}<div><b>vadjmin</b>: {{vadjmin}}</div>{{/vadjmin}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

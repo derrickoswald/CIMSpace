@@ -62,7 +62,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FrancisGovernorControlKind_collapse" aria-expanded="true" aria-controls="FrancisGovernorControlKind_collapse">FrancisGovernorControlKind</a>
+<div id="FrancisGovernorControlKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#mechanicHydrolicTachoAccelerator}}<div><b>mechanicHydrolicTachoAccelerator</b>: {{mechanicHydrolicTachoAccelerator}}</div>{{/mechanicHydrolicTachoAccelerator}}
+{{#mechanicHydraulicTransientFeedback}}<div><b>mechanicHydraulicTransientFeedback</b>: {{mechanicHydraulicTransientFeedback}}</div>{{/mechanicHydraulicTransientFeedback}}
+{{#electromechanicalElectrohydraulic}}<div><b>electromechanicalElectrohydraulic</b>: {{electromechanicalElectrohydraulic}}</div>{{/electromechanicalElectrohydraulic}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Governor droop signal feedback source.
@@ -118,7 +135,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DroopSignalFeedbackKind_collapse" aria-expanded="true" aria-controls="DroopSignalFeedbackKind_collapse">DroopSignalFeedbackKind</a>
+<div id="DroopSignalFeedbackKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#electricalPower}}<div><b>electricalPower</b>: {{electricalPower}}</div>{{/electricalPower}}
+{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
+{{#fuelValveStroke}}<div><b>fuelValveStroke</b>: {{fuelValveStroke}}</div>{{/fuelValveStroke}}
+{{#governorOutput}}<div><b>governorOutput</b>: {{governorOutput}}</div>{{/governorOutput}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Turbine-governor function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -170,7 +205,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TurbineGovernorDynamics_collapse" aria-expanded="true" aria-controls="TurbineGovernorDynamics_collapse">TurbineGovernorDynamics</a>
+<div id="TurbineGovernorDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+`
+{{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineDynamics}}&quot;);})'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
+{{#TurbineLoadControllerDynamics}}<div><b>TurbineLoadControllerDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineLoadControllerDynamics}}&quot;);})'>{{TurbineLoadControllerDynamics}}</a></div>{{/TurbineLoadControllerDynamics}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Cross compound turbine governor model.
@@ -252,7 +303,38 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovSteamCC_collapse" aria-expanded="true" aria-controls="GovSteamCC_collapse">GovSteamCC</a>
+<div id="GovSteamCC_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#dhp}}<div><b>dhp</b>: {{dhp}}</div>{{/dhp}}
+{{#dlp}}<div><b>dlp</b>: {{dlp}}</div>{{/dlp}}
+{{#fhp}}<div><b>fhp</b>: {{fhp}}</div>{{/fhp}}
+{{#flp}}<div><b>flp</b>: {{flp}}</div>{{/flp}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pmaxhp}}<div><b>pmaxhp</b>: {{pmaxhp}}</div>{{/pmaxhp}}
+{{#pmaxlp}}<div><b>pmaxlp</b>: {{pmaxlp}}</div>{{/pmaxlp}}
+{{#rhp}}<div><b>rhp</b>: {{rhp}}</div>{{/rhp}}
+{{#rlp}}<div><b>rlp</b>: {{rlp}}</div>{{/rlp}}
+{{#t1hp}}<div><b>t1hp</b>: {{t1hp}}</div>{{/t1hp}}
+{{#t1lp}}<div><b>t1lp</b>: {{t1lp}}</div>{{/t1lp}}
+{{#t3hp}}<div><b>t3hp</b>: {{t3hp}}</div>{{/t3hp}}
+{{#t3lp}}<div><b>t3lp</b>: {{t3lp}}</div>{{/t3lp}}
+{{#t4hp}}<div><b>t4hp</b>: {{t4hp}}</div>{{/t4hp}}
+{{#t4lp}}<div><b>t4lp</b>: {{t4lp}}</div>{{/t4lp}}
+{{#t5hp}}<div><b>t5hp</b>: {{t5hp}}</div>{{/t5hp}}
+{{#t5lp}}<div><b>t5lp</b>: {{t5lp}}</div>{{/t5lp}}
+</div>
+`
+                );
+           }        }
 
         /**
          * PID governor and turbine.
@@ -366,7 +448,54 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovHydroPID_collapse" aria-expanded="true" aria-controls="GovHydroPID_collapse">GovHydroPID</a>
+<div id="GovHydroPID_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#aturb}}<div><b>aturb</b>: {{aturb}}</div>{{/aturb}}
+{{#bturb}}<div><b>bturb</b>: {{bturb}}</div>{{/bturb}}
+{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+{{#inputSignal}}<div><b>inputSignal</b>: {{inputSignal}}</div>{{/inputSignal}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+{{#tturb}}<div><b>tturb</b>: {{tturb}}</div>{{/tturb}}
+{{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
+{{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
+</div>
+`
+                );
+           }        }
 
         /**
          * General governor model with frequency-dependent fuel flow limit.
@@ -528,7 +657,77 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovCT2_collapse" aria-expanded="true" aria-controls="GovCT2_collapse">GovCT2</a>
+<div id="GovCT2_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#aset}}<div><b>aset</b>: {{aset}}</div>{{/aset}}
+{{#db}}<div><b>db</b>: {{db}}</div>{{/db}}
+{{#dm}}<div><b>dm</b>: {{dm}}</div>{{/dm}}
+{{#flim1}}<div><b>flim1</b>: {{flim1}}</div>{{/flim1}}
+{{#flim10}}<div><b>flim10</b>: {{flim10}}</div>{{/flim10}}
+{{#flim2}}<div><b>flim2</b>: {{flim2}}</div>{{/flim2}}
+{{#flim3}}<div><b>flim3</b>: {{flim3}}</div>{{/flim3}}
+{{#flim4}}<div><b>flim4</b>: {{flim4}}</div>{{/flim4}}
+{{#flim5}}<div><b>flim5</b>: {{flim5}}</div>{{/flim5}}
+{{#flim6}}<div><b>flim6</b>: {{flim6}}</div>{{/flim6}}
+{{#flim7}}<div><b>flim7</b>: {{flim7}}</div>{{/flim7}}
+{{#flim8}}<div><b>flim8</b>: {{flim8}}</div>{{/flim8}}
+{{#flim9}}<div><b>flim9</b>: {{flim9}}</div>{{/flim9}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kdgov}}<div><b>kdgov</b>: {{kdgov}}</div>{{/kdgov}}
+{{#kigov}}<div><b>kigov</b>: {{kigov}}</div>{{/kigov}}
+{{#kiload}}<div><b>kiload</b>: {{kiload}}</div>{{/kiload}}
+{{#kimw}}<div><b>kimw</b>: {{kimw}}</div>{{/kimw}}
+{{#kpgov}}<div><b>kpgov</b>: {{kpgov}}</div>{{/kpgov}}
+{{#kpload}}<div><b>kpload</b>: {{kpload}}</div>{{/kpload}}
+{{#kturb}}<div><b>kturb</b>: {{kturb}}</div>{{/kturb}}
+{{#ldref}}<div><b>ldref</b>: {{ldref}}</div>{{/ldref}}
+{{#maxerr}}<div><b>maxerr</b>: {{maxerr}}</div>{{/maxerr}}
+{{#minerr}}<div><b>minerr</b>: {{minerr}}</div>{{/minerr}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#plim1}}<div><b>plim1</b>: {{plim1}}</div>{{/plim1}}
+{{#plim10}}<div><b>plim10</b>: {{plim10}}</div>{{/plim10}}
+{{#plim2}}<div><b>plim2</b>: {{plim2}}</div>{{/plim2}}
+{{#plim3}}<div><b>plim3</b>: {{plim3}}</div>{{/plim3}}
+{{#plim4}}<div><b>plim4</b>: {{plim4}}</div>{{/plim4}}
+{{#plim5}}<div><b>plim5</b>: {{plim5}}</div>{{/plim5}}
+{{#plim6}}<div><b>plim6</b>: {{plim6}}</div>{{/plim6}}
+{{#plim7}}<div><b>plim7</b>: {{plim7}}</div>{{/plim7}}
+{{#plim8}}<div><b>plim8</b>: {{plim8}}</div>{{/plim8}}
+{{#plim9}}<div><b>plim9</b>: {{plim9}}</div>{{/plim9}}
+{{#prate}}<div><b>prate</b>: {{prate}}</div>{{/prate}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#rclose}}<div><b>rclose</b>: {{rclose}}</div>{{/rclose}}
+{{#rdown}}<div><b>rdown</b>: {{rdown}}</div>{{/rdown}}
+{{#ropen}}<div><b>ropen</b>: {{ropen}}</div>{{/ropen}}
+{{#rselect}}<div><b>rselect</b>: {{rselect}}</div>{{/rselect}}
+{{#rup}}<div><b>rup</b>: {{rup}}</div>{{/rup}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tact}}<div><b>tact</b>: {{tact}}</div>{{/tact}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#tdgov}}<div><b>tdgov</b>: {{tdgov}}</div>{{/tdgov}}
+{{#teng}}<div><b>teng</b>: {{teng}}</div>{{/teng}}
+{{#tfload}}<div><b>tfload</b>: {{tfload}}</div>{{/tfload}}
+{{#tpelec}}<div><b>tpelec</b>: {{tpelec}}</div>{{/tpelec}}
+{{#tsa}}<div><b>tsa</b>: {{tsa}}</div>{{/tsa}}
+{{#tsb}}<div><b>tsb</b>: {{tsb}}</div>{{/tsb}}
+{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+{{#wfnl}}<div><b>wfnl</b>: {{wfnl}}</div>{{/wfnl}}
+{{#wfspd}}<div><b>wfspd</b>: {{wfspd}}</div>{{/wfspd}}
+</div>
+`
+                );
+           }        }
 
         /**
          * IEEE hydro turbine governor model represents plants with straightforward penstock configurations and hydraulic-dashpot governors.
@@ -634,7 +833,50 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovHydro2_collapse" aria-expanded="true" aria-controls="GovHydro2_collapse">GovHydro2</a>
+<div id="GovHydro2_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#aturb}}<div><b>aturb</b>: {{aturb}}</div>{{/aturb}}
+{{#bturb}}<div><b>bturb</b>: {{bturb}}</div>{{/bturb}}
+{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+{{#kturb}}<div><b>kturb</b>: {{kturb}}</div>{{/kturb}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+{{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
+{{#rtemp}}<div><b>rtemp</b>: {{rtemp}}</div>{{/rtemp}}
+{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+{{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
+{{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
+</div>
+`
+                );
+           }        }
 
         /**
          * IEEE hydro turbine governor model represents plants with straightforward penstock configurations and hydraulic-dashpot governors.
@@ -736,7 +978,47 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovHydroIEEE2_collapse" aria-expanded="true" aria-controls="GovHydroIEEE2_collapse">GovHydroIEEE2</a>
+<div id="GovHydroIEEE2_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#aturb}}<div><b>aturb</b>: {{aturb}}</div>{{/aturb}}
+{{#bturb}}<div><b>bturb</b>: {{bturb}}</div>{{/bturb}}
+{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+{{#kturb}}<div><b>kturb</b>: {{kturb}}</div>{{/kturb}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+{{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
+{{#rtemp}}<div><b>rtemp</b>: {{rtemp}}</div>{{/rtemp}}
+{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+{{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
+{{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Woodward PID Hydro Governor.
@@ -828,7 +1110,43 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovHydroWPID_collapse" aria-expanded="true" aria-controls="GovHydroWPID_collapse">GovHydroWPID</a>
+<div id="GovHydroWPID_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#d}}<div><b>d</b>: {{d}}</div>{{/d}}
+{{#gatmax}}<div><b>gatmax</b>: {{gatmax}}</div>{{/gatmax}}
+{{#gatmin}}<div><b>gatmin</b>: {{gatmin}}</div>{{/gatmin}}
+{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+{{#reg}}<div><b>reg</b>: {{reg}}</div>{{/reg}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#treg}}<div><b>treg</b>: {{treg}}</div>{{/treg}}
+{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+{{#velmax}}<div><b>velmax</b>: {{velmax}}</div>{{/velmax}}
+{{#velmin}}<div><b>velmin</b>: {{velmin}}</div>{{/velmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Detailed electro-hydraulic governor for steam unit.
@@ -978,7 +1296,72 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovSteamFV4_collapse" aria-expanded="true" aria-controls="GovSteamFV4_collapse">GovSteamFV4</a>
+<div id="GovSteamFV4_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#cpsmn}}<div><b>cpsmn</b>: {{cpsmn}}</div>{{/cpsmn}}
+{{#cpsmx}}<div><b>cpsmx</b>: {{cpsmx}}</div>{{/cpsmx}}
+{{#crmn}}<div><b>crmn</b>: {{crmn}}</div>{{/crmn}}
+{{#crmx}}<div><b>crmx</b>: {{crmx}}</div>{{/crmx}}
+{{#kdc}}<div><b>kdc</b>: {{kdc}}</div>{{/kdc}}
+{{#kf1}}<div><b>kf1</b>: {{kf1}}</div>{{/kf1}}
+{{#kf3}}<div><b>kf3</b>: {{kf3}}</div>{{/kf3}}
+{{#khp}}<div><b>khp</b>: {{khp}}</div>{{/khp}}
+{{#kic}}<div><b>kic</b>: {{kic}}</div>{{/kic}}
+{{#kip}}<div><b>kip</b>: {{kip}}</div>{{/kip}}
+{{#kit}}<div><b>kit</b>: {{kit}}</div>{{/kit}}
+{{#kmp1}}<div><b>kmp1</b>: {{kmp1}}</div>{{/kmp1}}
+{{#kmp2}}<div><b>kmp2</b>: {{kmp2}}</div>{{/kmp2}}
+{{#kpc}}<div><b>kpc</b>: {{kpc}}</div>{{/kpc}}
+{{#kpp}}<div><b>kpp</b>: {{kpp}}</div>{{/kpp}}
+{{#kpt}}<div><b>kpt</b>: {{kpt}}</div>{{/kpt}}
+{{#krc}}<div><b>krc</b>: {{krc}}</div>{{/krc}}
+{{#ksh}}<div><b>ksh</b>: {{ksh}}</div>{{/ksh}}
+{{#lpi}}<div><b>lpi</b>: {{lpi}}</div>{{/lpi}}
+{{#lps}}<div><b>lps</b>: {{lps}}</div>{{/lps}}
+{{#mnef}}<div><b>mnef</b>: {{mnef}}</div>{{/mnef}}
+{{#mxef}}<div><b>mxef</b>: {{mxef}}</div>{{/mxef}}
+{{#pr1}}<div><b>pr1</b>: {{pr1}}</div>{{/pr1}}
+{{#pr2}}<div><b>pr2</b>: {{pr2}}</div>{{/pr2}}
+{{#psmn}}<div><b>psmn</b>: {{psmn}}</div>{{/psmn}}
+{{#rsmimn}}<div><b>rsmimn</b>: {{rsmimn}}</div>{{/rsmimn}}
+{{#rsmimx}}<div><b>rsmimx</b>: {{rsmimx}}</div>{{/rsmimx}}
+{{#rvgmn}}<div><b>rvgmn</b>: {{rvgmn}}</div>{{/rvgmn}}
+{{#rvgmx}}<div><b>rvgmx</b>: {{rvgmx}}</div>{{/rvgmx}}
+{{#srmn}}<div><b>srmn</b>: {{srmn}}</div>{{/srmn}}
+{{#srmx}}<div><b>srmx</b>: {{srmx}}</div>{{/srmx}}
+{{#srsmp}}<div><b>srsmp</b>: {{srsmp}}</div>{{/srsmp}}
+{{#svmn}}<div><b>svmn</b>: {{svmn}}</div>{{/svmn}}
+{{#svmx}}<div><b>svmx</b>: {{svmx}}</div>{{/svmx}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tam}}<div><b>tam</b>: {{tam}}</div>{{/tam}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#tcm}}<div><b>tcm</b>: {{tcm}}</div>{{/tcm}}
+{{#tdc}}<div><b>tdc</b>: {{tdc}}</div>{{/tdc}}
+{{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
+{{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
+{{#thp}}<div><b>thp</b>: {{thp}}</div>{{/thp}}
+{{#tmp}}<div><b>tmp</b>: {{tmp}}</div>{{/tmp}}
+{{#trh}}<div><b>trh</b>: {{trh}}</div>{{/trh}}
+{{#tv}}<div><b>tv</b>: {{tv}}</div>{{/tv}}
+{{#ty}}<div><b>ty</b>: {{ty}}</div>{{/ty}}
+{{#y}}<div><b>y</b>: {{y}}</div>{{/y}}
+{{#yhpmn}}<div><b>yhpmn</b>: {{yhpmn}}</div>{{/yhpmn}}
+{{#yhpmx}}<div><b>yhpmx</b>: {{yhpmx}}</div>{{/yhpmx}}
+{{#ympmn}}<div><b>ympmn</b>: {{ympmn}}</div>{{/ympmn}}
+{{#ympmx}}<div><b>ympmx</b>: {{ympmx}}</div>{{/ympmx}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Hydro turbine and governor.
@@ -1072,7 +1455,43 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovHydroPID2_collapse" aria-expanded="true" aria-controls="GovHydroPID2_collapse">GovHydroPID2</a>
+<div id="GovHydroPID2_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#atw}}<div><b>atw</b>: {{atw}}</div>{{/atw}}
+{{#d}}<div><b>d</b>: {{d}}</div>{{/d}}
+{{#feedbackSignal}}<div><b>feedbackSignal</b>: {{feedbackSignal}}</div>{{/feedbackSignal}}
+{{#g0}}<div><b>g0</b>: {{g0}}</div>{{/g0}}
+{{#g1}}<div><b>g1</b>: {{g1}}</div>{{/g1}}
+{{#g2}}<div><b>g2</b>: {{g2}}</div>{{/g2}}
+{{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
+{{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#p1}}<div><b>p1</b>: {{p1}}</div>{{/p1}}
+{{#p2}}<div><b>p2</b>: {{p2}}</div>{{/p2}}
+{{#p3}}<div><b>p3</b>: {{p3}}</div>{{/p3}}
+{{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#treg}}<div><b>treg</b>: {{treg}}</div>{{/treg}}
+{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+{{#velmax}}<div><b>velmax</b>: {{velmax}}</div>{{/velmax}}
+{{#velmin}}<div><b>velmin</b>: {{velmin}}</div>{{/velmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Single shaft gas turbine.
@@ -1140,7 +1559,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovGAST_collapse" aria-expanded="true" aria-controls="GovGAST_collapse">GovGAST</a>
+<div id="GovGAST_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
+{{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
+{{#kt}}<div><b>kt</b>: {{kt}}</div>{{/kt}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Simplified model  of boiler and steam turbine with PID governor.
@@ -1258,7 +1701,56 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovSteamEU_collapse" aria-expanded="true" aria-controls="GovSteamEU_collapse">GovSteamEU</a>
+<div id="GovSteamEU_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#chc}}<div><b>chc</b>: {{chc}}</div>{{/chc}}
+{{#cho}}<div><b>cho</b>: {{cho}}</div>{{/cho}}
+{{#cic}}<div><b>cic</b>: {{cic}}</div>{{/cic}}
+{{#cio}}<div><b>cio</b>: {{cio}}</div>{{/cio}}
+{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+{{#hhpmax}}<div><b>hhpmax</b>: {{hhpmax}}</div>{{/hhpmax}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kfcor}}<div><b>kfcor</b>: {{kfcor}}</div>{{/kfcor}}
+{{#khp}}<div><b>khp</b>: {{khp}}</div>{{/khp}}
+{{#klp}}<div><b>klp</b>: {{klp}}</div>{{/klp}}
+{{#kwcor}}<div><b>kwcor</b>: {{kwcor}}</div>{{/kwcor}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+{{#prhmax}}<div><b>prhmax</b>: {{prhmax}}</div>{{/prhmax}}
+{{#simx}}<div><b>simx</b>: {{simx}}</div>{{/simx}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tdp}}<div><b>tdp</b>: {{tdp}}</div>{{/tdp}}
+{{#ten}}<div><b>ten</b>: {{ten}}</div>{{/ten}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#tfp}}<div><b>tfp</b>: {{tfp}}</div>{{/tfp}}
+{{#thp}}<div><b>thp</b>: {{thp}}</div>{{/thp}}
+{{#tip}}<div><b>tip</b>: {{tip}}</div>{{/tip}}
+{{#tlp}}<div><b>tlp</b>: {{tlp}}</div>{{/tlp}}
+{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+{{#trh}}<div><b>trh</b>: {{trh}}</div>{{/trh}}
+{{#tvhp}}<div><b>tvhp</b>: {{tvhp}}</div>{{/tvhp}}
+{{#tvip}}<div><b>tvip</b>: {{tvip}}</div>{{/tvip}}
+{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+{{#wfmax}}<div><b>wfmax</b>: {{wfmax}}</div>{{/wfmax}}
+{{#wfmin}}<div><b>wfmin</b>: {{wfmin}}</div>{{/wfmin}}
+{{#wmax1}}<div><b>wmax1</b>: {{wmax1}}</div>{{/wmax1}}
+{{#wmax2}}<div><b>wmax2</b>: {{wmax2}}</div>{{/wmax2}}
+{{#wwmax}}<div><b>wwmax</b>: {{wwmax}}</div>{{/wwmax}}
+{{#wwmin}}<div><b>wwmin</b>: {{wwmin}}</div>{{/wwmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE Hydro Governor-Turbine Model.
@@ -1380,7 +1872,57 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovHydro3_collapse" aria-expanded="true" aria-controls="GovHydro3_collapse">GovHydro3</a>
+<div id="GovHydro3_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
+{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+{{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
+{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+{{#governorControl}}<div><b>governorControl</b>: {{governorControl}}</div>{{/governorControl}}
+{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+{{#h0}}<div><b>h0</b>: {{h0}}</div>{{/h0}}
+{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+{{#qnl}}<div><b>qnl</b>: {{qnl}}</div>{{/qnl}}
+{{#relec}}<div><b>relec</b>: {{relec}}</div>{{/relec}}
+{{#rgate}}<div><b>rgate</b>: {{rgate}}</div>{{/rgate}}
+{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+{{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
+{{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
+</div>
+`
+                );
+           }        }
 
         /**
          * IEEE steam turbine governor model.
@@ -1472,7 +2014,42 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovSteamIEEE1_collapse" aria-expanded="true" aria-controls="GovSteamIEEE1_collapse">GovSteamIEEE1</a>
+<div id="GovSteamIEEE1_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+{{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
+{{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
+{{#k6}}<div><b>k6</b>: {{k6}}</div>{{/k6}}
+{{#k7}}<div><b>k7</b>: {{k7}}</div>{{/k7}}
+{{#k8}}<div><b>k8</b>: {{k8}}</div>{{/k8}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+{{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
+{{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
+{{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Woodward Gas turbine governor model.
@@ -1586,7 +2163,54 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovGASTWD_collapse" aria-expanded="true" aria-controls="GovGASTWD_collapse">GovGASTWD</a>
+<div id="GovGASTWD_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
+{{#af1}}<div><b>af1</b>: {{af1}}</div>{{/af1}}
+{{#af2}}<div><b>af2</b>: {{af2}}</div>{{/af2}}
+{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+{{#bf1}}<div><b>bf1</b>: {{bf1}}</div>{{/bf1}}
+{{#bf2}}<div><b>bf2</b>: {{bf2}}</div>{{/bf2}}
+{{#c}}<div><b>c</b>: {{c}}</div>{{/c}}
+{{#cf2}}<div><b>cf2</b>: {{cf2}}</div>{{/cf2}}
+{{#ecr}}<div><b>ecr</b>: {{ecr}}</div>{{/ecr}}
+{{#etd}}<div><b>etd</b>: {{etd}}</div>{{/etd}}
+{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+{{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
+{{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
+{{#k6}}<div><b>k6</b>: {{k6}}</div>{{/k6}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#kdroop}}<div><b>kdroop</b>: {{kdroop}}</div>{{/kdroop}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#t}}<div><b>t</b>: {{t}}</div>{{/t}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#tcd}}<div><b>tcd</b>: {{tcd}}</div>{{/tcd}}
+{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#tmax}}<div><b>tmax</b>: {{tmax}}</div>{{/tmax}}
+{{#tmin}}<div><b>tmin</b>: {{tmin}}</div>{{/tmin}}
+{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+{{#trate}}<div><b>trate</b>: {{trate}}</div>{{/trate}}
+{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Generic turbogas with acceleration and temperature controller.
@@ -1676,7 +2300,42 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovGAST3_collapse" aria-expanded="true" aria-controls="GovGAST3_collapse">GovGAST3</a>
+<div id="GovGAST3_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#bca}}<div><b>bca</b>: {{bca}}</div>{{/bca}}
+{{#bp}}<div><b>bp</b>: {{bp}}</div>{{/bp}}
+{{#dtc}}<div><b>dtc</b>: {{dtc}}</div>{{/dtc}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kac}}<div><b>kac</b>: {{kac}}</div>{{/kac}}
+{{#kca}}<div><b>kca</b>: {{kca}}</div>{{/kca}}
+{{#ksi}}<div><b>ksi</b>: {{ksi}}</div>{{/ksi}}
+{{#ky}}<div><b>ky</b>: {{ky}}</div>{{/ky}}
+{{#mnef}}<div><b>mnef</b>: {{mnef}}</div>{{/mnef}}
+{{#mxef}}<div><b>mxef</b>: {{mxef}}</div>{{/mxef}}
+{{#rcmn}}<div><b>rcmn</b>: {{rcmn}}</div>{{/rcmn}}
+{{#rcmx}}<div><b>rcmx</b>: {{rcmx}}</div>{{/rcmx}}
+{{#tac}}<div><b>tac</b>: {{tac}}</div>{{/tac}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+{{#tfen}}<div><b>tfen</b>: {{tfen}}</div>{{/tfen}}
+{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+{{#tsi}}<div><b>tsi</b>: {{tsi}}</div>{{/tsi}}
+{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+{{#ttc}}<div><b>ttc</b>: {{ttc}}</div>{{/ttc}}
+{{#ty}}<div><b>ty</b>: {{ty}}</div>{{/ty}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Steam turbine governor with reheat time constants and modeling of the effects of fast valve closing to reduce mechanical power.
@@ -1750,7 +2409,34 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovSteamFV2_collapse" aria-expanded="true" aria-controls="GovSteamFV2_collapse">GovSteamFV2</a>
+<div id="GovSteamFV2_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#dt}}<div><b>dt</b>: {{dt}}</div>{{/dt}}
+{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#ti}}<div><b>ti</b>: {{ti}}</div>{{/ti}}
+{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Detailed hydro unit - Pelton model.
@@ -1856,7 +2542,49 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovHydroPelton_collapse" aria-expanded="true" aria-controls="GovHydroPelton_collapse">GovHydroPelton</a>
+<div id="GovHydroPelton_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#av0}}<div><b>av0</b>: {{av0}}</div>{{/av0}}
+{{#av1}}<div><b>av1</b>: {{av1}}</div>{{/av1}}
+{{#bp}}<div><b>bp</b>: {{bp}}</div>{{/bp}}
+{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+{{#h1}}<div><b>h1</b>: {{h1}}</div>{{/h1}}
+{{#h2}}<div><b>h2</b>: {{h2}}</div>{{/h2}}
+{{#hn}}<div><b>hn</b>: {{hn}}</div>{{/hn}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+{{#qc0}}<div><b>qc0</b>: {{qc0}}</div>{{/qc0}}
+{{#qn}}<div><b>qn</b>: {{qn}}</div>{{/qn}}
+{{#simplifiedPelton}}<div><b>simplifiedPelton</b>: {{simplifiedPelton}}</div>{{/simplifiedPelton}}
+{{#staticCompensating}}<div><b>staticCompensating</b>: {{staticCompensating}}</div>{{/staticCompensating}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#ts}}<div><b>ts</b>: {{ts}}</div>{{/ts}}
+{{#tv}}<div><b>tv</b>: {{tv}}</div>{{/tv}}
+{{#twnc}}<div><b>twnc</b>: {{twnc}}</div>{{/twnc}}
+{{#twng}}<div><b>twng</b>: {{twng}}</div>{{/twng}}
+{{#tx}}<div><b>tx</b>: {{tx}}</div>{{/tx}}
+{{#va}}<div><b>va</b>: {{va}}</div>{{/va}}
+{{#valvmax}}<div><b>valvmax</b>: {{valvmax}}</div>{{/valvmax}}
+{{#valvmin}}<div><b>valvmin</b>: {{valvmin}}</div>{{/valvmin}}
+{{#vav}}<div><b>vav</b>: {{vav}}</div>{{/vav}}
+{{#vc}}<div><b>vc</b>: {{vc}}</div>{{/vc}}
+{{#vcv}}<div><b>vcv</b>: {{vcv}}</div>{{/vcv}}
+{{#waterTunnelSurgeChamberSimulation}}<div><b>waterTunnelSurgeChamberSimulation</b>: {{waterTunnelSurgeChamberSimulation}}</div>{{/waterTunnelSurgeChamberSimulation}}
+{{#zsfc}}<div><b>zsfc</b>: {{zsfc}}</div>{{/zsfc}}
+</div>
+`
+                );
+           }        }
 
         /**
          * General model for any prime mover with a PID governor, used primarily for combustion turbine and combined cycle units.
@@ -1976,7 +2704,56 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovCT1_collapse" aria-expanded="true" aria-controls="GovCT1_collapse">GovCT1</a>
+<div id="GovCT1_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#aset}}<div><b>aset</b>: {{aset}}</div>{{/aset}}
+{{#db}}<div><b>db</b>: {{db}}</div>{{/db}}
+{{#dm}}<div><b>dm</b>: {{dm}}</div>{{/dm}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kdgov}}<div><b>kdgov</b>: {{kdgov}}</div>{{/kdgov}}
+{{#kigov}}<div><b>kigov</b>: {{kigov}}</div>{{/kigov}}
+{{#kiload}}<div><b>kiload</b>: {{kiload}}</div>{{/kiload}}
+{{#kimw}}<div><b>kimw</b>: {{kimw}}</div>{{/kimw}}
+{{#kpgov}}<div><b>kpgov</b>: {{kpgov}}</div>{{/kpgov}}
+{{#kpload}}<div><b>kpload</b>: {{kpload}}</div>{{/kpload}}
+{{#kturb}}<div><b>kturb</b>: {{kturb}}</div>{{/kturb}}
+{{#ldref}}<div><b>ldref</b>: {{ldref}}</div>{{/ldref}}
+{{#maxerr}}<div><b>maxerr</b>: {{maxerr}}</div>{{/maxerr}}
+{{#minerr}}<div><b>minerr</b>: {{minerr}}</div>{{/minerr}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#rclose}}<div><b>rclose</b>: {{rclose}}</div>{{/rclose}}
+{{#rdown}}<div><b>rdown</b>: {{rdown}}</div>{{/rdown}}
+{{#ropen}}<div><b>ropen</b>: {{ropen}}</div>{{/ropen}}
+{{#rselect}}<div><b>rselect</b>: {{rselect}}</div>{{/rselect}}
+{{#rup}}<div><b>rup</b>: {{rup}}</div>{{/rup}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tact}}<div><b>tact</b>: {{tact}}</div>{{/tact}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#tdgov}}<div><b>tdgov</b>: {{tdgov}}</div>{{/tdgov}}
+{{#teng}}<div><b>teng</b>: {{teng}}</div>{{/teng}}
+{{#tfload}}<div><b>tfload</b>: {{tfload}}</div>{{/tfload}}
+{{#tpelec}}<div><b>tpelec</b>: {{tpelec}}</div>{{/tpelec}}
+{{#tsa}}<div><b>tsa</b>: {{tsa}}</div>{{/tsa}}
+{{#tsb}}<div><b>tsb</b>: {{tsb}}</div>{{/tsb}}
+{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+{{#wfnl}}<div><b>wfnl</b>: {{wfnl}}</div>{{/wfnl}}
+{{#wfspd}}<div><b>wfspd</b>: {{wfspd}}</div>{{/wfspd}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Basic Hydro turbine governor model.
@@ -2052,7 +2829,35 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovHydro1_collapse" aria-expanded="true" aria-controls="GovHydro1_collapse">GovHydro1</a>
+<div id="GovHydro1_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
+{{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
+{{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
+{{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
+{{#hdam}}<div><b>hdam</b>: {{hdam}}</div>{{/hdam}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#qnl}}<div><b>qnl</b>: {{qnl}}</div>{{/qnl}}
+{{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
+{{#rtemp}}<div><b>rtemp</b>: {{rtemp}}</div>{{/rtemp}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+{{#velm}}<div><b>velm</b>: {{velm}}</div>{{/velm}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Simplified governor model.
@@ -2116,7 +2921,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovSteam2_collapse" aria-expanded="true" aria-controls="GovSteam2_collapse">GovSteam2</a>
+<div id="GovSteam2_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#dbf}}<div><b>dbf</b>: {{dbf}}</div>{{/dbf}}
+{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+{{#mnef}}<div><b>mnef</b>: {{mnef}}</div>{{/mnef}}
+{{#mxef}}<div><b>mxef</b>: {{mxef}}</div>{{/mxef}}
+{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Double derivative hydro governor and turbine.
@@ -2234,7 +3061,56 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovHydroDD_collapse" aria-expanded="true" aria-controls="GovHydroDD_collapse">GovHydroDD</a>
+<div id="GovHydroDD_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#aturb}}<div><b>aturb</b>: {{aturb}}</div>{{/aturb}}
+{{#bturb}}<div><b>bturb</b>: {{bturb}}</div>{{/bturb}}
+{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+{{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
+{{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
+{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+{{#inputSignal}}<div><b>inputSignal</b>: {{inputSignal}}</div>{{/inputSignal}}
+{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+{{#tturb}}<div><b>tturb</b>: {{tturb}}</div>{{/tturb}}
+{{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
+{{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
+</div>
+`
+                );
+           }        }
 
         /**
          * IEEE Simplified Hydro Governor-Turbine Model.
@@ -2300,7 +3176,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovHydroIEEE0_collapse" aria-expanded="true" aria-controls="GovHydroIEEE0_collapse">GovHydroIEEE0</a>
+<div id="GovHydroIEEE0_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A simplified steam turbine governor model.
@@ -2364,7 +3262,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovSteam0_collapse" aria-expanded="true" aria-controls="GovSteam0_collapse">GovSteam0</a>
+<div id="GovSteam0_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#dt}}<div><b>dt</b>: {{dt}}</div>{{/dt}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Simplified Steam turbine governor model.
@@ -2436,7 +3356,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovSteamSGO_collapse" aria-expanded="true" aria-controls="GovSteamSGO_collapse">GovSteamSGO</a>
+<div id="GovSteamSGO_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Fourth order lead-lag governor and hydro turbine.
@@ -2568,7 +3514,63 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovHydroR_collapse" aria-expanded="true" aria-controls="GovHydroR_collapse">GovHydroR</a>
+<div id="GovHydroR_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
+{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+{{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
+{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+{{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
+{{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
+{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+{{#h0}}<div><b>h0</b>: {{h0}}</div>{{/h0}}
+{{#inputSignal}}<div><b>inputSignal</b>: {{inputSignal}}</div>{{/inputSignal}}
+{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+{{#qnl}}<div><b>qnl</b>: {{qnl}}</div>{{/qnl}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+{{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
+{{#t8}}<div><b>t8</b>: {{t8}}</div>{{/t8}}
+{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+{{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
+{{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Hydro turbine and governor.
@@ -2694,7 +3696,59 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovHydro4_collapse" aria-expanded="true" aria-controls="GovHydro4_collapse">GovHydro4</a>
+<div id="GovHydro4_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
+{{#bgv0}}<div><b>bgv0</b>: {{bgv0}}</div>{{/bgv0}}
+{{#bgv1}}<div><b>bgv1</b>: {{bgv1}}</div>{{/bgv1}}
+{{#bgv2}}<div><b>bgv2</b>: {{bgv2}}</div>{{/bgv2}}
+{{#bgv3}}<div><b>bgv3</b>: {{bgv3}}</div>{{/bgv3}}
+{{#bgv4}}<div><b>bgv4</b>: {{bgv4}}</div>{{/bgv4}}
+{{#bgv5}}<div><b>bgv5</b>: {{bgv5}}</div>{{/bgv5}}
+{{#bmax}}<div><b>bmax</b>: {{bmax}}</div>{{/bmax}}
+{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+{{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
+{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+{{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
+{{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
+{{#gv0}}<div><b>gv0</b>: {{gv0}}</div>{{/gv0}}
+{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+{{#hdam}}<div><b>hdam</b>: {{hdam}}</div>{{/hdam}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pgv0}}<div><b>pgv0</b>: {{pgv0}}</div>{{/pgv0}}
+{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+{{#qn1}}<div><b>qn1</b>: {{qn1}}</div>{{/qn1}}
+{{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
+{{#rtemp}}<div><b>rtemp</b>: {{rtemp}}</div>{{/rtemp}}
+{{#tblade}}<div><b>tblade</b>: {{tblade}}</div>{{/tblade}}
+{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+{{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
+{{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified single shaft gas turbine.
@@ -2810,7 +3864,55 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovGAST1_collapse" aria-expanded="true" aria-controls="GovGAST1_collapse">GovGAST1</a>
+<div id="GovGAST1_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
+{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+{{#fidle}}<div><b>fidle</b>: {{fidle}}</div>{{/fidle}}
+{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kt}}<div><b>kt</b>: {{kt}}</div>{{/kt}}
+{{#lmax}}<div><b>lmax</b>: {{lmax}}</div>{{/lmax}}
+{{#loadinc}}<div><b>loadinc</b>: {{loadinc}}</div>{{/loadinc}}
+{{#ltrate}}<div><b>ltrate</b>: {{ltrate}}</div>{{/ltrate}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#rmax}}<div><b>rmax</b>: {{rmax}}</div>{{/rmax}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+{{#tltr}}<div><b>tltr</b>: {{tltr}}</div>{{/tltr}}
+{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Steam turbine governor model, based on the GovSteamIEEE1 model  (with optional deadband and nonlinear valve gain added).
@@ -2936,7 +4038,60 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovSteam1_collapse" aria-expanded="true" aria-controls="GovSteam1_collapse">GovSteam1</a>
+<div id="GovSteam1_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+{{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
+{{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
+{{#k6}}<div><b>k6</b>: {{k6}}</div>{{/k6}}
+{{#k7}}<div><b>k7</b>: {{k7}}</div>{{/k7}}
+{{#k8}}<div><b>k8</b>: {{k8}}</div>{{/k8}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+{{#sdb1}}<div><b>sdb1</b>: {{sdb1}}</div>{{/sdb1}}
+{{#sdb2}}<div><b>sdb2</b>: {{sdb2}}</div>{{/sdb2}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+{{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
+{{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
+{{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
+{{#valve}}<div><b>valve</b>: {{valve}}</div>{{/valve}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Detailed hydro unit - Francis model.
@@ -3040,7 +4195,48 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovHydroFrancis_collapse" aria-expanded="true" aria-controls="GovHydroFrancis_collapse">GovHydroFrancis</a>
+<div id="GovHydroFrancis_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#am}}<div><b>am</b>: {{am}}</div>{{/am}}
+{{#av0}}<div><b>av0</b>: {{av0}}</div>{{/av0}}
+{{#av1}}<div><b>av1</b>: {{av1}}</div>{{/av1}}
+{{#bp}}<div><b>bp</b>: {{bp}}</div>{{/bp}}
+{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+{{#etamax}}<div><b>etamax</b>: {{etamax}}</div>{{/etamax}}
+{{#governorControl}}<div><b>governorControl</b>: {{governorControl}}</div>{{/governorControl}}
+{{#h1}}<div><b>h1</b>: {{h1}}</div>{{/h1}}
+{{#h2}}<div><b>h2</b>: {{h2}}</div>{{/h2}}
+{{#hn}}<div><b>hn</b>: {{hn}}</div>{{/hn}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+{{#kt}}<div><b>kt</b>: {{kt}}</div>{{/kt}}
+{{#qc0}}<div><b>qc0</b>: {{qc0}}</div>{{/qc0}}
+{{#qn}}<div><b>qn</b>: {{qn}}</div>{{/qn}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+{{#ts}}<div><b>ts</b>: {{ts}}</div>{{/ts}}
+{{#twnc}}<div><b>twnc</b>: {{twnc}}</div>{{/twnc}}
+{{#twng}}<div><b>twng</b>: {{twng}}</div>{{/twng}}
+{{#tx}}<div><b>tx</b>: {{tx}}</div>{{/tx}}
+{{#va}}<div><b>va</b>: {{va}}</div>{{/va}}
+{{#valvmax}}<div><b>valvmax</b>: {{valvmax}}</div>{{/valvmax}}
+{{#valvmin}}<div><b>valvmin</b>: {{valvmin}}</div>{{/valvmin}}
+{{#vc}}<div><b>vc</b>: {{vc}}</div>{{/vc}}
+{{#waterTunnelSurgeChamberSimulation}}<div><b>waterTunnelSurgeChamberSimulation</b>: {{waterTunnelSurgeChamberSimulation}}</div>{{/waterTunnelSurgeChamberSimulation}}
+{{#zsfc}}<div><b>zsfc</b>: {{zsfc}}</div>{{/zsfc}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Generic turbogas.
@@ -3110,7 +4306,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovGAST4_collapse" aria-expanded="true" aria-controls="GovGAST4_collapse">GovGAST4</a>
+<div id="GovGAST4_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#bp}}<div><b>bp</b>: {{bp}}</div>{{/bp}}
+{{#ktm}}<div><b>ktm</b>: {{ktm}}</div>{{/ktm}}
+{{#mnef}}<div><b>mnef</b>: {{mnef}}</div>{{/mnef}}
+{{#mxef}}<div><b>mxef</b>: {{mxef}}</div>{{/mxef}}
+{{#rymn}}<div><b>rymn</b>: {{rymn}}</div>{{/rymn}}
+{{#rymx}}<div><b>rymx</b>: {{rymx}}</div>{{/rymx}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#tcm}}<div><b>tcm</b>: {{tcm}}</div>{{/tcm}}
+{{#tm}}<div><b>tm</b>: {{tm}}</div>{{/tm}}
+{{#tv}}<div><b>tv</b>: {{tv}}</div>{{/tv}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Simplified GovSteamIEEE1 Steam turbine governor model with Prmax limit and fast valving.
@@ -3196,7 +4417,40 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovSteamFV3_collapse" aria-expanded="true" aria-controls="GovSteamFV3_collapse">GovSteamFV3</a>
+<div id="GovSteamFV3_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+{{#prmax}}<div><b>prmax</b>: {{prmax}}</div>{{/prmax}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
+{{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Woodward Electric Hydro Governor Model.
@@ -3346,7 +4600,72 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovHydroWEH_collapse" aria-expanded="true" aria-controls="GovHydroWEH_collapse">GovHydroWEH</a>
+<div id="GovHydroWEH_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#db}}<div><b>db</b>: {{db}}</div>{{/db}}
+{{#dicn}}<div><b>dicn</b>: {{dicn}}</div>{{/dicn}}
+{{#dpv}}<div><b>dpv</b>: {{dpv}}</div>{{/dpv}}
+{{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
+{{#feedbackSignal}}<div><b>feedbackSignal</b>: {{feedbackSignal}}</div>{{/feedbackSignal}}
+{{#fl1}}<div><b>fl1</b>: {{fl1}}</div>{{/fl1}}
+{{#fl2}}<div><b>fl2</b>: {{fl2}}</div>{{/fl2}}
+{{#fl3}}<div><b>fl3</b>: {{fl3}}</div>{{/fl3}}
+{{#fl4}}<div><b>fl4</b>: {{fl4}}</div>{{/fl4}}
+{{#fl5}}<div><b>fl5</b>: {{fl5}}</div>{{/fl5}}
+{{#fp1}}<div><b>fp1</b>: {{fp1}}</div>{{/fp1}}
+{{#fp10}}<div><b>fp10</b>: {{fp10}}</div>{{/fp10}}
+{{#fp2}}<div><b>fp2</b>: {{fp2}}</div>{{/fp2}}
+{{#fp3}}<div><b>fp3</b>: {{fp3}}</div>{{/fp3}}
+{{#fp4}}<div><b>fp4</b>: {{fp4}}</div>{{/fp4}}
+{{#fp5}}<div><b>fp5</b>: {{fp5}}</div>{{/fp5}}
+{{#fp6}}<div><b>fp6</b>: {{fp6}}</div>{{/fp6}}
+{{#fp7}}<div><b>fp7</b>: {{fp7}}</div>{{/fp7}}
+{{#fp8}}<div><b>fp8</b>: {{fp8}}</div>{{/fp8}}
+{{#fp9}}<div><b>fp9</b>: {{fp9}}</div>{{/fp9}}
+{{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
+{{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
+{{#gtmxcl}}<div><b>gtmxcl</b>: {{gtmxcl}}</div>{{/gtmxcl}}
+{{#gtmxop}}<div><b>gtmxop</b>: {{gtmxop}}</div>{{/gtmxop}}
+{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pmss1}}<div><b>pmss1</b>: {{pmss1}}</div>{{/pmss1}}
+{{#pmss10}}<div><b>pmss10</b>: {{pmss10}}</div>{{/pmss10}}
+{{#pmss2}}<div><b>pmss2</b>: {{pmss2}}</div>{{/pmss2}}
+{{#pmss3}}<div><b>pmss3</b>: {{pmss3}}</div>{{/pmss3}}
+{{#pmss4}}<div><b>pmss4</b>: {{pmss4}}</div>{{/pmss4}}
+{{#pmss5}}<div><b>pmss5</b>: {{pmss5}}</div>{{/pmss5}}
+{{#pmss6}}<div><b>pmss6</b>: {{pmss6}}</div>{{/pmss6}}
+{{#pmss7}}<div><b>pmss7</b>: {{pmss7}}</div>{{/pmss7}}
+{{#pmss8}}<div><b>pmss8</b>: {{pmss8}}</div>{{/pmss8}}
+{{#pmss9}}<div><b>pmss9</b>: {{pmss9}}</div>{{/pmss9}}
+{{#rpg}}<div><b>rpg</b>: {{rpg}}</div>{{/rpg}}
+{{#rpp}}<div><b>rpp</b>: {{rpp}}</div>{{/rpp}}
+{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+{{#tdv}}<div><b>tdv</b>: {{tdv}}</div>{{/tdv}}
+{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+{{#tpe}}<div><b>tpe</b>: {{tpe}}</div>{{/tpe}}
+{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Gas turbine model.
@@ -3458,7 +4777,53 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GovGAST2_collapse" aria-expanded="true" aria-controls="GovGAST2_collapse">GovGAST2</a>
+<div id="GovGAST2_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
+{{#af1}}<div><b>af1</b>: {{af1}}</div>{{/af1}}
+{{#af2}}<div><b>af2</b>: {{af2}}</div>{{/af2}}
+{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+{{#bf1}}<div><b>bf1</b>: {{bf1}}</div>{{/bf1}}
+{{#bf2}}<div><b>bf2</b>: {{bf2}}</div>{{/bf2}}
+{{#c}}<div><b>c</b>: {{c}}</div>{{/c}}
+{{#cf2}}<div><b>cf2</b>: {{cf2}}</div>{{/cf2}}
+{{#ecr}}<div><b>ecr</b>: {{ecr}}</div>{{/ecr}}
+{{#etd}}<div><b>etd</b>: {{etd}}</div>{{/etd}}
+{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+{{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
+{{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
+{{#k6}}<div><b>k6</b>: {{k6}}</div>{{/k6}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#t}}<div><b>t</b>: {{t}}</div>{{/t}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#tcd}}<div><b>tcd</b>: {{tcd}}</div>{{/tcd}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#tmax}}<div><b>tmax</b>: {{tmax}}</div>{{/tmax}}
+{{#tmin}}<div><b>tmin</b>: {{tmin}}</div>{{/tmin}}
+{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+{{#trate}}<div><b>trate</b>: {{trate}}</div>{{/trate}}
+{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+{{#w}}<div><b>w</b>: {{w}}</div>{{/w}}
+{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+{{#y}}<div><b>y</b>: {{y}}</div>{{/y}}
+{{#z}}<div><b>z</b>: {{z}}</div>{{/z}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

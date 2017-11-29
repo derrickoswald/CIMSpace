@@ -54,7 +54,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StateVariable_collapse" aria-expanded="true" aria-controls="StateVariable_collapse">StateVariable</a>
+<div id="StateVariable_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * The SvInjection is reporting the calculated bus injection minus the sum of the terminal flows.
@@ -110,7 +124,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SvInjection_collapse" aria-expanded="true" aria-controls="SvInjection_collapse">SvInjection</a>
+<div id="SvInjection_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StateVariable.prototype.template.call (this) +
+`
+{{#pInjection}}<div><b>pInjection</b>: {{pInjection}}</div>{{/pInjection}}
+{{#qInjection}}<div><b>qInjection</b>: {{qInjection}}</div>{{/qInjection}}
+{{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);})'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
+</div>
+`
+                );
+           }        }
 
         /**
          * State variable for status.
@@ -162,7 +193,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SvStatus_collapse" aria-expanded="true" aria-controls="SvStatus_collapse">SvStatus</a>
+<div id="SvStatus_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StateVariable.prototype.template.call (this) +
+`
+{{#inService}}<div><b>inService</b>: {{inService}}</div>{{/inService}}
+{{#ConductingEquipment}}<div><b>ConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConductingEquipment}}&quot;);})'>{{ConductingEquipment}}</a></div>{{/ConductingEquipment}}
+</div>
+`
+                );
+           }        }
 
         /**
          * State variable for transformer tap step.
@@ -216,7 +263,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SvTapStep_collapse" aria-expanded="true" aria-controls="SvTapStep_collapse">SvTapStep</a>
+<div id="SvTapStep_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StateVariable.prototype.template.call (this) +
+`
+{{#position}}<div><b>position</b>: {{position}}</div>{{/position}}
+{{#TapChanger}}<div><b>TapChanger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TapChanger}}&quot;);})'>{{TapChanger}}</a></div>{{/TapChanger}}
+</div>
+`
+                );
+           }        }
 
         /**
          * State variable for the number of sections in service for a shunt compensator.
@@ -268,7 +331,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SvShuntCompensatorSections_collapse" aria-expanded="true" aria-controls="SvShuntCompensatorSections_collapse">SvShuntCompensatorSections</a>
+<div id="SvShuntCompensatorSections_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StateVariable.prototype.template.call (this) +
+`
+{{#sections}}<div><b>sections</b>: {{sections}}</div>{{/sections}}
+{{#ShuntCompensator}}<div><b>ShuntCompensator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensator}}&quot;);})'>{{ShuntCompensator}}</a></div>{{/ShuntCompensator}}
+</div>
+`
+                );
+           }        }
 
         /**
          * State variable for power flow.
@@ -324,7 +403,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SvPowerFlow_collapse" aria-expanded="true" aria-controls="SvPowerFlow_collapse">SvPowerFlow</a>
+<div id="SvPowerFlow_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StateVariable.prototype.template.call (this) +
+`
+{{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
+{{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
+{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+</div>
+`
+                );
+           }        }
 
         /**
          * State variable for voltage.
@@ -378,7 +474,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SvVoltage_collapse" aria-expanded="true" aria-controls="SvVoltage_collapse">SvVoltage</a>
+<div id="SvVoltage_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StateVariable.prototype.template.call (this) +
+`
+{{#angle}}<div><b>angle</b>: {{angle}}</div>{{/angle}}
+{{#v}}<div><b>v</b>: {{v}}</div>{{/v}}
+{{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);})'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

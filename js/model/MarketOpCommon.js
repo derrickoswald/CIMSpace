@@ -64,7 +64,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktConnectivityNode_collapse" aria-expanded="true" aria-controls="MktConnectivityNode_collapse">MktConnectivityNode</a>
+<div id="MktConnectivityNode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConnectivityNode.prototype.template.call (this) +
+`
+{{#endEffectiveDate}}<div><b>endEffectiveDate</b>: {{endEffectiveDate}}</div>{{/endEffectiveDate}}
+{{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
+{{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
+{{#IndividualPnode}}<div><b>IndividualPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IndividualPnode}}&quot;);})'>{{IndividualPnode}}</a></div>{{/IndividualPnode}}
+{{#SysLoadDistribuFactor}}<div><b>SysLoadDistribuFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SysLoadDistribuFactor}}&quot;);})'>{{SysLoadDistribuFactor}}</a></div>{{/SysLoadDistribuFactor}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Subclass of IEC61968:Domain2:UserAttribute
@@ -112,7 +131,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktUserAttribute_collapse" aria-expanded="true" aria-controls="MktUserAttribute_collapse">MktUserAttribute</a>
+<div id="MktUserAttribute_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.UserAttribute.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Subclass of IEC61970:Production:GeneratingUnit
@@ -162,7 +195,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktGeneratingUnit_collapse" aria-expanded="true" aria-controls="MktGeneratingUnit_collapse">MktGeneratingUnit</a>
+<div id="MktGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Production.GeneratingUnit.prototype.template.call (this) +
+`
+{{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);})'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Subclass of IEC61968: Common:ActivityRecord
@@ -210,7 +258,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktActivityRecord_collapse" aria-expanded="true" aria-controls="MktActivityRecord_collapse">MktActivityRecord</a>
+<div id="MktActivityRecord_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.ActivityRecord.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Subclass of IEC61970:LoadModel: LoadArea
@@ -258,7 +320,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktLoadArea_collapse" aria-expanded="true" aria-controls="MktLoadArea_collapse">MktLoadArea</a>
+<div id="MktLoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LoadModel.LoadArea.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Subclass for IEC61970:Wires:Line
@@ -308,7 +384,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktLine_collapse" aria-expanded="true" aria-controls="MktLine_collapse">MktLine</a>
+<div id="MktLine_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Wires.Line.prototype.template.call (this) +
+`
+{{#TransmissionRightOfWay}}<div><b>TransmissionRightOfWay</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionRightOfWay}}&quot;);})'>{{TransmissionRightOfWay}}</a></div>{{/TransmissionRightOfWay}}
+</div>
+`
+                );
+           }        }
 
         /**
          * In accounting transactions, a ledger is a book containing accounts to which debits and credits are posted from journals, where transactions are initially recorded.
@@ -358,7 +449,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketLedger_collapse" aria-expanded="true" aria-controls="MarketLedger_collapse">MarketLedger</a>
+<div id="MarketLedger_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Subclass of IEC61970:Wires:PowerTransformer
@@ -410,7 +515,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktPowerTransformer_collapse" aria-expanded="true" aria-controls="MktPowerTransformer_collapse">MktPowerTransformer</a>
+<div id="MktPowerTransformer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Wires.PowerTransformer.prototype.template.call (this) +
+`
+{{#EndBFlow}}<div><b>EndBFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndBFlow}}&quot;);})'>{{EndBFlow}}</a></div>{{/EndBFlow}}
+{{#EndAFlow}}<div><b>EndAFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndAFlow}}&quot;);})'>{{EndAFlow}}</a></div>{{/EndAFlow}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A roll up of invoice line items.
@@ -478,7 +599,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketInvoice_collapse" aria-expanded="true" aria-controls="MarketInvoice_collapse">MarketInvoice</a>
+<div id="MarketInvoice_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+{{#billMediaKind}}<div><b>billMediaKind</b>: {{billMediaKind}}</div>{{/billMediaKind}}
+{{#dueDate}}<div><b>dueDate</b>: {{dueDate}}</div>{{/dueDate}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#mailedDate}}<div><b>mailedDate</b>: {{mailedDate}}</div>{{/mailedDate}}
+{{#proForma}}<div><b>proForma</b>: {{proForma}}</div>{{/proForma}}
+{{#referenceNumber}}<div><b>referenceNumber</b>: {{referenceNumber}}</div>{{/referenceNumber}}
+{{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
+{{#transferType}}<div><b>transferType</b>: {{transferType}}</div>{{/transferType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Details of an individual entry in a ledger, which was posted from a journal on the posted date.
@@ -540,7 +684,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketLedgerEntry_collapse" aria-expanded="true" aria-controls="MarketLedgerEntry_collapse">MarketLedgerEntry</a>
+<div id="MarketLedgerEntry_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#accountID}}<div><b>accountID</b>: {{accountID}}</div>{{/accountID}}
+{{#accountKind}}<div><b>accountKind</b>: {{accountKind}}</div>{{/accountKind}}
+{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+{{#postedDateTime}}<div><b>postedDateTime</b>: {{postedDateTime}}</div>{{/postedDateTime}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
+{{#MarketLedger}}<div><b>MarketLedger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketLedger}}&quot;);})'>{{MarketLedger}}</a></div>{{/MarketLedger}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An individual line item on an invoice.
@@ -610,7 +775,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketInvoiceLineItem_collapse" aria-expanded="true" aria-controls="MarketInvoiceLineItem_collapse">MarketInvoiceLineItem</a>
+<div id="MarketInvoiceLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#billPeriod}}<div><b>billPeriod</b>: {{billPeriod}}</div>{{/billPeriod}}
+{{#glAccount}}<div><b>glAccount</b>: {{glAccount}}</div>{{/glAccount}}
+{{#glDateTime}}<div><b>glDateTime</b>: {{glDateTime}}</div>{{/glDateTime}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#lineAmount}}<div><b>lineAmount</b>: {{lineAmount}}</div>{{/lineAmount}}
+{{#lineNumber}}<div><b>lineNumber</b>: {{lineNumber}}</div>{{/lineNumber}}
+{{#lineVersion}}<div><b>lineVersion</b>: {{lineVersion}}</div>{{/lineVersion}}
+{{#netAmount}}<div><b>netAmount</b>: {{netAmount}}</div>{{/netAmount}}
+{{#previousAmount}}<div><b>previousAmount</b>: {{previousAmount}}</div>{{/previousAmount}}
+{{#MarketInvoice}}<div><b>MarketInvoice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketInvoice}}&quot;);})'>{{MarketInvoice}}</a></div>{{/MarketInvoice}}
+{{#ContainerMarketInvoiceLineItem}}<div><b>ContainerMarketInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ContainerMarketInvoiceLineItem}}&quot;);})'>{{ContainerMarketInvoiceLineItem}}</a></div>{{/ContainerMarketInvoiceLineItem}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Subclass of IEC61970:Core:Terminal
@@ -664,7 +854,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktTerminal_collapse" aria-expanded="true" aria-controls="MktTerminal_collapse">MktTerminal</a>
+<div id="MktTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Terminal.prototype.template.call (this) +
+`
+{{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
+{{#endEffectiveDate}}<div><b>endEffectiveDate</b>: {{endEffectiveDate}}</div>{{/endEffectiveDate}}
+{{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Subclass of IEC61968:Core2:TopLevel:Organisation
@@ -726,7 +933,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktOrganisation_collapse" aria-expanded="true" aria-controls="MktOrganisation_collapse">MktOrganisation</a>
+<div id="MktOrganisation_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Organisation.prototype.template.call (this) +
+`
+{{#creditFlag}}<div><b>creditFlag</b>: {{creditFlag}}</div>{{/creditFlag}}
+{{#creditStartEffectiveDate}}<div><b>creditStartEffectiveDate</b>: {{creditStartEffectiveDate}}</div>{{/creditStartEffectiveDate}}
+{{#endEffectiveDate}}<div><b>endEffectiveDate</b>: {{endEffectiveDate}}</div>{{/endEffectiveDate}}
+{{#lastModified}}<div><b>lastModified</b>: {{lastModified}}</div>{{/lastModified}}
+{{#organisationID}}<div><b>organisationID</b>: {{organisationID}}</div>{{/organisationID}}
+{{#qualificationStatus}}<div><b>qualificationStatus</b>: {{qualificationStatus}}</div>{{/qualificationStatus}}
+{{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Subclass of IEC61970:Wires:EnergyConsumer
@@ -776,7 +1004,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktEnergyConsumer_collapse" aria-expanded="true" aria-controls="MktEnergyConsumer_collapse">MktEnergyConsumer</a>
+<div id="MktEnergyConsumer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Wires.EnergyConsumer.prototype.template.call (this) +
+`
+{{#RegisteredLoad}}<div><b>RegisteredLoad</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredLoad}}&quot;);})'>{{RegisteredLoad}}</a></div>{{/RegisteredLoad}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Subclass of IEC61970:Meas:Measurement
@@ -830,7 +1073,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktMeasurement_collapse" aria-expanded="true" aria-controls="MktMeasurement_collapse">MktMeasurement</a>
+<div id="MktMeasurement_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Meas.Measurement.prototype.template.call (this) +
+`
+{{#Pnode}}<div><b>Pnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Pnode}}&quot;);})'>{{Pnode}}</a></div>{{/Pnode}}
+{{#ForTiePoint}}<div><b>ForTiePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ForTiePoint}}&quot;);})'>{{ForTiePoint}}</a></div>{{/ForTiePoint}}
+{{#ByTiePoint}}<div><b>ByTiePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ByTiePoint}}&quot;);})'>{{ByTiePoint}}</a></div>{{/ByTiePoint}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

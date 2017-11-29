@@ -74,7 +74,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RemoteSignalKind_collapse" aria-expanded="true" aria-controls="RemoteSignalKind_collapse">RemoteSignalKind</a>
+<div id="RemoteSignalKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#remoteBusVoltageFrequency}}<div><b>remoteBusVoltageFrequency</b>: {{remoteBusVoltageFrequency}}</div>{{/remoteBusVoltageFrequency}}
+{{#remoteBusVoltageFrequencyDeviation}}<div><b>remoteBusVoltageFrequencyDeviation</b>: {{remoteBusVoltageFrequencyDeviation}}</div>{{/remoteBusVoltageFrequencyDeviation}}
+{{#remoteBusFrequency}}<div><b>remoteBusFrequency</b>: {{remoteBusFrequency}}</div>{{/remoteBusFrequency}}
+{{#remoteBusFrequencyDeviation}}<div><b>remoteBusFrequencyDeviation</b>: {{remoteBusFrequencyDeviation}}</div>{{/remoteBusFrequencyDeviation}}
+{{#remoteBusVoltageAmplitude}}<div><b>remoteBusVoltageAmplitude</b>: {{remoteBusVoltageAmplitude}}</div>{{/remoteBusVoltageAmplitude}}
+{{#remoteBusVoltage}}<div><b>remoteBusVoltage</b>: {{remoteBusVoltage}}</div>{{/remoteBusVoltage}}
+{{#remoteBranchCurrentAmplitude}}<div><b>remoteBranchCurrentAmplitude</b>: {{remoteBranchCurrentAmplitude}}</div>{{/remoteBranchCurrentAmplitude}}
+{{#remoteBusVoltageAmplitudeDerivative}}<div><b>remoteBusVoltageAmplitudeDerivative</b>: {{remoteBusVoltageAmplitudeDerivative}}</div>{{/remoteBusVoltageAmplitudeDerivative}}
+{{#remotePuBusVoltageDerivative}}<div><b>remotePuBusVoltageDerivative</b>: {{remotePuBusVoltageDerivative}}</div>{{/remotePuBusVoltageDerivative}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Supports connection to a terminal associated with a remote bus from which an input signal of a specific type is coming.
@@ -142,7 +165,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RemoteInputSignal_collapse" aria-expanded="true" aria-controls="RemoteInputSignal_collapse">RemoteInputSignal</a>
+<div id="RemoteInputSignal_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#remoteSignalType}}<div><b>remoteSignalType</b>: {{remoteSignalType}}</div>{{/remoteSignalType}}
+{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+{{#VoltageCompensatorDynamics}}<div><b>VoltageCompensatorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageCompensatorDynamics}}&quot;);})'>{{VoltageCompensatorDynamics}}</a></div>{{/VoltageCompensatorDynamics}}
+{{#WindPlantDynamics}}<div><b>WindPlantDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantDynamics}}&quot;);})'>{{WindPlantDynamics}}</a></div>{{/WindPlantDynamics}}
+{{#PowerSystemStabilizerDynamics}}<div><b>PowerSystemStabilizerDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemStabilizerDynamics}}&quot;);})'>{{PowerSystemStabilizerDynamics}}</a></div>{{/PowerSystemStabilizerDynamics}}
+{{#WindTurbineType3or4Dynamics}}<div><b>WindTurbineType3or4Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4Dynamics}}&quot;);})'>{{WindTurbineType3or4Dynamics}}</a></div>{{/WindTurbineType3or4Dynamics}}
+{{#UnderexcitationLimiterDynamics}}<div><b>UnderexcitationLimiterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UnderexcitationLimiterDynamics}}&quot;);})'>{{UnderexcitationLimiterDynamics}}</a></div>{{/UnderexcitationLimiterDynamics}}
+{{#WindTurbineType1or2Dynamics}}<div><b>WindTurbineType1or2Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType1or2Dynamics}}&quot;);})'>{{WindTurbineType1or2Dynamics}}</a></div>{{/WindTurbineType1or2Dynamics}}
+{{#PFVArControllerType1Dynamics}}<div><b>PFVArControllerType1Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1Dynamics}}&quot;);})'>{{PFVArControllerType1Dynamics}}</a></div>{{/PFVArControllerType1Dynamics}}
+{{#DiscontinuousExcitationControlDynamics}}<div><b>DiscontinuousExcitationControlDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscontinuousExcitationControlDynamics}}&quot;);})'>{{DiscontinuousExcitationControlDynamics}}</a></div>{{/DiscontinuousExcitationControlDynamics}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

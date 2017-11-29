@@ -64,7 +64,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpAccountKind_collapse" aria-expanded="true" aria-controls="ErpAccountKind_collapse">ErpAccountKind</a>
+<div id="ErpAccountKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#normal}}<div><b>normal</b>: {{normal}}</div>{{/normal}}
+{{#reversal}}<div><b>reversal</b>: {{reversal}}</div>{{/reversal}}
+{{#statistical}}<div><b>statistical</b>: {{statistical}}</div>{{/statistical}}
+{{#estimate}}<div><b>estimate</b>: {{estimate}}</div>{{/estimate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of ERP invoice.
@@ -116,7 +134,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpInvoiceKind_collapse" aria-expanded="true" aria-controls="ErpInvoiceKind_collapse">ErpInvoiceKind</a>
+<div id="ErpInvoiceKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#sale}}<div><b>sale</b>: {{sale}}</div>{{/sale}}
+{{#purchase}}<div><b>purchase</b>: {{purchase}}</div>{{/purchase}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Shadow class for Document, to isolate subclassing from this package.
@@ -166,7 +200,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpDocument_collapse" aria-expanded="true" aria-controls="ErpDocument_collapse">ErpDocument</a>
+<div id="ErpDocument_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of invoice line item.
@@ -220,7 +268,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpInvoiceLineItemKind_collapse" aria-expanded="true" aria-controls="ErpInvoiceLineItemKind_collapse">ErpInvoiceLineItemKind</a>
+<div id="ErpInvoiceLineItemKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#initial}}<div><b>initial</b>: {{initial}}</div>{{/initial}}
+{{#recalculation}}<div><b>recalculation</b>: {{recalculation}}</div>{{/recalculation}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Shadow class for IdentifiedObject, to isolate subclassing from this package.
@@ -270,7 +335,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpIdentifiedObject_collapse" aria-expanded="true" aria-controls="ErpIdentifiedObject_collapse">ErpIdentifiedObject</a>
+<div id="ErpIdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of bill media.
@@ -324,7 +403,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BillMediaKind_collapse" aria-expanded="true" aria-controls="BillMediaKind_collapse">BillMediaKind</a>
+<div id="BillMediaKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#paper}}<div><b>paper</b>: {{paper}}</div>{{/paper}}
+{{#electronic}}<div><b>electronic</b>: {{electronic}}</div>{{/electronic}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Relationship under a particular name, usually evidenced by a deposit against which withdrawals can be made.
@@ -376,7 +472,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpBankAccount_collapse" aria-expanded="true" aria-controls="ErpBankAccount_collapse">ErpBankAccount</a>
+<div id="ErpBankAccount_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + InfCommon.BankAccount.prototype.template.call (this) +
+`
+{{#bankABA}}<div><b>bankABA</b>: {{bankABA}}</div>{{/bankABA}}
+</div>
+`
+                );
+           }        }
 
         /**
          * General purpose Sales Order is used for utility service orders, etc.
@@ -426,7 +537,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpSalesOrder_collapse" aria-expanded="true" aria-controls="ErpSalesOrder_collapse">ErpSalesOrder</a>
+<div id="ErpSalesOrder_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Time sheet for employees and contractors.
@@ -476,7 +601,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpTimeSheet_collapse" aria-expanded="true" aria-controls="ErpTimeSheet_collapse">ErpTimeSheet</a>
+<div id="ErpTimeSheet_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Of an ErpPurchaseOrder, this is an individually ordered item or product along with the quantity, price and other descriptive information.
@@ -532,7 +671,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpPOLineItem_collapse" aria-expanded="true" aria-controls="ErpPOLineItem_collapse">ErpPOLineItem</a>
+<div id="ErpPOLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+{{#ErpRecDelLineItem}}<div><b>ErpRecDelLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpRecDelLineItem}}&quot;);})'>{{ErpRecDelLineItem}}</a></div>{{/ErpRecDelLineItem}}
+{{#ErpReqLineItem}}<div><b>ErpReqLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReqLineItem}}&quot;);})'>{{ErpReqLineItem}}</a></div>{{/ErpReqLineItem}}
+{{#AssetModelCatalogueItem}}<div><b>AssetModelCatalogueItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogueItem}}&quot;);})'>{{AssetModelCatalogueItem}}</a></div>{{/AssetModelCatalogueItem}}
+{{#ErpPurchaseOrder}}<div><b>ErpPurchaseOrder</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPurchaseOrder}}&quot;);})'>{{ErpPurchaseOrder}}</a></div>{{/ErpPurchaseOrder}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Transaction for an Organisation receiving goods or services that may be used to indicate receipt of goods in conjunction with a purchase order.
@@ -582,7 +739,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpReceiveDelivery_collapse" aria-expanded="true" aria-controls="ErpReceiveDelivery_collapse">ErpReceiveDelivery</a>
+<div id="ErpReceiveDelivery_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Payment infromation and status for any individual line item of an ErpInvoice (e.g., when payment is from a customer).
@@ -634,7 +805,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpPayment_collapse" aria-expanded="true" aria-controls="ErpPayment_collapse">ErpPayment</a>
+<div id="ErpPayment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+{{#termsPayment}}<div><b>termsPayment</b>: {{termsPayment}}</div>{{/termsPayment}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Book for recording accounting transactions as they occur.
@@ -684,7 +870,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpJournal_collapse" aria-expanded="true" aria-controls="ErpJournal_collapse">ErpJournal</a>
+<div id="ErpJournal_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A roll up of invoice line items.
@@ -754,7 +954,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpInvoice_collapse" aria-expanded="true" aria-controls="ErpInvoice_collapse">ErpInvoice</a>
+<div id="ErpInvoice_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+{{#billMediaKind}}<div><b>billMediaKind</b>: {{billMediaKind}}</div>{{/billMediaKind}}
+{{#dueDate}}<div><b>dueDate</b>: {{dueDate}}</div>{{/dueDate}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#mailedDate}}<div><b>mailedDate</b>: {{mailedDate}}</div>{{/mailedDate}}
+{{#proForma}}<div><b>proForma</b>: {{proForma}}</div>{{/proForma}}
+{{#referenceNumber}}<div><b>referenceNumber</b>: {{referenceNumber}}</div>{{/referenceNumber}}
+{{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
+{{#transferType}}<div><b>transferType</b>: {{transferType}}</div>{{/transferType}}
+{{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A document that communicates an order to purchase goods from a buyer to a supplier.
@@ -804,7 +1028,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpPurchaseOrder_collapse" aria-expanded="true" aria-controls="ErpPurchaseOrder_collapse">ErpPurchaseOrder</a>
+<div id="ErpPurchaseOrder_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * In accounting transactions, a ledger is a book containing accounts to which debits and credits are posted from journals, where transactions are initially recorded.
@@ -854,7 +1092,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpLedger_collapse" aria-expanded="true" aria-controls="ErpLedger_collapse">ErpLedger</a>
+<div id="ErpLedger_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * General information that applies to a utility requisition that is a request for the purchase of goods or services.
@@ -904,7 +1156,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpRequisition_collapse" aria-expanded="true" aria-controls="ErpRequisition_collapse">ErpRequisition</a>
+<div id="ErpRequisition_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Information that generally describes the Bill of Material Structure and its contents for a utility.
@@ -956,7 +1222,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpBOM_collapse" aria-expanded="true" aria-controls="ErpBOM_collapse">ErpBOM</a>
+<div id="ErpBOM_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+{{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);})'>{{Design}}</a></div>{{/Design}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Utility Project Accounting information, used by ERP applications to enable all relevant sub-systems that submit single sided transactions to transfer information with a Project Accounting Application.
@@ -1006,7 +1287,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpProjectAccounting_collapse" aria-expanded="true" aria-controls="ErpProjectAccounting_collapse">ErpProjectAccounting</a>
+<div id="ErpProjectAccounting_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * An individual line item on an invoice.
@@ -1084,7 +1379,36 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpInvoiceLineItem_collapse" aria-expanded="true" aria-controls="ErpInvoiceLineItem_collapse">ErpInvoiceLineItem</a>
+<div id="ErpInvoiceLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+{{#billPeriod}}<div><b>billPeriod</b>: {{billPeriod}}</div>{{/billPeriod}}
+{{#glAccount}}<div><b>glAccount</b>: {{glAccount}}</div>{{/glAccount}}
+{{#glDateTime}}<div><b>glDateTime</b>: {{glDateTime}}</div>{{/glDateTime}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#lineAmount}}<div><b>lineAmount</b>: {{lineAmount}}</div>{{/lineAmount}}
+{{#lineNumber}}<div><b>lineNumber</b>: {{lineNumber}}</div>{{/lineNumber}}
+{{#lineVersion}}<div><b>lineVersion</b>: {{lineVersion}}</div>{{/lineVersion}}
+{{#netAmount}}<div><b>netAmount</b>: {{netAmount}}</div>{{/netAmount}}
+{{#previousAmount}}<div><b>previousAmount</b>: {{previousAmount}}</div>{{/previousAmount}}
+{{#ContainerErpInvoiceLineItem}}<div><b>ContainerErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ContainerErpInvoiceLineItem}}&quot;);})'>{{ContainerErpInvoiceLineItem}}</a></div>{{/ContainerErpInvoiceLineItem}}
+{{#ErpPayableLineItem}}<div><b>ErpPayableLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPayableLineItem}}&quot;);})'>{{ErpPayableLineItem}}</a></div>{{/ErpPayableLineItem}}
+{{#ErpInvoice}}<div><b>ErpInvoice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoice}}&quot;);})'>{{ErpInvoice}}</a></div>{{/ErpInvoice}}
+{{#ErpRecLineItem}}<div><b>ErpRecLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpRecLineItem}}&quot;);})'>{{ErpRecLineItem}}</a></div>{{/ErpRecLineItem}}
+{{#ErpRecDelvLineItem}}<div><b>ErpRecDelvLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpRecDelvLineItem}}&quot;);})'>{{ErpRecDelvLineItem}}</a></div>{{/ErpRecDelvLineItem}}
+{{#ErpQuoteLineItem}}<div><b>ErpQuoteLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuoteLineItem}}&quot;);})'>{{ErpQuoteLineItem}}</a></div>{{/ErpQuoteLineItem}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Accounting structure of a business.
@@ -1134,7 +1458,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpChartOfAccounts_collapse" aria-expanded="true" aria-controls="ErpChartOfAccounts_collapse">ErpChartOfAccounts</a>
+<div id="ErpChartOfAccounts_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Transaction representing an invoice, credit memo or debit memo to a customer.
@@ -1184,7 +1522,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpReceivable_collapse" aria-expanded="true" aria-controls="ErpReceivable_collapse">ErpReceivable</a>
+<div id="ErpReceivable_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * General Utility Engineering Change Order information.
@@ -1232,7 +1584,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpEngChangeOrder_collapse" aria-expanded="true" aria-controls="ErpEngChangeOrder_collapse">ErpEngChangeOrder</a>
+<div id="ErpEngChangeOrder_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A transaction that represents an invoice from a supplier.
@@ -1282,7 +1648,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpPayable_collapse" aria-expanded="true" aria-controls="ErpPayable_collapse">ErpPayable</a>
+<div id="ErpPayable_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Information for utility Ledger Budgets.
@@ -1332,7 +1712,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpLedgerBudget_collapse" aria-expanded="true" aria-controls="ErpLedgerBudget_collapse">ErpLedgerBudget</a>
+<div id="ErpLedgerBudget_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Document describing the prices of goods or services provided by a supplier.
@@ -1382,7 +1776,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpQuote_collapse" aria-expanded="true" aria-controls="ErpQuote_collapse">ErpQuote</a>
+<div id="ErpQuote_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Individual entry of a given Ledger Budget, typically containing information such as amount, accounting date, accounting period, and is associated with the applicable general ledger account.
@@ -1436,7 +1844,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpLedBudLineItem_collapse" aria-expanded="true" aria-controls="ErpLedBudLineItem_collapse">ErpLedBudLineItem</a>
+<div id="ErpLedBudLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#ErpLedgerBudget}}<div><b>ErpLedgerBudget</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedgerBudget}}&quot;);})'>{{ErpLedgerBudget}}</a></div>{{/ErpLedgerBudget}}
+{{#ErpLedBudLineItem}}<div><b>ErpLedBudLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedBudLineItem}}&quot;);})'>{{ErpLedBudLineItem}}</a></div>{{/ErpLedBudLineItem}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This is related to Inventory physical counts organized by AssetModel.
@@ -1490,7 +1915,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpInventoryCount_collapse" aria-expanded="true" aria-controls="ErpInventoryCount_collapse">ErpInventoryCount</a>
+<div id="ErpInventoryCount_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModel}}&quot;);})'>{{AssetModel}}</a></div>{{/AssetModel}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An individual entry on an ErpTimeSheet.
@@ -1544,7 +1985,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpTimeEntry_collapse" aria-expanded="true" aria-controls="ErpTimeEntry_collapse">ErpTimeEntry</a>
+<div id="ErpTimeEntry_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#ErpTimeSheet}}<div><b>ErpTimeSheet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpTimeSheet}}&quot;);})'>{{ErpTimeSheet}}</a></div>{{/ErpTimeSheet}}
+{{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);})'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Of an ErpQuote, the item or product quoted along with quantity, price and other descriptive information.
@@ -1604,7 +2062,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpQuoteLineItem_collapse" aria-expanded="true" aria-controls="ErpQuoteLineItem_collapse">ErpQuoteLineItem</a>
+<div id="ErpQuoteLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);})'>{{Design}}</a></div>{{/Design}}
+{{#ErpQuote}}<div><b>ErpQuote</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuote}}&quot;);})'>{{ErpQuote}}</a></div>{{/ErpQuote}}
+{{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
+{{#ErpReqLineItem}}<div><b>ErpReqLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReqLineItem}}&quot;);})'>{{ErpReqLineItem}}</a></div>{{/ErpReqLineItem}}
+{{#AssetModelCatalogueItem}}<div><b>AssetModelCatalogueItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogueItem}}&quot;);})'>{{AssetModelCatalogueItem}}</a></div>{{/AssetModelCatalogueItem}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Details of an individual entry in a ledger, which was posted from a journal on the posted date.
@@ -1670,7 +2148,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpLedgerEntry_collapse" aria-expanded="true" aria-controls="ErpLedgerEntry_collapse">ErpLedgerEntry</a>
+<div id="ErpLedgerEntry_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#accountID}}<div><b>accountID</b>: {{accountID}}</div>{{/accountID}}
+{{#accountKind}}<div><b>accountKind</b>: {{accountKind}}</div>{{/accountKind}}
+{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+{{#postedDateTime}}<div><b>postedDateTime</b>: {{postedDateTime}}</div>{{/postedDateTime}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
+{{#ErpJounalEntry}}<div><b>ErpJounalEntry</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpJounalEntry}}&quot;);})'>{{ErpJounalEntry}}</a></div>{{/ErpJounalEntry}}
+{{#ErpLedgerEntry}}<div><b>ErpLedgerEntry</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedgerEntry}}&quot;);})'>{{ErpLedgerEntry}}</a></div>{{/ErpLedgerEntry}}
+{{#ErpLedger}}<div><b>ErpLedger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedger}}&quot;);})'>{{ErpLedger}}</a></div>{{/ErpLedger}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Any unique purchased part for manufactured product tracked by ERP systems for a utility.
@@ -1724,7 +2225,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpItemMaster_collapse" aria-expanded="true" aria-controls="ErpItemMaster_collapse">ErpItemMaster</a>
+<div id="ErpItemMaster_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Of an ErpPayable, a line item references an ErpInvoiceLineitem or other source such as credit memos.
@@ -1778,7 +2295,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpPayableLineItem_collapse" aria-expanded="true" aria-controls="ErpPayableLineItem_collapse">ErpPayableLineItem</a>
+<div id="ErpPayableLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#ErpPayable}}<div><b>ErpPayable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPayable}}&quot;);})'>{{ErpPayable}}</a></div>{{/ErpPayable}}
+{{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Individual entry of an ErpReceivable, it is a particular transaction representing an invoice, credit memo or debit memo to a customer.
@@ -1832,7 +2366,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpRecLineItem_collapse" aria-expanded="true" aria-controls="ErpRecLineItem_collapse">ErpRecLineItem</a>
+<div id="ErpRecLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
+{{#ErpReceivable}}<div><b>ErpReceivable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReceivable}}&quot;);})'>{{ErpReceivable}}</a></div>{{/ErpReceivable}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Can be used to request an application to process an issue or request information about an issue.
@@ -1886,7 +2437,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpIssueInventory_collapse" aria-expanded="true" aria-controls="ErpIssueInventory_collapse">ErpIssueInventory</a>
+<div id="ErpIssueInventory_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);})'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
+{{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Utility inventory-related information about an item or part (and not for description of the item and its attributes).
@@ -1940,7 +2508,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpInventory_collapse" aria-expanded="true" aria-controls="ErpInventory_collapse">ErpInventory</a>
+<div id="ErpInventory_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Information that describes a requested item and its attributes.
@@ -2008,7 +2592,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpReqLineItem_collapse" aria-expanded="true" aria-controls="ErpReqLineItem_collapse">ErpReqLineItem</a>
+<div id="ErpReqLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+{{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
+{{#deliveryDate}}<div><b>deliveryDate</b>: {{deliveryDate}}</div>{{/deliveryDate}}
+{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#ErpPOLineItem}}<div><b>ErpPOLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPOLineItem}}&quot;);})'>{{ErpPOLineItem}}</a></div>{{/ErpPOLineItem}}
+{{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);})'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
+{{#ErpRequisition}}<div><b>ErpRequisition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpRequisition}}&quot;);})'>{{ErpRequisition}}</a></div>{{/ErpRequisition}}
+{{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
+{{#ErpQuoteLineItem}}<div><b>ErpQuoteLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuoteLineItem}}&quot;);})'>{{ErpQuoteLineItem}}</a></div>{{/ErpQuoteLineItem}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Information that applies to the basic data about a utility person, used by ERP applications to transfer Personnel data for a worker.
@@ -2058,7 +2666,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpPersonnel_collapse" aria-expanded="true" aria-controls="ErpPersonnel_collapse">ErpPersonnel</a>
+<div id="ErpPersonnel_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Details of an individual entry in a journal, which is to be posted to a ledger on the posting date.
@@ -2124,7 +2747,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpJournalEntry_collapse" aria-expanded="true" aria-controls="ErpJournalEntry_collapse">ErpJournalEntry</a>
+<div id="ErpJournalEntry_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#accountID}}<div><b>accountID</b>: {{accountID}}</div>{{/accountID}}
+{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+{{#postingDateTime}}<div><b>postingDateTime</b>: {{postingDateTime}}</div>{{/postingDateTime}}
+{{#sourceID}}<div><b>sourceID</b>: {{sourceID}}</div>{{/sourceID}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
+{{#ErpLedgerEntry}}<div><b>ErpLedgerEntry</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedgerEntry}}&quot;);})'>{{ErpLedgerEntry}}</a></div>{{/ErpLedgerEntry}}
+{{#ErpJournal}}<div><b>ErpJournal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpJournal}}&quot;);})'>{{ErpJournal}}</a></div>{{/ErpJournal}}
+{{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An individual item on a bill of materials.
@@ -2178,7 +2824,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpBomItemData_collapse" aria-expanded="true" aria-controls="ErpBomItemData_collapse">ErpBomItemData</a>
+<div id="ErpBomItemData_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
+{{#DesignLocation}}<div><b>DesignLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DesignLocation}}&quot;);})'>{{DesignLocation}}</a></div>{{/DesignLocation}}
+{{#ErpBOM}}<div><b>ErpBOM</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpBOM}}&quot;);})'>{{ErpBOM}}</a></div>{{/ErpBOM}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For a utility, general information that describes physical locations of organizations or the location codes and their meanings.
@@ -2232,7 +2895,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpSiteLevelData_collapse" aria-expanded="true" aria-controls="ErpSiteLevelData_collapse">ErpSiteLevelData</a>
+<div id="ErpSiteLevelData_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LandProperty}}&quot;);})'>{{LandProperty}}</a></div>{{/LandProperty}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Of an ErpReceiveDelivery, this is an individually received good or service by the Organisation receiving goods or services.
@@ -2290,7 +2969,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpRecDelvLineItem_collapse" aria-expanded="true" aria-controls="ErpRecDelvLineItem_collapse">ErpRecDelvLineItem</a>
+<div id="ErpRecDelvLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#ErpPOLineItem}}<div><b>ErpPOLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPOLineItem}}&quot;);})'>{{ErpPOLineItem}}</a></div>{{/ErpPOLineItem}}
+{{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
+{{#ErpReceiveDelivery}}<div><b>ErpReceiveDelivery</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReceiveDelivery}}&quot;);})'>{{ErpReceiveDelivery}}</a></div>{{/ErpReceiveDelivery}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Information that describes aptitudes of a utility employee.
@@ -2340,7 +3037,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ErpCompetency_collapse" aria-expanded="true" aria-controls="ErpCompetency_collapse">ErpCompetency</a>
+<div id="ErpCompetency_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ErpIdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         return (
             {

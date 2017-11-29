@@ -64,7 +64,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AuxiliaryCost_collapse" aria-expanded="true" aria-controls="AuxiliaryCost_collapse">AuxiliaryCost</a>
+<div id="AuxiliaryCost_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+{{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+{{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+{{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Model Expected Energy  from Market Clearing
@@ -120,7 +138,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExpectedEnergyValues_collapse" aria-expanded="true" aria-controls="ExpectedEnergyValues_collapse">ExpectedEnergyValues</a>
+<div id="ExpectedEnergyValues_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#energyTypeCode}}<div><b>energyTypeCode</b>: {{energyTypeCode}}</div>{{/energyTypeCode}}
+{{#expectedMwh}}<div><b>expectedMwh</b>: {{expectedMwh}}</div>{{/expectedMwh}}
+{{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+{{#ExpectedEnergy}}<div><b>ExpectedEnergy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExpectedEnergy}}&quot;);})'>{{ExpectedEnergy}}</a></div>{{/ExpectedEnergy}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Models Auxillary Values
@@ -172,7 +208,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AuxiliaryObject_collapse" aria-expanded="true" aria-controls="AuxiliaryObject_collapse">AuxiliaryObject</a>
+<div id="AuxiliaryObject_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#RegisteredLoad}}<div><b>RegisteredLoad</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredLoad}}&quot;);})'>{{RegisteredLoad}}</a></div>{{/RegisteredLoad}}
+{{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);})'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Models prices at Trading Hubs
@@ -226,7 +278,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TradingHubValues_collapse" aria-expanded="true" aria-controls="TradingHubValues_collapse">TradingHubValues</a>
+<div id="TradingHubValues_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#price}}<div><b>price</b>: {{price}}</div>{{/price}}
+{{#TradingHubPrice}}<div><b>TradingHubPrice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TradingHubPrice}}&quot;);})'>{{TradingHubPrice}}</a></div>{{/TradingHubPrice}}
+{{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AggregatedPnode}}&quot;);})'>{{AggregatedPnode}}</a></div>{{/AggregatedPnode}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Models prices at Trading Hubs, interval based
@@ -282,7 +351,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TradingHubPrice_collapse" aria-expanded="true" aria-controls="TradingHubPrice_collapse">TradingHubPrice</a>
+<div id="TradingHubPrice_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+{{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+{{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+{{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Model Expected Energy  from Market Clearing, interval based
@@ -336,7 +423,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExpectedEnergy_collapse" aria-expanded="true" aria-controls="ExpectedEnergy_collapse">ExpectedEnergy</a>
+<div id="ExpectedEnergy_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+{{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+{{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Models 10-Minutes Auxillary Data
@@ -390,7 +494,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TenMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="TenMinAuxiliaryData_collapse">TenMinAuxiliaryData</a>
+<div id="TenMinAuxiliaryData_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+{{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+{{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Models Market clearing results.
@@ -446,7 +567,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AllocationResult_collapse" aria-expanded="true" aria-controls="AllocationResult_collapse">AllocationResult</a>
+<div id="AllocationResult_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+{{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+{{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Models Market clearing results in terms of price and MW values
@@ -508,7 +646,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AllocationResultValues_collapse" aria-expanded="true" aria-controls="AllocationResultValues_collapse">AllocationResultValues</a>
+<div id="AllocationResultValues_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#aggregateType}}<div><b>aggregateType</b>: {{aggregateType}}</div>{{/aggregateType}}
+{{#allocationMwHour}}<div><b>allocationMwHour</b>: {{allocationMwHour}}</div>{{/allocationMwHour}}
+{{#allocationPrice}}<div><b>allocationPrice</b>: {{allocationPrice}}</div>{{/allocationPrice}}
+{{#energyTypeCode}}<div><b>energyTypeCode</b>: {{energyTypeCode}}</div>{{/energyTypeCode}}
+{{#marketServiceType}}<div><b>marketServiceType</b>: {{marketServiceType}}</div>{{/marketServiceType}}
+{{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+{{#AllocationResult}}<div><b>AllocationResult</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AllocationResult}}&quot;);})'>{{AllocationResult}}</a></div>{{/AllocationResult}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Models 5-Minutes Auxillary Data
@@ -562,7 +721,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FiveMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="FiveMinAuxiliaryData_collapse">FiveMinAuxiliaryData</a>
+<div id="FiveMinAuxiliaryData_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+{{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+{{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Models Auxillary Values
@@ -632,7 +808,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AuxiliaryValues_collapse" aria-expanded="true" aria-controls="AuxiliaryValues_collapse">AuxiliaryValues</a>
+<div id="AuxiliaryValues_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AuxiliaryObject.prototype.template.call (this) +
+`
+{{#minExpostCapacity}}<div><b>minExpostCapacity</b>: {{minExpostCapacity}}</div>{{/minExpostCapacity}}
+{{#maxExpostCapacity}}<div><b>maxExpostCapacity</b>: {{maxExpostCapacity}}</div>{{/maxExpostCapacity}}
+{{#availUndispatchedQ}}<div><b>availUndispatchedQ</b>: {{availUndispatchedQ}}</div>{{/availUndispatchedQ}}
+{{#incrementalORAvail}}<div><b>incrementalORAvail</b>: {{incrementalORAvail}}</div>{{/incrementalORAvail}}
+{{#startUpCost}}<div><b>startUpCost</b>: {{startUpCost}}</div>{{/startUpCost}}
+{{#startUpCostEligibilityFlag}}<div><b>startUpCostEligibilityFlag</b>: {{startUpCostEligibilityFlag}}</div>{{/startUpCostEligibilityFlag}}
+{{#noLoadCost}}<div><b>noLoadCost</b>: {{noLoadCost}}</div>{{/noLoadCost}}
+{{#noLoadCostEligibilityFlag}}<div><b>noLoadCostEligibilityFlag</b>: {{noLoadCostEligibilityFlag}}</div>{{/noLoadCostEligibilityFlag}}
+{{#AuxillaryCost}}<div><b>AuxillaryCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AuxillaryCost}}&quot;);})'>{{AuxillaryCost}}</a></div>{{/AuxillaryCost}}
+{{#FiveMinAuxillaryData}}<div><b>FiveMinAuxillaryData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FiveMinAuxillaryData}}&quot;);})'>{{FiveMinAuxillaryData}}</a></div>{{/FiveMinAuxillaryData}}
+{{#TenMinAuxillaryData}}<div><b>TenMinAuxillaryData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TenMinAuxillaryData}}&quot;);})'>{{TenMinAuxillaryData}}</a></div>{{/TenMinAuxillaryData}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

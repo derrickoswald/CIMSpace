@@ -74,7 +74,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="SynchronousMachineDynamics_collapse">SynchronousMachineDynamics</a>
+<div id="SynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StandardModels.RotatingMachineDynamics.prototype.template.call (this) +
+`
+{{#MechanicalLoadDynamics}}<div><b>MechanicalLoadDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MechanicalLoadDynamics}}&quot;);})'>{{MechanicalLoadDynamics}}</a></div>{{/MechanicalLoadDynamics}}
+{{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+{{#SynchronousMachine}}<div><b>SynchronousMachine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachine}}&quot;);})'>{{SynchronousMachine}}</a></div>{{/SynchronousMachine}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Type of rotor on physical machine.
@@ -126,7 +143,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RotorKind_collapse" aria-expanded="true" aria-controls="RotorKind_collapse">RotorKind</a>
+<div id="RotorKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#roundRotor}}<div><b>roundRotor</b>: {{roundRotor}}</div>{{/roundRotor}}
+{{#salientPole}}<div><b>salientPole</b>: {{salientPole}}</div>{{/salientPole}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Type of synchronous machine model used in Dynamic simulation applications.
@@ -184,7 +217,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SynchronousMachineModelKind_collapse" aria-expanded="true" aria-controls="SynchronousMachineModelKind_collapse">SynchronousMachineModelKind</a>
+<div id="SynchronousMachineModelKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#subtransient}}<div><b>subtransient</b>: {{subtransient}}</div>{{/subtransient}}
+{{#subtransientTypeF}}<div><b>subtransientTypeF</b>: {{subtransientTypeF}}</div>{{/subtransientTypeF}}
+{{#subtransientTypeJ}}<div><b>subtransientTypeJ</b>: {{subtransientTypeJ}}</div>{{/subtransientTypeJ}}
+{{#subtransientSimplified}}<div><b>subtransientSimplified</b>: {{subtransientSimplified}}</div>{{/subtransientSimplified}}
+{{#subtransientSimplifiedDirectAxis}}<div><b>subtransientSimplifiedDirectAxis</b>: {{subtransientSimplifiedDirectAxis}}</div>{{/subtransientSimplifiedDirectAxis}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Excitation base system mode.
@@ -238,7 +290,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#IfdBaseKind_collapse" aria-expanded="true" aria-controls="IfdBaseKind_collapse">IfdBaseKind</a>
+<div id="IfdBaseKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ifag}}<div><b>ifag</b>: {{ifag}}</div>{{/ifag}}
+{{#ifnl}}<div><b>ifnl</b>: {{ifnl}}</div>{{/ifnl}}
+{{#iffl}}<div><b>iffl</b>: {{iffl}}</div>{{/iffl}}
+</div>
+`
+                );
+           }        }
 
         /**
          * All synchronous machine detailed types use a subset of the same data parameters and input/output variables.
@@ -296,7 +365,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SynchronousMachineDetailed_collapse" aria-expanded="true" aria-controls="SynchronousMachineDetailed_collapse">SynchronousMachineDetailed</a>
+<div id="SynchronousMachineDetailed_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SynchronousMachineDynamics.prototype.template.call (this) +
+`
+{{#efdBaseRatio}}<div><b>efdBaseRatio</b>: {{efdBaseRatio}}</div>{{/efdBaseRatio}}
+{{#ifdBaseType}}<div><b>ifdBaseType</b>: {{ifdBaseType}}</div>{{/ifdBaseType}}
+{{#saturationFactor120QAxis}}<div><b>saturationFactor120QAxis</b>: {{saturationFactor120QAxis}}</div>{{/saturationFactor120QAxis}}
+{{#saturationFactorQAxis}}<div><b>saturationFactorQAxis</b>: {{saturationFactorQAxis}}</div>{{/saturationFactorQAxis}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The electrical equations for all variations of the synchronous models are based on the SynchronousEquivalentCircuit diagram for the direct and quadrature axes.
@@ -392,7 +479,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="SynchronousMachineEquivalentCircuit_collapse">SynchronousMachineEquivalentCircuit</a>
+<div id="SynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SynchronousMachineDetailed.prototype.template.call (this) +
+`
+{{#r1d}}<div><b>r1d</b>: {{r1d}}</div>{{/r1d}}
+{{#r1q}}<div><b>r1q</b>: {{r1q}}</div>{{/r1q}}
+{{#r2q}}<div><b>r2q</b>: {{r2q}}</div>{{/r2q}}
+{{#rfd}}<div><b>rfd</b>: {{rfd}}</div>{{/rfd}}
+{{#x1d}}<div><b>x1d</b>: {{x1d}}</div>{{/x1d}}
+{{#x1q}}<div><b>x1q</b>: {{x1q}}</div>{{/x1q}}
+{{#x2q}}<div><b>x2q</b>: {{x2q}}</div>{{/x2q}}
+{{#xad}}<div><b>xad</b>: {{xad}}</div>{{/xad}}
+{{#xaq}}<div><b>xaq</b>: {{xaq}}</div>{{/xaq}}
+{{#xf1d}}<div><b>xf1d</b>: {{xf1d}}</div>{{/xf1d}}
+{{#xfd}}<div><b>xfd</b>: {{xfd}}</div>{{/xfd}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The simplified model represents a synchronous generator as a constant internal voltage behind an impedance (<b>Rs</b> + <b>jXp</b>) as shown in the Simplified diagram.
@@ -442,7 +554,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SynchronousMachineSimplified_collapse" aria-expanded="true" aria-controls="SynchronousMachineSimplified_collapse">SynchronousMachineSimplified</a>
+<div id="SynchronousMachineSimplified_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SynchronousMachineDynamics.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Synchronous machine detailed modelling types are defined by the combination of the attributes SynchronousMachineTimeConstantReactance.modelType and SynchronousMachineTimeConstantReactance.rotorType.
@@ -552,7 +678,35 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="SynchronousMachineTimeConstantReactance_collapse">SynchronousMachineTimeConstantReactance</a>
+<div id="SynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SynchronousMachineDetailed.prototype.template.call (this) +
+`
+{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+{{#modelType}}<div><b>modelType</b>: {{modelType}}</div>{{/modelType}}
+{{#rotorType}}<div><b>rotorType</b>: {{rotorType}}</div>{{/rotorType}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#tpdo}}<div><b>tpdo</b>: {{tpdo}}</div>{{/tpdo}}
+{{#tppdo}}<div><b>tppdo</b>: {{tppdo}}</div>{{/tppdo}}
+{{#tppqo}}<div><b>tppqo</b>: {{tppqo}}</div>{{/tppqo}}
+{{#tpqo}}<div><b>tpqo</b>: {{tpqo}}</div>{{/tpqo}}
+{{#xDirectSubtrans}}<div><b>xDirectSubtrans</b>: {{xDirectSubtrans}}</div>{{/xDirectSubtrans}}
+{{#xDirectSync}}<div><b>xDirectSync</b>: {{xDirectSync}}</div>{{/xDirectSync}}
+{{#xDirectTrans}}<div><b>xDirectTrans</b>: {{xDirectTrans}}</div>{{/xDirectTrans}}
+{{#xQuadSubtrans}}<div><b>xQuadSubtrans</b>: {{xQuadSubtrans}}</div>{{/xQuadSubtrans}}
+{{#xQuadSync}}<div><b>xQuadSync</b>: {{xQuadSync}}</div>{{/xQuadSync}}
+{{#xQuadTrans}}<div><b>xQuadTrans</b>: {{xQuadTrans}}</div>{{/xQuadTrans}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

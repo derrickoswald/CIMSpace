@@ -64,7 +64,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Point_collapse" aria-expanded="true" aria-controls="Point_collapse">Point</a>
+<div id="Point_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#position}}<div><b>position</b>: {{position}}</div>{{/position}}
+{{#quality}}<div><b>quality</b>: {{quality}}</div>{{/quality}}
+{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+{{#secondaryQuantity}}<div><b>secondaryQuantity</b>: {{secondaryQuantity}}</div>{{/secondaryQuantity}}
+{{#Period}}<div><b>Period</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Period}}&quot;);})'>{{Period}}</a></div>{{/Period}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The motivation of an act.
@@ -116,7 +135,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Reason_collapse" aria-expanded="true" aria-controls="Reason_collapse">Reason</a>
+<div id="Reason_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+{{#text}}<div><b>text</b>: {{text}}</div>{{/text}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The identification of the unit name for the time series quantities.
@@ -166,7 +201,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Unit_collapse" aria-expanded="true" aria-controls="Unit_collapse">Unit</a>
+<div id="Unit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The date and or the time.
@@ -218,7 +268,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DateAndOrTime_collapse" aria-expanded="true" aria-controls="DateAndOrTime_collapse">DateAndOrTime</a>
+<div id="DateAndOrTime_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#date}}<div><b>date</b>: {{date}}</div>{{/date}}
+{{#time}}<div><b>time</b>: {{time}}</div>{{/time}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The type of a power system resource.
@@ -268,7 +334,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktPSRType_collapse" aria-expanded="true" aria-controls="MktPSRType_collapse">MktPSRType</a>
+<div id="MktPSRType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PSRType.prototype.template.call (this) +
+`
+{{#psrType}}<div><b>psrType</b>: {{psrType}}</div>{{/psrType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The Area Control Error tariff type that is applied or used.
@@ -318,7 +399,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AceTariffType_collapse" aria-expanded="true" aria-controls="AceTariffType_collapse">AceTariffType</a>
+<div id="AceTariffType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Electronic document containing the information necessary to satisfy a given business process set of requirements.
@@ -366,7 +462,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketDocument_collapse" aria-expanded="true" aria-controls="MarketDocument_collapse">MarketDocument</a>
+<div id="MarketDocument_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * An area of activity defined within the energy market.
@@ -414,7 +524,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Domain_collapse" aria-expanded="true" aria-controls="Domain_collapse">Domain</a>
+<div id="Domain_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * The identification of an entity where energy products are measured or computed.
@@ -462,7 +586,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketEvaluationPoint_collapse" aria-expanded="true" aria-controls="MarketEvaluationPoint_collapse">MarketEvaluationPoint</a>
+<div id="MarketEvaluationPoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * An identification of a time interval that may have a given resolution.
@@ -514,7 +652,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Period_collapse" aria-expanded="true" aria-controls="Period_collapse">Period</a>
+<div id="Period_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#resolution}}<div><b>resolution</b>: {{resolution}}</div>{{/resolution}}
+{{#timeInterval}}<div><b>timeInterval</b>: {{timeInterval}}</div>{{/timeInterval}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The condition or position of an object with regard to its standing.
@@ -564,7 +718,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketObjectStatus_collapse" aria-expanded="true" aria-controls="MarketObjectStatus_collapse">MarketObjectStatus</a>
+<div id="MarketObjectStatus_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A class used to provide information about an attribute.
@@ -618,7 +787,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AttributeInstanceComponent_collapse" aria-expanded="true" aria-controls="AttributeInstanceComponent_collapse">AttributeInstanceComponent</a>
+<div id="AttributeInstanceComponent_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#attribute}}<div><b>attribute</b>: {{attribute}}</div>{{/attribute}}
+{{#attributeValue}}<div><b>attributeValue</b>: {{attributeValue}}</div>{{/attributeValue}}
+{{#position}}<div><b>position</b>: {{position}}</div>{{/position}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A class providing the identification and type of an auction.
@@ -678,7 +864,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Auction_collapse" aria-expanded="true" aria-controls="Auction_collapse">Auction</a>
+<div id="Auction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#allocationMode}}<div><b>allocationMode</b>: {{allocationMode}}</div>{{/allocationMode}}
+{{#cancelled}}<div><b>cancelled</b>: {{cancelled}}</div>{{/cancelled}}
+{{#category}}<div><b>category</b>: {{category}}</div>{{/category}}
+{{#paymentTerms}}<div><b>paymentTerms</b>: {{paymentTerms}}</div>{{/paymentTerms}}
+{{#rights}}<div><b>rights</b>: {{rights}}</div>{{/rights}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The cost corresponding to a specific measure and expressed in a currency.
@@ -734,7 +940,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Price_collapse" aria-expanded="true" aria-controls="Price_collapse">Price</a>
+<div id="Price_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+{{#category}}<div><b>category</b>: {{category}}</div>{{/category}}
+{{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
+{{#Point}}<div><b>Point</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Point}}&quot;);})'>{{Point}}</a></div>{{/Point}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The formal specification of a set of business transactions having the same business goal.
@@ -786,7 +1010,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Process_collapse" aria-expanded="true" aria-controls="Process_collapse">Process</a>
+<div id="Process_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#classificationType}}<div><b>classificationType</b>: {{classificationType}}</div>{{/classificationType}}
+{{#processType}}<div><b>processType</b>: {{processType}}</div>{{/processType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A set of regular time-ordered measurements or values of quantitative nature of an individual or collective phenomenon taken at successive, in most cases equidistant, periods / points of time.
@@ -846,7 +1086,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TimeSeries_collapse" aria-expanded="true" aria-controls="TimeSeries_collapse">TimeSeries</a>
+<div id="TimeSeries_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#businessType}}<div><b>businessType</b>: {{businessType}}</div>{{/businessType}}
+{{#cancelledTS}}<div><b>cancelledTS</b>: {{cancelledTS}}</div>{{/cancelledTS}}
+{{#curveType}}<div><b>curveType</b>: {{curveType}}</div>{{/curveType}}
+{{#objectAggregation}}<div><b>objectAggregation</b>: {{objectAggregation}}</div>{{/objectAggregation}}
+{{#product}}<div><b>product</b>: {{product}}</div>{{/product}}
+{{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The coded identification of the direction of energy flow.
@@ -896,7 +1156,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FlowDirection_collapse" aria-expanded="true" aria-controls="FlowDirection_collapse">FlowDirection</a>
+<div id="FlowDirection_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An identification  or eventually the contents of an agreement between two or more parties.
@@ -944,7 +1219,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketAgreement_collapse" aria-expanded="true" aria-controls="MarketAgreement_collapse">MarketAgreement</a>
+<div id="MarketAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + MarketDocument.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * The formal specification of specific characteristics related to a bid.
@@ -1004,7 +1293,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidTimeSeries_collapse" aria-expanded="true" aria-controls="BidTimeSeries_collapse">BidTimeSeries</a>
+<div id="BidTimeSeries_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TimeSeries.prototype.template.call (this) +
+`
+{{#blockBid}}<div><b>blockBid</b>: {{blockBid}}</div>{{/blockBid}}
+{{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
+{{#divisible}}<div><b>divisible</b>: {{divisible}}</div>{{/divisible}}
+{{#linkedBidsIdentification}}<div><b>linkedBidsIdentification</b>: {{linkedBidsIdentification}}</div>{{/linkedBidsIdentification}}
+{{#minimumActivationQuantity}}<div><b>minimumActivationQuantity</b>: {{minimumActivationQuantity}}</div>{{/minimumActivationQuantity}}
+{{#stepIncrementQuantity}}<div><b>stepIncrementQuantity</b>: {{stepIncrementQuantity}}</div>{{/stepIncrementQuantity}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

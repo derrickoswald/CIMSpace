@@ -62,7 +62,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TieFlow_collapse" aria-expanded="true" aria-controls="TieFlow_collapse">TieFlow</a>
+<div id="TieFlow_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#positiveFlowIn}}<div><b>positiveFlowIn</b>: {{positiveFlowIn}}</div>{{/positiveFlowIn}}
+{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+{{#ControlArea}}<div><b>ControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlArea}}&quot;);})'>{{ControlArea}}</a></div>{{/ControlArea}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A control area generating unit.
@@ -116,7 +133,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ControlAreaGeneratingUnit_collapse" aria-expanded="true" aria-controls="ControlAreaGeneratingUnit_collapse">ControlAreaGeneratingUnit</a>
+<div id="ControlAreaGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#ControlArea}}<div><b>ControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlArea}}&quot;);})'>{{ControlArea}}</a></div>{{/ControlArea}}
+{{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);})'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The type of control area.
@@ -170,7 +203,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ControlAreaTypeKind_collapse" aria-expanded="true" aria-controls="ControlAreaTypeKind_collapse">ControlAreaTypeKind</a>
+<div id="ControlAreaTypeKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#AGC}}<div><b>AGC</b>: {{AGC}}</div>{{/AGC}}
+{{#Forecast}}<div><b>Forecast</b>: {{Forecast}}</div>{{/Forecast}}
+{{#Interchange}}<div><b>Interchange</b>: {{Interchange}}</div>{{/Interchange}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A prioritized measurement to be used for the tie flow as part of the control area specification.
@@ -224,7 +274,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AltTieMeas_collapse" aria-expanded="true" aria-controls="AltTieMeas_collapse">AltTieMeas</a>
+<div id="AltTieMeas_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+{{#TieFlow}}<div><b>TieFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TieFlow}}&quot;);})'>{{TieFlow}}</a></div>{{/TieFlow}}
+{{#AnalogValue}}<div><b>AnalogValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AnalogValue}}&quot;);})'>{{AnalogValue}}</a></div>{{/AnalogValue}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A prioritized measurement to be used for the generating unit in the control area specificaiton.
@@ -278,7 +345,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AltGeneratingUnitMeas_collapse" aria-expanded="true" aria-controls="AltGeneratingUnitMeas_collapse">AltGeneratingUnitMeas</a>
+<div id="AltGeneratingUnitMeas_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+{{#AnalogValue}}<div><b>AnalogValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AnalogValue}}&quot;);})'>{{AnalogValue}}</a></div>{{/AnalogValue}}
+{{#ControlAreaGeneratingUnit}}<div><b>ControlAreaGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlAreaGeneratingUnit}}&quot;);})'>{{ControlAreaGeneratingUnit}}</a></div>{{/ControlAreaGeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A control area<b> </b>is a grouping of generating units and/or loads and a cutset of tie lines (as terminals) which may be used for a variety of purposes including automatic generation control, powerflow solution area interchange control specification, and input to load forecasting.
@@ -336,7 +420,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ControlArea_collapse" aria-expanded="true" aria-controls="ControlArea_collapse">ControlArea</a>
+<div id="ControlArea_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#netInterchange}}<div><b>netInterchange</b>: {{netInterchange}}</div>{{/netInterchange}}
+{{#pTolerance}}<div><b>pTolerance</b>: {{pTolerance}}</div>{{/pTolerance}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#EnergyArea}}<div><b>EnergyArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyArea}}&quot;);})'>{{EnergyArea}}</a></div>{{/EnergyArea}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

@@ -60,7 +60,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PFVArControllerType2UserDefined_collapse" aria-expanded="true" aria-controls="PFVArControllerType2UserDefined_collapse">PFVArControllerType2UserDefined</a>
+<div id="PFVArControllerType2UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PFVArControllerType2Dynamics.PFVArControllerType2Dynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Turbine load controller function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -110,7 +125,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TurbineLoadControllerUserDefined_collapse" aria-expanded="true" aria-controls="TurbineLoadControllerUserDefined_collapse">TurbineLoadControllerUserDefined</a>
+<div id="TurbineLoadControllerUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineLoadControllerDynamics.TurbineLoadControllerDynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * <font color="#0f0f0f">Voltage adjuster</font> function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -160,7 +190,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VoltageAdjusterUserDefined_collapse" aria-expanded="true" aria-controls="VoltageAdjusterUserDefined_collapse">VoltageAdjusterUserDefined</a>
+<div id="VoltageAdjusterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + VoltageAdjusterDynamics.VoltageAdjusterDynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Turbine-governor function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -210,7 +255,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TurbineGovernorUserDefined_collapse" aria-expanded="true" aria-controls="TurbineGovernorUserDefined_collapse">TurbineGovernorUserDefined</a>
+<div id="TurbineGovernorUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineGovernorDynamics.TurbineGovernorDynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Load whose dynamic behaviour is described by a user-defined model.
@@ -260,7 +320,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadUserDefined_collapse" aria-expanded="true" aria-controls="LoadUserDefined_collapse">LoadUserDefined</a>
+<div id="LoadUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LoadDynamics.LoadDynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Excitation system function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -310,7 +385,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcitationSystemUserDefined_collapse" aria-expanded="true" aria-controls="ExcitationSystemUserDefined_collapse">ExcitationSystemUserDefined</a>
+<div id="ExcitationSystemUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Wind plant function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -360,7 +450,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WindPlantUserDefined_collapse" aria-expanded="true" aria-controls="WindPlantUserDefined_collapse">WindPlantUserDefined</a>
+<div id="WindPlantUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WindDynamics.WindPlantDynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * <font color="#0f0f0f">Power system stabilizer</font> function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -410,7 +515,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PowerSystemStabilizerUserDefined_collapse" aria-expanded="true" aria-controls="PowerSystemStabilizerUserDefined_collapse">PowerSystemStabilizerUserDefined</a>
+<div id="PowerSystemStabilizerUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PowerSystemStabilizerDynamics.PowerSystemStabilizerDynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Wind Type 3 or Type 4 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -460,7 +580,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WindType3or4UserDefined_collapse" aria-expanded="true" aria-controls="WindType3or4UserDefined_collapse">WindType3or4UserDefined</a>
+<div id="WindType3or4UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WindDynamics.WindTurbineType3or4Dynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Asynchronous machine whose dynamic behaviour is described by a user-defined model.
@@ -510,7 +645,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AsynchronousMachineUserDefined_collapse" aria-expanded="true" aria-controls="AsynchronousMachineUserDefined_collapse">AsynchronousMachineUserDefined</a>
+<div id="AsynchronousMachineUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AsynchronousMachineDynamics.AsynchronousMachineDynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Power Factor or VAr controller Type I function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -560,7 +710,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PFVArControllerType1UserDefined_collapse" aria-expanded="true" aria-controls="PFVArControllerType1UserDefined_collapse">PFVArControllerType1UserDefined</a>
+<div id="PFVArControllerType1UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PFVArControllerType1Dynamics.PFVArControllerType1Dynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Mechanical load function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -610,7 +775,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MechanicalLoadUserDefined_collapse" aria-expanded="true" aria-controls="MechanicalLoadUserDefined_collapse">MechanicalLoadUserDefined</a>
+<div id="MechanicalLoadUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + MechanicalLoadDynamics.MechanicalLoadDynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Voltage compensator function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -660,7 +840,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VoltageCompensatorUserDefined_collapse" aria-expanded="true" aria-controls="VoltageCompensatorUserDefined_collapse">VoltageCompensatorUserDefined</a>
+<div id="VoltageCompensatorUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + VoltageCompensatorDynamics.VoltageCompensatorDynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Underexcitation limiter function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -710,7 +905,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#UnderexcitationLimiterUserDefined_collapse" aria-expanded="true" aria-controls="UnderexcitationLimiterUserDefined_collapse">UnderexcitationLimiterUserDefined</a>
+<div id="UnderexcitationLimiterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + UnderexcitationLimiterDynamics.UnderexcitationLimiterDynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Wind Type 1 or Type 2 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -760,7 +970,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WindType1or2UserDefined_collapse" aria-expanded="true" aria-controls="WindType1or2UserDefined_collapse">WindType1or2UserDefined</a>
+<div id="WindType1or2UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WindDynamics.WindTurbineType1or2Dynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Overexcitation limiter system function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -810,7 +1035,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OverexcitationLimiterUserDefined_collapse" aria-expanded="true" aria-controls="OverexcitationLimiterUserDefined_collapse">OverexcitationLimiterUserDefined</a>
+<div id="OverexcitationLimiterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + OverexcitationLimiterDynamics.OverexcitationLimiterDynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Supports definition of one or more parameters of several different datatypes for use by proprietary user-defined models.
@@ -904,7 +1144,43 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProprietaryParameterDynamics_collapse" aria-expanded="true" aria-controls="ProprietaryParameterDynamics_collapse">ProprietaryParameterDynamics</a>
+<div id="ProprietaryParameterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#booleanParameterValue}}<div><b>booleanParameterValue</b>: {{booleanParameterValue}}</div>{{/booleanParameterValue}}
+{{#floatParameterValue}}<div><b>floatParameterValue</b>: {{floatParameterValue}}</div>{{/floatParameterValue}}
+{{#integerParameterValue}}<div><b>integerParameterValue</b>: {{integerParameterValue}}</div>{{/integerParameterValue}}
+{{#parameterNumber}}<div><b>parameterNumber</b>: {{parameterNumber}}</div>{{/parameterNumber}}
+{{#TurbineGovernorUserDefined}}<div><b>TurbineGovernorUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineGovernorUserDefined}}&quot;);})'>{{TurbineGovernorUserDefined}}</a></div>{{/TurbineGovernorUserDefined}}
+{{#PFVArControllerType2UserDefined}}<div><b>PFVArControllerType2UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType2UserDefined}}&quot;);})'>{{PFVArControllerType2UserDefined}}</a></div>{{/PFVArControllerType2UserDefined}}
+{{#WindType1or2UserDefined}}<div><b>WindType1or2UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindType1or2UserDefined}}&quot;);})'>{{WindType1or2UserDefined}}</a></div>{{/WindType1or2UserDefined}}
+{{#VoltageAdjusterUserDefined}}<div><b>VoltageAdjusterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageAdjusterUserDefined}}&quot;);})'>{{VoltageAdjusterUserDefined}}</a></div>{{/VoltageAdjusterUserDefined}}
+{{#TurbineLoadControllerUserDefined}}<div><b>TurbineLoadControllerUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineLoadControllerUserDefined}}&quot;);})'>{{TurbineLoadControllerUserDefined}}</a></div>{{/TurbineLoadControllerUserDefined}}
+{{#DiscontinuousExcitationControlUserDefined}}<div><b>DiscontinuousExcitationControlUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscontinuousExcitationControlUserDefined}}&quot;);})'>{{DiscontinuousExcitationControlUserDefined}}</a></div>{{/DiscontinuousExcitationControlUserDefined}}
+{{#PowerSystemStabilizerUserDefined}}<div><b>PowerSystemStabilizerUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemStabilizerUserDefined}}&quot;);})'>{{PowerSystemStabilizerUserDefined}}</a></div>{{/PowerSystemStabilizerUserDefined}}
+{{#ExcitationSystemUserDefined}}<div><b>ExcitationSystemUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemUserDefined}}&quot;);})'>{{ExcitationSystemUserDefined}}</a></div>{{/ExcitationSystemUserDefined}}
+{{#LoadUserDefined}}<div><b>LoadUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadUserDefined}}&quot;);})'>{{LoadUserDefined}}</a></div>{{/LoadUserDefined}}
+{{#AsynchronousMachineUserDefined}}<div><b>AsynchronousMachineUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineUserDefined}}&quot;);})'>{{AsynchronousMachineUserDefined}}</a></div>{{/AsynchronousMachineUserDefined}}
+{{#VoltageCompensatorUserDefined}}<div><b>VoltageCompensatorUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageCompensatorUserDefined}}&quot;);})'>{{VoltageCompensatorUserDefined}}</a></div>{{/VoltageCompensatorUserDefined}}
+{{#SynchronousMachineUserDefined}}<div><b>SynchronousMachineUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineUserDefined}}&quot;);})'>{{SynchronousMachineUserDefined}}</a></div>{{/SynchronousMachineUserDefined}}
+{{#MechanicalLoadUserDefined}}<div><b>MechanicalLoadUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MechanicalLoadUserDefined}}&quot;);})'>{{MechanicalLoadUserDefined}}</a></div>{{/MechanicalLoadUserDefined}}
+{{#WindType3or4UserDefined}}<div><b>WindType3or4UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindType3or4UserDefined}}&quot;);})'>{{WindType3or4UserDefined}}</a></div>{{/WindType3or4UserDefined}}
+{{#PFVArControllerType1UserDefined}}<div><b>PFVArControllerType1UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1UserDefined}}&quot;);})'>{{PFVArControllerType1UserDefined}}</a></div>{{/PFVArControllerType1UserDefined}}
+{{#WindPlantUserDefined}}<div><b>WindPlantUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantUserDefined}}&quot;);})'>{{WindPlantUserDefined}}</a></div>{{/WindPlantUserDefined}}
+{{#UnderexcitationLimiterUserDefined}}<div><b>UnderexcitationLimiterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UnderexcitationLimiterUserDefined}}&quot;);})'>{{UnderexcitationLimiterUserDefined}}</a></div>{{/UnderexcitationLimiterUserDefined}}
+{{#OverexcitationLimiterUserDefined}}<div><b>OverexcitationLimiterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverexcitationLimiterUserDefined}}&quot;);})'>{{OverexcitationLimiterUserDefined}}</a></div>{{/OverexcitationLimiterUserDefined}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Synchronous machine whose dynamic behaviour is described by a user-defined model.
@@ -954,7 +1230,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SynchronousMachineUserDefined_collapse" aria-expanded="true" aria-controls="SynchronousMachineUserDefined_collapse">SynchronousMachineUserDefined</a>
+<div id="SynchronousMachineUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SynchronousMachineDynamics.SynchronousMachineDynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Discontinuous excitation control function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -1004,7 +1295,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DiscontinuousExcitationControlUserDefined_collapse" aria-expanded="true" aria-controls="DiscontinuousExcitationControlUserDefined_collapse">DiscontinuousExcitationControlUserDefined</a>
+<div id="DiscontinuousExcitationControlUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DiscontinuousExcitationControlDynamics.DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
+`
+{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

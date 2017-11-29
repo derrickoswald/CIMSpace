@@ -58,7 +58,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DynamicsFunctionBlock_collapse" aria-expanded="true" aria-controls="DynamicsFunctionBlock_collapse">DynamicsFunctionBlock</a>
+<div id="DynamicsFunctionBlock_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Abstract parent class for all synchronous and asynchronous machine standard models.
@@ -118,7 +133,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RotatingMachineDynamics_collapse" aria-expanded="true" aria-controls="RotatingMachineDynamics_collapse">RotatingMachineDynamics</a>
+<div id="RotatingMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DynamicsFunctionBlock.prototype.template.call (this) +
+`
+{{#damping}}<div><b>damping</b>: {{damping}}</div>{{/damping}}
+{{#inertia}}<div><b>inertia</b>: {{inertia}}</div>{{/inertia}}
+{{#saturationFactor}}<div><b>saturationFactor</b>: {{saturationFactor}}</div>{{/saturationFactor}}
+{{#saturationFactor120}}<div><b>saturationFactor120</b>: {{saturationFactor120}}</div>{{/saturationFactor120}}
+{{#statorLeakageReactance}}<div><b>statorLeakageReactance</b>: {{statorLeakageReactance}}</div>{{/statorLeakageReactance}}
+{{#statorResistance}}<div><b>statorResistance</b>: {{statorResistance}}</div>{{/statorResistance}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

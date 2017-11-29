@@ -54,7 +54,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SVC_collapse" aria-expanded="true" aria-controls="SVC_collapse">SVC</a>
+<div id="SVC_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Wires.ShuntCompensator.prototype.template.call (this) +
+`
+{{#capacitiveRating}}<div><b>capacitiveRating</b>: {{capacitiveRating}}</div>{{/capacitiveRating}}
+{{#inductiveRating}}<div><b>inductiveRating</b>: {{inductiveRating}}</div>{{/inductiveRating}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Distribution capacitor bank control settings.
@@ -138,7 +154,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ShuntCompensatorControl_collapse" aria-expanded="true" aria-controls="ShuntCompensatorControl_collapse">ShuntCompensatorControl</a>
+<div id="ShuntCompensatorControl_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Wires.RegulatingControl.prototype.template.call (this) +
+`
+{{#branchDirect}}<div><b>branchDirect</b>: {{branchDirect}}</div>{{/branchDirect}}
+{{#cellSize}}<div><b>cellSize</b>: {{cellSize}}</div>{{/cellSize}}
+{{#controlKind}}<div><b>controlKind</b>: {{controlKind}}</div>{{/controlKind}}
+{{#highVoltageOverride}}<div><b>highVoltageOverride</b>: {{highVoltageOverride}}</div>{{/highVoltageOverride}}
+{{#localControlKind}}<div><b>localControlKind</b>: {{localControlKind}}</div>{{/localControlKind}}
+{{#localOffLevel}}<div><b>localOffLevel</b>: {{localOffLevel}}</div>{{/localOffLevel}}
+{{#localOnLevel}}<div><b>localOnLevel</b>: {{localOnLevel}}</div>{{/localOnLevel}}
+{{#localOverride}}<div><b>localOverride</b>: {{localOverride}}</div>{{/localOverride}}
+{{#lowVoltageOverride}}<div><b>lowVoltageOverride</b>: {{lowVoltageOverride}}</div>{{/lowVoltageOverride}}
+{{#maxSwitchOperationCount}}<div><b>maxSwitchOperationCount</b>: {{maxSwitchOperationCount}}</div>{{/maxSwitchOperationCount}}
+{{#normalOpen}}<div><b>normalOpen</b>: {{normalOpen}}</div>{{/normalOpen}}
+{{#regBranch}}<div><b>regBranch</b>: {{regBranch}}</div>{{/regBranch}}
+{{#regBranchEnd}}<div><b>regBranchEnd</b>: {{regBranchEnd}}</div>{{/regBranchEnd}}
+{{#regBranchKind}}<div><b>regBranchKind</b>: {{regBranchKind}}</div>{{/regBranchKind}}
+{{#sensingPhaseCode}}<div><b>sensingPhaseCode</b>: {{sensingPhaseCode}}</div>{{/sensingPhaseCode}}
+{{#switchOperationCycle}}<div><b>switchOperationCycle</b>: {{switchOperationCycle}}</div>{{/switchOperationCycle}}
+{{#vRegLineLine}}<div><b>vRegLineLine</b>: {{vRegLineLine}}</div>{{/vRegLineLine}}
+{{#ShuntCompensatorInfo}}<div><b>ShuntCompensatorInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensatorInfo}}&quot;);})'>{{ShuntCompensatorInfo}}</a></div>{{/ShuntCompensatorInfo}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

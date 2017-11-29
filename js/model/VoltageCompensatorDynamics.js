@@ -64,7 +64,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GenICompensationForGenJ_collapse" aria-expanded="true" aria-controls="GenICompensationForGenJ_collapse">GenICompensationForGenJ</a>
+<div id="GenICompensationForGenJ_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#rcij}}<div><b>rcij</b>: {{rcij}}</div>{{/rcij}}
+{{#xcij}}<div><b>xcij</b>: {{xcij}}</div>{{/xcij}}
+{{#VcompIEEEType2}}<div><b>VcompIEEEType2</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VcompIEEEType2}}&quot;);})'>{{VcompIEEEType2}}</a></div>{{/VcompIEEEType2}}
+{{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineDynamics}}&quot;);})'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Voltage compensator function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -116,7 +134,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VoltageCompensatorDynamics_collapse" aria-expanded="true" aria-controls="VoltageCompensatorDynamics_collapse">VoltageCompensatorDynamics</a>
+<div id="VoltageCompensatorDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+`
+{{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
+{{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+</div>
+`
+                );
+           }        }
 
         /**
          * <font color="#0f0f0f">The class represents the terminal voltage transducer and the load compensator as defined in the IEEE Std 421.5-2005, Section 4.
@@ -168,7 +202,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VCompIEEEType2_collapse" aria-expanded="true" aria-controls="VCompIEEEType2_collapse">VCompIEEEType2</a>
+<div id="VCompIEEEType2_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + VoltageCompensatorDynamics.prototype.template.call (this) +
+`
+{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+</div>
+`
+                );
+           }        }
 
         /**
          * <font color="#0f0f0f">The class represents the terminal voltage transducer and the load compensator as defined in the IEEE Std 421.5-2005, Section 4.
@@ -224,7 +273,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VCompIEEEType1_collapse" aria-expanded="true" aria-controls="VCompIEEEType1_collapse">VCompIEEEType1</a>
+<div id="VCompIEEEType1_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + VoltageCompensatorDynamics.prototype.template.call (this) +
+`
+{{#rc}}<div><b>rc</b>: {{rc}}</div>{{/rc}}
+{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+{{#xc}}<div><b>xc</b>: {{xc}}</div>{{/xc}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

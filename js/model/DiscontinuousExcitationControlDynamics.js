@@ -60,7 +60,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DiscontinuousExcitationControlDynamics_collapse" aria-expanded="true" aria-controls="DiscontinuousExcitationControlDynamics_collapse">DiscontinuousExcitationControlDynamics</a>
+<div id="DiscontinuousExcitationControlDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+`
+{{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+{{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Type DEC2A model for the discontinuous excitation control.
@@ -120,7 +136,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DiscExcContIEEEDEC2A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC2A_collapse">DiscExcContIEEEDEC2A</a>
+<div id="DiscExcContIEEEDEC2A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
+`
+{{#td1}}<div><b>td1</b>: {{td1}}</div>{{/td1}}
+{{#td2}}<div><b>td2</b>: {{td2}}</div>{{/td2}}
+{{#vdmax}}<div><b>vdmax</b>: {{vdmax}}</div>{{/vdmax}}
+{{#vdmin}}<div><b>vdmin</b>: {{vdmin}}</div>{{/vdmin}}
+{{#vk}}<div><b>vk</b>: {{vk}}</div>{{/vk}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.
@@ -206,7 +241,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DiscExcContIEEEDEC1A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC1A_collapse">DiscExcContIEEEDEC1A</a>
+<div id="DiscExcContIEEEDEC1A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
+`
+{{#esc}}<div><b>esc</b>: {{esc}}</div>{{/esc}}
+{{#kan}}<div><b>kan</b>: {{kan}}</div>{{/kan}}
+{{#ketl}}<div><b>ketl</b>: {{ketl}}</div>{{/ketl}}
+{{#tan}}<div><b>tan</b>: {{tan}}</div>{{/tan}}
+{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+{{#tl1}}<div><b>tl1</b>: {{tl1}}</div>{{/tl1}}
+{{#tl2}}<div><b>tl2</b>: {{tl2}}</div>{{/tl2}}
+{{#tw5}}<div><b>tw5</b>: {{tw5}}</div>{{/tw5}}
+{{#val}}<div><b>val</b>: {{val}}</div>{{/val}}
+{{#vanmax}}<div><b>vanmax</b>: {{vanmax}}</div>{{/vanmax}}
+{{#vomax}}<div><b>vomax</b>: {{vomax}}</div>{{/vomax}}
+{{#vomin}}<div><b>vomin</b>: {{vomin}}</div>{{/vomin}}
+{{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
+{{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
+{{#vtc}}<div><b>vtc</b>: {{vtc}}</div>{{/vtc}}
+{{#vtlmt}}<div><b>vtlmt</b>: {{vtlmt}}</div>{{/vtlmt}}
+{{#vtm}}<div><b>vtm</b>: {{vtm}}</div>{{/vtm}}
+{{#vtn}}<div><b>vtn</b>: {{vtn}}</div>{{/vtn}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Type DEC3A model.
@@ -260,7 +327,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DiscExcContIEEEDEC3A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC3A_collapse">DiscExcContIEEEDEC3A</a>
+<div id="DiscExcContIEEEDEC3A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
+`
+{{#tdr}}<div><b>tdr</b>: {{tdr}}</div>{{/tdr}}
+{{#vtmin}}<div><b>vtmin</b>: {{vtmin}}</div>{{/vtmin}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

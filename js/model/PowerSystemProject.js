@@ -64,7 +64,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PowerSystemProjectSchedule_collapse" aria-expanded="true" aria-controls="PowerSystemProjectSchedule_collapse">PowerSystemProjectSchedule</a>
+<div id="PowerSystemProjectSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#actualEnd}}<div><b>actualEnd</b>: {{actualEnd}}</div>{{/actualEnd}}
+{{#actualStart}}<div><b>actualStart</b>: {{actualStart}}</div>{{/actualStart}}
+{{#scheduledEnd}}<div><b>scheduledEnd</b>: {{scheduledEnd}}</div>{{/scheduledEnd}}
+{{#scheduledStart}}<div><b>scheduledStart</b>: {{scheduledStart}}</div>{{/scheduledStart}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#stepType}}<div><b>stepType</b>: {{stepType}}</div>{{/stepType}}
+{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+</div>
+`
+                );
+           }        }
 
         /**
          * State of the project
@@ -122,7 +143,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StepKind_collapse" aria-expanded="true" aria-controls="StepKind_collapse">StepKind</a>
+<div id="StepKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#planning}}<div><b>planning</b>: {{planning}}</div>{{/planning}}
+{{#design and construction}}<div><b>design and construction</b>: {{design and construction}}</div>{{/design and construction}}
+{{#commissioning}}<div><b>commissioning</b>: {{commissioning}}</div>{{/commissioning}}
+{{#... list incomplete, more to come}}<div><b>... list incomplete, more to come</b>: {{... list incomplete, more to come}}</div>{{/... list incomplete, more to come}}
+{{#revision}}<div><b>revision</b>: {{revision}}</div>{{/revision}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A (document/collection) that describe a set of changes to the network.
@@ -186,7 +226,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PowerSystemProject_collapse" aria-expanded="true" aria-controls="PowerSystemProject_collapse">PowerSystemProject</a>
+<div id="PowerSystemProject_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+{{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+{{#state}}<div><b>state</b>: {{state}}</div>{{/state}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+{{#Project}}<div><b>Project</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Project}}&quot;);})'>{{Project}}</a></div>{{/Project}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The ProjectSteps are ordered by the actualStart and actualEnds so that  a dependent ProjectStep will have a actualStart after an actualEnd.
@@ -246,7 +308,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProjectStep_collapse" aria-expanded="true" aria-controls="ProjectStep_collapse">ProjectStep</a>
+<div id="ProjectStep_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#actualEnd}}<div><b>actualEnd</b>: {{actualEnd}}</div>{{/actualEnd}}
+{{#actualStart}}<div><b>actualStart</b>: {{actualStart}}</div>{{/actualStart}}
+{{#scheduledEnd}}<div><b>scheduledEnd</b>: {{scheduledEnd}}</div>{{/scheduledEnd}}
+{{#scheduledStart}}<div><b>scheduledStart</b>: {{scheduledStart}}</div>{{/scheduledStart}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#stepType}}<div><b>stepType</b>: {{stepType}}</div>{{/stepType}}
+</div>
+`
+                );
+           }        }
 
         class ProjectStepStatusKind extends base.Element
         {
@@ -298,7 +380,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProjectStepStatusKind_collapse" aria-expanded="true" aria-controls="ProjectStepStatusKind_collapse">ProjectStepStatusKind</a>
+<div id="ProjectStepStatusKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#cancelled}}<div><b>cancelled</b>: {{cancelled}}</div>{{/cancelled}}
+{{#inProgress}}<div><b>inProgress</b>: {{inProgress}}</div>{{/inProgress}}
+{{#inactive}}<div><b>inactive</b>: {{inactive}}</div>{{/inactive}}
+{{#approved}}<div><b>approved</b>: {{approved}}</div>{{/approved}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A collection of dependent projects.
@@ -348,7 +448,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PowerSystemSubProject_collapse" aria-expanded="true" aria-controls="PowerSystemSubProject_collapse">PowerSystemSubProject</a>
+<div id="PowerSystemSubProject_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PowerSystemProject.prototype.template.call (this) +
+`
+{{#Project}}<div><b>Project</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Project}}&quot;);})'>{{Project}}</a></div>{{/Project}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

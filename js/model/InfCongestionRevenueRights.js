@@ -56,7 +56,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ViolationLimit_collapse" aria-expanded="true" aria-controls="ViolationLimit_collapse">ViolationLimit</a>
+<div id="ViolationLimit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Meas.Limit.prototype.template.call (this) +
+`
+{{#enforced}}<div><b>enforced</b>: {{enforced}}</div>{{/enforced}}
+{{#MktMeasurement}}<div><b>MktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktMeasurement}}&quot;);})'>{{MktMeasurement}}</a></div>{{/MktMeasurement}}
+{{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Financial Transmission Rights (FTR) regarding transmission capacity at a flowgate.
@@ -118,7 +135,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FTR_collapse" aria-expanded="true" aria-controls="FTR_collapse">FTR</a>
+<div id="FTR_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Agreement.prototype.template.call (this) +
+`
+{{#optimized}}<div><b>optimized</b>: {{optimized}}</div>{{/optimized}}
+{{#action}}<div><b>action</b>: {{action}}</div>{{/action}}
+{{#baseEnergy}}<div><b>baseEnergy</b>: {{baseEnergy}}</div>{{/baseEnergy}}
+{{#ftrType}}<div><b>ftrType</b>: {{ftrType}}</div>{{/ftrType}}
+{{#class}}<div><b>class</b>: {{class}}</div>{{/class}}
+{{#EnergyPriceCurve}}<div><b>EnergyPriceCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyPriceCurve}}&quot;);})'>{{EnergyPriceCurve}}</a></div>{{/EnergyPriceCurve}}
+{{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

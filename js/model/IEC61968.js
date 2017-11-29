@@ -60,7 +60,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#IEC61968CIMVersion_collapse" aria-expanded="true" aria-controls="IEC61968CIMVersion_collapse">IEC61968CIMVersion</a>
+<div id="IEC61968CIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#date}}<div><b>date</b>: {{date}}</div>{{/date}}
+{{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

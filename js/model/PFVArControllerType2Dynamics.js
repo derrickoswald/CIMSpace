@@ -61,7 +61,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PFVArControllerType2Dynamics_collapse" aria-expanded="true" aria-controls="PFVArControllerType2Dynamics_collapse">PFVArControllerType2Dynamics</a>
+<div id="PFVArControllerType2Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+`
+{{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Power factor / Reactive power regulator.
@@ -121,7 +136,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PFVArType2Common1_collapse" aria-expanded="true" aria-controls="PFVArType2Common1_collapse">PFVArType2Common1</a>
+<div id="PFVArType2Common1_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PFVArControllerType2Dynamics.prototype.template.call (this) +
+`
+{{#j}}<div><b>j</b>: {{j}}</div>{{/j}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#max}}<div><b>max</b>: {{max}}</div>{{/max}}
+{{#ref}}<div><b>ref</b>: {{ref}}</div>{{/ref}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE VAR Controller Type 2 which is a summing point type controller.
@@ -185,7 +219,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PFVArType2IEEEVArController_collapse" aria-expanded="true" aria-controls="PFVArType2IEEEVArController_collapse">PFVArType2IEEEVArController</a>
+<div id="PFVArType2IEEEVArController_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PFVArControllerType2Dynamics.prototype.template.call (this) +
+`
+{{#exlon}}<div><b>exlon</b>: {{exlon}}</div>{{/exlon}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#qref}}<div><b>qref</b>: {{qref}}</div>{{/qref}}
+{{#vclmt}}<div><b>vclmt</b>: {{vclmt}}</div>{{/vclmt}}
+{{#vref}}<div><b>vref</b>: {{vref}}</div>{{/vref}}
+{{#vs}}<div><b>vs</b>: {{vs}}</div>{{/vs}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE PF Controller Type 2 which is a summing point type controller and makes up the outside loop of a two-loop system.
@@ -249,7 +304,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PFVArType2IEEEPFController_collapse" aria-expanded="true" aria-controls="PFVArType2IEEEPFController_collapse">PFVArType2IEEEPFController</a>
+<div id="PFVArType2IEEEPFController_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PFVArControllerType2Dynamics.prototype.template.call (this) +
+`
+{{#exlon}}<div><b>exlon</b>: {{exlon}}</div>{{/exlon}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#pfref}}<div><b>pfref</b>: {{pfref}}</div>{{/pfref}}
+{{#vclmt}}<div><b>vclmt</b>: {{vclmt}}</div>{{/vclmt}}
+{{#vref}}<div><b>vref</b>: {{vref}}</div>{{/vref}}
+{{#vs}}<div><b>vs</b>: {{vs}}</div>{{/vs}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

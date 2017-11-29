@@ -68,7 +68,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransformerStarImpedance_collapse" aria-expanded="true" aria-controls="TransformerStarImpedance_collapse">TransformerStarImpedance</a>
+<div id="TransformerStarImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
+{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+{{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
+{{#TransformerEndInfo}}<div><b>TransformerEndInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerEndInfo}}&quot;);})'>{{TransformerEndInfo}}</a></div>{{/TransformerEndInfo}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This class represents the zero sequence line mutual coupling.
@@ -136,7 +155,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MutualCoupling_collapse" aria-expanded="true" aria-controls="MutualCoupling_collapse">MutualCoupling</a>
+<div id="MutualCoupling_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#b0ch}}<div><b>b0ch</b>: {{b0ch}}</div>{{/b0ch}}
+{{#distance11}}<div><b>distance11</b>: {{distance11}}</div>{{/distance11}}
+{{#distance12}}<div><b>distance12</b>: {{distance12}}</div>{{/distance12}}
+{{#distance21}}<div><b>distance21</b>: {{distance21}}</div>{{/distance21}}
+{{#distance22}}<div><b>distance22</b>: {{distance22}}</div>{{/distance22}}
+{{#g0ch}}<div><b>g0ch</b>: {{g0ch}}</div>{{/g0ch}}
+{{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
+{{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
+{{#Second_Terminal}}<div><b>Second_Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Second_Terminal}}&quot;);})'>{{Second_Terminal}}</a></div>{{/Second_Terminal}}
+{{#First_Terminal}}<div><b>First_Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{First_Terminal}}&quot;);})'>{{First_Terminal}}</a></div>{{/First_Terminal}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Generic user of energy - a  point of consumption on the power system model.
@@ -208,7 +251,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EnergyConsumer_collapse" aria-expanded="true" aria-controls="EnergyConsumer_collapse">EnergyConsumer</a>
+<div id="EnergyConsumer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConductingEquipment.prototype.template.call (this) +
+`
+{{#customerCount}}<div><b>customerCount</b>: {{customerCount}}</div>{{/customerCount}}
+{{#grounded}}<div><b>grounded</b>: {{grounded}}</div>{{/grounded}}
+{{#pfixed}}<div><b>pfixed</b>: {{pfixed}}</div>{{/pfixed}}
+{{#pfixedPct}}<div><b>pfixedPct</b>: {{pfixedPct}}</div>{{/pfixedPct}}
+{{#phaseConnection}}<div><b>phaseConnection</b>: {{phaseConnection}}</div>{{/phaseConnection}}
+{{#qfixed}}<div><b>qfixed</b>: {{qfixed}}</div>{{/qfixed}}
+{{#qfixedPct}}<div><b>qfixedPct</b>: {{qfixedPct}}</div>{{/qfixedPct}}
+{{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
+{{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
+{{#PowerCutZone}}<div><b>PowerCutZone</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerCutZone}}&quot;);})'>{{PowerCutZone}}</a></div>{{/PowerCutZone}}
+{{#LoadDynamics}}<div><b>LoadDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadDynamics}}&quot;);})'>{{LoadDynamics}}</a></div>{{/LoadDynamics}}
+{{#LoadResponse}}<div><b>LoadResponse</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadResponse}}&quot;);})'>{{LoadResponse}}</a></div>{{/LoadResponse}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The mode of operation for a Petersen coil.
@@ -262,7 +331,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PetersenCoilModeKind_collapse" aria-expanded="true" aria-controls="PetersenCoilModeKind_collapse">PetersenCoilModeKind</a>
+<div id="PetersenCoilModeKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#fixed}}<div><b>fixed</b>: {{fixed}}</div>{{/fixed}}
+{{#manual}}<div><b>manual</b>: {{manual}}</div>{{/manual}}
+{{#automaticPositioning}}<div><b>automaticPositioning</b>: {{automaticPositioning}}</div>{{/automaticPositioning}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A Series Compensator is a series capacitor or reactor or an AC transmission line without charging susceptance.
@@ -326,7 +412,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SeriesCompensator_collapse" aria-expanded="true" aria-controls="SeriesCompensator_collapse">SeriesCompensator</a>
+<div id="SeriesCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConductingEquipment.prototype.template.call (this) +
+`
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
+{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+{{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
+{{#varistorPresent}}<div><b>varistorPresent</b>: {{varistorPresent}}</div>{{/varistorPresent}}
+{{#varistorRatedCurrent}}<div><b>varistorRatedCurrent</b>: {{varistorRatedCurrent}}</div>{{/varistorRatedCurrent}}
+{{#varistorVoltageThreshold}}<div><b>varistorVoltageThreshold</b>: {{varistorVoltageThreshold}}</div>{{/varistorVoltageThreshold}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A generic device designed to close, or open, or both, one or more electric circuits.
@@ -394,7 +501,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Switch_collapse" aria-expanded="true" aria-controls="Switch_collapse">Switch</a>
+<div id="Switch_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConductingEquipment.prototype.template.call (this) +
+`
+{{#normalOpen}}<div><b>normalOpen</b>: {{normalOpen}}</div>{{/normalOpen}}
+{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+{{#retained}}<div><b>retained</b>: {{retained}}</div>{{/retained}}
+{{#switchOnCount}}<div><b>switchOnCount</b>: {{switchOnCount}}</div>{{/switchOnCount}}
+{{#switchOnDate}}<div><b>switchOnDate</b>: {{switchOnDate}}</div>{{/switchOnDate}}
+{{#open}}<div><b>open</b>: {{open}}</div>{{/open}}
+{{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Outage}}&quot;);})'>{{Outage}}</a></div>{{/Outage}}
+{{#CompositeSwitch}}<div><b>CompositeSwitch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CompositeSwitch}}&quot;);})'>{{CompositeSwitch}}</a></div>{{/CompositeSwitch}}
+{{#SwitchAction}}<div><b>SwitchAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchAction}}&quot;);})'>{{SwitchAction}}</a></div>{{/SwitchAction}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The transformer core admittance.
@@ -454,7 +584,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransformerCoreAdmittance_collapse" aria-expanded="true" aria-controls="TransformerCoreAdmittance_collapse">TransformerCoreAdmittance</a>
+<div id="TransformerCoreAdmittance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+{{#b0}}<div><b>b0</b>: {{b0}}</div>{{/b0}}
+{{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
+{{#g0}}<div><b>g0</b>: {{g0}}</div>{{/g0}}
+{{#TransformerEndInfo}}<div><b>TransformerEndInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerEndInfo}}&quot;);})'>{{TransformerEndInfo}}</a></div>{{/TransformerEndInfo}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An area of the power system network which is defined for secondary voltage control purposes.
@@ -508,7 +657,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VoltageControlZone_collapse" aria-expanded="true" aria-controls="VoltageControlZone_collapse">VoltageControlZone</a>
+<div id="VoltageControlZone_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#RegulationSchedule}}<div><b>RegulationSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegulationSchedule}}&quot;);})'>{{RegulationSchedule}}</a></div>{{/RegulationSchedule}}
+{{#BusbarSection}}<div><b>BusbarSection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BusbarSection}}&quot;);})'>{{BusbarSection}}</a></div>{{/BusbarSection}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Control modes for a transformer.
@@ -560,7 +725,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransformerControlMode_collapse" aria-expanded="true" aria-controls="TransformerControlMode_collapse">TransformerControlMode</a>
+<div id="TransformerControlMode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#volt}}<div><b>volt</b>: {{volt}}</div>{{/volt}}
+{{#reactive}}<div><b>reactive</b>: {{reactive}}</div>{{/reactive}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Transformer mesh impedance (Delta-model) between transformer ends.
@@ -622,7 +803,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransformerMeshImpedance_collapse" aria-expanded="true" aria-controls="TransformerMeshImpedance_collapse">TransformerMeshImpedance</a>
+<div id="TransformerMeshImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
+{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+{{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
+{{#FromTransformerEndInfo}}<div><b>FromTransformerEndInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FromTransformerEndInfo}}&quot;);})'>{{FromTransformerEndInfo}}</a></div>{{/FromTransformerEndInfo}}
+{{#FromTransformerEnd}}<div><b>FromTransformerEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FromTransformerEnd}}&quot;);})'>{{FromTransformerEnd}}</a></div>{{/FromTransformerEnd}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A non linear shunt compensator bank or section admittance value.
@@ -682,7 +883,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#NonlinearShuntCompensatorPoint_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensatorPoint_collapse">NonlinearShuntCompensatorPoint</a>
+<div id="NonlinearShuntCompensatorPoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
+{{#b0}}<div><b>b0</b>: {{b0}}</div>{{/b0}}
+{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+{{#g0}}<div><b>g0</b>: {{g0}}</div>{{/g0}}
+{{#sectionNumber}}<div><b>sectionNumber</b>: {{sectionNumber}}</div>{{/sectionNumber}}
+{{#NonlinearShuntCompensator}}<div><b>NonlinearShuntCompensator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NonlinearShuntCompensator}}&quot;);})'>{{NonlinearShuntCompensator}}</a></div>{{/NonlinearShuntCompensator}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A per phase non linear shunt compensator bank or section admittance value.
@@ -738,7 +959,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#NonlinearShuntCompensatorPhasePoint_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensatorPhasePoint_collapse">NonlinearShuntCompensatorPhasePoint</a>
+<div id="NonlinearShuntCompensatorPhasePoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#sectionNumber}}<div><b>sectionNumber</b>: {{sectionNumber}}</div>{{/sectionNumber}}
+{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+{{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
+{{#NonlinearShuntCompensatorPhase}}<div><b>NonlinearShuntCompensatorPhase</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NonlinearShuntCompensatorPhase}}&quot;);})'>{{NonlinearShuntCompensatorPhase}}</a></div>{{/NonlinearShuntCompensatorPhase}}
+</div>
+`
+                );
+           }        }
 
         class TapChangerTablePoint extends base.Element
         {
@@ -794,7 +1033,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TapChangerTablePoint_collapse" aria-expanded="true" aria-controls="TapChangerTablePoint_collapse">TapChangerTablePoint</a>
+<div id="TapChangerTablePoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+{{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#ratio}}<div><b>ratio</b>: {{ratio}}</div>{{/ratio}}
+{{#step}}<div><b>step</b>: {{step}}</div>{{/step}}
+{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of Asynchronous Machine.
@@ -846,7 +1105,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AsynchronousMachineKind_collapse" aria-expanded="true" aria-controls="AsynchronousMachineKind_collapse">AsynchronousMachineKind</a>
+<div id="AsynchronousMachineKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#generator}}<div><b>generator</b>: {{generator}}</div>{{/generator}}
+{{#motor}}<div><b>motor</b>: {{motor}}</div>{{/motor}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Reactive power rating envelope versus the synchronous machine's active power, in both the generating and motoring modes.
@@ -900,7 +1175,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ReactiveCapabilityCurve_collapse" aria-expanded="true" aria-controls="ReactiveCapabilityCurve_collapse">ReactiveCapabilityCurve</a>
+<div id="ReactiveCapabilityCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#coolantTemperature}}<div><b>coolantTemperature</b>: {{coolantTemperature}}</div>{{/coolantTemperature}}
+{{#hydrogenPressure}}<div><b>hydrogenPressure</b>: {{hydrogenPressure}}</div>{{/hydrogenPressure}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A conductor, or group of conductors, with negligible impedance, that serve to connect other conducting equipment within a single substation and are modelled with a single logical terminal.
@@ -948,7 +1239,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Connector_collapse" aria-expanded="true" aria-controls="Connector_collapse">Connector</a>
+<div id="Connector_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConductingEquipment.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Describes a curve for how the voltage magnitude and impedance varies with the tap step.
@@ -996,7 +1301,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RatioTapChangerTable_collapse" aria-expanded="true" aria-controls="RatioTapChangerTable_collapse">RatioTapChangerTable</a>
+<div id="RatioTapChangerTable_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * An electrical device consisting of  two or more coupled windings, with or without a magnetic core, for introducing mutual coupling between electric circuits.
@@ -1060,7 +1379,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PowerTransformer_collapse" aria-expanded="true" aria-controls="PowerTransformer_collapse">PowerTransformer</a>
+<div id="PowerTransformer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConductingEquipment.prototype.template.call (this) +
+`
+{{#beforeShCircuitHighestOperatingCurrent}}<div><b>beforeShCircuitHighestOperatingCurrent</b>: {{beforeShCircuitHighestOperatingCurrent}}</div>{{/beforeShCircuitHighestOperatingCurrent}}
+{{#beforeShCircuitHighestOperatingVoltage}}<div><b>beforeShCircuitHighestOperatingVoltage</b>: {{beforeShCircuitHighestOperatingVoltage}}</div>{{/beforeShCircuitHighestOperatingVoltage}}
+{{#beforeShortCircuitAnglePf}}<div><b>beforeShortCircuitAnglePf</b>: {{beforeShortCircuitAnglePf}}</div>{{/beforeShortCircuitAnglePf}}
+{{#highSideMinOperatingU}}<div><b>highSideMinOperatingU</b>: {{highSideMinOperatingU}}</div>{{/highSideMinOperatingU}}
+{{#isPartOfGeneratorUnit}}<div><b>isPartOfGeneratorUnit</b>: {{isPartOfGeneratorUnit}}</div>{{/isPartOfGeneratorUnit}}
+{{#operationalValuesConsidered}}<div><b>operationalValuesConsidered</b>: {{operationalValuesConsidered}}</div>{{/operationalValuesConsidered}}
+{{#vectorGroup}}<div><b>vectorGroup</b>: {{vectorGroup}}</div>{{/vectorGroup}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A single phase of an energy consumer.
@@ -1120,7 +1460,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EnergyConsumerPhase_collapse" aria-expanded="true" aria-controls="EnergyConsumerPhase_collapse">EnergyConsumerPhase</a>
+<div id="EnergyConsumerPhase_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#pfixed}}<div><b>pfixed</b>: {{pfixed}}</div>{{/pfixed}}
+{{#pfixedPct}}<div><b>pfixedPct</b>: {{pfixedPct}}</div>{{/pfixedPct}}
+{{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
+{{#qfixed}}<div><b>qfixed</b>: {{qfixed}}</div>{{/qfixed}}
+{{#qfixedPct}}<div><b>qfixedPct</b>: {{qfixedPct}}</div>{{/qfixedPct}}
+{{#EnergyConsumer}}<div><b>EnergyConsumer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyConsumer}}&quot;);})'>{{EnergyConsumer}}</a></div>{{/EnergyConsumer}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Common type for per-length electrical catalogues describing line parameters.
@@ -1170,7 +1530,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PerLengthLineParameter_collapse" aria-expanded="true" aria-controls="PerLengthLineParameter_collapse">PerLengthLineParameter</a>
+<div id="PerLengthLineParameter_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#WireSpacingInfo}}<div><b>WireSpacingInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WireSpacingInfo}}&quot;);})'>{{WireSpacingInfo}}</a></div>{{/WireSpacingInfo}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Type of rotor, used by short circuit applications.
@@ -1226,7 +1601,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ShortCircuitRotorKind_collapse" aria-expanded="true" aria-controls="ShortCircuitRotorKind_collapse">ShortCircuitRotorKind</a>
+<div id="ShortCircuitRotorKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#salientPole1}}<div><b>salientPole1</b>: {{salientPole1}}</div>{{/salientPole1}}
+{{#salientPole2}}<div><b>salientPole2</b>: {{salientPole2}}</div>{{/salientPole2}}
+{{#turboSeries1}}<div><b>turboSeries1</b>: {{turboSeries1}}</div>{{/turboSeries1}}
+{{#turboSeries2}}<div><b>turboSeries2</b>: {{turboSeries2}}</div>{{/turboSeries2}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Triplet of resistance, reactance, and susceptance matrix element values.
@@ -1284,7 +1677,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PhaseImpedanceData_collapse" aria-expanded="true" aria-controls="PhaseImpedanceData_collapse">PhaseImpedanceData</a>
+<div id="PhaseImpedanceData_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+{{#PhaseImpedance}}<div><b>PhaseImpedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PhaseImpedance}}&quot;);})'>{{PhaseImpedance}}</a></div>{{/PhaseImpedance}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Describes a tabular curve for how the phase angle difference and impedance varies with the tap step.
@@ -1332,7 +1744,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PhaseTapChangerTable_collapse" aria-expanded="true" aria-controls="PhaseTapChangerTable_collapse">PhaseTapChangerTable</a>
+<div id="PhaseTapChangerTable_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Contains equipment beyond a substation belonging to a power transmission line.
@@ -1382,7 +1808,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Line_collapse" aria-expanded="true" aria-controls="Line_collapse">Line</a>
+<div id="Line_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.EquipmentContainer.prototype.template.call (this) +
+`
+{{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);})'>{{Region}}</a></div>{{/Region}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An assembly of two or more coupled windings that transform electrical power between voltage levels.
@@ -1434,7 +1875,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransformerTank_collapse" aria-expanded="true" aria-controls="TransformerTank_collapse">TransformerTank</a>
+<div id="TransformerTank_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Equipment.prototype.template.call (this) +
+`
+{{#PowerTransformer}}<div><b>PowerTransformer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerTransformer}}&quot;);})'>{{PowerTransformer}}</a></div>{{/PowerTransformer}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A pre-established pattern over time for a tap step.
@@ -1484,7 +1940,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TapSchedule_collapse" aria-expanded="true" aria-controls="TapSchedule_collapse">TapSchedule</a>
+<div id="TapSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LoadModel.SeasonDayTypeSchedule.prototype.template.call (this) +
+`
+{{#TapChanger}}<div><b>TapChanger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TapChanger}}&quot;);})'>{{TapChanger}}</a></div>{{/TapChanger}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A conducting equipment used to represent a connection to ground which is typically used to compensate earth faults..
@@ -1536,7 +2007,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EarthFaultCompensator_collapse" aria-expanded="true" aria-controls="EarthFaultCompensator_collapse">EarthFaultCompensator</a>
+<div id="EarthFaultCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConductingEquipment.prototype.template.call (this) +
+`
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A Clamp is a galvanic connection at a line segment where other equipment is connected.
@@ -1590,7 +2076,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Clamp_collapse" aria-expanded="true" aria-controls="Clamp_collapse">Clamp</a>
+<div id="Clamp_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConductingEquipment.prototype.template.call (this) +
+`
+{{#lengthFromTerminal1}}<div><b>lengthFromTerminal1</b>: {{lengthFromTerminal1}}</div>{{/lengthFromTerminal1}}
+{{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ACLineSegment}}&quot;);})'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Synchronous machine type.
@@ -1652,7 +2154,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SynchronousMachineKind_collapse" aria-expanded="true" aria-controls="SynchronousMachineKind_collapse">SynchronousMachineKind</a>
+<div id="SynchronousMachineKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#generator}}<div><b>generator</b>: {{generator}}</div>{{/generator}}
+{{#condenser}}<div><b>condenser</b>: {{condenser}}</div>{{/condenser}}
+{{#generatorOrCondenser}}<div><b>generatorOrCondenser</b>: {{generatorOrCondenser}}</div>{{/generatorOrCondenser}}
+{{#motor}}<div><b>motor</b>: {{motor}}</div>{{/motor}}
+{{#generatorOrMotor}}<div><b>generatorOrMotor</b>: {{generatorOrMotor}}</div>{{/generatorOrMotor}}
+{{#motorOrCondenser}}<div><b>motorOrCondenser</b>: {{motorOrCondenser}}</div>{{/motorOrCondenser}}
+{{#generatorOrCondenserOrMotor}}<div><b>generatorOrCondenserOrMotor</b>: {{generatorOrCondenserOrMotor}}</div>{{/generatorOrCondenserOrMotor}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The configuration of phase connections for a single terminal device such as a load or capactitor.
@@ -1708,7 +2231,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PhaseShuntConnectionKind_collapse" aria-expanded="true" aria-controls="PhaseShuntConnectionKind_collapse">PhaseShuntConnectionKind</a>
+<div id="PhaseShuntConnectionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#D}}<div><b>D</b>: {{D}}</div>{{/D}}
+{{#Y}}<div><b>Y</b>: {{Y}}</div>{{/Y}}
+{{#Yn}}<div><b>Yn</b>: {{Yn}}</div>{{/Yn}}
+{{#I}}<div><b>I</b>: {{I}}</div>{{/I}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A pre-established pattern over time for a controlled variable, e.g., busbar voltage.
@@ -1758,7 +2299,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RegulationSchedule_collapse" aria-expanded="true" aria-controls="RegulationSchedule_collapse">RegulationSchedule</a>
+<div id="RegulationSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LoadModel.SeasonDayTypeSchedule.prototype.template.call (this) +
+`
+{{#RegulatingControl}}<div><b>RegulatingControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegulatingControl}}&quot;);})'>{{RegulatingControl}}</a></div>{{/RegulatingControl}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Represents a single wire of an alternating current line segment.
@@ -1810,7 +2366,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ACLineSegmentPhase_collapse" aria-expanded="true" aria-controls="ACLineSegmentPhase_collapse">ACLineSegmentPhase</a>
+<div id="ACLineSegmentPhase_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
+{{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ACLineSegment}}&quot;);})'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A conducting connection point of a power transformer.
@@ -1886,7 +2458,34 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransformerEnd_collapse" aria-expanded="true" aria-controls="TransformerEnd_collapse">TransformerEnd</a>
+<div id="TransformerEnd_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#bmagSat}}<div><b>bmagSat</b>: {{bmagSat}}</div>{{/bmagSat}}
+{{#endNumber}}<div><b>endNumber</b>: {{endNumber}}</div>{{/endNumber}}
+{{#grounded}}<div><b>grounded</b>: {{grounded}}</div>{{/grounded}}
+{{#magBaseU}}<div><b>magBaseU</b>: {{magBaseU}}</div>{{/magBaseU}}
+{{#magSatFlux}}<div><b>magSatFlux</b>: {{magSatFlux}}</div>{{/magSatFlux}}
+{{#rground}}<div><b>rground</b>: {{rground}}</div>{{/rground}}
+{{#xground}}<div><b>xground</b>: {{xground}}</div>{{/xground}}
+{{#CoreAdmittance}}<div><b>CoreAdmittance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CoreAdmittance}}&quot;);})'>{{CoreAdmittance}}</a></div>{{/CoreAdmittance}}
+{{#PhaseTapChanger}}<div><b>PhaseTapChanger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PhaseTapChanger}}&quot;);})'>{{PhaseTapChanger}}</a></div>{{/PhaseTapChanger}}
+{{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseVoltage}}&quot;);})'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
+{{#RatioTapChanger}}<div><b>RatioTapChanger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RatioTapChanger}}&quot;);})'>{{RatioTapChanger}}</a></div>{{/RatioTapChanger}}
+{{#StarImpedance}}<div><b>StarImpedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StarImpedance}}&quot;);})'>{{StarImpedance}}</a></div>{{/StarImpedance}}
+{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A schedule of switch positions.
@@ -1938,7 +2537,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SwitchSchedule_collapse" aria-expanded="true" aria-controls="SwitchSchedule_collapse">SwitchSchedule</a>
+<div id="SwitchSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LoadModel.SeasonDayTypeSchedule.prototype.template.call (this) +
+`
+{{#Switch}}<div><b>Switch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Switch}}&quot;);})'>{{Switch}}</a></div>{{/Switch}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Specifies a set of equipment that works together to control a power system quantity such as voltage or flow.
@@ -2004,7 +2618,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RegulatingControl_collapse" aria-expanded="true" aria-controls="RegulatingControl_collapse">RegulatingControl</a>
+<div id="RegulatingControl_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#discrete}}<div><b>discrete</b>: {{discrete}}</div>{{/discrete}}
+{{#mode}}<div><b>mode</b>: {{mode}}</div>{{/mode}}
+{{#monitoredPhase}}<div><b>monitoredPhase</b>: {{monitoredPhase}}</div>{{/monitoredPhase}}
+{{#targetDeadband}}<div><b>targetDeadband</b>: {{targetDeadband}}</div>{{/targetDeadband}}
+{{#targetValue}}<div><b>targetValue</b>: {{targetValue}}</div>{{/targetValue}}
+{{#targetValueUnitMultiplier}}<div><b>targetValueUnitMultiplier</b>: {{targetValueUnitMultiplier}}</div>{{/targetValueUnitMultiplier}}
+{{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
+{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Mechanism for changing transformer winding tap positions.
@@ -2076,7 +2712,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TapChanger_collapse" aria-expanded="true" aria-controls="TapChanger_collapse">TapChanger</a>
+<div id="TapChanger_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#highStep}}<div><b>highStep</b>: {{highStep}}</div>{{/highStep}}
+{{#initialDelay}}<div><b>initialDelay</b>: {{initialDelay}}</div>{{/initialDelay}}
+{{#lowStep}}<div><b>lowStep</b>: {{lowStep}}</div>{{/lowStep}}
+{{#ltcFlag}}<div><b>ltcFlag</b>: {{ltcFlag}}</div>{{/ltcFlag}}
+{{#neutralStep}}<div><b>neutralStep</b>: {{neutralStep}}</div>{{/neutralStep}}
+{{#neutralU}}<div><b>neutralU</b>: {{neutralU}}</div>{{/neutralU}}
+{{#normalStep}}<div><b>normalStep</b>: {{normalStep}}</div>{{/normalStep}}
+{{#subsequentDelay}}<div><b>subsequentDelay</b>: {{subsequentDelay}}</div>{{/subsequentDelay}}
+{{#controlEnabled}}<div><b>controlEnabled</b>: {{controlEnabled}}</div>{{/controlEnabled}}
+{{#step}}<div><b>step</b>: {{step}}</div>{{/step}}
+{{#TapChangerControl}}<div><b>TapChangerControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TapChangerControl}}&quot;);})'>{{TapChangerControl}}</a></div>{{/TapChangerControl}}
+{{#SvTapStep}}<div><b>SvTapStep</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SvTapStep}}&quot;);})'>{{SvTapStep}}</a></div>{{/SvTapStep}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A generic equivalent for an energy supplier on a transmission or distribution voltage level.
@@ -2152,7 +2814,35 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EnergySource_collapse" aria-expanded="true" aria-controls="EnergySource_collapse">EnergySource</a>
+<div id="EnergySource_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConductingEquipment.prototype.template.call (this) +
+`
+{{#activePower}}<div><b>activePower</b>: {{activePower}}</div>{{/activePower}}
+{{#nominalVoltage}}<div><b>nominalVoltage</b>: {{nominalVoltage}}</div>{{/nominalVoltage}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
+{{#rn}}<div><b>rn</b>: {{rn}}</div>{{/rn}}
+{{#voltageAngle}}<div><b>voltageAngle</b>: {{voltageAngle}}</div>{{/voltageAngle}}
+{{#voltageMagnitude}}<div><b>voltageMagnitude</b>: {{voltageMagnitude}}</div>{{/voltageMagnitude}}
+{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+{{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
+{{#xn}}<div><b>xn</b>: {{xn}}</div>{{/xn}}
+{{#reactivePower}}<div><b>reactivePower</b>: {{reactivePower}}</div>{{/reactivePower}}
+{{#WindTurbineType3or4Dynamics}}<div><b>WindTurbineType3or4Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4Dynamics}}&quot;);})'>{{WindTurbineType3or4Dynamics}}</a></div>{{/WindTurbineType3or4Dynamics}}
+{{#EnergySourceAction}}<div><b>EnergySourceAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergySourceAction}}&quot;);})'>{{EnergySourceAction}}</a></div>{{/EnergySourceAction}}
+{{#EnergySchedulingType}}<div><b>EnergySchedulingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergySchedulingType}}&quot;);})'>{{EnergySchedulingType}}</a></div>{{/EnergySchedulingType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Static VAr Compensator control mode.
@@ -2204,7 +2894,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SVCControlMode_collapse" aria-expanded="true" aria-controls="SVCControlMode_collapse">SVCControlMode</a>
+<div id="SVCControlMode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#reactivePower}}<div><b>reactivePower</b>: {{reactivePower}}</div>{{/reactivePower}}
+{{#voltage}}<div><b>voltage</b>: {{voltage}}</div>{{/voltage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Single phase of a multi-phase shunt compensator when its attributes might be different per phase.
@@ -2260,7 +2966,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="ShuntCompensatorPhase_collapse">ShuntCompensatorPhase</a>
+<div id="ShuntCompensatorPhase_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#maximumSections}}<div><b>maximumSections</b>: {{maximumSections}}</div>{{/maximumSections}}
+{{#normalSections}}<div><b>normalSections</b>: {{normalSections}}</div>{{/normalSections}}
+{{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
+{{#ShuntCompensator}}<div><b>ShuntCompensator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensator}}&quot;);})'>{{ShuntCompensator}}</a></div>{{/ShuntCompensator}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Single phase of a multi-phase switch when its attributes might be different per phase.
@@ -2318,7 +3042,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SwitchPhase_collapse" aria-expanded="true" aria-controls="SwitchPhase_collapse">SwitchPhase</a>
+<div id="SwitchPhase_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#normalOpen}}<div><b>normalOpen</b>: {{normalOpen}}</div>{{/normalOpen}}
+{{#phaseSide1}}<div><b>phaseSide1</b>: {{phaseSide1}}</div>{{/phaseSide1}}
+{{#phaseSide2}}<div><b>phaseSide2</b>: {{phaseSide2}}</div>{{/phaseSide2}}
+{{#closed}}<div><b>closed</b>: {{closed}}</div>{{/closed}}
+{{#Switch}}<div><b>Switch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Switch}}&quot;);})'>{{Switch}}</a></div>{{/Switch}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Enumeration of single phase identifiers.
@@ -2380,7 +3123,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SinglePhaseKind_collapse" aria-expanded="true" aria-controls="SinglePhaseKind_collapse">SinglePhaseKind</a>
+<div id="SinglePhaseKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#A}}<div><b>A</b>: {{A}}</div>{{/A}}
+{{#B}}<div><b>B</b>: {{B}}</div>{{/B}}
+{{#C}}<div><b>C</b>: {{C}}</div>{{/C}}
+{{#N}}<div><b>N</b>: {{N}}</div>{{/N}}
+{{#s1}}<div><b>s1</b>: {{s1}}</div>{{/s1}}
+{{#s2}}<div><b>s2</b>: {{s2}}</div>{{/s2}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A model of a set of individual Switches normally enclosed within the same cabinet and possibly with interlocks that restrict the combination of switch positions.
@@ -2432,7 +3195,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CompositeSwitch_collapse" aria-expanded="true" aria-controls="CompositeSwitch_collapse">CompositeSwitch</a>
+<div id="CompositeSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Equipment.prototype.template.call (this) +
+`
+{{#compositeSwitchType}}<div><b>compositeSwitchType</b>: {{compositeSwitchType}}</div>{{/compositeSwitchType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A type of conducting equipment that can regulate a quantity (i.e. voltage or flow) at a specific point in the network.
@@ -2484,7 +3262,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RegulatingCondEq_collapse" aria-expanded="true" aria-controls="RegulatingCondEq_collapse">RegulatingCondEq</a>
+<div id="RegulatingCondEq_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConductingEquipment.prototype.template.call (this) +
+`
+{{#controlEnabled}}<div><b>controlEnabled</b>: {{controlEnabled}}</div>{{/controlEnabled}}
+{{#RegulatingControl}}<div><b>RegulatingControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegulatingControl}}&quot;);})'>{{RegulatingControl}}</a></div>{{/RegulatingControl}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A point where the system is grounded used for connecting conducting equipment to ground.
@@ -2536,7 +3330,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Ground_collapse" aria-expanded="true" aria-controls="Ground_collapse">Ground</a>
+<div id="Ground_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConductingEquipment.prototype.template.call (this) +
+`
+{{#GroundAction}}<div><b>GroundAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GroundAction}}&quot;);})'>{{GroundAction}}</a></div>{{/GroundAction}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Combination of conducting material with consistent electrical characteristics, building a single electrical system, used to carry current between points in the power system.
@@ -2586,7 +3395,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Conductor_collapse" aria-expanded="true" aria-controls="Conductor_collapse">Conductor</a>
+<div id="Conductor_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConductingEquipment.prototype.template.call (this) +
+`
+{{#length}}<div><b>length</b>: {{length}}</div>{{/length}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Winding connection type.
@@ -2648,7 +3472,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WindingConnection_collapse" aria-expanded="true" aria-controls="WindingConnection_collapse">WindingConnection</a>
+<div id="WindingConnection_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#D}}<div><b>D</b>: {{D}}</div>{{/D}}
+{{#Y}}<div><b>Y</b>: {{Y}}</div>{{/Y}}
+{{#Z}}<div><b>Z</b>: {{Z}}</div>{{/Z}}
+{{#Yn}}<div><b>Yn</b>: {{Yn}}</div>{{/Yn}}
+{{#Zn}}<div><b>Zn</b>: {{Zn}}</div>{{/Zn}}
+{{#A}}<div><b>A</b>: {{A}}</div>{{/A}}
+{{#I}}<div><b>I</b>: {{I}}</div>{{/I}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A Plant is a collection of equipment for purposes of generation.
@@ -2696,7 +3541,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Plant_collapse" aria-expanded="true" aria-controls="Plant_collapse">Plant</a>
+<div id="Plant_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.EquipmentContainer.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Method of cooling a machine.
@@ -2750,7 +3609,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CoolantType_collapse" aria-expanded="true" aria-controls="CoolantType_collapse">CoolantType</a>
+<div id="CoolantType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#air}}<div><b>air</b>: {{air}}</div>{{/air}}
+{{#hydrogenGas}}<div><b>hydrogenGas</b>: {{hydrogenGas}}</div>{{/hydrogenGas}}
+{{#water}}<div><b>water</b>: {{water}}</div>{{/water}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Synchronous machine operating mode.
@@ -2804,7 +3680,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SynchronousMachineOperatingMode_collapse" aria-expanded="true" aria-controls="SynchronousMachineOperatingMode_collapse">SynchronousMachineOperatingMode</a>
+<div id="SynchronousMachineOperatingMode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#generator}}<div><b>generator</b>: {{generator}}</div>{{/generator}}
+{{#condenser}}<div><b>condenser</b>: {{condenser}}</div>{{/condenser}}
+{{#motor}}<div><b>motor</b>: {{motor}}</div>{{/motor}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The kind of regulation model.
@@ -2870,7 +3763,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RegulatingControlModeKind_collapse" aria-expanded="true" aria-controls="RegulatingControlModeKind_collapse">RegulatingControlModeKind</a>
+<div id="RegulatingControlModeKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#voltage}}<div><b>voltage</b>: {{voltage}}</div>{{/voltage}}
+{{#activePower}}<div><b>activePower</b>: {{activePower}}</div>{{/activePower}}
+{{#reactivePower}}<div><b>reactivePower</b>: {{reactivePower}}</div>{{/reactivePower}}
+{{#currentFlow}}<div><b>currentFlow</b>: {{currentFlow}}</div>{{/currentFlow}}
+{{#admittance}}<div><b>admittance</b>: {{admittance}}</div>{{/admittance}}
+{{#timeScheduled}}<div><b>timeScheduled</b>: {{timeScheduled}}</div>{{/timeScheduled}}
+{{#temperature}}<div><b>temperature</b>: {{temperature}}</div>{{/temperature}}
+{{#powerFactor}}<div><b>powerFactor</b>: {{powerFactor}}</div>{{/powerFactor}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Automatic switch that will lock open to isolate a faulted section.
@@ -2920,7 +3835,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Sectionaliser_collapse" aria-expanded="true" aria-controls="Sectionaliser_collapse">Sectionaliser</a>
+<div id="Sectionaliser_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Switch.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * An overcurrent protective device with a circuit opening fusible part that is heated and severed by the passage of overcurrent through it.
@@ -2970,7 +3899,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Fuse_collapse" aria-expanded="true" aria-controls="Fuse_collapse">Fuse</a>
+<div id="Fuse_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Switch.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A manually operated or motor operated mechanical switching device used for isolating a circuit or equipment from ground.
@@ -3018,7 +3961,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GroundDisconnector_collapse" aria-expanded="true" aria-controls="GroundDisconnector_collapse">GroundDisconnector</a>
+<div id="GroundDisconnector_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Switch.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A ProtectedSwitch is a switching device that can be operated by ProtectionEquipment.
@@ -3068,7 +4025,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProtectedSwitch_collapse" aria-expanded="true" aria-controls="ProtectedSwitch_collapse">ProtectedSwitch</a>
+<div id="ProtectedSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Switch.prototype.template.call (this) +
+`
+{{#breakingCapacity}}<div><b>breakingCapacity</b>: {{breakingCapacity}}</div>{{/breakingCapacity}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A cut separates a line segment into two parts.
@@ -3124,7 +4096,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Cut_collapse" aria-expanded="true" aria-controls="Cut_collapse">Cut</a>
+<div id="Cut_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Switch.prototype.template.call (this) +
+`
+{{#lengthFromTerminal1}}<div><b>lengthFromTerminal1</b>: {{lengthFromTerminal1}}</div>{{/lengthFromTerminal1}}
+{{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ACLineSegment}}&quot;);})'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
+{{#CutAction}}<div><b>CutAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CutAction}}&quot;);})'>{{CutAction}}</a></div>{{/CutAction}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A mechanical switching device capable of making, carrying, and breaking currents under normal circuit conditions and also making, carrying for a specified time, and breaking currents under specified abnormal circuit conditions e.g.  those of short circuit.
@@ -3174,7 +4163,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Breaker_collapse" aria-expanded="true" aria-controls="Breaker_collapse">Breaker</a>
+<div id="Breaker_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ProtectedSwitch.prototype.template.call (this) +
+`
+{{#inTransitTime}}<div><b>inTransitTime</b>: {{inTransitTime}}</div>{{/inTransitTime}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A short section of conductor with negligible impedance which can be manually removed and replaced if the circuit is de-energized.
@@ -3226,7 +4230,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Jumper_collapse" aria-expanded="true" aria-controls="Jumper_collapse">Jumper</a>
+<div id="Jumper_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Switch.prototype.template.call (this) +
+`
+{{#JumperAction}}<div><b>JumperAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{JumperAction}}&quot;);})'>{{JumperAction}}</a></div>{{/JumperAction}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Pole-mounted fault interrupter with built-in phase and ground relays, current transformer (CT), and supplemental controls.
@@ -3274,7 +4293,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Recloser_collapse" aria-expanded="true" aria-controls="Recloser_collapse">Recloser</a>
+<div id="Recloser_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ProtectedSwitch.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A manually operated or motor operated mechanical switching device used for changing the connections in a circuit, or for isolating a circuit or equipment from a source of power.
@@ -3324,7 +4357,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Disconnector_collapse" aria-expanded="true" aria-controls="Disconnector_collapse">Disconnector</a>
+<div id="Disconnector_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Switch.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A mechanical switching device capable of making, carrying, and breaking currents under normal operating conditions.
@@ -3372,7 +4419,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadBreakSwitch_collapse" aria-expanded="true" aria-controls="LoadBreakSwitch_collapse">LoadBreakSwitch</a>
+<div id="LoadBreakSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ProtectedSwitch.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Describes each tap step in the phase tap changer tabular curve.
@@ -3424,7 +4485,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PhaseTapChangerTablePoint_collapse" aria-expanded="true" aria-controls="PhaseTapChangerTablePoint_collapse">PhaseTapChangerTablePoint</a>
+<div id="PhaseTapChangerTablePoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TapChangerTablePoint.prototype.template.call (this) +
+`
+{{#angle}}<div><b>angle</b>: {{angle}}</div>{{/angle}}
+{{#PhaseTapChangerTable}}<div><b>PhaseTapChangerTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PhaseTapChangerTable}}&quot;);})'>{{PhaseTapChangerTable}}</a></div>{{/PhaseTapChangerTable}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Describes each tap step in the ratio tap changer tabular curve.
@@ -3474,7 +4551,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RatioTapChangerTablePoint_collapse" aria-expanded="true" aria-controls="RatioTapChangerTablePoint_collapse">RatioTapChangerTablePoint</a>
+<div id="RatioTapChangerTablePoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TapChangerTablePoint.prototype.template.call (this) +
+`
+{{#RatioTapChangerTable}}<div><b>RatioTapChangerTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RatioTapChangerTable}}&quot;);})'>{{RatioTapChangerTable}}</a></div>{{/RatioTapChangerTable}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A point where one or more conducting equipments are connected with zero resistance.
@@ -3522,7 +4614,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Junction_collapse" aria-expanded="true" aria-controls="Junction_collapse">Junction</a>
+<div id="Junction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Connector.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A conductor, or group of conductors, with negligible impedance, that serve to connect other conducting equipment within a single substation.
@@ -3576,7 +4682,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BusbarSection_collapse" aria-expanded="true" aria-controls="BusbarSection_collapse">BusbarSection</a>
+<div id="BusbarSection_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Connector.prototype.template.call (this) +
+`
+{{#ipMax}}<div><b>ipMax</b>: {{ipMax}}</div>{{/ipMax}}
+{{#VoltageControlZone}}<div><b>VoltageControlZone</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageControlZone}}&quot;);})'>{{VoltageControlZone}}</a></div>{{/VoltageControlZone}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Common type for per-length impedance electrical catalogues.
@@ -3624,7 +4746,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PerLengthImpedance_collapse" aria-expanded="true" aria-controls="PerLengthImpedance_collapse">PerLengthImpedance</a>
+<div id="PerLengthImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PerLengthLineParameter.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Impedance and admittance parameters per unit length for n-wire unbalanced lines, in matrix form.
@@ -3674,7 +4810,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PerLengthPhaseImpedance_collapse" aria-expanded="true" aria-controls="PerLengthPhaseImpedance_collapse">PerLengthPhaseImpedance</a>
+<div id="PerLengthPhaseImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PerLengthImpedance.prototype.template.call (this) +
+`
+{{#conductorCount}}<div><b>conductorCount</b>: {{conductorCount}}</div>{{/conductorCount}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Sequence impedance and admittance parameters per unit length, for transposed lines of 1, 2, or 3 phases.
@@ -3740,7 +4891,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PerLengthSequenceImpedance_collapse" aria-expanded="true" aria-controls="PerLengthSequenceImpedance_collapse">PerLengthSequenceImpedance</a>
+<div id="PerLengthSequenceImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PerLengthImpedance.prototype.template.call (this) +
+`
+{{#b0ch}}<div><b>b0ch</b>: {{b0ch}}</div>{{/b0ch}}
+{{#bch}}<div><b>bch</b>: {{bch}}</div>{{/bch}}
+{{#g0ch}}<div><b>g0ch</b>: {{g0ch}}</div>{{/g0ch}}
+{{#gch}}<div><b>gch</b>: {{gch}}</div>{{/gch}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
+{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+{{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A tunable impedance device normally used to offset line charging during single line faults in an ungrounded section of network.
@@ -3802,7 +4975,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PetersenCoil_collapse" aria-expanded="true" aria-controls="PetersenCoil_collapse">PetersenCoil</a>
+<div id="PetersenCoil_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EarthFaultCompensator.prototype.template.call (this) +
+`
+{{#mode}}<div><b>mode</b>: {{mode}}</div>{{/mode}}
+{{#nominalU}}<div><b>nominalU</b>: {{nominalU}}</div>{{/nominalU}}
+{{#offsetCurrent}}<div><b>offsetCurrent</b>: {{offsetCurrent}}</div>{{/offsetCurrent}}
+{{#positionCurrent}}<div><b>positionCurrent</b>: {{positionCurrent}}</div>{{/positionCurrent}}
+{{#xGroundMax}}<div><b>xGroundMax</b>: {{xGroundMax}}</div>{{/xGroundMax}}
+{{#xGroundMin}}<div><b>xGroundMin</b>: {{xGroundMin}}</div>{{/xGroundMin}}
+{{#xGroundNominal}}<div><b>xGroundNominal</b>: {{xGroundNominal}}</div>{{/xGroundNominal}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A fixed impedance device used for grounding.
@@ -3852,7 +5046,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GroundingImpedance_collapse" aria-expanded="true" aria-controls="GroundingImpedance_collapse">GroundingImpedance</a>
+<div id="GroundingImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EarthFaultCompensator.prototype.template.call (this) +
+`
+{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A PowerTransformerEnd is associated with each Terminal of a PowerTransformer.
@@ -3928,7 +5137,34 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PowerTransformerEnd_collapse" aria-expanded="true" aria-controls="PowerTransformerEnd_collapse">PowerTransformerEnd</a>
+<div id="PowerTransformerEnd_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TransformerEnd.prototype.template.call (this) +
+`
+{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+{{#b0}}<div><b>b0</b>: {{b0}}</div>{{/b0}}
+{{#connectionKind}}<div><b>connectionKind</b>: {{connectionKind}}</div>{{/connectionKind}}
+{{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
+{{#g0}}<div><b>g0</b>: {{g0}}</div>{{/g0}}
+{{#phaseAngleClock}}<div><b>phaseAngleClock</b>: {{phaseAngleClock}}</div>{{/phaseAngleClock}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
+{{#ratedS}}<div><b>ratedS</b>: {{ratedS}}</div>{{/ratedS}}
+{{#ratedU}}<div><b>ratedU</b>: {{ratedU}}</div>{{/ratedU}}
+{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+{{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
+{{#PowerTransformer}}<div><b>PowerTransformer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerTransformer}}&quot;);})'>{{PowerTransformer}}</a></div>{{/PowerTransformer}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Transformer tank end represents an individual winding for unbalanced models or for transformer tanks connected into a bank (and bank is modelled with the PowerTransformer).
@@ -3980,7 +5216,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TransformerTankEnd_collapse" aria-expanded="true" aria-controls="TransformerTankEnd_collapse">TransformerTankEnd</a>
+<div id="TransformerTankEnd_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TransformerEnd.prototype.template.call (this) +
+`
+{{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
+{{#TransformerTank}}<div><b>TransformerTank</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerTank}}&quot;);})'>{{TransformerTank}}</a></div>{{/TransformerTank}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Describes behavior specific to tap changers, e.g. how the voltage at the end of a line varies with the load level and compensation of the voltage drop by tap adjustment.
@@ -4040,7 +5292,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TapChangerControl_collapse" aria-expanded="true" aria-controls="TapChangerControl_collapse">TapChangerControl</a>
+<div id="TapChangerControl_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + RegulatingControl.prototype.template.call (this) +
+`
+{{#limitVoltage}}<div><b>limitVoltage</b>: {{limitVoltage}}</div>{{/limitVoltage}}
+{{#lineDropCompensation}}<div><b>lineDropCompensation</b>: {{lineDropCompensation}}</div>{{/lineDropCompensation}}
+{{#lineDropR}}<div><b>lineDropR</b>: {{lineDropR}}</div>{{/lineDropR}}
+{{#lineDropX}}<div><b>lineDropX</b>: {{lineDropX}}</div>{{/lineDropX}}
+{{#reverseLineDropR}}<div><b>reverseLineDropR</b>: {{reverseLineDropR}}</div>{{/reverseLineDropR}}
+{{#reverseLineDropX}}<div><b>reverseLineDropX</b>: {{reverseLineDropX}}</div>{{/reverseLineDropX}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A transformer phase shifting tap model that controls the phase angle difference across the power transformer and potentially the active power flow through the power transformer.
@@ -4092,7 +5364,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PhaseTapChanger_collapse" aria-expanded="true" aria-controls="PhaseTapChanger_collapse">PhaseTapChanger</a>
+<div id="PhaseTapChanger_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TapChanger.prototype.template.call (this) +
+`
+{{#TransformerEnd}}<div><b>TransformerEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerEnd}}&quot;);})'>{{TransformerEnd}}</a></div>{{/TransformerEnd}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Describes a tap changer with a linear relation between the tap step and the phase angle difference across the transformer.
@@ -4148,7 +5435,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PhaseTapChangerLinear_collapse" aria-expanded="true" aria-controls="PhaseTapChangerLinear_collapse">PhaseTapChangerLinear</a>
+<div id="PhaseTapChangerLinear_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PhaseTapChanger.prototype.template.call (this) +
+`
+{{#stepPhaseShiftIncrement}}<div><b>stepPhaseShiftIncrement</b>: {{stepPhaseShiftIncrement}}</div>{{/stepPhaseShiftIncrement}}
+{{#xMax}}<div><b>xMax</b>: {{xMax}}</div>{{/xMax}}
+{{#xMin}}<div><b>xMin</b>: {{xMin}}</div>{{/xMin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A tap changer that changes the voltage ratio impacting the voltage magnitude but not the phase angle across the transformer.
@@ -4204,7 +5508,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RatioTapChanger_collapse" aria-expanded="true" aria-controls="RatioTapChanger_collapse">RatioTapChanger</a>
+<div id="RatioTapChanger_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TapChanger.prototype.template.call (this) +
+`
+{{#stepVoltageIncrement}}<div><b>stepVoltageIncrement</b>: {{stepVoltageIncrement}}</div>{{/stepVoltageIncrement}}
+{{#tculControlMode}}<div><b>tculControlMode</b>: {{tculControlMode}}</div>{{/tculControlMode}}
+{{#RatioTapChangerTable}}<div><b>RatioTapChangerTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RatioTapChangerTable}}&quot;);})'>{{RatioTapChangerTable}}</a></div>{{/RatioTapChangerTable}}
+{{#TransformerEnd}}<div><b>TransformerEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerEnd}}&quot;);})'>{{TransformerEnd}}</a></div>{{/TransformerEnd}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The non-linear phase tap changer describes the non-linear behavior of a phase tap changer.
@@ -4260,7 +5582,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PhaseTapChangerNonLinear_collapse" aria-expanded="true" aria-controls="PhaseTapChangerNonLinear_collapse">PhaseTapChangerNonLinear</a>
+<div id="PhaseTapChangerNonLinear_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PhaseTapChanger.prototype.template.call (this) +
+`
+{{#voltageStepIncrement}}<div><b>voltageStepIncrement</b>: {{voltageStepIncrement}}</div>{{/voltageStepIncrement}}
+{{#xMax}}<div><b>xMax</b>: {{xMax}}</div>{{/xMax}}
+{{#xMin}}<div><b>xMin</b>: {{xMin}}</div>{{/xMin}}
+</div>
+`
+                );
+           }        }
 
         class PhaseTapChangerTabular extends PhaseTapChanger
         {
@@ -4306,7 +5645,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PhaseTapChangerTabular_collapse" aria-expanded="true" aria-controls="PhaseTapChangerTabular_collapse">PhaseTapChangerTabular</a>
+<div id="PhaseTapChangerTabular_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PhaseTapChanger.prototype.template.call (this) +
+`
+{{#PhaseTapChangerTable}}<div><b>PhaseTapChangerTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PhaseTapChangerTable}}&quot;);})'>{{PhaseTapChangerTable}}</a></div>{{/PhaseTapChangerTable}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Describes the tap model for an asymmetrical phase shifting transformer in which the difference voltage vector adds to the primary side voltage.
@@ -4358,7 +5712,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PhaseTapChangerAsymmetrical_collapse" aria-expanded="true" aria-controls="PhaseTapChangerAsymmetrical_collapse">PhaseTapChangerAsymmetrical</a>
+<div id="PhaseTapChangerAsymmetrical_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PhaseTapChangerNonLinear.prototype.template.call (this) +
+`
+{{#windingConnectionAngle}}<div><b>windingConnectionAngle</b>: {{windingConnectionAngle}}</div>{{/windingConnectionAngle}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Describes a symmetrical phase shifting transformer tap model in which the secondary side voltage magnitude is the same as at the primary side.
@@ -4408,7 +5777,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PhaseTapChangerSymmetrical_collapse" aria-expanded="true" aria-controls="PhaseTapChangerSymmetrical_collapse">PhaseTapChangerSymmetrical</a>
+<div id="PhaseTapChangerSymmetrical_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PhaseTapChangerNonLinear.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A per phase linear shunt compensator has banks or sections with equal admittance values.
@@ -4460,7 +5843,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LinearShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="LinearShuntCompensatorPhase_collapse">LinearShuntCompensatorPhase</a>
+<div id="LinearShuntCompensatorPhase_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ShuntCompensatorPhase.prototype.template.call (this) +
+`
+{{#gPerSection}}<div><b>gPerSection</b>: {{gPerSection}}</div>{{/gPerSection}}
+{{#bPerSection}}<div><b>bPerSection</b>: {{bPerSection}}</div>{{/bPerSection}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A per phase non linear shunt compensator has bank or section admittance values that differs.
@@ -4508,7 +5907,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#NonlinearShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensatorPhase_collapse">NonlinearShuntCompensatorPhase</a>
+<div id="NonlinearShuntCompensatorPhase_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ShuntCompensatorPhase.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A shunt capacitor or reactor or switchable bank of shunt capacitors or reactors.
@@ -4580,7 +5993,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ShuntCompensator_collapse" aria-expanded="true" aria-controls="ShuntCompensator_collapse">ShuntCompensator</a>
+<div id="ShuntCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + RegulatingCondEq.prototype.template.call (this) +
+`
+{{#aVRDelay}}<div><b>aVRDelay</b>: {{aVRDelay}}</div>{{/aVRDelay}}
+{{#grounded}}<div><b>grounded</b>: {{grounded}}</div>{{/grounded}}
+{{#maximumSections}}<div><b>maximumSections</b>: {{maximumSections}}</div>{{/maximumSections}}
+{{#nomU}}<div><b>nomU</b>: {{nomU}}</div>{{/nomU}}
+{{#normalSections}}<div><b>normalSections</b>: {{normalSections}}</div>{{/normalSections}}
+{{#phaseConnection}}<div><b>phaseConnection</b>: {{phaseConnection}}</div>{{/phaseConnection}}
+{{#switchOnCount}}<div><b>switchOnCount</b>: {{switchOnCount}}</div>{{/switchOnCount}}
+{{#switchOnDate}}<div><b>switchOnDate</b>: {{switchOnDate}}</div>{{/switchOnDate}}
+{{#voltageSensitivity}}<div><b>voltageSensitivity</b>: {{voltageSensitivity}}</div>{{/voltageSensitivity}}
+{{#sections}}<div><b>sections</b>: {{sections}}</div>{{/sections}}
+{{#SvShuntCompensatorSections}}<div><b>SvShuntCompensatorSections</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SvShuntCompensatorSections}}&quot;);})'>{{SvShuntCompensatorSections}}</a></div>{{/SvShuntCompensatorSections}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A rotating machine which may be used as a generator or motor.
@@ -4642,7 +6080,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RotatingMachine_collapse" aria-expanded="true" aria-controls="RotatingMachine_collapse">RotatingMachine</a>
+<div id="RotatingMachine_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + RegulatingCondEq.prototype.template.call (this) +
+`
+{{#ratedPowerFactor}}<div><b>ratedPowerFactor</b>: {{ratedPowerFactor}}</div>{{/ratedPowerFactor}}
+{{#ratedS}}<div><b>ratedS</b>: {{ratedS}}</div>{{/ratedS}}
+{{#ratedU}}<div><b>ratedU</b>: {{ratedU}}</div>{{/ratedU}}
+{{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
+{{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
+{{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);})'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
+{{#HydroPump}}<div><b>HydroPump</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPump}}&quot;);})'>{{HydroPump}}</a></div>{{/HydroPump}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A device to convert from one frequency to another (e.g., frequency F1 to F2) comprises a pair of FrequencyConverter instances.
@@ -4702,7 +6161,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FrequencyConverter_collapse" aria-expanded="true" aria-controls="FrequencyConverter_collapse">FrequencyConverter</a>
+<div id="FrequencyConverter_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + RegulatingCondEq.prototype.template.call (this) +
+`
+{{#frequency}}<div><b>frequency</b>: {{frequency}}</div>{{/frequency}}
+{{#maxP}}<div><b>maxP</b>: {{maxP}}</div>{{/maxP}}
+{{#maxU}}<div><b>maxU</b>: {{maxU}}</div>{{/maxU}}
+{{#minP}}<div><b>minP</b>: {{minP}}</div>{{/minP}}
+{{#minU}}<div><b>minU</b>: {{minU}}</div>{{/minU}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An electromechanical device that operates with shaft rotating synchronously with the network.
@@ -4816,7 +6294,53 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SynchronousMachine_collapse" aria-expanded="true" aria-controls="SynchronousMachine_collapse">SynchronousMachine</a>
+<div id="SynchronousMachine_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + RotatingMachine.prototype.template.call (this) +
+`
+{{#aVRToManualLag}}<div><b>aVRToManualLag</b>: {{aVRToManualLag}}</div>{{/aVRToManualLag}}
+{{#aVRToManualLead}}<div><b>aVRToManualLead</b>: {{aVRToManualLead}}</div>{{/aVRToManualLead}}
+{{#baseQ}}<div><b>baseQ</b>: {{baseQ}}</div>{{/baseQ}}
+{{#condenserP}}<div><b>condenserP</b>: {{condenserP}}</div>{{/condenserP}}
+{{#coolantCondition}}<div><b>coolantCondition</b>: {{coolantCondition}}</div>{{/coolantCondition}}
+{{#coolantType}}<div><b>coolantType</b>: {{coolantType}}</div>{{/coolantType}}
+{{#earthing}}<div><b>earthing</b>: {{earthing}}</div>{{/earthing}}
+{{#earthingStarPointR}}<div><b>earthingStarPointR</b>: {{earthingStarPointR}}</div>{{/earthingStarPointR}}
+{{#earthingStarPointX}}<div><b>earthingStarPointX</b>: {{earthingStarPointX}}</div>{{/earthingStarPointX}}
+{{#ikk}}<div><b>ikk</b>: {{ikk}}</div>{{/ikk}}
+{{#manualToAVR}}<div><b>manualToAVR</b>: {{manualToAVR}}</div>{{/manualToAVR}}
+{{#maxQ}}<div><b>maxQ</b>: {{maxQ}}</div>{{/maxQ}}
+{{#maxU}}<div><b>maxU</b>: {{maxU}}</div>{{/maxU}}
+{{#minQ}}<div><b>minQ</b>: {{minQ}}</div>{{/minQ}}
+{{#minU}}<div><b>minU</b>: {{minU}}</div>{{/minU}}
+{{#mu}}<div><b>mu</b>: {{mu}}</div>{{/mu}}
+{{#operatingMode}}<div><b>operatingMode</b>: {{operatingMode}}</div>{{/operatingMode}}
+{{#qPercent}}<div><b>qPercent</b>: {{qPercent}}</div>{{/qPercent}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
+{{#r2}}<div><b>r2</b>: {{r2}}</div>{{/r2}}
+{{#referencePriority}}<div><b>referencePriority</b>: {{referencePriority}}</div>{{/referencePriority}}
+{{#satDirectSubtransX}}<div><b>satDirectSubtransX</b>: {{satDirectSubtransX}}</div>{{/satDirectSubtransX}}
+{{#satDirectSyncX}}<div><b>satDirectSyncX</b>: {{satDirectSyncX}}</div>{{/satDirectSyncX}}
+{{#satDirectTransX}}<div><b>satDirectTransX</b>: {{satDirectTransX}}</div>{{/satDirectTransX}}
+{{#shortCircuitRotorType}}<div><b>shortCircuitRotorType</b>: {{shortCircuitRotorType}}</div>{{/shortCircuitRotorType}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#voltageRegulationRange}}<div><b>voltageRegulationRange</b>: {{voltageRegulationRange}}</div>{{/voltageRegulationRange}}
+{{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
+{{#x2}}<div><b>x2</b>: {{x2}}</div>{{/x2}}
+{{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineDynamics}}&quot;);})'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
+{{#InitialReactiveCapabilityCurve}}<div><b>InitialReactiveCapabilityCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InitialReactiveCapabilityCurve}}&quot;);})'>{{InitialReactiveCapabilityCurve}}</a></div>{{/InitialReactiveCapabilityCurve}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A facility for providing variable and controllable shunt reactive power.
@@ -4878,7 +6402,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StaticVarCompensator_collapse" aria-expanded="true" aria-controls="StaticVarCompensator_collapse">StaticVarCompensator</a>
+<div id="StaticVarCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + RegulatingCondEq.prototype.template.call (this) +
+`
+{{#capacitiveRating}}<div><b>capacitiveRating</b>: {{capacitiveRating}}</div>{{/capacitiveRating}}
+{{#inductiveRating}}<div><b>inductiveRating</b>: {{inductiveRating}}</div>{{/inductiveRating}}
+{{#slope}}<div><b>slope</b>: {{slope}}</div>{{/slope}}
+{{#sVCControlMode}}<div><b>sVCControlMode</b>: {{sVCControlMode}}</div>{{/sVCControlMode}}
+{{#voltageSetPoint}}<div><b>voltageSetPoint</b>: {{voltageSetPoint}}</div>{{/voltageSetPoint}}
+{{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A non linear shunt compensator has bank or section admittance values that differs.
@@ -4926,7 +6470,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#NonlinearShuntCompensator_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensator_collapse">NonlinearShuntCompensator</a>
+<div id="NonlinearShuntCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ShuntCompensator.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * This class represents external network and it is used for IEC 60909 calculations.
@@ -5010,7 +6568,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExternalNetworkInjection_collapse" aria-expanded="true" aria-controls="ExternalNetworkInjection_collapse">ExternalNetworkInjection</a>
+<div id="ExternalNetworkInjection_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + RegulatingCondEq.prototype.template.call (this) +
+`
+{{#governorSCD}}<div><b>governorSCD</b>: {{governorSCD}}</div>{{/governorSCD}}
+{{#ikSecond}}<div><b>ikSecond</b>: {{ikSecond}}</div>{{/ikSecond}}
+{{#maxInitialSymShCCurrent}}<div><b>maxInitialSymShCCurrent</b>: {{maxInitialSymShCCurrent}}</div>{{/maxInitialSymShCCurrent}}
+{{#maxP}}<div><b>maxP</b>: {{maxP}}</div>{{/maxP}}
+{{#maxQ}}<div><b>maxQ</b>: {{maxQ}}</div>{{/maxQ}}
+{{#maxR0ToX0Ratio}}<div><b>maxR0ToX0Ratio</b>: {{maxR0ToX0Ratio}}</div>{{/maxR0ToX0Ratio}}
+{{#maxR1ToX1Ratio}}<div><b>maxR1ToX1Ratio</b>: {{maxR1ToX1Ratio}}</div>{{/maxR1ToX1Ratio}}
+{{#maxZ0ToZ1Ratio}}<div><b>maxZ0ToZ1Ratio</b>: {{maxZ0ToZ1Ratio}}</div>{{/maxZ0ToZ1Ratio}}
+{{#minInitialSymShCCurrent}}<div><b>minInitialSymShCCurrent</b>: {{minInitialSymShCCurrent}}</div>{{/minInitialSymShCCurrent}}
+{{#minP}}<div><b>minP</b>: {{minP}}</div>{{/minP}}
+{{#minQ}}<div><b>minQ</b>: {{minQ}}</div>{{/minQ}}
+{{#minR0ToX0Ratio}}<div><b>minR0ToX0Ratio</b>: {{minR0ToX0Ratio}}</div>{{/minR0ToX0Ratio}}
+{{#minR1ToX1Ratio}}<div><b>minR1ToX1Ratio</b>: {{minR1ToX1Ratio}}</div>{{/minR1ToX1Ratio}}
+{{#minZ0ToZ1Ratio}}<div><b>minZ0ToZ1Ratio</b>: {{minZ0ToZ1Ratio}}</div>{{/minZ0ToZ1Ratio}}
+{{#referencePriority}}<div><b>referencePriority</b>: {{referencePriority}}</div>{{/referencePriority}}
+{{#voltageFactor}}<div><b>voltageFactor</b>: {{voltageFactor}}</div>{{/voltageFactor}}
+{{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
+{{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A linear shunt compensator has banks or sections with equal admittance values.
@@ -5066,7 +6656,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LinearShuntCompensator_collapse" aria-expanded="true" aria-controls="LinearShuntCompensator_collapse">LinearShuntCompensator</a>
+<div id="LinearShuntCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ShuntCompensator.prototype.template.call (this) +
+`
+{{#b0PerSection}}<div><b>b0PerSection</b>: {{b0PerSection}}</div>{{/b0PerSection}}
+{{#bPerSection}}<div><b>bPerSection</b>: {{bPerSection}}</div>{{/bPerSection}}
+{{#g0PerSection}}<div><b>g0PerSection</b>: {{g0PerSection}}</div>{{/g0PerSection}}
+{{#gPerSection}}<div><b>gPerSection</b>: {{gPerSection}}</div>{{/gPerSection}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A rotating machine whose shaft rotates asynchronously with the electrical field.
@@ -5158,7 +6766,42 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AsynchronousMachine_collapse" aria-expanded="true" aria-controls="AsynchronousMachine_collapse">AsynchronousMachine</a>
+<div id="AsynchronousMachine_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + RotatingMachine.prototype.template.call (this) +
+`
+{{#converterFedDrive}}<div><b>converterFedDrive</b>: {{converterFedDrive}}</div>{{/converterFedDrive}}
+{{#efficiency}}<div><b>efficiency</b>: {{efficiency}}</div>{{/efficiency}}
+{{#iaIrRatio}}<div><b>iaIrRatio</b>: {{iaIrRatio}}</div>{{/iaIrRatio}}
+{{#nominalFrequency}}<div><b>nominalFrequency</b>: {{nominalFrequency}}</div>{{/nominalFrequency}}
+{{#nominalSpeed}}<div><b>nominalSpeed</b>: {{nominalSpeed}}</div>{{/nominalSpeed}}
+{{#polePairNumber}}<div><b>polePairNumber</b>: {{polePairNumber}}</div>{{/polePairNumber}}
+{{#ratedMechanicalPower}}<div><b>ratedMechanicalPower</b>: {{ratedMechanicalPower}}</div>{{/ratedMechanicalPower}}
+{{#reversible}}<div><b>reversible</b>: {{reversible}}</div>{{/reversible}}
+{{#rr1}}<div><b>rr1</b>: {{rr1}}</div>{{/rr1}}
+{{#rr2}}<div><b>rr2</b>: {{rr2}}</div>{{/rr2}}
+{{#rxLockedRotorRatio}}<div><b>rxLockedRotorRatio</b>: {{rxLockedRotorRatio}}</div>{{/rxLockedRotorRatio}}
+{{#tpo}}<div><b>tpo</b>: {{tpo}}</div>{{/tpo}}
+{{#tppo}}<div><b>tppo</b>: {{tppo}}</div>{{/tppo}}
+{{#xlr1}}<div><b>xlr1</b>: {{xlr1}}</div>{{/xlr1}}
+{{#xlr2}}<div><b>xlr2</b>: {{xlr2}}</div>{{/xlr2}}
+{{#xm}}<div><b>xm</b>: {{xm}}</div>{{/xm}}
+{{#xp}}<div><b>xp</b>: {{xp}}</div>{{/xp}}
+{{#xpp}}<div><b>xpp</b>: {{xpp}}</div>{{/xpp}}
+{{#xs}}<div><b>xs</b>: {{xs}}</div>{{/xs}}
+{{#asynchronousMachineType}}<div><b>asynchronousMachineType</b>: {{asynchronousMachineType}}</div>{{/asynchronousMachineType}}
+{{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineDynamics}}&quot;);})'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A wire or combination of wires, with consistent electrical characteristics, building a single electrical system, used to carry alternating current between points in the power system.
@@ -5232,7 +6875,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ACLineSegment_collapse" aria-expanded="true" aria-controls="ACLineSegment_collapse">ACLineSegment</a>
+<div id="ACLineSegment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Conductor.prototype.template.call (this) +
+`
+{{#b0ch}}<div><b>b0ch</b>: {{b0ch}}</div>{{/b0ch}}
+{{#bch}}<div><b>bch</b>: {{bch}}</div>{{/bch}}
+{{#g0ch}}<div><b>g0ch</b>: {{g0ch}}</div>{{/g0ch}}
+{{#gch}}<div><b>gch</b>: {{gch}}</div>{{/gch}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
+{{#shortCircuitEndTemperature}}<div><b>shortCircuitEndTemperature</b>: {{shortCircuitEndTemperature}}</div>{{/shortCircuitEndTemperature}}
+{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+{{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
+{{#LineGroundingAction}}<div><b>LineGroundingAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LineGroundingAction}}&quot;);})'>{{LineGroundingAction}}</a></div>{{/LineGroundingAction}}
+{{#LineJumpingAction}}<div><b>LineJumpingAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LineJumpingAction}}&quot;);})'>{{LineJumpingAction}}</a></div>{{/LineJumpingAction}}
+{{#PerLengthImpedance}}<div><b>PerLengthImpedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PerLengthImpedance}}&quot;);})'>{{PerLengthImpedance}}</a></div>{{/PerLengthImpedance}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

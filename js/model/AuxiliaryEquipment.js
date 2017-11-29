@@ -60,7 +60,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AuxiliaryEquipment_collapse" aria-expanded="true" aria-controls="AuxiliaryEquipment_collapse">AuxiliaryEquipment</a>
+<div id="AuxiliaryEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Equipment.prototype.template.call (this) +
+`
+{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The construction kind of the potential transformer.
@@ -112,7 +127,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PotentialTransformerKind_collapse" aria-expanded="true" aria-controls="PotentialTransformerKind_collapse">PotentialTransformerKind</a>
+<div id="PotentialTransformerKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#inductive}}<div><b>inductive</b>: {{inductive}}</div>{{/inductive}}
+{{#capacitiveCoupling}}<div><b>capacitiveCoupling</b>: {{capacitiveCoupling}}</div>{{/capacitiveCoupling}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This class describe devices that transform a measured quantity into signals that can be presented at displays, used in control or be recorded.
@@ -160,7 +191,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Sensor_collapse" aria-expanded="true" aria-controls="Sensor_collapse">Sensor</a>
+<div id="Sensor_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AuxiliaryEquipment.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Line traps are devices that impede high frequency power line carrier signals yet present a negligible impedance at the main power frequency.
@@ -208,7 +253,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WaveTrap_collapse" aria-expanded="true" aria-controls="WaveTrap_collapse">WaveTrap</a>
+<div id="WaveTrap_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AuxiliaryEquipment.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Instrument transformer (also known as Voltage Transformer) used to measure electrical qualities of the circuit that is being protected and/or monitored.
@@ -266,7 +325,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PotentialTransformer_collapse" aria-expanded="true" aria-controls="PotentialTransformer_collapse">PotentialTransformer</a>
+<div id="PotentialTransformer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Sensor.prototype.template.call (this) +
+`
+{{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
+{{#nominalRatio}}<div><b>nominalRatio</b>: {{nominalRatio}}</div>{{/nominalRatio}}
+{{#ptClass}}<div><b>ptClass</b>: {{ptClass}}</div>{{/ptClass}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A FaultIndicator is typically only an indicator (which may or may not be remotely monitored), and not a piece of equipment that actually initiates a protection event.
@@ -316,7 +393,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FaultIndicator_collapse" aria-expanded="true" aria-controls="FaultIndicator_collapse">FaultIndicator</a>
+<div id="FaultIndicator_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AuxiliaryEquipment.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Instrument transformer used to measure electrical qualities of the circuit that is being protected and/or monitored.
@@ -376,7 +467,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CurrentTransformer_collapse" aria-expanded="true" aria-controls="CurrentTransformer_collapse">CurrentTransformer</a>
+<div id="CurrentTransformer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Sensor.prototype.template.call (this) +
+`
+{{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
+{{#accuracyLimit}}<div><b>accuracyLimit</b>: {{accuracyLimit}}</div>{{/accuracyLimit}}
+{{#ctClass}}<div><b>ctClass</b>: {{ctClass}}</div>{{/ctClass}}
+{{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
+{{#coreBurden}}<div><b>coreBurden</b>: {{coreBurden}}</div>{{/coreBurden}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A sensor used mainly in overhead distribution networks as the source of both current and voltage measurements.
@@ -424,7 +534,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PostLineSensor_collapse" aria-expanded="true" aria-controls="PostLineSensor_collapse">PostLineSensor</a>
+<div id="PostLineSensor_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Sensor.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Shunt device, installed on the network, usually in the proximity of electrical equipment in order to protect the said equipment against transient voltage transients caused by lightning or switching activity.
@@ -472,7 +596,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SurgeArrester_collapse" aria-expanded="true" aria-controls="SurgeArrester_collapse">SurgeArrester</a>
+<div id="SurgeArrester_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AuxiliaryEquipment.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         return (
             {

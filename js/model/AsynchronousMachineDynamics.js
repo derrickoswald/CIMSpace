@@ -70,7 +70,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AsynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="AsynchronousMachineDynamics_collapse">AsynchronousMachineDynamics</a>
+<div id="AsynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StandardModels.RotatingMachineDynamics.prototype.template.call (this) +
+`
+{{#TurbineGovernorDynamics}}<div><b>TurbineGovernorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineGovernorDynamics}}&quot;);})'>{{TurbineGovernorDynamics}}</a></div>{{/TurbineGovernorDynamics}}
+{{#AsynchronousMachine}}<div><b>AsynchronousMachine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachine}}&quot;);})'>{{AsynchronousMachine}}</a></div>{{/AsynchronousMachine}}
+{{#WindTurbineType1or2Dynamics}}<div><b>WindTurbineType1or2Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType1or2Dynamics}}&quot;);})'>{{WindTurbineType1or2Dynamics}}</a></div>{{/WindTurbineType1or2Dynamics}}
+{{#MechanicalLoadDynamics}}<div><b>MechanicalLoadDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MechanicalLoadDynamics}}&quot;);})'>{{MechanicalLoadDynamics}}</a></div>{{/MechanicalLoadDynamics}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The electrical equations of all variations of the asynchronous model are based on the AsynchronousEquivalentCircuit diagram for the direct and quadrature axes, with two equivalent rotor windings in each axis.
@@ -143,7 +161,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AsynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="AsynchronousMachineEquivalentCircuit_collapse">AsynchronousMachineEquivalentCircuit</a>
+<div id="AsynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AsynchronousMachineDynamics.prototype.template.call (this) +
+`
+{{#rr1}}<div><b>rr1</b>: {{rr1}}</div>{{/rr1}}
+{{#rr2}}<div><b>rr2</b>: {{rr2}}</div>{{/rr2}}
+{{#xlr1}}<div><b>xlr1</b>: {{xlr1}}</div>{{/xlr1}}
+{{#xlr2}}<div><b>xlr2</b>: {{xlr2}}</div>{{/xlr2}}
+{{#xm}}<div><b>xm</b>: {{xm}}</div>{{/xm}}
+</div>
+`
+                );
+           }        }
 
         /**
          * <b>Parameter Notes:</b>
@@ -222,7 +259,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AsynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="AsynchronousMachineTimeConstantReactance_collapse">AsynchronousMachineTimeConstantReactance</a>
+<div id="AsynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + AsynchronousMachineDynamics.prototype.template.call (this) +
+`
+{{#tpo}}<div><b>tpo</b>: {{tpo}}</div>{{/tpo}}
+{{#tppo}}<div><b>tppo</b>: {{tppo}}</div>{{/tppo}}
+{{#xp}}<div><b>xp</b>: {{xp}}</div>{{/xp}}
+{{#xpp}}<div><b>xpp</b>: {{xpp}}</div>{{/xpp}}
+{{#xs}}<div><b>xs</b>: {{xs}}</div>{{/xs}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

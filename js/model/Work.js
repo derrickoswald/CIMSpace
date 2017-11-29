@@ -78,7 +78,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkStatusKind_collapse" aria-expanded="true" aria-controls="WorkStatusKind_collapse">WorkStatusKind</a>
+<div id="WorkStatusKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#waitingOnApproval}}<div><b>waitingOnApproval</b>: {{waitingOnApproval}}</div>{{/waitingOnApproval}}
+{{#approved}}<div><b>approved</b>: {{approved}}</div>{{/approved}}
+{{#cancelled}}<div><b>cancelled</b>: {{cancelled}}</div>{{/cancelled}}
+{{#waitingToBeScheduled}}<div><b>waitingToBeScheduled</b>: {{waitingToBeScheduled}}</div>{{/waitingToBeScheduled}}
+{{#scheduled}}<div><b>scheduled</b>: {{scheduled}}</div>{{/scheduled}}
+{{#waitingOnMaterial}}<div><b>waitingOnMaterial</b>: {{waitingOnMaterial}}</div>{{/waitingOnMaterial}}
+{{#inProgress}}<div><b>inProgress</b>: {{inProgress}}</div>{{/inProgress}}
+{{#completed}}<div><b>completed</b>: {{completed}}</div>{{/completed}}
+{{#closed}}<div><b>closed</b>: {{closed}}</div>{{/closed}}
+{{#dispatched}}<div><b>dispatched</b>: {{dispatched}}</div>{{/dispatched}}
+{{#enroute}}<div><b>enroute</b>: {{enroute}}</div>{{/enroute}}
+{{#onSite}}<div><b>onSite</b>: {{onSite}}</div>{{/onSite}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Time schedule specific to work.
@@ -130,7 +156,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkTimeSchedule_collapse" aria-expanded="true" aria-controls="WorkTimeSchedule_collapse">WorkTimeSchedule</a>
+<div id="WorkTimeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.TimeSchedule.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#BaseWork}}<div><b>BaseWork</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseWork}}&quot;);})'>{{BaseWork}}</a></div>{{/BaseWork}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of work schedule.
@@ -188,7 +230,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkTimeScheduleKind_collapse" aria-expanded="true" aria-controls="WorkTimeScheduleKind_collapse">WorkTimeScheduleKind</a>
+<div id="WorkTimeScheduleKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#estimate}}<div><b>estimate</b>: {{estimate}}</div>{{/estimate}}
+{{#request}}<div><b>request</b>: {{request}}</div>{{/request}}
+{{#actual}}<div><b>actual</b>: {{actual}}</div>{{/actual}}
+{{#earliest}}<div><b>earliest</b>: {{earliest}}</div>{{/earliest}}
+{{#latest}}<div><b>latest</b>: {{latest}}</div>{{/latest}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Common representation for work and work tasks.
@@ -244,7 +305,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BaseWork_collapse" aria-expanded="true" aria-controls="BaseWork_collapse">BaseWork</a>
+<div id="BaseWork_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+{{#statusKind}}<div><b>statusKind</b>: {{statusKind}}</div>{{/statusKind}}
+{{#WorkLocation}}<div><b>WorkLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkLocation}}&quot;);})'>{{WorkLocation}}</a></div>{{/WorkLocation}}
+</div>
+`
+                );
+           }        }
 
         class WorkTaskKind extends base.Element
         {
@@ -296,7 +375,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkTaskKind_collapse" aria-expanded="true" aria-controls="WorkTaskKind_collapse">WorkTaskKind</a>
+<div id="WorkTaskKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#install}}<div><b>install</b>: {{install}}</div>{{/install}}
+{{#remove}}<div><b>remove</b>: {{remove}}</div>{{/remove}}
+{{#exchange}}<div><b>exchange</b>: {{exchange}}</div>{{/exchange}}
+{{#investigate}}<div><b>investigate</b>: {{investigate}}</div>{{/investigate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Information about a particular location for various forms of work.
@@ -346,7 +443,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkLocation_collapse" aria-expanded="true" aria-controls="WorkLocation_collapse">WorkLocation</a>
+<div id="WorkLocation_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Location.prototype.template.call (this) +
+`
+{{#OneCallRequest}}<div><b>OneCallRequest</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OneCallRequest}}&quot;);})'>{{OneCallRequest}}</a></div>{{/OneCallRequest}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of work.
@@ -414,7 +526,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkKind_collapse" aria-expanded="true" aria-controls="WorkKind_collapse">WorkKind</a>
+<div id="WorkKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#construction}}<div><b>construction</b>: {{construction}}</div>{{/construction}}
+{{#inspection}}<div><b>inspection</b>: {{inspection}}</div>{{/inspection}}
+{{#maintenance}}<div><b>maintenance</b>: {{maintenance}}</div>{{/maintenance}}
+{{#repair}}<div><b>repair</b>: {{repair}}</div>{{/repair}}
+{{#test}}<div><b>test</b>: {{test}}</div>{{/test}}
+{{#service}}<div><b>service</b>: {{service}}</div>{{/service}}
+{{#disconnect}}<div><b>disconnect</b>: {{disconnect}}</div>{{/disconnect}}
+{{#reconnect}}<div><b>reconnect</b>: {{reconnect}}</div>{{/reconnect}}
+{{#connect}}<div><b>connect</b>: {{connect}}</div>{{/connect}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The physical consumable supply used for work and other purposes.
@@ -470,7 +606,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MaterialItem_collapse" aria-expanded="true" aria-controls="MaterialItem_collapse">MaterialItem</a>
+<div id="MaterialItem_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+{{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);})'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
+{{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Asset used to perform work.
@@ -520,7 +673,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkAsset_collapse" aria-expanded="true" aria-controls="WorkAsset_collapse">WorkAsset</a>
+<div id="WorkAsset_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Assets.Asset.prototype.template.call (this) +
+`
+{{#Crew}}<div><b>Crew</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Crew}}&quot;);})'>{{Crew}}</a></div>{{/Crew}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Usage of a vehicle.
@@ -576,7 +744,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#VehicleUsageKind_collapse" aria-expanded="true" aria-controls="VehicleUsageKind_collapse">VehicleUsageKind</a>
+<div id="VehicleUsageKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#crew}}<div><b>crew</b>: {{crew}}</div>{{/crew}}
+{{#user}}<div><b>user</b>: {{user}}</div>{{/user}}
+{{#contractor}}<div><b>contractor</b>: {{contractor}}</div>{{/contractor}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         class WorkTask extends BaseWork
         {
@@ -634,7 +820,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkTask_collapse" aria-expanded="true" aria-controls="WorkTask_collapse">WorkTask</a>
+<div id="WorkTask_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + BaseWork.prototype.template.call (this) +
+`
+{{#instruction}}<div><b>instruction</b>: {{instruction}}</div>{{/instruction}}
+{{#schedOverride}}<div><b>schedOverride</b>: {{schedOverride}}</div>{{/schedOverride}}
+{{#taskKind}}<div><b>taskKind</b>: {{taskKind}}</div>{{/taskKind}}
+{{#crewETA}}<div><b>crewETA</b>: {{crewETA}}</div>{{/crewETA}}
+{{#Work}}<div><b>Work</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Work}}&quot;);})'>{{Work}}</a></div>{{/Work}}
+{{#OldAsset}}<div><b>OldAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OldAsset}}&quot;);})'>{{OldAsset}}</a></div>{{/OldAsset}}
+{{#SwitchingPlan}}<div><b>SwitchingPlan</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingPlan}}&quot;);})'>{{SwitchingPlan}}</a></div>{{/SwitchingPlan}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Document used to request, initiate, track and record work.
@@ -692,7 +899,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Work_collapse" aria-expanded="true" aria-controls="Work_collapse">Work</a>
+<div id="Work_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + BaseWork.prototype.template.call (this) +
+`
+{{#requestDateTime}}<div><b>requestDateTime</b>: {{requestDateTime}}</div>{{/requestDateTime}}
+{{#WorkBillingInfo}}<div><b>WorkBillingInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkBillingInfo}}&quot;);})'>{{WorkBillingInfo}}</a></div>{{/WorkBillingInfo}}
+{{#Project}}<div><b>Project</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Project}}&quot;);})'>{{Project}}</a></div>{{/Project}}
+{{#BusinessCase}}<div><b>BusinessCase</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BusinessCase}}&quot;);})'>{{BusinessCase}}</a></div>{{/BusinessCase}}
+{{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);})'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Location where to perform maintenance work.
@@ -748,7 +974,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MaintenanceLocation_collapse" aria-expanded="true" aria-controls="MaintenanceLocation_collapse">MaintenanceLocation</a>
+<div id="MaintenanceLocation_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkLocation.prototype.template.call (this) +
+`
+{{#block}}<div><b>block</b>: {{block}}</div>{{/block}}
+{{#lot}}<div><b>lot</b>: {{lot}}</div>{{/lot}}
+{{#nearestIntersection}}<div><b>nearestIntersection</b>: {{nearestIntersection}}</div>{{/nearestIntersection}}
+{{#subdivision}}<div><b>subdivision</b>: {{subdivision}}</div>{{/subdivision}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Vehicle asset.
@@ -802,7 +1046,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Vehicle_collapse" aria-expanded="true" aria-controls="Vehicle_collapse">Vehicle</a>
+<div id="Vehicle_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkAsset.prototype.template.call (this) +
+`
+{{#odometerReadDateTime}}<div><b>odometerReadDateTime</b>: {{odometerReadDateTime}}</div>{{/odometerReadDateTime}}
+{{#odometerReading}}<div><b>odometerReading</b>: {{odometerReading}}</div>{{/odometerReading}}
+{{#usageKind}}<div><b>usageKind</b>: {{usageKind}}</div>{{/usageKind}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Tool asset.
@@ -852,7 +1113,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Tool_collapse" aria-expanded="true" aria-controls="Tool_collapse">Tool</a>
+<div id="Tool_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + WorkAsset.prototype.template.call (this) +
+`
+{{#lastCalibrationDate}}<div><b>lastCalibrationDate</b>: {{lastCalibrationDate}}</div>{{/lastCalibrationDate}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

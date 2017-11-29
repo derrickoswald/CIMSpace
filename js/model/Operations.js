@@ -60,7 +60,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SwitchingStepGroup_collapse" aria-expanded="true" aria-controls="SwitchingStepGroup_collapse">SwitchingStepGroup</a>
+<div id="SwitchingStepGroup_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#isFreeSequence}}<div><b>isFreeSequence</b>: {{isFreeSequence}}</div>{{/isFreeSequence}}
+{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+{{#SwitchingPlan}}<div><b>SwitchingPlan</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingPlan}}&quot;);})'>{{SwitchingPlan}}</a></div>{{/SwitchingPlan}}
+</div>
+`
+                );
+           }        }
 
         class OperationTag extends Common.Document
         {
@@ -110,7 +127,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OperationTag_collapse" aria-expanded="true" aria-controls="OperationTag_collapse">OperationTag</a>
+<div id="OperationTag_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
+{{#TagAction}}<div><b>TagAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TagAction}}&quot;);})'>{{TagAction}}</a></div>{{/TagAction}}
+{{#PowerSystemResource}}<div><b>PowerSystemResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemResource}}&quot;);})'>{{PowerSystemResource}}</a></div>{{/PowerSystemResource}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Event recording the change in operational status of a power system resource; may be for an event that has already occurred or for a planned activity.
@@ -162,7 +196,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PSREvent_collapse" aria-expanded="true" aria-controls="PSREvent_collapse">PSREvent</a>
+<div id="PSREvent_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.ActivityRecord.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#PowerSystemResource}}<div><b>PowerSystemResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemResource}}&quot;);})'>{{PowerSystemResource}}</a></div>{{/PowerSystemResource}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Document describing details of an active or planned outage in a part of the electrical network.
@@ -228,7 +278,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Outage_collapse" aria-expanded="true" aria-controls="Outage_collapse">Outage</a>
+<div id="Outage_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#cause}}<div><b>cause</b>: {{cause}}</div>{{/cause}}
+{{#estimatedPeriod}}<div><b>estimatedPeriod</b>: {{estimatedPeriod}}</div>{{/estimatedPeriod}}
+{{#isPlanned}}<div><b>isPlanned</b>: {{isPlanned}}</div>{{/isPlanned}}
+{{#actualPeriod}}<div><b>actualPeriod</b>: {{actualPeriod}}</div>{{/actualPeriod}}
+{{#summary}}<div><b>summary</b>: {{summary}}</div>{{/summary}}
+{{#cancelledDateTime}}<div><b>cancelledDateTime</b>: {{cancelledDateTime}}</div>{{/cancelledDateTime}}
+{{#OutageSchedule}}<div><b>OutageSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OutageSchedule}}&quot;);})'>{{OutageSchedule}}</a></div>{{/OutageSchedule}}
+{{#Incident}}<div><b>Incident</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Incident}}&quot;);})'>{{Incident}}</a></div>{{/Incident}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of action on switch.
@@ -284,7 +356,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SwitchActionKind_collapse" aria-expanded="true" aria-controls="SwitchActionKind_collapse">SwitchActionKind</a>
+<div id="SwitchActionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#open}}<div><b>open</b>: {{open}}</div>{{/open}}
+{{#close}}<div><b>close</b>: {{close}}</div>{{/close}}
+{{#disableReclosing}}<div><b>disableReclosing</b>: {{disableReclosing}}</div>{{/disableReclosing}}
+{{#enableReclosing}}<div><b>enableReclosing</b>: {{enableReclosing}}</div>{{/enableReclosing}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Description of a problem in the field that may be reported in a trouble ticket or come from another source.
@@ -340,7 +430,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Incident_collapse" aria-expanded="true" aria-controls="Incident_collapse">Incident</a>
+<div id="Incident_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#cause}}<div><b>cause</b>: {{cause}}</div>{{/cause}}
+{{#Owner}}<div><b>Owner</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Owner}}&quot;);})'>{{Owner}}</a></div>{{/Owner}}
+{{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Outage}}&quot;);})'>{{Outage}}</a></div>{{/Outage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of action on temporary equipment (such as cut, jumper, ground, energy source).
@@ -392,7 +499,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TempEquipActionKind_collapse" aria-expanded="true" aria-controls="TempEquipActionKind_collapse">TempEquipActionKind</a>
+<div id="TempEquipActionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#place}}<div><b>place</b>: {{place}}</div>{{/place}}
+{{#remove}}<div><b>remove</b>: {{remove}}</div>{{/remove}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A document that can be associated with equipment to describe any sort of restrictions compared with the original manufacturer's specification or with the usual operational practice e.g. temporary maximum loadings, maximum switching current, do not operate if bus couplers are open, etc.
@@ -448,7 +571,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OperationalRestriction_collapse" aria-expanded="true" aria-controls="OperationalRestriction_collapse">OperationalRestriction</a>
+<div id="OperationalRestriction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#activePeriod}}<div><b>activePeriod</b>: {{activePeriod}}</div>{{/activePeriod}}
+{{#restrictedValue}}<div><b>restrictedValue</b>: {{restrictedValue}}</div>{{/restrictedValue}}
+{{#ProductAssetModel}}<div><b>ProductAssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProductAssetModel}}&quot;);})'>{{ProductAssetModel}}</a></div>{{/ProductAssetModel}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Type of clearance action.
@@ -502,7 +642,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ClearanceActionKind_collapse" aria-expanded="true" aria-controls="ClearanceActionKind_collapse">ClearanceActionKind</a>
+<div id="ClearanceActionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#issue}}<div><b>issue</b>: {{issue}}</div>{{/issue}}
+{{#update}}<div><b>update</b>: {{update}}</div>{{/update}}
+{{#release}}<div><b>release</b>: {{release}}</div>{{/release}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Document restricting or authorising works on electrical equipment (for example a permit to work, sanction for test, limitation of access, or certificate of isolation), defined based upon organisational practices.
@@ -552,7 +709,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SafetyDocument_collapse" aria-expanded="true" aria-controls="SafetyDocument_collapse">SafetyDocument</a>
+<div id="SafetyDocument_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#SwitchingPlan}}<div><b>SwitchingPlan</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingPlan}}&quot;);})'>{{SwitchingPlan}}</a></div>{{/SwitchingPlan}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Summary counts of service points affected by an outage.
@@ -606,7 +778,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ServicePointOutageSummary_collapse" aria-expanded="true" aria-controls="ServicePointOutageSummary_collapse">ServicePointOutageSummary</a>
+<div id="ServicePointOutageSummary_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#criticalCount}}<div><b>criticalCount</b>: {{criticalCount}}</div>{{/criticalCount}}
+{{#totalCount}}<div><b>totalCount</b>: {{totalCount}}</div>{{/totalCount}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of power system resource event.
@@ -668,7 +856,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PSREventKind_collapse" aria-expanded="true" aria-controls="PSREventKind_collapse">PSREventKind</a>
+<div id="PSREventKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#inService}}<div><b>inService</b>: {{inService}}</div>{{/inService}}
+{{#outOfService}}<div><b>outOfService</b>: {{outOfService}}</div>{{/outOfService}}
+{{#pendingAdd}}<div><b>pendingAdd</b>: {{pendingAdd}}</div>{{/pendingAdd}}
+{{#pendingRemove}}<div><b>pendingRemove</b>: {{pendingRemove}}</div>{{/pendingRemove}}
+{{#pendingReplace}}<div><b>pendingReplace</b>: {{pendingReplace}}</div>{{/pendingReplace}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+{{#unknown}}<div><b>unknown</b>: {{unknown}}</div>{{/unknown}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Document containing the definition of planned outages of equipment and/or service (delivery) points (sometimes referred to as customers).
@@ -718,7 +927,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OutageSchedule_collapse" aria-expanded="true" aria-controls="OutageSchedule_collapse">OutageSchedule</a>
+<div id="OutageSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of action on tag.
@@ -772,7 +995,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TagActionKind_collapse" aria-expanded="true" aria-controls="TagActionKind_collapse">TagActionKind</a>
+<div id="TagActionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#place}}<div><b>place</b>: {{place}}</div>{{/place}}
+{{#remove}}<div><b>remove</b>: {{remove}}</div>{{/remove}}
+{{#verify}}<div><b>verify</b>: {{verify}}</div>{{/verify}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Atomic switching step; can be part of a switching step group, or of the switching plan.
@@ -834,7 +1074,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SwitchingStep_collapse" aria-expanded="true" aria-controls="SwitchingStep_collapse">SwitchingStep</a>
+<div id="SwitchingStep_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#executedDateTime}}<div><b>executedDateTime</b>: {{executedDateTime}}</div>{{/executedDateTime}}
+{{#plannedDateTime}}<div><b>plannedDateTime</b>: {{plannedDateTime}}</div>{{/plannedDateTime}}
+{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+{{#isFreeSequence}}<div><b>isFreeSequence</b>: {{isFreeSequence}}</div>{{/isFreeSequence}}
+{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+{{#CrewMember}}<div><b>CrewMember</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CrewMember}}&quot;);})'>{{CrewMember}}</a></div>{{/CrewMember}}
+{{#Operator}}<div><b>Operator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Operator}}&quot;);})'>{{Operator}}</a></div>{{/Operator}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A sequence of grouped or atomic steps intended to:
@@ -891,7 +1152,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SwitchingPlan_collapse" aria-expanded="true" aria-controls="SwitchingPlan_collapse">SwitchingPlan</a>
+<div id="SwitchingPlan_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SwitchingStepGroup.prototype.template.call (this) +
+`
+{{#rank}}<div><b>rank</b>: {{rank}}</div>{{/rank}}
+{{#purpose}}<div><b>purpose</b>: {{purpose}}</div>{{/purpose}}
+{{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Outage}}&quot;);})'>{{Outage}}</a></div>{{/Outage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Lowered capability because of deterioration or inadequacy (sometimes referred to as derating or partial outage) or other kind of operational rating change.
@@ -943,7 +1221,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OperationalUpdatedRating_collapse" aria-expanded="true" aria-controls="OperationalUpdatedRating_collapse">OperationalUpdatedRating</a>
+<div id="OperationalUpdatedRating_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + OperationalRestriction.prototype.template.call (this) +
+`
+{{#changeType}}<div><b>changeType</b>: {{changeType}}</div>{{/changeType}}
+{{#PlannedOutage}}<div><b>PlannedOutage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PlannedOutage}}&quot;);})'>{{PlannedOutage}}</a></div>{{/PlannedOutage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Safety document used to authorise work on conducting equipment in the field.
@@ -999,7 +1293,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ClearanceDocument_collapse" aria-expanded="true" aria-controls="ClearanceDocument_collapse">ClearanceDocument</a>
+<div id="ClearanceDocument_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SafetyDocument.prototype.template.call (this) +
+`
+{{#mustBeDeenergised}}<div><b>mustBeDeenergised</b>: {{mustBeDeenergised}}</div>{{/mustBeDeenergised}}
+{{#mustBeGrounded}}<div><b>mustBeGrounded</b>: {{mustBeGrounded}}</div>{{/mustBeGrounded}}
+{{#ClearanceAction}}<div><b>ClearanceAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ClearanceAction}}&quot;);})'>{{ClearanceAction}}</a></div>{{/ClearanceAction}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An arbitrary switching step.
@@ -1049,7 +1360,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GenericAction_collapse" aria-expanded="true" aria-controls="GenericAction_collapse">GenericAction</a>
+<div id="GenericAction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SwitchingStep.prototype.template.call (this) +
+`
+{{#SwitchingStepGroup}}<div><b>SwitchingStepGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingStepGroup}}&quot;);})'>{{SwitchingStepGroup}}</a></div>{{/SwitchingStepGroup}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Action on clearance document as a switching step.
@@ -1103,7 +1429,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ClearanceAction_collapse" aria-expanded="true" aria-controls="ClearanceAction_collapse">ClearanceAction</a>
+<div id="ClearanceAction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SwitchingStep.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#Clearance}}<div><b>Clearance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Clearance}}&quot;);})'>{{Clearance}}</a></div>{{/Clearance}}
+{{#SwitchingStepGroup}}<div><b>SwitchingStepGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingStepGroup}}&quot;);})'>{{SwitchingStepGroup}}</a></div>{{/SwitchingStepGroup}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Action on ground as a switching step.
@@ -1161,7 +1504,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GroundAction_collapse" aria-expanded="true" aria-controls="GroundAction_collapse">GroundAction</a>
+<div id="GroundAction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SwitchingStep.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#Ground}}<div><b>Ground</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Ground}}&quot;);})'>{{Ground}}</a></div>{{/Ground}}
+{{#AlongACLineSegment}}<div><b>AlongACLineSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AlongACLineSegment}}&quot;);})'>{{AlongACLineSegment}}</a></div>{{/AlongACLineSegment}}
+{{#GroundedEquipment}}<div><b>GroundedEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GroundedEquipment}}&quot;);})'>{{GroundedEquipment}}</a></div>{{/GroundedEquipment}}
+{{#SwitchingStepGroup}}<div><b>SwitchingStepGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingStepGroup}}&quot;);})'>{{SwitchingStepGroup}}</a></div>{{/SwitchingStepGroup}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Action on cut as a switching step.
@@ -1215,7 +1577,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CutAction_collapse" aria-expanded="true" aria-controls="CutAction_collapse">CutAction</a>
+<div id="CutAction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SwitchingStep.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#SwitchingStepGroup}}<div><b>SwitchingStepGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingStepGroup}}&quot;);})'>{{SwitchingStepGroup}}</a></div>{{/SwitchingStepGroup}}
+{{#Cut}}<div><b>Cut</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Cut}}&quot;);})'>{{Cut}}</a></div>{{/Cut}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Action on switch as a switching step.
@@ -1271,7 +1650,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SwitchAction_collapse" aria-expanded="true" aria-controls="SwitchAction_collapse">SwitchAction</a>
+<div id="SwitchAction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SwitchingStep.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#PlannedOutage}}<div><b>PlannedOutage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PlannedOutage}}&quot;);})'>{{PlannedOutage}}</a></div>{{/PlannedOutage}}
+{{#OperatedSwitch}}<div><b>OperatedSwitch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperatedSwitch}}&quot;);})'>{{OperatedSwitch}}</a></div>{{/OperatedSwitch}}
+{{#SwitchingStepGroup}}<div><b>SwitchingStepGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingStepGroup}}&quot;);})'>{{SwitchingStepGroup}}</a></div>{{/SwitchingStepGroup}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Action on jumper as a switching step.
@@ -1325,7 +1722,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#JumperAction_collapse" aria-expanded="true" aria-controls="JumperAction_collapse">JumperAction</a>
+<div id="JumperAction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SwitchingStep.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#Jumper}}<div><b>Jumper</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Jumper}}&quot;);})'>{{Jumper}}</a></div>{{/Jumper}}
+{{#SwitchingStepGroup}}<div><b>SwitchingStepGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingStepGroup}}&quot;);})'>{{SwitchingStepGroup}}</a></div>{{/SwitchingStepGroup}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Action on operation tag as a switching step.
@@ -1379,7 +1793,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TagAction_collapse" aria-expanded="true" aria-controls="TagAction_collapse">TagAction</a>
+<div id="TagAction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SwitchingStep.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#OperationTag}}<div><b>OperationTag</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperationTag}}&quot;);})'>{{OperationTag}}</a></div>{{/OperationTag}}
+{{#SwitchingStepGroup}}<div><b>SwitchingStepGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingStepGroup}}&quot;);})'>{{SwitchingStepGroup}}</a></div>{{/SwitchingStepGroup}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Action on energy source as a switching step.
@@ -1433,7 +1864,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EnergySourceAction_collapse" aria-expanded="true" aria-controls="EnergySourceAction_collapse">EnergySourceAction</a>
+<div id="EnergySourceAction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + SwitchingStep.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#EnergySource}}<div><b>EnergySource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergySource}}&quot;);})'>{{EnergySource}}</a></div>{{/EnergySource}}
+{{#SwitchingStepGroup}}<div><b>SwitchingStepGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingStepGroup}}&quot;);})'>{{SwitchingStepGroup}}</a></div>{{/SwitchingStepGroup}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

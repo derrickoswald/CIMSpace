@@ -62,7 +62,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TemperatureDependentLimitPoint_collapse" aria-expanded="true" aria-controls="TemperatureDependentLimitPoint_collapse">TemperatureDependentLimitPoint</a>
+<div id="TemperatureDependentLimitPoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#limitPercent}}<div><b>limitPercent</b>: {{limitPercent}}</div>{{/limitPercent}}
+{{#temperature}}<div><b>temperature</b>: {{temperature}}</div>{{/temperature}}
+{{#TemperatureDependentLimitTable}}<div><b>TemperatureDependentLimitTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TemperatureDependentLimitTable}}&quot;);})'>{{TemperatureDependentLimitTable}}</a></div>{{/TemperatureDependentLimitTable}}
+</div>
+`
+                );
+           }        }
 
         /**
          * One operational limit type scales values of another operational limit type when under the same operational limit set.
@@ -118,7 +135,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OperatonalLimitTypeScaling_collapse" aria-expanded="true" aria-controls="OperatonalLimitTypeScaling_collapse">OperatonalLimitTypeScaling</a>
+<div id="OperatonalLimitTypeScaling_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#scalingPercent}}<div><b>scalingPercent</b>: {{scalingPercent}}</div>{{/scalingPercent}}
+{{#SourceOperationalLimitType}}<div><b>SourceOperationalLimitType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SourceOperationalLimitType}}&quot;);})'>{{SourceOperationalLimitType}}</a></div>{{/SourceOperationalLimitType}}
+{{#TargetOperationalLimit}}<div><b>TargetOperationalLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetOperationalLimit}}&quot;);})'>{{TargetOperationalLimit}}</a></div>{{/TargetOperationalLimit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A limit that is applicable during a scheduled time period.
@@ -170,7 +204,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ScheduledLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledLimitValue_collapse">ScheduledLimitValue</a>
+<div id="ScheduledLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#Season}}<div><b>Season</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Season}}&quot;);})'>{{Season}}</a></div>{{/Season}}
+{{#ScheduledLimitDependency}}<div><b>ScheduledLimitDependency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ScheduledLimitDependency}}&quot;);})'>{{ScheduledLimitDependency}}</a></div>{{/ScheduledLimitDependency}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This represents a source of ambient temperature.
@@ -218,7 +268,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WeatherStation_collapse" aria-expanded="true" aria-controls="WeatherStation_collapse">WeatherStation</a>
+<div id="WeatherStation_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A limit calculation model used to compute an operational limit based on external input such as temperature.
@@ -270,7 +334,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LimitDependency_collapse" aria-expanded="true" aria-controls="LimitDependency_collapse">LimitDependency</a>
+<div id="LimitDependency_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This represents one instance of an equipment that contributes to the calculation of an operational limit.
@@ -322,7 +401,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EquipmentLimitSeriesComponent_collapse" aria-expanded="true" aria-controls="EquipmentLimitSeriesComponent_collapse">EquipmentLimitSeriesComponent</a>
+<div id="EquipmentLimitSeriesComponent_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#SeriesEquipmentDependentLimit}}<div><b>SeriesEquipmentDependentLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SeriesEquipmentDependentLimit}}&quot;);})'>{{SeriesEquipmentDependentLimit}}</a></div>{{/SeriesEquipmentDependentLimit}}
+{{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A current limit that is scheduled.
@@ -372,7 +467,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ScheduledCurrentLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledCurrentLimitValue_collapse">ScheduledCurrentLimitValue</a>
+<div id="ScheduledCurrentLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ScheduledLimitValue.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A voltage limit value for a scheduled time.
@@ -422,7 +532,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ScheduledVoltageLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledVoltageLimitValue_collapse">ScheduledVoltageLimitValue</a>
+<div id="ScheduledVoltageLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ScheduledLimitValue.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         class ScheduledActivePowerLimitValue extends ScheduledLimitValue
         {
@@ -468,7 +593,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ScheduledActivePowerLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledActivePowerLimitValue_collapse">ScheduledActivePowerLimitValue</a>
+<div id="ScheduledActivePowerLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ScheduledLimitValue.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A time scheduled value for apparent power limit.
@@ -518,7 +658,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ScheduledApparentPowerLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledApparentPowerLimitValue_collapse">ScheduledApparentPowerLimitValue</a>
+<div id="ScheduledApparentPowerLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ScheduledLimitValue.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Specifies an operational  limit is calculated by scaling another operational limit.
@@ -570,7 +725,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LimitScalingLimit_collapse" aria-expanded="true" aria-controls="LimitScalingLimit_collapse">LimitScalingLimit</a>
+<div id="LimitScalingLimit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LimitDependency.prototype.template.call (this) +
+`
+{{#limitScalingPercent}}<div><b>limitScalingPercent</b>: {{limitScalingPercent}}</div>{{/limitScalingPercent}}
+{{#SourceOperationalLimit}}<div><b>SourceOperationalLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SourceOperationalLimit}}&quot;);})'>{{SourceOperationalLimit}}</a></div>{{/SourceOperationalLimit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This is a environmental based limit dependency model for calculating operational limits.
@@ -618,7 +789,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EnvironmentalDependentLimit_collapse" aria-expanded="true" aria-controls="EnvironmentalDependentLimit_collapse">EnvironmentalDependentLimit</a>
+<div id="EnvironmentalDependentLimit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LimitDependency.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         class ScheduledLimitDependency extends LimitDependency
         {
@@ -662,7 +847,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ScheduledLimitDependency_collapse" aria-expanded="true" aria-controls="ScheduledLimitDependency_collapse">ScheduledLimitDependency</a>
+<div id="ScheduledLimitDependency_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LimitDependency.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Limit based on most restrictive series equipment limit.
@@ -712,7 +911,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SeriesEquipmentDependentLimit_collapse" aria-expanded="true" aria-controls="SeriesEquipmentDependentLimit_collapse">SeriesEquipmentDependentLimit</a>
+<div id="SeriesEquipmentDependentLimit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LimitDependency.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * This describes the coefficients of a polynomial function that has temperature as input and calculates limit values as output.
@@ -770,7 +983,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TemperaturePolynomialLimit_collapse" aria-expanded="true" aria-controls="TemperaturePolynomialLimit_collapse">TemperaturePolynomialLimit</a>
+<div id="TemperaturePolynomialLimit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EnvironmentalDependentLimit.prototype.template.call (this) +
+`
+{{#coefficient0}}<div><b>coefficient0</b>: {{coefficient0}}</div>{{/coefficient0}}
+{{#coefficient1}}<div><b>coefficient1</b>: {{coefficient1}}</div>{{/coefficient1}}
+{{#coefficient2}}<div><b>coefficient2</b>: {{coefficient2}}</div>{{/coefficient2}}
+{{#coefficient3}}<div><b>coefficient3</b>: {{coefficient3}}</div>{{/coefficient3}}
+{{#coefficient4}}<div><b>coefficient4</b>: {{coefficient4}}</div>{{/coefficient4}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This is a table lookup that provides limit values corresponding to a temperature input.
@@ -818,7 +1050,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TemperatureDependentLimitTable_collapse" aria-expanded="true" aria-controls="TemperatureDependentLimitTable_collapse">TemperatureDependentLimitTable</a>
+<div id="TemperatureDependentLimitTable_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EnvironmentalDependentLimit.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         return (
             {

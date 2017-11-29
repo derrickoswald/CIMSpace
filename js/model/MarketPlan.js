@@ -64,7 +64,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketProduct_collapse" aria-expanded="true" aria-controls="MarketProduct_collapse">MarketProduct</a>
+<div id="MarketProduct_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#marketProductType}}<div><b>marketProductType</b>: {{marketProductType}}</div>{{/marketProductType}}
+{{#rampInterval}}<div><b>rampInterval</b>: {{rampInterval}}</div>{{/rampInterval}}
+{{#MarketRegionResults}}<div><b>MarketRegionResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketRegionResults}}&quot;);})'>{{MarketRegionResults}}</a></div>{{/MarketRegionResults}}
+{{#Market}}<div><b>Market</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Market}}&quot;);})'>{{Market}}</a></div>{{/Market}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This class represents planned events.
@@ -122,7 +140,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PlannedMarketEvent_collapse" aria-expanded="true" aria-controls="PlannedMarketEvent_collapse">PlannedMarketEvent</a>
+<div id="PlannedMarketEvent_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+{{#eventType}}<div><b>eventType</b>: {{eventType}}</div>{{/eventType}}
+{{#plannedEventID}}<div><b>plannedEventID</b>: {{plannedEventID}}</div>{{/plannedEventID}}
+{{#plannedTime}}<div><b>plannedTime</b>: {{plannedTime}}</div>{{/plannedTime}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This class identifies a set of planned markets.
@@ -180,7 +216,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketPlan_collapse" aria-expanded="true" aria-controls="MarketPlan_collapse">MarketPlan</a>
+<div id="MarketPlan_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+{{#marketPlanID}}<div><b>marketPlanID</b>: {{marketPlanID}}</div>{{/marketPlanID}}
+{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+{{#tradingDay}}<div><b>tradingDay</b>: {{tradingDay}}</div>{{/tradingDay}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Aggregation of market information relative for a specific time interval.
@@ -234,7 +288,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketFactors_collapse" aria-expanded="true" aria-controls="MarketFactors_collapse">MarketFactors</a>
+<div id="MarketFactors_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#intervalEndTime}}<div><b>intervalEndTime</b>: {{intervalEndTime}}</div>{{/intervalEndTime}}
+{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+{{#Market}}<div><b>Market</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Market}}&quot;);})'>{{Market}}</a></div>{{/Market}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Market (e.g.
@@ -304,7 +375,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Market_collapse" aria-expanded="true" aria-controls="Market_collapse">Market</a>
+<div id="Market_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#actualEnd}}<div><b>actualEnd</b>: {{actualEnd}}</div>{{/actualEnd}}
+{{#actualStart}}<div><b>actualStart</b>: {{actualStart}}</div>{{/actualStart}}
+{{#dst}}<div><b>dst</b>: {{dst}}</div>{{/dst}}
+{{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
+{{#localTimeZone}}<div><b>localTimeZone</b>: {{localTimeZone}}</div>{{/localTimeZone}}
+{{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#timeIntervalLength}}<div><b>timeIntervalLength</b>: {{timeIntervalLength}}</div>{{/timeIntervalLength}}
+{{#tradingDay}}<div><b>tradingDay</b>: {{tradingDay}}</div>{{/tradingDay}}
+{{#tradingPeriod}}<div><b>tradingPeriod</b>: {{tradingPeriod}}</div>{{/tradingPeriod}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This class represent the actual instance of an event.
@@ -362,7 +457,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketActualEvent_collapse" aria-expanded="true" aria-controls="MarketActualEvent_collapse">MarketActualEvent</a>
+<div id="MarketActualEvent_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+{{#eventID}}<div><b>eventID</b>: {{eventID}}</div>{{/eventID}}
+{{#eventTime}}<div><b>eventTime</b>: {{eventTime}}</div>{{/eventTime}}
+{{#PlannedMarketEvent}}<div><b>PlannedMarketEvent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PlannedMarketEvent}}&quot;);})'>{{PlannedMarketEvent}}</a></div>{{/PlannedMarketEvent}}
+{{#MarketRun}}<div><b>MarketRun</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketRun}}&quot;);})'>{{MarketRun}}</a></div>{{/MarketRun}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Represent a planned market.
@@ -422,7 +536,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PlannedMarket_collapse" aria-expanded="true" aria-controls="PlannedMarket_collapse">PlannedMarket</a>
+<div id="PlannedMarket_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#marketEndTime}}<div><b>marketEndTime</b>: {{marketEndTime}}</div>{{/marketEndTime}}
+{{#marketID}}<div><b>marketID</b>: {{marketID}}</div>{{/marketID}}
+{{#marketStartTime}}<div><b>marketStartTime</b>: {{marketStartTime}}</div>{{/marketStartTime}}
+{{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+{{#MarketPlan}}<div><b>MarketPlan</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketPlan}}&quot;);})'>{{MarketPlan}}</a></div>{{/MarketPlan}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This class represent an actual instance of a planned market.
@@ -496,7 +629,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketRun_collapse" aria-expanded="true" aria-controls="MarketRun_collapse">MarketRun</a>
+<div id="MarketRun_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#executionType}}<div><b>executionType</b>: {{executionType}}</div>{{/executionType}}
+{{#marketApprovalTime}}<div><b>marketApprovalTime</b>: {{marketApprovalTime}}</div>{{/marketApprovalTime}}
+{{#marketApprovedStatus}}<div><b>marketApprovedStatus</b>: {{marketApprovedStatus}}</div>{{/marketApprovedStatus}}
+{{#marketEndTime}}<div><b>marketEndTime</b>: {{marketEndTime}}</div>{{/marketEndTime}}
+{{#marketID}}<div><b>marketID</b>: {{marketID}}</div>{{/marketID}}
+{{#marketRunID}}<div><b>marketRunID</b>: {{marketRunID}}</div>{{/marketRunID}}
+{{#marketStartTime}}<div><b>marketStartTime</b>: {{marketStartTime}}</div>{{/marketStartTime}}
+{{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+{{#reportedState}}<div><b>reportedState</b>: {{reportedState}}</div>{{/reportedState}}
+{{#runState}}<div><b>runState</b>: {{runState}}</div>{{/runState}}
+{{#PlannedMarket}}<div><b>PlannedMarket</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PlannedMarket}}&quot;);})'>{{PlannedMarket}}</a></div>{{/PlannedMarket}}
+{{#Market}}<div><b>Market</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Market}}&quot;);})'>{{Market}}</a></div>{{/Market}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Energy and Ancillary Market (e.g.
@@ -550,7 +709,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EnergyMarket_collapse" aria-expanded="true" aria-controls="EnergyMarket_collapse">EnergyMarket</a>
+<div id="EnergyMarket_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Market.prototype.template.call (this) +
+`
+{{#MarketResults}}<div><b>MarketResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketResults}}&quot;);})'>{{MarketResults}}</a></div>{{/MarketResults}}
+{{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Model that describes the Congestion Revenue Rights Auction Market
@@ -600,7 +775,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CRRMarket_collapse" aria-expanded="true" aria-controls="CRRMarket_collapse">CRRMarket</a>
+<div id="CRRMarket_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Market.prototype.template.call (this) +
+`
+{{#labelID}}<div><b>labelID</b>: {{labelID}}</div>{{/labelID}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

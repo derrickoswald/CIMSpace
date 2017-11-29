@@ -56,7 +56,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TurbineLoadControllerDynamics_collapse" aria-expanded="true" aria-controls="TurbineLoadControllerDynamics_collapse">TurbineLoadControllerDynamics</a>
+<div id="TurbineLoadControllerDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+`
+{{#TurbineGovernorDynamics}}<div><b>TurbineGovernorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineGovernorDynamics}}&quot;);})'>{{TurbineGovernorDynamics}}</a></div>{{/TurbineGovernorDynamics}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Turbine Load Controller model developed in the WECC.
@@ -130,7 +145,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TurbLCFB1_collapse" aria-expanded="true" aria-controls="TurbLCFB1_collapse">TurbLCFB1</a>
+<div id="TurbLCFB1_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TurbineLoadControllerDynamics.prototype.template.call (this) +
+`
+{{#db}}<div><b>db</b>: {{db}}</div>{{/db}}
+{{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
+{{#fb}}<div><b>fb</b>: {{fb}}</div>{{/fb}}
+{{#fbf}}<div><b>fbf</b>: {{fbf}}</div>{{/fbf}}
+{{#irmax}}<div><b>irmax</b>: {{irmax}}</div>{{/irmax}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+{{#pbf}}<div><b>pbf</b>: {{pbf}}</div>{{/pbf}}
+{{#pmwset}}<div><b>pmwset</b>: {{pmwset}}</div>{{/pmwset}}
+{{#speedReferenceGovernor}}<div><b>speedReferenceGovernor</b>: {{speedReferenceGovernor}}</div>{{/speedReferenceGovernor}}
+{{#tpelec}}<div><b>tpelec</b>: {{tpelec}}</div>{{/tpelec}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

@@ -64,7 +64,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEST1AUELselectorKind_collapse" aria-expanded="true" aria-controls="ExcIEEEST1AUELselectorKind_collapse">ExcIEEEST1AUELselectorKind</a>
+<div id="ExcIEEEST1AUELselectorKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ignoreUELsignal}}<div><b>ignoreUELsignal</b>: {{ignoreUELsignal}}</div>{{/ignoreUELsignal}}
+{{#inputHVgateVoltageOutput}}<div><b>inputHVgateVoltageOutput</b>: {{inputHVgateVoltageOutput}}</div>{{/inputHVgateVoltageOutput}}
+{{#inputHVgateErrorSignal}}<div><b>inputHVgateErrorSignal</b>: {{inputHVgateErrorSignal}}</div>{{/inputHVgateErrorSignal}}
+{{#inputAddedToErrorSignal}}<div><b>inputAddedToErrorSignal</b>: {{inputAddedToErrorSignal}}</div>{{/inputAddedToErrorSignal}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Type of connection for the OEL input used for static excitation systems type 7B.
@@ -120,7 +138,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcST7BOELselectorKind_collapse" aria-expanded="true" aria-controls="ExcST7BOELselectorKind_collapse">ExcST7BOELselectorKind</a>
+<div id="ExcST7BOELselectorKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#noOELinput}}<div><b>noOELinput</b>: {{noOELinput}}</div>{{/noOELinput}}
+{{#addVref}}<div><b>addVref</b>: {{addVref}}</div>{{/addVref}}
+{{#inputLVgate}}<div><b>inputLVgate</b>: {{inputLVgate}}</div>{{/inputLVgate}}
+{{#outputLVgate}}<div><b>outputLVgate</b>: {{outputLVgate}}</div>{{/outputLVgate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Excitation system function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -184,7 +220,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcitationSystemDynamics_collapse" aria-expanded="true" aria-controls="ExcitationSystemDynamics_collapse">ExcitationSystemDynamics</a>
+<div id="ExcitationSystemDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+`
+{{#PowerSystemStabilizerDynamics}}<div><b>PowerSystemStabilizerDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemStabilizerDynamics}}&quot;);})'>{{PowerSystemStabilizerDynamics}}</a></div>{{/PowerSystemStabilizerDynamics}}
+{{#UnderexcitationLimiterDynamics}}<div><b>UnderexcitationLimiterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UnderexcitationLimiterDynamics}}&quot;);})'>{{UnderexcitationLimiterDynamics}}</a></div>{{/UnderexcitationLimiterDynamics}}
+{{#DiscontinuousExcitationControlDynamics}}<div><b>DiscontinuousExcitationControlDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscontinuousExcitationControlDynamics}}&quot;);})'>{{DiscontinuousExcitationControlDynamics}}</a></div>{{/DiscontinuousExcitationControlDynamics}}
+{{#PFVArControllerType1Dynamics}}<div><b>PFVArControllerType1Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1Dynamics}}&quot;);})'>{{PFVArControllerType1Dynamics}}</a></div>{{/PFVArControllerType1Dynamics}}
+{{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineDynamics}}&quot;);})'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
+{{#VoltageCompensatorDynamics}}<div><b>VoltageCompensatorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageCompensatorDynamics}}&quot;);})'>{{VoltageCompensatorDynamics}}</a></div>{{/VoltageCompensatorDynamics}}
+{{#OverexcitationLimiterDynamics}}<div><b>OverexcitationLimiterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverexcitationLimiterDynamics}}&quot;);})'>{{OverexcitationLimiterDynamics}}</a></div>{{/OverexcitationLimiterDynamics}}
+{{#PFVArControllerType2Dynamics}}<div><b>PFVArControllerType2Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType2Dynamics}}&quot;);})'>{{PFVArControllerType2Dynamics}}</a></div>{{/PFVArControllerType2Dynamics}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Type of connection for the OEL input used for static excitation systems type 6B.
@@ -238,7 +296,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcST6BOELselectorKind_collapse" aria-expanded="true" aria-controls="ExcST6BOELselectorKind_collapse">ExcST6BOELselectorKind</a>
+<div id="ExcST6BOELselectorKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#noOELinput}}<div><b>noOELinput</b>: {{noOELinput}}</div>{{/noOELinput}}
+{{#beforeUEL}}<div><b>beforeUEL</b>: {{beforeUEL}}</div>{{/beforeUEL}}
+{{#afterUEL}}<div><b>afterUEL</b>: {{afterUEL}}</div>{{/afterUEL}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Type of connection for the UEL input used for static excitation systems type 7B.
@@ -294,7 +369,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcST7BUELselectorKind_collapse" aria-expanded="true" aria-controls="ExcST7BUELselectorKind_collapse">ExcST7BUELselectorKind</a>
+<div id="ExcST7BUELselectorKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#noUELinput}}<div><b>noUELinput</b>: {{noUELinput}}</div>{{/noUELinput}}
+{{#addVref}}<div><b>addVref</b>: {{addVref}}</div>{{/addVref}}
+{{#inputHVgate}}<div><b>inputHVgate</b>: {{inputHVgate}}</div>{{/inputHVgate}}
+{{#outputHVgate}}<div><b>outputHVgate</b>: {{outputHVgate}}</div>{{/outputHVgate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Type of rate feedback signals.
@@ -348,7 +441,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcREXSFeedbackSignalKind_collapse" aria-expanded="true" aria-controls="ExcREXSFeedbackSignalKind_collapse">ExcREXSFeedbackSignalKind</a>
+<div id="ExcREXSFeedbackSignalKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#fieldVoltage}}<div><b>fieldVoltage</b>: {{fieldVoltage}}</div>{{/fieldVoltage}}
+{{#fieldCurrent}}<div><b>fieldCurrent</b>: {{fieldCurrent}}</div>{{/fieldCurrent}}
+{{#outputVoltage}}<div><b>outputVoltage</b>: {{outputVoltage}}</div>{{/outputVoltage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type DC1A model.
@@ -430,7 +540,37 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEDC1A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC1A_collapse">ExcIEEEDC1A</a>
+<div id="ExcIEEEDC1A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+{{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Simple excitation system model representing generic characteristics of many excitation systems; intended for use where negative field current may be a problem.
@@ -494,7 +634,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcSCRX_collapse" aria-expanded="true" aria-controls="ExcSCRX_collapse">ExcSCRX</a>
+<div id="ExcSCRX_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#cswitch}}<div><b>cswitch</b>: {{cswitch}}</div>{{/cswitch}}
+{{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
+{{#emin}}<div><b>emin</b>: {{emin}}</div>{{/emin}}
+{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+{{#rcrfd}}<div><b>rcrfd</b>: {{rcrfd}}</div>{{/rcrfd}}
+{{#tatb}}<div><b>tatb</b>: {{tatb}}</div>{{/tatb}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type DC4B model.
@@ -582,7 +744,40 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEDC4B_collapse" aria-expanded="true" aria-controls="ExcIEEEDC4B_collapse">ExcIEEEDC4B</a>
+<div id="ExcIEEEDC4B_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
+{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+{{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC3A model.
@@ -674,7 +869,42 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEAC3A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC3A_collapse">ExcIEEEAC3A</a>
+<div id="ExcIEEEAC3A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efdn}}<div><b>efdn</b>: {{efdn}}</div>{{/efdn}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#kn}}<div><b>kn</b>: {{kn}}</div>{{/kn}}
+{{#kr}}<div><b>kr</b>: {{kr}}</div>{{/kr}}
+{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+{{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
+{{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Manual excitation control with field circuit resistance.
@@ -730,7 +960,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcAVR5_collapse" aria-expanded="true" aria-controls="ExcAVR5_collapse">ExcAVR5</a>
+<div id="ExcAVR5_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#rex}}<div><b>rex</b>: {{rex}}</div>{{/rex}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE ST2A static excitation system - another lead-lag block added to match  the model defined by WECC.
@@ -808,7 +1055,36 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcST2A_collapse" aria-expanded="true" aria-controls="ExcST2A_collapse">ExcST2A</a>
+<div id="ExcST2A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Detailed Excitation System Model - ELIN (VATECH).
@@ -912,7 +1188,48 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcELIN2_collapse" aria-expanded="true" aria-controls="ExcELIN2_collapse">ExcELIN2</a>
+<div id="ExcELIN2_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efdbas}}<div><b>efdbas</b>: {{efdbas}}</div>{{/efdbas}}
+{{#iefmax}}<div><b>iefmax</b>: {{iefmax}}</div>{{/iefmax}}
+{{#iefmax2}}<div><b>iefmax2</b>: {{iefmax2}}</div>{{/iefmax2}}
+{{#iefmin}}<div><b>iefmin</b>: {{iefmin}}</div>{{/iefmin}}
+{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+{{#k1ec}}<div><b>k1ec</b>: {{k1ec}}</div>{{/k1ec}}
+{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+{{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
+{{#kd1}}<div><b>kd1</b>: {{kd1}}</div>{{/kd1}}
+{{#ke2}}<div><b>ke2</b>: {{ke2}}</div>{{/ke2}}
+{{#ketb}}<div><b>ketb</b>: {{ketb}}</div>{{/ketb}}
+{{#pid1max}}<div><b>pid1max</b>: {{pid1max}}</div>{{/pid1max}}
+{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+{{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#te2}}<div><b>te2</b>: {{te2}}</div>{{/te2}}
+{{#ti1}}<div><b>ti1</b>: {{ti1}}</div>{{/ti1}}
+{{#ti3}}<div><b>ti3</b>: {{ti3}}</div>{{/ti3}}
+{{#ti4}}<div><b>ti4</b>: {{ti4}}</div>{{/ti4}}
+{{#tr4}}<div><b>tr4</b>: {{tr4}}</div>{{/tr4}}
+{{#upmax}}<div><b>upmax</b>: {{upmax}}</div>{{/upmax}}
+{{#upmin}}<div><b>upmin</b>: {{upmin}}</div>{{/upmin}}
+{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+{{#xp}}<div><b>xp</b>: {{xp}}</div>{{/xp}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type DC3A model.
@@ -984,7 +1301,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEDC3A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC3A_collapse">ExcIEEEDC3A</a>
+<div id="ExcIEEEDC3A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+{{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kv}}<div><b>kv</b>: {{kv}}</div>{{/kv}}
+{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#trh}}<div><b>trh</b>: {{trh}}</div>{{/trh}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC2A model.
@@ -1076,7 +1418,42 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEAC2A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC2A_collapse">ExcIEEEAC2A</a>
+<div id="ExcIEEEAC2A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kb}}<div><b>kb</b>: {{kb}}</div>{{/kb}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+{{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE AC1A alternator-supplied rectifier excitation system with different rate feedback source.
@@ -1168,7 +1545,43 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcAC1A_collapse" aria-expanded="true" aria-controls="ExcAC1A_collapse">ExcAC1A</a>
+<div id="ExcAC1A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#hvlvgates}}<div><b>hvlvgates</b>: {{hvlvgates}}</div>{{/hvlvgates}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#kf1}}<div><b>kf1</b>: {{kf1}}</div>{{/kf1}}
+{{#kf2}}<div><b>kf2</b>: {{kf2}}</div>{{/kf2}}
+{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Simplified Excitation System Model.
@@ -1236,7 +1649,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcSEXS_collapse" aria-expanded="true" aria-controls="ExcSEXS_collapse">ExcSEXS</a>
+<div id="ExcSEXS_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+{{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
+{{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
+{{#emin}}<div><b>emin</b>: {{emin}}</div>{{/emin}}
+{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#tatb}}<div><b>tatb</b>: {{tatb}}</div>{{/tatb}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Italian excitation system corresponding to IEEE (1968) Type 2 Model.
@@ -1312,7 +1749,34 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcAVR2_collapse" aria-expanded="true" aria-controls="ExcAVR2_collapse">ExcAVR2</a>
+<div id="ExcAVR2_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
+{{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
+{{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
+{{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
+{{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
+{{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This is modified IEEE DC3A direct current commutator exciters with speed input, and death band.
@@ -1394,7 +1858,37 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcDC3A_collapse" aria-expanded="true" aria-controls="ExcDC3A_collapse">ExcDC3A</a>
+<div id="ExcDC3A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#edfmax}}<div><b>edfmax</b>: {{edfmax}}</div>{{/edfmax}}
+{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+{{#efdlim}}<div><b>efdlim</b>: {{efdlim}}</div>{{/efdlim}}
+{{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
+{{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kr}}<div><b>kr</b>: {{kr}}</div>{{/kr}}
+{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+{{#kv}}<div><b>kv</b>: {{kv}}</div>{{/kv}}
+{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#trh}}<div><b>trh</b>: {{trh}}</div>{{/trh}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE ST6B static excitation system with PID controller and optional inner feedbacks loop.
@@ -1488,7 +1982,44 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcST6B_collapse" aria-expanded="true" aria-controls="ExcST6B_collapse">ExcST6B</a>
+<div id="ExcST6B_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#ilr}}<div><b>ilr</b>: {{ilr}}</div>{{/ilr}}
+{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+{{#kcl}}<div><b>kcl</b>: {{kcl}}</div>{{/kcl}}
+{{#kff}}<div><b>kff</b>: {{kff}}</div>{{/kff}}
+{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+{{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
+{{#klr}}<div><b>klr</b>: {{klr}}</div>{{/klr}}
+{{#km}}<div><b>km</b>: {{km}}</div>{{/km}}
+{{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
+{{#kvd}}<div><b>kvd</b>: {{kvd}}</div>{{/kvd}}
+{{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
+{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+{{#ts}}<div><b>ts</b>: {{ts}}</div>{{/ts}}
+{{#tvd}}<div><b>tvd</b>: {{tvd}}</div>{{/tvd}}
+{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+{{#vilim}}<div><b>vilim</b>: {{vilim}}</div>{{/vilim}}
+{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+{{#vmult}}<div><b>vmult</b>: {{vmult}}</div>{{/vmult}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+{{#xc}}<div><b>xc</b>: {{xc}}</div>{{/xc}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Proportional/Integral Regulator Excitation System Model.
@@ -1584,7 +2115,44 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcPIC_collapse" aria-expanded="true" aria-controls="ExcPIC_collapse">ExcPIC</a>
+<div id="ExcPIC_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
+{{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
+{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+{{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
+{{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
+{{#ta1}}<div><b>ta1</b>: {{ta1}}</div>{{/ta1}}
+{{#ta2}}<div><b>ta2</b>: {{ta2}}</div>{{/ta2}}
+{{#ta3}}<div><b>ta3</b>: {{ta3}}</div>{{/ta3}}
+{{#ta4}}<div><b>ta4</b>: {{ta4}}</div>{{/ta4}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
+{{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
+{{#vr1}}<div><b>vr1</b>: {{vr1}}</div>{{/vr1}}
+{{#vr2}}<div><b>vr2</b>: {{vr2}}</div>{{/vr2}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Czech Proportion/Integral Exciter.
@@ -1652,7 +2220,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcCZ_collapse" aria-expanded="true" aria-controls="ExcCZ_collapse">ExcCZ</a>
+<div id="ExcCZ_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+{{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE AC8B alternator-supplied rectifier excitation system with speed input and input limiter.
@@ -1754,7 +2346,48 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcAC8B_collapse" aria-expanded="true" aria-controls="ExcAC8B_collapse">ExcAC8B</a>
+<div id="ExcAC8B_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#inlim}}<div><b>inlim</b>: {{inlim}}</div>{{/inlim}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#kdr}}<div><b>kdr</b>: {{kdr}}</div>{{/kdr}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
+{{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
+{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+{{#pidlim}}<div><b>pidlim</b>: {{pidlim}}</div>{{/pidlim}}
+{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tdr}}<div><b>tdr</b>: {{tdr}}</div>{{/tdr}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#telim}}<div><b>telim</b>: {{telim}}</div>{{/telim}}
+{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+{{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
+{{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
+{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+{{#vpidmax}}<div><b>vpidmax</b>: {{vpidmax}}</div>{{/vpidmax}}
+{{#vpidmin}}<div><b>vpidmin</b>: {{vpidmin}}</div>{{/vpidmin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+{{#vtmult}}<div><b>vtmult</b>: {{vtmult}}</div>{{/vtmult}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC5A model.
@@ -1832,7 +2465,35 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEAC5A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC5A_collapse">ExcIEEEAC5A</a>
+<div id="ExcIEEEAC5A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
+{{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
+{{#tf3}}<div><b>tf3</b>: {{tf3}}</div>{{/tf3}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type ST2A model.
@@ -1908,7 +2569,34 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEST2A_collapse" aria-expanded="true" aria-controls="ExcIEEEST2A_collapse">ExcIEEEST2A</a>
+<div id="ExcIEEEST2A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type ST5B model.
@@ -1992,7 +2680,38 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEST5B_collapse" aria-expanded="true" aria-controls="ExcIEEEST5B_collapse">ExcIEEEST5B</a>
+<div id="ExcIEEEST5B_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kr}}<div><b>kr</b>: {{kr}}</div>{{/kr}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
+{{#tb2}}<div><b>tb2</b>: {{tb2}}</div>{{/tb2}}
+{{#tc1}}<div><b>tc1</b>: {{tc1}}</div>{{/tc1}}
+{{#tc2}}<div><b>tc2</b>: {{tc2}}</div>{{/tc2}}
+{{#tob1}}<div><b>tob1</b>: {{tob1}}</div>{{/tob1}}
+{{#tob2}}<div><b>tob2</b>: {{tob2}}</div>{{/tob2}}
+{{#toc1}}<div><b>toc1</b>: {{toc1}}</div>{{/toc1}}
+{{#toc2}}<div><b>toc2</b>: {{toc2}}</div>{{/toc2}}
+{{#tub1}}<div><b>tub1</b>: {{tub1}}</div>{{/tub1}}
+{{#tub2}}<div><b>tub2</b>: {{tub2}}</div>{{/tub2}}
+{{#tuc1}}<div><b>tuc1</b>: {{tuc1}}</div>{{/tuc1}}
+{{#tuc2}}<div><b>tuc2</b>: {{tuc2}}</div>{{/tuc2}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE AC4A alternator-supplied rectifier excitation system with different minimum controller output.
@@ -2058,7 +2777,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcAC4A_collapse" aria-expanded="true" aria-controls="ExcAC4A_collapse">ExcAC4A</a>
+<div id="ExcAC4A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC8B model.
@@ -2144,7 +2886,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEAC8B_collapse" aria-expanded="true" aria-controls="ExcIEEEAC8B_collapse">ExcIEEEAC8B</a>
+<div id="ExcIEEEAC8B_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#kdr}}<div><b>kdr</b>: {{kdr}}</div>{{/kdr}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
+{{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
+{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tdr}}<div><b>tdr</b>: {{tdr}}</div>{{/tdr}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+{{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
+{{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Slovakian Excitation System Model.
@@ -2258,7 +3032,53 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcSK_collapse" aria-expanded="true" aria-controls="ExcSK_collapse">ExcSK</a>
+<div id="ExcSK_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+{{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
+{{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
+{{#emin}}<div><b>emin</b>: {{emin}}</div>{{/emin}}
+{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kce}}<div><b>kce</b>: {{kce}}</div>{{/kce}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#kgob}}<div><b>kgob</b>: {{kgob}}</div>{{/kgob}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#kqi}}<div><b>kqi</b>: {{kqi}}</div>{{/kqi}}
+{{#kqob}}<div><b>kqob</b>: {{kqob}}</div>{{/kqob}}
+{{#kqp}}<div><b>kqp</b>: {{kqp}}</div>{{/kqp}}
+{{#nq}}<div><b>nq</b>: {{nq}}</div>{{/nq}}
+{{#qconoff}}<div><b>qconoff</b>: {{qconoff}}</div>{{/qconoff}}
+{{#qz}}<div><b>qz</b>: {{qz}}</div>{{/qz}}
+{{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
+{{#sbase}}<div><b>sbase</b>: {{sbase}}</div>{{/sbase}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#ti}}<div><b>ti</b>: {{ti}}</div>{{/ti}}
+{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+{{#uimax}}<div><b>uimax</b>: {{uimax}}</div>{{/uimax}}
+{{#uimin}}<div><b>uimin</b>: {{uimin}}</div>{{/uimin}}
+{{#urmax}}<div><b>urmax</b>: {{urmax}}</div>{{/urmax}}
+{{#urmin}}<div><b>urmin</b>: {{urmin}}</div>{{/urmin}}
+{{#vtmax}}<div><b>vtmax</b>: {{vtmax}}</div>{{/vtmax}}
+{{#vtmin}}<div><b>vtmin</b>: {{vtmin}}</div>{{/vtmin}}
+{{#yp}}<div><b>yp</b>: {{yp}}</div>{{/yp}}
+</div>
+`
+                );
+           }        }
 
         /**
          * General Purpose Rotating Excitation System Model.
@@ -2380,7 +3200,57 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcREXS_collapse" aria-expanded="true" aria-controls="ExcREXS_collapse">ExcREXS</a>
+<div id="ExcREXS_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
+{{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
+{{#fbf}}<div><b>fbf</b>: {{fbf}}</div>{{/fbf}}
+{{#flimf}}<div><b>flimf</b>: {{flimf}}</div>{{/flimf}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kefd}}<div><b>kefd</b>: {{kefd}}</div>{{/kefd}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+{{#kii}}<div><b>kii</b>: {{kii}}</div>{{/kii}}
+{{#kip}}<div><b>kip</b>: {{kip}}</div>{{/kip}}
+{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+{{#kvi}}<div><b>kvi</b>: {{kvi}}</div>{{/kvi}}
+{{#kvp}}<div><b>kvp</b>: {{kvp}}</div>{{/kvp}}
+{{#kvphz}}<div><b>kvphz</b>: {{kvphz}}</div>{{/kvphz}}
+{{#nvphz}}<div><b>nvphz</b>: {{nvphz}}</div>{{/nvphz}}
+{{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
+{{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
+{{#tb2}}<div><b>tb2</b>: {{tb2}}</div>{{/tb2}}
+{{#tc1}}<div><b>tc1</b>: {{tc1}}</div>{{/tc1}}
+{{#tc2}}<div><b>tc2</b>: {{tc2}}</div>{{/tc2}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
+{{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
+{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+{{#vcmax}}<div><b>vcmax</b>: {{vcmax}}</div>{{/vcmax}}
+{{#vfmax}}<div><b>vfmax</b>: {{vfmax}}</div>{{/vfmax}}
+{{#vfmin}}<div><b>vfmin</b>: {{vfmin}}</div>{{/vfmin}}
+{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+{{#xc}}<div><b>xc</b>: {{xc}}</div>{{/xc}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Italian excitation system.
@@ -2458,7 +3328,35 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcANS_collapse" aria-expanded="true" aria-controls="ExcANS_collapse">ExcANS</a>
+<div id="ExcANS_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#blint}}<div><b>blint</b>: {{blint}}</div>{{/blint}}
+{{#ifmn}}<div><b>ifmn</b>: {{ifmn}}</div>{{/ifmn}}
+{{#ifmx}}<div><b>ifmx</b>: {{ifmx}}</div>{{/ifmx}}
+{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+{{#kce}}<div><b>kce</b>: {{kce}}</div>{{/kce}}
+{{#krvecc}}<div><b>krvecc</b>: {{krvecc}}</div>{{/krvecc}}
+{{#kvfif}}<div><b>kvfif</b>: {{kvfif}}</div>{{/kvfif}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
+{{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC7B model.
@@ -2560,7 +3458,47 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEAC7B_collapse" aria-expanded="true" aria-controls="ExcIEEEAC7B_collapse">ExcIEEEAC7B</a>
+<div id="ExcIEEEAC7B_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#kdr}}<div><b>kdr</b>: {{kdr}}</div>{{/kdr}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf1}}<div><b>kf1</b>: {{kf1}}</div>{{/kf1}}
+{{#kf2}}<div><b>kf2</b>: {{kf2}}</div>{{/kf2}}
+{{#kf3}}<div><b>kf3</b>: {{kf3}}</div>{{/kf3}}
+{{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
+{{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
+{{#kl}}<div><b>kl</b>: {{kl}}</div>{{/kl}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
+{{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
+{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+{{#tdr}}<div><b>tdr</b>: {{tdr}}</div>{{/tdr}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+{{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
+{{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type ST4B model.
@@ -2642,7 +3580,37 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEST4B_collapse" aria-expanded="true" aria-controls="ExcIEEEST4B_collapse">ExcIEEEST4B</a>
+<div id="ExcIEEEST4B_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kim}}<div><b>kim</b>: {{kim}}</div>{{/kim}}
+{{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#kpm}}<div><b>kpm</b>: {{kpm}}</div>{{/kpm}}
+{{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#thetap}}<div><b>thetap</b>: {{thetap}}</div>{{/thetap}}
+{{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
+{{#vmmax}}<div><b>vmmax</b>: {{vmmax}}</div>{{/vmmax}}
+{{#vmmin}}<div><b>vmmin</b>: {{vmmin}}</div>{{/vmmin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+{{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE ST7B static excitation system without stator current limiter (SCL) and current compensator (DROOP) inputs.
@@ -2722,7 +3690,37 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcST7B_collapse" aria-expanded="true" aria-controls="ExcST7B_collapse">ExcST7B</a>
+<div id="ExcST7B_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+{{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
+{{#kl}}<div><b>kl</b>: {{kl}}</div>{{/kl}}
+{{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
+{{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+{{#tia}}<div><b>tia</b>: {{tia}}</div>{{/tia}}
+{{#ts}}<div><b>ts</b>: {{ts}}</div>{{/ts}}
+{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE DC1A direct current commutator exciter with speed input and without underexcitation limiters (UEL) inputs.
@@ -2806,7 +3804,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcDC1A_collapse" aria-expanded="true" aria-controls="ExcDC1A_collapse">ExcDC1A</a>
+<div id="ExcDC1A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#edfmax}}<div><b>edfmax</b>: {{edfmax}}</div>{{/edfmax}}
+{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+{{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
+{{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE ST3A static excitation system with added speed multiplier.
@@ -2894,7 +3924,41 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcST3A_collapse" aria-expanded="true" aria-controls="ExcST3A_collapse">ExcST3A</a>
+<div id="ExcST3A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kj}}<div><b>kj</b>: {{kj}}</div>{{/kj}}
+{{#km}}<div><b>km</b>: {{km}}</div>{{/km}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+{{#ks1}}<div><b>ks1</b>: {{ks1}}</div>{{/ks1}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#thetap}}<div><b>thetap</b>: {{thetap}}</div>{{/thetap}}
+{{#tm}}<div><b>tm</b>: {{tm}}</div>{{/tm}}
+{{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
+{{#vgmax}}<div><b>vgmax</b>: {{vgmax}}</div>{{/vgmax}}
+{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+{{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC1A model.
@@ -2980,7 +4044,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEAC1A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC1A_collapse">ExcIEEEAC1A</a>
+<div id="ExcIEEEAC1A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE AC5A alternator-supplied rectifier excitation system with different minimum controller output.
@@ -3064,7 +4160,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcAC5A_collapse" aria-expanded="true" aria-controls="ExcAC5A_collapse">ExcAC5A</a>
+<div id="ExcAC5A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
+{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
+{{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
+{{#tf3}}<div><b>tf3</b>: {{tf3}}</div>{{/tf3}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Hungarian Excitation System Model, with built-in voltage transducer.
@@ -3136,7 +4264,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcHU_collapse" aria-expanded="true" aria-controls="ExcHU_collapse">ExcHU</a>
+<div id="ExcHU_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#ae}}<div><b>ae</b>: {{ae}}</div>{{/ae}}
+{{#ai}}<div><b>ai</b>: {{ai}}</div>{{/ai}}
+{{#atr}}<div><b>atr</b>: {{atr}}</div>{{/atr}}
+{{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
+{{#emin}}<div><b>emin</b>: {{emin}}</div>{{/emin}}
+{{#imax}}<div><b>imax</b>: {{imax}}</div>{{/imax}}
+{{#imin}}<div><b>imin</b>: {{imin}}</div>{{/imin}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#ti}}<div><b>ti</b>: {{ti}}</div>{{/ti}}
+{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+</div>
+`
+                );
+           }        }
 
         /**
          * IVO excitation system.
@@ -3226,7 +4380,42 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcAVR7_collapse" aria-expanded="true" aria-controls="ExcAVR7_collapse">ExcAVR7</a>
+<div id="ExcAVR7_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#a1}}<div><b>a1</b>: {{a1}}</div>{{/a1}}
+{{#a2}}<div><b>a2</b>: {{a2}}</div>{{/a2}}
+{{#a3}}<div><b>a3</b>: {{a3}}</div>{{/a3}}
+{{#a4}}<div><b>a4</b>: {{a4}}</div>{{/a4}}
+{{#a5}}<div><b>a5</b>: {{a5}}</div>{{/a5}}
+{{#a6}}<div><b>a6</b>: {{a6}}</div>{{/a6}}
+{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+{{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+{{#vmax1}}<div><b>vmax1</b>: {{vmax1}}</div>{{/vmax1}}
+{{#vmax3}}<div><b>vmax3</b>: {{vmax3}}</div>{{/vmax3}}
+{{#vmax5}}<div><b>vmax5</b>: {{vmax5}}</div>{{/vmax5}}
+{{#vmin1}}<div><b>vmin1</b>: {{vmin1}}</div>{{/vmin1}}
+{{#vmin3}}<div><b>vmin3</b>: {{vmin3}}</div>{{/vmin3}}
+{{#vmin5}}<div><b>vmin5</b>: {{vmin5}}</div>{{/vmin5}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type ST7B model.
@@ -3306,7 +4495,36 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEST7B_collapse" aria-expanded="true" aria-controls="ExcIEEEST7B_collapse">ExcIEEEST7B</a>
+<div id="ExcIEEEST7B_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+{{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
+{{#kl}}<div><b>kl</b>: {{kl}}</div>{{/kl}}
+{{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
+{{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+{{#tia}}<div><b>tia</b>: {{tia}}</div>{{/tia}}
+{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type DC2A model.
@@ -3388,7 +4606,37 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEDC2A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC2A_collapse">ExcIEEEDC2A</a>
+<div id="ExcIEEEDC2A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+{{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Italian excitation system.
@@ -3462,7 +4710,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcAVR3_collapse" aria-expanded="true" aria-controls="ExcAVR3_collapse">ExcAVR3</a>
+<div id="ExcAVR3_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
+{{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
+{{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
+{{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC4A model.
@@ -3530,7 +4804,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEAC4A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC4A_collapse">ExcIEEEAC4A</a>
+<div id="ExcIEEEAC4A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE AC2A alternator-supplied rectifier excitation system with different field current limit.
@@ -3634,7 +4931,49 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcAC2A_collapse" aria-expanded="true" aria-controls="ExcAC2A_collapse">ExcAC2A</a>
+<div id="ExcAC2A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#hvgate}}<div><b>hvgate</b>: {{hvgate}}</div>{{/hvgate}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kb}}<div><b>kb</b>: {{kb}}</div>{{/kb}}
+{{#kb1}}<div><b>kb1</b>: {{kb1}}</div>{{/kb1}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+{{#kl}}<div><b>kl</b>: {{kl}}</div>{{/kl}}
+{{#kl1}}<div><b>kl1</b>: {{kl1}}</div>{{/kl1}}
+{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+{{#lvgate}}<div><b>lvgate</b>: {{lvgate}}</div>{{/lvgate}}
+{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+{{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
+{{#vlr}}<div><b>vlr</b>: {{vlr}}</div>{{/vlr}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This is modified old IEEE type 3 excitation system.
@@ -3710,7 +5049,35 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcDC3A1_collapse" aria-expanded="true" aria-controls="ExcDC3A1_collapse">ExcDC3A1</a>
+<div id="ExcDC3A1_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#vb1max}}<div><b>vb1max</b>: {{vb1max}}</div>{{/vb1max}}
+{{#vblim}}<div><b>vblim</b>: {{vblim}}</div>{{/vblim}}
+{{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type ST1A model.
@@ -3798,7 +5165,40 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEST1A_collapse" aria-expanded="true" aria-controls="ExcIEEEST1A_collapse">ExcIEEEST1A</a>
+<div id="ExcIEEEST1A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#ilr}}<div><b>ilr</b>: {{ilr}}</div>{{/ilr}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#klr}}<div><b>klr</b>: {{klr}}</div>{{/klr}}
+{{#pssin}}<div><b>pssin</b>: {{pssin}}</div>{{/pssin}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#tc1}}<div><b>tc1</b>: {{tc1}}</div>{{/tc1}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Transformer fed static excitation system (static with ABB regulator).
@@ -3870,7 +5270,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcBBC_collapse" aria-expanded="true" aria-controls="ExcBBC_collapse">ExcBBC</a>
+<div id="ExcBBC_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+{{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
+{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+{{#switch}}<div><b>switch</b>: {{switch}}</div>{{/switch}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+{{#xe}}<div><b>xe</b>: {{xe}}</div>{{/xe}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE ST4B static excitation system with maximum inner loop feedback gain <b>Vgmax</b>.
@@ -3956,7 +5381,40 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcST4B_collapse" aria-expanded="true" aria-controls="ExcST4B_collapse">ExcST4B</a>
+<div id="ExcST4B_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#kim}}<div><b>kim</b>: {{kim}}</div>{{/kim}}
+{{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#kpm}}<div><b>kpm</b>: {{kpm}}</div>{{/kpm}}
+{{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
+{{#lvgate}}<div><b>lvgate</b>: {{lvgate}}</div>{{/lvgate}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#thetap}}<div><b>thetap</b>: {{thetap}}</div>{{/thetap}}
+{{#uel}}<div><b>uel</b>: {{uel}}</div>{{/uel}}
+{{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
+{{#vgmax}}<div><b>vgmax</b>: {{vgmax}}</div>{{/vgmax}}
+{{#vmmax}}<div><b>vmmax</b>: {{vmmax}}</div>{{/vmmax}}
+{{#vmmin}}<div><b>vmmin</b>: {{vmmin}}</div>{{/vmmin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+{{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE AC6A alternator-supplied rectifier excitation system with speed input.
@@ -4050,7 +5508,44 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcAC6A_collapse" aria-expanded="true" aria-controls="ExcAC6A_collapse">ExcAC6A</a>
+<div id="ExcAC6A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#th}}<div><b>th</b>: {{th}}</div>{{/th}}
+{{#tj}}<div><b>tj</b>: {{tj}}</div>{{/tj}}
+{{#tk}}<div><b>tk</b>: {{tk}}</div>{{/tk}}
+{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+{{#vfelim}}<div><b>vfelim</b>: {{vfelim}}</div>{{/vfelim}}
+{{#vhmax}}<div><b>vhmax</b>: {{vhmax}}</div>{{/vhmax}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE Type ST1 Excitation System with semi-continuous and acting terminal voltage limiter.
@@ -4136,7 +5631,40 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcOEX3T_collapse" aria-expanded="true" aria-controls="ExcOEX3T_collapse">ExcOEX3T</a>
+<div id="ExcOEX3T_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
+{{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#see1}}<div><b>see1</b>: {{see1}}</div>{{/see1}}
+{{#see2}}<div><b>see2</b>: {{see2}}</div>{{/see2}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE AC3A alternator-supplied rectifier excitation system with different field current limit.
@@ -4236,7 +5764,47 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcAC3A_collapse" aria-expanded="true" aria-controls="ExcAC3A_collapse">ExcAC3A</a>
+<div id="ExcAC3A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efdn}}<div><b>efdn</b>: {{efdn}}</div>{{/efdn}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#kf1}}<div><b>kf1</b>: {{kf1}}</div>{{/kf1}}
+{{#kf2}}<div><b>kf2</b>: {{kf2}}</div>{{/kf2}}
+{{#klv}}<div><b>klv</b>: {{klv}}</div>{{/klv}}
+{{#kn}}<div><b>kn</b>: {{kn}}</div>{{/kn}}
+{{#kr}}<div><b>kr</b>: {{kr}}</div>{{/kr}}
+{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+{{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
+{{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
+{{#vlv}}<div><b>vlv</b>: {{vlv}}</div>{{/vlv}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC6A model.
@@ -4330,7 +5898,43 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEAC6A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC6A_collapse">ExcIEEEAC6A</a>
+<div id="ExcIEEEAC6A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#th}}<div><b>th</b>: {{th}}</div>{{/th}}
+{{#tj}}<div><b>tj</b>: {{tj}}</div>{{/tj}}
+{{#tk}}<div><b>tk</b>: {{tk}}</div>{{/tk}}
+{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+{{#vfelim}}<div><b>vfelim</b>: {{vfelim}}</div>{{/vfelim}}
+{{#vhmax}}<div><b>vhmax</b>: {{vhmax}}</div>{{/vhmax}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modification of an old IEEE ST1A static excitation system without overexcitation limiter (OEL) and underexcitation limiter (UEL).
@@ -4414,7 +6018,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcST1A_collapse" aria-expanded="true" aria-controls="ExcST1A_collapse">ExcST1A</a>
+<div id="ExcST1A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#ilr}}<div><b>ilr</b>: {{ilr}}</div>{{/ilr}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#klr}}<div><b>klr</b>: {{klr}}</div>{{/klr}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#tc1}}<div><b>tc1</b>: {{tc1}}</div>{{/tc1}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+{{#xe}}<div><b>xe</b>: {{xe}}</div>{{/xe}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Static PI transformer fed excitation system: ELIN (VATECH) - simplified model.
@@ -4494,7 +6130,36 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcELIN1_collapse" aria-expanded="true" aria-controls="ExcELIN1_collapse">ExcELIN1</a>
+<div id="ExcELIN1_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#dpnf}}<div><b>dpnf</b>: {{dpnf}}</div>{{/dpnf}}
+{{#efmax}}<div><b>efmax</b>: {{efmax}}</div>{{/efmax}}
+{{#efmin}}<div><b>efmin</b>: {{efmin}}</div>{{/efmin}}
+{{#ks1}}<div><b>ks1</b>: {{ks1}}</div>{{/ks1}}
+{{#ks2}}<div><b>ks2</b>: {{ks2}}</div>{{/ks2}}
+{{#smax}}<div><b>smax</b>: {{smax}}</div>{{/smax}}
+{{#tfi}}<div><b>tfi</b>: {{tfi}}</div>{{/tfi}}
+{{#tnu}}<div><b>tnu</b>: {{tnu}}</div>{{/tnu}}
+{{#ts1}}<div><b>ts1</b>: {{ts1}}</div>{{/ts1}}
+{{#ts2}}<div><b>ts2</b>: {{ts2}}</div>{{/ts2}}
+{{#tsw}}<div><b>tsw</b>: {{tsw}}</div>{{/tsw}}
+{{#vpi}}<div><b>vpi</b>: {{vpi}}</div>{{/vpi}}
+{{#vpnf}}<div><b>vpnf</b>: {{vpnf}}</div>{{/vpnf}}
+{{#vpu}}<div><b>vpu</b>: {{vpu}}</div>{{/vpu}}
+{{#xe}}<div><b>xe</b>: {{xe}}</div>{{/xe}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Italian excitation system.
@@ -4572,7 +6237,35 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcAVR4_collapse" aria-expanded="true" aria-controls="ExcAVR4_collapse">ExcAVR4</a>
+<div id="ExcAVR4_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#imul}}<div><b>imul</b>: {{imul}}</div>{{/imul}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kif}}<div><b>kif</b>: {{kif}}</div>{{/kif}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t1if}}<div><b>t1if</b>: {{t1if}}</div>{{/t1if}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+{{#tif}}<div><b>tif</b>: {{tif}}</div>{{/tif}}
+{{#vfmn}}<div><b>vfmn</b>: {{vfmn}}</div>{{/vfmn}}
+{{#vfmx}}<div><b>vfmx</b>: {{vfmx}}</div>{{/vfmx}}
+{{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
+{{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type ST3A model.
@@ -4662,7 +6355,41 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEST3A_collapse" aria-expanded="true" aria-controls="ExcIEEEST3A_collapse">ExcIEEEST3A</a>
+<div id="ExcIEEEST3A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+{{#km}}<div><b>km</b>: {{km}}</div>{{/km}}
+{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#thetap}}<div><b>thetap</b>: {{thetap}}</div>{{/thetap}}
+{{#tm}}<div><b>tm</b>: {{tm}}</div>{{/tm}}
+{{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
+{{#vgmax}}<div><b>vgmax</b>: {{vgmax}}</div>{{/vgmax}}
+{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+{{#vmmax}}<div><b>vmmax</b>: {{vmmax}}</div>{{/vmmax}}
+{{#vmmin}}<div><b>vmmin</b>: {{vmmin}}</div>{{/vmmin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+{{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Modified IEEE DC2A direct current commutator exciters with speed input, one more leg block in feedback loop and without underexcitation limiters (UEL) inputs.
@@ -4748,7 +6475,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcDC2A_collapse" aria-expanded="true" aria-controls="ExcDC2A_collapse">ExcDC2A</a>
+<div id="ExcDC2A_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+{{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+{{#vtlim}}<div><b>vtlim</b>: {{vtlim}}</div>{{/vtlim}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Italian excitation system corresponding to IEEE (1968) Type 1 Model.
@@ -4822,7 +6581,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcAVR1_collapse" aria-expanded="true" aria-controls="ExcAVR1_collapse">ExcAVR1</a>
+<div id="ExcAVR1_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
+{{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
+{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+{{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
+{{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
+{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+{{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
+{{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type ST6B model.
@@ -4900,7 +6685,35 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExcIEEEST6B_collapse" aria-expanded="true" aria-controls="ExcIEEEST6B_collapse">ExcIEEEST6B</a>
+<div id="ExcIEEEST6B_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ExcitationSystemDynamics.prototype.template.call (this) +
+`
+{{#ilr}}<div><b>ilr</b>: {{ilr}}</div>{{/ilr}}
+{{#kci}}<div><b>kci</b>: {{kci}}</div>{{/kci}}
+{{#kff}}<div><b>kff</b>: {{kff}}</div>{{/kff}}
+{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+{{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
+{{#klr}}<div><b>klr</b>: {{klr}}</div>{{/klr}}
+{{#km}}<div><b>km</b>: {{km}}</div>{{/km}}
+{{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
+{{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
+{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

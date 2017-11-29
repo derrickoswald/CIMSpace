@@ -56,7 +56,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#IPAccessPoint_collapse" aria-expanded="true" aria-controls="IPAccessPoint_collapse">IPAccessPoint</a>
+<div id="IPAccessPoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#address}}<div><b>address</b>: {{address}}</div>{{/address}}
+{{#addressType}}<div><b>addressType</b>: {{addressType}}</div>{{/addressType}}
+{{#gateway}}<div><b>gateway</b>: {{gateway}}</div>{{/gateway}}
+{{#subnet}}<div><b>subnet</b>: {{subnet}}</div>{{/subnet}}
+{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+</div>
+`
+                );
+           }        }
 
         class IPAddressType extends base.Element
         {
@@ -106,7 +125,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#IPAddressType_collapse" aria-expanded="true" aria-controls="IPAddressType_collapse">IPAddressType</a>
+<div id="IPAddressType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This class represents the TASE.2 Information Message Object.
@@ -160,7 +196,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ICCPInformationMessage_collapse" aria-expanded="true" aria-controls="ICCPInformationMessage_collapse">ICCPInformationMessage</a>
+<div id="ICCPInformationMessage_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#localReference}}<div><b>localReference</b>: {{localReference}}</div>{{/localReference}}
+{{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
+</div>
+`
+                );
+           }        }
 
         class ICCPControlPointDeviceClass extends base.Element
         {
@@ -208,7 +260,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ICCPControlPointDeviceClass_collapse" aria-expanded="true" aria-controls="ICCPControlPointDeviceClass_collapse">ICCPControlPointDeviceClass</a>
+<div id="ICCPControlPointDeviceClass_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#SBO}}<div><b>SBO</b>: {{SBO}}</div>{{/SBO}}
+{{#NONSBO}}<div><b>NONSBO</b>: {{NONSBO}}</div>{{/NONSBO}}
+</div>
+`
+                );
+           }        }
 
         class ICCPSetPointType extends base.Element
         {
@@ -256,7 +324,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ICCPSetPointType_collapse" aria-expanded="true" aria-controls="ICCPSetPointType_collapse">ICCPSetPointType</a>
+<div id="ICCPSetPointType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#REAL}}<div><b>REAL</b>: {{REAL}}</div>{{/REAL}}
+{{#DISCRETE}}<div><b>DISCRETE</b>: {{DISCRETE}}</div>{{/DISCRETE}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The IdentifiedObject.name attribute must have a value.
@@ -310,7 +394,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ICCPPoint_collapse" aria-expanded="true" aria-controls="ICCPPoint_collapse">ICCPPoint</a>
+<div id="ICCPPoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
+{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+</div>
+`
+                );
+           }        }
 
         class ICCPPScope extends base.Element
         {
@@ -358,7 +458,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ICCPPScope_collapse" aria-expanded="true" aria-controls="ICCPPScope_collapse">ICCPPScope</a>
+<div id="ICCPPScope_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#VCC}}<div><b>VCC</b>: {{VCC}}</div>{{/VCC}}
+{{#ICC}}<div><b>ICC</b>: {{ICC}}</div>{{/ICC}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This class describe the sending (providing) side in a bilateral ICCP data exchange.
@@ -416,7 +532,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TASE2BilateralTable_collapse" aria-expanded="true" aria-controls="TASE2BilateralTable_collapse">TASE2BilateralTable</a>
+<div id="TASE2BilateralTable_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#bilateralTableID}}<div><b>bilateralTableID</b>: {{bilateralTableID}}</div>{{/bilateralTableID}}
+{{#calling}}<div><b>calling</b>: {{calling}}</div>{{/calling}}
+{{#nameOfICC}}<div><b>nameOfICC</b>: {{nameOfICC}}</div>{{/nameOfICC}}
+{{#tase2version}}<div><b>tase2version</b>: {{tase2version}}</div>{{/tase2version}}
+</div>
+`
+                );
+           }        }
 
         class ICCPIndicationPointType extends base.Element
         {
@@ -466,7 +600,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ICCPIndicationPointType_collapse" aria-expanded="true" aria-controls="ICCPIndicationPointType_collapse">ICCPIndicationPointType</a>
+<div id="ICCPIndicationPointType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#REAL}}<div><b>REAL</b>: {{REAL}}</div>{{/REAL}}
+{{#STATE}}<div><b>STATE</b>: {{STATE}}</div>{{/STATE}}
+{{#DISCRETE}}<div><b>DISCRETE</b>: {{DISCRETE}}</div>{{/DISCRETE}}
+</div>
+`
+                );
+           }        }
 
         class ISOAPAddressing extends base.Element
         {
@@ -516,7 +667,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ISOAPAddressing_collapse" aria-expanded="true" aria-controls="ISOAPAddressing_collapse">ISOAPAddressing</a>
+<div id="ISOAPAddressing_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+</div>
+`
+                );
+           }        }
 
         class TCPAcessPoint extends IPAccessPoint
         {
@@ -564,7 +732,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TCPAcessPoint_collapse" aria-expanded="true" aria-controls="TCPAcessPoint_collapse">TCPAcessPoint</a>
+<div id="TCPAcessPoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + IPAccessPoint.prototype.template.call (this) +
+`
+{{#keepAliveTime}}<div><b>keepAliveTime</b>: {{keepAliveTime}}</div>{{/keepAliveTime}}
+{{#port}}<div><b>port</b>: {{port}}</div>{{/port}}
+</div>
+`
+                );
+           }        }
 
         class ISOUpperLayer extends TCPAcessPoint
         {
@@ -616,7 +800,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ISOUpperLayer_collapse" aria-expanded="true" aria-controls="ISOUpperLayer_collapse">ISOUpperLayer</a>
+<div id="ISOUpperLayer_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + TCPAcessPoint.prototype.template.call (this) +
+`
+{{#ap}}<div><b>ap</b>: {{ap}}</div>{{/ap}}
+{{#osiPsel}}<div><b>osiPsel</b>: {{osiPsel}}</div>{{/osiPsel}}
+{{#osiSsel}}<div><b>osiSsel</b>: {{osiSsel}}</div>{{/osiSsel}}
+{{#osiTsel}}<div><b>osiTsel</b>: {{osiTsel}}</div>{{/osiTsel}}
+</div>
+`
+                );
+           }        }
 
         class ICCPIndicationPoint extends ICCPPoint
         {
@@ -664,7 +866,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ICCPIndicationPoint_collapse" aria-expanded="true" aria-controls="ICCPIndicationPoint_collapse">ICCPIndicationPoint</a>
+<div id="ICCPIndicationPoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ICCPPoint.prototype.template.call (this) +
+`
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+</div>
+`
+                );
+           }        }
 
         class ICCPControlPoint extends ICCPPoint
         {
@@ -712,7 +930,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ICCPControlPoint_collapse" aria-expanded="true" aria-controls="ICCPControlPoint_collapse">ICCPControlPoint</a>
+<div id="ICCPControlPoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ICCPPoint.prototype.template.call (this) +
+`
+{{#deviceClass}}<div><b>deviceClass</b>: {{deviceClass}}</div>{{/deviceClass}}
+{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+</div>
+`
+                );
+           }        }
 
         class ICCPCommandPoint extends ICCPControlPoint
         {
@@ -758,7 +992,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ICCPCommandPoint_collapse" aria-expanded="true" aria-controls="ICCPCommandPoint_collapse">ICCPCommandPoint</a>
+<div id="ICCPCommandPoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ICCPControlPoint.prototype.template.call (this) +
+`
+{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+</div>
+`
+                );
+           }        }
 
         class ICCPSetPoint extends ICCPControlPoint
         {
@@ -806,7 +1055,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ICCPSetPoint_collapse" aria-expanded="true" aria-controls="ICCPSetPoint_collapse">ICCPSetPoint</a>
+<div id="ICCPSetPoint_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ICCPControlPoint.prototype.template.call (this) +
+`
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

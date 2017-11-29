@@ -58,7 +58,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OverexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="OverexcitationLimiterDynamics_collapse">OverexcitationLimiterDynamics</a>
+<div id="OverexcitationLimiterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+`
+{{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Different from LimIEEEOEL, LimOEL2 has a fixed pickup threshold and reduces the excitation set-point by mean of non-windup integral regulator.
@@ -116,7 +131,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OverexcLim2_collapse" aria-expanded="true" aria-controls="OverexcLim2_collapse">OverexcLim2</a>
+<div id="OverexcLim2_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + OverexcitationLimiterDynamics.prototype.template.call (this) +
+`
+{{#ifdlim}}<div><b>ifdlim</b>: {{ifdlim}}</div>{{/ifdlim}}
+{{#koi}}<div><b>koi</b>: {{koi}}</div>{{/koi}}
+{{#voimax}}<div><b>voimax</b>: {{voimax}}</div>{{/voimax}}
+{{#voimin}}<div><b>voimin</b>: {{voimin}}</div>{{/voimin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The over excitation limiter model is intended to represent the significant features of OELs necessary for some large-scale system studies.
@@ -178,7 +211,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OverexcLimIEEE_collapse" aria-expanded="true" aria-controls="OverexcLimIEEE_collapse">OverexcLimIEEE</a>
+<div id="OverexcLimIEEE_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + OverexcitationLimiterDynamics.prototype.template.call (this) +
+`
+{{#hyst}}<div><b>hyst</b>: {{hyst}}</div>{{/hyst}}
+{{#ifdlim}}<div><b>ifdlim</b>: {{ifdlim}}</div>{{/ifdlim}}
+{{#ifdmax}}<div><b>ifdmax</b>: {{ifdmax}}</div>{{/ifdmax}}
+{{#itfpu}}<div><b>itfpu</b>: {{itfpu}}</div>{{/itfpu}}
+{{#kcd}}<div><b>kcd</b>: {{kcd}}</div>{{/kcd}}
+{{#kramp}}<div><b>kramp</b>: {{kramp}}</div>{{/kramp}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Field voltage over excitation limiter.
@@ -246,7 +299,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OverexcLimX1_collapse" aria-expanded="true" aria-controls="OverexcLimX1_collapse">OverexcLimX1</a>
+<div id="OverexcLimX1_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + OverexcitationLimiterDynamics.prototype.template.call (this) +
+`
+{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+{{#efd3}}<div><b>efd3</b>: {{efd3}}</div>{{/efd3}}
+{{#efddes}}<div><b>efddes</b>: {{efddes}}</div>{{/efddes}}
+{{#efdrated}}<div><b>efdrated</b>: {{efdrated}}</div>{{/efdrated}}
+{{#kmx}}<div><b>kmx</b>: {{kmx}}</div>{{/kmx}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#vlow}}<div><b>vlow</b>: {{vlow}}</div>{{/vlow}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Field Voltage or Current overexcitation limiter designed to protect the generator field of an AC machine with automatic excitation control from overheating due to prolonged overexcitation.
@@ -316,7 +393,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OverexcLimX2_collapse" aria-expanded="true" aria-controls="OverexcLimX2_collapse">OverexcLimX2</a>
+<div id="OverexcLimX2_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + OverexcitationLimiterDynamics.prototype.template.call (this) +
+`
+{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+{{#efd3}}<div><b>efd3</b>: {{efd3}}</div>{{/efd3}}
+{{#efddes}}<div><b>efddes</b>: {{efddes}}</div>{{/efddes}}
+{{#efdrated}}<div><b>efdrated</b>: {{efdrated}}</div>{{/efdrated}}
+{{#kmx}}<div><b>kmx</b>: {{kmx}}</div>{{/kmx}}
+{{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
+{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+{{#vlow}}<div><b>vlow</b>: {{vlow}}</div>{{/vlow}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

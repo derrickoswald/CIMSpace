@@ -80,7 +80,33 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RemoteConnectDisconnectInfo_collapse" aria-expanded="true" aria-controls="RemoteConnectDisconnectInfo_collapse">RemoteConnectDisconnectInfo</a>
+<div id="RemoteConnectDisconnectInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#armedTimeout}}<div><b>armedTimeout</b>: {{armedTimeout}}</div>{{/armedTimeout}}
+{{#customerVoltageLimit}}<div><b>customerVoltageLimit</b>: {{customerVoltageLimit}}</div>{{/customerVoltageLimit}}
+{{#energyLimit}}<div><b>energyLimit</b>: {{energyLimit}}</div>{{/energyLimit}}
+{{#energyUsageStartDateTime}}<div><b>energyUsageStartDateTime</b>: {{energyUsageStartDateTime}}</div>{{/energyUsageStartDateTime}}
+{{#energyUsageWarning}}<div><b>energyUsageWarning</b>: {{energyUsageWarning}}</div>{{/energyUsageWarning}}
+{{#isArmConnect}}<div><b>isArmConnect</b>: {{isArmConnect}}</div>{{/isArmConnect}}
+{{#isArmDisconnect}}<div><b>isArmDisconnect</b>: {{isArmDisconnect}}</div>{{/isArmDisconnect}}
+{{#isEnergyLimiting}}<div><b>isEnergyLimiting</b>: {{isEnergyLimiting}}</div>{{/isEnergyLimiting}}
+{{#needsPowerLimitCheck}}<div><b>needsPowerLimitCheck</b>: {{needsPowerLimitCheck}}</div>{{/needsPowerLimitCheck}}
+{{#needsVoltageLimitCheck}}<div><b>needsVoltageLimitCheck</b>: {{needsVoltageLimitCheck}}</div>{{/needsVoltageLimitCheck}}
+{{#powerLimit}}<div><b>powerLimit</b>: {{powerLimit}}</div>{{/powerLimit}}
+{{#usePushbutton}}<div><b>usePushbutton</b>: {{usePushbutton}}</div>{{/usePushbutton}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A function that will disconnect and reconnect the customer's load under defined conditions.
@@ -144,7 +170,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ConnectDisconnectFunction_collapse" aria-expanded="true" aria-controls="ConnectDisconnectFunction_collapse">ConnectDisconnectFunction</a>
+<div id="ConnectDisconnectFunction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Metering.EndDeviceFunction.prototype.template.call (this) +
+`
+{{#eventCount}}<div><b>eventCount</b>: {{eventCount}}</div>{{/eventCount}}
+{{#isConnected}}<div><b>isConnected</b>: {{isConnected}}</div>{{/isConnected}}
+{{#isDelayedDiscon}}<div><b>isDelayedDiscon</b>: {{isDelayedDiscon}}</div>{{/isDelayedDiscon}}
+{{#isLocalAutoDisconOp}}<div><b>isLocalAutoDisconOp</b>: {{isLocalAutoDisconOp}}</div>{{/isLocalAutoDisconOp}}
+{{#isLocalAutoReconOp}}<div><b>isLocalAutoReconOp</b>: {{isLocalAutoReconOp}}</div>{{/isLocalAutoReconOp}}
+{{#isRemoteAutoDisconOp}}<div><b>isRemoteAutoDisconOp</b>: {{isRemoteAutoDisconOp}}</div>{{/isRemoteAutoDisconOp}}
+{{#isRemoteAutoReconOp}}<div><b>isRemoteAutoReconOp</b>: {{isRemoteAutoReconOp}}</div>{{/isRemoteAutoReconOp}}
+{{#rcdInfo}}<div><b>rcdInfo</b>: {{rcdInfo}}</div>{{/rcdInfo}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

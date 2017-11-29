@@ -86,7 +86,35 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadMotor_collapse" aria-expanded="true" aria-controls="LoadMotor_collapse">LoadMotor</a>
+<div id="LoadMotor_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#d}}<div><b>d</b>: {{d}}</div>{{/d}}
+{{#h}}<div><b>h</b>: {{h}}</div>{{/h}}
+{{#lfac}}<div><b>lfac</b>: {{lfac}}</div>{{/lfac}}
+{{#lp}}<div><b>lp</b>: {{lp}}</div>{{/lp}}
+{{#lpp}}<div><b>lpp</b>: {{lpp}}</div>{{/lpp}}
+{{#ls}}<div><b>ls</b>: {{ls}}</div>{{/ls}}
+{{#pfrac}}<div><b>pfrac</b>: {{pfrac}}</div>{{/pfrac}}
+{{#ra}}<div><b>ra</b>: {{ra}}</div>{{/ra}}
+{{#tbkr}}<div><b>tbkr</b>: {{tbkr}}</div>{{/tbkr}}
+{{#tpo}}<div><b>tpo</b>: {{tpo}}</div>{{/tpo}}
+{{#tppo}}<div><b>tppo</b>: {{tppo}}</div>{{/tppo}}
+{{#tv}}<div><b>tv</b>: {{tv}}</div>{{/tv}}
+{{#vt}}<div><b>vt</b>: {{vt}}</div>{{/vt}}
+{{#LoadAggregate}}<div><b>LoadAggregate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadAggregate}}&quot;);})'>{{LoadAggregate}}</a></div>{{/LoadAggregate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Type of generic non-linear load model.
@@ -138,7 +166,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GenericNonLinearLoadModelKind_collapse" aria-expanded="true" aria-controls="GenericNonLinearLoadModelKind_collapse">GenericNonLinearLoadModelKind</a>
+<div id="GenericNonLinearLoadModelKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#exponentialRecovery}}<div><b>exponentialRecovery</b>: {{exponentialRecovery}}</div>{{/exponentialRecovery}}
+{{#loadAdaptive}}<div><b>loadAdaptive</b>: {{loadAdaptive}}</div>{{/loadAdaptive}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Load whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -190,7 +234,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadDynamics_collapse" aria-expanded="true" aria-controls="LoadDynamics_collapse">LoadDynamics</a>
+<div id="LoadDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * General static load model representing the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage.
@@ -274,7 +332,39 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadStatic_collapse" aria-expanded="true" aria-controls="LoadStatic_collapse">LoadStatic</a>
+<div id="LoadStatic_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#ep1}}<div><b>ep1</b>: {{ep1}}</div>{{/ep1}}
+{{#ep2}}<div><b>ep2</b>: {{ep2}}</div>{{/ep2}}
+{{#ep3}}<div><b>ep3</b>: {{ep3}}</div>{{/ep3}}
+{{#eq1}}<div><b>eq1</b>: {{eq1}}</div>{{/eq1}}
+{{#eq2}}<div><b>eq2</b>: {{eq2}}</div>{{/eq2}}
+{{#eq3}}<div><b>eq3</b>: {{eq3}}</div>{{/eq3}}
+{{#kp1}}<div><b>kp1</b>: {{kp1}}</div>{{/kp1}}
+{{#kp2}}<div><b>kp2</b>: {{kp2}}</div>{{/kp2}}
+{{#kp3}}<div><b>kp3</b>: {{kp3}}</div>{{/kp3}}
+{{#kp4}}<div><b>kp4</b>: {{kp4}}</div>{{/kp4}}
+{{#kpf}}<div><b>kpf</b>: {{kpf}}</div>{{/kpf}}
+{{#kq1}}<div><b>kq1</b>: {{kq1}}</div>{{/kq1}}
+{{#kq2}}<div><b>kq2</b>: {{kq2}}</div>{{/kq2}}
+{{#kq3}}<div><b>kq3</b>: {{kq3}}</div>{{/kq3}}
+{{#kq4}}<div><b>kq4</b>: {{kq4}}</div>{{/kq4}}
+{{#kqf}}<div><b>kqf</b>: {{kqf}}</div>{{/kqf}}
+{{#staticLoadModelType}}<div><b>staticLoadModelType</b>: {{staticLoadModelType}}</div>{{/staticLoadModelType}}
+{{#LoadAggregate}}<div><b>LoadAggregate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadAggregate}}&quot;);})'>{{LoadAggregate}}</a></div>{{/LoadAggregate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Type of static load model.
@@ -330,7 +420,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StaticLoadModelKind_collapse" aria-expanded="true" aria-controls="StaticLoadModelKind_collapse">StaticLoadModelKind</a>
+<div id="StaticLoadModelKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#exponential}}<div><b>exponential</b>: {{exponential}}</div>{{/exponential}}
+{{#zIP1}}<div><b>zIP1</b>: {{zIP1}}</div>{{/zIP1}}
+{{#zIP2}}<div><b>zIP2</b>: {{zIP2}}</div>{{/zIP2}}
+{{#constantZ}}<div><b>constantZ</b>: {{constantZ}}</div>{{/constantZ}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This model combines static load and induction motor load effects.
@@ -402,7 +510,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadComposite_collapse" aria-expanded="true" aria-controls="LoadComposite_collapse">LoadComposite</a>
+<div id="LoadComposite_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LoadDynamics.prototype.template.call (this) +
+`
+{{#epfd}}<div><b>epfd</b>: {{epfd}}</div>{{/epfd}}
+{{#epfs}}<div><b>epfs</b>: {{epfs}}</div>{{/epfs}}
+{{#epvd}}<div><b>epvd</b>: {{epvd}}</div>{{/epvd}}
+{{#epvs}}<div><b>epvs</b>: {{epvs}}</div>{{/epvs}}
+{{#eqfd}}<div><b>eqfd</b>: {{eqfd}}</div>{{/eqfd}}
+{{#eqfs}}<div><b>eqfs</b>: {{eqfs}}</div>{{/eqfs}}
+{{#eqvd}}<div><b>eqvd</b>: {{eqvd}}</div>{{/eqvd}}
+{{#eqvs}}<div><b>eqvs</b>: {{eqvs}}</div>{{/eqvs}}
+{{#h}}<div><b>h</b>: {{h}}</div>{{/h}}
+{{#lfrac}}<div><b>lfrac</b>: {{lfrac}}</div>{{/lfrac}}
+{{#pfrac}}<div><b>pfrac</b>: {{pfrac}}</div>{{/pfrac}}
+</div>
+`
+                );
+           }        }
 
         /**
          * These load models (known also as generic non-linear dynamic (GNLD) load models) can be used in mid-term and long-term voltage stability simulations (i.e., to study voltage collapse), as they can replace a more detailed representation of aggregate load, including induction motors, thermostatically controlled and static loads.
@@ -468,7 +601,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadGenericNonLinear_collapse" aria-expanded="true" aria-controls="LoadGenericNonLinear_collapse">LoadGenericNonLinear</a>
+<div id="LoadGenericNonLinear_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LoadDynamics.prototype.template.call (this) +
+`
+{{#bs}}<div><b>bs</b>: {{bs}}</div>{{/bs}}
+{{#bt}}<div><b>bt</b>: {{bt}}</div>{{/bt}}
+{{#genericNonLinearLoadModelType}}<div><b>genericNonLinearLoadModelType</b>: {{genericNonLinearLoadModelType}}</div>{{/genericNonLinearLoadModelType}}
+{{#ls}}<div><b>ls</b>: {{ls}}</div>{{/ls}}
+{{#lt}}<div><b>lt</b>: {{lt}}</div>{{/lt}}
+{{#pt}}<div><b>pt</b>: {{pt}}</div>{{/pt}}
+{{#qt}}<div><b>qt</b>: {{qt}}</div>{{/qt}}
+{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+{{#tq}}<div><b>tq</b>: {{tq}}</div>{{/tq}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Standard aggregate load model comprised of static and/or dynamic components.
@@ -522,7 +678,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadAggregate_collapse" aria-expanded="true" aria-controls="LoadAggregate_collapse">LoadAggregate</a>
+<div id="LoadAggregate_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + LoadDynamics.prototype.template.call (this) +
+`
+{{#LoadMotor}}<div><b>LoadMotor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadMotor}}&quot;);})'>{{LoadMotor}}</a></div>{{/LoadMotor}}
+{{#LoadStatic}}<div><b>LoadStatic</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadStatic}}&quot;);})'>{{LoadStatic}}</a></div>{{/LoadStatic}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

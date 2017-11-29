@@ -58,7 +58,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#IEC62325CIMVersion_collapse" aria-expanded="true" aria-controls="IEC62325CIMVersion_collapse">IEC62325CIMVersion</a>
+<div id="IEC62325CIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#date}}<div><b>date</b>: {{date}}</div>{{/date}}
+{{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

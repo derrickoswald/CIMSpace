@@ -329,6 +329,14 @@ define
                 fields.splice (0, 0, "\t<cim:" + obj.cls + (id ? (" rdf:ID=\"" + id + "\">") : ">"));
                 fields.push ("\t</cim:" + obj.cls + ">");
             }
+
+            /**
+             * Template HTML for Element.
+             */
+            template ()
+            {
+                return ("");
+            }
          }
 
         return (

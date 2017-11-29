@@ -58,7 +58,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StandardIndustryCode_collapse" aria-expanded="true" aria-controls="StandardIndustryCode_collapse">StandardIndustryCode</a>
+<div id="StandardIndustryCode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A service guarantee, often imposed by a regulator, defines conditions that, if not satisfied, will result in the utility making a monetary payment to the customer.
@@ -116,7 +131,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ServiceGuarantee_collapse" aria-expanded="true" aria-controls="ServiceGuarantee_collapse">ServiceGuarantee</a>
+<div id="ServiceGuarantee_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#applicationPeriod}}<div><b>applicationPeriod</b>: {{applicationPeriod}}</div>{{/applicationPeriod}}
+{{#automaticPay}}<div><b>automaticPay</b>: {{automaticPay}}</div>{{/automaticPay}}
+{{#payAmount}}<div><b>payAmount</b>: {{payAmount}}</div>{{/payAmount}}
+{{#serviceRequirement}}<div><b>serviceRequirement</b>: {{serviceRequirement}}</div>{{/serviceRequirement}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Compliance events are used for reporting regulatory or contract compliance issues and/or variances.
@@ -168,7 +201,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ComplianceEvent_collapse" aria-expanded="true" aria-controls="ComplianceEvent_collapse">ComplianceEvent</a>
+<div id="ComplianceEvent_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.ActivityRecord.prototype.template.call (this) +
+`
+{{#deadline}}<div><b>deadline</b>: {{deadline}}</div>{{/deadline}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Billing information for work performed for the customer.
@@ -234,7 +282,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WorkBillingInfo_collapse" aria-expanded="true" aria-controls="WorkBillingInfo_collapse">WorkBillingInfo</a>
+<div id="WorkBillingInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#costEstimate}}<div><b>costEstimate</b>: {{costEstimate}}</div>{{/costEstimate}}
+{{#deposit}}<div><b>deposit</b>: {{deposit}}</div>{{/deposit}}
+{{#discount}}<div><b>discount</b>: {{discount}}</div>{{/discount}}
+{{#dueDateTime}}<div><b>dueDateTime</b>: {{dueDateTime}}</div>{{/dueDateTime}}
+{{#issueDateTime}}<div><b>issueDateTime</b>: {{issueDateTime}}</div>{{/issueDateTime}}
+{{#receivedDateTime}}<div><b>receivedDateTime</b>: {{receivedDateTime}}</div>{{/receivedDateTime}}
+{{#workPrice}}<div><b>workPrice</b>: {{workPrice}}</div>{{/workPrice}}
+{{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A type of customer agreement involving an external agency.
@@ -284,7 +354,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExternalCustomerAgreement_collapse" aria-expanded="true" aria-controls="ExternalCustomerAgreement_collapse">ExternalCustomerAgreement</a>
+<div id="ExternalCustomerAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Agreement.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Pricing can be based on power quality.
@@ -350,7 +434,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PowerQualityPricing_collapse" aria-expanded="true" aria-controls="PowerQualityPricing_collapse">PowerQualityPricing</a>
+<div id="PowerQualityPricing_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#emergencyHighVoltLimit}}<div><b>emergencyHighVoltLimit</b>: {{emergencyHighVoltLimit}}</div>{{/emergencyHighVoltLimit}}
+{{#emergencyLowVoltLimit}}<div><b>emergencyLowVoltLimit</b>: {{emergencyLowVoltLimit}}</div>{{/emergencyLowVoltLimit}}
+{{#normalHighVoltLimit}}<div><b>normalHighVoltLimit</b>: {{normalHighVoltLimit}}</div>{{/normalHighVoltLimit}}
+{{#normalLowVoltLimit}}<div><b>normalLowVoltLimit</b>: {{normalLowVoltLimit}}</div>{{/normalLowVoltLimit}}
+{{#powerFactorMin}}<div><b>powerFactorMin</b>: {{powerFactorMin}}</div>{{/powerFactorMin}}
+{{#valueUninterruptedServiceEnergy}}<div><b>valueUninterruptedServiceEnergy</b>: {{valueUninterruptedServiceEnergy}}</div>{{/valueUninterruptedServiceEnergy}}
+{{#valueUninterruptedServiceP}}<div><b>valueUninterruptedServiceP</b>: {{valueUninterruptedServiceP}}</div>{{/valueUninterruptedServiceP}}
+{{#voltImbalanceViolCost}}<div><b>voltImbalanceViolCost</b>: {{voltImbalanceViolCost}}</div>{{/voltImbalanceViolCost}}
+{{#voltLimitViolCost}}<div><b>voltLimitViolCost</b>: {{voltLimitViolCost}}</div>{{/voltLimitViolCost}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Price curve for specifying the cost of energy (X) at points in time (y1) according to a prcing structure, which is based on a tariff.
@@ -398,7 +505,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SubscribePowerCurve_collapse" aria-expanded="true" aria-controls="SubscribePowerCurve_collapse">SubscribePowerCurve</a>
+<div id="SubscribePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of customer billing.
@@ -454,7 +575,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CustomerBillingKind_collapse" aria-expanded="true" aria-controls="CustomerBillingKind_collapse">CustomerBillingKind</a>
+<div id="CustomerBillingKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#consolidatedEss}}<div><b>consolidatedEss</b>: {{consolidatedEss}}</div>{{/consolidatedEss}}
+{{#consolidatedUdc}}<div><b>consolidatedUdc</b>: {{consolidatedUdc}}</div>{{/consolidatedUdc}}
+{{#separateEssUdc}}<div><b>separateEssUdc</b>: {{separateEssUdc}}</div>{{/separateEssUdc}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The creation of the monthly customer billing statements is the method employed to notify Customers of charges, adjustments and credits applied to their account for Services and Products.
@@ -522,7 +661,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CustomerBillingInfo_collapse" aria-expanded="true" aria-controls="CustomerBillingInfo_collapse">CustomerBillingInfo</a>
+<div id="CustomerBillingInfo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#billingDate}}<div><b>billingDate</b>: {{billingDate}}</div>{{/billingDate}}
+{{#dueDate}}<div><b>dueDate</b>: {{dueDate}}</div>{{/dueDate}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#lastPaymentAmt}}<div><b>lastPaymentAmt</b>: {{lastPaymentAmt}}</div>{{/lastPaymentAmt}}
+{{#lastPaymentDate}}<div><b>lastPaymentDate</b>: {{lastPaymentDate}}</div>{{/lastPaymentDate}}
+{{#outBalance}}<div><b>outBalance</b>: {{outBalance}}</div>{{/outBalance}}
+{{#pymtPlanAmt}}<div><b>pymtPlanAmt</b>: {{pymtPlanAmt}}</div>{{/pymtPlanAmt}}
+{{#pymtPlanType}}<div><b>pymtPlanType</b>: {{pymtPlanType}}</div>{{/pymtPlanType}}
+{{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

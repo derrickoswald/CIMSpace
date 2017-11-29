@@ -60,7 +60,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#HydroEnergyConversionKind_collapse" aria-expanded="true" aria-controls="HydroEnergyConversionKind_collapse">HydroEnergyConversionKind</a>
+<div id="HydroEnergyConversionKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#generator}}<div><b>generator</b>: {{generator}}</div>{{/generator}}
+{{#pumpAndGenerator}}<div><b>pumpAndGenerator</b>: {{pumpAndGenerator}}</div>{{/pumpAndGenerator}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Quantity of emission per fuel heat content.
@@ -118,7 +134,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Emission_collapse" aria-expanded="true" aria-controls="Emission_collapse">Emission</a>
+<div id="Emission_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of wind generating unit.
@@ -170,7 +205,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WindGenUnitKind_collapse" aria-expanded="true" aria-controls="WindGenUnitKind_collapse">WindGenUnitKind</a>
+<div id="WindGenUnitKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#offshore}}<div><b>offshore</b>: {{offshore}}</div>{{/offshore}}
+{{#onshore}}<div><b>onshore</b>: {{onshore}}</div>{{/onshore}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A synchronous motor-driven pump, typically associated with a pumped storage plant.
@@ -232,7 +283,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#HydroPump_collapse" aria-expanded="true" aria-controls="HydroPump_collapse">HydroPump</a>
+<div id="HydroPump_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Equipment.prototype.template.call (this) +
+`
+{{#pumpDischAtMaxHead}}<div><b>pumpDischAtMaxHead</b>: {{pumpDischAtMaxHead}}</div>{{/pumpDischAtMaxHead}}
+{{#pumpDischAtMinHead}}<div><b>pumpDischAtMinHead</b>: {{pumpDischAtMinHead}}</div>{{/pumpDischAtMinHead}}
+{{#pumpPowerAtMaxHead}}<div><b>pumpPowerAtMaxHead</b>: {{pumpPowerAtMaxHead}}</div>{{/pumpPowerAtMaxHead}}
+{{#pumpPowerAtMinHead}}<div><b>pumpPowerAtMinHead</b>: {{pumpPowerAtMinHead}}</div>{{/pumpPowerAtMinHead}}
+{{#RotatingMachine}}<div><b>RotatingMachine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RotatingMachine}}&quot;);})'>{{RotatingMachine}}</a></div>{{/RotatingMachine}}
+{{#HydroPumpOpSchedule}}<div><b>HydroPumpOpSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPumpOpSchedule}}&quot;);})'>{{HydroPumpOpSchedule}}</a></div>{{/HydroPumpOpSchedule}}
+{{#HydroPowerPlant}}<div><b>HydroPowerPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPowerPlant}}&quot;);})'>{{HydroPowerPlant}}</a></div>{{/HydroPowerPlant}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Relationship between penstock head loss (in meters) and  total discharge through the penstock (in cubic meters per second).
@@ -284,7 +356,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PenstockLossCurve_collapse" aria-expanded="true" aria-controls="PenstockLossCurve_collapse">PenstockLossCurve</a>
+<div id="PenstockLossCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#HydroGeneratingUnit}}<div><b>HydroGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroGeneratingUnit}}&quot;);})'>{{HydroGeneratingUnit}}</a></div>{{/HydroGeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A set of thermal generating units for the production of electrical energy and process steam (usually from the output of the steam turbines).
@@ -346,7 +433,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CogenerationPlant_collapse" aria-expanded="true" aria-controls="CogenerationPlant_collapse">CogenerationPlant</a>
+<div id="CogenerationPlant_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#cogenHPSendoutRating}}<div><b>cogenHPSendoutRating</b>: {{cogenHPSendoutRating}}</div>{{/cogenHPSendoutRating}}
+{{#cogenHPSteamRating}}<div><b>cogenHPSteamRating</b>: {{cogenHPSteamRating}}</div>{{/cogenHPSteamRating}}
+{{#cogenLPSendoutRating}}<div><b>cogenLPSendoutRating</b>: {{cogenLPSendoutRating}}</div>{{/cogenLPSendoutRating}}
+{{#cogenLPSteamRating}}<div><b>cogenLPSteamRating</b>: {{cogenLPSteamRating}}</div>{{/cogenLPSteamRating}}
+{{#ratedP}}<div><b>ratedP</b>: {{ratedP}}</div>{{/ratedP}}
+{{#SteamSendoutSchedule}}<div><b>SteamSendoutSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SteamSendoutSchedule}}&quot;);})'>{{SteamSendoutSchedule}}</a></div>{{/SteamSendoutSchedule}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Relationship between unit incremental heat rate in (delta energy/time) per (delta active power) and unit output in active power.
@@ -400,7 +507,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#IncrementalHeatRateCurve_collapse" aria-expanded="true" aria-controls="IncrementalHeatRateCurve_collapse">IncrementalHeatRateCurve</a>
+<div id="IncrementalHeatRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
+{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The type of hydro power plant.
@@ -454,7 +577,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#HydroPlantStorageKind_collapse" aria-expanded="true" aria-controls="HydroPlantStorageKind_collapse">HydroPlantStorageKind</a>
+<div id="HydroPlantStorageKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#runOfRiver}}<div><b>runOfRiver</b>: {{runOfRiver}}</div>{{/runOfRiver}}
+{{#pumpedStorage}}<div><b>pumpedStorage</b>: {{pumpedStorage}}</div>{{/pumpedStorage}}
+{{#storage}}<div><b>storage</b>: {{storage}}</div>{{/storage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A water storage facility within a hydro system, including: ponds, lakes, lagoons, and rivers.
@@ -530,7 +670,34 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Reservoir_collapse" aria-expanded="true" aria-controls="Reservoir_collapse">Reservoir</a>
+<div id="Reservoir_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#activeStorageCapacity}}<div><b>activeStorageCapacity</b>: {{activeStorageCapacity}}</div>{{/activeStorageCapacity}}
+{{#energyStorageRating}}<div><b>energyStorageRating</b>: {{energyStorageRating}}</div>{{/energyStorageRating}}
+{{#fullSupplyLevel}}<div><b>fullSupplyLevel</b>: {{fullSupplyLevel}}</div>{{/fullSupplyLevel}}
+{{#grossCapacity}}<div><b>grossCapacity</b>: {{grossCapacity}}</div>{{/grossCapacity}}
+{{#normalMinOperateLevel}}<div><b>normalMinOperateLevel</b>: {{normalMinOperateLevel}}</div>{{/normalMinOperateLevel}}
+{{#riverOutletWorks}}<div><b>riverOutletWorks</b>: {{riverOutletWorks}}</div>{{/riverOutletWorks}}
+{{#spillTravelDelay}}<div><b>spillTravelDelay</b>: {{spillTravelDelay}}</div>{{/spillTravelDelay}}
+{{#spillwayCapacity}}<div><b>spillwayCapacity</b>: {{spillwayCapacity}}</div>{{/spillwayCapacity}}
+{{#spillwayCrestLength}}<div><b>spillwayCrestLength</b>: {{spillwayCrestLength}}</div>{{/spillwayCrestLength}}
+{{#spillwayCrestLevel}}<div><b>spillwayCrestLevel</b>: {{spillwayCrestLevel}}</div>{{/spillwayCrestLevel}}
+{{#spillWayGateType}}<div><b>spillWayGateType</b>: {{spillWayGateType}}</div>{{/spillWayGateType}}
+{{#TargetLevelSchedule}}<div><b>TargetLevelSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetLevelSchedule}}&quot;);})'>{{TargetLevelSchedule}}</a></div>{{/TargetLevelSchedule}}
+{{#SpillsFromReservoir}}<div><b>SpillsFromReservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SpillsFromReservoir}}&quot;);})'>{{SpillsFromReservoir}}</a></div>{{/SpillsFromReservoir}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Classification of level.
@@ -586,7 +753,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Classification_collapse" aria-expanded="true" aria-controls="Classification_collapse">Classification</a>
+<div id="Classification_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The quantity of ignition fuel (Y-axis) used to restart and repay the auxiliary power consumed versus the number of hours (X-axis) the unit was off line.
@@ -638,7 +822,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StartIgnFuelCurve_collapse" aria-expanded="true" aria-controls="StartIgnFuelCurve_collapse">StartIgnFuelCurve</a>
+<div id="StartIgnFuelCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#ignitionFuelType}}<div><b>ignitionFuelType</b>: {{ignitionFuelType}}</div>{{/ignitionFuelType}}
+{{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);})'>{{StartupModel}}</a></div>{{/StartupModel}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Relationship between reservoir volume and reservoir level.
@@ -690,7 +890,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LevelVsVolumeCurve_collapse" aria-expanded="true" aria-controls="LevelVsVolumeCurve_collapse">LevelVsVolumeCurve</a>
+<div id="LevelVsVolumeCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);})'>{{Reservoir}}</a></div>{{/Reservoir}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Relationship between the generating unit's gross active power output on the X-axis (measured at the terminals of the machine(s)) and the generating unit's net active power output on the Y-axis (based on utility-defined measurements at the power station).
@@ -742,7 +957,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GrossToNetActivePowerCurve_collapse" aria-expanded="true" aria-controls="GrossToNetActivePowerCurve_collapse">GrossToNetActivePowerCurve</a>
+<div id="GrossToNetActivePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);})'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Combustion turbine air compressor which is an integral part of a compressed air energy storage (CAES) plant.
@@ -796,7 +1026,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AirCompressor_collapse" aria-expanded="true" aria-controls="AirCompressor_collapse">AirCompressor</a>
+<div id="AirCompressor_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#airCompressorRating}}<div><b>airCompressorRating</b>: {{airCompressorRating}}</div>{{/airCompressorRating}}
+{{#CombustionTurbine}}<div><b>CombustionTurbine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombustionTurbine}}&quot;);})'>{{CombustionTurbine}}</a></div>{{/CombustionTurbine}}
+{{#CAESPlant}}<div><b>CAESPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CAESPlant}}&quot;);})'>{{CAESPlant}}</a></div>{{/CAESPlant}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Heat generated, in energy pertime unit of elapsed time.
@@ -854,7 +1101,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#HeatRate_collapse" aria-expanded="true" aria-controls="HeatRate_collapse">HeatRate</a>
+<div id="HeatRate_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The amount of fuel of a given type which is allocated for consumption over a specified period of time.
@@ -916,7 +1182,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FuelAllocationSchedule_collapse" aria-expanded="true" aria-controls="FuelAllocationSchedule_collapse">FuelAllocationSchedule</a>
+<div id="FuelAllocationSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#fuelAllocationEndDate}}<div><b>fuelAllocationEndDate</b>: {{fuelAllocationEndDate}}</div>{{/fuelAllocationEndDate}}
+{{#fuelAllocationStartDate}}<div><b>fuelAllocationStartDate</b>: {{fuelAllocationStartDate}}</div>{{/fuelAllocationStartDate}}
+{{#fuelType}}<div><b>fuelType</b>: {{fuelType}}</div>{{/fuelType}}
+{{#maxFuelAllocation}}<div><b>maxFuelAllocation</b>: {{maxFuelAllocation}}</div>{{/maxFuelAllocation}}
+{{#minFuelAllocation}}<div><b>minFuelAllocation</b>: {{minFuelAllocation}}</div>{{/minFuelAllocation}}
+{{#FossilFuel}}<div><b>FossilFuel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FossilFuel}}&quot;);})'>{{FossilFuel}}</a></div>{{/FossilFuel}}
+{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The source of controls for a generating unit.
@@ -972,7 +1259,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GeneratorControlSource_collapse" aria-expanded="true" aria-controls="GeneratorControlSource_collapse">GeneratorControlSource</a>
+<div id="GeneratorControlSource_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#unavailable}}<div><b>unavailable</b>: {{unavailable}}</div>{{/unavailable}}
+{{#offAGC}}<div><b>offAGC</b>: {{offAGC}}</div>{{/offAGC}}
+{{#onAGC}}<div><b>onAGC</b>: {{onAGC}}</div>{{/onAGC}}
+{{#plantControl}}<div><b>plantControl</b>: {{plantControl}}</div>{{/plantControl}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The type of emission.
@@ -1032,7 +1337,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EmissionType_collapse" aria-expanded="true" aria-controls="EmissionType_collapse">EmissionType</a>
+<div id="EmissionType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#sulfurDioxide}}<div><b>sulfurDioxide</b>: {{sulfurDioxide}}</div>{{/sulfurDioxide}}
+{{#carbonDioxide}}<div><b>carbonDioxide</b>: {{carbonDioxide}}</div>{{/carbonDioxide}}
+{{#nitrogenOxide}}<div><b>nitrogenOxide</b>: {{nitrogenOxide}}</div>{{/nitrogenOxide}}
+{{#hydrogenSulfide}}<div><b>hydrogenSulfide</b>: {{hydrogenSulfide}}</div>{{/hydrogenSulfide}}
+{{#chlorine}}<div><b>chlorine</b>: {{chlorine}}</div>{{/chlorine}}
+{{#carbonDisulfide}}<div><b>carbonDisulfide</b>: {{carbonDisulfide}}</div>{{/carbonDisulfide}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Relationship between unit efficiency in percent and unit output active power for a given net head in meters.
@@ -1084,7 +1409,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#HydroGeneratingEfficiencyCurve_collapse" aria-expanded="true" aria-controls="HydroGeneratingEfficiencyCurve_collapse">HydroGeneratingEfficiencyCurve</a>
+<div id="HydroGeneratingEfficiencyCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#HydroGeneratingUnit}}<div><b>HydroGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroGeneratingUnit}}&quot;);})'>{{HydroGeneratingUnit}}</a></div>{{/HydroGeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The generating unit's Operator-approved current operating schedule (or plan), typically produced with the aid of unit commitment type analyses.
@@ -1136,7 +1476,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GenUnitOpSchedule_collapse" aria-expanded="true" aria-controls="GenUnitOpSchedule_collapse">GenUnitOpSchedule</a>
+<div id="GenUnitOpSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.RegularIntervalSchedule.prototype.template.call (this) +
+`
+{{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);})'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Relationship between unit heat rate per active power (Y-axis) and  unit output (X-axis).
@@ -1190,7 +1545,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#HeatRateCurve_collapse" aria-expanded="true" aria-controls="HeatRateCurve_collapse">HeatRateCurve</a>
+<div id="HeatRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
+{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Type of fuel.
@@ -1250,7 +1621,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FuelType_collapse" aria-expanded="true" aria-controls="FuelType_collapse">FuelType</a>
+<div id="FuelType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#coal}}<div><b>coal</b>: {{coal}}</div>{{/coal}}
+{{#oil}}<div><b>oil</b>: {{oil}}</div>{{/oil}}
+{{#gas}}<div><b>gas</b>: {{gas}}</div>{{/gas}}
+{{#lignite}}<div><b>lignite</b>: {{lignite}}</div>{{/lignite}}
+{{#hardCoal}}<div><b>hardCoal</b>: {{hardCoal}}</div>{{/hardCoal}}
+{{#oilShale}}<div><b>oilShale</b>: {{oilShale}}</div>{{/oilShale}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Relationship between unit operating cost (Y-axis) and unit output active power (X-axis).
@@ -1304,7 +1695,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GenUnitOpCostCurve_collapse" aria-expanded="true" aria-controls="GenUnitOpCostCurve_collapse">GenUnitOpCostCurve</a>
+<div id="GenUnitOpCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
+{{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);})'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The cogeneration plant's steam sendout schedule in volume per time unit.
@@ -1354,7 +1761,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SteamSendoutSchedule_collapse" aria-expanded="true" aria-controls="SteamSendoutSchedule_collapse">SteamSendoutSchedule</a>
+<div id="SteamSendoutSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.RegularIntervalSchedule.prototype.template.call (this) +
+`
+{{#CogenerationPlant}}<div><b>CogenerationPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CogenerationPlant}}&quot;);})'>{{CogenerationPlant}}</a></div>{{/CogenerationPlant}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Relationship between tailbay head loss hight (y-axis) and the total discharge into the power station's tailbay volume per time unit (x-axis) .
@@ -1406,7 +1828,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TailbayLossCurve_collapse" aria-expanded="true" aria-controls="TailbayLossCurve_collapse">TailbayLossCurve</a>
+<div id="TailbayLossCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#HydroGeneratingUnit}}<div><b>HydroGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroGeneratingUnit}}&quot;);})'>{{HydroGeneratingUnit}}</a></div>{{/HydroGeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Compressed air energy storage plant.
@@ -1462,7 +1899,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CAESPlant_collapse" aria-expanded="true" aria-controls="CAESPlant_collapse">CAESPlant</a>
+<div id="CAESPlant_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#energyStorageCapacity}}<div><b>energyStorageCapacity</b>: {{energyStorageCapacity}}</div>{{/energyStorageCapacity}}
+{{#ratedCapacityP}}<div><b>ratedCapacityP</b>: {{ratedCapacityP}}</div>{{/ratedCapacityP}}
+{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+{{#AirCompressor}}<div><b>AirCompressor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AirCompressor}}&quot;);})'>{{AirCompressor}}</a></div>{{/AirCompressor}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The source of the emission value.
@@ -1514,7 +1969,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EmissionValueSource_collapse" aria-expanded="true" aria-controls="EmissionValueSource_collapse">EmissionValueSource</a>
+<div id="EmissionValueSource_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#measured}}<div><b>measured</b>: {{measured}}</div>{{/measured}}
+{{#calculated}}<div><b>calculated</b>: {{calculated}}</div>{{/calculated}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Relationship between the unit's emission rate in units of mass per hour (Y-axis) and output active power (X-axis) for a given type of emission.
@@ -1572,7 +2043,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EmissionCurve_collapse" aria-expanded="true" aria-controls="EmissionCurve_collapse">EmissionCurve</a>
+<div id="EmissionCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#emissionContent}}<div><b>emissionContent</b>: {{emissionContent}}</div>{{/emissionContent}}
+{{#emissionType}}<div><b>emissionType</b>: {{emissionType}}</div>{{/emissionType}}
+{{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
+{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Unit control modes.
@@ -1624,7 +2113,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GeneratorControlMode_collapse" aria-expanded="true" aria-controls="GeneratorControlMode_collapse">GeneratorControlMode</a>
+<div id="GeneratorControlMode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#setpoint}}<div><b>setpoint</b>: {{setpoint}}</div>{{/setpoint}}
+{{#pulse}}<div><b>pulse</b>: {{pulse}}</div>{{/pulse}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The quantity of main fuel (Y-axis) used to restart and repay the auxiliary power consumed versus the number of hours (X-axis) the unit was off line.
@@ -1676,7 +2181,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StartMainFuelCurve_collapse" aria-expanded="true" aria-controls="StartMainFuelCurve_collapse">StartMainFuelCurve</a>
+<div id="StartMainFuelCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#mainFuelType}}<div><b>mainFuelType</b>: {{mainFuelType}}</div>{{/mainFuelType}}
+{{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);})'>{{StartupModel}}</a></div>{{/StartupModel}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Rate in gross active power/minute (Y-axis) at which a unit can be loaded versus the number of hours (X-axis) the unit was off line.
@@ -1728,7 +2249,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StartRampCurve_collapse" aria-expanded="true" aria-controls="StartRampCurve_collapse">StartRampCurve</a>
+<div id="StartRampCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#hotStandbyRamp}}<div><b>hotStandbyRamp</b>: {{hotStandbyRamp}}</div>{{/hotStandbyRamp}}
+{{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);})'>{{StartupModel}}</a></div>{{/StartupModel}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The fossil fuel consumed by the non-nuclear thermal generating unit.
@@ -1800,7 +2337,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FossilFuel_collapse" aria-expanded="true" aria-controls="FossilFuel_collapse">FossilFuel</a>
+<div id="FossilFuel_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#fossilFuelType}}<div><b>fossilFuelType</b>: {{fossilFuelType}}</div>{{/fossilFuelType}}
+{{#fuelCost}}<div><b>fuelCost</b>: {{fuelCost}}</div>{{/fuelCost}}
+{{#fuelDispatchCost}}<div><b>fuelDispatchCost</b>: {{fuelDispatchCost}}</div>{{/fuelDispatchCost}}
+{{#fuelEffFactor}}<div><b>fuelEffFactor</b>: {{fuelEffFactor}}</div>{{/fuelEffFactor}}
+{{#fuelHandlingCost}}<div><b>fuelHandlingCost</b>: {{fuelHandlingCost}}</div>{{/fuelHandlingCost}}
+{{#fuelHeatContent}}<div><b>fuelHeatContent</b>: {{fuelHeatContent}}</div>{{/fuelHeatContent}}
+{{#fuelMixture}}<div><b>fuelMixture</b>: {{fuelMixture}}</div>{{/fuelMixture}}
+{{#fuelSulfur}}<div><b>fuelSulfur</b>: {{fuelSulfur}}</div>{{/fuelSulfur}}
+{{#highBreakpointP}}<div><b>highBreakpointP</b>: {{highBreakpointP}}</div>{{/highBreakpointP}}
+{{#lowBreakpointP}}<div><b>lowBreakpointP</b>: {{lowBreakpointP}}</div>{{/lowBreakpointP}}
+{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A single or set of synchronous machines for converting mechanical power into alternating-current power.
@@ -1926,7 +2488,59 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GeneratingUnit_collapse" aria-expanded="true" aria-controls="GeneratingUnit_collapse">GeneratingUnit</a>
+<div id="GeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Equipment.prototype.template.call (this) +
+`
+{{#allocSpinResP}}<div><b>allocSpinResP</b>: {{allocSpinResP}}</div>{{/allocSpinResP}}
+{{#autoCntrlMarginP}}<div><b>autoCntrlMarginP</b>: {{autoCntrlMarginP}}</div>{{/autoCntrlMarginP}}
+{{#baseP}}<div><b>baseP</b>: {{baseP}}</div>{{/baseP}}
+{{#controlDeadband}}<div><b>controlDeadband</b>: {{controlDeadband}}</div>{{/controlDeadband}}
+{{#controlPulseHigh}}<div><b>controlPulseHigh</b>: {{controlPulseHigh}}</div>{{/controlPulseHigh}}
+{{#controlPulseLow}}<div><b>controlPulseLow</b>: {{controlPulseLow}}</div>{{/controlPulseLow}}
+{{#controlResponseRate}}<div><b>controlResponseRate</b>: {{controlResponseRate}}</div>{{/controlResponseRate}}
+{{#efficiency}}<div><b>efficiency</b>: {{efficiency}}</div>{{/efficiency}}
+{{#genControlMode}}<div><b>genControlMode</b>: {{genControlMode}}</div>{{/genControlMode}}
+{{#genControlSource}}<div><b>genControlSource</b>: {{genControlSource}}</div>{{/genControlSource}}
+{{#governorMPL}}<div><b>governorMPL</b>: {{governorMPL}}</div>{{/governorMPL}}
+{{#governorSCD}}<div><b>governorSCD</b>: {{governorSCD}}</div>{{/governorSCD}}
+{{#highControlLimit}}<div><b>highControlLimit</b>: {{highControlLimit}}</div>{{/highControlLimit}}
+{{#initialP}}<div><b>initialP</b>: {{initialP}}</div>{{/initialP}}
+{{#longPF}}<div><b>longPF</b>: {{longPF}}</div>{{/longPF}}
+{{#lowControlLimit}}<div><b>lowControlLimit</b>: {{lowControlLimit}}</div>{{/lowControlLimit}}
+{{#lowerRampRate}}<div><b>lowerRampRate</b>: {{lowerRampRate}}</div>{{/lowerRampRate}}
+{{#maxEconomicP}}<div><b>maxEconomicP</b>: {{maxEconomicP}}</div>{{/maxEconomicP}}
+{{#maximumAllowableSpinningReserve}}<div><b>maximumAllowableSpinningReserve</b>: {{maximumAllowableSpinningReserve}}</div>{{/maximumAllowableSpinningReserve}}
+{{#maxOperatingP}}<div><b>maxOperatingP</b>: {{maxOperatingP}}</div>{{/maxOperatingP}}
+{{#minEconomicP}}<div><b>minEconomicP</b>: {{minEconomicP}}</div>{{/minEconomicP}}
+{{#minimumOffTime}}<div><b>minimumOffTime</b>: {{minimumOffTime}}</div>{{/minimumOffTime}}
+{{#minOperatingP}}<div><b>minOperatingP</b>: {{minOperatingP}}</div>{{/minOperatingP}}
+{{#modelDetail}}<div><b>modelDetail</b>: {{modelDetail}}</div>{{/modelDetail}}
+{{#nominalP}}<div><b>nominalP</b>: {{nominalP}}</div>{{/nominalP}}
+{{#normalPF}}<div><b>normalPF</b>: {{normalPF}}</div>{{/normalPF}}
+{{#penaltyFactor}}<div><b>penaltyFactor</b>: {{penaltyFactor}}</div>{{/penaltyFactor}}
+{{#raiseRampRate}}<div><b>raiseRampRate</b>: {{raiseRampRate}}</div>{{/raiseRampRate}}
+{{#ratedGrossMaxP}}<div><b>ratedGrossMaxP</b>: {{ratedGrossMaxP}}</div>{{/ratedGrossMaxP}}
+{{#ratedGrossMinP}}<div><b>ratedGrossMinP</b>: {{ratedGrossMinP}}</div>{{/ratedGrossMinP}}
+{{#ratedNetMaxP}}<div><b>ratedNetMaxP</b>: {{ratedNetMaxP}}</div>{{/ratedNetMaxP}}
+{{#shortPF}}<div><b>shortPF</b>: {{shortPF}}</div>{{/shortPF}}
+{{#startupCost}}<div><b>startupCost</b>: {{startupCost}}</div>{{/startupCost}}
+{{#startupTime}}<div><b>startupTime</b>: {{startupTime}}</div>{{/startupTime}}
+{{#tieLinePF}}<div><b>tieLinePF</b>: {{tieLinePF}}</div>{{/tieLinePF}}
+{{#variableCost}}<div><b>variableCost</b>: {{variableCost}}</div>{{/variableCost}}
+{{#totalEfficiency}}<div><b>totalEfficiency</b>: {{totalEfficiency}}</div>{{/totalEfficiency}}
+{{#GenUnitOpSchedule}}<div><b>GenUnitOpSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenUnitOpSchedule}}&quot;);})'>{{GenUnitOpSchedule}}</a></div>{{/GenUnitOpSchedule}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A hydro power station which can generate or pump.
@@ -1998,7 +2612,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#HydroPowerPlant_collapse" aria-expanded="true" aria-controls="HydroPowerPlant_collapse">HydroPowerPlant</a>
+<div id="HydroPowerPlant_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#dischargeTravelDelay}}<div><b>dischargeTravelDelay</b>: {{dischargeTravelDelay}}</div>{{/dischargeTravelDelay}}
+{{#genRatedP}}<div><b>genRatedP</b>: {{genRatedP}}</div>{{/genRatedP}}
+{{#hydroPlantStorageType}}<div><b>hydroPlantStorageType</b>: {{hydroPlantStorageType}}</div>{{/hydroPlantStorageType}}
+{{#penstockType}}<div><b>penstockType</b>: {{penstockType}}</div>{{/penstockType}}
+{{#plantDischargeCapacity}}<div><b>plantDischargeCapacity</b>: {{plantDischargeCapacity}}</div>{{/plantDischargeCapacity}}
+{{#plantRatedHead}}<div><b>plantRatedHead</b>: {{plantRatedHead}}</div>{{/plantRatedHead}}
+{{#pumpRatedP}}<div><b>pumpRatedP</b>: {{pumpRatedP}}</div>{{/pumpRatedP}}
+{{#surgeTankCode}}<div><b>surgeTankCode</b>: {{surgeTankCode}}</div>{{/surgeTankCode}}
+{{#surgeTankCrestLevel}}<div><b>surgeTankCrestLevel</b>: {{surgeTankCrestLevel}}</div>{{/surgeTankCrestLevel}}
+{{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);})'>{{Reservoir}}</a></div>{{/Reservoir}}
+{{#GenSourcePumpDischargeReservoir}}<div><b>GenSourcePumpDischargeReservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenSourcePumpDischargeReservoir}}&quot;);})'>{{GenSourcePumpDischargeReservoir}}</a></div>{{/GenSourcePumpDischargeReservoir}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The hydro pump's Operator-approved current operating schedule (or plan), typically produced with the aid of unit commitment type analyses.
@@ -2050,7 +2689,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#HydroPumpOpSchedule_collapse" aria-expanded="true" aria-controls="HydroPumpOpSchedule_collapse">HydroPumpOpSchedule</a>
+<div id="HydroPumpOpSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.RegularIntervalSchedule.prototype.template.call (this) +
+`
+{{#HydroPump}}<div><b>HydroPump</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPump}}&quot;);})'>{{HydroPump}}</a></div>{{/HydroPump}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Relationship between the rate in gross active power/minute (Y-axis) at which a unit should be shutdown and its present gross MW output (X-axis).
@@ -2104,7 +2758,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ShutdownCurve_collapse" aria-expanded="true" aria-controls="ShutdownCurve_collapse">ShutdownCurve</a>
+<div id="ShutdownCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#shutdownCost}}<div><b>shutdownCost</b>: {{shutdownCost}}</div>{{/shutdownCost}}
+{{#shutdownDate}}<div><b>shutdownDate</b>: {{shutdownDate}}</div>{{/shutdownDate}}
+{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Accounts for tracking emissions usage and credits for thermal generating units.
@@ -2160,7 +2831,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EmissionAccount_collapse" aria-expanded="true" aria-controls="EmissionAccount_collapse">EmissionAccount</a>
+<div id="EmissionAccount_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#emissionType}}<div><b>emissionType</b>: {{emissionType}}</div>{{/emissionType}}
+{{#emissionValueSource}}<div><b>emissionValueSource</b>: {{emissionValueSource}}</div>{{/emissionValueSource}}
+{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Relationship between unit heat input in energy per time for main fuel (Y1-axis) and supplemental fuel (Y2-axis) versus unit output in active power (X-axis).
@@ -2222,7 +2910,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#HeatInputCurve_collapse" aria-expanded="true" aria-controls="HeatInputCurve_collapse">HeatInputCurve</a>
+<div id="HeatInputCurve_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#auxPowerMult}}<div><b>auxPowerMult</b>: {{auxPowerMult}}</div>{{/auxPowerMult}}
+{{#auxPowerOffset}}<div><b>auxPowerOffset</b>: {{auxPowerOffset}}</div>{{/auxPowerOffset}}
+{{#heatInputEff}}<div><b>heatInputEff</b>: {{heatInputEff}}</div>{{/heatInputEff}}
+{{#heatInputOffset}}<div><b>heatInputOffset</b>: {{heatInputOffset}}</div>{{/heatInputOffset}}
+{{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
+{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Unit start up characteristics depending on how long the unit has been off line.
@@ -2298,7 +3006,35 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StartupModel_collapse" aria-expanded="true" aria-controls="StartupModel_collapse">StartupModel</a>
+<div id="StartupModel_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#fixedMaintCost}}<div><b>fixedMaintCost</b>: {{fixedMaintCost}}</div>{{/fixedMaintCost}}
+{{#hotStandbyHeat}}<div><b>hotStandbyHeat</b>: {{hotStandbyHeat}}</div>{{/hotStandbyHeat}}
+{{#incrementalMaintCost}}<div><b>incrementalMaintCost</b>: {{incrementalMaintCost}}</div>{{/incrementalMaintCost}}
+{{#minimumDownTime}}<div><b>minimumDownTime</b>: {{minimumDownTime}}</div>{{/minimumDownTime}}
+{{#minimumRunTime}}<div><b>minimumRunTime</b>: {{minimumRunTime}}</div>{{/minimumRunTime}}
+{{#riskFactorCost}}<div><b>riskFactorCost</b>: {{riskFactorCost}}</div>{{/riskFactorCost}}
+{{#startupCost}}<div><b>startupCost</b>: {{startupCost}}</div>{{/startupCost}}
+{{#startupDate}}<div><b>startupDate</b>: {{startupDate}}</div>{{/startupDate}}
+{{#startupPriority}}<div><b>startupPriority</b>: {{startupPriority}}</div>{{/startupPriority}}
+{{#stbyAuxP}}<div><b>stbyAuxP</b>: {{stbyAuxP}}</div>{{/stbyAuxP}}
+{{#StartIgnFuelCurve}}<div><b>StartIgnFuelCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartIgnFuelCurve}}&quot;);})'>{{StartIgnFuelCurve}}</a></div>{{/StartIgnFuelCurve}}
+{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+{{#StartMainFuelCurve}}<div><b>StartMainFuelCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartMainFuelCurve}}&quot;);})'>{{StartMainFuelCurve}}</a></div>{{/StartMainFuelCurve}}
+{{#StartRampCurve}}<div><b>StartRampCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartRampCurve}}&quot;);})'>{{StartRampCurve}}</a></div>{{/StartRampCurve}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Cost, in units of currency, per quantity of heat generated.
@@ -2356,7 +3092,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CostPerHeatUnit_collapse" aria-expanded="true" aria-controls="CostPerHeatUnit_collapse">CostPerHeatUnit</a>
+<div id="CostPerHeatUnit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A set of combustion turbines and steam turbines where the exhaust heat from the combustion turbines is recovered to make steam for the steam turbines, resulting in greater overall plant efficiency.
@@ -2406,7 +3161,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CombinedCyclePlant_collapse" aria-expanded="true" aria-controls="CombinedCyclePlant_collapse">CombinedCyclePlant</a>
+<div id="CombinedCyclePlant_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#combCyclePlantRating}}<div><b>combCyclePlantRating</b>: {{combCyclePlantRating}}</div>{{/combCyclePlantRating}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Reservoir water level targets from advanced studies or "rule curves".
@@ -2462,7 +3232,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TargetLevelSchedule_collapse" aria-expanded="true" aria-controls="TargetLevelSchedule_collapse">TargetLevelSchedule</a>
+<div id="TargetLevelSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.Curve.prototype.template.call (this) +
+`
+{{#highLevelLimit}}<div><b>highLevelLimit</b>: {{highLevelLimit}}</div>{{/highLevelLimit}}
+{{#lowLevelLimit}}<div><b>lowLevelLimit</b>: {{lowLevelLimit}}</div>{{/lowLevelLimit}}
+{{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);})'>{{Reservoir}}</a></div>{{/Reservoir}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Natural water inflow to a reservoir, usually forecasted from predicted rain and snowmelt.
@@ -2514,7 +3301,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#InflowForecast_collapse" aria-expanded="true" aria-controls="InflowForecast_collapse">InflowForecast</a>
+<div id="InflowForecast_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.RegularIntervalSchedule.prototype.template.call (this) +
+`
+{{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);})'>{{Reservoir}}</a></div>{{/Reservoir}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A generating unit whose prime mover could be a steam turbine, combustion turbine, or diesel engine.
@@ -2580,7 +3382,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ThermalGeneratingUnit_collapse" aria-expanded="true" aria-controls="ThermalGeneratingUnit_collapse">ThermalGeneratingUnit</a>
+<div id="ThermalGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + GeneratingUnit.prototype.template.call (this) +
+`
+{{#oMCost}}<div><b>oMCost</b>: {{oMCost}}</div>{{/oMCost}}
+{{#ShutdownCurve}}<div><b>ShutdownCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShutdownCurve}}&quot;);})'>{{ShutdownCurve}}</a></div>{{/ShutdownCurve}}
+{{#CogenerationPlant}}<div><b>CogenerationPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CogenerationPlant}}&quot;);})'>{{CogenerationPlant}}</a></div>{{/CogenerationPlant}}
+{{#HeatRateCurve}}<div><b>HeatRateCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HeatRateCurve}}&quot;);})'>{{HeatRateCurve}}</a></div>{{/HeatRateCurve}}
+{{#CAESPlant}}<div><b>CAESPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CAESPlant}}&quot;);})'>{{CAESPlant}}</a></div>{{/CAESPlant}}
+{{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);})'>{{StartupModel}}</a></div>{{/StartupModel}}
+{{#CombinedCyclePlant}}<div><b>CombinedCyclePlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombinedCyclePlant}}&quot;);})'>{{CombinedCyclePlant}}</a></div>{{/CombinedCyclePlant}}
+{{#IncrementalHeatRateCurve}}<div><b>IncrementalHeatRateCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IncrementalHeatRateCurve}}&quot;);})'>{{IncrementalHeatRateCurve}}</a></div>{{/IncrementalHeatRateCurve}}
+{{#HeatInputCurve}}<div><b>HeatInputCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HeatInputCurve}}&quot;);})'>{{HeatInputCurve}}</a></div>{{/HeatInputCurve}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A generating unit whose prime mover is a hydraulic turbine (e.g., Francis, Pelton, Kaplan).
@@ -2636,7 +3461,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#HydroGeneratingUnit_collapse" aria-expanded="true" aria-controls="HydroGeneratingUnit_collapse">HydroGeneratingUnit</a>
+<div id="HydroGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + GeneratingUnit.prototype.template.call (this) +
+`
+{{#energyConversionCapability}}<div><b>energyConversionCapability</b>: {{energyConversionCapability}}</div>{{/energyConversionCapability}}
+{{#hydroUnitWaterCost}}<div><b>hydroUnitWaterCost</b>: {{hydroUnitWaterCost}}</div>{{/hydroUnitWaterCost}}
+{{#PenstockLossCurve}}<div><b>PenstockLossCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PenstockLossCurve}}&quot;);})'>{{PenstockLossCurve}}</a></div>{{/PenstockLossCurve}}
+{{#HydroPowerPlant}}<div><b>HydroPowerPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPowerPlant}}&quot;);})'>{{HydroPowerPlant}}</a></div>{{/HydroPowerPlant}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A wind driven generating unit.
@@ -2688,7 +3531,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WindGeneratingUnit_collapse" aria-expanded="true" aria-controls="WindGeneratingUnit_collapse">WindGeneratingUnit</a>
+<div id="WindGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + GeneratingUnit.prototype.template.call (this) +
+`
+{{#windGenUnitType}}<div><b>windGenUnitType</b>: {{windGenUnitType}}</div>{{/windGenUnitType}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A nuclear generating unit.
@@ -2736,7 +3594,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#NuclearGeneratingUnit_collapse" aria-expanded="true" aria-controls="NuclearGeneratingUnit_collapse">NuclearGeneratingUnit</a>
+<div id="NuclearGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + GeneratingUnit.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A solar thermal generating unit.
@@ -2784,7 +3656,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SolarGeneratingUnit_collapse" aria-expanded="true" aria-controls="SolarGeneratingUnit_collapse">SolarGeneratingUnit</a>
+<div id="SolarGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + GeneratingUnit.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         return (
             {

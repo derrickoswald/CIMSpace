@@ -62,7 +62,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EnergyProductType_collapse" aria-expanded="true" aria-controls="EnergyProductType_collapse">EnergyProductType</a>
+<div id="EnergyProductType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#FIRM}}<div><b>FIRM</b>: {{FIRM}}</div>{{/FIRM}}
+{{#NFRM}}<div><b>NFRM</b>: {{NFRM}}</div>{{/NFRM}}
+{{#DYN}}<div><b>DYN</b>: {{DYN}}</div>{{/DYN}}
+{{#WHL}}<div><b>WHL</b>: {{WHL}}</div>{{/WHL}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Indicates whether the unit is RMR and it's condition type, for example:
@@ -120,7 +138,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FlagTypeRMR_collapse" aria-expanded="true" aria-controls="FlagTypeRMR_collapse">FlagTypeRMR</a>
+<div id="FlagTypeRMR_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#N}}<div><b>N</b>: {{N}}</div>{{/N}}
+{{#1}}<div><b>1</b>: {{1}}</div>{{/1}}
+{{#2}}<div><b>2</b>: {{2}}</div>{{/2}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Maket type.
@@ -176,7 +211,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketType_collapse" aria-expanded="true" aria-controls="MarketType_collapse">MarketType</a>
+<div id="MarketType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#DAM}}<div><b>DAM</b>: {{DAM}}</div>{{/DAM}}
+{{#RTM}}<div><b>RTM</b>: {{RTM}}</div>{{/RTM}}
+{{#HAM}}<div><b>HAM</b>: {{HAM}}</div>{{/HAM}}
+{{#RUC}}<div><b>RUC</b>: {{RUC}}</div>{{/RUC}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Ramp rate condition
@@ -232,7 +285,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RampRateCondition_collapse" aria-expanded="true" aria-controls="RampRateCondition_collapse">RampRateCondition</a>
+<div id="RampRateCondition_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#WORST}}<div><b>WORST</b>: {{WORST}}</div>{{/WORST}}
+{{#BEST}}<div><b>BEST</b>: {{BEST}}</div>{{/BEST}}
+{{#NORMAL}}<div><b>NORMAL</b>: {{NORMAL}}</div>{{/NORMAL}}
+{{#NA}}<div><b>NA</b>: {{NA}}</div>{{/NA}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The basis used to calculate the bid price curve for an energy default bid.
@@ -286,7 +357,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidCalculationBasis_collapse" aria-expanded="true" aria-controls="BidCalculationBasis_collapse">BidCalculationBasis</a>
+<div id="BidCalculationBasis_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#LMP_BASED}}<div><b>LMP_BASED</b>: {{LMP_BASED}}</div>{{/LMP_BASED}}
+{{#COST_BASED}}<div><b>COST_BASED</b>: {{COST_BASED}}</div>{{/COST_BASED}}
+{{#NEGOTIATED}}<div><b>NEGOTIATED</b>: {{NEGOTIATED}}</div>{{/NEGOTIATED}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Defines the state of a transaction.
@@ -340,7 +428,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EnergyTransactionType_collapse" aria-expanded="true" aria-controls="EnergyTransactionType_collapse">EnergyTransactionType</a>
+<div id="EnergyTransactionType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#approve}}<div><b>approve</b>: {{approve}}</div>{{/approve}}
+{{#deny}}<div><b>deny</b>: {{deny}}</div>{{/deny}}
+{{#study}}<div><b>study</b>: {{study}}</div>{{/study}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Transmission Contract Type, For example:
@@ -413,7 +518,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ContractType_collapse" aria-expanded="true" aria-controls="ContractType_collapse">ContractType</a>
+<div id="ContractType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ETC}}<div><b>ETC</b>: {{ETC}}</div>{{/ETC}}
+{{#TOR}}<div><b>TOR</b>: {{TOR}}</div>{{/TOR}}
+{{#RMR}}<div><b>RMR</b>: {{RMR}}</div>{{/RMR}}
+{{#RMT}}<div><b>RMT</b>: {{RMT}}</div>{{/RMT}}
+{{#O}}<div><b>O</b>: {{O}}</div>{{/O}}
+{{#TE}}<div><b>TE</b>: {{TE}}</div>{{/TE}}
+{{#TI}}<div><b>TI</b>: {{TI}}</div>{{/TI}}
+{{#CVR}}<div><b>CVR</b>: {{CVR}}</div>{{/CVR}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -471,7 +598,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidType_collapse" aria-expanded="true" aria-controls="BidType_collapse">BidType</a>
+<div id="BidType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#DEFAULT_ENERGY_BID}}<div><b>DEFAULT_ENERGY_BID</b>: {{DEFAULT_ENERGY_BID}}</div>{{/DEFAULT_ENERGY_BID}}
+{{#DEFAULT_STARTUP_BID}}<div><b>DEFAULT_STARTUP_BID</b>: {{DEFAULT_STARTUP_BID}}</div>{{/DEFAULT_STARTUP_BID}}
+{{#DEFAULT_MINIMUM_LOAD_BID}}<div><b>DEFAULT_MINIMUM_LOAD_BID</b>: {{DEFAULT_MINIMUM_LOAD_BID}}</div>{{/DEFAULT_MINIMUM_LOAD_BID}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Status of equipment
@@ -523,7 +667,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EquipmentStatusType_collapse" aria-expanded="true" aria-controls="EquipmentStatusType_collapse">EquipmentStatusType</a>
+<div id="EquipmentStatusType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#In}}<div><b>In</b>: {{In}}</div>{{/In}}
+{{#Out}}<div><b>Out</b>: {{Out}}</div>{{/Out}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Market product self schedule bid types.
@@ -589,7 +749,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketProductSelfSchedType_collapse" aria-expanded="true" aria-controls="MarketProductSelfSchedType_collapse">MarketProductSelfSchedType</a>
+<div id="MarketProductSelfSchedType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ETC}}<div><b>ETC</b>: {{ETC}}</div>{{/ETC}}
+{{#TOR}}<div><b>TOR</b>: {{TOR}}</div>{{/TOR}}
+{{#RMR}}<div><b>RMR</b>: {{RMR}}</div>{{/RMR}}
+{{#RGMR}}<div><b>RGMR</b>: {{RGMR}}</div>{{/RGMR}}
+{{#RMT}}<div><b>RMT</b>: {{RMT}}</div>{{/RMT}}
+{{#PT}}<div><b>PT</b>: {{PT}}</div>{{/PT}}
+{{#LPT}}<div><b>LPT</b>: {{LPT}}</div>{{/LPT}}
+{{#SP}}<div><b>SP</b>: {{SP}}</div>{{/SP}}
+{{#RA}}<div><b>RA</b>: {{RA}}</div>{{/RA}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -644,7 +827,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MQSCHGType_collapse" aria-expanded="true" aria-controls="MQSCHGType_collapse">MQSCHGType</a>
+<div id="MQSCHGType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ADD}}<div><b>ADD</b>: {{ADD}}</div>{{/ADD}}
+{{#CHG}}<div><b>CHG</b>: {{CHG}}</div>{{/CHG}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Direction of an intertie.
@@ -696,7 +895,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#InterTieDirection_collapse" aria-expanded="true" aria-controls="InterTieDirection_collapse">InterTieDirection</a>
+<div id="InterTieDirection_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#E}}<div><b>E</b>: {{E}}</div>{{/E}}
+{{#I}}<div><b>I</b>: {{I}}</div>{{/I}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Automatic Dispatch mode
@@ -750,7 +965,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AutomaticDispatchMode_collapse" aria-expanded="true" aria-controls="AutomaticDispatchMode_collapse">AutomaticDispatchMode</a>
+<div id="AutomaticDispatchMode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#INTERVAL}}<div><b>INTERVAL</b>: {{INTERVAL}}</div>{{/INTERVAL}}
+{{#CONTINGENCY}}<div><b>CONTINGENCY</b>: {{CONTINGENCY}}</div>{{/CONTINGENCY}}
+{{#MANUAL}}<div><b>MANUAL</b>: {{MANUAL}}</div>{{/MANUAL}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -808,7 +1040,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CommitmentType_collapse" aria-expanded="true" aria-controls="CommitmentType_collapse">CommitmentType</a>
+<div id="CommitmentType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#SELF}}<div><b>SELF</b>: {{SELF}}</div>{{/SELF}}
+{{#ISO}}<div><b>ISO</b>: {{ISO}}</div>{{/ISO}}
+{{#UC}}<div><b>UC</b>: {{UC}}</div>{{/UC}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Used as a flag set to Yes or No.
@@ -860,7 +1109,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#YesNo_collapse" aria-expanded="true" aria-controls="YesNo_collapse">YesNo</a>
+<div id="YesNo_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#YES}}<div><b>YES</b>: {{YES}}</div>{{/YES}}
+{{#NO}}<div><b>NO</b>: {{NO}}</div>{{/NO}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -924,7 +1189,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ResourceAssnType_collapse" aria-expanded="true" aria-controls="ResourceAssnType_collapse">ResourceAssnType</a>
+<div id="ResourceAssnType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#CSNK}}<div><b>CSNK</b>: {{CSNK}}</div>{{/CSNK}}
+{{#CSRC}}<div><b>CSRC</b>: {{CSRC}}</div>{{/CSRC}}
+{{#RMR}}<div><b>RMR</b>: {{RMR}}</div>{{/RMR}}
+{{#SC}}<div><b>SC</b>: {{SC}}</div>{{/SC}}
+{{#LSE}}<div><b>LSE</b>: {{LSE}}</div>{{/LSE}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Limit type specified for AnalogLimits.
@@ -982,7 +1266,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AnalogLimitType_collapse" aria-expanded="true" aria-controls="AnalogLimitType_collapse">AnalogLimitType</a>
+<div id="AnalogLimitType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#BranchMediumTerm}}<div><b>BranchMediumTerm</b>: {{BranchMediumTerm}}</div>{{/BranchMediumTerm}}
+{{#BranchLongTerm}}<div><b>BranchLongTerm</b>: {{BranchLongTerm}}</div>{{/BranchLongTerm}}
+{{#BranchShortTerm}}<div><b>BranchShortTerm</b>: {{BranchShortTerm}}</div>{{/BranchShortTerm}}
+{{#VoltageHigh}}<div><b>VoltageHigh</b>: {{VoltageHigh}}</div>{{/VoltageHigh}}
+{{#VoltageLow}}<div><b>VoltageLow</b>: {{VoltageLow}}</div>{{/VoltageLow}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Market power mitigation test method type.
@@ -1036,7 +1339,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MPMTestMethodType_collapse" aria-expanded="true" aria-controls="MPMTestMethodType_collapse">MPMTestMethodType</a>
+<div id="MPMTestMethodType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#NORMAL}}<div><b>NORMAL</b>: {{NORMAL}}</div>{{/NORMAL}}
+{{#ALTERNATE}}<div><b>ALTERNATE</b>: {{ALTERNATE}}</div>{{/ALTERNATE}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Commitment instruction types.
@@ -1088,7 +1407,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AutomaticDispInstTypeCommitment_collapse" aria-expanded="true" aria-controls="AutomaticDispInstTypeCommitment_collapse">AutomaticDispInstTypeCommitment</a>
+<div id="AutomaticDispInstTypeCommitment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#START_UP}}<div><b>START_UP</b>: {{START_UP}}</div>{{/START_UP}}
+{{#SHUT_DOWN}}<div><b>SHUT_DOWN</b>: {{SHUT_DOWN}}</div>{{/SHUT_DOWN}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Defines the individual passes that produce results per execution type/market type
@@ -1154,7 +1489,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PassIndicatorType_collapse" aria-expanded="true" aria-controls="PassIndicatorType_collapse">PassIndicatorType</a>
+<div id="PassIndicatorType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#MPM-1}}<div><b>MPM-1</b>: {{MPM-1}}</div>{{/MPM-1}}
+{{#MPM-2}}<div><b>MPM-2</b>: {{MPM-2}}</div>{{/MPM-2}}
+{{#MPM-3}}<div><b>MPM-3</b>: {{MPM-3}}</div>{{/MPM-3}}
+{{#MPM-4}}<div><b>MPM-4</b>: {{MPM-4}}</div>{{/MPM-4}}
+{{#RUC}}<div><b>RUC</b>: {{RUC}}</div>{{/RUC}}
+{{#RTPD}}<div><b>RTPD</b>: {{RTPD}}</div>{{/RTPD}}
+{{#RTED}}<div><b>RTED</b>: {{RTED}}</div>{{/RTED}}
+{{#HA-SCUC}}<div><b>HA-SCUC</b>: {{HA-SCUC}}</div>{{/HA-SCUC}}
+{{#DA}}<div><b>DA</b>: {{DA}}</div>{{/DA}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Action type associated with an ActionRequest against a ParticipantInterfaces::Trade.
@@ -1204,7 +1562,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ActionType_collapse" aria-expanded="true" aria-controls="ActionType_collapse">ActionType</a>
+<div id="ActionType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#CANCEL}}<div><b>CANCEL</b>: {{CANCEL}}</div>{{/CANCEL}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Market results binding constraint types.
@@ -1260,7 +1633,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ResultsConstraintType_collapse" aria-expanded="true" aria-controls="ResultsConstraintType_collapse">ResultsConstraintType</a>
+<div id="ResultsConstraintType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#FG_act}}<div><b>FG_act</b>: {{FG_act}}</div>{{/FG_act}}
+{{#Contingency}}<div><b>Contingency</b>: {{Contingency}}</div>{{/Contingency}}
+{{#Interface}}<div><b>Interface</b>: {{Interface}}</div>{{/Interface}}
+{{#Actual}}<div><b>Actual</b>: {{Actual}}</div>{{/Actual}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Specifies the direction of energy flow in the flowgate.
@@ -1312,7 +1703,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FlowDirectionType_collapse" aria-expanded="true" aria-controls="FlowDirectionType_collapse">FlowDirectionType</a>
+<div id="FlowDirectionType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#Forward}}<div><b>Forward</b>: {{Forward}}</div>{{/Forward}}
+{{#Reverse}}<div><b>Reverse</b>: {{Reverse}}</div>{{/Reverse}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -1410,7 +1817,38 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#FuelSource_collapse" aria-expanded="true" aria-controls="FuelSource_collapse">FuelSource</a>
+<div id="FuelSource_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#NG}}<div><b>NG</b>: {{NG}}</div>{{/NG}}
+{{#NNG}}<div><b>NNG</b>: {{NNG}}</div>{{/NNG}}
+{{#BGAS}}<div><b>BGAS</b>: {{BGAS}}</div>{{/BGAS}}
+{{#BIOM}}<div><b>BIOM</b>: {{BIOM}}</div>{{/BIOM}}
+{{#COAL}}<div><b>COAL</b>: {{COAL}}</div>{{/COAL}}
+{{#DIST}}<div><b>DIST</b>: {{DIST}}</div>{{/DIST}}
+{{#GAS}}<div><b>GAS</b>: {{GAS}}</div>{{/GAS}}
+{{#GEOT}}<div><b>GEOT</b>: {{GEOT}}</div>{{/GEOT}}
+{{#HRCV}}<div><b>HRCV</b>: {{HRCV}}</div>{{/HRCV}}
+{{#NONE}}<div><b>NONE</b>: {{NONE}}</div>{{/NONE}}
+{{#NUCL}}<div><b>NUCL</b>: {{NUCL}}</div>{{/NUCL}}
+{{#OIL}}<div><b>OIL</b>: {{OIL}}</div>{{/OIL}}
+{{#OTHR}}<div><b>OTHR</b>: {{OTHR}}</div>{{/OTHR}}
+{{#SOLR}}<div><b>SOLR</b>: {{SOLR}}</div>{{/SOLR}}
+{{#WAST}}<div><b>WAST</b>: {{WAST}}</div>{{/WAST}}
+{{#WATR}}<div><b>WATR</b>: {{WATR}}</div>{{/WATR}}
+{{#WIND}}<div><b>WIND</b>: {{WIND}}</div>{{/WIND}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Time of Use used by a CRR definition for specifying the time the CRR spans.
@@ -1466,7 +1904,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TimeOfUse_collapse" aria-expanded="true" aria-controls="TimeOfUse_collapse">TimeOfUse</a>
+<div id="TimeOfUse_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ON}}<div><b>ON</b>: {{ON}}</div>{{/ON}}
+{{#OFF}}<div><b>OFF</b>: {{OFF}}</div>{{/OFF}}
+{{#24HR}}<div><b>24HR</b>: {{24HR}}</div>{{/24HR}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -1527,7 +1982,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MPMTestOutcome_collapse" aria-expanded="true" aria-controls="MPMTestOutcome_collapse">MPMTestOutcome</a>
+<div id="MPMTestOutcome_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#P}}<div><b>P</b>: {{P}}</div>{{/P}}
+{{#F}}<div><b>F</b>: {{F}}</div>{{/F}}
+{{#D}}<div><b>D</b>: {{D}}</div>{{/D}}
+{{#S}}<div><b>S</b>: {{S}}</div>{{/S}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -1585,7 +2058,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RampModeType_collapse" aria-expanded="true" aria-controls="RampModeType_collapse">RampModeType</a>
+<div id="RampModeType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#0}}<div><b>0</b>: {{0}}</div>{{/0}}
+{{#1}}<div><b>1</b>: {{1}}</div>{{/1}}
+{{#2}}<div><b>2</b>: {{2}}</div>{{/2}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -1653,7 +2143,30 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketProductType_collapse" aria-expanded="true" aria-controls="MarketProductType_collapse">MarketProductType</a>
+<div id="MarketProductType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#EN}}<div><b>EN</b>: {{EN}}</div>{{/EN}}
+{{#RU}}<div><b>RU</b>: {{RU}}</div>{{/RU}}
+{{#RD}}<div><b>RD</b>: {{RD}}</div>{{/RD}}
+{{#SR}}<div><b>SR</b>: {{SR}}</div>{{/SR}}
+{{#NR}}<div><b>NR</b>: {{NR}}</div>{{/NR}}
+{{#RC}}<div><b>RC</b>: {{RC}}</div>{{/RC}}
+{{#LFU}}<div><b>LFU</b>: {{LFU}}</div>{{/LFU}}
+{{#LFD}}<div><b>LFD</b>: {{LFD}}</div>{{/LFD}}
+{{#REG}}<div><b>REG</b>: {{REG}}</div>{{/REG}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Market power mitigation test identifier type, for example:
@@ -1721,7 +2234,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MPMTestIdentifierType_collapse" aria-expanded="true" aria-controls="MPMTestIdentifierType_collapse">MPMTestIdentifierType</a>
+<div id="MPMTestIdentifierType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#1}}<div><b>1</b>: {{1}}</div>{{/1}}
+{{#2}}<div><b>2</b>: {{2}}</div>{{/2}}
+{{#3}}<div><b>3</b>: {{3}}</div>{{/3}}
+{{#4}}<div><b>4</b>: {{4}}</div>{{/4}}
+{{#5}}<div><b>5</b>: {{5}}</div>{{/5}}
+{{#6}}<div><b>6</b>: {{6}}</div>{{/6}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Indication of which type of self schedule is being referenced.
@@ -1773,7 +2306,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SelfSchedReferenceType_collapse" aria-expanded="true" aria-controls="SelfSchedReferenceType_collapse">SelfSchedReferenceType</a>
+<div id="SelfSchedReferenceType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ETC}}<div><b>ETC</b>: {{ETC}}</div>{{/ETC}}
+{{#TOR}}<div><b>TOR</b>: {{TOR}}</div>{{/TOR}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Load forecast zone types.
@@ -1825,7 +2374,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#LoadForecastType_collapse" aria-expanded="true" aria-controls="LoadForecastType_collapse">LoadForecastType</a>
+<div id="LoadForecastType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#LFZ}}<div><b>LFZ</b>: {{LFZ}}</div>{{/LFZ}}
+{{#LZMS}}<div><b>LZMS</b>: {{LZMS}}</div>{{/LZMS}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Trade type.
@@ -1879,7 +2444,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TradeType_collapse" aria-expanded="true" aria-controls="TradeType_collapse">TradeType</a>
+<div id="TradeType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#IST}}<div><b>IST</b>: {{IST}}</div>{{/IST}}
+{{#AST}}<div><b>AST</b>: {{AST}}</div>{{/AST}}
+{{#UCT}}<div><b>UCT</b>: {{UCT}}</div>{{/UCT}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Execution types of Market Runs
@@ -1935,7 +2517,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ExecutionType_collapse" aria-expanded="true" aria-controls="ExecutionType_collapse">ExecutionType</a>
+<div id="ExecutionType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#DA}}<div><b>DA</b>: {{DA}}</div>{{/DA}}
+{{#HASP}}<div><b>HASP</b>: {{HASP}}</div>{{/HASP}}
+{{#RTPD}}<div><b>RTPD</b>: {{RTPD}}</div>{{/RTPD}}
+{{#RTD}}<div><b>RTD</b>: {{RTD}}</div>{{/RTD}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Locational AS Flags indicating whether the Upper or Lower Bound limit of the AS regional procurment is binding
@@ -1987,7 +2587,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ResourceLimitIndicator_collapse" aria-expanded="true" aria-controls="ResourceLimitIndicator_collapse">ResourceLimitIndicator</a>
+<div id="ResourceLimitIndicator_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#UPPER}}<div><b>UPPER</b>: {{UPPER}}</div>{{/UPPER}}
+{{#LOWER}}<div><b>LOWER</b>: {{LOWER}}</div>{{/LOWER}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -2048,7 +2664,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ParticipationCategoryMPM_collapse" aria-expanded="true" aria-controls="ParticipationCategoryMPM_collapse">ParticipationCategoryMPM</a>
+<div id="ParticipationCategoryMPM_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#Y}}<div><b>Y</b>: {{Y}}</div>{{/Y}}
+{{#N}}<div><b>N</b>: {{N}}</div>{{/N}}
+{{#S}}<div><b>S</b>: {{S}}</div>{{/S}}
+{{#L}}<div><b>L</b>: {{L}}</div>{{/L}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of bill media.
@@ -2102,7 +2736,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktBillMediaKind_collapse" aria-expanded="true" aria-controls="MktBillMediaKind_collapse">MktBillMediaKind</a>
+<div id="MktBillMediaKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#paper}}<div><b>paper</b>: {{paper}}</div>{{/paper}}
+{{#electronic}}<div><b>electronic</b>: {{electronic}}</div>{{/electronic}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -2169,7 +2820,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidMitigationStatus_collapse" aria-expanded="true" aria-controls="BidMitigationStatus_collapse">BidMitigationStatus</a>
+<div id="BidMitigationStatus_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#S}}<div><b>S</b>: {{S}}</div>{{/S}}
+{{#L}}<div><b>L</b>: {{L}}</div>{{/L}}
+{{#R}}<div><b>R</b>: {{R}}</div>{{/R}}
+{{#M}}<div><b>M</b>: {{M}}</div>{{/M}}
+{{#B}}<div><b>B</b>: {{B}}</div>{{/B}}
+{{#O}}<div><b>O</b>: {{O}}</div>{{/O}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Self schedule breakdown type.
@@ -2223,7 +2894,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SelfScheduleBreakdownType_collapse" aria-expanded="true" aria-controls="SelfScheduleBreakdownType_collapse">SelfScheduleBreakdownType</a>
+<div id="SelfScheduleBreakdownType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ETC}}<div><b>ETC</b>: {{ETC}}</div>{{/ETC}}
+{{#TOR}}<div><b>TOR</b>: {{TOR}}</div>{{/TOR}}
+{{#LPT}}<div><b>LPT</b>: {{LPT}}</div>{{/LPT}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of Market account.
@@ -2279,7 +2967,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktAccountKind_collapse" aria-expanded="true" aria-controls="MktAccountKind_collapse">MktAccountKind</a>
+<div id="MktAccountKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#normal}}<div><b>normal</b>: {{normal}}</div>{{/normal}}
+{{#reversal}}<div><b>reversal</b>: {{reversal}}</div>{{/reversal}}
+{{#statistical}}<div><b>statistical</b>: {{statistical}}</div>{{/statistical}}
+{{#estimate}}<div><b>estimate</b>: {{estimate}}</div>{{/estimate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Congestion Revenue Rights category types
@@ -2331,7 +3037,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CRRCategoryType_collapse" aria-expanded="true" aria-controls="CRRCategoryType_collapse">CRRCategoryType</a>
+<div id="CRRCategoryType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#NSR}}<div><b>NSR</b>: {{NSR}}</div>{{/NSR}}
+{{#PTP}}<div><b>PTP</b>: {{PTP}}</div>{{/PTP}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Types of resource registration status, for example:
@@ -2393,7 +3115,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ResourceRegistrationStatus_collapse" aria-expanded="true" aria-controls="ResourceRegistrationStatus_collapse">ResourceRegistrationStatus</a>
+<div id="ResourceRegistrationStatus_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#Active}}<div><b>Active</b>: {{Active}}</div>{{/Active}}
+{{#Planned}}<div><b>Planned</b>: {{Planned}}</div>{{/Planned}}
+{{#Mothballed}}<div><b>Mothballed</b>: {{Mothballed}}</div>{{/Mothballed}}
+{{#Decommissioned}}<div><b>Decommissioned</b>: {{Decommissioned}}</div>{{/Decommissioned}}
+</div>
+`
+                );
+           }        }
 
         /**
          * ON
@@ -2447,7 +3187,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OnOff_collapse" aria-expanded="true" aria-controls="OnOff_collapse">OnOff</a>
+<div id="OnOff_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ON}}<div><b>ON</b>: {{ON}}</div>{{/ON}}
+{{#OFF}}<div><b>OFF</b>: {{OFF}}</div>{{/OFF}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Role types an organisation can play with respect to a congestion revenue right.
@@ -2501,7 +3257,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CRRRoleType_collapse" aria-expanded="true" aria-controls="CRRRoleType_collapse">CRRRoleType</a>
+<div id="CRRRoleType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#SELLER}}<div><b>SELLER</b>: {{SELLER}}</div>{{/SELLER}}
+{{#BUYER}}<div><b>BUYER</b>: {{BUYER}}</div>{{/BUYER}}
+{{#OWNER}}<div><b>OWNER</b>: {{OWNER}}</div>{{/OWNER}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Aggregated Nodes Types for example:
@@ -2605,7 +3378,32 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AnodeType_collapse" aria-expanded="true" aria-controls="AnodeType_collapse">AnodeType</a>
+<div id="AnodeType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#SYS}}<div><b>SYS</b>: {{SYS}}</div>{{/SYS}}
+{{#RUC}}<div><b>RUC</b>: {{RUC}}</div>{{/RUC}}
+{{#LFZ}}<div><b>LFZ</b>: {{LFZ}}</div>{{/LFZ}}
+{{#REG}}<div><b>REG</b>: {{REG}}</div>{{/REG}}
+{{#AGR}}<div><b>AGR</b>: {{AGR}}</div>{{/AGR}}
+{{#POD}}<div><b>POD</b>: {{POD}}</div>{{/POD}}
+{{#ALR}}<div><b>ALR</b>: {{ALR}}</div>{{/ALR}}
+{{#LTAC}}<div><b>LTAC</b>: {{LTAC}}</div>{{/LTAC}}
+{{#ACA}}<div><b>ACA</b>: {{ACA}}</div>{{/ACA}}
+{{#ASR}}<div><b>ASR</b>: {{ASR}}</div>{{/ASR}}
+{{#ECA}}<div><b>ECA</b>: {{ECA}}</div>{{/ECA}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Ramp rate curve type.
@@ -2665,7 +3463,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RampRateType_collapse" aria-expanded="true" aria-controls="RampRateType_collapse">RampRateType</a>
+<div id="RampRateType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#OP}}<div><b>OP</b>: {{OP}}</div>{{/OP}}
+{{#REG}}<div><b>REG</b>: {{REG}}</div>{{/REG}}
+{{#OP_RES}}<div><b>OP_RES</b>: {{OP_RES}}</div>{{/OP_RES}}
+{{#LD_DROP}}<div><b>LD_DROP</b>: {{LD_DROP}}</div>{{/LD_DROP}}
+{{#LD_PICKUP}}<div><b>LD_PICKUP</b>: {{LD_PICKUP}}</div>{{/LD_PICKUP}}
+{{#INTERTIE}}<div><b>INTERTIE</b>: {{INTERTIE}}</div>{{/INTERTIE}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -2723,7 +3541,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EnergyPriceIndexType_collapse" aria-expanded="true" aria-controls="EnergyPriceIndexType_collapse">EnergyPriceIndexType</a>
+<div id="EnergyPriceIndexType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#WHOLESALE}}<div><b>WHOLESALE</b>: {{WHOLESALE}}</div>{{/WHOLESALE}}
+{{#RETAIL}}<div><b>RETAIL</b>: {{RETAIL}}</div>{{/RETAIL}}
+{{#BOTH}}<div><b>BOTH</b>: {{BOTH}}</div>{{/BOTH}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Aggregate Node Types for example:
@@ -2812,7 +3647,34 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ApnodeType_collapse" aria-expanded="true" aria-controls="ApnodeType_collapse">ApnodeType</a>
+<div id="ApnodeType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#AG}}<div><b>AG</b>: {{AG}}</div>{{/AG}}
+{{#CPZ}}<div><b>CPZ</b>: {{CPZ}}</div>{{/CPZ}}
+{{#DPZ}}<div><b>DPZ</b>: {{DPZ}}</div>{{/DPZ}}
+{{#TH}}<div><b>TH</b>: {{TH}}</div>{{/TH}}
+{{#SYS}}<div><b>SYS</b>: {{SYS}}</div>{{/SYS}}
+{{#CA}}<div><b>CA</b>: {{CA}}</div>{{/CA}}
+{{#DCA}}<div><b>DCA</b>: {{DCA}}</div>{{/DCA}}
+{{#GA}}<div><b>GA</b>: {{GA}}</div>{{/GA}}
+{{#GH}}<div><b>GH</b>: {{GH}}</div>{{/GH}}
+{{#EHV}}<div><b>EHV</b>: {{EHV}}</div>{{/EHV}}
+{{#ZN}}<div><b>ZN</b>: {{ZN}}</div>{{/ZN}}
+{{#INT}}<div><b>INT</b>: {{INT}}</div>{{/INT}}
+{{#BUS}}<div><b>BUS</b>: {{BUS}}</div>{{/BUS}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -2870,7 +3732,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RampCurveType_collapse" aria-expanded="true" aria-controls="RampCurveType_collapse">RampCurveType</a>
+<div id="RampCurveType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#0}}<div><b>0</b>: {{0}}</div>{{/0}}
+{{#1}}<div><b>1</b>: {{1}}</div>{{/1}}
+{{#2}}<div><b>2</b>: {{2}}</div>{{/2}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Bid self schedule type has two types as the required output of requirements and qualified pre-dispatch.
@@ -2922,7 +3801,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidTypeRMR_collapse" aria-expanded="true" aria-controls="BidTypeRMR_collapse">BidTypeRMR</a>
+<div id="BidTypeRMR_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#REQUIREMENTS}}<div><b>REQUIREMENTS</b>: {{REQUIREMENTS}}</div>{{/REQUIREMENTS}}
+{{#QUALIFIED_PREDISPATCH}}<div><b>QUALIFIED_PREDISPATCH</b>: {{QUALIFIED_PREDISPATCH}}</div>{{/QUALIFIED_PREDISPATCH}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -2983,7 +3878,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DispatchResponseType_collapse" aria-expanded="true" aria-controls="DispatchResponseType_collapse">DispatchResponseType</a>
+<div id="DispatchResponseType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#NON_RESPONSE}}<div><b>NON_RESPONSE</b>: {{NON_RESPONSE}}</div>{{/NON_RESPONSE}}
+{{#ACCEPT}}<div><b>ACCEPT</b>: {{ACCEPT}}</div>{{/ACCEPT}}
+{{#DECLINE}}<div><b>DECLINE</b>: {{DECLINE}}</div>{{/DECLINE}}
+{{#PARTIAL}}<div><b>PARTIAL</b>: {{PARTIAL}}</div>{{/PARTIAL}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of invoice line item.
@@ -3037,7 +3950,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MktInvoiceLineItemKind_collapse" aria-expanded="true" aria-controls="MktInvoiceLineItemKind_collapse">MktInvoiceLineItemKind</a>
+<div id="MktInvoiceLineItemKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#initial}}<div><b>initial</b>: {{initial}}</div>{{/initial}}
+{{#recalculation}}<div><b>recalculation</b>: {{recalculation}}</div>{{/recalculation}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Binding constraint results limit type, For example:
@@ -3092,7 +4022,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ConstraintLimitType_collapse" aria-expanded="true" aria-controls="ConstraintLimitType_collapse">ConstraintLimitType</a>
+<div id="ConstraintLimitType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#MAXIMUM}}<div><b>MAXIMUM</b>: {{MAXIMUM}}</div>{{/MAXIMUM}}
+{{#MINIMUM}}<div><b>MINIMUM</b>: {{MINIMUM}}</div>{{/MINIMUM}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Resource capacity type.
@@ -3156,7 +4102,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ResourceCapacityType_collapse" aria-expanded="true" aria-controls="ResourceCapacityType_collapse">ResourceCapacityType</a>
+<div id="ResourceCapacityType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#RU}}<div><b>RU</b>: {{RU}}</div>{{/RU}}
+{{#RD}}<div><b>RD</b>: {{RD}}</div>{{/RD}}
+{{#SR}}<div><b>SR</b>: {{SR}}</div>{{/SR}}
+{{#NR}}<div><b>NR</b>: {{NR}}</div>{{/NR}}
+{{#MO}}<div><b>MO</b>: {{MO}}</div>{{/MO}}
+{{#FO}}<div><b>FO</b>: {{FO}}</div>{{/FO}}
+{{#RA}}<div><b>RA</b>: {{RA}}</div>{{/RA}}
+{{#RMR}}<div><b>RMR</b>: {{RMR}}</div>{{/RMR}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Circuit Breaker Status (closed or open) of the circuit breaker.
@@ -3208,7 +4176,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SwitchStatusType_collapse" aria-expanded="true" aria-controls="SwitchStatusType_collapse">SwitchStatusType</a>
+<div id="SwitchStatusType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#Closed}}<div><b>Closed</b>: {{Closed}}</div>{{/Closed}}
+{{#Open}}<div><b>Open</b>: {{Open}}</div>{{/Open}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Transmission Contract Right type -for example:
@@ -3262,7 +4246,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TRType_collapse" aria-expanded="true" aria-controls="TRType_collapse">TRType</a>
+<div id="TRType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#CHAIN}}<div><b>CHAIN</b>: {{CHAIN}}</div>{{/CHAIN}}
+{{#INDIVIDUAL}}<div><b>INDIVIDUAL</b>: {{INDIVIDUAL}}</div>{{/INDIVIDUAL}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Congestion Revenue Right hedge type
@@ -3314,7 +4314,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CRRHedgeType_collapse" aria-expanded="true" aria-controls="CRRHedgeType_collapse">CRRHedgeType</a>
+<div id="CRRHedgeType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#OBLIGATION}}<div><b>OBLIGATION</b>: {{OBLIGATION}}</div>{{/OBLIGATION}}
+{{#OPTION}}<div><b>OPTION</b>: {{OPTION}}</div>{{/OPTION}}
+</div>
+`
+                );
+           }        }
 
         /**
          * MPM Purpose Flag, for example:
@@ -3371,7 +4387,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PurposeFlagType_collapse" aria-expanded="true" aria-controls="PurposeFlagType_collapse">PurposeFlagType</a>
+<div id="PurposeFlagType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#M}}<div><b>M</b>: {{M}}</div>{{/M}}
+{{#R}}<div><b>R</b>: {{R}}</div>{{/R}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Constraint Ramp type
@@ -3423,7 +4455,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ConstraintRampType_collapse" aria-expanded="true" aria-controls="ConstraintRampType_collapse">ConstraintRampType</a>
+<div id="ConstraintRampType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#FAST}}<div><b>FAST</b>: {{FAST}}</div>{{/FAST}}
+{{#SLOW}}<div><b>SLOW</b>: {{SLOW}}</div>{{/SLOW}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Type of the CRR, from the possible type definitions in the CRR System (e.g. 'LSE', 'ETC').
@@ -3487,7 +4535,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CRRSegmentType_collapse" aria-expanded="true" aria-controls="CRRSegmentType_collapse">CRRSegmentType</a>
+<div id="CRRSegmentType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#AUC}}<div><b>AUC</b>: {{AUC}}</div>{{/AUC}}
+{{#CAP}}<div><b>CAP</b>: {{CAP}}</div>{{/CAP}}
+{{#CF}}<div><b>CF</b>: {{CF}}</div>{{/CF}}
+{{#CVR}}<div><b>CVR</b>: {{CVR}}</div>{{/CVR}}
+{{#ETC}}<div><b>ETC</b>: {{ETC}}</div>{{/ETC}}
+{{#LSE}}<div><b>LSE</b>: {{LSE}}</div>{{/LSE}}
+{{#MT}}<div><b>MT</b>: {{MT}}</div>{{/MT}}
+{{#TOR}}<div><b>TOR</b>: {{TOR}}</div>{{/TOR}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Types used for resource AS qualifications
@@ -3555,7 +4625,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ResourceAncillaryServiceType_collapse" aria-expanded="true" aria-controls="ResourceAncillaryServiceType_collapse">ResourceAncillaryServiceType</a>
+<div id="ResourceAncillaryServiceType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#REGUP}}<div><b>REGUP</b>: {{REGUP}}</div>{{/REGUP}}
+{{#REGDN}}<div><b>REGDN</b>: {{REGDN}}</div>{{/REGDN}}
+{{#RRSPIN}}<div><b>RRSPIN</b>: {{RRSPIN}}</div>{{/RRSPIN}}
+{{#NONSPIN}}<div><b>NONSPIN</b>: {{NONSPIN}}</div>{{/NONSPIN}}
+{{#RMR}}<div><b>RMR</b>: {{RMR}}</div>{{/RMR}}
+{{#BLACKSTART}}<div><b>BLACKSTART</b>: {{BLACKSTART}}</div>{{/BLACKSTART}}
+{{#DSR}}<div><b>DSR</b>: {{DSR}}</div>{{/DSR}}
+{{#SYNCCOND}}<div><b>SYNCCOND</b>: {{SYNCCOND}}</div>{{/SYNCCOND}}
+{{#PIRP}}<div><b>PIRP</b>: {{PIRP}}</div>{{/PIRP}}
+{{#RUC}}<div><b>RUC</b>: {{RUC}}</div>{{/RUC}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -3610,7 +4704,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BidMitigationType_collapse" aria-expanded="true" aria-controls="BidMitigationType_collapse">BidMitigationType</a>
+<div id="BidMitigationType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#I}}<div><b>I</b>: {{I}}</div>{{/I}}
+{{#F}}<div><b>F</b>: {{F}}</div>{{/F}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -3666,7 +4776,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ReserveRequirementType_collapse" aria-expanded="true" aria-controls="ReserveRequirementType_collapse">ReserveRequirementType</a>
+<div id="ReserveRequirementType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#OPRSV}}<div><b>OPRSV</b>: {{OPRSV}}</div>{{/OPRSV}}
+{{#CONT}}<div><b>CONT</b>: {{CONT}}</div>{{/CONT}}
+{{#REG}}<div><b>REG</b>: {{REG}}</div>{{/REG}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Valid values, for example:
@@ -3721,7 +4848,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MQSInstructionSource_collapse" aria-expanded="true" aria-controls="MQSInstructionSource_collapse">MQSInstructionSource</a>
+<div id="MQSInstructionSource_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#INS}}<div><b>INS</b>: {{INS}}</div>{{/INS}}
+{{#ACT}}<div><b>ACT</b>: {{ACT}}</div>{{/ACT}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Area's present control mode
@@ -3777,7 +4920,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AreaControlMode_collapse" aria-expanded="true" aria-controls="AreaControlMode_collapse">AreaControlMode</a>
+<div id="AreaControlMode_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#CF}}<div><b>CF</b>: {{CF}}</div>{{/CF}}
+{{#CTL}}<div><b>CTL</b>: {{CTL}}</div>{{/CTL}}
+{{#TLB}}<div><b>TLB</b>: {{TLB}}</div>{{/TLB}}
+{{#OFF}}<div><b>OFF</b>: {{OFF}}</div>{{/OFF}}
+</div>
+`
+                );
+           }        }
 
         /**
          * To indicate a check out type such as adjusted capacity or dispatch capacity
@@ -3831,7 +4992,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CheckOutType_collapse" aria-expanded="true" aria-controls="CheckOutType_collapse">CheckOutType</a>
+<div id="CheckOutType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#PRE_HOUR}}<div><b>PRE_HOUR</b>: {{PRE_HOUR}}</div>{{/PRE_HOUR}}
+{{#PRE_SCHEDULE}}<div><b>PRE_SCHEDULE</b>: {{PRE_SCHEDULE}}</div>{{/PRE_SCHEDULE}}
+{{#AFTER_THE_FACT}}<div><b>AFTER_THE_FACT</b>: {{AFTER_THE_FACT}}</div>{{/AFTER_THE_FACT}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Combined Cycle
@@ -3909,7 +5087,31 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#UnitType_collapse" aria-expanded="true" aria-controls="UnitType_collapse">UnitType</a>
+<div id="UnitType_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#CCYC}}<div><b>CCYC</b>: {{CCYC}}</div>{{/CCYC}}
+{{#GTUR}}<div><b>GTUR</b>: {{GTUR}}</div>{{/GTUR}}
+{{#HYDR}}<div><b>HYDR</b>: {{HYDR}}</div>{{/HYDR}}
+{{#OTHR}}<div><b>OTHR</b>: {{OTHR}}</div>{{/OTHR}}
+{{#PHOT}}<div><b>PHOT</b>: {{PHOT}}</div>{{/PHOT}}
+{{#PTUR}}<div><b>PTUR</b>: {{PTUR}}</div>{{/PTUR}}
+{{#RECP}}<div><b>RECP</b>: {{RECP}}</div>{{/RECP}}
+{{#STUR}}<div><b>STUR</b>: {{STUR}}</div>{{/STUR}}
+{{#SYNC}}<div><b>SYNC</b>: {{SYNC}}</div>{{/SYNC}}
+{{#WIND}}<div><b>WIND</b>: {{WIND}}</div>{{/WIND}}
+</div>
+`
+                );
+           }        }
 
         /**
          * For example:
@@ -3967,7 +5169,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CostBasis_collapse" aria-expanded="true" aria-controls="CostBasis_collapse">CostBasis</a>
+<div id="CostBasis_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#BIDC}}<div><b>BIDC</b>: {{BIDC}}</div>{{/BIDC}}
+{{#PRXC}}<div><b>PRXC</b>: {{PRXC}}</div>{{/PRXC}}
+{{#REGC}}<div><b>REGC</b>: {{REGC}}</div>{{/REGC}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

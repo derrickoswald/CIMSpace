@@ -54,7 +54,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#WheelingReferenceSchedule_collapse" aria-expanded="true" aria-controls="WheelingReferenceSchedule_collapse">WheelingReferenceSchedule</a>
+<div id="WheelingReferenceSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ParticipantInterfaces.BidHourlySchedule.prototype.template.call (this) +
+`
+{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

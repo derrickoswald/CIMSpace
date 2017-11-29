@@ -58,7 +58,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Bank_collapse" aria-expanded="true" aria-controls="Bank_collapse">Bank</a>
+<div id="Bank_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.OrganisationRole.prototype.template.call (this) +
+`
+{{#bic}}<div><b>bic</b>: {{bic}}</div>{{/bic}}
+{{#iban}}<div><b>iban</b>: {{iban}}</div>{{/iban}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of skill level.
@@ -114,7 +130,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#SkillLevelKind_collapse" aria-expanded="true" aria-controls="SkillLevelKind_collapse">SkillLevelKind</a>
+<div id="SkillLevelKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#master}}<div><b>master</b>: {{master}}</div>{{/master}}
+{{#standard}}<div><b>standard</b>: {{standard}}</div>{{/standard}}
+{{#apprentice}}<div><b>apprentice</b>: {{apprentice}}</div>{{/apprentice}}
+{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A business role that this organisation plays.
@@ -168,7 +202,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BusinessRole_collapse" aria-expanded="true" aria-controls="BusinessRole_collapse">BusinessRole</a>
+<div id="BusinessRole_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.OrganisationRole.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Role an organisation plays with respect to property (for example, the organisation may be the owner, renter, occupier, taxiing authority, etc.).
@@ -216,7 +266,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PropertyOrganisationRole_collapse" aria-expanded="true" aria-controls="PropertyOrganisationRole_collapse">PropertyOrganisationRole</a>
+<div id="PropertyOrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.OrganisationRole.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * A crew is a group of people with specific skills, tools, and vehicles.
@@ -268,7 +332,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OldCrew_collapse" aria-expanded="true" aria-controls="OldCrew_collapse">OldCrew</a>
+<div id="OldCrew_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Crew.prototype.template.call (this) +
+`
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#Route}}<div><b>Route</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Route}}&quot;);})'>{{Route}}</a></div>{{/Route}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Roles played between Organisations and other Organisations.
@@ -320,7 +400,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OrgOrgRole_collapse" aria-expanded="true" aria-controls="OrgOrgRole_collapse">OrgOrgRole</a>
+<div id="OrgOrgRole_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.OrganisationRole.prototype.template.call (this) +
+`
+{{#clientID}}<div><b>clientID</b>: {{clientID}}</div>{{/clientID}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Proficiency level of a craft, which is required to operate or maintain a particular type of asset and/or perform certain types of work.
@@ -376,7 +471,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Skill_collapse" aria-expanded="true" aria-controls="Skill_collapse">Skill</a>
+<div id="Skill_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#certificationPeriod}}<div><b>certificationPeriod</b>: {{certificationPeriod}}</div>{{/certificationPeriod}}
+{{#effectiveDateTime}}<div><b>effectiveDateTime</b>: {{effectiveDateTime}}</div>{{/effectiveDateTime}}
+{{#level}}<div><b>level</b>: {{level}}</div>{{/level}}
+{{#ErpPerson}}<div><b>ErpPerson</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPerson}}&quot;);})'>{{ErpPerson}}</a></div>{{/ErpPerson}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A BusinessPlan is an organized sequence of predetermined actions required to complete a future organizational objective.
@@ -426,7 +539,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BusinessPlan_collapse" aria-expanded="true" aria-controls="BusinessPlan_collapse">BusinessPlan</a>
+<div id="BusinessPlan_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Enumeration of potential roles that might be played by one object relative to another.
@@ -478,7 +605,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Role_collapse" aria-expanded="true" aria-controls="Role_collapse">Role</a>
+<div id="Role_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Role an organisation plays with respect to documents.
@@ -526,7 +669,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#DocumentOrganisationRole_collapse" aria-expanded="true" aria-controls="DocumentOrganisationRole_collapse">DocumentOrganisationRole</a>
+<div id="DocumentOrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.OrganisationRole.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Fraction specified explicitly with a numerator and denominator, which can be used to calculate the quotient.
@@ -578,7 +735,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Ratio_collapse" aria-expanded="true" aria-controls="Ratio_collapse">Ratio</a>
+<div id="Ratio_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#denominator}}<div><b>denominator</b>: {{denominator}}</div>{{/denominator}}
+{{#numerator}}<div><b>numerator</b>: {{numerator}}</div>{{/numerator}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Craft of a person or a crew.
@@ -632,7 +805,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Craft_collapse" aria-expanded="true" aria-controls="Craft_collapse">Craft</a>
+<div id="Craft_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * General purpose information for name and other information to contact people.
@@ -690,7 +879,26 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#OldPerson_collapse" aria-expanded="true" aria-controls="OldPerson_collapse">OldPerson</a>
+<div id="OldPerson_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Person.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+{{#CustomerData}}<div><b>CustomerData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerData}}&quot;);})'>{{CustomerData}}</a></div>{{/CustomerData}}
+{{#ErpPersonnel}}<div><b>ErpPersonnel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPersonnel}}&quot;);})'>{{ErpPersonnel}}</a></div>{{/ErpPersonnel}}
+{{#ErpCompetency}}<div><b>ErpCompetency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpCompetency}}&quot;);})'>{{ErpCompetency}}</a></div>{{/ErpCompetency}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Role an organisation plays with respect to persons.
@@ -742,7 +950,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PersonOrganisationRole_collapse" aria-expanded="true" aria-controls="PersonOrganisationRole_collapse">PersonOrganisationRole</a>
+<div id="PersonOrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.OrganisationRole.prototype.template.call (this) +
+`
+{{#clientID}}<div><b>clientID</b>: {{clientID}}</div>{{/clientID}}
+{{#ErpPerson}}<div><b>ErpPerson</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPerson}}&quot;);})'>{{ErpPerson}}</a></div>{{/ErpPerson}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Bank account.
@@ -796,7 +1020,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#BankAccount_collapse" aria-expanded="true" aria-controls="BankAccount_collapse">BankAccount</a>
+<div id="BankAccount_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Document.prototype.template.call (this) +
+`
+{{#accountNumber}}<div><b>accountNumber</b>: {{accountNumber}}</div>{{/accountNumber}}
+{{#ServiceSupplier}}<div><b>ServiceSupplier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceSupplier}}&quot;);})'>{{ServiceSupplier}}</a></div>{{/ServiceSupplier}}
+{{#Bank}}<div><b>Bank</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bank}}&quot;);})'>{{Bank}}</a></div>{{/Bank}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Roles played between Persons and Documents.
@@ -846,7 +1087,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PersonDocumentRole_collapse" aria-expanded="true" aria-controls="PersonDocumentRole_collapse">PersonDocumentRole</a>
+<div id="PersonDocumentRole_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Role.prototype.template.call (this) +
+`
+{{#Person}}<div><b>Person</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Person}}&quot;);})'>{{Person}}</a></div>{{/Person}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The role of a person relative to a given piece of property.
@@ -900,7 +1156,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PersonPropertyRole_collapse" aria-expanded="true" aria-controls="PersonPropertyRole_collapse">PersonPropertyRole</a>
+<div id="PersonPropertyRole_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Role.prototype.template.call (this) +
+`
+{{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LandProperty}}&quot;);})'>{{LandProperty}}</a></div>{{/LandProperty}}
+{{#Person}}<div><b>Person</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Person}}&quot;);})'>{{Person}}</a></div>{{/Person}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

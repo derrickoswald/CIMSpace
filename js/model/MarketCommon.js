@@ -60,7 +60,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketRole_collapse" aria-expanded="true" aria-controls="MarketRole_collapse">MarketRole</a>
+<div id="MarketRole_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#roleType}}<div><b>roleType</b>: {{roleType}}</div>{{/roleType}}
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A resource that is registered through the market participant registration system.
@@ -178,7 +195,55 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RegisteredResource_collapse" aria-expanded="true" aria-controls="RegisteredResource_collapse">RegisteredResource</a>
+<div id="RegisteredResource_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#ACAFlag}}<div><b>ACAFlag</b>: {{ACAFlag}}</div>{{/ACAFlag}}
+{{#ASSPOptimizationFlag}}<div><b>ASSPOptimizationFlag</b>: {{ASSPOptimizationFlag}}</div>{{/ASSPOptimizationFlag}}
+{{#commercialOpDate}}<div><b>commercialOpDate</b>: {{commercialOpDate}}</div>{{/commercialOpDate}}
+{{#contingencyAvailFlag}}<div><b>contingencyAvailFlag</b>: {{contingencyAvailFlag}}</div>{{/contingencyAvailFlag}}
+{{#dispatchFlag}}<div><b>dispatchFlag</b>: {{dispatchFlag}}</div>{{/dispatchFlag}}
+{{#ECAFlag}}<div><b>ECAFlag</b>: {{ECAFlag}}</div>{{/ECAFlag}}
+{{#endEffectiveDate}}<div><b>endEffectiveDate</b>: {{endEffectiveDate}}</div>{{/endEffectiveDate}}
+{{#flexibleOfferFlag}}<div><b>flexibleOfferFlag</b>: {{flexibleOfferFlag}}</div>{{/flexibleOfferFlag}}
+{{#hourlyPredispatch}}<div><b>hourlyPredispatch</b>: {{hourlyPredispatch}}</div>{{/hourlyPredispatch}}
+{{#isAggregatedRes}}<div><b>isAggregatedRes</b>: {{isAggregatedRes}}</div>{{/isAggregatedRes}}
+{{#lastModified}}<div><b>lastModified</b>: {{lastModified}}</div>{{/lastModified}}
+{{#LMPMFlag}}<div><b>LMPMFlag</b>: {{LMPMFlag}}</div>{{/LMPMFlag}}
+{{#marketParticipationFlag}}<div><b>marketParticipationFlag</b>: {{marketParticipationFlag}}</div>{{/marketParticipationFlag}}
+{{#maxBaseSelfSchedQty }}<div><b>maxBaseSelfSchedQty </b>: {{maxBaseSelfSchedQty }}</div>{{/maxBaseSelfSchedQty }}
+{{#maxOnTime}}<div><b>maxOnTime</b>: {{maxOnTime}}</div>{{/maxOnTime}}
+{{#minDispatchTime}}<div><b>minDispatchTime</b>: {{minDispatchTime}}</div>{{/minDispatchTime}}
+{{#minOffTime}}<div><b>minOffTime</b>: {{minOffTime}}</div>{{/minOffTime}}
+{{#minOnTime}}<div><b>minOnTime</b>: {{minOnTime}}</div>{{/minOnTime}}
+{{#mustOfferFlag}}<div><b>mustOfferFlag</b>: {{mustOfferFlag}}</div>{{/mustOfferFlag}}
+{{#nonMarket}}<div><b>nonMarket</b>: {{nonMarket}}</div>{{/nonMarket}}
+{{#pointOfDeliveryFlag}}<div><b>pointOfDeliveryFlag</b>: {{pointOfDeliveryFlag}}</div>{{/pointOfDeliveryFlag}}
+{{#priceSetFlagDA}}<div><b>priceSetFlagDA</b>: {{priceSetFlagDA}}</div>{{/priceSetFlagDA}}
+{{#priceSetFlagRT}}<div><b>priceSetFlagRT</b>: {{priceSetFlagRT}}</div>{{/priceSetFlagRT}}
+{{#registrationStatus}}<div><b>registrationStatus</b>: {{registrationStatus}}</div>{{/registrationStatus}}
+{{#resourceAdequacyFlag}}<div><b>resourceAdequacyFlag</b>: {{resourceAdequacyFlag}}</div>{{/resourceAdequacyFlag}}
+{{#SMPMFlag}}<div><b>SMPMFlag</b>: {{SMPMFlag}}</div>{{/SMPMFlag}}
+{{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
+{{#HostControlArea}}<div><b>HostControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HostControlArea}}&quot;);})'>{{HostControlArea}}</a></div>{{/HostControlArea}}
+{{#DefaultBid}}<div><b>DefaultBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DefaultBid}}&quot;);})'>{{DefaultBid}}</a></div>{{/DefaultBid}}
+{{#MktOrganisation}}<div><b>MktOrganisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktOrganisation}}&quot;);})'>{{MktOrganisation}}</a></div>{{/MktOrganisation}}
+{{#MktConnectivityNode}}<div><b>MktConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktConnectivityNode}}&quot;);})'>{{MktConnectivityNode}}</a></div>{{/MktConnectivityNode}}
+{{#Pnode}}<div><b>Pnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Pnode}}&quot;);})'>{{Pnode}}</a></div>{{/Pnode}}
+{{#AdjacentCASet}}<div><b>AdjacentCASet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AdjacentCASet}}&quot;);})'>{{AdjacentCASet}}</a></div>{{/AdjacentCASet}}
+{{#ResourceVerifiableCosts}}<div><b>ResourceVerifiableCosts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ResourceVerifiableCosts}}&quot;);})'>{{ResourceVerifiableCosts}}</a></div>{{/ResourceVerifiableCosts}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Kind of market role an organisation can have.
@@ -334,7 +399,75 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketRoleKind_collapse" aria-expanded="true" aria-controls="MarketRoleKind_collapse">MarketRoleKind</a>
+<div id="MarketRoleKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#energyServiceConsumer}}<div><b>energyServiceConsumer</b>: {{energyServiceConsumer}}</div>{{/energyServiceConsumer}}
+{{#generatorOwner}}<div><b>generatorOwner</b>: {{generatorOwner}}</div>{{/generatorOwner}}
+{{#generatorOperator}}<div><b>generatorOperator</b>: {{generatorOperator}}</div>{{/generatorOperator}}
+{{#transmissionServiceProvider}}<div><b>transmissionServiceProvider</b>: {{transmissionServiceProvider}}</div>{{/transmissionServiceProvider}}
+{{#transmissionOwner}}<div><b>transmissionOwner</b>: {{transmissionOwner}}</div>{{/transmissionOwner}}
+{{#transmissionOperator}}<div><b>transmissionOperator</b>: {{transmissionOperator}}</div>{{/transmissionOperator}}
+{{#distributionProvider}}<div><b>distributionProvider</b>: {{distributionProvider}}</div>{{/distributionProvider}}
+{{#loadServingEntity}}<div><b>loadServingEntity</b>: {{loadServingEntity}}</div>{{/loadServingEntity}}
+{{#purchasingSellingEntity}}<div><b>purchasingSellingEntity</b>: {{purchasingSellingEntity}}</div>{{/purchasingSellingEntity}}
+{{#competitiveRetailer}}<div><b>competitiveRetailer</b>: {{competitiveRetailer}}</div>{{/competitiveRetailer}}
+{{#reliabilityAuthority}}<div><b>reliabilityAuthority</b>: {{reliabilityAuthority}}</div>{{/reliabilityAuthority}}
+{{#planningAuthority}}<div><b>planningAuthority</b>: {{planningAuthority}}</div>{{/planningAuthority}}
+{{#balancingAuthority}}<div><b>balancingAuthority</b>: {{balancingAuthority}}</div>{{/balancingAuthority}}
+{{#interchangeAuthority}}<div><b>interchangeAuthority</b>: {{interchangeAuthority}}</div>{{/interchangeAuthority}}
+{{#transmissionPlanner}}<div><b>transmissionPlanner</b>: {{transmissionPlanner}}</div>{{/transmissionPlanner}}
+{{#resourcePlanner}}<div><b>resourcePlanner</b>: {{resourcePlanner}}</div>{{/resourcePlanner}}
+{{#standardsDeveloper}}<div><b>standardsDeveloper</b>: {{standardsDeveloper}}</div>{{/standardsDeveloper}}
+{{#complianceMonitor}}<div><b>complianceMonitor</b>: {{complianceMonitor}}</div>{{/complianceMonitor}}
+{{#BalanceResponsibleParty}}<div><b>BalanceResponsibleParty</b>: {{BalanceResponsibleParty}}</div>{{/BalanceResponsibleParty}}
+{{#BalanceSupplier}}<div><b>BalanceSupplier</b>: {{BalanceSupplier}}</div>{{/BalanceSupplier}}
+{{#BillingAgent}}<div><b>BillingAgent</b>: {{BillingAgent}}</div>{{/BillingAgent}}
+{{#BlockEnergyTrader}}<div><b>BlockEnergyTrader</b>: {{BlockEnergyTrader}}</div>{{/BlockEnergyTrader}}
+{{#CapacityCoordinator}}<div><b>CapacityCoordinator</b>: {{CapacityCoordinator}}</div>{{/CapacityCoordinator}}
+{{#CapacityTrader}}<div><b>CapacityTrader</b>: {{CapacityTrader}}</div>{{/CapacityTrader}}
+{{#Consumer}}<div><b>Consumer</b>: {{Consumer}}</div>{{/Consumer}}
+{{#ConsumptionResponsibleParty}}<div><b>ConsumptionResponsibleParty</b>: {{ConsumptionResponsibleParty}}</div>{{/ConsumptionResponsibleParty}}
+{{#ControlAreaOperator}}<div><b>ControlAreaOperator</b>: {{ControlAreaOperator}}</div>{{/ControlAreaOperator}}
+{{#ControlBlockOperator}}<div><b>ControlBlockOperator</b>: {{ControlBlockOperator}}</div>{{/ControlBlockOperator}}
+{{#CoordinationCenterOperator}}<div><b>CoordinationCenterOperator</b>: {{CoordinationCenterOperator}}</div>{{/CoordinationCenterOperator}}
+{{#GridAccessProvider}}<div><b>GridAccessProvider</b>: {{GridAccessProvider}}</div>{{/GridAccessProvider}}
+{{#GridOperator}}<div><b>GridOperator</b>: {{GridOperator}}</div>{{/GridOperator}}
+{{#ImbalanceSettlementResponsible}}<div><b>ImbalanceSettlementResponsible</b>: {{ImbalanceSettlementResponsible}}</div>{{/ImbalanceSettlementResponsible}}
+{{#InterconnectionTradeResponsible}}<div><b>InterconnectionTradeResponsible</b>: {{InterconnectionTradeResponsible}}</div>{{/InterconnectionTradeResponsible}}
+{{#MarketInformationAggregator}}<div><b>MarketInformationAggregator</b>: {{MarketInformationAggregator}}</div>{{/MarketInformationAggregator}}
+{{#MarketOperator}}<div><b>MarketOperator</b>: {{MarketOperator}}</div>{{/MarketOperator}}
+{{#MeterAdministrator}}<div><b>MeterAdministrator</b>: {{MeterAdministrator}}</div>{{/MeterAdministrator}}
+{{#MeterOperator}}<div><b>MeterOperator</b>: {{MeterOperator}}</div>{{/MeterOperator}}
+{{#MeteredDataCollector}}<div><b>MeteredDataCollector</b>: {{MeteredDataCollector}}</div>{{/MeteredDataCollector}}
+{{#MeteredDataResponsible}}<div><b>MeteredDataResponsible</b>: {{MeteredDataResponsible}}</div>{{/MeteredDataResponsible}}
+{{#MeteredDataAggregator}}<div><b>MeteredDataAggregator</b>: {{MeteredDataAggregator}}</div>{{/MeteredDataAggregator}}
+{{#MeteringPointAdministrator}}<div><b>MeteringPointAdministrator</b>: {{MeteringPointAdministrator}}</div>{{/MeteringPointAdministrator}}
+{{#MOLResponsible}}<div><b>MOLResponsible</b>: {{MOLResponsible}}</div>{{/MOLResponsible}}
+{{#NominationValidator}}<div><b>NominationValidator</b>: {{NominationValidator}}</div>{{/NominationValidator}}
+{{#PartyConnectedToTheGrid}}<div><b>PartyConnectedToTheGrid</b>: {{PartyConnectedToTheGrid}}</div>{{/PartyConnectedToTheGrid}}
+{{#Producer}}<div><b>Producer</b>: {{Producer}}</div>{{/Producer}}
+{{#ProductionResponsibleParty}}<div><b>ProductionResponsibleParty</b>: {{ProductionResponsibleParty}}</div>{{/ProductionResponsibleParty}}
+{{#ReconciliationAccountable}}<div><b>ReconciliationAccountable</b>: {{ReconciliationAccountable}}</div>{{/ReconciliationAccountable}}
+{{#ReconciliationResponsible}}<div><b>ReconciliationResponsible</b>: {{ReconciliationResponsible}}</div>{{/ReconciliationResponsible}}
+{{#ReserveAllocator}}<div><b>ReserveAllocator</b>: {{ReserveAllocator}}</div>{{/ReserveAllocator}}
+{{#ResourceProvider}}<div><b>ResourceProvider</b>: {{ResourceProvider}}</div>{{/ResourceProvider}}
+{{#SchedulingCoordinator}}<div><b>SchedulingCoordinator</b>: {{SchedulingCoordinator}}</div>{{/SchedulingCoordinator}}
+{{#SystemOperator}}<div><b>SystemOperator</b>: {{SystemOperator}}</div>{{/SystemOperator}}
+{{#TradeResponsibleParty}}<div><b>TradeResponsibleParty</b>: {{TradeResponsibleParty}}</div>{{/TradeResponsibleParty}}
+{{#TransmissionCapacityAllocator}}<div><b>TransmissionCapacityAllocator</b>: {{TransmissionCapacityAllocator}}</div>{{/TransmissionCapacityAllocator}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An identification of a party acting in a electricity market business process.
@@ -384,7 +517,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MarketParticipant_collapse" aria-expanded="true" aria-controls="MarketParticipant_collapse">MarketParticipant</a>
+<div id="MarketParticipant_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Common.Organisation.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         return (
             {

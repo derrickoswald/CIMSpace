@@ -56,7 +56,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EquivalentNetwork_collapse" aria-expanded="true" aria-controls="EquivalentNetwork_collapse">EquivalentNetwork</a>
+<div id="EquivalentNetwork_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConnectivityNodeContainer.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents equivalent objects that are the result of a network reduction.
@@ -108,7 +122,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EquivalentEquipment_collapse" aria-expanded="true" aria-controls="EquivalentEquipment_collapse">EquivalentEquipment</a>
+<div id="EquivalentEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.ConductingEquipment.prototype.template.call (this) +
+`
+{{#EquivalentNetwork}}<div><b>EquivalentNetwork</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EquivalentNetwork}}&quot;);})'>{{EquivalentNetwork}}</a></div>{{/EquivalentNetwork}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents equivalent shunts.
@@ -160,7 +189,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EquivalentShunt_collapse" aria-expanded="true" aria-controls="EquivalentShunt_collapse">EquivalentShunt</a>
+<div id="EquivalentShunt_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EquivalentEquipment.prototype.template.call (this) +
+`
+{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+{{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents equivalent branches.
@@ -240,7 +285,37 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EquivalentBranch_collapse" aria-expanded="true" aria-controls="EquivalentBranch_collapse">EquivalentBranch</a>
+<div id="EquivalentBranch_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EquivalentEquipment.prototype.template.call (this) +
+`
+{{#negativeR12}}<div><b>negativeR12</b>: {{negativeR12}}</div>{{/negativeR12}}
+{{#negativeR21}}<div><b>negativeR21</b>: {{negativeR21}}</div>{{/negativeR21}}
+{{#negativeX12}}<div><b>negativeX12</b>: {{negativeX12}}</div>{{/negativeX12}}
+{{#negativeX21}}<div><b>negativeX21</b>: {{negativeX21}}</div>{{/negativeX21}}
+{{#positiveR12}}<div><b>positiveR12</b>: {{positiveR12}}</div>{{/positiveR12}}
+{{#positiveR21}}<div><b>positiveR21</b>: {{positiveR21}}</div>{{/positiveR21}}
+{{#positiveX12}}<div><b>positiveX12</b>: {{positiveX12}}</div>{{/positiveX12}}
+{{#positiveX21}}<div><b>positiveX21</b>: {{positiveX21}}</div>{{/positiveX21}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#r21}}<div><b>r21</b>: {{r21}}</div>{{/r21}}
+{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+{{#x21}}<div><b>x21</b>: {{x21}}</div>{{/x21}}
+{{#zeroR12}}<div><b>zeroR12</b>: {{zeroR12}}</div>{{/zeroR12}}
+{{#zeroR21}}<div><b>zeroR21</b>: {{zeroR21}}</div>{{/zeroR21}}
+{{#zeroX12}}<div><b>zeroX12</b>: {{zeroX12}}</div>{{/zeroX12}}
+{{#zeroX21}}<div><b>zeroX21</b>: {{zeroX21}}</div>{{/zeroX21}}
+</div>
+`
+                );
+           }        }
 
         /**
          * This class represents equivalent injections (generation or load).
@@ -322,7 +397,37 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#EquivalentInjection_collapse" aria-expanded="true" aria-controls="EquivalentInjection_collapse">EquivalentInjection</a>
+<div id="EquivalentInjection_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + EquivalentEquipment.prototype.template.call (this) +
+`
+{{#maxP}}<div><b>maxP</b>: {{maxP}}</div>{{/maxP}}
+{{#maxQ}}<div><b>maxQ</b>: {{maxQ}}</div>{{/maxQ}}
+{{#minP}}<div><b>minP</b>: {{minP}}</div>{{/minP}}
+{{#minQ}}<div><b>minQ</b>: {{minQ}}</div>{{/minQ}}
+{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+{{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
+{{#r2}}<div><b>r2</b>: {{r2}}</div>{{/r2}}
+{{#regulationCapability}}<div><b>regulationCapability</b>: {{regulationCapability}}</div>{{/regulationCapability}}
+{{#regulationStatus}}<div><b>regulationStatus</b>: {{regulationStatus}}</div>{{/regulationStatus}}
+{{#regulationTarget}}<div><b>regulationTarget</b>: {{regulationTarget}}</div>{{/regulationTarget}}
+{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+{{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
+{{#x2}}<div><b>x2</b>: {{x2}}</div>{{/x2}}
+{{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
+{{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
+{{#ReactiveCapabilityCurve}}<div><b>ReactiveCapabilityCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReactiveCapabilityCurve}}&quot;);})'>{{ReactiveCapabilityCurve}}</a></div>{{/ReactiveCapabilityCurve}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

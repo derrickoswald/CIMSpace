@@ -72,7 +72,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GateInputPin_collapse" aria-expanded="true" aria-controls="GateInputPin_collapse">GateInputPin</a>
+<div id="GateInputPin_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#absoluteValue}}<div><b>absoluteValue</b>: {{absoluteValue}}</div>{{/absoluteValue}}
+{{#aDLogicKind}}<div><b>aDLogicKind</b>: {{aDLogicKind}}</div>{{/aDLogicKind}}
+{{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
+{{#negate}}<div><b>negate</b>: {{negate}}</div>{{/negate}}
+{{#thresholdPercentage}}<div><b>thresholdPercentage</b>: {{thresholdPercentage}}</div>{{/thresholdPercentage}}
+{{#thresholdValue}}<div><b>thresholdValue</b>: {{thresholdValue}}</div>{{/thresholdValue}}
+{{#Gate}}<div><b>Gate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Gate}}&quot;);})'>{{Gate}}</a></div>{{/Gate}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Remedial Action Scheme (RAS), Special Protection Schemes (SPS), System Protection Schemes (SPS) or System Integrity Protection Schemes (SIPS).
@@ -128,7 +149,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RemedialActionScheme_collapse" aria-expanded="true" aria-controls="RemedialActionScheme_collapse">RemedialActionScheme</a>
+<div id="RemedialActionScheme_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.PowerSystemResource.prototype.template.call (this) +
+`
+{{#armed}}<div><b>armed</b>: {{armed}}</div>{{/armed}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#normalArmed}}<div><b>normalArmed</b>: {{normalArmed}}</div>{{/normalArmed}}
+{{#GateArmed}}<div><b>GateArmed</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateArmed}}&quot;);})'>{{GateArmed}}</a></div>{{/GateArmed}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Condition that is triggered either by TriggerCondition of by gate condition within a stage and has remedial action-s.
@@ -192,7 +231,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#StageTrigger_collapse" aria-expanded="true" aria-controls="StageTrigger_collapse">StageTrigger</a>
+<div id="StageTrigger_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#armed}}<div><b>armed</b>: {{armed}}</div>{{/armed}}
+{{#normalArmed}}<div><b>normalArmed</b>: {{normalArmed}}</div>{{/normalArmed}}
+{{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+{{#Stage}}<div><b>Stage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Stage}}&quot;);})'>{{Stage}}</a></div>{{/Stage}}
+{{#GateTrigger}}<div><b>GateTrigger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateTrigger}}&quot;);})'>{{GateTrigger}}</a></div>{{/GateTrigger}}
+{{#GateArmed}}<div><b>GateArmed</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateArmed}}&quot;);})'>{{GateArmed}}</a></div>{{/GateArmed}}
+{{#ProtectiveActionCollection}}<div><b>ProtectiveActionCollection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProtectiveActionCollection}}&quot;);})'>{{ProtectiveActionCollection}}</a></div>{{/ProtectiveActionCollection}}
+{{#GateComCondition}}<div><b>GateComCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateComCondition}}&quot;);})'>{{GateComCondition}}</a></div>{{/GateComCondition}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A protective action for supporting the integrity of the power system.
@@ -252,7 +313,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProtectiveAction_collapse" aria-expanded="true" aria-controls="ProtectiveAction_collapse">ProtectiveAction</a>
+<div id="ProtectiveAction_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
+{{#normalEnabled}}<div><b>normalEnabled</b>: {{normalEnabled}}</div>{{/normalEnabled}}
+{{#ProtectionEquipment}}<div><b>ProtectionEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProtectionEquipment}}&quot;);})'>{{ProtectionEquipment}}</a></div>{{/ProtectionEquipment}}
+{{#GateComCondition}}<div><b>GateComCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateComCondition}}&quot;);})'>{{GateComCondition}}</a></div>{{/GateComCondition}}
+{{#ProtectiveActionCollection}}<div><b>ProtectiveActionCollection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProtectiveActionCollection}}&quot;);})'>{{ProtectiveActionCollection}}</a></div>{{/ProtectiveActionCollection}}
+{{#GateEnabledCondition}}<div><b>GateEnabledCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateEnabledCondition}}&quot;);})'>{{GateEnabledCondition}}</a></div>{{/GateEnabledCondition}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Input to measurement calculation.
@@ -310,7 +391,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MeasurementCalculatorInput_collapse" aria-expanded="true" aria-controls="MeasurementCalculatorInput_collapse">MeasurementCalculatorInput</a>
+<div id="MeasurementCalculatorInput_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#absoluteValue}}<div><b>absoluteValue</b>: {{absoluteValue}}</div>{{/absoluteValue}}
+{{#order}}<div><b>order</b>: {{order}}</div>{{/order}}
+{{#MeasurementCalculator}}<div><b>MeasurementCalculator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementCalculator}}&quot;);})'>{{MeasurementCalculator}}</a></div>{{/MeasurementCalculator}}
+{{#Measurement}}<div><b>Measurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Measurement}}&quot;);})'>{{Measurement}}</a></div>{{/Measurement}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Categories of analog to digital (or logical result) comparison.
@@ -370,7 +469,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#AnalogToDigitalLogicKind_collapse" aria-expanded="true" aria-controls="AnalogToDigitalLogicKind_collapse">AnalogToDigitalLogicKind</a>
+<div id="AnalogToDigitalLogicKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#ne}}<div><b>ne</b>: {{ne}}</div>{{/ne}}
+{{#eq}}<div><b>eq</b>: {{eq}}</div>{{/eq}}
+{{#le}}<div><b>le</b>: {{le}}</div>{{/le}}
+{{#lt}}<div><b>lt</b>: {{lt}}</div>{{/lt}}
+{{#ge}}<div><b>ge</b>: {{ge}}</div>{{/ge}}
+{{#gt}}<div><b>gt</b>: {{gt}}</div>{{/gt}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Categorisation of different protective action adjustments that can be performed on equipment.
@@ -426,7 +545,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProtectiveActionAdjustmentKind_collapse" aria-expanded="true" aria-controls="ProtectiveActionAdjustmentKind_collapse">ProtectiveActionAdjustmentKind</a>
+<div id="ProtectiveActionAdjustmentKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#byPercentage}}<div><b>byPercentage</b>: {{byPercentage}}</div>{{/byPercentage}}
+{{#byValue}}<div><b>byValue</b>: {{byValue}}</div>{{/byValue}}
+{{#setValue}}<div><b>setValue</b>: {{setValue}}</div>{{/setValue}}
+{{#measurement}}<div><b>measurement</b>: {{measurement}}</div>{{/measurement}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Categorisation of type of compare done on a branch group.
@@ -478,7 +615,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PinBranchGroupKind_collapse" aria-expanded="true" aria-controls="PinBranchGroupKind_collapse">PinBranchGroupKind</a>
+<div id="PinBranchGroupKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#activePower}}<div><b>activePower</b>: {{activePower}}</div>{{/activePower}}
+{{#reactivePower}}<div><b>reactivePower</b>: {{reactivePower}}</div>{{/reactivePower}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Logical gate than support logical operation based on the input.
@@ -528,7 +681,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Gate_collapse" aria-expanded="true" aria-controls="Gate_collapse">Gate</a>
+<div id="Gate_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Categorisation of type of compare done on Terminal.
@@ -584,7 +752,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PinTerminalKind_collapse" aria-expanded="true" aria-controls="PinTerminalKind_collapse">PinTerminalKind</a>
+<div id="PinTerminalKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#activePower}}<div><b>activePower</b>: {{activePower}}</div>{{/activePower}}
+{{#apparentPower}}<div><b>apparentPower</b>: {{apparentPower}}</div>{{/apparentPower}}
+{{#reactivePower}}<div><b>reactivePower</b>: {{reactivePower}}</div>{{/reactivePower}}
+{{#voltage}}<div><b>voltage</b>: {{voltage}}</div>{{/voltage}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Stage of a remedial action scheme.
@@ -636,7 +822,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#Stage_collapse" aria-expanded="true" aria-controls="Stage_collapse">Stage</a>
+<div id="Stage_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+{{#RemedialActionScheme}}<div><b>RemedialActionScheme</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemedialActionScheme}}&quot;);})'>{{RemedialActionScheme}}</a></div>{{/RemedialActionScheme}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Result of a calculation of one or more measurement.
@@ -686,7 +888,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#MeasurementCalculator_collapse" aria-expanded="true" aria-controls="MeasurementCalculator_collapse">MeasurementCalculator</a>
+<div id="MeasurementCalculator_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Classification of Remedial Action Scheme.
@@ -738,7 +955,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#RemedialActionSchemeKind_collapse" aria-expanded="true" aria-controls="RemedialActionSchemeKind_collapse">RemedialActionSchemeKind</a>
+<div id="RemedialActionSchemeKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#rAS}}<div><b>rAS</b>: {{rAS}}</div>{{/rAS}}
+{{#rAP}}<div><b>rAP</b>: {{rAP}}</div>{{/rAP}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Define the different logical operations.
@@ -800,7 +1033,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GateLogicKind_collapse" aria-expanded="true" aria-controls="GateLogicKind_collapse">GateLogicKind</a>
+<div id="GateLogicKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#and}}<div><b>and</b>: {{and}}</div>{{/and}}
+{{#or}}<div><b>or</b>: {{or}}</div>{{/or}}
+{{#nor}}<div><b>nor</b>: {{nor}}</div>{{/nor}}
+{{#nand}}<div><b>nand</b>: {{nand}}</div>{{/nand}}
+{{#not}}<div><b>not</b>: {{not}}</div>{{/not}}
+{{#xnor}}<div><b>xnor</b>: {{xnor}}</div>{{/xnor}}
+{{#xor}}<div><b>xor</b>: {{xor}}</div>{{/xor}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A conditions that can trigger remedial actions.
@@ -852,7 +1106,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TriggerCondition_collapse" aria-expanded="true" aria-controls="TriggerCondition_collapse">TriggerCondition</a>
+<div id="TriggerCondition_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#RemedialActionScheme}}<div><b>RemedialActionScheme</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemedialActionScheme}}&quot;);})'>{{RemedialActionScheme}}</a></div>{{/RemedialActionScheme}}
+{{#GateTrigger}}<div><b>GateTrigger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateTrigger}}&quot;);})'>{{GateTrigger}}</a></div>{{/GateTrigger}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Categorisation of calculation operation that can be done to Measurement.
@@ -908,7 +1178,25 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#CalculationKind_collapse" aria-expanded="true" aria-controls="CalculationKind_collapse">CalculationKind</a>
+<div id="CalculationKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#sum}}<div><b>sum</b>: {{sum}}</div>{{/sum}}
+{{#mul}}<div><b>mul</b>: {{mul}}</div>{{/mul}}
+{{#div}}<div><b>div</b>: {{div}}</div>{{/div}}
+{{#sqrt}}<div><b>sqrt</b>: {{sqrt}}</div>{{/sqrt}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Categorisation of type of compare done on Equipment.
@@ -970,7 +1258,28 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PinEquipmentKind_collapse" aria-expanded="true" aria-controls="PinEquipmentKind_collapse">PinEquipmentKind</a>
+<div id="PinEquipmentKind_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#inService}}<div><b>inService</b>: {{inService}}</div>{{/inService}}
+{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+{{#voltageLimit}}<div><b>voltageLimit</b>: {{voltageLimit}}</div>{{/voltageLimit}}
+{{#currentLimit}}<div><b>currentLimit</b>: {{currentLimit}}</div>{{/currentLimit}}
+{{#activePowerLimit}}<div><b>activePowerLimit</b>: {{activePowerLimit}}</div>{{/activePowerLimit}}
+{{#apparentPowerLimit}}<div><b>apparentPowerLimit</b>: {{apparentPowerLimit}}</div>{{/apparentPowerLimit}}
+{{#connected}}<div><b>connected</b>: {{connected}}</div>{{/connected}}
+</div>
+`
+                );
+           }        }
 
         /**
          * A collection of protective actions to protect the integrity of the power system.
@@ -1018,7 +1327,21 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProtectiveActionCollection_collapse" aria-expanded="true" aria-controls="ProtectiveActionCollection_collapse">ProtectiveActionCollection</a>
+<div id="ProtectiveActionCollection_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+</div>
+`
+                );
+           }        }
 
         /**
          * Value associated with Equipment is used as compare.
@@ -1070,7 +1393,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PinEquipment_collapse" aria-expanded="true" aria-controls="PinEquipment_collapse">PinEquipment</a>
+<div id="PinEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + GateInputPin.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
+</div>
+`
+                );
+           }        }
 
         /**
          * An output from one gate represent an input to another gate.
@@ -1120,7 +1459,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PinGate_collapse" aria-expanded="true" aria-controls="PinGate_collapse">PinGate</a>
+<div id="PinGate_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + GateInputPin.prototype.template.call (this) +
+`
+{{#GateOutput}}<div><b>GateOutput</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateOutput}}&quot;);})'>{{GateOutput}}</a></div>{{/GateOutput}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Value associated with Terminal is used as compare.
@@ -1172,7 +1526,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PinTerminal_collapse" aria-expanded="true" aria-controls="PinTerminal_collapse">PinTerminal</a>
+<div id="PinTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + GateInputPin.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Value associated with branch group is used as compare.
@@ -1224,7 +1594,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PinBranchGroup_collapse" aria-expanded="true" aria-controls="PinBranchGroup_collapse">PinBranchGroup</a>
+<div id="PinBranchGroup_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + GateInputPin.prototype.template.call (this) +
+`
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#BranchGroup}}<div><b>BranchGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BranchGroup}}&quot;);})'>{{BranchGroup}}</a></div>{{/BranchGroup}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Gate input pin that is associated with a Measurement or a calculation of Measurement.
@@ -1276,7 +1662,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PinMeasurement_collapse" aria-expanded="true" aria-controls="PinMeasurement_collapse">PinMeasurement</a>
+<div id="PinMeasurement_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + GateInputPin.prototype.template.call (this) +
+`
+{{#Measurement}}<div><b>Measurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Measurement}}&quot;);})'>{{Measurement}}</a></div>{{/Measurement}}
+{{#MeasurementCalculator}}<div><b>MeasurementCalculator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementCalculator}}&quot;);})'>{{MeasurementCalculator}}</a></div>{{/MeasurementCalculator}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Protective action to change regulation to Equipment.
@@ -1330,7 +1732,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProtectiveActionRegulation_collapse" aria-expanded="true" aria-controls="ProtectiveActionRegulation_collapse">ProtectiveActionRegulation</a>
+<div id="ProtectiveActionRegulation_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ProtectiveAction.prototype.template.call (this) +
+`
+{{#isRegulating}}<div><b>isRegulating</b>: {{isRegulating}}</div>{{/isRegulating}}
+{{#targetValue}}<div><b>targetValue</b>: {{targetValue}}</div>{{/targetValue}}
+{{#RegulatingControl}}<div><b>RegulatingControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegulatingControl}}&quot;);})'>{{RegulatingControl}}</a></div>{{/RegulatingControl}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Protective actions on non-switching equipment.
@@ -1396,7 +1815,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProtectiveActionAdjustment_collapse" aria-expanded="true" aria-controls="ProtectiveActionAdjustment_collapse">ProtectiveActionAdjustment</a>
+<div id="ProtectiveActionAdjustment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ProtectiveAction.prototype.template.call (this) +
+`
+{{#byPercentage}}<div><b>byPercentage</b>: {{byPercentage}}</div>{{/byPercentage}}
+{{#byValue}}<div><b>byValue</b>: {{byValue}}</div>{{/byValue}}
+{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+{{#reduce}}<div><b>reduce</b>: {{reduce}}</div>{{/reduce}}
+{{#setValue}}<div><b>setValue</b>: {{setValue}}</div>{{/setValue}}
+{{#Measurement}}<div><b>Measurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Measurement}}&quot;);})'>{{Measurement}}</a></div>{{/Measurement}}
+{{#ConductingEquipment}}<div><b>ConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConductingEquipment}}&quot;);})'>{{ConductingEquipment}}</a></div>{{/ConductingEquipment}}
+{{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCConductingEquipment}}&quot;);})'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Protective action to put an Equipment in-service/out-of-service.
@@ -1448,7 +1889,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#ProtectiveActionEquipment_collapse" aria-expanded="true" aria-controls="ProtectiveActionEquipment_collapse">ProtectiveActionEquipment</a>
+<div id="ProtectiveActionEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + ProtectiveAction.prototype.template.call (this) +
+`
+{{#inService}}<div><b>inService</b>: {{inService}}</div>{{/inService}}
+{{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

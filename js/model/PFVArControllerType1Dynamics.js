@@ -62,7 +62,24 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PFVArControllerType1Dynamics_collapse" aria-expanded="true" aria-controls="PFVArControllerType1Dynamics_collapse">PFVArControllerType1Dynamics</a>
+<div id="PFVArControllerType1Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+`
+{{#VoltageAdjusterDynamics}}<div><b>VoltageAdjusterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageAdjusterDynamics}}&quot;);})'>{{VoltageAdjusterDynamics}}</a></div>{{/VoltageAdjusterDynamics}}
+{{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+{{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE VAR Controller Type 1 which operates by moving the voltage reference directly.
@@ -124,7 +141,27 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PFVArType1IEEEVArController_collapse" aria-expanded="true" aria-controls="PFVArType1IEEEVArController_collapse">PFVArType1IEEEVArController</a>
+<div id="PFVArType1IEEEVArController_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PFVArControllerType1Dynamics.prototype.template.call (this) +
+`
+{{#tvarc}}<div><b>tvarc</b>: {{tvarc}}</div>{{/tvarc}}
+{{#vvar}}<div><b>vvar</b>: {{vvar}}</div>{{/vvar}}
+{{#vvarcbw}}<div><b>vvarcbw</b>: {{vvarcbw}}</div>{{/vvarcbw}}
+{{#vvarref}}<div><b>vvarref</b>: {{vvarref}}</div>{{/vvarref}}
+{{#vvtmax}}<div><b>vvtmax</b>: {{vvtmax}}</div>{{/vvtmax}}
+{{#vvtmin}}<div><b>vvtmin</b>: {{vvtmin}}</div>{{/vvtmin}}
+</div>
+`
+                );
+           }        }
 
         /**
          * The class represents IEEE PF Controller Type 1 which operates by moving the voltage reference directly.
@@ -190,7 +227,29 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PFVArType1IEEEPFController_collapse" aria-expanded="true" aria-controls="PFVArType1IEEEPFController_collapse">PFVArType1IEEEPFController</a>
+<div id="PFVArType1IEEEPFController_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + PFVArControllerType1Dynamics.prototype.template.call (this) +
+`
+{{#ovex}}<div><b>ovex</b>: {{ovex}}</div>{{/ovex}}
+{{#tpfc}}<div><b>tpfc</b>: {{tpfc}}</div>{{/tpfc}}
+{{#vitmin}}<div><b>vitmin</b>: {{vitmin}}</div>{{/vitmin}}
+{{#vpf}}<div><b>vpf</b>: {{vpf}}</div>{{/vpf}}
+{{#vpfcbw}}<div><b>vpfcbw</b>: {{vpfcbw}}</div>{{/vpfcbw}}
+{{#vpfref}}<div><b>vpfref</b>: {{vpfref}}</div>{{/vpfref}}
+{{#vvtmax}}<div><b>vvtmax</b>: {{vvtmax}}</div>{{/vvtmax}}
+{{#vvtmin}}<div><b>vvtmin</b>: {{vvtmin}}</div>{{/vvtmin}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

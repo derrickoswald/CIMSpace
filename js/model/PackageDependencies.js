@@ -60,7 +60,23 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#PackageDependenciesCIMVersion_collapse" aria-expanded="true" aria-controls="PackageDependenciesCIMVersion_collapse">PackageDependenciesCIMVersion</a>
+<div id="PackageDependenciesCIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + base.Element.prototype.template.call (this) +
+`
+{{#date}}<div><b>date</b>: {{date}}</div>{{/date}}
+{{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+</div>
+`
+                );
+           }        }
 
         return (
             {

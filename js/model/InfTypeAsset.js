@@ -84,7 +84,37 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#GeneratorTypeAsset_collapse" aria-expanded="true" aria-controls="GeneratorTypeAsset_collapse">GeneratorTypeAsset</a>
+<div id="GeneratorTypeAsset_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + InfAssets.GenericAssetModelOrMaterial.prototype.template.call (this) +
+`
+{{#maxP}}<div><b>maxP</b>: {{maxP}}</div>{{/maxP}}
+{{#maxQ}}<div><b>maxQ</b>: {{maxQ}}</div>{{/maxQ}}
+{{#minP}}<div><b>minP</b>: {{minP}}</div>{{/minP}}
+{{#minQ}}<div><b>minQ</b>: {{minQ}}</div>{{/minQ}}
+{{#rDirectSubtrans}}<div><b>rDirectSubtrans</b>: {{rDirectSubtrans}}</div>{{/rDirectSubtrans}}
+{{#rDirectSync}}<div><b>rDirectSync</b>: {{rDirectSync}}</div>{{/rDirectSync}}
+{{#rDirectTrans}}<div><b>rDirectTrans</b>: {{rDirectTrans}}</div>{{/rDirectTrans}}
+{{#rQuadSubtrans}}<div><b>rQuadSubtrans</b>: {{rQuadSubtrans}}</div>{{/rQuadSubtrans}}
+{{#rQuadSync}}<div><b>rQuadSync</b>: {{rQuadSync}}</div>{{/rQuadSync}}
+{{#rQuadTrans}}<div><b>rQuadTrans</b>: {{rQuadTrans}}</div>{{/rQuadTrans}}
+{{#xDirectSubtrans}}<div><b>xDirectSubtrans</b>: {{xDirectSubtrans}}</div>{{/xDirectSubtrans}}
+{{#xDirectSync}}<div><b>xDirectSync</b>: {{xDirectSync}}</div>{{/xDirectSync}}
+{{#xDirectTrans}}<div><b>xDirectTrans</b>: {{xDirectTrans}}</div>{{/xDirectTrans}}
+{{#xQuadSubtrans}}<div><b>xQuadSubtrans</b>: {{xQuadSubtrans}}</div>{{/xQuadSubtrans}}
+{{#xQuadSync}}<div><b>xQuadSync</b>: {{xQuadSync}}</div>{{/xQuadSync}}
+{{#xQuadTrans}}<div><b>xQuadTrans</b>: {{xQuadTrans}}</div>{{/xQuadTrans}}
+</div>
+`
+                );
+           }        }
 
         /**
          * Catalogue of generic types of assets (TypeAsset) that may be used for design purposes.
@@ -136,7 +166,22 @@ define
 
                 return (fields);
             }
-        }
+
+
+            template ()
+            {
+                return (
+`
+<a data-toggle="collapse" href="#TypeAssetCatalogue_collapse" aria-expanded="true" aria-controls="TypeAssetCatalogue_collapse">TypeAssetCatalogue</a>
+<div id="TypeAssetCatalogue_collapse" class="collapse in" style="margin-left: 10px;">
+`
+      + Core.IdentifiedObject.prototype.template.call (this) +
+`
+{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+</div>
+`
+                );
+           }        }
 
         return (
             {
