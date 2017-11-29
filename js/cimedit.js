@@ -91,7 +91,6 @@ define
                 var options =
                     {
                         show_internal_features: this._cimmap.show_internal_features (),
-                        zero_based_point_sequence: this._cimmap.zero_based_point_sequence (),
                         editing: true
                     };
                 var geo = this._cimmap.get_themer ().getTheme ().make_geojson (this._cimmap.get_data (), options);
@@ -160,7 +159,6 @@ define
                 var options =
                     {
                         show_internal_features: this._cimmap.show_internal_features (),
-                        zero_based_point_sequence: this._cimmap.zero_based_point_sequence (),
                         editing: true
                     };
                 var geo = this._cimmap.get_themer ().getTheme ().make_geojson (this._cimmap.get_data (), options);
@@ -248,7 +246,7 @@ define
                                     Location: location.id,
                                     cls: "PositionPoint",
                                     id: mRID + "_location_p" + (i + 1).toString (),
-                                    sequenceNumber: i.toString (), // mistake: PositionPoint sequenceNumbers are not zero-based
+                                    sequenceNumber: (i + 1).toString (),
                                     xPosition: lnglat[0].toString (),
                                     yPosition: lnglat[1].toString ()
                                 },

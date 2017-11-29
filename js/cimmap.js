@@ -152,17 +152,6 @@ define
         }
 
         /**
-         * Get the user's choice for whether PositionPoint.sequenceNumber is zero-based or not.
-         * @returns {boolean} <code>true</code> if PositionPoint sequenceNumber values start at zero, <code>false</code> otherwise
-         * @function zero_based_point_sequence
-         * @memberOf module:cimmap
-         */
-        function zero_based_point_sequence ()
-        {
-            return (document.getElementById ("zero_based_point_sequence").checked);
-        }
-
-        /**
          * Get the user's choice for whether a scle bar is displayed or not.
          * @returns {boolean} <code>true</code> if a sclae bar should be shown, <code>false</code> otherwise
          * @function show_scale_bar
@@ -197,7 +186,6 @@ define
             TheThemer.theme (TheMap, CIM_Data,
                 {
                     show_internal_features: show_internal_features (),
-                    zero_based_point_sequence: zero_based_point_sequence (),
                     editing: false
                 });
             TheExtents = TheThemer.getExtents ();
@@ -1041,7 +1029,6 @@ define
                      redraw: redraw,
                      show_internal_features: show_internal_features,
                      show_3d_buildings: show_3d_buildings,
-                     zero_based_point_sequence: zero_based_point_sequence,
                      buildings_3d: buildings_3d,
                      scale_bar: scale_bar,
                      trace: trace,

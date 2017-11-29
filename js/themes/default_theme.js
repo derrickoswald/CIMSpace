@@ -60,7 +60,6 @@ define
                         blacklist[location] = true;
                 }
             }
-            var offset = options.zero_based_point_sequence ? 0 : -1;
             for (var point in points)
             {
                 var p = points[point];
@@ -69,7 +68,7 @@ define
                 {
                     if (null == ret[location])
                         ret[location] = [];
-                    var seq = Number (p.sequenceNumber) + offset;
+                    var seq = Number (p.sequenceNumber);
                     if (null != seq)
                     {
                         var x = Number (p.xPosition);
@@ -93,6 +92,15 @@ define
                     }
                 }
             }
+
+            // fix non-zero based sequence numbers
+            for (var property in ret)
+                if (ret.hasOwnProperty (property))
+                {
+                    var a = ret[property];
+                    if (("undefined" == typeof (a[0])) && ("undefined" == typeof (a[1])))
+                        ret[property] = a.slice (2);
+                }
 
             TheExtents = extents;
             return (ret);
@@ -396,7 +404,6 @@ define
              * @param {Object} data - the hash table object of CIM classes by class name
              * @param {Object} options - object with rendering options, e.g.
              *   show_internal_features flag - render internal features
-             *   zero_based_point_sequence flag - use (incorrect) zero based PositionPoint sequenceNumber
              *   editing flag - render new features or, if false, existing features
              * @function make_theme
              * @memberOf module:default_theme
