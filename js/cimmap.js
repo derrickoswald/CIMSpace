@@ -172,6 +172,7 @@ define
         {
             var start = new Date ().getTime ();
             console.log ("rendering CIM data");
+            hide_details ();
 
             function sleep(ms)
             {
@@ -236,24 +237,28 @@ define
 
         /**
          * @summary Make the details non-model dialog visible.
-         * @description Uses jQuery to show the panel.
+         * @description Sets the style display to "block".
          * @function show_details
          * @memberOf module:cimmap
          */
         function show_details ()
         {
-            $("#feature_details").show ();
+            var details = document.getElementById ("feature_details");
+            var style = details.getAttribute ("style");
+            details.setAttribute ("style", style.replace (/display:[^;]*;/g, "display: block;"));
         }
 
         /**
          * @summary Make the details non-model dialog invisible.
-         * @description Uses jQuery to hide the panel.
+         * @description Sets the style display to "none".
          * @function hide_details
          * @memberOf module:cimmap
          */
         function hide_details ()
         {
-            $("#feature_details").hide (200);
+            var details = document.getElementById ("feature_details");
+            var style = details.getAttribute ("style");
+            details.setAttribute ("style", style.replace (/display:[^;]*;/g, "display: none;"));
         }
 
         /**

@@ -145,9 +145,9 @@ define
             if ("undefined" == typeof (asynchronous))
                 asynchronous = true;
             ret = new XMLHttpRequest ();
-            if ('withCredentials' in ret) // "withCredentials" only exists on XMLHTTPRequest2 objects
+            if ("withCredentials" in ret) // "withCredentials" only exists on XMLHTTPRequest2 objects
                 ret.open (method, url, asynchronous);
-            else if (typeof XDomainRequest != 'undefined') // IE
+            else if (typeof XDomainRequest != "undefined") // IE
             {
                 ret = new XDomainRequest ();
                 ret.open (method, url);
@@ -211,7 +211,7 @@ define
          */
         function close_file_modal ()
         {
-            $ ("#file_modal").modal("hide");
+            $("#file_modal").modal("hide");
         }
 
         /**
@@ -254,7 +254,7 @@ define
         {
             event.stopPropagation ();
             event.preventDefault ();
-            event.dataTransfer.dropEffect = 'copy';
+            event.dataTransfer.dropEffect = "copy";
         }
 
         /**
@@ -271,7 +271,7 @@ define
             reader.onload = function ()
             {
                 var dataUrl = reader.result;
-                var base64 = dataUrl.split(',')[1];
+                var base64 = dataUrl.split (",")[1];
                 callback (base64);
             };
             reader.readAsDataURL (blob);
@@ -395,7 +395,7 @@ define
                                                                     console.log ("finished base64 conversion (" + (Math.round (finish - end) / 1000) + " seconds)");
                                                                     a.setAttribute ("href", "data:application/zip;base64," + data);
                                                                     a.setAttribute ("type", "application/zip");
-                                                                    a.onclick = function (event) { $('#save_modal').modal('hide'); }
+                                                                    a.onclick = function (event) { $("#save_modal").modal ("hide"); }
                                                                     a.removeAttribute ("disabled");
                                                                     console.log ("ready (" + (Math.round (new Date ().getTime () - finish) / 1000) + " seconds)");
                                                                     resolve ("OK");
