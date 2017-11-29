@@ -86,6 +86,17 @@ define
         }
 
         /**
+         * Get the currently selected feature.
+         * @return the mRID of the currently selected feature or null if none.
+         * @function get_selected_feature
+         * @memberOf module:cimmap
+         */
+        function get_selected_feature ()
+        {
+            return (CURRENT_FEATURE);
+        }
+
+        /**
          * Set the extents of the CIM data for the map to draw.
          * @param {Object} new extents value { xmin: , ymin: , xmax: , ymax: }
          * @function set_extents
@@ -370,13 +381,18 @@ define
          */
         function select (mrid)
         {
-            if (mrid != CURRENT_SELECTION)
+            if (null != mrid)
             {
-                CURRENT_FEATURE = mrid;
-                if (!CURRENT_SELECTION.includes (mrid))
-                    CURRENT_SELECTION = [mrid];
-                highlight ();
+                if (mrid != CURRENT_SELECTION)
+                {
+                    CURRENT_FEATURE = mrid;
+                    if (!CURRENT_SELECTION.includes (mrid))
+                        CURRENT_SELECTION = [mrid];
+                    highlight ();
+                }
             }
+            else
+                unhighlight ();
         }
 
         /**
@@ -877,21 +893,82 @@ define
             return ({ url: _url });
         }
 
-        /**
-         * @summary Shut down the map.
-         * @description Clean up and close the map.
-         * @param {object} event - <em>not used</em>
-         * @function terminate
-         * @memberOf module:cimmap
-         */
-        function terminate (event)
+        function default_mousedown_listener (event)
         {
-            if (null != TheMap)
+            var buttons = event.originalEvent.buttons;
+            //    0  : No button or un-initialized
+            //    1  : Primary button (usually left)
+            //    2  : Secondary button (usually right)
+            var leftbutton = 0 != (buttons & 1);
+            var rightbutton = 0 != (buttons & 2);
+            if (leftbutton)
             {
-                var map = TheMap;
-                map.remove ();
-                document.getElementById ("main").innerHTML = "";
+                var width = 4;
+                var height = 4;
+                var features = TheMap.queryRenderedFeatures
+                (
+                    [
+                      [event.point.x - width / 2, event.point.y - height / 2],
+                      [event.point.x + width / 2, event.point.y + height / 2]
+                    ],
+                    {}
+                );
+                if ((null != features) && (0 != features.length))
+                {
+                    var selection = [];
+                    for (var i = 0; i < features.length; i++)
+                    {
+                        var mrid = features[i].properties.mRID;
+                        if (null != mrid)
+                            selection[selection.length] = mrid;
+                    }
+                    if (selection.length > 0)
+                    {
+                        if (selection[0] != CURRENT_FEATURE)
+                        {
+                            CURRENT_FEATURE = selection[0];
+                            CURRENT_SELECTION = selection;
+                            highlight ();
+                        }
+                    }
+                    else
+                        unhighlight ();
+                }
+                else
+                    unhighlight ();
             }
+            else if (rightbutton)
+            {
+                //<i id="" class="fa fa-map-marker"></i>
+                var element = document.createElement ("i");
+                element.className = "fa fa-map-marker fa-2x";
+                var marker = new mapboxgl.Marker (element)
+                  .setLngLat (event.lngLat)
+                  .addTo (event.target);
+            }
+        }
+
+        function default_mousemove_listener (event)
+        {
+            var lng = event.lngLat.lng;
+            var lat = event.lngLat.lat;
+            lng = Math.round (lng * 1000000) / 1000000;
+            lat = Math.round (lat * 1000000) / 1000000;
+            document.getElementById ("coordinates").innerHTML = "" + lng + "," + lat;
+        }
+
+        function add_listeners ()
+        {
+            // handle mouse click
+            TheMap.on ("mousedown", default_mousedown_listener);
+            // handle mouse movement
+            TheMap.on ("mousemove", default_mousemove_listener);
+        }
+
+        function remove_listeners ()
+        {
+            TheMap.off ("mousedown", default_mousedown_listener);
+            TheMap.off ("mousemove", default_mousemove_listener);
         }
 
         /**
@@ -925,65 +1002,29 @@ define
             );
             // add zoom and rotation controls to the map
             TheMap.addControl (new cimnav.NavigationControl (zoom_extents, toggle_themer, toggle_legend, edit));
-            // handle mouse click
-            TheMap.on
-            (
-                'mousedown',
-                function (event)
-                {
-                    var width = 4;
-                    var height = 4;
-                    var features = TheMap.queryRenderedFeatures
-                    (
-                        [
-                          [event.point.x - width / 2, event.point.y - height / 2],
-                          [event.point.x + width / 2, event.point.y + height / 2]
-                        ],
-                        {}
-                    );
-                    if ((null != features) && (0 != features.length))
-                    {
-                        var selection = [];
-                        for (var i = 0; i < features.length; i++)
-                        {
-                            var mrid = features[i].properties.mRID;
-                            if (null != mrid)
-                                selection[selection.length] = mrid;
-                        }
-                        if (selection.length > 0)
-                        {
-                            if (selection[0] != CURRENT_FEATURE)
-                            {
-                                CURRENT_FEATURE = selection[0];
-                                CURRENT_SELECTION = selection;
-                                highlight ();
-                            }
-                        }
-                        else
-                            unhighlight ();
-                    }
-                    else
-                        unhighlight ();
-                }
-            );
-            // handle mouse movement
-            TheMap.on
-            (
-                'mousemove',
-                function (event)
-                {
-                    var lng = event.lngLat.lng;
-                    var lat = event.lngLat.lat;
-                    lng = Math.round (lng * 1000000) / 1000000;
-                    lat = Math.round (lat * 1000000) / 1000000;
-                    document.getElementById ("coordinates").innerHTML = "" + lng + "," + lat;
-                }
-            );
+            add_listeners ();
             TheThemer = new ThemeControl ([new DefaultTheme (), new VoltageTheme (), new IslandTheme (), new InServiceTheme ()]);
             TheThemer.theme_change_listener (redraw);
             TheEditor = new CIMEdit (getInterface ());
             // display any existing data
             redraw ();
+        }
+
+        /**
+         * @summary Shut down the map.
+         * @description Clean up and close the map.
+         * @param {object} event - <em>not used</em>
+         * @function terminate
+         * @memberOf module:cimmap
+         */
+        function terminate (event)
+        {
+            if (null != TheMap)
+            {
+                var map = TheMap;
+                map.remove ();
+                document.getElementById ("main").innerHTML = "";
+            }
         }
 
         function getInterface ()
@@ -992,12 +1033,12 @@ define
                 {
                      set_data: set_data,
                      get_data: get_data,
+                     get_selected_feature: get_selected_feature,
                      set_extents: set_extents,
                      get_extents: get_extents,
                      get_themer: get_themer,
                      zoom_extents: zoom_extents,
                      redraw: redraw,
-                     initialize: initialize,
                      show_internal_features: show_internal_features,
                      show_3d_buildings: show_3d_buildings,
                      zero_based_point_sequence: zero_based_point_sequence,
@@ -1007,6 +1048,9 @@ define
                      unhighlight: unhighlight,
                      select: select,
                      search: search,
+                     add_listeners: add_listeners,
+                     remove_listeners: remove_listeners,
+                     initialize: initialize,
                      terminate: terminate
                 }
             );

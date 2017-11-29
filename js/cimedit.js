@@ -110,8 +110,98 @@ define
                 this._cimmap.set_extents (new_extents);
             }
 
-            add_cable (event)
+            popup (html, position)
             {
+                var lnglat = position || this._map.getCenter ();
+                var popup = new mapboxgl.Popup ();
+                popup.setLngLat (lnglat)
+                popup.setHTML (html)
+                popup.addTo (this._map);
+            }
+
+            digitize_line_mousedown_listener (lines, callback, event)
+            {
+                var feature = lines.features[lines.features.length - 1];
+                var coordinates = feature.geometry.coordinates;
+                var lnglat = event.lngLat;
+                var buttons = event.originalEvent.buttons;
+                var leftbutton = 0 != (buttons & 1);
+                var rightbutton = 0 != (buttons & 2);
+
+                if (leftbutton)
+                {
+                    // ToDo: snap to point or end of line
+                    coordinates.push ([lnglat.lng, lnglat.lat]);
+                    if (coordinates.length > 2)
+                        this._map.getSource ("edit lines").setData (lines);
+                }
+                else if (rightbutton)
+                {
+                    lines.features.length = lines.features.length - 1;
+                    callback (feature);
+                }
+            }
+
+            digitize_line_mousemove_listener (lines, event)
+            {
+                var feature = lines.features[lines.features.length - 1];
+                var coordinates = feature.geometry.coordinates;
+                var lnglat = event.lngLat;
+                // ToDo: snap to point or end of line
+                coordinates.push ([lnglat.lng, lnglat.lat]);
+                if (coordinates.length >= 2)
+                    this._map.getSource ("edit lines").setData (lines);
+                coordinates.length = coordinates.length - 1;
+            }
+
+            digitize_line (callback)
+            {
+                // get the current GeoJSON
+                var options =
+                    {
+                        show_internal_features: this._cimmap.show_internal_features (),
+                        zero_based_point_sequence: this._cimmap.zero_based_point_sequence (),
+                        editing: true
+                    };
+                var geo = this._cimmap.get_themer ().getTheme ().make_geojson (this._cimmap.get_data (), options);
+                var lines = geo.lines;
+
+                // add an empty line
+                lines.features.push
+                (
+                    {
+                        type : "Feature",
+                        geometry :
+                        {
+                            type : "LineString",
+                            coordinates : []
+                        }
+                    }
+                );
+
+                var mousedown = this.digitize_line_mousedown_listener.bind (this, lines, cb.bind (this));
+                var mousemove = this.digitize_line_mousemove_listener.bind (this, lines);
+                function cb (feature)
+                {
+                    this._map.off ("mousedown", mousedown);
+                    this._map.off ("mousemove", mousemove);
+                    this._cimmap.add_listeners ();
+                    callback (feature);
+                }
+
+                // set up our listeners
+                this._cimmap.remove_listeners ();
+                this._map.on ("mousedown", mousedown);
+                // handle mouse movement
+                this._map.on ("mousemove", mousemove);
+
+                // pop up a prompt and wait
+                this.popup ("<h1>Digitize linear geometry<br>Right-click to finsh</h1>");
+            }
+
+            make_cable (feature)
+            {
+                var mRID = "ACLineSegment" + (~~(1e6 * Math.random ())).toString ();
                 var cable_type = document.getElementById ("cable_type").value;
                 var cables = this._cimmap.get_data ().ACLineSegment;
                 // cheat here and get an existing cable as a prototype
@@ -133,98 +223,70 @@ define
                         EditDisposition: "new",
                         CoordinateSystem: "wgs84",
                         cls: "Location",
-                        id: "NewACLineSegment_location",
-                        mRID: "NewACLineSegment_location",
+                        id: mRID + "_location",
+                        mRID: mRID + "_location",
                         type: "geographic"
                     };
-                    var bounds = this._map.getBounds ();
-                    var coordinates = bounds.toArray(); // = [[-73.9876, 40.7661], [-73.9397, 40.8002]]
-                    var spanx = coordinates[1][0] - coordinates[0][0];
-                    var spany = coordinates[1][1] - coordinates[0][1];
-                    var dx = Math.abs (spanx * 0.10); // 10% smaller
-                    var dy = Math.abs (spany * 0.10); // 10% smaller
-                    var geometry = [[coordinates[0][0] + dx, coordinates[0][1] + dy], [coordinates[1][0] - dx, coordinates[1][1]- dy]];
-                    var point1 =
-                    {
-                        EditDisposition: "new",
-                        Location: location.id,
-                        cls: "PositionPoint",
-                        id: "NewACLineSegment_location_p1",
-                        sequenceNumber: "0", // mistake: PositionPoint sequenceNumbers are not zero-based
-                        xPosition: geometry[0][0].toString (),
-                        yPosition: geometry[0][1].toString ()
-                    };
-                    var point2 =
-                    {
-                        EditDisposition: "new",
-                        Location: location.id,
-                        cls: "PositionPoint",
-                        id: "NewACLineSegment_location_p2",
-                        sequenceNumber: "1",
-                        xPosition: geometry[1][0].toString (),
-                        yPosition: geometry[0][1].toString ()
-                    };
-                    var point3 =
-                    {
-                        EditDisposition: "new",
-                        Location: location.id,
-                        cls: "PositionPoint",
-                        id: "NewACLineSegment_location_p3",
-                        sequenceNumber: "2",
-                        xPosition: geometry[1][0].toString (),
-                        yPosition: geometry[1][1].toString ()
-                    };
-                    var point4 =
-                    {
-                        EditDisposition: "new",
-                        Location: location.id,
-                        cls: "PositionPoint",
-                        id: "NewACLineSegment_location_p4",
-                        sequenceNumber: "3",
-                        xPosition: geometry[0][0].toString (),
-                        yPosition: geometry[1][1].toString ()
-                    };
-                    var point5 =
-                    {
-                        EditDisposition: "new",
-                        Location: location.id,
-                        cls: "PositionPoint",
-                        id: "NewACLineSegment_location_p5",
-                        sequenceNumber: "4",
-                        xPosition: geometry[0][0].toString (),
-                        yPosition: geometry[0][1].toString ()
-                    };
-
-                    proto.id = 'NewACLineSegment';
-                    proto.mRID = 'NewACLineSegment';
+                    proto.id = mRID;
+                    proto.mRID = mRID;
                     proto.EditDisposition = "new";
                     delete proto.aliasName;
                     delete proto.length;
                     proto.Location = location.id;
-
-                    // OK build it
-                    this._features = this._features.concat (
+                    var new_elements =
                         [
                             new Wires.ACLineSegment (proto, this._cimmap.get_data ()),
                             new Common.Location (location, this._cimmap.get_data ()),
-                            new Common.PositionPoint (point1, this._cimmap.get_data ()),
-                            new Common.PositionPoint (point2, this._cimmap.get_data ()),
-                            new Common.PositionPoint (point3, this._cimmap.get_data ()),
-                            new Common.PositionPoint (point4, this._cimmap.get_data ()),
-                            new Common.PositionPoint (point5, this._cimmap.get_data ()),
-                        ]
-                    )
+                        ];
+                    for (var i = 0; i < feature.geometry.coordinates.length; i++)
+                    {
+                        var lnglat = feature.geometry.coordinates[i];
+                        new_elements.push (
+                            new Common.PositionPoint (
+                                {
+                                    EditDisposition: "new",
+                                    Location: location.id,
+                                    cls: "PositionPoint",
+                                    id: mRID + "_location_p" + (i + 1).toString (),
+                                    sequenceNumber: i.toString (), // mistake: PositionPoint sequenceNumbers are not zero-based
+                                    xPosition: lnglat[0].toString (),
+                                    yPosition: lnglat[1].toString ()
+                                },
+                                this._cimmap.get_data ()
+                            )
+                        );
+                    }
+
+                    // add it to our features
+                    this._features = this._features.concat (new_elements);
                     this.refresh ();
                 }
                 else
                     alert ("no prototype cable found");
             }
 
+            add_cable (event)
+            {
+                this.digitize_line (this.make_cable.bind (this));
+            }
+
             remove_cable (event)
             {
-                for (var i = 0; i < this._features.length; i++)
-                    this._features[i].remove (this._cimmap.get_data ());
-                this._features = [];
+                var selected = this._cimmap.get_selected_feature ();
+                if (null == selected)
+                {
+                    for (var i = 0; i < this._features.length; i++)
+                        this._features[i].remove (this._cimmap.get_data ());
+                    this._features = [];
+                }
+                else
+                {
+                    for (var i = 0; i < this._features.length; i++)
+                        if (this._features[i]._id.startsWith (selected))
+                            this._features[i].remove (this._cimmap.get_data ());
+                    this._features = this._features.filter (item => !item._id.startsWith (selected));
+                    this._cimmap.select (null);
+                }
                 this.refresh ();
             }
 
