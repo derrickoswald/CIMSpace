@@ -135,14 +135,6 @@ define
 
                 result = null;
             }
-            if (0 != context.parsed.ignored)
-            {
-                if ("undefined" != typeof (console))
-                    console.log (context.parsed.ignored.toString () + " unrecognized element" + ((1 < context.parsed.ignored) ? "s" : ""));
-                else
-                    print (context.parsed.ignored.toString () + " unrecognized element" + ((1 < context.parsed.ignored) ? "s" : ""));
-            }
-            delete context.parsed.ignored
 
             return ({parsed: context.parsed, context: context});
         }

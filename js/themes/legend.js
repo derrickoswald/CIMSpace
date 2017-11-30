@@ -64,7 +64,7 @@ define
 
             getDefaultPosition ()
             {
-                return ("bottom-left");
+                return ("bottom-right");
             }
 
             visible ()

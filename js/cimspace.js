@@ -45,6 +45,9 @@ define
                 {
                     var end = new Date ().getTime ();
                     console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds)");
+                    if (0 != result.parsed.ignored)
+                        console.log (result.parsed.ignored.toString () + " unrecognized element" + ((1 < result.parsed.ignored) ? "s" : ""));
+                    delete result.parsed.ignored
                     cimmap.set_data (result.parsed);
                 }
             );
@@ -193,6 +196,9 @@ define
                                 var result = cim.read_full_xml (xmlhttp.response, 0, null, null)
                                 var end = new Date ().getTime ();
                                 console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds)");
+                                if (0 != result.parsed.ignored)
+                                    console.log (result.parsed.ignored.toString () + " unrecognized element" + ((1 < result.parsed.ignored) ? "s" : ""));
+                                delete result.parsed.ignored
                                 cimmap.set_data (result.parsed);
                             }
                         }
