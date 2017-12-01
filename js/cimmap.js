@@ -305,6 +305,71 @@ define
             }
         }
 
+        function detail_text (feature)
+        {
+            var cls = cim.class_map (feature);
+            var template = cls.prototype.template ();
+            var text = mustache.render (template, feature);
+
+            var conducting = CIM_Data.ConductingEquipment[CURRENT_FEATURE];
+            if ("undefined" != typeof (conducting))
+            {
+                var terminals = CIM_Data.Terminal;
+                var terms = [];
+                for (var property in terminals)
+                    if (terminals.hasOwnProperty (property))
+                    {
+                        var terminal = terminals[property];
+                        if (CURRENT_FEATURE == terminal.ConductingEquipment)
+                            terms.push (terminal);
+                    }
+                if (0 != terms.length)
+                {
+                    var connected = terms.map (
+                        function (terminal)
+                        {
+                            var node = terminal.ConnectivityNode;
+                            var equipment = [];
+                            for (var property in terminals)
+                                if (terminals.hasOwnProperty (property))
+                                {
+                                    var term = terminals[property];
+                                    if (node == term.ConnectivityNode)
+                                        if (CURRENT_FEATURE != term.ConductingEquipment)
+                                            equipment.push (term.ConductingEquipment);
+                                }
+                            return ({ terminal: terminal, equipment: equipment });
+                        }
+                    );
+                    text = text + "<div>Connected:</div>\n";
+                    for (var i = 0; i < connected.length; i++)
+                    {
+                        var terminal = connected[i].terminal.mRID;
+                        var equipment = connected[i].equipment;
+                        var links = "";
+                        for (var j = 0; j < equipment.length; j++)
+                            links = links + " <a href='#' onclick='require([\"cimmap\"], function(cimmap) {cimmap.select (\"" + equipment[j] + "\");})'>" + equipment[j] + "</a>";
+                        text = text + "<div>" + terminal + ": " + links + "</div>\n";
+                    }
+                }
+            }
+
+            if (null != CURRENT_SELECTION)
+            {
+                if (1 < CURRENT_SELECTION.length)
+                {
+                    text = text + "<div>Also selected:</div>\n";
+                    for (var i = 0; i < CURRENT_SELECTION.length; i++)
+                    {
+                        if (CURRENT_SELECTION[i] != CURRENT_FEATURE)
+                            text = text + "<div><a href='#' onclick='require([\"cimmap\"], function(cimmap) {cimmap.select (\"" + CURRENT_SELECTION[i] + "\");})'>" + CURRENT_SELECTION[i] + "</a></div>\n";
+                    }
+                }
+            }
+
+            return (text);
+        }
+
         /**
          * @summary Display the current feature properties and highlight it on the map.
          * @description Shows a properties sheet in the details window,
@@ -320,65 +385,7 @@ define
             if ((null != CIM_Data) && (null != CURRENT_FEATURE))
                 if (null != (feature = CIM_Data.Element[CURRENT_FEATURE]))
                 {
-                    var cls = cim.class_map (feature);
-                    var template = cls.prototype.template ();
-                    var text = mustache.render (template, feature);
-
-                    var conducting = CIM_Data.ConductingEquipment[CURRENT_FEATURE];
-                    if ("undefined" != typeof (conducting))
-                    {
-                        var terminals = CIM_Data.Terminal;
-                        var terms = [];
-                        for (var property in terminals)
-                            if (terminals.hasOwnProperty (property))
-                            {
-                                var terminal = terminals[property];
-                                if (CURRENT_FEATURE == terminal.ConductingEquipment)
-                                    terms.push (terminal);
-                            }
-                        if (0 != terms.length)
-                        {
-                            var connected = terms.map (
-                                function (terminal)
-                                {
-                                    var node = terminal.ConnectivityNode;
-                                    var equipment = [];
-                                    for (var property in terminals)
-                                        if (terminals.hasOwnProperty (property))
-                                        {
-                                            var term = terminals[property];
-                                            if (node == term.ConnectivityNode)
-                                                if (CURRENT_FEATURE != term.ConductingEquipment)
-                                                    equipment.push (term.ConductingEquipment);
-                                        }
-                                    return ({ terminal: terminal, equipment: equipment });
-                                }
-                            );
-                            text = text + "<div>Connected:</div>\n";
-                            for (var i = 0; i < connected.length; i++)
-                            {
-                                var terminal = connected[i].terminal.mRID;
-                                var equipment = connected[i].equipment;
-                                var links = "";
-                                for (var j = 0; j < equipment.length; j++)
-                                    links = links + " <a href='#' onclick='require([\"cimmap\"], function(cimmap) {cimmap.select (\"" + equipment[j] + "\");})'>" + equipment[j] + "</a>";
-                                text = text + "<div>" + terminal + ": " + links + "</div>\n";
-                            }
-                        }
-                    }
-
-                    if (null != CURRENT_SELECTION)
-                    {
-                        if (1 < CURRENT_SELECTION.length)
-                        {
-                            text = text + "<div>Also selected:</div>\n";
-                            for (var i = 0; i < CURRENT_SELECTION.length; i++)
-                            {
-                                if (CURRENT_SELECTION[i] != CURRENT_FEATURE)
-                                    text = text + "<div><a href='#' onclick='require([\"cimmap\"], function(cimmap) {cimmap.select (\"" + CURRENT_SELECTION[i] + "\");})'>" + CURRENT_SELECTION[i] + "</a></div>\n";
-                            }
-                        }
-                    }
+                    var text = detail_text (feature);
                     showDetails (text);
                     glow (["in", "mRID", CURRENT_FEATURE]);
                 }
@@ -743,15 +750,9 @@ define
                     // sort the list to make it easy to find an element
                     equipment.sort ();
                     // create the text to show in the details window
-                    var text = JSON.stringify (CIM_Data.Element[CURRENT_FEATURE], detail_helper, 2) +
+                    var text = detail_text (CIM_Data.Element[CURRENT_FEATURE]) +
                         "\n" +
                         equipment.join (', ');
-                    if (null != CURRENT_SELECTION)
-                        for (var i = 0; i < CURRENT_SELECTION.length; i++)
-                        {
-                            if (CURRENT_SELECTION[i] != CURRENT_FEATURE)
-                                text = text + "\n<a href='#' onclick='require([\"cimmap\"], function(cimmap) {cimmap.select (\"" + CURRENT_SELECTION[i] + "\");})'>" + CURRENT_SELECTION[i] + "</a>";
-                        }
                     // post the text
                     showDetails (text);
                     // highlight the elements on screen
