@@ -1030,8 +1030,14 @@ define
             // add zoom and rotation controls to the map
             TheMap.addControl (new cimnav.NavigationControl (zoom_extents, toggle_themer, toggle_legend, edit));
             add_listeners ();
-            TheThemer = new ThemeControl ([new DefaultTheme (), new VoltageTheme (), new IslandTheme (), new InServiceTheme ()]);
+            // set up themes
+            TheThemer = new ThemeControl ();
+            TheThemer.addTheme (new DefaultTheme ());
+            TheThemer.addTheme (new VoltageTheme ());
+            TheThemer.addTheme (new IslandTheme ());
+            TheThemer.addTheme (new InServiceTheme ());
             TheThemer.theme_change_listener (redraw);
+            // set up editing
             TheEditor = new CIMEdit (getInterface ());
             // display any existing data
             redraw ();

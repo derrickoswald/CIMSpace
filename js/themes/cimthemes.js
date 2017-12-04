@@ -17,11 +17,10 @@ define
     {
         class ThemeControl
         {
-            constructor (themes)
+            constructor ()
             {
                 this._onMap = false;
-                this._themes = themes;
-                this._theme = this._themes[0];
+                this._themes = [];
                 this._template =
                 "<div class='well'>\n" +
                 "  <h3>Themes</h3>\n" +
@@ -37,6 +36,13 @@ define
                 "  </small></em>\n" +
                 "{{/themes}}\n" +
                 "</div>\n";
+            }
+
+            onAdd (map)
+            {
+                this._map = map;
+                this._container = document.createElement ("div");
+                this._container.className = "mapboxgl-ctrl";
                 var list = this._themes.map (
                     function (theme)
                     {
@@ -50,27 +56,26 @@ define
                     }
                 );
                 this._html = mustache.render (this._template, { themes: list });
-            }
-
-            onAdd (map)
-            {
-                this._map = map;
-                this._container = document.createElement ("div");
-                this._container.className = "mapboxgl-ctrl";
                 this._container.innerHTML = this._html;
-                var current = this._theme.getName ();
-                var list = this._container.getElementsByTagName ("input")
-                for (var i = 0; i < list.length; i++)
-                    if (current == list[i].value)
-                        list[i].setAttribute ("checked", "checked");
-                for (var i = 0; i < list.length; i++)
-                    list[i].onchange = this.theme_change.bind (this);
+                if (0 != this._themes.length)
+                {
+                    if ("undefined" == typeof (this._theme))
+                        this._theme = this._themes[0];
+                    var current = this._theme.getName ();
+                    var list = this._container.getElementsByTagName ("input")
+                    for (var i = 0; i < list.length; i++)
+                        if (current == list[i].value)
+                            list[i].setAttribute ("checked", "checked");
+                    for (var i = 0; i < list.length; i++)
+                        list[i].onchange = this.theme_change.bind (this);
+                }
                 this._onMap = true;
                 return (this._container);
             }
 
             onRemove ()
             {
+                this._container.innerHTML = "";
                 this._container.parentNode.removeChild (this._container);
                 this._map = undefined;
                 this._onMap = false;
@@ -79,6 +84,34 @@ define
             getDefaultPosition ()
             {
                 return ("bottom-right");
+            }
+
+            addTheme (theme)
+            {
+                var name = theme.getName ();
+                var index = -1;
+                for (var i = 0; i < this._themes.length; i++)
+                    if (name == this._themes[i].getName ())
+                    {
+                        index = i;
+                        break;
+                    }
+                if (-1 == index)
+                    this._themes.push (theme);
+            }
+
+            removeTheme (theme)
+            {
+                var name = theme.getName ();
+                var index = -1;
+                for (var i = 0; i < this._themes.length; i++)
+                    if (name == this._themes[i].getName ())
+                    {
+                        index = i;
+                        break;
+                    }
+                if (-1 != index)
+                    this._themes.splice (index, 1);
             }
 
             getTheme ()
