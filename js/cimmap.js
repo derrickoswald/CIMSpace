@@ -1074,6 +1074,7 @@ define
         {
             return (
                 {
+                     get_map: get_map,
                      set_data: set_data,
                      get_data: get_data,
                      get_selected_feature: get_selected_feature,
