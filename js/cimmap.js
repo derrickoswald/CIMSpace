@@ -62,6 +62,16 @@ define
         var CURRENT_SELECTION = null;
 
         /**
+         * Get the MapBox map.
+         * @function get_map
+         * @memberOf module:cimmap
+         */
+        function get_map ()
+        {
+            return (TheMap);
+        }
+
+        /**
          * Set the CIM data for the map to draw.
          * @param {JSON} Data parsed from the cim module.
          * @function set_data
