@@ -59,8 +59,6 @@ define
                 this._container.innerHTML = this._html;
                 if (0 != this._themes.length)
                 {
-                    if ("undefined" == typeof (this._theme))
-                        this._theme = this._themes[0];
                     var current = this._theme.getName ();
                     var list = this._container.getElementsByTagName ("input")
                     for (var i = 0; i < list.length; i++)
@@ -98,6 +96,8 @@ define
                     }
                 if (-1 == index)
                     this._themes.push (theme);
+                if ("undefined" == typeof (this._theme))
+                    this._theme = this._themes[0];
             }
 
             removeTheme (theme)

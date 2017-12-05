@@ -192,8 +192,9 @@ define
                 await sleep (2000);
             while (!TheMap.loaded ())
 
-            if (TheThemer.getTheme ().getLegend ().visible ())
-                TheMap.removeControl (TheThemer.getTheme ().getLegend ());
+            if (TheThemer.getTheme ())
+                if (TheThemer.getTheme ().getLegend ().visible ())
+                    TheMap.removeControl (TheThemer.getTheme ().getLegend ());
             TheThemer.theme (TheMap, CIM_Data,
                 {
                     show_internal_features: show_internal_features (),
@@ -358,7 +359,7 @@ define
                         var equipment = connected[i].equipment;
                         var links = "";
                         for (var j = 0; j < equipment.length; j++)
-                            links = links + " <a href='#' onclick='require([\"cimmap\"], function(cimmap) {cimmap.select (\"" + equipment[j] + "\");})'>" + equipment[j] + "</a>";
+                            links = links + " <a href='#' onclick='require([\"cimmap\"], function(cimmap) { cimmap.select (\"" + equipment[j] + "\"); return false;})'>" + equipment[j] + "</a>";
                         text = text + "<div>" + terminal + ": " + links + "</div>\n";
                     }
                 }
@@ -372,7 +373,7 @@ define
                     for (var i = 0; i < CURRENT_SELECTION.length; i++)
                     {
                         if (CURRENT_SELECTION[i] != CURRENT_FEATURE)
-                            text = text + "<div><a href='#' onclick='require([\"cimmap\"], function(cimmap) {cimmap.select (\"" + CURRENT_SELECTION[i] + "\");})'>" + CURRENT_SELECTION[i] + "</a></div>\n";
+                            text = text + "<div><a href='#' onclick='require([\"cimmap\"], function(cimmap) { cimmap.select (\"" + CURRENT_SELECTION[i] + "\"); return false;})'>" + CURRENT_SELECTION[i] + "</a></div>\n";
                     }
                 }
             }
