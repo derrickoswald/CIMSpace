@@ -11,6 +11,87 @@ define
     {
 
         /**
+         * The unit multipliers defined for the CIM.
+         *
+         */
+        var UnitMultiplier =
+        {
+            p: "p",
+            n: "n",
+            micro: "micro",
+            m: "m",
+            c: "c",
+            d: "d",
+            k: "k",
+            M: "M",
+            G: "G",
+            T: "T",
+            none: "none"
+        };
+        Object.freeze (UnitMultiplier);
+
+        /**
+         * Monetary currencies.
+         *
+         * Apologies for this list not being exhaustive.
+         *
+         */
+        var Currency =
+        {
+            USD: "USD",
+            EUR: "EUR",
+            AUD: "AUD",
+            CAD: "CAD",
+            CHF: "CHF",
+            CNY: "CNY",
+            DKK: "DKK",
+            GBP: "GBP",
+            JPY: "JPY",
+            NOK: "NOK",
+            RUR: "RUR",
+            SEK: "SEK",
+            INR: "INR",
+            other: "other"
+        };
+        Object.freeze (Currency);
+
+        /**
+         * The units defined for usage in the CIM.
+         *
+         */
+        var UnitSymbol =
+        {
+            VA: "VA",
+            W: "W",
+            VAr: "VAr",
+            VAh: "VAh",
+            Wh: "Wh",
+            VArh: "VArh",
+            V: "V",
+            ohm: "ohm",
+            A: "A",
+            F: "F",
+            H: "H",
+            degC: "degC",
+            s: "s",
+            min: "min",
+            h: "h",
+            deg: "deg",
+            rad: "rad",
+            J: "J",
+            N: "N",
+            S: "S",
+            none: "none",
+            Hz: "Hz",
+            g: "g",
+            Pa: "Pa",
+            m: "m",
+            m2: "m2",
+            m3: "m3"
+        };
+        Object.freeze (UnitSymbol);
+
+        /**
          * Capacitance per unit of length.
          *
          */
@@ -39,10 +120,10 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "CapacitancePerLength";
                 base.parse_element (/<cim:CapacitancePerLength.value>([\s\S]*?)<\/cim:CapacitancePerLength.value>/g, obj, "value", base.to_float, sub, context);
-                base.parse_element (/<cim:CapacitancePerLength.unit>([\s\S]*?)<\/cim:CapacitancePerLength.unit>/g, obj, "unit", base.to_string, sub, context);
-                base.parse_element (/<cim:CapacitancePerLength.multiplier>([\s\S]*?)<\/cim:CapacitancePerLength.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:CapacitancePerLength.denominatorUnit>([\s\S]*?)<\/cim:CapacitancePerLength.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:CapacitancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:CapacitancePerLength.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CapacitancePerLength.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
+                base.parse_attribute (/<cim:CapacitancePerLength.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:CapacitancePerLength.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:CapacitancePerLength.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
 
                 var bucket = context.parsed.CapacitancePerLength;
                 if (null == bucket)
@@ -71,21 +152,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CapacitancePerLength_collapse" aria-expanded="true" aria-controls="CapacitancePerLength_collapse">CapacitancePerLength</a>
-<div id="CapacitancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CapacitancePerLength_collapse" aria-expanded="true" aria-controls="CapacitancePerLength_collapse" style="margin-left: 10px;">CapacitancePerLength</a></legend>
+                    <div id="CapacitancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CapacitancePerLength_collapse" aria-expanded="true" aria-controls="CapacitancePerLength_collapse" style="margin-left: 10px;">CapacitancePerLength</a></legend>
+                    <div id="CapacitancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Cost per unit volume.
@@ -116,10 +240,10 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "CostPerVolume";
                 base.parse_element (/<cim:CostPerVolume.value>([\s\S]*?)<\/cim:CostPerVolume.value>/g, obj, "value", base.to_float, sub, context);
-                base.parse_element (/<cim:CostPerVolume.denominatorMultiplier>([\s\S]*?)<\/cim:CostPerVolume.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:CostPerVolume.denominatorUnit>([\s\S]*?)<\/cim:CostPerVolume.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:CostPerVolume.multiplier>([\s\S]*?)<\/cim:CostPerVolume.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:CostPerVolume.unit>([\s\S]*?)<\/cim:CostPerVolume.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CostPerVolume.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:CostPerVolume.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:CostPerVolume.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:CostPerVolume.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
 
                 var bucket = context.parsed.CostPerVolume;
                 if (null == bucket)
@@ -148,21 +272,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CostPerVolume_collapse" aria-expanded="true" aria-controls="CostPerVolume_collapse">CostPerVolume</a>
-<div id="CostPerVolume_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CostPerVolume_collapse" aria-expanded="true" aria-controls="CostPerVolume_collapse" style="margin-left: 10px;">CostPerVolume</a></legend>
+                    <div id="CostPerVolume_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.Currency = []; if (!obj.unit) obj.Currency.push ({ id: '', selected: true}); for (var property in Currency) obj.Currency.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.Currency;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CostPerVolume_collapse" aria-expanded="true" aria-controls="CostPerVolume_collapse" style="margin-left: 10px;">CostPerVolume</a></legend>
+                    <div id="CostPerVolume_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#Currency}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Currency}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A floating point number.
@@ -217,111 +384,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Float_collapse" aria-expanded="true" aria-controls="Float_collapse">Float</a>
-<div id="Float_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Float_collapse" aria-expanded="true" aria-controls="Float_collapse" style="margin-left: 10px;">Float</a></legend>
+                    <div id="Float_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * The unit multipliers defined for the CIM.
-         *
-         */
-        class UnitMultiplier extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.UnitMultiplier;
-                if (null == bucket)
-                   cim_data.UnitMultiplier = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.UnitMultiplier[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "UnitMultiplier";
-                base.parse_element (/<cim:UnitMultiplier.p>([\s\S]*?)<\/cim:UnitMultiplier.p>/g, obj, "p", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitMultiplier.n>([\s\S]*?)<\/cim:UnitMultiplier.n>/g, obj, "n", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitMultiplier.micro>([\s\S]*?)<\/cim:UnitMultiplier.micro>/g, obj, "micro", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitMultiplier.m>([\s\S]*?)<\/cim:UnitMultiplier.m>/g, obj, "m", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitMultiplier.c>([\s\S]*?)<\/cim:UnitMultiplier.c>/g, obj, "c", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitMultiplier.d>([\s\S]*?)<\/cim:UnitMultiplier.d>/g, obj, "d", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitMultiplier.k>([\s\S]*?)<\/cim:UnitMultiplier.k>/g, obj, "k", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitMultiplier.M>([\s\S]*?)<\/cim:UnitMultiplier.M>/g, obj, "M", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitMultiplier.G>([\s\S]*?)<\/cim:UnitMultiplier.G>/g, obj, "G", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitMultiplier.T>([\s\S]*?)<\/cim:UnitMultiplier.T>/g, obj, "T", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitMultiplier.none>([\s\S]*?)<\/cim:UnitMultiplier.none>/g, obj, "none", base.to_string, sub, context);
-
-                var bucket = context.parsed.UnitMultiplier;
-                if (null == bucket)
-                   context.parsed.UnitMultiplier = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "UnitMultiplier", "p", base.from_string, fields);
-                base.export_element (obj, "UnitMultiplier", "n", base.from_string, fields);
-                base.export_element (obj, "UnitMultiplier", "micro", base.from_string, fields);
-                base.export_element (obj, "UnitMultiplier", "m", base.from_string, fields);
-                base.export_element (obj, "UnitMultiplier", "c", base.from_string, fields);
-                base.export_element (obj, "UnitMultiplier", "d", base.from_string, fields);
-                base.export_element (obj, "UnitMultiplier", "k", base.from_string, fields);
-                base.export_element (obj, "UnitMultiplier", "M", base.from_string, fields);
-                base.export_element (obj, "UnitMultiplier", "G", base.from_string, fields);
-                base.export_element (obj, "UnitMultiplier", "T", base.from_string, fields);
-                base.export_element (obj, "UnitMultiplier", "none", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#UnitMultiplier_collapse" aria-expanded="true" aria-controls="UnitMultiplier_collapse">UnitMultiplier</a>
-<div id="UnitMultiplier_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
-{{#n}}<div><b>n</b>: {{n}}</div>{{/n}}
-{{#micro}}<div><b>micro</b>: {{micro}}</div>{{/micro}}
-{{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
-{{#c}}<div><b>c</b>: {{c}}</div>{{/c}}
-{{#d}}<div><b>d</b>: {{d}}</div>{{/d}}
-{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-{{#M}}<div><b>M</b>: {{M}}</div>{{/M}}
-{{#G}}<div><b>G</b>: {{G}}</div>{{/G}}
-{{#T}}<div><b>T</b>: {{T}}</div>{{/T}}
-{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Float_collapse" aria-expanded="true" aria-controls="Float_collapse" style="margin-left: 10px;">Float</a></legend>
+                    <div id="Float_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Product of RMS value of the voltage and the RMS value of the quadrature component of the current.
@@ -351,8 +453,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ReactivePower";
-                base.parse_element (/<cim:ReactivePower.multiplier>([\s\S]*?)<\/cim:ReactivePower.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ReactivePower.unit>([\s\S]*?)<\/cim:ReactivePower.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ReactivePower.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:ReactivePower.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:ReactivePower.value>([\s\S]*?)<\/cim:ReactivePower.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.ReactivePower;
@@ -380,19 +482,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ReactivePower_collapse" aria-expanded="true" aria-controls="ReactivePower_collapse">ReactivePower</a>
-<div id="ReactivePower_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReactivePower_collapse" aria-expanded="true" aria-controls="ReactivePower_collapse" style="margin-left: 10px;">ReactivePower</a></legend>
+                    <div id="ReactivePower_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReactivePower_collapse" aria-expanded="true" aria-controls="ReactivePower_collapse" style="margin-left: 10px;">ReactivePower</a></legend>
+                    <div id="ReactivePower_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Interval between two times specified as mont and date.
@@ -449,18 +588,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MonthDayInterval_collapse" aria-expanded="true" aria-controls="MonthDayInterval_collapse">MonthDayInterval</a>
-<div id="MonthDayInterval_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
-{{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MonthDayInterval_collapse" aria-expanded="true" aria-controls="MonthDayInterval_collapse" style="margin-left: 10px;">MonthDayInterval</a></legend>
+                    <div id="MonthDayInterval_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
+                    {{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MonthDayInterval_collapse" aria-expanded="true" aria-controls="MonthDayInterval_collapse" style="margin-left: 10px;">MonthDayInterval</a></legend>
+                    <div id="MonthDayInterval_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='end'>end: </label><div class='col-sm-8'><input id='end' class='form-control' type='text'{{#end}} value='{{end}}'{{/end}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='start'>start: </label><div class='col-sm-8'><input id='start' class='form-control' type='text'{{#start}} value='{{start}}'{{/start}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Reactance (imaginary part of impedance), at rated frequency.
@@ -490,8 +661,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Reactance";
-                base.parse_element (/<cim:Reactance.multiplier>([\s\S]*?)<\/cim:Reactance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Reactance.unit>([\s\S]*?)<\/cim:Reactance.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Reactance.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Reactance.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Reactance.value>([\s\S]*?)<\/cim:Reactance.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Reactance;
@@ -519,19 +690,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Reactance_collapse" aria-expanded="true" aria-controls="Reactance_collapse">Reactance</a>
-<div id="Reactance_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Reactance_collapse" aria-expanded="true" aria-controls="Reactance_collapse" style="margin-left: 10px;">Reactance</a></legend>
+                    <div id="Reactance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Reactance_collapse" aria-expanded="true" aria-controls="Reactance_collapse" style="margin-left: 10px;">Reactance</a></legend>
+                    <div id="Reactance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Resistance (real part of impedance) per unit of length.
@@ -561,10 +769,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ResistancePerLength";
-                base.parse_element (/<cim:ResistancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:ResistancePerLength.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ResistancePerLength.denominatorUnit>([\s\S]*?)<\/cim:ResistancePerLength.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:ResistancePerLength.multiplier>([\s\S]*?)<\/cim:ResistancePerLength.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ResistancePerLength.unit>([\s\S]*?)<\/cim:ResistancePerLength.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ResistancePerLength.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:ResistancePerLength.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:ResistancePerLength.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:ResistancePerLength.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:ResistancePerLength.value>([\s\S]*?)<\/cim:ResistancePerLength.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.ResistancePerLength;
@@ -594,21 +802,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ResistancePerLength_collapse" aria-expanded="true" aria-controls="ResistancePerLength_collapse">ResistancePerLength</a>
-<div id="ResistancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResistancePerLength_collapse" aria-expanded="true" aria-controls="ResistancePerLength_collapse" style="margin-left: 10px;">ResistancePerLength</a></legend>
+                    <div id="ResistancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResistancePerLength_collapse" aria-expanded="true" aria-controls="ResistancePerLength_collapse" style="margin-left: 10px;">ResistancePerLength</a></legend>
+                    <div id="ResistancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Phase angle in radians.
@@ -638,8 +889,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "AngleRadians";
-                base.parse_element (/<cim:AngleRadians.multiplier>([\s\S]*?)<\/cim:AngleRadians.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:AngleRadians.unit>([\s\S]*?)<\/cim:AngleRadians.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AngleRadians.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:AngleRadians.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:AngleRadians.value>([\s\S]*?)<\/cim:AngleRadians.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.AngleRadians;
@@ -667,19 +918,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AngleRadians_collapse" aria-expanded="true" aria-controls="AngleRadians_collapse">AngleRadians</a>
-<div id="AngleRadians_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AngleRadians_collapse" aria-expanded="true" aria-controls="AngleRadians_collapse" style="margin-left: 10px;">AngleRadians</a></legend>
+                    <div id="AngleRadians_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AngleRadians_collapse" aria-expanded="true" aria-controls="AngleRadians_collapse" style="margin-left: 10px;">AngleRadians</a></legend>
+                    <div id="AngleRadians_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Electrical voltage, can be both AC and DC.
@@ -709,8 +997,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Voltage";
-                base.parse_element (/<cim:Voltage.multiplier>([\s\S]*?)<\/cim:Voltage.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Voltage.unit>([\s\S]*?)<\/cim:Voltage.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Voltage.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Voltage.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Voltage.value>([\s\S]*?)<\/cim:Voltage.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Voltage;
@@ -738,19 +1026,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Voltage_collapse" aria-expanded="true" aria-controls="Voltage_collapse">Voltage</a>
-<div id="Voltage_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Voltage_collapse" aria-expanded="true" aria-controls="Voltage_collapse" style="margin-left: 10px;">Voltage</a></legend>
+                    <div id="Voltage_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Voltage_collapse" aria-expanded="true" aria-controls="Voltage_collapse" style="margin-left: 10px;">Voltage</a></legend>
+                    <div id="Voltage_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Rate of change of active power per time.
@@ -780,10 +1105,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ActivePowerChangeRate";
-                base.parse_element (/<cim:ActivePowerChangeRate.denominatorMultiplier>([\s\S]*?)<\/cim:ActivePowerChangeRate.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ActivePowerChangeRate.denominatorUnit>([\s\S]*?)<\/cim:ActivePowerChangeRate.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:ActivePowerChangeRate.multiplier>([\s\S]*?)<\/cim:ActivePowerChangeRate.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ActivePowerChangeRate.unit>([\s\S]*?)<\/cim:ActivePowerChangeRate.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ActivePowerChangeRate.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:ActivePowerChangeRate.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:ActivePowerChangeRate.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:ActivePowerChangeRate.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:ActivePowerChangeRate.value>([\s\S]*?)<\/cim:ActivePowerChangeRate.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.ActivePowerChangeRate;
@@ -813,21 +1138,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ActivePowerChangeRate_collapse" aria-expanded="true" aria-controls="ActivePowerChangeRate_collapse">ActivePowerChangeRate</a>
-<div id="ActivePowerChangeRate_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivePowerChangeRate_collapse" aria-expanded="true" aria-controls="ActivePowerChangeRate_collapse" style="margin-left: 10px;">ActivePowerChangeRate</a></legend>
+                    <div id="ActivePowerChangeRate_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivePowerChangeRate_collapse" aria-expanded="true" aria-controls="ActivePowerChangeRate_collapse" style="margin-left: 10px;">ActivePowerChangeRate</a></legend>
+                    <div id="ActivePowerChangeRate_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class ActivePowerPerCurrentFlow extends base.Element
         {
@@ -853,11 +1221,11 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ActivePowerPerCurrentFlow";
-                base.parse_element (/<cim:ActivePowerPerCurrentFlow.multiplier>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ActivePowerPerCurrentFlow.unit>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ActivePowerPerCurrentFlow.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:ActivePowerPerCurrentFlow.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:ActivePowerPerCurrentFlow.value>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.value>/g, obj, "value", base.to_float, sub, context);
-                base.parse_element (/<cim:ActivePowerPerCurrentFlow.demoninatorUnit>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.demoninatorUnit>/g, obj, "demoninatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:ActivePowerPerCurrentFlow.denominatorMultiplier>([\s\S]*?)<\/cim:ActivePowerPerCurrentFlow.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ActivePowerPerCurrentFlow.demoninatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "demoninatorUnit", sub, context);
+                base.parse_attribute (/<cim:ActivePowerPerCurrentFlow.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
 
                 var bucket = context.parsed.ActivePowerPerCurrentFlow;
                 if (null == bucket)
@@ -886,21 +1254,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ActivePowerPerCurrentFlow_collapse" aria-expanded="true" aria-controls="ActivePowerPerCurrentFlow_collapse">ActivePowerPerCurrentFlow</a>
-<div id="ActivePowerPerCurrentFlow_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#demoninatorUnit}}<div><b>demoninatorUnit</b>: {{demoninatorUnit}}</div>{{/demoninatorUnit}}
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivePowerPerCurrentFlow_collapse" aria-expanded="true" aria-controls="ActivePowerPerCurrentFlow_collapse" style="margin-left: 10px;">ActivePowerPerCurrentFlow</a></legend>
+                    <div id="ActivePowerPerCurrentFlow_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#demoninatorUnit}}<div><b>demoninatorUnit</b>: {{demoninatorUnit}}</div>{{/demoninatorUnit}}
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.demoninatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.demoninatorUnit && obj.demoninatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivePowerPerCurrentFlow_collapse" aria-expanded="true" aria-controls="ActivePowerPerCurrentFlow_collapse" style="margin-left: 10px;">ActivePowerPerCurrentFlow</a></legend>
+                    <div id="ActivePowerPerCurrentFlow_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='demoninatorUnit'>demoninatorUnit: </label><div class='col-sm-8'><select id='demoninatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Cost, in units of currency, per elapsed time.
@@ -930,10 +1341,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "CostRate";
-                base.parse_element (/<cim:CostRate.denominatorMultiplier>([\s\S]*?)<\/cim:CostRate.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:CostRate.denominatorUnit>([\s\S]*?)<\/cim:CostRate.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:CostRate.multiplier>([\s\S]*?)<\/cim:CostRate.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:CostRate.unit>([\s\S]*?)<\/cim:CostRate.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CostRate.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:CostRate.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:CostRate.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:CostRate.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:CostRate.value>([\s\S]*?)<\/cim:CostRate.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.CostRate;
@@ -963,21 +1374,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CostRate_collapse" aria-expanded="true" aria-controls="CostRate_collapse">CostRate</a>
-<div id="CostRate_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CostRate_collapse" aria-expanded="true" aria-controls="CostRate_collapse" style="margin-left: 10px;">CostRate</a></legend>
+                    <div id="CostRate_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.Currency = []; if (!obj.unit) obj.Currency.push ({ id: '', selected: true}); for (var property in Currency) obj.Currency.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.Currency;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CostRate_collapse" aria-expanded="true" aria-controls="CostRate_collapse" style="margin-left: 10px;">CostRate</a></legend>
+                    <div id="CostRate_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#Currency}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Currency}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Reservoir water level referred to a given datum such as mean sea level.
@@ -1007,8 +1461,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "WaterLevel";
-                base.parse_element (/<cim:WaterLevel.multiplier>([\s\S]*?)<\/cim:WaterLevel.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:WaterLevel.unit>([\s\S]*?)<\/cim:WaterLevel.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:WaterLevel.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:WaterLevel.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:WaterLevel.value>([\s\S]*?)<\/cim:WaterLevel.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.WaterLevel;
@@ -1036,19 +1490,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WaterLevel_collapse" aria-expanded="true" aria-controls="WaterLevel_collapse">WaterLevel</a>
-<div id="WaterLevel_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WaterLevel_collapse" aria-expanded="true" aria-controls="WaterLevel_collapse" style="margin-left: 10px;">WaterLevel</a></legend>
+                    <div id="WaterLevel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WaterLevel_collapse" aria-expanded="true" aria-controls="WaterLevel_collapse" style="margin-left: 10px;">WaterLevel</a></legend>
+                    <div id="WaterLevel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An integer number.
@@ -1103,16 +1594,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Integer_collapse" aria-expanded="true" aria-controls="Integer_collapse">Integer</a>
-<div id="Integer_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Integer_collapse" aria-expanded="true" aria-controls="Integer_collapse" style="margin-left: 10px;">Integer</a></legend>
+                    <div id="Integer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Integer_collapse" aria-expanded="true" aria-controls="Integer_collapse" style="margin-left: 10px;">Integer</a></legend>
+                    <div id="Integer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Ratio of current to voltage.
@@ -1142,8 +1663,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Admittance";
-                base.parse_element (/<cim:Admittance.multiplier>([\s\S]*?)<\/cim:Admittance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Admittance.unit>([\s\S]*?)<\/cim:Admittance.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Admittance.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Admittance.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Admittance.value>([\s\S]*?)<\/cim:Admittance.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Admittance;
@@ -1171,19 +1692,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Admittance_collapse" aria-expanded="true" aria-controls="Admittance_collapse">Admittance</a>
-<div id="Admittance_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Admittance_collapse" aria-expanded="true" aria-controls="Admittance_collapse" style="margin-left: 10px;">Admittance</a></legend>
+                    <div id="Admittance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Admittance_collapse" aria-expanded="true" aria-controls="Admittance_collapse" style="margin-left: 10px;">Admittance</a></legend>
+                    <div id="Admittance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Cost, in units of currency, per quantity of electrical energy generated.
@@ -1213,10 +1771,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "CostPerEnergyUnit";
-                base.parse_element (/<cim:CostPerEnergyUnit.denominatorMultiplier>([\s\S]*?)<\/cim:CostPerEnergyUnit.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:CostPerEnergyUnit.denominatorUnit>([\s\S]*?)<\/cim:CostPerEnergyUnit.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:CostPerEnergyUnit.multiplier>([\s\S]*?)<\/cim:CostPerEnergyUnit.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:CostPerEnergyUnit.unit>([\s\S]*?)<\/cim:CostPerEnergyUnit.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CostPerEnergyUnit.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:CostPerEnergyUnit.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:CostPerEnergyUnit.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:CostPerEnergyUnit.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:CostPerEnergyUnit.value>([\s\S]*?)<\/cim:CostPerEnergyUnit.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.CostPerEnergyUnit;
@@ -1246,21 +1804,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CostPerEnergyUnit_collapse" aria-expanded="true" aria-controls="CostPerEnergyUnit_collapse">CostPerEnergyUnit</a>
-<div id="CostPerEnergyUnit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CostPerEnergyUnit_collapse" aria-expanded="true" aria-controls="CostPerEnergyUnit_collapse" style="margin-left: 10px;">CostPerEnergyUnit</a></legend>
+                    <div id="CostPerEnergyUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.Currency = []; if (!obj.unit) obj.Currency.push ({ id: '', selected: true}); for (var property in Currency) obj.Currency.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.Currency;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CostPerEnergyUnit_collapse" aria-expanded="true" aria-controls="CostPerEnergyUnit_collapse" style="margin-left: 10px;">CostPerEnergyUnit</a></legend>
+                    <div id="CostPerEnergyUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#Currency}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Currency}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Reactance (imaginary part of impedance) per unit of length, at rated frequency.
@@ -1290,10 +1891,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ReactancePerLength";
-                base.parse_element (/<cim:ReactancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:ReactancePerLength.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ReactancePerLength.denominatorUnit>([\s\S]*?)<\/cim:ReactancePerLength.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:ReactancePerLength.multiplier>([\s\S]*?)<\/cim:ReactancePerLength.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ReactancePerLength.unit>([\s\S]*?)<\/cim:ReactancePerLength.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ReactancePerLength.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:ReactancePerLength.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:ReactancePerLength.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:ReactancePerLength.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:ReactancePerLength.value>([\s\S]*?)<\/cim:ReactancePerLength.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.ReactancePerLength;
@@ -1323,21 +1924,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ReactancePerLength_collapse" aria-expanded="true" aria-controls="ReactancePerLength_collapse">ReactancePerLength</a>
-<div id="ReactancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReactancePerLength_collapse" aria-expanded="true" aria-controls="ReactancePerLength_collapse" style="margin-left: 10px;">ReactancePerLength</a></legend>
+                    <div id="ReactancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReactancePerLength_collapse" aria-expanded="true" aria-controls="ReactancePerLength_collapse" style="margin-left: 10px;">ReactancePerLength</a></legend>
+                    <div id="ReactancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Duration as "PnYnMnDTnHnMnS" which conforms to ISO 8601, where nY expresses a number of years, nM a number of months, nD a number of days.
@@ -1392,16 +2036,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Duration_collapse" aria-expanded="true" aria-controls="Duration_collapse">Duration</a>
-<div id="Duration_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Duration_collapse" aria-expanded="true" aria-controls="Duration_collapse" style="margin-left: 10px;">Duration</a></legend>
+                    <div id="Duration_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Duration_collapse" aria-expanded="true" aria-controls="Duration_collapse" style="margin-left: 10px;">Duration</a></legend>
+                    <div id="Duration_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Time as "hh:mm:ss.sss", which conforms with ISO 8601.
@@ -1456,16 +2130,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Time_collapse" aria-expanded="true" aria-controls="Time_collapse">Time</a>
-<div id="Time_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Time_collapse" aria-expanded="true" aria-controls="Time_collapse" style="margin-left: 10px;">Time</a></legend>
+                    <div id="Time_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Time_collapse" aria-expanded="true" aria-controls="Time_collapse" style="margin-left: 10px;">Time</a></legend>
+                    <div id="Time_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Per-unit active power variation with frequency referenced on the system apparent power base.
@@ -1497,10 +2201,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Damping";
-                base.parse_element (/<cim:Damping.denominatorMultiplier>([\s\S]*?)<\/cim:Damping.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Damping.denominatorUnit>([\s\S]*?)<\/cim:Damping.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:Damping.multiplier>([\s\S]*?)<\/cim:Damping.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Damping.unit>([\s\S]*?)<\/cim:Damping.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Damping.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:Damping.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:Damping.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Damping.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Damping.value>([\s\S]*?)<\/cim:Damping.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Damping;
@@ -1530,21 +2234,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Damping_collapse" aria-expanded="true" aria-controls="Damping_collapse">Damping</a>
-<div id="Damping_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Damping_collapse" aria-expanded="true" aria-controls="Damping_collapse" style="margin-left: 10px;">Damping</a></legend>
+                    <div id="Damping_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Damping_collapse" aria-expanded="true" aria-controls="Damping_collapse" style="margin-left: 10px;">Damping</a></legend>
+                    <div id="Damping_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Per Unit - a positive or negative value referred to a defined base.
@@ -1576,8 +2323,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "PU";
-                base.parse_element (/<cim:PU.multiplier>([\s\S]*?)<\/cim:PU.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:PU.unit>([\s\S]*?)<\/cim:PU.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PU.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:PU.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:PU.value>([\s\S]*?)<\/cim:PU.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.PU;
@@ -1605,125 +2352,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PU_collapse" aria-expanded="true" aria-controls="PU_collapse">PU</a>
-<div id="PU_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PU_collapse" aria-expanded="true" aria-controls="PU_collapse" style="margin-left: 10px;">PU</a></legend>
+                    <div id="PU_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Monetary currencies.
-         *
-         * Apologies for this list not being exhaustive.
-         *
-         */
-        class Currency extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.Currency;
-                if (null == bucket)
-                   cim_data.Currency = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.Currency[this._id];
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "Currency";
-                base.parse_element (/<cim:Currency.USD>([\s\S]*?)<\/cim:Currency.USD>/g, obj, "USD", base.to_string, sub, context);
-                base.parse_element (/<cim:Currency.EUR>([\s\S]*?)<\/cim:Currency.EUR>/g, obj, "EUR", base.to_string, sub, context);
-                base.parse_element (/<cim:Currency.AUD>([\s\S]*?)<\/cim:Currency.AUD>/g, obj, "AUD", base.to_string, sub, context);
-                base.parse_element (/<cim:Currency.CAD>([\s\S]*?)<\/cim:Currency.CAD>/g, obj, "CAD", base.to_string, sub, context);
-                base.parse_element (/<cim:Currency.CHF>([\s\S]*?)<\/cim:Currency.CHF>/g, obj, "CHF", base.to_string, sub, context);
-                base.parse_element (/<cim:Currency.CNY>([\s\S]*?)<\/cim:Currency.CNY>/g, obj, "CNY", base.to_string, sub, context);
-                base.parse_element (/<cim:Currency.DKK>([\s\S]*?)<\/cim:Currency.DKK>/g, obj, "DKK", base.to_string, sub, context);
-                base.parse_element (/<cim:Currency.GBP>([\s\S]*?)<\/cim:Currency.GBP>/g, obj, "GBP", base.to_string, sub, context);
-                base.parse_element (/<cim:Currency.JPY>([\s\S]*?)<\/cim:Currency.JPY>/g, obj, "JPY", base.to_string, sub, context);
-                base.parse_element (/<cim:Currency.NOK>([\s\S]*?)<\/cim:Currency.NOK>/g, obj, "NOK", base.to_string, sub, context);
-                base.parse_element (/<cim:Currency.RUR>([\s\S]*?)<\/cim:Currency.RUR>/g, obj, "RUR", base.to_string, sub, context);
-                base.parse_element (/<cim:Currency.SEK>([\s\S]*?)<\/cim:Currency.SEK>/g, obj, "SEK", base.to_string, sub, context);
-                base.parse_element (/<cim:Currency.INR>([\s\S]*?)<\/cim:Currency.INR>/g, obj, "INR", base.to_string, sub, context);
-                base.parse_element (/<cim:Currency.other>([\s\S]*?)<\/cim:Currency.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.Currency;
-                if (null == bucket)
-                   context.parsed.Currency = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "Currency", "USD", base.from_string, fields);
-                base.export_element (obj, "Currency", "EUR", base.from_string, fields);
-                base.export_element (obj, "Currency", "AUD", base.from_string, fields);
-                base.export_element (obj, "Currency", "CAD", base.from_string, fields);
-                base.export_element (obj, "Currency", "CHF", base.from_string, fields);
-                base.export_element (obj, "Currency", "CNY", base.from_string, fields);
-                base.export_element (obj, "Currency", "DKK", base.from_string, fields);
-                base.export_element (obj, "Currency", "GBP", base.from_string, fields);
-                base.export_element (obj, "Currency", "JPY", base.from_string, fields);
-                base.export_element (obj, "Currency", "NOK", base.from_string, fields);
-                base.export_element (obj, "Currency", "RUR", base.from_string, fields);
-                base.export_element (obj, "Currency", "SEK", base.from_string, fields);
-                base.export_element (obj, "Currency", "INR", base.from_string, fields);
-                base.export_element (obj, "Currency", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Currency_collapse" aria-expanded="true" aria-controls="Currency_collapse">Currency</a>
-<div id="Currency_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#USD}}<div><b>USD</b>: {{USD}}</div>{{/USD}}
-{{#EUR}}<div><b>EUR</b>: {{EUR}}</div>{{/EUR}}
-{{#AUD}}<div><b>AUD</b>: {{AUD}}</div>{{/AUD}}
-{{#CAD}}<div><b>CAD</b>: {{CAD}}</div>{{/CAD}}
-{{#CHF}}<div><b>CHF</b>: {{CHF}}</div>{{/CHF}}
-{{#CNY}}<div><b>CNY</b>: {{CNY}}</div>{{/CNY}}
-{{#DKK}}<div><b>DKK</b>: {{DKK}}</div>{{/DKK}}
-{{#GBP}}<div><b>GBP</b>: {{GBP}}</div>{{/GBP}}
-{{#JPY}}<div><b>JPY</b>: {{JPY}}</div>{{/JPY}}
-{{#NOK}}<div><b>NOK</b>: {{NOK}}</div>{{/NOK}}
-{{#RUR}}<div><b>RUR</b>: {{RUR}}</div>{{/RUR}}
-{{#SEK}}<div><b>SEK</b>: {{SEK}}</div>{{/SEK}}
-{{#INR}}<div><b>INR</b>: {{INR}}</div>{{/INR}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PU_collapse" aria-expanded="true" aria-controls="PU_collapse" style="margin-left: 10px;">PU</a></legend>
+                    <div id="PU_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Product of RMS value of the voltage and the RMS value of the in-phase component of the current.
@@ -1753,8 +2431,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ActivePower";
-                base.parse_element (/<cim:ActivePower.multiplier>([\s\S]*?)<\/cim:ActivePower.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ActivePower.unit>([\s\S]*?)<\/cim:ActivePower.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ActivePower.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:ActivePower.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:ActivePower.value>([\s\S]*?)<\/cim:ActivePower.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.ActivePower;
@@ -1782,19 +2460,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ActivePower_collapse" aria-expanded="true" aria-controls="ActivePower_collapse">ActivePower</a>
-<div id="ActivePower_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivePower_collapse" aria-expanded="true" aria-controls="ActivePower_collapse" style="margin-left: 10px;">ActivePower</a></legend>
+                    <div id="ActivePower_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivePower_collapse" aria-expanded="true" aria-controls="ActivePower_collapse" style="margin-left: 10px;">ActivePower</a></legend>
+                    <div id="ActivePower_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Capacitive part of reactance (imaginary part of impedance), at rated frequency.
@@ -1824,8 +2539,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Capacitance";
-                base.parse_element (/<cim:Capacitance.multiplier>([\s\S]*?)<\/cim:Capacitance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Capacitance.unit>([\s\S]*?)<\/cim:Capacitance.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Capacitance.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Capacitance.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Capacitance.value>([\s\S]*?)<\/cim:Capacitance.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Capacitance;
@@ -1853,19 +2568,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Capacitance_collapse" aria-expanded="true" aria-controls="Capacitance_collapse">Capacitance</a>
-<div id="Capacitance_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Capacitance_collapse" aria-expanded="true" aria-controls="Capacitance_collapse" style="margin-left: 10px;">Capacitance</a></legend>
+                    <div id="Capacitance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Capacitance_collapse" aria-expanded="true" aria-controls="Capacitance_collapse" style="margin-left: 10px;">Capacitance</a></legend>
+                    <div id="Capacitance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Factor by which voltage must be multiplied to give corresponding power lost from a circuit.
@@ -1897,8 +2649,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Conductance";
-                base.parse_element (/<cim:Conductance.multiplier>([\s\S]*?)<\/cim:Conductance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Conductance.unit>([\s\S]*?)<\/cim:Conductance.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Conductance.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Conductance.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Conductance.value>([\s\S]*?)<\/cim:Conductance.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Conductance;
@@ -1926,19 +2678,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Conductance_collapse" aria-expanded="true" aria-controls="Conductance_collapse">Conductance</a>
-<div id="Conductance_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Conductance_collapse" aria-expanded="true" aria-controls="Conductance_collapse" style="margin-left: 10px;">Conductance</a></legend>
+                    <div id="Conductance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Conductance_collapse" aria-expanded="true" aria-controls="Conductance_collapse" style="margin-left: 10px;">Conductance</a></legend>
+                    <div id="Conductance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Inductance per unit of length.
@@ -1969,10 +2758,10 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "InductancePerLength";
                 base.parse_element (/<cim:InductancePerLength.value>([\s\S]*?)<\/cim:InductancePerLength.value>/g, obj, "value", base.to_float, sub, context);
-                base.parse_element (/<cim:InductancePerLength.unit>([\s\S]*?)<\/cim:InductancePerLength.unit>/g, obj, "unit", base.to_string, sub, context);
-                base.parse_element (/<cim:InductancePerLength.multiplier>([\s\S]*?)<\/cim:InductancePerLength.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:InductancePerLength.denominatorUnit>([\s\S]*?)<\/cim:InductancePerLength.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:InductancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:InductancePerLength.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
+                base.parse_attribute (/<cim:InductancePerLength.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
+                base.parse_attribute (/<cim:InductancePerLength.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:InductancePerLength.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:InductancePerLength.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
 
                 var bucket = context.parsed.InductancePerLength;
                 if (null == bucket)
@@ -2001,21 +2790,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#InductancePerLength_collapse" aria-expanded="true" aria-controls="InductancePerLength_collapse">InductancePerLength</a>
-<div id="InductancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InductancePerLength_collapse" aria-expanded="true" aria-controls="InductancePerLength_collapse" style="margin-left: 10px;">InductancePerLength</a></legend>
+                    <div id="InductancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InductancePerLength_collapse" aria-expanded="true" aria-controls="InductancePerLength_collapse" style="margin-left: 10px;">InductancePerLength</a></legend>
+                    <div id="InductancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Volume per time.
@@ -2045,10 +2877,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "VolumeFlowRate";
-                base.parse_element (/<cim:VolumeFlowRate.denominatorMultiplier>([\s\S]*?)<\/cim:VolumeFlowRate.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:VolumeFlowRate.denominatorUnit>([\s\S]*?)<\/cim:VolumeFlowRate.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:VolumeFlowRate.multiplier>([\s\S]*?)<\/cim:VolumeFlowRate.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:VolumeFlowRate.unit>([\s\S]*?)<\/cim:VolumeFlowRate.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:VolumeFlowRate.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:VolumeFlowRate.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:VolumeFlowRate.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:VolumeFlowRate.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:VolumeFlowRate.value>([\s\S]*?)<\/cim:VolumeFlowRate.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.VolumeFlowRate;
@@ -2078,21 +2910,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VolumeFlowRate_collapse" aria-expanded="true" aria-controls="VolumeFlowRate_collapse">VolumeFlowRate</a>
-<div id="VolumeFlowRate_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VolumeFlowRate_collapse" aria-expanded="true" aria-controls="VolumeFlowRate_collapse" style="margin-left: 10px;">VolumeFlowRate</a></legend>
+                    <div id="VolumeFlowRate_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VolumeFlowRate_collapse" aria-expanded="true" aria-controls="VolumeFlowRate_collapse" style="margin-left: 10px;">VolumeFlowRate</a></legend>
+                    <div id="VolumeFlowRate_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Date and time as "yyyy-mm-ddThh:mm:ss.sss", which conforms with ISO 8601.
@@ -2147,16 +3022,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DateTime_collapse" aria-expanded="true" aria-controls="DateTime_collapse">DateTime</a>
-<div id="DateTime_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DateTime_collapse" aria-expanded="true" aria-controls="DateTime_collapse" style="margin-left: 10px;">DateTime</a></legend>
+                    <div id="DateTime_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DateTime_collapse" aria-expanded="true" aria-controls="DateTime_collapse" style="margin-left: 10px;">DateTime</a></legend>
+                    <div id="DateTime_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * MonthDay format as "--mm-dd", which conforms with XSD data type gMonthDay.
@@ -2209,16 +3114,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MonthDay_collapse" aria-expanded="true" aria-controls="MonthDay_collapse">MonthDay</a>
-<div id="MonthDay_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MonthDay_collapse" aria-expanded="true" aria-controls="MonthDay_collapse" style="margin-left: 10px;">MonthDay</a></legend>
+                    <div id="MonthDay_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MonthDay_collapse" aria-expanded="true" aria-controls="MonthDay_collapse" style="margin-left: 10px;">MonthDay</a></legend>
+                    <div id="MonthDay_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Electrical current with sign convention: positive flow is out of the conducting equipment into the connectivity node.
@@ -2250,8 +3185,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "CurrentFlow";
-                base.parse_element (/<cim:CurrentFlow.multiplier>([\s\S]*?)<\/cim:CurrentFlow.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:CurrentFlow.unit>([\s\S]*?)<\/cim:CurrentFlow.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CurrentFlow.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:CurrentFlow.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:CurrentFlow.value>([\s\S]*?)<\/cim:CurrentFlow.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.CurrentFlow;
@@ -2279,19 +3214,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CurrentFlow_collapse" aria-expanded="true" aria-controls="CurrentFlow_collapse">CurrentFlow</a>
-<div id="CurrentFlow_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentFlow_collapse" aria-expanded="true" aria-controls="CurrentFlow_collapse" style="margin-left: 10px;">CurrentFlow</a></legend>
+                    <div id="CurrentFlow_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentFlow_collapse" aria-expanded="true" aria-controls="CurrentFlow_collapse" style="margin-left: 10px;">CurrentFlow</a></legend>
+                    <div id="CurrentFlow_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Active power in kilowatts.
@@ -2321,8 +3293,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "KiloActivePower";
-                base.parse_element (/<cim:KiloActivePower.multiplier>([\s\S]*?)<\/cim:KiloActivePower.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:KiloActivePower.unit>([\s\S]*?)<\/cim:KiloActivePower.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:KiloActivePower.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:KiloActivePower.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:KiloActivePower.value>([\s\S]*?)<\/cim:KiloActivePower.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.KiloActivePower;
@@ -2350,19 +3322,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#KiloActivePower_collapse" aria-expanded="true" aria-controls="KiloActivePower_collapse">KiloActivePower</a>
-<div id="KiloActivePower_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#KiloActivePower_collapse" aria-expanded="true" aria-controls="KiloActivePower_collapse" style="margin-left: 10px;">KiloActivePower</a></legend>
+                    <div id="KiloActivePower_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#KiloActivePower_collapse" aria-expanded="true" aria-controls="KiloActivePower_collapse" style="margin-left: 10px;">KiloActivePower</a></legend>
+                    <div id="KiloActivePower_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Ratio of voltage to current.
@@ -2392,8 +3401,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Impedance";
-                base.parse_element (/<cim:Impedance.multiplier>([\s\S]*?)<\/cim:Impedance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Impedance.unit>([\s\S]*?)<\/cim:Impedance.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Impedance.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Impedance.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Impedance.value>([\s\S]*?)<\/cim:Impedance.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Impedance;
@@ -2421,19 +3430,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Impedance_collapse" aria-expanded="true" aria-controls="Impedance_collapse">Impedance</a>
-<div id="Impedance_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Impedance_collapse" aria-expanded="true" aria-controls="Impedance_collapse" style="margin-left: 10px;">Impedance</a></legend>
+                    <div id="Impedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Impedance_collapse" aria-expanded="true" aria-controls="Impedance_collapse" style="margin-left: 10px;">Impedance</a></legend>
+                    <div id="Impedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Percentage on a defined base.
@@ -2465,8 +3511,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "PerCent";
-                base.parse_element (/<cim:PerCent.multiplier>([\s\S]*?)<\/cim:PerCent.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:PerCent.unit>([\s\S]*?)<\/cim:PerCent.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PerCent.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:PerCent.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:PerCent.value>([\s\S]*?)<\/cim:PerCent.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.PerCent;
@@ -2494,19 +3540,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PerCent_collapse" aria-expanded="true" aria-controls="PerCent_collapse">PerCent</a>
-<div id="PerCent_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PerCent_collapse" aria-expanded="true" aria-controls="PerCent_collapse" style="margin-left: 10px;">PerCent</a></legend>
+                    <div id="PerCent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PerCent_collapse" aria-expanded="true" aria-controls="PerCent_collapse" style="margin-left: 10px;">PerCent</a></legend>
+                    <div id="PerCent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Time, in seconds.
@@ -2536,8 +3619,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Seconds";
-                base.parse_element (/<cim:Seconds.multiplier>([\s\S]*?)<\/cim:Seconds.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Seconds.unit>([\s\S]*?)<\/cim:Seconds.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Seconds.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Seconds.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Seconds.value>([\s\S]*?)<\/cim:Seconds.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Seconds;
@@ -2565,19 +3648,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Seconds_collapse" aria-expanded="true" aria-controls="Seconds_collapse">Seconds</a>
-<div id="Seconds_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Seconds_collapse" aria-expanded="true" aria-controls="Seconds_collapse" style="margin-left: 10px;">Seconds</a></legend>
+                    <div id="Seconds_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Seconds_collapse" aria-expanded="true" aria-controls="Seconds_collapse" style="margin-left: 10px;">Seconds</a></legend>
+                    <div id="Seconds_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Active power variation with frequency.
@@ -2607,10 +3727,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ActivePowerPerFrequency";
-                base.parse_element (/<cim:ActivePowerPerFrequency.denominatorMultiplier>([\s\S]*?)<\/cim:ActivePowerPerFrequency.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ActivePowerPerFrequency.denominatorUnit>([\s\S]*?)<\/cim:ActivePowerPerFrequency.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:ActivePowerPerFrequency.multiplier>([\s\S]*?)<\/cim:ActivePowerPerFrequency.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ActivePowerPerFrequency.unit>([\s\S]*?)<\/cim:ActivePowerPerFrequency.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ActivePowerPerFrequency.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:ActivePowerPerFrequency.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:ActivePowerPerFrequency.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:ActivePowerPerFrequency.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:ActivePowerPerFrequency.value>([\s\S]*?)<\/cim:ActivePowerPerFrequency.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.ActivePowerPerFrequency;
@@ -2640,21 +3760,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ActivePowerPerFrequency_collapse" aria-expanded="true" aria-controls="ActivePowerPerFrequency_collapse">ActivePowerPerFrequency</a>
-<div id="ActivePowerPerFrequency_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivePowerPerFrequency_collapse" aria-expanded="true" aria-controls="ActivePowerPerFrequency_collapse" style="margin-left: 10px;">ActivePowerPerFrequency</a></legend>
+                    <div id="ActivePowerPerFrequency_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivePowerPerFrequency_collapse" aria-expanded="true" aria-controls="ActivePowerPerFrequency_collapse" style="margin-left: 10px;">ActivePowerPerFrequency</a></legend>
+                    <div id="ActivePowerPerFrequency_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Amount of money.
@@ -2684,8 +3847,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Money";
-                base.parse_element (/<cim:Money.multiplier>([\s\S]*?)<\/cim:Money.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Money.unit>([\s\S]*?)<\/cim:Money.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Money.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Money.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Money.value>([\s\S]*?)<\/cim:Money.value>/g, obj, "value", base.to_string, sub, context);
 
                 var bucket = context.parsed.Money;
@@ -2713,19 +3876,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Money_collapse" aria-expanded="true" aria-controls="Money_collapse">Money</a>
-<div id="Money_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Money_collapse" aria-expanded="true" aria-controls="Money_collapse" style="margin-left: 10px;">Money</a></legend>
+                    <div id="Money_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.Currency = []; if (!obj.unit) obj.Currency.push ({ id: '', selected: true}); for (var property in Currency) obj.Currency.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.Currency;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Money_collapse" aria-expanded="true" aria-controls="Money_collapse" style="margin-left: 10px;">Money</a></legend>
+                    <div id="Money_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#Currency}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Currency}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Interval between two date and time points.
@@ -2782,18 +3982,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DateTimeInterval_collapse" aria-expanded="true" aria-controls="DateTimeInterval_collapse">DateTimeInterval</a>
-<div id="DateTimeInterval_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
-{{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DateTimeInterval_collapse" aria-expanded="true" aria-controls="DateTimeInterval_collapse" style="margin-left: 10px;">DateTimeInterval</a></legend>
+                    <div id="DateTimeInterval_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
+                    {{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DateTimeInterval_collapse" aria-expanded="true" aria-controls="DateTimeInterval_collapse" style="margin-left: 10px;">DateTimeInterval</a></legend>
+                    <div id="DateTimeInterval_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='end'>end: </label><div class='col-sm-8'><input id='end' class='form-control' type='text'{{#end}} value='{{end}}'{{/end}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='start'>start: </label><div class='col-sm-8'><input id='start' class='form-control' type='text'{{#start}} value='{{start}}'{{/start}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Product of the RMS value of the voltage and the RMS value of the current.
@@ -2823,8 +4055,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ApparentPower";
-                base.parse_element (/<cim:ApparentPower.multiplier>([\s\S]*?)<\/cim:ApparentPower.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ApparentPower.unit>([\s\S]*?)<\/cim:ApparentPower.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ApparentPower.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:ApparentPower.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:ApparentPower.value>([\s\S]*?)<\/cim:ApparentPower.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.ApparentPower;
@@ -2852,19 +4084,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ApparentPower_collapse" aria-expanded="true" aria-controls="ApparentPower_collapse">ApparentPower</a>
-<div id="ApparentPower_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ApparentPower_collapse" aria-expanded="true" aria-controls="ApparentPower_collapse" style="margin-left: 10px;">ApparentPower</a></legend>
+                    <div id="ApparentPower_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ApparentPower_collapse" aria-expanded="true" aria-controls="ApparentPower_collapse" style="margin-left: 10px;">ApparentPower</a></legend>
+                    <div id="ApparentPower_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Volume.
@@ -2894,8 +4163,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Volume";
-                base.parse_element (/<cim:Volume.multiplier>([\s\S]*?)<\/cim:Volume.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Volume.unit>([\s\S]*?)<\/cim:Volume.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Volume.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Volume.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Volume.value>([\s\S]*?)<\/cim:Volume.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Volume;
@@ -2923,19 +4192,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Volume_collapse" aria-expanded="true" aria-controls="Volume_collapse">Volume</a>
-<div id="Volume_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Volume_collapse" aria-expanded="true" aria-controls="Volume_collapse" style="margin-left: 10px;">Volume</a></legend>
+                    <div id="Volume_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Volume_collapse" aria-expanded="true" aria-controls="Volume_collapse" style="margin-left: 10px;">Volume</a></legend>
+                    <div id="Volume_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Measurement of angle in degrees.
@@ -2965,8 +4271,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "AngleDegrees";
-                base.parse_element (/<cim:AngleDegrees.multiplier>([\s\S]*?)<\/cim:AngleDegrees.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:AngleDegrees.unit>([\s\S]*?)<\/cim:AngleDegrees.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AngleDegrees.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:AngleDegrees.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:AngleDegrees.value>([\s\S]*?)<\/cim:AngleDegrees.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.AngleDegrees;
@@ -2994,19 +4300,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AngleDegrees_collapse" aria-expanded="true" aria-controls="AngleDegrees_collapse">AngleDegrees</a>
-<div id="AngleDegrees_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AngleDegrees_collapse" aria-expanded="true" aria-controls="AngleDegrees_collapse" style="margin-left: 10px;">AngleDegrees</a></legend>
+                    <div id="AngleDegrees_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AngleDegrees_collapse" aria-expanded="true" aria-controls="AngleDegrees_collapse" style="margin-left: 10px;">AngleDegrees</a></legend>
+                    <div id="AngleDegrees_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Date as "yyyy-mm-dd", which conforms with ISO 8601.
@@ -3061,16 +4404,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Date_collapse" aria-expanded="true" aria-controls="Date_collapse">Date</a>
-<div id="Date_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Date_collapse" aria-expanded="true" aria-controls="Date_collapse" style="margin-left: 10px;">Date</a></legend>
+                    <div id="Date_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Date_collapse" aria-expanded="true" aria-controls="Date_collapse" style="margin-left: 10px;">Date</a></legend>
+                    <div id="Date_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class DecimalQuantity extends base.Element
         {
@@ -3097,9 +4470,9 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "DecimalQuantity";
                 base.parse_element (/<cim:DecimalQuantity.value>([\s\S]*?)<\/cim:DecimalQuantity.value>/g, obj, "value", base.to_string, sub, context);
-                base.parse_element (/<cim:DecimalQuantity.unit>([\s\S]*?)<\/cim:DecimalQuantity.unit>/g, obj, "unit", base.to_string, sub, context);
-                base.parse_element (/<cim:DecimalQuantity.multiplier>([\s\S]*?)<\/cim:DecimalQuantity.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:DecimalQuantity.currency>([\s\S]*?)<\/cim:DecimalQuantity.currency>/g, obj, "currency", base.to_string, sub, context);
+                base.parse_attribute (/<cim:DecimalQuantity.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
+                base.parse_attribute (/<cim:DecimalQuantity.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:DecimalQuantity.currency\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "currency", sub, context);
 
                 var bucket = context.parsed.DecimalQuantity;
                 if (null == bucket)
@@ -3127,20 +4500,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DecimalQuantity_collapse" aria-expanded="true" aria-controls="DecimalQuantity_collapse">DecimalQuantity</a>
-<div id="DecimalQuantity_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#currency}}<div><b>currency</b>: {{currency}}</div>{{/currency}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DecimalQuantity_collapse" aria-expanded="true" aria-controls="DecimalQuantity_collapse" style="margin-left: 10px;">DecimalQuantity</a></legend>
+                    <div id="DecimalQuantity_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#currency}}<div><b>currency</b>: {{currency}}</div>{{/currency}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.Currency = []; if (!obj.currency) obj.Currency.push ({ id: '', selected: true}); for (var property in Currency) obj.Currency.push ({ id: property, selected: obj.currency && obj.currency.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.Currency;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DecimalQuantity_collapse" aria-expanded="true" aria-controls="DecimalQuantity_collapse" style="margin-left: 10px;">DecimalQuantity</a></legend>
+                    <div id="DecimalQuantity_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='currency'>currency: </label><div class='col-sm-8'><select id='currency' class='form-control'>{{#Currency}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Currency}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Real electrical energy.
@@ -3170,8 +4583,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "RealEnergy";
-                base.parse_element (/<cim:RealEnergy.multiplier>([\s\S]*?)<\/cim:RealEnergy.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:RealEnergy.unit>([\s\S]*?)<\/cim:RealEnergy.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RealEnergy.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:RealEnergy.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:RealEnergy.value>([\s\S]*?)<\/cim:RealEnergy.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.RealEnergy;
@@ -3199,19 +4612,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RealEnergy_collapse" aria-expanded="true" aria-controls="RealEnergy_collapse">RealEnergy</a>
-<div id="RealEnergy_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RealEnergy_collapse" aria-expanded="true" aria-controls="RealEnergy_collapse" style="margin-left: 10px;">RealEnergy</a></legend>
+                    <div id="RealEnergy_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RealEnergy_collapse" aria-expanded="true" aria-controls="RealEnergy_collapse" style="margin-left: 10px;">RealEnergy</a></legend>
+                    <div id="RealEnergy_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Decimal is the base-10 notational system for representing real numbers.
@@ -3264,16 +4714,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Decimal_collapse" aria-expanded="true" aria-controls="Decimal_collapse">Decimal</a>
-<div id="Decimal_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Decimal_collapse" aria-expanded="true" aria-controls="Decimal_collapse" style="margin-left: 10px;">Decimal</a></legend>
+                    <div id="Decimal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Decimal_collapse" aria-expanded="true" aria-controls="Decimal_collapse" style="margin-left: 10px;">Decimal</a></legend>
+                    <div id="Decimal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Unit of length.
@@ -3305,8 +4785,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Length";
-                base.parse_element (/<cim:Length.multiplier>([\s\S]*?)<\/cim:Length.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Length.unit>([\s\S]*?)<\/cim:Length.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Length.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Length.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Length.value>([\s\S]*?)<\/cim:Length.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Length;
@@ -3334,19 +4814,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Length_collapse" aria-expanded="true" aria-controls="Length_collapse">Length</a>
-<div id="Length_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Length_collapse" aria-expanded="true" aria-controls="Length_collapse" style="margin-left: 10px;">Length</a></legend>
+                    <div id="Length_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Length_collapse" aria-expanded="true" aria-controls="Length_collapse" style="margin-left: 10px;">Length</a></legend>
+                    <div id="Length_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Value of temperature in degrees Celsius.
@@ -3376,8 +4893,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Temperature";
-                base.parse_element (/<cim:Temperature.multiplier>([\s\S]*?)<\/cim:Temperature.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Temperature.unit>([\s\S]*?)<\/cim:Temperature.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Temperature.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Temperature.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Temperature.value>([\s\S]*?)<\/cim:Temperature.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Temperature;
@@ -3405,19 +4922,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Temperature_collapse" aria-expanded="true" aria-controls="Temperature_collapse">Temperature</a>
-<div id="Temperature_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Temperature_collapse" aria-expanded="true" aria-controls="Temperature_collapse" style="margin-left: 10px;">Temperature</a></legend>
+                    <div id="Temperature_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Temperature_collapse" aria-expanded="true" aria-controls="Temperature_collapse" style="margin-left: 10px;">Temperature</a></legend>
+                    <div id="Temperature_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Quantity with float value and associated unit information.
@@ -3447,8 +5001,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "FloatQuantity";
-                base.parse_element (/<cim:FloatQuantity.multiplier>([\s\S]*?)<\/cim:FloatQuantity.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:FloatQuantity.unit>([\s\S]*?)<\/cim:FloatQuantity.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:FloatQuantity.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:FloatQuantity.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:FloatQuantity.value>([\s\S]*?)<\/cim:FloatQuantity.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.FloatQuantity;
@@ -3476,19 +5030,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FloatQuantity_collapse" aria-expanded="true" aria-controls="FloatQuantity_collapse">FloatQuantity</a>
-<div id="FloatQuantity_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FloatQuantity_collapse" aria-expanded="true" aria-controls="FloatQuantity_collapse" style="margin-left: 10px;">FloatQuantity</a></legend>
+                    <div id="FloatQuantity_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FloatQuantity_collapse" aria-expanded="true" aria-controls="FloatQuantity_collapse" style="margin-left: 10px;">FloatQuantity</a></legend>
+                    <div id="FloatQuantity_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Imaginary part of admittance.
@@ -3518,8 +5109,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Susceptance";
-                base.parse_element (/<cim:Susceptance.multiplier>([\s\S]*?)<\/cim:Susceptance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Susceptance.unit>([\s\S]*?)<\/cim:Susceptance.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Susceptance.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Susceptance.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Susceptance.value>([\s\S]*?)<\/cim:Susceptance.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Susceptance;
@@ -3547,19 +5138,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Susceptance_collapse" aria-expanded="true" aria-controls="Susceptance_collapse">Susceptance</a>
-<div id="Susceptance_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Susceptance_collapse" aria-expanded="true" aria-controls="Susceptance_collapse" style="margin-left: 10px;">Susceptance</a></legend>
+                    <div id="Susceptance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Susceptance_collapse" aria-expanded="true" aria-controls="Susceptance_collapse" style="margin-left: 10px;">Susceptance</a></legend>
+                    <div id="Susceptance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Cycles per second.
@@ -3589,8 +5217,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Frequency";
-                base.parse_element (/<cim:Frequency.multiplier>([\s\S]*?)<\/cim:Frequency.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Frequency.unit>([\s\S]*?)<\/cim:Frequency.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Frequency.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Frequency.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Frequency.value>([\s\S]*?)<\/cim:Frequency.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Frequency;
@@ -3618,19 +5246,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Frequency_collapse" aria-expanded="true" aria-controls="Frequency_collapse">Frequency</a>
-<div id="Frequency_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Frequency_collapse" aria-expanded="true" aria-controls="Frequency_collapse" style="margin-left: 10px;">Frequency</a></legend>
+                    <div id="Frequency_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Frequency_collapse" aria-expanded="true" aria-controls="Frequency_collapse" style="margin-left: 10px;">Frequency</a></legend>
+                    <div id="Frequency_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Area.
@@ -3661,8 +5326,8 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Area";
                 base.parse_element (/<cim:Area.value>([\s\S]*?)<\/cim:Area.value>/g, obj, "value", base.to_float, sub, context);
-                base.parse_element (/<cim:Area.unit>([\s\S]*?)<\/cim:Area.unit>/g, obj, "unit", base.to_string, sub, context);
-                base.parse_element (/<cim:Area.multiplier>([\s\S]*?)<\/cim:Area.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Area.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
+                base.parse_attribute (/<cim:Area.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
 
                 var bucket = context.parsed.Area;
                 if (null == bucket)
@@ -3689,19 +5354,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Area_collapse" aria-expanded="true" aria-controls="Area_collapse">Area</a>
-<div id="Area_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Area_collapse" aria-expanded="true" aria-controls="Area_collapse" style="margin-left: 10px;">Area</a></legend>
+                    <div id="Area_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Area_collapse" aria-expanded="true" aria-controls="Area_collapse" style="margin-left: 10px;">Area</a></legend>
+                    <div id="Area_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Time in minutes.
@@ -3731,8 +5433,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Minutes";
-                base.parse_element (/<cim:Minutes.multiplier>([\s\S]*?)<\/cim:Minutes.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Minutes.unit>([\s\S]*?)<\/cim:Minutes.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Minutes.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Minutes.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Minutes.value>([\s\S]*?)<\/cim:Minutes.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Minutes;
@@ -3760,19 +5462,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Minutes_collapse" aria-expanded="true" aria-controls="Minutes_collapse">Minutes</a>
-<div id="Minutes_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Minutes_collapse" aria-expanded="true" aria-controls="Minutes_collapse" style="margin-left: 10px;">Minutes</a></legend>
+                    <div id="Minutes_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Minutes_collapse" aria-expanded="true" aria-controls="Minutes_collapse" style="margin-left: 10px;">Minutes</a></legend>
+                    <div id="Minutes_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Interval between two dates.
@@ -3829,18 +5568,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DateInterval_collapse" aria-expanded="true" aria-controls="DateInterval_collapse">DateInterval</a>
-<div id="DateInterval_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
-{{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DateInterval_collapse" aria-expanded="true" aria-controls="DateInterval_collapse" style="margin-left: 10px;">DateInterval</a></legend>
+                    <div id="DateInterval_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
+                    {{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DateInterval_collapse" aria-expanded="true" aria-controls="DateInterval_collapse" style="margin-left: 10px;">DateInterval</a></legend>
+                    <div id="DateInterval_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='end'>end: </label><div class='col-sm-8'><input id='end' class='form-control' type='text'{{#end}} value='{{end}}'{{/end}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='start'>start: </label><div class='col-sm-8'><input id='start' class='form-control' type='text'{{#start}} value='{{start}}'{{/start}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Voltage variation with reactive power.
@@ -3870,10 +5641,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "VoltagePerReactivePower";
-                base.parse_element (/<cim:VoltagePerReactivePower.denominatorMultiplier>([\s\S]*?)<\/cim:VoltagePerReactivePower.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:VoltagePerReactivePower.denominatorUnit>([\s\S]*?)<\/cim:VoltagePerReactivePower.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:VoltagePerReactivePower.multiplier>([\s\S]*?)<\/cim:VoltagePerReactivePower.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:VoltagePerReactivePower.unit>([\s\S]*?)<\/cim:VoltagePerReactivePower.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:VoltagePerReactivePower.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:VoltagePerReactivePower.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:VoltagePerReactivePower.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:VoltagePerReactivePower.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:VoltagePerReactivePower.value>([\s\S]*?)<\/cim:VoltagePerReactivePower.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.VoltagePerReactivePower;
@@ -3903,21 +5674,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VoltagePerReactivePower_collapse" aria-expanded="true" aria-controls="VoltagePerReactivePower_collapse">VoltagePerReactivePower</a>
-<div id="VoltagePerReactivePower_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltagePerReactivePower_collapse" aria-expanded="true" aria-controls="VoltagePerReactivePower_collapse" style="margin-left: 10px;">VoltagePerReactivePower</a></legend>
+                    <div id="VoltagePerReactivePower_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltagePerReactivePower_collapse" aria-expanded="true" aria-controls="VoltagePerReactivePower_collapse" style="margin-left: 10px;">VoltagePerReactivePower</a></legend>
+                    <div id="VoltagePerReactivePower_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Time specified in hours.
@@ -3947,8 +5761,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Hours";
-                base.parse_element (/<cim:Hours.multiplier>([\s\S]*?)<\/cim:Hours.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Hours.unit>([\s\S]*?)<\/cim:Hours.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Hours.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Hours.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Hours.value>([\s\S]*?)<\/cim:Hours.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Hours;
@@ -3976,19 +5790,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Hours_collapse" aria-expanded="true" aria-controls="Hours_collapse">Hours</a>
-<div id="Hours_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Hours_collapse" aria-expanded="true" aria-controls="Hours_collapse" style="margin-left: 10px;">Hours</a></legend>
+                    <div id="Hours_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Hours_collapse" aria-expanded="true" aria-controls="Hours_collapse" style="margin-left: 10px;">Hours</a></legend>
+                    <div id="Hours_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Distance per unit of time.
@@ -4018,10 +5869,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Speed";
-                base.parse_element (/<cim:Speed.denominatorMultiplier>([\s\S]*?)<\/cim:Speed.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Speed.denominatorUnit>([\s\S]*?)<\/cim:Speed.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:Speed.multiplier>([\s\S]*?)<\/cim:Speed.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Speed.unit>([\s\S]*?)<\/cim:Speed.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Speed.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:Speed.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:Speed.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Speed.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Speed.value>([\s\S]*?)<\/cim:Speed.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Speed;
@@ -4051,21 +5902,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Speed_collapse" aria-expanded="true" aria-controls="Speed_collapse">Speed</a>
-<div id="Speed_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Speed_collapse" aria-expanded="true" aria-controls="Speed_collapse" style="margin-left: 10px;">Speed</a></legend>
+                    <div id="Speed_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Speed_collapse" aria-expanded="true" aria-controls="Speed_collapse" style="margin-left: 10px;">Speed</a></legend>
+                    <div id="Speed_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Unit of displacement relative a reference position, hence can be negative.
@@ -4095,8 +5989,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Displacement";
-                base.parse_element (/<cim:Displacement.multiplier>([\s\S]*?)<\/cim:Displacement.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Displacement.unit>([\s\S]*?)<\/cim:Displacement.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Displacement.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Displacement.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Displacement.value>([\s\S]*?)<\/cim:Displacement.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Displacement;
@@ -4124,19 +6018,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Displacement_collapse" aria-expanded="true" aria-controls="Displacement_collapse">Displacement</a>
-<div id="Displacement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Displacement_collapse" aria-expanded="true" aria-controls="Displacement_collapse" style="margin-left: 10px;">Displacement</a></legend>
+                    <div id="Displacement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Displacement_collapse" aria-expanded="true" aria-controls="Displacement_collapse" style="margin-left: 10px;">Displacement</a></legend>
+                    <div id="Displacement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A string consisting of a sequence of characters.
@@ -4191,159 +6122,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#String_collapse" aria-expanded="true" aria-controls="String_collapse">String</a>
-<div id="String_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#String_collapse" aria-expanded="true" aria-controls="String_collapse" style="margin-left: 10px;">String</a></legend>
+                    <div id="String_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * The units defined for usage in the CIM.
-         *
-         */
-        class UnitSymbol extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.UnitSymbol;
-                if (null == bucket)
-                   cim_data.UnitSymbol = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.UnitSymbol[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "UnitSymbol";
-                base.parse_element (/<cim:UnitSymbol.VA>([\s\S]*?)<\/cim:UnitSymbol.VA>/g, obj, "VA", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.W>([\s\S]*?)<\/cim:UnitSymbol.W>/g, obj, "W", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.VAr>([\s\S]*?)<\/cim:UnitSymbol.VAr>/g, obj, "VAr", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.VAh>([\s\S]*?)<\/cim:UnitSymbol.VAh>/g, obj, "VAh", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.Wh>([\s\S]*?)<\/cim:UnitSymbol.Wh>/g, obj, "Wh", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.VArh>([\s\S]*?)<\/cim:UnitSymbol.VArh>/g, obj, "VArh", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.V>([\s\S]*?)<\/cim:UnitSymbol.V>/g, obj, "V", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.ohm>([\s\S]*?)<\/cim:UnitSymbol.ohm>/g, obj, "ohm", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.A>([\s\S]*?)<\/cim:UnitSymbol.A>/g, obj, "A", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.F>([\s\S]*?)<\/cim:UnitSymbol.F>/g, obj, "F", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.H>([\s\S]*?)<\/cim:UnitSymbol.H>/g, obj, "H", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.degC>([\s\S]*?)<\/cim:UnitSymbol.degC>/g, obj, "degC", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.s>([\s\S]*?)<\/cim:UnitSymbol.s>/g, obj, "s", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.min>([\s\S]*?)<\/cim:UnitSymbol.min>/g, obj, "min", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.h>([\s\S]*?)<\/cim:UnitSymbol.h>/g, obj, "h", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.deg>([\s\S]*?)<\/cim:UnitSymbol.deg>/g, obj, "deg", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.rad>([\s\S]*?)<\/cim:UnitSymbol.rad>/g, obj, "rad", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.J>([\s\S]*?)<\/cim:UnitSymbol.J>/g, obj, "J", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.N>([\s\S]*?)<\/cim:UnitSymbol.N>/g, obj, "N", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.S>([\s\S]*?)<\/cim:UnitSymbol.S>/g, obj, "S", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.none>([\s\S]*?)<\/cim:UnitSymbol.none>/g, obj, "none", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.Hz>([\s\S]*?)<\/cim:UnitSymbol.Hz>/g, obj, "Hz", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.g>([\s\S]*?)<\/cim:UnitSymbol.g>/g, obj, "g", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.Pa>([\s\S]*?)<\/cim:UnitSymbol.Pa>/g, obj, "Pa", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.m>([\s\S]*?)<\/cim:UnitSymbol.m>/g, obj, "m", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.m2>([\s\S]*?)<\/cim:UnitSymbol.m2>/g, obj, "m2", base.to_string, sub, context);
-                base.parse_element (/<cim:UnitSymbol.m3>([\s\S]*?)<\/cim:UnitSymbol.m3>/g, obj, "m3", base.to_string, sub, context);
-
-                var bucket = context.parsed.UnitSymbol;
-                if (null == bucket)
-                   context.parsed.UnitSymbol = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "UnitSymbol", "VA", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "W", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "VAr", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "VAh", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "Wh", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "VArh", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "V", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "ohm", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "A", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "F", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "H", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "degC", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "s", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "min", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "h", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "deg", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "rad", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "J", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "N", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "S", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "none", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "Hz", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "g", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "Pa", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "m", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "m2", base.from_string, fields);
-                base.export_element (obj, "UnitSymbol", "m3", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#UnitSymbol_collapse" aria-expanded="true" aria-controls="UnitSymbol_collapse">UnitSymbol</a>
-<div id="UnitSymbol_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#VA}}<div><b>VA</b>: {{VA}}</div>{{/VA}}
-{{#W}}<div><b>W</b>: {{W}}</div>{{/W}}
-{{#VAr}}<div><b>VAr</b>: {{VAr}}</div>{{/VAr}}
-{{#VAh}}<div><b>VAh</b>: {{VAh}}</div>{{/VAh}}
-{{#Wh}}<div><b>Wh</b>: {{Wh}}</div>{{/Wh}}
-{{#VArh}}<div><b>VArh</b>: {{VArh}}</div>{{/VArh}}
-{{#V}}<div><b>V</b>: {{V}}</div>{{/V}}
-{{#ohm}}<div><b>ohm</b>: {{ohm}}</div>{{/ohm}}
-{{#A}}<div><b>A</b>: {{A}}</div>{{/A}}
-{{#F}}<div><b>F</b>: {{F}}</div>{{/F}}
-{{#H}}<div><b>H</b>: {{H}}</div>{{/H}}
-{{#degC}}<div><b>degC</b>: {{degC}}</div>{{/degC}}
-{{#s}}<div><b>s</b>: {{s}}</div>{{/s}}
-{{#min}}<div><b>min</b>: {{min}}</div>{{/min}}
-{{#h}}<div><b>h</b>: {{h}}</div>{{/h}}
-{{#deg}}<div><b>deg</b>: {{deg}}</div>{{/deg}}
-{{#rad}}<div><b>rad</b>: {{rad}}</div>{{/rad}}
-{{#J}}<div><b>J</b>: {{J}}</div>{{/J}}
-{{#N}}<div><b>N</b>: {{N}}</div>{{/N}}
-{{#S}}<div><b>S</b>: {{S}}</div>{{/S}}
-{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
-{{#Hz}}<div><b>Hz</b>: {{Hz}}</div>{{/Hz}}
-{{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
-{{#Pa}}<div><b>Pa</b>: {{Pa}}</div>{{/Pa}}
-{{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
-{{#m2}}<div><b>m2</b>: {{m2}}</div>{{/m2}}
-{{#m3}}<div><b>m3</b>: {{m3}}</div>{{/m3}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#String_collapse" aria-expanded="true" aria-controls="String_collapse" style="margin-left: 10px;">String</a></legend>
+                    <div id="String_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Number of revolutions per second.
@@ -4373,10 +6191,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "RotationSpeed";
-                base.parse_element (/<cim:RotationSpeed.denominatorMultiplier>([\s\S]*?)<\/cim:RotationSpeed.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:RotationSpeed.denominatorUnit>([\s\S]*?)<\/cim:RotationSpeed.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:RotationSpeed.multiplier>([\s\S]*?)<\/cim:RotationSpeed.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:RotationSpeed.unit>([\s\S]*?)<\/cim:RotationSpeed.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RotationSpeed.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:RotationSpeed.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:RotationSpeed.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:RotationSpeed.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:RotationSpeed.value>([\s\S]*?)<\/cim:RotationSpeed.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.RotationSpeed;
@@ -4406,21 +6224,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RotationSpeed_collapse" aria-expanded="true" aria-controls="RotationSpeed_collapse">RotationSpeed</a>
-<div id="RotationSpeed_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RotationSpeed_collapse" aria-expanded="true" aria-controls="RotationSpeed_collapse" style="margin-left: 10px;">RotationSpeed</a></legend>
+                    <div id="RotationSpeed_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RotationSpeed_collapse" aria-expanded="true" aria-controls="RotationSpeed_collapse" style="margin-left: 10px;">RotationSpeed</a></legend>
+                    <div id="RotationSpeed_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Resistance (real part of impedance).
@@ -4450,8 +6311,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Resistance";
-                base.parse_element (/<cim:Resistance.multiplier>([\s\S]*?)<\/cim:Resistance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Resistance.unit>([\s\S]*?)<\/cim:Resistance.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Resistance.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Resistance.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Resistance.value>([\s\S]*?)<\/cim:Resistance.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Resistance;
@@ -4479,19 +6340,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Resistance_collapse" aria-expanded="true" aria-controls="Resistance_collapse">Resistance</a>
-<div id="Resistance_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Resistance_collapse" aria-expanded="true" aria-controls="Resistance_collapse" style="margin-left: 10px;">Resistance</a></legend>
+                    <div id="Resistance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Resistance_collapse" aria-expanded="true" aria-controls="Resistance_collapse" style="margin-left: 10px;">Resistance</a></legend>
+                    <div id="Resistance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The weight of an object.
@@ -4521,8 +6419,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Weight";
-                base.parse_element (/<cim:Weight.multiplier>([\s\S]*?)<\/cim:Weight.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Weight.unit>([\s\S]*?)<\/cim:Weight.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Weight.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Weight.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Weight.value>([\s\S]*?)<\/cim:Weight.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Weight;
@@ -4550,19 +6448,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Weight_collapse" aria-expanded="true" aria-controls="Weight_collapse">Weight</a>
-<div id="Weight_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Weight_collapse" aria-expanded="true" aria-controls="Weight_collapse" style="margin-left: 10px;">Weight</a></legend>
+                    <div id="Weight_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Weight_collapse" aria-expanded="true" aria-controls="Weight_collapse" style="margin-left: 10px;">Weight</a></legend>
+                    <div id="Weight_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Pressure in Pascal.
@@ -4592,8 +6527,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Pressure";
-                base.parse_element (/<cim:Pressure.multiplier>([\s\S]*?)<\/cim:Pressure.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Pressure.unit>([\s\S]*?)<\/cim:Pressure.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Pressure.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Pressure.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Pressure.value>([\s\S]*?)<\/cim:Pressure.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Pressure;
@@ -4621,19 +6556,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Pressure_collapse" aria-expanded="true" aria-controls="Pressure_collapse">Pressure</a>
-<div id="Pressure_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pressure_collapse" aria-expanded="true" aria-controls="Pressure_collapse" style="margin-left: 10px;">Pressure</a></legend>
+                    <div id="Pressure_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pressure_collapse" aria-expanded="true" aria-controls="Pressure_collapse" style="margin-left: 10px;">Pressure</a></legend>
+                    <div id="Pressure_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Real part of admittance per unit of length.
@@ -4663,10 +6635,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ConductancePerLength";
-                base.parse_element (/<cim:ConductancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:ConductancePerLength.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ConductancePerLength.denominatorUnit>([\s\S]*?)<\/cim:ConductancePerLength.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:ConductancePerLength.multiplier>([\s\S]*?)<\/cim:ConductancePerLength.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ConductancePerLength.unit>([\s\S]*?)<\/cim:ConductancePerLength.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ConductancePerLength.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:ConductancePerLength.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:ConductancePerLength.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:ConductancePerLength.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:ConductancePerLength.value>([\s\S]*?)<\/cim:ConductancePerLength.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.ConductancePerLength;
@@ -4696,21 +6668,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ConductancePerLength_collapse" aria-expanded="true" aria-controls="ConductancePerLength_collapse">ConductancePerLength</a>
-<div id="ConductancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConductancePerLength_collapse" aria-expanded="true" aria-controls="ConductancePerLength_collapse" style="margin-left: 10px;">ConductancePerLength</a></legend>
+                    <div id="ConductancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConductancePerLength_collapse" aria-expanded="true" aria-controls="ConductancePerLength_collapse" style="margin-left: 10px;">ConductancePerLength</a></legend>
+                    <div id="ConductancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A type with the value space "true" and "false".
@@ -4763,16 +6778,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Boolean_collapse" aria-expanded="true" aria-controls="Boolean_collapse">Boolean</a>
-<div id="Boolean_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Boolean_collapse" aria-expanded="true" aria-controls="Boolean_collapse" style="margin-left: 10px;">Boolean</a></legend>
+                    <div id="Boolean_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Boolean_collapse" aria-expanded="true" aria-controls="Boolean_collapse" style="margin-left: 10px;">Boolean</a></legend>
+                    <div id="Boolean_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Imaginary part of admittance per unit of length.
@@ -4802,10 +6847,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "SusceptancePerLength";
-                base.parse_element (/<cim:SusceptancePerLength.denominatorMultiplier>([\s\S]*?)<\/cim:SusceptancePerLength.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:SusceptancePerLength.denominatorUnit>([\s\S]*?)<\/cim:SusceptancePerLength.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:SusceptancePerLength.multiplier>([\s\S]*?)<\/cim:SusceptancePerLength.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:SusceptancePerLength.unit>([\s\S]*?)<\/cim:SusceptancePerLength.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:SusceptancePerLength.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:SusceptancePerLength.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:SusceptancePerLength.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:SusceptancePerLength.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:SusceptancePerLength.value>([\s\S]*?)<\/cim:SusceptancePerLength.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.SusceptancePerLength;
@@ -4835,21 +6880,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SusceptancePerLength_collapse" aria-expanded="true" aria-controls="SusceptancePerLength_collapse">SusceptancePerLength</a>
-<div id="SusceptancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SusceptancePerLength_collapse" aria-expanded="true" aria-controls="SusceptancePerLength_collapse" style="margin-left: 10px;">SusceptancePerLength</a></legend>
+                    <div id="SusceptancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SusceptancePerLength_collapse" aria-expanded="true" aria-controls="SusceptancePerLength_collapse" style="margin-left: 10px;">SusceptancePerLength</a></legend>
+                    <div id="SusceptancePerLength_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='denominatorMultiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='denominatorUnit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Quantity with string value (when it is not important whether it is an integral or a floating point number) and associated unit information.
@@ -4879,8 +6967,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "StringQuantity";
-                base.parse_element (/<cim:StringQuantity.multiplier>([\s\S]*?)<\/cim:StringQuantity.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:StringQuantity.unit>([\s\S]*?)<\/cim:StringQuantity.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:StringQuantity.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:StringQuantity.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:StringQuantity.value>([\s\S]*?)<\/cim:StringQuantity.value>/g, obj, "value", base.to_string, sub, context);
 
                 var bucket = context.parsed.StringQuantity;
@@ -4908,19 +6996,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StringQuantity_collapse" aria-expanded="true" aria-controls="StringQuantity_collapse">StringQuantity</a>
-<div id="StringQuantity_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StringQuantity_collapse" aria-expanded="true" aria-controls="StringQuantity_collapse" style="margin-left: 10px;">StringQuantity</a></legend>
+                    <div id="StringQuantity_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StringQuantity_collapse" aria-expanded="true" aria-controls="StringQuantity_collapse" style="margin-left: 10px;">StringQuantity</a></legend>
+                    <div id="StringQuantity_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Quantity with integer value and associated unit information.
@@ -4950,8 +7075,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "IntegerQuantity";
-                base.parse_element (/<cim:IntegerQuantity.multiplier>([\s\S]*?)<\/cim:IntegerQuantity.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:IntegerQuantity.unit>([\s\S]*?)<\/cim:IntegerQuantity.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:IntegerQuantity.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:IntegerQuantity.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:IntegerQuantity.value>([\s\S]*?)<\/cim:IntegerQuantity.value>/g, obj, "value", base.to_string, sub, context);
 
                 var bucket = context.parsed.IntegerQuantity;
@@ -4979,19 +7104,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#IntegerQuantity_collapse" aria-expanded="true" aria-controls="IntegerQuantity_collapse">IntegerQuantity</a>
-<div id="IntegerQuantity_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IntegerQuantity_collapse" aria-expanded="true" aria-controls="IntegerQuantity_collapse" style="margin-left: 10px;">IntegerQuantity</a></legend>
+                    <div id="IntegerQuantity_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IntegerQuantity_collapse" aria-expanded="true" aria-controls="IntegerQuantity_collapse" style="margin-left: 10px;">IntegerQuantity</a></legend>
+                    <div id="IntegerQuantity_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Interval between two times.
@@ -5048,18 +7210,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TimeInterval_collapse" aria-expanded="true" aria-controls="TimeInterval_collapse">TimeInterval</a>
-<div id="TimeInterval_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
-{{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TimeInterval_collapse" aria-expanded="true" aria-controls="TimeInterval_collapse" style="margin-left: 10px;">TimeInterval</a></legend>
+                    <div id="TimeInterval_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
+                    {{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TimeInterval_collapse" aria-expanded="true" aria-controls="TimeInterval_collapse" style="margin-left: 10px;">TimeInterval</a></legend>
+                    <div id="TimeInterval_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='end'>end: </label><div class='col-sm-8'><input id='end' class='form-control' type='text'{{#end}} value='{{end}}'{{/end}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='start'>start: </label><div class='col-sm-8'><input id='start' class='form-control' type='text'{{#start}} value='{{start}}'{{/start}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Inductive part of reactance (imaginary part of impedance), at rated frequency.
@@ -5089,8 +7283,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Inductance";
-                base.parse_element (/<cim:Inductance.multiplier>([\s\S]*?)<\/cim:Inductance.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Inductance.unit>([\s\S]*?)<\/cim:Inductance.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Inductance.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Inductance.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Inductance.value>([\s\S]*?)<\/cim:Inductance.value>/g, obj, "value", base.to_float, sub, context);
 
                 var bucket = context.parsed.Inductance;
@@ -5118,25 +7312,61 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Inductance_collapse" aria-expanded="true" aria-controls="Inductance_collapse">Inductance</a>
-<div id="Inductance_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Inductance_collapse" aria-expanded="true" aria-controls="Inductance_collapse" style="margin-left: 10px;">Inductance</a></legend>
+                    <div id="Inductance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Inductance_collapse" aria-expanded="true" aria-controls="Inductance_collapse" style="margin-left: 10px;">Inductance</a></legend>
+                    <div id="Inductance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><select id='multiplier' class='form-control'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><select id='unit' class='form-control'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
                 Minutes: Minutes,
                 ReactancePerLength: ReactancePerLength,
-                UnitMultiplier: UnitMultiplier,
                 ResistancePerLength: ResistancePerLength,
                 CostRate: CostRate,
                 String: String,
@@ -5155,7 +7385,6 @@ define
                 AngleDegrees: AngleDegrees,
                 Displacement: Displacement,
                 MonthDay: MonthDay,
-                Currency: Currency,
                 Integer: Integer,
                 SusceptancePerLength: SusceptancePerLength,
                 ReactivePower: ReactivePower,
@@ -5174,7 +7403,6 @@ define
                 ActivePower: ActivePower,
                 ActivePowerPerFrequency: ActivePowerPerFrequency,
                 CurrentFlow: CurrentFlow,
-                UnitSymbol: UnitSymbol,
                 DateTime: DateTime,
                 PU: PU,
                 Voltage: Voltage,

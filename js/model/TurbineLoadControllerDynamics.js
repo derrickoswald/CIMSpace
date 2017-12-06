@@ -61,17 +61,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TurbineLoadControllerDynamics_collapse" aria-expanded="true" aria-controls="TurbineLoadControllerDynamics_collapse">TurbineLoadControllerDynamics</a>
-<div id="TurbineLoadControllerDynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
-`
-{{#TurbineGovernorDynamics}}<div><b>TurbineGovernorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineGovernorDynamics}}&quot;);})'>{{TurbineGovernorDynamics}}</a></div>{{/TurbineGovernorDynamics}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbineLoadControllerDynamics_collapse" aria-expanded="true" aria-controls="TurbineLoadControllerDynamics_collapse" style="margin-left: 10px;">TurbineLoadControllerDynamics</a></legend>
+                    <div id="TurbineLoadControllerDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+                    `
+                    {{#TurbineGovernorDynamics}}<div><b>TurbineGovernorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineGovernorDynamics}}&quot;);})'>{{TurbineGovernorDynamics}}</a></div>{{/TurbineGovernorDynamics}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbineLoadControllerDynamics_collapse" aria-expanded="true" aria-controls="TurbineLoadControllerDynamics_collapse" style="margin-left: 10px;">TurbineLoadControllerDynamics</a></legend>
+                    <div id="TurbineLoadControllerDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TurbineGovernorDynamics'>TurbineGovernorDynamics: </label><div class='col-sm-8'><input id='TurbineGovernorDynamics' class='form-control' type='text'{{#TurbineGovernorDynamics}} value='{{TurbineGovernorDynamics}}'{{/TurbineGovernorDynamics}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Turbine Load Controller model developed in the WECC.
@@ -150,28 +181,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TurbLCFB1_collapse" aria-expanded="true" aria-controls="TurbLCFB1_collapse">TurbLCFB1</a>
-<div id="TurbLCFB1_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineLoadControllerDynamics.prototype.template.call (this) +
-`
-{{#db}}<div><b>db</b>: {{db}}</div>{{/db}}
-{{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
-{{#fb}}<div><b>fb</b>: {{fb}}</div>{{/fb}}
-{{#fbf}}<div><b>fbf</b>: {{fbf}}</div>{{/fbf}}
-{{#irmax}}<div><b>irmax</b>: {{irmax}}</div>{{/irmax}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pbf}}<div><b>pbf</b>: {{pbf}}</div>{{/pbf}}
-{{#pmwset}}<div><b>pmwset</b>: {{pmwset}}</div>{{/pmwset}}
-{{#speedReferenceGovernor}}<div><b>speedReferenceGovernor</b>: {{speedReferenceGovernor}}</div>{{/speedReferenceGovernor}}
-{{#tpelec}}<div><b>tpelec</b>: {{tpelec}}</div>{{/tpelec}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbLCFB1_collapse" aria-expanded="true" aria-controls="TurbLCFB1_collapse" style="margin-left: 10px;">TurbLCFB1</a></legend>
+                    <div id="TurbLCFB1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineLoadControllerDynamics.prototype.template.call (this) +
+                    `
+                    {{#db}}<div><b>db</b>: {{db}}</div>{{/db}}
+                    {{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
+                    {{#fb}}<div><b>fb</b>: {{fb}}</div>{{/fb}}
+                    {{#fbf}}<div><b>fbf</b>: {{fbf}}</div>{{/fbf}}
+                    {{#irmax}}<div><b>irmax</b>: {{irmax}}</div>{{/irmax}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pbf}}<div><b>pbf</b>: {{pbf}}</div>{{/pbf}}
+                    {{#pmwset}}<div><b>pmwset</b>: {{pmwset}}</div>{{/pmwset}}
+                    {{#speedReferenceGovernor}}<div><b>speedReferenceGovernor</b>: {{speedReferenceGovernor}}</div>{{/speedReferenceGovernor}}
+                    {{#tpelec}}<div><b>tpelec</b>: {{tpelec}}</div>{{/tpelec}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbLCFB1_collapse" aria-expanded="true" aria-controls="TurbLCFB1_collapse" style="margin-left: 10px;">TurbLCFB1</a></legend>
+                    <div id="TurbLCFB1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineLoadControllerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db'>db: </label><div class='col-sm-8'><input id='db' class='form-control' type='text'{{#db}} value='{{db}}'{{/db}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emax'>emax: </label><div class='col-sm-8'><input id='emax' class='form-control' type='text'{{#emax}} value='{{emax}}'{{/emax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fb'>fb: </label><div class='col-sm-8'><input id='fb' class='form-control' type='text'{{#fb}} value='{{fb}}'{{/fb}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='fbf'>fbf: </label><div class='col-sm-8'><input id='fbf' class='form-check-input' type='checkbox'{{#fbf}} checked{{/fbf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='irmax'>irmax: </label><div class='col-sm-8'><input id='irmax' class='form-control' type='text'{{#irmax}} value='{{irmax}}'{{/irmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='pbf'>pbf: </label><div class='col-sm-8'><input id='pbf' class='form-check-input' type='checkbox'{{#pbf}} checked{{/pbf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmwset'>pmwset: </label><div class='col-sm-8'><input id='pmwset' class='form-control' type='text'{{#pmwset}} value='{{pmwset}}'{{/pmwset}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='speedReferenceGovernor'>speedReferenceGovernor: </label><div class='col-sm-8'><input id='speedReferenceGovernor' class='form-check-input' type='checkbox'{{#speedReferenceGovernor}} checked{{/speedReferenceGovernor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpelec'>tpelec: </label><div class='col-sm-8'><input id='tpelec' class='form-control' type='text'{{#tpelec}} value='{{tpelec}}'{{/tpelec}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

@@ -63,17 +63,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#NonConformLoad_collapse" aria-expanded="true" aria-controls="NonConformLoad_collapse">NonConformLoad</a>
-<div id="NonConformLoad_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Wires.EnergyConsumer.prototype.template.call (this) +
-`
-{{#LoadGroup}}<div><b>LoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadGroup}}&quot;);})'>{{LoadGroup}}</a></div>{{/LoadGroup}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonConformLoad_collapse" aria-expanded="true" aria-controls="NonConformLoad_collapse" style="margin-left: 10px;">NonConformLoad</a></legend>
+                    <div id="NonConformLoad_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.EnergyConsumer.prototype.template.call (this) +
+                    `
+                    {{#LoadGroup}}<div><b>LoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadGroup}}&quot;);})'>{{LoadGroup}}</a></div>{{/LoadGroup}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonConformLoad_collapse" aria-expanded="true" aria-controls="NonConformLoad_collapse" style="margin-left: 10px;">NonConformLoad</a></legend>
+                    <div id="NonConformLoad_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.EnergyConsumer.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadGroup'>LoadGroup: </label><div class='col-sm-8'><input id='LoadGroup' class='form-control' type='text'{{#LoadGroup}} value='{{LoadGroup}}'{{/LoadGroup}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * ConformLoad represent loads that follow a daily load change pattern where the pattern can be used to scale the load with a system load.
@@ -128,17 +159,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ConformLoad_collapse" aria-expanded="true" aria-controls="ConformLoad_collapse">ConformLoad</a>
-<div id="ConformLoad_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Wires.EnergyConsumer.prototype.template.call (this) +
-`
-{{#LoadGroup}}<div><b>LoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadGroup}}&quot;);})'>{{LoadGroup}}</a></div>{{/LoadGroup}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConformLoad_collapse" aria-expanded="true" aria-controls="ConformLoad_collapse" style="margin-left: 10px;">ConformLoad</a></legend>
+                    <div id="ConformLoad_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.EnergyConsumer.prototype.template.call (this) +
+                    `
+                    {{#LoadGroup}}<div><b>LoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadGroup}}&quot;);})'>{{LoadGroup}}</a></div>{{/LoadGroup}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConformLoad_collapse" aria-expanded="true" aria-controls="ConformLoad_collapse" style="margin-left: 10px;">ConformLoad</a></legend>
+                    <div id="ConformLoad_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.EnergyConsumer.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadGroup'>LoadGroup: </label><div class='col-sm-8'><input id='LoadGroup' class='form-control' type='text'{{#LoadGroup}} value='{{LoadGroup}}'{{/LoadGroup}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Station supply with load derived from the station output.
@@ -191,16 +253,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StationSupply_collapse" aria-expanded="true" aria-controls="StationSupply_collapse">StationSupply</a>
-<div id="StationSupply_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Wires.EnergyConsumer.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StationSupply_collapse" aria-expanded="true" aria-controls="StationSupply_collapse" style="margin-left: 10px;">StationSupply</a></legend>
+                    <div id="StationSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.EnergyConsumer.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StationSupply_collapse" aria-expanded="true" aria-controls="StationSupply_collapse" style="margin-left: 10px;">StationSupply</a></legend>
+                    <div id="StationSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.EnergyConsumer.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

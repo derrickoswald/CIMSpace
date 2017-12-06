@@ -11,6 +11,159 @@ define
     {
 
         /**
+         * Kind of meter multiplier.
+         *
+         */
+        var MeterMultiplierKind =
+        {
+            kH: "kH",
+            kR: "kR",
+            kE: "kE",
+            ctRatio: "ctRatio",
+            ptRatio: "ptRatio",
+            transformerRatio: "transformerRatio"
+        };
+        Object.freeze (MeterMultiplierKind);
+
+        /**
+         * Kind of service multiplier.
+         *
+         */
+        var ServiceMultiplierKind =
+        {
+            ctRatio: "ctRatio",
+            ptRatio: "ptRatio",
+            transformerRatio: "transformerRatio"
+        };
+        Object.freeze (ServiceMultiplierKind);
+
+        /**
+         * Kind of communication direction.
+         *
+         */
+        var ComDirectionKind =
+        {
+            fromDevice: "fromDevice",
+            toDevice: "toDevice",
+            biDirectional: "biDirectional"
+        };
+        Object.freeze (ComDirectionKind);
+
+        /**
+         * Lifecycle states of the metering installation at a usage point with respect to readiness for billing via advanced metering infrastructure reads.
+         *
+         */
+        var AmiBillingReadyKind =
+        {
+            enabled: "enabled",
+            operable: "operable",
+            billingApproved: "billingApproved",
+            nonAmi: "nonAmi",
+            amiDisabled: "amiDisabled",
+            amiCapable: "amiCapable",
+            nonMetered: "nonMetered"
+        };
+        Object.freeze (AmiBillingReadyKind);
+
+        /**
+         * State of the usage point with respect to connection to the network.
+         *
+         */
+        var UsagePointConnectedKind =
+        {
+            connected: "connected",
+            physicallyDisconnected: "physicallyDisconnected",
+            logicallyDisconnected: "logicallyDisconnected"
+        };
+        Object.freeze (UsagePointConnectedKind);
+
+        /**
+         * Kind of end device function.
+         *
+         */
+        var EndDeviceFunctionKind =
+        {
+            reverseFlow: "reverseFlow",
+            demandResponse: "demandResponse",
+            metrology: "metrology",
+            outageHistory: "outageHistory",
+            relaysProgramming: "relaysProgramming",
+            onRequestRead: "onRequestRead",
+            autonomousDst: "autonomousDst",
+            electricMetering: "electricMetering",
+            gasMetering: "gasMetering",
+            waterMetering: "waterMetering"
+        };
+        Object.freeze (EndDeviceFunctionKind);
+
+        /**
+         * Reason for the reading being taken.
+         *
+         */
+        var ReadingReasonKind =
+        {
+            installation: "installation",
+            removal: "removal",
+            inquiry: "inquiry",
+            billing: "billing",
+            moveIn: "moveIn",
+            moveOut: "moveOut",
+            demandReset: "demandReset",
+            serviceDisconnect: "serviceDisconnect",
+            serviceConnect: "serviceConnect",
+            loadManagement: "loadManagement",
+            loadResearch: "loadResearch",
+            other: "other"
+        };
+        Object.freeze (ReadingReasonKind);
+
+        /**
+         * Kind of randomisation to be applied to control the timing of end device control commands and/or the definition of demand response and load control events.
+         *
+         * Value other than 'none' is typically used to mitigate potential deleterious effects of simultaneous operation of multiple devices.
+         *
+         */
+        var RandomisationKind =
+        {
+            start: "start",
+            end: "end",
+            startAndEnd: "startAndEnd",
+            default: "default",
+            none: "none"
+        };
+        Object.freeze (RandomisationKind);
+
+        /**
+         * Transmission mode for end device display controls, applicable to premises area network (PAN) devices.
+         *
+         */
+        var TransmissionModeKind =
+        {
+            normal: "normal",
+            anonymous: "anonymous",
+            both: "both"
+        };
+        Object.freeze (TransmissionModeKind);
+
+        /**
+         * Kind of communication technology.
+         *
+         */
+        var ComTechnologyKind =
+        {
+            cellular: "cellular",
+            ethernet: "ethernet",
+            homePlug: "homePlug",
+            pager: "pager",
+            phone: "phone",
+            plc: "plc",
+            rf: "rf",
+            rfMesh: "rfMesh",
+            zigbee: "zigbee"
+        };
+        Object.freeze (ComTechnologyKind);
+
+        /**
          * Demand response program.
          *
          */
@@ -65,18 +218,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DemandResponseProgram_collapse" aria-expanded="true" aria-controls="DemandResponseProgram_collapse">DemandResponseProgram</a>
-<div id="DemandResponseProgram_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-{{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DemandResponseProgram_collapse" aria-expanded="true" aria-controls="DemandResponseProgram_collapse" style="margin-left: 10px;">DemandResponseProgram</a></legend>
+                    <div id="DemandResponseProgram_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DemandResponseProgram_collapse" aria-expanded="true" aria-controls="DemandResponseProgram_collapse" style="margin-left: 10px;">DemandResponseProgram</a></legend>
+                    <div id="DemandResponseProgram_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Abstraction for management of group communications within a two-way AMR system or the data for a group of related end devices.
@@ -133,17 +318,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EndDeviceGroup_collapse" aria-expanded="true" aria-controls="EndDeviceGroup_collapse">EndDeviceGroup</a>
-<div id="EndDeviceGroup_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceGroup_collapse" aria-expanded="true" aria-controls="EndDeviceGroup_collapse" style="margin-left: 10px;">EndDeviceGroup</a></legend>
+                    <div id="EndDeviceGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceGroup_collapse" aria-expanded="true" aria-controls="EndDeviceGroup_collapse" style="margin-left: 10px;">EndDeviceGroup</a></legend>
+                    <div id="EndDeviceGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Appliance controlled with a PAN device control.
@@ -220,28 +436,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ControlledAppliance_collapse" aria-expanded="true" aria-controls="ControlledAppliance_collapse">ControlledAppliance</a>
-<div id="ControlledAppliance_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#isElectricVehicle}}<div><b>isElectricVehicle</b>: {{isElectricVehicle}}</div>{{/isElectricVehicle}}
-{{#isExteriorLighting}}<div><b>isExteriorLighting</b>: {{isExteriorLighting}}</div>{{/isExteriorLighting}}
-{{#isGenerationSystem}}<div><b>isGenerationSystem</b>: {{isGenerationSystem}}</div>{{/isGenerationSystem}}
-{{#isHvacCompressorOrFurnace}}<div><b>isHvacCompressorOrFurnace</b>: {{isHvacCompressorOrFurnace}}</div>{{/isHvacCompressorOrFurnace}}
-{{#isInteriorLighting}}<div><b>isInteriorLighting</b>: {{isInteriorLighting}}</div>{{/isInteriorLighting}}
-{{#isIrrigationPump}}<div><b>isIrrigationPump</b>: {{isIrrigationPump}}</div>{{/isIrrigationPump}}
-{{#isManagedCommercialIndustrialLoad}}<div><b>isManagedCommercialIndustrialLoad</b>: {{isManagedCommercialIndustrialLoad}}</div>{{/isManagedCommercialIndustrialLoad}}
-{{#isPoolPumpSpaJacuzzi}}<div><b>isPoolPumpSpaJacuzzi</b>: {{isPoolPumpSpaJacuzzi}}</div>{{/isPoolPumpSpaJacuzzi}}
-{{#isSimpleMiscLoad}}<div><b>isSimpleMiscLoad</b>: {{isSimpleMiscLoad}}</div>{{/isSimpleMiscLoad}}
-{{#isSmartAppliance}}<div><b>isSmartAppliance</b>: {{isSmartAppliance}}</div>{{/isSmartAppliance}}
-{{#isStripAndBaseboardHeater}}<div><b>isStripAndBaseboardHeater</b>: {{isStripAndBaseboardHeater}}</div>{{/isStripAndBaseboardHeater}}
-{{#isWaterHeater}}<div><b>isWaterHeater</b>: {{isWaterHeater}}</div>{{/isWaterHeater}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ControlledAppliance_collapse" aria-expanded="true" aria-controls="ControlledAppliance_collapse" style="margin-left: 10px;">ControlledAppliance</a></legend>
+                    <div id="ControlledAppliance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#isElectricVehicle}}<div><b>isElectricVehicle</b>: {{isElectricVehicle}}</div>{{/isElectricVehicle}}
+                    {{#isExteriorLighting}}<div><b>isExteriorLighting</b>: {{isExteriorLighting}}</div>{{/isExteriorLighting}}
+                    {{#isGenerationSystem}}<div><b>isGenerationSystem</b>: {{isGenerationSystem}}</div>{{/isGenerationSystem}}
+                    {{#isHvacCompressorOrFurnace}}<div><b>isHvacCompressorOrFurnace</b>: {{isHvacCompressorOrFurnace}}</div>{{/isHvacCompressorOrFurnace}}
+                    {{#isInteriorLighting}}<div><b>isInteriorLighting</b>: {{isInteriorLighting}}</div>{{/isInteriorLighting}}
+                    {{#isIrrigationPump}}<div><b>isIrrigationPump</b>: {{isIrrigationPump}}</div>{{/isIrrigationPump}}
+                    {{#isManagedCommercialIndustrialLoad}}<div><b>isManagedCommercialIndustrialLoad</b>: {{isManagedCommercialIndustrialLoad}}</div>{{/isManagedCommercialIndustrialLoad}}
+                    {{#isPoolPumpSpaJacuzzi}}<div><b>isPoolPumpSpaJacuzzi</b>: {{isPoolPumpSpaJacuzzi}}</div>{{/isPoolPumpSpaJacuzzi}}
+                    {{#isSimpleMiscLoad}}<div><b>isSimpleMiscLoad</b>: {{isSimpleMiscLoad}}</div>{{/isSimpleMiscLoad}}
+                    {{#isSmartAppliance}}<div><b>isSmartAppliance</b>: {{isSmartAppliance}}</div>{{/isSmartAppliance}}
+                    {{#isStripAndBaseboardHeater}}<div><b>isStripAndBaseboardHeater</b>: {{isStripAndBaseboardHeater}}</div>{{/isStripAndBaseboardHeater}}
+                    {{#isWaterHeater}}<div><b>isWaterHeater</b>: {{isWaterHeater}}</div>{{/isWaterHeater}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ControlledAppliance_collapse" aria-expanded="true" aria-controls="ControlledAppliance_collapse" style="margin-left: 10px;">ControlledAppliance</a></legend>
+                    <div id="ControlledAppliance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isElectricVehicle'>isElectricVehicle: </label><div class='col-sm-8'><input id='isElectricVehicle' class='form-check-input' type='checkbox'{{#isElectricVehicle}} checked{{/isElectricVehicle}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isExteriorLighting'>isExteriorLighting: </label><div class='col-sm-8'><input id='isExteriorLighting' class='form-check-input' type='checkbox'{{#isExteriorLighting}} checked{{/isExteriorLighting}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isGenerationSystem'>isGenerationSystem: </label><div class='col-sm-8'><input id='isGenerationSystem' class='form-check-input' type='checkbox'{{#isGenerationSystem}} checked{{/isGenerationSystem}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isHvacCompressorOrFurnace'>isHvacCompressorOrFurnace: </label><div class='col-sm-8'><input id='isHvacCompressorOrFurnace' class='form-check-input' type='checkbox'{{#isHvacCompressorOrFurnace}} checked{{/isHvacCompressorOrFurnace}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isInteriorLighting'>isInteriorLighting: </label><div class='col-sm-8'><input id='isInteriorLighting' class='form-check-input' type='checkbox'{{#isInteriorLighting}} checked{{/isInteriorLighting}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isIrrigationPump'>isIrrigationPump: </label><div class='col-sm-8'><input id='isIrrigationPump' class='form-check-input' type='checkbox'{{#isIrrigationPump}} checked{{/isIrrigationPump}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isManagedCommercialIndustrialLoad'>isManagedCommercialIndustrialLoad: </label><div class='col-sm-8'><input id='isManagedCommercialIndustrialLoad' class='form-check-input' type='checkbox'{{#isManagedCommercialIndustrialLoad}} checked{{/isManagedCommercialIndustrialLoad}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isPoolPumpSpaJacuzzi'>isPoolPumpSpaJacuzzi: </label><div class='col-sm-8'><input id='isPoolPumpSpaJacuzzi' class='form-check-input' type='checkbox'{{#isPoolPumpSpaJacuzzi}} checked{{/isPoolPumpSpaJacuzzi}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isSimpleMiscLoad'>isSimpleMiscLoad: </label><div class='col-sm-8'><input id='isSimpleMiscLoad' class='form-check-input' type='checkbox'{{#isSimpleMiscLoad}} checked{{/isSimpleMiscLoad}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isSmartAppliance'>isSmartAppliance: </label><div class='col-sm-8'><input id='isSmartAppliance' class='form-check-input' type='checkbox'{{#isSmartAppliance}} checked{{/isSmartAppliance}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isStripAndBaseboardHeater'>isStripAndBaseboardHeater: </label><div class='col-sm-8'><input id='isStripAndBaseboardHeater' class='form-check-input' type='checkbox'{{#isStripAndBaseboardHeater}} checked{{/isStripAndBaseboardHeater}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isWaterHeater'>isWaterHeater: </label><div class='col-sm-8'><input id='isWaterHeater' class='form-check-input' type='checkbox'{{#isWaterHeater}} checked{{/isWaterHeater}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A device that indicates or records units of the commodity or other quantity measured.
@@ -306,22 +564,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Register_collapse" aria-expanded="true" aria-controls="Register_collapse">Register</a>
-<div id="Register_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#isVirtual}}<div><b>isVirtual</b>: {{isVirtual}}</div>{{/isVirtual}}
-{{#leftDigitCount}}<div><b>leftDigitCount</b>: {{leftDigitCount}}</div>{{/leftDigitCount}}
-{{#rightDigitCount}}<div><b>rightDigitCount</b>: {{rightDigitCount}}</div>{{/rightDigitCount}}
-{{#touTier}}<div><b>touTier</b>: {{touTier}}</div>{{/touTier}}
-{{#touTierName}}<div><b>touTierName</b>: {{touTierName}}</div>{{/touTierName}}
-{{#EndDeviceFunction}}<div><b>EndDeviceFunction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceFunction}}&quot;);})'>{{EndDeviceFunction}}</a></div>{{/EndDeviceFunction}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Register_collapse" aria-expanded="true" aria-controls="Register_collapse" style="margin-left: 10px;">Register</a></legend>
+                    <div id="Register_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#isVirtual}}<div><b>isVirtual</b>: {{isVirtual}}</div>{{/isVirtual}}
+                    {{#leftDigitCount}}<div><b>leftDigitCount</b>: {{leftDigitCount}}</div>{{/leftDigitCount}}
+                    {{#rightDigitCount}}<div><b>rightDigitCount</b>: {{rightDigitCount}}</div>{{/rightDigitCount}}
+                    {{#touTier}}<div><b>touTier</b>: {{touTier}}</div>{{/touTier}}
+                    {{#touTierName}}<div><b>touTierName</b>: {{touTierName}}</div>{{/touTierName}}
+                    {{#EndDeviceFunction}}<div><b>EndDeviceFunction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceFunction}}&quot;);})'>{{EndDeviceFunction}}</a></div>{{/EndDeviceFunction}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Register_collapse" aria-expanded="true" aria-controls="Register_collapse" style="margin-left: 10px;">Register</a></legend>
+                    <div id="Register_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isVirtual'>isVirtual: </label><div class='col-sm-8'><input id='isVirtual' class='form-check-input' type='checkbox'{{#isVirtual}} checked{{/isVirtual}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='leftDigitCount'>leftDigitCount: </label><div class='col-sm-8'><input id='leftDigitCount' class='form-control' type='text'{{#leftDigitCount}} value='{{leftDigitCount}}'{{/leftDigitCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rightDigitCount'>rightDigitCount: </label><div class='col-sm-8'><input id='rightDigitCount' class='form-control' type='text'{{#rightDigitCount}} value='{{rightDigitCount}}'{{/rightDigitCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='touTier'>touTier: </label><div class='col-sm-8'><input id='touTier' class='form-control' type='text'{{#touTier}} value='{{touTier}}'{{/touTier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='touTierName'>touTierName: </label><div class='col-sm-8'><input id='touTierName' class='form-control' type='text'{{#touTierName}} value='{{touTierName}}'{{/touTierName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceFunction'>EndDeviceFunction: </label><div class='col-sm-8'><input id='EndDeviceFunction' class='form-control' type='text'{{#EndDeviceFunction}} value='{{EndDeviceFunction}}'{{/EndDeviceFunction}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Instructs an end device (or an end device group) to perform a specified action.
@@ -396,27 +690,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EndDeviceControl_collapse" aria-expanded="true" aria-controls="EndDeviceControl_collapse">EndDeviceControl</a>
-<div id="EndDeviceControl_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#drProgramLevel}}<div><b>drProgramLevel</b>: {{drProgramLevel}}</div>{{/drProgramLevel}}
-{{#drProgramMandatory}}<div><b>drProgramMandatory</b>: {{drProgramMandatory}}</div>{{/drProgramMandatory}}
-{{#issuerID}}<div><b>issuerID</b>: {{issuerID}}</div>{{/issuerID}}
-{{#issuerTrackingID}}<div><b>issuerTrackingID</b>: {{issuerTrackingID}}</div>{{/issuerTrackingID}}
-{{#priceSignal}}<div><b>priceSignal</b>: {{priceSignal}}</div>{{/priceSignal}}
-{{#primaryDeviceTiming}}<div><b>primaryDeviceTiming</b>: {{primaryDeviceTiming}}</div>{{/primaryDeviceTiming}}
-{{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
-{{#scheduledInterval}}<div><b>scheduledInterval</b>: {{scheduledInterval}}</div>{{/scheduledInterval}}
-{{#secondaryDeviceTiming}}<div><b>secondaryDeviceTiming</b>: {{secondaryDeviceTiming}}</div>{{/secondaryDeviceTiming}}
-{{#EndDeviceControlType}}<div><b>EndDeviceControlType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceControlType}}&quot;);})'>{{EndDeviceControlType}}</a></div>{{/EndDeviceControlType}}
-{{#EndDeviceAction}}<div><b>EndDeviceAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceAction}}&quot;);})'>{{EndDeviceAction}}</a></div>{{/EndDeviceAction}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceControl_collapse" aria-expanded="true" aria-controls="EndDeviceControl_collapse" style="margin-left: 10px;">EndDeviceControl</a></legend>
+                    <div id="EndDeviceControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#drProgramLevel}}<div><b>drProgramLevel</b>: {{drProgramLevel}}</div>{{/drProgramLevel}}
+                    {{#drProgramMandatory}}<div><b>drProgramMandatory</b>: {{drProgramMandatory}}</div>{{/drProgramMandatory}}
+                    {{#issuerID}}<div><b>issuerID</b>: {{issuerID}}</div>{{/issuerID}}
+                    {{#issuerTrackingID}}<div><b>issuerTrackingID</b>: {{issuerTrackingID}}</div>{{/issuerTrackingID}}
+                    {{#priceSignal}}<div><b>priceSignal</b>: {{priceSignal}}</div>{{/priceSignal}}
+                    {{#primaryDeviceTiming}}<div><b>primaryDeviceTiming</b>: {{primaryDeviceTiming}}</div>{{/primaryDeviceTiming}}
+                    {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
+                    {{#scheduledInterval}}<div><b>scheduledInterval</b>: {{scheduledInterval}}</div>{{/scheduledInterval}}
+                    {{#secondaryDeviceTiming}}<div><b>secondaryDeviceTiming</b>: {{secondaryDeviceTiming}}</div>{{/secondaryDeviceTiming}}
+                    {{#EndDeviceControlType}}<div><b>EndDeviceControlType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceControlType}}&quot;);})'>{{EndDeviceControlType}}</a></div>{{/EndDeviceControlType}}
+                    {{#EndDeviceAction}}<div><b>EndDeviceAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceAction}}&quot;);})'>{{EndDeviceAction}}</a></div>{{/EndDeviceAction}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceControl_collapse" aria-expanded="true" aria-controls="EndDeviceControl_collapse" style="margin-left: 10px;">EndDeviceControl</a></legend>
+                    <div id="EndDeviceControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='drProgramLevel'>drProgramLevel: </label><div class='col-sm-8'><input id='drProgramLevel' class='form-control' type='text'{{#drProgramLevel}} value='{{drProgramLevel}}'{{/drProgramLevel}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='drProgramMandatory'>drProgramMandatory: </label><div class='col-sm-8'><input id='drProgramMandatory' class='form-check-input' type='checkbox'{{#drProgramMandatory}} checked{{/drProgramMandatory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='issuerID'>issuerID: </label><div class='col-sm-8'><input id='issuerID' class='form-control' type='text'{{#issuerID}} value='{{issuerID}}'{{/issuerID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='issuerTrackingID'>issuerTrackingID: </label><div class='col-sm-8'><input id='issuerTrackingID' class='form-control' type='text'{{#issuerTrackingID}} value='{{issuerTrackingID}}'{{/issuerTrackingID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priceSignal'>priceSignal: </label><div class='col-sm-8'><input id='priceSignal' class='form-control' type='text'{{#priceSignal}} value='{{priceSignal}}'{{/priceSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='primaryDeviceTiming'>primaryDeviceTiming: </label><div class='col-sm-8'><input id='primaryDeviceTiming' class='form-control' type='text'{{#primaryDeviceTiming}} value='{{primaryDeviceTiming}}'{{/primaryDeviceTiming}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reason'>reason: </label><div class='col-sm-8'><input id='reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scheduledInterval'>scheduledInterval: </label><div class='col-sm-8'><input id='scheduledInterval' class='form-control' type='text'{{#scheduledInterval}} value='{{scheduledInterval}}'{{/scheduledInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='secondaryDeviceTiming'>secondaryDeviceTiming: </label><div class='col-sm-8'><input id='secondaryDeviceTiming' class='form-control' type='text'{{#secondaryDeviceTiming}} value='{{secondaryDeviceTiming}}'{{/secondaryDeviceTiming}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceControlType'>EndDeviceControlType: </label><div class='col-sm-8'><input id='EndDeviceControlType' class='form-control' type='text'{{#EndDeviceControlType}} value='{{EndDeviceControlType}}'{{/EndDeviceControlType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceAction'>EndDeviceAction: </label><div class='col-sm-8'><input id='EndDeviceAction' class='form-control' type='text'{{#EndDeviceAction}} value='{{EndDeviceAction}}'{{/EndDeviceAction}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Detail for a single price command/action.
@@ -497,30 +832,74 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PanPricingDetail_collapse" aria-expanded="true" aria-controls="PanPricingDetail_collapse">PanPricingDetail</a>
-<div id="PanPricingDetail_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#alternateCostDelivered}}<div><b>alternateCostDelivered</b>: {{alternateCostDelivered}}</div>{{/alternateCostDelivered}}
-{{#alternateCostUnit}}<div><b>alternateCostUnit</b>: {{alternateCostUnit}}</div>{{/alternateCostUnit}}
-{{#currentTimeDate}}<div><b>currentTimeDate</b>: {{currentTimeDate}}</div>{{/currentTimeDate}}
-{{#generationPrice}}<div><b>generationPrice</b>: {{generationPrice}}</div>{{/generationPrice}}
-{{#generationPriceRatio}}<div><b>generationPriceRatio</b>: {{generationPriceRatio}}</div>{{/generationPriceRatio}}
-{{#price}}<div><b>price</b>: {{price}}</div>{{/price}}
-{{#priceRatio}}<div><b>priceRatio</b>: {{priceRatio}}</div>{{/priceRatio}}
-{{#priceTier}}<div><b>priceTier</b>: {{priceTier}}</div>{{/priceTier}}
-{{#priceTierCount}}<div><b>priceTierCount</b>: {{priceTierCount}}</div>{{/priceTierCount}}
-{{#priceTierLabel}}<div><b>priceTierLabel</b>: {{priceTierLabel}}</div>{{/priceTierLabel}}
-{{#rateLabel}}<div><b>rateLabel</b>: {{rateLabel}}</div>{{/rateLabel}}
-{{#registerTier}}<div><b>registerTier</b>: {{registerTier}}</div>{{/registerTier}}
-{{#unitOfMeasure}}<div><b>unitOfMeasure</b>: {{unitOfMeasure}}</div>{{/unitOfMeasure}}
-{{#PanPricing}}<div><b>PanPricing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PanPricing}}&quot;);})'>{{PanPricing}}</a></div>{{/PanPricing}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PanPricingDetail_collapse" aria-expanded="true" aria-controls="PanPricingDetail_collapse" style="margin-left: 10px;">PanPricingDetail</a></legend>
+                    <div id="PanPricingDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#alternateCostDelivered}}<div><b>alternateCostDelivered</b>: {{alternateCostDelivered}}</div>{{/alternateCostDelivered}}
+                    {{#alternateCostUnit}}<div><b>alternateCostUnit</b>: {{alternateCostUnit}}</div>{{/alternateCostUnit}}
+                    {{#currentTimeDate}}<div><b>currentTimeDate</b>: {{currentTimeDate}}</div>{{/currentTimeDate}}
+                    {{#generationPrice}}<div><b>generationPrice</b>: {{generationPrice}}</div>{{/generationPrice}}
+                    {{#generationPriceRatio}}<div><b>generationPriceRatio</b>: {{generationPriceRatio}}</div>{{/generationPriceRatio}}
+                    {{#price}}<div><b>price</b>: {{price}}</div>{{/price}}
+                    {{#priceRatio}}<div><b>priceRatio</b>: {{priceRatio}}</div>{{/priceRatio}}
+                    {{#priceTier}}<div><b>priceTier</b>: {{priceTier}}</div>{{/priceTier}}
+                    {{#priceTierCount}}<div><b>priceTierCount</b>: {{priceTierCount}}</div>{{/priceTierCount}}
+                    {{#priceTierLabel}}<div><b>priceTierLabel</b>: {{priceTierLabel}}</div>{{/priceTierLabel}}
+                    {{#rateLabel}}<div><b>rateLabel</b>: {{rateLabel}}</div>{{/rateLabel}}
+                    {{#registerTier}}<div><b>registerTier</b>: {{registerTier}}</div>{{/registerTier}}
+                    {{#unitOfMeasure}}<div><b>unitOfMeasure</b>: {{unitOfMeasure}}</div>{{/unitOfMeasure}}
+                    {{#PanPricing}}<div><b>PanPricing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PanPricing}}&quot;);})'>{{PanPricing}}</a></div>{{/PanPricing}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PanPricingDetail_collapse" aria-expanded="true" aria-controls="PanPricingDetail_collapse" style="margin-left: 10px;">PanPricingDetail</a></legend>
+                    <div id="PanPricingDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='alternateCostDelivered'>alternateCostDelivered: </label><div class='col-sm-8'><input id='alternateCostDelivered' class='form-control' type='text'{{#alternateCostDelivered}} value='{{alternateCostDelivered}}'{{/alternateCostDelivered}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='alternateCostUnit'>alternateCostUnit: </label><div class='col-sm-8'><input id='alternateCostUnit' class='form-control' type='text'{{#alternateCostUnit}} value='{{alternateCostUnit}}'{{/alternateCostUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='currentTimeDate'>currentTimeDate: </label><div class='col-sm-8'><input id='currentTimeDate' class='form-control' type='text'{{#currentTimeDate}} value='{{currentTimeDate}}'{{/currentTimeDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='generationPrice'>generationPrice: </label><div class='col-sm-8'><input id='generationPrice' class='form-control' type='text'{{#generationPrice}} value='{{generationPrice}}'{{/generationPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='generationPriceRatio'>generationPriceRatio: </label><div class='col-sm-8'><input id='generationPriceRatio' class='form-control' type='text'{{#generationPriceRatio}} value='{{generationPriceRatio}}'{{/generationPriceRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='price'>price: </label><div class='col-sm-8'><input id='price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priceRatio'>priceRatio: </label><div class='col-sm-8'><input id='priceRatio' class='form-control' type='text'{{#priceRatio}} value='{{priceRatio}}'{{/priceRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priceTier'>priceTier: </label><div class='col-sm-8'><input id='priceTier' class='form-control' type='text'{{#priceTier}} value='{{priceTier}}'{{/priceTier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priceTierCount'>priceTierCount: </label><div class='col-sm-8'><input id='priceTierCount' class='form-control' type='text'{{#priceTierCount}} value='{{priceTierCount}}'{{/priceTierCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priceTierLabel'>priceTierLabel: </label><div class='col-sm-8'><input id='priceTierLabel' class='form-control' type='text'{{#priceTierLabel}} value='{{priceTierLabel}}'{{/priceTierLabel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rateLabel'>rateLabel: </label><div class='col-sm-8'><input id='rateLabel' class='form-control' type='text'{{#rateLabel}} value='{{rateLabel}}'{{/rateLabel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='registerTier'>registerTier: </label><div class='col-sm-8'><input id='registerTier' class='form-control' type='text'{{#registerTier}} value='{{registerTier}}'{{/registerTier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitOfMeasure'>unitOfMeasure: </label><div class='col-sm-8'><input id='unitOfMeasure' class='form-control' type='text'{{#unitOfMeasure}} value='{{unitOfMeasure}}'{{/unitOfMeasure}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PanPricing'>PanPricing: </label><div class='col-sm-8'><input id='PanPricing' class='form-control' type='text'{{#PanPricing}} value='{{PanPricing}}'{{/PanPricing}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Logical or physical point in the network to which readings or events may be attributed.
@@ -552,9 +931,9 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "UsagePoint";
-                base.parse_element (/<cim:UsagePoint.amiBillingReady>([\s\S]*?)<\/cim:UsagePoint.amiBillingReady>/g, obj, "amiBillingReady", base.to_string, sub, context);
+                base.parse_attribute (/<cim:UsagePoint.amiBillingReady\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "amiBillingReady", sub, context);
                 base.parse_element (/<cim:UsagePoint.checkBilling>([\s\S]*?)<\/cim:UsagePoint.checkBilling>/g, obj, "checkBilling", base.to_boolean, sub, context);
-                base.parse_element (/<cim:UsagePoint.connectionState>([\s\S]*?)<\/cim:UsagePoint.connectionState>/g, obj, "connectionState", base.to_string, sub, context);
+                base.parse_attribute (/<cim:UsagePoint.connectionState\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "connectionState", sub, context);
                 base.parse_element (/<cim:UsagePoint.estimatedLoad>([\s\S]*?)<\/cim:UsagePoint.estimatedLoad>/g, obj, "estimatedLoad", base.to_string, sub, context);
                 base.parse_element (/<cim:UsagePoint.grounded>([\s\S]*?)<\/cim:UsagePoint.grounded>/g, obj, "grounded", base.to_boolean, sub, context);
                 base.parse_element (/<cim:UsagePoint.isSdp>([\s\S]*?)<\/cim:UsagePoint.isSdp>/g, obj, "isSdp", base.to_boolean, sub, context);
@@ -619,118 +998,94 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#UsagePoint_collapse" aria-expanded="true" aria-controls="UsagePoint_collapse">UsagePoint</a>
-<div id="UsagePoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#amiBillingReady}}<div><b>amiBillingReady</b>: {{amiBillingReady}}</div>{{/amiBillingReady}}
-{{#checkBilling}}<div><b>checkBilling</b>: {{checkBilling}}</div>{{/checkBilling}}
-{{#connectionState}}<div><b>connectionState</b>: {{connectionState}}</div>{{/connectionState}}
-{{#estimatedLoad}}<div><b>estimatedLoad</b>: {{estimatedLoad}}</div>{{/estimatedLoad}}
-{{#grounded}}<div><b>grounded</b>: {{grounded}}</div>{{/grounded}}
-{{#isSdp}}<div><b>isSdp</b>: {{isSdp}}</div>{{/isSdp}}
-{{#isVirtual}}<div><b>isVirtual</b>: {{isVirtual}}</div>{{/isVirtual}}
-{{#minimalUsageExpected}}<div><b>minimalUsageExpected</b>: {{minimalUsageExpected}}</div>{{/minimalUsageExpected}}
-{{#nominalServiceVoltage}}<div><b>nominalServiceVoltage</b>: {{nominalServiceVoltage}}</div>{{/nominalServiceVoltage}}
-{{#outageRegion}}<div><b>outageRegion</b>: {{outageRegion}}</div>{{/outageRegion}}
-{{#phaseCode}}<div><b>phaseCode</b>: {{phaseCode}}</div>{{/phaseCode}}
-{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
-{{#ratedPower}}<div><b>ratedPower</b>: {{ratedPower}}</div>{{/ratedPower}}
-{{#readCycle}}<div><b>readCycle</b>: {{readCycle}}</div>{{/readCycle}}
-{{#readRoute}}<div><b>readRoute</b>: {{readRoute}}</div>{{/readRoute}}
-{{#serviceDeliveryRemark}}<div><b>serviceDeliveryRemark</b>: {{serviceDeliveryRemark}}</div>{{/serviceDeliveryRemark}}
-{{#servicePriority}}<div><b>servicePriority</b>: {{servicePriority}}</div>{{/servicePriority}}
-{{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAgreement}}&quot;);})'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
-{{#ServiceSupplier}}<div><b>ServiceSupplier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceSupplier}}&quot;);})'>{{ServiceSupplier}}</a></div>{{/ServiceSupplier}}
-{{#UsagePointLocation}}<div><b>UsagePointLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePointLocation}}&quot;);})'>{{UsagePointLocation}}</a></div>{{/UsagePointLocation}}
-{{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceCategory}}&quot;);})'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
-{{#ServiceLocation}}<div><b>ServiceLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceLocation}}&quot;);})'>{{ServiceLocation}}</a></div>{{/ServiceLocation}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UsagePoint_collapse" aria-expanded="true" aria-controls="UsagePoint_collapse" style="margin-left: 10px;">UsagePoint</a></legend>
+                    <div id="UsagePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#amiBillingReady}}<div><b>amiBillingReady</b>: {{amiBillingReady}}</div>{{/amiBillingReady}}
+                    {{#checkBilling}}<div><b>checkBilling</b>: {{checkBilling}}</div>{{/checkBilling}}
+                    {{#connectionState}}<div><b>connectionState</b>: {{connectionState}}</div>{{/connectionState}}
+                    {{#estimatedLoad}}<div><b>estimatedLoad</b>: {{estimatedLoad}}</div>{{/estimatedLoad}}
+                    {{#grounded}}<div><b>grounded</b>: {{grounded}}</div>{{/grounded}}
+                    {{#isSdp}}<div><b>isSdp</b>: {{isSdp}}</div>{{/isSdp}}
+                    {{#isVirtual}}<div><b>isVirtual</b>: {{isVirtual}}</div>{{/isVirtual}}
+                    {{#minimalUsageExpected}}<div><b>minimalUsageExpected</b>: {{minimalUsageExpected}}</div>{{/minimalUsageExpected}}
+                    {{#nominalServiceVoltage}}<div><b>nominalServiceVoltage</b>: {{nominalServiceVoltage}}</div>{{/nominalServiceVoltage}}
+                    {{#outageRegion}}<div><b>outageRegion</b>: {{outageRegion}}</div>{{/outageRegion}}
+                    {{#phaseCode}}<div><b>phaseCode</b>: {{phaseCode}}</div>{{/phaseCode}}
+                    {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+                    {{#ratedPower}}<div><b>ratedPower</b>: {{ratedPower}}</div>{{/ratedPower}}
+                    {{#readCycle}}<div><b>readCycle</b>: {{readCycle}}</div>{{/readCycle}}
+                    {{#readRoute}}<div><b>readRoute</b>: {{readRoute}}</div>{{/readRoute}}
+                    {{#serviceDeliveryRemark}}<div><b>serviceDeliveryRemark</b>: {{serviceDeliveryRemark}}</div>{{/serviceDeliveryRemark}}
+                    {{#servicePriority}}<div><b>servicePriority</b>: {{servicePriority}}</div>{{/servicePriority}}
+                    {{#UsagePointLocation}}<div><b>UsagePointLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePointLocation}}&quot;);})'>{{UsagePointLocation}}</a></div>{{/UsagePointLocation}}
+                    {{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceCategory}}&quot;);})'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
+                    {{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAgreement}}&quot;);})'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
+                    {{#ServiceLocation}}<div><b>ServiceLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceLocation}}&quot;);})'>{{ServiceLocation}}</a></div>{{/ServiceLocation}}
+                    {{#ServiceSupplier}}<div><b>ServiceSupplier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceSupplier}}&quot;);})'>{{ServiceSupplier}}</a></div>{{/ServiceSupplier}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of meter multiplier.
-         *
-         */
-        class MeterMultiplierKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.MeterMultiplierKind;
-                if (null == bucket)
-                   cim_data.MeterMultiplierKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.MeterMultiplierKind[this._id];
+                super.condition (obj);
+                obj.AmiBillingReadyKind = []; if (!obj.amiBillingReady) obj.AmiBillingReadyKind.push ({ id: '', selected: true}); for (var property in AmiBillingReadyKind) obj.AmiBillingReadyKind.push ({ id: property, selected: obj.amiBillingReady && obj.amiBillingReady.endsWith ('.' + property)});
+                obj.UsagePointConnectedKind = []; if (!obj.connectionState) obj.UsagePointConnectedKind.push ({ id: '', selected: true}); for (var property in UsagePointConnectedKind) obj.UsagePointConnectedKind.push ({ id: property, selected: obj.connectionState && obj.connectionState.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "MeterMultiplierKind";
-                base.parse_element (/<cim:MeterMultiplierKind.kH>([\s\S]*?)<\/cim:MeterMultiplierKind.kH>/g, obj, "kH", base.to_string, sub, context);
-                base.parse_element (/<cim:MeterMultiplierKind.kR>([\s\S]*?)<\/cim:MeterMultiplierKind.kR>/g, obj, "kR", base.to_string, sub, context);
-                base.parse_element (/<cim:MeterMultiplierKind.kE>([\s\S]*?)<\/cim:MeterMultiplierKind.kE>/g, obj, "kE", base.to_string, sub, context);
-                base.parse_element (/<cim:MeterMultiplierKind.ctRatio>([\s\S]*?)<\/cim:MeterMultiplierKind.ctRatio>/g, obj, "ctRatio", base.to_string, sub, context);
-                base.parse_element (/<cim:MeterMultiplierKind.ptRatio>([\s\S]*?)<\/cim:MeterMultiplierKind.ptRatio>/g, obj, "ptRatio", base.to_string, sub, context);
-                base.parse_element (/<cim:MeterMultiplierKind.transformerRatio>([\s\S]*?)<\/cim:MeterMultiplierKind.transformerRatio>/g, obj, "transformerRatio", base.to_string, sub, context);
-
-                var bucket = context.parsed.MeterMultiplierKind;
-                if (null == bucket)
-                   context.parsed.MeterMultiplierKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.AmiBillingReadyKind;
+                delete obj.UsagePointConnectedKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "MeterMultiplierKind", "kH", base.from_string, fields);
-                base.export_element (obj, "MeterMultiplierKind", "kR", base.from_string, fields);
-                base.export_element (obj, "MeterMultiplierKind", "kE", base.from_string, fields);
-                base.export_element (obj, "MeterMultiplierKind", "ctRatio", base.from_string, fields);
-                base.export_element (obj, "MeterMultiplierKind", "ptRatio", base.from_string, fields);
-                base.export_element (obj, "MeterMultiplierKind", "transformerRatio", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MeterMultiplierKind_collapse" aria-expanded="true" aria-controls="MeterMultiplierKind_collapse">MeterMultiplierKind</a>
-<div id="MeterMultiplierKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#kH}}<div><b>kH</b>: {{kH}}</div>{{/kH}}
-{{#kR}}<div><b>kR</b>: {{kR}}</div>{{/kR}}
-{{#kE}}<div><b>kE</b>: {{kE}}</div>{{/kE}}
-{{#ctRatio}}<div><b>ctRatio</b>: {{ctRatio}}</div>{{/ctRatio}}
-{{#ptRatio}}<div><b>ptRatio</b>: {{ptRatio}}</div>{{/ptRatio}}
-{{#transformerRatio}}<div><b>transformerRatio</b>: {{transformerRatio}}</div>{{/transformerRatio}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UsagePoint_collapse" aria-expanded="true" aria-controls="UsagePoint_collapse" style="margin-left: 10px;">UsagePoint</a></legend>
+                    <div id="UsagePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amiBillingReady'>amiBillingReady: </label><div class='col-sm-8'><select id='amiBillingReady' class='form-control'>{{#AmiBillingReadyKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AmiBillingReadyKind}}</select></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='checkBilling'>checkBilling: </label><div class='col-sm-8'><input id='checkBilling' class='form-check-input' type='checkbox'{{#checkBilling}} checked{{/checkBilling}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='connectionState'>connectionState: </label><div class='col-sm-8'><select id='connectionState' class='form-control'>{{#UsagePointConnectedKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UsagePointConnectedKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='estimatedLoad'>estimatedLoad: </label><div class='col-sm-8'><input id='estimatedLoad' class='form-control' type='text'{{#estimatedLoad}} value='{{estimatedLoad}}'{{/estimatedLoad}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='grounded'>grounded: </label><div class='col-sm-8'><input id='grounded' class='form-check-input' type='checkbox'{{#grounded}} checked{{/grounded}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isSdp'>isSdp: </label><div class='col-sm-8'><input id='isSdp' class='form-check-input' type='checkbox'{{#isSdp}} checked{{/isSdp}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isVirtual'>isVirtual: </label><div class='col-sm-8'><input id='isVirtual' class='form-check-input' type='checkbox'{{#isVirtual}} checked{{/isVirtual}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='minimalUsageExpected'>minimalUsageExpected: </label><div class='col-sm-8'><input id='minimalUsageExpected' class='form-check-input' type='checkbox'{{#minimalUsageExpected}} checked{{/minimalUsageExpected}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nominalServiceVoltage'>nominalServiceVoltage: </label><div class='col-sm-8'><input id='nominalServiceVoltage' class='form-control' type='text'{{#nominalServiceVoltage}} value='{{nominalServiceVoltage}}'{{/nominalServiceVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='outageRegion'>outageRegion: </label><div class='col-sm-8'><input id='outageRegion' class='form-control' type='text'{{#outageRegion}} value='{{outageRegion}}'{{/outageRegion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseCode'>phaseCode: </label><div class='col-sm-8'><input id='phaseCode' class='form-control' type='text'{{#phaseCode}} value='{{phaseCode}}'{{/phaseCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedPower'>ratedPower: </label><div class='col-sm-8'><input id='ratedPower' class='form-control' type='text'{{#ratedPower}} value='{{ratedPower}}'{{/ratedPower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='readCycle'>readCycle: </label><div class='col-sm-8'><input id='readCycle' class='form-control' type='text'{{#readCycle}} value='{{readCycle}}'{{/readCycle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='readRoute'>readRoute: </label><div class='col-sm-8'><input id='readRoute' class='form-control' type='text'{{#readRoute}} value='{{readRoute}}'{{/readRoute}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='serviceDeliveryRemark'>serviceDeliveryRemark: </label><div class='col-sm-8'><input id='serviceDeliveryRemark' class='form-control' type='text'{{#serviceDeliveryRemark}} value='{{serviceDeliveryRemark}}'{{/serviceDeliveryRemark}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='servicePriority'>servicePriority: </label><div class='col-sm-8'><input id='servicePriority' class='form-control' type='text'{{#servicePriority}} value='{{servicePriority}}'{{/servicePriority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePointLocation'>UsagePointLocation: </label><div class='col-sm-8'><input id='UsagePointLocation' class='form-control' type='text'{{#UsagePointLocation}} value='{{UsagePointLocation}}'{{/UsagePointLocation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceCategory'>ServiceCategory: </label><div class='col-sm-8'><input id='ServiceCategory' class='form-control' type='text'{{#ServiceCategory}} value='{{ServiceCategory}}'{{/ServiceCategory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAgreement'>CustomerAgreement: </label><div class='col-sm-8'><input id='CustomerAgreement' class='form-control' type='text'{{#CustomerAgreement}} value='{{CustomerAgreement}}'{{/CustomerAgreement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceLocation'>ServiceLocation: </label><div class='col-sm-8'><input id='ServiceLocation' class='form-control' type='text'{{#ServiceLocation}} value='{{ServiceLocation}}'{{/ServiceLocation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceSupplier'>ServiceSupplier: </label><div class='col-sm-8'><input id='ServiceSupplier' class='form-control' type='text'{{#ServiceSupplier}} value='{{ServiceSupplier}}'{{/ServiceSupplier}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Rational number = 'numerator' / 'denominator'.
@@ -787,18 +1142,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RationalNumber_collapse" aria-expanded="true" aria-controls="RationalNumber_collapse">RationalNumber</a>
-<div id="RationalNumber_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominator}}<div><b>denominator</b>: {{denominator}}</div>{{/denominator}}
-{{#numerator}}<div><b>numerator</b>: {{numerator}}</div>{{/numerator}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RationalNumber_collapse" aria-expanded="true" aria-controls="RationalNumber_collapse" style="margin-left: 10px;">RationalNumber</a></legend>
+                    <div id="RationalNumber_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominator}}<div><b>denominator</b>: {{denominator}}</div>{{/denominator}}
+                    {{#numerator}}<div><b>numerator</b>: {{numerator}}</div>{{/numerator}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RationalNumber_collapse" aria-expanded="true" aria-controls="RationalNumber_collapse" style="margin-left: 10px;">RationalNumber</a></legend>
+                    <div id="RationalNumber_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominator'>denominator: </label><div class='col-sm-8'><input id='denominator' class='form-control' type='text'{{#denominator}} value='{{denominator}}'{{/denominator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='numerator'>numerator: </label><div class='col-sm-8'><input id='numerator' class='form-control' type='text'{{#numerator}} value='{{numerator}}'{{/numerator}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Name-value pair, specific to end device events.
@@ -857,19 +1244,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EndDeviceEventDetail_collapse" aria-expanded="true" aria-controls="EndDeviceEventDetail_collapse">EndDeviceEventDetail</a>
-<div id="EndDeviceEventDetail_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#EndDeviceEvent}}<div><b>EndDeviceEvent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceEvent}}&quot;);})'>{{EndDeviceEvent}}</a></div>{{/EndDeviceEvent}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceEventDetail_collapse" aria-expanded="true" aria-controls="EndDeviceEventDetail_collapse" style="margin-left: 10px;">EndDeviceEventDetail</a></legend>
+                    <div id="EndDeviceEventDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#EndDeviceEvent}}<div><b>EndDeviceEvent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceEvent}}&quot;);})'>{{EndDeviceEvent}}</a></div>{{/EndDeviceEvent}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceEventDetail_collapse" aria-expanded="true" aria-controls="EndDeviceEventDetail_collapse" style="margin-left: 10px;">EndDeviceEventDetail</a></legend>
+                    <div id="EndDeviceEventDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceEvent'>EndDeviceEvent: </label><div class='col-sm-8'><input id='EndDeviceEvent' class='form-control' type='text'{{#EndDeviceEvent}} value='{{EndDeviceEvent}}'{{/EndDeviceEvent}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Set of values obtained from the meter.
@@ -932,21 +1352,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MeterReading_collapse" aria-expanded="true" aria-controls="MeterReading_collapse">MeterReading</a>
-<div id="MeterReading_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#isCoincidentTrigger}}<div><b>isCoincidentTrigger</b>: {{isCoincidentTrigger}}</div>{{/isCoincidentTrigger}}
-{{#valuesInterval}}<div><b>valuesInterval</b>: {{valuesInterval}}</div>{{/valuesInterval}}
-{{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
-{{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);})'>{{Meter}}</a></div>{{/Meter}}
-{{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAgreement}}&quot;);})'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeterReading_collapse" aria-expanded="true" aria-controls="MeterReading_collapse" style="margin-left: 10px;">MeterReading</a></legend>
+                    <div id="MeterReading_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#isCoincidentTrigger}}<div><b>isCoincidentTrigger</b>: {{isCoincidentTrigger}}</div>{{/isCoincidentTrigger}}
+                    {{#valuesInterval}}<div><b>valuesInterval</b>: {{valuesInterval}}</div>{{/valuesInterval}}
+                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+                    {{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);})'>{{Meter}}</a></div>{{/Meter}}
+                    {{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAgreement}}&quot;);})'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeterReading_collapse" aria-expanded="true" aria-controls="MeterReading_collapse" style="margin-left: 10px;">MeterReading</a></legend>
+                    <div id="MeterReading_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isCoincidentTrigger'>isCoincidentTrigger: </label><div class='col-sm-8'><input id='isCoincidentTrigger' class='form-check-input' type='checkbox'{{#isCoincidentTrigger}} checked{{/isCoincidentTrigger}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='valuesInterval'>valuesInterval: </label><div class='col-sm-8'><input id='valuesInterval' class='form-control' type='text'{{#valuesInterval}} value='{{valuesInterval}}'{{/valuesInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePoint'>UsagePoint: </label><div class='col-sm-8'><input id='UsagePoint' class='form-control' type='text'{{#UsagePoint}} value='{{UsagePoint}}'{{/UsagePoint}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Meter'>Meter: </label><div class='col-sm-8'><input id='Meter' class='form-control' type='text'{{#Meter}} value='{{Meter}}'{{/Meter}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAgreement'>CustomerAgreement: </label><div class='col-sm-8'><input id='CustomerAgreement' class='form-control' type='text'{{#CustomerAgreement}} value='{{CustomerAgreement}}'{{/CustomerAgreement}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A single path for the collection or reporting of register values over a period of time.
@@ -1007,90 +1462,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Channel_collapse" aria-expanded="true" aria-controls="Channel_collapse">Channel</a>
-<div id="Channel_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#isVirtual}}<div><b>isVirtual</b>: {{isVirtual}}</div>{{/isVirtual}}
-{{#Register}}<div><b>Register</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Register}}&quot;);})'>{{Register}}</a></div>{{/Register}}
-{{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Channel_collapse" aria-expanded="true" aria-controls="Channel_collapse" style="margin-left: 10px;">Channel</a></legend>
+                    <div id="Channel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#isVirtual}}<div><b>isVirtual</b>: {{isVirtual}}</div>{{/isVirtual}}
+                    {{#Register}}<div><b>Register</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Register}}&quot;);})'>{{Register}}</a></div>{{/Register}}
+                    {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of service multiplier.
-         *
-         */
-        class ServiceMultiplierKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ServiceMultiplierKind;
-                if (null == bucket)
-                   cim_data.ServiceMultiplierKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ServiceMultiplierKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ServiceMultiplierKind";
-                base.parse_element (/<cim:ServiceMultiplierKind.ctRatio>([\s\S]*?)<\/cim:ServiceMultiplierKind.ctRatio>/g, obj, "ctRatio", base.to_string, sub, context);
-                base.parse_element (/<cim:ServiceMultiplierKind.ptRatio>([\s\S]*?)<\/cim:ServiceMultiplierKind.ptRatio>/g, obj, "ptRatio", base.to_string, sub, context);
-                base.parse_element (/<cim:ServiceMultiplierKind.transformerRatio>([\s\S]*?)<\/cim:ServiceMultiplierKind.transformerRatio>/g, obj, "transformerRatio", base.to_string, sub, context);
-
-                var bucket = context.parsed.ServiceMultiplierKind;
-                if (null == bucket)
-                   context.parsed.ServiceMultiplierKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ServiceMultiplierKind", "ctRatio", base.from_string, fields);
-                base.export_element (obj, "ServiceMultiplierKind", "ptRatio", base.from_string, fields);
-                base.export_element (obj, "ServiceMultiplierKind", "transformerRatio", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ServiceMultiplierKind_collapse" aria-expanded="true" aria-controls="ServiceMultiplierKind_collapse">ServiceMultiplierKind</a>
-<div id="ServiceMultiplierKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#ctRatio}}<div><b>ctRatio</b>: {{ctRatio}}</div>{{/ctRatio}}
-{{#ptRatio}}<div><b>ptRatio</b>: {{ptRatio}}</div>{{/ptRatio}}
-{{#transformerRatio}}<div><b>transformerRatio</b>: {{transformerRatio}}</div>{{/transformerRatio}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Channel_collapse" aria-expanded="true" aria-controls="Channel_collapse" style="margin-left: 10px;">Channel</a></legend>
+                    <div id="Channel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isVirtual'>isVirtual: </label><div class='col-sm-8'><input id='isVirtual' class='form-check-input' type='checkbox'{{#isVirtual}} checked{{/isVirtual}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Register'>Register: </label><div class='col-sm-8'><input id='Register' class='form-control' type='text'{{#Register}} value='{{Register}}'{{/Register}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReadingType'>ReadingType: </label><div class='col-sm-8'><input id='ReadingType' class='form-control' type='text'{{#ReadingType}} value='{{ReadingType}}'{{/ReadingType}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Quality of a specific reading value or interval reading value.
@@ -1155,92 +1572,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ReadingQuality_collapse" aria-expanded="true" aria-controls="ReadingQuality_collapse">ReadingQuality</a>
-<div id="ReadingQuality_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#comment}}<div><b>comment</b>: {{comment}}</div>{{/comment}}
-{{#source}}<div><b>source</b>: {{source}}</div>{{/source}}
-{{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
-{{#ReadingQualityType}}<div><b>ReadingQualityType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingQualityType}}&quot;);})'>{{ReadingQualityType}}</a></div>{{/ReadingQualityType}}
-{{#Reading}}<div><b>Reading</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reading}}&quot;);})'>{{Reading}}</a></div>{{/Reading}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReadingQuality_collapse" aria-expanded="true" aria-controls="ReadingQuality_collapse" style="margin-left: 10px;">ReadingQuality</a></legend>
+                    <div id="ReadingQuality_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#comment}}<div><b>comment</b>: {{comment}}</div>{{/comment}}
+                    {{#source}}<div><b>source</b>: {{source}}</div>{{/source}}
+                    {{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
+                    {{#ReadingQualityType}}<div><b>ReadingQualityType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingQualityType}}&quot;);})'>{{ReadingQualityType}}</a></div>{{/ReadingQualityType}}
+                    {{#Reading}}<div><b>Reading</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reading}}&quot;);})'>{{Reading}}</a></div>{{/Reading}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of communication direction.
-         *
-         */
-        class ComDirectionKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ComDirectionKind;
-                if (null == bucket)
-                   cim_data.ComDirectionKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ComDirectionKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ComDirectionKind";
-                base.parse_element (/<cim:ComDirectionKind.fromDevice>([\s\S]*?)<\/cim:ComDirectionKind.fromDevice>/g, obj, "fromDevice", base.to_string, sub, context);
-                base.parse_element (/<cim:ComDirectionKind.toDevice>([\s\S]*?)<\/cim:ComDirectionKind.toDevice>/g, obj, "toDevice", base.to_string, sub, context);
-                base.parse_element (/<cim:ComDirectionKind.biDirectional>([\s\S]*?)<\/cim:ComDirectionKind.biDirectional>/g, obj, "biDirectional", base.to_string, sub, context);
-
-                var bucket = context.parsed.ComDirectionKind;
-                if (null == bucket)
-                   context.parsed.ComDirectionKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ComDirectionKind", "fromDevice", base.from_string, fields);
-                base.export_element (obj, "ComDirectionKind", "toDevice", base.from_string, fields);
-                base.export_element (obj, "ComDirectionKind", "biDirectional", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ComDirectionKind_collapse" aria-expanded="true" aria-controls="ComDirectionKind_collapse">ComDirectionKind</a>
-<div id="ComDirectionKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#fromDevice}}<div><b>fromDevice</b>: {{fromDevice}}</div>{{/fromDevice}}
-{{#toDevice}}<div><b>toDevice</b>: {{toDevice}}</div>{{/toDevice}}
-{{#biDirectional}}<div><b>biDirectional</b>: {{biDirectional}}</div>{{/biDirectional}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReadingQuality_collapse" aria-expanded="true" aria-controls="ReadingQuality_collapse" style="margin-left: 10px;">ReadingQuality</a></legend>
+                    <div id="ReadingQuality_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='comment'>comment: </label><div class='col-sm-8'><input id='comment' class='form-control' type='text'{{#comment}} value='{{comment}}'{{/comment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='source'>source: </label><div class='col-sm-8'><input id='source' class='form-control' type='text'{{#source}} value='{{source}}'{{/source}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeStamp'>timeStamp: </label><div class='col-sm-8'><input id='timeStamp' class='form-control' type='text'{{#timeStamp}} value='{{timeStamp}}'{{/timeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReadingQualityType'>ReadingQualityType: </label><div class='col-sm-8'><input id='ReadingQualityType' class='form-control' type='text'{{#ReadingQualityType}} value='{{ReadingQualityType}}'{{/ReadingQualityType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Reading'>Reading: </label><div class='col-sm-8'><input id='Reading' class='form-control' type='text'{{#Reading}} value='{{Reading}}'{{/Reading}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Multiplier applied at the meter.
@@ -1270,7 +1651,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MeterMultiplier";
-                base.parse_element (/<cim:MeterMultiplier.kind>([\s\S]*?)<\/cim:MeterMultiplier.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MeterMultiplier.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:MeterMultiplier.value>([\s\S]*?)<\/cim:MeterMultiplier.value>/g, obj, "value", base.to_float, sub, context);
                 base.parse_attribute (/<cim:MeterMultiplier.Meter\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Meter", sub, context);
 
@@ -1299,19 +1680,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MeterMultiplier_collapse" aria-expanded="true" aria-controls="MeterMultiplier_collapse">MeterMultiplier</a>
-<div id="MeterMultiplier_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);})'>{{Meter}}</a></div>{{/Meter}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeterMultiplier_collapse" aria-expanded="true" aria-controls="MeterMultiplier_collapse" style="margin-left: 10px;">MeterMultiplier</a></legend>
+                    <div id="MeterMultiplier_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);})'>{{Meter}}</a></div>{{/Meter}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.MeterMultiplierKind = []; if (!obj.kind) obj.MeterMultiplierKind.push ({ id: '', selected: true}); for (var property in MeterMultiplierKind) obj.MeterMultiplierKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.MeterMultiplierKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeterMultiplier_collapse" aria-expanded="true" aria-controls="MeterMultiplier_collapse" style="margin-left: 10px;">MeterMultiplier</a></legend>
+                    <div id="MeterMultiplier_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#MeterMultiplierKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MeterMultiplierKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Meter'>Meter: </label><div class='col-sm-8'><input id='Meter' class='form-control' type='text'{{#Meter}} value='{{Meter}}'{{/Meter}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Location of an individual usage point.
@@ -1370,102 +1786,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#UsagePointLocation_collapse" aria-expanded="true" aria-controls="UsagePointLocation_collapse">UsagePointLocation</a>
-<div id="UsagePointLocation_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Location.prototype.template.call (this) +
-`
-{{#accessMethod}}<div><b>accessMethod</b>: {{accessMethod}}</div>{{/accessMethod}}
-{{#remark}}<div><b>remark</b>: {{remark}}</div>{{/remark}}
-{{#siteAccessProblem}}<div><b>siteAccessProblem</b>: {{siteAccessProblem}}</div>{{/siteAccessProblem}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UsagePointLocation_collapse" aria-expanded="true" aria-controls="UsagePointLocation_collapse" style="margin-left: 10px;">UsagePointLocation</a></legend>
+                    <div id="UsagePointLocation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Location.prototype.template.call (this) +
+                    `
+                    {{#accessMethod}}<div><b>accessMethod</b>: {{accessMethod}}</div>{{/accessMethod}}
+                    {{#remark}}<div><b>remark</b>: {{remark}}</div>{{/remark}}
+                    {{#siteAccessProblem}}<div><b>siteAccessProblem</b>: {{siteAccessProblem}}</div>{{/siteAccessProblem}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Lifecycle states of the metering installation at a usage point with respect to readiness for billing via advanced metering infrastructure reads.
-         *
-         */
-        class AmiBillingReadyKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.AmiBillingReadyKind;
-                if (null == bucket)
-                   cim_data.AmiBillingReadyKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.AmiBillingReadyKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "AmiBillingReadyKind";
-                base.parse_element (/<cim:AmiBillingReadyKind.enabled>([\s\S]*?)<\/cim:AmiBillingReadyKind.enabled>/g, obj, "enabled", base.to_string, sub, context);
-                base.parse_element (/<cim:AmiBillingReadyKind.operable>([\s\S]*?)<\/cim:AmiBillingReadyKind.operable>/g, obj, "operable", base.to_string, sub, context);
-                base.parse_element (/<cim:AmiBillingReadyKind.billingApproved>([\s\S]*?)<\/cim:AmiBillingReadyKind.billingApproved>/g, obj, "billingApproved", base.to_string, sub, context);
-                base.parse_element (/<cim:AmiBillingReadyKind.nonAmi>([\s\S]*?)<\/cim:AmiBillingReadyKind.nonAmi>/g, obj, "nonAmi", base.to_string, sub, context);
-                base.parse_element (/<cim:AmiBillingReadyKind.amiDisabled>([\s\S]*?)<\/cim:AmiBillingReadyKind.amiDisabled>/g, obj, "amiDisabled", base.to_string, sub, context);
-                base.parse_element (/<cim:AmiBillingReadyKind.amiCapable>([\s\S]*?)<\/cim:AmiBillingReadyKind.amiCapable>/g, obj, "amiCapable", base.to_string, sub, context);
-                base.parse_element (/<cim:AmiBillingReadyKind.nonMetered>([\s\S]*?)<\/cim:AmiBillingReadyKind.nonMetered>/g, obj, "nonMetered", base.to_string, sub, context);
-
-                var bucket = context.parsed.AmiBillingReadyKind;
-                if (null == bucket)
-                   context.parsed.AmiBillingReadyKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "AmiBillingReadyKind", "enabled", base.from_string, fields);
-                base.export_element (obj, "AmiBillingReadyKind", "operable", base.from_string, fields);
-                base.export_element (obj, "AmiBillingReadyKind", "billingApproved", base.from_string, fields);
-                base.export_element (obj, "AmiBillingReadyKind", "nonAmi", base.from_string, fields);
-                base.export_element (obj, "AmiBillingReadyKind", "amiDisabled", base.from_string, fields);
-                base.export_element (obj, "AmiBillingReadyKind", "amiCapable", base.from_string, fields);
-                base.export_element (obj, "AmiBillingReadyKind", "nonMetered", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AmiBillingReadyKind_collapse" aria-expanded="true" aria-controls="AmiBillingReadyKind_collapse">AmiBillingReadyKind</a>
-<div id="AmiBillingReadyKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
-{{#operable}}<div><b>operable</b>: {{operable}}</div>{{/operable}}
-{{#billingApproved}}<div><b>billingApproved</b>: {{billingApproved}}</div>{{/billingApproved}}
-{{#nonAmi}}<div><b>nonAmi</b>: {{nonAmi}}</div>{{/nonAmi}}
-{{#amiDisabled}}<div><b>amiDisabled</b>: {{amiDisabled}}</div>{{/amiDisabled}}
-{{#amiCapable}}<div><b>amiCapable</b>: {{amiCapable}}</div>{{/amiCapable}}
-{{#nonMetered}}<div><b>nonMetered</b>: {{nonMetered}}</div>{{/nonMetered}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UsagePointLocation_collapse" aria-expanded="true" aria-controls="UsagePointLocation_collapse" style="margin-left: 10px;">UsagePointLocation</a></legend>
+                    <div id="UsagePointLocation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Location.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accessMethod'>accessMethod: </label><div class='col-sm-8'><input id='accessMethod' class='form-control' type='text'{{#accessMethod}} value='{{accessMethod}}'{{/accessMethod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='remark'>remark: </label><div class='col-sm-8'><input id='remark' class='form-control' type='text'{{#remark}} value='{{remark}}'{{/remark}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='siteAccessProblem'>siteAccessProblem: </label><div class='col-sm-8'><input id='siteAccessProblem' class='form-control' type='text'{{#siteAccessProblem}} value='{{siteAccessProblem}}'{{/siteAccessProblem}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * A specification of the metering requirements for a particular point within a network.
@@ -1495,7 +1861,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MetrologyRequirement";
-                base.parse_element (/<cim:MetrologyRequirement.reason>([\s\S]*?)<\/cim:MetrologyRequirement.reason>/g, obj, "reason", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MetrologyRequirement.reason\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "reason", sub, context);
 
                 var bucket = context.parsed.MetrologyRequirement;
                 if (null == bucket)
@@ -1520,17 +1886,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MetrologyRequirement_collapse" aria-expanded="true" aria-controls="MetrologyRequirement_collapse">MetrologyRequirement</a>
-<div id="MetrologyRequirement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MetrologyRequirement_collapse" aria-expanded="true" aria-controls="MetrologyRequirement_collapse" style="margin-left: 10px;">MetrologyRequirement</a></legend>
+                    <div id="MetrologyRequirement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ReadingReasonKind = []; if (!obj.reason) obj.ReadingReasonKind.push ({ id: '', selected: true}); for (var property in ReadingReasonKind) obj.ReadingReasonKind.push ({ id: property, selected: obj.reason && obj.reason.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ReadingReasonKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MetrologyRequirement_collapse" aria-expanded="true" aria-controls="MetrologyRequirement_collapse" style="margin-left: 10px;">MetrologyRequirement</a></legend>
+                    <div id="MetrologyRequirement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reason'>reason: </label><div class='col-sm-8'><select id='reason' class='form-control'>{{#ReadingReasonKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ReadingReasonKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Function performed by an end device such as a meter, communication equipment, controllers, etc.
@@ -1587,18 +1986,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EndDeviceFunction_collapse" aria-expanded="true" aria-controls="EndDeviceFunction_collapse">EndDeviceFunction</a>
-<div id="EndDeviceFunction_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetFunction.prototype.template.call (this) +
-`
-{{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
-{{#EndDevice}}<div><b>EndDevice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDevice}}&quot;);})'>{{EndDevice}}</a></div>{{/EndDevice}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceFunction_collapse" aria-expanded="true" aria-controls="EndDeviceFunction_collapse" style="margin-left: 10px;">EndDeviceFunction</a></legend>
+                    <div id="EndDeviceFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetFunction.prototype.template.call (this) +
+                    `
+                    {{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
+                    {{#EndDevice}}<div><b>EndDevice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDevice}}&quot;);})'>{{EndDevice}}</a></div>{{/EndDevice}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceFunction_collapse" aria-expanded="true" aria-controls="EndDeviceFunction_collapse" style="margin-left: 10px;">EndDeviceFunction</a></legend>
+                    <div id="EndDeviceFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetFunction.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='enabled'>enabled: </label><div class='col-sm-8'><input id='enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDevice'>EndDevice: </label><div class='col-sm-8'><input id='EndDevice' class='form-control' type='text'{{#EndDevice}} value='{{EndDevice}}'{{/EndDevice}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An asset having communications capabilities that can be paired with a meter or other end device to provide the device with communication ability, through associated communication function.
@@ -1659,90 +2090,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ComModule_collapse" aria-expanded="true" aria-controls="ComModule_collapse">ComModule</a>
-<div id="ComModule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.Asset.prototype.template.call (this) +
-`
-{{#amrSystem}}<div><b>amrSystem</b>: {{amrSystem}}</div>{{/amrSystem}}
-{{#supportsAutonomousDst}}<div><b>supportsAutonomousDst</b>: {{supportsAutonomousDst}}</div>{{/supportsAutonomousDst}}
-{{#timeZoneOffset}}<div><b>timeZoneOffset</b>: {{timeZoneOffset}}</div>{{/timeZoneOffset}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ComModule_collapse" aria-expanded="true" aria-controls="ComModule_collapse" style="margin-left: 10px;">ComModule</a></legend>
+                    <div id="ComModule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.Asset.prototype.template.call (this) +
+                    `
+                    {{#amrSystem}}<div><b>amrSystem</b>: {{amrSystem}}</div>{{/amrSystem}}
+                    {{#supportsAutonomousDst}}<div><b>supportsAutonomousDst</b>: {{supportsAutonomousDst}}</div>{{/supportsAutonomousDst}}
+                    {{#timeZoneOffset}}<div><b>timeZoneOffset</b>: {{timeZoneOffset}}</div>{{/timeZoneOffset}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * State of the usage point with respect to connection to the network.
-         *
-         */
-        class UsagePointConnectedKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.UsagePointConnectedKind;
-                if (null == bucket)
-                   cim_data.UsagePointConnectedKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.UsagePointConnectedKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "UsagePointConnectedKind";
-                base.parse_element (/<cim:UsagePointConnectedKind.connected>([\s\S]*?)<\/cim:UsagePointConnectedKind.connected>/g, obj, "connected", base.to_string, sub, context);
-                base.parse_element (/<cim:UsagePointConnectedKind.physicallyDisconnected>([\s\S]*?)<\/cim:UsagePointConnectedKind.physicallyDisconnected>/g, obj, "physicallyDisconnected", base.to_string, sub, context);
-                base.parse_element (/<cim:UsagePointConnectedKind.logicallyDisconnected>([\s\S]*?)<\/cim:UsagePointConnectedKind.logicallyDisconnected>/g, obj, "logicallyDisconnected", base.to_string, sub, context);
-
-                var bucket = context.parsed.UsagePointConnectedKind;
-                if (null == bucket)
-                   context.parsed.UsagePointConnectedKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "UsagePointConnectedKind", "connected", base.from_string, fields);
-                base.export_element (obj, "UsagePointConnectedKind", "physicallyDisconnected", base.from_string, fields);
-                base.export_element (obj, "UsagePointConnectedKind", "logicallyDisconnected", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#UsagePointConnectedKind_collapse" aria-expanded="true" aria-controls="UsagePointConnectedKind_collapse">UsagePointConnectedKind</a>
-<div id="UsagePointConnectedKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#connected}}<div><b>connected</b>: {{connected}}</div>{{/connected}}
-{{#physicallyDisconnected}}<div><b>physicallyDisconnected</b>: {{physicallyDisconnected}}</div>{{/physicallyDisconnected}}
-{{#logicallyDisconnected}}<div><b>logicallyDisconnected</b>: {{logicallyDisconnected}}</div>{{/logicallyDisconnected}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ComModule_collapse" aria-expanded="true" aria-controls="ComModule_collapse" style="margin-left: 10px;">ComModule</a></legend>
+                    <div id="ComModule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.Asset.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amrSystem'>amrSystem: </label><div class='col-sm-8'><input id='amrSystem' class='form-control' type='text'{{#amrSystem}} value='{{amrSystem}}'{{/amrSystem}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='supportsAutonomousDst'>supportsAutonomousDst: </label><div class='col-sm-8'><input id='supportsAutonomousDst' class='form-check-input' type='checkbox'{{#supportsAutonomousDst}} checked{{/supportsAutonomousDst}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeZoneOffset'>timeZoneOffset: </label><div class='col-sm-8'><input id='timeZoneOffset' class='form-control' type='text'{{#timeZoneOffset}} value='{{timeZoneOffset}}'{{/timeZoneOffset}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Detailed description for a type of a reading value.
@@ -1833,34 +2226,82 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ReadingType_collapse" aria-expanded="true" aria-controls="ReadingType_collapse">ReadingType</a>
-<div id="ReadingType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#accumulation}}<div><b>accumulation</b>: {{accumulation}}</div>{{/accumulation}}
-{{#aggregate}}<div><b>aggregate</b>: {{aggregate}}</div>{{/aggregate}}
-{{#argument}}<div><b>argument</b>: {{argument}}</div>{{/argument}}
-{{#commodity}}<div><b>commodity</b>: {{commodity}}</div>{{/commodity}}
-{{#consumptionTier}}<div><b>consumptionTier</b>: {{consumptionTier}}</div>{{/consumptionTier}}
-{{#cpp}}<div><b>cpp</b>: {{cpp}}</div>{{/cpp}}
-{{#currency}}<div><b>currency</b>: {{currency}}</div>{{/currency}}
-{{#flowDirection}}<div><b>flowDirection</b>: {{flowDirection}}</div>{{/flowDirection}}
-{{#interharmonic}}<div><b>interharmonic</b>: {{interharmonic}}</div>{{/interharmonic}}
-{{#macroPeriod}}<div><b>macroPeriod</b>: {{macroPeriod}}</div>{{/macroPeriod}}
-{{#measurementKind}}<div><b>measurementKind</b>: {{measurementKind}}</div>{{/measurementKind}}
-{{#measuringPeriod}}<div><b>measuringPeriod</b>: {{measuringPeriod}}</div>{{/measuringPeriod}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
-{{#tou}}<div><b>tou</b>: {{tou}}</div>{{/tou}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#PendingCalculation}}<div><b>PendingCalculation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PendingCalculation}}&quot;);})'>{{PendingCalculation}}</a></div>{{/PendingCalculation}}
-{{#Channel}}<div><b>Channel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Channel}}&quot;);})'>{{Channel}}</a></div>{{/Channel}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReadingType_collapse" aria-expanded="true" aria-controls="ReadingType_collapse" style="margin-left: 10px;">ReadingType</a></legend>
+                    <div id="ReadingType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#accumulation}}<div><b>accumulation</b>: {{accumulation}}</div>{{/accumulation}}
+                    {{#aggregate}}<div><b>aggregate</b>: {{aggregate}}</div>{{/aggregate}}
+                    {{#argument}}<div><b>argument</b>: {{argument}}</div>{{/argument}}
+                    {{#commodity}}<div><b>commodity</b>: {{commodity}}</div>{{/commodity}}
+                    {{#consumptionTier}}<div><b>consumptionTier</b>: {{consumptionTier}}</div>{{/consumptionTier}}
+                    {{#cpp}}<div><b>cpp</b>: {{cpp}}</div>{{/cpp}}
+                    {{#currency}}<div><b>currency</b>: {{currency}}</div>{{/currency}}
+                    {{#flowDirection}}<div><b>flowDirection</b>: {{flowDirection}}</div>{{/flowDirection}}
+                    {{#interharmonic}}<div><b>interharmonic</b>: {{interharmonic}}</div>{{/interharmonic}}
+                    {{#macroPeriod}}<div><b>macroPeriod</b>: {{macroPeriod}}</div>{{/macroPeriod}}
+                    {{#measurementKind}}<div><b>measurementKind</b>: {{measurementKind}}</div>{{/measurementKind}}
+                    {{#measuringPeriod}}<div><b>measuringPeriod</b>: {{measuringPeriod}}</div>{{/measuringPeriod}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
+                    {{#tou}}<div><b>tou</b>: {{tou}}</div>{{/tou}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#PendingCalculation}}<div><b>PendingCalculation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PendingCalculation}}&quot;);})'>{{PendingCalculation}}</a></div>{{/PendingCalculation}}
+                    {{#Channel}}<div><b>Channel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Channel}}&quot;);})'>{{Channel}}</a></div>{{/Channel}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReadingType_collapse" aria-expanded="true" aria-controls="ReadingType_collapse" style="margin-left: 10px;">ReadingType</a></legend>
+                    <div id="ReadingType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accumulation'>accumulation: </label><div class='col-sm-8'><input id='accumulation' class='form-control' type='text'{{#accumulation}} value='{{accumulation}}'{{/accumulation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='aggregate'>aggregate: </label><div class='col-sm-8'><input id='aggregate' class='form-control' type='text'{{#aggregate}} value='{{aggregate}}'{{/aggregate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='argument'>argument: </label><div class='col-sm-8'><input id='argument' class='form-control' type='text'{{#argument}} value='{{argument}}'{{/argument}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='commodity'>commodity: </label><div class='col-sm-8'><input id='commodity' class='form-control' type='text'{{#commodity}} value='{{commodity}}'{{/commodity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='consumptionTier'>consumptionTier: </label><div class='col-sm-8'><input id='consumptionTier' class='form-control' type='text'{{#consumptionTier}} value='{{consumptionTier}}'{{/consumptionTier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cpp'>cpp: </label><div class='col-sm-8'><input id='cpp' class='form-control' type='text'{{#cpp}} value='{{cpp}}'{{/cpp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='currency'>currency: </label><div class='col-sm-8'><input id='currency' class='form-control' type='text'{{#currency}} value='{{currency}}'{{/currency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flowDirection'>flowDirection: </label><div class='col-sm-8'><input id='flowDirection' class='form-control' type='text'{{#flowDirection}} value='{{flowDirection}}'{{/flowDirection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='interharmonic'>interharmonic: </label><div class='col-sm-8'><input id='interharmonic' class='form-control' type='text'{{#interharmonic}} value='{{interharmonic}}'{{/interharmonic}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='macroPeriod'>macroPeriod: </label><div class='col-sm-8'><input id='macroPeriod' class='form-control' type='text'{{#macroPeriod}} value='{{macroPeriod}}'{{/macroPeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='measurementKind'>measurementKind: </label><div class='col-sm-8'><input id='measurementKind' class='form-control' type='text'{{#measurementKind}} value='{{measurementKind}}'{{/measurementKind}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='measuringPeriod'>measuringPeriod: </label><div class='col-sm-8'><input id='measuringPeriod' class='form-control' type='text'{{#measuringPeriod}} value='{{measuringPeriod}}'{{/measuringPeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><input id='multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phases'>phases: </label><div class='col-sm-8'><input id='phases' class='form-control' type='text'{{#phases}} value='{{phases}}'{{/phases}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tou'>tou: </label><div class='col-sm-8'><input id='tou' class='form-control' type='text'{{#tou}} value='{{tou}}'{{/tou}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><input id='unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PendingCalculation'>PendingCalculation: </label><div class='col-sm-8'><input id='PendingCalculation' class='form-control' type='text'{{#PendingCalculation}} value='{{PendingCalculation}}'{{/PendingCalculation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Channel'>Channel: </label><div class='col-sm-8'><input id='Channel' class='form-control' type='text'{{#Channel}} value='{{Channel}}'{{/Channel}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Time sequence of readings of the same reading type.
@@ -1921,111 +2362,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#IntervalBlock_collapse" aria-expanded="true" aria-controls="IntervalBlock_collapse">IntervalBlock</a>
-<div id="IntervalBlock_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#PendingCalculation}}<div><b>PendingCalculation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PendingCalculation}}&quot;);})'>{{PendingCalculation}}</a></div>{{/PendingCalculation}}
-{{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
-{{#MeterReading}}<div><b>MeterReading</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeterReading}}&quot;);})'>{{MeterReading}}</a></div>{{/MeterReading}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IntervalBlock_collapse" aria-expanded="true" aria-controls="IntervalBlock_collapse" style="margin-left: 10px;">IntervalBlock</a></legend>
+                    <div id="IntervalBlock_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#PendingCalculation}}<div><b>PendingCalculation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PendingCalculation}}&quot;);})'>{{PendingCalculation}}</a></div>{{/PendingCalculation}}
+                    {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
+                    {{#MeterReading}}<div><b>MeterReading</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeterReading}}&quot;);})'>{{MeterReading}}</a></div>{{/MeterReading}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of end device function.
-         *
-         */
-        class EndDeviceFunctionKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.EndDeviceFunctionKind;
-                if (null == bucket)
-                   cim_data.EndDeviceFunctionKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.EndDeviceFunctionKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "EndDeviceFunctionKind";
-                base.parse_element (/<cim:EndDeviceFunctionKind.reverseFlow>([\s\S]*?)<\/cim:EndDeviceFunctionKind.reverseFlow>/g, obj, "reverseFlow", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceFunctionKind.demandResponse>([\s\S]*?)<\/cim:EndDeviceFunctionKind.demandResponse>/g, obj, "demandResponse", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceFunctionKind.metrology>([\s\S]*?)<\/cim:EndDeviceFunctionKind.metrology>/g, obj, "metrology", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceFunctionKind.outageHistory>([\s\S]*?)<\/cim:EndDeviceFunctionKind.outageHistory>/g, obj, "outageHistory", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceFunctionKind.relaysProgramming>([\s\S]*?)<\/cim:EndDeviceFunctionKind.relaysProgramming>/g, obj, "relaysProgramming", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceFunctionKind.onRequestRead>([\s\S]*?)<\/cim:EndDeviceFunctionKind.onRequestRead>/g, obj, "onRequestRead", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceFunctionKind.autonomousDst>([\s\S]*?)<\/cim:EndDeviceFunctionKind.autonomousDst>/g, obj, "autonomousDst", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceFunctionKind.electricMetering>([\s\S]*?)<\/cim:EndDeviceFunctionKind.electricMetering>/g, obj, "electricMetering", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceFunctionKind.gasMetering>([\s\S]*?)<\/cim:EndDeviceFunctionKind.gasMetering>/g, obj, "gasMetering", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceFunctionKind.waterMetering>([\s\S]*?)<\/cim:EndDeviceFunctionKind.waterMetering>/g, obj, "waterMetering", base.to_string, sub, context);
-
-                var bucket = context.parsed.EndDeviceFunctionKind;
-                if (null == bucket)
-                   context.parsed.EndDeviceFunctionKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "EndDeviceFunctionKind", "reverseFlow", base.from_string, fields);
-                base.export_element (obj, "EndDeviceFunctionKind", "demandResponse", base.from_string, fields);
-                base.export_element (obj, "EndDeviceFunctionKind", "metrology", base.from_string, fields);
-                base.export_element (obj, "EndDeviceFunctionKind", "outageHistory", base.from_string, fields);
-                base.export_element (obj, "EndDeviceFunctionKind", "relaysProgramming", base.from_string, fields);
-                base.export_element (obj, "EndDeviceFunctionKind", "onRequestRead", base.from_string, fields);
-                base.export_element (obj, "EndDeviceFunctionKind", "autonomousDst", base.from_string, fields);
-                base.export_element (obj, "EndDeviceFunctionKind", "electricMetering", base.from_string, fields);
-                base.export_element (obj, "EndDeviceFunctionKind", "gasMetering", base.from_string, fields);
-                base.export_element (obj, "EndDeviceFunctionKind", "waterMetering", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EndDeviceFunctionKind_collapse" aria-expanded="true" aria-controls="EndDeviceFunctionKind_collapse">EndDeviceFunctionKind</a>
-<div id="EndDeviceFunctionKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#reverseFlow}}<div><b>reverseFlow</b>: {{reverseFlow}}</div>{{/reverseFlow}}
-{{#demandResponse}}<div><b>demandResponse</b>: {{demandResponse}}</div>{{/demandResponse}}
-{{#metrology}}<div><b>metrology</b>: {{metrology}}</div>{{/metrology}}
-{{#outageHistory}}<div><b>outageHistory</b>: {{outageHistory}}</div>{{/outageHistory}}
-{{#relaysProgramming}}<div><b>relaysProgramming</b>: {{relaysProgramming}}</div>{{/relaysProgramming}}
-{{#onRequestRead}}<div><b>onRequestRead</b>: {{onRequestRead}}</div>{{/onRequestRead}}
-{{#autonomousDst}}<div><b>autonomousDst</b>: {{autonomousDst}}</div>{{/autonomousDst}}
-{{#electricMetering}}<div><b>electricMetering</b>: {{electricMetering}}</div>{{/electricMetering}}
-{{#gasMetering}}<div><b>gasMetering</b>: {{gasMetering}}</div>{{/gasMetering}}
-{{#waterMetering}}<div><b>waterMetering</b>: {{waterMetering}}</div>{{/waterMetering}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IntervalBlock_collapse" aria-expanded="true" aria-controls="IntervalBlock_collapse" style="margin-left: 10px;">IntervalBlock</a></legend>
+                    <div id="IntervalBlock_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PendingCalculation'>PendingCalculation: </label><div class='col-sm-8'><input id='PendingCalculation' class='form-control' type='text'{{#PendingCalculation}} value='{{PendingCalculation}}'{{/PendingCalculation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReadingType'>ReadingType: </label><div class='col-sm-8'><input id='ReadingType' class='form-control' type='text'{{#ReadingType}} value='{{ReadingType}}'{{/ReadingType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MeterReading'>MeterReading: </label><div class='col-sm-8'><input id='MeterReading' class='form-control' type='text'{{#MeterReading}} value='{{MeterReading}}'{{/MeterReading}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Timing for the control actions of end devices.
@@ -2058,7 +2440,7 @@ define
                 base.parse_element (/<cim:EndDeviceTiming.duration>([\s\S]*?)<\/cim:EndDeviceTiming.duration>/g, obj, "duration", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceTiming.durationIndefinite>([\s\S]*?)<\/cim:EndDeviceTiming.durationIndefinite>/g, obj, "durationIndefinite", base.to_boolean, sub, context);
                 base.parse_element (/<cim:EndDeviceTiming.interval>([\s\S]*?)<\/cim:EndDeviceTiming.interval>/g, obj, "interval", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceTiming.randomisation>([\s\S]*?)<\/cim:EndDeviceTiming.randomisation>/g, obj, "randomisation", base.to_string, sub, context);
+                base.parse_attribute (/<cim:EndDeviceTiming.randomisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "randomisation", sub, context);
 
                 var bucket = context.parsed.EndDeviceTiming;
                 if (null == bucket)
@@ -2086,20 +2468,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EndDeviceTiming_collapse" aria-expanded="true" aria-controls="EndDeviceTiming_collapse">EndDeviceTiming</a>
-<div id="EndDeviceTiming_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
-{{#durationIndefinite}}<div><b>durationIndefinite</b>: {{durationIndefinite}}</div>{{/durationIndefinite}}
-{{#interval}}<div><b>interval</b>: {{interval}}</div>{{/interval}}
-{{#randomisation}}<div><b>randomisation</b>: {{randomisation}}</div>{{/randomisation}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceTiming_collapse" aria-expanded="true" aria-controls="EndDeviceTiming_collapse" style="margin-left: 10px;">EndDeviceTiming</a></legend>
+                    <div id="EndDeviceTiming_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
+                    {{#durationIndefinite}}<div><b>durationIndefinite</b>: {{durationIndefinite}}</div>{{/durationIndefinite}}
+                    {{#interval}}<div><b>interval</b>: {{interval}}</div>{{/interval}}
+                    {{#randomisation}}<div><b>randomisation</b>: {{randomisation}}</div>{{/randomisation}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.RandomisationKind = []; if (!obj.randomisation) obj.RandomisationKind.push ({ id: '', selected: true}); for (var property in RandomisationKind) obj.RandomisationKind.push ({ id: property, selected: obj.randomisation && obj.randomisation.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.RandomisationKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceTiming_collapse" aria-expanded="true" aria-controls="EndDeviceTiming_collapse" style="margin-left: 10px;">EndDeviceTiming</a></legend>
+                    <div id="EndDeviceTiming_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='duration'>duration: </label><div class='col-sm-8'><input id='duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='durationIndefinite'>durationIndefinite: </label><div class='col-sm-8'><input id='durationIndefinite' class='form-check-input' type='checkbox'{{#durationIndefinite}} checked{{/durationIndefinite}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='interval'>interval: </label><div class='col-sm-8'><input id='interval' class='form-control' type='text'{{#interval}} value='{{interval}}'{{/interval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='randomisation'>randomisation: </label><div class='col-sm-8'><select id='randomisation' class='form-control'>{{#RandomisationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RandomisationKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Action/command performed by an end device on a device other than the end device.
@@ -2162,21 +2580,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EndDeviceAction_collapse" aria-expanded="true" aria-controls="EndDeviceAction_collapse">EndDeviceAction</a>
-<div id="EndDeviceAction_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#command}}<div><b>command</b>: {{command}}</div>{{/command}}
-{{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
-{{#durationIndefinite}}<div><b>durationIndefinite</b>: {{durationIndefinite}}</div>{{/durationIndefinite}}
-{{#startDateTime}}<div><b>startDateTime</b>: {{startDateTime}}</div>{{/startDateTime}}
-{{#EndDeviceControl}}<div><b>EndDeviceControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceControl}}&quot;);})'>{{EndDeviceControl}}</a></div>{{/EndDeviceControl}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceAction_collapse" aria-expanded="true" aria-controls="EndDeviceAction_collapse" style="margin-left: 10px;">EndDeviceAction</a></legend>
+                    <div id="EndDeviceAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#command}}<div><b>command</b>: {{command}}</div>{{/command}}
+                    {{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
+                    {{#durationIndefinite}}<div><b>durationIndefinite</b>: {{durationIndefinite}}</div>{{/durationIndefinite}}
+                    {{#startDateTime}}<div><b>startDateTime</b>: {{startDateTime}}</div>{{/startDateTime}}
+                    {{#EndDeviceControl}}<div><b>EndDeviceControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceControl}}&quot;);})'>{{EndDeviceControl}}</a></div>{{/EndDeviceControl}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceAction_collapse" aria-expanded="true" aria-controls="EndDeviceAction_collapse" style="margin-left: 10px;">EndDeviceAction</a></legend>
+                    <div id="EndDeviceAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='command'>command: </label><div class='col-sm-8'><input id='command' class='form-control' type='text'{{#command}} value='{{command}}'{{/command}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='duration'>duration: </label><div class='col-sm-8'><input id='duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='durationIndefinite'>durationIndefinite: </label><div class='col-sm-8'><input id='durationIndefinite' class='form-check-input' type='checkbox'{{#durationIndefinite}} checked{{/durationIndefinite}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startDateTime'>startDateTime: </label><div class='col-sm-8'><input id='startDateTime' class='form-control' type='text'{{#startDateTime}} value='{{startDateTime}}'{{/startDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceControl'>EndDeviceControl: </label><div class='col-sm-8'><input id='EndDeviceControl' class='form-control' type='text'{{#EndDeviceControl}} value='{{EndDeviceControl}}'{{/EndDeviceControl}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Common representation for reading values.
@@ -2239,20 +2692,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BaseReading_collapse" aria-expanded="true" aria-controls="BaseReading_collapse">BaseReading</a>
-<div id="BaseReading_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Meas.MeasurementValue.prototype.template.call (this) +
-`
-{{#reportedDateTime}}<div><b>reportedDateTime</b>: {{reportedDateTime}}</div>{{/reportedDateTime}}
-{{#source}}<div><b>source</b>: {{source}}</div>{{/source}}
-{{#timePeriod}}<div><b>timePeriod</b>: {{timePeriod}}</div>{{/timePeriod}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BaseReading_collapse" aria-expanded="true" aria-controls="BaseReading_collapse" style="margin-left: 10px;">BaseReading</a></legend>
+                    <div id="BaseReading_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.MeasurementValue.prototype.template.call (this) +
+                    `
+                    {{#reportedDateTime}}<div><b>reportedDateTime</b>: {{reportedDateTime}}</div>{{/reportedDateTime}}
+                    {{#source}}<div><b>source</b>: {{source}}</div>{{/source}}
+                    {{#timePeriod}}<div><b>timePeriod</b>: {{timePeriod}}</div>{{/timePeriod}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BaseReading_collapse" aria-expanded="true" aria-controls="BaseReading_collapse" style="margin-left: 10px;">BaseReading</a></legend>
+                    <div id="BaseReading_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.MeasurementValue.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reportedDateTime'>reportedDateTime: </label><div class='col-sm-8'><input id='reportedDateTime' class='form-control' type='text'{{#reportedDateTime}} value='{{reportedDateTime}}'{{/reportedDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='source'>source: </label><div class='col-sm-8'><input id='source' class='form-control' type='text'{{#source}} value='{{source}}'{{/source}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timePeriod'>timePeriod: </label><div class='col-sm-8'><input id='timePeriod' class='form-control' type='text'{{#timePeriod}} value='{{timePeriod}}'{{/timePeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Event detected by a device function associated with the end device.
@@ -2319,121 +2806,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EndDeviceEvent_collapse" aria-expanded="true" aria-controls="EndDeviceEvent_collapse">EndDeviceEvent</a>
-<div id="EndDeviceEvent_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.ActivityRecord.prototype.template.call (this) +
-`
-{{#issuerID}}<div><b>issuerID</b>: {{issuerID}}</div>{{/issuerID}}
-{{#issuerTrackingID}}<div><b>issuerTrackingID</b>: {{issuerTrackingID}}</div>{{/issuerTrackingID}}
-{{#userID}}<div><b>userID</b>: {{userID}}</div>{{/userID}}
-{{#EndDevice}}<div><b>EndDevice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDevice}}&quot;);})'>{{EndDevice}}</a></div>{{/EndDevice}}
-{{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
-{{#MeterReading}}<div><b>MeterReading</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeterReading}}&quot;);})'>{{MeterReading}}</a></div>{{/MeterReading}}
-{{#EndDeviceEventType}}<div><b>EndDeviceEventType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceEventType}}&quot;);})'>{{EndDeviceEventType}}</a></div>{{/EndDeviceEventType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceEvent_collapse" aria-expanded="true" aria-controls="EndDeviceEvent_collapse" style="margin-left: 10px;">EndDeviceEvent</a></legend>
+                    <div id="EndDeviceEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.ActivityRecord.prototype.template.call (this) +
+                    `
+                    {{#issuerID}}<div><b>issuerID</b>: {{issuerID}}</div>{{/issuerID}}
+                    {{#issuerTrackingID}}<div><b>issuerTrackingID</b>: {{issuerTrackingID}}</div>{{/issuerTrackingID}}
+                    {{#userID}}<div><b>userID</b>: {{userID}}</div>{{/userID}}
+                    {{#EndDevice}}<div><b>EndDevice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDevice}}&quot;);})'>{{EndDevice}}</a></div>{{/EndDevice}}
+                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+                    {{#MeterReading}}<div><b>MeterReading</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeterReading}}&quot;);})'>{{MeterReading}}</a></div>{{/MeterReading}}
+                    {{#EndDeviceEventType}}<div><b>EndDeviceEventType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceEventType}}&quot;);})'>{{EndDeviceEventType}}</a></div>{{/EndDeviceEventType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Reason for the reading being taken.
-         *
-         */
-        class ReadingReasonKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ReadingReasonKind;
-                if (null == bucket)
-                   cim_data.ReadingReasonKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ReadingReasonKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ReadingReasonKind";
-                base.parse_element (/<cim:ReadingReasonKind.installation>([\s\S]*?)<\/cim:ReadingReasonKind.installation>/g, obj, "installation", base.to_string, sub, context);
-                base.parse_element (/<cim:ReadingReasonKind.removal>([\s\S]*?)<\/cim:ReadingReasonKind.removal>/g, obj, "removal", base.to_string, sub, context);
-                base.parse_element (/<cim:ReadingReasonKind.inquiry>([\s\S]*?)<\/cim:ReadingReasonKind.inquiry>/g, obj, "inquiry", base.to_string, sub, context);
-                base.parse_element (/<cim:ReadingReasonKind.billing>([\s\S]*?)<\/cim:ReadingReasonKind.billing>/g, obj, "billing", base.to_string, sub, context);
-                base.parse_element (/<cim:ReadingReasonKind.moveIn>([\s\S]*?)<\/cim:ReadingReasonKind.moveIn>/g, obj, "moveIn", base.to_string, sub, context);
-                base.parse_element (/<cim:ReadingReasonKind.moveOut>([\s\S]*?)<\/cim:ReadingReasonKind.moveOut>/g, obj, "moveOut", base.to_string, sub, context);
-                base.parse_element (/<cim:ReadingReasonKind.demandReset>([\s\S]*?)<\/cim:ReadingReasonKind.demandReset>/g, obj, "demandReset", base.to_string, sub, context);
-                base.parse_element (/<cim:ReadingReasonKind.serviceDisconnect>([\s\S]*?)<\/cim:ReadingReasonKind.serviceDisconnect>/g, obj, "serviceDisconnect", base.to_string, sub, context);
-                base.parse_element (/<cim:ReadingReasonKind.serviceConnect>([\s\S]*?)<\/cim:ReadingReasonKind.serviceConnect>/g, obj, "serviceConnect", base.to_string, sub, context);
-                base.parse_element (/<cim:ReadingReasonKind.loadManagement>([\s\S]*?)<\/cim:ReadingReasonKind.loadManagement>/g, obj, "loadManagement", base.to_string, sub, context);
-                base.parse_element (/<cim:ReadingReasonKind.loadResearch>([\s\S]*?)<\/cim:ReadingReasonKind.loadResearch>/g, obj, "loadResearch", base.to_string, sub, context);
-                base.parse_element (/<cim:ReadingReasonKind.other>([\s\S]*?)<\/cim:ReadingReasonKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.ReadingReasonKind;
-                if (null == bucket)
-                   context.parsed.ReadingReasonKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ReadingReasonKind", "installation", base.from_string, fields);
-                base.export_element (obj, "ReadingReasonKind", "removal", base.from_string, fields);
-                base.export_element (obj, "ReadingReasonKind", "inquiry", base.from_string, fields);
-                base.export_element (obj, "ReadingReasonKind", "billing", base.from_string, fields);
-                base.export_element (obj, "ReadingReasonKind", "moveIn", base.from_string, fields);
-                base.export_element (obj, "ReadingReasonKind", "moveOut", base.from_string, fields);
-                base.export_element (obj, "ReadingReasonKind", "demandReset", base.from_string, fields);
-                base.export_element (obj, "ReadingReasonKind", "serviceDisconnect", base.from_string, fields);
-                base.export_element (obj, "ReadingReasonKind", "serviceConnect", base.from_string, fields);
-                base.export_element (obj, "ReadingReasonKind", "loadManagement", base.from_string, fields);
-                base.export_element (obj, "ReadingReasonKind", "loadResearch", base.from_string, fields);
-                base.export_element (obj, "ReadingReasonKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ReadingReasonKind_collapse" aria-expanded="true" aria-controls="ReadingReasonKind_collapse">ReadingReasonKind</a>
-<div id="ReadingReasonKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#installation}}<div><b>installation</b>: {{installation}}</div>{{/installation}}
-{{#removal}}<div><b>removal</b>: {{removal}}</div>{{/removal}}
-{{#inquiry}}<div><b>inquiry</b>: {{inquiry}}</div>{{/inquiry}}
-{{#billing}}<div><b>billing</b>: {{billing}}</div>{{/billing}}
-{{#moveIn}}<div><b>moveIn</b>: {{moveIn}}</div>{{/moveIn}}
-{{#moveOut}}<div><b>moveOut</b>: {{moveOut}}</div>{{/moveOut}}
-{{#demandReset}}<div><b>demandReset</b>: {{demandReset}}</div>{{/demandReset}}
-{{#serviceDisconnect}}<div><b>serviceDisconnect</b>: {{serviceDisconnect}}</div>{{/serviceDisconnect}}
-{{#serviceConnect}}<div><b>serviceConnect</b>: {{serviceConnect}}</div>{{/serviceConnect}}
-{{#loadManagement}}<div><b>loadManagement</b>: {{loadManagement}}</div>{{/loadManagement}}
-{{#loadResearch}}<div><b>loadResearch</b>: {{loadResearch}}</div>{{/loadResearch}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceEvent_collapse" aria-expanded="true" aria-controls="EndDeviceEvent_collapse" style="margin-left: 10px;">EndDeviceEvent</a></legend>
+                    <div id="EndDeviceEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.ActivityRecord.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='issuerID'>issuerID: </label><div class='col-sm-8'><input id='issuerID' class='form-control' type='text'{{#issuerID}} value='{{issuerID}}'{{/issuerID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='issuerTrackingID'>issuerTrackingID: </label><div class='col-sm-8'><input id='issuerTrackingID' class='form-control' type='text'{{#issuerTrackingID}} value='{{issuerTrackingID}}'{{/issuerTrackingID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='userID'>userID: </label><div class='col-sm-8'><input id='userID' class='form-control' type='text'{{#userID}} value='{{userID}}'{{/userID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDevice'>EndDevice: </label><div class='col-sm-8'><input id='EndDevice' class='form-control' type='text'{{#EndDevice}} value='{{EndDevice}}'{{/EndDevice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePoint'>UsagePoint: </label><div class='col-sm-8'><input id='UsagePoint' class='form-control' type='text'{{#UsagePoint}} value='{{UsagePoint}}'{{/UsagePoint}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MeterReading'>MeterReading: </label><div class='col-sm-8'><input id='MeterReading' class='form-control' type='text'{{#MeterReading}} value='{{MeterReading}}'{{/MeterReading}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceEventType'>EndDeviceEventType: </label><div class='col-sm-8'><input id='EndDeviceEventType' class='form-control' type='text'{{#EndDeviceEventType}} value='{{EndDeviceEventType}}'{{/EndDeviceEventType}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Multiplier applied at the usage point.
@@ -2463,7 +2889,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ServiceMultiplier";
-                base.parse_element (/<cim:ServiceMultiplier.kind>([\s\S]*?)<\/cim:ServiceMultiplier.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ServiceMultiplier.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:ServiceMultiplier.value>([\s\S]*?)<\/cim:ServiceMultiplier.value>/g, obj, "value", base.to_float, sub, context);
                 base.parse_attribute (/<cim:ServiceMultiplier.UsagePoint\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoint", sub, context);
 
@@ -2492,19 +2918,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ServiceMultiplier_collapse" aria-expanded="true" aria-controls="ServiceMultiplier_collapse">ServiceMultiplier</a>
-<div id="ServiceMultiplier_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceMultiplier_collapse" aria-expanded="true" aria-controls="ServiceMultiplier_collapse" style="margin-left: 10px;">ServiceMultiplier</a></legend>
+                    <div id="ServiceMultiplier_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ServiceMultiplierKind = []; if (!obj.kind) obj.ServiceMultiplierKind.push ({ id: '', selected: true}); for (var property in ServiceMultiplierKind) obj.ServiceMultiplierKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ServiceMultiplierKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceMultiplier_collapse" aria-expanded="true" aria-controls="ServiceMultiplier_collapse" style="margin-left: 10px;">ServiceMultiplier</a></legend>
+                    <div id="ServiceMultiplier_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ServiceMultiplierKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ServiceMultiplierKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePoint'>UsagePoint: </label><div class='col-sm-8'><input id='UsagePoint' class='form-control' type='text'{{#UsagePoint}} value='{{UsagePoint}}'{{/UsagePoint}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * When present, a scalar conversion that needs to be applied to every IntervalReading.value contained in IntervalBlock.
@@ -2571,22 +3032,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PendingCalculation_collapse" aria-expanded="true" aria-controls="PendingCalculation_collapse">PendingCalculation</a>
-<div id="PendingCalculation_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplyBeforeAdd}}<div><b>multiplyBeforeAdd</b>: {{multiplyBeforeAdd}}</div>{{/multiplyBeforeAdd}}
-{{#offset}}<div><b>offset</b>: {{offset}}</div>{{/offset}}
-{{#scalarDenominator}}<div><b>scalarDenominator</b>: {{scalarDenominator}}</div>{{/scalarDenominator}}
-{{#scalarFloat}}<div><b>scalarFloat</b>: {{scalarFloat}}</div>{{/scalarFloat}}
-{{#scalarNumerator}}<div><b>scalarNumerator</b>: {{scalarNumerator}}</div>{{/scalarNumerator}}
-{{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PendingCalculation_collapse" aria-expanded="true" aria-controls="PendingCalculation_collapse" style="margin-left: 10px;">PendingCalculation</a></legend>
+                    <div id="PendingCalculation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplyBeforeAdd}}<div><b>multiplyBeforeAdd</b>: {{multiplyBeforeAdd}}</div>{{/multiplyBeforeAdd}}
+                    {{#offset}}<div><b>offset</b>: {{offset}}</div>{{/offset}}
+                    {{#scalarDenominator}}<div><b>scalarDenominator</b>: {{scalarDenominator}}</div>{{/scalarDenominator}}
+                    {{#scalarFloat}}<div><b>scalarFloat</b>: {{scalarFloat}}</div>{{/scalarFloat}}
+                    {{#scalarNumerator}}<div><b>scalarNumerator</b>: {{scalarNumerator}}</div>{{/scalarNumerator}}
+                    {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PendingCalculation_collapse" aria-expanded="true" aria-controls="PendingCalculation_collapse" style="margin-left: 10px;">PendingCalculation</a></legend>
+                    <div id="PendingCalculation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='multiplyBeforeAdd'>multiplyBeforeAdd: </label><div class='col-sm-8'><input id='multiplyBeforeAdd' class='form-check-input' type='checkbox'{{#multiplyBeforeAdd}} checked{{/multiplyBeforeAdd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='offset'>offset: </label><div class='col-sm-8'><input id='offset' class='form-control' type='text'{{#offset}} value='{{offset}}'{{/offset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scalarDenominator'>scalarDenominator: </label><div class='col-sm-8'><input id='scalarDenominator' class='form-control' type='text'{{#scalarDenominator}} value='{{scalarDenominator}}'{{/scalarDenominator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scalarFloat'>scalarFloat: </label><div class='col-sm-8'><input id='scalarFloat' class='form-control' type='text'{{#scalarFloat}} value='{{scalarFloat}}'{{/scalarFloat}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scalarNumerator'>scalarNumerator: </label><div class='col-sm-8'><input id='scalarNumerator' class='form-control' type='text'{{#scalarNumerator}} value='{{scalarNumerator}}'{{/scalarNumerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReadingType'>ReadingType: </label><div class='col-sm-8'><input id='ReadingType' class='form-control' type='text'{{#ReadingType}} value='{{ReadingType}}'{{/ReadingType}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Interharmonics are represented as a rational number 'numerator' / 'denominator', and harmonics are represented using the same mechanism and identified by 'denominator'=1.
@@ -2643,18 +3140,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ReadingInterharmonic_collapse" aria-expanded="true" aria-controls="ReadingInterharmonic_collapse">ReadingInterharmonic</a>
-<div id="ReadingInterharmonic_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominator}}<div><b>denominator</b>: {{denominator}}</div>{{/denominator}}
-{{#numerator}}<div><b>numerator</b>: {{numerator}}</div>{{/numerator}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReadingInterharmonic_collapse" aria-expanded="true" aria-controls="ReadingInterharmonic_collapse" style="margin-left: 10px;">ReadingInterharmonic</a></legend>
+                    <div id="ReadingInterharmonic_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominator}}<div><b>denominator</b>: {{denominator}}</div>{{/denominator}}
+                    {{#numerator}}<div><b>numerator</b>: {{numerator}}</div>{{/numerator}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReadingInterharmonic_collapse" aria-expanded="true" aria-controls="ReadingInterharmonic_collapse" style="margin-left: 10px;">ReadingInterharmonic</a></legend>
+                    <div id="ReadingInterharmonic_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominator'>denominator: </label><div class='col-sm-8'><input id='denominator' class='form-control' type='text'{{#denominator}} value='{{denominator}}'{{/denominator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='numerator'>numerator: </label><div class='col-sm-8'><input id='numerator' class='form-control' type='text'{{#numerator}} value='{{numerator}}'{{/numerator}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Detailed description for a control produced by an end device.
@@ -2717,99 +3246,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EndDeviceControlType_collapse" aria-expanded="true" aria-controls="EndDeviceControlType_collapse">EndDeviceControlType</a>
-<div id="EndDeviceControlType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#domain}}<div><b>domain</b>: {{domain}}</div>{{/domain}}
-{{#eventOrAction}}<div><b>eventOrAction</b>: {{eventOrAction}}</div>{{/eventOrAction}}
-{{#subDomain}}<div><b>subDomain</b>: {{subDomain}}</div>{{/subDomain}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceControlType_collapse" aria-expanded="true" aria-controls="EndDeviceControlType_collapse" style="margin-left: 10px;">EndDeviceControlType</a></legend>
+                    <div id="EndDeviceControlType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#domain}}<div><b>domain</b>: {{domain}}</div>{{/domain}}
+                    {{#eventOrAction}}<div><b>eventOrAction</b>: {{eventOrAction}}</div>{{/eventOrAction}}
+                    {{#subDomain}}<div><b>subDomain</b>: {{subDomain}}</div>{{/subDomain}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of randomisation to be applied to control the timing of end device control commands and/or the definition of demand response and load control events.
-         *
-         * Value other than 'none' is typically used to mitigate potential deleterious effects of simultaneous operation of multiple devices.
-         *
-         */
-        class RandomisationKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.RandomisationKind;
-                if (null == bucket)
-                   cim_data.RandomisationKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.RandomisationKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "RandomisationKind";
-                base.parse_element (/<cim:RandomisationKind.start>([\s\S]*?)<\/cim:RandomisationKind.start>/g, obj, "start", base.to_string, sub, context);
-                base.parse_element (/<cim:RandomisationKind.end>([\s\S]*?)<\/cim:RandomisationKind.end>/g, obj, "end", base.to_string, sub, context);
-                base.parse_element (/<cim:RandomisationKind.startAndEnd>([\s\S]*?)<\/cim:RandomisationKind.startAndEnd>/g, obj, "startAndEnd", base.to_string, sub, context);
-                base.parse_element (/<cim:RandomisationKind.default>([\s\S]*?)<\/cim:RandomisationKind.default>/g, obj, "default", base.to_string, sub, context);
-                base.parse_element (/<cim:RandomisationKind.none>([\s\S]*?)<\/cim:RandomisationKind.none>/g, obj, "none", base.to_string, sub, context);
-
-                var bucket = context.parsed.RandomisationKind;
-                if (null == bucket)
-                   context.parsed.RandomisationKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "RandomisationKind", "start", base.from_string, fields);
-                base.export_element (obj, "RandomisationKind", "end", base.from_string, fields);
-                base.export_element (obj, "RandomisationKind", "startAndEnd", base.from_string, fields);
-                base.export_element (obj, "RandomisationKind", "default", base.from_string, fields);
-                base.export_element (obj, "RandomisationKind", "none", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RandomisationKind_collapse" aria-expanded="true" aria-controls="RandomisationKind_collapse">RandomisationKind</a>
-<div id="RandomisationKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
-{{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
-{{#startAndEnd}}<div><b>startAndEnd</b>: {{startAndEnd}}</div>{{/startAndEnd}}
-{{#default}}<div><b>default</b>: {{default}}</div>{{/default}}
-{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceControlType_collapse" aria-expanded="true" aria-controls="EndDeviceControlType_collapse" style="margin-left: 10px;">EndDeviceControlType</a></legend>
+                    <div id="EndDeviceControlType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='domain'>domain: </label><div class='col-sm-8'><input id='domain' class='form-control' type='text'{{#domain}} value='{{domain}}'{{/domain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eventOrAction'>eventOrAction: </label><div class='col-sm-8'><input id='eventOrAction' class='form-control' type='text'{{#eventOrAction}} value='{{eventOrAction}}'{{/eventOrAction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='subDomain'>subDomain: </label><div class='col-sm-8'><input id='subDomain' class='form-control' type='text'{{#subDomain}} value='{{subDomain}}'{{/subDomain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Abstraction for management of group communications within a two-way AMR system or the data for a group of related usage points.
@@ -2866,17 +3350,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#UsagePointGroup_collapse" aria-expanded="true" aria-controls="UsagePointGroup_collapse">UsagePointGroup</a>
-<div id="UsagePointGroup_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UsagePointGroup_collapse" aria-expanded="true" aria-controls="UsagePointGroup_collapse" style="margin-left: 10px;">UsagePointGroup</a></legend>
+                    <div id="UsagePointGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UsagePointGroup_collapse" aria-expanded="true" aria-controls="UsagePointGroup_collapse" style="margin-left: 10px;">UsagePointGroup</a></legend>
+                    <div id="UsagePointGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Work involving meters.
@@ -2935,90 +3450,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MeterServiceWork_collapse" aria-expanded="true" aria-controls="MeterServiceWork_collapse">MeterServiceWork</a>
-<div id="MeterServiceWork_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Work.Work.prototype.template.call (this) +
-`
-{{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);})'>{{Meter}}</a></div>{{/Meter}}
-{{#OldMeter}}<div><b>OldMeter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OldMeter}}&quot;);})'>{{OldMeter}}</a></div>{{/OldMeter}}
-{{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeterServiceWork_collapse" aria-expanded="true" aria-controls="MeterServiceWork_collapse" style="margin-left: 10px;">MeterServiceWork</a></legend>
+                    <div id="MeterServiceWork_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Work.Work.prototype.template.call (this) +
+                    `
+                    {{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);})'>{{Meter}}</a></div>{{/Meter}}
+                    {{#OldMeter}}<div><b>OldMeter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OldMeter}}&quot;);})'>{{OldMeter}}</a></div>{{/OldMeter}}
+                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Transmission mode for end device display controls, applicable to premises area network (PAN) devices.
-         *
-         */
-        class TransmissionModeKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.TransmissionModeKind;
-                if (null == bucket)
-                   cim_data.TransmissionModeKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.TransmissionModeKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "TransmissionModeKind";
-                base.parse_element (/<cim:TransmissionModeKind.normal>([\s\S]*?)<\/cim:TransmissionModeKind.normal>/g, obj, "normal", base.to_string, sub, context);
-                base.parse_element (/<cim:TransmissionModeKind.anonymous>([\s\S]*?)<\/cim:TransmissionModeKind.anonymous>/g, obj, "anonymous", base.to_string, sub, context);
-                base.parse_element (/<cim:TransmissionModeKind.both>([\s\S]*?)<\/cim:TransmissionModeKind.both>/g, obj, "both", base.to_string, sub, context);
-
-                var bucket = context.parsed.TransmissionModeKind;
-                if (null == bucket)
-                   context.parsed.TransmissionModeKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "TransmissionModeKind", "normal", base.from_string, fields);
-                base.export_element (obj, "TransmissionModeKind", "anonymous", base.from_string, fields);
-                base.export_element (obj, "TransmissionModeKind", "both", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransmissionModeKind_collapse" aria-expanded="true" aria-controls="TransmissionModeKind_collapse">TransmissionModeKind</a>
-<div id="TransmissionModeKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#normal}}<div><b>normal</b>: {{normal}}</div>{{/normal}}
-{{#anonymous}}<div><b>anonymous</b>: {{anonymous}}</div>{{/anonymous}}
-{{#both}}<div><b>both</b>: {{both}}</div>{{/both}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeterServiceWork_collapse" aria-expanded="true" aria-controls="MeterServiceWork_collapse" style="margin-left: 10px;">MeterServiceWork</a></legend>
+                    <div id="MeterServiceWork_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Work.Work.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Meter'>Meter: </label><div class='col-sm-8'><input id='Meter' class='form-control' type='text'{{#Meter}} value='{{Meter}}'{{/Meter}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OldMeter'>OldMeter: </label><div class='col-sm-8'><input id='OldMeter' class='form-control' type='text'{{#OldMeter}} value='{{OldMeter}}'{{/OldMeter}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePoint'>UsagePoint: </label><div class='col-sm-8'><input id='UsagePoint' class='form-control' type='text'{{#UsagePoint}} value='{{UsagePoint}}'{{/UsagePoint}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Detailed description for a quality of a reading value, produced by an end device or a system.
@@ -3079,19 +3556,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ReadingQualityType_collapse" aria-expanded="true" aria-controls="ReadingQualityType_collapse">ReadingQualityType</a>
-<div id="ReadingQualityType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#category}}<div><b>category</b>: {{category}}</div>{{/category}}
-{{#subCategory}}<div><b>subCategory</b>: {{subCategory}}</div>{{/subCategory}}
-{{#systemId}}<div><b>systemId</b>: {{systemId}}</div>{{/systemId}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReadingQualityType_collapse" aria-expanded="true" aria-controls="ReadingQualityType_collapse" style="margin-left: 10px;">ReadingQualityType</a></legend>
+                    <div id="ReadingQualityType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#category}}<div><b>category</b>: {{category}}</div>{{/category}}
+                    {{#subCategory}}<div><b>subCategory</b>: {{subCategory}}</div>{{/subCategory}}
+                    {{#systemId}}<div><b>systemId</b>: {{systemId}}</div>{{/systemId}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReadingQualityType_collapse" aria-expanded="true" aria-controls="ReadingQualityType_collapse" style="margin-left: 10px;">ReadingQualityType</a></legend>
+                    <div id="ReadingQualityType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='category'>category: </label><div class='col-sm-8'><input id='category' class='form-control' type='text'{{#category}} value='{{category}}'{{/category}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='subCategory'>subCategory: </label><div class='col-sm-8'><input id='subCategory' class='form-control' type='text'{{#subCategory}} value='{{subCategory}}'{{/subCategory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='systemId'>systemId: </label><div class='col-sm-8'><input id='systemId' class='form-control' type='text'{{#systemId}} value='{{systemId}}'{{/systemId}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Detailed description for an event produced by an end device.
@@ -3154,20 +3664,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EndDeviceEventType_collapse" aria-expanded="true" aria-controls="EndDeviceEventType_collapse">EndDeviceEventType</a>
-<div id="EndDeviceEventType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#domain}}<div><b>domain</b>: {{domain}}</div>{{/domain}}
-{{#eventOrAction}}<div><b>eventOrAction</b>: {{eventOrAction}}</div>{{/eventOrAction}}
-{{#subDomain}}<div><b>subDomain</b>: {{subDomain}}</div>{{/subDomain}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceEventType_collapse" aria-expanded="true" aria-controls="EndDeviceEventType_collapse" style="margin-left: 10px;">EndDeviceEventType</a></legend>
+                    <div id="EndDeviceEventType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#domain}}<div><b>domain</b>: {{domain}}</div>{{/domain}}
+                    {{#eventOrAction}}<div><b>eventOrAction</b>: {{eventOrAction}}</div>{{/eventOrAction}}
+                    {{#subDomain}}<div><b>subDomain</b>: {{subDomain}}</div>{{/subDomain}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceEventType_collapse" aria-expanded="true" aria-controls="EndDeviceEventType_collapse" style="margin-left: 10px;">EndDeviceEventType</a></legend>
+                    <div id="EndDeviceEventType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='domain'>domain: </label><div class='col-sm-8'><input id='domain' class='form-control' type='text'{{#domain}} value='{{domain}}'{{/domain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eventOrAction'>eventOrAction: </label><div class='col-sm-8'><input id='eventOrAction' class='form-control' type='text'{{#eventOrAction}} value='{{eventOrAction}}'{{/eventOrAction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='subDomain'>subDomain: </label><div class='col-sm-8'><input id='subDomain' class='form-control' type='text'{{#subDomain}} value='{{subDomain}}'{{/subDomain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Asset container that performs one or more end device functions.
@@ -3240,114 +3784,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EndDevice_collapse" aria-expanded="true" aria-controls="EndDevice_collapse">EndDevice</a>
-<div id="EndDevice_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetContainer.prototype.template.call (this) +
-`
-{{#amrSystem}}<div><b>amrSystem</b>: {{amrSystem}}</div>{{/amrSystem}}
-{{#installCode}}<div><b>installCode</b>: {{installCode}}</div>{{/installCode}}
-{{#isPan}}<div><b>isPan</b>: {{isPan}}</div>{{/isPan}}
-{{#isVirtual}}<div><b>isVirtual</b>: {{isVirtual}}</div>{{/isVirtual}}
-{{#timeZoneOffset}}<div><b>timeZoneOffset</b>: {{timeZoneOffset}}</div>{{/timeZoneOffset}}
-{{#EndDeviceInfo}}<div><b>EndDeviceInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceInfo}}&quot;);})'>{{EndDeviceInfo}}</a></div>{{/EndDeviceInfo}}
-{{#ServiceLocation}}<div><b>ServiceLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceLocation}}&quot;);})'>{{ServiceLocation}}</a></div>{{/ServiceLocation}}
-{{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
-{{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDevice_collapse" aria-expanded="true" aria-controls="EndDevice_collapse" style="margin-left: 10px;">EndDevice</a></legend>
+                    <div id="EndDevice_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetContainer.prototype.template.call (this) +
+                    `
+                    {{#amrSystem}}<div><b>amrSystem</b>: {{amrSystem}}</div>{{/amrSystem}}
+                    {{#installCode}}<div><b>installCode</b>: {{installCode}}</div>{{/installCode}}
+                    {{#isPan}}<div><b>isPan</b>: {{isPan}}</div>{{/isPan}}
+                    {{#isVirtual}}<div><b>isVirtual</b>: {{isVirtual}}</div>{{/isVirtual}}
+                    {{#timeZoneOffset}}<div><b>timeZoneOffset</b>: {{timeZoneOffset}}</div>{{/timeZoneOffset}}
+                    {{#EndDeviceInfo}}<div><b>EndDeviceInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceInfo}}&quot;);})'>{{EndDeviceInfo}}</a></div>{{/EndDeviceInfo}}
+                    {{#ServiceLocation}}<div><b>ServiceLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceLocation}}&quot;);})'>{{ServiceLocation}}</a></div>{{/ServiceLocation}}
+                    {{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
+                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of communication technology.
-         *
-         */
-        class ComTechnologyKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ComTechnologyKind;
-                if (null == bucket)
-                   cim_data.ComTechnologyKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ComTechnologyKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ComTechnologyKind";
-                base.parse_element (/<cim:ComTechnologyKind.cellular>([\s\S]*?)<\/cim:ComTechnologyKind.cellular>/g, obj, "cellular", base.to_string, sub, context);
-                base.parse_element (/<cim:ComTechnologyKind.ethernet>([\s\S]*?)<\/cim:ComTechnologyKind.ethernet>/g, obj, "ethernet", base.to_string, sub, context);
-                base.parse_element (/<cim:ComTechnologyKind.homePlug>([\s\S]*?)<\/cim:ComTechnologyKind.homePlug>/g, obj, "homePlug", base.to_string, sub, context);
-                base.parse_element (/<cim:ComTechnologyKind.pager>([\s\S]*?)<\/cim:ComTechnologyKind.pager>/g, obj, "pager", base.to_string, sub, context);
-                base.parse_element (/<cim:ComTechnologyKind.phone>([\s\S]*?)<\/cim:ComTechnologyKind.phone>/g, obj, "phone", base.to_string, sub, context);
-                base.parse_element (/<cim:ComTechnologyKind.plc>([\s\S]*?)<\/cim:ComTechnologyKind.plc>/g, obj, "plc", base.to_string, sub, context);
-                base.parse_element (/<cim:ComTechnologyKind.rf>([\s\S]*?)<\/cim:ComTechnologyKind.rf>/g, obj, "rf", base.to_string, sub, context);
-                base.parse_element (/<cim:ComTechnologyKind.rfMesh>([\s\S]*?)<\/cim:ComTechnologyKind.rfMesh>/g, obj, "rfMesh", base.to_string, sub, context);
-                base.parse_element (/<cim:ComTechnologyKind.zigbee>([\s\S]*?)<\/cim:ComTechnologyKind.zigbee>/g, obj, "zigbee", base.to_string, sub, context);
-
-                var bucket = context.parsed.ComTechnologyKind;
-                if (null == bucket)
-                   context.parsed.ComTechnologyKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ComTechnologyKind", "cellular", base.from_string, fields);
-                base.export_element (obj, "ComTechnologyKind", "ethernet", base.from_string, fields);
-                base.export_element (obj, "ComTechnologyKind", "homePlug", base.from_string, fields);
-                base.export_element (obj, "ComTechnologyKind", "pager", base.from_string, fields);
-                base.export_element (obj, "ComTechnologyKind", "phone", base.from_string, fields);
-                base.export_element (obj, "ComTechnologyKind", "plc", base.from_string, fields);
-                base.export_element (obj, "ComTechnologyKind", "rf", base.from_string, fields);
-                base.export_element (obj, "ComTechnologyKind", "rfMesh", base.from_string, fields);
-                base.export_element (obj, "ComTechnologyKind", "zigbee", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ComTechnologyKind_collapse" aria-expanded="true" aria-controls="ComTechnologyKind_collapse">ComTechnologyKind</a>
-<div id="ComTechnologyKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#cellular}}<div><b>cellular</b>: {{cellular}}</div>{{/cellular}}
-{{#ethernet}}<div><b>ethernet</b>: {{ethernet}}</div>{{/ethernet}}
-{{#homePlug}}<div><b>homePlug</b>: {{homePlug}}</div>{{/homePlug}}
-{{#pager}}<div><b>pager</b>: {{pager}}</div>{{/pager}}
-{{#phone}}<div><b>phone</b>: {{phone}}</div>{{/phone}}
-{{#plc}}<div><b>plc</b>: {{plc}}</div>{{/plc}}
-{{#rf}}<div><b>rf</b>: {{rf}}</div>{{/rf}}
-{{#rfMesh}}<div><b>rfMesh</b>: {{rfMesh}}</div>{{/rfMesh}}
-{{#zigbee}}<div><b>zigbee</b>: {{zigbee}}</div>{{/zigbee}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDevice_collapse" aria-expanded="true" aria-controls="EndDevice_collapse" style="margin-left: 10px;">EndDevice</a></legend>
+                    <div id="EndDevice_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetContainer.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amrSystem'>amrSystem: </label><div class='col-sm-8'><input id='amrSystem' class='form-control' type='text'{{#amrSystem}} value='{{amrSystem}}'{{/amrSystem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='installCode'>installCode: </label><div class='col-sm-8'><input id='installCode' class='form-control' type='text'{{#installCode}} value='{{installCode}}'{{/installCode}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isPan'>isPan: </label><div class='col-sm-8'><input id='isPan' class='form-check-input' type='checkbox'{{#isPan}} checked{{/isPan}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isVirtual'>isVirtual: </label><div class='col-sm-8'><input id='isVirtual' class='form-check-input' type='checkbox'{{#isVirtual}} checked{{/isVirtual}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeZoneOffset'>timeZoneOffset: </label><div class='col-sm-8'><input id='timeZoneOffset' class='form-control' type='text'{{#timeZoneOffset}} value='{{timeZoneOffset}}'{{/timeZoneOffset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceInfo'>EndDeviceInfo: </label><div class='col-sm-8'><input id='EndDeviceInfo' class='form-control' type='text'{{#EndDeviceInfo}} value='{{EndDeviceInfo}}'{{/EndDeviceInfo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceLocation'>ServiceLocation: </label><div class='col-sm-8'><input id='ServiceLocation' class='form-control' type='text'{{#ServiceLocation}} value='{{ServiceLocation}}'{{/ServiceLocation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Customer'>Customer: </label><div class='col-sm-8'><input id='Customer' class='form-control' type='text'{{#Customer}} value='{{Customer}}'{{/Customer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePoint'>UsagePoint: </label><div class='col-sm-8'><input id='UsagePoint' class='form-control' type='text'{{#UsagePoint}} value='{{UsagePoint}}'{{/UsagePoint}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Inherent capabilities of an end device (i.e., the functions it supports).
@@ -3436,34 +3930,82 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EndDeviceCapability_collapse" aria-expanded="true" aria-controls="EndDeviceCapability_collapse">EndDeviceCapability</a>
-<div id="EndDeviceCapability_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#autonomousDst}}<div><b>autonomousDst</b>: {{autonomousDst}}</div>{{/autonomousDst}}
-{{#communication}}<div><b>communication</b>: {{communication}}</div>{{/communication}}
-{{#connectDisconnect}}<div><b>connectDisconnect</b>: {{connectDisconnect}}</div>{{/connectDisconnect}}
-{{#demandResponse}}<div><b>demandResponse</b>: {{demandResponse}}</div>{{/demandResponse}}
-{{#electricMetering}}<div><b>electricMetering</b>: {{electricMetering}}</div>{{/electricMetering}}
-{{#gasMetering}}<div><b>gasMetering</b>: {{gasMetering}}</div>{{/gasMetering}}
-{{#metrology}}<div><b>metrology</b>: {{metrology}}</div>{{/metrology}}
-{{#onRequestRead}}<div><b>onRequestRead</b>: {{onRequestRead}}</div>{{/onRequestRead}}
-{{#outageHistory}}<div><b>outageHistory</b>: {{outageHistory}}</div>{{/outageHistory}}
-{{#pressureCompensation}}<div><b>pressureCompensation</b>: {{pressureCompensation}}</div>{{/pressureCompensation}}
-{{#pricingInfo}}<div><b>pricingInfo</b>: {{pricingInfo}}</div>{{/pricingInfo}}
-{{#pulseOutput}}<div><b>pulseOutput</b>: {{pulseOutput}}</div>{{/pulseOutput}}
-{{#relaysProgramming}}<div><b>relaysProgramming</b>: {{relaysProgramming}}</div>{{/relaysProgramming}}
-{{#reverseFlow}}<div><b>reverseFlow</b>: {{reverseFlow}}</div>{{/reverseFlow}}
-{{#superCompressibilityCompensation}}<div><b>superCompressibilityCompensation</b>: {{superCompressibilityCompensation}}</div>{{/superCompressibilityCompensation}}
-{{#temperatureCompensation}}<div><b>temperatureCompensation</b>: {{temperatureCompensation}}</div>{{/temperatureCompensation}}
-{{#textMessage}}<div><b>textMessage</b>: {{textMessage}}</div>{{/textMessage}}
-{{#waterMetering}}<div><b>waterMetering</b>: {{waterMetering}}</div>{{/waterMetering}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceCapability_collapse" aria-expanded="true" aria-controls="EndDeviceCapability_collapse" style="margin-left: 10px;">EndDeviceCapability</a></legend>
+                    <div id="EndDeviceCapability_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#autonomousDst}}<div><b>autonomousDst</b>: {{autonomousDst}}</div>{{/autonomousDst}}
+                    {{#communication}}<div><b>communication</b>: {{communication}}</div>{{/communication}}
+                    {{#connectDisconnect}}<div><b>connectDisconnect</b>: {{connectDisconnect}}</div>{{/connectDisconnect}}
+                    {{#demandResponse}}<div><b>demandResponse</b>: {{demandResponse}}</div>{{/demandResponse}}
+                    {{#electricMetering}}<div><b>electricMetering</b>: {{electricMetering}}</div>{{/electricMetering}}
+                    {{#gasMetering}}<div><b>gasMetering</b>: {{gasMetering}}</div>{{/gasMetering}}
+                    {{#metrology}}<div><b>metrology</b>: {{metrology}}</div>{{/metrology}}
+                    {{#onRequestRead}}<div><b>onRequestRead</b>: {{onRequestRead}}</div>{{/onRequestRead}}
+                    {{#outageHistory}}<div><b>outageHistory</b>: {{outageHistory}}</div>{{/outageHistory}}
+                    {{#pressureCompensation}}<div><b>pressureCompensation</b>: {{pressureCompensation}}</div>{{/pressureCompensation}}
+                    {{#pricingInfo}}<div><b>pricingInfo</b>: {{pricingInfo}}</div>{{/pricingInfo}}
+                    {{#pulseOutput}}<div><b>pulseOutput</b>: {{pulseOutput}}</div>{{/pulseOutput}}
+                    {{#relaysProgramming}}<div><b>relaysProgramming</b>: {{relaysProgramming}}</div>{{/relaysProgramming}}
+                    {{#reverseFlow}}<div><b>reverseFlow</b>: {{reverseFlow}}</div>{{/reverseFlow}}
+                    {{#superCompressibilityCompensation}}<div><b>superCompressibilityCompensation</b>: {{superCompressibilityCompensation}}</div>{{/superCompressibilityCompensation}}
+                    {{#temperatureCompensation}}<div><b>temperatureCompensation</b>: {{temperatureCompensation}}</div>{{/temperatureCompensation}}
+                    {{#textMessage}}<div><b>textMessage</b>: {{textMessage}}</div>{{/textMessage}}
+                    {{#waterMetering}}<div><b>waterMetering</b>: {{waterMetering}}</div>{{/waterMetering}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceCapability_collapse" aria-expanded="true" aria-controls="EndDeviceCapability_collapse" style="margin-left: 10px;">EndDeviceCapability</a></legend>
+                    <div id="EndDeviceCapability_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='autonomousDst'>autonomousDst: </label><div class='col-sm-8'><input id='autonomousDst' class='form-check-input' type='checkbox'{{#autonomousDst}} checked{{/autonomousDst}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='communication'>communication: </label><div class='col-sm-8'><input id='communication' class='form-check-input' type='checkbox'{{#communication}} checked{{/communication}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='connectDisconnect'>connectDisconnect: </label><div class='col-sm-8'><input id='connectDisconnect' class='form-check-input' type='checkbox'{{#connectDisconnect}} checked{{/connectDisconnect}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='demandResponse'>demandResponse: </label><div class='col-sm-8'><input id='demandResponse' class='form-check-input' type='checkbox'{{#demandResponse}} checked{{/demandResponse}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='electricMetering'>electricMetering: </label><div class='col-sm-8'><input id='electricMetering' class='form-check-input' type='checkbox'{{#electricMetering}} checked{{/electricMetering}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='gasMetering'>gasMetering: </label><div class='col-sm-8'><input id='gasMetering' class='form-check-input' type='checkbox'{{#gasMetering}} checked{{/gasMetering}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='metrology'>metrology: </label><div class='col-sm-8'><input id='metrology' class='form-check-input' type='checkbox'{{#metrology}} checked{{/metrology}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='onRequestRead'>onRequestRead: </label><div class='col-sm-8'><input id='onRequestRead' class='form-check-input' type='checkbox'{{#onRequestRead}} checked{{/onRequestRead}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='outageHistory'>outageHistory: </label><div class='col-sm-8'><input id='outageHistory' class='form-check-input' type='checkbox'{{#outageHistory}} checked{{/outageHistory}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='pressureCompensation'>pressureCompensation: </label><div class='col-sm-8'><input id='pressureCompensation' class='form-check-input' type='checkbox'{{#pressureCompensation}} checked{{/pressureCompensation}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='pricingInfo'>pricingInfo: </label><div class='col-sm-8'><input id='pricingInfo' class='form-check-input' type='checkbox'{{#pricingInfo}} checked{{/pricingInfo}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='pulseOutput'>pulseOutput: </label><div class='col-sm-8'><input id='pulseOutput' class='form-check-input' type='checkbox'{{#pulseOutput}} checked{{/pulseOutput}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='relaysProgramming'>relaysProgramming: </label><div class='col-sm-8'><input id='relaysProgramming' class='form-check-input' type='checkbox'{{#relaysProgramming}} checked{{/relaysProgramming}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='reverseFlow'>reverseFlow: </label><div class='col-sm-8'><input id='reverseFlow' class='form-check-input' type='checkbox'{{#reverseFlow}} checked{{/reverseFlow}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='superCompressibilityCompensation'>superCompressibilityCompensation: </label><div class='col-sm-8'><input id='superCompressibilityCompensation' class='form-check-input' type='checkbox'{{#superCompressibilityCompensation}} checked{{/superCompressibilityCompensation}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='temperatureCompensation'>temperatureCompensation: </label><div class='col-sm-8'><input id='temperatureCompensation' class='form-check-input' type='checkbox'{{#temperatureCompensation}} checked{{/temperatureCompensation}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='textMessage'>textMessage: </label><div class='col-sm-8'><input id='textMessage' class='form-check-input' type='checkbox'{{#textMessage}} checked{{/textMessage}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='waterMetering'>waterMetering: </label><div class='col-sm-8'><input id='waterMetering' class='form-check-input' type='checkbox'{{#waterMetering}} checked{{/waterMetering}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * End device data.
@@ -3526,21 +4068,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EndDeviceInfo_collapse" aria-expanded="true" aria-controls="EndDeviceInfo_collapse">EndDeviceInfo</a>
-<div id="EndDeviceInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#capability}}<div><b>capability</b>: {{capability}}</div>{{/capability}}
-{{#isSolidState}}<div><b>isSolidState</b>: {{isSolidState}}</div>{{/isSolidState}}
-{{#phaseCount}}<div><b>phaseCount</b>: {{phaseCount}}</div>{{/phaseCount}}
-{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
-{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceInfo_collapse" aria-expanded="true" aria-controls="EndDeviceInfo_collapse" style="margin-left: 10px;">EndDeviceInfo</a></legend>
+                    <div id="EndDeviceInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#capability}}<div><b>capability</b>: {{capability}}</div>{{/capability}}
+                    {{#isSolidState}}<div><b>isSolidState</b>: {{isSolidState}}</div>{{/isSolidState}}
+                    {{#phaseCount}}<div><b>phaseCount</b>: {{phaseCount}}</div>{{/phaseCount}}
+                    {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+                    {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceInfo_collapse" aria-expanded="true" aria-controls="EndDeviceInfo_collapse" style="margin-left: 10px;">EndDeviceInfo</a></legend>
+                    <div id="EndDeviceInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='capability'>capability: </label><div class='col-sm-8'><input id='capability' class='form-control' type='text'{{#capability}} value='{{capability}}'{{/capability}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isSolidState'>isSolidState: </label><div class='col-sm-8'><input id='isSolidState' class='form-check-input' type='checkbox'{{#isSolidState}} checked{{/isSolidState}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseCount'>phaseCount: </label><div class='col-sm-8'><input id='phaseCount' class='form-control' type='text'{{#phaseCount}} value='{{phaseCount}}'{{/phaseCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Simple end device function distinguished by 'kind'.
@@ -3572,7 +4149,7 @@ define
 
                 obj = EndDeviceFunction.prototype.parse.call (this, context, sub);
                 obj.cls = "SimpleEndDeviceFunction";
-                base.parse_element (/<cim:SimpleEndDeviceFunction.kind>([\s\S]*?)<\/cim:SimpleEndDeviceFunction.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:SimpleEndDeviceFunction.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
 
                 var bucket = context.parsed.SimpleEndDeviceFunction;
                 if (null == bucket)
@@ -3597,17 +4174,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SimpleEndDeviceFunction_collapse" aria-expanded="true" aria-controls="SimpleEndDeviceFunction_collapse">SimpleEndDeviceFunction</a>
-<div id="SimpleEndDeviceFunction_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EndDeviceFunction.prototype.template.call (this) +
-`
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SimpleEndDeviceFunction_collapse" aria-expanded="true" aria-controls="SimpleEndDeviceFunction_collapse" style="margin-left: 10px;">SimpleEndDeviceFunction</a></legend>
+                    <div id="SimpleEndDeviceFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EndDeviceFunction.prototype.template.call (this) +
+                    `
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.EndDeviceFunctionKind = []; if (!obj.kind) obj.EndDeviceFunctionKind.push ({ id: '', selected: true}); for (var property in EndDeviceFunctionKind) obj.EndDeviceFunctionKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.EndDeviceFunctionKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SimpleEndDeviceFunction_collapse" aria-expanded="true" aria-controls="SimpleEndDeviceFunction_collapse" style="margin-left: 10px;">SimpleEndDeviceFunction</a></legend>
+                    <div id="SimpleEndDeviceFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EndDeviceFunction.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#EndDeviceFunctionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EndDeviceFunctionKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Communication function of communication equipment or a device such as a meter.
@@ -3639,8 +4249,8 @@ define
                 obj.cls = "ComFunction";
                 base.parse_element (/<cim:ComFunction.amrAddress>([\s\S]*?)<\/cim:ComFunction.amrAddress>/g, obj, "amrAddress", base.to_string, sub, context);
                 base.parse_element (/<cim:ComFunction.amrRouter>([\s\S]*?)<\/cim:ComFunction.amrRouter>/g, obj, "amrRouter", base.to_string, sub, context);
-                base.parse_element (/<cim:ComFunction.direction>([\s\S]*?)<\/cim:ComFunction.direction>/g, obj, "direction", base.to_string, sub, context);
-                base.parse_element (/<cim:ComFunction.technology>([\s\S]*?)<\/cim:ComFunction.technology>/g, obj, "technology", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ComFunction.direction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "direction", sub, context);
+                base.parse_attribute (/<cim:ComFunction.technology\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "technology", sub, context);
                 base.parse_attribute (/<cim:ComFunction.ComModule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ComModule", sub, context);
 
                 var bucket = context.parsed.ComFunction;
@@ -3670,21 +4280,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ComFunction_collapse" aria-expanded="true" aria-controls="ComFunction_collapse">ComFunction</a>
-<div id="ComFunction_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EndDeviceFunction.prototype.template.call (this) +
-`
-{{#amrAddress}}<div><b>amrAddress</b>: {{amrAddress}}</div>{{/amrAddress}}
-{{#amrRouter}}<div><b>amrRouter</b>: {{amrRouter}}</div>{{/amrRouter}}
-{{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
-{{#technology}}<div><b>technology</b>: {{technology}}</div>{{/technology}}
-{{#ComModule}}<div><b>ComModule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ComModule}}&quot;);})'>{{ComModule}}</a></div>{{/ComModule}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ComFunction_collapse" aria-expanded="true" aria-controls="ComFunction_collapse" style="margin-left: 10px;">ComFunction</a></legend>
+                    <div id="ComFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EndDeviceFunction.prototype.template.call (this) +
+                    `
+                    {{#amrAddress}}<div><b>amrAddress</b>: {{amrAddress}}</div>{{/amrAddress}}
+                    {{#amrRouter}}<div><b>amrRouter</b>: {{amrRouter}}</div>{{/amrRouter}}
+                    {{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
+                    {{#technology}}<div><b>technology</b>: {{technology}}</div>{{/technology}}
+                    {{#ComModule}}<div><b>ComModule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ComModule}}&quot;);})'>{{ComModule}}</a></div>{{/ComModule}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ComDirectionKind = []; if (!obj.direction) obj.ComDirectionKind.push ({ id: '', selected: true}); for (var property in ComDirectionKind) obj.ComDirectionKind.push ({ id: property, selected: obj.direction && obj.direction.endsWith ('.' + property)});
+                obj.ComTechnologyKind = []; if (!obj.technology) obj.ComTechnologyKind.push ({ id: '', selected: true}); for (var property in ComTechnologyKind) obj.ComTechnologyKind.push ({ id: property, selected: obj.technology && obj.technology.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ComDirectionKind;
+                delete obj.ComTechnologyKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ComFunction_collapse" aria-expanded="true" aria-controls="ComFunction_collapse" style="margin-left: 10px;">ComFunction</a></legend>
+                    <div id="ComFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EndDeviceFunction.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amrAddress'>amrAddress: </label><div class='col-sm-8'><input id='amrAddress' class='form-control' type='text'{{#amrAddress}} value='{{amrAddress}}'{{/amrAddress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amrRouter'>amrRouter: </label><div class='col-sm-8'><input id='amrRouter' class='form-control' type='text'{{#amrRouter}} value='{{amrRouter}}'{{/amrRouter}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='direction'>direction: </label><div class='col-sm-8'><select id='direction' class='form-control'>{{#ComDirectionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ComDirectionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='technology'>technology: </label><div class='col-sm-8'><select id='technology' class='form-control'>{{#ComTechnologyKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ComTechnologyKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ComModule'>ComModule: </label><div class='col-sm-8'><input id='ComModule' class='form-control' type='text'{{#ComModule}} value='{{ComModule}}'{{/ComModule}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * PAN action/command used to issue the displaying of text messages on PAN devices.
@@ -3717,7 +4366,7 @@ define
                 base.parse_element (/<cim:PanDisplay.confirmationRequired>([\s\S]*?)<\/cim:PanDisplay.confirmationRequired>/g, obj, "confirmationRequired", base.to_boolean, sub, context);
                 base.parse_element (/<cim:PanDisplay.priority>([\s\S]*?)<\/cim:PanDisplay.priority>/g, obj, "priority", base.to_string, sub, context);
                 base.parse_element (/<cim:PanDisplay.textMessage>([\s\S]*?)<\/cim:PanDisplay.textMessage>/g, obj, "textMessage", base.to_string, sub, context);
-                base.parse_element (/<cim:PanDisplay.transmissionMode>([\s\S]*?)<\/cim:PanDisplay.transmissionMode>/g, obj, "transmissionMode", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PanDisplay.transmissionMode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "transmissionMode", sub, context);
 
                 var bucket = context.parsed.PanDisplay;
                 if (null == bucket)
@@ -3745,20 +4394,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PanDisplay_collapse" aria-expanded="true" aria-controls="PanDisplay_collapse">PanDisplay</a>
-<div id="PanDisplay_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EndDeviceAction.prototype.template.call (this) +
-`
-{{#confirmationRequired}}<div><b>confirmationRequired</b>: {{confirmationRequired}}</div>{{/confirmationRequired}}
-{{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
-{{#textMessage}}<div><b>textMessage</b>: {{textMessage}}</div>{{/textMessage}}
-{{#transmissionMode}}<div><b>transmissionMode</b>: {{transmissionMode}}</div>{{/transmissionMode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PanDisplay_collapse" aria-expanded="true" aria-controls="PanDisplay_collapse" style="margin-left: 10px;">PanDisplay</a></legend>
+                    <div id="PanDisplay_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EndDeviceAction.prototype.template.call (this) +
+                    `
+                    {{#confirmationRequired}}<div><b>confirmationRequired</b>: {{confirmationRequired}}</div>{{/confirmationRequired}}
+                    {{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+                    {{#textMessage}}<div><b>textMessage</b>: {{textMessage}}</div>{{/textMessage}}
+                    {{#transmissionMode}}<div><b>transmissionMode</b>: {{transmissionMode}}</div>{{/transmissionMode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.TransmissionModeKind = []; if (!obj.transmissionMode) obj.TransmissionModeKind.push ({ id: '', selected: true}); for (var property in TransmissionModeKind) obj.TransmissionModeKind.push ({ id: property, selected: obj.transmissionMode && obj.transmissionMode.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.TransmissionModeKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PanDisplay_collapse" aria-expanded="true" aria-controls="PanDisplay_collapse" style="margin-left: 10px;">PanDisplay</a></legend>
+                    <div id="PanDisplay_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EndDeviceAction.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='confirmationRequired'>confirmationRequired: </label><div class='col-sm-8'><input id='confirmationRequired' class='form-check-input' type='checkbox'{{#confirmationRequired}} checked{{/confirmationRequired}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priority'>priority: </label><div class='col-sm-8'><input id='priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='textMessage'>textMessage: </label><div class='col-sm-8'><input id='textMessage' class='form-control' type='text'{{#textMessage}} value='{{textMessage}}'{{/textMessage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transmissionMode'>transmissionMode: </label><div class='col-sm-8'><select id='transmissionMode' class='form-control'>{{#TransmissionModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransmissionModeKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * PAN control used to issue action/command to PAN devices during a demand response/load control event.
@@ -3835,28 +4520,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PanDemandResponse_collapse" aria-expanded="true" aria-controls="PanDemandResponse_collapse">PanDemandResponse</a>
-<div id="PanDemandResponse_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EndDeviceAction.prototype.template.call (this) +
-`
-{{#appliance}}<div><b>appliance</b>: {{appliance}}</div>{{/appliance}}
-{{#avgLoadAdjustment}}<div><b>avgLoadAdjustment</b>: {{avgLoadAdjustment}}</div>{{/avgLoadAdjustment}}
-{{#cancelControlMode}}<div><b>cancelControlMode</b>: {{cancelControlMode}}</div>{{/cancelControlMode}}
-{{#cancelDateTime}}<div><b>cancelDateTime</b>: {{cancelDateTime}}</div>{{/cancelDateTime}}
-{{#cancelNow}}<div><b>cancelNow</b>: {{cancelNow}}</div>{{/cancelNow}}
-{{#coolingOffset}}<div><b>coolingOffset</b>: {{coolingOffset}}</div>{{/coolingOffset}}
-{{#coolingSetpoint}}<div><b>coolingSetpoint</b>: {{coolingSetpoint}}</div>{{/coolingSetpoint}}
-{{#criticalityLevel}}<div><b>criticalityLevel</b>: {{criticalityLevel}}</div>{{/criticalityLevel}}
-{{#dutyCycle}}<div><b>dutyCycle</b>: {{dutyCycle}}</div>{{/dutyCycle}}
-{{#enrollmentGroup}}<div><b>enrollmentGroup</b>: {{enrollmentGroup}}</div>{{/enrollmentGroup}}
-{{#heatingOffset}}<div><b>heatingOffset</b>: {{heatingOffset}}</div>{{/heatingOffset}}
-{{#heatingSetpoint}}<div><b>heatingSetpoint</b>: {{heatingSetpoint}}</div>{{/heatingSetpoint}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PanDemandResponse_collapse" aria-expanded="true" aria-controls="PanDemandResponse_collapse" style="margin-left: 10px;">PanDemandResponse</a></legend>
+                    <div id="PanDemandResponse_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EndDeviceAction.prototype.template.call (this) +
+                    `
+                    {{#appliance}}<div><b>appliance</b>: {{appliance}}</div>{{/appliance}}
+                    {{#avgLoadAdjustment}}<div><b>avgLoadAdjustment</b>: {{avgLoadAdjustment}}</div>{{/avgLoadAdjustment}}
+                    {{#cancelControlMode}}<div><b>cancelControlMode</b>: {{cancelControlMode}}</div>{{/cancelControlMode}}
+                    {{#cancelDateTime}}<div><b>cancelDateTime</b>: {{cancelDateTime}}</div>{{/cancelDateTime}}
+                    {{#cancelNow}}<div><b>cancelNow</b>: {{cancelNow}}</div>{{/cancelNow}}
+                    {{#coolingOffset}}<div><b>coolingOffset</b>: {{coolingOffset}}</div>{{/coolingOffset}}
+                    {{#coolingSetpoint}}<div><b>coolingSetpoint</b>: {{coolingSetpoint}}</div>{{/coolingSetpoint}}
+                    {{#criticalityLevel}}<div><b>criticalityLevel</b>: {{criticalityLevel}}</div>{{/criticalityLevel}}
+                    {{#dutyCycle}}<div><b>dutyCycle</b>: {{dutyCycle}}</div>{{/dutyCycle}}
+                    {{#enrollmentGroup}}<div><b>enrollmentGroup</b>: {{enrollmentGroup}}</div>{{/enrollmentGroup}}
+                    {{#heatingOffset}}<div><b>heatingOffset</b>: {{heatingOffset}}</div>{{/heatingOffset}}
+                    {{#heatingSetpoint}}<div><b>heatingSetpoint</b>: {{heatingSetpoint}}</div>{{/heatingSetpoint}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PanDemandResponse_collapse" aria-expanded="true" aria-controls="PanDemandResponse_collapse" style="margin-left: 10px;">PanDemandResponse</a></legend>
+                    <div id="PanDemandResponse_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EndDeviceAction.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='appliance'>appliance: </label><div class='col-sm-8'><input id='appliance' class='form-control' type='text'{{#appliance}} value='{{appliance}}'{{/appliance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='avgLoadAdjustment'>avgLoadAdjustment: </label><div class='col-sm-8'><input id='avgLoadAdjustment' class='form-control' type='text'{{#avgLoadAdjustment}} value='{{avgLoadAdjustment}}'{{/avgLoadAdjustment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cancelControlMode'>cancelControlMode: </label><div class='col-sm-8'><input id='cancelControlMode' class='form-control' type='text'{{#cancelControlMode}} value='{{cancelControlMode}}'{{/cancelControlMode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cancelDateTime'>cancelDateTime: </label><div class='col-sm-8'><input id='cancelDateTime' class='form-control' type='text'{{#cancelDateTime}} value='{{cancelDateTime}}'{{/cancelDateTime}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='cancelNow'>cancelNow: </label><div class='col-sm-8'><input id='cancelNow' class='form-check-input' type='checkbox'{{#cancelNow}} checked{{/cancelNow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coolingOffset'>coolingOffset: </label><div class='col-sm-8'><input id='coolingOffset' class='form-control' type='text'{{#coolingOffset}} value='{{coolingOffset}}'{{/coolingOffset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coolingSetpoint'>coolingSetpoint: </label><div class='col-sm-8'><input id='coolingSetpoint' class='form-control' type='text'{{#coolingSetpoint}} value='{{coolingSetpoint}}'{{/coolingSetpoint}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='criticalityLevel'>criticalityLevel: </label><div class='col-sm-8'><input id='criticalityLevel' class='form-control' type='text'{{#criticalityLevel}} value='{{criticalityLevel}}'{{/criticalityLevel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dutyCycle'>dutyCycle: </label><div class='col-sm-8'><input id='dutyCycle' class='form-control' type='text'{{#dutyCycle}} value='{{dutyCycle}}'{{/dutyCycle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='enrollmentGroup'>enrollmentGroup: </label><div class='col-sm-8'><input id='enrollmentGroup' class='form-control' type='text'{{#enrollmentGroup}} value='{{enrollmentGroup}}'{{/enrollmentGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='heatingOffset'>heatingOffset: </label><div class='col-sm-8'><input id='heatingOffset' class='form-control' type='text'{{#heatingOffset}} value='{{heatingOffset}}'{{/heatingOffset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='heatingSetpoint'>heatingSetpoint: </label><div class='col-sm-8'><input id='heatingSetpoint' class='form-control' type='text'{{#heatingSetpoint}} value='{{heatingSetpoint}}'{{/heatingSetpoint}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * PAN action/command used to issue pricing information to a PAN device.
@@ -3911,17 +4638,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PanPricing_collapse" aria-expanded="true" aria-controls="PanPricing_collapse">PanPricing</a>
-<div id="PanPricing_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EndDeviceAction.prototype.template.call (this) +
-`
-{{#providerID}}<div><b>providerID</b>: {{providerID}}</div>{{/providerID}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PanPricing_collapse" aria-expanded="true" aria-controls="PanPricing_collapse" style="margin-left: 10px;">PanPricing</a></legend>
+                    <div id="PanPricing_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EndDeviceAction.prototype.template.call (this) +
+                    `
+                    {{#providerID}}<div><b>providerID</b>: {{providerID}}</div>{{/providerID}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PanPricing_collapse" aria-expanded="true" aria-controls="PanPricing_collapse" style="margin-left: 10px;">PanPricing</a></legend>
+                    <div id="PanPricing_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EndDeviceAction.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='providerID'>providerID: </label><div class='col-sm-8'><input id='providerID' class='form-control' type='text'{{#providerID}} value='{{providerID}}'{{/providerID}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Data captured at regular intervals of time.
@@ -3976,16 +4734,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#IntervalReading_collapse" aria-expanded="true" aria-controls="IntervalReading_collapse">IntervalReading</a>
-<div id="IntervalReading_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + BaseReading.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IntervalReading_collapse" aria-expanded="true" aria-controls="IntervalReading_collapse" style="margin-left: 10px;">IntervalReading</a></legend>
+                    <div id="IntervalReading_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + BaseReading.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IntervalReading_collapse" aria-expanded="true" aria-controls="IntervalReading_collapse" style="margin-left: 10px;">IntervalReading</a></legend>
+                    <div id="IntervalReading_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + BaseReading.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Specific value measured by a meter or other asset, or calculated by a system.
@@ -4017,7 +4805,7 @@ define
 
                 obj = BaseReading.prototype.parse.call (this, context, sub);
                 obj.cls = "Reading";
-                base.parse_element (/<cim:Reading.reason>([\s\S]*?)<\/cim:Reading.reason>/g, obj, "reason", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Reading.reason\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "reason", sub, context);
                 base.parse_attribute (/<cim:Reading.ReadingType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReadingType", sub, context);
 
                 var bucket = context.parsed.Reading;
@@ -4044,18 +4832,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Reading_collapse" aria-expanded="true" aria-controls="Reading_collapse">Reading</a>
-<div id="Reading_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + BaseReading.prototype.template.call (this) +
-`
-{{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
-{{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Reading_collapse" aria-expanded="true" aria-controls="Reading_collapse" style="margin-left: 10px;">Reading</a></legend>
+                    <div id="Reading_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + BaseReading.prototype.template.call (this) +
+                    `
+                    {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
+                    {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ReadingReasonKind = []; if (!obj.reason) obj.ReadingReasonKind.push ({ id: '', selected: true}); for (var property in ReadingReasonKind) obj.ReadingReasonKind.push ({ id: property, selected: obj.reason && obj.reason.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ReadingReasonKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Reading_collapse" aria-expanded="true" aria-controls="Reading_collapse" style="margin-left: 10px;">Reading</a></legend>
+                    <div id="Reading_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + BaseReading.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reason'>reason: </label><div class='col-sm-8'><select id='reason' class='form-control'>{{#ReadingReasonKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ReadingReasonKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReadingType'>ReadingType: </label><div class='col-sm-8'><input id='ReadingType' class='form-control' type='text'{{#ReadingType}} value='{{ReadingType}}'{{/ReadingType}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Physical asset that performs the metering role of the usage point.
@@ -4112,17 +4934,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Meter_collapse" aria-expanded="true" aria-controls="Meter_collapse">Meter</a>
-<div id="Meter_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EndDevice.prototype.template.call (this) +
-`
-{{#formNumber}}<div><b>formNumber</b>: {{formNumber}}</div>{{/formNumber}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Meter_collapse" aria-expanded="true" aria-controls="Meter_collapse" style="margin-left: 10px;">Meter</a></legend>
+                    <div id="Meter_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EndDevice.prototype.template.call (this) +
+                    `
+                    {{#formNumber}}<div><b>formNumber</b>: {{formNumber}}</div>{{/formNumber}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Meter_collapse" aria-expanded="true" aria-controls="Meter_collapse" style="margin-left: 10px;">Meter</a></legend>
+                    <div id="Meter_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EndDevice.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='formNumber'>formNumber: </label><div class='col-sm-8'><input id='formNumber' class='form-control' type='text'{{#formNumber}} value='{{formNumber}}'{{/formNumber}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
@@ -4132,20 +4985,13 @@ define
                 PanDisplay: PanDisplay,
                 ReadingInterharmonic: ReadingInterharmonic,
                 ComFunction: ComFunction,
-                ServiceMultiplierKind: ServiceMultiplierKind,
                 EndDeviceTiming: EndDeviceTiming,
                 SimpleEndDeviceFunction: SimpleEndDeviceFunction,
                 EndDeviceControlType: EndDeviceControlType,
-                UsagePointConnectedKind: UsagePointConnectedKind,
                 MetrologyRequirement: MetrologyRequirement,
-                ReadingReasonKind: ReadingReasonKind,
-                ComTechnologyKind: ComTechnologyKind,
                 ReadingQuality: ReadingQuality,
                 UsagePoint: UsagePoint,
-                AmiBillingReadyKind: AmiBillingReadyKind,
                 MeterMultiplier: MeterMultiplier,
-                TransmissionModeKind: TransmissionModeKind,
-                ComDirectionKind: ComDirectionKind,
                 EndDeviceFunction: EndDeviceFunction,
                 RationalNumber: RationalNumber,
                 BaseReading: BaseReading,
@@ -4170,12 +5016,9 @@ define
                 EndDeviceAction: EndDeviceAction,
                 PendingCalculation: PendingCalculation,
                 Meter: Meter,
-                RandomisationKind: RandomisationKind,
                 EndDeviceEventType: EndDeviceEventType,
                 PanPricing: PanPricing,
                 MeterReading: MeterReading,
-                EndDeviceFunctionKind: EndDeviceFunctionKind,
-                MeterMultiplierKind: MeterMultiplierKind,
                 Reading: Reading,
                 MeterServiceWork: MeterServiceWork
             }

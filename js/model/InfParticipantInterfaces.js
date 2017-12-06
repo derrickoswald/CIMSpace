@@ -59,17 +59,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WheelingReferenceSchedule_collapse" aria-expanded="true" aria-controls="WheelingReferenceSchedule_collapse">WheelingReferenceSchedule</a>
-<div id="WheelingReferenceSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ParticipantInterfaces.BidHourlySchedule.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WheelingReferenceSchedule_collapse" aria-expanded="true" aria-controls="WheelingReferenceSchedule_collapse" style="margin-left: 10px;">WheelingReferenceSchedule</a></legend>
+                    <div id="WheelingReferenceSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ParticipantInterfaces.BidHourlySchedule.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WheelingReferenceSchedule_collapse" aria-expanded="true" aria-controls="WheelingReferenceSchedule_collapse" style="margin-left: 10px;">WheelingReferenceSchedule</a></legend>
+                    <div id="WheelingReferenceSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ParticipantInterfaces.BidHourlySchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

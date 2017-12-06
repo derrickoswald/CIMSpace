@@ -67,19 +67,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TemperatureDependentLimitPoint_collapse" aria-expanded="true" aria-controls="TemperatureDependentLimitPoint_collapse">TemperatureDependentLimitPoint</a>
-<div id="TemperatureDependentLimitPoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#limitPercent}}<div><b>limitPercent</b>: {{limitPercent}}</div>{{/limitPercent}}
-{{#temperature}}<div><b>temperature</b>: {{temperature}}</div>{{/temperature}}
-{{#TemperatureDependentLimitTable}}<div><b>TemperatureDependentLimitTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TemperatureDependentLimitTable}}&quot;);})'>{{TemperatureDependentLimitTable}}</a></div>{{/TemperatureDependentLimitTable}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TemperatureDependentLimitPoint_collapse" aria-expanded="true" aria-controls="TemperatureDependentLimitPoint_collapse" style="margin-left: 10px;">TemperatureDependentLimitPoint</a></legend>
+                    <div id="TemperatureDependentLimitPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#limitPercent}}<div><b>limitPercent</b>: {{limitPercent}}</div>{{/limitPercent}}
+                    {{#temperature}}<div><b>temperature</b>: {{temperature}}</div>{{/temperature}}
+                    {{#TemperatureDependentLimitTable}}<div><b>TemperatureDependentLimitTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TemperatureDependentLimitTable}}&quot;);})'>{{TemperatureDependentLimitTable}}</a></div>{{/TemperatureDependentLimitTable}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TemperatureDependentLimitPoint_collapse" aria-expanded="true" aria-controls="TemperatureDependentLimitPoint_collapse" style="margin-left: 10px;">TemperatureDependentLimitPoint</a></legend>
+                    <div id="TemperatureDependentLimitPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='limitPercent'>limitPercent: </label><div class='col-sm-8'><input id='limitPercent' class='form-control' type='text'{{#limitPercent}} value='{{limitPercent}}'{{/limitPercent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='temperature'>temperature: </label><div class='col-sm-8'><input id='temperature' class='form-control' type='text'{{#temperature}} value='{{temperature}}'{{/temperature}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TemperatureDependentLimitTable'>TemperatureDependentLimitTable: </label><div class='col-sm-8'><input id='TemperatureDependentLimitTable' class='form-control' type='text'{{#TemperatureDependentLimitTable}} value='{{TemperatureDependentLimitTable}}'{{/TemperatureDependentLimitTable}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * One operational limit type scales values of another operational limit type when under the same operational limit set.
@@ -140,19 +173,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OperatonalLimitTypeScaling_collapse" aria-expanded="true" aria-controls="OperatonalLimitTypeScaling_collapse">OperatonalLimitTypeScaling</a>
-<div id="OperatonalLimitTypeScaling_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#scalingPercent}}<div><b>scalingPercent</b>: {{scalingPercent}}</div>{{/scalingPercent}}
-{{#SourceOperationalLimitType}}<div><b>SourceOperationalLimitType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SourceOperationalLimitType}}&quot;);})'>{{SourceOperationalLimitType}}</a></div>{{/SourceOperationalLimitType}}
-{{#TargetOperationalLimit}}<div><b>TargetOperationalLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetOperationalLimit}}&quot;);})'>{{TargetOperationalLimit}}</a></div>{{/TargetOperationalLimit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperatonalLimitTypeScaling_collapse" aria-expanded="true" aria-controls="OperatonalLimitTypeScaling_collapse" style="margin-left: 10px;">OperatonalLimitTypeScaling</a></legend>
+                    <div id="OperatonalLimitTypeScaling_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#scalingPercent}}<div><b>scalingPercent</b>: {{scalingPercent}}</div>{{/scalingPercent}}
+                    {{#SourceOperationalLimitType}}<div><b>SourceOperationalLimitType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SourceOperationalLimitType}}&quot;);})'>{{SourceOperationalLimitType}}</a></div>{{/SourceOperationalLimitType}}
+                    {{#TargetOperationalLimit}}<div><b>TargetOperationalLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetOperationalLimit}}&quot;);})'>{{TargetOperationalLimit}}</a></div>{{/TargetOperationalLimit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperatonalLimitTypeScaling_collapse" aria-expanded="true" aria-controls="OperatonalLimitTypeScaling_collapse" style="margin-left: 10px;">OperatonalLimitTypeScaling</a></legend>
+                    <div id="OperatonalLimitTypeScaling_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scalingPercent'>scalingPercent: </label><div class='col-sm-8'><input id='scalingPercent' class='form-control' type='text'{{#scalingPercent}} value='{{scalingPercent}}'{{/scalingPercent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SourceOperationalLimitType'>SourceOperationalLimitType: </label><div class='col-sm-8'><input id='SourceOperationalLimitType' class='form-control' type='text'{{#SourceOperationalLimitType}} value='{{SourceOperationalLimitType}}'{{/SourceOperationalLimitType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TargetOperationalLimit'>TargetOperationalLimit: </label><div class='col-sm-8'><input id='TargetOperationalLimit' class='form-control' type='text'{{#TargetOperationalLimit}} value='{{TargetOperationalLimit}}'{{/TargetOperationalLimit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A limit that is applicable during a scheduled time period.
@@ -209,18 +275,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ScheduledLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledLimitValue_collapse">ScheduledLimitValue</a>
-<div id="ScheduledLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#Season}}<div><b>Season</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Season}}&quot;);})'>{{Season}}</a></div>{{/Season}}
-{{#ScheduledLimitDependency}}<div><b>ScheduledLimitDependency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ScheduledLimitDependency}}&quot;);})'>{{ScheduledLimitDependency}}</a></div>{{/ScheduledLimitDependency}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledLimitValue_collapse" style="margin-left: 10px;">ScheduledLimitValue</a></legend>
+                    <div id="ScheduledLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#Season}}<div><b>Season</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Season}}&quot;);})'>{{Season}}</a></div>{{/Season}}
+                    {{#ScheduledLimitDependency}}<div><b>ScheduledLimitDependency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ScheduledLimitDependency}}&quot;);})'>{{ScheduledLimitDependency}}</a></div>{{/ScheduledLimitDependency}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledLimitValue_collapse" style="margin-left: 10px;">ScheduledLimitValue</a></legend>
+                    <div id="ScheduledLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Season'>Season: </label><div class='col-sm-8'><input id='Season' class='form-control' type='text'{{#Season}} value='{{Season}}'{{/Season}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ScheduledLimitDependency'>ScheduledLimitDependency: </label><div class='col-sm-8'><input id='ScheduledLimitDependency' class='form-control' type='text'{{#ScheduledLimitDependency}} value='{{ScheduledLimitDependency}}'{{/ScheduledLimitDependency}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This represents a source of ambient temperature.
@@ -273,16 +371,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WeatherStation_collapse" aria-expanded="true" aria-controls="WeatherStation_collapse">WeatherStation</a>
-<div id="WeatherStation_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WeatherStation_collapse" aria-expanded="true" aria-controls="WeatherStation_collapse" style="margin-left: 10px;">WeatherStation</a></legend>
+                    <div id="WeatherStation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WeatherStation_collapse" aria-expanded="true" aria-controls="WeatherStation_collapse" style="margin-left: 10px;">WeatherStation</a></legend>
+                    <div id="WeatherStation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A limit calculation model used to compute an operational limit based on external input such as temperature.
@@ -339,17 +467,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#LimitDependency_collapse" aria-expanded="true" aria-controls="LimitDependency_collapse">LimitDependency</a>
-<div id="LimitDependency_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LimitDependency_collapse" aria-expanded="true" aria-controls="LimitDependency_collapse" style="margin-left: 10px;">LimitDependency</a></legend>
+                    <div id="LimitDependency_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LimitDependency_collapse" aria-expanded="true" aria-controls="LimitDependency_collapse" style="margin-left: 10px;">LimitDependency</a></legend>
+                    <div id="LimitDependency_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipment'>Equipment: </label><div class='col-sm-8'><input id='Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This represents one instance of an equipment that contributes to the calculation of an operational limit.
@@ -406,18 +565,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EquipmentLimitSeriesComponent_collapse" aria-expanded="true" aria-controls="EquipmentLimitSeriesComponent_collapse">EquipmentLimitSeriesComponent</a>
-<div id="EquipmentLimitSeriesComponent_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#SeriesEquipmentDependentLimit}}<div><b>SeriesEquipmentDependentLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SeriesEquipmentDependentLimit}}&quot;);})'>{{SeriesEquipmentDependentLimit}}</a></div>{{/SeriesEquipmentDependentLimit}}
-{{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquipmentLimitSeriesComponent_collapse" aria-expanded="true" aria-controls="EquipmentLimitSeriesComponent_collapse" style="margin-left: 10px;">EquipmentLimitSeriesComponent</a></legend>
+                    <div id="EquipmentLimitSeriesComponent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#SeriesEquipmentDependentLimit}}<div><b>SeriesEquipmentDependentLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SeriesEquipmentDependentLimit}}&quot;);})'>{{SeriesEquipmentDependentLimit}}</a></div>{{/SeriesEquipmentDependentLimit}}
+                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquipmentLimitSeriesComponent_collapse" aria-expanded="true" aria-controls="EquipmentLimitSeriesComponent_collapse" style="margin-left: 10px;">EquipmentLimitSeriesComponent</a></legend>
+                    <div id="EquipmentLimitSeriesComponent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SeriesEquipmentDependentLimit'>SeriesEquipmentDependentLimit: </label><div class='col-sm-8'><input id='SeriesEquipmentDependentLimit' class='form-control' type='text'{{#SeriesEquipmentDependentLimit}} value='{{SeriesEquipmentDependentLimit}}'{{/SeriesEquipmentDependentLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipment'>Equipment: </label><div class='col-sm-8'><input id='Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A current limit that is scheduled.
@@ -472,17 +663,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ScheduledCurrentLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledCurrentLimitValue_collapse">ScheduledCurrentLimitValue</a>
-<div id="ScheduledCurrentLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ScheduledLimitValue.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledCurrentLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledCurrentLimitValue_collapse" style="margin-left: 10px;">ScheduledCurrentLimitValue</a></legend>
+                    <div id="ScheduledCurrentLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ScheduledLimitValue.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledCurrentLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledCurrentLimitValue_collapse" style="margin-left: 10px;">ScheduledCurrentLimitValue</a></legend>
+                    <div id="ScheduledCurrentLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ScheduledLimitValue.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A voltage limit value for a scheduled time.
@@ -537,17 +759,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ScheduledVoltageLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledVoltageLimitValue_collapse">ScheduledVoltageLimitValue</a>
-<div id="ScheduledVoltageLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ScheduledLimitValue.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledVoltageLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledVoltageLimitValue_collapse" style="margin-left: 10px;">ScheduledVoltageLimitValue</a></legend>
+                    <div id="ScheduledVoltageLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ScheduledLimitValue.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledVoltageLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledVoltageLimitValue_collapse" style="margin-left: 10px;">ScheduledVoltageLimitValue</a></legend>
+                    <div id="ScheduledVoltageLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ScheduledLimitValue.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class ScheduledActivePowerLimitValue extends ScheduledLimitValue
         {
@@ -598,17 +851,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ScheduledActivePowerLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledActivePowerLimitValue_collapse">ScheduledActivePowerLimitValue</a>
-<div id="ScheduledActivePowerLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ScheduledLimitValue.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledActivePowerLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledActivePowerLimitValue_collapse" style="margin-left: 10px;">ScheduledActivePowerLimitValue</a></legend>
+                    <div id="ScheduledActivePowerLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ScheduledLimitValue.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledActivePowerLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledActivePowerLimitValue_collapse" style="margin-left: 10px;">ScheduledActivePowerLimitValue</a></legend>
+                    <div id="ScheduledActivePowerLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ScheduledLimitValue.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A time scheduled value for apparent power limit.
@@ -663,17 +947,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ScheduledApparentPowerLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledApparentPowerLimitValue_collapse">ScheduledApparentPowerLimitValue</a>
-<div id="ScheduledApparentPowerLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ScheduledLimitValue.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledApparentPowerLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledApparentPowerLimitValue_collapse" style="margin-left: 10px;">ScheduledApparentPowerLimitValue</a></legend>
+                    <div id="ScheduledApparentPowerLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ScheduledLimitValue.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledApparentPowerLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledApparentPowerLimitValue_collapse" style="margin-left: 10px;">ScheduledApparentPowerLimitValue</a></legend>
+                    <div id="ScheduledApparentPowerLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ScheduledLimitValue.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Specifies an operational  limit is calculated by scaling another operational limit.
@@ -730,18 +1045,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#LimitScalingLimit_collapse" aria-expanded="true" aria-controls="LimitScalingLimit_collapse">LimitScalingLimit</a>
-<div id="LimitScalingLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + LimitDependency.prototype.template.call (this) +
-`
-{{#limitScalingPercent}}<div><b>limitScalingPercent</b>: {{limitScalingPercent}}</div>{{/limitScalingPercent}}
-{{#SourceOperationalLimit}}<div><b>SourceOperationalLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SourceOperationalLimit}}&quot;);})'>{{SourceOperationalLimit}}</a></div>{{/SourceOperationalLimit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LimitScalingLimit_collapse" aria-expanded="true" aria-controls="LimitScalingLimit_collapse" style="margin-left: 10px;">LimitScalingLimit</a></legend>
+                    <div id="LimitScalingLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LimitDependency.prototype.template.call (this) +
+                    `
+                    {{#limitScalingPercent}}<div><b>limitScalingPercent</b>: {{limitScalingPercent}}</div>{{/limitScalingPercent}}
+                    {{#SourceOperationalLimit}}<div><b>SourceOperationalLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SourceOperationalLimit}}&quot;);})'>{{SourceOperationalLimit}}</a></div>{{/SourceOperationalLimit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LimitScalingLimit_collapse" aria-expanded="true" aria-controls="LimitScalingLimit_collapse" style="margin-left: 10px;">LimitScalingLimit</a></legend>
+                    <div id="LimitScalingLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LimitDependency.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='limitScalingPercent'>limitScalingPercent: </label><div class='col-sm-8'><input id='limitScalingPercent' class='form-control' type='text'{{#limitScalingPercent}} value='{{limitScalingPercent}}'{{/limitScalingPercent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SourceOperationalLimit'>SourceOperationalLimit: </label><div class='col-sm-8'><input id='SourceOperationalLimit' class='form-control' type='text'{{#SourceOperationalLimit}} value='{{SourceOperationalLimit}}'{{/SourceOperationalLimit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This is a environmental based limit dependency model for calculating operational limits.
@@ -794,16 +1141,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EnvironmentalDependentLimit_collapse" aria-expanded="true" aria-controls="EnvironmentalDependentLimit_collapse">EnvironmentalDependentLimit</a>
-<div id="EnvironmentalDependentLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + LimitDependency.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnvironmentalDependentLimit_collapse" aria-expanded="true" aria-controls="EnvironmentalDependentLimit_collapse" style="margin-left: 10px;">EnvironmentalDependentLimit</a></legend>
+                    <div id="EnvironmentalDependentLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LimitDependency.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnvironmentalDependentLimit_collapse" aria-expanded="true" aria-controls="EnvironmentalDependentLimit_collapse" style="margin-left: 10px;">EnvironmentalDependentLimit</a></legend>
+                    <div id="EnvironmentalDependentLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LimitDependency.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class ScheduledLimitDependency extends LimitDependency
         {
@@ -852,16 +1229,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ScheduledLimitDependency_collapse" aria-expanded="true" aria-controls="ScheduledLimitDependency_collapse">ScheduledLimitDependency</a>
-<div id="ScheduledLimitDependency_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + LimitDependency.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledLimitDependency_collapse" aria-expanded="true" aria-controls="ScheduledLimitDependency_collapse" style="margin-left: 10px;">ScheduledLimitDependency</a></legend>
+                    <div id="ScheduledLimitDependency_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LimitDependency.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledLimitDependency_collapse" aria-expanded="true" aria-controls="ScheduledLimitDependency_collapse" style="margin-left: 10px;">ScheduledLimitDependency</a></legend>
+                    <div id="ScheduledLimitDependency_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LimitDependency.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Limit based on most restrictive series equipment limit.
@@ -916,16 +1323,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SeriesEquipmentDependentLimit_collapse" aria-expanded="true" aria-controls="SeriesEquipmentDependentLimit_collapse">SeriesEquipmentDependentLimit</a>
-<div id="SeriesEquipmentDependentLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + LimitDependency.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SeriesEquipmentDependentLimit_collapse" aria-expanded="true" aria-controls="SeriesEquipmentDependentLimit_collapse" style="margin-left: 10px;">SeriesEquipmentDependentLimit</a></legend>
+                    <div id="SeriesEquipmentDependentLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LimitDependency.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SeriesEquipmentDependentLimit_collapse" aria-expanded="true" aria-controls="SeriesEquipmentDependentLimit_collapse" style="margin-left: 10px;">SeriesEquipmentDependentLimit</a></legend>
+                    <div id="SeriesEquipmentDependentLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LimitDependency.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This describes the coefficients of a polynomial function that has temperature as input and calculates limit values as output.
@@ -988,21 +1425,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TemperaturePolynomialLimit_collapse" aria-expanded="true" aria-controls="TemperaturePolynomialLimit_collapse">TemperaturePolynomialLimit</a>
-<div id="TemperaturePolynomialLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EnvironmentalDependentLimit.prototype.template.call (this) +
-`
-{{#coefficient0}}<div><b>coefficient0</b>: {{coefficient0}}</div>{{/coefficient0}}
-{{#coefficient1}}<div><b>coefficient1</b>: {{coefficient1}}</div>{{/coefficient1}}
-{{#coefficient2}}<div><b>coefficient2</b>: {{coefficient2}}</div>{{/coefficient2}}
-{{#coefficient3}}<div><b>coefficient3</b>: {{coefficient3}}</div>{{/coefficient3}}
-{{#coefficient4}}<div><b>coefficient4</b>: {{coefficient4}}</div>{{/coefficient4}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TemperaturePolynomialLimit_collapse" aria-expanded="true" aria-controls="TemperaturePolynomialLimit_collapse" style="margin-left: 10px;">TemperaturePolynomialLimit</a></legend>
+                    <div id="TemperaturePolynomialLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EnvironmentalDependentLimit.prototype.template.call (this) +
+                    `
+                    {{#coefficient0}}<div><b>coefficient0</b>: {{coefficient0}}</div>{{/coefficient0}}
+                    {{#coefficient1}}<div><b>coefficient1</b>: {{coefficient1}}</div>{{/coefficient1}}
+                    {{#coefficient2}}<div><b>coefficient2</b>: {{coefficient2}}</div>{{/coefficient2}}
+                    {{#coefficient3}}<div><b>coefficient3</b>: {{coefficient3}}</div>{{/coefficient3}}
+                    {{#coefficient4}}<div><b>coefficient4</b>: {{coefficient4}}</div>{{/coefficient4}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TemperaturePolynomialLimit_collapse" aria-expanded="true" aria-controls="TemperaturePolynomialLimit_collapse" style="margin-left: 10px;">TemperaturePolynomialLimit</a></legend>
+                    <div id="TemperaturePolynomialLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EnvironmentalDependentLimit.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coefficient0'>coefficient0: </label><div class='col-sm-8'><input id='coefficient0' class='form-control' type='text'{{#coefficient0}} value='{{coefficient0}}'{{/coefficient0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coefficient1'>coefficient1: </label><div class='col-sm-8'><input id='coefficient1' class='form-control' type='text'{{#coefficient1}} value='{{coefficient1}}'{{/coefficient1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coefficient2'>coefficient2: </label><div class='col-sm-8'><input id='coefficient2' class='form-control' type='text'{{#coefficient2}} value='{{coefficient2}}'{{/coefficient2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coefficient3'>coefficient3: </label><div class='col-sm-8'><input id='coefficient3' class='form-control' type='text'{{#coefficient3}} value='{{coefficient3}}'{{/coefficient3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coefficient4'>coefficient4: </label><div class='col-sm-8'><input id='coefficient4' class='form-control' type='text'{{#coefficient4}} value='{{coefficient4}}'{{/coefficient4}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This is a table lookup that provides limit values corresponding to a temperature input.
@@ -1055,16 +1527,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TemperatureDependentLimitTable_collapse" aria-expanded="true" aria-controls="TemperatureDependentLimitTable_collapse">TemperatureDependentLimitTable</a>
-<div id="TemperatureDependentLimitTable_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EnvironmentalDependentLimit.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TemperatureDependentLimitTable_collapse" aria-expanded="true" aria-controls="TemperatureDependentLimitTable_collapse" style="margin-left: 10px;">TemperatureDependentLimitTable</a></legend>
+                    <div id="TemperatureDependentLimitTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EnvironmentalDependentLimit.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TemperatureDependentLimitTable_collapse" aria-expanded="true" aria-controls="TemperatureDependentLimitTable_collapse" style="margin-left: 10px;">TemperatureDependentLimitTable</a></legend>
+                    <div id="TemperatureDependentLimitTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EnvironmentalDependentLimit.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

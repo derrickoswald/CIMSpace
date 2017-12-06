@@ -17,6 +17,24 @@ body {
     cursor: crosshair;
 }
 
+.form-control {
+    padding: 4px, 8px;
+}
+
+.col-form-label {
+  padding-top: calc(0.375rem + 1px);
+  padding-bottom: calc(0.375rem + 1px);
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.col-form-legend {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
 /* allow div in dropdown menus, not just a */
 .dropdown-menu > li > div
 {

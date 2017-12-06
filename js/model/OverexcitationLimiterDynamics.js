@@ -63,17 +63,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OverexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="OverexcitationLimiterDynamics_collapse">OverexcitationLimiterDynamics</a>
-<div id="OverexcitationLimiterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
-`
-{{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="OverexcitationLimiterDynamics_collapse" style="margin-left: 10px;">OverexcitationLimiterDynamics</a></legend>
+                    <div id="OverexcitationLimiterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+                    `
+                    {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="OverexcitationLimiterDynamics_collapse" style="margin-left: 10px;">OverexcitationLimiterDynamics</a></legend>
+                    <div id="OverexcitationLimiterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Different from LimIEEEOEL, LimOEL2 has a fixed pickup threshold and reduces the excitation set-point by mean of non-windup integral regulator.
@@ -136,20 +167,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OverexcLim2_collapse" aria-expanded="true" aria-controls="OverexcLim2_collapse">OverexcLim2</a>
-<div id="OverexcLim2_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + OverexcitationLimiterDynamics.prototype.template.call (this) +
-`
-{{#ifdlim}}<div><b>ifdlim</b>: {{ifdlim}}</div>{{/ifdlim}}
-{{#koi}}<div><b>koi</b>: {{koi}}</div>{{/koi}}
-{{#voimax}}<div><b>voimax</b>: {{voimax}}</div>{{/voimax}}
-{{#voimin}}<div><b>voimin</b>: {{voimin}}</div>{{/voimin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLim2_collapse" aria-expanded="true" aria-controls="OverexcLim2_collapse" style="margin-left: 10px;">OverexcLim2</a></legend>
+                    <div id="OverexcLim2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OverexcitationLimiterDynamics.prototype.template.call (this) +
+                    `
+                    {{#ifdlim}}<div><b>ifdlim</b>: {{ifdlim}}</div>{{/ifdlim}}
+                    {{#koi}}<div><b>koi</b>: {{koi}}</div>{{/koi}}
+                    {{#voimax}}<div><b>voimax</b>: {{voimax}}</div>{{/voimax}}
+                    {{#voimin}}<div><b>voimin</b>: {{voimin}}</div>{{/voimin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLim2_collapse" aria-expanded="true" aria-controls="OverexcLim2_collapse" style="margin-left: 10px;">OverexcLim2</a></legend>
+                    <div id="OverexcLim2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OverexcitationLimiterDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ifdlim'>ifdlim: </label><div class='col-sm-8'><input id='ifdlim' class='form-control' type='text'{{#ifdlim}} value='{{ifdlim}}'{{/ifdlim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='koi'>koi: </label><div class='col-sm-8'><input id='koi' class='form-control' type='text'{{#koi}} value='{{koi}}'{{/koi}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='voimax'>voimax: </label><div class='col-sm-8'><input id='voimax' class='form-control' type='text'{{#voimax}} value='{{voimax}}'{{/voimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='voimin'>voimin: </label><div class='col-sm-8'><input id='voimin' class='form-control' type='text'{{#voimin}} value='{{voimin}}'{{/voimin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The over excitation limiter model is intended to represent the significant features of OELs necessary for some large-scale system studies.
@@ -216,22 +281,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OverexcLimIEEE_collapse" aria-expanded="true" aria-controls="OverexcLimIEEE_collapse">OverexcLimIEEE</a>
-<div id="OverexcLimIEEE_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + OverexcitationLimiterDynamics.prototype.template.call (this) +
-`
-{{#hyst}}<div><b>hyst</b>: {{hyst}}</div>{{/hyst}}
-{{#ifdlim}}<div><b>ifdlim</b>: {{ifdlim}}</div>{{/ifdlim}}
-{{#ifdmax}}<div><b>ifdmax</b>: {{ifdmax}}</div>{{/ifdmax}}
-{{#itfpu}}<div><b>itfpu</b>: {{itfpu}}</div>{{/itfpu}}
-{{#kcd}}<div><b>kcd</b>: {{kcd}}</div>{{/kcd}}
-{{#kramp}}<div><b>kramp</b>: {{kramp}}</div>{{/kramp}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLimIEEE_collapse" aria-expanded="true" aria-controls="OverexcLimIEEE_collapse" style="margin-left: 10px;">OverexcLimIEEE</a></legend>
+                    <div id="OverexcLimIEEE_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OverexcitationLimiterDynamics.prototype.template.call (this) +
+                    `
+                    {{#hyst}}<div><b>hyst</b>: {{hyst}}</div>{{/hyst}}
+                    {{#ifdlim}}<div><b>ifdlim</b>: {{ifdlim}}</div>{{/ifdlim}}
+                    {{#ifdmax}}<div><b>ifdmax</b>: {{ifdmax}}</div>{{/ifdmax}}
+                    {{#itfpu}}<div><b>itfpu</b>: {{itfpu}}</div>{{/itfpu}}
+                    {{#kcd}}<div><b>kcd</b>: {{kcd}}</div>{{/kcd}}
+                    {{#kramp}}<div><b>kramp</b>: {{kramp}}</div>{{/kramp}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLimIEEE_collapse" aria-expanded="true" aria-controls="OverexcLimIEEE_collapse" style="margin-left: 10px;">OverexcLimIEEE</a></legend>
+                    <div id="OverexcLimIEEE_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OverexcitationLimiterDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hyst'>hyst: </label><div class='col-sm-8'><input id='hyst' class='form-control' type='text'{{#hyst}} value='{{hyst}}'{{/hyst}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ifdlim'>ifdlim: </label><div class='col-sm-8'><input id='ifdlim' class='form-control' type='text'{{#ifdlim}} value='{{ifdlim}}'{{/ifdlim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ifdmax'>ifdmax: </label><div class='col-sm-8'><input id='ifdmax' class='form-control' type='text'{{#ifdmax}} value='{{ifdmax}}'{{/ifdmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='itfpu'>itfpu: </label><div class='col-sm-8'><input id='itfpu' class='form-control' type='text'{{#itfpu}} value='{{itfpu}}'{{/itfpu}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kcd'>kcd: </label><div class='col-sm-8'><input id='kcd' class='form-control' type='text'{{#kcd}} value='{{kcd}}'{{/kcd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kramp'>kramp: </label><div class='col-sm-8'><input id='kramp' class='form-control' type='text'{{#kramp}} value='{{kramp}}'{{/kramp}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Field voltage over excitation limiter.
@@ -304,26 +405,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OverexcLimX1_collapse" aria-expanded="true" aria-controls="OverexcLimX1_collapse">OverexcLimX1</a>
-<div id="OverexcLimX1_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + OverexcitationLimiterDynamics.prototype.template.call (this) +
-`
-{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
-{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
-{{#efd3}}<div><b>efd3</b>: {{efd3}}</div>{{/efd3}}
-{{#efddes}}<div><b>efddes</b>: {{efddes}}</div>{{/efddes}}
-{{#efdrated}}<div><b>efdrated</b>: {{efdrated}}</div>{{/efdrated}}
-{{#kmx}}<div><b>kmx</b>: {{kmx}}</div>{{/kmx}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#vlow}}<div><b>vlow</b>: {{vlow}}</div>{{/vlow}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLimX1_collapse" aria-expanded="true" aria-controls="OverexcLimX1_collapse" style="margin-left: 10px;">OverexcLimX1</a></legend>
+                    <div id="OverexcLimX1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OverexcitationLimiterDynamics.prototype.template.call (this) +
+                    `
+                    {{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+                    {{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+                    {{#efd3}}<div><b>efd3</b>: {{efd3}}</div>{{/efd3}}
+                    {{#efddes}}<div><b>efddes</b>: {{efddes}}</div>{{/efddes}}
+                    {{#efdrated}}<div><b>efdrated</b>: {{efdrated}}</div>{{/efdrated}}
+                    {{#kmx}}<div><b>kmx</b>: {{kmx}}</div>{{/kmx}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#vlow}}<div><b>vlow</b>: {{vlow}}</div>{{/vlow}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLimX1_collapse" aria-expanded="true" aria-controls="OverexcLimX1_collapse" style="margin-left: 10px;">OverexcLimX1</a></legend>
+                    <div id="OverexcLimX1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OverexcitationLimiterDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd1'>efd1: </label><div class='col-sm-8'><input id='efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd2'>efd2: </label><div class='col-sm-8'><input id='efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd3'>efd3: </label><div class='col-sm-8'><input id='efd3' class='form-control' type='text'{{#efd3}} value='{{efd3}}'{{/efd3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efddes'>efddes: </label><div class='col-sm-8'><input id='efddes' class='form-control' type='text'{{#efddes}} value='{{efddes}}'{{/efddes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdrated'>efdrated: </label><div class='col-sm-8'><input id='efdrated' class='form-control' type='text'{{#efdrated}} value='{{efdrated}}'{{/efdrated}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kmx'>kmx: </label><div class='col-sm-8'><input id='kmx' class='form-control' type='text'{{#kmx}} value='{{kmx}}'{{/kmx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vlow'>vlow: </label><div class='col-sm-8'><input id='vlow' class='form-control' type='text'{{#vlow}} value='{{vlow}}'{{/vlow}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Field Voltage or Current overexcitation limiter designed to protect the generator field of an AC machine with automatic excitation control from overheating due to prolonged overexcitation.
@@ -398,27 +539,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OverexcLimX2_collapse" aria-expanded="true" aria-controls="OverexcLimX2_collapse">OverexcLimX2</a>
-<div id="OverexcLimX2_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + OverexcitationLimiterDynamics.prototype.template.call (this) +
-`
-{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
-{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
-{{#efd3}}<div><b>efd3</b>: {{efd3}}</div>{{/efd3}}
-{{#efddes}}<div><b>efddes</b>: {{efddes}}</div>{{/efddes}}
-{{#efdrated}}<div><b>efdrated</b>: {{efdrated}}</div>{{/efdrated}}
-{{#kmx}}<div><b>kmx</b>: {{kmx}}</div>{{/kmx}}
-{{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#vlow}}<div><b>vlow</b>: {{vlow}}</div>{{/vlow}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLimX2_collapse" aria-expanded="true" aria-controls="OverexcLimX2_collapse" style="margin-left: 10px;">OverexcLimX2</a></legend>
+                    <div id="OverexcLimX2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OverexcitationLimiterDynamics.prototype.template.call (this) +
+                    `
+                    {{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+                    {{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+                    {{#efd3}}<div><b>efd3</b>: {{efd3}}</div>{{/efd3}}
+                    {{#efddes}}<div><b>efddes</b>: {{efddes}}</div>{{/efddes}}
+                    {{#efdrated}}<div><b>efdrated</b>: {{efdrated}}</div>{{/efdrated}}
+                    {{#kmx}}<div><b>kmx</b>: {{kmx}}</div>{{/kmx}}
+                    {{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#vlow}}<div><b>vlow</b>: {{vlow}}</div>{{/vlow}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLimX2_collapse" aria-expanded="true" aria-controls="OverexcLimX2_collapse" style="margin-left: 10px;">OverexcLimX2</a></legend>
+                    <div id="OverexcLimX2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OverexcitationLimiterDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd1'>efd1: </label><div class='col-sm-8'><input id='efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd2'>efd2: </label><div class='col-sm-8'><input id='efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd3'>efd3: </label><div class='col-sm-8'><input id='efd3' class='form-control' type='text'{{#efd3}} value='{{efd3}}'{{/efd3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efddes'>efddes: </label><div class='col-sm-8'><input id='efddes' class='form-control' type='text'{{#efddes}} value='{{efddes}}'{{/efddes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdrated'>efdrated: </label><div class='col-sm-8'><input id='efdrated' class='form-control' type='text'{{#efdrated}} value='{{efdrated}}'{{/efdrated}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kmx'>kmx: </label><div class='col-sm-8'><input id='kmx' class='form-control' type='text'{{#kmx}} value='{{kmx}}'{{/kmx}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='m'>m: </label><div class='col-sm-8'><input id='m' class='form-check-input' type='checkbox'{{#m}} checked{{/m}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vlow'>vlow: </label><div class='col-sm-8'><input id='vlow' class='form-control' type='text'{{#vlow}} value='{{vlow}}'{{/vlow}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

@@ -67,19 +67,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PFVArControllerType1Dynamics_collapse" aria-expanded="true" aria-controls="PFVArControllerType1Dynamics_collapse">PFVArControllerType1Dynamics</a>
-<div id="PFVArControllerType1Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
-`
-{{#VoltageAdjusterDynamics}}<div><b>VoltageAdjusterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageAdjusterDynamics}}&quot;);})'>{{VoltageAdjusterDynamics}}</a></div>{{/VoltageAdjusterDynamics}}
-{{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
-{{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArControllerType1Dynamics_collapse" aria-expanded="true" aria-controls="PFVArControllerType1Dynamics_collapse" style="margin-left: 10px;">PFVArControllerType1Dynamics</a></legend>
+                    <div id="PFVArControllerType1Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+                    `
+                    {{#VoltageAdjusterDynamics}}<div><b>VoltageAdjusterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageAdjusterDynamics}}&quot;);})'>{{VoltageAdjusterDynamics}}</a></div>{{/VoltageAdjusterDynamics}}
+                    {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+                    {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArControllerType1Dynamics_collapse" aria-expanded="true" aria-controls="PFVArControllerType1Dynamics_collapse" style="margin-left: 10px;">PFVArControllerType1Dynamics</a></legend>
+                    <div id="PFVArControllerType1Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VoltageAdjusterDynamics'>VoltageAdjusterDynamics: </label><div class='col-sm-8'><input id='VoltageAdjusterDynamics' class='form-control' type='text'{{#VoltageAdjusterDynamics}} value='{{VoltageAdjusterDynamics}}'{{/VoltageAdjusterDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE VAR Controller Type 1 which operates by moving the voltage reference directly.
@@ -146,22 +179,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PFVArType1IEEEVArController_collapse" aria-expanded="true" aria-controls="PFVArType1IEEEVArController_collapse">PFVArType1IEEEVArController</a>
-<div id="PFVArType1IEEEVArController_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PFVArControllerType1Dynamics.prototype.template.call (this) +
-`
-{{#tvarc}}<div><b>tvarc</b>: {{tvarc}}</div>{{/tvarc}}
-{{#vvar}}<div><b>vvar</b>: {{vvar}}</div>{{/vvar}}
-{{#vvarcbw}}<div><b>vvarcbw</b>: {{vvarcbw}}</div>{{/vvarcbw}}
-{{#vvarref}}<div><b>vvarref</b>: {{vvarref}}</div>{{/vvarref}}
-{{#vvtmax}}<div><b>vvtmax</b>: {{vvtmax}}</div>{{/vvtmax}}
-{{#vvtmin}}<div><b>vvtmin</b>: {{vvtmin}}</div>{{/vvtmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType1IEEEVArController_collapse" aria-expanded="true" aria-controls="PFVArType1IEEEVArController_collapse" style="margin-left: 10px;">PFVArType1IEEEVArController</a></legend>
+                    <div id="PFVArType1IEEEVArController_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PFVArControllerType1Dynamics.prototype.template.call (this) +
+                    `
+                    {{#tvarc}}<div><b>tvarc</b>: {{tvarc}}</div>{{/tvarc}}
+                    {{#vvar}}<div><b>vvar</b>: {{vvar}}</div>{{/vvar}}
+                    {{#vvarcbw}}<div><b>vvarcbw</b>: {{vvarcbw}}</div>{{/vvarcbw}}
+                    {{#vvarref}}<div><b>vvarref</b>: {{vvarref}}</div>{{/vvarref}}
+                    {{#vvtmax}}<div><b>vvtmax</b>: {{vvtmax}}</div>{{/vvtmax}}
+                    {{#vvtmin}}<div><b>vvtmin</b>: {{vvtmin}}</div>{{/vvtmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType1IEEEVArController_collapse" aria-expanded="true" aria-controls="PFVArType1IEEEVArController_collapse" style="margin-left: 10px;">PFVArType1IEEEVArController</a></legend>
+                    <div id="PFVArType1IEEEVArController_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PFVArControllerType1Dynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tvarc'>tvarc: </label><div class='col-sm-8'><input id='tvarc' class='form-control' type='text'{{#tvarc}} value='{{tvarc}}'{{/tvarc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vvar'>vvar: </label><div class='col-sm-8'><input id='vvar' class='form-control' type='text'{{#vvar}} value='{{vvar}}'{{/vvar}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vvarcbw'>vvarcbw: </label><div class='col-sm-8'><input id='vvarcbw' class='form-control' type='text'{{#vvarcbw}} value='{{vvarcbw}}'{{/vvarcbw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vvarref'>vvarref: </label><div class='col-sm-8'><input id='vvarref' class='form-control' type='text'{{#vvarref}} value='{{vvarref}}'{{/vvarref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vvtmax'>vvtmax: </label><div class='col-sm-8'><input id='vvtmax' class='form-control' type='text'{{#vvtmax}} value='{{vvtmax}}'{{/vvtmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vvtmin'>vvtmin: </label><div class='col-sm-8'><input id='vvtmin' class='form-control' type='text'{{#vvtmin}} value='{{vvtmin}}'{{/vvtmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE PF Controller Type 1 which operates by moving the voltage reference directly.
@@ -232,24 +301,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PFVArType1IEEEPFController_collapse" aria-expanded="true" aria-controls="PFVArType1IEEEPFController_collapse">PFVArType1IEEEPFController</a>
-<div id="PFVArType1IEEEPFController_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PFVArControllerType1Dynamics.prototype.template.call (this) +
-`
-{{#ovex}}<div><b>ovex</b>: {{ovex}}</div>{{/ovex}}
-{{#tpfc}}<div><b>tpfc</b>: {{tpfc}}</div>{{/tpfc}}
-{{#vitmin}}<div><b>vitmin</b>: {{vitmin}}</div>{{/vitmin}}
-{{#vpf}}<div><b>vpf</b>: {{vpf}}</div>{{/vpf}}
-{{#vpfcbw}}<div><b>vpfcbw</b>: {{vpfcbw}}</div>{{/vpfcbw}}
-{{#vpfref}}<div><b>vpfref</b>: {{vpfref}}</div>{{/vpfref}}
-{{#vvtmax}}<div><b>vvtmax</b>: {{vvtmax}}</div>{{/vvtmax}}
-{{#vvtmin}}<div><b>vvtmin</b>: {{vvtmin}}</div>{{/vvtmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType1IEEEPFController_collapse" aria-expanded="true" aria-controls="PFVArType1IEEEPFController_collapse" style="margin-left: 10px;">PFVArType1IEEEPFController</a></legend>
+                    <div id="PFVArType1IEEEPFController_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PFVArControllerType1Dynamics.prototype.template.call (this) +
+                    `
+                    {{#ovex}}<div><b>ovex</b>: {{ovex}}</div>{{/ovex}}
+                    {{#tpfc}}<div><b>tpfc</b>: {{tpfc}}</div>{{/tpfc}}
+                    {{#vitmin}}<div><b>vitmin</b>: {{vitmin}}</div>{{/vitmin}}
+                    {{#vpf}}<div><b>vpf</b>: {{vpf}}</div>{{/vpf}}
+                    {{#vpfcbw}}<div><b>vpfcbw</b>: {{vpfcbw}}</div>{{/vpfcbw}}
+                    {{#vpfref}}<div><b>vpfref</b>: {{vpfref}}</div>{{/vpfref}}
+                    {{#vvtmax}}<div><b>vvtmax</b>: {{vvtmax}}</div>{{/vvtmax}}
+                    {{#vvtmin}}<div><b>vvtmin</b>: {{vvtmin}}</div>{{/vvtmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType1IEEEPFController_collapse" aria-expanded="true" aria-controls="PFVArType1IEEEPFController_collapse" style="margin-left: 10px;">PFVArType1IEEEPFController</a></legend>
+                    <div id="PFVArType1IEEEPFController_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PFVArControllerType1Dynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='ovex'>ovex: </label><div class='col-sm-8'><input id='ovex' class='form-check-input' type='checkbox'{{#ovex}} checked{{/ovex}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpfc'>tpfc: </label><div class='col-sm-8'><input id='tpfc' class='form-control' type='text'{{#tpfc}} value='{{tpfc}}'{{/tpfc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vitmin'>vitmin: </label><div class='col-sm-8'><input id='vitmin' class='form-control' type='text'{{#vitmin}} value='{{vitmin}}'{{/vitmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vpf'>vpf: </label><div class='col-sm-8'><input id='vpf' class='form-control' type='text'{{#vpf}} value='{{vpf}}'{{/vpf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vpfcbw'>vpfcbw: </label><div class='col-sm-8'><input id='vpfcbw' class='form-control' type='text'{{#vpfcbw}} value='{{vpfcbw}}'{{/vpfcbw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vpfref'>vpfref: </label><div class='col-sm-8'><input id='vpfref' class='form-control' type='text'{{#vpfref}} value='{{vpfref}}'{{/vpfref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vvtmax'>vvtmax: </label><div class='col-sm-8'><input id='vvtmax' class='form-control' type='text'{{#vvtmax}} value='{{vvtmax}}'{{/vvtmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vvtmin'>vvtmin: </label><div class='col-sm-8'><input id='vvtmin' class='form-control' type='text'{{#vvtmin}} value='{{vvtmin}}'{{/vvtmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

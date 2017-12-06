@@ -9,6 +9,19 @@ define
     {
 
         /**
+         * Kind of skill level.
+         *
+         */
+        var SkillLevelKind =
+        {
+            master: "master",
+            standard: "standard",
+            apprentice: "apprentice",
+            other: "other"
+        };
+        Object.freeze (SkillLevelKind);
+
+        /**
          * Organisation that is a commercial bank, agency, or other institution that offers a similar service.
          *
          */
@@ -63,92 +76,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Bank_collapse" aria-expanded="true" aria-controls="Bank_collapse">Bank</a>
-<div id="Bank_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.OrganisationRole.prototype.template.call (this) +
-`
-{{#bic}}<div><b>bic</b>: {{bic}}</div>{{/bic}}
-{{#iban}}<div><b>iban</b>: {{iban}}</div>{{/iban}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Bank_collapse" aria-expanded="true" aria-controls="Bank_collapse" style="margin-left: 10px;">Bank</a></legend>
+                    <div id="Bank_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    {{#bic}}<div><b>bic</b>: {{bic}}</div>{{/bic}}
+                    {{#iban}}<div><b>iban</b>: {{iban}}</div>{{/iban}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of skill level.
-         *
-         */
-        class SkillLevelKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.SkillLevelKind;
-                if (null == bucket)
-                   cim_data.SkillLevelKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.SkillLevelKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "SkillLevelKind";
-                base.parse_element (/<cim:SkillLevelKind.master>([\s\S]*?)<\/cim:SkillLevelKind.master>/g, obj, "master", base.to_string, sub, context);
-                base.parse_element (/<cim:SkillLevelKind.standard>([\s\S]*?)<\/cim:SkillLevelKind.standard>/g, obj, "standard", base.to_string, sub, context);
-                base.parse_element (/<cim:SkillLevelKind.apprentice>([\s\S]*?)<\/cim:SkillLevelKind.apprentice>/g, obj, "apprentice", base.to_string, sub, context);
-                base.parse_element (/<cim:SkillLevelKind.other>([\s\S]*?)<\/cim:SkillLevelKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.SkillLevelKind;
-                if (null == bucket)
-                   context.parsed.SkillLevelKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "SkillLevelKind", "master", base.from_string, fields);
-                base.export_element (obj, "SkillLevelKind", "standard", base.from_string, fields);
-                base.export_element (obj, "SkillLevelKind", "apprentice", base.from_string, fields);
-                base.export_element (obj, "SkillLevelKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SkillLevelKind_collapse" aria-expanded="true" aria-controls="SkillLevelKind_collapse">SkillLevelKind</a>
-<div id="SkillLevelKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#master}}<div><b>master</b>: {{master}}</div>{{/master}}
-{{#standard}}<div><b>standard</b>: {{standard}}</div>{{/standard}}
-{{#apprentice}}<div><b>apprentice</b>: {{apprentice}}</div>{{/apprentice}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Bank_collapse" aria-expanded="true" aria-controls="Bank_collapse" style="margin-left: 10px;">Bank</a></legend>
+                    <div id="Bank_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bic'>bic: </label><div class='col-sm-8'><input id='bic' class='form-control' type='text'{{#bic}} value='{{bic}}'{{/bic}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='iban'>iban: </label><div class='col-sm-8'><input id='iban' class='form-control' type='text'{{#iban}} value='{{iban}}'{{/iban}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * A business role that this organisation plays.
@@ -207,18 +178,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BusinessRole_collapse" aria-expanded="true" aria-controls="BusinessRole_collapse">BusinessRole</a>
-<div id="BusinessRole_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.OrganisationRole.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BusinessRole_collapse" aria-expanded="true" aria-controls="BusinessRole_collapse" style="margin-left: 10px;">BusinessRole</a></legend>
+                    <div id="BusinessRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BusinessRole_collapse" aria-expanded="true" aria-controls="BusinessRole_collapse" style="margin-left: 10px;">BusinessRole</a></legend>
+                    <div id="BusinessRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Role an organisation plays with respect to property (for example, the organisation may be the owner, renter, occupier, taxiing authority, etc.).
@@ -271,16 +274,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PropertyOrganisationRole_collapse" aria-expanded="true" aria-controls="PropertyOrganisationRole_collapse">PropertyOrganisationRole</a>
-<div id="PropertyOrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.OrganisationRole.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PropertyOrganisationRole_collapse" aria-expanded="true" aria-controls="PropertyOrganisationRole_collapse" style="margin-left: 10px;">PropertyOrganisationRole</a></legend>
+                    <div id="PropertyOrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PropertyOrganisationRole_collapse" aria-expanded="true" aria-controls="PropertyOrganisationRole_collapse" style="margin-left: 10px;">PropertyOrganisationRole</a></legend>
+                    <div id="PropertyOrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A crew is a group of people with specific skills, tools, and vehicles.
@@ -337,18 +370,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OldCrew_collapse" aria-expanded="true" aria-controls="OldCrew_collapse">OldCrew</a>
-<div id="OldCrew_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Crew.prototype.template.call (this) +
-`
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-{{#Route}}<div><b>Route</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Route}}&quot;);})'>{{Route}}</a></div>{{/Route}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldCrew_collapse" aria-expanded="true" aria-controls="OldCrew_collapse" style="margin-left: 10px;">OldCrew</a></legend>
+                    <div id="OldCrew_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Crew.prototype.template.call (this) +
+                    `
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#Route}}<div><b>Route</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Route}}&quot;);})'>{{Route}}</a></div>{{/Route}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldCrew_collapse" aria-expanded="true" aria-controls="OldCrew_collapse" style="margin-left: 10px;">OldCrew</a></legend>
+                    <div id="OldCrew_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Crew.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Route'>Route: </label><div class='col-sm-8'><input id='Route' class='form-control' type='text'{{#Route}} value='{{Route}}'{{/Route}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Roles played between Organisations and other Organisations.
@@ -405,17 +470,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OrgOrgRole_collapse" aria-expanded="true" aria-controls="OrgOrgRole_collapse">OrgOrgRole</a>
-<div id="OrgOrgRole_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.OrganisationRole.prototype.template.call (this) +
-`
-{{#clientID}}<div><b>clientID</b>: {{clientID}}</div>{{/clientID}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OrgOrgRole_collapse" aria-expanded="true" aria-controls="OrgOrgRole_collapse" style="margin-left: 10px;">OrgOrgRole</a></legend>
+                    <div id="OrgOrgRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    {{#clientID}}<div><b>clientID</b>: {{clientID}}</div>{{/clientID}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OrgOrgRole_collapse" aria-expanded="true" aria-controls="OrgOrgRole_collapse" style="margin-left: 10px;">OrgOrgRole</a></legend>
+                    <div id="OrgOrgRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='clientID'>clientID: </label><div class='col-sm-8'><input id='clientID' class='form-control' type='text'{{#clientID}} value='{{clientID}}'{{/clientID}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Proficiency level of a craft, which is required to operate or maintain a particular type of asset and/or perform certain types of work.
@@ -447,7 +543,7 @@ define
                 obj.cls = "Skill";
                 base.parse_element (/<cim:Skill.certificationPeriod>([\s\S]*?)<\/cim:Skill.certificationPeriod>/g, obj, "certificationPeriod", base.to_string, sub, context);
                 base.parse_element (/<cim:Skill.effectiveDateTime>([\s\S]*?)<\/cim:Skill.effectiveDateTime>/g, obj, "effectiveDateTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:Skill.level>([\s\S]*?)<\/cim:Skill.level>/g, obj, "level", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Skill.level\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "level", sub, context);
                 base.parse_attribute (/<cim:Skill.ErpPerson\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPerson", sub, context);
 
                 var bucket = context.parsed.Skill;
@@ -476,20 +572,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Skill_collapse" aria-expanded="true" aria-controls="Skill_collapse">Skill</a>
-<div id="Skill_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#certificationPeriod}}<div><b>certificationPeriod</b>: {{certificationPeriod}}</div>{{/certificationPeriod}}
-{{#effectiveDateTime}}<div><b>effectiveDateTime</b>: {{effectiveDateTime}}</div>{{/effectiveDateTime}}
-{{#level}}<div><b>level</b>: {{level}}</div>{{/level}}
-{{#ErpPerson}}<div><b>ErpPerson</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPerson}}&quot;);})'>{{ErpPerson}}</a></div>{{/ErpPerson}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Skill_collapse" aria-expanded="true" aria-controls="Skill_collapse" style="margin-left: 10px;">Skill</a></legend>
+                    <div id="Skill_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#certificationPeriod}}<div><b>certificationPeriod</b>: {{certificationPeriod}}</div>{{/certificationPeriod}}
+                    {{#effectiveDateTime}}<div><b>effectiveDateTime</b>: {{effectiveDateTime}}</div>{{/effectiveDateTime}}
+                    {{#level}}<div><b>level</b>: {{level}}</div>{{/level}}
+                    {{#ErpPerson}}<div><b>ErpPerson</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPerson}}&quot;);})'>{{ErpPerson}}</a></div>{{/ErpPerson}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.SkillLevelKind = []; if (!obj.level) obj.SkillLevelKind.push ({ id: '', selected: true}); for (var property in SkillLevelKind) obj.SkillLevelKind.push ({ id: property, selected: obj.level && obj.level.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.SkillLevelKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Skill_collapse" aria-expanded="true" aria-controls="Skill_collapse" style="margin-left: 10px;">Skill</a></legend>
+                    <div id="Skill_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><input id='certificationPeriod' class='form-control' type='text'{{#certificationPeriod}} value='{{certificationPeriod}}'{{/certificationPeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectiveDateTime'>effectiveDateTime: </label><div class='col-sm-8'><input id='effectiveDateTime' class='form-control' type='text'{{#effectiveDateTime}} value='{{effectiveDateTime}}'{{/effectiveDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='level'>level: </label><div class='col-sm-8'><select id='level' class='form-control'>{{#SkillLevelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SkillLevelKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPerson'>ErpPerson: </label><div class='col-sm-8'><input id='ErpPerson' class='form-control' type='text'{{#ErpPerson}} value='{{ErpPerson}}'{{/ErpPerson}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A BusinessPlan is an organized sequence of predetermined actions required to complete a future organizational objective.
@@ -544,16 +676,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BusinessPlan_collapse" aria-expanded="true" aria-controls="BusinessPlan_collapse">BusinessPlan</a>
-<div id="BusinessPlan_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BusinessPlan_collapse" aria-expanded="true" aria-controls="BusinessPlan_collapse" style="margin-left: 10px;">BusinessPlan</a></legend>
+                    <div id="BusinessPlan_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BusinessPlan_collapse" aria-expanded="true" aria-controls="BusinessPlan_collapse" style="margin-left: 10px;">BusinessPlan</a></legend>
+                    <div id="BusinessPlan_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Enumeration of potential roles that might be played by one object relative to another.
@@ -610,18 +772,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Role_collapse" aria-expanded="true" aria-controls="Role_collapse">Role</a>
-<div id="Role_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Role_collapse" aria-expanded="true" aria-controls="Role_collapse" style="margin-left: 10px;">Role</a></legend>
+                    <div id="Role_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Role_collapse" aria-expanded="true" aria-controls="Role_collapse" style="margin-left: 10px;">Role</a></legend>
+                    <div id="Role_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Role an organisation plays with respect to documents.
@@ -674,16 +868,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DocumentOrganisationRole_collapse" aria-expanded="true" aria-controls="DocumentOrganisationRole_collapse">DocumentOrganisationRole</a>
-<div id="DocumentOrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.OrganisationRole.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DocumentOrganisationRole_collapse" aria-expanded="true" aria-controls="DocumentOrganisationRole_collapse" style="margin-left: 10px;">DocumentOrganisationRole</a></legend>
+                    <div id="DocumentOrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DocumentOrganisationRole_collapse" aria-expanded="true" aria-controls="DocumentOrganisationRole_collapse" style="margin-left: 10px;">DocumentOrganisationRole</a></legend>
+                    <div id="DocumentOrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Fraction specified explicitly with a numerator and denominator, which can be used to calculate the quotient.
@@ -740,18 +964,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Ratio_collapse" aria-expanded="true" aria-controls="Ratio_collapse">Ratio</a>
-<div id="Ratio_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominator}}<div><b>denominator</b>: {{denominator}}</div>{{/denominator}}
-{{#numerator}}<div><b>numerator</b>: {{numerator}}</div>{{/numerator}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Ratio_collapse" aria-expanded="true" aria-controls="Ratio_collapse" style="margin-left: 10px;">Ratio</a></legend>
+                    <div id="Ratio_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominator}}<div><b>denominator</b>: {{denominator}}</div>{{/denominator}}
+                    {{#numerator}}<div><b>numerator</b>: {{numerator}}</div>{{/numerator}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Ratio_collapse" aria-expanded="true" aria-controls="Ratio_collapse" style="margin-left: 10px;">Ratio</a></legend>
+                    <div id="Ratio_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominator'>denominator: </label><div class='col-sm-8'><input id='denominator' class='form-control' type='text'{{#denominator}} value='{{denominator}}'{{/denominator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='numerator'>numerator: </label><div class='col-sm-8'><input id='numerator' class='form-control' type='text'{{#numerator}} value='{{numerator}}'{{/numerator}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Craft of a person or a crew.
@@ -810,18 +1066,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Craft_collapse" aria-expanded="true" aria-controls="Craft_collapse">Craft</a>
-<div id="Craft_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Craft_collapse" aria-expanded="true" aria-controls="Craft_collapse" style="margin-left: 10px;">Craft</a></legend>
+                    <div id="Craft_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Craft_collapse" aria-expanded="true" aria-controls="Craft_collapse" style="margin-left: 10px;">Craft</a></legend>
+                    <div id="Craft_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * General purpose information for name and other information to contact people.
@@ -884,21 +1172,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OldPerson_collapse" aria-expanded="true" aria-controls="OldPerson_collapse">OldPerson</a>
-<div id="OldPerson_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Person.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-{{#CustomerData}}<div><b>CustomerData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerData}}&quot;);})'>{{CustomerData}}</a></div>{{/CustomerData}}
-{{#ErpPersonnel}}<div><b>ErpPersonnel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPersonnel}}&quot;);})'>{{ErpPersonnel}}</a></div>{{/ErpPersonnel}}
-{{#ErpCompetency}}<div><b>ErpCompetency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpCompetency}}&quot;);})'>{{ErpCompetency}}</a></div>{{/ErpCompetency}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldPerson_collapse" aria-expanded="true" aria-controls="OldPerson_collapse" style="margin-left: 10px;">OldPerson</a></legend>
+                    <div id="OldPerson_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Person.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#CustomerData}}<div><b>CustomerData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerData}}&quot;);})'>{{CustomerData}}</a></div>{{/CustomerData}}
+                    {{#ErpPersonnel}}<div><b>ErpPersonnel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPersonnel}}&quot;);})'>{{ErpPersonnel}}</a></div>{{/ErpPersonnel}}
+                    {{#ErpCompetency}}<div><b>ErpCompetency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpCompetency}}&quot;);})'>{{ErpCompetency}}</a></div>{{/ErpCompetency}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldPerson_collapse" aria-expanded="true" aria-controls="OldPerson_collapse" style="margin-left: 10px;">OldPerson</a></legend>
+                    <div id="OldPerson_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Person.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerData'>CustomerData: </label><div class='col-sm-8'><input id='CustomerData' class='form-control' type='text'{{#CustomerData}} value='{{CustomerData}}'{{/CustomerData}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPersonnel'>ErpPersonnel: </label><div class='col-sm-8'><input id='ErpPersonnel' class='form-control' type='text'{{#ErpPersonnel}} value='{{ErpPersonnel}}'{{/ErpPersonnel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpCompetency'>ErpCompetency: </label><div class='col-sm-8'><input id='ErpCompetency' class='form-control' type='text'{{#ErpCompetency}} value='{{ErpCompetency}}'{{/ErpCompetency}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Role an organisation plays with respect to persons.
@@ -955,18 +1278,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PersonOrganisationRole_collapse" aria-expanded="true" aria-controls="PersonOrganisationRole_collapse">PersonOrganisationRole</a>
-<div id="PersonOrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.OrganisationRole.prototype.template.call (this) +
-`
-{{#clientID}}<div><b>clientID</b>: {{clientID}}</div>{{/clientID}}
-{{#ErpPerson}}<div><b>ErpPerson</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPerson}}&quot;);})'>{{ErpPerson}}</a></div>{{/ErpPerson}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PersonOrganisationRole_collapse" aria-expanded="true" aria-controls="PersonOrganisationRole_collapse" style="margin-left: 10px;">PersonOrganisationRole</a></legend>
+                    <div id="PersonOrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    {{#clientID}}<div><b>clientID</b>: {{clientID}}</div>{{/clientID}}
+                    {{#ErpPerson}}<div><b>ErpPerson</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPerson}}&quot;);})'>{{ErpPerson}}</a></div>{{/ErpPerson}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PersonOrganisationRole_collapse" aria-expanded="true" aria-controls="PersonOrganisationRole_collapse" style="margin-left: 10px;">PersonOrganisationRole</a></legend>
+                    <div id="PersonOrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='clientID'>clientID: </label><div class='col-sm-8'><input id='clientID' class='form-control' type='text'{{#clientID}} value='{{clientID}}'{{/clientID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPerson'>ErpPerson: </label><div class='col-sm-8'><input id='ErpPerson' class='form-control' type='text'{{#ErpPerson}} value='{{ErpPerson}}'{{/ErpPerson}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Bank account.
@@ -1025,19 +1380,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BankAccount_collapse" aria-expanded="true" aria-controls="BankAccount_collapse">BankAccount</a>
-<div id="BankAccount_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#accountNumber}}<div><b>accountNumber</b>: {{accountNumber}}</div>{{/accountNumber}}
-{{#ServiceSupplier}}<div><b>ServiceSupplier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceSupplier}}&quot;);})'>{{ServiceSupplier}}</a></div>{{/ServiceSupplier}}
-{{#Bank}}<div><b>Bank</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bank}}&quot;);})'>{{Bank}}</a></div>{{/Bank}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BankAccount_collapse" aria-expanded="true" aria-controls="BankAccount_collapse" style="margin-left: 10px;">BankAccount</a></legend>
+                    <div id="BankAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#accountNumber}}<div><b>accountNumber</b>: {{accountNumber}}</div>{{/accountNumber}}
+                    {{#ServiceSupplier}}<div><b>ServiceSupplier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceSupplier}}&quot;);})'>{{ServiceSupplier}}</a></div>{{/ServiceSupplier}}
+                    {{#Bank}}<div><b>Bank</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bank}}&quot;);})'>{{Bank}}</a></div>{{/Bank}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BankAccount_collapse" aria-expanded="true" aria-controls="BankAccount_collapse" style="margin-left: 10px;">BankAccount</a></legend>
+                    <div id="BankAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accountNumber'>accountNumber: </label><div class='col-sm-8'><input id='accountNumber' class='form-control' type='text'{{#accountNumber}} value='{{accountNumber}}'{{/accountNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceSupplier'>ServiceSupplier: </label><div class='col-sm-8'><input id='ServiceSupplier' class='form-control' type='text'{{#ServiceSupplier}} value='{{ServiceSupplier}}'{{/ServiceSupplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Bank'>Bank: </label><div class='col-sm-8'><input id='Bank' class='form-control' type='text'{{#Bank}} value='{{Bank}}'{{/Bank}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Roles played between Persons and Documents.
@@ -1092,17 +1480,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PersonDocumentRole_collapse" aria-expanded="true" aria-controls="PersonDocumentRole_collapse">PersonDocumentRole</a>
-<div id="PersonDocumentRole_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Role.prototype.template.call (this) +
-`
-{{#Person}}<div><b>Person</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Person}}&quot;);})'>{{Person}}</a></div>{{/Person}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PersonDocumentRole_collapse" aria-expanded="true" aria-controls="PersonDocumentRole_collapse" style="margin-left: 10px;">PersonDocumentRole</a></legend>
+                    <div id="PersonDocumentRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Role.prototype.template.call (this) +
+                    `
+                    {{#Person}}<div><b>Person</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Person}}&quot;);})'>{{Person}}</a></div>{{/Person}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PersonDocumentRole_collapse" aria-expanded="true" aria-controls="PersonDocumentRole_collapse" style="margin-left: 10px;">PersonDocumentRole</a></legend>
+                    <div id="PersonDocumentRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Role.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Person'>Person: </label><div class='col-sm-8'><input id='Person' class='form-control' type='text'{{#Person}} value='{{Person}}'{{/Person}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The role of a person relative to a given piece of property.
@@ -1161,18 +1580,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PersonPropertyRole_collapse" aria-expanded="true" aria-controls="PersonPropertyRole_collapse">PersonPropertyRole</a>
-<div id="PersonPropertyRole_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Role.prototype.template.call (this) +
-`
-{{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LandProperty}}&quot;);})'>{{LandProperty}}</a></div>{{/LandProperty}}
-{{#Person}}<div><b>Person</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Person}}&quot;);})'>{{Person}}</a></div>{{/Person}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PersonPropertyRole_collapse" aria-expanded="true" aria-controls="PersonPropertyRole_collapse" style="margin-left: 10px;">PersonPropertyRole</a></legend>
+                    <div id="PersonPropertyRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Role.prototype.template.call (this) +
+                    `
+                    {{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LandProperty}}&quot;);})'>{{LandProperty}}</a></div>{{/LandProperty}}
+                    {{#Person}}<div><b>Person</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Person}}&quot;);})'>{{Person}}</a></div>{{/Person}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PersonPropertyRole_collapse" aria-expanded="true" aria-controls="PersonPropertyRole_collapse" style="margin-left: 10px;">PersonPropertyRole</a></legend>
+                    <div id="PersonPropertyRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Role.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LandProperty'>LandProperty: </label><div class='col-sm-8'><input id='LandProperty' class='form-control' type='text'{{#LandProperty}} value='{{LandProperty}}'{{/LandProperty}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Person'>Person: </label><div class='col-sm-8'><input id='Person' class='form-control' type='text'{{#Person}} value='{{Person}}'{{/Person}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
@@ -1184,7 +1635,6 @@ define
                 Craft: Craft,
                 PersonPropertyRole: PersonPropertyRole,
                 PersonOrganisationRole: PersonOrganisationRole,
-                SkillLevelKind: SkillLevelKind,
                 PersonDocumentRole: PersonDocumentRole,
                 BankAccount: BankAccount,
                 Bank: Bank,

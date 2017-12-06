@@ -65,20 +65,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TieLine_collapse" aria-expanded="true" aria-controls="TieLine_collapse">TieLine</a>
-<div id="TieLine_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#SideA_SubControlArea}}<div><b>SideA_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SideA_SubControlArea}}&quot;);})'>{{SideA_SubControlArea}}</a></div>{{/SideA_SubControlArea}}
-{{#EnergyTransaction}}<div><b>EnergyTransaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyTransaction}}&quot;);})'>{{EnergyTransaction}}</a></div>{{/EnergyTransaction}}
-{{#ParentOfB}}<div><b>ParentOfB</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentOfB}}&quot;);})'>{{ParentOfB}}</a></div>{{/ParentOfB}}
-{{#SideB_SubControlArea}}<div><b>SideB_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SideB_SubControlArea}}&quot;);})'>{{SideB_SubControlArea}}</a></div>{{/SideB_SubControlArea}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TieLine_collapse" aria-expanded="true" aria-controls="TieLine_collapse" style="margin-left: 10px;">TieLine</a></legend>
+                    <div id="TieLine_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#SideA_SubControlArea}}<div><b>SideA_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SideA_SubControlArea}}&quot;);})'>{{SideA_SubControlArea}}</a></div>{{/SideA_SubControlArea}}
+                    {{#EnergyTransaction}}<div><b>EnergyTransaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyTransaction}}&quot;);})'>{{EnergyTransaction}}</a></div>{{/EnergyTransaction}}
+                    {{#ParentOfB}}<div><b>ParentOfB</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentOfB}}&quot;);})'>{{ParentOfB}}</a></div>{{/ParentOfB}}
+                    {{#SideB_SubControlArea}}<div><b>SideB_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SideB_SubControlArea}}&quot;);})'>{{SideB_SubControlArea}}</a></div>{{/SideB_SubControlArea}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TieLine_collapse" aria-expanded="true" aria-controls="TieLine_collapse" style="margin-left: 10px;">TieLine</a></legend>
+                    <div id="TieLine_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SideA_SubControlArea'>SideA_SubControlArea: </label><div class='col-sm-8'><input id='SideA_SubControlArea' class='form-control' type='text'{{#SideA_SubControlArea}} value='{{SideA_SubControlArea}}'{{/SideA_SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyTransaction'>EnergyTransaction: </label><div class='col-sm-8'><input id='EnergyTransaction' class='form-control' type='text'{{#EnergyTransaction}} value='{{EnergyTransaction}}'{{/EnergyTransaction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ParentOfB'>ParentOfB: </label><div class='col-sm-8'><input id='ParentOfB' class='form-control' type='text'{{#ParentOfB}} value='{{ParentOfB}}'{{/ParentOfB}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SideB_SubControlArea'>SideB_SubControlArea: </label><div class='col-sm-8'><input id='SideB_SubControlArea' class='form-control' type='text'{{#SideB_SubControlArea}} value='{{SideB_SubControlArea}}'{{/SideB_SubControlArea}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Curtailing entity must be providing at least one service to the EnergyTransaction.
@@ -135,17 +169,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CurtailmentProfile_collapse" aria-expanded="true" aria-controls="CurtailmentProfile_collapse">CurtailmentProfile</a>
-<div id="CurtailmentProfile_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExternalInputs.Profile.prototype.template.call (this) +
-`
-{{#EnergyTransaction}}<div><b>EnergyTransaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyTransaction}}&quot;);})'>{{EnergyTransaction}}</a></div>{{/EnergyTransaction}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurtailmentProfile_collapse" aria-expanded="true" aria-controls="CurtailmentProfile_collapse" style="margin-left: 10px;">CurtailmentProfile</a></legend>
+                    <div id="CurtailmentProfile_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExternalInputs.Profile.prototype.template.call (this) +
+                    `
+                    {{#EnergyTransaction}}<div><b>EnergyTransaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyTransaction}}&quot;);})'>{{EnergyTransaction}}</a></div>{{/EnergyTransaction}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurtailmentProfile_collapse" aria-expanded="true" aria-controls="CurtailmentProfile_collapse" style="margin-left: 10px;">CurtailmentProfile</a></legend>
+                    <div id="CurtailmentProfile_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExternalInputs.Profile.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyTransaction'>EnergyTransaction: </label><div class='col-sm-8'><input id='EnergyTransaction' class='form-control' type='text'{{#EnergyTransaction}} value='{{EnergyTransaction}}'{{/EnergyTransaction}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A corridor containing one or more rights of way
@@ -198,16 +263,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransmissionCorridor_collapse" aria-expanded="true" aria-controls="TransmissionCorridor_collapse">TransmissionCorridor</a>
-<div id="TransmissionCorridor_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionCorridor_collapse" aria-expanded="true" aria-controls="TransmissionCorridor_collapse" style="margin-left: 10px;">TransmissionCorridor</a></legend>
+                    <div id="TransmissionCorridor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionCorridor_collapse" aria-expanded="true" aria-controls="TransmissionCorridor_collapse" style="margin-left: 10px;">TransmissionCorridor</a></legend>
+                    <div id="TransmissionCorridor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An account for tracking inadvertent interchange versus time for each control area.
@@ -264,17 +359,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#InadvertentAccount_collapse" aria-expanded="true" aria-controls="InadvertentAccount_collapse">InadvertentAccount</a>
-<div id="InadvertentAccount_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#SubControlArea}}<div><b>SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SubControlArea}}&quot;);})'>{{SubControlArea}}</a></div>{{/SubControlArea}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InadvertentAccount_collapse" aria-expanded="true" aria-controls="InadvertentAccount_collapse" style="margin-left: 10px;">InadvertentAccount</a></legend>
+                    <div id="InadvertentAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#SubControlArea}}<div><b>SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SubControlArea}}&quot;);})'>{{SubControlArea}}</a></div>{{/SubControlArea}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InadvertentAccount_collapse" aria-expanded="true" aria-controls="InadvertentAccount_collapse" style="margin-left: 10px;">InadvertentAccount</a></legend>
+                    <div id="InadvertentAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}'{{/SubControlArea}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * LossProfile is associated with an EnerrgyTransaction and must be completely contained within the time frame of the EnergyProfile associated with this EnergyTransaction.
@@ -331,18 +457,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#LossProfile_collapse" aria-expanded="true" aria-controls="LossProfile_collapse">LossProfile</a>
-<div id="LossProfile_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExternalInputs.Profile.prototype.template.call (this) +
-`
-{{#HasLoss_}}<div><b>HasLoss_</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HasLoss_}}&quot;);})'>{{HasLoss_}}</a></div>{{/HasLoss_}}
-{{#EnergyTransaction}}<div><b>EnergyTransaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyTransaction}}&quot;);})'>{{EnergyTransaction}}</a></div>{{/EnergyTransaction}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LossProfile_collapse" aria-expanded="true" aria-controls="LossProfile_collapse" style="margin-left: 10px;">LossProfile</a></legend>
+                    <div id="LossProfile_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExternalInputs.Profile.prototype.template.call (this) +
+                    `
+                    {{#HasLoss_}}<div><b>HasLoss_</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HasLoss_}}&quot;);})'>{{HasLoss_}}</a></div>{{/HasLoss_}}
+                    {{#EnergyTransaction}}<div><b>EnergyTransaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyTransaction}}&quot;);})'>{{EnergyTransaction}}</a></div>{{/EnergyTransaction}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LossProfile_collapse" aria-expanded="true" aria-controls="LossProfile_collapse" style="margin-left: 10px;">LossProfile</a></legend>
+                    <div id="LossProfile_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExternalInputs.Profile.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HasLoss_'>HasLoss_: </label><div class='col-sm-8'><input id='HasLoss_' class='form-control' type='text'{{#HasLoss_}} value='{{HasLoss_}}'{{/HasLoss_}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyTransaction'>EnergyTransaction: </label><div class='col-sm-8'><input id='EnergyTransaction' class='form-control' type='text'{{#EnergyTransaction}} value='{{EnergyTransaction}}'{{/EnergyTransaction}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Control area current net tie (scheduled interchange) sent to real time dispatch.
@@ -401,19 +559,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CurrentScheduledInterchange_collapse" aria-expanded="true" aria-controls="CurrentScheduledInterchange_collapse">CurrentScheduledInterchange</a>
-<div id="CurrentScheduledInterchange_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#currentNetTieMW}}<div><b>currentNetTieMW</b>: {{currentNetTieMW}}</div>{{/currentNetTieMW}}
-{{#useEmergencySchedule}}<div><b>useEmergencySchedule</b>: {{useEmergencySchedule}}</div>{{/useEmergencySchedule}}
-{{#InternalControlArea}}<div><b>InternalControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InternalControlArea}}&quot;);})'>{{InternalControlArea}}</a></div>{{/InternalControlArea}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentScheduledInterchange_collapse" aria-expanded="true" aria-controls="CurrentScheduledInterchange_collapse" style="margin-left: 10px;">CurrentScheduledInterchange</a></legend>
+                    <div id="CurrentScheduledInterchange_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#currentNetTieMW}}<div><b>currentNetTieMW</b>: {{currentNetTieMW}}</div>{{/currentNetTieMW}}
+                    {{#useEmergencySchedule}}<div><b>useEmergencySchedule</b>: {{useEmergencySchedule}}</div>{{/useEmergencySchedule}}
+                    {{#InternalControlArea}}<div><b>InternalControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InternalControlArea}}&quot;);})'>{{InternalControlArea}}</a></div>{{/InternalControlArea}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentScheduledInterchange_collapse" aria-expanded="true" aria-controls="CurrentScheduledInterchange_collapse" style="margin-left: 10px;">CurrentScheduledInterchange</a></legend>
+                    <div id="CurrentScheduledInterchange_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='currentNetTieMW'>currentNetTieMW: </label><div class='col-sm-8'><input id='currentNetTieMW' class='form-control' type='text'{{#currentNetTieMW}} value='{{currentNetTieMW}}'{{/currentNetTieMW}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='useEmergencySchedule'>useEmergencySchedule: </label><div class='col-sm-8'><input id='useEmergencySchedule' class='form-check-input' type='checkbox'{{#useEmergencySchedule}} checked{{/useEmergencySchedule}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InternalControlArea'>InternalControlArea: </label><div class='col-sm-8'><input id='InternalControlArea' class='form-control' type='text'{{#InternalControlArea}} value='{{InternalControlArea}}'{{/InternalControlArea}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Control area emergency schedules
@@ -474,20 +665,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CurrentEmergencyScheduledInterchange_collapse" aria-expanded="true" aria-controls="CurrentEmergencyScheduledInterchange_collapse">CurrentEmergencyScheduledInterchange</a>
-<div id="CurrentEmergencyScheduledInterchange_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#emergencyScheduleMW}}<div><b>emergencyScheduleMW</b>: {{emergencyScheduleMW}}</div>{{/emergencyScheduleMW}}
-{{#emergencyScheduleStartTime}}<div><b>emergencyScheduleStartTime</b>: {{emergencyScheduleStartTime}}</div>{{/emergencyScheduleStartTime}}
-{{#emergencyScheduleRampTime}}<div><b>emergencyScheduleRampTime</b>: {{emergencyScheduleRampTime}}</div>{{/emergencyScheduleRampTime}}
-{{#InternalControlArea}}<div><b>InternalControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InternalControlArea}}&quot;);})'>{{InternalControlArea}}</a></div>{{/InternalControlArea}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentEmergencyScheduledInterchange_collapse" aria-expanded="true" aria-controls="CurrentEmergencyScheduledInterchange_collapse" style="margin-left: 10px;">CurrentEmergencyScheduledInterchange</a></legend>
+                    <div id="CurrentEmergencyScheduledInterchange_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#emergencyScheduleMW}}<div><b>emergencyScheduleMW</b>: {{emergencyScheduleMW}}</div>{{/emergencyScheduleMW}}
+                    {{#emergencyScheduleStartTime}}<div><b>emergencyScheduleStartTime</b>: {{emergencyScheduleStartTime}}</div>{{/emergencyScheduleStartTime}}
+                    {{#emergencyScheduleRampTime}}<div><b>emergencyScheduleRampTime</b>: {{emergencyScheduleRampTime}}</div>{{/emergencyScheduleRampTime}}
+                    {{#InternalControlArea}}<div><b>InternalControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InternalControlArea}}&quot;);})'>{{InternalControlArea}}</a></div>{{/InternalControlArea}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentEmergencyScheduledInterchange_collapse" aria-expanded="true" aria-controls="CurrentEmergencyScheduledInterchange_collapse" style="margin-left: 10px;">CurrentEmergencyScheduledInterchange</a></legend>
+                    <div id="CurrentEmergencyScheduledInterchange_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emergencyScheduleMW'>emergencyScheduleMW: </label><div class='col-sm-8'><input id='emergencyScheduleMW' class='form-control' type='text'{{#emergencyScheduleMW}} value='{{emergencyScheduleMW}}'{{/emergencyScheduleMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emergencyScheduleStartTime'>emergencyScheduleStartTime: </label><div class='col-sm-8'><input id='emergencyScheduleStartTime' class='form-control' type='text'{{#emergencyScheduleStartTime}} value='{{emergencyScheduleStartTime}}'{{/emergencyScheduleStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emergencyScheduleRampTime'>emergencyScheduleRampTime: </label><div class='col-sm-8'><input id='emergencyScheduleRampTime' class='form-control' type='text'{{#emergencyScheduleRampTime}} value='{{emergencyScheduleRampTime}}'{{/emergencyScheduleRampTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InternalControlArea'>InternalControlArea: </label><div class='col-sm-8'><input id='InternalControlArea' class='form-control' type='text'{{#InternalControlArea}} value='{{InternalControlArea}}'{{/InternalControlArea}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The control area's reserve specification.
@@ -552,22 +777,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AreaReserveSpec_collapse" aria-expanded="true" aria-controls="AreaReserveSpec_collapse">AreaReserveSpec</a>
-<div id="AreaReserveSpec_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#Description}}<div><b>Description</b>: {{Description}}</div>{{/Description}}
-{{#lowerRegMarginReqt}}<div><b>lowerRegMarginReqt</b>: {{lowerRegMarginReqt}}</div>{{/lowerRegMarginReqt}}
-{{#opReserveReqt}}<div><b>opReserveReqt</b>: {{opReserveReqt}}</div>{{/opReserveReqt}}
-{{#primaryReserveReqt}}<div><b>primaryReserveReqt</b>: {{primaryReserveReqt}}</div>{{/primaryReserveReqt}}
-{{#raiseRegMarginReqt}}<div><b>raiseRegMarginReqt</b>: {{raiseRegMarginReqt}}</div>{{/raiseRegMarginReqt}}
-{{#spinningReserveReqt}}<div><b>spinningReserveReqt</b>: {{spinningReserveReqt}}</div>{{/spinningReserveReqt}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AreaReserveSpec_collapse" aria-expanded="true" aria-controls="AreaReserveSpec_collapse" style="margin-left: 10px;">AreaReserveSpec</a></legend>
+                    <div id="AreaReserveSpec_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#Description}}<div><b>Description</b>: {{Description}}</div>{{/Description}}
+                    {{#lowerRegMarginReqt}}<div><b>lowerRegMarginReqt</b>: {{lowerRegMarginReqt}}</div>{{/lowerRegMarginReqt}}
+                    {{#opReserveReqt}}<div><b>opReserveReqt</b>: {{opReserveReqt}}</div>{{/opReserveReqt}}
+                    {{#primaryReserveReqt}}<div><b>primaryReserveReqt</b>: {{primaryReserveReqt}}</div>{{/primaryReserveReqt}}
+                    {{#raiseRegMarginReqt}}<div><b>raiseRegMarginReqt</b>: {{raiseRegMarginReqt}}</div>{{/raiseRegMarginReqt}}
+                    {{#spinningReserveReqt}}<div><b>spinningReserveReqt</b>: {{spinningReserveReqt}}</div>{{/spinningReserveReqt}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AreaReserveSpec_collapse" aria-expanded="true" aria-controls="AreaReserveSpec_collapse" style="margin-left: 10px;">AreaReserveSpec</a></legend>
+                    <div id="AreaReserveSpec_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Description'>Description: </label><div class='col-sm-8'><input id='Description' class='form-control' type='text'{{#Description}} value='{{Description}}'{{/Description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowerRegMarginReqt'>lowerRegMarginReqt: </label><div class='col-sm-8'><input id='lowerRegMarginReqt' class='form-control' type='text'{{#lowerRegMarginReqt}} value='{{lowerRegMarginReqt}}'{{/lowerRegMarginReqt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='opReserveReqt'>opReserveReqt: </label><div class='col-sm-8'><input id='opReserveReqt' class='form-control' type='text'{{#opReserveReqt}} value='{{opReserveReqt}}'{{/opReserveReqt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='primaryReserveReqt'>primaryReserveReqt: </label><div class='col-sm-8'><input id='primaryReserveReqt' class='form-control' type='text'{{#primaryReserveReqt}} value='{{primaryReserveReqt}}'{{/primaryReserveReqt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='raiseRegMarginReqt'>raiseRegMarginReqt: </label><div class='col-sm-8'><input id='raiseRegMarginReqt' class='form-control' type='text'{{#raiseRegMarginReqt}} value='{{raiseRegMarginReqt}}'{{/raiseRegMarginReqt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='spinningReserveReqt'>spinningReserveReqt: </label><div class='col-sm-8'><input id='spinningReserveReqt' class='form-control' type='text'{{#spinningReserveReqt}} value='{{spinningReserveReqt}}'{{/spinningReserveReqt}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A continuously variable component of a control area's MW net interchange schedule.
@@ -632,21 +893,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DynamicSchedule_collapse" aria-expanded="true" aria-controls="DynamicSchedule_collapse">DynamicSchedule</a>
-<div id="DynamicSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.BasicIntervalSchedule.prototype.template.call (this) +
-`
-{{#dynSchedSignRev}}<div><b>dynSchedSignRev</b>: {{dynSchedSignRev}}</div>{{/dynSchedSignRev}}
-{{#dynSchedStatus}}<div><b>dynSchedStatus</b>: {{dynSchedStatus}}</div>{{/dynSchedStatus}}
-{{#MktMeasurement}}<div><b>MktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktMeasurement}}&quot;);})'>{{MktMeasurement}}</a></div>{{/MktMeasurement}}
-{{#Receive_SubControlArea}}<div><b>Receive_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Receive_SubControlArea}}&quot;);})'>{{Receive_SubControlArea}}</a></div>{{/Receive_SubControlArea}}
-{{#Send_SubControlArea}}<div><b>Send_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Send_SubControlArea}}&quot;);})'>{{Send_SubControlArea}}</a></div>{{/Send_SubControlArea}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DynamicSchedule_collapse" aria-expanded="true" aria-controls="DynamicSchedule_collapse" style="margin-left: 10px;">DynamicSchedule</a></legend>
+                    <div id="DynamicSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.BasicIntervalSchedule.prototype.template.call (this) +
+                    `
+                    {{#dynSchedSignRev}}<div><b>dynSchedSignRev</b>: {{dynSchedSignRev}}</div>{{/dynSchedSignRev}}
+                    {{#dynSchedStatus}}<div><b>dynSchedStatus</b>: {{dynSchedStatus}}</div>{{/dynSchedStatus}}
+                    {{#MktMeasurement}}<div><b>MktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktMeasurement}}&quot;);})'>{{MktMeasurement}}</a></div>{{/MktMeasurement}}
+                    {{#Receive_SubControlArea}}<div><b>Receive_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Receive_SubControlArea}}&quot;);})'>{{Receive_SubControlArea}}</a></div>{{/Receive_SubControlArea}}
+                    {{#Send_SubControlArea}}<div><b>Send_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Send_SubControlArea}}&quot;);})'>{{Send_SubControlArea}}</a></div>{{/Send_SubControlArea}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DynamicSchedule_collapse" aria-expanded="true" aria-controls="DynamicSchedule_collapse" style="margin-left: 10px;">DynamicSchedule</a></legend>
+                    <div id="DynamicSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.BasicIntervalSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='dynSchedSignRev'>dynSchedSignRev: </label><div class='col-sm-8'><input id='dynSchedSignRev' class='form-check-input' type='checkbox'{{#dynSchedSignRev}} checked{{/dynSchedSignRev}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dynSchedStatus'>dynSchedStatus: </label><div class='col-sm-8'><input id='dynSchedStatus' class='form-control' type='text'{{#dynSchedStatus}} value='{{dynSchedStatus}}'{{/dynSchedStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktMeasurement'>MktMeasurement: </label><div class='col-sm-8'><input id='MktMeasurement' class='form-control' type='text'{{#MktMeasurement}} value='{{MktMeasurement}}'{{/MktMeasurement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Receive_SubControlArea'>Receive_SubControlArea: </label><div class='col-sm-8'><input id='Receive_SubControlArea' class='form-control' type='text'{{#Receive_SubControlArea}} value='{{Receive_SubControlArea}}'{{/Receive_SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Send_SubControlArea'>Send_SubControlArea: </label><div class='col-sm-8'><input id='Send_SubControlArea' class='form-control' type='text'{{#Send_SubControlArea}} value='{{Send_SubControlArea}}'{{/Send_SubControlArea}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An EnergyProduct is offered commercially as a ContractOrTariff.
@@ -703,18 +999,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EnergyProduct_collapse" aria-expanded="true" aria-controls="EnergyProduct_collapse">EnergyProduct</a>
-<div id="EnergyProduct_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Agreement.prototype.template.call (this) +
-`
-{{#GenerationProvider}}<div><b>GenerationProvider</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenerationProvider}}&quot;);})'>{{GenerationProvider}}</a></div>{{/GenerationProvider}}
-{{#TitleHeldBy_Marketer}}<div><b>TitleHeldBy_Marketer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TitleHeldBy_Marketer}}&quot;);})'>{{TitleHeldBy_Marketer}}</a></div>{{/TitleHeldBy_Marketer}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyProduct_collapse" aria-expanded="true" aria-controls="EnergyProduct_collapse" style="margin-left: 10px;">EnergyProduct</a></legend>
+                    <div id="EnergyProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.template.call (this) +
+                    `
+                    {{#GenerationProvider}}<div><b>GenerationProvider</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenerationProvider}}&quot;);})'>{{GenerationProvider}}</a></div>{{/GenerationProvider}}
+                    {{#TitleHeldBy_Marketer}}<div><b>TitleHeldBy_Marketer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TitleHeldBy_Marketer}}&quot;);})'>{{TitleHeldBy_Marketer}}</a></div>{{/TitleHeldBy_Marketer}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyProduct_collapse" aria-expanded="true" aria-controls="EnergyProduct_collapse" style="margin-left: 10px;">EnergyProduct</a></legend>
+                    <div id="EnergyProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GenerationProvider'>GenerationProvider: </label><div class='col-sm-8'><input id='GenerationProvider' class='form-control' type='text'{{#GenerationProvider}} value='{{GenerationProvider}}'{{/GenerationProvider}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TitleHeldBy_Marketer'>TitleHeldBy_Marketer: </label><div class='col-sm-8'><input id='TitleHeldBy_Marketer' class='form-control' type='text'{{#TitleHeldBy_Marketer}} value='{{TitleHeldBy_Marketer}}'{{/TitleHeldBy_Marketer}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A collection of transmission lines that are close proximity to each other.
@@ -769,17 +1097,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransmissionRightOfWay_collapse" aria-expanded="true" aria-controls="TransmissionRightOfWay_collapse">TransmissionRightOfWay</a>
-<div id="TransmissionRightOfWay_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-{{#TransmissionCorridor}}<div><b>TransmissionCorridor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionCorridor}}&quot;);})'>{{TransmissionCorridor}}</a></div>{{/TransmissionCorridor}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionRightOfWay_collapse" aria-expanded="true" aria-controls="TransmissionRightOfWay_collapse" style="margin-left: 10px;">TransmissionRightOfWay</a></legend>
+                    <div id="TransmissionRightOfWay_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    {{#TransmissionCorridor}}<div><b>TransmissionCorridor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionCorridor}}&quot;);})'>{{TransmissionCorridor}}</a></div>{{/TransmissionCorridor}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionRightOfWay_collapse" aria-expanded="true" aria-controls="TransmissionRightOfWay_collapse" style="margin-left: 10px;">TransmissionRightOfWay</a></legend>
+                    <div id="TransmissionRightOfWay_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransmissionCorridor'>TransmissionCorridor: </label><div class='col-sm-8'><input id='TransmissionCorridor' class='form-control' type='text'{{#TransmissionCorridor}} value='{{TransmissionCorridor}}'{{/TransmissionCorridor}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * There is one internal control area in the system, which is the single control area in the primary network company.
@@ -836,17 +1195,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#InternalControlArea_collapse" aria-expanded="true" aria-controls="InternalControlArea_collapse">InternalControlArea</a>
-<div id="InternalControlArea_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#CurrentScheduledInterchange}}<div><b>CurrentScheduledInterchange</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CurrentScheduledInterchange}}&quot;);})'>{{CurrentScheduledInterchange}}</a></div>{{/CurrentScheduledInterchange}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InternalControlArea_collapse" aria-expanded="true" aria-controls="InternalControlArea_collapse" style="margin-left: 10px;">InternalControlArea</a></legend>
+                    <div id="InternalControlArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#CurrentScheduledInterchange}}<div><b>CurrentScheduledInterchange</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CurrentScheduledInterchange}}&quot;);})'>{{CurrentScheduledInterchange}}</a></div>{{/CurrentScheduledInterchange}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InternalControlArea_collapse" aria-expanded="true" aria-controls="InternalControlArea_collapse" style="margin-left: 10px;">InternalControlArea</a></legend>
+                    <div id="InternalControlArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CurrentScheduledInterchange'>CurrentScheduledInterchange: </label><div class='col-sm-8'><input id='CurrentScheduledInterchange' class='form-control' type='text'{{#CurrentScheduledInterchange}} value='{{CurrentScheduledInterchange}}'{{/CurrentScheduledInterchange}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

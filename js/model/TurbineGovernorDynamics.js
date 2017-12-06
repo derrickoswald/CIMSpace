@@ -14,146 +14,26 @@ define
          * Governor control flag for Francis hydro model.
          *
          */
-        class FrancisGovernorControlKind extends base.Element
+        var FrancisGovernorControlKind =
         {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.FrancisGovernorControlKind;
-                if (null == bucket)
-                   cim_data.FrancisGovernorControlKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.FrancisGovernorControlKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "FrancisGovernorControlKind";
-                base.parse_element (/<cim:FrancisGovernorControlKind.mechanicHydrolicTachoAccelerator>([\s\S]*?)<\/cim:FrancisGovernorControlKind.mechanicHydrolicTachoAccelerator>/g, obj, "mechanicHydrolicTachoAccelerator", base.to_string, sub, context);
-                base.parse_element (/<cim:FrancisGovernorControlKind.mechanicHydraulicTransientFeedback>([\s\S]*?)<\/cim:FrancisGovernorControlKind.mechanicHydraulicTransientFeedback>/g, obj, "mechanicHydraulicTransientFeedback", base.to_string, sub, context);
-                base.parse_element (/<cim:FrancisGovernorControlKind.electromechanicalElectrohydraulic>([\s\S]*?)<\/cim:FrancisGovernorControlKind.electromechanicalElectrohydraulic>/g, obj, "electromechanicalElectrohydraulic", base.to_string, sub, context);
-
-                var bucket = context.parsed.FrancisGovernorControlKind;
-                if (null == bucket)
-                   context.parsed.FrancisGovernorControlKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "FrancisGovernorControlKind", "mechanicHydrolicTachoAccelerator", base.from_string, fields);
-                base.export_element (obj, "FrancisGovernorControlKind", "mechanicHydraulicTransientFeedback", base.from_string, fields);
-                base.export_element (obj, "FrancisGovernorControlKind", "electromechanicalElectrohydraulic", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#FrancisGovernorControlKind_collapse" aria-expanded="true" aria-controls="FrancisGovernorControlKind_collapse">FrancisGovernorControlKind</a>
-<div id="FrancisGovernorControlKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#mechanicHydrolicTachoAccelerator}}<div><b>mechanicHydrolicTachoAccelerator</b>: {{mechanicHydrolicTachoAccelerator}}</div>{{/mechanicHydrolicTachoAccelerator}}
-{{#mechanicHydraulicTransientFeedback}}<div><b>mechanicHydraulicTransientFeedback</b>: {{mechanicHydraulicTransientFeedback}}</div>{{/mechanicHydraulicTransientFeedback}}
-{{#electromechanicalElectrohydraulic}}<div><b>electromechanicalElectrohydraulic</b>: {{electromechanicalElectrohydraulic}}</div>{{/electromechanicalElectrohydraulic}}
-</div>
-`
-                );
-           }        }
+            mechanicHydrolicTachoAccelerator: "mechanicHydrolicTachoAccelerator",
+            mechanicHydraulicTransientFeedback: "mechanicHydraulicTransientFeedback",
+            electromechanicalElectrohydraulic: "electromechanicalElectrohydraulic"
+        };
+        Object.freeze (FrancisGovernorControlKind);
 
         /**
          * Governor droop signal feedback source.
          *
          */
-        class DroopSignalFeedbackKind extends base.Element
+        var DroopSignalFeedbackKind =
         {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.DroopSignalFeedbackKind;
-                if (null == bucket)
-                   cim_data.DroopSignalFeedbackKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.DroopSignalFeedbackKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "DroopSignalFeedbackKind";
-                base.parse_element (/<cim:DroopSignalFeedbackKind.electricalPower>([\s\S]*?)<\/cim:DroopSignalFeedbackKind.electricalPower>/g, obj, "electricalPower", base.to_string, sub, context);
-                base.parse_element (/<cim:DroopSignalFeedbackKind.none>([\s\S]*?)<\/cim:DroopSignalFeedbackKind.none>/g, obj, "none", base.to_string, sub, context);
-                base.parse_element (/<cim:DroopSignalFeedbackKind.fuelValveStroke>([\s\S]*?)<\/cim:DroopSignalFeedbackKind.fuelValveStroke>/g, obj, "fuelValveStroke", base.to_string, sub, context);
-                base.parse_element (/<cim:DroopSignalFeedbackKind.governorOutput>([\s\S]*?)<\/cim:DroopSignalFeedbackKind.governorOutput>/g, obj, "governorOutput", base.to_string, sub, context);
-
-                var bucket = context.parsed.DroopSignalFeedbackKind;
-                if (null == bucket)
-                   context.parsed.DroopSignalFeedbackKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "DroopSignalFeedbackKind", "electricalPower", base.from_string, fields);
-                base.export_element (obj, "DroopSignalFeedbackKind", "none", base.from_string, fields);
-                base.export_element (obj, "DroopSignalFeedbackKind", "fuelValveStroke", base.from_string, fields);
-                base.export_element (obj, "DroopSignalFeedbackKind", "governorOutput", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#DroopSignalFeedbackKind_collapse" aria-expanded="true" aria-controls="DroopSignalFeedbackKind_collapse">DroopSignalFeedbackKind</a>
-<div id="DroopSignalFeedbackKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#electricalPower}}<div><b>electricalPower</b>: {{electricalPower}}</div>{{/electricalPower}}
-{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
-{{#fuelValveStroke}}<div><b>fuelValveStroke</b>: {{fuelValveStroke}}</div>{{/fuelValveStroke}}
-{{#governorOutput}}<div><b>governorOutput</b>: {{governorOutput}}</div>{{/governorOutput}}
-</div>
-`
-                );
-           }        }
+            electricalPower: "electricalPower",
+            none: "none",
+            fuelValveStroke: "fuelValveStroke",
+            governorOutput: "governorOutput"
+        };
+        Object.freeze (DroopSignalFeedbackKind);
 
         /**
          * Turbine-governor function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -210,18 +90,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TurbineGovernorDynamics_collapse" aria-expanded="true" aria-controls="TurbineGovernorDynamics_collapse">TurbineGovernorDynamics</a>
-<div id="TurbineGovernorDynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
-`
-{{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineDynamics}}&quot;);})'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
-{{#TurbineLoadControllerDynamics}}<div><b>TurbineLoadControllerDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineLoadControllerDynamics}}&quot;);})'>{{TurbineLoadControllerDynamics}}</a></div>{{/TurbineLoadControllerDynamics}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbineGovernorDynamics_collapse" aria-expanded="true" aria-controls="TurbineGovernorDynamics_collapse" style="margin-left: 10px;">TurbineGovernorDynamics</a></legend>
+                    <div id="TurbineGovernorDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+                    `
+                    {{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineDynamics}}&quot;);})'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
+                    {{#TurbineLoadControllerDynamics}}<div><b>TurbineLoadControllerDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineLoadControllerDynamics}}&quot;);})'>{{TurbineLoadControllerDynamics}}</a></div>{{/TurbineLoadControllerDynamics}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbineGovernorDynamics_collapse" aria-expanded="true" aria-controls="TurbineGovernorDynamics_collapse" style="margin-left: 10px;">TurbineGovernorDynamics</a></legend>
+                    <div id="TurbineGovernorDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AsynchronousMachineDynamics'>AsynchronousMachineDynamics: </label><div class='col-sm-8'><input id='AsynchronousMachineDynamics' class='form-control' type='text'{{#AsynchronousMachineDynamics}} value='{{AsynchronousMachineDynamics}}'{{/AsynchronousMachineDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TurbineLoadControllerDynamics'>TurbineLoadControllerDynamics: </label><div class='col-sm-8'><input id='TurbineLoadControllerDynamics' class='form-control' type='text'{{#TurbineLoadControllerDynamics}} value='{{TurbineLoadControllerDynamics}}'{{/TurbineLoadControllerDynamics}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Cross compound turbine governor model.
@@ -308,33 +220,80 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovSteamCC_collapse" aria-expanded="true" aria-controls="GovSteamCC_collapse">GovSteamCC</a>
-<div id="GovSteamCC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#dhp}}<div><b>dhp</b>: {{dhp}}</div>{{/dhp}}
-{{#dlp}}<div><b>dlp</b>: {{dlp}}</div>{{/dlp}}
-{{#fhp}}<div><b>fhp</b>: {{fhp}}</div>{{/fhp}}
-{{#flp}}<div><b>flp</b>: {{flp}}</div>{{/flp}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pmaxhp}}<div><b>pmaxhp</b>: {{pmaxhp}}</div>{{/pmaxhp}}
-{{#pmaxlp}}<div><b>pmaxlp</b>: {{pmaxlp}}</div>{{/pmaxlp}}
-{{#rhp}}<div><b>rhp</b>: {{rhp}}</div>{{/rhp}}
-{{#rlp}}<div><b>rlp</b>: {{rlp}}</div>{{/rlp}}
-{{#t1hp}}<div><b>t1hp</b>: {{t1hp}}</div>{{/t1hp}}
-{{#t1lp}}<div><b>t1lp</b>: {{t1lp}}</div>{{/t1lp}}
-{{#t3hp}}<div><b>t3hp</b>: {{t3hp}}</div>{{/t3hp}}
-{{#t3lp}}<div><b>t3lp</b>: {{t3lp}}</div>{{/t3lp}}
-{{#t4hp}}<div><b>t4hp</b>: {{t4hp}}</div>{{/t4hp}}
-{{#t4lp}}<div><b>t4lp</b>: {{t4lp}}</div>{{/t4lp}}
-{{#t5hp}}<div><b>t5hp</b>: {{t5hp}}</div>{{/t5hp}}
-{{#t5lp}}<div><b>t5lp</b>: {{t5lp}}</div>{{/t5lp}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamCC_collapse" aria-expanded="true" aria-controls="GovSteamCC_collapse" style="margin-left: 10px;">GovSteamCC</a></legend>
+                    <div id="GovSteamCC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#dhp}}<div><b>dhp</b>: {{dhp}}</div>{{/dhp}}
+                    {{#dlp}}<div><b>dlp</b>: {{dlp}}</div>{{/dlp}}
+                    {{#fhp}}<div><b>fhp</b>: {{fhp}}</div>{{/fhp}}
+                    {{#flp}}<div><b>flp</b>: {{flp}}</div>{{/flp}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pmaxhp}}<div><b>pmaxhp</b>: {{pmaxhp}}</div>{{/pmaxhp}}
+                    {{#pmaxlp}}<div><b>pmaxlp</b>: {{pmaxlp}}</div>{{/pmaxlp}}
+                    {{#rhp}}<div><b>rhp</b>: {{rhp}}</div>{{/rhp}}
+                    {{#rlp}}<div><b>rlp</b>: {{rlp}}</div>{{/rlp}}
+                    {{#t1hp}}<div><b>t1hp</b>: {{t1hp}}</div>{{/t1hp}}
+                    {{#t1lp}}<div><b>t1lp</b>: {{t1lp}}</div>{{/t1lp}}
+                    {{#t3hp}}<div><b>t3hp</b>: {{t3hp}}</div>{{/t3hp}}
+                    {{#t3lp}}<div><b>t3lp</b>: {{t3lp}}</div>{{/t3lp}}
+                    {{#t4hp}}<div><b>t4hp</b>: {{t4hp}}</div>{{/t4hp}}
+                    {{#t4lp}}<div><b>t4lp</b>: {{t4lp}}</div>{{/t4lp}}
+                    {{#t5hp}}<div><b>t5hp</b>: {{t5hp}}</div>{{/t5hp}}
+                    {{#t5lp}}<div><b>t5lp</b>: {{t5lp}}</div>{{/t5lp}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamCC_collapse" aria-expanded="true" aria-controls="GovSteamCC_collapse" style="margin-left: 10px;">GovSteamCC</a></legend>
+                    <div id="GovSteamCC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dhp'>dhp: </label><div class='col-sm-8'><input id='dhp' class='form-control' type='text'{{#dhp}} value='{{dhp}}'{{/dhp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dlp'>dlp: </label><div class='col-sm-8'><input id='dlp' class='form-control' type='text'{{#dlp}} value='{{dlp}}'{{/dlp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fhp'>fhp: </label><div class='col-sm-8'><input id='fhp' class='form-control' type='text'{{#fhp}} value='{{fhp}}'{{/fhp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flp'>flp: </label><div class='col-sm-8'><input id='flp' class='form-control' type='text'{{#flp}} value='{{flp}}'{{/flp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmaxhp'>pmaxhp: </label><div class='col-sm-8'><input id='pmaxhp' class='form-control' type='text'{{#pmaxhp}} value='{{pmaxhp}}'{{/pmaxhp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmaxlp'>pmaxlp: </label><div class='col-sm-8'><input id='pmaxlp' class='form-control' type='text'{{#pmaxlp}} value='{{pmaxlp}}'{{/pmaxlp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rhp'>rhp: </label><div class='col-sm-8'><input id='rhp' class='form-control' type='text'{{#rhp}} value='{{rhp}}'{{/rhp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rlp'>rlp: </label><div class='col-sm-8'><input id='rlp' class='form-control' type='text'{{#rlp}} value='{{rlp}}'{{/rlp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1hp'>t1hp: </label><div class='col-sm-8'><input id='t1hp' class='form-control' type='text'{{#t1hp}} value='{{t1hp}}'{{/t1hp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1lp'>t1lp: </label><div class='col-sm-8'><input id='t1lp' class='form-control' type='text'{{#t1lp}} value='{{t1lp}}'{{/t1lp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3hp'>t3hp: </label><div class='col-sm-8'><input id='t3hp' class='form-control' type='text'{{#t3hp}} value='{{t3hp}}'{{/t3hp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3lp'>t3lp: </label><div class='col-sm-8'><input id='t3lp' class='form-control' type='text'{{#t3lp}} value='{{t3lp}}'{{/t3lp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4hp'>t4hp: </label><div class='col-sm-8'><input id='t4hp' class='form-control' type='text'{{#t4hp}} value='{{t4hp}}'{{/t4hp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4lp'>t4lp: </label><div class='col-sm-8'><input id='t4lp' class='form-control' type='text'{{#t4lp}} value='{{t4lp}}'{{/t4lp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5hp'>t5hp: </label><div class='col-sm-8'><input id='t5hp' class='form-control' type='text'{{#t5hp}} value='{{t5hp}}'{{/t5hp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5lp'>t5lp: </label><div class='col-sm-8'><input id='t5lp' class='form-control' type='text'{{#t5lp}} value='{{t5lp}}'{{/t5lp}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * PID governor and turbine.
@@ -453,49 +412,112 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovHydroPID_collapse" aria-expanded="true" aria-controls="GovHydroPID_collapse">GovHydroPID</a>
-<div id="GovHydroPID_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#aturb}}<div><b>aturb</b>: {{aturb}}</div>{{/aturb}}
-{{#bturb}}<div><b>bturb</b>: {{bturb}}</div>{{/bturb}}
-{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
-{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
-{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
-{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
-{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
-{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
-{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
-{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
-{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
-{{#inputSignal}}<div><b>inputSignal</b>: {{inputSignal}}</div>{{/inputSignal}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
-{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
-{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
-{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
-{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
-{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
-{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
-{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
-{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
-{{#tturb}}<div><b>tturb</b>: {{tturb}}</div>{{/tturb}}
-{{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
-{{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroPID_collapse" aria-expanded="true" aria-controls="GovHydroPID_collapse" style="margin-left: 10px;">GovHydroPID</a></legend>
+                    <div id="GovHydroPID_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#aturb}}<div><b>aturb</b>: {{aturb}}</div>{{/aturb}}
+                    {{#bturb}}<div><b>bturb</b>: {{bturb}}</div>{{/bturb}}
+                    {{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+                    {{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+                    {{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+                    {{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+                    {{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+                    {{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+                    {{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+                    {{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+                    {{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+                    {{#inputSignal}}<div><b>inputSignal</b>: {{inputSignal}}</div>{{/inputSignal}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+                    {{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+                    {{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+                    {{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+                    {{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+                    {{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+                    {{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+                    {{#tturb}}<div><b>tturb</b>: {{tturb}}</div>{{/tturb}}
+                    {{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
+                    {{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroPID_collapse" aria-expanded="true" aria-controls="GovHydroPID_collapse" style="margin-left: 10px;">GovHydroPID</a></legend>
+                    <div id="GovHydroPID_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='aturb'>aturb: </label><div class='col-sm-8'><input id='aturb' class='form-control' type='text'{{#aturb}} value='{{aturb}}'{{/aturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bturb'>bturb: </label><div class='col-sm-8'><input id='bturb' class='form-control' type='text'{{#bturb}} value='{{bturb}}'{{/bturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db1'>db1: </label><div class='col-sm-8'><input id='db1' class='form-control' type='text'{{#db1}} value='{{db1}}'{{/db1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db2'>db2: </label><div class='col-sm-8'><input id='db2' class='form-control' type='text'{{#db2}} value='{{db2}}'{{/db2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eps'>eps: </label><div class='col-sm-8'><input id='eps' class='form-control' type='text'{{#eps}} value='{{eps}}'{{/eps}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv1'>gv1: </label><div class='col-sm-8'><input id='gv1' class='form-control' type='text'{{#gv1}} value='{{gv1}}'{{/gv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv2'>gv2: </label><div class='col-sm-8'><input id='gv2' class='form-control' type='text'{{#gv2}} value='{{gv2}}'{{/gv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv3'>gv3: </label><div class='col-sm-8'><input id='gv3' class='form-control' type='text'{{#gv3}} value='{{gv3}}'{{/gv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv4'>gv4: </label><div class='col-sm-8'><input id='gv4' class='form-control' type='text'{{#gv4}} value='{{gv4}}'{{/gv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv5'>gv5: </label><div class='col-sm-8'><input id='gv5' class='form-control' type='text'{{#gv5}} value='{{gv5}}'{{/gv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv6'>gv6: </label><div class='col-sm-8'><input id='gv6' class='form-control' type='text'{{#gv6}} value='{{gv6}}'{{/gv6}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='inputSignal'>inputSignal: </label><div class='col-sm-8'><input id='inputSignal' class='form-check-input' type='checkbox'{{#inputSignal}} checked{{/inputSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kg'>kg: </label><div class='col-sm-8'><input id='kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv1'>pgv1: </label><div class='col-sm-8'><input id='pgv1' class='form-control' type='text'{{#pgv1}} value='{{pgv1}}'{{/pgv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv2'>pgv2: </label><div class='col-sm-8'><input id='pgv2' class='form-control' type='text'{{#pgv2}} value='{{pgv2}}'{{/pgv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv3'>pgv3: </label><div class='col-sm-8'><input id='pgv3' class='form-control' type='text'{{#pgv3}} value='{{pgv3}}'{{/pgv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv4'>pgv4: </label><div class='col-sm-8'><input id='pgv4' class='form-control' type='text'{{#pgv4}} value='{{pgv4}}'{{/pgv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv5'>pgv5: </label><div class='col-sm-8'><input id='pgv5' class='form-control' type='text'{{#pgv5}} value='{{pgv5}}'{{/pgv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv6'>pgv6: </label><div class='col-sm-8'><input id='pgv6' class='form-control' type='text'{{#pgv6}} value='{{pgv6}}'{{/pgv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmax'>pmax: </label><div class='col-sm-8'><input id='pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td'>td: </label><div class='col-sm-8'><input id='td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tt'>tt: </label><div class='col-sm-8'><input id='tt' class='form-control' type='text'{{#tt}} value='{{tt}}'{{/tt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tturb'>tturb: </label><div class='col-sm-8'><input id='tturb' class='form-control' type='text'{{#tturb}} value='{{tturb}}'{{/tturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='velcl'>velcl: </label><div class='col-sm-8'><input id='velcl' class='form-control' type='text'{{#velcl}} value='{{velcl}}'{{/velcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='velop'>velop: </label><div class='col-sm-8'><input id='velop' class='form-control' type='text'{{#velop}} value='{{velop}}'{{/velop}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * General governor model with frequency-dependent fuel flow limit.
@@ -567,7 +589,7 @@ define
                 base.parse_element (/<cim:GovCT2.rclose>([\s\S]*?)<\/cim:GovCT2.rclose>/g, obj, "rclose", base.to_float, sub, context);
                 base.parse_element (/<cim:GovCT2.rdown>([\s\S]*?)<\/cim:GovCT2.rdown>/g, obj, "rdown", base.to_string, sub, context);
                 base.parse_element (/<cim:GovCT2.ropen>([\s\S]*?)<\/cim:GovCT2.ropen>/g, obj, "ropen", base.to_float, sub, context);
-                base.parse_element (/<cim:GovCT2.rselect>([\s\S]*?)<\/cim:GovCT2.rselect>/g, obj, "rselect", base.to_string, sub, context);
+                base.parse_attribute (/<cim:GovCT2.rselect\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "rselect", sub, context);
                 base.parse_element (/<cim:GovCT2.rup>([\s\S]*?)<\/cim:GovCT2.rup>/g, obj, "rup", base.to_string, sub, context);
                 base.parse_element (/<cim:GovCT2.ta>([\s\S]*?)<\/cim:GovCT2.ta>/g, obj, "ta", base.to_string, sub, context);
                 base.parse_element (/<cim:GovCT2.tact>([\s\S]*?)<\/cim:GovCT2.tact>/g, obj, "tact", base.to_string, sub, context);
@@ -662,72 +684,160 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovCT2_collapse" aria-expanded="true" aria-controls="GovCT2_collapse">GovCT2</a>
-<div id="GovCT2_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#aset}}<div><b>aset</b>: {{aset}}</div>{{/aset}}
-{{#db}}<div><b>db</b>: {{db}}</div>{{/db}}
-{{#dm}}<div><b>dm</b>: {{dm}}</div>{{/dm}}
-{{#flim1}}<div><b>flim1</b>: {{flim1}}</div>{{/flim1}}
-{{#flim10}}<div><b>flim10</b>: {{flim10}}</div>{{/flim10}}
-{{#flim2}}<div><b>flim2</b>: {{flim2}}</div>{{/flim2}}
-{{#flim3}}<div><b>flim3</b>: {{flim3}}</div>{{/flim3}}
-{{#flim4}}<div><b>flim4</b>: {{flim4}}</div>{{/flim4}}
-{{#flim5}}<div><b>flim5</b>: {{flim5}}</div>{{/flim5}}
-{{#flim6}}<div><b>flim6</b>: {{flim6}}</div>{{/flim6}}
-{{#flim7}}<div><b>flim7</b>: {{flim7}}</div>{{/flim7}}
-{{#flim8}}<div><b>flim8</b>: {{flim8}}</div>{{/flim8}}
-{{#flim9}}<div><b>flim9</b>: {{flim9}}</div>{{/flim9}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kdgov}}<div><b>kdgov</b>: {{kdgov}}</div>{{/kdgov}}
-{{#kigov}}<div><b>kigov</b>: {{kigov}}</div>{{/kigov}}
-{{#kiload}}<div><b>kiload</b>: {{kiload}}</div>{{/kiload}}
-{{#kimw}}<div><b>kimw</b>: {{kimw}}</div>{{/kimw}}
-{{#kpgov}}<div><b>kpgov</b>: {{kpgov}}</div>{{/kpgov}}
-{{#kpload}}<div><b>kpload</b>: {{kpload}}</div>{{/kpload}}
-{{#kturb}}<div><b>kturb</b>: {{kturb}}</div>{{/kturb}}
-{{#ldref}}<div><b>ldref</b>: {{ldref}}</div>{{/ldref}}
-{{#maxerr}}<div><b>maxerr</b>: {{maxerr}}</div>{{/maxerr}}
-{{#minerr}}<div><b>minerr</b>: {{minerr}}</div>{{/minerr}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#plim1}}<div><b>plim1</b>: {{plim1}}</div>{{/plim1}}
-{{#plim10}}<div><b>plim10</b>: {{plim10}}</div>{{/plim10}}
-{{#plim2}}<div><b>plim2</b>: {{plim2}}</div>{{/plim2}}
-{{#plim3}}<div><b>plim3</b>: {{plim3}}</div>{{/plim3}}
-{{#plim4}}<div><b>plim4</b>: {{plim4}}</div>{{/plim4}}
-{{#plim5}}<div><b>plim5</b>: {{plim5}}</div>{{/plim5}}
-{{#plim6}}<div><b>plim6</b>: {{plim6}}</div>{{/plim6}}
-{{#plim7}}<div><b>plim7</b>: {{plim7}}</div>{{/plim7}}
-{{#plim8}}<div><b>plim8</b>: {{plim8}}</div>{{/plim8}}
-{{#plim9}}<div><b>plim9</b>: {{plim9}}</div>{{/plim9}}
-{{#prate}}<div><b>prate</b>: {{prate}}</div>{{/prate}}
-{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
-{{#rclose}}<div><b>rclose</b>: {{rclose}}</div>{{/rclose}}
-{{#rdown}}<div><b>rdown</b>: {{rdown}}</div>{{/rdown}}
-{{#ropen}}<div><b>ropen</b>: {{ropen}}</div>{{/ropen}}
-{{#rselect}}<div><b>rselect</b>: {{rselect}}</div>{{/rselect}}
-{{#rup}}<div><b>rup</b>: {{rup}}</div>{{/rup}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tact}}<div><b>tact</b>: {{tact}}</div>{{/tact}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#tdgov}}<div><b>tdgov</b>: {{tdgov}}</div>{{/tdgov}}
-{{#teng}}<div><b>teng</b>: {{teng}}</div>{{/teng}}
-{{#tfload}}<div><b>tfload</b>: {{tfload}}</div>{{/tfload}}
-{{#tpelec}}<div><b>tpelec</b>: {{tpelec}}</div>{{/tpelec}}
-{{#tsa}}<div><b>tsa</b>: {{tsa}}</div>{{/tsa}}
-{{#tsb}}<div><b>tsb</b>: {{tsb}}</div>{{/tsb}}
-{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
-{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
-{{#wfnl}}<div><b>wfnl</b>: {{wfnl}}</div>{{/wfnl}}
-{{#wfspd}}<div><b>wfspd</b>: {{wfspd}}</div>{{/wfspd}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovCT2_collapse" aria-expanded="true" aria-controls="GovCT2_collapse" style="margin-left: 10px;">GovCT2</a></legend>
+                    <div id="GovCT2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#aset}}<div><b>aset</b>: {{aset}}</div>{{/aset}}
+                    {{#db}}<div><b>db</b>: {{db}}</div>{{/db}}
+                    {{#dm}}<div><b>dm</b>: {{dm}}</div>{{/dm}}
+                    {{#flim1}}<div><b>flim1</b>: {{flim1}}</div>{{/flim1}}
+                    {{#flim10}}<div><b>flim10</b>: {{flim10}}</div>{{/flim10}}
+                    {{#flim2}}<div><b>flim2</b>: {{flim2}}</div>{{/flim2}}
+                    {{#flim3}}<div><b>flim3</b>: {{flim3}}</div>{{/flim3}}
+                    {{#flim4}}<div><b>flim4</b>: {{flim4}}</div>{{/flim4}}
+                    {{#flim5}}<div><b>flim5</b>: {{flim5}}</div>{{/flim5}}
+                    {{#flim6}}<div><b>flim6</b>: {{flim6}}</div>{{/flim6}}
+                    {{#flim7}}<div><b>flim7</b>: {{flim7}}</div>{{/flim7}}
+                    {{#flim8}}<div><b>flim8</b>: {{flim8}}</div>{{/flim8}}
+                    {{#flim9}}<div><b>flim9</b>: {{flim9}}</div>{{/flim9}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kdgov}}<div><b>kdgov</b>: {{kdgov}}</div>{{/kdgov}}
+                    {{#kigov}}<div><b>kigov</b>: {{kigov}}</div>{{/kigov}}
+                    {{#kiload}}<div><b>kiload</b>: {{kiload}}</div>{{/kiload}}
+                    {{#kimw}}<div><b>kimw</b>: {{kimw}}</div>{{/kimw}}
+                    {{#kpgov}}<div><b>kpgov</b>: {{kpgov}}</div>{{/kpgov}}
+                    {{#kpload}}<div><b>kpload</b>: {{kpload}}</div>{{/kpload}}
+                    {{#kturb}}<div><b>kturb</b>: {{kturb}}</div>{{/kturb}}
+                    {{#ldref}}<div><b>ldref</b>: {{ldref}}</div>{{/ldref}}
+                    {{#maxerr}}<div><b>maxerr</b>: {{maxerr}}</div>{{/maxerr}}
+                    {{#minerr}}<div><b>minerr</b>: {{minerr}}</div>{{/minerr}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#plim1}}<div><b>plim1</b>: {{plim1}}</div>{{/plim1}}
+                    {{#plim10}}<div><b>plim10</b>: {{plim10}}</div>{{/plim10}}
+                    {{#plim2}}<div><b>plim2</b>: {{plim2}}</div>{{/plim2}}
+                    {{#plim3}}<div><b>plim3</b>: {{plim3}}</div>{{/plim3}}
+                    {{#plim4}}<div><b>plim4</b>: {{plim4}}</div>{{/plim4}}
+                    {{#plim5}}<div><b>plim5</b>: {{plim5}}</div>{{/plim5}}
+                    {{#plim6}}<div><b>plim6</b>: {{plim6}}</div>{{/plim6}}
+                    {{#plim7}}<div><b>plim7</b>: {{plim7}}</div>{{/plim7}}
+                    {{#plim8}}<div><b>plim8</b>: {{plim8}}</div>{{/plim8}}
+                    {{#plim9}}<div><b>plim9</b>: {{plim9}}</div>{{/plim9}}
+                    {{#prate}}<div><b>prate</b>: {{prate}}</div>{{/prate}}
+                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+                    {{#rclose}}<div><b>rclose</b>: {{rclose}}</div>{{/rclose}}
+                    {{#rdown}}<div><b>rdown</b>: {{rdown}}</div>{{/rdown}}
+                    {{#ropen}}<div><b>ropen</b>: {{ropen}}</div>{{/ropen}}
+                    {{#rselect}}<div><b>rselect</b>: {{rselect}}</div>{{/rselect}}
+                    {{#rup}}<div><b>rup</b>: {{rup}}</div>{{/rup}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tact}}<div><b>tact</b>: {{tact}}</div>{{/tact}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#tdgov}}<div><b>tdgov</b>: {{tdgov}}</div>{{/tdgov}}
+                    {{#teng}}<div><b>teng</b>: {{teng}}</div>{{/teng}}
+                    {{#tfload}}<div><b>tfload</b>: {{tfload}}</div>{{/tfload}}
+                    {{#tpelec}}<div><b>tpelec</b>: {{tpelec}}</div>{{/tpelec}}
+                    {{#tsa}}<div><b>tsa</b>: {{tsa}}</div>{{/tsa}}
+                    {{#tsb}}<div><b>tsb</b>: {{tsb}}</div>{{/tsb}}
+                    {{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+                    {{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+                    {{#wfnl}}<div><b>wfnl</b>: {{wfnl}}</div>{{/wfnl}}
+                    {{#wfspd}}<div><b>wfspd</b>: {{wfspd}}</div>{{/wfspd}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.DroopSignalFeedbackKind = []; if (!obj.rselect) obj.DroopSignalFeedbackKind.push ({ id: '', selected: true}); for (var property in DroopSignalFeedbackKind) obj.DroopSignalFeedbackKind.push ({ id: property, selected: obj.rselect && obj.rselect.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.DroopSignalFeedbackKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovCT2_collapse" aria-expanded="true" aria-controls="GovCT2_collapse" style="margin-left: 10px;">GovCT2</a></legend>
+                    <div id="GovCT2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='aset'>aset: </label><div class='col-sm-8'><input id='aset' class='form-control' type='text'{{#aset}} value='{{aset}}'{{/aset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db'>db: </label><div class='col-sm-8'><input id='db' class='form-control' type='text'{{#db}} value='{{db}}'{{/db}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dm'>dm: </label><div class='col-sm-8'><input id='dm' class='form-control' type='text'{{#dm}} value='{{dm}}'{{/dm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flim1'>flim1: </label><div class='col-sm-8'><input id='flim1' class='form-control' type='text'{{#flim1}} value='{{flim1}}'{{/flim1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flim10'>flim10: </label><div class='col-sm-8'><input id='flim10' class='form-control' type='text'{{#flim10}} value='{{flim10}}'{{/flim10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flim2'>flim2: </label><div class='col-sm-8'><input id='flim2' class='form-control' type='text'{{#flim2}} value='{{flim2}}'{{/flim2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flim3'>flim3: </label><div class='col-sm-8'><input id='flim3' class='form-control' type='text'{{#flim3}} value='{{flim3}}'{{/flim3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flim4'>flim4: </label><div class='col-sm-8'><input id='flim4' class='form-control' type='text'{{#flim4}} value='{{flim4}}'{{/flim4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flim5'>flim5: </label><div class='col-sm-8'><input id='flim5' class='form-control' type='text'{{#flim5}} value='{{flim5}}'{{/flim5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flim6'>flim6: </label><div class='col-sm-8'><input id='flim6' class='form-control' type='text'{{#flim6}} value='{{flim6}}'{{/flim6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flim7'>flim7: </label><div class='col-sm-8'><input id='flim7' class='form-control' type='text'{{#flim7}} value='{{flim7}}'{{/flim7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flim8'>flim8: </label><div class='col-sm-8'><input id='flim8' class='form-control' type='text'{{#flim8}} value='{{flim8}}'{{/flim8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flim9'>flim9: </label><div class='col-sm-8'><input id='flim9' class='form-control' type='text'{{#flim9}} value='{{flim9}}'{{/flim9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kdgov'>kdgov: </label><div class='col-sm-8'><input id='kdgov' class='form-control' type='text'{{#kdgov}} value='{{kdgov}}'{{/kdgov}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kigov'>kigov: </label><div class='col-sm-8'><input id='kigov' class='form-control' type='text'{{#kigov}} value='{{kigov}}'{{/kigov}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiload'>kiload: </label><div class='col-sm-8'><input id='kiload' class='form-control' type='text'{{#kiload}} value='{{kiload}}'{{/kiload}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kimw'>kimw: </label><div class='col-sm-8'><input id='kimw' class='form-control' type='text'{{#kimw}} value='{{kimw}}'{{/kimw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpgov'>kpgov: </label><div class='col-sm-8'><input id='kpgov' class='form-control' type='text'{{#kpgov}} value='{{kpgov}}'{{/kpgov}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpload'>kpload: </label><div class='col-sm-8'><input id='kpload' class='form-control' type='text'{{#kpload}} value='{{kpload}}'{{/kpload}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kturb'>kturb: </label><div class='col-sm-8'><input id='kturb' class='form-control' type='text'{{#kturb}} value='{{kturb}}'{{/kturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ldref'>ldref: </label><div class='col-sm-8'><input id='ldref' class='form-control' type='text'{{#ldref}} value='{{ldref}}'{{/ldref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxerr'>maxerr: </label><div class='col-sm-8'><input id='maxerr' class='form-control' type='text'{{#maxerr}} value='{{maxerr}}'{{/maxerr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minerr'>minerr: </label><div class='col-sm-8'><input id='minerr' class='form-control' type='text'{{#minerr}} value='{{minerr}}'{{/minerr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plim1'>plim1: </label><div class='col-sm-8'><input id='plim1' class='form-control' type='text'{{#plim1}} value='{{plim1}}'{{/plim1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plim10'>plim10: </label><div class='col-sm-8'><input id='plim10' class='form-control' type='text'{{#plim10}} value='{{plim10}}'{{/plim10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plim2'>plim2: </label><div class='col-sm-8'><input id='plim2' class='form-control' type='text'{{#plim2}} value='{{plim2}}'{{/plim2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plim3'>plim3: </label><div class='col-sm-8'><input id='plim3' class='form-control' type='text'{{#plim3}} value='{{plim3}}'{{/plim3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plim4'>plim4: </label><div class='col-sm-8'><input id='plim4' class='form-control' type='text'{{#plim4}} value='{{plim4}}'{{/plim4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plim5'>plim5: </label><div class='col-sm-8'><input id='plim5' class='form-control' type='text'{{#plim5}} value='{{plim5}}'{{/plim5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plim6'>plim6: </label><div class='col-sm-8'><input id='plim6' class='form-control' type='text'{{#plim6}} value='{{plim6}}'{{/plim6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plim7'>plim7: </label><div class='col-sm-8'><input id='plim7' class='form-control' type='text'{{#plim7}} value='{{plim7}}'{{/plim7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plim8'>plim8: </label><div class='col-sm-8'><input id='plim8' class='form-control' type='text'{{#plim8}} value='{{plim8}}'{{/plim8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plim9'>plim9: </label><div class='col-sm-8'><input id='plim9' class='form-control' type='text'{{#plim9}} value='{{plim9}}'{{/plim9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='prate'>prate: </label><div class='col-sm-8'><input id='prate' class='form-control' type='text'{{#prate}} value='{{prate}}'{{/prate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rclose'>rclose: </label><div class='col-sm-8'><input id='rclose' class='form-control' type='text'{{#rclose}} value='{{rclose}}'{{/rclose}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rdown'>rdown: </label><div class='col-sm-8'><input id='rdown' class='form-control' type='text'{{#rdown}} value='{{rdown}}'{{/rdown}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ropen'>ropen: </label><div class='col-sm-8'><input id='ropen' class='form-control' type='text'{{#ropen}} value='{{ropen}}'{{/ropen}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rselect'>rselect: </label><div class='col-sm-8'><select id='rselect' class='form-control'>{{#DroopSignalFeedbackKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DroopSignalFeedbackKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rup'>rup: </label><div class='col-sm-8'><input id='rup' class='form-control' type='text'{{#rup}} value='{{rup}}'{{/rup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tact'>tact: </label><div class='col-sm-8'><input id='tact' class='form-control' type='text'{{#tact}} value='{{tact}}'{{/tact}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tdgov'>tdgov: </label><div class='col-sm-8'><input id='tdgov' class='form-control' type='text'{{#tdgov}} value='{{tdgov}}'{{/tdgov}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='teng'>teng: </label><div class='col-sm-8'><input id='teng' class='form-control' type='text'{{#teng}} value='{{teng}}'{{/teng}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tfload'>tfload: </label><div class='col-sm-8'><input id='tfload' class='form-control' type='text'{{#tfload}} value='{{tfload}}'{{/tfload}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpelec'>tpelec: </label><div class='col-sm-8'><input id='tpelec' class='form-control' type='text'{{#tpelec}} value='{{tpelec}}'{{/tpelec}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tsa'>tsa: </label><div class='col-sm-8'><input id='tsa' class='form-control' type='text'{{#tsa}} value='{{tsa}}'{{/tsa}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tsb'>tsb: </label><div class='col-sm-8'><input id='tsb' class='form-control' type='text'{{#tsb}} value='{{tsb}}'{{/tsb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmax'>vmax: </label><div class='col-sm-8'><input id='vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmin'>vmin: </label><div class='col-sm-8'><input id='vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='wfnl'>wfnl: </label><div class='col-sm-8'><input id='wfnl' class='form-control' type='text'{{#wfnl}} value='{{wfnl}}'{{/wfnl}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='wfspd'>wfspd: </label><div class='col-sm-8'><input id='wfspd' class='form-check-input' type='checkbox'{{#wfspd}} checked{{/wfspd}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * IEEE hydro turbine governor model represents plants with straightforward penstock configurations and hydraulic-dashpot governors.
@@ -838,45 +948,104 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovHydro2_collapse" aria-expanded="true" aria-controls="GovHydro2_collapse">GovHydro2</a>
-<div id="GovHydro2_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#aturb}}<div><b>aturb</b>: {{aturb}}</div>{{/aturb}}
-{{#bturb}}<div><b>bturb</b>: {{bturb}}</div>{{/bturb}}
-{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
-{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
-{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
-{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
-{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
-{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
-{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
-{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
-{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
-{{#kturb}}<div><b>kturb</b>: {{kturb}}</div>{{/kturb}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
-{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
-{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
-{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
-{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
-{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
-{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
-{{#rtemp}}<div><b>rtemp</b>: {{rtemp}}</div>{{/rtemp}}
-{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
-{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
-{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
-{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
-{{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
-{{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro2_collapse" aria-expanded="true" aria-controls="GovHydro2_collapse" style="margin-left: 10px;">GovHydro2</a></legend>
+                    <div id="GovHydro2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#aturb}}<div><b>aturb</b>: {{aturb}}</div>{{/aturb}}
+                    {{#bturb}}<div><b>bturb</b>: {{bturb}}</div>{{/bturb}}
+                    {{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+                    {{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+                    {{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+                    {{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+                    {{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+                    {{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+                    {{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+                    {{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+                    {{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+                    {{#kturb}}<div><b>kturb</b>: {{kturb}}</div>{{/kturb}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+                    {{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+                    {{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+                    {{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+                    {{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+                    {{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
+                    {{#rtemp}}<div><b>rtemp</b>: {{rtemp}}</div>{{/rtemp}}
+                    {{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+                    {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+                    {{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+                    {{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
+                    {{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro2_collapse" aria-expanded="true" aria-controls="GovHydro2_collapse" style="margin-left: 10px;">GovHydro2</a></legend>
+                    <div id="GovHydro2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='aturb'>aturb: </label><div class='col-sm-8'><input id='aturb' class='form-control' type='text'{{#aturb}} value='{{aturb}}'{{/aturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bturb'>bturb: </label><div class='col-sm-8'><input id='bturb' class='form-control' type='text'{{#bturb}} value='{{bturb}}'{{/bturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db1'>db1: </label><div class='col-sm-8'><input id='db1' class='form-control' type='text'{{#db1}} value='{{db1}}'{{/db1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db2'>db2: </label><div class='col-sm-8'><input id='db2' class='form-control' type='text'{{#db2}} value='{{db2}}'{{/db2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eps'>eps: </label><div class='col-sm-8'><input id='eps' class='form-control' type='text'{{#eps}} value='{{eps}}'{{/eps}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv1'>gv1: </label><div class='col-sm-8'><input id='gv1' class='form-control' type='text'{{#gv1}} value='{{gv1}}'{{/gv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv2'>gv2: </label><div class='col-sm-8'><input id='gv2' class='form-control' type='text'{{#gv2}} value='{{gv2}}'{{/gv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv3'>gv3: </label><div class='col-sm-8'><input id='gv3' class='form-control' type='text'{{#gv3}} value='{{gv3}}'{{/gv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv4'>gv4: </label><div class='col-sm-8'><input id='gv4' class='form-control' type='text'{{#gv4}} value='{{gv4}}'{{/gv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv5'>gv5: </label><div class='col-sm-8'><input id='gv5' class='form-control' type='text'{{#gv5}} value='{{gv5}}'{{/gv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv6'>gv6: </label><div class='col-sm-8'><input id='gv6' class='form-control' type='text'{{#gv6}} value='{{gv6}}'{{/gv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kturb'>kturb: </label><div class='col-sm-8'><input id='kturb' class='form-control' type='text'{{#kturb}} value='{{kturb}}'{{/kturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv1'>pgv1: </label><div class='col-sm-8'><input id='pgv1' class='form-control' type='text'{{#pgv1}} value='{{pgv1}}'{{/pgv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv2'>pgv2: </label><div class='col-sm-8'><input id='pgv2' class='form-control' type='text'{{#pgv2}} value='{{pgv2}}'{{/pgv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv3'>pgv3: </label><div class='col-sm-8'><input id='pgv3' class='form-control' type='text'{{#pgv3}} value='{{pgv3}}'{{/pgv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv4'>pgv4: </label><div class='col-sm-8'><input id='pgv4' class='form-control' type='text'{{#pgv4}} value='{{pgv4}}'{{/pgv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv5'>pgv5: </label><div class='col-sm-8'><input id='pgv5' class='form-control' type='text'{{#pgv5}} value='{{pgv5}}'{{/pgv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv6'>pgv6: </label><div class='col-sm-8'><input id='pgv6' class='form-control' type='text'{{#pgv6}} value='{{pgv6}}'{{/pgv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmax'>pmax: </label><div class='col-sm-8'><input id='pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rperm'>rperm: </label><div class='col-sm-8'><input id='rperm' class='form-control' type='text'{{#rperm}} value='{{rperm}}'{{/rperm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rtemp'>rtemp: </label><div class='col-sm-8'><input id='rtemp' class='form-control' type='text'{{#rtemp}} value='{{rtemp}}'{{/rtemp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tg'>tg: </label><div class='col-sm-8'><input id='tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr'>tr: </label><div class='col-sm-8'><input id='tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw'>tw: </label><div class='col-sm-8'><input id='tw' class='form-control' type='text'{{#tw}} value='{{tw}}'{{/tw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uc'>uc: </label><div class='col-sm-8'><input id='uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uo'>uo: </label><div class='col-sm-8'><input id='uo' class='form-control' type='text'{{#uo}} value='{{uo}}'{{/uo}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * IEEE hydro turbine governor model represents plants with straightforward penstock configurations and hydraulic-dashpot governors.
@@ -983,42 +1152,98 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovHydroIEEE2_collapse" aria-expanded="true" aria-controls="GovHydroIEEE2_collapse">GovHydroIEEE2</a>
-<div id="GovHydroIEEE2_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#aturb}}<div><b>aturb</b>: {{aturb}}</div>{{/aturb}}
-{{#bturb}}<div><b>bturb</b>: {{bturb}}</div>{{/bturb}}
-{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
-{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
-{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
-{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
-{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
-{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
-{{#kturb}}<div><b>kturb</b>: {{kturb}}</div>{{/kturb}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
-{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
-{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
-{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
-{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
-{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
-{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
-{{#rtemp}}<div><b>rtemp</b>: {{rtemp}}</div>{{/rtemp}}
-{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
-{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
-{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
-{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
-{{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
-{{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroIEEE2_collapse" aria-expanded="true" aria-controls="GovHydroIEEE2_collapse" style="margin-left: 10px;">GovHydroIEEE2</a></legend>
+                    <div id="GovHydroIEEE2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#aturb}}<div><b>aturb</b>: {{aturb}}</div>{{/aturb}}
+                    {{#bturb}}<div><b>bturb</b>: {{bturb}}</div>{{/bturb}}
+                    {{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+                    {{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+                    {{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+                    {{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+                    {{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+                    {{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+                    {{#kturb}}<div><b>kturb</b>: {{kturb}}</div>{{/kturb}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+                    {{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+                    {{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+                    {{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+                    {{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+                    {{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
+                    {{#rtemp}}<div><b>rtemp</b>: {{rtemp}}</div>{{/rtemp}}
+                    {{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+                    {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+                    {{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+                    {{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
+                    {{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroIEEE2_collapse" aria-expanded="true" aria-controls="GovHydroIEEE2_collapse" style="margin-left: 10px;">GovHydroIEEE2</a></legend>
+                    <div id="GovHydroIEEE2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='aturb'>aturb: </label><div class='col-sm-8'><input id='aturb' class='form-control' type='text'{{#aturb}} value='{{aturb}}'{{/aturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bturb'>bturb: </label><div class='col-sm-8'><input id='bturb' class='form-control' type='text'{{#bturb}} value='{{bturb}}'{{/bturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv1'>gv1: </label><div class='col-sm-8'><input id='gv1' class='form-control' type='text'{{#gv1}} value='{{gv1}}'{{/gv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv2'>gv2: </label><div class='col-sm-8'><input id='gv2' class='form-control' type='text'{{#gv2}} value='{{gv2}}'{{/gv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv3'>gv3: </label><div class='col-sm-8'><input id='gv3' class='form-control' type='text'{{#gv3}} value='{{gv3}}'{{/gv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv4'>gv4: </label><div class='col-sm-8'><input id='gv4' class='form-control' type='text'{{#gv4}} value='{{gv4}}'{{/gv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv5'>gv5: </label><div class='col-sm-8'><input id='gv5' class='form-control' type='text'{{#gv5}} value='{{gv5}}'{{/gv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv6'>gv6: </label><div class='col-sm-8'><input id='gv6' class='form-control' type='text'{{#gv6}} value='{{gv6}}'{{/gv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kturb'>kturb: </label><div class='col-sm-8'><input id='kturb' class='form-control' type='text'{{#kturb}} value='{{kturb}}'{{/kturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv1'>pgv1: </label><div class='col-sm-8'><input id='pgv1' class='form-control' type='text'{{#pgv1}} value='{{pgv1}}'{{/pgv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv2'>pgv2: </label><div class='col-sm-8'><input id='pgv2' class='form-control' type='text'{{#pgv2}} value='{{pgv2}}'{{/pgv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv3'>pgv3: </label><div class='col-sm-8'><input id='pgv3' class='form-control' type='text'{{#pgv3}} value='{{pgv3}}'{{/pgv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv4'>pgv4: </label><div class='col-sm-8'><input id='pgv4' class='form-control' type='text'{{#pgv4}} value='{{pgv4}}'{{/pgv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv5'>pgv5: </label><div class='col-sm-8'><input id='pgv5' class='form-control' type='text'{{#pgv5}} value='{{pgv5}}'{{/pgv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv6'>pgv6: </label><div class='col-sm-8'><input id='pgv6' class='form-control' type='text'{{#pgv6}} value='{{pgv6}}'{{/pgv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmax'>pmax: </label><div class='col-sm-8'><input id='pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rperm'>rperm: </label><div class='col-sm-8'><input id='rperm' class='form-control' type='text'{{#rperm}} value='{{rperm}}'{{/rperm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rtemp'>rtemp: </label><div class='col-sm-8'><input id='rtemp' class='form-control' type='text'{{#rtemp}} value='{{rtemp}}'{{/rtemp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tg'>tg: </label><div class='col-sm-8'><input id='tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr'>tr: </label><div class='col-sm-8'><input id='tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw'>tw: </label><div class='col-sm-8'><input id='tw' class='form-control' type='text'{{#tw}} value='{{tw}}'{{/tw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uc'>uc: </label><div class='col-sm-8'><input id='uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uo'>uo: </label><div class='col-sm-8'><input id='uo' class='form-control' type='text'{{#uo}} value='{{uo}}'{{/uo}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Woodward PID Hydro Governor.
@@ -1115,38 +1340,90 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovHydroWPID_collapse" aria-expanded="true" aria-controls="GovHydroWPID_collapse">GovHydroWPID</a>
-<div id="GovHydroWPID_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#d}}<div><b>d</b>: {{d}}</div>{{/d}}
-{{#gatmax}}<div><b>gatmax</b>: {{gatmax}}</div>{{/gatmax}}
-{{#gatmin}}<div><b>gatmin</b>: {{gatmin}}</div>{{/gatmin}}
-{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
-{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
-{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
-{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
-{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
-{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#reg}}<div><b>reg</b>: {{reg}}</div>{{/reg}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#treg}}<div><b>treg</b>: {{treg}}</div>{{/treg}}
-{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
-{{#velmax}}<div><b>velmax</b>: {{velmax}}</div>{{/velmax}}
-{{#velmin}}<div><b>velmin</b>: {{velmin}}</div>{{/velmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroWPID_collapse" aria-expanded="true" aria-controls="GovHydroWPID_collapse" style="margin-left: 10px;">GovHydroWPID</a></legend>
+                    <div id="GovHydroWPID_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#d}}<div><b>d</b>: {{d}}</div>{{/d}}
+                    {{#gatmax}}<div><b>gatmax</b>: {{gatmax}}</div>{{/gatmax}}
+                    {{#gatmin}}<div><b>gatmin</b>: {{gatmin}}</div>{{/gatmin}}
+                    {{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+                    {{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+                    {{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+                    {{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+                    {{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#reg}}<div><b>reg</b>: {{reg}}</div>{{/reg}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#treg}}<div><b>treg</b>: {{treg}}</div>{{/treg}}
+                    {{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+                    {{#velmax}}<div><b>velmax</b>: {{velmax}}</div>{{/velmax}}
+                    {{#velmin}}<div><b>velmin</b>: {{velmin}}</div>{{/velmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroWPID_collapse" aria-expanded="true" aria-controls="GovHydroWPID_collapse" style="margin-left: 10px;">GovHydroWPID</a></legend>
+                    <div id="GovHydroWPID_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='d'>d: </label><div class='col-sm-8'><input id='d' class='form-control' type='text'{{#d}} value='{{d}}'{{/d}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gatmax'>gatmax: </label><div class='col-sm-8'><input id='gatmax' class='form-control' type='text'{{#gatmax}} value='{{gatmax}}'{{/gatmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gatmin'>gatmin: </label><div class='col-sm-8'><input id='gatmin' class='form-control' type='text'{{#gatmin}} value='{{gatmin}}'{{/gatmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv1'>gv1: </label><div class='col-sm-8'><input id='gv1' class='form-control' type='text'{{#gv1}} value='{{gv1}}'{{/gv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv2'>gv2: </label><div class='col-sm-8'><input id='gv2' class='form-control' type='text'{{#gv2}} value='{{gv2}}'{{/gv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv3'>gv3: </label><div class='col-sm-8'><input id='gv3' class='form-control' type='text'{{#gv3}} value='{{gv3}}'{{/gv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv1'>pgv1: </label><div class='col-sm-8'><input id='pgv1' class='form-control' type='text'{{#pgv1}} value='{{pgv1}}'{{/pgv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv2'>pgv2: </label><div class='col-sm-8'><input id='pgv2' class='form-control' type='text'{{#pgv2}} value='{{pgv2}}'{{/pgv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv3'>pgv3: </label><div class='col-sm-8'><input id='pgv3' class='form-control' type='text'{{#pgv3}} value='{{pgv3}}'{{/pgv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmax'>pmax: </label><div class='col-sm-8'><input id='pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reg'>reg: </label><div class='col-sm-8'><input id='reg' class='form-control' type='text'{{#reg}} value='{{reg}}'{{/reg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='treg'>treg: </label><div class='col-sm-8'><input id='treg' class='form-control' type='text'{{#treg}} value='{{treg}}'{{/treg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw'>tw: </label><div class='col-sm-8'><input id='tw' class='form-control' type='text'{{#tw}} value='{{tw}}'{{/tw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='velmax'>velmax: </label><div class='col-sm-8'><input id='velmax' class='form-control' type='text'{{#velmax}} value='{{velmax}}'{{/velmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='velmin'>velmin: </label><div class='col-sm-8'><input id='velmin' class='form-control' type='text'{{#velmin}} value='{{velmin}}'{{/velmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Detailed electro-hydraulic governor for steam unit.
@@ -1301,67 +1578,148 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovSteamFV4_collapse" aria-expanded="true" aria-controls="GovSteamFV4_collapse">GovSteamFV4</a>
-<div id="GovSteamFV4_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#cpsmn}}<div><b>cpsmn</b>: {{cpsmn}}</div>{{/cpsmn}}
-{{#cpsmx}}<div><b>cpsmx</b>: {{cpsmx}}</div>{{/cpsmx}}
-{{#crmn}}<div><b>crmn</b>: {{crmn}}</div>{{/crmn}}
-{{#crmx}}<div><b>crmx</b>: {{crmx}}</div>{{/crmx}}
-{{#kdc}}<div><b>kdc</b>: {{kdc}}</div>{{/kdc}}
-{{#kf1}}<div><b>kf1</b>: {{kf1}}</div>{{/kf1}}
-{{#kf3}}<div><b>kf3</b>: {{kf3}}</div>{{/kf3}}
-{{#khp}}<div><b>khp</b>: {{khp}}</div>{{/khp}}
-{{#kic}}<div><b>kic</b>: {{kic}}</div>{{/kic}}
-{{#kip}}<div><b>kip</b>: {{kip}}</div>{{/kip}}
-{{#kit}}<div><b>kit</b>: {{kit}}</div>{{/kit}}
-{{#kmp1}}<div><b>kmp1</b>: {{kmp1}}</div>{{/kmp1}}
-{{#kmp2}}<div><b>kmp2</b>: {{kmp2}}</div>{{/kmp2}}
-{{#kpc}}<div><b>kpc</b>: {{kpc}}</div>{{/kpc}}
-{{#kpp}}<div><b>kpp</b>: {{kpp}}</div>{{/kpp}}
-{{#kpt}}<div><b>kpt</b>: {{kpt}}</div>{{/kpt}}
-{{#krc}}<div><b>krc</b>: {{krc}}</div>{{/krc}}
-{{#ksh}}<div><b>ksh</b>: {{ksh}}</div>{{/ksh}}
-{{#lpi}}<div><b>lpi</b>: {{lpi}}</div>{{/lpi}}
-{{#lps}}<div><b>lps</b>: {{lps}}</div>{{/lps}}
-{{#mnef}}<div><b>mnef</b>: {{mnef}}</div>{{/mnef}}
-{{#mxef}}<div><b>mxef</b>: {{mxef}}</div>{{/mxef}}
-{{#pr1}}<div><b>pr1</b>: {{pr1}}</div>{{/pr1}}
-{{#pr2}}<div><b>pr2</b>: {{pr2}}</div>{{/pr2}}
-{{#psmn}}<div><b>psmn</b>: {{psmn}}</div>{{/psmn}}
-{{#rsmimn}}<div><b>rsmimn</b>: {{rsmimn}}</div>{{/rsmimn}}
-{{#rsmimx}}<div><b>rsmimx</b>: {{rsmimx}}</div>{{/rsmimx}}
-{{#rvgmn}}<div><b>rvgmn</b>: {{rvgmn}}</div>{{/rvgmn}}
-{{#rvgmx}}<div><b>rvgmx</b>: {{rvgmx}}</div>{{/rvgmx}}
-{{#srmn}}<div><b>srmn</b>: {{srmn}}</div>{{/srmn}}
-{{#srmx}}<div><b>srmx</b>: {{srmx}}</div>{{/srmx}}
-{{#srsmp}}<div><b>srsmp</b>: {{srsmp}}</div>{{/srsmp}}
-{{#svmn}}<div><b>svmn</b>: {{svmn}}</div>{{/svmn}}
-{{#svmx}}<div><b>svmx</b>: {{svmx}}</div>{{/svmx}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tam}}<div><b>tam</b>: {{tam}}</div>{{/tam}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#tcm}}<div><b>tcm</b>: {{tcm}}</div>{{/tcm}}
-{{#tdc}}<div><b>tdc</b>: {{tdc}}</div>{{/tdc}}
-{{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
-{{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
-{{#thp}}<div><b>thp</b>: {{thp}}</div>{{/thp}}
-{{#tmp}}<div><b>tmp</b>: {{tmp}}</div>{{/tmp}}
-{{#trh}}<div><b>trh</b>: {{trh}}</div>{{/trh}}
-{{#tv}}<div><b>tv</b>: {{tv}}</div>{{/tv}}
-{{#ty}}<div><b>ty</b>: {{ty}}</div>{{/ty}}
-{{#y}}<div><b>y</b>: {{y}}</div>{{/y}}
-{{#yhpmn}}<div><b>yhpmn</b>: {{yhpmn}}</div>{{/yhpmn}}
-{{#yhpmx}}<div><b>yhpmx</b>: {{yhpmx}}</div>{{/yhpmx}}
-{{#ympmn}}<div><b>ympmn</b>: {{ympmn}}</div>{{/ympmn}}
-{{#ympmx}}<div><b>ympmx</b>: {{ympmx}}</div>{{/ympmx}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamFV4_collapse" aria-expanded="true" aria-controls="GovSteamFV4_collapse" style="margin-left: 10px;">GovSteamFV4</a></legend>
+                    <div id="GovSteamFV4_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#cpsmn}}<div><b>cpsmn</b>: {{cpsmn}}</div>{{/cpsmn}}
+                    {{#cpsmx}}<div><b>cpsmx</b>: {{cpsmx}}</div>{{/cpsmx}}
+                    {{#crmn}}<div><b>crmn</b>: {{crmn}}</div>{{/crmn}}
+                    {{#crmx}}<div><b>crmx</b>: {{crmx}}</div>{{/crmx}}
+                    {{#kdc}}<div><b>kdc</b>: {{kdc}}</div>{{/kdc}}
+                    {{#kf1}}<div><b>kf1</b>: {{kf1}}</div>{{/kf1}}
+                    {{#kf3}}<div><b>kf3</b>: {{kf3}}</div>{{/kf3}}
+                    {{#khp}}<div><b>khp</b>: {{khp}}</div>{{/khp}}
+                    {{#kic}}<div><b>kic</b>: {{kic}}</div>{{/kic}}
+                    {{#kip}}<div><b>kip</b>: {{kip}}</div>{{/kip}}
+                    {{#kit}}<div><b>kit</b>: {{kit}}</div>{{/kit}}
+                    {{#kmp1}}<div><b>kmp1</b>: {{kmp1}}</div>{{/kmp1}}
+                    {{#kmp2}}<div><b>kmp2</b>: {{kmp2}}</div>{{/kmp2}}
+                    {{#kpc}}<div><b>kpc</b>: {{kpc}}</div>{{/kpc}}
+                    {{#kpp}}<div><b>kpp</b>: {{kpp}}</div>{{/kpp}}
+                    {{#kpt}}<div><b>kpt</b>: {{kpt}}</div>{{/kpt}}
+                    {{#krc}}<div><b>krc</b>: {{krc}}</div>{{/krc}}
+                    {{#ksh}}<div><b>ksh</b>: {{ksh}}</div>{{/ksh}}
+                    {{#lpi}}<div><b>lpi</b>: {{lpi}}</div>{{/lpi}}
+                    {{#lps}}<div><b>lps</b>: {{lps}}</div>{{/lps}}
+                    {{#mnef}}<div><b>mnef</b>: {{mnef}}</div>{{/mnef}}
+                    {{#mxef}}<div><b>mxef</b>: {{mxef}}</div>{{/mxef}}
+                    {{#pr1}}<div><b>pr1</b>: {{pr1}}</div>{{/pr1}}
+                    {{#pr2}}<div><b>pr2</b>: {{pr2}}</div>{{/pr2}}
+                    {{#psmn}}<div><b>psmn</b>: {{psmn}}</div>{{/psmn}}
+                    {{#rsmimn}}<div><b>rsmimn</b>: {{rsmimn}}</div>{{/rsmimn}}
+                    {{#rsmimx}}<div><b>rsmimx</b>: {{rsmimx}}</div>{{/rsmimx}}
+                    {{#rvgmn}}<div><b>rvgmn</b>: {{rvgmn}}</div>{{/rvgmn}}
+                    {{#rvgmx}}<div><b>rvgmx</b>: {{rvgmx}}</div>{{/rvgmx}}
+                    {{#srmn}}<div><b>srmn</b>: {{srmn}}</div>{{/srmn}}
+                    {{#srmx}}<div><b>srmx</b>: {{srmx}}</div>{{/srmx}}
+                    {{#srsmp}}<div><b>srsmp</b>: {{srsmp}}</div>{{/srsmp}}
+                    {{#svmn}}<div><b>svmn</b>: {{svmn}}</div>{{/svmn}}
+                    {{#svmx}}<div><b>svmx</b>: {{svmx}}</div>{{/svmx}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tam}}<div><b>tam</b>: {{tam}}</div>{{/tam}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#tcm}}<div><b>tcm</b>: {{tcm}}</div>{{/tcm}}
+                    {{#tdc}}<div><b>tdc</b>: {{tdc}}</div>{{/tdc}}
+                    {{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
+                    {{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
+                    {{#thp}}<div><b>thp</b>: {{thp}}</div>{{/thp}}
+                    {{#tmp}}<div><b>tmp</b>: {{tmp}}</div>{{/tmp}}
+                    {{#trh}}<div><b>trh</b>: {{trh}}</div>{{/trh}}
+                    {{#tv}}<div><b>tv</b>: {{tv}}</div>{{/tv}}
+                    {{#ty}}<div><b>ty</b>: {{ty}}</div>{{/ty}}
+                    {{#y}}<div><b>y</b>: {{y}}</div>{{/y}}
+                    {{#yhpmn}}<div><b>yhpmn</b>: {{yhpmn}}</div>{{/yhpmn}}
+                    {{#yhpmx}}<div><b>yhpmx</b>: {{yhpmx}}</div>{{/yhpmx}}
+                    {{#ympmn}}<div><b>ympmn</b>: {{ympmn}}</div>{{/ympmn}}
+                    {{#ympmx}}<div><b>ympmx</b>: {{ympmx}}</div>{{/ympmx}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamFV4_collapse" aria-expanded="true" aria-controls="GovSteamFV4_collapse" style="margin-left: 10px;">GovSteamFV4</a></legend>
+                    <div id="GovSteamFV4_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cpsmn'>cpsmn: </label><div class='col-sm-8'><input id='cpsmn' class='form-control' type='text'{{#cpsmn}} value='{{cpsmn}}'{{/cpsmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cpsmx'>cpsmx: </label><div class='col-sm-8'><input id='cpsmx' class='form-control' type='text'{{#cpsmx}} value='{{cpsmx}}'{{/cpsmx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='crmn'>crmn: </label><div class='col-sm-8'><input id='crmn' class='form-control' type='text'{{#crmn}} value='{{crmn}}'{{/crmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='crmx'>crmx: </label><div class='col-sm-8'><input id='crmx' class='form-control' type='text'{{#crmx}} value='{{crmx}}'{{/crmx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kdc'>kdc: </label><div class='col-sm-8'><input id='kdc' class='form-control' type='text'{{#kdc}} value='{{kdc}}'{{/kdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf1'>kf1: </label><div class='col-sm-8'><input id='kf1' class='form-control' type='text'{{#kf1}} value='{{kf1}}'{{/kf1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf3'>kf3: </label><div class='col-sm-8'><input id='kf3' class='form-control' type='text'{{#kf3}} value='{{kf3}}'{{/kf3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='khp'>khp: </label><div class='col-sm-8'><input id='khp' class='form-control' type='text'{{#khp}} value='{{khp}}'{{/khp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kic'>kic: </label><div class='col-sm-8'><input id='kic' class='form-control' type='text'{{#kic}} value='{{kic}}'{{/kic}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kip'>kip: </label><div class='col-sm-8'><input id='kip' class='form-control' type='text'{{#kip}} value='{{kip}}'{{/kip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kit'>kit: </label><div class='col-sm-8'><input id='kit' class='form-control' type='text'{{#kit}} value='{{kit}}'{{/kit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kmp1'>kmp1: </label><div class='col-sm-8'><input id='kmp1' class='form-control' type='text'{{#kmp1}} value='{{kmp1}}'{{/kmp1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kmp2'>kmp2: </label><div class='col-sm-8'><input id='kmp2' class='form-control' type='text'{{#kmp2}} value='{{kmp2}}'{{/kmp2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpc'>kpc: </label><div class='col-sm-8'><input id='kpc' class='form-control' type='text'{{#kpc}} value='{{kpc}}'{{/kpc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpp'>kpp: </label><div class='col-sm-8'><input id='kpp' class='form-control' type='text'{{#kpp}} value='{{kpp}}'{{/kpp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpt'>kpt: </label><div class='col-sm-8'><input id='kpt' class='form-control' type='text'{{#kpt}} value='{{kpt}}'{{/kpt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='krc'>krc: </label><div class='col-sm-8'><input id='krc' class='form-control' type='text'{{#krc}} value='{{krc}}'{{/krc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ksh'>ksh: </label><div class='col-sm-8'><input id='ksh' class='form-control' type='text'{{#ksh}} value='{{ksh}}'{{/ksh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lpi'>lpi: </label><div class='col-sm-8'><input id='lpi' class='form-control' type='text'{{#lpi}} value='{{lpi}}'{{/lpi}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lps'>lps: </label><div class='col-sm-8'><input id='lps' class='form-control' type='text'{{#lps}} value='{{lps}}'{{/lps}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mnef'>mnef: </label><div class='col-sm-8'><input id='mnef' class='form-control' type='text'{{#mnef}} value='{{mnef}}'{{/mnef}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mxef'>mxef: </label><div class='col-sm-8'><input id='mxef' class='form-control' type='text'{{#mxef}} value='{{mxef}}'{{/mxef}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pr1'>pr1: </label><div class='col-sm-8'><input id='pr1' class='form-control' type='text'{{#pr1}} value='{{pr1}}'{{/pr1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pr2'>pr2: </label><div class='col-sm-8'><input id='pr2' class='form-control' type='text'{{#pr2}} value='{{pr2}}'{{/pr2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='psmn'>psmn: </label><div class='col-sm-8'><input id='psmn' class='form-control' type='text'{{#psmn}} value='{{psmn}}'{{/psmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rsmimn'>rsmimn: </label><div class='col-sm-8'><input id='rsmimn' class='form-control' type='text'{{#rsmimn}} value='{{rsmimn}}'{{/rsmimn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rsmimx'>rsmimx: </label><div class='col-sm-8'><input id='rsmimx' class='form-control' type='text'{{#rsmimx}} value='{{rsmimx}}'{{/rsmimx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rvgmn'>rvgmn: </label><div class='col-sm-8'><input id='rvgmn' class='form-control' type='text'{{#rvgmn}} value='{{rvgmn}}'{{/rvgmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rvgmx'>rvgmx: </label><div class='col-sm-8'><input id='rvgmx' class='form-control' type='text'{{#rvgmx}} value='{{rvgmx}}'{{/rvgmx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='srmn'>srmn: </label><div class='col-sm-8'><input id='srmn' class='form-control' type='text'{{#srmn}} value='{{srmn}}'{{/srmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='srmx'>srmx: </label><div class='col-sm-8'><input id='srmx' class='form-control' type='text'{{#srmx}} value='{{srmx}}'{{/srmx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='srsmp'>srsmp: </label><div class='col-sm-8'><input id='srsmp' class='form-control' type='text'{{#srsmp}} value='{{srsmp}}'{{/srsmp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='svmn'>svmn: </label><div class='col-sm-8'><input id='svmn' class='form-control' type='text'{{#svmn}} value='{{svmn}}'{{/svmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='svmx'>svmx: </label><div class='col-sm-8'><input id='svmx' class='form-control' type='text'{{#svmx}} value='{{svmx}}'{{/svmx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tam'>tam: </label><div class='col-sm-8'><input id='tam' class='form-control' type='text'{{#tam}} value='{{tam}}'{{/tam}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tcm'>tcm: </label><div class='col-sm-8'><input id='tcm' class='form-control' type='text'{{#tcm}} value='{{tcm}}'{{/tcm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tdc'>tdc: </label><div class='col-sm-8'><input id='tdc' class='form-control' type='text'{{#tdc}} value='{{tdc}}'{{/tdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf1'>tf1: </label><div class='col-sm-8'><input id='tf1' class='form-control' type='text'{{#tf1}} value='{{tf1}}'{{/tf1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf2'>tf2: </label><div class='col-sm-8'><input id='tf2' class='form-control' type='text'{{#tf2}} value='{{tf2}}'{{/tf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thp'>thp: </label><div class='col-sm-8'><input id='thp' class='form-control' type='text'{{#thp}} value='{{thp}}'{{/thp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tmp'>tmp: </label><div class='col-sm-8'><input id='tmp' class='form-control' type='text'{{#tmp}} value='{{tmp}}'{{/tmp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='trh'>trh: </label><div class='col-sm-8'><input id='trh' class='form-control' type='text'{{#trh}} value='{{trh}}'{{/trh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tv'>tv: </label><div class='col-sm-8'><input id='tv' class='form-control' type='text'{{#tv}} value='{{tv}}'{{/tv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ty'>ty: </label><div class='col-sm-8'><input id='ty' class='form-control' type='text'{{#ty}} value='{{ty}}'{{/ty}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y'>y: </label><div class='col-sm-8'><input id='y' class='form-control' type='text'{{#y}} value='{{y}}'{{/y}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='yhpmn'>yhpmn: </label><div class='col-sm-8'><input id='yhpmn' class='form-control' type='text'{{#yhpmn}} value='{{yhpmn}}'{{/yhpmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='yhpmx'>yhpmx: </label><div class='col-sm-8'><input id='yhpmx' class='form-control' type='text'{{#yhpmx}} value='{{yhpmx}}'{{/yhpmx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ympmn'>ympmn: </label><div class='col-sm-8'><input id='ympmn' class='form-control' type='text'{{#ympmn}} value='{{ympmn}}'{{/ympmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ympmx'>ympmx: </label><div class='col-sm-8'><input id='ympmx' class='form-control' type='text'{{#ympmx}} value='{{ympmx}}'{{/ympmx}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Hydro turbine and governor.
@@ -1460,38 +1818,90 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovHydroPID2_collapse" aria-expanded="true" aria-controls="GovHydroPID2_collapse">GovHydroPID2</a>
-<div id="GovHydroPID2_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#atw}}<div><b>atw</b>: {{atw}}</div>{{/atw}}
-{{#d}}<div><b>d</b>: {{d}}</div>{{/d}}
-{{#feedbackSignal}}<div><b>feedbackSignal</b>: {{feedbackSignal}}</div>{{/feedbackSignal}}
-{{#g0}}<div><b>g0</b>: {{g0}}</div>{{/g0}}
-{{#g1}}<div><b>g1</b>: {{g1}}</div>{{/g1}}
-{{#g2}}<div><b>g2</b>: {{g2}}</div>{{/g2}}
-{{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
-{{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#p1}}<div><b>p1</b>: {{p1}}</div>{{/p1}}
-{{#p2}}<div><b>p2</b>: {{p2}}</div>{{/p2}}
-{{#p3}}<div><b>p3</b>: {{p3}}</div>{{/p3}}
-{{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#treg}}<div><b>treg</b>: {{treg}}</div>{{/treg}}
-{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
-{{#velmax}}<div><b>velmax</b>: {{velmax}}</div>{{/velmax}}
-{{#velmin}}<div><b>velmin</b>: {{velmin}}</div>{{/velmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroPID2_collapse" aria-expanded="true" aria-controls="GovHydroPID2_collapse" style="margin-left: 10px;">GovHydroPID2</a></legend>
+                    <div id="GovHydroPID2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#atw}}<div><b>atw</b>: {{atw}}</div>{{/atw}}
+                    {{#d}}<div><b>d</b>: {{d}}</div>{{/d}}
+                    {{#feedbackSignal}}<div><b>feedbackSignal</b>: {{feedbackSignal}}</div>{{/feedbackSignal}}
+                    {{#g0}}<div><b>g0</b>: {{g0}}</div>{{/g0}}
+                    {{#g1}}<div><b>g1</b>: {{g1}}</div>{{/g1}}
+                    {{#g2}}<div><b>g2</b>: {{g2}}</div>{{/g2}}
+                    {{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
+                    {{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#p1}}<div><b>p1</b>: {{p1}}</div>{{/p1}}
+                    {{#p2}}<div><b>p2</b>: {{p2}}</div>{{/p2}}
+                    {{#p3}}<div><b>p3</b>: {{p3}}</div>{{/p3}}
+                    {{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#treg}}<div><b>treg</b>: {{treg}}</div>{{/treg}}
+                    {{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+                    {{#velmax}}<div><b>velmax</b>: {{velmax}}</div>{{/velmax}}
+                    {{#velmin}}<div><b>velmin</b>: {{velmin}}</div>{{/velmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroPID2_collapse" aria-expanded="true" aria-controls="GovHydroPID2_collapse" style="margin-left: 10px;">GovHydroPID2</a></legend>
+                    <div id="GovHydroPID2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='atw'>atw: </label><div class='col-sm-8'><input id='atw' class='form-control' type='text'{{#atw}} value='{{atw}}'{{/atw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='d'>d: </label><div class='col-sm-8'><input id='d' class='form-control' type='text'{{#d}} value='{{d}}'{{/d}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='feedbackSignal'>feedbackSignal: </label><div class='col-sm-8'><input id='feedbackSignal' class='form-check-input' type='checkbox'{{#feedbackSignal}} checked{{/feedbackSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='g0'>g0: </label><div class='col-sm-8'><input id='g0' class='form-control' type='text'{{#g0}} value='{{g0}}'{{/g0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='g1'>g1: </label><div class='col-sm-8'><input id='g1' class='form-control' type='text'{{#g1}} value='{{g1}}'{{/g1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='g2'>g2: </label><div class='col-sm-8'><input id='g2' class='form-control' type='text'{{#g2}} value='{{g2}}'{{/g2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gmax'>gmax: </label><div class='col-sm-8'><input id='gmax' class='form-control' type='text'{{#gmax}} value='{{gmax}}'{{/gmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gmin'>gmin: </label><div class='col-sm-8'><input id='gmin' class='form-control' type='text'{{#gmin}} value='{{gmin}}'{{/gmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p1'>p1: </label><div class='col-sm-8'><input id='p1' class='form-control' type='text'{{#p1}} value='{{p1}}'{{/p1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p2'>p2: </label><div class='col-sm-8'><input id='p2' class='form-control' type='text'{{#p2}} value='{{p2}}'{{/p2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p3'>p3: </label><div class='col-sm-8'><input id='p3' class='form-control' type='text'{{#p3}} value='{{p3}}'{{/p3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rperm'>rperm: </label><div class='col-sm-8'><input id='rperm' class='form-control' type='text'{{#rperm}} value='{{rperm}}'{{/rperm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='treg'>treg: </label><div class='col-sm-8'><input id='treg' class='form-control' type='text'{{#treg}} value='{{treg}}'{{/treg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw'>tw: </label><div class='col-sm-8'><input id='tw' class='form-control' type='text'{{#tw}} value='{{tw}}'{{/tw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='velmax'>velmax: </label><div class='col-sm-8'><input id='velmax' class='form-control' type='text'{{#velmax}} value='{{velmax}}'{{/velmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='velmin'>velmin: </label><div class='col-sm-8'><input id='velmin' class='form-control' type='text'{{#velmin}} value='{{velmin}}'{{/velmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Single shaft gas turbine.
@@ -1564,26 +1974,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovGAST_collapse" aria-expanded="true" aria-controls="GovGAST_collapse">GovGAST</a>
-<div id="GovGAST_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
-{{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
-{{#kt}}<div><b>kt</b>: {{kt}}</div>{{/kt}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
-{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST_collapse" aria-expanded="true" aria-controls="GovGAST_collapse" style="margin-left: 10px;">GovGAST</a></legend>
+                    <div id="GovGAST_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
+                    {{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
+                    {{#kt}}<div><b>kt</b>: {{kt}}</div>{{/kt}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+                    {{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST_collapse" aria-expanded="true" aria-controls="GovGAST_collapse" style="margin-left: 10px;">GovGAST</a></legend>
+                    <div id="GovGAST_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='at'>at: </label><div class='col-sm-8'><input id='at' class='form-control' type='text'{{#at}} value='{{at}}'{{/at}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dturb'>dturb: </label><div class='col-sm-8'><input id='dturb' class='form-control' type='text'{{#dturb}} value='{{dturb}}'{{/dturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kt'>kt: </label><div class='col-sm-8'><input id='kt' class='form-control' type='text'{{#kt}} value='{{kt}}'{{/kt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmax'>vmax: </label><div class='col-sm-8'><input id='vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmin'>vmin: </label><div class='col-sm-8'><input id='vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Simplified model  of boiler and steam turbine with PID governor.
@@ -1706,51 +2156,116 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovSteamEU_collapse" aria-expanded="true" aria-controls="GovSteamEU_collapse">GovSteamEU</a>
-<div id="GovSteamEU_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#chc}}<div><b>chc</b>: {{chc}}</div>{{/chc}}
-{{#cho}}<div><b>cho</b>: {{cho}}</div>{{/cho}}
-{{#cic}}<div><b>cic</b>: {{cic}}</div>{{/cic}}
-{{#cio}}<div><b>cio</b>: {{cio}}</div>{{/cio}}
-{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
-{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
-{{#hhpmax}}<div><b>hhpmax</b>: {{hhpmax}}</div>{{/hhpmax}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kfcor}}<div><b>kfcor</b>: {{kfcor}}</div>{{/kfcor}}
-{{#khp}}<div><b>khp</b>: {{khp}}</div>{{/khp}}
-{{#klp}}<div><b>klp</b>: {{klp}}</div>{{/klp}}
-{{#kwcor}}<div><b>kwcor</b>: {{kwcor}}</div>{{/kwcor}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-{{#prhmax}}<div><b>prhmax</b>: {{prhmax}}</div>{{/prhmax}}
-{{#simx}}<div><b>simx</b>: {{simx}}</div>{{/simx}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tdp}}<div><b>tdp</b>: {{tdp}}</div>{{/tdp}}
-{{#ten}}<div><b>ten</b>: {{ten}}</div>{{/ten}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#tfp}}<div><b>tfp</b>: {{tfp}}</div>{{/tfp}}
-{{#thp}}<div><b>thp</b>: {{thp}}</div>{{/thp}}
-{{#tip}}<div><b>tip</b>: {{tip}}</div>{{/tip}}
-{{#tlp}}<div><b>tlp</b>: {{tlp}}</div>{{/tlp}}
-{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
-{{#trh}}<div><b>trh</b>: {{trh}}</div>{{/trh}}
-{{#tvhp}}<div><b>tvhp</b>: {{tvhp}}</div>{{/tvhp}}
-{{#tvip}}<div><b>tvip</b>: {{tvip}}</div>{{/tvip}}
-{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
-{{#wfmax}}<div><b>wfmax</b>: {{wfmax}}</div>{{/wfmax}}
-{{#wfmin}}<div><b>wfmin</b>: {{wfmin}}</div>{{/wfmin}}
-{{#wmax1}}<div><b>wmax1</b>: {{wmax1}}</div>{{/wmax1}}
-{{#wmax2}}<div><b>wmax2</b>: {{wmax2}}</div>{{/wmax2}}
-{{#wwmax}}<div><b>wwmax</b>: {{wwmax}}</div>{{/wwmax}}
-{{#wwmin}}<div><b>wwmin</b>: {{wwmin}}</div>{{/wwmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamEU_collapse" aria-expanded="true" aria-controls="GovSteamEU_collapse" style="margin-left: 10px;">GovSteamEU</a></legend>
+                    <div id="GovSteamEU_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#chc}}<div><b>chc</b>: {{chc}}</div>{{/chc}}
+                    {{#cho}}<div><b>cho</b>: {{cho}}</div>{{/cho}}
+                    {{#cic}}<div><b>cic</b>: {{cic}}</div>{{/cic}}
+                    {{#cio}}<div><b>cio</b>: {{cio}}</div>{{/cio}}
+                    {{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+                    {{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+                    {{#hhpmax}}<div><b>hhpmax</b>: {{hhpmax}}</div>{{/hhpmax}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kfcor}}<div><b>kfcor</b>: {{kfcor}}</div>{{/kfcor}}
+                    {{#khp}}<div><b>khp</b>: {{khp}}</div>{{/khp}}
+                    {{#klp}}<div><b>klp</b>: {{klp}}</div>{{/klp}}
+                    {{#kwcor}}<div><b>kwcor</b>: {{kwcor}}</div>{{/kwcor}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#prhmax}}<div><b>prhmax</b>: {{prhmax}}</div>{{/prhmax}}
+                    {{#simx}}<div><b>simx</b>: {{simx}}</div>{{/simx}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tdp}}<div><b>tdp</b>: {{tdp}}</div>{{/tdp}}
+                    {{#ten}}<div><b>ten</b>: {{ten}}</div>{{/ten}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#tfp}}<div><b>tfp</b>: {{tfp}}</div>{{/tfp}}
+                    {{#thp}}<div><b>thp</b>: {{thp}}</div>{{/thp}}
+                    {{#tip}}<div><b>tip</b>: {{tip}}</div>{{/tip}}
+                    {{#tlp}}<div><b>tlp</b>: {{tlp}}</div>{{/tlp}}
+                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+                    {{#trh}}<div><b>trh</b>: {{trh}}</div>{{/trh}}
+                    {{#tvhp}}<div><b>tvhp</b>: {{tvhp}}</div>{{/tvhp}}
+                    {{#tvip}}<div><b>tvip</b>: {{tvip}}</div>{{/tvip}}
+                    {{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+                    {{#wfmax}}<div><b>wfmax</b>: {{wfmax}}</div>{{/wfmax}}
+                    {{#wfmin}}<div><b>wfmin</b>: {{wfmin}}</div>{{/wfmin}}
+                    {{#wmax1}}<div><b>wmax1</b>: {{wmax1}}</div>{{/wmax1}}
+                    {{#wmax2}}<div><b>wmax2</b>: {{wmax2}}</div>{{/wmax2}}
+                    {{#wwmax}}<div><b>wwmax</b>: {{wwmax}}</div>{{/wwmax}}
+                    {{#wwmin}}<div><b>wwmin</b>: {{wwmin}}</div>{{/wwmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamEU_collapse" aria-expanded="true" aria-controls="GovSteamEU_collapse" style="margin-left: 10px;">GovSteamEU</a></legend>
+                    <div id="GovSteamEU_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='chc'>chc: </label><div class='col-sm-8'><input id='chc' class='form-control' type='text'{{#chc}} value='{{chc}}'{{/chc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cho'>cho: </label><div class='col-sm-8'><input id='cho' class='form-control' type='text'{{#cho}} value='{{cho}}'{{/cho}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cic'>cic: </label><div class='col-sm-8'><input id='cic' class='form-control' type='text'{{#cic}} value='{{cic}}'{{/cic}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cio'>cio: </label><div class='col-sm-8'><input id='cio' class='form-control' type='text'{{#cio}} value='{{cio}}'{{/cio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db1'>db1: </label><div class='col-sm-8'><input id='db1' class='form-control' type='text'{{#db1}} value='{{db1}}'{{/db1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db2'>db2: </label><div class='col-sm-8'><input id='db2' class='form-control' type='text'{{#db2}} value='{{db2}}'{{/db2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hhpmax'>hhpmax: </label><div class='col-sm-8'><input id='hhpmax' class='form-control' type='text'{{#hhpmax}} value='{{hhpmax}}'{{/hhpmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kfcor'>kfcor: </label><div class='col-sm-8'><input id='kfcor' class='form-control' type='text'{{#kfcor}} value='{{kfcor}}'{{/kfcor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='khp'>khp: </label><div class='col-sm-8'><input id='khp' class='form-control' type='text'{{#khp}} value='{{khp}}'{{/khp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='klp'>klp: </label><div class='col-sm-8'><input id='klp' class='form-control' type='text'{{#klp}} value='{{klp}}'{{/klp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kwcor'>kwcor: </label><div class='col-sm-8'><input id='kwcor' class='form-control' type='text'{{#kwcor}} value='{{kwcor}}'{{/kwcor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmax'>pmax: </label><div class='col-sm-8'><input id='pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='prhmax'>prhmax: </label><div class='col-sm-8'><input id='prhmax' class='form-control' type='text'{{#prhmax}} value='{{prhmax}}'{{/prhmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='simx'>simx: </label><div class='col-sm-8'><input id='simx' class='form-control' type='text'{{#simx}} value='{{simx}}'{{/simx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tdp'>tdp: </label><div class='col-sm-8'><input id='tdp' class='form-control' type='text'{{#tdp}} value='{{tdp}}'{{/tdp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ten'>ten: </label><div class='col-sm-8'><input id='ten' class='form-control' type='text'{{#ten}} value='{{ten}}'{{/ten}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tfp'>tfp: </label><div class='col-sm-8'><input id='tfp' class='form-control' type='text'{{#tfp}} value='{{tfp}}'{{/tfp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thp'>thp: </label><div class='col-sm-8'><input id='thp' class='form-control' type='text'{{#thp}} value='{{thp}}'{{/thp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tip'>tip: </label><div class='col-sm-8'><input id='tip' class='form-control' type='text'{{#tip}} value='{{tip}}'{{/tip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tlp'>tlp: </label><div class='col-sm-8'><input id='tlp' class='form-control' type='text'{{#tlp}} value='{{tlp}}'{{/tlp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='trh'>trh: </label><div class='col-sm-8'><input id='trh' class='form-control' type='text'{{#trh}} value='{{trh}}'{{/trh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tvhp'>tvhp: </label><div class='col-sm-8'><input id='tvhp' class='form-control' type='text'{{#tvhp}} value='{{tvhp}}'{{/tvhp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tvip'>tvip: </label><div class='col-sm-8'><input id='tvip' class='form-control' type='text'{{#tvip}} value='{{tvip}}'{{/tvip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw'>tw: </label><div class='col-sm-8'><input id='tw' class='form-control' type='text'{{#tw}} value='{{tw}}'{{/tw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='wfmax'>wfmax: </label><div class='col-sm-8'><input id='wfmax' class='form-control' type='text'{{#wfmax}} value='{{wfmax}}'{{/wfmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='wfmin'>wfmin: </label><div class='col-sm-8'><input id='wfmin' class='form-control' type='text'{{#wfmin}} value='{{wfmin}}'{{/wfmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='wmax1'>wmax1: </label><div class='col-sm-8'><input id='wmax1' class='form-control' type='text'{{#wmax1}} value='{{wmax1}}'{{/wmax1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='wmax2'>wmax2: </label><div class='col-sm-8'><input id='wmax2' class='form-control' type='text'{{#wmax2}} value='{{wmax2}}'{{/wmax2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='wwmax'>wwmax: </label><div class='col-sm-8'><input id='wwmax' class='form-control' type='text'{{#wwmax}} value='{{wwmax}}'{{/wwmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='wwmin'>wwmin: </label><div class='col-sm-8'><input id='wwmin' class='form-control' type='text'{{#wwmin}} value='{{wwmin}}'{{/wwmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE Hydro Governor-Turbine Model.
@@ -1877,52 +2392,118 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovHydro3_collapse" aria-expanded="true" aria-controls="GovHydro3_collapse">GovHydro3</a>
-<div id="GovHydro3_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
-{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
-{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
-{{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
-{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
-{{#governorControl}}<div><b>governorControl</b>: {{governorControl}}</div>{{/governorControl}}
-{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
-{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
-{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
-{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
-{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
-{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
-{{#h0}}<div><b>h0</b>: {{h0}}</div>{{/h0}}
-{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
-{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
-{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
-{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
-{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
-{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
-{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
-{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#qnl}}<div><b>qnl</b>: {{qnl}}</div>{{/qnl}}
-{{#relec}}<div><b>relec</b>: {{relec}}</div>{{/relec}}
-{{#rgate}}<div><b>rgate</b>: {{rgate}}</div>{{/rgate}}
-{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
-{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
-{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
-{{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
-{{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro3_collapse" aria-expanded="true" aria-controls="GovHydro3_collapse" style="margin-left: 10px;">GovHydro3</a></legend>
+                    <div id="GovHydro3_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
+                    {{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+                    {{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+                    {{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
+                    {{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+                    {{#governorControl}}<div><b>governorControl</b>: {{governorControl}}</div>{{/governorControl}}
+                    {{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+                    {{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+                    {{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+                    {{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+                    {{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+                    {{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+                    {{#h0}}<div><b>h0</b>: {{h0}}</div>{{/h0}}
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+                    {{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+                    {{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+                    {{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+                    {{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+                    {{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+                    {{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#qnl}}<div><b>qnl</b>: {{qnl}}</div>{{/qnl}}
+                    {{#relec}}<div><b>relec</b>: {{relec}}</div>{{/relec}}
+                    {{#rgate}}<div><b>rgate</b>: {{rgate}}</div>{{/rgate}}
+                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+                    {{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+                    {{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+                    {{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
+                    {{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro3_collapse" aria-expanded="true" aria-controls="GovHydro3_collapse" style="margin-left: 10px;">GovHydro3</a></legend>
+                    <div id="GovHydro3_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='at'>at: </label><div class='col-sm-8'><input id='at' class='form-control' type='text'{{#at}} value='{{at}}'{{/at}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db1'>db1: </label><div class='col-sm-8'><input id='db1' class='form-control' type='text'{{#db1}} value='{{db1}}'{{/db1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db2'>db2: </label><div class='col-sm-8'><input id='db2' class='form-control' type='text'{{#db2}} value='{{db2}}'{{/db2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dturb'>dturb: </label><div class='col-sm-8'><input id='dturb' class='form-control' type='text'{{#dturb}} value='{{dturb}}'{{/dturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eps'>eps: </label><div class='col-sm-8'><input id='eps' class='form-control' type='text'{{#eps}} value='{{eps}}'{{/eps}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='governorControl'>governorControl: </label><div class='col-sm-8'><input id='governorControl' class='form-check-input' type='checkbox'{{#governorControl}} checked{{/governorControl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv1'>gv1: </label><div class='col-sm-8'><input id='gv1' class='form-control' type='text'{{#gv1}} value='{{gv1}}'{{/gv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv2'>gv2: </label><div class='col-sm-8'><input id='gv2' class='form-control' type='text'{{#gv2}} value='{{gv2}}'{{/gv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv3'>gv3: </label><div class='col-sm-8'><input id='gv3' class='form-control' type='text'{{#gv3}} value='{{gv3}}'{{/gv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv4'>gv4: </label><div class='col-sm-8'><input id='gv4' class='form-control' type='text'{{#gv4}} value='{{gv4}}'{{/gv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv5'>gv5: </label><div class='col-sm-8'><input id='gv5' class='form-control' type='text'{{#gv5}} value='{{gv5}}'{{/gv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv6'>gv6: </label><div class='col-sm-8'><input id='gv6' class='form-control' type='text'{{#gv6}} value='{{gv6}}'{{/gv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='h0'>h0: </label><div class='col-sm-8'><input id='h0' class='form-control' type='text'{{#h0}} value='{{h0}}'{{/h0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kg'>kg: </label><div class='col-sm-8'><input id='kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv1'>pgv1: </label><div class='col-sm-8'><input id='pgv1' class='form-control' type='text'{{#pgv1}} value='{{pgv1}}'{{/pgv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv2'>pgv2: </label><div class='col-sm-8'><input id='pgv2' class='form-control' type='text'{{#pgv2}} value='{{pgv2}}'{{/pgv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv3'>pgv3: </label><div class='col-sm-8'><input id='pgv3' class='form-control' type='text'{{#pgv3}} value='{{pgv3}}'{{/pgv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv4'>pgv4: </label><div class='col-sm-8'><input id='pgv4' class='form-control' type='text'{{#pgv4}} value='{{pgv4}}'{{/pgv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv5'>pgv5: </label><div class='col-sm-8'><input id='pgv5' class='form-control' type='text'{{#pgv5}} value='{{pgv5}}'{{/pgv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv6'>pgv6: </label><div class='col-sm-8'><input id='pgv6' class='form-control' type='text'{{#pgv6}} value='{{pgv6}}'{{/pgv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmax'>pmax: </label><div class='col-sm-8'><input id='pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qnl'>qnl: </label><div class='col-sm-8'><input id='qnl' class='form-control' type='text'{{#qnl}} value='{{qnl}}'{{/qnl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='relec'>relec: </label><div class='col-sm-8'><input id='relec' class='form-control' type='text'{{#relec}} value='{{relec}}'{{/relec}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rgate'>rgate: </label><div class='col-sm-8'><input id='rgate' class='form-control' type='text'{{#rgate}} value='{{rgate}}'{{/rgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td'>td: </label><div class='col-sm-8'><input id='td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tt'>tt: </label><div class='col-sm-8'><input id='tt' class='form-control' type='text'{{#tt}} value='{{tt}}'{{/tt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw'>tw: </label><div class='col-sm-8'><input id='tw' class='form-control' type='text'{{#tw}} value='{{tw}}'{{/tw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='velcl'>velcl: </label><div class='col-sm-8'><input id='velcl' class='form-control' type='text'{{#velcl}} value='{{velcl}}'{{/velcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='velop'>velop: </label><div class='col-sm-8'><input id='velop' class='form-control' type='text'{{#velop}} value='{{velop}}'{{/velop}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * IEEE steam turbine governor model.
@@ -2019,37 +2600,88 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovSteamIEEE1_collapse" aria-expanded="true" aria-controls="GovSteamIEEE1_collapse">GovSteamIEEE1</a>
-<div id="GovSteamIEEE1_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
-{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
-{{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
-{{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
-{{#k6}}<div><b>k6</b>: {{k6}}</div>{{/k6}}
-{{#k7}}<div><b>k7</b>: {{k7}}</div>{{/k7}}
-{{#k8}}<div><b>k8</b>: {{k8}}</div>{{/k8}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
-{{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
-{{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamIEEE1_collapse" aria-expanded="true" aria-controls="GovSteamIEEE1_collapse" style="margin-left: 10px;">GovSteamIEEE1</a></legend>
+                    <div id="GovSteamIEEE1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+                    {{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+                    {{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
+                    {{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
+                    {{#k6}}<div><b>k6</b>: {{k6}}</div>{{/k6}}
+                    {{#k7}}<div><b>k7</b>: {{k7}}</div>{{/k7}}
+                    {{#k8}}<div><b>k8</b>: {{k8}}</div>{{/k8}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
+                    {{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
+                    {{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamIEEE1_collapse" aria-expanded="true" aria-controls="GovSteamIEEE1_collapse" style="margin-left: 10px;">GovSteamIEEE1</a></legend>
+                    <div id="GovSteamIEEE1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k3'>k3: </label><div class='col-sm-8'><input id='k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k4'>k4: </label><div class='col-sm-8'><input id='k4' class='form-control' type='text'{{#k4}} value='{{k4}}'{{/k4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k5'>k5: </label><div class='col-sm-8'><input id='k5' class='form-control' type='text'{{#k5}} value='{{k5}}'{{/k5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k6'>k6: </label><div class='col-sm-8'><input id='k6' class='form-control' type='text'{{#k6}} value='{{k6}}'{{/k6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k7'>k7: </label><div class='col-sm-8'><input id='k7' class='form-control' type='text'{{#k7}} value='{{k7}}'{{/k7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k8'>k8: </label><div class='col-sm-8'><input id='k8' class='form-control' type='text'{{#k8}} value='{{k8}}'{{/k8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmax'>pmax: </label><div class='col-sm-8'><input id='pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t7'>t7: </label><div class='col-sm-8'><input id='t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uc'>uc: </label><div class='col-sm-8'><input id='uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uo'>uo: </label><div class='col-sm-8'><input id='uo' class='form-control' type='text'{{#uo}} value='{{uo}}'{{/uo}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Woodward Gas turbine governor model.
@@ -2168,49 +2800,112 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovGASTWD_collapse" aria-expanded="true" aria-controls="GovGASTWD_collapse">GovGASTWD</a>
-<div id="GovGASTWD_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
-{{#af1}}<div><b>af1</b>: {{af1}}</div>{{/af1}}
-{{#af2}}<div><b>af2</b>: {{af2}}</div>{{/af2}}
-{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
-{{#bf1}}<div><b>bf1</b>: {{bf1}}</div>{{/bf1}}
-{{#bf2}}<div><b>bf2</b>: {{bf2}}</div>{{/bf2}}
-{{#c}}<div><b>c</b>: {{c}}</div>{{/c}}
-{{#cf2}}<div><b>cf2</b>: {{cf2}}</div>{{/cf2}}
-{{#ecr}}<div><b>ecr</b>: {{ecr}}</div>{{/ecr}}
-{{#etd}}<div><b>etd</b>: {{etd}}</div>{{/etd}}
-{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
-{{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
-{{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
-{{#k6}}<div><b>k6</b>: {{k6}}</div>{{/k6}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#kdroop}}<div><b>kdroop</b>: {{kdroop}}</div>{{/kdroop}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#t}}<div><b>t</b>: {{t}}</div>{{/t}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#tcd}}<div><b>tcd</b>: {{tcd}}</div>{{/tcd}}
-{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#tmax}}<div><b>tmax</b>: {{tmax}}</div>{{/tmax}}
-{{#tmin}}<div><b>tmin</b>: {{tmin}}</div>{{/tmin}}
-{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
-{{#trate}}<div><b>trate</b>: {{trate}}</div>{{/trate}}
-{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGASTWD_collapse" aria-expanded="true" aria-controls="GovGASTWD_collapse" style="margin-left: 10px;">GovGASTWD</a></legend>
+                    <div id="GovGASTWD_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
+                    {{#af1}}<div><b>af1</b>: {{af1}}</div>{{/af1}}
+                    {{#af2}}<div><b>af2</b>: {{af2}}</div>{{/af2}}
+                    {{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+                    {{#bf1}}<div><b>bf1</b>: {{bf1}}</div>{{/bf1}}
+                    {{#bf2}}<div><b>bf2</b>: {{bf2}}</div>{{/bf2}}
+                    {{#c}}<div><b>c</b>: {{c}}</div>{{/c}}
+                    {{#cf2}}<div><b>cf2</b>: {{cf2}}</div>{{/cf2}}
+                    {{#ecr}}<div><b>ecr</b>: {{ecr}}</div>{{/ecr}}
+                    {{#etd}}<div><b>etd</b>: {{etd}}</div>{{/etd}}
+                    {{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+                    {{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
+                    {{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
+                    {{#k6}}<div><b>k6</b>: {{k6}}</div>{{/k6}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#kdroop}}<div><b>kdroop</b>: {{kdroop}}</div>{{/kdroop}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#t}}<div><b>t</b>: {{t}}</div>{{/t}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#tcd}}<div><b>tcd</b>: {{tcd}}</div>{{/tcd}}
+                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#tmax}}<div><b>tmax</b>: {{tmax}}</div>{{/tmax}}
+                    {{#tmin}}<div><b>tmin</b>: {{tmin}}</div>{{/tmin}}
+                    {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+                    {{#trate}}<div><b>trate</b>: {{trate}}</div>{{/trate}}
+                    {{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGASTWD_collapse" aria-expanded="true" aria-controls="GovGASTWD_collapse" style="margin-left: 10px;">GovGASTWD</a></legend>
+                    <div id="GovGASTWD_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a'>a: </label><div class='col-sm-8'><input id='a' class='form-control' type='text'{{#a}} value='{{a}}'{{/a}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='af1'>af1: </label><div class='col-sm-8'><input id='af1' class='form-control' type='text'{{#af1}} value='{{af1}}'{{/af1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='af2'>af2: </label><div class='col-sm-8'><input id='af2' class='form-control' type='text'{{#af2}} value='{{af2}}'{{/af2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b'>b: </label><div class='col-sm-8'><input id='b' class='form-control' type='text'{{#b}} value='{{b}}'{{/b}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bf1'>bf1: </label><div class='col-sm-8'><input id='bf1' class='form-control' type='text'{{#bf1}} value='{{bf1}}'{{/bf1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bf2'>bf2: </label><div class='col-sm-8'><input id='bf2' class='form-control' type='text'{{#bf2}} value='{{bf2}}'{{/bf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='c'>c: </label><div class='col-sm-8'><input id='c' class='form-control' type='text'{{#c}} value='{{c}}'{{/c}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cf2'>cf2: </label><div class='col-sm-8'><input id='cf2' class='form-control' type='text'{{#cf2}} value='{{cf2}}'{{/cf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ecr'>ecr: </label><div class='col-sm-8'><input id='ecr' class='form-control' type='text'{{#ecr}} value='{{ecr}}'{{/ecr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='etd'>etd: </label><div class='col-sm-8'><input id='etd' class='form-control' type='text'{{#etd}} value='{{etd}}'{{/etd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k3'>k3: </label><div class='col-sm-8'><input id='k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k4'>k4: </label><div class='col-sm-8'><input id='k4' class='form-control' type='text'{{#k4}} value='{{k4}}'{{/k4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k5'>k5: </label><div class='col-sm-8'><input id='k5' class='form-control' type='text'{{#k5}} value='{{k5}}'{{/k5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k6'>k6: </label><div class='col-sm-8'><input id='k6' class='form-control' type='text'{{#k6}} value='{{k6}}'{{/k6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kdroop'>kdroop: </label><div class='col-sm-8'><input id='kdroop' class='form-control' type='text'{{#kdroop}} value='{{kdroop}}'{{/kdroop}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t'>t: </label><div class='col-sm-8'><input id='t' class='form-control' type='text'{{#t}} value='{{t}}'{{/t}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tcd'>tcd: </label><div class='col-sm-8'><input id='tcd' class='form-control' type='text'{{#tcd}} value='{{tcd}}'{{/tcd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td'>td: </label><div class='col-sm-8'><input id='td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tmax'>tmax: </label><div class='col-sm-8'><input id='tmax' class='form-control' type='text'{{#tmax}} value='{{tmax}}'{{/tmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tmin'>tmin: </label><div class='col-sm-8'><input id='tmin' class='form-control' type='text'{{#tmin}} value='{{tmin}}'{{/tmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr'>tr: </label><div class='col-sm-8'><input id='tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='trate'>trate: </label><div class='col-sm-8'><input id='trate' class='form-control' type='text'{{#trate}} value='{{trate}}'{{/trate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tt'>tt: </label><div class='col-sm-8'><input id='tt' class='form-control' type='text'{{#tt}} value='{{tt}}'{{/tt}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Generic turbogas with acceleration and temperature controller.
@@ -2305,37 +3000,88 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovGAST3_collapse" aria-expanded="true" aria-controls="GovGAST3_collapse">GovGAST3</a>
-<div id="GovGAST3_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#bca}}<div><b>bca</b>: {{bca}}</div>{{/bca}}
-{{#bp}}<div><b>bp</b>: {{bp}}</div>{{/bp}}
-{{#dtc}}<div><b>dtc</b>: {{dtc}}</div>{{/dtc}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kac}}<div><b>kac</b>: {{kac}}</div>{{/kac}}
-{{#kca}}<div><b>kca</b>: {{kca}}</div>{{/kca}}
-{{#ksi}}<div><b>ksi</b>: {{ksi}}</div>{{/ksi}}
-{{#ky}}<div><b>ky</b>: {{ky}}</div>{{/ky}}
-{{#mnef}}<div><b>mnef</b>: {{mnef}}</div>{{/mnef}}
-{{#mxef}}<div><b>mxef</b>: {{mxef}}</div>{{/mxef}}
-{{#rcmn}}<div><b>rcmn</b>: {{rcmn}}</div>{{/rcmn}}
-{{#rcmx}}<div><b>rcmx</b>: {{rcmx}}</div>{{/rcmx}}
-{{#tac}}<div><b>tac</b>: {{tac}}</div>{{/tac}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
-{{#tfen}}<div><b>tfen</b>: {{tfen}}</div>{{/tfen}}
-{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
-{{#tsi}}<div><b>tsi</b>: {{tsi}}</div>{{/tsi}}
-{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
-{{#ttc}}<div><b>ttc</b>: {{ttc}}</div>{{/ttc}}
-{{#ty}}<div><b>ty</b>: {{ty}}</div>{{/ty}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST3_collapse" aria-expanded="true" aria-controls="GovGAST3_collapse" style="margin-left: 10px;">GovGAST3</a></legend>
+                    <div id="GovGAST3_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#bca}}<div><b>bca</b>: {{bca}}</div>{{/bca}}
+                    {{#bp}}<div><b>bp</b>: {{bp}}</div>{{/bp}}
+                    {{#dtc}}<div><b>dtc</b>: {{dtc}}</div>{{/dtc}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kac}}<div><b>kac</b>: {{kac}}</div>{{/kac}}
+                    {{#kca}}<div><b>kca</b>: {{kca}}</div>{{/kca}}
+                    {{#ksi}}<div><b>ksi</b>: {{ksi}}</div>{{/ksi}}
+                    {{#ky}}<div><b>ky</b>: {{ky}}</div>{{/ky}}
+                    {{#mnef}}<div><b>mnef</b>: {{mnef}}</div>{{/mnef}}
+                    {{#mxef}}<div><b>mxef</b>: {{mxef}}</div>{{/mxef}}
+                    {{#rcmn}}<div><b>rcmn</b>: {{rcmn}}</div>{{/rcmn}}
+                    {{#rcmx}}<div><b>rcmx</b>: {{rcmx}}</div>{{/rcmx}}
+                    {{#tac}}<div><b>tac</b>: {{tac}}</div>{{/tac}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+                    {{#tfen}}<div><b>tfen</b>: {{tfen}}</div>{{/tfen}}
+                    {{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+                    {{#tsi}}<div><b>tsi</b>: {{tsi}}</div>{{/tsi}}
+                    {{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+                    {{#ttc}}<div><b>ttc</b>: {{ttc}}</div>{{/ttc}}
+                    {{#ty}}<div><b>ty</b>: {{ty}}</div>{{/ty}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST3_collapse" aria-expanded="true" aria-controls="GovGAST3_collapse" style="margin-left: 10px;">GovGAST3</a></legend>
+                    <div id="GovGAST3_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bca'>bca: </label><div class='col-sm-8'><input id='bca' class='form-control' type='text'{{#bca}} value='{{bca}}'{{/bca}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bp'>bp: </label><div class='col-sm-8'><input id='bp' class='form-control' type='text'{{#bp}} value='{{bp}}'{{/bp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dtc'>dtc: </label><div class='col-sm-8'><input id='dtc' class='form-control' type='text'{{#dtc}} value='{{dtc}}'{{/dtc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kac'>kac: </label><div class='col-sm-8'><input id='kac' class='form-control' type='text'{{#kac}} value='{{kac}}'{{/kac}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kca'>kca: </label><div class='col-sm-8'><input id='kca' class='form-control' type='text'{{#kca}} value='{{kca}}'{{/kca}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ksi'>ksi: </label><div class='col-sm-8'><input id='ksi' class='form-control' type='text'{{#ksi}} value='{{ksi}}'{{/ksi}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ky'>ky: </label><div class='col-sm-8'><input id='ky' class='form-control' type='text'{{#ky}} value='{{ky}}'{{/ky}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mnef'>mnef: </label><div class='col-sm-8'><input id='mnef' class='form-control' type='text'{{#mnef}} value='{{mnef}}'{{/mnef}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mxef'>mxef: </label><div class='col-sm-8'><input id='mxef' class='form-control' type='text'{{#mxef}} value='{{mxef}}'{{/mxef}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rcmn'>rcmn: </label><div class='col-sm-8'><input id='rcmn' class='form-control' type='text'{{#rcmn}} value='{{rcmn}}'{{/rcmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rcmx'>rcmx: </label><div class='col-sm-8'><input id='rcmx' class='form-control' type='text'{{#rcmx}} value='{{rcmx}}'{{/rcmx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tac'>tac: </label><div class='col-sm-8'><input id='tac' class='form-control' type='text'{{#tac}} value='{{tac}}'{{/tac}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td'>td: </label><div class='col-sm-8'><input id='td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tfen'>tfen: </label><div class='col-sm-8'><input id='tfen' class='form-control' type='text'{{#tfen}} value='{{tfen}}'{{/tfen}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tg'>tg: </label><div class='col-sm-8'><input id='tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tsi'>tsi: </label><div class='col-sm-8'><input id='tsi' class='form-control' type='text'{{#tsi}} value='{{tsi}}'{{/tsi}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tt'>tt: </label><div class='col-sm-8'><input id='tt' class='form-control' type='text'{{#tt}} value='{{tt}}'{{/tt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ttc'>ttc: </label><div class='col-sm-8'><input id='ttc' class='form-control' type='text'{{#ttc}} value='{{ttc}}'{{/ttc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ty'>ty: </label><div class='col-sm-8'><input id='ty' class='form-control' type='text'{{#ty}} value='{{ty}}'{{/ty}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Steam turbine governor with reheat time constants and modeling of the effects of fast valve closing to reduce mechanical power.
@@ -2414,29 +3160,72 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovSteamFV2_collapse" aria-expanded="true" aria-controls="GovSteamFV2_collapse">GovSteamFV2</a>
-<div id="GovSteamFV2_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#dt}}<div><b>dt</b>: {{dt}}</div>{{/dt}}
-{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#ti}}<div><b>ti</b>: {{ti}}</div>{{/ti}}
-{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
-{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
-{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamFV2_collapse" aria-expanded="true" aria-controls="GovSteamFV2_collapse" style="margin-left: 10px;">GovSteamFV2</a></legend>
+                    <div id="GovSteamFV2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#dt}}<div><b>dt</b>: {{dt}}</div>{{/dt}}
+                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#ti}}<div><b>ti</b>: {{ti}}</div>{{/ti}}
+                    {{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+                    {{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+                    {{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamFV2_collapse" aria-expanded="true" aria-controls="GovSteamFV2_collapse" style="margin-left: 10px;">GovSteamFV2</a></legend>
+                    <div id="GovSteamFV2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dt'>dt: </label><div class='col-sm-8'><input id='dt' class='form-control' type='text'{{#dt}} value='{{dt}}'{{/dt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti'>ti: </label><div class='col-sm-8'><input id='ti' class='form-control' type='text'{{#ti}} value='{{ti}}'{{/ti}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tt'>tt: </label><div class='col-sm-8'><input id='tt' class='form-control' type='text'{{#tt}} value='{{tt}}'{{/tt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmax'>vmax: </label><div class='col-sm-8'><input id='vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmin'>vmin: </label><div class='col-sm-8'><input id='vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Detailed hydro unit - Pelton model.
@@ -2547,44 +3336,102 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovHydroPelton_collapse" aria-expanded="true" aria-controls="GovHydroPelton_collapse">GovHydroPelton</a>
-<div id="GovHydroPelton_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#av0}}<div><b>av0</b>: {{av0}}</div>{{/av0}}
-{{#av1}}<div><b>av1</b>: {{av1}}</div>{{/av1}}
-{{#bp}}<div><b>bp</b>: {{bp}}</div>{{/bp}}
-{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
-{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
-{{#h1}}<div><b>h1</b>: {{h1}}</div>{{/h1}}
-{{#h2}}<div><b>h2</b>: {{h2}}</div>{{/h2}}
-{{#hn}}<div><b>hn</b>: {{hn}}</div>{{/hn}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
-{{#qc0}}<div><b>qc0</b>: {{qc0}}</div>{{/qc0}}
-{{#qn}}<div><b>qn</b>: {{qn}}</div>{{/qn}}
-{{#simplifiedPelton}}<div><b>simplifiedPelton</b>: {{simplifiedPelton}}</div>{{/simplifiedPelton}}
-{{#staticCompensating}}<div><b>staticCompensating</b>: {{staticCompensating}}</div>{{/staticCompensating}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#ts}}<div><b>ts</b>: {{ts}}</div>{{/ts}}
-{{#tv}}<div><b>tv</b>: {{tv}}</div>{{/tv}}
-{{#twnc}}<div><b>twnc</b>: {{twnc}}</div>{{/twnc}}
-{{#twng}}<div><b>twng</b>: {{twng}}</div>{{/twng}}
-{{#tx}}<div><b>tx</b>: {{tx}}</div>{{/tx}}
-{{#va}}<div><b>va</b>: {{va}}</div>{{/va}}
-{{#valvmax}}<div><b>valvmax</b>: {{valvmax}}</div>{{/valvmax}}
-{{#valvmin}}<div><b>valvmin</b>: {{valvmin}}</div>{{/valvmin}}
-{{#vav}}<div><b>vav</b>: {{vav}}</div>{{/vav}}
-{{#vc}}<div><b>vc</b>: {{vc}}</div>{{/vc}}
-{{#vcv}}<div><b>vcv</b>: {{vcv}}</div>{{/vcv}}
-{{#waterTunnelSurgeChamberSimulation}}<div><b>waterTunnelSurgeChamberSimulation</b>: {{waterTunnelSurgeChamberSimulation}}</div>{{/waterTunnelSurgeChamberSimulation}}
-{{#zsfc}}<div><b>zsfc</b>: {{zsfc}}</div>{{/zsfc}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroPelton_collapse" aria-expanded="true" aria-controls="GovHydroPelton_collapse" style="margin-left: 10px;">GovHydroPelton</a></legend>
+                    <div id="GovHydroPelton_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#av0}}<div><b>av0</b>: {{av0}}</div>{{/av0}}
+                    {{#av1}}<div><b>av1</b>: {{av1}}</div>{{/av1}}
+                    {{#bp}}<div><b>bp</b>: {{bp}}</div>{{/bp}}
+                    {{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+                    {{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+                    {{#h1}}<div><b>h1</b>: {{h1}}</div>{{/h1}}
+                    {{#h2}}<div><b>h2</b>: {{h2}}</div>{{/h2}}
+                    {{#hn}}<div><b>hn</b>: {{hn}}</div>{{/hn}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+                    {{#qc0}}<div><b>qc0</b>: {{qc0}}</div>{{/qc0}}
+                    {{#qn}}<div><b>qn</b>: {{qn}}</div>{{/qn}}
+                    {{#simplifiedPelton}}<div><b>simplifiedPelton</b>: {{simplifiedPelton}}</div>{{/simplifiedPelton}}
+                    {{#staticCompensating}}<div><b>staticCompensating</b>: {{staticCompensating}}</div>{{/staticCompensating}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#ts}}<div><b>ts</b>: {{ts}}</div>{{/ts}}
+                    {{#tv}}<div><b>tv</b>: {{tv}}</div>{{/tv}}
+                    {{#twnc}}<div><b>twnc</b>: {{twnc}}</div>{{/twnc}}
+                    {{#twng}}<div><b>twng</b>: {{twng}}</div>{{/twng}}
+                    {{#tx}}<div><b>tx</b>: {{tx}}</div>{{/tx}}
+                    {{#va}}<div><b>va</b>: {{va}}</div>{{/va}}
+                    {{#valvmax}}<div><b>valvmax</b>: {{valvmax}}</div>{{/valvmax}}
+                    {{#valvmin}}<div><b>valvmin</b>: {{valvmin}}</div>{{/valvmin}}
+                    {{#vav}}<div><b>vav</b>: {{vav}}</div>{{/vav}}
+                    {{#vc}}<div><b>vc</b>: {{vc}}</div>{{/vc}}
+                    {{#vcv}}<div><b>vcv</b>: {{vcv}}</div>{{/vcv}}
+                    {{#waterTunnelSurgeChamberSimulation}}<div><b>waterTunnelSurgeChamberSimulation</b>: {{waterTunnelSurgeChamberSimulation}}</div>{{/waterTunnelSurgeChamberSimulation}}
+                    {{#zsfc}}<div><b>zsfc</b>: {{zsfc}}</div>{{/zsfc}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroPelton_collapse" aria-expanded="true" aria-controls="GovHydroPelton_collapse" style="margin-left: 10px;">GovHydroPelton</a></legend>
+                    <div id="GovHydroPelton_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='av0'>av0: </label><div class='col-sm-8'><input id='av0' class='form-control' type='text'{{#av0}} value='{{av0}}'{{/av0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='av1'>av1: </label><div class='col-sm-8'><input id='av1' class='form-control' type='text'{{#av1}} value='{{av1}}'{{/av1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bp'>bp: </label><div class='col-sm-8'><input id='bp' class='form-control' type='text'{{#bp}} value='{{bp}}'{{/bp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db1'>db1: </label><div class='col-sm-8'><input id='db1' class='form-control' type='text'{{#db1}} value='{{db1}}'{{/db1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db2'>db2: </label><div class='col-sm-8'><input id='db2' class='form-control' type='text'{{#db2}} value='{{db2}}'{{/db2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='h1'>h1: </label><div class='col-sm-8'><input id='h1' class='form-control' type='text'{{#h1}} value='{{h1}}'{{/h1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='h2'>h2: </label><div class='col-sm-8'><input id='h2' class='form-control' type='text'{{#h2}} value='{{h2}}'{{/h2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hn'>hn: </label><div class='col-sm-8'><input id='hn' class='form-control' type='text'{{#hn}} value='{{hn}}'{{/hn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kg'>kg: </label><div class='col-sm-8'><input id='kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qc0'>qc0: </label><div class='col-sm-8'><input id='qc0' class='form-control' type='text'{{#qc0}} value='{{qc0}}'{{/qc0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qn'>qn: </label><div class='col-sm-8'><input id='qn' class='form-control' type='text'{{#qn}} value='{{qn}}'{{/qn}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='simplifiedPelton'>simplifiedPelton: </label><div class='col-sm-8'><input id='simplifiedPelton' class='form-check-input' type='checkbox'{{#simplifiedPelton}} checked{{/simplifiedPelton}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='staticCompensating'>staticCompensating: </label><div class='col-sm-8'><input id='staticCompensating' class='form-check-input' type='checkbox'{{#staticCompensating}} checked{{/staticCompensating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts'>ts: </label><div class='col-sm-8'><input id='ts' class='form-control' type='text'{{#ts}} value='{{ts}}'{{/ts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tv'>tv: </label><div class='col-sm-8'><input id='tv' class='form-control' type='text'{{#tv}} value='{{tv}}'{{/tv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twnc'>twnc: </label><div class='col-sm-8'><input id='twnc' class='form-control' type='text'{{#twnc}} value='{{twnc}}'{{/twnc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twng'>twng: </label><div class='col-sm-8'><input id='twng' class='form-control' type='text'{{#twng}} value='{{twng}}'{{/twng}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tx'>tx: </label><div class='col-sm-8'><input id='tx' class='form-control' type='text'{{#tx}} value='{{tx}}'{{/tx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='va'>va: </label><div class='col-sm-8'><input id='va' class='form-control' type='text'{{#va}} value='{{va}}'{{/va}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='valvmax'>valvmax: </label><div class='col-sm-8'><input id='valvmax' class='form-control' type='text'{{#valvmax}} value='{{valvmax}}'{{/valvmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='valvmin'>valvmin: </label><div class='col-sm-8'><input id='valvmin' class='form-control' type='text'{{#valvmin}} value='{{valvmin}}'{{/valvmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vav'>vav: </label><div class='col-sm-8'><input id='vav' class='form-control' type='text'{{#vav}} value='{{vav}}'{{/vav}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vc'>vc: </label><div class='col-sm-8'><input id='vc' class='form-control' type='text'{{#vc}} value='{{vc}}'{{/vc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vcv'>vcv: </label><div class='col-sm-8'><input id='vcv' class='form-control' type='text'{{#vcv}} value='{{vcv}}'{{/vcv}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='waterTunnelSurgeChamberSimulation'>waterTunnelSurgeChamberSimulation: </label><div class='col-sm-8'><input id='waterTunnelSurgeChamberSimulation' class='form-check-input' type='checkbox'{{#waterTunnelSurgeChamberSimulation}} checked{{/waterTunnelSurgeChamberSimulation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zsfc'>zsfc: </label><div class='col-sm-8'><input id='zsfc' class='form-control' type='text'{{#zsfc}} value='{{zsfc}}'{{/zsfc}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * General model for any prime mover with a PID governor, used primarily for combustion turbine and combined cycle units.
@@ -2635,7 +3482,7 @@ define
                 base.parse_element (/<cim:GovCT1.rclose>([\s\S]*?)<\/cim:GovCT1.rclose>/g, obj, "rclose", base.to_float, sub, context);
                 base.parse_element (/<cim:GovCT1.rdown>([\s\S]*?)<\/cim:GovCT1.rdown>/g, obj, "rdown", base.to_string, sub, context);
                 base.parse_element (/<cim:GovCT1.ropen>([\s\S]*?)<\/cim:GovCT1.ropen>/g, obj, "ropen", base.to_float, sub, context);
-                base.parse_element (/<cim:GovCT1.rselect>([\s\S]*?)<\/cim:GovCT1.rselect>/g, obj, "rselect", base.to_string, sub, context);
+                base.parse_attribute (/<cim:GovCT1.rselect\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "rselect", sub, context);
                 base.parse_element (/<cim:GovCT1.rup>([\s\S]*?)<\/cim:GovCT1.rup>/g, obj, "rup", base.to_string, sub, context);
                 base.parse_element (/<cim:GovCT1.ta>([\s\S]*?)<\/cim:GovCT1.ta>/g, obj, "ta", base.to_string, sub, context);
                 base.parse_element (/<cim:GovCT1.tact>([\s\S]*?)<\/cim:GovCT1.tact>/g, obj, "tact", base.to_string, sub, context);
@@ -2709,51 +3556,118 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovCT1_collapse" aria-expanded="true" aria-controls="GovCT1_collapse">GovCT1</a>
-<div id="GovCT1_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#aset}}<div><b>aset</b>: {{aset}}</div>{{/aset}}
-{{#db}}<div><b>db</b>: {{db}}</div>{{/db}}
-{{#dm}}<div><b>dm</b>: {{dm}}</div>{{/dm}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kdgov}}<div><b>kdgov</b>: {{kdgov}}</div>{{/kdgov}}
-{{#kigov}}<div><b>kigov</b>: {{kigov}}</div>{{/kigov}}
-{{#kiload}}<div><b>kiload</b>: {{kiload}}</div>{{/kiload}}
-{{#kimw}}<div><b>kimw</b>: {{kimw}}</div>{{/kimw}}
-{{#kpgov}}<div><b>kpgov</b>: {{kpgov}}</div>{{/kpgov}}
-{{#kpload}}<div><b>kpload</b>: {{kpload}}</div>{{/kpload}}
-{{#kturb}}<div><b>kturb</b>: {{kturb}}</div>{{/kturb}}
-{{#ldref}}<div><b>ldref</b>: {{ldref}}</div>{{/ldref}}
-{{#maxerr}}<div><b>maxerr</b>: {{maxerr}}</div>{{/maxerr}}
-{{#minerr}}<div><b>minerr</b>: {{minerr}}</div>{{/minerr}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
-{{#rclose}}<div><b>rclose</b>: {{rclose}}</div>{{/rclose}}
-{{#rdown}}<div><b>rdown</b>: {{rdown}}</div>{{/rdown}}
-{{#ropen}}<div><b>ropen</b>: {{ropen}}</div>{{/ropen}}
-{{#rselect}}<div><b>rselect</b>: {{rselect}}</div>{{/rselect}}
-{{#rup}}<div><b>rup</b>: {{rup}}</div>{{/rup}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tact}}<div><b>tact</b>: {{tact}}</div>{{/tact}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#tdgov}}<div><b>tdgov</b>: {{tdgov}}</div>{{/tdgov}}
-{{#teng}}<div><b>teng</b>: {{teng}}</div>{{/teng}}
-{{#tfload}}<div><b>tfload</b>: {{tfload}}</div>{{/tfload}}
-{{#tpelec}}<div><b>tpelec</b>: {{tpelec}}</div>{{/tpelec}}
-{{#tsa}}<div><b>tsa</b>: {{tsa}}</div>{{/tsa}}
-{{#tsb}}<div><b>tsb</b>: {{tsb}}</div>{{/tsb}}
-{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
-{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
-{{#wfnl}}<div><b>wfnl</b>: {{wfnl}}</div>{{/wfnl}}
-{{#wfspd}}<div><b>wfspd</b>: {{wfspd}}</div>{{/wfspd}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovCT1_collapse" aria-expanded="true" aria-controls="GovCT1_collapse" style="margin-left: 10px;">GovCT1</a></legend>
+                    <div id="GovCT1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#aset}}<div><b>aset</b>: {{aset}}</div>{{/aset}}
+                    {{#db}}<div><b>db</b>: {{db}}</div>{{/db}}
+                    {{#dm}}<div><b>dm</b>: {{dm}}</div>{{/dm}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kdgov}}<div><b>kdgov</b>: {{kdgov}}</div>{{/kdgov}}
+                    {{#kigov}}<div><b>kigov</b>: {{kigov}}</div>{{/kigov}}
+                    {{#kiload}}<div><b>kiload</b>: {{kiload}}</div>{{/kiload}}
+                    {{#kimw}}<div><b>kimw</b>: {{kimw}}</div>{{/kimw}}
+                    {{#kpgov}}<div><b>kpgov</b>: {{kpgov}}</div>{{/kpgov}}
+                    {{#kpload}}<div><b>kpload</b>: {{kpload}}</div>{{/kpload}}
+                    {{#kturb}}<div><b>kturb</b>: {{kturb}}</div>{{/kturb}}
+                    {{#ldref}}<div><b>ldref</b>: {{ldref}}</div>{{/ldref}}
+                    {{#maxerr}}<div><b>maxerr</b>: {{maxerr}}</div>{{/maxerr}}
+                    {{#minerr}}<div><b>minerr</b>: {{minerr}}</div>{{/minerr}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+                    {{#rclose}}<div><b>rclose</b>: {{rclose}}</div>{{/rclose}}
+                    {{#rdown}}<div><b>rdown</b>: {{rdown}}</div>{{/rdown}}
+                    {{#ropen}}<div><b>ropen</b>: {{ropen}}</div>{{/ropen}}
+                    {{#rselect}}<div><b>rselect</b>: {{rselect}}</div>{{/rselect}}
+                    {{#rup}}<div><b>rup</b>: {{rup}}</div>{{/rup}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tact}}<div><b>tact</b>: {{tact}}</div>{{/tact}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#tdgov}}<div><b>tdgov</b>: {{tdgov}}</div>{{/tdgov}}
+                    {{#teng}}<div><b>teng</b>: {{teng}}</div>{{/teng}}
+                    {{#tfload}}<div><b>tfload</b>: {{tfload}}</div>{{/tfload}}
+                    {{#tpelec}}<div><b>tpelec</b>: {{tpelec}}</div>{{/tpelec}}
+                    {{#tsa}}<div><b>tsa</b>: {{tsa}}</div>{{/tsa}}
+                    {{#tsb}}<div><b>tsb</b>: {{tsb}}</div>{{/tsb}}
+                    {{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+                    {{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+                    {{#wfnl}}<div><b>wfnl</b>: {{wfnl}}</div>{{/wfnl}}
+                    {{#wfspd}}<div><b>wfspd</b>: {{wfspd}}</div>{{/wfspd}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.DroopSignalFeedbackKind = []; if (!obj.rselect) obj.DroopSignalFeedbackKind.push ({ id: '', selected: true}); for (var property in DroopSignalFeedbackKind) obj.DroopSignalFeedbackKind.push ({ id: property, selected: obj.rselect && obj.rselect.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.DroopSignalFeedbackKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovCT1_collapse" aria-expanded="true" aria-controls="GovCT1_collapse" style="margin-left: 10px;">GovCT1</a></legend>
+                    <div id="GovCT1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='aset'>aset: </label><div class='col-sm-8'><input id='aset' class='form-control' type='text'{{#aset}} value='{{aset}}'{{/aset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db'>db: </label><div class='col-sm-8'><input id='db' class='form-control' type='text'{{#db}} value='{{db}}'{{/db}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dm'>dm: </label><div class='col-sm-8'><input id='dm' class='form-control' type='text'{{#dm}} value='{{dm}}'{{/dm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kdgov'>kdgov: </label><div class='col-sm-8'><input id='kdgov' class='form-control' type='text'{{#kdgov}} value='{{kdgov}}'{{/kdgov}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kigov'>kigov: </label><div class='col-sm-8'><input id='kigov' class='form-control' type='text'{{#kigov}} value='{{kigov}}'{{/kigov}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiload'>kiload: </label><div class='col-sm-8'><input id='kiload' class='form-control' type='text'{{#kiload}} value='{{kiload}}'{{/kiload}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kimw'>kimw: </label><div class='col-sm-8'><input id='kimw' class='form-control' type='text'{{#kimw}} value='{{kimw}}'{{/kimw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpgov'>kpgov: </label><div class='col-sm-8'><input id='kpgov' class='form-control' type='text'{{#kpgov}} value='{{kpgov}}'{{/kpgov}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpload'>kpload: </label><div class='col-sm-8'><input id='kpload' class='form-control' type='text'{{#kpload}} value='{{kpload}}'{{/kpload}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kturb'>kturb: </label><div class='col-sm-8'><input id='kturb' class='form-control' type='text'{{#kturb}} value='{{kturb}}'{{/kturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ldref'>ldref: </label><div class='col-sm-8'><input id='ldref' class='form-control' type='text'{{#ldref}} value='{{ldref}}'{{/ldref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxerr'>maxerr: </label><div class='col-sm-8'><input id='maxerr' class='form-control' type='text'{{#maxerr}} value='{{maxerr}}'{{/maxerr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minerr'>minerr: </label><div class='col-sm-8'><input id='minerr' class='form-control' type='text'{{#minerr}} value='{{minerr}}'{{/minerr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rclose'>rclose: </label><div class='col-sm-8'><input id='rclose' class='form-control' type='text'{{#rclose}} value='{{rclose}}'{{/rclose}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rdown'>rdown: </label><div class='col-sm-8'><input id='rdown' class='form-control' type='text'{{#rdown}} value='{{rdown}}'{{/rdown}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ropen'>ropen: </label><div class='col-sm-8'><input id='ropen' class='form-control' type='text'{{#ropen}} value='{{ropen}}'{{/ropen}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rselect'>rselect: </label><div class='col-sm-8'><select id='rselect' class='form-control'>{{#DroopSignalFeedbackKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DroopSignalFeedbackKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rup'>rup: </label><div class='col-sm-8'><input id='rup' class='form-control' type='text'{{#rup}} value='{{rup}}'{{/rup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tact'>tact: </label><div class='col-sm-8'><input id='tact' class='form-control' type='text'{{#tact}} value='{{tact}}'{{/tact}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tdgov'>tdgov: </label><div class='col-sm-8'><input id='tdgov' class='form-control' type='text'{{#tdgov}} value='{{tdgov}}'{{/tdgov}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='teng'>teng: </label><div class='col-sm-8'><input id='teng' class='form-control' type='text'{{#teng}} value='{{teng}}'{{/teng}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tfload'>tfload: </label><div class='col-sm-8'><input id='tfload' class='form-control' type='text'{{#tfload}} value='{{tfload}}'{{/tfload}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpelec'>tpelec: </label><div class='col-sm-8'><input id='tpelec' class='form-control' type='text'{{#tpelec}} value='{{tpelec}}'{{/tpelec}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tsa'>tsa: </label><div class='col-sm-8'><input id='tsa' class='form-control' type='text'{{#tsa}} value='{{tsa}}'{{/tsa}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tsb'>tsb: </label><div class='col-sm-8'><input id='tsb' class='form-control' type='text'{{#tsb}} value='{{tsb}}'{{/tsb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmax'>vmax: </label><div class='col-sm-8'><input id='vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmin'>vmin: </label><div class='col-sm-8'><input id='vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='wfnl'>wfnl: </label><div class='col-sm-8'><input id='wfnl' class='form-control' type='text'{{#wfnl}} value='{{wfnl}}'{{/wfnl}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='wfspd'>wfspd: </label><div class='col-sm-8'><input id='wfspd' class='form-check-input' type='checkbox'{{#wfspd}} checked{{/wfspd}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Basic Hydro turbine governor model.
@@ -2834,30 +3748,74 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovHydro1_collapse" aria-expanded="true" aria-controls="GovHydro1_collapse">GovHydro1</a>
-<div id="GovHydro1_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
-{{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
-{{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
-{{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
-{{#hdam}}<div><b>hdam</b>: {{hdam}}</div>{{/hdam}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#qnl}}<div><b>qnl</b>: {{qnl}}</div>{{/qnl}}
-{{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
-{{#rtemp}}<div><b>rtemp</b>: {{rtemp}}</div>{{/rtemp}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
-{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
-{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
-{{#velm}}<div><b>velm</b>: {{velm}}</div>{{/velm}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro1_collapse" aria-expanded="true" aria-controls="GovHydro1_collapse" style="margin-left: 10px;">GovHydro1</a></legend>
+                    <div id="GovHydro1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
+                    {{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
+                    {{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
+                    {{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
+                    {{#hdam}}<div><b>hdam</b>: {{hdam}}</div>{{/hdam}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#qnl}}<div><b>qnl</b>: {{qnl}}</div>{{/qnl}}
+                    {{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
+                    {{#rtemp}}<div><b>rtemp</b>: {{rtemp}}</div>{{/rtemp}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+                    {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+                    {{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+                    {{#velm}}<div><b>velm</b>: {{velm}}</div>{{/velm}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro1_collapse" aria-expanded="true" aria-controls="GovHydro1_collapse" style="margin-left: 10px;">GovHydro1</a></legend>
+                    <div id="GovHydro1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='at'>at: </label><div class='col-sm-8'><input id='at' class='form-control' type='text'{{#at}} value='{{at}}'{{/at}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dturb'>dturb: </label><div class='col-sm-8'><input id='dturb' class='form-control' type='text'{{#dturb}} value='{{dturb}}'{{/dturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gmax'>gmax: </label><div class='col-sm-8'><input id='gmax' class='form-control' type='text'{{#gmax}} value='{{gmax}}'{{/gmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gmin'>gmin: </label><div class='col-sm-8'><input id='gmin' class='form-control' type='text'{{#gmin}} value='{{gmin}}'{{/gmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hdam'>hdam: </label><div class='col-sm-8'><input id='hdam' class='form-control' type='text'{{#hdam}} value='{{hdam}}'{{/hdam}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qnl'>qnl: </label><div class='col-sm-8'><input id='qnl' class='form-control' type='text'{{#qnl}} value='{{qnl}}'{{/qnl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rperm'>rperm: </label><div class='col-sm-8'><input id='rperm' class='form-control' type='text'{{#rperm}} value='{{rperm}}'{{/rperm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rtemp'>rtemp: </label><div class='col-sm-8'><input id='rtemp' class='form-control' type='text'{{#rtemp}} value='{{rtemp}}'{{/rtemp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tg'>tg: </label><div class='col-sm-8'><input id='tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr'>tr: </label><div class='col-sm-8'><input id='tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw'>tw: </label><div class='col-sm-8'><input id='tw' class='form-control' type='text'{{#tw}} value='{{tw}}'{{/tw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='velm'>velm: </label><div class='col-sm-8'><input id='velm' class='form-control' type='text'{{#velm}} value='{{velm}}'{{/velm}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Simplified governor model.
@@ -2926,24 +3884,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovSteam2_collapse" aria-expanded="true" aria-controls="GovSteam2_collapse">GovSteam2</a>
-<div id="GovSteam2_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#dbf}}<div><b>dbf</b>: {{dbf}}</div>{{/dbf}}
-{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-{{#mnef}}<div><b>mnef</b>: {{mnef}}</div>{{/mnef}}
-{{#mxef}}<div><b>mxef</b>: {{mxef}}</div>{{/mxef}}
-{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteam2_collapse" aria-expanded="true" aria-controls="GovSteam2_collapse" style="margin-left: 10px;">GovSteam2</a></legend>
+                    <div id="GovSteam2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#dbf}}<div><b>dbf</b>: {{dbf}}</div>{{/dbf}}
+                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+                    {{#mnef}}<div><b>mnef</b>: {{mnef}}</div>{{/mnef}}
+                    {{#mxef}}<div><b>mxef</b>: {{mxef}}</div>{{/mxef}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteam2_collapse" aria-expanded="true" aria-controls="GovSteam2_collapse" style="margin-left: 10px;">GovSteam2</a></legend>
+                    <div id="GovSteam2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dbf'>dbf: </label><div class='col-sm-8'><input id='dbf' class='form-control' type='text'{{#dbf}} value='{{dbf}}'{{/dbf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mnef'>mnef: </label><div class='col-sm-8'><input id='mnef' class='form-control' type='text'{{#mnef}} value='{{mnef}}'{{/mnef}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mxef'>mxef: </label><div class='col-sm-8'><input id='mxef' class='form-control' type='text'{{#mxef}} value='{{mxef}}'{{/mxef}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmax'>pmax: </label><div class='col-sm-8'><input id='pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Double derivative hydro governor and turbine.
@@ -3066,51 +4062,116 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovHydroDD_collapse" aria-expanded="true" aria-controls="GovHydroDD_collapse">GovHydroDD</a>
-<div id="GovHydroDD_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#aturb}}<div><b>aturb</b>: {{aturb}}</div>{{/aturb}}
-{{#bturb}}<div><b>bturb</b>: {{bturb}}</div>{{/bturb}}
-{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
-{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
-{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
-{{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
-{{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
-{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
-{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
-{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
-{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
-{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
-{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
-{{#inputSignal}}<div><b>inputSignal</b>: {{inputSignal}}</div>{{/inputSignal}}
-{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
-{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
-{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
-{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
-{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
-{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
-{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
-{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
-{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
-{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
-{{#tturb}}<div><b>tturb</b>: {{tturb}}</div>{{/tturb}}
-{{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
-{{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroDD_collapse" aria-expanded="true" aria-controls="GovHydroDD_collapse" style="margin-left: 10px;">GovHydroDD</a></legend>
+                    <div id="GovHydroDD_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#aturb}}<div><b>aturb</b>: {{aturb}}</div>{{/aturb}}
+                    {{#bturb}}<div><b>bturb</b>: {{bturb}}</div>{{/bturb}}
+                    {{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+                    {{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+                    {{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+                    {{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
+                    {{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
+                    {{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+                    {{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+                    {{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+                    {{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+                    {{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+                    {{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+                    {{#inputSignal}}<div><b>inputSignal</b>: {{inputSignal}}</div>{{/inputSignal}}
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+                    {{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+                    {{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+                    {{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+                    {{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+                    {{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+                    {{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+                    {{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+                    {{#tturb}}<div><b>tturb</b>: {{tturb}}</div>{{/tturb}}
+                    {{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
+                    {{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroDD_collapse" aria-expanded="true" aria-controls="GovHydroDD_collapse" style="margin-left: 10px;">GovHydroDD</a></legend>
+                    <div id="GovHydroDD_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='aturb'>aturb: </label><div class='col-sm-8'><input id='aturb' class='form-control' type='text'{{#aturb}} value='{{aturb}}'{{/aturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bturb'>bturb: </label><div class='col-sm-8'><input id='bturb' class='form-control' type='text'{{#bturb}} value='{{bturb}}'{{/bturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db1'>db1: </label><div class='col-sm-8'><input id='db1' class='form-control' type='text'{{#db1}} value='{{db1}}'{{/db1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db2'>db2: </label><div class='col-sm-8'><input id='db2' class='form-control' type='text'{{#db2}} value='{{db2}}'{{/db2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eps'>eps: </label><div class='col-sm-8'><input id='eps' class='form-control' type='text'{{#eps}} value='{{eps}}'{{/eps}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gmax'>gmax: </label><div class='col-sm-8'><input id='gmax' class='form-control' type='text'{{#gmax}} value='{{gmax}}'{{/gmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gmin'>gmin: </label><div class='col-sm-8'><input id='gmin' class='form-control' type='text'{{#gmin}} value='{{gmin}}'{{/gmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv1'>gv1: </label><div class='col-sm-8'><input id='gv1' class='form-control' type='text'{{#gv1}} value='{{gv1}}'{{/gv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv2'>gv2: </label><div class='col-sm-8'><input id='gv2' class='form-control' type='text'{{#gv2}} value='{{gv2}}'{{/gv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv3'>gv3: </label><div class='col-sm-8'><input id='gv3' class='form-control' type='text'{{#gv3}} value='{{gv3}}'{{/gv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv4'>gv4: </label><div class='col-sm-8'><input id='gv4' class='form-control' type='text'{{#gv4}} value='{{gv4}}'{{/gv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv5'>gv5: </label><div class='col-sm-8'><input id='gv5' class='form-control' type='text'{{#gv5}} value='{{gv5}}'{{/gv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv6'>gv6: </label><div class='col-sm-8'><input id='gv6' class='form-control' type='text'{{#gv6}} value='{{gv6}}'{{/gv6}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='inputSignal'>inputSignal: </label><div class='col-sm-8'><input id='inputSignal' class='form-check-input' type='checkbox'{{#inputSignal}} checked{{/inputSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kg'>kg: </label><div class='col-sm-8'><input id='kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv1'>pgv1: </label><div class='col-sm-8'><input id='pgv1' class='form-control' type='text'{{#pgv1}} value='{{pgv1}}'{{/pgv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv2'>pgv2: </label><div class='col-sm-8'><input id='pgv2' class='form-control' type='text'{{#pgv2}} value='{{pgv2}}'{{/pgv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv3'>pgv3: </label><div class='col-sm-8'><input id='pgv3' class='form-control' type='text'{{#pgv3}} value='{{pgv3}}'{{/pgv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv4'>pgv4: </label><div class='col-sm-8'><input id='pgv4' class='form-control' type='text'{{#pgv4}} value='{{pgv4}}'{{/pgv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv5'>pgv5: </label><div class='col-sm-8'><input id='pgv5' class='form-control' type='text'{{#pgv5}} value='{{pgv5}}'{{/pgv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv6'>pgv6: </label><div class='col-sm-8'><input id='pgv6' class='form-control' type='text'{{#pgv6}} value='{{pgv6}}'{{/pgv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmax'>pmax: </label><div class='col-sm-8'><input id='pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td'>td: </label><div class='col-sm-8'><input id='td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tt'>tt: </label><div class='col-sm-8'><input id='tt' class='form-control' type='text'{{#tt}} value='{{tt}}'{{/tt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tturb'>tturb: </label><div class='col-sm-8'><input id='tturb' class='form-control' type='text'{{#tturb}} value='{{tturb}}'{{/tturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='velcl'>velcl: </label><div class='col-sm-8'><input id='velcl' class='form-control' type='text'{{#velcl}} value='{{velcl}}'{{/velcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='velop'>velop: </label><div class='col-sm-8'><input id='velop' class='form-control' type='text'{{#velop}} value='{{velop}}'{{/velop}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * IEEE Simplified Hydro Governor-Turbine Model.
@@ -3181,24 +4242,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovHydroIEEE0_collapse" aria-expanded="true" aria-controls="GovHydroIEEE0_collapse">GovHydroIEEE0</a>
-<div id="GovHydroIEEE0_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroIEEE0_collapse" aria-expanded="true" aria-controls="GovHydroIEEE0_collapse" style="margin-left: 10px;">GovHydroIEEE0</a></legend>
+                    <div id="GovHydroIEEE0_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroIEEE0_collapse" aria-expanded="true" aria-controls="GovHydroIEEE0_collapse" style="margin-left: 10px;">GovHydroIEEE0</a></legend>
+                    <div id="GovHydroIEEE0_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmax'>pmax: </label><div class='col-sm-8'><input id='pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A simplified steam turbine governor model.
@@ -3267,24 +4366,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovSteam0_collapse" aria-expanded="true" aria-controls="GovSteam0_collapse">GovSteam0</a>
-<div id="GovSteam0_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#dt}}<div><b>dt</b>: {{dt}}</div>{{/dt}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
-{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteam0_collapse" aria-expanded="true" aria-controls="GovSteam0_collapse" style="margin-left: 10px;">GovSteam0</a></legend>
+                    <div id="GovSteam0_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#dt}}<div><b>dt</b>: {{dt}}</div>{{/dt}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+                    {{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteam0_collapse" aria-expanded="true" aria-controls="GovSteam0_collapse" style="margin-left: 10px;">GovSteam0</a></legend>
+                    <div id="GovSteam0_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dt'>dt: </label><div class='col-sm-8'><input id='dt' class='form-control' type='text'{{#dt}} value='{{dt}}'{{/dt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmax'>vmax: </label><div class='col-sm-8'><input id='vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmin'>vmin: </label><div class='col-sm-8'><input id='vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Simplified Steam turbine governor model.
@@ -3361,28 +4498,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovSteamSGO_collapse" aria-expanded="true" aria-controls="GovSteamSGO_collapse">GovSteamSGO</a>
-<div id="GovSteamSGO_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
-{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamSGO_collapse" aria-expanded="true" aria-controls="GovSteamSGO_collapse" style="margin-left: 10px;">GovSteamSGO</a></legend>
+                    <div id="GovSteamSGO_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+                    {{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamSGO_collapse" aria-expanded="true" aria-controls="GovSteamSGO_collapse" style="margin-left: 10px;">GovSteamSGO</a></legend>
+                    <div id="GovSteamSGO_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k3'>k3: </label><div class='col-sm-8'><input id='k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmax'>pmax: </label><div class='col-sm-8'><input id='pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Fourth order lead-lag governor and hydro turbine.
@@ -3519,58 +4698,130 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovHydroR_collapse" aria-expanded="true" aria-controls="GovHydroR_collapse">GovHydroR</a>
-<div id="GovHydroR_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
-{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
-{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
-{{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
-{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
-{{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
-{{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
-{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
-{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
-{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
-{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
-{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
-{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
-{{#h0}}<div><b>h0</b>: {{h0}}</div>{{/h0}}
-{{#inputSignal}}<div><b>inputSignal</b>: {{inputSignal}}</div>{{/inputSignal}}
-{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
-{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
-{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
-{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
-{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
-{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
-{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#qnl}}<div><b>qnl</b>: {{qnl}}</div>{{/qnl}}
-{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
-{{#t8}}<div><b>t8</b>: {{t8}}</div>{{/t8}}
-{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
-{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
-{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
-{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
-{{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
-{{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroR_collapse" aria-expanded="true" aria-controls="GovHydroR_collapse" style="margin-left: 10px;">GovHydroR</a></legend>
+                    <div id="GovHydroR_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
+                    {{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+                    {{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+                    {{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
+                    {{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+                    {{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
+                    {{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
+                    {{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+                    {{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+                    {{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+                    {{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+                    {{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+                    {{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+                    {{#h0}}<div><b>h0</b>: {{h0}}</div>{{/h0}}
+                    {{#inputSignal}}<div><b>inputSignal</b>: {{inputSignal}}</div>{{/inputSignal}}
+                    {{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+                    {{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+                    {{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+                    {{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+                    {{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+                    {{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#qnl}}<div><b>qnl</b>: {{qnl}}</div>{{/qnl}}
+                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
+                    {{#t8}}<div><b>t8</b>: {{t8}}</div>{{/t8}}
+                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+                    {{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+                    {{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+                    {{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
+                    {{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroR_collapse" aria-expanded="true" aria-controls="GovHydroR_collapse" style="margin-left: 10px;">GovHydroR</a></legend>
+                    <div id="GovHydroR_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='at'>at: </label><div class='col-sm-8'><input id='at' class='form-control' type='text'{{#at}} value='{{at}}'{{/at}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db1'>db1: </label><div class='col-sm-8'><input id='db1' class='form-control' type='text'{{#db1}} value='{{db1}}'{{/db1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db2'>db2: </label><div class='col-sm-8'><input id='db2' class='form-control' type='text'{{#db2}} value='{{db2}}'{{/db2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dturb'>dturb: </label><div class='col-sm-8'><input id='dturb' class='form-control' type='text'{{#dturb}} value='{{dturb}}'{{/dturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eps'>eps: </label><div class='col-sm-8'><input id='eps' class='form-control' type='text'{{#eps}} value='{{eps}}'{{/eps}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gmax'>gmax: </label><div class='col-sm-8'><input id='gmax' class='form-control' type='text'{{#gmax}} value='{{gmax}}'{{/gmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gmin'>gmin: </label><div class='col-sm-8'><input id='gmin' class='form-control' type='text'{{#gmin}} value='{{gmin}}'{{/gmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv1'>gv1: </label><div class='col-sm-8'><input id='gv1' class='form-control' type='text'{{#gv1}} value='{{gv1}}'{{/gv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv2'>gv2: </label><div class='col-sm-8'><input id='gv2' class='form-control' type='text'{{#gv2}} value='{{gv2}}'{{/gv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv3'>gv3: </label><div class='col-sm-8'><input id='gv3' class='form-control' type='text'{{#gv3}} value='{{gv3}}'{{/gv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv4'>gv4: </label><div class='col-sm-8'><input id='gv4' class='form-control' type='text'{{#gv4}} value='{{gv4}}'{{/gv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv5'>gv5: </label><div class='col-sm-8'><input id='gv5' class='form-control' type='text'{{#gv5}} value='{{gv5}}'{{/gv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv6'>gv6: </label><div class='col-sm-8'><input id='gv6' class='form-control' type='text'{{#gv6}} value='{{gv6}}'{{/gv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='h0'>h0: </label><div class='col-sm-8'><input id='h0' class='form-control' type='text'{{#h0}} value='{{h0}}'{{/h0}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='inputSignal'>inputSignal: </label><div class='col-sm-8'><input id='inputSignal' class='form-check-input' type='checkbox'{{#inputSignal}} checked{{/inputSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kg'>kg: </label><div class='col-sm-8'><input id='kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv1'>pgv1: </label><div class='col-sm-8'><input id='pgv1' class='form-control' type='text'{{#pgv1}} value='{{pgv1}}'{{/pgv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv2'>pgv2: </label><div class='col-sm-8'><input id='pgv2' class='form-control' type='text'{{#pgv2}} value='{{pgv2}}'{{/pgv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv3'>pgv3: </label><div class='col-sm-8'><input id='pgv3' class='form-control' type='text'{{#pgv3}} value='{{pgv3}}'{{/pgv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv4'>pgv4: </label><div class='col-sm-8'><input id='pgv4' class='form-control' type='text'{{#pgv4}} value='{{pgv4}}'{{/pgv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv5'>pgv5: </label><div class='col-sm-8'><input id='pgv5' class='form-control' type='text'{{#pgv5}} value='{{pgv5}}'{{/pgv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv6'>pgv6: </label><div class='col-sm-8'><input id='pgv6' class='form-control' type='text'{{#pgv6}} value='{{pgv6}}'{{/pgv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmax'>pmax: </label><div class='col-sm-8'><input id='pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qnl'>qnl: </label><div class='col-sm-8'><input id='qnl' class='form-control' type='text'{{#qnl}} value='{{qnl}}'{{/qnl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t7'>t7: </label><div class='col-sm-8'><input id='t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t8'>t8: </label><div class='col-sm-8'><input id='t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td'>td: </label><div class='col-sm-8'><input id='td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tt'>tt: </label><div class='col-sm-8'><input id='tt' class='form-control' type='text'{{#tt}} value='{{tt}}'{{/tt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw'>tw: </label><div class='col-sm-8'><input id='tw' class='form-control' type='text'{{#tw}} value='{{tw}}'{{/tw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='velcl'>velcl: </label><div class='col-sm-8'><input id='velcl' class='form-control' type='text'{{#velcl}} value='{{velcl}}'{{/velcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='velop'>velop: </label><div class='col-sm-8'><input id='velop' class='form-control' type='text'{{#velop}} value='{{velop}}'{{/velop}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Hydro turbine and governor.
@@ -3701,54 +4952,122 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovHydro4_collapse" aria-expanded="true" aria-controls="GovHydro4_collapse">GovHydro4</a>
-<div id="GovHydro4_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
-{{#bgv0}}<div><b>bgv0</b>: {{bgv0}}</div>{{/bgv0}}
-{{#bgv1}}<div><b>bgv1</b>: {{bgv1}}</div>{{/bgv1}}
-{{#bgv2}}<div><b>bgv2</b>: {{bgv2}}</div>{{/bgv2}}
-{{#bgv3}}<div><b>bgv3</b>: {{bgv3}}</div>{{/bgv3}}
-{{#bgv4}}<div><b>bgv4</b>: {{bgv4}}</div>{{/bgv4}}
-{{#bgv5}}<div><b>bgv5</b>: {{bgv5}}</div>{{/bgv5}}
-{{#bmax}}<div><b>bmax</b>: {{bmax}}</div>{{/bmax}}
-{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
-{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
-{{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
-{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
-{{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
-{{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
-{{#gv0}}<div><b>gv0</b>: {{gv0}}</div>{{/gv0}}
-{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
-{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
-{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
-{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
-{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
-{{#hdam}}<div><b>hdam</b>: {{hdam}}</div>{{/hdam}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pgv0}}<div><b>pgv0</b>: {{pgv0}}</div>{{/pgv0}}
-{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
-{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
-{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
-{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
-{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
-{{#qn1}}<div><b>qn1</b>: {{qn1}}</div>{{/qn1}}
-{{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
-{{#rtemp}}<div><b>rtemp</b>: {{rtemp}}</div>{{/rtemp}}
-{{#tblade}}<div><b>tblade</b>: {{tblade}}</div>{{/tblade}}
-{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
-{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
-{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
-{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
-{{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
-{{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro4_collapse" aria-expanded="true" aria-controls="GovHydro4_collapse" style="margin-left: 10px;">GovHydro4</a></legend>
+                    <div id="GovHydro4_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#at}}<div><b>at</b>: {{at}}</div>{{/at}}
+                    {{#bgv0}}<div><b>bgv0</b>: {{bgv0}}</div>{{/bgv0}}
+                    {{#bgv1}}<div><b>bgv1</b>: {{bgv1}}</div>{{/bgv1}}
+                    {{#bgv2}}<div><b>bgv2</b>: {{bgv2}}</div>{{/bgv2}}
+                    {{#bgv3}}<div><b>bgv3</b>: {{bgv3}}</div>{{/bgv3}}
+                    {{#bgv4}}<div><b>bgv4</b>: {{bgv4}}</div>{{/bgv4}}
+                    {{#bgv5}}<div><b>bgv5</b>: {{bgv5}}</div>{{/bgv5}}
+                    {{#bmax}}<div><b>bmax</b>: {{bmax}}</div>{{/bmax}}
+                    {{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+                    {{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+                    {{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
+                    {{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+                    {{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
+                    {{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
+                    {{#gv0}}<div><b>gv0</b>: {{gv0}}</div>{{/gv0}}
+                    {{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+                    {{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+                    {{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+                    {{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+                    {{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+                    {{#hdam}}<div><b>hdam</b>: {{hdam}}</div>{{/hdam}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pgv0}}<div><b>pgv0</b>: {{pgv0}}</div>{{/pgv0}}
+                    {{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+                    {{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+                    {{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+                    {{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+                    {{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+                    {{#qn1}}<div><b>qn1</b>: {{qn1}}</div>{{/qn1}}
+                    {{#rperm}}<div><b>rperm</b>: {{rperm}}</div>{{/rperm}}
+                    {{#rtemp}}<div><b>rtemp</b>: {{rtemp}}</div>{{/rtemp}}
+                    {{#tblade}}<div><b>tblade</b>: {{tblade}}</div>{{/tblade}}
+                    {{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+                    {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+                    {{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+                    {{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
+                    {{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro4_collapse" aria-expanded="true" aria-controls="GovHydro4_collapse" style="margin-left: 10px;">GovHydro4</a></legend>
+                    <div id="GovHydro4_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='at'>at: </label><div class='col-sm-8'><input id='at' class='form-control' type='text'{{#at}} value='{{at}}'{{/at}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bgv0'>bgv0: </label><div class='col-sm-8'><input id='bgv0' class='form-control' type='text'{{#bgv0}} value='{{bgv0}}'{{/bgv0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bgv1'>bgv1: </label><div class='col-sm-8'><input id='bgv1' class='form-control' type='text'{{#bgv1}} value='{{bgv1}}'{{/bgv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bgv2'>bgv2: </label><div class='col-sm-8'><input id='bgv2' class='form-control' type='text'{{#bgv2}} value='{{bgv2}}'{{/bgv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bgv3'>bgv3: </label><div class='col-sm-8'><input id='bgv3' class='form-control' type='text'{{#bgv3}} value='{{bgv3}}'{{/bgv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bgv4'>bgv4: </label><div class='col-sm-8'><input id='bgv4' class='form-control' type='text'{{#bgv4}} value='{{bgv4}}'{{/bgv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bgv5'>bgv5: </label><div class='col-sm-8'><input id='bgv5' class='form-control' type='text'{{#bgv5}} value='{{bgv5}}'{{/bgv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bmax'>bmax: </label><div class='col-sm-8'><input id='bmax' class='form-control' type='text'{{#bmax}} value='{{bmax}}'{{/bmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db1'>db1: </label><div class='col-sm-8'><input id='db1' class='form-control' type='text'{{#db1}} value='{{db1}}'{{/db1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db2'>db2: </label><div class='col-sm-8'><input id='db2' class='form-control' type='text'{{#db2}} value='{{db2}}'{{/db2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dturb'>dturb: </label><div class='col-sm-8'><input id='dturb' class='form-control' type='text'{{#dturb}} value='{{dturb}}'{{/dturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eps'>eps: </label><div class='col-sm-8'><input id='eps' class='form-control' type='text'{{#eps}} value='{{eps}}'{{/eps}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gmax'>gmax: </label><div class='col-sm-8'><input id='gmax' class='form-control' type='text'{{#gmax}} value='{{gmax}}'{{/gmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gmin'>gmin: </label><div class='col-sm-8'><input id='gmin' class='form-control' type='text'{{#gmin}} value='{{gmin}}'{{/gmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv0'>gv0: </label><div class='col-sm-8'><input id='gv0' class='form-control' type='text'{{#gv0}} value='{{gv0}}'{{/gv0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv1'>gv1: </label><div class='col-sm-8'><input id='gv1' class='form-control' type='text'{{#gv1}} value='{{gv1}}'{{/gv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv2'>gv2: </label><div class='col-sm-8'><input id='gv2' class='form-control' type='text'{{#gv2}} value='{{gv2}}'{{/gv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv3'>gv3: </label><div class='col-sm-8'><input id='gv3' class='form-control' type='text'{{#gv3}} value='{{gv3}}'{{/gv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv4'>gv4: </label><div class='col-sm-8'><input id='gv4' class='form-control' type='text'{{#gv4}} value='{{gv4}}'{{/gv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv5'>gv5: </label><div class='col-sm-8'><input id='gv5' class='form-control' type='text'{{#gv5}} value='{{gv5}}'{{/gv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hdam'>hdam: </label><div class='col-sm-8'><input id='hdam' class='form-control' type='text'{{#hdam}} value='{{hdam}}'{{/hdam}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv0'>pgv0: </label><div class='col-sm-8'><input id='pgv0' class='form-control' type='text'{{#pgv0}} value='{{pgv0}}'{{/pgv0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv1'>pgv1: </label><div class='col-sm-8'><input id='pgv1' class='form-control' type='text'{{#pgv1}} value='{{pgv1}}'{{/pgv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv2'>pgv2: </label><div class='col-sm-8'><input id='pgv2' class='form-control' type='text'{{#pgv2}} value='{{pgv2}}'{{/pgv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv3'>pgv3: </label><div class='col-sm-8'><input id='pgv3' class='form-control' type='text'{{#pgv3}} value='{{pgv3}}'{{/pgv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv4'>pgv4: </label><div class='col-sm-8'><input id='pgv4' class='form-control' type='text'{{#pgv4}} value='{{pgv4}}'{{/pgv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv5'>pgv5: </label><div class='col-sm-8'><input id='pgv5' class='form-control' type='text'{{#pgv5}} value='{{pgv5}}'{{/pgv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qn1'>qn1: </label><div class='col-sm-8'><input id='qn1' class='form-control' type='text'{{#qn1}} value='{{qn1}}'{{/qn1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rperm'>rperm: </label><div class='col-sm-8'><input id='rperm' class='form-control' type='text'{{#rperm}} value='{{rperm}}'{{/rperm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rtemp'>rtemp: </label><div class='col-sm-8'><input id='rtemp' class='form-control' type='text'{{#rtemp}} value='{{rtemp}}'{{/rtemp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tblade'>tblade: </label><div class='col-sm-8'><input id='tblade' class='form-control' type='text'{{#tblade}} value='{{tblade}}'{{/tblade}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tg'>tg: </label><div class='col-sm-8'><input id='tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr'>tr: </label><div class='col-sm-8'><input id='tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw'>tw: </label><div class='col-sm-8'><input id='tw' class='form-control' type='text'{{#tw}} value='{{tw}}'{{/tw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uc'>uc: </label><div class='col-sm-8'><input id='uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uo'>uo: </label><div class='col-sm-8'><input id='uo' class='form-control' type='text'{{#uo}} value='{{uo}}'{{/uo}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified single shaft gas turbine.
@@ -3869,50 +5188,114 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovGAST1_collapse" aria-expanded="true" aria-controls="GovGAST1_collapse">GovGAST1</a>
-<div id="GovGAST1_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
-{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
-{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
-{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
-{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
-{{#fidle}}<div><b>fidle</b>: {{fidle}}</div>{{/fidle}}
-{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
-{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
-{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
-{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
-{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
-{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kt}}<div><b>kt</b>: {{kt}}</div>{{/kt}}
-{{#lmax}}<div><b>lmax</b>: {{lmax}}</div>{{/lmax}}
-{{#loadinc}}<div><b>loadinc</b>: {{loadinc}}</div>{{/loadinc}}
-{{#ltrate}}<div><b>ltrate</b>: {{ltrate}}</div>{{/ltrate}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
-{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
-{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
-{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
-{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
-{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
-{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
-{{#rmax}}<div><b>rmax</b>: {{rmax}}</div>{{/rmax}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#tltr}}<div><b>tltr</b>: {{tltr}}</div>{{/tltr}}
-{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
-{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST1_collapse" aria-expanded="true" aria-controls="GovGAST1_collapse" style="margin-left: 10px;">GovGAST1</a></legend>
+                    <div id="GovGAST1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
+                    {{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+                    {{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+                    {{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+                    {{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+                    {{#fidle}}<div><b>fidle</b>: {{fidle}}</div>{{/fidle}}
+                    {{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+                    {{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+                    {{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+                    {{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+                    {{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+                    {{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kt}}<div><b>kt</b>: {{kt}}</div>{{/kt}}
+                    {{#lmax}}<div><b>lmax</b>: {{lmax}}</div>{{/lmax}}
+                    {{#loadinc}}<div><b>loadinc</b>: {{loadinc}}</div>{{/loadinc}}
+                    {{#ltrate}}<div><b>ltrate</b>: {{ltrate}}</div>{{/ltrate}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+                    {{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+                    {{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+                    {{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+                    {{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+                    {{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+                    {{#rmax}}<div><b>rmax</b>: {{rmax}}</div>{{/rmax}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#tltr}}<div><b>tltr</b>: {{tltr}}</div>{{/tltr}}
+                    {{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+                    {{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST1_collapse" aria-expanded="true" aria-controls="GovGAST1_collapse" style="margin-left: 10px;">GovGAST1</a></legend>
+                    <div id="GovGAST1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a'>a: </label><div class='col-sm-8'><input id='a' class='form-control' type='text'{{#a}} value='{{a}}'{{/a}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b'>b: </label><div class='col-sm-8'><input id='b' class='form-control' type='text'{{#b}} value='{{b}}'{{/b}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db1'>db1: </label><div class='col-sm-8'><input id='db1' class='form-control' type='text'{{#db1}} value='{{db1}}'{{/db1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db2'>db2: </label><div class='col-sm-8'><input id='db2' class='form-control' type='text'{{#db2}} value='{{db2}}'{{/db2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eps'>eps: </label><div class='col-sm-8'><input id='eps' class='form-control' type='text'{{#eps}} value='{{eps}}'{{/eps}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fidle'>fidle: </label><div class='col-sm-8'><input id='fidle' class='form-control' type='text'{{#fidle}} value='{{fidle}}'{{/fidle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv1'>gv1: </label><div class='col-sm-8'><input id='gv1' class='form-control' type='text'{{#gv1}} value='{{gv1}}'{{/gv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv2'>gv2: </label><div class='col-sm-8'><input id='gv2' class='form-control' type='text'{{#gv2}} value='{{gv2}}'{{/gv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv3'>gv3: </label><div class='col-sm-8'><input id='gv3' class='form-control' type='text'{{#gv3}} value='{{gv3}}'{{/gv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv4'>gv4: </label><div class='col-sm-8'><input id='gv4' class='form-control' type='text'{{#gv4}} value='{{gv4}}'{{/gv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv5'>gv5: </label><div class='col-sm-8'><input id='gv5' class='form-control' type='text'{{#gv5}} value='{{gv5}}'{{/gv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv6'>gv6: </label><div class='col-sm-8'><input id='gv6' class='form-control' type='text'{{#gv6}} value='{{gv6}}'{{/gv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kt'>kt: </label><div class='col-sm-8'><input id='kt' class='form-control' type='text'{{#kt}} value='{{kt}}'{{/kt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lmax'>lmax: </label><div class='col-sm-8'><input id='lmax' class='form-control' type='text'{{#lmax}} value='{{lmax}}'{{/lmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadinc'>loadinc: </label><div class='col-sm-8'><input id='loadinc' class='form-control' type='text'{{#loadinc}} value='{{loadinc}}'{{/loadinc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ltrate'>ltrate: </label><div class='col-sm-8'><input id='ltrate' class='form-control' type='text'{{#ltrate}} value='{{ltrate}}'{{/ltrate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv1'>pgv1: </label><div class='col-sm-8'><input id='pgv1' class='form-control' type='text'{{#pgv1}} value='{{pgv1}}'{{/pgv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv2'>pgv2: </label><div class='col-sm-8'><input id='pgv2' class='form-control' type='text'{{#pgv2}} value='{{pgv2}}'{{/pgv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv3'>pgv3: </label><div class='col-sm-8'><input id='pgv3' class='form-control' type='text'{{#pgv3}} value='{{pgv3}}'{{/pgv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv4'>pgv4: </label><div class='col-sm-8'><input id='pgv4' class='form-control' type='text'{{#pgv4}} value='{{pgv4}}'{{/pgv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv5'>pgv5: </label><div class='col-sm-8'><input id='pgv5' class='form-control' type='text'{{#pgv5}} value='{{pgv5}}'{{/pgv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv6'>pgv6: </label><div class='col-sm-8'><input id='pgv6' class='form-control' type='text'{{#pgv6}} value='{{pgv6}}'{{/pgv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rmax'>rmax: </label><div class='col-sm-8'><input id='rmax' class='form-control' type='text'{{#rmax}} value='{{rmax}}'{{/rmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tltr'>tltr: </label><div class='col-sm-8'><input id='tltr' class='form-control' type='text'{{#tltr}} value='{{tltr}}'{{/tltr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmax'>vmax: </label><div class='col-sm-8'><input id='vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmin'>vmin: </label><div class='col-sm-8'><input id='vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Steam turbine governor model, based on the GovSteamIEEE1 model  (with optional deadband and nonlinear valve gain added).
@@ -4043,55 +5426,124 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovSteam1_collapse" aria-expanded="true" aria-controls="GovSteam1_collapse">GovSteam1</a>
-<div id="GovSteam1_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
-{{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
-{{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
-{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
-{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
-{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
-{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
-{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
-{{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
-{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
-{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
-{{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
-{{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
-{{#k6}}<div><b>k6</b>: {{k6}}</div>{{/k6}}
-{{#k7}}<div><b>k7</b>: {{k7}}</div>{{/k7}}
-{{#k8}}<div><b>k8</b>: {{k8}}</div>{{/k8}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
-{{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
-{{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
-{{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
-{{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
-{{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
-{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#sdb1}}<div><b>sdb1</b>: {{sdb1}}</div>{{/sdb1}}
-{{#sdb2}}<div><b>sdb2</b>: {{sdb2}}</div>{{/sdb2}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
-{{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
-{{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
-{{#valve}}<div><b>valve</b>: {{valve}}</div>{{/valve}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteam1_collapse" aria-expanded="true" aria-controls="GovSteam1_collapse" style="margin-left: 10px;">GovSteam1</a></legend>
+                    <div id="GovSteam1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+                    {{#db2}}<div><b>db2</b>: {{db2}}</div>{{/db2}}
+                    {{#eps}}<div><b>eps</b>: {{eps}}</div>{{/eps}}
+                    {{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+                    {{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+                    {{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+                    {{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+                    {{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+                    {{#gv6}}<div><b>gv6</b>: {{gv6}}</div>{{/gv6}}
+                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+                    {{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+                    {{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
+                    {{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
+                    {{#k6}}<div><b>k6</b>: {{k6}}</div>{{/k6}}
+                    {{#k7}}<div><b>k7</b>: {{k7}}</div>{{/k7}}
+                    {{#k8}}<div><b>k8</b>: {{k8}}</div>{{/k8}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+                    {{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+                    {{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+                    {{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+                    {{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+                    {{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#sdb1}}<div><b>sdb1</b>: {{sdb1}}</div>{{/sdb1}}
+                    {{#sdb2}}<div><b>sdb2</b>: {{sdb2}}</div>{{/sdb2}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
+                    {{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
+                    {{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
+                    {{#valve}}<div><b>valve</b>: {{valve}}</div>{{/valve}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteam1_collapse" aria-expanded="true" aria-controls="GovSteam1_collapse" style="margin-left: 10px;">GovSteam1</a></legend>
+                    <div id="GovSteam1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db1'>db1: </label><div class='col-sm-8'><input id='db1' class='form-control' type='text'{{#db1}} value='{{db1}}'{{/db1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db2'>db2: </label><div class='col-sm-8'><input id='db2' class='form-control' type='text'{{#db2}} value='{{db2}}'{{/db2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eps'>eps: </label><div class='col-sm-8'><input id='eps' class='form-control' type='text'{{#eps}} value='{{eps}}'{{/eps}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv1'>gv1: </label><div class='col-sm-8'><input id='gv1' class='form-control' type='text'{{#gv1}} value='{{gv1}}'{{/gv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv2'>gv2: </label><div class='col-sm-8'><input id='gv2' class='form-control' type='text'{{#gv2}} value='{{gv2}}'{{/gv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv3'>gv3: </label><div class='col-sm-8'><input id='gv3' class='form-control' type='text'{{#gv3}} value='{{gv3}}'{{/gv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv4'>gv4: </label><div class='col-sm-8'><input id='gv4' class='form-control' type='text'{{#gv4}} value='{{gv4}}'{{/gv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv5'>gv5: </label><div class='col-sm-8'><input id='gv5' class='form-control' type='text'{{#gv5}} value='{{gv5}}'{{/gv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv6'>gv6: </label><div class='col-sm-8'><input id='gv6' class='form-control' type='text'{{#gv6}} value='{{gv6}}'{{/gv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k3'>k3: </label><div class='col-sm-8'><input id='k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k4'>k4: </label><div class='col-sm-8'><input id='k4' class='form-control' type='text'{{#k4}} value='{{k4}}'{{/k4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k5'>k5: </label><div class='col-sm-8'><input id='k5' class='form-control' type='text'{{#k5}} value='{{k5}}'{{/k5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k6'>k6: </label><div class='col-sm-8'><input id='k6' class='form-control' type='text'{{#k6}} value='{{k6}}'{{/k6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k7'>k7: </label><div class='col-sm-8'><input id='k7' class='form-control' type='text'{{#k7}} value='{{k7}}'{{/k7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k8'>k8: </label><div class='col-sm-8'><input id='k8' class='form-control' type='text'{{#k8}} value='{{k8}}'{{/k8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv1'>pgv1: </label><div class='col-sm-8'><input id='pgv1' class='form-control' type='text'{{#pgv1}} value='{{pgv1}}'{{/pgv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv2'>pgv2: </label><div class='col-sm-8'><input id='pgv2' class='form-control' type='text'{{#pgv2}} value='{{pgv2}}'{{/pgv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv3'>pgv3: </label><div class='col-sm-8'><input id='pgv3' class='form-control' type='text'{{#pgv3}} value='{{pgv3}}'{{/pgv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv4'>pgv4: </label><div class='col-sm-8'><input id='pgv4' class='form-control' type='text'{{#pgv4}} value='{{pgv4}}'{{/pgv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv5'>pgv5: </label><div class='col-sm-8'><input id='pgv5' class='form-control' type='text'{{#pgv5}} value='{{pgv5}}'{{/pgv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pgv6'>pgv6: </label><div class='col-sm-8'><input id='pgv6' class='form-control' type='text'{{#pgv6}} value='{{pgv6}}'{{/pgv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmax'>pmax: </label><div class='col-sm-8'><input id='pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='sdb1'>sdb1: </label><div class='col-sm-8'><input id='sdb1' class='form-check-input' type='checkbox'{{#sdb1}} checked{{/sdb1}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='sdb2'>sdb2: </label><div class='col-sm-8'><input id='sdb2' class='form-check-input' type='checkbox'{{#sdb2}} checked{{/sdb2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t7'>t7: </label><div class='col-sm-8'><input id='t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uc'>uc: </label><div class='col-sm-8'><input id='uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uo'>uo: </label><div class='col-sm-8'><input id='uo' class='form-control' type='text'{{#uo}} value='{{uo}}'{{/uo}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='valve'>valve: </label><div class='col-sm-8'><input id='valve' class='form-check-input' type='checkbox'{{#valve}} checked{{/valve}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Detailed hydro unit - Francis model.
@@ -4129,7 +5581,7 @@ define
                 base.parse_element (/<cim:GovHydroFrancis.bp>([\s\S]*?)<\/cim:GovHydroFrancis.bp>/g, obj, "bp", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroFrancis.db1>([\s\S]*?)<\/cim:GovHydroFrancis.db1>/g, obj, "db1", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroFrancis.etamax>([\s\S]*?)<\/cim:GovHydroFrancis.etamax>/g, obj, "etamax", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroFrancis.governorControl>([\s\S]*?)<\/cim:GovHydroFrancis.governorControl>/g, obj, "governorControl", base.to_string, sub, context);
+                base.parse_attribute (/<cim:GovHydroFrancis.governorControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "governorControl", sub, context);
                 base.parse_element (/<cim:GovHydroFrancis.h1>([\s\S]*?)<\/cim:GovHydroFrancis.h1>/g, obj, "h1", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroFrancis.h2>([\s\S]*?)<\/cim:GovHydroFrancis.h2>/g, obj, "h2", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroFrancis.hn>([\s\S]*?)<\/cim:GovHydroFrancis.hn>/g, obj, "hn", base.to_string, sub, context);
@@ -4200,43 +5652,102 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovHydroFrancis_collapse" aria-expanded="true" aria-controls="GovHydroFrancis_collapse">GovHydroFrancis</a>
-<div id="GovHydroFrancis_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#am}}<div><b>am</b>: {{am}}</div>{{/am}}
-{{#av0}}<div><b>av0</b>: {{av0}}</div>{{/av0}}
-{{#av1}}<div><b>av1</b>: {{av1}}</div>{{/av1}}
-{{#bp}}<div><b>bp</b>: {{bp}}</div>{{/bp}}
-{{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
-{{#etamax}}<div><b>etamax</b>: {{etamax}}</div>{{/etamax}}
-{{#governorControl}}<div><b>governorControl</b>: {{governorControl}}</div>{{/governorControl}}
-{{#h1}}<div><b>h1</b>: {{h1}}</div>{{/h1}}
-{{#h2}}<div><b>h2</b>: {{h2}}</div>{{/h2}}
-{{#hn}}<div><b>hn</b>: {{hn}}</div>{{/hn}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
-{{#kt}}<div><b>kt</b>: {{kt}}</div>{{/kt}}
-{{#qc0}}<div><b>qc0</b>: {{qc0}}</div>{{/qc0}}
-{{#qn}}<div><b>qn</b>: {{qn}}</div>{{/qn}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
-{{#ts}}<div><b>ts</b>: {{ts}}</div>{{/ts}}
-{{#twnc}}<div><b>twnc</b>: {{twnc}}</div>{{/twnc}}
-{{#twng}}<div><b>twng</b>: {{twng}}</div>{{/twng}}
-{{#tx}}<div><b>tx</b>: {{tx}}</div>{{/tx}}
-{{#va}}<div><b>va</b>: {{va}}</div>{{/va}}
-{{#valvmax}}<div><b>valvmax</b>: {{valvmax}}</div>{{/valvmax}}
-{{#valvmin}}<div><b>valvmin</b>: {{valvmin}}</div>{{/valvmin}}
-{{#vc}}<div><b>vc</b>: {{vc}}</div>{{/vc}}
-{{#waterTunnelSurgeChamberSimulation}}<div><b>waterTunnelSurgeChamberSimulation</b>: {{waterTunnelSurgeChamberSimulation}}</div>{{/waterTunnelSurgeChamberSimulation}}
-{{#zsfc}}<div><b>zsfc</b>: {{zsfc}}</div>{{/zsfc}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroFrancis_collapse" aria-expanded="true" aria-controls="GovHydroFrancis_collapse" style="margin-left: 10px;">GovHydroFrancis</a></legend>
+                    <div id="GovHydroFrancis_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#am}}<div><b>am</b>: {{am}}</div>{{/am}}
+                    {{#av0}}<div><b>av0</b>: {{av0}}</div>{{/av0}}
+                    {{#av1}}<div><b>av1</b>: {{av1}}</div>{{/av1}}
+                    {{#bp}}<div><b>bp</b>: {{bp}}</div>{{/bp}}
+                    {{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
+                    {{#etamax}}<div><b>etamax</b>: {{etamax}}</div>{{/etamax}}
+                    {{#governorControl}}<div><b>governorControl</b>: {{governorControl}}</div>{{/governorControl}}
+                    {{#h1}}<div><b>h1</b>: {{h1}}</div>{{/h1}}
+                    {{#h2}}<div><b>h2</b>: {{h2}}</div>{{/h2}}
+                    {{#hn}}<div><b>hn</b>: {{hn}}</div>{{/hn}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+                    {{#kt}}<div><b>kt</b>: {{kt}}</div>{{/kt}}
+                    {{#qc0}}<div><b>qc0</b>: {{qc0}}</div>{{/qc0}}
+                    {{#qn}}<div><b>qn</b>: {{qn}}</div>{{/qn}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+                    {{#ts}}<div><b>ts</b>: {{ts}}</div>{{/ts}}
+                    {{#twnc}}<div><b>twnc</b>: {{twnc}}</div>{{/twnc}}
+                    {{#twng}}<div><b>twng</b>: {{twng}}</div>{{/twng}}
+                    {{#tx}}<div><b>tx</b>: {{tx}}</div>{{/tx}}
+                    {{#va}}<div><b>va</b>: {{va}}</div>{{/va}}
+                    {{#valvmax}}<div><b>valvmax</b>: {{valvmax}}</div>{{/valvmax}}
+                    {{#valvmin}}<div><b>valvmin</b>: {{valvmin}}</div>{{/valvmin}}
+                    {{#vc}}<div><b>vc</b>: {{vc}}</div>{{/vc}}
+                    {{#waterTunnelSurgeChamberSimulation}}<div><b>waterTunnelSurgeChamberSimulation</b>: {{waterTunnelSurgeChamberSimulation}}</div>{{/waterTunnelSurgeChamberSimulation}}
+                    {{#zsfc}}<div><b>zsfc</b>: {{zsfc}}</div>{{/zsfc}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.FrancisGovernorControlKind = []; if (!obj.governorControl) obj.FrancisGovernorControlKind.push ({ id: '', selected: true}); for (var property in FrancisGovernorControlKind) obj.FrancisGovernorControlKind.push ({ id: property, selected: obj.governorControl && obj.governorControl.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.FrancisGovernorControlKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroFrancis_collapse" aria-expanded="true" aria-controls="GovHydroFrancis_collapse" style="margin-left: 10px;">GovHydroFrancis</a></legend>
+                    <div id="GovHydroFrancis_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='am'>am: </label><div class='col-sm-8'><input id='am' class='form-control' type='text'{{#am}} value='{{am}}'{{/am}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='av0'>av0: </label><div class='col-sm-8'><input id='av0' class='form-control' type='text'{{#av0}} value='{{av0}}'{{/av0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='av1'>av1: </label><div class='col-sm-8'><input id='av1' class='form-control' type='text'{{#av1}} value='{{av1}}'{{/av1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bp'>bp: </label><div class='col-sm-8'><input id='bp' class='form-control' type='text'{{#bp}} value='{{bp}}'{{/bp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db1'>db1: </label><div class='col-sm-8'><input id='db1' class='form-control' type='text'{{#db1}} value='{{db1}}'{{/db1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='etamax'>etamax: </label><div class='col-sm-8'><input id='etamax' class='form-control' type='text'{{#etamax}} value='{{etamax}}'{{/etamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='governorControl'>governorControl: </label><div class='col-sm-8'><select id='governorControl' class='form-control'>{{#FrancisGovernorControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FrancisGovernorControlKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='h1'>h1: </label><div class='col-sm-8'><input id='h1' class='form-control' type='text'{{#h1}} value='{{h1}}'{{/h1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='h2'>h2: </label><div class='col-sm-8'><input id='h2' class='form-control' type='text'{{#h2}} value='{{h2}}'{{/h2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hn'>hn: </label><div class='col-sm-8'><input id='hn' class='form-control' type='text'{{#hn}} value='{{hn}}'{{/hn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kg'>kg: </label><div class='col-sm-8'><input id='kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kt'>kt: </label><div class='col-sm-8'><input id='kt' class='form-control' type='text'{{#kt}} value='{{kt}}'{{/kt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qc0'>qc0: </label><div class='col-sm-8'><input id='qc0' class='form-control' type='text'{{#qc0}} value='{{qc0}}'{{/qc0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qn'>qn: </label><div class='col-sm-8'><input id='qn' class='form-control' type='text'{{#qn}} value='{{qn}}'{{/qn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td'>td: </label><div class='col-sm-8'><input id='td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts'>ts: </label><div class='col-sm-8'><input id='ts' class='form-control' type='text'{{#ts}} value='{{ts}}'{{/ts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twnc'>twnc: </label><div class='col-sm-8'><input id='twnc' class='form-control' type='text'{{#twnc}} value='{{twnc}}'{{/twnc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twng'>twng: </label><div class='col-sm-8'><input id='twng' class='form-control' type='text'{{#twng}} value='{{twng}}'{{/twng}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tx'>tx: </label><div class='col-sm-8'><input id='tx' class='form-control' type='text'{{#tx}} value='{{tx}}'{{/tx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='va'>va: </label><div class='col-sm-8'><input id='va' class='form-control' type='text'{{#va}} value='{{va}}'{{/va}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='valvmax'>valvmax: </label><div class='col-sm-8'><input id='valvmax' class='form-control' type='text'{{#valvmax}} value='{{valvmax}}'{{/valvmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='valvmin'>valvmin: </label><div class='col-sm-8'><input id='valvmin' class='form-control' type='text'{{#valvmin}} value='{{valvmin}}'{{/valvmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vc'>vc: </label><div class='col-sm-8'><input id='vc' class='form-control' type='text'{{#vc}} value='{{vc}}'{{/vc}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='waterTunnelSurgeChamberSimulation'>waterTunnelSurgeChamberSimulation: </label><div class='col-sm-8'><input id='waterTunnelSurgeChamberSimulation' class='form-check-input' type='checkbox'{{#waterTunnelSurgeChamberSimulation}} checked{{/waterTunnelSurgeChamberSimulation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zsfc'>zsfc: </label><div class='col-sm-8'><input id='zsfc' class='form-control' type='text'{{#zsfc}} value='{{zsfc}}'{{/zsfc}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Generic turbogas.
@@ -4311,27 +5822,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovGAST4_collapse" aria-expanded="true" aria-controls="GovGAST4_collapse">GovGAST4</a>
-<div id="GovGAST4_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#bp}}<div><b>bp</b>: {{bp}}</div>{{/bp}}
-{{#ktm}}<div><b>ktm</b>: {{ktm}}</div>{{/ktm}}
-{{#mnef}}<div><b>mnef</b>: {{mnef}}</div>{{/mnef}}
-{{#mxef}}<div><b>mxef</b>: {{mxef}}</div>{{/mxef}}
-{{#rymn}}<div><b>rymn</b>: {{rymn}}</div>{{/rymn}}
-{{#rymx}}<div><b>rymx</b>: {{rymx}}</div>{{/rymx}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#tcm}}<div><b>tcm</b>: {{tcm}}</div>{{/tcm}}
-{{#tm}}<div><b>tm</b>: {{tm}}</div>{{/tm}}
-{{#tv}}<div><b>tv</b>: {{tv}}</div>{{/tv}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST4_collapse" aria-expanded="true" aria-controls="GovGAST4_collapse" style="margin-left: 10px;">GovGAST4</a></legend>
+                    <div id="GovGAST4_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#bp}}<div><b>bp</b>: {{bp}}</div>{{/bp}}
+                    {{#ktm}}<div><b>ktm</b>: {{ktm}}</div>{{/ktm}}
+                    {{#mnef}}<div><b>mnef</b>: {{mnef}}</div>{{/mnef}}
+                    {{#mxef}}<div><b>mxef</b>: {{mxef}}</div>{{/mxef}}
+                    {{#rymn}}<div><b>rymn</b>: {{rymn}}</div>{{/rymn}}
+                    {{#rymx}}<div><b>rymx</b>: {{rymx}}</div>{{/rymx}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#tcm}}<div><b>tcm</b>: {{tcm}}</div>{{/tcm}}
+                    {{#tm}}<div><b>tm</b>: {{tm}}</div>{{/tm}}
+                    {{#tv}}<div><b>tv</b>: {{tv}}</div>{{/tv}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST4_collapse" aria-expanded="true" aria-controls="GovGAST4_collapse" style="margin-left: 10px;">GovGAST4</a></legend>
+                    <div id="GovGAST4_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bp'>bp: </label><div class='col-sm-8'><input id='bp' class='form-control' type='text'{{#bp}} value='{{bp}}'{{/bp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ktm'>ktm: </label><div class='col-sm-8'><input id='ktm' class='form-control' type='text'{{#ktm}} value='{{ktm}}'{{/ktm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mnef'>mnef: </label><div class='col-sm-8'><input id='mnef' class='form-control' type='text'{{#mnef}} value='{{mnef}}'{{/mnef}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mxef'>mxef: </label><div class='col-sm-8'><input id='mxef' class='form-control' type='text'{{#mxef}} value='{{mxef}}'{{/mxef}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rymn'>rymn: </label><div class='col-sm-8'><input id='rymn' class='form-control' type='text'{{#rymn}} value='{{rymn}}'{{/rymn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rymx'>rymx: </label><div class='col-sm-8'><input id='rymx' class='form-control' type='text'{{#rymx}} value='{{rymx}}'{{/rymx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tcm'>tcm: </label><div class='col-sm-8'><input id='tcm' class='form-control' type='text'{{#tcm}} value='{{tcm}}'{{/tcm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tm'>tm: </label><div class='col-sm-8'><input id='tm' class='form-control' type='text'{{#tm}} value='{{tm}}'{{/tm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tv'>tv: </label><div class='col-sm-8'><input id='tv' class='form-control' type='text'{{#tv}} value='{{tv}}'{{/tv}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Simplified GovSteamIEEE1 Steam turbine governor model with Prmax limit and fast valving.
@@ -4422,35 +5974,84 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovSteamFV3_collapse" aria-expanded="true" aria-controls="GovSteamFV3_collapse">GovSteamFV3</a>
-<div id="GovSteamFV3_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
-{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#prmax}}<div><b>prmax</b>: {{prmax}}</div>{{/prmax}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
-{{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamFV3_collapse" aria-expanded="true" aria-controls="GovSteamFV3_collapse" style="margin-left: 10px;">GovSteamFV3</a></legend>
+                    <div id="GovSteamFV3_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+                    {{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#prmax}}<div><b>prmax</b>: {{prmax}}</div>{{/prmax}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
+                    {{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamFV3_collapse" aria-expanded="true" aria-controls="GovSteamFV3_collapse" style="margin-left: 10px;">GovSteamFV3</a></legend>
+                    <div id="GovSteamFV3_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k3'>k3: </label><div class='col-sm-8'><input id='k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmax'>pmax: </label><div class='col-sm-8'><input id='pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='prmax'>prmax: </label><div class='col-sm-8'><input id='prmax' class='form-control' type='text'{{#prmax}} value='{{prmax}}'{{/prmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uc'>uc: </label><div class='col-sm-8'><input id='uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uo'>uo: </label><div class='col-sm-8'><input id='uo' class='form-control' type='text'{{#uo}} value='{{uo}}'{{/uo}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Woodward Electric Hydro Governor Model.
@@ -4605,67 +6206,148 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovHydroWEH_collapse" aria-expanded="true" aria-controls="GovHydroWEH_collapse">GovHydroWEH</a>
-<div id="GovHydroWEH_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#db}}<div><b>db</b>: {{db}}</div>{{/db}}
-{{#dicn}}<div><b>dicn</b>: {{dicn}}</div>{{/dicn}}
-{{#dpv}}<div><b>dpv</b>: {{dpv}}</div>{{/dpv}}
-{{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
-{{#feedbackSignal}}<div><b>feedbackSignal</b>: {{feedbackSignal}}</div>{{/feedbackSignal}}
-{{#fl1}}<div><b>fl1</b>: {{fl1}}</div>{{/fl1}}
-{{#fl2}}<div><b>fl2</b>: {{fl2}}</div>{{/fl2}}
-{{#fl3}}<div><b>fl3</b>: {{fl3}}</div>{{/fl3}}
-{{#fl4}}<div><b>fl4</b>: {{fl4}}</div>{{/fl4}}
-{{#fl5}}<div><b>fl5</b>: {{fl5}}</div>{{/fl5}}
-{{#fp1}}<div><b>fp1</b>: {{fp1}}</div>{{/fp1}}
-{{#fp10}}<div><b>fp10</b>: {{fp10}}</div>{{/fp10}}
-{{#fp2}}<div><b>fp2</b>: {{fp2}}</div>{{/fp2}}
-{{#fp3}}<div><b>fp3</b>: {{fp3}}</div>{{/fp3}}
-{{#fp4}}<div><b>fp4</b>: {{fp4}}</div>{{/fp4}}
-{{#fp5}}<div><b>fp5</b>: {{fp5}}</div>{{/fp5}}
-{{#fp6}}<div><b>fp6</b>: {{fp6}}</div>{{/fp6}}
-{{#fp7}}<div><b>fp7</b>: {{fp7}}</div>{{/fp7}}
-{{#fp8}}<div><b>fp8</b>: {{fp8}}</div>{{/fp8}}
-{{#fp9}}<div><b>fp9</b>: {{fp9}}</div>{{/fp9}}
-{{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
-{{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
-{{#gtmxcl}}<div><b>gtmxcl</b>: {{gtmxcl}}</div>{{/gtmxcl}}
-{{#gtmxop}}<div><b>gtmxop</b>: {{gtmxop}}</div>{{/gtmxop}}
-{{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
-{{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
-{{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
-{{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
-{{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#pmss1}}<div><b>pmss1</b>: {{pmss1}}</div>{{/pmss1}}
-{{#pmss10}}<div><b>pmss10</b>: {{pmss10}}</div>{{/pmss10}}
-{{#pmss2}}<div><b>pmss2</b>: {{pmss2}}</div>{{/pmss2}}
-{{#pmss3}}<div><b>pmss3</b>: {{pmss3}}</div>{{/pmss3}}
-{{#pmss4}}<div><b>pmss4</b>: {{pmss4}}</div>{{/pmss4}}
-{{#pmss5}}<div><b>pmss5</b>: {{pmss5}}</div>{{/pmss5}}
-{{#pmss6}}<div><b>pmss6</b>: {{pmss6}}</div>{{/pmss6}}
-{{#pmss7}}<div><b>pmss7</b>: {{pmss7}}</div>{{/pmss7}}
-{{#pmss8}}<div><b>pmss8</b>: {{pmss8}}</div>{{/pmss8}}
-{{#pmss9}}<div><b>pmss9</b>: {{pmss9}}</div>{{/pmss9}}
-{{#rpg}}<div><b>rpg</b>: {{rpg}}</div>{{/rpg}}
-{{#rpp}}<div><b>rpp</b>: {{rpp}}</div>{{/rpp}}
-{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
-{{#tdv}}<div><b>tdv</b>: {{tdv}}</div>{{/tdv}}
-{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
-{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
-{{#tpe}}<div><b>tpe</b>: {{tpe}}</div>{{/tpe}}
-{{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroWEH_collapse" aria-expanded="true" aria-controls="GovHydroWEH_collapse" style="margin-left: 10px;">GovHydroWEH</a></legend>
+                    <div id="GovHydroWEH_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#db}}<div><b>db</b>: {{db}}</div>{{/db}}
+                    {{#dicn}}<div><b>dicn</b>: {{dicn}}</div>{{/dicn}}
+                    {{#dpv}}<div><b>dpv</b>: {{dpv}}</div>{{/dpv}}
+                    {{#dturb}}<div><b>dturb</b>: {{dturb}}</div>{{/dturb}}
+                    {{#feedbackSignal}}<div><b>feedbackSignal</b>: {{feedbackSignal}}</div>{{/feedbackSignal}}
+                    {{#fl1}}<div><b>fl1</b>: {{fl1}}</div>{{/fl1}}
+                    {{#fl2}}<div><b>fl2</b>: {{fl2}}</div>{{/fl2}}
+                    {{#fl3}}<div><b>fl3</b>: {{fl3}}</div>{{/fl3}}
+                    {{#fl4}}<div><b>fl4</b>: {{fl4}}</div>{{/fl4}}
+                    {{#fl5}}<div><b>fl5</b>: {{fl5}}</div>{{/fl5}}
+                    {{#fp1}}<div><b>fp1</b>: {{fp1}}</div>{{/fp1}}
+                    {{#fp10}}<div><b>fp10</b>: {{fp10}}</div>{{/fp10}}
+                    {{#fp2}}<div><b>fp2</b>: {{fp2}}</div>{{/fp2}}
+                    {{#fp3}}<div><b>fp3</b>: {{fp3}}</div>{{/fp3}}
+                    {{#fp4}}<div><b>fp4</b>: {{fp4}}</div>{{/fp4}}
+                    {{#fp5}}<div><b>fp5</b>: {{fp5}}</div>{{/fp5}}
+                    {{#fp6}}<div><b>fp6</b>: {{fp6}}</div>{{/fp6}}
+                    {{#fp7}}<div><b>fp7</b>: {{fp7}}</div>{{/fp7}}
+                    {{#fp8}}<div><b>fp8</b>: {{fp8}}</div>{{/fp8}}
+                    {{#fp9}}<div><b>fp9</b>: {{fp9}}</div>{{/fp9}}
+                    {{#gmax}}<div><b>gmax</b>: {{gmax}}</div>{{/gmax}}
+                    {{#gmin}}<div><b>gmin</b>: {{gmin}}</div>{{/gmin}}
+                    {{#gtmxcl}}<div><b>gtmxcl</b>: {{gtmxcl}}</div>{{/gtmxcl}}
+                    {{#gtmxop}}<div><b>gtmxop</b>: {{gtmxop}}</div>{{/gtmxop}}
+                    {{#gv1}}<div><b>gv1</b>: {{gv1}}</div>{{/gv1}}
+                    {{#gv2}}<div><b>gv2</b>: {{gv2}}</div>{{/gv2}}
+                    {{#gv3}}<div><b>gv3</b>: {{gv3}}</div>{{/gv3}}
+                    {{#gv4}}<div><b>gv4</b>: {{gv4}}</div>{{/gv4}}
+                    {{#gv5}}<div><b>gv5</b>: {{gv5}}</div>{{/gv5}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pmss1}}<div><b>pmss1</b>: {{pmss1}}</div>{{/pmss1}}
+                    {{#pmss10}}<div><b>pmss10</b>: {{pmss10}}</div>{{/pmss10}}
+                    {{#pmss2}}<div><b>pmss2</b>: {{pmss2}}</div>{{/pmss2}}
+                    {{#pmss3}}<div><b>pmss3</b>: {{pmss3}}</div>{{/pmss3}}
+                    {{#pmss4}}<div><b>pmss4</b>: {{pmss4}}</div>{{/pmss4}}
+                    {{#pmss5}}<div><b>pmss5</b>: {{pmss5}}</div>{{/pmss5}}
+                    {{#pmss6}}<div><b>pmss6</b>: {{pmss6}}</div>{{/pmss6}}
+                    {{#pmss7}}<div><b>pmss7</b>: {{pmss7}}</div>{{/pmss7}}
+                    {{#pmss8}}<div><b>pmss8</b>: {{pmss8}}</div>{{/pmss8}}
+                    {{#pmss9}}<div><b>pmss9</b>: {{pmss9}}</div>{{/pmss9}}
+                    {{#rpg}}<div><b>rpg</b>: {{rpg}}</div>{{/rpg}}
+                    {{#rpp}}<div><b>rpp</b>: {{rpp}}</div>{{/rpp}}
+                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+                    {{#tdv}}<div><b>tdv</b>: {{tdv}}</div>{{/tdv}}
+                    {{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+                    {{#tpe}}<div><b>tpe</b>: {{tpe}}</div>{{/tpe}}
+                    {{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroWEH_collapse" aria-expanded="true" aria-controls="GovHydroWEH_collapse" style="margin-left: 10px;">GovHydroWEH</a></legend>
+                    <div id="GovHydroWEH_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='db'>db: </label><div class='col-sm-8'><input id='db' class='form-control' type='text'{{#db}} value='{{db}}'{{/db}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dicn'>dicn: </label><div class='col-sm-8'><input id='dicn' class='form-control' type='text'{{#dicn}} value='{{dicn}}'{{/dicn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpv'>dpv: </label><div class='col-sm-8'><input id='dpv' class='form-control' type='text'{{#dpv}} value='{{dpv}}'{{/dpv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dturb'>dturb: </label><div class='col-sm-8'><input id='dturb' class='form-control' type='text'{{#dturb}} value='{{dturb}}'{{/dturb}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='feedbackSignal'>feedbackSignal: </label><div class='col-sm-8'><input id='feedbackSignal' class='form-check-input' type='checkbox'{{#feedbackSignal}} checked{{/feedbackSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fl1'>fl1: </label><div class='col-sm-8'><input id='fl1' class='form-control' type='text'{{#fl1}} value='{{fl1}}'{{/fl1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fl2'>fl2: </label><div class='col-sm-8'><input id='fl2' class='form-control' type='text'{{#fl2}} value='{{fl2}}'{{/fl2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fl3'>fl3: </label><div class='col-sm-8'><input id='fl3' class='form-control' type='text'{{#fl3}} value='{{fl3}}'{{/fl3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fl4'>fl4: </label><div class='col-sm-8'><input id='fl4' class='form-control' type='text'{{#fl4}} value='{{fl4}}'{{/fl4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fl5'>fl5: </label><div class='col-sm-8'><input id='fl5' class='form-control' type='text'{{#fl5}} value='{{fl5}}'{{/fl5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fp1'>fp1: </label><div class='col-sm-8'><input id='fp1' class='form-control' type='text'{{#fp1}} value='{{fp1}}'{{/fp1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fp10'>fp10: </label><div class='col-sm-8'><input id='fp10' class='form-control' type='text'{{#fp10}} value='{{fp10}}'{{/fp10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fp2'>fp2: </label><div class='col-sm-8'><input id='fp2' class='form-control' type='text'{{#fp2}} value='{{fp2}}'{{/fp2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fp3'>fp3: </label><div class='col-sm-8'><input id='fp3' class='form-control' type='text'{{#fp3}} value='{{fp3}}'{{/fp3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fp4'>fp4: </label><div class='col-sm-8'><input id='fp4' class='form-control' type='text'{{#fp4}} value='{{fp4}}'{{/fp4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fp5'>fp5: </label><div class='col-sm-8'><input id='fp5' class='form-control' type='text'{{#fp5}} value='{{fp5}}'{{/fp5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fp6'>fp6: </label><div class='col-sm-8'><input id='fp6' class='form-control' type='text'{{#fp6}} value='{{fp6}}'{{/fp6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fp7'>fp7: </label><div class='col-sm-8'><input id='fp7' class='form-control' type='text'{{#fp7}} value='{{fp7}}'{{/fp7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fp8'>fp8: </label><div class='col-sm-8'><input id='fp8' class='form-control' type='text'{{#fp8}} value='{{fp8}}'{{/fp8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fp9'>fp9: </label><div class='col-sm-8'><input id='fp9' class='form-control' type='text'{{#fp9}} value='{{fp9}}'{{/fp9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gmax'>gmax: </label><div class='col-sm-8'><input id='gmax' class='form-control' type='text'{{#gmax}} value='{{gmax}}'{{/gmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gmin'>gmin: </label><div class='col-sm-8'><input id='gmin' class='form-control' type='text'{{#gmin}} value='{{gmin}}'{{/gmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gtmxcl'>gtmxcl: </label><div class='col-sm-8'><input id='gtmxcl' class='form-control' type='text'{{#gtmxcl}} value='{{gtmxcl}}'{{/gtmxcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gtmxop'>gtmxop: </label><div class='col-sm-8'><input id='gtmxop' class='form-control' type='text'{{#gtmxop}} value='{{gtmxop}}'{{/gtmxop}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv1'>gv1: </label><div class='col-sm-8'><input id='gv1' class='form-control' type='text'{{#gv1}} value='{{gv1}}'{{/gv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv2'>gv2: </label><div class='col-sm-8'><input id='gv2' class='form-control' type='text'{{#gv2}} value='{{gv2}}'{{/gv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv3'>gv3: </label><div class='col-sm-8'><input id='gv3' class='form-control' type='text'{{#gv3}} value='{{gv3}}'{{/gv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv4'>gv4: </label><div class='col-sm-8'><input id='gv4' class='form-control' type='text'{{#gv4}} value='{{gv4}}'{{/gv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gv5'>gv5: </label><div class='col-sm-8'><input id='gv5' class='form-control' type='text'{{#gv5}} value='{{gv5}}'{{/gv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmss1'>pmss1: </label><div class='col-sm-8'><input id='pmss1' class='form-control' type='text'{{#pmss1}} value='{{pmss1}}'{{/pmss1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmss10'>pmss10: </label><div class='col-sm-8'><input id='pmss10' class='form-control' type='text'{{#pmss10}} value='{{pmss10}}'{{/pmss10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmss2'>pmss2: </label><div class='col-sm-8'><input id='pmss2' class='form-control' type='text'{{#pmss2}} value='{{pmss2}}'{{/pmss2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmss3'>pmss3: </label><div class='col-sm-8'><input id='pmss3' class='form-control' type='text'{{#pmss3}} value='{{pmss3}}'{{/pmss3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmss4'>pmss4: </label><div class='col-sm-8'><input id='pmss4' class='form-control' type='text'{{#pmss4}} value='{{pmss4}}'{{/pmss4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmss5'>pmss5: </label><div class='col-sm-8'><input id='pmss5' class='form-control' type='text'{{#pmss5}} value='{{pmss5}}'{{/pmss5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmss6'>pmss6: </label><div class='col-sm-8'><input id='pmss6' class='form-control' type='text'{{#pmss6}} value='{{pmss6}}'{{/pmss6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmss7'>pmss7: </label><div class='col-sm-8'><input id='pmss7' class='form-control' type='text'{{#pmss7}} value='{{pmss7}}'{{/pmss7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmss8'>pmss8: </label><div class='col-sm-8'><input id='pmss8' class='form-control' type='text'{{#pmss8}} value='{{pmss8}}'{{/pmss8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmss9'>pmss9: </label><div class='col-sm-8'><input id='pmss9' class='form-control' type='text'{{#pmss9}} value='{{pmss9}}'{{/pmss9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rpg'>rpg: </label><div class='col-sm-8'><input id='rpg' class='form-control' type='text'{{#rpg}} value='{{rpg}}'{{/rpg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rpp'>rpp: </label><div class='col-sm-8'><input id='rpp' class='form-control' type='text'{{#rpp}} value='{{rpp}}'{{/rpp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td'>td: </label><div class='col-sm-8'><input id='td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tdv'>tdv: </label><div class='col-sm-8'><input id='tdv' class='form-control' type='text'{{#tdv}} value='{{tdv}}'{{/tdv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tg'>tg: </label><div class='col-sm-8'><input id='tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpe'>tpe: </label><div class='col-sm-8'><input id='tpe' class='form-control' type='text'{{#tpe}} value='{{tpe}}'{{/tpe}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw'>tw: </label><div class='col-sm-8'><input id='tw' class='form-control' type='text'{{#tw}} value='{{tw}}'{{/tw}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Gas turbine model.
@@ -4782,48 +6464,110 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GovGAST2_collapse" aria-expanded="true" aria-controls="GovGAST2_collapse">GovGAST2</a>
-<div id="GovGAST2_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
-{{#af1}}<div><b>af1</b>: {{af1}}</div>{{/af1}}
-{{#af2}}<div><b>af2</b>: {{af2}}</div>{{/af2}}
-{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
-{{#bf1}}<div><b>bf1</b>: {{bf1}}</div>{{/bf1}}
-{{#bf2}}<div><b>bf2</b>: {{bf2}}</div>{{/bf2}}
-{{#c}}<div><b>c</b>: {{c}}</div>{{/c}}
-{{#cf2}}<div><b>cf2</b>: {{cf2}}</div>{{/cf2}}
-{{#ecr}}<div><b>ecr</b>: {{ecr}}</div>{{/ecr}}
-{{#etd}}<div><b>etd</b>: {{etd}}</div>{{/etd}}
-{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
-{{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
-{{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
-{{#k6}}<div><b>k6</b>: {{k6}}</div>{{/k6}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-{{#t}}<div><b>t</b>: {{t}}</div>{{/t}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#tcd}}<div><b>tcd</b>: {{tcd}}</div>{{/tcd}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#tmax}}<div><b>tmax</b>: {{tmax}}</div>{{/tmax}}
-{{#tmin}}<div><b>tmin</b>: {{tmin}}</div>{{/tmin}}
-{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
-{{#trate}}<div><b>trate</b>: {{trate}}</div>{{/trate}}
-{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
-{{#w}}<div><b>w</b>: {{w}}</div>{{/w}}
-{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
-{{#y}}<div><b>y</b>: {{y}}</div>{{/y}}
-{{#z}}<div><b>z</b>: {{z}}</div>{{/z}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST2_collapse" aria-expanded="true" aria-controls="GovGAST2_collapse" style="margin-left: 10px;">GovGAST2</a></legend>
+                    <div id="GovGAST2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
+                    {{#af1}}<div><b>af1</b>: {{af1}}</div>{{/af1}}
+                    {{#af2}}<div><b>af2</b>: {{af2}}</div>{{/af2}}
+                    {{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+                    {{#bf1}}<div><b>bf1</b>: {{bf1}}</div>{{/bf1}}
+                    {{#bf2}}<div><b>bf2</b>: {{bf2}}</div>{{/bf2}}
+                    {{#c}}<div><b>c</b>: {{c}}</div>{{/c}}
+                    {{#cf2}}<div><b>cf2</b>: {{cf2}}</div>{{/cf2}}
+                    {{#ecr}}<div><b>ecr</b>: {{ecr}}</div>{{/ecr}}
+                    {{#etd}}<div><b>etd</b>: {{etd}}</div>{{/etd}}
+                    {{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+                    {{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
+                    {{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
+                    {{#k6}}<div><b>k6</b>: {{k6}}</div>{{/k6}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#t}}<div><b>t</b>: {{t}}</div>{{/t}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#tcd}}<div><b>tcd</b>: {{tcd}}</div>{{/tcd}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#tmax}}<div><b>tmax</b>: {{tmax}}</div>{{/tmax}}
+                    {{#tmin}}<div><b>tmin</b>: {{tmin}}</div>{{/tmin}}
+                    {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+                    {{#trate}}<div><b>trate</b>: {{trate}}</div>{{/trate}}
+                    {{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+                    {{#w}}<div><b>w</b>: {{w}}</div>{{/w}}
+                    {{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+                    {{#y}}<div><b>y</b>: {{y}}</div>{{/y}}
+                    {{#z}}<div><b>z</b>: {{z}}</div>{{/z}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST2_collapse" aria-expanded="true" aria-controls="GovGAST2_collapse" style="margin-left: 10px;">GovGAST2</a></legend>
+                    <div id="GovGAST2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a'>a: </label><div class='col-sm-8'><input id='a' class='form-control' type='text'{{#a}} value='{{a}}'{{/a}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='af1'>af1: </label><div class='col-sm-8'><input id='af1' class='form-control' type='text'{{#af1}} value='{{af1}}'{{/af1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='af2'>af2: </label><div class='col-sm-8'><input id='af2' class='form-control' type='text'{{#af2}} value='{{af2}}'{{/af2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b'>b: </label><div class='col-sm-8'><input id='b' class='form-control' type='text'{{#b}} value='{{b}}'{{/b}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bf1'>bf1: </label><div class='col-sm-8'><input id='bf1' class='form-control' type='text'{{#bf1}} value='{{bf1}}'{{/bf1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bf2'>bf2: </label><div class='col-sm-8'><input id='bf2' class='form-control' type='text'{{#bf2}} value='{{bf2}}'{{/bf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='c'>c: </label><div class='col-sm-8'><input id='c' class='form-control' type='text'{{#c}} value='{{c}}'{{/c}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cf2'>cf2: </label><div class='col-sm-8'><input id='cf2' class='form-control' type='text'{{#cf2}} value='{{cf2}}'{{/cf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ecr'>ecr: </label><div class='col-sm-8'><input id='ecr' class='form-control' type='text'{{#ecr}} value='{{ecr}}'{{/ecr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='etd'>etd: </label><div class='col-sm-8'><input id='etd' class='form-control' type='text'{{#etd}} value='{{etd}}'{{/etd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k3'>k3: </label><div class='col-sm-8'><input id='k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k4'>k4: </label><div class='col-sm-8'><input id='k4' class='form-control' type='text'{{#k4}} value='{{k4}}'{{/k4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k5'>k5: </label><div class='col-sm-8'><input id='k5' class='form-control' type='text'{{#k5}} value='{{k5}}'{{/k5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k6'>k6: </label><div class='col-sm-8'><input id='k6' class='form-control' type='text'{{#k6}} value='{{k6}}'{{/k6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwbase'>mwbase: </label><div class='col-sm-8'><input id='mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t'>t: </label><div class='col-sm-8'><input id='t' class='form-control' type='text'{{#t}} value='{{t}}'{{/t}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tcd'>tcd: </label><div class='col-sm-8'><input id='tcd' class='form-control' type='text'{{#tcd}} value='{{tcd}}'{{/tcd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tmax'>tmax: </label><div class='col-sm-8'><input id='tmax' class='form-control' type='text'{{#tmax}} value='{{tmax}}'{{/tmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tmin'>tmin: </label><div class='col-sm-8'><input id='tmin' class='form-control' type='text'{{#tmin}} value='{{tmin}}'{{/tmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr'>tr: </label><div class='col-sm-8'><input id='tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='trate'>trate: </label><div class='col-sm-8'><input id='trate' class='form-control' type='text'{{#trate}} value='{{trate}}'{{/trate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tt'>tt: </label><div class='col-sm-8'><input id='tt' class='form-control' type='text'{{#tt}} value='{{tt}}'{{/tt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='w'>w: </label><div class='col-sm-8'><input id='w' class='form-control' type='text'{{#w}} value='{{w}}'{{/w}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x'>x: </label><div class='col-sm-8'><input id='x' class='form-control' type='text'{{#x}} value='{{x}}'{{/x}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y'>y: </label><div class='col-sm-8'><input id='y' class='form-control' type='text'{{#y}} value='{{y}}'{{/y}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='z'>z: </label><div class='col-sm-8'><input id='z' class='form-check-input' type='checkbox'{{#z}} checked{{/z}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
@@ -4837,7 +6581,6 @@ define
                 GovSteamFV3: GovSteamFV3,
                 GovGAST3: GovGAST3,
                 GovHydroIEEE0: GovHydroIEEE0,
-                DroopSignalFeedbackKind: DroopSignalFeedbackKind,
                 GovSteam2: GovSteam2,
                 GovHydro2: GovHydro2,
                 GovGAST1: GovGAST1,
@@ -4848,7 +6591,6 @@ define
                 GovHydroDD: GovHydroDD,
                 GovHydro1: GovHydro1,
                 GovGAST2: GovGAST2,
-                FrancisGovernorControlKind: FrancisGovernorControlKind,
                 GovHydroWPID: GovHydroWPID,
                 GovSteamFV4: GovSteamFV4,
                 GovHydroPID: GovHydroPID,

@@ -9,6 +9,17 @@ define
     {
 
         /**
+         * Indicates the state which the contingency equipment is to be in when the contingency is applied.
+         *
+         */
+        var ContingencyEquipmentStatusKind =
+        {
+            inService: "inService",
+            outOfService: "outOfService"
+        };
+        Object.freeze (ContingencyEquipmentStatusKind);
+
+        /**
          * An event threatening system reliability, consisting of one or more contingency elements.
          *
          */
@@ -61,17 +72,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Contingency_collapse" aria-expanded="true" aria-controls="Contingency_collapse">Contingency</a>
-<div id="Contingency_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#mustStudy}}<div><b>mustStudy</b>: {{mustStudy}}</div>{{/mustStudy}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Contingency_collapse" aria-expanded="true" aria-controls="Contingency_collapse" style="margin-left: 10px;">Contingency</a></legend>
+                    <div id="Contingency_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#mustStudy}}<div><b>mustStudy</b>: {{mustStudy}}</div>{{/mustStudy}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Contingency_collapse" aria-expanded="true" aria-controls="Contingency_collapse" style="margin-left: 10px;">Contingency</a></legend>
+                    <div id="Contingency_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mustStudy'>mustStudy: </label><div class='col-sm-8'><input id='mustStudy' class='form-check-input' type='checkbox'{{#mustStudy}} checked{{/mustStudy}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An element of a system event to be studied by contingency analysis, representing a change in status of a single piece of equipment.
@@ -126,85 +168,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ContingencyElement_collapse" aria-expanded="true" aria-controls="ContingencyElement_collapse">ContingencyElement</a>
-<div id="ContingencyElement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#Contingency}}<div><b>Contingency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Contingency}}&quot;);})'>{{Contingency}}</a></div>{{/Contingency}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContingencyElement_collapse" aria-expanded="true" aria-controls="ContingencyElement_collapse" style="margin-left: 10px;">ContingencyElement</a></legend>
+                    <div id="ContingencyElement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#Contingency}}<div><b>Contingency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Contingency}}&quot;);})'>{{Contingency}}</a></div>{{/Contingency}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Indicates the state which the contingency equipment is to be in when the contingency is applied.
-         *
-         */
-        class ContingencyEquipmentStatusKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ContingencyEquipmentStatusKind;
-                if (null == bucket)
-                   cim_data.ContingencyEquipmentStatusKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ContingencyEquipmentStatusKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ContingencyEquipmentStatusKind";
-                base.parse_element (/<cim:ContingencyEquipmentStatusKind.inService>([\s\S]*?)<\/cim:ContingencyEquipmentStatusKind.inService>/g, obj, "inService", base.to_string, sub, context);
-                base.parse_element (/<cim:ContingencyEquipmentStatusKind.outOfService>([\s\S]*?)<\/cim:ContingencyEquipmentStatusKind.outOfService>/g, obj, "outOfService", base.to_string, sub, context);
-
-                var bucket = context.parsed.ContingencyEquipmentStatusKind;
-                if (null == bucket)
-                   context.parsed.ContingencyEquipmentStatusKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ContingencyEquipmentStatusKind", "inService", base.from_string, fields);
-                base.export_element (obj, "ContingencyEquipmentStatusKind", "outOfService", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ContingencyEquipmentStatusKind_collapse" aria-expanded="true" aria-controls="ContingencyEquipmentStatusKind_collapse">ContingencyEquipmentStatusKind</a>
-<div id="ContingencyEquipmentStatusKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#inService}}<div><b>inService</b>: {{inService}}</div>{{/inService}}
-{{#outOfService}}<div><b>outOfService</b>: {{outOfService}}</div>{{/outOfService}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContingencyElement_collapse" aria-expanded="true" aria-controls="ContingencyElement_collapse" style="margin-left: 10px;">ContingencyElement</a></legend>
+                    <div id="ContingencyElement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Contingency'>Contingency: </label><div class='col-sm-8'><input id='Contingency' class='form-control' type='text'{{#Contingency}} value='{{Contingency}}'{{/Contingency}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * A equipment to which the in service status is to change such as a power transformer or AC line segment.
@@ -234,7 +239,7 @@ define
 
                 obj = ContingencyElement.prototype.parse.call (this, context, sub);
                 obj.cls = "ContingencyEquipment";
-                base.parse_element (/<cim:ContingencyEquipment.contingentStatus>([\s\S]*?)<\/cim:ContingencyEquipment.contingentStatus>/g, obj, "contingentStatus", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ContingencyEquipment.contingentStatus\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "contingentStatus", sub, context);
                 base.parse_attribute (/<cim:ContingencyEquipment.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context);
 
                 var bucket = context.parsed.ContingencyEquipment;
@@ -261,24 +266,57 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ContingencyEquipment_collapse" aria-expanded="true" aria-controls="ContingencyEquipment_collapse">ContingencyEquipment</a>
-<div id="ContingencyEquipment_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ContingencyElement.prototype.template.call (this) +
-`
-{{#contingentStatus}}<div><b>contingentStatus</b>: {{contingentStatus}}</div>{{/contingentStatus}}
-{{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContingencyEquipment_collapse" aria-expanded="true" aria-controls="ContingencyEquipment_collapse" style="margin-left: 10px;">ContingencyEquipment</a></legend>
+                    <div id="ContingencyEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ContingencyElement.prototype.template.call (this) +
+                    `
+                    {{#contingentStatus}}<div><b>contingentStatus</b>: {{contingentStatus}}</div>{{/contingentStatus}}
+                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ContingencyEquipmentStatusKind = []; if (!obj.contingentStatus) obj.ContingencyEquipmentStatusKind.push ({ id: '', selected: true}); for (var property in ContingencyEquipmentStatusKind) obj.ContingencyEquipmentStatusKind.push ({ id: property, selected: obj.contingentStatus && obj.contingentStatus.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ContingencyEquipmentStatusKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContingencyEquipment_collapse" aria-expanded="true" aria-controls="ContingencyEquipment_collapse" style="margin-left: 10px;">ContingencyEquipment</a></legend>
+                    <div id="ContingencyEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ContingencyElement.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='contingentStatus'>contingentStatus: </label><div class='col-sm-8'><select id='contingentStatus' class='form-control'>{{#ContingencyEquipmentStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ContingencyEquipmentStatusKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipment'>Equipment: </label><div class='col-sm-8'><input id='Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
                 Contingency: Contingency,
                 ContingencyEquipment: ContingencyEquipment,
-                ContingencyEquipmentStatusKind: ContingencyEquipmentStatusKind,
                 ContingencyElement: ContingencyElement
             }
         );

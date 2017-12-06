@@ -14,75 +14,26 @@ define
          * Type of remote unit.
          *
          */
-        class RemoteUnitType extends base.Element
+        var RemoteUnitType =
         {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.RemoteUnitType;
-                if (null == bucket)
-                   cim_data.RemoteUnitType = bucket = {};
-                bucket[this._id] = template;
-            }
+            RTU: "RTU",
+            SubstationControlSystem: "SubstationControlSystem",
+            ControlCenter: "ControlCenter",
+            IED: "IED"
+        };
+        Object.freeze (RemoteUnitType);
 
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.RemoteUnitType[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "RemoteUnitType";
-                base.parse_element (/<cim:RemoteUnitType.RTU>([\s\S]*?)<\/cim:RemoteUnitType.RTU>/g, obj, "RTU", base.to_string, sub, context);
-                base.parse_element (/<cim:RemoteUnitType.SubstationControlSystem>([\s\S]*?)<\/cim:RemoteUnitType.SubstationControlSystem>/g, obj, "SubstationControlSystem", base.to_string, sub, context);
-                base.parse_element (/<cim:RemoteUnitType.ControlCenter>([\s\S]*?)<\/cim:RemoteUnitType.ControlCenter>/g, obj, "ControlCenter", base.to_string, sub, context);
-                base.parse_element (/<cim:RemoteUnitType.IED>([\s\S]*?)<\/cim:RemoteUnitType.IED>/g, obj, "IED", base.to_string, sub, context);
-
-                var bucket = context.parsed.RemoteUnitType;
-                if (null == bucket)
-                   context.parsed.RemoteUnitType = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "RemoteUnitType", "RTU", base.from_string, fields);
-                base.export_element (obj, "RemoteUnitType", "SubstationControlSystem", base.from_string, fields);
-                base.export_element (obj, "RemoteUnitType", "ControlCenter", base.from_string, fields);
-                base.export_element (obj, "RemoteUnitType", "IED", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#RemoteUnitType_collapse" aria-expanded="true" aria-controls="RemoteUnitType_collapse">RemoteUnitType</a>
-<div id="RemoteUnitType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#RTU}}<div><b>RTU</b>: {{RTU}}</div>{{/RTU}}
-{{#SubstationControlSystem}}<div><b>SubstationControlSystem</b>: {{SubstationControlSystem}}</div>{{/SubstationControlSystem}}
-{{#ControlCenter}}<div><b>ControlCenter</b>: {{ControlCenter}}</div>{{/ControlCenter}}
-{{#IED}}<div><b>IED</b>: {{IED}}</div>{{/IED}}
-</div>
-`
-                );
-           }        }
+        /**
+         * Source gives information related to the origin of a value.
+         *
+         */
+        var Source =
+        {
+            PROCESS: "PROCESS",
+            DEFAULTED: "DEFAULTED",
+            SUBSTITUTED: "SUBSTITUTED"
+        };
+        Object.freeze (Source);
 
         /**
          * For a RTU remote points correspond to telemetered values or control outputs.
@@ -139,17 +90,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RemotePoint_collapse" aria-expanded="true" aria-controls="RemotePoint_collapse">RemotePoint</a>
-<div id="RemotePoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#RemoteUnit}}<div><b>RemoteUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteUnit}}&quot;);})'>{{RemoteUnit}}</a></div>{{/RemoteUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemotePoint_collapse" aria-expanded="true" aria-controls="RemotePoint_collapse" style="margin-left: 10px;">RemotePoint</a></legend>
+                    <div id="RemotePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#RemoteUnit}}<div><b>RemoteUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteUnit}}&quot;);})'>{{RemoteUnit}}</a></div>{{/RemoteUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemotePoint_collapse" aria-expanded="true" aria-controls="RemotePoint_collapse" style="margin-left: 10px;">RemotePoint</a></legend>
+                    <div id="RemotePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteUnit'>RemoteUnit: </label><div class='col-sm-8'><input id='RemoteUnit' class='form-control' type='text'{{#RemoteUnit}} value='{{RemoteUnit}}'{{/RemoteUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A remote unit can be a RTU, IED, substation control system, control center etc.
@@ -181,7 +163,7 @@ define
 
                 obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "RemoteUnit";
-                base.parse_element (/<cim:RemoteUnit.remoteUnitType>([\s\S]*?)<\/cim:RemoteUnit.remoteUnitType>/g, obj, "remoteUnitType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RemoteUnit.remoteUnitType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "remoteUnitType", sub, context);
 
                 var bucket = context.parsed.RemoteUnit;
                 if (null == bucket)
@@ -206,88 +188,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RemoteUnit_collapse" aria-expanded="true" aria-controls="RemoteUnit_collapse">RemoteUnit</a>
-<div id="RemoteUnit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-{{#remoteUnitType}}<div><b>remoteUnitType</b>: {{remoteUnitType}}</div>{{/remoteUnitType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteUnit_collapse" aria-expanded="true" aria-controls="RemoteUnit_collapse" style="margin-left: 10px;">RemoteUnit</a></legend>
+                    <div id="RemoteUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    {{#remoteUnitType}}<div><b>remoteUnitType</b>: {{remoteUnitType}}</div>{{/remoteUnitType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Source gives information related to the origin of a value.
-         *
-         */
-        class Source extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.Source;
-                if (null == bucket)
-                   cim_data.Source = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.Source[this._id];
+                super.condition (obj);
+                obj.RemoteUnitType = []; if (!obj.remoteUnitType) obj.RemoteUnitType.push ({ id: '', selected: true}); for (var property in RemoteUnitType) obj.RemoteUnitType.push ({ id: property, selected: obj.remoteUnitType && obj.remoteUnitType.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "Source";
-                base.parse_element (/<cim:Source.PROCESS>([\s\S]*?)<\/cim:Source.PROCESS>/g, obj, "PROCESS", base.to_string, sub, context);
-                base.parse_element (/<cim:Source.DEFAULTED>([\s\S]*?)<\/cim:Source.DEFAULTED>/g, obj, "DEFAULTED", base.to_string, sub, context);
-                base.parse_element (/<cim:Source.SUBSTITUTED>([\s\S]*?)<\/cim:Source.SUBSTITUTED>/g, obj, "SUBSTITUTED", base.to_string, sub, context);
-
-                var bucket = context.parsed.Source;
-                if (null == bucket)
-                   context.parsed.Source = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.RemoteUnitType;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "Source", "PROCESS", base.from_string, fields);
-                base.export_element (obj, "Source", "DEFAULTED", base.from_string, fields);
-                base.export_element (obj, "Source", "SUBSTITUTED", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Source_collapse" aria-expanded="true" aria-controls="Source_collapse">Source</a>
-<div id="Source_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#PROCESS}}<div><b>PROCESS</b>: {{PROCESS}}</div>{{/PROCESS}}
-{{#DEFAULTED}}<div><b>DEFAULTED</b>: {{DEFAULTED}}</div>{{/DEFAULTED}}
-{{#SUBSTITUTED}}<div><b>SUBSTITUTED</b>: {{SUBSTITUTED}}</div>{{/SUBSTITUTED}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteUnit_collapse" aria-expanded="true" aria-controls="RemoteUnit_collapse" style="margin-left: 10px;">RemoteUnit</a></legend>
+                    <div id="RemoteUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='remoteUnitType'>remoteUnitType: </label><div class='col-sm-8'><select id='remoteUnitType' class='form-control'>{{#RemoteUnitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemoteUnitType}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * The connection to remote units is through one or more communication links.
@@ -342,16 +286,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CommunicationLink_collapse" aria-expanded="true" aria-controls="CommunicationLink_collapse">CommunicationLink</a>
-<div id="CommunicationLink_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CommunicationLink_collapse" aria-expanded="true" aria-controls="CommunicationLink_collapse" style="margin-left: 10px;">CommunicationLink</a></legend>
+                    <div id="CommunicationLink_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CommunicationLink_collapse" aria-expanded="true" aria-controls="CommunicationLink_collapse" style="margin-left: 10px;">CommunicationLink</a></legend>
+                    <div id="CommunicationLink_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Remote sources are state variables that are telemetered or calculated within the remote unit.
@@ -414,21 +388,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RemoteSource_collapse" aria-expanded="true" aria-controls="RemoteSource_collapse">RemoteSource</a>
-<div id="RemoteSource_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + RemotePoint.prototype.template.call (this) +
-`
-{{#deadband}}<div><b>deadband</b>: {{deadband}}</div>{{/deadband}}
-{{#scanInterval}}<div><b>scanInterval</b>: {{scanInterval}}</div>{{/scanInterval}}
-{{#sensorMaximum}}<div><b>sensorMaximum</b>: {{sensorMaximum}}</div>{{/sensorMaximum}}
-{{#sensorMinimum}}<div><b>sensorMinimum</b>: {{sensorMinimum}}</div>{{/sensorMinimum}}
-{{#MeasurementValue}}<div><b>MeasurementValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValue}}&quot;);})'>{{MeasurementValue}}</a></div>{{/MeasurementValue}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteSource_collapse" aria-expanded="true" aria-controls="RemoteSource_collapse" style="margin-left: 10px;">RemoteSource</a></legend>
+                    <div id="RemoteSource_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + RemotePoint.prototype.template.call (this) +
+                    `
+                    {{#deadband}}<div><b>deadband</b>: {{deadband}}</div>{{/deadband}}
+                    {{#scanInterval}}<div><b>scanInterval</b>: {{scanInterval}}</div>{{/scanInterval}}
+                    {{#sensorMaximum}}<div><b>sensorMaximum</b>: {{sensorMaximum}}</div>{{/sensorMaximum}}
+                    {{#sensorMinimum}}<div><b>sensorMinimum</b>: {{sensorMinimum}}</div>{{/sensorMinimum}}
+                    {{#MeasurementValue}}<div><b>MeasurementValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValue}}&quot;);})'>{{MeasurementValue}}</a></div>{{/MeasurementValue}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteSource_collapse" aria-expanded="true" aria-controls="RemoteSource_collapse" style="margin-left: 10px;">RemoteSource</a></legend>
+                    <div id="RemoteSource_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + RemotePoint.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='deadband'>deadband: </label><div class='col-sm-8'><input id='deadband' class='form-control' type='text'{{#deadband}} value='{{deadband}}'{{/deadband}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scanInterval'>scanInterval: </label><div class='col-sm-8'><input id='scanInterval' class='form-control' type='text'{{#scanInterval}} value='{{scanInterval}}'{{/scanInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sensorMaximum'>sensorMaximum: </label><div class='col-sm-8'><input id='sensorMaximum' class='form-control' type='text'{{#sensorMaximum}} value='{{sensorMaximum}}'{{/sensorMaximum}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sensorMinimum'>sensorMinimum: </label><div class='col-sm-8'><input id='sensorMinimum' class='form-control' type='text'{{#sensorMinimum}} value='{{sensorMinimum}}'{{/sensorMinimum}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MeasurementValue'>MeasurementValue: </label><div class='col-sm-8'><input id='MeasurementValue' class='form-control' type='text'{{#MeasurementValue}} value='{{MeasurementValue}}'{{/MeasurementValue}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Remote controls are ouputs that are sent by the remote unit to actuators in the process.
@@ -489,20 +498,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RemoteControl_collapse" aria-expanded="true" aria-controls="RemoteControl_collapse">RemoteControl</a>
-<div id="RemoteControl_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + RemotePoint.prototype.template.call (this) +
-`
-{{#actuatorMaximum}}<div><b>actuatorMaximum</b>: {{actuatorMaximum}}</div>{{/actuatorMaximum}}
-{{#actuatorMinimum}}<div><b>actuatorMinimum</b>: {{actuatorMinimum}}</div>{{/actuatorMinimum}}
-{{#remoteControlled}}<div><b>remoteControlled</b>: {{remoteControlled}}</div>{{/remoteControlled}}
-{{#Control}}<div><b>Control</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Control}}&quot;);})'>{{Control}}</a></div>{{/Control}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteControl_collapse" aria-expanded="true" aria-controls="RemoteControl_collapse" style="margin-left: 10px;">RemoteControl</a></legend>
+                    <div id="RemoteControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + RemotePoint.prototype.template.call (this) +
+                    `
+                    {{#actuatorMaximum}}<div><b>actuatorMaximum</b>: {{actuatorMaximum}}</div>{{/actuatorMaximum}}
+                    {{#actuatorMinimum}}<div><b>actuatorMinimum</b>: {{actuatorMinimum}}</div>{{/actuatorMinimum}}
+                    {{#remoteControlled}}<div><b>remoteControlled</b>: {{remoteControlled}}</div>{{/remoteControlled}}
+                    {{#Control}}<div><b>Control</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Control}}&quot;);})'>{{Control}}</a></div>{{/Control}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteControl_collapse" aria-expanded="true" aria-controls="RemoteControl_collapse" style="margin-left: 10px;">RemoteControl</a></legend>
+                    <div id="RemoteControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + RemotePoint.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actuatorMaximum'>actuatorMaximum: </label><div class='col-sm-8'><input id='actuatorMaximum' class='form-control' type='text'{{#actuatorMaximum}} value='{{actuatorMaximum}}'{{/actuatorMaximum}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actuatorMinimum'>actuatorMinimum: </label><div class='col-sm-8'><input id='actuatorMinimum' class='form-control' type='text'{{#actuatorMinimum}} value='{{actuatorMinimum}}'{{/actuatorMinimum}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='remoteControlled'>remoteControlled: </label><div class='col-sm-8'><input id='remoteControlled' class='form-check-input' type='checkbox'{{#remoteControlled}} checked{{/remoteControlled}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Control'>Control: </label><div class='col-sm-8'><input id='Control' class='form-control' type='text'{{#Control}} value='{{Control}}'{{/Control}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
@@ -510,9 +553,7 @@ define
                 RemoteSource: RemoteSource,
                 RemoteUnit: RemoteUnit,
                 RemotePoint: RemotePoint,
-                RemoteControl: RemoteControl,
-                Source: Source,
-                RemoteUnitType: RemoteUnitType
+                RemoteControl: RemoteControl
             }
         );
     }

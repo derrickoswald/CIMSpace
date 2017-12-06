@@ -14,143 +14,49 @@ define
          * Kind of ERP account.
          *
          */
-        class ErpAccountKind extends base.Element
+        var ErpAccountKind =
         {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ErpAccountKind;
-                if (null == bucket)
-                   cim_data.ErpAccountKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.ErpAccountKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ErpAccountKind";
-                base.parse_element (/<cim:ErpAccountKind.normal>([\s\S]*?)<\/cim:ErpAccountKind.normal>/g, obj, "normal", base.to_string, sub, context);
-                base.parse_element (/<cim:ErpAccountKind.reversal>([\s\S]*?)<\/cim:ErpAccountKind.reversal>/g, obj, "reversal", base.to_string, sub, context);
-                base.parse_element (/<cim:ErpAccountKind.statistical>([\s\S]*?)<\/cim:ErpAccountKind.statistical>/g, obj, "statistical", base.to_string, sub, context);
-                base.parse_element (/<cim:ErpAccountKind.estimate>([\s\S]*?)<\/cim:ErpAccountKind.estimate>/g, obj, "estimate", base.to_string, sub, context);
-
-                var bucket = context.parsed.ErpAccountKind;
-                if (null == bucket)
-                   context.parsed.ErpAccountKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ErpAccountKind", "normal", base.from_string, fields);
-                base.export_element (obj, "ErpAccountKind", "reversal", base.from_string, fields);
-                base.export_element (obj, "ErpAccountKind", "statistical", base.from_string, fields);
-                base.export_element (obj, "ErpAccountKind", "estimate", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#ErpAccountKind_collapse" aria-expanded="true" aria-controls="ErpAccountKind_collapse">ErpAccountKind</a>
-<div id="ErpAccountKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#normal}}<div><b>normal</b>: {{normal}}</div>{{/normal}}
-{{#reversal}}<div><b>reversal</b>: {{reversal}}</div>{{/reversal}}
-{{#statistical}}<div><b>statistical</b>: {{statistical}}</div>{{/statistical}}
-{{#estimate}}<div><b>estimate</b>: {{estimate}}</div>{{/estimate}}
-</div>
-`
-                );
-           }        }
+            normal: "normal",
+            reversal: "reversal",
+            statistical: "statistical",
+            estimate: "estimate"
+        };
+        Object.freeze (ErpAccountKind);
 
         /**
          * Kind of ERP invoice.
          *
          */
-        class ErpInvoiceKind extends base.Element
+        var ErpInvoiceKind =
         {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ErpInvoiceKind;
-                if (null == bucket)
-                   cim_data.ErpInvoiceKind = bucket = {};
-                bucket[this._id] = template;
-            }
+            sale: "sale",
+            purchase: "purchase"
+        };
+        Object.freeze (ErpInvoiceKind);
 
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.ErpInvoiceKind[this._id];
-            }
+        /**
+         * Kind of invoice line item.
+         *
+         */
+        var ErpInvoiceLineItemKind =
+        {
+            initial: "initial",
+            recalculation: "recalculation",
+            other: "other"
+        };
+        Object.freeze (ErpInvoiceLineItemKind);
 
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ErpInvoiceKind";
-                base.parse_element (/<cim:ErpInvoiceKind.sale>([\s\S]*?)<\/cim:ErpInvoiceKind.sale>/g, obj, "sale", base.to_string, sub, context);
-                base.parse_element (/<cim:ErpInvoiceKind.purchase>([\s\S]*?)<\/cim:ErpInvoiceKind.purchase>/g, obj, "purchase", base.to_string, sub, context);
-
-                var bucket = context.parsed.ErpInvoiceKind;
-                if (null == bucket)
-                   context.parsed.ErpInvoiceKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ErpInvoiceKind", "sale", base.from_string, fields);
-                base.export_element (obj, "ErpInvoiceKind", "purchase", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#ErpInvoiceKind_collapse" aria-expanded="true" aria-controls="ErpInvoiceKind_collapse">ErpInvoiceKind</a>
-<div id="ErpInvoiceKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#sale}}<div><b>sale</b>: {{sale}}</div>{{/sale}}
-{{#purchase}}<div><b>purchase</b>: {{purchase}}</div>{{/purchase}}
-</div>
-`
-                );
-           }        }
+        /**
+         * Kind of bill media.
+         *
+         */
+        var BillMediaKind =
+        {
+            paper: "paper",
+            electronic: "electronic",
+            other: "other"
+        };
+        Object.freeze (BillMediaKind);
 
         /**
          * Shadow class for Document, to isolate subclassing from this package.
@@ -205,87 +111,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpDocument_collapse" aria-expanded="true" aria-controls="ErpDocument_collapse">ErpDocument</a>
-<div id="ErpDocument_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpDocument_collapse" aria-expanded="true" aria-controls="ErpDocument_collapse" style="margin-left: 10px;">ErpDocument</a></legend>
+                    <div id="ErpDocument_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of invoice line item.
-         *
-         */
-        class ErpInvoiceLineItemKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ErpInvoiceLineItemKind;
-                if (null == bucket)
-                   cim_data.ErpInvoiceLineItemKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ErpInvoiceLineItemKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ErpInvoiceLineItemKind";
-                base.parse_element (/<cim:ErpInvoiceLineItemKind.initial>([\s\S]*?)<\/cim:ErpInvoiceLineItemKind.initial>/g, obj, "initial", base.to_string, sub, context);
-                base.parse_element (/<cim:ErpInvoiceLineItemKind.recalculation>([\s\S]*?)<\/cim:ErpInvoiceLineItemKind.recalculation>/g, obj, "recalculation", base.to_string, sub, context);
-                base.parse_element (/<cim:ErpInvoiceLineItemKind.other>([\s\S]*?)<\/cim:ErpInvoiceLineItemKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.ErpInvoiceLineItemKind;
-                if (null == bucket)
-                   context.parsed.ErpInvoiceLineItemKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ErpInvoiceLineItemKind", "initial", base.from_string, fields);
-                base.export_element (obj, "ErpInvoiceLineItemKind", "recalculation", base.from_string, fields);
-                base.export_element (obj, "ErpInvoiceLineItemKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpInvoiceLineItemKind_collapse" aria-expanded="true" aria-controls="ErpInvoiceLineItemKind_collapse">ErpInvoiceLineItemKind</a>
-<div id="ErpInvoiceLineItemKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#initial}}<div><b>initial</b>: {{initial}}</div>{{/initial}}
-{{#recalculation}}<div><b>recalculation</b>: {{recalculation}}</div>{{/recalculation}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpDocument_collapse" aria-expanded="true" aria-controls="ErpDocument_collapse" style="margin-left: 10px;">ErpDocument</a></legend>
+                    <div id="ErpDocument_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Shadow class for IdentifiedObject, to isolate subclassing from this package.
@@ -340,87 +205,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpIdentifiedObject_collapse" aria-expanded="true" aria-controls="ErpIdentifiedObject_collapse">ErpIdentifiedObject</a>
-<div id="ErpIdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpIdentifiedObject_collapse" aria-expanded="true" aria-controls="ErpIdentifiedObject_collapse" style="margin-left: 10px;">ErpIdentifiedObject</a></legend>
+                    <div id="ErpIdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of bill media.
-         *
-         */
-        class BillMediaKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.BillMediaKind;
-                if (null == bucket)
-                   cim_data.BillMediaKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.BillMediaKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "BillMediaKind";
-                base.parse_element (/<cim:BillMediaKind.paper>([\s\S]*?)<\/cim:BillMediaKind.paper>/g, obj, "paper", base.to_string, sub, context);
-                base.parse_element (/<cim:BillMediaKind.electronic>([\s\S]*?)<\/cim:BillMediaKind.electronic>/g, obj, "electronic", base.to_string, sub, context);
-                base.parse_element (/<cim:BillMediaKind.other>([\s\S]*?)<\/cim:BillMediaKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.BillMediaKind;
-                if (null == bucket)
-                   context.parsed.BillMediaKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "BillMediaKind", "paper", base.from_string, fields);
-                base.export_element (obj, "BillMediaKind", "electronic", base.from_string, fields);
-                base.export_element (obj, "BillMediaKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BillMediaKind_collapse" aria-expanded="true" aria-controls="BillMediaKind_collapse">BillMediaKind</a>
-<div id="BillMediaKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#paper}}<div><b>paper</b>: {{paper}}</div>{{/paper}}
-{{#electronic}}<div><b>electronic</b>: {{electronic}}</div>{{/electronic}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpIdentifiedObject_collapse" aria-expanded="true" aria-controls="ErpIdentifiedObject_collapse" style="margin-left: 10px;">ErpIdentifiedObject</a></legend>
+                    <div id="ErpIdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Relationship under a particular name, usually evidenced by a deposit against which withdrawals can be made.
@@ -477,17 +301,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpBankAccount_collapse" aria-expanded="true" aria-controls="ErpBankAccount_collapse">ErpBankAccount</a>
-<div id="ErpBankAccount_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + InfCommon.BankAccount.prototype.template.call (this) +
-`
-{{#bankABA}}<div><b>bankABA</b>: {{bankABA}}</div>{{/bankABA}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpBankAccount_collapse" aria-expanded="true" aria-controls="ErpBankAccount_collapse" style="margin-left: 10px;">ErpBankAccount</a></legend>
+                    <div id="ErpBankAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + InfCommon.BankAccount.prototype.template.call (this) +
+                    `
+                    {{#bankABA}}<div><b>bankABA</b>: {{bankABA}}</div>{{/bankABA}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpBankAccount_collapse" aria-expanded="true" aria-controls="ErpBankAccount_collapse" style="margin-left: 10px;">ErpBankAccount</a></legend>
+                    <div id="ErpBankAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + InfCommon.BankAccount.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bankABA'>bankABA: </label><div class='col-sm-8'><input id='bankABA' class='form-control' type='text'{{#bankABA}} value='{{bankABA}}'{{/bankABA}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * General purpose Sales Order is used for utility service orders, etc.
@@ -542,16 +397,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpSalesOrder_collapse" aria-expanded="true" aria-controls="ErpSalesOrder_collapse">ErpSalesOrder</a>
-<div id="ErpSalesOrder_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpSalesOrder_collapse" aria-expanded="true" aria-controls="ErpSalesOrder_collapse" style="margin-left: 10px;">ErpSalesOrder</a></legend>
+                    <div id="ErpSalesOrder_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpSalesOrder_collapse" aria-expanded="true" aria-controls="ErpSalesOrder_collapse" style="margin-left: 10px;">ErpSalesOrder</a></legend>
+                    <div id="ErpSalesOrder_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Time sheet for employees and contractors.
@@ -606,16 +491,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpTimeSheet_collapse" aria-expanded="true" aria-controls="ErpTimeSheet_collapse">ErpTimeSheet</a>
-<div id="ErpTimeSheet_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpTimeSheet_collapse" aria-expanded="true" aria-controls="ErpTimeSheet_collapse" style="margin-left: 10px;">ErpTimeSheet</a></legend>
+                    <div id="ErpTimeSheet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpTimeSheet_collapse" aria-expanded="true" aria-controls="ErpTimeSheet_collapse" style="margin-left: 10px;">ErpTimeSheet</a></legend>
+                    <div id="ErpTimeSheet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Of an ErpPurchaseOrder, this is an individually ordered item or product along with the quantity, price and other descriptive information.
@@ -676,20 +591,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpPOLineItem_collapse" aria-expanded="true" aria-controls="ErpPOLineItem_collapse">ErpPOLineItem</a>
-<div id="ErpPOLineItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-{{#ErpRecDelLineItem}}<div><b>ErpRecDelLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpRecDelLineItem}}&quot;);})'>{{ErpRecDelLineItem}}</a></div>{{/ErpRecDelLineItem}}
-{{#ErpReqLineItem}}<div><b>ErpReqLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReqLineItem}}&quot;);})'>{{ErpReqLineItem}}</a></div>{{/ErpReqLineItem}}
-{{#AssetModelCatalogueItem}}<div><b>AssetModelCatalogueItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogueItem}}&quot;);})'>{{AssetModelCatalogueItem}}</a></div>{{/AssetModelCatalogueItem}}
-{{#ErpPurchaseOrder}}<div><b>ErpPurchaseOrder</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPurchaseOrder}}&quot;);})'>{{ErpPurchaseOrder}}</a></div>{{/ErpPurchaseOrder}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPOLineItem_collapse" aria-expanded="true" aria-controls="ErpPOLineItem_collapse" style="margin-left: 10px;">ErpPOLineItem</a></legend>
+                    <div id="ErpPOLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    {{#ErpRecDelLineItem}}<div><b>ErpRecDelLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpRecDelLineItem}}&quot;);})'>{{ErpRecDelLineItem}}</a></div>{{/ErpRecDelLineItem}}
+                    {{#ErpReqLineItem}}<div><b>ErpReqLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReqLineItem}}&quot;);})'>{{ErpReqLineItem}}</a></div>{{/ErpReqLineItem}}
+                    {{#AssetModelCatalogueItem}}<div><b>AssetModelCatalogueItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogueItem}}&quot;);})'>{{AssetModelCatalogueItem}}</a></div>{{/AssetModelCatalogueItem}}
+                    {{#ErpPurchaseOrder}}<div><b>ErpPurchaseOrder</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPurchaseOrder}}&quot;);})'>{{ErpPurchaseOrder}}</a></div>{{/ErpPurchaseOrder}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPOLineItem_collapse" aria-expanded="true" aria-controls="ErpPOLineItem_collapse" style="margin-left: 10px;">ErpPOLineItem</a></legend>
+                    <div id="ErpPOLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpRecDelLineItem'>ErpRecDelLineItem: </label><div class='col-sm-8'><input id='ErpRecDelLineItem' class='form-control' type='text'{{#ErpRecDelLineItem}} value='{{ErpRecDelLineItem}}'{{/ErpRecDelLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpReqLineItem'>ErpReqLineItem: </label><div class='col-sm-8'><input id='ErpReqLineItem' class='form-control' type='text'{{#ErpReqLineItem}} value='{{ErpReqLineItem}}'{{/ErpReqLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetModelCatalogueItem'>AssetModelCatalogueItem: </label><div class='col-sm-8'><input id='AssetModelCatalogueItem' class='form-control' type='text'{{#AssetModelCatalogueItem}} value='{{AssetModelCatalogueItem}}'{{/AssetModelCatalogueItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPurchaseOrder'>ErpPurchaseOrder: </label><div class='col-sm-8'><input id='ErpPurchaseOrder' class='form-control' type='text'{{#ErpPurchaseOrder}} value='{{ErpPurchaseOrder}}'{{/ErpPurchaseOrder}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Transaction for an Organisation receiving goods or services that may be used to indicate receipt of goods in conjunction with a purchase order.
@@ -744,16 +693,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpReceiveDelivery_collapse" aria-expanded="true" aria-controls="ErpReceiveDelivery_collapse">ErpReceiveDelivery</a>
-<div id="ErpReceiveDelivery_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpReceiveDelivery_collapse" aria-expanded="true" aria-controls="ErpReceiveDelivery_collapse" style="margin-left: 10px;">ErpReceiveDelivery</a></legend>
+                    <div id="ErpReceiveDelivery_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpReceiveDelivery_collapse" aria-expanded="true" aria-controls="ErpReceiveDelivery_collapse" style="margin-left: 10px;">ErpReceiveDelivery</a></legend>
+                    <div id="ErpReceiveDelivery_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Payment infromation and status for any individual line item of an ErpInvoice (e.g., when payment is from a customer).
@@ -810,17 +789,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpPayment_collapse" aria-expanded="true" aria-controls="ErpPayment_collapse">ErpPayment</a>
-<div id="ErpPayment_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-{{#termsPayment}}<div><b>termsPayment</b>: {{termsPayment}}</div>{{/termsPayment}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPayment_collapse" aria-expanded="true" aria-controls="ErpPayment_collapse" style="margin-left: 10px;">ErpPayment</a></legend>
+                    <div id="ErpPayment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    {{#termsPayment}}<div><b>termsPayment</b>: {{termsPayment}}</div>{{/termsPayment}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPayment_collapse" aria-expanded="true" aria-controls="ErpPayment_collapse" style="margin-left: 10px;">ErpPayment</a></legend>
+                    <div id="ErpPayment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='termsPayment'>termsPayment: </label><div class='col-sm-8'><input id='termsPayment' class='form-control' type='text'{{#termsPayment}} value='{{termsPayment}}'{{/termsPayment}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Book for recording accounting transactions as they occur.
@@ -875,16 +885,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpJournal_collapse" aria-expanded="true" aria-controls="ErpJournal_collapse">ErpJournal</a>
-<div id="ErpJournal_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpJournal_collapse" aria-expanded="true" aria-controls="ErpJournal_collapse" style="margin-left: 10px;">ErpJournal</a></legend>
+                    <div id="ErpJournal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpJournal_collapse" aria-expanded="true" aria-controls="ErpJournal_collapse" style="margin-left: 10px;">ErpJournal</a></legend>
+                    <div id="ErpJournal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A roll up of invoice line items.
@@ -917,9 +957,9 @@ define
                 obj = ErpDocument.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpInvoice";
                 base.parse_element (/<cim:ErpInvoice.amount>([\s\S]*?)<\/cim:ErpInvoice.amount>/g, obj, "amount", base.to_string, sub, context);
-                base.parse_element (/<cim:ErpInvoice.billMediaKind>([\s\S]*?)<\/cim:ErpInvoice.billMediaKind>/g, obj, "billMediaKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpInvoice.billMediaKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "billMediaKind", sub, context);
                 base.parse_element (/<cim:ErpInvoice.dueDate>([\s\S]*?)<\/cim:ErpInvoice.dueDate>/g, obj, "dueDate", base.to_string, sub, context);
-                base.parse_element (/<cim:ErpInvoice.kind>([\s\S]*?)<\/cim:ErpInvoice.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpInvoice.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:ErpInvoice.mailedDate>([\s\S]*?)<\/cim:ErpInvoice.mailedDate>/g, obj, "mailedDate", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpInvoice.proForma>([\s\S]*?)<\/cim:ErpInvoice.proForma>/g, obj, "proForma", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ErpInvoice.referenceNumber>([\s\S]*?)<\/cim:ErpInvoice.referenceNumber>/g, obj, "referenceNumber", base.to_string, sub, context);
@@ -959,26 +999,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpInvoice_collapse" aria-expanded="true" aria-controls="ErpInvoice_collapse">ErpInvoice</a>
-<div id="ErpInvoice_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
-{{#billMediaKind}}<div><b>billMediaKind</b>: {{billMediaKind}}</div>{{/billMediaKind}}
-{{#dueDate}}<div><b>dueDate</b>: {{dueDate}}</div>{{/dueDate}}
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#mailedDate}}<div><b>mailedDate</b>: {{mailedDate}}</div>{{/mailedDate}}
-{{#proForma}}<div><b>proForma</b>: {{proForma}}</div>{{/proForma}}
-{{#referenceNumber}}<div><b>referenceNumber</b>: {{referenceNumber}}</div>{{/referenceNumber}}
-{{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
-{{#transferType}}<div><b>transferType</b>: {{transferType}}</div>{{/transferType}}
-{{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInvoice_collapse" aria-expanded="true" aria-controls="ErpInvoice_collapse" style="margin-left: 10px;">ErpInvoice</a></legend>
+                    <div id="ErpInvoice_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    {{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+                    {{#billMediaKind}}<div><b>billMediaKind</b>: {{billMediaKind}}</div>{{/billMediaKind}}
+                    {{#dueDate}}<div><b>dueDate</b>: {{dueDate}}</div>{{/dueDate}}
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#mailedDate}}<div><b>mailedDate</b>: {{mailedDate}}</div>{{/mailedDate}}
+                    {{#proForma}}<div><b>proForma</b>: {{proForma}}</div>{{/proForma}}
+                    {{#referenceNumber}}<div><b>referenceNumber</b>: {{referenceNumber}}</div>{{/referenceNumber}}
+                    {{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
+                    {{#transferType}}<div><b>transferType</b>: {{transferType}}</div>{{/transferType}}
+                    {{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.BillMediaKind = []; if (!obj.billMediaKind) obj.BillMediaKind.push ({ id: '', selected: true}); for (var property in BillMediaKind) obj.BillMediaKind.push ({ id: property, selected: obj.billMediaKind && obj.billMediaKind.endsWith ('.' + property)});
+                obj.ErpInvoiceKind = []; if (!obj.kind) obj.ErpInvoiceKind.push ({ id: '', selected: true}); for (var property in ErpInvoiceKind) obj.ErpInvoiceKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.BillMediaKind;
+                delete obj.ErpInvoiceKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInvoice_collapse" aria-expanded="true" aria-controls="ErpInvoice_collapse" style="margin-left: 10px;">ErpInvoice</a></legend>
+                    <div id="ErpInvoice_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='billMediaKind'>billMediaKind: </label><div class='col-sm-8'><select id='billMediaKind' class='form-control'>{{#BillMediaKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BillMediaKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dueDate'>dueDate: </label><div class='col-sm-8'><input id='dueDate' class='form-control' type='text'{{#dueDate}} value='{{dueDate}}'{{/dueDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ErpInvoiceKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ErpInvoiceKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mailedDate'>mailedDate: </label><div class='col-sm-8'><input id='mailedDate' class='form-control' type='text'{{#mailedDate}} value='{{mailedDate}}'{{/mailedDate}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proForma'>proForma: </label><div class='col-sm-8'><input id='proForma' class='form-check-input' type='checkbox'{{#proForma}} checked{{/proForma}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='referenceNumber'>referenceNumber: </label><div class='col-sm-8'><input id='referenceNumber' class='form-control' type='text'{{#referenceNumber}} value='{{referenceNumber}}'{{/referenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transferType'>transferType: </label><div class='col-sm-8'><input id='transferType' class='form-control' type='text'{{#transferType}} value='{{transferType}}'{{/transferType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A document that communicates an order to purchase goods from a buyer to a supplier.
@@ -1033,16 +1117,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpPurchaseOrder_collapse" aria-expanded="true" aria-controls="ErpPurchaseOrder_collapse">ErpPurchaseOrder</a>
-<div id="ErpPurchaseOrder_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPurchaseOrder_collapse" aria-expanded="true" aria-controls="ErpPurchaseOrder_collapse" style="margin-left: 10px;">ErpPurchaseOrder</a></legend>
+                    <div id="ErpPurchaseOrder_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPurchaseOrder_collapse" aria-expanded="true" aria-controls="ErpPurchaseOrder_collapse" style="margin-left: 10px;">ErpPurchaseOrder</a></legend>
+                    <div id="ErpPurchaseOrder_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * In accounting transactions, a ledger is a book containing accounts to which debits and credits are posted from journals, where transactions are initially recorded.
@@ -1097,16 +1211,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpLedger_collapse" aria-expanded="true" aria-controls="ErpLedger_collapse">ErpLedger</a>
-<div id="ErpLedger_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedger_collapse" aria-expanded="true" aria-controls="ErpLedger_collapse" style="margin-left: 10px;">ErpLedger</a></legend>
+                    <div id="ErpLedger_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedger_collapse" aria-expanded="true" aria-controls="ErpLedger_collapse" style="margin-left: 10px;">ErpLedger</a></legend>
+                    <div id="ErpLedger_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * General information that applies to a utility requisition that is a request for the purchase of goods or services.
@@ -1161,16 +1305,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpRequisition_collapse" aria-expanded="true" aria-controls="ErpRequisition_collapse">ErpRequisition</a>
-<div id="ErpRequisition_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpRequisition_collapse" aria-expanded="true" aria-controls="ErpRequisition_collapse" style="margin-left: 10px;">ErpRequisition</a></legend>
+                    <div id="ErpRequisition_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpRequisition_collapse" aria-expanded="true" aria-controls="ErpRequisition_collapse" style="margin-left: 10px;">ErpRequisition</a></legend>
+                    <div id="ErpRequisition_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Information that generally describes the Bill of Material Structure and its contents for a utility.
@@ -1227,17 +1401,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpBOM_collapse" aria-expanded="true" aria-controls="ErpBOM_collapse">ErpBOM</a>
-<div id="ErpBOM_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-{{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);})'>{{Design}}</a></div>{{/Design}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpBOM_collapse" aria-expanded="true" aria-controls="ErpBOM_collapse" style="margin-left: 10px;">ErpBOM</a></legend>
+                    <div id="ErpBOM_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    {{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);})'>{{Design}}</a></div>{{/Design}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpBOM_collapse" aria-expanded="true" aria-controls="ErpBOM_collapse" style="margin-left: 10px;">ErpBOM</a></legend>
+                    <div id="ErpBOM_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Design'>Design: </label><div class='col-sm-8'><input id='Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Utility Project Accounting information, used by ERP applications to enable all relevant sub-systems that submit single sided transactions to transfer information with a Project Accounting Application.
@@ -1292,16 +1497,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpProjectAccounting_collapse" aria-expanded="true" aria-controls="ErpProjectAccounting_collapse">ErpProjectAccounting</a>
-<div id="ErpProjectAccounting_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpProjectAccounting_collapse" aria-expanded="true" aria-controls="ErpProjectAccounting_collapse" style="margin-left: 10px;">ErpProjectAccounting</a></legend>
+                    <div id="ErpProjectAccounting_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpProjectAccounting_collapse" aria-expanded="true" aria-controls="ErpProjectAccounting_collapse" style="margin-left: 10px;">ErpProjectAccounting</a></legend>
+                    <div id="ErpProjectAccounting_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An individual line item on an invoice.
@@ -1334,7 +1569,7 @@ define
                 base.parse_element (/<cim:ErpInvoiceLineItem.billPeriod>([\s\S]*?)<\/cim:ErpInvoiceLineItem.billPeriod>/g, obj, "billPeriod", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpInvoiceLineItem.glAccount>([\s\S]*?)<\/cim:ErpInvoiceLineItem.glAccount>/g, obj, "glAccount", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpInvoiceLineItem.glDateTime>([\s\S]*?)<\/cim:ErpInvoiceLineItem.glDateTime>/g, obj, "glDateTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ErpInvoiceLineItem.kind>([\s\S]*?)<\/cim:ErpInvoiceLineItem.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpInvoiceLineItem.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:ErpInvoiceLineItem.lineAmount>([\s\S]*?)<\/cim:ErpInvoiceLineItem.lineAmount>/g, obj, "lineAmount", base.to_float, sub, context);
                 base.parse_element (/<cim:ErpInvoiceLineItem.lineNumber>([\s\S]*?)<\/cim:ErpInvoiceLineItem.lineNumber>/g, obj, "lineNumber", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpInvoiceLineItem.lineVersion>([\s\S]*?)<\/cim:ErpInvoiceLineItem.lineVersion>/g, obj, "lineVersion", base.to_string, sub, context);
@@ -1384,31 +1619,78 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpInvoiceLineItem_collapse" aria-expanded="true" aria-controls="ErpInvoiceLineItem_collapse">ErpInvoiceLineItem</a>
-<div id="ErpInvoiceLineItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-{{#billPeriod}}<div><b>billPeriod</b>: {{billPeriod}}</div>{{/billPeriod}}
-{{#glAccount}}<div><b>glAccount</b>: {{glAccount}}</div>{{/glAccount}}
-{{#glDateTime}}<div><b>glDateTime</b>: {{glDateTime}}</div>{{/glDateTime}}
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#lineAmount}}<div><b>lineAmount</b>: {{lineAmount}}</div>{{/lineAmount}}
-{{#lineNumber}}<div><b>lineNumber</b>: {{lineNumber}}</div>{{/lineNumber}}
-{{#lineVersion}}<div><b>lineVersion</b>: {{lineVersion}}</div>{{/lineVersion}}
-{{#netAmount}}<div><b>netAmount</b>: {{netAmount}}</div>{{/netAmount}}
-{{#previousAmount}}<div><b>previousAmount</b>: {{previousAmount}}</div>{{/previousAmount}}
-{{#ContainerErpInvoiceLineItem}}<div><b>ContainerErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ContainerErpInvoiceLineItem}}&quot;);})'>{{ContainerErpInvoiceLineItem}}</a></div>{{/ContainerErpInvoiceLineItem}}
-{{#ErpPayableLineItem}}<div><b>ErpPayableLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPayableLineItem}}&quot;);})'>{{ErpPayableLineItem}}</a></div>{{/ErpPayableLineItem}}
-{{#ErpInvoice}}<div><b>ErpInvoice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoice}}&quot;);})'>{{ErpInvoice}}</a></div>{{/ErpInvoice}}
-{{#ErpRecLineItem}}<div><b>ErpRecLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpRecLineItem}}&quot;);})'>{{ErpRecLineItem}}</a></div>{{/ErpRecLineItem}}
-{{#ErpRecDelvLineItem}}<div><b>ErpRecDelvLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpRecDelvLineItem}}&quot;);})'>{{ErpRecDelvLineItem}}</a></div>{{/ErpRecDelvLineItem}}
-{{#ErpQuoteLineItem}}<div><b>ErpQuoteLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuoteLineItem}}&quot;);})'>{{ErpQuoteLineItem}}</a></div>{{/ErpQuoteLineItem}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInvoiceLineItem_collapse" aria-expanded="true" aria-controls="ErpInvoiceLineItem_collapse" style="margin-left: 10px;">ErpInvoiceLineItem</a></legend>
+                    <div id="ErpInvoiceLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    {{#billPeriod}}<div><b>billPeriod</b>: {{billPeriod}}</div>{{/billPeriod}}
+                    {{#glAccount}}<div><b>glAccount</b>: {{glAccount}}</div>{{/glAccount}}
+                    {{#glDateTime}}<div><b>glDateTime</b>: {{glDateTime}}</div>{{/glDateTime}}
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#lineAmount}}<div><b>lineAmount</b>: {{lineAmount}}</div>{{/lineAmount}}
+                    {{#lineNumber}}<div><b>lineNumber</b>: {{lineNumber}}</div>{{/lineNumber}}
+                    {{#lineVersion}}<div><b>lineVersion</b>: {{lineVersion}}</div>{{/lineVersion}}
+                    {{#netAmount}}<div><b>netAmount</b>: {{netAmount}}</div>{{/netAmount}}
+                    {{#previousAmount}}<div><b>previousAmount</b>: {{previousAmount}}</div>{{/previousAmount}}
+                    {{#ContainerErpInvoiceLineItem}}<div><b>ContainerErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ContainerErpInvoiceLineItem}}&quot;);})'>{{ContainerErpInvoiceLineItem}}</a></div>{{/ContainerErpInvoiceLineItem}}
+                    {{#ErpPayableLineItem}}<div><b>ErpPayableLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPayableLineItem}}&quot;);})'>{{ErpPayableLineItem}}</a></div>{{/ErpPayableLineItem}}
+                    {{#ErpInvoice}}<div><b>ErpInvoice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoice}}&quot;);})'>{{ErpInvoice}}</a></div>{{/ErpInvoice}}
+                    {{#ErpRecLineItem}}<div><b>ErpRecLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpRecLineItem}}&quot;);})'>{{ErpRecLineItem}}</a></div>{{/ErpRecLineItem}}
+                    {{#ErpRecDelvLineItem}}<div><b>ErpRecDelvLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpRecDelvLineItem}}&quot;);})'>{{ErpRecDelvLineItem}}</a></div>{{/ErpRecDelvLineItem}}
+                    {{#ErpQuoteLineItem}}<div><b>ErpQuoteLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuoteLineItem}}&quot;);})'>{{ErpQuoteLineItem}}</a></div>{{/ErpQuoteLineItem}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ErpInvoiceLineItemKind = []; if (!obj.kind) obj.ErpInvoiceLineItemKind.push ({ id: '', selected: true}); for (var property in ErpInvoiceLineItemKind) obj.ErpInvoiceLineItemKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ErpInvoiceLineItemKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInvoiceLineItem_collapse" aria-expanded="true" aria-controls="ErpInvoiceLineItem_collapse" style="margin-left: 10px;">ErpInvoiceLineItem</a></legend>
+                    <div id="ErpInvoiceLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='billPeriod'>billPeriod: </label><div class='col-sm-8'><input id='billPeriod' class='form-control' type='text'{{#billPeriod}} value='{{billPeriod}}'{{/billPeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='glAccount'>glAccount: </label><div class='col-sm-8'><input id='glAccount' class='form-control' type='text'{{#glAccount}} value='{{glAccount}}'{{/glAccount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='glDateTime'>glDateTime: </label><div class='col-sm-8'><input id='glDateTime' class='form-control' type='text'{{#glDateTime}} value='{{glDateTime}}'{{/glDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ErpInvoiceLineItemKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ErpInvoiceLineItemKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lineAmount'>lineAmount: </label><div class='col-sm-8'><input id='lineAmount' class='form-control' type='text'{{#lineAmount}} value='{{lineAmount}}'{{/lineAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lineNumber'>lineNumber: </label><div class='col-sm-8'><input id='lineNumber' class='form-control' type='text'{{#lineNumber}} value='{{lineNumber}}'{{/lineNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lineVersion'>lineVersion: </label><div class='col-sm-8'><input id='lineVersion' class='form-control' type='text'{{#lineVersion}} value='{{lineVersion}}'{{/lineVersion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='netAmount'>netAmount: </label><div class='col-sm-8'><input id='netAmount' class='form-control' type='text'{{#netAmount}} value='{{netAmount}}'{{/netAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='previousAmount'>previousAmount: </label><div class='col-sm-8'><input id='previousAmount' class='form-control' type='text'{{#previousAmount}} value='{{previousAmount}}'{{/previousAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ContainerErpInvoiceLineItem'>ContainerErpInvoiceLineItem: </label><div class='col-sm-8'><input id='ContainerErpInvoiceLineItem' class='form-control' type='text'{{#ContainerErpInvoiceLineItem}} value='{{ContainerErpInvoiceLineItem}}'{{/ContainerErpInvoiceLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPayableLineItem'>ErpPayableLineItem: </label><div class='col-sm-8'><input id='ErpPayableLineItem' class='form-control' type='text'{{#ErpPayableLineItem}} value='{{ErpPayableLineItem}}'{{/ErpPayableLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInvoice'>ErpInvoice: </label><div class='col-sm-8'><input id='ErpInvoice' class='form-control' type='text'{{#ErpInvoice}} value='{{ErpInvoice}}'{{/ErpInvoice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpRecLineItem'>ErpRecLineItem: </label><div class='col-sm-8'><input id='ErpRecLineItem' class='form-control' type='text'{{#ErpRecLineItem}} value='{{ErpRecLineItem}}'{{/ErpRecLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpRecDelvLineItem'>ErpRecDelvLineItem: </label><div class='col-sm-8'><input id='ErpRecDelvLineItem' class='form-control' type='text'{{#ErpRecDelvLineItem}} value='{{ErpRecDelvLineItem}}'{{/ErpRecDelvLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpQuoteLineItem'>ErpQuoteLineItem: </label><div class='col-sm-8'><input id='ErpQuoteLineItem' class='form-control' type='text'{{#ErpQuoteLineItem}} value='{{ErpQuoteLineItem}}'{{/ErpQuoteLineItem}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Accounting structure of a business.
@@ -1463,16 +1745,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpChartOfAccounts_collapse" aria-expanded="true" aria-controls="ErpChartOfAccounts_collapse">ErpChartOfAccounts</a>
-<div id="ErpChartOfAccounts_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpChartOfAccounts_collapse" aria-expanded="true" aria-controls="ErpChartOfAccounts_collapse" style="margin-left: 10px;">ErpChartOfAccounts</a></legend>
+                    <div id="ErpChartOfAccounts_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpChartOfAccounts_collapse" aria-expanded="true" aria-controls="ErpChartOfAccounts_collapse" style="margin-left: 10px;">ErpChartOfAccounts</a></legend>
+                    <div id="ErpChartOfAccounts_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Transaction representing an invoice, credit memo or debit memo to a customer.
@@ -1527,16 +1839,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpReceivable_collapse" aria-expanded="true" aria-controls="ErpReceivable_collapse">ErpReceivable</a>
-<div id="ErpReceivable_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpReceivable_collapse" aria-expanded="true" aria-controls="ErpReceivable_collapse" style="margin-left: 10px;">ErpReceivable</a></legend>
+                    <div id="ErpReceivable_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpReceivable_collapse" aria-expanded="true" aria-controls="ErpReceivable_collapse" style="margin-left: 10px;">ErpReceivable</a></legend>
+                    <div id="ErpReceivable_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * General Utility Engineering Change Order information.
@@ -1589,16 +1931,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpEngChangeOrder_collapse" aria-expanded="true" aria-controls="ErpEngChangeOrder_collapse">ErpEngChangeOrder</a>
-<div id="ErpEngChangeOrder_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpEngChangeOrder_collapse" aria-expanded="true" aria-controls="ErpEngChangeOrder_collapse" style="margin-left: 10px;">ErpEngChangeOrder</a></legend>
+                    <div id="ErpEngChangeOrder_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpEngChangeOrder_collapse" aria-expanded="true" aria-controls="ErpEngChangeOrder_collapse" style="margin-left: 10px;">ErpEngChangeOrder</a></legend>
+                    <div id="ErpEngChangeOrder_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A transaction that represents an invoice from a supplier.
@@ -1653,16 +2025,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpPayable_collapse" aria-expanded="true" aria-controls="ErpPayable_collapse">ErpPayable</a>
-<div id="ErpPayable_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPayable_collapse" aria-expanded="true" aria-controls="ErpPayable_collapse" style="margin-left: 10px;">ErpPayable</a></legend>
+                    <div id="ErpPayable_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPayable_collapse" aria-expanded="true" aria-controls="ErpPayable_collapse" style="margin-left: 10px;">ErpPayable</a></legend>
+                    <div id="ErpPayable_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Information for utility Ledger Budgets.
@@ -1717,16 +2119,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpLedgerBudget_collapse" aria-expanded="true" aria-controls="ErpLedgerBudget_collapse">ErpLedgerBudget</a>
-<div id="ErpLedgerBudget_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedgerBudget_collapse" aria-expanded="true" aria-controls="ErpLedgerBudget_collapse" style="margin-left: 10px;">ErpLedgerBudget</a></legend>
+                    <div id="ErpLedgerBudget_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedgerBudget_collapse" aria-expanded="true" aria-controls="ErpLedgerBudget_collapse" style="margin-left: 10px;">ErpLedgerBudget</a></legend>
+                    <div id="ErpLedgerBudget_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Document describing the prices of goods or services provided by a supplier.
@@ -1781,16 +2213,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpQuote_collapse" aria-expanded="true" aria-controls="ErpQuote_collapse">ErpQuote</a>
-<div id="ErpQuote_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpDocument.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpQuote_collapse" aria-expanded="true" aria-controls="ErpQuote_collapse" style="margin-left: 10px;">ErpQuote</a></legend>
+                    <div id="ErpQuote_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpQuote_collapse" aria-expanded="true" aria-controls="ErpQuote_collapse" style="margin-left: 10px;">ErpQuote</a></legend>
+                    <div id="ErpQuote_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpDocument.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Individual entry of a given Ledger Budget, typically containing information such as amount, accounting date, accounting period, and is associated with the applicable general ledger account.
@@ -1849,19 +2311,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpLedBudLineItem_collapse" aria-expanded="true" aria-controls="ErpLedBudLineItem_collapse">ErpLedBudLineItem</a>
-<div id="ErpLedBudLineItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#ErpLedgerBudget}}<div><b>ErpLedgerBudget</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedgerBudget}}&quot;);})'>{{ErpLedgerBudget}}</a></div>{{/ErpLedgerBudget}}
-{{#ErpLedBudLineItem}}<div><b>ErpLedBudLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedBudLineItem}}&quot;);})'>{{ErpLedBudLineItem}}</a></div>{{/ErpLedBudLineItem}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedBudLineItem_collapse" aria-expanded="true" aria-controls="ErpLedBudLineItem_collapse" style="margin-left: 10px;">ErpLedBudLineItem</a></legend>
+                    <div id="ErpLedBudLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#ErpLedgerBudget}}<div><b>ErpLedgerBudget</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedgerBudget}}&quot;);})'>{{ErpLedgerBudget}}</a></div>{{/ErpLedgerBudget}}
+                    {{#ErpLedBudLineItem}}<div><b>ErpLedBudLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedBudLineItem}}&quot;);})'>{{ErpLedBudLineItem}}</a></div>{{/ErpLedBudLineItem}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedBudLineItem_collapse" aria-expanded="true" aria-controls="ErpLedBudLineItem_collapse" style="margin-left: 10px;">ErpLedBudLineItem</a></legend>
+                    <div id="ErpLedBudLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpLedgerBudget'>ErpLedgerBudget: </label><div class='col-sm-8'><input id='ErpLedgerBudget' class='form-control' type='text'{{#ErpLedgerBudget}} value='{{ErpLedgerBudget}}'{{/ErpLedgerBudget}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpLedBudLineItem'>ErpLedBudLineItem: </label><div class='col-sm-8'><input id='ErpLedBudLineItem' class='form-control' type='text'{{#ErpLedBudLineItem}} value='{{ErpLedBudLineItem}}'{{/ErpLedBudLineItem}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This is related to Inventory physical counts organized by AssetModel.
@@ -1920,18 +2415,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpInventoryCount_collapse" aria-expanded="true" aria-controls="ErpInventoryCount_collapse">ErpInventoryCount</a>
-<div id="ErpInventoryCount_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModel}}&quot;);})'>{{AssetModel}}</a></div>{{/AssetModel}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInventoryCount_collapse" aria-expanded="true" aria-controls="ErpInventoryCount_collapse" style="margin-left: 10px;">ErpInventoryCount</a></legend>
+                    <div id="ErpInventoryCount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModel}}&quot;);})'>{{AssetModel}}</a></div>{{/AssetModel}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInventoryCount_collapse" aria-expanded="true" aria-controls="ErpInventoryCount_collapse" style="margin-left: 10px;">ErpInventoryCount</a></legend>
+                    <div id="ErpInventoryCount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetModel'>AssetModel: </label><div class='col-sm-8'><input id='AssetModel' class='form-control' type='text'{{#AssetModel}} value='{{AssetModel}}'{{/AssetModel}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An individual entry on an ErpTimeSheet.
@@ -1990,19 +2517,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpTimeEntry_collapse" aria-expanded="true" aria-controls="ErpTimeEntry_collapse">ErpTimeEntry</a>
-<div id="ErpTimeEntry_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#ErpTimeSheet}}<div><b>ErpTimeSheet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpTimeSheet}}&quot;);})'>{{ErpTimeSheet}}</a></div>{{/ErpTimeSheet}}
-{{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);})'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpTimeEntry_collapse" aria-expanded="true" aria-controls="ErpTimeEntry_collapse" style="margin-left: 10px;">ErpTimeEntry</a></legend>
+                    <div id="ErpTimeEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#ErpTimeSheet}}<div><b>ErpTimeSheet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpTimeSheet}}&quot;);})'>{{ErpTimeSheet}}</a></div>{{/ErpTimeSheet}}
+                    {{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);})'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpTimeEntry_collapse" aria-expanded="true" aria-controls="ErpTimeEntry_collapse" style="margin-left: 10px;">ErpTimeEntry</a></legend>
+                    <div id="ErpTimeEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpTimeSheet'>ErpTimeSheet: </label><div class='col-sm-8'><input id='ErpTimeSheet' class='form-control' type='text'{{#ErpTimeSheet}} value='{{ErpTimeSheet}}'{{/ErpTimeSheet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Of an ErpQuote, the item or product quoted along with quantity, price and other descriptive information.
@@ -2067,22 +2627,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpQuoteLineItem_collapse" aria-expanded="true" aria-controls="ErpQuoteLineItem_collapse">ErpQuoteLineItem</a>
-<div id="ErpQuoteLineItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);})'>{{Design}}</a></div>{{/Design}}
-{{#ErpQuote}}<div><b>ErpQuote</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuote}}&quot;);})'>{{ErpQuote}}</a></div>{{/ErpQuote}}
-{{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
-{{#ErpReqLineItem}}<div><b>ErpReqLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReqLineItem}}&quot;);})'>{{ErpReqLineItem}}</a></div>{{/ErpReqLineItem}}
-{{#AssetModelCatalogueItem}}<div><b>AssetModelCatalogueItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogueItem}}&quot;);})'>{{AssetModelCatalogueItem}}</a></div>{{/AssetModelCatalogueItem}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpQuoteLineItem_collapse" aria-expanded="true" aria-controls="ErpQuoteLineItem_collapse" style="margin-left: 10px;">ErpQuoteLineItem</a></legend>
+                    <div id="ErpQuoteLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);})'>{{Design}}</a></div>{{/Design}}
+                    {{#ErpQuote}}<div><b>ErpQuote</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuote}}&quot;);})'>{{ErpQuote}}</a></div>{{/ErpQuote}}
+                    {{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
+                    {{#ErpReqLineItem}}<div><b>ErpReqLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReqLineItem}}&quot;);})'>{{ErpReqLineItem}}</a></div>{{/ErpReqLineItem}}
+                    {{#AssetModelCatalogueItem}}<div><b>AssetModelCatalogueItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogueItem}}&quot;);})'>{{AssetModelCatalogueItem}}</a></div>{{/AssetModelCatalogueItem}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpQuoteLineItem_collapse" aria-expanded="true" aria-controls="ErpQuoteLineItem_collapse" style="margin-left: 10px;">ErpQuoteLineItem</a></legend>
+                    <div id="ErpQuoteLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Design'>Design: </label><div class='col-sm-8'><input id='Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpQuote'>ErpQuote: </label><div class='col-sm-8'><input id='ErpQuote' class='form-control' type='text'{{#ErpQuote}} value='{{ErpQuote}}'{{/ErpQuote}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpReqLineItem'>ErpReqLineItem: </label><div class='col-sm-8'><input id='ErpReqLineItem' class='form-control' type='text'{{#ErpReqLineItem}} value='{{ErpReqLineItem}}'{{/ErpReqLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetModelCatalogueItem'>AssetModelCatalogueItem: </label><div class='col-sm-8'><input id='AssetModelCatalogueItem' class='form-control' type='text'{{#AssetModelCatalogueItem}} value='{{AssetModelCatalogueItem}}'{{/AssetModelCatalogueItem}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Details of an individual entry in a ledger, which was posted from a journal on the posted date.
@@ -2113,7 +2709,7 @@ define
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpLedgerEntry";
                 base.parse_element (/<cim:ErpLedgerEntry.accountID>([\s\S]*?)<\/cim:ErpLedgerEntry.accountID>/g, obj, "accountID", base.to_string, sub, context);
-                base.parse_element (/<cim:ErpLedgerEntry.accountKind>([\s\S]*?)<\/cim:ErpLedgerEntry.accountKind>/g, obj, "accountKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpLedgerEntry.accountKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "accountKind", sub, context);
                 base.parse_element (/<cim:ErpLedgerEntry.amount>([\s\S]*?)<\/cim:ErpLedgerEntry.amount>/g, obj, "amount", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpLedgerEntry.postedDateTime>([\s\S]*?)<\/cim:ErpLedgerEntry.postedDateTime>/g, obj, "postedDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:ErpLedgerEntry.status>([\s\S]*?)<\/cim:ErpLedgerEntry.status>/g, obj, "status", base.to_string, sub, context);
@@ -2153,25 +2749,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpLedgerEntry_collapse" aria-expanded="true" aria-controls="ErpLedgerEntry_collapse">ErpLedgerEntry</a>
-<div id="ErpLedgerEntry_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#accountID}}<div><b>accountID</b>: {{accountID}}</div>{{/accountID}}
-{{#accountKind}}<div><b>accountKind</b>: {{accountKind}}</div>{{/accountKind}}
-{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
-{{#postedDateTime}}<div><b>postedDateTime</b>: {{postedDateTime}}</div>{{/postedDateTime}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
-{{#ErpJounalEntry}}<div><b>ErpJounalEntry</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpJounalEntry}}&quot;);})'>{{ErpJounalEntry}}</a></div>{{/ErpJounalEntry}}
-{{#ErpLedgerEntry}}<div><b>ErpLedgerEntry</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedgerEntry}}&quot;);})'>{{ErpLedgerEntry}}</a></div>{{/ErpLedgerEntry}}
-{{#ErpLedger}}<div><b>ErpLedger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedger}}&quot;);})'>{{ErpLedger}}</a></div>{{/ErpLedger}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedgerEntry_collapse" aria-expanded="true" aria-controls="ErpLedgerEntry_collapse" style="margin-left: 10px;">ErpLedgerEntry</a></legend>
+                    <div id="ErpLedgerEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#accountID}}<div><b>accountID</b>: {{accountID}}</div>{{/accountID}}
+                    {{#accountKind}}<div><b>accountKind</b>: {{accountKind}}</div>{{/accountKind}}
+                    {{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+                    {{#postedDateTime}}<div><b>postedDateTime</b>: {{postedDateTime}}</div>{{/postedDateTime}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
+                    {{#ErpJounalEntry}}<div><b>ErpJounalEntry</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpJounalEntry}}&quot;);})'>{{ErpJounalEntry}}</a></div>{{/ErpJounalEntry}}
+                    {{#ErpLedgerEntry}}<div><b>ErpLedgerEntry</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedgerEntry}}&quot;);})'>{{ErpLedgerEntry}}</a></div>{{/ErpLedgerEntry}}
+                    {{#ErpLedger}}<div><b>ErpLedger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedger}}&quot;);})'>{{ErpLedger}}</a></div>{{/ErpLedger}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ErpAccountKind = []; if (!obj.accountKind) obj.ErpAccountKind.push ({ id: '', selected: true}); for (var property in ErpAccountKind) obj.ErpAccountKind.push ({ id: property, selected: obj.accountKind && obj.accountKind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ErpAccountKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedgerEntry_collapse" aria-expanded="true" aria-controls="ErpLedgerEntry_collapse" style="margin-left: 10px;">ErpLedgerEntry</a></legend>
+                    <div id="ErpLedgerEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accountID'>accountID: </label><div class='col-sm-8'><input id='accountID' class='form-control' type='text'{{#accountID}} value='{{accountID}}'{{/accountID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accountKind'>accountKind: </label><div class='col-sm-8'><select id='accountKind' class='form-control'>{{#ErpAccountKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ErpAccountKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='postedDateTime'>postedDateTime: </label><div class='col-sm-8'><input id='postedDateTime' class='form-control' type='text'{{#postedDateTime}} value='{{postedDateTime}}'{{/postedDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpJounalEntry'>ErpJounalEntry: </label><div class='col-sm-8'><input id='ErpJounalEntry' class='form-control' type='text'{{#ErpJounalEntry}} value='{{ErpJounalEntry}}'{{/ErpJounalEntry}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpLedgerEntry'>ErpLedgerEntry: </label><div class='col-sm-8'><input id='ErpLedgerEntry' class='form-control' type='text'{{#ErpLedgerEntry}} value='{{ErpLedgerEntry}}'{{/ErpLedgerEntry}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpLedger'>ErpLedger: </label><div class='col-sm-8'><input id='ErpLedger' class='form-control' type='text'{{#ErpLedger}} value='{{ErpLedger}}'{{/ErpLedger}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Any unique purchased part for manufactured product tracked by ERP systems for a utility.
@@ -2230,18 +2867,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpItemMaster_collapse" aria-expanded="true" aria-controls="ErpItemMaster_collapse">ErpItemMaster</a>
-<div id="ErpItemMaster_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpItemMaster_collapse" aria-expanded="true" aria-controls="ErpItemMaster_collapse" style="margin-left: 10px;">ErpItemMaster</a></legend>
+                    <div id="ErpItemMaster_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpItemMaster_collapse" aria-expanded="true" aria-controls="ErpItemMaster_collapse" style="margin-left: 10px;">ErpItemMaster</a></legend>
+                    <div id="ErpItemMaster_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Asset'>Asset: </label><div class='col-sm-8'><input id='Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Of an ErpPayable, a line item references an ErpInvoiceLineitem or other source such as credit memos.
@@ -2300,19 +2969,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpPayableLineItem_collapse" aria-expanded="true" aria-controls="ErpPayableLineItem_collapse">ErpPayableLineItem</a>
-<div id="ErpPayableLineItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#ErpPayable}}<div><b>ErpPayable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPayable}}&quot;);})'>{{ErpPayable}}</a></div>{{/ErpPayable}}
-{{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPayableLineItem_collapse" aria-expanded="true" aria-controls="ErpPayableLineItem_collapse" style="margin-left: 10px;">ErpPayableLineItem</a></legend>
+                    <div id="ErpPayableLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#ErpPayable}}<div><b>ErpPayable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPayable}}&quot;);})'>{{ErpPayable}}</a></div>{{/ErpPayable}}
+                    {{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPayableLineItem_collapse" aria-expanded="true" aria-controls="ErpPayableLineItem_collapse" style="margin-left: 10px;">ErpPayableLineItem</a></legend>
+                    <div id="ErpPayableLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPayable'>ErpPayable: </label><div class='col-sm-8'><input id='ErpPayable' class='form-control' type='text'{{#ErpPayable}} value='{{ErpPayable}}'{{/ErpPayable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Individual entry of an ErpReceivable, it is a particular transaction representing an invoice, credit memo or debit memo to a customer.
@@ -2371,19 +3073,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpRecLineItem_collapse" aria-expanded="true" aria-controls="ErpRecLineItem_collapse">ErpRecLineItem</a>
-<div id="ErpRecLineItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
-{{#ErpReceivable}}<div><b>ErpReceivable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReceivable}}&quot;);})'>{{ErpReceivable}}</a></div>{{/ErpReceivable}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpRecLineItem_collapse" aria-expanded="true" aria-controls="ErpRecLineItem_collapse" style="margin-left: 10px;">ErpRecLineItem</a></legend>
+                    <div id="ErpRecLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
+                    {{#ErpReceivable}}<div><b>ErpReceivable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReceivable}}&quot;);})'>{{ErpReceivable}}</a></div>{{/ErpReceivable}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpRecLineItem_collapse" aria-expanded="true" aria-controls="ErpRecLineItem_collapse" style="margin-left: 10px;">ErpRecLineItem</a></legend>
+                    <div id="ErpRecLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpReceivable'>ErpReceivable: </label><div class='col-sm-8'><input id='ErpReceivable' class='form-control' type='text'{{#ErpReceivable}} value='{{ErpReceivable}}'{{/ErpReceivable}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Can be used to request an application to process an issue or request information about an issue.
@@ -2442,19 +3177,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpIssueInventory_collapse" aria-expanded="true" aria-controls="ErpIssueInventory_collapse">ErpIssueInventory</a>
-<div id="ErpIssueInventory_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);})'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
-{{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpIssueInventory_collapse" aria-expanded="true" aria-controls="ErpIssueInventory_collapse" style="margin-left: 10px;">ErpIssueInventory</a></legend>
+                    <div id="ErpIssueInventory_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);})'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
+                    {{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpIssueInventory_collapse" aria-expanded="true" aria-controls="ErpIssueInventory_collapse" style="margin-left: 10px;">ErpIssueInventory</a></legend>
+                    <div id="ErpIssueInventory_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Utility inventory-related information about an item or part (and not for description of the item and its attributes).
@@ -2513,18 +3281,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpInventory_collapse" aria-expanded="true" aria-controls="ErpInventory_collapse">ErpInventory</a>
-<div id="ErpInventory_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInventory_collapse" aria-expanded="true" aria-controls="ErpInventory_collapse" style="margin-left: 10px;">ErpInventory</a></legend>
+                    <div id="ErpInventory_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInventory_collapse" aria-expanded="true" aria-controls="ErpInventory_collapse" style="margin-left: 10px;">ErpInventory</a></legend>
+                    <div id="ErpInventory_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Asset'>Asset: </label><div class='col-sm-8'><input id='Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Information that describes a requested item and its attributes.
@@ -2597,26 +3397,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpReqLineItem_collapse" aria-expanded="true" aria-controls="ErpReqLineItem_collapse">ErpReqLineItem</a>
-<div id="ErpReqLineItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
-{{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
-{{#deliveryDate}}<div><b>deliveryDate</b>: {{deliveryDate}}</div>{{/deliveryDate}}
-{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#ErpPOLineItem}}<div><b>ErpPOLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPOLineItem}}&quot;);})'>{{ErpPOLineItem}}</a></div>{{/ErpPOLineItem}}
-{{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);})'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
-{{#ErpRequisition}}<div><b>ErpRequisition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpRequisition}}&quot;);})'>{{ErpRequisition}}</a></div>{{/ErpRequisition}}
-{{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
-{{#ErpQuoteLineItem}}<div><b>ErpQuoteLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuoteLineItem}}&quot;);})'>{{ErpQuoteLineItem}}</a></div>{{/ErpQuoteLineItem}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpReqLineItem_collapse" aria-expanded="true" aria-controls="ErpReqLineItem_collapse" style="margin-left: 10px;">ErpReqLineItem</a></legend>
+                    <div id="ErpReqLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+                    {{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
+                    {{#deliveryDate}}<div><b>deliveryDate</b>: {{deliveryDate}}</div>{{/deliveryDate}}
+                    {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#ErpPOLineItem}}<div><b>ErpPOLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPOLineItem}}&quot;);})'>{{ErpPOLineItem}}</a></div>{{/ErpPOLineItem}}
+                    {{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);})'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
+                    {{#ErpRequisition}}<div><b>ErpRequisition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpRequisition}}&quot;);})'>{{ErpRequisition}}</a></div>{{/ErpRequisition}}
+                    {{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
+                    {{#ErpQuoteLineItem}}<div><b>ErpQuoteLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuoteLineItem}}&quot;);})'>{{ErpQuoteLineItem}}</a></div>{{/ErpQuoteLineItem}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpReqLineItem_collapse" aria-expanded="true" aria-controls="ErpReqLineItem_collapse" style="margin-left: 10px;">ErpReqLineItem</a></legend>
+                    <div id="ErpReqLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='code'>code: </label><div class='col-sm-8'><input id='code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cost'>cost: </label><div class='col-sm-8'><input id='cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='deliveryDate'>deliveryDate: </label><div class='col-sm-8'><input id='deliveryDate' class='form-control' type='text'{{#deliveryDate}} value='{{deliveryDate}}'{{/deliveryDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPOLineItem'>ErpPOLineItem: </label><div class='col-sm-8'><input id='ErpPOLineItem' class='form-control' type='text'{{#ErpPOLineItem}} value='{{ErpPOLineItem}}'{{/ErpPOLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpRequisition'>ErpRequisition: </label><div class='col-sm-8'><input id='ErpRequisition' class='form-control' type='text'{{#ErpRequisition}} value='{{ErpRequisition}}'{{/ErpRequisition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpQuoteLineItem'>ErpQuoteLineItem: </label><div class='col-sm-8'><input id='ErpQuoteLineItem' class='form-control' type='text'{{#ErpQuoteLineItem}} value='{{ErpQuoteLineItem}}'{{/ErpQuoteLineItem}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Information that applies to the basic data about a utility person, used by ERP applications to transfer Personnel data for a worker.
@@ -2671,17 +3511,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpPersonnel_collapse" aria-expanded="true" aria-controls="ErpPersonnel_collapse">ErpPersonnel</a>
-<div id="ErpPersonnel_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPersonnel_collapse" aria-expanded="true" aria-controls="ErpPersonnel_collapse" style="margin-left: 10px;">ErpPersonnel</a></legend>
+                    <div id="ErpPersonnel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPersonnel_collapse" aria-expanded="true" aria-controls="ErpPersonnel_collapse" style="margin-left: 10px;">ErpPersonnel</a></legend>
+                    <div id="ErpPersonnel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Details of an individual entry in a journal, which is to be posted to a ledger on the posting date.
@@ -2752,25 +3623,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpJournalEntry_collapse" aria-expanded="true" aria-controls="ErpJournalEntry_collapse">ErpJournalEntry</a>
-<div id="ErpJournalEntry_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#accountID}}<div><b>accountID</b>: {{accountID}}</div>{{/accountID}}
-{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
-{{#postingDateTime}}<div><b>postingDateTime</b>: {{postingDateTime}}</div>{{/postingDateTime}}
-{{#sourceID}}<div><b>sourceID</b>: {{sourceID}}</div>{{/sourceID}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
-{{#ErpLedgerEntry}}<div><b>ErpLedgerEntry</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedgerEntry}}&quot;);})'>{{ErpLedgerEntry}}</a></div>{{/ErpLedgerEntry}}
-{{#ErpJournal}}<div><b>ErpJournal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpJournal}}&quot;);})'>{{ErpJournal}}</a></div>{{/ErpJournal}}
-{{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpJournalEntry_collapse" aria-expanded="true" aria-controls="ErpJournalEntry_collapse" style="margin-left: 10px;">ErpJournalEntry</a></legend>
+                    <div id="ErpJournalEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#accountID}}<div><b>accountID</b>: {{accountID}}</div>{{/accountID}}
+                    {{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+                    {{#postingDateTime}}<div><b>postingDateTime</b>: {{postingDateTime}}</div>{{/postingDateTime}}
+                    {{#sourceID}}<div><b>sourceID</b>: {{sourceID}}</div>{{/sourceID}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
+                    {{#ErpLedgerEntry}}<div><b>ErpLedgerEntry</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedgerEntry}}&quot;);})'>{{ErpLedgerEntry}}</a></div>{{/ErpLedgerEntry}}
+                    {{#ErpJournal}}<div><b>ErpJournal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpJournal}}&quot;);})'>{{ErpJournal}}</a></div>{{/ErpJournal}}
+                    {{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpJournalEntry_collapse" aria-expanded="true" aria-controls="ErpJournalEntry_collapse" style="margin-left: 10px;">ErpJournalEntry</a></legend>
+                    <div id="ErpJournalEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accountID'>accountID: </label><div class='col-sm-8'><input id='accountID' class='form-control' type='text'{{#accountID}} value='{{accountID}}'{{/accountID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='postingDateTime'>postingDateTime: </label><div class='col-sm-8'><input id='postingDateTime' class='form-control' type='text'{{#postingDateTime}} value='{{postingDateTime}}'{{/postingDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sourceID'>sourceID: </label><div class='col-sm-8'><input id='sourceID' class='form-control' type='text'{{#sourceID}} value='{{sourceID}}'{{/sourceID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpLedgerEntry'>ErpLedgerEntry: </label><div class='col-sm-8'><input id='ErpLedgerEntry' class='form-control' type='text'{{#ErpLedgerEntry}} value='{{ErpLedgerEntry}}'{{/ErpLedgerEntry}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpJournal'>ErpJournal: </label><div class='col-sm-8'><input id='ErpJournal' class='form-control' type='text'{{#ErpJournal}} value='{{ErpJournal}}'{{/ErpJournal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An individual item on a bill of materials.
@@ -2829,19 +3739,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpBomItemData_collapse" aria-expanded="true" aria-controls="ErpBomItemData_collapse">ErpBomItemData</a>
-<div id="ErpBomItemData_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
-{{#DesignLocation}}<div><b>DesignLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DesignLocation}}&quot;);})'>{{DesignLocation}}</a></div>{{/DesignLocation}}
-{{#ErpBOM}}<div><b>ErpBOM</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpBOM}}&quot;);})'>{{ErpBOM}}</a></div>{{/ErpBOM}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpBomItemData_collapse" aria-expanded="true" aria-controls="ErpBomItemData_collapse" style="margin-left: 10px;">ErpBomItemData</a></legend>
+                    <div id="ErpBomItemData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
+                    {{#DesignLocation}}<div><b>DesignLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DesignLocation}}&quot;);})'>{{DesignLocation}}</a></div>{{/DesignLocation}}
+                    {{#ErpBOM}}<div><b>ErpBOM</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpBOM}}&quot;);})'>{{ErpBOM}}</a></div>{{/ErpBOM}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpBomItemData_collapse" aria-expanded="true" aria-controls="ErpBomItemData_collapse" style="margin-left: 10px;">ErpBomItemData</a></legend>
+                    <div id="ErpBomItemData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpBOM'>ErpBOM: </label><div class='col-sm-8'><input id='ErpBOM' class='form-control' type='text'{{#ErpBOM}} value='{{ErpBOM}}'{{/ErpBOM}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * For a utility, general information that describes physical locations of organizations or the location codes and their meanings.
@@ -2900,18 +3843,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpSiteLevelData_collapse" aria-expanded="true" aria-controls="ErpSiteLevelData_collapse">ErpSiteLevelData</a>
-<div id="ErpSiteLevelData_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LandProperty}}&quot;);})'>{{LandProperty}}</a></div>{{/LandProperty}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpSiteLevelData_collapse" aria-expanded="true" aria-controls="ErpSiteLevelData_collapse" style="margin-left: 10px;">ErpSiteLevelData</a></legend>
+                    <div id="ErpSiteLevelData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LandProperty}}&quot;);})'>{{LandProperty}}</a></div>{{/LandProperty}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpSiteLevelData_collapse" aria-expanded="true" aria-controls="ErpSiteLevelData_collapse" style="margin-left: 10px;">ErpSiteLevelData</a></legend>
+                    <div id="ErpSiteLevelData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LandProperty'>LandProperty: </label><div class='col-sm-8'><input id='LandProperty' class='form-control' type='text'{{#LandProperty}} value='{{LandProperty}}'{{/LandProperty}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Of an ErpReceiveDelivery, this is an individually received good or service by the Organisation receiving goods or services.
@@ -2974,20 +3949,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpRecDelvLineItem_collapse" aria-expanded="true" aria-controls="ErpRecDelvLineItem_collapse">ErpRecDelvLineItem</a>
-<div id="ErpRecDelvLineItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#ErpPOLineItem}}<div><b>ErpPOLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPOLineItem}}&quot;);})'>{{ErpPOLineItem}}</a></div>{{/ErpPOLineItem}}
-{{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
-{{#ErpReceiveDelivery}}<div><b>ErpReceiveDelivery</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReceiveDelivery}}&quot;);})'>{{ErpReceiveDelivery}}</a></div>{{/ErpReceiveDelivery}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpRecDelvLineItem_collapse" aria-expanded="true" aria-controls="ErpRecDelvLineItem_collapse" style="margin-left: 10px;">ErpRecDelvLineItem</a></legend>
+                    <div id="ErpRecDelvLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#ErpPOLineItem}}<div><b>ErpPOLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPOLineItem}}&quot;);})'>{{ErpPOLineItem}}</a></div>{{/ErpPOLineItem}}
+                    {{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);})'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
+                    {{#ErpReceiveDelivery}}<div><b>ErpReceiveDelivery</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReceiveDelivery}}&quot;);})'>{{ErpReceiveDelivery}}</a></div>{{/ErpReceiveDelivery}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpRecDelvLineItem_collapse" aria-expanded="true" aria-controls="ErpRecDelvLineItem_collapse" style="margin-left: 10px;">ErpRecDelvLineItem</a></legend>
+                    <div id="ErpRecDelvLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPOLineItem'>ErpPOLineItem: </label><div class='col-sm-8'><input id='ErpPOLineItem' class='form-control' type='text'{{#ErpPOLineItem}} value='{{ErpPOLineItem}}'{{/ErpPOLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpReceiveDelivery'>ErpReceiveDelivery: </label><div class='col-sm-8'><input id='ErpReceiveDelivery' class='form-control' type='text'{{#ErpReceiveDelivery}} value='{{ErpReceiveDelivery}}'{{/ErpReceiveDelivery}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Information that describes aptitudes of a utility employee.
@@ -3042,16 +4051,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ErpCompetency_collapse" aria-expanded="true" aria-controls="ErpCompetency_collapse">ErpCompetency</a>
-<div id="ErpCompetency_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ErpIdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpCompetency_collapse" aria-expanded="true" aria-controls="ErpCompetency_collapse" style="margin-left: 10px;">ErpCompetency</a></legend>
+                    <div id="ErpCompetency_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpCompetency_collapse" aria-expanded="true" aria-controls="ErpCompetency_collapse" style="margin-left: 10px;">ErpCompetency</a></legend>
+                    <div id="ErpCompetency_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ErpIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
@@ -3060,7 +4099,6 @@ define
                 ErpPayable: ErpPayable,
                 ErpBOM: ErpBOM,
                 ErpBankAccount: ErpBankAccount,
-                ErpAccountKind: ErpAccountKind,
                 ErpSiteLevelData: ErpSiteLevelData,
                 ErpQuote: ErpQuote,
                 ErpPurchaseOrder: ErpPurchaseOrder,
@@ -3076,19 +4114,16 @@ define
                 ErpPayableLineItem: ErpPayableLineItem,
                 ErpIdentifiedObject: ErpIdentifiedObject,
                 ErpBomItemData: ErpBomItemData,
-                BillMediaKind: BillMediaKind,
-                ErpReqLineItem: ErpReqLineItem,
                 ErpItemMaster: ErpItemMaster,
+                ErpReqLineItem: ErpReqLineItem,
                 ErpSalesOrder: ErpSalesOrder,
-                ErpInvoiceKind: ErpInvoiceKind,
+                ErpInvoice: ErpInvoice,
                 ErpIssueInventory: ErpIssueInventory,
                 ErpDocument: ErpDocument,
                 ErpLedger: ErpLedger,
                 ErpLedgerEntry: ErpLedgerEntry,
-                ErpInvoice: ErpInvoice,
                 ErpInventory: ErpInventory,
                 ErpCompetency: ErpCompetency,
-                ErpInvoiceLineItemKind: ErpInvoiceLineItemKind,
                 ErpPayment: ErpPayment,
                 ErpInvoiceLineItem: ErpInvoiceLineItem,
                 ErpLedBudLineItem: ErpLedBudLineItem,

@@ -63,17 +63,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VoltageAdjusterDynamics_collapse" aria-expanded="true" aria-controls="VoltageAdjusterDynamics_collapse">VoltageAdjusterDynamics</a>
-<div id="VoltageAdjusterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
-`
-{{#PFVArControllerType1Dynamics}}<div><b>PFVArControllerType1Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1Dynamics}}&quot;);})'>{{PFVArControllerType1Dynamics}}</a></div>{{/PFVArControllerType1Dynamics}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageAdjusterDynamics_collapse" aria-expanded="true" aria-controls="VoltageAdjusterDynamics_collapse" style="margin-left: 10px;">VoltageAdjusterDynamics</a></legend>
+                    <div id="VoltageAdjusterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+                    `
+                    {{#PFVArControllerType1Dynamics}}<div><b>PFVArControllerType1Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1Dynamics}}&quot;);})'>{{PFVArControllerType1Dynamics}}</a></div>{{/PFVArControllerType1Dynamics}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageAdjusterDynamics_collapse" aria-expanded="true" aria-controls="VoltageAdjusterDynamics_collapse" style="margin-left: 10px;">VoltageAdjusterDynamics</a></legend>
+                    <div id="VoltageAdjusterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PFVArControllerType1Dynamics'>PFVArControllerType1Dynamics: </label><div class='col-sm-8'><input id='PFVArControllerType1Dynamics' class='form-control' type='text'{{#PFVArControllerType1Dynamics}} value='{{PFVArControllerType1Dynamics}}'{{/PFVArControllerType1Dynamics}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Voltage Adjuster which is used to represent the voltage adjuster in either a power factor or var control system.
@@ -140,22 +171,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VAdjIEEE_collapse" aria-expanded="true" aria-controls="VAdjIEEE_collapse">VAdjIEEE</a>
-<div id="VAdjIEEE_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + VoltageAdjusterDynamics.prototype.template.call (this) +
-`
-{{#adjslew}}<div><b>adjslew</b>: {{adjslew}}</div>{{/adjslew}}
-{{#taoff}}<div><b>taoff</b>: {{taoff}}</div>{{/taoff}}
-{{#taon}}<div><b>taon</b>: {{taon}}</div>{{/taon}}
-{{#vadjf}}<div><b>vadjf</b>: {{vadjf}}</div>{{/vadjf}}
-{{#vadjmax}}<div><b>vadjmax</b>: {{vadjmax}}</div>{{/vadjmax}}
-{{#vadjmin}}<div><b>vadjmin</b>: {{vadjmin}}</div>{{/vadjmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VAdjIEEE_collapse" aria-expanded="true" aria-controls="VAdjIEEE_collapse" style="margin-left: 10px;">VAdjIEEE</a></legend>
+                    <div id="VAdjIEEE_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + VoltageAdjusterDynamics.prototype.template.call (this) +
+                    `
+                    {{#adjslew}}<div><b>adjslew</b>: {{adjslew}}</div>{{/adjslew}}
+                    {{#taoff}}<div><b>taoff</b>: {{taoff}}</div>{{/taoff}}
+                    {{#taon}}<div><b>taon</b>: {{taon}}</div>{{/taon}}
+                    {{#vadjf}}<div><b>vadjf</b>: {{vadjf}}</div>{{/vadjf}}
+                    {{#vadjmax}}<div><b>vadjmax</b>: {{vadjmax}}</div>{{/vadjmax}}
+                    {{#vadjmin}}<div><b>vadjmin</b>: {{vadjmin}}</div>{{/vadjmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VAdjIEEE_collapse" aria-expanded="true" aria-controls="VAdjIEEE_collapse" style="margin-left: 10px;">VAdjIEEE</a></legend>
+                    <div id="VAdjIEEE_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + VoltageAdjusterDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='adjslew'>adjslew: </label><div class='col-sm-8'><input id='adjslew' class='form-control' type='text'{{#adjslew}} value='{{adjslew}}'{{/adjslew}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='taoff'>taoff: </label><div class='col-sm-8'><input id='taoff' class='form-control' type='text'{{#taoff}} value='{{taoff}}'{{/taoff}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='taon'>taon: </label><div class='col-sm-8'><input id='taon' class='form-control' type='text'{{#taon}} value='{{taon}}'{{/taon}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vadjf'>vadjf: </label><div class='col-sm-8'><input id='vadjf' class='form-control' type='text'{{#vadjf}} value='{{vadjf}}'{{/vadjf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vadjmax'>vadjmax: </label><div class='col-sm-8'><input id='vadjmax' class='form-control' type='text'{{#vadjmax}} value='{{vadjmax}}'{{/vadjmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vadjmin'>vadjmin: </label><div class='col-sm-8'><input id='vadjmin' class='form-control' type='text'{{#vadjmin}} value='{{vadjmin}}'{{/vadjmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

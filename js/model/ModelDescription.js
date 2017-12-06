@@ -59,16 +59,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#URI_collapse" aria-expanded="true" aria-controls="URI_collapse">URI</a>
-<div id="URI_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#URI_collapse" aria-expanded="true" aria-controls="URI_collapse" style="margin-left: 10px;">URI</a></legend>
+                    <div id="URI_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#URI_collapse" aria-expanded="true" aria-controls="URI_collapse" style="margin-left: 10px;">URI</a></legend>
+                    <div id="URI_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class ModelDescriptionCIMVersion extends base.Element
         {
@@ -121,18 +151,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ModelDescriptionCIMVersion_collapse" aria-expanded="true" aria-controls="ModelDescriptionCIMVersion_collapse">ModelDescriptionCIMVersion</a>
-<div id="ModelDescriptionCIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#date}}<div><b>date</b>: {{date}}</div>{{/date}}
-{{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ModelDescriptionCIMVersion_collapse" aria-expanded="true" aria-controls="ModelDescriptionCIMVersion_collapse" style="margin-left: 10px;">ModelDescriptionCIMVersion</a></legend>
+                    <div id="ModelDescriptionCIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#date}}<div><b>date</b>: {{date}}</div>{{/date}}
+                    {{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ModelDescriptionCIMVersion_collapse" aria-expanded="true" aria-controls="ModelDescriptionCIMVersion_collapse" style="margin-left: 10px;">ModelDescriptionCIMVersion</a></legend>
+                    <div id="ModelDescriptionCIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='date'>date: </label><div class='col-sm-8'><input id='date' class='form-control' type='text'{{#date}} value='{{date}}'{{/date}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='version'>version: </label><div class='col-sm-8'><input id='version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class FullModelDocumentElement extends base.Element
         {
@@ -181,16 +243,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FullModelDocumentElement_collapse" aria-expanded="true" aria-controls="FullModelDocumentElement_collapse">FullModelDocumentElement</a>
-<div id="FullModelDocumentElement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FullModelDocumentElement_collapse" aria-expanded="true" aria-controls="FullModelDocumentElement_collapse" style="margin-left: 10px;">FullModelDocumentElement</a></legend>
+                    <div id="FullModelDocumentElement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FullModelDocumentElement_collapse" aria-expanded="true" aria-controls="FullModelDocumentElement_collapse" style="margin-left: 10px;">FullModelDocumentElement</a></legend>
+                    <div id="FullModelDocumentElement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Identity contain comon descriptive information.
@@ -249,19 +341,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Description_collapse" aria-expanded="true" aria-controls="Description_collapse">Description</a>
-<div id="Description_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
-{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
-{{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Description_collapse" aria-expanded="true" aria-controls="Description_collapse" style="margin-left: 10px;">Description</a></legend>
+                    <div id="Description_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+                    {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+                    {{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Description_collapse" aria-expanded="true" aria-controls="Description_collapse" style="margin-left: 10px;">Description</a></legend>
+                    <div id="Description_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='version'>version: </label><div class='col-sm-8'><input id='version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class Model extends base.Element
         {
@@ -322,22 +447,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Model_collapse" aria-expanded="true" aria-controls="Model_collapse">Model</a>
-<div id="Model_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#created}}<div><b>created</b>: {{created}}</div>{{/created}}
-{{#scenarioTime}}<div><b>scenarioTime</b>: {{scenarioTime}}</div>{{/scenarioTime}}
-{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
-{{#modelingAuthoritySet}}<div><b>modelingAuthoritySet</b>: {{modelingAuthoritySet}}</div>{{/modelingAuthoritySet}}
-{{#profile}}<div><b>profile</b>: {{profile}}</div>{{/profile}}
-{{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Model_collapse" aria-expanded="true" aria-controls="Model_collapse" style="margin-left: 10px;">Model</a></legend>
+                    <div id="Model_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#created}}<div><b>created</b>: {{created}}</div>{{/created}}
+                    {{#scenarioTime}}<div><b>scenarioTime</b>: {{scenarioTime}}</div>{{/scenarioTime}}
+                    {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+                    {{#modelingAuthoritySet}}<div><b>modelingAuthoritySet</b>: {{modelingAuthoritySet}}</div>{{/modelingAuthoritySet}}
+                    {{#profile}}<div><b>profile</b>: {{profile}}</div>{{/profile}}
+                    {{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Model_collapse" aria-expanded="true" aria-controls="Model_collapse" style="margin-left: 10px;">Model</a></legend>
+                    <div id="Model_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='created'>created: </label><div class='col-sm-8'><input id='created' class='form-control' type='text'{{#created}} value='{{created}}'{{/created}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scenarioTime'>scenarioTime: </label><div class='col-sm-8'><input id='scenarioTime' class='form-control' type='text'{{#scenarioTime}} value='{{scenarioTime}}'{{/scenarioTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='modelingAuthoritySet'>modelingAuthoritySet: </label><div class='col-sm-8'><input id='modelingAuthoritySet' class='form-control' type='text'{{#modelingAuthoritySet}} value='{{modelingAuthoritySet}}'{{/modelingAuthoritySet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='profile'>profile: </label><div class='col-sm-8'><input id='profile' class='form-control' type='text'{{#profile}} value='{{profile}}'{{/profile}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='version'>version: </label><div class='col-sm-8'><input id='version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class FullModel extends FullModelDocumentElement
         {
@@ -386,16 +547,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FullModel_collapse" aria-expanded="true" aria-controls="FullModel_collapse">FullModel</a>
-<div id="FullModel_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + FullModelDocumentElement.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FullModel_collapse" aria-expanded="true" aria-controls="FullModel_collapse" style="margin-left: 10px;">FullModel</a></legend>
+                    <div id="FullModel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + FullModelDocumentElement.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FullModel_collapse" aria-expanded="true" aria-controls="FullModel_collapse" style="margin-left: 10px;">FullModel</a></legend>
+                    <div id="FullModel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + FullModelDocumentElement.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class Statements extends FullModelDocumentElement
         {
@@ -444,16 +635,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Statements_collapse" aria-expanded="true" aria-controls="Statements_collapse">Statements</a>
-<div id="Statements_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + FullModelDocumentElement.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Statements_collapse" aria-expanded="true" aria-controls="Statements_collapse" style="margin-left: 10px;">Statements</a></legend>
+                    <div id="Statements_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + FullModelDocumentElement.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Statements_collapse" aria-expanded="true" aria-controls="Statements_collapse" style="margin-left: 10px;">Statements</a></legend>
+                    <div id="Statements_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + FullModelDocumentElement.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class DescriptionID extends Description
         {
@@ -504,17 +725,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DescriptionID_collapse" aria-expanded="true" aria-controls="DescriptionID_collapse">DescriptionID</a>
-<div id="DescriptionID_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Description.prototype.template.call (this) +
-`
-{{#uri}}<div><b>uri</b>: {{uri}}</div>{{/uri}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DescriptionID_collapse" aria-expanded="true" aria-controls="DescriptionID_collapse" style="margin-left: 10px;">DescriptionID</a></legend>
+                    <div id="DescriptionID_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Description.prototype.template.call (this) +
+                    `
+                    {{#uri}}<div><b>uri</b>: {{uri}}</div>{{/uri}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DescriptionID_collapse" aria-expanded="true" aria-controls="DescriptionID_collapse" style="margin-left: 10px;">DescriptionID</a></legend>
+                    <div id="DescriptionID_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Description.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uri'>uri: </label><div class='col-sm-8'><input id='uri' class='form-control' type='text'{{#uri}} value='{{uri}}'{{/uri}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class DifferenceModel extends Model
         {
@@ -567,18 +819,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DifferenceModel_collapse" aria-expanded="true" aria-controls="DifferenceModel_collapse">DifferenceModel</a>
-<div id="DifferenceModel_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Model.prototype.template.call (this) +
-`
-{{#forwardDifferences}}<div><b>forwardDifferences</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{forwardDifferences}}&quot;);})'>{{forwardDifferences}}</a></div>{{/forwardDifferences}}
-{{#reverseDifferences}}<div><b>reverseDifferences</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{reverseDifferences}}&quot;);})'>{{reverseDifferences}}</a></div>{{/reverseDifferences}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DifferenceModel_collapse" aria-expanded="true" aria-controls="DifferenceModel_collapse" style="margin-left: 10px;">DifferenceModel</a></legend>
+                    <div id="DifferenceModel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Model.prototype.template.call (this) +
+                    `
+                    {{#forwardDifferences}}<div><b>forwardDifferences</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{forwardDifferences}}&quot;);})'>{{forwardDifferences}}</a></div>{{/forwardDifferences}}
+                    {{#reverseDifferences}}<div><b>reverseDifferences</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{reverseDifferences}}&quot;);})'>{{reverseDifferences}}</a></div>{{/reverseDifferences}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DifferenceModel_collapse" aria-expanded="true" aria-controls="DifferenceModel_collapse" style="margin-left: 10px;">DifferenceModel</a></legend>
+                    <div id="DifferenceModel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Model.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='forwardDifferences'>forwardDifferences: </label><div class='col-sm-8'><input id='forwardDifferences' class='form-control' type='text'{{#forwardDifferences}} value='{{forwardDifferences}}'{{/forwardDifferences}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reverseDifferences'>reverseDifferences: </label><div class='col-sm-8'><input id='reverseDifferences' class='form-control' type='text'{{#reverseDifferences}} value='{{reverseDifferences}}'{{/reverseDifferences}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

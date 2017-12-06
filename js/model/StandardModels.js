@@ -63,17 +63,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DynamicsFunctionBlock_collapse" aria-expanded="true" aria-controls="DynamicsFunctionBlock_collapse">DynamicsFunctionBlock</a>
-<div id="DynamicsFunctionBlock_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DynamicsFunctionBlock_collapse" aria-expanded="true" aria-controls="DynamicsFunctionBlock_collapse" style="margin-left: 10px;">DynamicsFunctionBlock</a></legend>
+                    <div id="DynamicsFunctionBlock_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DynamicsFunctionBlock_collapse" aria-expanded="true" aria-controls="DynamicsFunctionBlock_collapse" style="margin-left: 10px;">DynamicsFunctionBlock</a></legend>
+                    <div id="DynamicsFunctionBlock_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='enabled'>enabled: </label><div class='col-sm-8'><input id='enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Abstract parent class for all synchronous and asynchronous machine standard models.
@@ -138,22 +169,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RotatingMachineDynamics_collapse" aria-expanded="true" aria-controls="RotatingMachineDynamics_collapse">RotatingMachineDynamics</a>
-<div id="RotatingMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DynamicsFunctionBlock.prototype.template.call (this) +
-`
-{{#damping}}<div><b>damping</b>: {{damping}}</div>{{/damping}}
-{{#inertia}}<div><b>inertia</b>: {{inertia}}</div>{{/inertia}}
-{{#saturationFactor}}<div><b>saturationFactor</b>: {{saturationFactor}}</div>{{/saturationFactor}}
-{{#saturationFactor120}}<div><b>saturationFactor120</b>: {{saturationFactor120}}</div>{{/saturationFactor120}}
-{{#statorLeakageReactance}}<div><b>statorLeakageReactance</b>: {{statorLeakageReactance}}</div>{{/statorLeakageReactance}}
-{{#statorResistance}}<div><b>statorResistance</b>: {{statorResistance}}</div>{{/statorResistance}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RotatingMachineDynamics_collapse" aria-expanded="true" aria-controls="RotatingMachineDynamics_collapse" style="margin-left: 10px;">RotatingMachineDynamics</a></legend>
+                    <div id="RotatingMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DynamicsFunctionBlock.prototype.template.call (this) +
+                    `
+                    {{#damping}}<div><b>damping</b>: {{damping}}</div>{{/damping}}
+                    {{#inertia}}<div><b>inertia</b>: {{inertia}}</div>{{/inertia}}
+                    {{#saturationFactor}}<div><b>saturationFactor</b>: {{saturationFactor}}</div>{{/saturationFactor}}
+                    {{#saturationFactor120}}<div><b>saturationFactor120</b>: {{saturationFactor120}}</div>{{/saturationFactor120}}
+                    {{#statorLeakageReactance}}<div><b>statorLeakageReactance</b>: {{statorLeakageReactance}}</div>{{/statorLeakageReactance}}
+                    {{#statorResistance}}<div><b>statorResistance</b>: {{statorResistance}}</div>{{/statorResistance}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RotatingMachineDynamics_collapse" aria-expanded="true" aria-controls="RotatingMachineDynamics_collapse" style="margin-left: 10px;">RotatingMachineDynamics</a></legend>
+                    <div id="RotatingMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DynamicsFunctionBlock.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='damping'>damping: </label><div class='col-sm-8'><input id='damping' class='form-control' type='text'{{#damping}} value='{{damping}}'{{/damping}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inertia'>inertia: </label><div class='col-sm-8'><input id='inertia' class='form-control' type='text'{{#inertia}} value='{{inertia}}'{{/inertia}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='saturationFactor'>saturationFactor: </label><div class='col-sm-8'><input id='saturationFactor' class='form-control' type='text'{{#saturationFactor}} value='{{saturationFactor}}'{{/saturationFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='saturationFactor120'>saturationFactor120: </label><div class='col-sm-8'><input id='saturationFactor120' class='form-control' type='text'{{#saturationFactor120}} value='{{saturationFactor120}}'{{/saturationFactor120}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='statorLeakageReactance'>statorLeakageReactance: </label><div class='col-sm-8'><input id='statorLeakageReactance' class='form-control' type='text'{{#statorLeakageReactance}} value='{{statorLeakageReactance}}'{{/statorLeakageReactance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='statorResistance'>statorResistance: </label><div class='col-sm-8'><input id='statorResistance' class='form-control' type='text'{{#statorResistance}} value='{{statorResistance}}'{{/statorResistance}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

@@ -63,18 +63,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MechanicalLoadDynamics_collapse" aria-expanded="true" aria-controls="MechanicalLoadDynamics_collapse">MechanicalLoadDynamics</a>
-<div id="MechanicalLoadDynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
-`
-{{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineDynamics}}&quot;);})'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
-{{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineDynamics}}&quot;);})'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MechanicalLoadDynamics_collapse" aria-expanded="true" aria-controls="MechanicalLoadDynamics_collapse" style="margin-left: 10px;">MechanicalLoadDynamics</a></legend>
+                    <div id="MechanicalLoadDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+                    `
+                    {{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineDynamics}}&quot;);})'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
+                    {{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineDynamics}}&quot;);})'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MechanicalLoadDynamics_collapse" aria-expanded="true" aria-controls="MechanicalLoadDynamics_collapse" style="margin-left: 10px;">MechanicalLoadDynamics</a></legend>
+                    <div id="MechanicalLoadDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SynchronousMachineDynamics'>SynchronousMachineDynamics: </label><div class='col-sm-8'><input id='SynchronousMachineDynamics' class='form-control' type='text'{{#SynchronousMachineDynamics}} value='{{SynchronousMachineDynamics}}'{{/SynchronousMachineDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AsynchronousMachineDynamics'>AsynchronousMachineDynamics: </label><div class='col-sm-8'><input id='AsynchronousMachineDynamics' class='form-control' type='text'{{#AsynchronousMachineDynamics}} value='{{AsynchronousMachineDynamics}}'{{/AsynchronousMachineDynamics}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Mechanical load model type 1.
@@ -135,20 +167,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MechLoad1_collapse" aria-expanded="true" aria-controls="MechLoad1_collapse">MechLoad1</a>
-<div id="MechLoad1_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + MechanicalLoadDynamics.prototype.template.call (this) +
-`
-{{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
-{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
-{{#d}}<div><b>d</b>: {{d}}</div>{{/d}}
-{{#e}}<div><b>e</b>: {{e}}</div>{{/e}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MechLoad1_collapse" aria-expanded="true" aria-controls="MechLoad1_collapse" style="margin-left: 10px;">MechLoad1</a></legend>
+                    <div id="MechLoad1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MechanicalLoadDynamics.prototype.template.call (this) +
+                    `
+                    {{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
+                    {{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+                    {{#d}}<div><b>d</b>: {{d}}</div>{{/d}}
+                    {{#e}}<div><b>e</b>: {{e}}</div>{{/e}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MechLoad1_collapse" aria-expanded="true" aria-controls="MechLoad1_collapse" style="margin-left: 10px;">MechLoad1</a></legend>
+                    <div id="MechLoad1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MechanicalLoadDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a'>a: </label><div class='col-sm-8'><input id='a' class='form-control' type='text'{{#a}} value='{{a}}'{{/a}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b'>b: </label><div class='col-sm-8'><input id='b' class='form-control' type='text'{{#b}} value='{{b}}'{{/b}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='d'>d: </label><div class='col-sm-8'><input id='d' class='form-control' type='text'{{#d}} value='{{d}}'{{/d}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='e'>e: </label><div class='col-sm-8'><input id='e' class='form-control' type='text'{{#e}} value='{{e}}'{{/e}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

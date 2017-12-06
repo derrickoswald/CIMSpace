@@ -75,22 +75,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CRRSegment_collapse" aria-expanded="true" aria-controls="CRRSegment_collapse">CRRSegment</a>
-<div id="CRRSegment_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
-{{#clearingPrice}}<div><b>clearingPrice</b>: {{clearingPrice}}</div>{{/clearingPrice}}
-{{#endDateTime}}<div><b>endDateTime</b>: {{endDateTime}}</div>{{/endDateTime}}
-{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
-{{#startDateTime}}<div><b>startDateTime</b>: {{startDateTime}}</div>{{/startDateTime}}
-{{#CRR}}<div><b>CRR</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CRR}}&quot;);})'>{{CRR}}</a></div>{{/CRR}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CRRSegment_collapse" aria-expanded="true" aria-controls="CRRSegment_collapse" style="margin-left: 10px;">CRRSegment</a></legend>
+                    <div id="CRRSegment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+                    {{#clearingPrice}}<div><b>clearingPrice</b>: {{clearingPrice}}</div>{{/clearingPrice}}
+                    {{#endDateTime}}<div><b>endDateTime</b>: {{endDateTime}}</div>{{/endDateTime}}
+                    {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+                    {{#startDateTime}}<div><b>startDateTime</b>: {{startDateTime}}</div>{{/startDateTime}}
+                    {{#CRR}}<div><b>CRR</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CRR}}&quot;);})'>{{CRR}}</a></div>{{/CRR}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CRRSegment_collapse" aria-expanded="true" aria-controls="CRRSegment_collapse" style="margin-left: 10px;">CRRSegment</a></legend>
+                    <div id="CRRSegment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='clearingPrice'>clearingPrice: </label><div class='col-sm-8'><input id='clearingPrice' class='form-control' type='text'{{#clearingPrice}} value='{{clearingPrice}}'{{/clearingPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endDateTime'>endDateTime: </label><div class='col-sm-8'><input id='endDateTime' class='form-control' type='text'{{#endDateTime}} value='{{endDateTime}}'{{/endDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startDateTime'>startDateTime: </label><div class='col-sm-8'><input id='startDateTime' class='form-control' type='text'{{#startDateTime}} value='{{startDateTime}}'{{/startDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CRR'>CRR: </label><div class='col-sm-8'><input id='CRR' class='form-control' type='text'{{#CRR}} value='{{CRR}}'{{/CRR}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Congestion Revenue Rights (CRR) class that is inherited from a Document class.
@@ -159,23 +195,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CRR_collapse" aria-expanded="true" aria-controls="CRR_collapse">CRR</a>
-<div id="CRR_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#cRRcategory}}<div><b>cRRcategory</b>: {{cRRcategory}}</div>{{/cRRcategory}}
-{{#cRRtype}}<div><b>cRRtype</b>: {{cRRtype}}</div>{{/cRRtype}}
-{{#hedgeType}}<div><b>hedgeType</b>: {{hedgeType}}</div>{{/hedgeType}}
-{{#timeOfUse}}<div><b>timeOfUse</b>: {{timeOfUse}}</div>{{/timeOfUse}}
-{{#tradeSliceID}}<div><b>tradeSliceID</b>: {{tradeSliceID}}</div>{{/tradeSliceID}}
-{{#CRRMarket}}<div><b>CRRMarket</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CRRMarket}}&quot;);})'>{{CRRMarket}}</a></div>{{/CRRMarket}}
-{{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CRR_collapse" aria-expanded="true" aria-controls="CRR_collapse" style="margin-left: 10px;">CRR</a></legend>
+                    <div id="CRR_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#cRRcategory}}<div><b>cRRcategory</b>: {{cRRcategory}}</div>{{/cRRcategory}}
+                    {{#cRRtype}}<div><b>cRRtype</b>: {{cRRtype}}</div>{{/cRRtype}}
+                    {{#hedgeType}}<div><b>hedgeType</b>: {{hedgeType}}</div>{{/hedgeType}}
+                    {{#timeOfUse}}<div><b>timeOfUse</b>: {{timeOfUse}}</div>{{/timeOfUse}}
+                    {{#tradeSliceID}}<div><b>tradeSliceID</b>: {{tradeSliceID}}</div>{{/tradeSliceID}}
+                    {{#CRRMarket}}<div><b>CRRMarket</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CRRMarket}}&quot;);})'>{{CRRMarket}}</a></div>{{/CRRMarket}}
+                    {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CRR_collapse" aria-expanded="true" aria-controls="CRR_collapse" style="margin-left: 10px;">CRR</a></legend>
+                    <div id="CRR_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cRRcategory'>cRRcategory: </label><div class='col-sm-8'><input id='cRRcategory' class='form-control' type='text'{{#cRRcategory}} value='{{cRRcategory}}'{{/cRRcategory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cRRtype'>cRRtype: </label><div class='col-sm-8'><input id='cRRtype' class='form-control' type='text'{{#cRRtype}} value='{{cRRtype}}'{{/cRRtype}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hedgeType'>hedgeType: </label><div class='col-sm-8'><input id='hedgeType' class='form-control' type='text'{{#hedgeType}} value='{{hedgeType}}'{{/hedgeType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeOfUse'>timeOfUse: </label><div class='col-sm-8'><input id='timeOfUse' class='form-control' type='text'{{#timeOfUse}} value='{{timeOfUse}}'{{/timeOfUse}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tradeSliceID'>tradeSliceID: </label><div class='col-sm-8'><input id='tradeSliceID' class='form-control' type='text'{{#tradeSliceID}} value='{{tradeSliceID}}'{{/tradeSliceID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CRRMarket'>CRRMarket: </label><div class='col-sm-8'><input id='CRRMarket' class='form-control' type='text'{{#CRRMarket}} value='{{CRRMarket}}'{{/CRRMarket}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Identifies a way in which an organisation may participate with a defined Congestion Revenue Right (CRR).
@@ -236,20 +309,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CRROrgRole_collapse" aria-expanded="true" aria-controls="CRROrgRole_collapse">CRROrgRole</a>
-<div id="CRROrgRole_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.OrganisationRole.prototype.template.call (this) +
-`
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#CRR}}<div><b>CRR</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CRR}}&quot;);})'>{{CRR}}</a></div>{{/CRR}}
-{{#MktOrganisation}}<div><b>MktOrganisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktOrganisation}}&quot;);})'>{{MktOrganisation}}</a></div>{{/MktOrganisation}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CRROrgRole_collapse" aria-expanded="true" aria-controls="CRROrgRole_collapse" style="margin-left: 10px;">CRROrgRole</a></legend>
+                    <div id="CRROrgRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#CRR}}<div><b>CRR</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CRR}}&quot;);})'>{{CRR}}</a></div>{{/CRR}}
+                    {{#MktOrganisation}}<div><b>MktOrganisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktOrganisation}}&quot;);})'>{{MktOrganisation}}</a></div>{{/MktOrganisation}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CRROrgRole_collapse" aria-expanded="true" aria-controls="CRROrgRole_collapse" style="margin-left: 10px;">CRROrgRole</a></legend>
+                    <div id="CRROrgRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><input id='kind' class='form-control' type='text'{{#kind}} value='{{kind}}'{{/kind}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CRR'>CRR: </label><div class='col-sm-8'><input id='CRR' class='form-control' type='text'{{#CRR}} value='{{CRR}}'{{/CRR}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}'{{/MktOrganisation}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

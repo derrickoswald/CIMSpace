@@ -65,17 +65,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ControlAreaOperator_collapse" aria-expanded="true" aria-controls="ControlAreaOperator_collapse">ControlAreaOperator</a>
-<div id="ControlAreaOperator_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Organisation.prototype.template.call (this) +
-`
-{{#ControlledBy}}<div><b>ControlledBy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlledBy}}&quot;);})'>{{ControlledBy}}</a></div>{{/ControlledBy}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ControlAreaOperator_collapse" aria-expanded="true" aria-controls="ControlAreaOperator_collapse" style="margin-left: 10px;">ControlAreaOperator</a></legend>
+                    <div id="ControlAreaOperator_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.template.call (this) +
+                    `
+                    {{#ControlledBy}}<div><b>ControlledBy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlledBy}}&quot;);})'>{{ControlledBy}}</a></div>{{/ControlledBy}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ControlAreaOperator_collapse" aria-expanded="true" aria-controls="ControlAreaOperator_collapse" style="margin-left: 10px;">ControlAreaOperator</a></legend>
+                    <div id="ControlAreaOperator_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ControlledBy'>ControlledBy: </label><div class='col-sm-8'><input id='ControlledBy' class='form-control' type='text'{{#ControlledBy}} value='{{ControlledBy}}'{{/ControlledBy}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Contracts for services offered commercially.
@@ -128,16 +159,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OpenAccessProduct_collapse" aria-expanded="true" aria-controls="OpenAccessProduct_collapse">OpenAccessProduct</a>
-<div id="OpenAccessProduct_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Agreement.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OpenAccessProduct_collapse" aria-expanded="true" aria-controls="OpenAccessProduct_collapse" style="margin-left: 10px;">OpenAccessProduct</a></legend>
+                    <div id="OpenAccessProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OpenAccessProduct_collapse" aria-expanded="true" aria-controls="OpenAccessProduct_collapse" style="margin-left: 10px;">OpenAccessProduct</a></legend>
+                    <div id="OpenAccessProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class TransmissionProduct extends Core.IdentifiedObject
         {
@@ -190,18 +251,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransmissionProduct_collapse" aria-expanded="true" aria-controls="TransmissionProduct_collapse">TransmissionProduct</a>
-<div id="TransmissionProduct_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#transmissionProductType}}<div><b>transmissionProductType</b>: {{transmissionProductType}}</div>{{/transmissionProductType}}
-{{#TransmissionProvider}}<div><b>TransmissionProvider</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionProvider}}&quot;);})'>{{TransmissionProvider}}</a></div>{{/TransmissionProvider}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionProduct_collapse" aria-expanded="true" aria-controls="TransmissionProduct_collapse" style="margin-left: 10px;">TransmissionProduct</a></legend>
+                    <div id="TransmissionProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#transmissionProductType}}<div><b>transmissionProductType</b>: {{transmissionProductType}}</div>{{/transmissionProductType}}
+                    {{#TransmissionProvider}}<div><b>TransmissionProvider</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionProvider}}&quot;);})'>{{TransmissionProvider}}</a></div>{{/TransmissionProvider}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionProduct_collapse" aria-expanded="true" aria-controls="TransmissionProduct_collapse" style="margin-left: 10px;">TransmissionProduct</a></legend>
+                    <div id="TransmissionProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transmissionProductType'>transmissionProductType: </label><div class='col-sm-8'><input id='transmissionProductType' class='form-control' type='text'{{#transmissionProductType}} value='{{transmissionProductType}}'{{/transmissionProductType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransmissionProvider'>TransmissionProvider: </label><div class='col-sm-8'><input id='TransmissionProvider' class='form-control' type='text'{{#TransmissionProvider}} value='{{TransmissionProvider}}'{{/TransmissionProvider}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A type of agreement that provides the default method by which interchange schedules are to be integrated to obtain hourly MWh schedules for accounting.
@@ -256,17 +349,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#IntSchedAgreement_collapse" aria-expanded="true" aria-controls="IntSchedAgreement_collapse">IntSchedAgreement</a>
-<div id="IntSchedAgreement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Agreement.prototype.template.call (this) +
-`
-{{#defaultIntegrationMethod}}<div><b>defaultIntegrationMethod</b>: {{defaultIntegrationMethod}}</div>{{/defaultIntegrationMethod}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IntSchedAgreement_collapse" aria-expanded="true" aria-controls="IntSchedAgreement_collapse" style="margin-left: 10px;">IntSchedAgreement</a></legend>
+                    <div id="IntSchedAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.template.call (this) +
+                    `
+                    {{#defaultIntegrationMethod}}<div><b>defaultIntegrationMethod</b>: {{defaultIntegrationMethod}}</div>{{/defaultIntegrationMethod}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IntSchedAgreement_collapse" aria-expanded="true" aria-controls="IntSchedAgreement_collapse" style="margin-left: 10px;">IntSchedAgreement</a></legend>
+                    <div id="IntSchedAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='defaultIntegrationMethod'>defaultIntegrationMethod: </label><div class='col-sm-8'><input id='defaultIntegrationMethod' class='form-control' type='text'{{#defaultIntegrationMethod}} value='{{defaultIntegrationMethod}}'{{/defaultIntegrationMethod}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The energy buyer in the energy marketplace.
@@ -319,16 +443,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CustomerConsumer_collapse" aria-expanded="true" aria-controls="CustomerConsumer_collapse">CustomerConsumer</a>
-<div id="CustomerConsumer_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Organisation.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerConsumer_collapse" aria-expanded="true" aria-controls="CustomerConsumer_collapse" style="margin-left: 10px;">CustomerConsumer</a></legend>
+                    <div id="CustomerConsumer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerConsumer_collapse" aria-expanded="true" aria-controls="CustomerConsumer_collapse" style="margin-left: 10px;">CustomerConsumer</a></legend>
+                    <div id="CustomerConsumer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Provider of  the transmission capacity (interconnecting wires between Generation and Consumption) required  to fulfill and Energy Transaction's energy exchange.
@@ -383,16 +537,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransmissionProvider_collapse" aria-expanded="true" aria-controls="TransmissionProvider_collapse">TransmissionProvider</a>
-<div id="TransmissionProvider_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Organisation.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionProvider_collapse" aria-expanded="true" aria-controls="TransmissionProvider_collapse" style="margin-left: 10px;">TransmissionProvider</a></legend>
+                    <div id="TransmissionProvider_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionProvider_collapse" aria-expanded="true" aria-controls="TransmissionProvider_collapse" style="margin-left: 10px;">TransmissionProvider</a></legend>
+                    <div id="TransmissionProvider_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Matches buyers and sellers, and secures transmission (and other ancillary services) needed to complete the energy transaction.
@@ -445,16 +629,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Marketer_collapse" aria-expanded="true" aria-controls="Marketer_collapse">Marketer</a>
-<div id="Marketer_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Organisation.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Marketer_collapse" aria-expanded="true" aria-controls="Marketer_collapse" style="margin-left: 10px;">Marketer</a></legend>
+                    <div id="Marketer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Marketer_collapse" aria-expanded="true" aria-controls="Marketer_collapse" style="margin-left: 10px;">Marketer</a></legend>
+                    <div id="Marketer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The energy seller in the energy marketplace.
@@ -507,16 +721,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GenerationProvider_collapse" aria-expanded="true" aria-controls="GenerationProvider_collapse">GenerationProvider</a>
-<div id="GenerationProvider_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Organisation.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenerationProvider_collapse" aria-expanded="true" aria-controls="GenerationProvider_collapse" style="margin-left: 10px;">GenerationProvider</a></legend>
+                    <div id="GenerationProvider_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenerationProvider_collapse" aria-expanded="true" aria-controls="GenerationProvider_collapse" style="margin-left: 10px;">GenerationProvider</a></legend>
+                    <div id="GenerationProvider_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

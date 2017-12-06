@@ -83,27 +83,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Document_collapse" aria-expanded="true" aria-controls="Document_collapse">Document</a>
-<div id="Document_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#authorName}}<div><b>authorName</b>: {{authorName}}</div>{{/authorName}}
-{{#createdDateTime}}<div><b>createdDateTime</b>: {{createdDateTime}}</div>{{/createdDateTime}}
-{{#docStatus}}<div><b>docStatus</b>: {{docStatus}}</div>{{/docStatus}}
-{{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
-{{#lastModifiedDateTime}}<div><b>lastModifiedDateTime</b>: {{lastModifiedDateTime}}</div>{{/lastModifiedDateTime}}
-{{#revisionNumber}}<div><b>revisionNumber</b>: {{revisionNumber}}</div>{{/revisionNumber}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#subject}}<div><b>subject</b>: {{subject}}</div>{{/subject}}
-{{#title}}<div><b>title</b>: {{title}}</div>{{/title}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-{{#comment}}<div><b>comment</b>: {{comment}}</div>{{/comment}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Document_collapse" aria-expanded="true" aria-controls="Document_collapse" style="margin-left: 10px;">Document</a></legend>
+                    <div id="Document_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#authorName}}<div><b>authorName</b>: {{authorName}}</div>{{/authorName}}
+                    {{#createdDateTime}}<div><b>createdDateTime</b>: {{createdDateTime}}</div>{{/createdDateTime}}
+                    {{#docStatus}}<div><b>docStatus</b>: {{docStatus}}</div>{{/docStatus}}
+                    {{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
+                    {{#lastModifiedDateTime}}<div><b>lastModifiedDateTime</b>: {{lastModifiedDateTime}}</div>{{/lastModifiedDateTime}}
+                    {{#revisionNumber}}<div><b>revisionNumber</b>: {{revisionNumber}}</div>{{/revisionNumber}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#subject}}<div><b>subject</b>: {{subject}}</div>{{/subject}}
+                    {{#title}}<div><b>title</b>: {{title}}</div>{{/title}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#comment}}<div><b>comment</b>: {{comment}}</div>{{/comment}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Document_collapse" aria-expanded="true" aria-controls="Document_collapse" style="margin-left: 10px;">Document</a></legend>
+                    <div id="Document_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='authorName'>authorName: </label><div class='col-sm-8'><input id='authorName' class='form-control' type='text'{{#authorName}} value='{{authorName}}'{{/authorName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='createdDateTime'>createdDateTime: </label><div class='col-sm-8'><input id='createdDateTime' class='form-control' type='text'{{#createdDateTime}} value='{{createdDateTime}}'{{/createdDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='docStatus'>docStatus: </label><div class='col-sm-8'><input id='docStatus' class='form-control' type='text'{{#docStatus}} value='{{docStatus}}'{{/docStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastModifiedDateTime'>lastModifiedDateTime: </label><div class='col-sm-8'><input id='lastModifiedDateTime' class='form-control' type='text'{{#lastModifiedDateTime}} value='{{lastModifiedDateTime}}'{{/lastModifiedDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='revisionNumber'>revisionNumber: </label><div class='col-sm-8'><input id='revisionNumber' class='form-control' type='text'{{#revisionNumber}} value='{{revisionNumber}}'{{/revisionNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='subject'>subject: </label><div class='col-sm-8'><input id='subject' class='form-control' type='text'{{#subject}} value='{{subject}}'{{/subject}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='title'>title: </label><div class='col-sm-8'><input id='title' class='form-control' type='text'{{#title}} value='{{title}}'{{/title}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='comment'>comment: </label><div class='col-sm-8'><input id='comment' class='form-control' type='text'{{#comment}} value='{{comment}}'{{/comment}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * General purpose street address information.
@@ -162,19 +203,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StreetAddress_collapse" aria-expanded="true" aria-controls="StreetAddress_collapse">StreetAddress</a>
-<div id="StreetAddress_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#streetDetail}}<div><b>streetDetail</b>: {{streetDetail}}</div>{{/streetDetail}}
-{{#townDetail}}<div><b>townDetail</b>: {{townDetail}}</div>{{/townDetail}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StreetAddress_collapse" aria-expanded="true" aria-controls="StreetAddress_collapse" style="margin-left: 10px;">StreetAddress</a></legend>
+                    <div id="StreetAddress_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#streetDetail}}<div><b>streetDetail</b>: {{streetDetail}}</div>{{/streetDetail}}
+                    {{#townDetail}}<div><b>townDetail</b>: {{townDetail}}</div>{{/townDetail}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StreetAddress_collapse" aria-expanded="true" aria-controls="StreetAddress_collapse" style="margin-left: 10px;">StreetAddress</a></legend>
+                    <div id="StreetAddress_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='streetDetail'>streetDetail: </label><div class='col-sm-8'><input id='streetDetail' class='form-control' type='text'{{#streetDetail}} value='{{streetDetail}}'{{/streetDetail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='townDetail'>townDetail: </label><div class='col-sm-8'><input id='townDetail' class='form-control' type='text'{{#townDetail}} value='{{townDetail}}'{{/townDetail}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Identifies a way in which an organisation may participate in the utility enterprise (e.g., customer, manufacturer, etc).
@@ -229,17 +303,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OrganisationRole_collapse" aria-expanded="true" aria-controls="OrganisationRole_collapse">OrganisationRole</a>
-<div id="OrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#Organisation}}<div><b>Organisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Organisation}}&quot;);})'>{{Organisation}}</a></div>{{/Organisation}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OrganisationRole_collapse" aria-expanded="true" aria-controls="OrganisationRole_collapse" style="margin-left: 10px;">OrganisationRole</a></legend>
+                    <div id="OrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#Organisation}}<div><b>Organisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Organisation}}&quot;);})'>{{Organisation}}</a></div>{{/Organisation}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OrganisationRole_collapse" aria-expanded="true" aria-controls="OrganisationRole_collapse" style="margin-left: 10px;">OrganisationRole</a></legend>
+                    <div id="OrganisationRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Organisation'>Organisation: </label><div class='col-sm-8'><input id='Organisation' class='form-control' type='text'{{#Organisation}} value='{{Organisation}}'{{/Organisation}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Electronic address information.
@@ -308,24 +413,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ElectronicAddress_collapse" aria-expanded="true" aria-controls="ElectronicAddress_collapse">ElectronicAddress</a>
-<div id="ElectronicAddress_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#email1}}<div><b>email1</b>: {{email1}}</div>{{/email1}}
-{{#email2}}<div><b>email2</b>: {{email2}}</div>{{/email2}}
-{{#lan}}<div><b>lan</b>: {{lan}}</div>{{/lan}}
-{{#mac}}<div><b>mac</b>: {{mac}}</div>{{/mac}}
-{{#password}}<div><b>password</b>: {{password}}</div>{{/password}}
-{{#radio}}<div><b>radio</b>: {{radio}}</div>{{/radio}}
-{{#userID}}<div><b>userID</b>: {{userID}}</div>{{/userID}}
-{{#web}}<div><b>web</b>: {{web}}</div>{{/web}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ElectronicAddress_collapse" aria-expanded="true" aria-controls="ElectronicAddress_collapse" style="margin-left: 10px;">ElectronicAddress</a></legend>
+                    <div id="ElectronicAddress_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#email1}}<div><b>email1</b>: {{email1}}</div>{{/email1}}
+                    {{#email2}}<div><b>email2</b>: {{email2}}</div>{{/email2}}
+                    {{#lan}}<div><b>lan</b>: {{lan}}</div>{{/lan}}
+                    {{#mac}}<div><b>mac</b>: {{mac}}</div>{{/mac}}
+                    {{#password}}<div><b>password</b>: {{password}}</div>{{/password}}
+                    {{#radio}}<div><b>radio</b>: {{radio}}</div>{{/radio}}
+                    {{#userID}}<div><b>userID</b>: {{userID}}</div>{{/userID}}
+                    {{#web}}<div><b>web</b>: {{web}}</div>{{/web}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ElectronicAddress_collapse" aria-expanded="true" aria-controls="ElectronicAddress_collapse" style="margin-left: 10px;">ElectronicAddress</a></legend>
+                    <div id="ElectronicAddress_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='email1'>email1: </label><div class='col-sm-8'><input id='email1' class='form-control' type='text'{{#email1}} value='{{email1}}'{{/email1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='email2'>email2: </label><div class='col-sm-8'><input id='email2' class='form-control' type='text'{{#email2}} value='{{email2}}'{{/email2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lan'>lan: </label><div class='col-sm-8'><input id='lan' class='form-control' type='text'{{#lan}} value='{{lan}}'{{/lan}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mac'>mac: </label><div class='col-sm-8'><input id='mac' class='form-control' type='text'{{#mac}} value='{{mac}}'{{/mac}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='password'>password: </label><div class='col-sm-8'><input id='password' class='form-control' type='text'{{#password}} value='{{password}}'{{/password}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='radio'>radio: </label><div class='col-sm-8'><input id='radio' class='form-control' type='text'{{#radio}} value='{{radio}}'{{/radio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='userID'>userID: </label><div class='col-sm-8'><input id='userID' class='form-control' type='text'{{#userID}} value='{{userID}}'{{/userID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='web'>web: </label><div class='col-sm-8'><input id='web' class='form-control' type='text'{{#web}} value='{{web}}'{{/web}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Group of people with specific skills, tools, and vehicles.
@@ -382,18 +525,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Crew_collapse" aria-expanded="true" aria-controls="Crew_collapse">Crew</a>
-<div id="Crew_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#CrewType}}<div><b>CrewType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CrewType}}&quot;);})'>{{CrewType}}</a></div>{{/CrewType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Crew_collapse" aria-expanded="true" aria-controls="Crew_collapse" style="margin-left: 10px;">Crew</a></legend>
+                    <div id="Crew_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#CrewType}}<div><b>CrewType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CrewType}}&quot;);})'>{{CrewType}}</a></div>{{/CrewType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Crew_collapse" aria-expanded="true" aria-controls="Crew_collapse" style="margin-left: 10px;">Crew</a></legend>
+                    <div id="Crew_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CrewType'>CrewType: </label><div class='col-sm-8'><input id='CrewType' class='form-control' type='text'{{#CrewType}} value='{{CrewType}}'{{/CrewType}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An event to trigger one or more activities, such as reading a meter, recalculating a bill, requesting work, when generating units must be scheduled for maintenance, when a transformer is scheduled to be refurbished, etc.
@@ -454,20 +629,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ScheduledEvent_collapse" aria-expanded="true" aria-controls="ScheduledEvent_collapse">ScheduledEvent</a>
-<div id="ScheduledEvent_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-{{#ScheduledEventData}}<div><b>ScheduledEventData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ScheduledEventData}}&quot;);})'>{{ScheduledEventData}}</a></div>{{/ScheduledEventData}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledEvent_collapse" aria-expanded="true" aria-controls="ScheduledEvent_collapse" style="margin-left: 10px;">ScheduledEvent</a></legend>
+                    <div id="ScheduledEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#ScheduledEventData}}<div><b>ScheduledEventData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ScheduledEventData}}&quot;);})'>{{ScheduledEventData}}</a></div>{{/ScheduledEventData}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledEvent_collapse" aria-expanded="true" aria-controls="ScheduledEvent_collapse" style="margin-left: 10px;">ScheduledEvent</a></legend>
+                    <div id="ScheduledEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='duration'>duration: </label><div class='col-sm-8'><input id='duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ScheduledEventData'>ScheduledEventData: </label><div class='col-sm-8'><input id='ScheduledEventData' class='form-control' type='text'{{#ScheduledEventData}} value='{{ScheduledEventData}}'{{/ScheduledEventData}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Priority definition.
@@ -526,19 +735,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Priority_collapse" aria-expanded="true" aria-controls="Priority_collapse">Priority</a>
-<div id="Priority_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#justification}}<div><b>justification</b>: {{justification}}</div>{{/justification}}
-{{#rank}}<div><b>rank</b>: {{rank}}</div>{{/rank}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Priority_collapse" aria-expanded="true" aria-controls="Priority_collapse" style="margin-left: 10px;">Priority</a></legend>
+                    <div id="Priority_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#justification}}<div><b>justification</b>: {{justification}}</div>{{/justification}}
+                    {{#rank}}<div><b>rank</b>: {{rank}}</div>{{/rank}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Priority_collapse" aria-expanded="true" aria-controls="Priority_collapse" style="margin-left: 10px;">Priority</a></legend>
+                    <div id="Priority_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='justification'>justification: </label><div class='col-sm-8'><input id='justification' class='form-control' type='text'{{#justification}} value='{{justification}}'{{/justification}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rank'>rank: </label><div class='col-sm-8'><input id='rank' class='form-control' type='text'{{#rank}} value='{{rank}}'{{/rank}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A point in time within a sequence of points in time relative to a time schedule.
@@ -603,22 +845,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TimePoint_collapse" aria-expanded="true" aria-controls="TimePoint_collapse">TimePoint</a>
-<div id="TimePoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
-{{#relativeTimeInterval}}<div><b>relativeTimeInterval</b>: {{relativeTimeInterval}}</div>{{/relativeTimeInterval}}
-{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#window}}<div><b>window</b>: {{window}}</div>{{/window}}
-{{#TimeSchedule}}<div><b>TimeSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TimeSchedule}}&quot;);})'>{{TimeSchedule}}</a></div>{{/TimeSchedule}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TimePoint_collapse" aria-expanded="true" aria-controls="TimePoint_collapse" style="margin-left: 10px;">TimePoint</a></legend>
+                    <div id="TimePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
+                    {{#relativeTimeInterval}}<div><b>relativeTimeInterval</b>: {{relativeTimeInterval}}</div>{{/relativeTimeInterval}}
+                    {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#window}}<div><b>window</b>: {{window}}</div>{{/window}}
+                    {{#TimeSchedule}}<div><b>TimeSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TimeSchedule}}&quot;);})'>{{TimeSchedule}}</a></div>{{/TimeSchedule}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TimePoint_collapse" aria-expanded="true" aria-controls="TimePoint_collapse" style="margin-left: 10px;">TimePoint</a></legend>
+                    <div id="TimePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dateTime'>dateTime: </label><div class='col-sm-8'><input id='dateTime' class='form-control' type='text'{{#dateTime}} value='{{dateTime}}'{{/dateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='relativeTimeInterval'>relativeTimeInterval: </label><div class='col-sm-8'><input id='relativeTimeInterval' class='form-control' type='text'{{#relativeTimeInterval}} value='{{relativeTimeInterval}}'{{/relativeTimeInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='window'>window: </label><div class='col-sm-8'><input id='window' class='form-control' type='text'{{#window}} value='{{window}}'{{/window}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSchedule'>TimeSchedule: </label><div class='col-sm-8'><input id='TimeSchedule' class='form-control' type='text'{{#TimeSchedule}} value='{{TimeSchedule}}'{{/TimeSchedule}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Records activity for an entity at a point in time; activity may be for an event that has already occurred or for a planned activity.
@@ -681,21 +959,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ActivityRecord_collapse" aria-expanded="true" aria-controls="ActivityRecord_collapse">ActivityRecord</a>
-<div id="ActivityRecord_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#createdDateTime}}<div><b>createdDateTime</b>: {{createdDateTime}}</div>{{/createdDateTime}}
-{{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
-{{#severity}}<div><b>severity</b>: {{severity}}</div>{{/severity}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivityRecord_collapse" aria-expanded="true" aria-controls="ActivityRecord_collapse" style="margin-left: 10px;">ActivityRecord</a></legend>
+                    <div id="ActivityRecord_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#createdDateTime}}<div><b>createdDateTime</b>: {{createdDateTime}}</div>{{/createdDateTime}}
+                    {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
+                    {{#severity}}<div><b>severity</b>: {{severity}}</div>{{/severity}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivityRecord_collapse" aria-expanded="true" aria-controls="ActivityRecord_collapse" style="margin-left: 10px;">ActivityRecord</a></legend>
+                    <div id="ActivityRecord_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='createdDateTime'>createdDateTime: </label><div class='col-sm-8'><input id='createdDateTime' class='form-control' type='text'{{#createdDateTime}} value='{{createdDateTime}}'{{/createdDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reason'>reason: </label><div class='col-sm-8'><input id='reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='severity'>severity: </label><div class='col-sm-8'><input id='severity' class='form-control' type='text'{{#severity}} value='{{severity}}'{{/severity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * General purpose postal address information.
@@ -756,20 +1069,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PostalAddress_collapse" aria-expanded="true" aria-controls="PostalAddress_collapse">PostalAddress</a>
-<div id="PostalAddress_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#poBox}}<div><b>poBox</b>: {{poBox}}</div>{{/poBox}}
-{{#postalCode}}<div><b>postalCode</b>: {{postalCode}}</div>{{/postalCode}}
-{{#streetDetail}}<div><b>streetDetail</b>: {{streetDetail}}</div>{{/streetDetail}}
-{{#townDetail}}<div><b>townDetail</b>: {{townDetail}}</div>{{/townDetail}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PostalAddress_collapse" aria-expanded="true" aria-controls="PostalAddress_collapse" style="margin-left: 10px;">PostalAddress</a></legend>
+                    <div id="PostalAddress_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#poBox}}<div><b>poBox</b>: {{poBox}}</div>{{/poBox}}
+                    {{#postalCode}}<div><b>postalCode</b>: {{postalCode}}</div>{{/postalCode}}
+                    {{#streetDetail}}<div><b>streetDetail</b>: {{streetDetail}}</div>{{/streetDetail}}
+                    {{#townDetail}}<div><b>townDetail</b>: {{townDetail}}</div>{{/townDetail}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PostalAddress_collapse" aria-expanded="true" aria-controls="PostalAddress_collapse" style="margin-left: 10px;">PostalAddress</a></legend>
+                    <div id="PostalAddress_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='poBox'>poBox: </label><div class='col-sm-8'><input id='poBox' class='form-control' type='text'{{#poBox}} value='{{poBox}}'{{/poBox}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='postalCode'>postalCode: </label><div class='col-sm-8'><input id='postalCode' class='form-control' type='text'{{#postalCode}} value='{{postalCode}}'{{/postalCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='streetDetail'>streetDetail: </label><div class='col-sm-8'><input id='streetDetail' class='form-control' type='text'{{#streetDetail}} value='{{streetDetail}}'{{/streetDetail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='townDetail'>townDetail: </label><div class='col-sm-8'><input id='townDetail' class='form-control' type='text'{{#townDetail}} value='{{townDetail}}'{{/townDetail}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class PersonRole extends Core.IdentifiedObject
         {
@@ -820,17 +1167,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PersonRole_collapse" aria-expanded="true" aria-controls="PersonRole_collapse">PersonRole</a>
-<div id="PersonRole_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#Person}}<div><b>Person</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Person}}&quot;);})'>{{Person}}</a></div>{{/Person}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PersonRole_collapse" aria-expanded="true" aria-controls="PersonRole_collapse" style="margin-left: 10px;">PersonRole</a></legend>
+                    <div id="PersonRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#Person}}<div><b>Person</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Person}}&quot;);})'>{{Person}}</a></div>{{/Person}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PersonRole_collapse" aria-expanded="true" aria-controls="PersonRole_collapse" style="margin-left: 10px;">PersonRole</a></legend>
+                    <div id="PersonRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Person'>Person: </label><div class='col-sm-8'><input id='Person' class='form-control' type='text'{{#Person}} value='{{Person}}'{{/Person}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Coordinate reference system.
@@ -885,17 +1263,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CoordinateSystem_collapse" aria-expanded="true" aria-controls="CoordinateSystem_collapse">CoordinateSystem</a>
-<div id="CoordinateSystem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#crsUrn}}<div><b>crsUrn</b>: {{crsUrn}}</div>{{/crsUrn}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CoordinateSystem_collapse" aria-expanded="true" aria-controls="CoordinateSystem_collapse" style="margin-left: 10px;">CoordinateSystem</a></legend>
+                    <div id="CoordinateSystem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#crsUrn}}<div><b>crsUrn</b>: {{crsUrn}}</div>{{/crsUrn}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CoordinateSystem_collapse" aria-expanded="true" aria-controls="CoordinateSystem_collapse" style="margin-left: 10px;">CoordinateSystem</a></legend>
+                    <div id="CoordinateSystem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='crsUrn'>crsUrn: </label><div class='col-sm-8'><input id='crsUrn' class='form-control' type='text'{{#crsUrn}} value='{{crsUrn}}'{{/crsUrn}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An object or a condition that is a danger for causing loss or perils to an asset and/or people.
@@ -952,18 +1361,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Hazard_collapse" aria-expanded="true" aria-controls="Hazard_collapse">Hazard</a>
-<div id="Hazard_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Hazard_collapse" aria-expanded="true" aria-controls="Hazard_collapse" style="margin-left: 10px;">Hazard</a></legend>
+                    <div id="Hazard_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Hazard_collapse" aria-expanded="true" aria-controls="Hazard_collapse" style="margin-left: 10px;">Hazard</a></legend>
+                    <div id="Hazard_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Town details, in the context of address.
@@ -1026,21 +1467,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TownDetail_collapse" aria-expanded="true" aria-controls="TownDetail_collapse">TownDetail</a>
-<div id="TownDetail_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
-{{#country}}<div><b>country</b>: {{country}}</div>{{/country}}
-{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
-{{#section}}<div><b>section</b>: {{section}}</div>{{/section}}
-{{#stateOrProvince}}<div><b>stateOrProvince</b>: {{stateOrProvince}}</div>{{/stateOrProvince}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TownDetail_collapse" aria-expanded="true" aria-controls="TownDetail_collapse" style="margin-left: 10px;">TownDetail</a></legend>
+                    <div id="TownDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+                    {{#country}}<div><b>country</b>: {{country}}</div>{{/country}}
+                    {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+                    {{#section}}<div><b>section</b>: {{section}}</div>{{/section}}
+                    {{#stateOrProvince}}<div><b>stateOrProvince</b>: {{stateOrProvince}}</div>{{/stateOrProvince}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TownDetail_collapse" aria-expanded="true" aria-controls="TownDetail_collapse" style="margin-left: 10px;">TownDetail</a></legend>
+                    <div id="TownDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='code'>code: </label><div class='col-sm-8'><input id='code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='country'>country: </label><div class='col-sm-8'><input id='country' class='form-control' type='text'{{#country}} value='{{country}}'{{/country}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='section'>section: </label><div class='col-sm-8'><input id='section' class='form-control' type='text'{{#section}} value='{{section}}'{{/section}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stateOrProvince'>stateOrProvince: </label><div class='col-sm-8'><input id='stateOrProvince' class='form-control' type='text'{{#stateOrProvince}} value='{{stateOrProvince}}'{{/stateOrProvince}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Organisation that might have roles as utility, contractor, supplier, manufacturer, customer, etc.
@@ -1103,21 +1579,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Organisation_collapse" aria-expanded="true" aria-controls="Organisation_collapse">Organisation</a>
-<div id="Organisation_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
-{{#phone1}}<div><b>phone1</b>: {{phone1}}</div>{{/phone1}}
-{{#phone2}}<div><b>phone2</b>: {{phone2}}</div>{{/phone2}}
-{{#postalAddress}}<div><b>postalAddress</b>: {{postalAddress}}</div>{{/postalAddress}}
-{{#streetAddress}}<div><b>streetAddress</b>: {{streetAddress}}</div>{{/streetAddress}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Organisation_collapse" aria-expanded="true" aria-controls="Organisation_collapse" style="margin-left: 10px;">Organisation</a></legend>
+                    <div id="Organisation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
+                    {{#phone1}}<div><b>phone1</b>: {{phone1}}</div>{{/phone1}}
+                    {{#phone2}}<div><b>phone2</b>: {{phone2}}</div>{{/phone2}}
+                    {{#postalAddress}}<div><b>postalAddress</b>: {{postalAddress}}</div>{{/postalAddress}}
+                    {{#streetAddress}}<div><b>streetAddress</b>: {{streetAddress}}</div>{{/streetAddress}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Organisation_collapse" aria-expanded="true" aria-controls="Organisation_collapse" style="margin-left: 10px;">Organisation</a></legend>
+                    <div id="Organisation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phone1'>phone1: </label><div class='col-sm-8'><input id='phone1' class='form-control' type='text'{{#phone1}} value='{{phone1}}'{{/phone1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phone2'>phone2: </label><div class='col-sm-8'><input id='phone2' class='form-control' type='text'{{#phone2}} value='{{phone2}}'{{/phone2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='postalAddress'>postalAddress: </label><div class='col-sm-8'><input id='postalAddress' class='form-control' type='text'{{#postalAddress}} value='{{postalAddress}}'{{/postalAddress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='streetAddress'>streetAddress: </label><div class='col-sm-8'><input id='streetAddress' class='form-control' type='text'{{#streetAddress}} value='{{streetAddress}}'{{/streetAddress}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Custom description of the type of crew.
@@ -1172,16 +1683,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CrewType_collapse" aria-expanded="true" aria-controls="CrewType_collapse">CrewType</a>
-<div id="CrewType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CrewType_collapse" aria-expanded="true" aria-controls="CrewType_collapse" style="margin-left: 10px;">CrewType</a></legend>
+                    <div id="CrewType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CrewType_collapse" aria-expanded="true" aria-controls="CrewType_collapse" style="margin-left: 10px;">CrewType</a></legend>
+                    <div id="CrewType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The place, scene, or point of something where someone or something has been, is, and/or will be at a given moment in time.
@@ -1256,26 +1797,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Location_collapse" aria-expanded="true" aria-controls="Location_collapse">Location</a>
-<div id="Location_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
-{{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
-{{#geoInfoReference}}<div><b>geoInfoReference</b>: {{geoInfoReference}}</div>{{/geoInfoReference}}
-{{#mainAddress}}<div><b>mainAddress</b>: {{mainAddress}}</div>{{/mainAddress}}
-{{#phone1}}<div><b>phone1</b>: {{phone1}}</div>{{/phone1}}
-{{#phone2}}<div><b>phone2</b>: {{phone2}}</div>{{/phone2}}
-{{#secondaryAddress}}<div><b>secondaryAddress</b>: {{secondaryAddress}}</div>{{/secondaryAddress}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-{{#CoordinateSystem}}<div><b>CoordinateSystem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CoordinateSystem}}&quot;);})'>{{CoordinateSystem}}</a></div>{{/CoordinateSystem}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Location_collapse" aria-expanded="true" aria-controls="Location_collapse" style="margin-left: 10px;">Location</a></legend>
+                    <div id="Location_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
+                    {{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
+                    {{#geoInfoReference}}<div><b>geoInfoReference</b>: {{geoInfoReference}}</div>{{/geoInfoReference}}
+                    {{#mainAddress}}<div><b>mainAddress</b>: {{mainAddress}}</div>{{/mainAddress}}
+                    {{#phone1}}<div><b>phone1</b>: {{phone1}}</div>{{/phone1}}
+                    {{#phone2}}<div><b>phone2</b>: {{phone2}}</div>{{/phone2}}
+                    {{#secondaryAddress}}<div><b>secondaryAddress</b>: {{secondaryAddress}}</div>{{/secondaryAddress}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#CoordinateSystem}}<div><b>CoordinateSystem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CoordinateSystem}}&quot;);})'>{{CoordinateSystem}}</a></div>{{/CoordinateSystem}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Location_collapse" aria-expanded="true" aria-controls="Location_collapse" style="margin-left: 10px;">Location</a></legend>
+                    <div id="Location_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='direction'>direction: </label><div class='col-sm-8'><input id='direction' class='form-control' type='text'{{#direction}} value='{{direction}}'{{/direction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='geoInfoReference'>geoInfoReference: </label><div class='col-sm-8'><input id='geoInfoReference' class='form-control' type='text'{{#geoInfoReference}} value='{{geoInfoReference}}'{{/geoInfoReference}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mainAddress'>mainAddress: </label><div class='col-sm-8'><input id='mainAddress' class='form-control' type='text'{{#mainAddress}} value='{{mainAddress}}'{{/mainAddress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phone1'>phone1: </label><div class='col-sm-8'><input id='phone1' class='form-control' type='text'{{#phone1}} value='{{phone1}}'{{/phone1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phone2'>phone2: </label><div class='col-sm-8'><input id='phone2' class='form-control' type='text'{{#phone2}} value='{{phone2}}'{{/phone2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='secondaryAddress'>secondaryAddress: </label><div class='col-sm-8'><input id='secondaryAddress' class='form-control' type='text'{{#secondaryAddress}} value='{{secondaryAddress}}'{{/secondaryAddress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CoordinateSystem'>CoordinateSystem: </label><div class='col-sm-8'><input id='CoordinateSystem' class='form-control' type='text'{{#CoordinateSystem}} value='{{CoordinateSystem}}'{{/CoordinateSystem}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Ownership of e.g. asset.
@@ -1334,19 +1915,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Ownership_collapse" aria-expanded="true" aria-controls="Ownership_collapse">Ownership</a>
-<div id="Ownership_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#share}}<div><b>share</b>: {{share}}</div>{{/share}}
-{{#AssetOwner}}<div><b>AssetOwner</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetOwner}}&quot;);})'>{{AssetOwner}}</a></div>{{/AssetOwner}}
-{{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Ownership_collapse" aria-expanded="true" aria-controls="Ownership_collapse" style="margin-left: 10px;">Ownership</a></legend>
+                    <div id="Ownership_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#share}}<div><b>share</b>: {{share}}</div>{{/share}}
+                    {{#AssetOwner}}<div><b>AssetOwner</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetOwner}}&quot;);})'>{{AssetOwner}}</a></div>{{/AssetOwner}}
+                    {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Ownership_collapse" aria-expanded="true" aria-controls="Ownership_collapse" style="margin-left: 10px;">Ownership</a></legend>
+                    <div id="Ownership_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='share'>share: </label><div class='col-sm-8'><input id='share' class='form-control' type='text'{{#share}} value='{{share}}'{{/share}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetOwner'>AssetOwner: </label><div class='col-sm-8'><input id='AssetOwner' class='form-control' type='text'{{#AssetOwner}} value='{{AssetOwner}}'{{/AssetOwner}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Asset'>Asset: </label><div class='col-sm-8'><input id='Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Telephone number.
@@ -1409,21 +2023,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TelephoneNumber_collapse" aria-expanded="true" aria-controls="TelephoneNumber_collapse">TelephoneNumber</a>
-<div id="TelephoneNumber_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#areaCode}}<div><b>areaCode</b>: {{areaCode}}</div>{{/areaCode}}
-{{#cityCode}}<div><b>cityCode</b>: {{cityCode}}</div>{{/cityCode}}
-{{#countryCode}}<div><b>countryCode</b>: {{countryCode}}</div>{{/countryCode}}
-{{#extension}}<div><b>extension</b>: {{extension}}</div>{{/extension}}
-{{#localNumber}}<div><b>localNumber</b>: {{localNumber}}</div>{{/localNumber}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TelephoneNumber_collapse" aria-expanded="true" aria-controls="TelephoneNumber_collapse" style="margin-left: 10px;">TelephoneNumber</a></legend>
+                    <div id="TelephoneNumber_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#areaCode}}<div><b>areaCode</b>: {{areaCode}}</div>{{/areaCode}}
+                    {{#cityCode}}<div><b>cityCode</b>: {{cityCode}}</div>{{/cityCode}}
+                    {{#countryCode}}<div><b>countryCode</b>: {{countryCode}}</div>{{/countryCode}}
+                    {{#extension}}<div><b>extension</b>: {{extension}}</div>{{/extension}}
+                    {{#localNumber}}<div><b>localNumber</b>: {{localNumber}}</div>{{/localNumber}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TelephoneNumber_collapse" aria-expanded="true" aria-controls="TelephoneNumber_collapse" style="margin-left: 10px;">TelephoneNumber</a></legend>
+                    <div id="TelephoneNumber_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='areaCode'>areaCode: </label><div class='col-sm-8'><input id='areaCode' class='form-control' type='text'{{#areaCode}} value='{{areaCode}}'{{/areaCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cityCode'>cityCode: </label><div class='col-sm-8'><input id='cityCode' class='form-control' type='text'{{#cityCode}} value='{{cityCode}}'{{/cityCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='countryCode'>countryCode: </label><div class='col-sm-8'><input id='countryCode' class='form-control' type='text'{{#countryCode}} value='{{countryCode}}'{{/countryCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='extension'>extension: </label><div class='col-sm-8'><input id='extension' class='form-control' type='text'{{#extension}} value='{{extension}}'{{/extension}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='localNumber'>localNumber: </label><div class='col-sm-8'><input id='localNumber' class='form-control' type='text'{{#localNumber}} value='{{localNumber}}'{{/localNumber}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Set of spatial coordinates that determine a point, defined in the coordinate system specified in 'Location.
@@ -1488,21 +2137,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PositionPoint_collapse" aria-expanded="true" aria-controls="PositionPoint_collapse">PositionPoint</a>
-<div id="PositionPoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-{{#xPosition}}<div><b>xPosition</b>: {{xPosition}}</div>{{/xPosition}}
-{{#yPosition}}<div><b>yPosition</b>: {{yPosition}}</div>{{/yPosition}}
-{{#zPosition}}<div><b>zPosition</b>: {{zPosition}}</div>{{/zPosition}}
-{{#Location}}<div><b>Location</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Location}}&quot;);})'>{{Location}}</a></div>{{/Location}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PositionPoint_collapse" aria-expanded="true" aria-controls="PositionPoint_collapse" style="margin-left: 10px;">PositionPoint</a></legend>
+                    <div id="PositionPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+                    {{#xPosition}}<div><b>xPosition</b>: {{xPosition}}</div>{{/xPosition}}
+                    {{#yPosition}}<div><b>yPosition</b>: {{yPosition}}</div>{{/yPosition}}
+                    {{#zPosition}}<div><b>zPosition</b>: {{zPosition}}</div>{{/zPosition}}
+                    {{#Location}}<div><b>Location</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Location}}&quot;);})'>{{Location}}</a></div>{{/Location}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PositionPoint_collapse" aria-expanded="true" aria-controls="PositionPoint_collapse" style="margin-left: 10px;">PositionPoint</a></legend>
+                    <div id="PositionPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xPosition'>xPosition: </label><div class='col-sm-8'><input id='xPosition' class='form-control' type='text'{{#xPosition}} value='{{xPosition}}'{{/xPosition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='yPosition'>yPosition: </label><div class='col-sm-8'><input id='yPosition' class='form-control' type='text'{{#yPosition}} value='{{yPosition}}'{{/yPosition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zPosition'>zPosition: </label><div class='col-sm-8'><input id='zPosition' class='form-control' type='text'{{#zPosition}} value='{{zPosition}}'{{/zPosition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Location'>Location: </label><div class='col-sm-8'><input id='Location' class='form-control' type='text'{{#Location}} value='{{Location}}'{{/Location}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Generic name-value pair class, with optional sequence number and units for value; can be used to model parts of information exchange when concrete types are not known in advance.
@@ -1567,22 +2251,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#UserAttribute_collapse" aria-expanded="true" aria-controls="UserAttribute_collapse">UserAttribute</a>
-<div id="UserAttribute_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
-{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#Transaction}}<div><b>Transaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Transaction}}&quot;);})'>{{Transaction}}</a></div>{{/Transaction}}
-{{#RatingSpecification}}<div><b>RatingSpecification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RatingSpecification}}&quot;);})'>{{RatingSpecification}}</a></div>{{/RatingSpecification}}
-{{#PropertySpecification}}<div><b>PropertySpecification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PropertySpecification}}&quot;);})'>{{PropertySpecification}}</a></div>{{/PropertySpecification}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UserAttribute_collapse" aria-expanded="true" aria-controls="UserAttribute_collapse" style="margin-left: 10px;">UserAttribute</a></legend>
+                    <div id="UserAttribute_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+                    {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#Transaction}}<div><b>Transaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Transaction}}&quot;);})'>{{Transaction}}</a></div>{{/Transaction}}
+                    {{#RatingSpecification}}<div><b>RatingSpecification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RatingSpecification}}&quot;);})'>{{RatingSpecification}}</a></div>{{/RatingSpecification}}
+                    {{#PropertySpecification}}<div><b>PropertySpecification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PropertySpecification}}&quot;);})'>{{PropertySpecification}}</a></div>{{/PropertySpecification}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UserAttribute_collapse" aria-expanded="true" aria-controls="UserAttribute_collapse" style="margin-left: 10px;">UserAttribute</a></legend>
+                    <div id="UserAttribute_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Transaction'>Transaction: </label><div class='col-sm-8'><input id='Transaction' class='form-control' type='text'{{#Transaction}} value='{{Transaction}}'{{/Transaction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RatingSpecification'>RatingSpecification: </label><div class='col-sm-8'><input id='RatingSpecification' class='form-control' type='text'{{#RatingSpecification}} value='{{RatingSpecification}}'{{/RatingSpecification}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PropertySpecification'>PropertySpecification: </label><div class='col-sm-8'><input id='PropertySpecification' class='form-control' type='text'{{#PropertySpecification}} value='{{PropertySpecification}}'{{/PropertySpecification}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Schedule parameters for an activity that is to occur, is occurring, or has completed.
@@ -1643,20 +2363,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ScheduledEventData_collapse" aria-expanded="true" aria-controls="ScheduledEventData_collapse">ScheduledEventData</a>
-<div id="ScheduledEventData_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#estimatedWindow}}<div><b>estimatedWindow</b>: {{estimatedWindow}}</div>{{/estimatedWindow}}
-{{#requestedWindow}}<div><b>requestedWindow</b>: {{requestedWindow}}</div>{{/requestedWindow}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#InspectionDataSet}}<div><b>InspectionDataSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InspectionDataSet}}&quot;);})'>{{InspectionDataSet}}</a></div>{{/InspectionDataSet}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledEventData_collapse" aria-expanded="true" aria-controls="ScheduledEventData_collapse" style="margin-left: 10px;">ScheduledEventData</a></legend>
+                    <div id="ScheduledEventData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#estimatedWindow}}<div><b>estimatedWindow</b>: {{estimatedWindow}}</div>{{/estimatedWindow}}
+                    {{#requestedWindow}}<div><b>requestedWindow</b>: {{requestedWindow}}</div>{{/requestedWindow}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#InspectionDataSet}}<div><b>InspectionDataSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InspectionDataSet}}&quot;);})'>{{InspectionDataSet}}</a></div>{{/InspectionDataSet}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledEventData_collapse" aria-expanded="true" aria-controls="ScheduledEventData_collapse" style="margin-left: 10px;">ScheduledEventData</a></legend>
+                    <div id="ScheduledEventData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='estimatedWindow'>estimatedWindow: </label><div class='col-sm-8'><input id='estimatedWindow' class='form-control' type='text'{{#estimatedWindow}} value='{{estimatedWindow}}'{{/estimatedWindow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='requestedWindow'>requestedWindow: </label><div class='col-sm-8'><input id='requestedWindow' class='form-control' type='text'{{#requestedWindow}} value='{{requestedWindow}}'{{/requestedWindow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InspectionDataSet'>InspectionDataSet: </label><div class='col-sm-8'><input id='InspectionDataSet' class='form-control' type='text'{{#InspectionDataSet}} value='{{InspectionDataSet}}'{{/InspectionDataSet}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Current status information relevant to an entity.
@@ -1717,20 +2471,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Status_collapse" aria-expanded="true" aria-controls="Status_collapse">Status</a>
-<div id="Status_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
-{{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
-{{#remark}}<div><b>remark</b>: {{remark}}</div>{{/remark}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Status_collapse" aria-expanded="true" aria-controls="Status_collapse" style="margin-left: 10px;">Status</a></legend>
+                    <div id="Status_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
+                    {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
+                    {{#remark}}<div><b>remark</b>: {{remark}}</div>{{/remark}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Status_collapse" aria-expanded="true" aria-controls="Status_collapse" style="margin-left: 10px;">Status</a></legend>
+                    <div id="Status_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dateTime'>dateTime: </label><div class='col-sm-8'><input id='dateTime' class='form-control' type='text'{{#dateTime}} value='{{dateTime}}'{{/dateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reason'>reason: </label><div class='col-sm-8'><input id='reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='remark'>remark: </label><div class='col-sm-8'><input id='remark' class='form-control' type='text'{{#remark}} value='{{remark}}'{{/remark}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * General purpose information for name and other information to contact people.
@@ -1801,25 +2589,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Person_collapse" aria-expanded="true" aria-controls="Person_collapse">Person</a>
-<div id="Person_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
-{{#firstName}}<div><b>firstName</b>: {{firstName}}</div>{{/firstName}}
-{{#landlinePhone}}<div><b>landlinePhone</b>: {{landlinePhone}}</div>{{/landlinePhone}}
-{{#lastName}}<div><b>lastName</b>: {{lastName}}</div>{{/lastName}}
-{{#mName}}<div><b>mName</b>: {{mName}}</div>{{/mName}}
-{{#mobilePhone}}<div><b>mobilePhone</b>: {{mobilePhone}}</div>{{/mobilePhone}}
-{{#prefix}}<div><b>prefix</b>: {{prefix}}</div>{{/prefix}}
-{{#specialNeed}}<div><b>specialNeed</b>: {{specialNeed}}</div>{{/specialNeed}}
-{{#suffix}}<div><b>suffix</b>: {{suffix}}</div>{{/suffix}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Person_collapse" aria-expanded="true" aria-controls="Person_collapse" style="margin-left: 10px;">Person</a></legend>
+                    <div id="Person_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
+                    {{#firstName}}<div><b>firstName</b>: {{firstName}}</div>{{/firstName}}
+                    {{#landlinePhone}}<div><b>landlinePhone</b>: {{landlinePhone}}</div>{{/landlinePhone}}
+                    {{#lastName}}<div><b>lastName</b>: {{lastName}}</div>{{/lastName}}
+                    {{#mName}}<div><b>mName</b>: {{mName}}</div>{{/mName}}
+                    {{#mobilePhone}}<div><b>mobilePhone</b>: {{mobilePhone}}</div>{{/mobilePhone}}
+                    {{#prefix}}<div><b>prefix</b>: {{prefix}}</div>{{/prefix}}
+                    {{#specialNeed}}<div><b>specialNeed</b>: {{specialNeed}}</div>{{/specialNeed}}
+                    {{#suffix}}<div><b>suffix</b>: {{suffix}}</div>{{/suffix}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Person_collapse" aria-expanded="true" aria-controls="Person_collapse" style="margin-left: 10px;">Person</a></legend>
+                    <div id="Person_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='firstName'>firstName: </label><div class='col-sm-8'><input id='firstName' class='form-control' type='text'{{#firstName}} value='{{firstName}}'{{/firstName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='landlinePhone'>landlinePhone: </label><div class='col-sm-8'><input id='landlinePhone' class='form-control' type='text'{{#landlinePhone}} value='{{landlinePhone}}'{{/landlinePhone}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastName'>lastName: </label><div class='col-sm-8'><input id='lastName' class='form-control' type='text'{{#lastName}} value='{{lastName}}'{{/lastName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mName'>mName: </label><div class='col-sm-8'><input id='mName' class='form-control' type='text'{{#mName}} value='{{mName}}'{{/mName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mobilePhone'>mobilePhone: </label><div class='col-sm-8'><input id='mobilePhone' class='form-control' type='text'{{#mobilePhone}} value='{{mobilePhone}}'{{/mobilePhone}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='prefix'>prefix: </label><div class='col-sm-8'><input id='prefix' class='form-control' type='text'{{#prefix}} value='{{prefix}}'{{/prefix}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='specialNeed'>specialNeed: </label><div class='col-sm-8'><input id='specialNeed' class='form-control' type='text'{{#specialNeed}} value='{{specialNeed}}'{{/specialNeed}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='suffix'>suffix: </label><div class='col-sm-8'><input id='suffix' class='form-control' type='text'{{#suffix}} value='{{suffix}}'{{/suffix}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Meeting time and location.
@@ -1876,18 +2703,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Appointment_collapse" aria-expanded="true" aria-controls="Appointment_collapse">Appointment</a>
-<div id="Appointment_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#callAhead}}<div><b>callAhead</b>: {{callAhead}}</div>{{/callAhead}}
-{{#meetingInterval}}<div><b>meetingInterval</b>: {{meetingInterval}}</div>{{/meetingInterval}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Appointment_collapse" aria-expanded="true" aria-controls="Appointment_collapse" style="margin-left: 10px;">Appointment</a></legend>
+                    <div id="Appointment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#callAhead}}<div><b>callAhead</b>: {{callAhead}}</div>{{/callAhead}}
+                    {{#meetingInterval}}<div><b>meetingInterval</b>: {{meetingInterval}}</div>{{/meetingInterval}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Appointment_collapse" aria-expanded="true" aria-controls="Appointment_collapse" style="margin-left: 10px;">Appointment</a></legend>
+                    <div id="Appointment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='callAhead'>callAhead: </label><div class='col-sm-8'><input id='callAhead' class='form-check-input' type='checkbox'{{#callAhead}} checked{{/callAhead}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='meetingInterval'>meetingInterval: </label><div class='col-sm-8'><input id='meetingInterval' class='form-control' type='text'{{#meetingInterval}} value='{{meetingInterval}}'{{/meetingInterval}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Street details, in the context of address.
@@ -1960,26 +2819,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StreetDetail_collapse" aria-expanded="true" aria-controls="StreetDetail_collapse">StreetDetail</a>
-<div id="StreetDetail_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#addressGeneral}}<div><b>addressGeneral</b>: {{addressGeneral}}</div>{{/addressGeneral}}
-{{#buildingName}}<div><b>buildingName</b>: {{buildingName}}</div>{{/buildingName}}
-{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
-{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
-{{#number}}<div><b>number</b>: {{number}}</div>{{/number}}
-{{#prefix}}<div><b>prefix</b>: {{prefix}}</div>{{/prefix}}
-{{#suffix}}<div><b>suffix</b>: {{suffix}}</div>{{/suffix}}
-{{#suiteNumber}}<div><b>suiteNumber</b>: {{suiteNumber}}</div>{{/suiteNumber}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-{{#withinTownLimits}}<div><b>withinTownLimits</b>: {{withinTownLimits}}</div>{{/withinTownLimits}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StreetDetail_collapse" aria-expanded="true" aria-controls="StreetDetail_collapse" style="margin-left: 10px;">StreetDetail</a></legend>
+                    <div id="StreetDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#addressGeneral}}<div><b>addressGeneral</b>: {{addressGeneral}}</div>{{/addressGeneral}}
+                    {{#buildingName}}<div><b>buildingName</b>: {{buildingName}}</div>{{/buildingName}}
+                    {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+                    {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+                    {{#number}}<div><b>number</b>: {{number}}</div>{{/number}}
+                    {{#prefix}}<div><b>prefix</b>: {{prefix}}</div>{{/prefix}}
+                    {{#suffix}}<div><b>suffix</b>: {{suffix}}</div>{{/suffix}}
+                    {{#suiteNumber}}<div><b>suiteNumber</b>: {{suiteNumber}}</div>{{/suiteNumber}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#withinTownLimits}}<div><b>withinTownLimits</b>: {{withinTownLimits}}</div>{{/withinTownLimits}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StreetDetail_collapse" aria-expanded="true" aria-controls="StreetDetail_collapse" style="margin-left: 10px;">StreetDetail</a></legend>
+                    <div id="StreetDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='addressGeneral'>addressGeneral: </label><div class='col-sm-8'><input id='addressGeneral' class='form-control' type='text'{{#addressGeneral}} value='{{addressGeneral}}'{{/addressGeneral}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='buildingName'>buildingName: </label><div class='col-sm-8'><input id='buildingName' class='form-control' type='text'{{#buildingName}} value='{{buildingName}}'{{/buildingName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='code'>code: </label><div class='col-sm-8'><input id='code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='number'>number: </label><div class='col-sm-8'><input id='number' class='form-control' type='text'{{#number}} value='{{number}}'{{/number}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='prefix'>prefix: </label><div class='col-sm-8'><input id='prefix' class='form-control' type='text'{{#prefix}} value='{{prefix}}'{{/prefix}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='suffix'>suffix: </label><div class='col-sm-8'><input id='suffix' class='form-control' type='text'{{#suffix}} value='{{suffix}}'{{/suffix}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='suiteNumber'>suiteNumber: </label><div class='col-sm-8'><input id='suiteNumber' class='form-control' type='text'{{#suiteNumber}} value='{{suiteNumber}}'{{/suiteNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='withinTownLimits'>withinTownLimits: </label><div class='col-sm-8'><input id='withinTownLimits' class='form-check-input' type='checkbox'{{#withinTownLimits}} checked{{/withinTownLimits}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Description of anything that changes through time.
@@ -2044,21 +2943,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TimeSchedule_collapse" aria-expanded="true" aria-controls="TimeSchedule_collapse">TimeSchedule</a>
-<div id="TimeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Document.prototype.template.call (this) +
-`
-{{#disabled}}<div><b>disabled</b>: {{disabled}}</div>{{/disabled}}
-{{#offset}}<div><b>offset</b>: {{offset}}</div>{{/offset}}
-{{#recurrencePattern}}<div><b>recurrencePattern</b>: {{recurrencePattern}}</div>{{/recurrencePattern}}
-{{#recurrencePeriod}}<div><b>recurrencePeriod</b>: {{recurrencePeriod}}</div>{{/recurrencePeriod}}
-{{#scheduleInterval}}<div><b>scheduleInterval</b>: {{scheduleInterval}}</div>{{/scheduleInterval}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TimeSchedule_collapse" aria-expanded="true" aria-controls="TimeSchedule_collapse" style="margin-left: 10px;">TimeSchedule</a></legend>
+                    <div id="TimeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Document.prototype.template.call (this) +
+                    `
+                    {{#disabled}}<div><b>disabled</b>: {{disabled}}</div>{{/disabled}}
+                    {{#offset}}<div><b>offset</b>: {{offset}}</div>{{/offset}}
+                    {{#recurrencePattern}}<div><b>recurrencePattern</b>: {{recurrencePattern}}</div>{{/recurrencePattern}}
+                    {{#recurrencePeriod}}<div><b>recurrencePeriod</b>: {{recurrencePeriod}}</div>{{/recurrencePeriod}}
+                    {{#scheduleInterval}}<div><b>scheduleInterval</b>: {{scheduleInterval}}</div>{{/scheduleInterval}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TimeSchedule_collapse" aria-expanded="true" aria-controls="TimeSchedule_collapse" style="margin-left: 10px;">TimeSchedule</a></legend>
+                    <div id="TimeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='disabled'>disabled: </label><div class='col-sm-8'><input id='disabled' class='form-check-input' type='checkbox'{{#disabled}} checked{{/disabled}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='offset'>offset: </label><div class='col-sm-8'><input id='offset' class='form-control' type='text'{{#offset}} value='{{offset}}'{{/offset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='recurrencePattern'>recurrencePattern: </label><div class='col-sm-8'><input id='recurrencePattern' class='form-control' type='text'{{#recurrencePattern}} value='{{recurrencePattern}}'{{/recurrencePattern}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='recurrencePeriod'>recurrencePeriod: </label><div class='col-sm-8'><input id='recurrencePeriod' class='form-control' type='text'{{#recurrencePeriod}} value='{{recurrencePeriod}}'{{/recurrencePeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scheduleInterval'>scheduleInterval: </label><div class='col-sm-8'><input id='scheduleInterval' class='form-control' type='text'{{#scheduleInterval}} value='{{scheduleInterval}}'{{/scheduleInterval}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Formal agreement between two parties defining the terms and conditions for a set of services.
@@ -2117,18 +3051,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Agreement_collapse" aria-expanded="true" aria-controls="Agreement_collapse">Agreement</a>
-<div id="Agreement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Document.prototype.template.call (this) +
-`
-{{#signDate}}<div><b>signDate</b>: {{signDate}}</div>{{/signDate}}
-{{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Agreement_collapse" aria-expanded="true" aria-controls="Agreement_collapse" style="margin-left: 10px;">Agreement</a></legend>
+                    <div id="Agreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Document.prototype.template.call (this) +
+                    `
+                    {{#signDate}}<div><b>signDate</b>: {{signDate}}</div>{{/signDate}}
+                    {{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Agreement_collapse" aria-expanded="true" aria-controls="Agreement_collapse" style="margin-left: 10px;">Agreement</a></legend>
+                    <div id="Agreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='signDate'>signDate: </label><div class='col-sm-8'><input id='signDate' class='form-control' type='text'{{#signDate}} value='{{signDate}}'{{/signDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Used to report details on creation, change or deletion of an entity or its configuration.
@@ -2201,26 +3167,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ConfigurationEvent_collapse" aria-expanded="true" aria-controls="ConfigurationEvent_collapse">ConfigurationEvent</a>
-<div id="ConfigurationEvent_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ActivityRecord.prototype.template.call (this) +
-`
-{{#effectiveDateTime}}<div><b>effectiveDateTime</b>: {{effectiveDateTime}}</div>{{/effectiveDateTime}}
-{{#modifiedBy}}<div><b>modifiedBy</b>: {{modifiedBy}}</div>{{/modifiedBy}}
-{{#remark}}<div><b>remark</b>: {{remark}}</div>{{/remark}}
-{{#ChangedPersonRole}}<div><b>ChangedPersonRole</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedPersonRole}}&quot;);})'>{{ChangedPersonRole}}</a></div>{{/ChangedPersonRole}}
-{{#ChangedOrganisationRole}}<div><b>ChangedOrganisationRole</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedOrganisationRole}}&quot;);})'>{{ChangedOrganisationRole}}</a></div>{{/ChangedOrganisationRole}}
-{{#ChangedAsset}}<div><b>ChangedAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedAsset}}&quot;);})'>{{ChangedAsset}}</a></div>{{/ChangedAsset}}
-{{#ChangedLocation}}<div><b>ChangedLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedLocation}}&quot;);})'>{{ChangedLocation}}</a></div>{{/ChangedLocation}}
-{{#ChangedServiceCategory}}<div><b>ChangedServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedServiceCategory}}&quot;);})'>{{ChangedServiceCategory}}</a></div>{{/ChangedServiceCategory}}
-{{#ChangedUsagePoint}}<div><b>ChangedUsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedUsagePoint}}&quot;);})'>{{ChangedUsagePoint}}</a></div>{{/ChangedUsagePoint}}
-{{#ChangedDocument}}<div><b>ChangedDocument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedDocument}}&quot;);})'>{{ChangedDocument}}</a></div>{{/ChangedDocument}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConfigurationEvent_collapse" aria-expanded="true" aria-controls="ConfigurationEvent_collapse" style="margin-left: 10px;">ConfigurationEvent</a></legend>
+                    <div id="ConfigurationEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ActivityRecord.prototype.template.call (this) +
+                    `
+                    {{#effectiveDateTime}}<div><b>effectiveDateTime</b>: {{effectiveDateTime}}</div>{{/effectiveDateTime}}
+                    {{#modifiedBy}}<div><b>modifiedBy</b>: {{modifiedBy}}</div>{{/modifiedBy}}
+                    {{#remark}}<div><b>remark</b>: {{remark}}</div>{{/remark}}
+                    {{#ChangedPersonRole}}<div><b>ChangedPersonRole</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedPersonRole}}&quot;);})'>{{ChangedPersonRole}}</a></div>{{/ChangedPersonRole}}
+                    {{#ChangedOrganisationRole}}<div><b>ChangedOrganisationRole</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedOrganisationRole}}&quot;);})'>{{ChangedOrganisationRole}}</a></div>{{/ChangedOrganisationRole}}
+                    {{#ChangedAsset}}<div><b>ChangedAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedAsset}}&quot;);})'>{{ChangedAsset}}</a></div>{{/ChangedAsset}}
+                    {{#ChangedLocation}}<div><b>ChangedLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedLocation}}&quot;);})'>{{ChangedLocation}}</a></div>{{/ChangedLocation}}
+                    {{#ChangedServiceCategory}}<div><b>ChangedServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedServiceCategory}}&quot;);})'>{{ChangedServiceCategory}}</a></div>{{/ChangedServiceCategory}}
+                    {{#ChangedUsagePoint}}<div><b>ChangedUsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedUsagePoint}}&quot;);})'>{{ChangedUsagePoint}}</a></div>{{/ChangedUsagePoint}}
+                    {{#ChangedDocument}}<div><b>ChangedDocument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedDocument}}&quot;);})'>{{ChangedDocument}}</a></div>{{/ChangedDocument}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConfigurationEvent_collapse" aria-expanded="true" aria-controls="ConfigurationEvent_collapse" style="margin-left: 10px;">ConfigurationEvent</a></legend>
+                    <div id="ConfigurationEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ActivityRecord.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectiveDateTime'>effectiveDateTime: </label><div class='col-sm-8'><input id='effectiveDateTime' class='form-control' type='text'{{#effectiveDateTime}} value='{{effectiveDateTime}}'{{/effectiveDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='modifiedBy'>modifiedBy: </label><div class='col-sm-8'><input id='modifiedBy' class='form-control' type='text'{{#modifiedBy}} value='{{modifiedBy}}'{{/modifiedBy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='remark'>remark: </label><div class='col-sm-8'><input id='remark' class='form-control' type='text'{{#remark}} value='{{remark}}'{{/remark}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChangedPersonRole'>ChangedPersonRole: </label><div class='col-sm-8'><input id='ChangedPersonRole' class='form-control' type='text'{{#ChangedPersonRole}} value='{{ChangedPersonRole}}'{{/ChangedPersonRole}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChangedOrganisationRole'>ChangedOrganisationRole: </label><div class='col-sm-8'><input id='ChangedOrganisationRole' class='form-control' type='text'{{#ChangedOrganisationRole}} value='{{ChangedOrganisationRole}}'{{/ChangedOrganisationRole}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChangedAsset'>ChangedAsset: </label><div class='col-sm-8'><input id='ChangedAsset' class='form-control' type='text'{{#ChangedAsset}} value='{{ChangedAsset}}'{{/ChangedAsset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChangedLocation'>ChangedLocation: </label><div class='col-sm-8'><input id='ChangedLocation' class='form-control' type='text'{{#ChangedLocation}} value='{{ChangedLocation}}'{{/ChangedLocation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChangedServiceCategory'>ChangedServiceCategory: </label><div class='col-sm-8'><input id='ChangedServiceCategory' class='form-control' type='text'{{#ChangedServiceCategory}} value='{{ChangedServiceCategory}}'{{/ChangedServiceCategory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChangedUsagePoint'>ChangedUsagePoint: </label><div class='col-sm-8'><input id='ChangedUsagePoint' class='form-control' type='text'{{#ChangedUsagePoint}} value='{{ChangedUsagePoint}}'{{/ChangedUsagePoint}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChangedDocument'>ChangedDocument: </label><div class='col-sm-8'><input id='ChangedDocument' class='form-control' type='text'{{#ChangedDocument}} value='{{ChangedDocument}}'{{/ChangedDocument}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Person role in the context of utility operations.
@@ -2273,16 +3279,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OperationPersonRole_collapse" aria-expanded="true" aria-controls="OperationPersonRole_collapse">OperationPersonRole</a>
-<div id="OperationPersonRole_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PersonRole.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationPersonRole_collapse" aria-expanded="true" aria-controls="OperationPersonRole_collapse" style="margin-left: 10px;">OperationPersonRole</a></legend>
+                    <div id="OperationPersonRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PersonRole.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationPersonRole_collapse" aria-expanded="true" aria-controls="OperationPersonRole_collapse" style="margin-left: 10px;">OperationPersonRole</a></legend>
+                    <div id="OperationPersonRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PersonRole.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Member of a crew.
@@ -2337,17 +3373,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CrewMember_collapse" aria-expanded="true" aria-controls="CrewMember_collapse">CrewMember</a>
-<div id="CrewMember_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + OperationPersonRole.prototype.template.call (this) +
-`
-{{#Crew}}<div><b>Crew</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Crew}}&quot;);})'>{{Crew}}</a></div>{{/Crew}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CrewMember_collapse" aria-expanded="true" aria-controls="CrewMember_collapse" style="margin-left: 10px;">CrewMember</a></legend>
+                    <div id="CrewMember_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OperationPersonRole.prototype.template.call (this) +
+                    `
+                    {{#Crew}}<div><b>Crew</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Crew}}&quot;);})'>{{Crew}}</a></div>{{/Crew}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CrewMember_collapse" aria-expanded="true" aria-controls="CrewMember_collapse" style="margin-left: 10px;">CrewMember</a></legend>
+                    <div id="CrewMember_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OperationPersonRole.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Crew'>Crew: </label><div class='col-sm-8'><input id='Crew' class='form-control' type='text'{{#Crew}} value='{{Crew}}'{{/Crew}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Control room operator.
@@ -2400,16 +3467,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Operator_collapse" aria-expanded="true" aria-controls="Operator_collapse">Operator</a>
-<div id="Operator_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + OperationPersonRole.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Operator_collapse" aria-expanded="true" aria-controls="Operator_collapse" style="margin-left: 10px;">Operator</a></legend>
+                    <div id="Operator_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OperationPersonRole.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Operator_collapse" aria-expanded="true" aria-controls="Operator_collapse" style="margin-left: 10px;">Operator</a></legend>
+                    <div id="Operator_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OperationPersonRole.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

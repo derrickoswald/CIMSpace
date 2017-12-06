@@ -69,20 +69,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MarketProduct_collapse" aria-expanded="true" aria-controls="MarketProduct_collapse">MarketProduct</a>
-<div id="MarketProduct_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#marketProductType}}<div><b>marketProductType</b>: {{marketProductType}}</div>{{/marketProductType}}
-{{#rampInterval}}<div><b>rampInterval</b>: {{rampInterval}}</div>{{/rampInterval}}
-{{#MarketRegionResults}}<div><b>MarketRegionResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketRegionResults}}&quot;);})'>{{MarketRegionResults}}</a></div>{{/MarketRegionResults}}
-{{#Market}}<div><b>Market</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Market}}&quot;);})'>{{Market}}</a></div>{{/Market}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketProduct_collapse" aria-expanded="true" aria-controls="MarketProduct_collapse" style="margin-left: 10px;">MarketProduct</a></legend>
+                    <div id="MarketProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#marketProductType}}<div><b>marketProductType</b>: {{marketProductType}}</div>{{/marketProductType}}
+                    {{#rampInterval}}<div><b>rampInterval</b>: {{rampInterval}}</div>{{/rampInterval}}
+                    {{#MarketRegionResults}}<div><b>MarketRegionResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketRegionResults}}&quot;);})'>{{MarketRegionResults}}</a></div>{{/MarketRegionResults}}
+                    {{#Market}}<div><b>Market</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Market}}&quot;);})'>{{Market}}</a></div>{{/Market}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketProduct_collapse" aria-expanded="true" aria-controls="MarketProduct_collapse" style="margin-left: 10px;">MarketProduct</a></legend>
+                    <div id="MarketProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketProductType'>marketProductType: </label><div class='col-sm-8'><input id='marketProductType' class='form-control' type='text'{{#marketProductType}} value='{{marketProductType}}'{{/marketProductType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rampInterval'>rampInterval: </label><div class='col-sm-8'><input id='rampInterval' class='form-control' type='text'{{#rampInterval}} value='{{rampInterval}}'{{/rampInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketRegionResults'>MarketRegionResults: </label><div class='col-sm-8'><input id='MarketRegionResults' class='form-control' type='text'{{#MarketRegionResults}} value='{{MarketRegionResults}}'{{/MarketRegionResults}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Market'>Market: </label><div class='col-sm-8'><input id='Market' class='form-control' type='text'{{#Market}} value='{{Market}}'{{/Market}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This class represents planned events.
@@ -145,20 +179,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PlannedMarketEvent_collapse" aria-expanded="true" aria-controls="PlannedMarketEvent_collapse">PlannedMarketEvent</a>
-<div id="PlannedMarketEvent_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
-{{#eventType}}<div><b>eventType</b>: {{eventType}}</div>{{/eventType}}
-{{#plannedEventID}}<div><b>plannedEventID</b>: {{plannedEventID}}</div>{{/plannedEventID}}
-{{#plannedTime}}<div><b>plannedTime</b>: {{plannedTime}}</div>{{/plannedTime}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PlannedMarketEvent_collapse" aria-expanded="true" aria-controls="PlannedMarketEvent_collapse" style="margin-left: 10px;">PlannedMarketEvent</a></legend>
+                    <div id="PlannedMarketEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+                    {{#eventType}}<div><b>eventType</b>: {{eventType}}</div>{{/eventType}}
+                    {{#plannedEventID}}<div><b>plannedEventID</b>: {{plannedEventID}}</div>{{/plannedEventID}}
+                    {{#plannedTime}}<div><b>plannedTime</b>: {{plannedTime}}</div>{{/plannedTime}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PlannedMarketEvent_collapse" aria-expanded="true" aria-controls="PlannedMarketEvent_collapse" style="margin-left: 10px;">PlannedMarketEvent</a></legend>
+                    <div id="PlannedMarketEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eventType'>eventType: </label><div class='col-sm-8'><input id='eventType' class='form-control' type='text'{{#eventType}} value='{{eventType}}'{{/eventType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plannedEventID'>plannedEventID: </label><div class='col-sm-8'><input id='plannedEventID' class='form-control' type='text'{{#plannedEventID}} value='{{plannedEventID}}'{{/plannedEventID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plannedTime'>plannedTime: </label><div class='col-sm-8'><input id='plannedTime' class='form-control' type='text'{{#plannedTime}} value='{{plannedTime}}'{{/plannedTime}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This class identifies a set of planned markets.
@@ -221,20 +289,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MarketPlan_collapse" aria-expanded="true" aria-controls="MarketPlan_collapse">MarketPlan</a>
-<div id="MarketPlan_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
-{{#marketPlanID}}<div><b>marketPlanID</b>: {{marketPlanID}}</div>{{/marketPlanID}}
-{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
-{{#tradingDay}}<div><b>tradingDay</b>: {{tradingDay}}</div>{{/tradingDay}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketPlan_collapse" aria-expanded="true" aria-controls="MarketPlan_collapse" style="margin-left: 10px;">MarketPlan</a></legend>
+                    <div id="MarketPlan_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+                    {{#marketPlanID}}<div><b>marketPlanID</b>: {{marketPlanID}}</div>{{/marketPlanID}}
+                    {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+                    {{#tradingDay}}<div><b>tradingDay</b>: {{tradingDay}}</div>{{/tradingDay}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketPlan_collapse" aria-expanded="true" aria-controls="MarketPlan_collapse" style="margin-left: 10px;">MarketPlan</a></legend>
+                    <div id="MarketPlan_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketPlanID'>marketPlanID: </label><div class='col-sm-8'><input id='marketPlanID' class='form-control' type='text'{{#marketPlanID}} value='{{marketPlanID}}'{{/marketPlanID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tradingDay'>tradingDay: </label><div class='col-sm-8'><input id='tradingDay' class='form-control' type='text'{{#tradingDay}} value='{{tradingDay}}'{{/tradingDay}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Aggregation of market information relative for a specific time interval.
@@ -293,19 +395,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MarketFactors_collapse" aria-expanded="true" aria-controls="MarketFactors_collapse">MarketFactors</a>
-<div id="MarketFactors_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#intervalEndTime}}<div><b>intervalEndTime</b>: {{intervalEndTime}}</div>{{/intervalEndTime}}
-{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
-{{#Market}}<div><b>Market</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Market}}&quot;);})'>{{Market}}</a></div>{{/Market}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketFactors_collapse" aria-expanded="true" aria-controls="MarketFactors_collapse" style="margin-left: 10px;">MarketFactors</a></legend>
+                    <div id="MarketFactors_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#intervalEndTime}}<div><b>intervalEndTime</b>: {{intervalEndTime}}</div>{{/intervalEndTime}}
+                    {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+                    {{#Market}}<div><b>Market</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Market}}&quot;);})'>{{Market}}</a></div>{{/Market}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketFactors_collapse" aria-expanded="true" aria-controls="MarketFactors_collapse" style="margin-left: 10px;">MarketFactors</a></legend>
+                    <div id="MarketFactors_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalEndTime'>intervalEndTime: </label><div class='col-sm-8'><input id='intervalEndTime' class='form-control' type='text'{{#intervalEndTime}} value='{{intervalEndTime}}'{{/intervalEndTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Market'>Market: </label><div class='col-sm-8'><input id='Market' class='form-control' type='text'{{#Market}} value='{{Market}}'{{/Market}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Market (e.g.
@@ -380,26 +515,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Market_collapse" aria-expanded="true" aria-controls="Market_collapse">Market</a>
-<div id="Market_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#actualEnd}}<div><b>actualEnd</b>: {{actualEnd}}</div>{{/actualEnd}}
-{{#actualStart}}<div><b>actualStart</b>: {{actualStart}}</div>{{/actualStart}}
-{{#dst}}<div><b>dst</b>: {{dst}}</div>{{/dst}}
-{{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
-{{#localTimeZone}}<div><b>localTimeZone</b>: {{localTimeZone}}</div>{{/localTimeZone}}
-{{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#timeIntervalLength}}<div><b>timeIntervalLength</b>: {{timeIntervalLength}}</div>{{/timeIntervalLength}}
-{{#tradingDay}}<div><b>tradingDay</b>: {{tradingDay}}</div>{{/tradingDay}}
-{{#tradingPeriod}}<div><b>tradingPeriod</b>: {{tradingPeriod}}</div>{{/tradingPeriod}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Market_collapse" aria-expanded="true" aria-controls="Market_collapse" style="margin-left: 10px;">Market</a></legend>
+                    <div id="Market_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#actualEnd}}<div><b>actualEnd</b>: {{actualEnd}}</div>{{/actualEnd}}
+                    {{#actualStart}}<div><b>actualStart</b>: {{actualStart}}</div>{{/actualStart}}
+                    {{#dst}}<div><b>dst</b>: {{dst}}</div>{{/dst}}
+                    {{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
+                    {{#localTimeZone}}<div><b>localTimeZone</b>: {{localTimeZone}}</div>{{/localTimeZone}}
+                    {{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#timeIntervalLength}}<div><b>timeIntervalLength</b>: {{timeIntervalLength}}</div>{{/timeIntervalLength}}
+                    {{#tradingDay}}<div><b>tradingDay</b>: {{tradingDay}}</div>{{/tradingDay}}
+                    {{#tradingPeriod}}<div><b>tradingPeriod</b>: {{tradingPeriod}}</div>{{/tradingPeriod}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Market_collapse" aria-expanded="true" aria-controls="Market_collapse" style="margin-left: 10px;">Market</a></legend>
+                    <div id="Market_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualEnd'>actualEnd: </label><div class='col-sm-8'><input id='actualEnd' class='form-control' type='text'{{#actualEnd}} value='{{actualEnd}}'{{/actualEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualStart'>actualStart: </label><div class='col-sm-8'><input id='actualStart' class='form-control' type='text'{{#actualStart}} value='{{actualStart}}'{{/actualStart}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='dst'>dst: </label><div class='col-sm-8'><input id='dst' class='form-check-input' type='checkbox'{{#dst}} checked{{/dst}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='end'>end: </label><div class='col-sm-8'><input id='end' class='form-control' type='text'{{#end}} value='{{end}}'{{/end}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='localTimeZone'>localTimeZone: </label><div class='col-sm-8'><input id='localTimeZone' class='form-control' type='text'{{#localTimeZone}} value='{{localTimeZone}}'{{/localTimeZone}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='start'>start: </label><div class='col-sm-8'><input id='start' class='form-control' type='text'{{#start}} value='{{start}}'{{/start}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeIntervalLength'>timeIntervalLength: </label><div class='col-sm-8'><input id='timeIntervalLength' class='form-control' type='text'{{#timeIntervalLength}} value='{{timeIntervalLength}}'{{/timeIntervalLength}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tradingDay'>tradingDay: </label><div class='col-sm-8'><input id='tradingDay' class='form-control' type='text'{{#tradingDay}} value='{{tradingDay}}'{{/tradingDay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tradingPeriod'>tradingPeriod: </label><div class='col-sm-8'><input id='tradingPeriod' class='form-control' type='text'{{#tradingPeriod}} value='{{tradingPeriod}}'{{/tradingPeriod}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This class represent the actual instance of an event.
@@ -462,21 +637,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MarketActualEvent_collapse" aria-expanded="true" aria-controls="MarketActualEvent_collapse">MarketActualEvent</a>
-<div id="MarketActualEvent_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
-{{#eventID}}<div><b>eventID</b>: {{eventID}}</div>{{/eventID}}
-{{#eventTime}}<div><b>eventTime</b>: {{eventTime}}</div>{{/eventTime}}
-{{#PlannedMarketEvent}}<div><b>PlannedMarketEvent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PlannedMarketEvent}}&quot;);})'>{{PlannedMarketEvent}}</a></div>{{/PlannedMarketEvent}}
-{{#MarketRun}}<div><b>MarketRun</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketRun}}&quot;);})'>{{MarketRun}}</a></div>{{/MarketRun}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketActualEvent_collapse" aria-expanded="true" aria-controls="MarketActualEvent_collapse" style="margin-left: 10px;">MarketActualEvent</a></legend>
+                    <div id="MarketActualEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+                    {{#eventID}}<div><b>eventID</b>: {{eventID}}</div>{{/eventID}}
+                    {{#eventTime}}<div><b>eventTime</b>: {{eventTime}}</div>{{/eventTime}}
+                    {{#PlannedMarketEvent}}<div><b>PlannedMarketEvent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PlannedMarketEvent}}&quot;);})'>{{PlannedMarketEvent}}</a></div>{{/PlannedMarketEvent}}
+                    {{#MarketRun}}<div><b>MarketRun</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketRun}}&quot;);})'>{{MarketRun}}</a></div>{{/MarketRun}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketActualEvent_collapse" aria-expanded="true" aria-controls="MarketActualEvent_collapse" style="margin-left: 10px;">MarketActualEvent</a></legend>
+                    <div id="MarketActualEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eventID'>eventID: </label><div class='col-sm-8'><input id='eventID' class='form-control' type='text'{{#eventID}} value='{{eventID}}'{{/eventID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eventTime'>eventTime: </label><div class='col-sm-8'><input id='eventTime' class='form-control' type='text'{{#eventTime}} value='{{eventTime}}'{{/eventTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PlannedMarketEvent'>PlannedMarketEvent: </label><div class='col-sm-8'><input id='PlannedMarketEvent' class='form-control' type='text'{{#PlannedMarketEvent}} value='{{PlannedMarketEvent}}'{{/PlannedMarketEvent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketRun'>MarketRun: </label><div class='col-sm-8'><input id='MarketRun' class='form-control' type='text'{{#MarketRun}} value='{{MarketRun}}'{{/MarketRun}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Represent a planned market.
@@ -541,21 +751,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PlannedMarket_collapse" aria-expanded="true" aria-controls="PlannedMarket_collapse">PlannedMarket</a>
-<div id="PlannedMarket_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#marketEndTime}}<div><b>marketEndTime</b>: {{marketEndTime}}</div>{{/marketEndTime}}
-{{#marketID}}<div><b>marketID</b>: {{marketID}}</div>{{/marketID}}
-{{#marketStartTime}}<div><b>marketStartTime</b>: {{marketStartTime}}</div>{{/marketStartTime}}
-{{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
-{{#MarketPlan}}<div><b>MarketPlan</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketPlan}}&quot;);})'>{{MarketPlan}}</a></div>{{/MarketPlan}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PlannedMarket_collapse" aria-expanded="true" aria-controls="PlannedMarket_collapse" style="margin-left: 10px;">PlannedMarket</a></legend>
+                    <div id="PlannedMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#marketEndTime}}<div><b>marketEndTime</b>: {{marketEndTime}}</div>{{/marketEndTime}}
+                    {{#marketID}}<div><b>marketID</b>: {{marketID}}</div>{{/marketID}}
+                    {{#marketStartTime}}<div><b>marketStartTime</b>: {{marketStartTime}}</div>{{/marketStartTime}}
+                    {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+                    {{#MarketPlan}}<div><b>MarketPlan</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketPlan}}&quot;);})'>{{MarketPlan}}</a></div>{{/MarketPlan}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PlannedMarket_collapse" aria-expanded="true" aria-controls="PlannedMarket_collapse" style="margin-left: 10px;">PlannedMarket</a></legend>
+                    <div id="PlannedMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketEndTime'>marketEndTime: </label><div class='col-sm-8'><input id='marketEndTime' class='form-control' type='text'{{#marketEndTime}} value='{{marketEndTime}}'{{/marketEndTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketID'>marketID: </label><div class='col-sm-8'><input id='marketID' class='form-control' type='text'{{#marketID}} value='{{marketID}}'{{/marketID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketStartTime'>marketStartTime: </label><div class='col-sm-8'><input id='marketStartTime' class='form-control' type='text'{{#marketStartTime}} value='{{marketStartTime}}'{{/marketStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketPlan'>MarketPlan: </label><div class='col-sm-8'><input id='MarketPlan' class='form-control' type='text'{{#MarketPlan}} value='{{MarketPlan}}'{{/MarketPlan}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This class represent an actual instance of a planned market.
@@ -634,28 +879,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MarketRun_collapse" aria-expanded="true" aria-controls="MarketRun_collapse">MarketRun</a>
-<div id="MarketRun_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#executionType}}<div><b>executionType</b>: {{executionType}}</div>{{/executionType}}
-{{#marketApprovalTime}}<div><b>marketApprovalTime</b>: {{marketApprovalTime}}</div>{{/marketApprovalTime}}
-{{#marketApprovedStatus}}<div><b>marketApprovedStatus</b>: {{marketApprovedStatus}}</div>{{/marketApprovedStatus}}
-{{#marketEndTime}}<div><b>marketEndTime</b>: {{marketEndTime}}</div>{{/marketEndTime}}
-{{#marketID}}<div><b>marketID</b>: {{marketID}}</div>{{/marketID}}
-{{#marketRunID}}<div><b>marketRunID</b>: {{marketRunID}}</div>{{/marketRunID}}
-{{#marketStartTime}}<div><b>marketStartTime</b>: {{marketStartTime}}</div>{{/marketStartTime}}
-{{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
-{{#reportedState}}<div><b>reportedState</b>: {{reportedState}}</div>{{/reportedState}}
-{{#runState}}<div><b>runState</b>: {{runState}}</div>{{/runState}}
-{{#PlannedMarket}}<div><b>PlannedMarket</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PlannedMarket}}&quot;);})'>{{PlannedMarket}}</a></div>{{/PlannedMarket}}
-{{#Market}}<div><b>Market</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Market}}&quot;);})'>{{Market}}</a></div>{{/Market}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketRun_collapse" aria-expanded="true" aria-controls="MarketRun_collapse" style="margin-left: 10px;">MarketRun</a></legend>
+                    <div id="MarketRun_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#executionType}}<div><b>executionType</b>: {{executionType}}</div>{{/executionType}}
+                    {{#marketApprovalTime}}<div><b>marketApprovalTime</b>: {{marketApprovalTime}}</div>{{/marketApprovalTime}}
+                    {{#marketApprovedStatus}}<div><b>marketApprovedStatus</b>: {{marketApprovedStatus}}</div>{{/marketApprovedStatus}}
+                    {{#marketEndTime}}<div><b>marketEndTime</b>: {{marketEndTime}}</div>{{/marketEndTime}}
+                    {{#marketID}}<div><b>marketID</b>: {{marketID}}</div>{{/marketID}}
+                    {{#marketRunID}}<div><b>marketRunID</b>: {{marketRunID}}</div>{{/marketRunID}}
+                    {{#marketStartTime}}<div><b>marketStartTime</b>: {{marketStartTime}}</div>{{/marketStartTime}}
+                    {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+                    {{#reportedState}}<div><b>reportedState</b>: {{reportedState}}</div>{{/reportedState}}
+                    {{#runState}}<div><b>runState</b>: {{runState}}</div>{{/runState}}
+                    {{#PlannedMarket}}<div><b>PlannedMarket</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PlannedMarket}}&quot;);})'>{{PlannedMarket}}</a></div>{{/PlannedMarket}}
+                    {{#Market}}<div><b>Market</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Market}}&quot;);})'>{{Market}}</a></div>{{/Market}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketRun_collapse" aria-expanded="true" aria-controls="MarketRun_collapse" style="margin-left: 10px;">MarketRun</a></legend>
+                    <div id="MarketRun_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='executionType'>executionType: </label><div class='col-sm-8'><input id='executionType' class='form-control' type='text'{{#executionType}} value='{{executionType}}'{{/executionType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketApprovalTime'>marketApprovalTime: </label><div class='col-sm-8'><input id='marketApprovalTime' class='form-control' type='text'{{#marketApprovalTime}} value='{{marketApprovalTime}}'{{/marketApprovalTime}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='marketApprovedStatus'>marketApprovedStatus: </label><div class='col-sm-8'><input id='marketApprovedStatus' class='form-check-input' type='checkbox'{{#marketApprovedStatus}} checked{{/marketApprovedStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketEndTime'>marketEndTime: </label><div class='col-sm-8'><input id='marketEndTime' class='form-control' type='text'{{#marketEndTime}} value='{{marketEndTime}}'{{/marketEndTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketID'>marketID: </label><div class='col-sm-8'><input id='marketID' class='form-control' type='text'{{#marketID}} value='{{marketID}}'{{/marketID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketRunID'>marketRunID: </label><div class='col-sm-8'><input id='marketRunID' class='form-control' type='text'{{#marketRunID}} value='{{marketRunID}}'{{/marketRunID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketStartTime'>marketStartTime: </label><div class='col-sm-8'><input id='marketStartTime' class='form-control' type='text'{{#marketStartTime}} value='{{marketStartTime}}'{{/marketStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reportedState'>reportedState: </label><div class='col-sm-8'><input id='reportedState' class='form-control' type='text'{{#reportedState}} value='{{reportedState}}'{{/reportedState}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='runState'>runState: </label><div class='col-sm-8'><input id='runState' class='form-control' type='text'{{#runState}} value='{{runState}}'{{/runState}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PlannedMarket'>PlannedMarket: </label><div class='col-sm-8'><input id='PlannedMarket' class='form-control' type='text'{{#PlannedMarket}} value='{{PlannedMarket}}'{{/PlannedMarket}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Market'>Market: </label><div class='col-sm-8'><input id='Market' class='form-control' type='text'{{#Market}} value='{{Market}}'{{/Market}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Energy and Ancillary Market (e.g.
@@ -714,18 +1001,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EnergyMarket_collapse" aria-expanded="true" aria-controls="EnergyMarket_collapse">EnergyMarket</a>
-<div id="EnergyMarket_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Market.prototype.template.call (this) +
-`
-{{#MarketResults}}<div><b>MarketResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketResults}}&quot;);})'>{{MarketResults}}</a></div>{{/MarketResults}}
-{{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyMarket_collapse" aria-expanded="true" aria-controls="EnergyMarket_collapse" style="margin-left: 10px;">EnergyMarket</a></legend>
+                    <div id="EnergyMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Market.prototype.template.call (this) +
+                    `
+                    {{#MarketResults}}<div><b>MarketResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketResults}}&quot;);})'>{{MarketResults}}</a></div>{{/MarketResults}}
+                    {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyMarket_collapse" aria-expanded="true" aria-controls="EnergyMarket_collapse" style="margin-left: 10px;">EnergyMarket</a></legend>
+                    <div id="EnergyMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Market.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketResults'>MarketResults: </label><div class='col-sm-8'><input id='MarketResults' class='form-control' type='text'{{#MarketResults}} value='{{MarketResults}}'{{/MarketResults}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Model that describes the Congestion Revenue Rights Auction Market
@@ -780,17 +1099,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CRRMarket_collapse" aria-expanded="true" aria-controls="CRRMarket_collapse">CRRMarket</a>
-<div id="CRRMarket_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Market.prototype.template.call (this) +
-`
-{{#labelID}}<div><b>labelID</b>: {{labelID}}</div>{{/labelID}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CRRMarket_collapse" aria-expanded="true" aria-controls="CRRMarket_collapse" style="margin-left: 10px;">CRRMarket</a></legend>
+                    <div id="CRRMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Market.prototype.template.call (this) +
+                    `
+                    {{#labelID}}<div><b>labelID</b>: {{labelID}}</div>{{/labelID}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CRRMarket_collapse" aria-expanded="true" aria-controls="CRRMarket_collapse" style="margin-left: 10px;">CRRMarket</a></legend>
+                    <div id="CRRMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Market.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='labelID'>labelID: </label><div class='col-sm-8'><input id='labelID' class='form-control' type='text'{{#labelID}} value='{{labelID}}'{{/labelID}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

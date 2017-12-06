@@ -11,6 +11,70 @@ define
     {
 
         /**
+         * General wind turbine Q control modes <i>M</i><sub>qG</sub>.
+         *
+         */
+        var WindQcontrolModeKind =
+        {
+            voltage: "voltage",
+            reactivePower: "reactivePower",
+            openLoopReactivePower: "openLoopReactivePower",
+            powerFactor: "powerFactor",
+            openLooppowerFactor: "openLooppowerFactor"
+        };
+        Object.freeze (WindQcontrolModeKind);
+
+        /**
+         * Reactive power/voltage controller mode.
+         *
+         */
+        var WindPlantQcontrolModeKind =
+        {
+            reactivePower: "reactivePower",
+            powerFactor: "powerFactor",
+            uqStatic: "uqStatic",
+            voltageControl: "voltageControl"
+        };
+        Object.freeze (WindPlantQcontrolModeKind);
+
+        /**
+         * Function of the lookup table.
+         *
+         */
+        var WindLookupTableFunctionKind =
+        {
+            prr: "prr",
+            omegap: "omegap",
+            ipmax: "ipmax",
+            iqmax: "iqmax",
+            pwp: "pwp",
+            tcwdu: "tcwdu",
+            tduwt: "tduwt",
+            qmaxp: "qmaxp",
+            qminp: "qminp",
+            qmaxu: "qmaxu",
+            qminu: "qminu",
+            tuover: "tuover",
+            tuunder: "tuunder",
+            tfover: "tfover",
+            tfunder: "tfunder",
+            qwp: "qwp"
+        };
+        Object.freeze (WindLookupTableFunctionKind);
+
+        /**
+         * UVRT Q control modes <i>M</i><sub>qUVRT</sub>.
+         *
+         */
+        var WindUVRTQcontrolModeKind =
+        {
+            mode0: "mode0",
+            mode1: "mode1",
+            mode2: "mode2"
+        };
+        Object.freeze (WindUVRTQcontrolModeKind);
+
+        /**
          * Pitch angle control model.
          *
          * Reference: IEC Standard 61400-27-1 Section 5.6.5.2.
@@ -85,27 +149,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindContPitchAngleIEC_collapse" aria-expanded="true" aria-controls="WindContPitchAngleIEC_collapse">WindContPitchAngleIEC</a>
-<div id="WindContPitchAngleIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#dthetamax}}<div><b>dthetamax</b>: {{dthetamax}}</div>{{/dthetamax}}
-{{#dthetamin}}<div><b>dthetamin</b>: {{dthetamin}}</div>{{/dthetamin}}
-{{#kic}}<div><b>kic</b>: {{kic}}</div>{{/kic}}
-{{#kiomega}}<div><b>kiomega</b>: {{kiomega}}</div>{{/kiomega}}
-{{#kpc}}<div><b>kpc</b>: {{kpc}}</div>{{/kpc}}
-{{#kpomega}}<div><b>kpomega</b>: {{kpomega}}</div>{{/kpomega}}
-{{#kpx}}<div><b>kpx</b>: {{kpx}}</div>{{/kpx}}
-{{#thetamax}}<div><b>thetamax</b>: {{thetamax}}</div>{{/thetamax}}
-{{#thetamin}}<div><b>thetamin</b>: {{thetamin}}</div>{{/thetamin}}
-{{#ttheta}}<div><b>ttheta</b>: {{ttheta}}</div>{{/ttheta}}
-{{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);})'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPitchAngleIEC_collapse" aria-expanded="true" aria-controls="WindContPitchAngleIEC_collapse" style="margin-left: 10px;">WindContPitchAngleIEC</a></legend>
+                    <div id="WindContPitchAngleIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#dthetamax}}<div><b>dthetamax</b>: {{dthetamax}}</div>{{/dthetamax}}
+                    {{#dthetamin}}<div><b>dthetamin</b>: {{dthetamin}}</div>{{/dthetamin}}
+                    {{#kic}}<div><b>kic</b>: {{kic}}</div>{{/kic}}
+                    {{#kiomega}}<div><b>kiomega</b>: {{kiomega}}</div>{{/kiomega}}
+                    {{#kpc}}<div><b>kpc</b>: {{kpc}}</div>{{/kpc}}
+                    {{#kpomega}}<div><b>kpomega</b>: {{kpomega}}</div>{{/kpomega}}
+                    {{#kpx}}<div><b>kpx</b>: {{kpx}}</div>{{/kpx}}
+                    {{#thetamax}}<div><b>thetamax</b>: {{thetamax}}</div>{{/thetamax}}
+                    {{#thetamin}}<div><b>thetamin</b>: {{thetamin}}</div>{{/thetamin}}
+                    {{#ttheta}}<div><b>ttheta</b>: {{ttheta}}</div>{{/ttheta}}
+                    {{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);})'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPitchAngleIEC_collapse" aria-expanded="true" aria-controls="WindContPitchAngleIEC_collapse" style="margin-left: 10px;">WindContPitchAngleIEC</a></legend>
+                    <div id="WindContPitchAngleIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dthetamax'>dthetamax: </label><div class='col-sm-8'><input id='dthetamax' class='form-control' type='text'{{#dthetamax}} value='{{dthetamax}}'{{/dthetamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dthetamin'>dthetamin: </label><div class='col-sm-8'><input id='dthetamin' class='form-control' type='text'{{#dthetamin}} value='{{dthetamin}}'{{/dthetamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kic'>kic: </label><div class='col-sm-8'><input id='kic' class='form-control' type='text'{{#kic}} value='{{kic}}'{{/kic}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiomega'>kiomega: </label><div class='col-sm-8'><input id='kiomega' class='form-control' type='text'{{#kiomega}} value='{{kiomega}}'{{/kiomega}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpc'>kpc: </label><div class='col-sm-8'><input id='kpc' class='form-control' type='text'{{#kpc}} value='{{kpc}}'{{/kpc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpomega'>kpomega: </label><div class='col-sm-8'><input id='kpomega' class='form-control' type='text'{{#kpomega}} value='{{kpomega}}'{{/kpomega}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpx'>kpx: </label><div class='col-sm-8'><input id='kpx' class='form-control' type='text'{{#kpx}} value='{{kpx}}'{{/kpx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetamax'>thetamax: </label><div class='col-sm-8'><input id='thetamax' class='form-control' type='text'{{#thetamax}} value='{{thetamax}}'{{/thetamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetamin'>thetamin: </label><div class='col-sm-8'><input id='thetamin' class='form-control' type='text'{{#thetamin}} value='{{thetamin}}'{{/thetamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ttheta'>ttheta: </label><div class='col-sm-8'><input id='ttheta' class='form-control' type='text'{{#ttheta}} value='{{ttheta}}'{{/ttheta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Pitch control power model.
@@ -178,25 +283,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindPitchContPowerIEC_collapse" aria-expanded="true" aria-controls="WindPitchContPowerIEC_collapse">WindPitchContPowerIEC</a>
-<div id="WindPitchContPowerIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#dpmax}}<div><b>dpmax</b>: {{dpmax}}</div>{{/dpmax}}
-{{#dpmin}}<div><b>dpmin</b>: {{dpmin}}</div>{{/dpmin}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#pset}}<div><b>pset</b>: {{pset}}</div>{{/pset}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
-{{#uuvrt}}<div><b>uuvrt</b>: {{uuvrt}}</div>{{/uuvrt}}
-{{#WindGenTurbineType1bIEC}}<div><b>WindGenTurbineType1bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType1bIEC}}&quot;);})'>{{WindGenTurbineType1bIEC}}</a></div>{{/WindGenTurbineType1bIEC}}
-{{#WindGenTurbineType2IEC}}<div><b>WindGenTurbineType2IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType2IEC}}&quot;);})'>{{WindGenTurbineType2IEC}}</a></div>{{/WindGenTurbineType2IEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPitchContPowerIEC_collapse" aria-expanded="true" aria-controls="WindPitchContPowerIEC_collapse" style="margin-left: 10px;">WindPitchContPowerIEC</a></legend>
+                    <div id="WindPitchContPowerIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#dpmax}}<div><b>dpmax</b>: {{dpmax}}</div>{{/dpmax}}
+                    {{#dpmin}}<div><b>dpmin</b>: {{dpmin}}</div>{{/dpmin}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#pset}}<div><b>pset</b>: {{pset}}</div>{{/pset}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+                    {{#uuvrt}}<div><b>uuvrt</b>: {{uuvrt}}</div>{{/uuvrt}}
+                    {{#WindGenTurbineType1bIEC}}<div><b>WindGenTurbineType1bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType1bIEC}}&quot;);})'>{{WindGenTurbineType1bIEC}}</a></div>{{/WindGenTurbineType1bIEC}}
+                    {{#WindGenTurbineType2IEC}}<div><b>WindGenTurbineType2IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType2IEC}}&quot;);})'>{{WindGenTurbineType2IEC}}</a></div>{{/WindGenTurbineType2IEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPitchContPowerIEC_collapse" aria-expanded="true" aria-controls="WindPitchContPowerIEC_collapse" style="margin-left: 10px;">WindPitchContPowerIEC</a></legend>
+                    <div id="WindPitchContPowerIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpmax'>dpmax: </label><div class='col-sm-8'><input id='dpmax' class='form-control' type='text'{{#dpmax}} value='{{dpmax}}'{{/dpmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpmin'>dpmin: </label><div class='col-sm-8'><input id='dpmin' class='form-control' type='text'{{#dpmin}} value='{{dpmin}}'{{/dpmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pset'>pset: </label><div class='col-sm-8'><input id='pset' class='form-control' type='text'{{#pset}} value='{{pset}}'{{/pset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr'>tr: </label><div class='col-sm-8'><input id='tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uuvrt'>uuvrt: </label><div class='col-sm-8'><input id='uuvrt' class='form-control' type='text'{{#uuvrt}} value='{{uuvrt}}'{{/uuvrt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenTurbineType1bIEC'>WindGenTurbineType1bIEC: </label><div class='col-sm-8'><input id='WindGenTurbineType1bIEC' class='form-control' type='text'{{#WindGenTurbineType1bIEC}} value='{{WindGenTurbineType1bIEC}}'{{/WindGenTurbineType1bIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenTurbineType2IEC'>WindGenTurbineType2IEC: </label><div class='col-sm-8'><input id='WindGenTurbineType2IEC' class='form-control' type='text'{{#WindGenTurbineType2IEC}} value='{{WindGenTurbineType2IEC}}'{{/WindGenTurbineType2IEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * IEC Type 4 generator set model.
@@ -263,22 +407,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindGenType4IEC_collapse" aria-expanded="true" aria-controls="WindGenType4IEC_collapse">WindGenType4IEC</a>
-<div id="WindGenType4IEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#dipmax}}<div><b>dipmax</b>: {{dipmax}}</div>{{/dipmax}}
-{{#diqmax}}<div><b>diqmax</b>: {{diqmax}}</div>{{/diqmax}}
-{{#diqmin}}<div><b>diqmin</b>: {{diqmin}}</div>{{/diqmin}}
-{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
-{{#WindTurbineType4aIEC}}<div><b>WindTurbineType4aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4aIEC}}&quot;);})'>{{WindTurbineType4aIEC}}</a></div>{{/WindTurbineType4aIEC}}
-{{#WindTurbineType4bIEC}}<div><b>WindTurbineType4bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4bIEC}}&quot;);})'>{{WindTurbineType4bIEC}}</a></div>{{/WindTurbineType4bIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType4IEC_collapse" aria-expanded="true" aria-controls="WindGenType4IEC_collapse" style="margin-left: 10px;">WindGenType4IEC</a></legend>
+                    <div id="WindGenType4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#dipmax}}<div><b>dipmax</b>: {{dipmax}}</div>{{/dipmax}}
+                    {{#diqmax}}<div><b>diqmax</b>: {{diqmax}}</div>{{/diqmax}}
+                    {{#diqmin}}<div><b>diqmin</b>: {{diqmin}}</div>{{/diqmin}}
+                    {{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+                    {{#WindTurbineType4aIEC}}<div><b>WindTurbineType4aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4aIEC}}&quot;);})'>{{WindTurbineType4aIEC}}</a></div>{{/WindTurbineType4aIEC}}
+                    {{#WindTurbineType4bIEC}}<div><b>WindTurbineType4bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4bIEC}}&quot;);})'>{{WindTurbineType4bIEC}}</a></div>{{/WindTurbineType4bIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType4IEC_collapse" aria-expanded="true" aria-controls="WindGenType4IEC_collapse" style="margin-left: 10px;">WindGenType4IEC</a></legend>
+                    <div id="WindGenType4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dipmax'>dipmax: </label><div class='col-sm-8'><input id='dipmax' class='form-control' type='text'{{#dipmax}} value='{{dipmax}}'{{/dipmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diqmax'>diqmax: </label><div class='col-sm-8'><input id='diqmax' class='form-control' type='text'{{#diqmax}} value='{{diqmax}}'{{/diqmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diqmin'>diqmin: </label><div class='col-sm-8'><input id='diqmin' class='form-control' type='text'{{#diqmin}} value='{{diqmin}}'{{/diqmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tg'>tg: </label><div class='col-sm-8'><input id='tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType4aIEC'>WindTurbineType4aIEC: </label><div class='col-sm-8'><input id='WindTurbineType4aIEC' class='form-control' type='text'{{#WindTurbineType4aIEC}} value='{{WindTurbineType4aIEC}}'{{/WindTurbineType4aIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType4bIEC'>WindTurbineType4bIEC: </label><div class='col-sm-8'><input id='WindTurbineType4bIEC' class='form-control' type='text'{{#WindTurbineType4bIEC}} value='{{WindTurbineType4bIEC}}'{{/WindTurbineType4bIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Simplified plant voltage and reactive power control model for use with type 3 and type 4 wind turbine models.
@@ -325,7 +505,7 @@ define
                 base.parse_element (/<cim:WindPlantReactiveControlIEC.txft>([\s\S]*?)<\/cim:WindPlantReactiveControlIEC.txft>/g, obj, "txft", base.to_string, sub, context);
                 base.parse_element (/<cim:WindPlantReactiveControlIEC.txfv>([\s\S]*?)<\/cim:WindPlantReactiveControlIEC.txfv>/g, obj, "txfv", base.to_string, sub, context);
                 base.parse_element (/<cim:WindPlantReactiveControlIEC.uwpqdip>([\s\S]*?)<\/cim:WindPlantReactiveControlIEC.uwpqdip>/g, obj, "uwpqdip", base.to_string, sub, context);
-                base.parse_element (/<cim:WindPlantReactiveControlIEC.windPlantQcontrolModesType>([\s\S]*?)<\/cim:WindPlantReactiveControlIEC.windPlantQcontrolModesType>/g, obj, "windPlantQcontrolModesType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:WindPlantReactiveControlIEC.windPlantQcontrolModesType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "windPlantQcontrolModesType", sub, context);
                 base.parse_element (/<cim:WindPlantReactiveControlIEC.xrefmax>([\s\S]*?)<\/cim:WindPlantReactiveControlIEC.xrefmax>/g, obj, "xrefmax", base.to_string, sub, context);
                 base.parse_element (/<cim:WindPlantReactiveControlIEC.xrefmin>([\s\S]*?)<\/cim:WindPlantReactiveControlIEC.xrefmin>/g, obj, "xrefmin", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindPlantReactiveControlIEC.WindPlantIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindPlantIEC", sub, context);
@@ -371,35 +551,86 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindPlantReactiveControlIEC_collapse" aria-expanded="true" aria-controls="WindPlantReactiveControlIEC_collapse">WindPlantReactiveControlIEC</a>
-<div id="WindPlantReactiveControlIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#dxrefmax}}<div><b>dxrefmax</b>: {{dxrefmax}}</div>{{/dxrefmax}}
-{{#dxrefmin}}<div><b>dxrefmin</b>: {{dxrefmin}}</div>{{/dxrefmin}}
-{{#kiwpx}}<div><b>kiwpx</b>: {{kiwpx}}</div>{{/kiwpx}}
-{{#kiwpxmax}}<div><b>kiwpxmax</b>: {{kiwpxmax}}</div>{{/kiwpxmax}}
-{{#kiwpxmin}}<div><b>kiwpxmin</b>: {{kiwpxmin}}</div>{{/kiwpxmin}}
-{{#kpwpx}}<div><b>kpwpx</b>: {{kpwpx}}</div>{{/kpwpx}}
-{{#kwpqref}}<div><b>kwpqref</b>: {{kwpqref}}</div>{{/kwpqref}}
-{{#kwpqu}}<div><b>kwpqu</b>: {{kwpqu}}</div>{{/kwpqu}}
-{{#tuqfilt}}<div><b>tuqfilt</b>: {{tuqfilt}}</div>{{/tuqfilt}}
-{{#twppfiltq}}<div><b>twppfiltq</b>: {{twppfiltq}}</div>{{/twppfiltq}}
-{{#twpqfiltq}}<div><b>twpqfiltq</b>: {{twpqfiltq}}</div>{{/twpqfiltq}}
-{{#twpufiltq}}<div><b>twpufiltq</b>: {{twpufiltq}}</div>{{/twpufiltq}}
-{{#txft}}<div><b>txft</b>: {{txft}}</div>{{/txft}}
-{{#txfv}}<div><b>txfv</b>: {{txfv}}</div>{{/txfv}}
-{{#uwpqdip}}<div><b>uwpqdip</b>: {{uwpqdip}}</div>{{/uwpqdip}}
-{{#windPlantQcontrolModesType}}<div><b>windPlantQcontrolModesType</b>: {{windPlantQcontrolModesType}}</div>{{/windPlantQcontrolModesType}}
-{{#xrefmax}}<div><b>xrefmax</b>: {{xrefmax}}</div>{{/xrefmax}}
-{{#xrefmin}}<div><b>xrefmin</b>: {{xrefmin}}</div>{{/xrefmin}}
-{{#WindPlantIEC}}<div><b>WindPlantIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantIEC}}&quot;);})'>{{WindPlantIEC}}</a></div>{{/WindPlantIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantReactiveControlIEC_collapse" aria-expanded="true" aria-controls="WindPlantReactiveControlIEC_collapse" style="margin-left: 10px;">WindPlantReactiveControlIEC</a></legend>
+                    <div id="WindPlantReactiveControlIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#dxrefmax}}<div><b>dxrefmax</b>: {{dxrefmax}}</div>{{/dxrefmax}}
+                    {{#dxrefmin}}<div><b>dxrefmin</b>: {{dxrefmin}}</div>{{/dxrefmin}}
+                    {{#kiwpx}}<div><b>kiwpx</b>: {{kiwpx}}</div>{{/kiwpx}}
+                    {{#kiwpxmax}}<div><b>kiwpxmax</b>: {{kiwpxmax}}</div>{{/kiwpxmax}}
+                    {{#kiwpxmin}}<div><b>kiwpxmin</b>: {{kiwpxmin}}</div>{{/kiwpxmin}}
+                    {{#kpwpx}}<div><b>kpwpx</b>: {{kpwpx}}</div>{{/kpwpx}}
+                    {{#kwpqref}}<div><b>kwpqref</b>: {{kwpqref}}</div>{{/kwpqref}}
+                    {{#kwpqu}}<div><b>kwpqu</b>: {{kwpqu}}</div>{{/kwpqu}}
+                    {{#tuqfilt}}<div><b>tuqfilt</b>: {{tuqfilt}}</div>{{/tuqfilt}}
+                    {{#twppfiltq}}<div><b>twppfiltq</b>: {{twppfiltq}}</div>{{/twppfiltq}}
+                    {{#twpqfiltq}}<div><b>twpqfiltq</b>: {{twpqfiltq}}</div>{{/twpqfiltq}}
+                    {{#twpufiltq}}<div><b>twpufiltq</b>: {{twpufiltq}}</div>{{/twpufiltq}}
+                    {{#txft}}<div><b>txft</b>: {{txft}}</div>{{/txft}}
+                    {{#txfv}}<div><b>txfv</b>: {{txfv}}</div>{{/txfv}}
+                    {{#uwpqdip}}<div><b>uwpqdip</b>: {{uwpqdip}}</div>{{/uwpqdip}}
+                    {{#windPlantQcontrolModesType}}<div><b>windPlantQcontrolModesType</b>: {{windPlantQcontrolModesType}}</div>{{/windPlantQcontrolModesType}}
+                    {{#xrefmax}}<div><b>xrefmax</b>: {{xrefmax}}</div>{{/xrefmax}}
+                    {{#xrefmin}}<div><b>xrefmin</b>: {{xrefmin}}</div>{{/xrefmin}}
+                    {{#WindPlantIEC}}<div><b>WindPlantIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantIEC}}&quot;);})'>{{WindPlantIEC}}</a></div>{{/WindPlantIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.WindPlantQcontrolModeKind = []; if (!obj.windPlantQcontrolModesType) obj.WindPlantQcontrolModeKind.push ({ id: '', selected: true}); for (var property in WindPlantQcontrolModeKind) obj.WindPlantQcontrolModeKind.push ({ id: property, selected: obj.windPlantQcontrolModesType && obj.windPlantQcontrolModesType.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.WindPlantQcontrolModeKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantReactiveControlIEC_collapse" aria-expanded="true" aria-controls="WindPlantReactiveControlIEC_collapse" style="margin-left: 10px;">WindPlantReactiveControlIEC</a></legend>
+                    <div id="WindPlantReactiveControlIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dxrefmax'>dxrefmax: </label><div class='col-sm-8'><input id='dxrefmax' class='form-control' type='text'{{#dxrefmax}} value='{{dxrefmax}}'{{/dxrefmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dxrefmin'>dxrefmin: </label><div class='col-sm-8'><input id='dxrefmin' class='form-control' type='text'{{#dxrefmin}} value='{{dxrefmin}}'{{/dxrefmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiwpx'>kiwpx: </label><div class='col-sm-8'><input id='kiwpx' class='form-control' type='text'{{#kiwpx}} value='{{kiwpx}}'{{/kiwpx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiwpxmax'>kiwpxmax: </label><div class='col-sm-8'><input id='kiwpxmax' class='form-control' type='text'{{#kiwpxmax}} value='{{kiwpxmax}}'{{/kiwpxmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiwpxmin'>kiwpxmin: </label><div class='col-sm-8'><input id='kiwpxmin' class='form-control' type='text'{{#kiwpxmin}} value='{{kiwpxmin}}'{{/kiwpxmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpwpx'>kpwpx: </label><div class='col-sm-8'><input id='kpwpx' class='form-control' type='text'{{#kpwpx}} value='{{kpwpx}}'{{/kpwpx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kwpqref'>kwpqref: </label><div class='col-sm-8'><input id='kwpqref' class='form-control' type='text'{{#kwpqref}} value='{{kwpqref}}'{{/kwpqref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kwpqu'>kwpqu: </label><div class='col-sm-8'><input id='kwpqu' class='form-control' type='text'{{#kwpqu}} value='{{kwpqu}}'{{/kwpqu}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tuqfilt'>tuqfilt: </label><div class='col-sm-8'><input id='tuqfilt' class='form-control' type='text'{{#tuqfilt}} value='{{tuqfilt}}'{{/tuqfilt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twppfiltq'>twppfiltq: </label><div class='col-sm-8'><input id='twppfiltq' class='form-control' type='text'{{#twppfiltq}} value='{{twppfiltq}}'{{/twppfiltq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twpqfiltq'>twpqfiltq: </label><div class='col-sm-8'><input id='twpqfiltq' class='form-control' type='text'{{#twpqfiltq}} value='{{twpqfiltq}}'{{/twpqfiltq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twpufiltq'>twpufiltq: </label><div class='col-sm-8'><input id='twpufiltq' class='form-control' type='text'{{#twpufiltq}} value='{{twpufiltq}}'{{/twpufiltq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='txft'>txft: </label><div class='col-sm-8'><input id='txft' class='form-control' type='text'{{#txft}} value='{{txft}}'{{/txft}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='txfv'>txfv: </label><div class='col-sm-8'><input id='txfv' class='form-control' type='text'{{#txfv}} value='{{txfv}}'{{/txfv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uwpqdip'>uwpqdip: </label><div class='col-sm-8'><input id='uwpqdip' class='form-control' type='text'{{#uwpqdip}} value='{{uwpqdip}}'{{/uwpqdip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='windPlantQcontrolModesType'>windPlantQcontrolModesType: </label><div class='col-sm-8'><select id='windPlantQcontrolModesType' class='form-control'>{{#WindPlantQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindPlantQcontrolModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xrefmax'>xrefmax: </label><div class='col-sm-8'><input id='xrefmax' class='form-control' type='text'{{#xrefmax}} value='{{xrefmax}}'{{/xrefmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xrefmin'>xrefmin: </label><div class='col-sm-8'><input id='xrefmin' class='form-control' type='text'{{#xrefmin}} value='{{xrefmin}}'{{/xrefmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantIEC'>WindPlantIEC: </label><div class='col-sm-8'><input id='WindPlantIEC' class='form-control' type='text'{{#WindPlantIEC}} value='{{WindPlantIEC}}'{{/WindPlantIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * P control model Type 3.
@@ -502,117 +733,94 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindContPType3IEC_collapse" aria-expanded="true" aria-controls="WindContPType3IEC_collapse">WindContPType3IEC</a>
-<div id="WindContPType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#dpmax}}<div><b>dpmax</b>: {{dpmax}}</div>{{/dpmax}}
-{{#dprefmax}}<div><b>dprefmax</b>: {{dprefmax}}</div>{{/dprefmax}}
-{{#dprefmin}}<div><b>dprefmin</b>: {{dprefmin}}</div>{{/dprefmin}}
-{{#dthetamax}}<div><b>dthetamax</b>: {{dthetamax}}</div>{{/dthetamax}}
-{{#dthetamaxuvrt}}<div><b>dthetamaxuvrt</b>: {{dthetamaxuvrt}}</div>{{/dthetamaxuvrt}}
-{{#kdtd}}<div><b>kdtd</b>: {{kdtd}}</div>{{/kdtd}}
-{{#kip}}<div><b>kip</b>: {{kip}}</div>{{/kip}}
-{{#kpp}}<div><b>kpp</b>: {{kpp}}</div>{{/kpp}}
-{{#mpuvrt}}<div><b>mpuvrt</b>: {{mpuvrt}}</div>{{/mpuvrt}}
-{{#omegaoffset}}<div><b>omegaoffset</b>: {{omegaoffset}}</div>{{/omegaoffset}}
-{{#pdtdmax}}<div><b>pdtdmax</b>: {{pdtdmax}}</div>{{/pdtdmax}}
-{{#tdvs}}<div><b>tdvs</b>: {{tdvs}}</div>{{/tdvs}}
-{{#thetaemin}}<div><b>thetaemin</b>: {{thetaemin}}</div>{{/thetaemin}}
-{{#thetauscale}}<div><b>thetauscale</b>: {{thetauscale}}</div>{{/thetauscale}}
-{{#tomegafiltp3}}<div><b>tomegafiltp3</b>: {{tomegafiltp3}}</div>{{/tomegafiltp3}}
-{{#tpfiltp3}}<div><b>tpfiltp3</b>: {{tpfiltp3}}</div>{{/tpfiltp3}}
-{{#tpord}}<div><b>tpord</b>: {{tpord}}</div>{{/tpord}}
-{{#tufiltp3}}<div><b>tufiltp3</b>: {{tufiltp3}}</div>{{/tufiltp3}}
-{{#twref}}<div><b>twref</b>: {{twref}}</div>{{/twref}}
-{{#udvs}}<div><b>udvs</b>: {{udvs}}</div>{{/udvs}}
-{{#updip}}<div><b>updip</b>: {{updip}}</div>{{/updip}}
-{{#wdtd}}<div><b>wdtd</b>: {{wdtd}}</div>{{/wdtd}}
-{{#zeta}}<div><b>zeta</b>: {{zeta}}</div>{{/zeta}}
-{{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);})'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPType3IEC_collapse" aria-expanded="true" aria-controls="WindContPType3IEC_collapse" style="margin-left: 10px;">WindContPType3IEC</a></legend>
+                    <div id="WindContPType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#dpmax}}<div><b>dpmax</b>: {{dpmax}}</div>{{/dpmax}}
+                    {{#dprefmax}}<div><b>dprefmax</b>: {{dprefmax}}</div>{{/dprefmax}}
+                    {{#dprefmin}}<div><b>dprefmin</b>: {{dprefmin}}</div>{{/dprefmin}}
+                    {{#dthetamax}}<div><b>dthetamax</b>: {{dthetamax}}</div>{{/dthetamax}}
+                    {{#dthetamaxuvrt}}<div><b>dthetamaxuvrt</b>: {{dthetamaxuvrt}}</div>{{/dthetamaxuvrt}}
+                    {{#kdtd}}<div><b>kdtd</b>: {{kdtd}}</div>{{/kdtd}}
+                    {{#kip}}<div><b>kip</b>: {{kip}}</div>{{/kip}}
+                    {{#kpp}}<div><b>kpp</b>: {{kpp}}</div>{{/kpp}}
+                    {{#mpuvrt}}<div><b>mpuvrt</b>: {{mpuvrt}}</div>{{/mpuvrt}}
+                    {{#omegaoffset}}<div><b>omegaoffset</b>: {{omegaoffset}}</div>{{/omegaoffset}}
+                    {{#pdtdmax}}<div><b>pdtdmax</b>: {{pdtdmax}}</div>{{/pdtdmax}}
+                    {{#tdvs}}<div><b>tdvs</b>: {{tdvs}}</div>{{/tdvs}}
+                    {{#thetaemin}}<div><b>thetaemin</b>: {{thetaemin}}</div>{{/thetaemin}}
+                    {{#thetauscale}}<div><b>thetauscale</b>: {{thetauscale}}</div>{{/thetauscale}}
+                    {{#tomegafiltp3}}<div><b>tomegafiltp3</b>: {{tomegafiltp3}}</div>{{/tomegafiltp3}}
+                    {{#tpfiltp3}}<div><b>tpfiltp3</b>: {{tpfiltp3}}</div>{{/tpfiltp3}}
+                    {{#tpord}}<div><b>tpord</b>: {{tpord}}</div>{{/tpord}}
+                    {{#tufiltp3}}<div><b>tufiltp3</b>: {{tufiltp3}}</div>{{/tufiltp3}}
+                    {{#twref}}<div><b>twref</b>: {{twref}}</div>{{/twref}}
+                    {{#udvs}}<div><b>udvs</b>: {{udvs}}</div>{{/udvs}}
+                    {{#updip}}<div><b>updip</b>: {{updip}}</div>{{/updip}}
+                    {{#wdtd}}<div><b>wdtd</b>: {{wdtd}}</div>{{/wdtd}}
+                    {{#zeta}}<div><b>zeta</b>: {{zeta}}</div>{{/zeta}}
+                    {{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);})'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * General wind turbine Q control modes <i>M</i><sub>qG</sub>.
-         *
-         */
-        class WindQcontrolModeKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.WindQcontrolModeKind;
-                if (null == bucket)
-                   cim_data.WindQcontrolModeKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.WindQcontrolModeKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "WindQcontrolModeKind";
-                base.parse_element (/<cim:WindQcontrolModeKind.voltage>([\s\S]*?)<\/cim:WindQcontrolModeKind.voltage>/g, obj, "voltage", base.to_string, sub, context);
-                base.parse_element (/<cim:WindQcontrolModeKind.reactivePower>([\s\S]*?)<\/cim:WindQcontrolModeKind.reactivePower>/g, obj, "reactivePower", base.to_string, sub, context);
-                base.parse_element (/<cim:WindQcontrolModeKind.openLoopReactivePower>([\s\S]*?)<\/cim:WindQcontrolModeKind.openLoopReactivePower>/g, obj, "openLoopReactivePower", base.to_string, sub, context);
-                base.parse_element (/<cim:WindQcontrolModeKind.powerFactor>([\s\S]*?)<\/cim:WindQcontrolModeKind.powerFactor>/g, obj, "powerFactor", base.to_string, sub, context);
-                base.parse_element (/<cim:WindQcontrolModeKind.openLooppowerFactor>([\s\S]*?)<\/cim:WindQcontrolModeKind.openLooppowerFactor>/g, obj, "openLooppowerFactor", base.to_string, sub, context);
-
-                var bucket = context.parsed.WindQcontrolModeKind;
-                if (null == bucket)
-                   context.parsed.WindQcontrolModeKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "WindQcontrolModeKind", "voltage", base.from_string, fields);
-                base.export_element (obj, "WindQcontrolModeKind", "reactivePower", base.from_string, fields);
-                base.export_element (obj, "WindQcontrolModeKind", "openLoopReactivePower", base.from_string, fields);
-                base.export_element (obj, "WindQcontrolModeKind", "powerFactor", base.from_string, fields);
-                base.export_element (obj, "WindQcontrolModeKind", "openLooppowerFactor", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindQcontrolModeKind_collapse" aria-expanded="true" aria-controls="WindQcontrolModeKind_collapse">WindQcontrolModeKind</a>
-<div id="WindQcontrolModeKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#voltage}}<div><b>voltage</b>: {{voltage}}</div>{{/voltage}}
-{{#reactivePower}}<div><b>reactivePower</b>: {{reactivePower}}</div>{{/reactivePower}}
-{{#openLoopReactivePower}}<div><b>openLoopReactivePower</b>: {{openLoopReactivePower}}</div>{{/openLoopReactivePower}}
-{{#powerFactor}}<div><b>powerFactor</b>: {{powerFactor}}</div>{{/powerFactor}}
-{{#openLooppowerFactor}}<div><b>openLooppowerFactor</b>: {{openLooppowerFactor}}</div>{{/openLooppowerFactor}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPType3IEC_collapse" aria-expanded="true" aria-controls="WindContPType3IEC_collapse" style="margin-left: 10px;">WindContPType3IEC</a></legend>
+                    <div id="WindContPType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpmax'>dpmax: </label><div class='col-sm-8'><input id='dpmax' class='form-control' type='text'{{#dpmax}} value='{{dpmax}}'{{/dpmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dprefmax'>dprefmax: </label><div class='col-sm-8'><input id='dprefmax' class='form-control' type='text'{{#dprefmax}} value='{{dprefmax}}'{{/dprefmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dprefmin'>dprefmin: </label><div class='col-sm-8'><input id='dprefmin' class='form-control' type='text'{{#dprefmin}} value='{{dprefmin}}'{{/dprefmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dthetamax'>dthetamax: </label><div class='col-sm-8'><input id='dthetamax' class='form-control' type='text'{{#dthetamax}} value='{{dthetamax}}'{{/dthetamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dthetamaxuvrt'>dthetamaxuvrt: </label><div class='col-sm-8'><input id='dthetamaxuvrt' class='form-control' type='text'{{#dthetamaxuvrt}} value='{{dthetamaxuvrt}}'{{/dthetamaxuvrt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kdtd'>kdtd: </label><div class='col-sm-8'><input id='kdtd' class='form-control' type='text'{{#kdtd}} value='{{kdtd}}'{{/kdtd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kip'>kip: </label><div class='col-sm-8'><input id='kip' class='form-control' type='text'{{#kip}} value='{{kip}}'{{/kip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpp'>kpp: </label><div class='col-sm-8'><input id='kpp' class='form-control' type='text'{{#kpp}} value='{{kpp}}'{{/kpp}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mpuvrt'>mpuvrt: </label><div class='col-sm-8'><input id='mpuvrt' class='form-check-input' type='checkbox'{{#mpuvrt}} checked{{/mpuvrt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omegaoffset'>omegaoffset: </label><div class='col-sm-8'><input id='omegaoffset' class='form-control' type='text'{{#omegaoffset}} value='{{omegaoffset}}'{{/omegaoffset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pdtdmax'>pdtdmax: </label><div class='col-sm-8'><input id='pdtdmax' class='form-control' type='text'{{#pdtdmax}} value='{{pdtdmax}}'{{/pdtdmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tdvs'>tdvs: </label><div class='col-sm-8'><input id='tdvs' class='form-control' type='text'{{#tdvs}} value='{{tdvs}}'{{/tdvs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetaemin'>thetaemin: </label><div class='col-sm-8'><input id='thetaemin' class='form-control' type='text'{{#thetaemin}} value='{{thetaemin}}'{{/thetaemin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetauscale'>thetauscale: </label><div class='col-sm-8'><input id='thetauscale' class='form-control' type='text'{{#thetauscale}} value='{{thetauscale}}'{{/thetauscale}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tomegafiltp3'>tomegafiltp3: </label><div class='col-sm-8'><input id='tomegafiltp3' class='form-control' type='text'{{#tomegafiltp3}} value='{{tomegafiltp3}}'{{/tomegafiltp3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpfiltp3'>tpfiltp3: </label><div class='col-sm-8'><input id='tpfiltp3' class='form-control' type='text'{{#tpfiltp3}} value='{{tpfiltp3}}'{{/tpfiltp3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpord'>tpord: </label><div class='col-sm-8'><input id='tpord' class='form-control' type='text'{{#tpord}} value='{{tpord}}'{{/tpord}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tufiltp3'>tufiltp3: </label><div class='col-sm-8'><input id='tufiltp3' class='form-control' type='text'{{#tufiltp3}} value='{{tufiltp3}}'{{/tufiltp3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twref'>twref: </label><div class='col-sm-8'><input id='twref' class='form-control' type='text'{{#twref}} value='{{twref}}'{{/twref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='udvs'>udvs: </label><div class='col-sm-8'><input id='udvs' class='form-control' type='text'{{#udvs}} value='{{udvs}}'{{/udvs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updip'>updip: </label><div class='col-sm-8'><input id='updip' class='form-control' type='text'{{#updip}} value='{{updip}}'{{/updip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='wdtd'>wdtd: </label><div class='col-sm-8'><input id='wdtd' class='form-control' type='text'{{#wdtd}} value='{{wdtd}}'{{/wdtd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zeta'>zeta: </label><div class='col-sm-8'><input id='zeta' class='form-control' type='text'{{#zeta}} value='{{zeta}}'{{/zeta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Q control model.
@@ -664,8 +872,8 @@ define
                 base.parse_element (/<cim:WindContQIEC.umin>([\s\S]*?)<\/cim:WindContQIEC.umin>/g, obj, "umin", base.to_string, sub, context);
                 base.parse_element (/<cim:WindContQIEC.uqdip>([\s\S]*?)<\/cim:WindContQIEC.uqdip>/g, obj, "uqdip", base.to_string, sub, context);
                 base.parse_element (/<cim:WindContQIEC.uref0>([\s\S]*?)<\/cim:WindContQIEC.uref0>/g, obj, "uref0", base.to_string, sub, context);
-                base.parse_element (/<cim:WindContQIEC.windQcontrolModesType>([\s\S]*?)<\/cim:WindContQIEC.windQcontrolModesType>/g, obj, "windQcontrolModesType", base.to_string, sub, context);
-                base.parse_element (/<cim:WindContQIEC.windUVRTQcontrolModesType>([\s\S]*?)<\/cim:WindContQIEC.windUVRTQcontrolModesType>/g, obj, "windUVRTQcontrolModesType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:WindContQIEC.windQcontrolModesType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "windQcontrolModesType", sub, context);
+                base.parse_attribute (/<cim:WindContQIEC.windUVRTQcontrolModesType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "windUVRTQcontrolModesType", sub, context);
                 base.parse_element (/<cim:WindContQIEC.xdroop>([\s\S]*?)<\/cim:WindContQIEC.xdroop>/g, obj, "xdroop", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindContQIEC.WindTurbineType3or4IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3or4IEC", sub, context);
 
@@ -715,40 +923,98 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindContQIEC_collapse" aria-expanded="true" aria-controls="WindContQIEC_collapse">WindContQIEC</a>
-<div id="WindContQIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#iqh1}}<div><b>iqh1</b>: {{iqh1}}</div>{{/iqh1}}
-{{#iqmax}}<div><b>iqmax</b>: {{iqmax}}</div>{{/iqmax}}
-{{#iqmin}}<div><b>iqmin</b>: {{iqmin}}</div>{{/iqmin}}
-{{#iqpost}}<div><b>iqpost</b>: {{iqpost}}</div>{{/iqpost}}
-{{#kiq}}<div><b>kiq</b>: {{kiq}}</div>{{/kiq}}
-{{#kiu}}<div><b>kiu</b>: {{kiu}}</div>{{/kiu}}
-{{#kpq}}<div><b>kpq</b>: {{kpq}}</div>{{/kpq}}
-{{#kpu}}<div><b>kpu</b>: {{kpu}}</div>{{/kpu}}
-{{#kqv}}<div><b>kqv</b>: {{kqv}}</div>{{/kqv}}
-{{#rdroop}}<div><b>rdroop</b>: {{rdroop}}</div>{{/rdroop}}
-{{#tpfiltq}}<div><b>tpfiltq</b>: {{tpfiltq}}</div>{{/tpfiltq}}
-{{#tpost}}<div><b>tpost</b>: {{tpost}}</div>{{/tpost}}
-{{#tqord}}<div><b>tqord</b>: {{tqord}}</div>{{/tqord}}
-{{#tufiltq}}<div><b>tufiltq</b>: {{tufiltq}}</div>{{/tufiltq}}
-{{#udb1}}<div><b>udb1</b>: {{udb1}}</div>{{/udb1}}
-{{#udb2}}<div><b>udb2</b>: {{udb2}}</div>{{/udb2}}
-{{#umax}}<div><b>umax</b>: {{umax}}</div>{{/umax}}
-{{#umin}}<div><b>umin</b>: {{umin}}</div>{{/umin}}
-{{#uqdip}}<div><b>uqdip</b>: {{uqdip}}</div>{{/uqdip}}
-{{#uref0}}<div><b>uref0</b>: {{uref0}}</div>{{/uref0}}
-{{#windQcontrolModesType}}<div><b>windQcontrolModesType</b>: {{windQcontrolModesType}}</div>{{/windQcontrolModesType}}
-{{#windUVRTQcontrolModesType}}<div><b>windUVRTQcontrolModesType</b>: {{windUVRTQcontrolModesType}}</div>{{/windUVRTQcontrolModesType}}
-{{#xdroop}}<div><b>xdroop</b>: {{xdroop}}</div>{{/xdroop}}
-{{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContQIEC_collapse" aria-expanded="true" aria-controls="WindContQIEC_collapse" style="margin-left: 10px;">WindContQIEC</a></legend>
+                    <div id="WindContQIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#iqh1}}<div><b>iqh1</b>: {{iqh1}}</div>{{/iqh1}}
+                    {{#iqmax}}<div><b>iqmax</b>: {{iqmax}}</div>{{/iqmax}}
+                    {{#iqmin}}<div><b>iqmin</b>: {{iqmin}}</div>{{/iqmin}}
+                    {{#iqpost}}<div><b>iqpost</b>: {{iqpost}}</div>{{/iqpost}}
+                    {{#kiq}}<div><b>kiq</b>: {{kiq}}</div>{{/kiq}}
+                    {{#kiu}}<div><b>kiu</b>: {{kiu}}</div>{{/kiu}}
+                    {{#kpq}}<div><b>kpq</b>: {{kpq}}</div>{{/kpq}}
+                    {{#kpu}}<div><b>kpu</b>: {{kpu}}</div>{{/kpu}}
+                    {{#kqv}}<div><b>kqv</b>: {{kqv}}</div>{{/kqv}}
+                    {{#rdroop}}<div><b>rdroop</b>: {{rdroop}}</div>{{/rdroop}}
+                    {{#tpfiltq}}<div><b>tpfiltq</b>: {{tpfiltq}}</div>{{/tpfiltq}}
+                    {{#tpost}}<div><b>tpost</b>: {{tpost}}</div>{{/tpost}}
+                    {{#tqord}}<div><b>tqord</b>: {{tqord}}</div>{{/tqord}}
+                    {{#tufiltq}}<div><b>tufiltq</b>: {{tufiltq}}</div>{{/tufiltq}}
+                    {{#udb1}}<div><b>udb1</b>: {{udb1}}</div>{{/udb1}}
+                    {{#udb2}}<div><b>udb2</b>: {{udb2}}</div>{{/udb2}}
+                    {{#umax}}<div><b>umax</b>: {{umax}}</div>{{/umax}}
+                    {{#umin}}<div><b>umin</b>: {{umin}}</div>{{/umin}}
+                    {{#uqdip}}<div><b>uqdip</b>: {{uqdip}}</div>{{/uqdip}}
+                    {{#uref0}}<div><b>uref0</b>: {{uref0}}</div>{{/uref0}}
+                    {{#windQcontrolModesType}}<div><b>windQcontrolModesType</b>: {{windQcontrolModesType}}</div>{{/windQcontrolModesType}}
+                    {{#windUVRTQcontrolModesType}}<div><b>windUVRTQcontrolModesType</b>: {{windUVRTQcontrolModesType}}</div>{{/windUVRTQcontrolModesType}}
+                    {{#xdroop}}<div><b>xdroop</b>: {{xdroop}}</div>{{/xdroop}}
+                    {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.WindQcontrolModeKind = []; if (!obj.windQcontrolModesType) obj.WindQcontrolModeKind.push ({ id: '', selected: true}); for (var property in WindQcontrolModeKind) obj.WindQcontrolModeKind.push ({ id: property, selected: obj.windQcontrolModesType && obj.windQcontrolModesType.endsWith ('.' + property)});
+                obj.WindUVRTQcontrolModeKind = []; if (!obj.windUVRTQcontrolModesType) obj.WindUVRTQcontrolModeKind.push ({ id: '', selected: true}); for (var property in WindUVRTQcontrolModeKind) obj.WindUVRTQcontrolModeKind.push ({ id: property, selected: obj.windUVRTQcontrolModesType && obj.windUVRTQcontrolModesType.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.WindQcontrolModeKind;
+                delete obj.WindUVRTQcontrolModeKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContQIEC_collapse" aria-expanded="true" aria-controls="WindContQIEC_collapse" style="margin-left: 10px;">WindContQIEC</a></legend>
+                    <div id="WindContQIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='iqh1'>iqh1: </label><div class='col-sm-8'><input id='iqh1' class='form-control' type='text'{{#iqh1}} value='{{iqh1}}'{{/iqh1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='iqmax'>iqmax: </label><div class='col-sm-8'><input id='iqmax' class='form-control' type='text'{{#iqmax}} value='{{iqmax}}'{{/iqmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='iqmin'>iqmin: </label><div class='col-sm-8'><input id='iqmin' class='form-control' type='text'{{#iqmin}} value='{{iqmin}}'{{/iqmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='iqpost'>iqpost: </label><div class='col-sm-8'><input id='iqpost' class='form-control' type='text'{{#iqpost}} value='{{iqpost}}'{{/iqpost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiq'>kiq: </label><div class='col-sm-8'><input id='kiq' class='form-control' type='text'{{#kiq}} value='{{kiq}}'{{/kiq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiu'>kiu: </label><div class='col-sm-8'><input id='kiu' class='form-control' type='text'{{#kiu}} value='{{kiu}}'{{/kiu}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpq'>kpq: </label><div class='col-sm-8'><input id='kpq' class='form-control' type='text'{{#kpq}} value='{{kpq}}'{{/kpq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpu'>kpu: </label><div class='col-sm-8'><input id='kpu' class='form-control' type='text'{{#kpu}} value='{{kpu}}'{{/kpu}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kqv'>kqv: </label><div class='col-sm-8'><input id='kqv' class='form-control' type='text'{{#kqv}} value='{{kqv}}'{{/kqv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rdroop'>rdroop: </label><div class='col-sm-8'><input id='rdroop' class='form-control' type='text'{{#rdroop}} value='{{rdroop}}'{{/rdroop}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpfiltq'>tpfiltq: </label><div class='col-sm-8'><input id='tpfiltq' class='form-control' type='text'{{#tpfiltq}} value='{{tpfiltq}}'{{/tpfiltq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpost'>tpost: </label><div class='col-sm-8'><input id='tpost' class='form-control' type='text'{{#tpost}} value='{{tpost}}'{{/tpost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tqord'>tqord: </label><div class='col-sm-8'><input id='tqord' class='form-control' type='text'{{#tqord}} value='{{tqord}}'{{/tqord}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tufiltq'>tufiltq: </label><div class='col-sm-8'><input id='tufiltq' class='form-control' type='text'{{#tufiltq}} value='{{tufiltq}}'{{/tufiltq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='udb1'>udb1: </label><div class='col-sm-8'><input id='udb1' class='form-control' type='text'{{#udb1}} value='{{udb1}}'{{/udb1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='udb2'>udb2: </label><div class='col-sm-8'><input id='udb2' class='form-control' type='text'{{#udb2}} value='{{udb2}}'{{/udb2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='umax'>umax: </label><div class='col-sm-8'><input id='umax' class='form-control' type='text'{{#umax}} value='{{umax}}'{{/umax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='umin'>umin: </label><div class='col-sm-8'><input id='umin' class='form-control' type='text'{{#umin}} value='{{umin}}'{{/umin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uqdip'>uqdip: </label><div class='col-sm-8'><input id='uqdip' class='form-control' type='text'{{#uqdip}} value='{{uqdip}}'{{/uqdip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uref0'>uref0: </label><div class='col-sm-8'><input id='uref0' class='form-control' type='text'{{#uref0}} value='{{uref0}}'{{/uref0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='windQcontrolModesType'>windQcontrolModesType: </label><div class='col-sm-8'><select id='windQcontrolModesType' class='form-control'>{{#WindQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindQcontrolModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='windUVRTQcontrolModesType'>windUVRTQcontrolModesType: </label><div class='col-sm-8'><select id='windUVRTQcontrolModesType' class='form-control'>{{#WindUVRTQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindUVRTQcontrolModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xdroop'>xdroop: </label><div class='col-sm-8'><input id='xdroop' class='form-control' type='text'{{#xdroop}} value='{{xdroop}}'{{/xdroop}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The constant aerodynamic torque model assumes that the aerodynamic torque is constant.
@@ -805,17 +1071,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindAeroConstIEC_collapse" aria-expanded="true" aria-controls="WindAeroConstIEC_collapse">WindAeroConstIEC</a>
-<div id="WindAeroConstIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#WindGenTurbineType1aIEC}}<div><b>WindGenTurbineType1aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType1aIEC}}&quot;);})'>{{WindGenTurbineType1aIEC}}</a></div>{{/WindGenTurbineType1aIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindAeroConstIEC_collapse" aria-expanded="true" aria-controls="WindAeroConstIEC_collapse" style="margin-left: 10px;">WindAeroConstIEC</a></legend>
+                    <div id="WindAeroConstIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#WindGenTurbineType1aIEC}}<div><b>WindGenTurbineType1aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType1aIEC}}&quot;);})'>{{WindGenTurbineType1aIEC}}</a></div>{{/WindGenTurbineType1aIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindAeroConstIEC_collapse" aria-expanded="true" aria-controls="WindAeroConstIEC_collapse" style="margin-left: 10px;">WindAeroConstIEC</a></legend>
+                    <div id="WindAeroConstIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenTurbineType1aIEC'>WindGenTurbineType1aIEC: </label><div class='col-sm-8'><input id='WindGenTurbineType1aIEC' class='form-control' type='text'{{#WindGenTurbineType1aIEC}} value='{{WindGenTurbineType1aIEC}}'{{/WindGenTurbineType1aIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Parent class supporting relationships to wind turbines Type 3 and 4 and wind plant including their control models.
@@ -874,19 +1171,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindTurbineType3or4Dynamics_collapse" aria-expanded="true" aria-controls="WindTurbineType3or4Dynamics_collapse">WindTurbineType3or4Dynamics</a>
-<div id="WindTurbineType3or4Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
-`
-{{#EnergySource}}<div><b>EnergySource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergySource}}&quot;);})'>{{EnergySource}}</a></div>{{/EnergySource}}
-{{#WindPlantDynamics}}<div><b>WindPlantDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantDynamics}}&quot;);})'>{{WindPlantDynamics}}</a></div>{{/WindPlantDynamics}}
-{{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType3or4Dynamics_collapse" aria-expanded="true" aria-controls="WindTurbineType3or4Dynamics_collapse" style="margin-left: 10px;">WindTurbineType3or4Dynamics</a></legend>
+                    <div id="WindTurbineType3or4Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+                    `
+                    {{#EnergySource}}<div><b>EnergySource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergySource}}&quot;);})'>{{EnergySource}}</a></div>{{/EnergySource}}
+                    {{#WindPlantDynamics}}<div><b>WindPlantDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantDynamics}}&quot;);})'>{{WindPlantDynamics}}</a></div>{{/WindPlantDynamics}}
+                    {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType3or4Dynamics_collapse" aria-expanded="true" aria-controls="WindTurbineType3or4Dynamics_collapse" style="margin-left: 10px;">WindTurbineType3or4Dynamics</a></legend>
+                    <div id="WindTurbineType3or4Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergySource'>EnergySource: </label><div class='col-sm-8'><input id='EnergySource' class='form-control' type='text'{{#EnergySource}} value='{{EnergySource}}'{{/EnergySource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantDynamics'>WindPlantDynamics: </label><div class='col-sm-8'><input id='WindPlantDynamics' class='form-control' type='text'{{#WindPlantDynamics}} value='{{WindPlantDynamics}}'{{/WindPlantDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * QP and QU limitation model.
@@ -947,93 +1277,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindContQPQULimIEC_collapse" aria-expanded="true" aria-controls="WindContQPQULimIEC_collapse">WindContQPQULimIEC</a>
-<div id="WindContQPQULimIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#tpfiltql}}<div><b>tpfiltql</b>: {{tpfiltql}}</div>{{/tpfiltql}}
-{{#tufiltql}}<div><b>tufiltql</b>: {{tufiltql}}</div>{{/tufiltql}}
-{{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContQPQULimIEC_collapse" aria-expanded="true" aria-controls="WindContQPQULimIEC_collapse" style="margin-left: 10px;">WindContQPQULimIEC</a></legend>
+                    <div id="WindContQPQULimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#tpfiltql}}<div><b>tpfiltql</b>: {{tpfiltql}}</div>{{/tpfiltql}}
+                    {{#tufiltql}}<div><b>tufiltql</b>: {{tufiltql}}</div>{{/tufiltql}}
+                    {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Reactive power/voltage controller mode.
-         *
-         */
-        class WindPlantQcontrolModeKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.WindPlantQcontrolModeKind;
-                if (null == bucket)
-                   cim_data.WindPlantQcontrolModeKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.WindPlantQcontrolModeKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "WindPlantQcontrolModeKind";
-                base.parse_element (/<cim:WindPlantQcontrolModeKind.reactivePower>([\s\S]*?)<\/cim:WindPlantQcontrolModeKind.reactivePower>/g, obj, "reactivePower", base.to_string, sub, context);
-                base.parse_element (/<cim:WindPlantQcontrolModeKind.powerFactor>([\s\S]*?)<\/cim:WindPlantQcontrolModeKind.powerFactor>/g, obj, "powerFactor", base.to_string, sub, context);
-                base.parse_element (/<cim:WindPlantQcontrolModeKind.uqStatic>([\s\S]*?)<\/cim:WindPlantQcontrolModeKind.uqStatic>/g, obj, "uqStatic", base.to_string, sub, context);
-                base.parse_element (/<cim:WindPlantQcontrolModeKind.voltageControl>([\s\S]*?)<\/cim:WindPlantQcontrolModeKind.voltageControl>/g, obj, "voltageControl", base.to_string, sub, context);
-
-                var bucket = context.parsed.WindPlantQcontrolModeKind;
-                if (null == bucket)
-                   context.parsed.WindPlantQcontrolModeKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "WindPlantQcontrolModeKind", "reactivePower", base.from_string, fields);
-                base.export_element (obj, "WindPlantQcontrolModeKind", "powerFactor", base.from_string, fields);
-                base.export_element (obj, "WindPlantQcontrolModeKind", "uqStatic", base.from_string, fields);
-                base.export_element (obj, "WindPlantQcontrolModeKind", "voltageControl", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindPlantQcontrolModeKind_collapse" aria-expanded="true" aria-controls="WindPlantQcontrolModeKind_collapse">WindPlantQcontrolModeKind</a>
-<div id="WindPlantQcontrolModeKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#reactivePower}}<div><b>reactivePower</b>: {{reactivePower}}</div>{{/reactivePower}}
-{{#powerFactor}}<div><b>powerFactor</b>: {{powerFactor}}</div>{{/powerFactor}}
-{{#uqStatic}}<div><b>uqStatic</b>: {{uqStatic}}</div>{{/uqStatic}}
-{{#voltageControl}}<div><b>voltageControl</b>: {{voltageControl}}</div>{{/voltageControl}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContQPQULimIEC_collapse" aria-expanded="true" aria-controls="WindContQPQULimIEC_collapse" style="margin-left: 10px;">WindContQPQULimIEC</a></legend>
+                    <div id="WindContQPQULimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpfiltql'>tpfiltql: </label><div class='col-sm-8'><input id='tpfiltql' class='form-control' type='text'{{#tpfiltql}} value='{{tpfiltql}}'{{/tpfiltql}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tufiltql'>tufiltql: </label><div class='col-sm-8'><input id='tufiltql' class='form-control' type='text'{{#tufiltql}} value='{{tufiltql}}'{{/tufiltql}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Two mass model.
@@ -1102,133 +1391,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindMechIEC_collapse" aria-expanded="true" aria-controls="WindMechIEC_collapse">WindMechIEC</a>
-<div id="WindMechIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#cdrt}}<div><b>cdrt</b>: {{cdrt}}</div>{{/cdrt}}
-{{#hgen}}<div><b>hgen</b>: {{hgen}}</div>{{/hgen}}
-{{#hwtr}}<div><b>hwtr</b>: {{hwtr}}</div>{{/hwtr}}
-{{#kdrt}}<div><b>kdrt</b>: {{kdrt}}</div>{{/kdrt}}
-{{#WindTurbineType1or2IEC}}<div><b>WindTurbineType1or2IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType1or2IEC}}&quot;);})'>{{WindTurbineType1or2IEC}}</a></div>{{/WindTurbineType1or2IEC}}
-{{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);})'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
-{{#WindTurbineType4bIEC}}<div><b>WindTurbineType4bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4bIEC}}&quot;);})'>{{WindTurbineType4bIEC}}</a></div>{{/WindTurbineType4bIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindMechIEC_collapse" aria-expanded="true" aria-controls="WindMechIEC_collapse" style="margin-left: 10px;">WindMechIEC</a></legend>
+                    <div id="WindMechIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#cdrt}}<div><b>cdrt</b>: {{cdrt}}</div>{{/cdrt}}
+                    {{#hgen}}<div><b>hgen</b>: {{hgen}}</div>{{/hgen}}
+                    {{#hwtr}}<div><b>hwtr</b>: {{hwtr}}</div>{{/hwtr}}
+                    {{#kdrt}}<div><b>kdrt</b>: {{kdrt}}</div>{{/kdrt}}
+                    {{#WindTurbineType1or2IEC}}<div><b>WindTurbineType1or2IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType1or2IEC}}&quot;);})'>{{WindTurbineType1or2IEC}}</a></div>{{/WindTurbineType1or2IEC}}
+                    {{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);})'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
+                    {{#WindTurbineType4bIEC}}<div><b>WindTurbineType4bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4bIEC}}&quot;);})'>{{WindTurbineType4bIEC}}</a></div>{{/WindTurbineType4bIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Function of the lookup table.
-         *
-         */
-        class WindLookupTableFunctionKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.WindLookupTableFunctionKind;
-                if (null == bucket)
-                   cim_data.WindLookupTableFunctionKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.WindLookupTableFunctionKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "WindLookupTableFunctionKind";
-                base.parse_element (/<cim:WindLookupTableFunctionKind.prr>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.prr>/g, obj, "prr", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.omegap>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.omegap>/g, obj, "omegap", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.ipmax>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.ipmax>/g, obj, "ipmax", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.iqmax>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.iqmax>/g, obj, "iqmax", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.pwp>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.pwp>/g, obj, "pwp", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.tcwdu>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.tcwdu>/g, obj, "tcwdu", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.tduwt>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.tduwt>/g, obj, "tduwt", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.qmaxp>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.qmaxp>/g, obj, "qmaxp", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.qminp>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.qminp>/g, obj, "qminp", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.qmaxu>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.qmaxu>/g, obj, "qmaxu", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.qminu>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.qminu>/g, obj, "qminu", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.tuover>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.tuover>/g, obj, "tuover", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.tuunder>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.tuunder>/g, obj, "tuunder", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.tfover>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.tfover>/g, obj, "tfover", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.tfunder>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.tfunder>/g, obj, "tfunder", base.to_string, sub, context);
-                base.parse_element (/<cim:WindLookupTableFunctionKind.qwp>([\s\S]*?)<\/cim:WindLookupTableFunctionKind.qwp>/g, obj, "qwp", base.to_string, sub, context);
-
-                var bucket = context.parsed.WindLookupTableFunctionKind;
-                if (null == bucket)
-                   context.parsed.WindLookupTableFunctionKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "WindLookupTableFunctionKind", "prr", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "omegap", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "ipmax", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "iqmax", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "pwp", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "tcwdu", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "tduwt", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "qmaxp", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "qminp", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "qmaxu", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "qminu", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "tuover", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "tuunder", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "tfover", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "tfunder", base.from_string, fields);
-                base.export_element (obj, "WindLookupTableFunctionKind", "qwp", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindLookupTableFunctionKind_collapse" aria-expanded="true" aria-controls="WindLookupTableFunctionKind_collapse">WindLookupTableFunctionKind</a>
-<div id="WindLookupTableFunctionKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#prr}}<div><b>prr</b>: {{prr}}</div>{{/prr}}
-{{#omegap}}<div><b>omegap</b>: {{omegap}}</div>{{/omegap}}
-{{#ipmax}}<div><b>ipmax</b>: {{ipmax}}</div>{{/ipmax}}
-{{#iqmax}}<div><b>iqmax</b>: {{iqmax}}</div>{{/iqmax}}
-{{#pwp}}<div><b>pwp</b>: {{pwp}}</div>{{/pwp}}
-{{#tcwdu}}<div><b>tcwdu</b>: {{tcwdu}}</div>{{/tcwdu}}
-{{#tduwt}}<div><b>tduwt</b>: {{tduwt}}</div>{{/tduwt}}
-{{#qmaxp}}<div><b>qmaxp</b>: {{qmaxp}}</div>{{/qmaxp}}
-{{#qminp}}<div><b>qminp</b>: {{qminp}}</div>{{/qminp}}
-{{#qmaxu}}<div><b>qmaxu</b>: {{qmaxu}}</div>{{/qmaxu}}
-{{#qminu}}<div><b>qminu</b>: {{qminu}}</div>{{/qminu}}
-{{#tuover}}<div><b>tuover</b>: {{tuover}}</div>{{/tuover}}
-{{#tuunder}}<div><b>tuunder</b>: {{tuunder}}</div>{{/tuunder}}
-{{#tfover}}<div><b>tfover</b>: {{tfover}}</div>{{/tfover}}
-{{#tfunder}}<div><b>tfunder</b>: {{tfunder}}</div>{{/tfunder}}
-{{#qwp}}<div><b>qwp</b>: {{qwp}}</div>{{/qwp}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindMechIEC_collapse" aria-expanded="true" aria-controls="WindMechIEC_collapse" style="margin-left: 10px;">WindMechIEC</a></legend>
+                    <div id="WindMechIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cdrt'>cdrt: </label><div class='col-sm-8'><input id='cdrt' class='form-control' type='text'{{#cdrt}} value='{{cdrt}}'{{/cdrt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hgen'>hgen: </label><div class='col-sm-8'><input id='hgen' class='form-control' type='text'{{#hgen}} value='{{hgen}}'{{/hgen}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hwtr'>hwtr: </label><div class='col-sm-8'><input id='hwtr' class='form-control' type='text'{{#hwtr}} value='{{hwtr}}'{{/hwtr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kdrt'>kdrt: </label><div class='col-sm-8'><input id='kdrt' class='form-control' type='text'{{#kdrt}} value='{{kdrt}}'{{/kdrt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType1or2IEC'>WindTurbineType1or2IEC: </label><div class='col-sm-8'><input id='WindTurbineType1or2IEC' class='form-control' type='text'{{#WindTurbineType1or2IEC}} value='{{WindTurbineType1or2IEC}}'{{/WindTurbineType1or2IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType4bIEC'>WindTurbineType4bIEC: </label><div class='col-sm-8'><input id='WindTurbineType4bIEC' class='form-control' type='text'{{#WindTurbineType4bIEC}} value='{{WindTurbineType4bIEC}}'{{/WindTurbineType4bIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Two-dimensional aerodynamic model.
@@ -1299,24 +1515,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindAeroTwoDimIEC_collapse" aria-expanded="true" aria-controls="WindAeroTwoDimIEC_collapse">WindAeroTwoDimIEC</a>
-<div id="WindAeroTwoDimIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#dpomega}}<div><b>dpomega</b>: {{dpomega}}</div>{{/dpomega}}
-{{#dptheta}}<div><b>dptheta</b>: {{dptheta}}</div>{{/dptheta}}
-{{#dpv1}}<div><b>dpv1</b>: {{dpv1}}</div>{{/dpv1}}
-{{#omegazero}}<div><b>omegazero</b>: {{omegazero}}</div>{{/omegazero}}
-{{#pavail}}<div><b>pavail</b>: {{pavail}}</div>{{/pavail}}
-{{#thetav2}}<div><b>thetav2</b>: {{thetav2}}</div>{{/thetav2}}
-{{#thetazero}}<div><b>thetazero</b>: {{thetazero}}</div>{{/thetazero}}
-{{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);})'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindAeroTwoDimIEC_collapse" aria-expanded="true" aria-controls="WindAeroTwoDimIEC_collapse" style="margin-left: 10px;">WindAeroTwoDimIEC</a></legend>
+                    <div id="WindAeroTwoDimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#dpomega}}<div><b>dpomega</b>: {{dpomega}}</div>{{/dpomega}}
+                    {{#dptheta}}<div><b>dptheta</b>: {{dptheta}}</div>{{/dptheta}}
+                    {{#dpv1}}<div><b>dpv1</b>: {{dpv1}}</div>{{/dpv1}}
+                    {{#omegazero}}<div><b>omegazero</b>: {{omegazero}}</div>{{/omegazero}}
+                    {{#pavail}}<div><b>pavail</b>: {{pavail}}</div>{{/pavail}}
+                    {{#thetav2}}<div><b>thetav2</b>: {{thetav2}}</div>{{/thetav2}}
+                    {{#thetazero}}<div><b>thetazero</b>: {{thetazero}}</div>{{/thetazero}}
+                    {{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);})'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindAeroTwoDimIEC_collapse" aria-expanded="true" aria-controls="WindAeroTwoDimIEC_collapse" style="margin-left: 10px;">WindAeroTwoDimIEC</a></legend>
+                    <div id="WindAeroTwoDimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpomega'>dpomega: </label><div class='col-sm-8'><input id='dpomega' class='form-control' type='text'{{#dpomega}} value='{{dpomega}}'{{/dpomega}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dptheta'>dptheta: </label><div class='col-sm-8'><input id='dptheta' class='form-control' type='text'{{#dptheta}} value='{{dptheta}}'{{/dptheta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpv1'>dpv1: </label><div class='col-sm-8'><input id='dpv1' class='form-control' type='text'{{#dpv1}} value='{{dpv1}}'{{/dpv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omegazero'>omegazero: </label><div class='col-sm-8'><input id='omegazero' class='form-control' type='text'{{#omegazero}} value='{{omegazero}}'{{/omegazero}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pavail'>pavail: </label><div class='col-sm-8'><input id='pavail' class='form-control' type='text'{{#pavail}} value='{{pavail}}'{{/pavail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetav2'>thetav2: </label><div class='col-sm-8'><input id='thetav2' class='form-control' type='text'{{#thetav2}} value='{{thetav2}}'{{/thetav2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetazero'>thetazero: </label><div class='col-sm-8'><input id='thetazero' class='form-control' type='text'{{#thetazero}} value='{{thetazero}}'{{/thetazero}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Constant Q limitation model.
@@ -1377,19 +1631,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindContQLimIEC_collapse" aria-expanded="true" aria-controls="WindContQLimIEC_collapse">WindContQLimIEC</a>
-<div id="WindContQLimIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#qmax}}<div><b>qmax</b>: {{qmax}}</div>{{/qmax}}
-{{#qmin}}<div><b>qmin</b>: {{qmin}}</div>{{/qmin}}
-{{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContQLimIEC_collapse" aria-expanded="true" aria-controls="WindContQLimIEC_collapse" style="margin-left: 10px;">WindContQLimIEC</a></legend>
+                    <div id="WindContQLimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#qmax}}<div><b>qmax</b>: {{qmax}}</div>{{/qmax}}
+                    {{#qmin}}<div><b>qmin</b>: {{qmin}}</div>{{/qmin}}
+                    {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContQLimIEC_collapse" aria-expanded="true" aria-controls="WindContQLimIEC_collapse" style="margin-left: 10px;">WindContQLimIEC</a></legend>
+                    <div id="WindContQLimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qmax'>qmax: </label><div class='col-sm-8'><input id='qmax' class='form-control' type='text'{{#qmax}} value='{{qmax}}'{{/qmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qmin'>qmin: </label><div class='col-sm-8'><input id='qmin' class='form-control' type='text'{{#qmin}} value='{{qmin}}'{{/qmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Parent class supporting relationships to IEC wind turbines Type 3 generator models of IEC type 3A and 3B.
@@ -1450,20 +1737,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindGenType3IEC_collapse" aria-expanded="true" aria-controls="WindGenType3IEC_collapse">WindGenType3IEC</a>
-<div id="WindGenType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#dipmax}}<div><b>dipmax</b>: {{dipmax}}</div>{{/dipmax}}
-{{#diqmax}}<div><b>diqmax</b>: {{diqmax}}</div>{{/diqmax}}
-{{#xs}}<div><b>xs</b>: {{xs}}</div>{{/xs}}
-{{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);})'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType3IEC_collapse" aria-expanded="true" aria-controls="WindGenType3IEC_collapse" style="margin-left: 10px;">WindGenType3IEC</a></legend>
+                    <div id="WindGenType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#dipmax}}<div><b>dipmax</b>: {{dipmax}}</div>{{/dipmax}}
+                    {{#diqmax}}<div><b>diqmax</b>: {{diqmax}}</div>{{/diqmax}}
+                    {{#xs}}<div><b>xs</b>: {{xs}}</div>{{/xs}}
+                    {{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);})'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType3IEC_collapse" aria-expanded="true" aria-controls="WindGenType3IEC_collapse" style="margin-left: 10px;">WindGenType3IEC</a></legend>
+                    <div id="WindGenType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dipmax'>dipmax: </label><div class='col-sm-8'><input id='dipmax' class='form-control' type='text'{{#dipmax}} value='{{dipmax}}'{{/dipmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diqmax'>diqmax: </label><div class='col-sm-8'><input id='diqmax' class='form-control' type='text'{{#diqmax}} value='{{diqmax}}'{{/diqmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xs'>xs: </label><div class='col-sm-8'><input id='xs' class='form-control' type='text'{{#xs}} value='{{xs}}'{{/xs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The grid protection model includes protection against over and under voltage, and against over and under frequency.
@@ -1536,25 +1857,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindProtectionIEC_collapse" aria-expanded="true" aria-controls="WindProtectionIEC_collapse">WindProtectionIEC</a>
-<div id="WindProtectionIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#dfimax}}<div><b>dfimax</b>: {{dfimax}}</div>{{/dfimax}}
-{{#fover}}<div><b>fover</b>: {{fover}}</div>{{/fover}}
-{{#funder}}<div><b>funder</b>: {{funder}}</div>{{/funder}}
-{{#mzc}}<div><b>mzc</b>: {{mzc}}</div>{{/mzc}}
-{{#tfma}}<div><b>tfma</b>: {{tfma}}</div>{{/tfma}}
-{{#uover}}<div><b>uover</b>: {{uover}}</div>{{/uover}}
-{{#uunder}}<div><b>uunder</b>: {{uunder}}</div>{{/uunder}}
-{{#WindTurbineType1or2IEC}}<div><b>WindTurbineType1or2IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType1or2IEC}}&quot;);})'>{{WindTurbineType1or2IEC}}</a></div>{{/WindTurbineType1or2IEC}}
-{{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindProtectionIEC_collapse" aria-expanded="true" aria-controls="WindProtectionIEC_collapse" style="margin-left: 10px;">WindProtectionIEC</a></legend>
+                    <div id="WindProtectionIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#dfimax}}<div><b>dfimax</b>: {{dfimax}}</div>{{/dfimax}}
+                    {{#fover}}<div><b>fover</b>: {{fover}}</div>{{/fover}}
+                    {{#funder}}<div><b>funder</b>: {{funder}}</div>{{/funder}}
+                    {{#mzc}}<div><b>mzc</b>: {{mzc}}</div>{{/mzc}}
+                    {{#tfma}}<div><b>tfma</b>: {{tfma}}</div>{{/tfma}}
+                    {{#uover}}<div><b>uover</b>: {{uover}}</div>{{/uover}}
+                    {{#uunder}}<div><b>uunder</b>: {{uunder}}</div>{{/uunder}}
+                    {{#WindTurbineType1or2IEC}}<div><b>WindTurbineType1or2IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType1or2IEC}}&quot;);})'>{{WindTurbineType1or2IEC}}</a></div>{{/WindTurbineType1or2IEC}}
+                    {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindProtectionIEC_collapse" aria-expanded="true" aria-controls="WindProtectionIEC_collapse" style="margin-left: 10px;">WindProtectionIEC</a></legend>
+                    <div id="WindProtectionIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dfimax'>dfimax: </label><div class='col-sm-8'><input id='dfimax' class='form-control' type='text'{{#dfimax}} value='{{dfimax}}'{{/dfimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fover'>fover: </label><div class='col-sm-8'><input id='fover' class='form-control' type='text'{{#fover}} value='{{fover}}'{{/fover}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='funder'>funder: </label><div class='col-sm-8'><input id='funder' class='form-control' type='text'{{#funder}} value='{{funder}}'{{/funder}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mzc'>mzc: </label><div class='col-sm-8'><input id='mzc' class='form-check-input' type='checkbox'{{#mzc}} checked{{/mzc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tfma'>tfma: </label><div class='col-sm-8'><input id='tfma' class='form-control' type='text'{{#tfma}} value='{{tfma}}'{{/tfma}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uover'>uover: </label><div class='col-sm-8'><input id='uover' class='form-control' type='text'{{#uover}} value='{{uover}}'{{/uover}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uunder'>uunder: </label><div class='col-sm-8'><input id='uunder' class='form-control' type='text'{{#uunder}} value='{{uunder}}'{{/uunder}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType1or2IEC'>WindTurbineType1or2IEC: </label><div class='col-sm-8'><input id='WindTurbineType1or2IEC' class='form-control' type='text'{{#WindTurbineType1or2IEC}} value='{{WindTurbineType1or2IEC}}'{{/WindTurbineType1or2IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Rotor resistance control model.
@@ -1627,25 +1987,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindContRotorRIEC_collapse" aria-expanded="true" aria-controls="WindContRotorRIEC_collapse">WindContRotorRIEC</a>
-<div id="WindContRotorRIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#kirr}}<div><b>kirr</b>: {{kirr}}</div>{{/kirr}}
-{{#komegafilt}}<div><b>komegafilt</b>: {{komegafilt}}</div>{{/komegafilt}}
-{{#kpfilt}}<div><b>kpfilt</b>: {{kpfilt}}</div>{{/kpfilt}}
-{{#kprr}}<div><b>kprr</b>: {{kprr}}</div>{{/kprr}}
-{{#rmax}}<div><b>rmax</b>: {{rmax}}</div>{{/rmax}}
-{{#rmin}}<div><b>rmin</b>: {{rmin}}</div>{{/rmin}}
-{{#tomegafiltrr}}<div><b>tomegafiltrr</b>: {{tomegafiltrr}}</div>{{/tomegafiltrr}}
-{{#tpfiltrr}}<div><b>tpfiltrr</b>: {{tpfiltrr}}</div>{{/tpfiltrr}}
-{{#WindGenTurbineType2IEC}}<div><b>WindGenTurbineType2IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType2IEC}}&quot;);})'>{{WindGenTurbineType2IEC}}</a></div>{{/WindGenTurbineType2IEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContRotorRIEC_collapse" aria-expanded="true" aria-controls="WindContRotorRIEC_collapse" style="margin-left: 10px;">WindContRotorRIEC</a></legend>
+                    <div id="WindContRotorRIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#kirr}}<div><b>kirr</b>: {{kirr}}</div>{{/kirr}}
+                    {{#komegafilt}}<div><b>komegafilt</b>: {{komegafilt}}</div>{{/komegafilt}}
+                    {{#kpfilt}}<div><b>kpfilt</b>: {{kpfilt}}</div>{{/kpfilt}}
+                    {{#kprr}}<div><b>kprr</b>: {{kprr}}</div>{{/kprr}}
+                    {{#rmax}}<div><b>rmax</b>: {{rmax}}</div>{{/rmax}}
+                    {{#rmin}}<div><b>rmin</b>: {{rmin}}</div>{{/rmin}}
+                    {{#tomegafiltrr}}<div><b>tomegafiltrr</b>: {{tomegafiltrr}}</div>{{/tomegafiltrr}}
+                    {{#tpfiltrr}}<div><b>tpfiltrr</b>: {{tpfiltrr}}</div>{{/tpfiltrr}}
+                    {{#WindGenTurbineType2IEC}}<div><b>WindGenTurbineType2IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType2IEC}}&quot;);})'>{{WindGenTurbineType2IEC}}</a></div>{{/WindGenTurbineType2IEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContRotorRIEC_collapse" aria-expanded="true" aria-controls="WindContRotorRIEC_collapse" style="margin-left: 10px;">WindContRotorRIEC</a></legend>
+                    <div id="WindContRotorRIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kirr'>kirr: </label><div class='col-sm-8'><input id='kirr' class='form-control' type='text'{{#kirr}} value='{{kirr}}'{{/kirr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='komegafilt'>komegafilt: </label><div class='col-sm-8'><input id='komegafilt' class='form-control' type='text'{{#komegafilt}} value='{{komegafilt}}'{{/komegafilt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpfilt'>kpfilt: </label><div class='col-sm-8'><input id='kpfilt' class='form-control' type='text'{{#kpfilt}} value='{{kpfilt}}'{{/kpfilt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kprr'>kprr: </label><div class='col-sm-8'><input id='kprr' class='form-control' type='text'{{#kprr}} value='{{kprr}}'{{/kprr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rmax'>rmax: </label><div class='col-sm-8'><input id='rmax' class='form-control' type='text'{{#rmax}} value='{{rmax}}'{{/rmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rmin'>rmin: </label><div class='col-sm-8'><input id='rmin' class='form-control' type='text'{{#rmin}} value='{{rmin}}'{{/rmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tomegafiltrr'>tomegafiltrr: </label><div class='col-sm-8'><input id='tomegafiltrr' class='form-control' type='text'{{#tomegafiltrr}} value='{{tomegafiltrr}}'{{/tomegafiltrr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpfiltrr'>tpfiltrr: </label><div class='col-sm-8'><input id='tpfiltrr' class='form-control' type='text'{{#tpfiltrr}} value='{{tpfiltrr}}'{{/tpfiltrr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenTurbineType2IEC'>WindGenTurbineType2IEC: </label><div class='col-sm-8'><input id='WindGenTurbineType2IEC' class='form-control' type='text'{{#WindGenTurbineType2IEC}} value='{{WindGenTurbineType2IEC}}'{{/WindGenTurbineType2IEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * P control model Type 4B.
@@ -1710,21 +2109,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindContPType4bIEC_collapse" aria-expanded="true" aria-controls="WindContPType4bIEC_collapse">WindContPType4bIEC</a>
-<div id="WindContPType4bIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#dpmaxp4b}}<div><b>dpmaxp4b</b>: {{dpmaxp4b}}</div>{{/dpmaxp4b}}
-{{#tpaero}}<div><b>tpaero</b>: {{tpaero}}</div>{{/tpaero}}
-{{#tpordp4b}}<div><b>tpordp4b</b>: {{tpordp4b}}</div>{{/tpordp4b}}
-{{#tufiltp4b}}<div><b>tufiltp4b</b>: {{tufiltp4b}}</div>{{/tufiltp4b}}
-{{#WindTurbineType4bIEC}}<div><b>WindTurbineType4bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4bIEC}}&quot;);})'>{{WindTurbineType4bIEC}}</a></div>{{/WindTurbineType4bIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPType4bIEC_collapse" aria-expanded="true" aria-controls="WindContPType4bIEC_collapse" style="margin-left: 10px;">WindContPType4bIEC</a></legend>
+                    <div id="WindContPType4bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#dpmaxp4b}}<div><b>dpmaxp4b</b>: {{dpmaxp4b}}</div>{{/dpmaxp4b}}
+                    {{#tpaero}}<div><b>tpaero</b>: {{tpaero}}</div>{{/tpaero}}
+                    {{#tpordp4b}}<div><b>tpordp4b</b>: {{tpordp4b}}</div>{{/tpordp4b}}
+                    {{#tufiltp4b}}<div><b>tufiltp4b</b>: {{tufiltp4b}}</div>{{/tufiltp4b}}
+                    {{#WindTurbineType4bIEC}}<div><b>WindTurbineType4bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4bIEC}}&quot;);})'>{{WindTurbineType4bIEC}}</a></div>{{/WindTurbineType4bIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPType4bIEC_collapse" aria-expanded="true" aria-controls="WindContPType4bIEC_collapse" style="margin-left: 10px;">WindContPType4bIEC</a></legend>
+                    <div id="WindContPType4bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpmaxp4b'>dpmaxp4b: </label><div class='col-sm-8'><input id='dpmaxp4b' class='form-control' type='text'{{#dpmaxp4b}} value='{{dpmaxp4b}}'{{/dpmaxp4b}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpaero'>tpaero: </label><div class='col-sm-8'><input id='tpaero' class='form-control' type='text'{{#tpaero}} value='{{tpaero}}'{{/tpaero}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpordp4b'>tpordp4b: </label><div class='col-sm-8'><input id='tpordp4b' class='form-control' type='text'{{#tpordp4b}} value='{{tpordp4b}}'{{/tpordp4b}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tufiltp4b'>tufiltp4b: </label><div class='col-sm-8'><input id='tufiltp4b' class='form-control' type='text'{{#tufiltp4b}} value='{{tufiltp4b}}'{{/tufiltp4b}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType4bIEC'>WindTurbineType4bIEC: </label><div class='col-sm-8'><input id='WindTurbineType4bIEC' class='form-control' type='text'{{#WindTurbineType4bIEC}} value='{{WindTurbineType4bIEC}}'{{/WindTurbineType4bIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Reference frame rotation model.
@@ -1787,20 +2221,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindRefFrameRotIEC_collapse" aria-expanded="true" aria-controls="WindRefFrameRotIEC_collapse">WindRefFrameRotIEC</a>
-<div id="WindRefFrameRotIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#tpll}}<div><b>tpll</b>: {{tpll}}</div>{{/tpll}}
-{{#upll1}}<div><b>upll1</b>: {{upll1}}</div>{{/upll1}}
-{{#upll2}}<div><b>upll2</b>: {{upll2}}</div>{{/upll2}}
-{{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindRefFrameRotIEC_collapse" aria-expanded="true" aria-controls="WindRefFrameRotIEC_collapse" style="margin-left: 10px;">WindRefFrameRotIEC</a></legend>
+                    <div id="WindRefFrameRotIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#tpll}}<div><b>tpll</b>: {{tpll}}</div>{{/tpll}}
+                    {{#upll1}}<div><b>upll1</b>: {{upll1}}</div>{{/upll1}}
+                    {{#upll2}}<div><b>upll2</b>: {{upll2}}</div>{{/upll2}}
+                    {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindRefFrameRotIEC_collapse" aria-expanded="true" aria-controls="WindRefFrameRotIEC_collapse" style="margin-left: 10px;">WindRefFrameRotIEC</a></legend>
+                    <div id="WindRefFrameRotIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpll'>tpll: </label><div class='col-sm-8'><input id='tpll' class='form-control' type='text'{{#tpll}} value='{{tpll}}'{{/tpll}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='upll1'>upll1: </label><div class='col-sm-8'><input id='upll1' class='form-control' type='text'{{#upll1}} value='{{upll1}}'{{/upll1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='upll2'>upll2: </label><div class='col-sm-8'><input id='upll2' class='form-control' type='text'{{#upll2}} value='{{upll2}}'{{/upll2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class models a look up table for the purpose of wind standard models.
@@ -1831,7 +2299,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "WindDynamicsLookupTable";
                 base.parse_element (/<cim:WindDynamicsLookupTable.input>([\s\S]*?)<\/cim:WindDynamicsLookupTable.input>/g, obj, "input", base.to_float, sub, context);
-                base.parse_element (/<cim:WindDynamicsLookupTable.lookupTableFunctionType>([\s\S]*?)<\/cim:WindDynamicsLookupTable.lookupTableFunctionType>/g, obj, "lookupTableFunctionType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:WindDynamicsLookupTable.lookupTableFunctionType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "lookupTableFunctionType", sub, context);
                 base.parse_element (/<cim:WindDynamicsLookupTable.output>([\s\S]*?)<\/cim:WindDynamicsLookupTable.output>/g, obj, "output", base.to_float, sub, context);
                 base.parse_element (/<cim:WindDynamicsLookupTable.sequence>([\s\S]*?)<\/cim:WindDynamicsLookupTable.sequence>/g, obj, "sequence", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindDynamicsLookupTable.WindPitchContPowerIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindPitchContPowerIEC", sub, context);
@@ -1879,29 +2347,74 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindDynamicsLookupTable_collapse" aria-expanded="true" aria-controls="WindDynamicsLookupTable_collapse">WindDynamicsLookupTable</a>
-<div id="WindDynamicsLookupTable_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#input}}<div><b>input</b>: {{input}}</div>{{/input}}
-{{#lookupTableFunctionType}}<div><b>lookupTableFunctionType</b>: {{lookupTableFunctionType}}</div>{{/lookupTableFunctionType}}
-{{#output}}<div><b>output</b>: {{output}}</div>{{/output}}
-{{#sequence}}<div><b>sequence</b>: {{sequence}}</div>{{/sequence}}
-{{#WindPitchContPowerIEC}}<div><b>WindPitchContPowerIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPitchContPowerIEC}}&quot;);})'>{{WindPitchContPowerIEC}}</a></div>{{/WindPitchContPowerIEC}}
-{{#WindPlantFreqPcontrolIEC}}<div><b>WindPlantFreqPcontrolIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantFreqPcontrolIEC}}&quot;);})'>{{WindPlantFreqPcontrolIEC}}</a></div>{{/WindPlantFreqPcontrolIEC}}
-{{#WindContQPQULimIEC}}<div><b>WindContQPQULimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContQPQULimIEC}}&quot;);})'>{{WindContQPQULimIEC}}</a></div>{{/WindContQPQULimIEC}}
-{{#WindGenType3bIEC}}<div><b>WindGenType3bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenType3bIEC}}&quot;);})'>{{WindGenType3bIEC}}</a></div>{{/WindGenType3bIEC}}
-{{#WindContPType3IEC}}<div><b>WindContPType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContPType3IEC}}&quot;);})'>{{WindContPType3IEC}}</a></div>{{/WindContPType3IEC}}
-{{#WindPlantReactiveControlIEC}}<div><b>WindPlantReactiveControlIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantReactiveControlIEC}}&quot;);})'>{{WindPlantReactiveControlIEC}}</a></div>{{/WindPlantReactiveControlIEC}}
-{{#WindProtectionIEC}}<div><b>WindProtectionIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindProtectionIEC}}&quot;);})'>{{WindProtectionIEC}}</a></div>{{/WindProtectionIEC}}
-{{#WindContCurrLimIEC}}<div><b>WindContCurrLimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContCurrLimIEC}}&quot;);})'>{{WindContCurrLimIEC}}</a></div>{{/WindContCurrLimIEC}}
-{{#WindContRotorRIEC}}<div><b>WindContRotorRIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContRotorRIEC}}&quot;);})'>{{WindContRotorRIEC}}</a></div>{{/WindContRotorRIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindDynamicsLookupTable_collapse" aria-expanded="true" aria-controls="WindDynamicsLookupTable_collapse" style="margin-left: 10px;">WindDynamicsLookupTable</a></legend>
+                    <div id="WindDynamicsLookupTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#input}}<div><b>input</b>: {{input}}</div>{{/input}}
+                    {{#lookupTableFunctionType}}<div><b>lookupTableFunctionType</b>: {{lookupTableFunctionType}}</div>{{/lookupTableFunctionType}}
+                    {{#output}}<div><b>output</b>: {{output}}</div>{{/output}}
+                    {{#sequence}}<div><b>sequence</b>: {{sequence}}</div>{{/sequence}}
+                    {{#WindPitchContPowerIEC}}<div><b>WindPitchContPowerIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPitchContPowerIEC}}&quot;);})'>{{WindPitchContPowerIEC}}</a></div>{{/WindPitchContPowerIEC}}
+                    {{#WindPlantFreqPcontrolIEC}}<div><b>WindPlantFreqPcontrolIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantFreqPcontrolIEC}}&quot;);})'>{{WindPlantFreqPcontrolIEC}}</a></div>{{/WindPlantFreqPcontrolIEC}}
+                    {{#WindContQPQULimIEC}}<div><b>WindContQPQULimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContQPQULimIEC}}&quot;);})'>{{WindContQPQULimIEC}}</a></div>{{/WindContQPQULimIEC}}
+                    {{#WindGenType3bIEC}}<div><b>WindGenType3bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenType3bIEC}}&quot;);})'>{{WindGenType3bIEC}}</a></div>{{/WindGenType3bIEC}}
+                    {{#WindContPType3IEC}}<div><b>WindContPType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContPType3IEC}}&quot;);})'>{{WindContPType3IEC}}</a></div>{{/WindContPType3IEC}}
+                    {{#WindPlantReactiveControlIEC}}<div><b>WindPlantReactiveControlIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantReactiveControlIEC}}&quot;);})'>{{WindPlantReactiveControlIEC}}</a></div>{{/WindPlantReactiveControlIEC}}
+                    {{#WindProtectionIEC}}<div><b>WindProtectionIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindProtectionIEC}}&quot;);})'>{{WindProtectionIEC}}</a></div>{{/WindProtectionIEC}}
+                    {{#WindContCurrLimIEC}}<div><b>WindContCurrLimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContCurrLimIEC}}&quot;);})'>{{WindContCurrLimIEC}}</a></div>{{/WindContCurrLimIEC}}
+                    {{#WindContRotorRIEC}}<div><b>WindContRotorRIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContRotorRIEC}}&quot;);})'>{{WindContRotorRIEC}}</a></div>{{/WindContRotorRIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.WindLookupTableFunctionKind = []; if (!obj.lookupTableFunctionType) obj.WindLookupTableFunctionKind.push ({ id: '', selected: true}); for (var property in WindLookupTableFunctionKind) obj.WindLookupTableFunctionKind.push ({ id: property, selected: obj.lookupTableFunctionType && obj.lookupTableFunctionType.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.WindLookupTableFunctionKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindDynamicsLookupTable_collapse" aria-expanded="true" aria-controls="WindDynamicsLookupTable_collapse" style="margin-left: 10px;">WindDynamicsLookupTable</a></legend>
+                    <div id="WindDynamicsLookupTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='input'>input: </label><div class='col-sm-8'><input id='input' class='form-control' type='text'{{#input}} value='{{input}}'{{/input}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lookupTableFunctionType'>lookupTableFunctionType: </label><div class='col-sm-8'><select id='lookupTableFunctionType' class='form-control'>{{#WindLookupTableFunctionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindLookupTableFunctionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='output'>output: </label><div class='col-sm-8'><input id='output' class='form-control' type='text'{{#output}} value='{{output}}'{{/output}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequence'>sequence: </label><div class='col-sm-8'><input id='sequence' class='form-control' type='text'{{#sequence}} value='{{sequence}}'{{/sequence}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPitchContPowerIEC'>WindPitchContPowerIEC: </label><div class='col-sm-8'><input id='WindPitchContPowerIEC' class='form-control' type='text'{{#WindPitchContPowerIEC}} value='{{WindPitchContPowerIEC}}'{{/WindPitchContPowerIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantFreqPcontrolIEC'>WindPlantFreqPcontrolIEC: </label><div class='col-sm-8'><input id='WindPlantFreqPcontrolIEC' class='form-control' type='text'{{#WindPlantFreqPcontrolIEC}} value='{{WindPlantFreqPcontrolIEC}}'{{/WindPlantFreqPcontrolIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContQPQULimIEC'>WindContQPQULimIEC: </label><div class='col-sm-8'><input id='WindContQPQULimIEC' class='form-control' type='text'{{#WindContQPQULimIEC}} value='{{WindContQPQULimIEC}}'{{/WindContQPQULimIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenType3bIEC'>WindGenType3bIEC: </label><div class='col-sm-8'><input id='WindGenType3bIEC' class='form-control' type='text'{{#WindGenType3bIEC}} value='{{WindGenType3bIEC}}'{{/WindGenType3bIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContPType3IEC'>WindContPType3IEC: </label><div class='col-sm-8'><input id='WindContPType3IEC' class='form-control' type='text'{{#WindContPType3IEC}} value='{{WindContPType3IEC}}'{{/WindContPType3IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantReactiveControlIEC'>WindPlantReactiveControlIEC: </label><div class='col-sm-8'><input id='WindPlantReactiveControlIEC' class='form-control' type='text'{{#WindPlantReactiveControlIEC}} value='{{WindPlantReactiveControlIEC}}'{{/WindPlantReactiveControlIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindProtectionIEC'>WindProtectionIEC: </label><div class='col-sm-8'><input id='WindProtectionIEC' class='form-control' type='text'{{#WindProtectionIEC}} value='{{WindProtectionIEC}}'{{/WindProtectionIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContCurrLimIEC'>WindContCurrLimIEC: </label><div class='col-sm-8'><input id='WindContCurrLimIEC' class='form-control' type='text'{{#WindContCurrLimIEC}} value='{{WindContCurrLimIEC}}'{{/WindContCurrLimIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContRotorRIEC'>WindContRotorRIEC: </label><div class='col-sm-8'><input id='WindContRotorRIEC' class='form-control' type='text'{{#WindContRotorRIEC}} value='{{WindContRotorRIEC}}'{{/WindContRotorRIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Parent class supporting relationships to wind turbines Type 1 and 2 and their control models.
@@ -1958,18 +2471,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindTurbineType1or2Dynamics_collapse" aria-expanded="true" aria-controls="WindTurbineType1or2Dynamics_collapse">WindTurbineType1or2Dynamics</a>
-<div id="WindTurbineType1or2Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
-`
-{{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineDynamics}}&quot;);})'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
-{{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType1or2Dynamics_collapse" aria-expanded="true" aria-controls="WindTurbineType1or2Dynamics_collapse" style="margin-left: 10px;">WindTurbineType1or2Dynamics</a></legend>
+                    <div id="WindTurbineType1or2Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+                    `
+                    {{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineDynamics}}&quot;);})'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
+                    {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType1or2Dynamics_collapse" aria-expanded="true" aria-controls="WindTurbineType1or2Dynamics_collapse" style="margin-left: 10px;">WindTurbineType1or2Dynamics</a></legend>
+                    <div id="WindTurbineType1or2Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AsynchronousMachineDynamics'>AsynchronousMachineDynamics: </label><div class='col-sm-8'><input id='AsynchronousMachineDynamics' class='form-control' type='text'{{#AsynchronousMachineDynamics}} value='{{AsynchronousMachineDynamics}}'{{/AsynchronousMachineDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Frequency and active power controller model.
@@ -2056,32 +2601,78 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindPlantFreqPcontrolIEC_collapse" aria-expanded="true" aria-controls="WindPlantFreqPcontrolIEC_collapse">WindPlantFreqPcontrolIEC</a>
-<div id="WindPlantFreqPcontrolIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#dprefmax}}<div><b>dprefmax</b>: {{dprefmax}}</div>{{/dprefmax}}
-{{#dprefmin}}<div><b>dprefmin</b>: {{dprefmin}}</div>{{/dprefmin}}
-{{#dpwprefmax}}<div><b>dpwprefmax</b>: {{dpwprefmax}}</div>{{/dpwprefmax}}
-{{#dpwprefmin}}<div><b>dpwprefmin</b>: {{dpwprefmin}}</div>{{/dpwprefmin}}
-{{#kiwpp}}<div><b>kiwpp</b>: {{kiwpp}}</div>{{/kiwpp}}
-{{#kiwppmax}}<div><b>kiwppmax</b>: {{kiwppmax}}</div>{{/kiwppmax}}
-{{#kiwppmin}}<div><b>kiwppmin</b>: {{kiwppmin}}</div>{{/kiwppmin}}
-{{#kpwpp}}<div><b>kpwpp</b>: {{kpwpp}}</div>{{/kpwpp}}
-{{#kwppref}}<div><b>kwppref</b>: {{kwppref}}</div>{{/kwppref}}
-{{#prefmax}}<div><b>prefmax</b>: {{prefmax}}</div>{{/prefmax}}
-{{#prefmin}}<div><b>prefmin</b>: {{prefmin}}</div>{{/prefmin}}
-{{#tpft}}<div><b>tpft</b>: {{tpft}}</div>{{/tpft}}
-{{#tpfv}}<div><b>tpfv</b>: {{tpfv}}</div>{{/tpfv}}
-{{#twpffiltp}}<div><b>twpffiltp</b>: {{twpffiltp}}</div>{{/twpffiltp}}
-{{#twppfiltp}}<div><b>twppfiltp</b>: {{twppfiltp}}</div>{{/twppfiltp}}
-{{#WindPlantIEC}}<div><b>WindPlantIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantIEC}}&quot;);})'>{{WindPlantIEC}}</a></div>{{/WindPlantIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantFreqPcontrolIEC_collapse" aria-expanded="true" aria-controls="WindPlantFreqPcontrolIEC_collapse" style="margin-left: 10px;">WindPlantFreqPcontrolIEC</a></legend>
+                    <div id="WindPlantFreqPcontrolIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#dprefmax}}<div><b>dprefmax</b>: {{dprefmax}}</div>{{/dprefmax}}
+                    {{#dprefmin}}<div><b>dprefmin</b>: {{dprefmin}}</div>{{/dprefmin}}
+                    {{#dpwprefmax}}<div><b>dpwprefmax</b>: {{dpwprefmax}}</div>{{/dpwprefmax}}
+                    {{#dpwprefmin}}<div><b>dpwprefmin</b>: {{dpwprefmin}}</div>{{/dpwprefmin}}
+                    {{#kiwpp}}<div><b>kiwpp</b>: {{kiwpp}}</div>{{/kiwpp}}
+                    {{#kiwppmax}}<div><b>kiwppmax</b>: {{kiwppmax}}</div>{{/kiwppmax}}
+                    {{#kiwppmin}}<div><b>kiwppmin</b>: {{kiwppmin}}</div>{{/kiwppmin}}
+                    {{#kpwpp}}<div><b>kpwpp</b>: {{kpwpp}}</div>{{/kpwpp}}
+                    {{#kwppref}}<div><b>kwppref</b>: {{kwppref}}</div>{{/kwppref}}
+                    {{#prefmax}}<div><b>prefmax</b>: {{prefmax}}</div>{{/prefmax}}
+                    {{#prefmin}}<div><b>prefmin</b>: {{prefmin}}</div>{{/prefmin}}
+                    {{#tpft}}<div><b>tpft</b>: {{tpft}}</div>{{/tpft}}
+                    {{#tpfv}}<div><b>tpfv</b>: {{tpfv}}</div>{{/tpfv}}
+                    {{#twpffiltp}}<div><b>twpffiltp</b>: {{twpffiltp}}</div>{{/twpffiltp}}
+                    {{#twppfiltp}}<div><b>twppfiltp</b>: {{twppfiltp}}</div>{{/twppfiltp}}
+                    {{#WindPlantIEC}}<div><b>WindPlantIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantIEC}}&quot;);})'>{{WindPlantIEC}}</a></div>{{/WindPlantIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantFreqPcontrolIEC_collapse" aria-expanded="true" aria-controls="WindPlantFreqPcontrolIEC_collapse" style="margin-left: 10px;">WindPlantFreqPcontrolIEC</a></legend>
+                    <div id="WindPlantFreqPcontrolIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dprefmax'>dprefmax: </label><div class='col-sm-8'><input id='dprefmax' class='form-control' type='text'{{#dprefmax}} value='{{dprefmax}}'{{/dprefmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dprefmin'>dprefmin: </label><div class='col-sm-8'><input id='dprefmin' class='form-control' type='text'{{#dprefmin}} value='{{dprefmin}}'{{/dprefmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpwprefmax'>dpwprefmax: </label><div class='col-sm-8'><input id='dpwprefmax' class='form-control' type='text'{{#dpwprefmax}} value='{{dpwprefmax}}'{{/dpwprefmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpwprefmin'>dpwprefmin: </label><div class='col-sm-8'><input id='dpwprefmin' class='form-control' type='text'{{#dpwprefmin}} value='{{dpwprefmin}}'{{/dpwprefmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiwpp'>kiwpp: </label><div class='col-sm-8'><input id='kiwpp' class='form-control' type='text'{{#kiwpp}} value='{{kiwpp}}'{{/kiwpp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiwppmax'>kiwppmax: </label><div class='col-sm-8'><input id='kiwppmax' class='form-control' type='text'{{#kiwppmax}} value='{{kiwppmax}}'{{/kiwppmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiwppmin'>kiwppmin: </label><div class='col-sm-8'><input id='kiwppmin' class='form-control' type='text'{{#kiwppmin}} value='{{kiwppmin}}'{{/kiwppmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpwpp'>kpwpp: </label><div class='col-sm-8'><input id='kpwpp' class='form-control' type='text'{{#kpwpp}} value='{{kpwpp}}'{{/kpwpp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kwppref'>kwppref: </label><div class='col-sm-8'><input id='kwppref' class='form-control' type='text'{{#kwppref}} value='{{kwppref}}'{{/kwppref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='prefmax'>prefmax: </label><div class='col-sm-8'><input id='prefmax' class='form-control' type='text'{{#prefmax}} value='{{prefmax}}'{{/prefmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='prefmin'>prefmin: </label><div class='col-sm-8'><input id='prefmin' class='form-control' type='text'{{#prefmin}} value='{{prefmin}}'{{/prefmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpft'>tpft: </label><div class='col-sm-8'><input id='tpft' class='form-control' type='text'{{#tpft}} value='{{tpft}}'{{/tpft}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpfv'>tpfv: </label><div class='col-sm-8'><input id='tpfv' class='form-control' type='text'{{#tpfv}} value='{{tpfv}}'{{/tpfv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twpffiltp'>twpffiltp: </label><div class='col-sm-8'><input id='twpffiltp' class='form-control' type='text'{{#twpffiltp}} value='{{twpffiltp}}'{{/twpffiltp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twppfiltp'>twppfiltp: </label><div class='col-sm-8'><input id='twppfiltp' class='form-control' type='text'{{#twppfiltp}} value='{{twppfiltp}}'{{/twppfiltp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantIEC'>WindPlantIEC: </label><div class='col-sm-8'><input id='WindPlantIEC' class='form-control' type='text'{{#WindPlantIEC}} value='{{WindPlantIEC}}'{{/WindPlantIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * P control model Type 4A.
@@ -2144,91 +2735,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindContPType4aIEC_collapse" aria-expanded="true" aria-controls="WindContPType4aIEC_collapse">WindContPType4aIEC</a>
-<div id="WindContPType4aIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#dpmaxp4a}}<div><b>dpmaxp4a</b>: {{dpmaxp4a}}</div>{{/dpmaxp4a}}
-{{#tpordp4a}}<div><b>tpordp4a</b>: {{tpordp4a}}</div>{{/tpordp4a}}
-{{#tufiltp4a}}<div><b>tufiltp4a</b>: {{tufiltp4a}}</div>{{/tufiltp4a}}
-{{#WindTurbineType4aIEC}}<div><b>WindTurbineType4aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4aIEC}}&quot;);})'>{{WindTurbineType4aIEC}}</a></div>{{/WindTurbineType4aIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPType4aIEC_collapse" aria-expanded="true" aria-controls="WindContPType4aIEC_collapse" style="margin-left: 10px;">WindContPType4aIEC</a></legend>
+                    <div id="WindContPType4aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#dpmaxp4a}}<div><b>dpmaxp4a</b>: {{dpmaxp4a}}</div>{{/dpmaxp4a}}
+                    {{#tpordp4a}}<div><b>tpordp4a</b>: {{tpordp4a}}</div>{{/tpordp4a}}
+                    {{#tufiltp4a}}<div><b>tufiltp4a</b>: {{tufiltp4a}}</div>{{/tufiltp4a}}
+                    {{#WindTurbineType4aIEC}}<div><b>WindTurbineType4aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4aIEC}}&quot;);})'>{{WindTurbineType4aIEC}}</a></div>{{/WindTurbineType4aIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * UVRT Q control modes <i>M</i><sub>qUVRT</sub>.
-         *
-         */
-        class WindUVRTQcontrolModeKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.WindUVRTQcontrolModeKind;
-                if (null == bucket)
-                   cim_data.WindUVRTQcontrolModeKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.WindUVRTQcontrolModeKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "WindUVRTQcontrolModeKind";
-                base.parse_element (/<cim:WindUVRTQcontrolModeKind.mode0>([\s\S]*?)<\/cim:WindUVRTQcontrolModeKind.mode0>/g, obj, "mode0", base.to_string, sub, context);
-                base.parse_element (/<cim:WindUVRTQcontrolModeKind.mode1>([\s\S]*?)<\/cim:WindUVRTQcontrolModeKind.mode1>/g, obj, "mode1", base.to_string, sub, context);
-                base.parse_element (/<cim:WindUVRTQcontrolModeKind.mode2>([\s\S]*?)<\/cim:WindUVRTQcontrolModeKind.mode2>/g, obj, "mode2", base.to_string, sub, context);
-
-                var bucket = context.parsed.WindUVRTQcontrolModeKind;
-                if (null == bucket)
-                   context.parsed.WindUVRTQcontrolModeKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "WindUVRTQcontrolModeKind", "mode0", base.from_string, fields);
-                base.export_element (obj, "WindUVRTQcontrolModeKind", "mode1", base.from_string, fields);
-                base.export_element (obj, "WindUVRTQcontrolModeKind", "mode2", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindUVRTQcontrolModeKind_collapse" aria-expanded="true" aria-controls="WindUVRTQcontrolModeKind_collapse">WindUVRTQcontrolModeKind</a>
-<div id="WindUVRTQcontrolModeKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#mode0}}<div><b>mode0</b>: {{mode0}}</div>{{/mode0}}
-{{#mode1}}<div><b>mode1</b>: {{mode1}}</div>{{/mode1}}
-{{#mode2}}<div><b>mode2</b>: {{mode2}}</div>{{/mode2}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPType4aIEC_collapse" aria-expanded="true" aria-controls="WindContPType4aIEC_collapse" style="margin-left: 10px;">WindContPType4aIEC</a></legend>
+                    <div id="WindContPType4aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpmaxp4a'>dpmaxp4a: </label><div class='col-sm-8'><input id='dpmaxp4a' class='form-control' type='text'{{#dpmaxp4a}} value='{{dpmaxp4a}}'{{/dpmaxp4a}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpordp4a'>tpordp4a: </label><div class='col-sm-8'><input id='tpordp4a' class='form-control' type='text'{{#tpordp4a}} value='{{tpordp4a}}'{{/tpordp4a}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tufiltp4a'>tufiltp4a: </label><div class='col-sm-8'><input id='tufiltp4a' class='form-control' type='text'{{#tufiltp4a}} value='{{tufiltp4a}}'{{/tufiltp4a}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType4aIEC'>WindTurbineType4aIEC: </label><div class='col-sm-8'><input id='WindTurbineType4aIEC' class='form-control' type='text'{{#WindTurbineType4aIEC}} value='{{WindTurbineType4aIEC}}'{{/WindTurbineType4aIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Current limitation model.
@@ -2299,24 +2853,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindContCurrLimIEC_collapse" aria-expanded="true" aria-controls="WindContCurrLimIEC_collapse">WindContCurrLimIEC</a>
-<div id="WindContCurrLimIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#imax}}<div><b>imax</b>: {{imax}}</div>{{/imax}}
-{{#imaxdip}}<div><b>imaxdip</b>: {{imaxdip}}</div>{{/imaxdip}}
-{{#kpqu}}<div><b>kpqu</b>: {{kpqu}}</div>{{/kpqu}}
-{{#mdfslim}}<div><b>mdfslim</b>: {{mdfslim}}</div>{{/mdfslim}}
-{{#mqpri}}<div><b>mqpri</b>: {{mqpri}}</div>{{/mqpri}}
-{{#tufiltcl}}<div><b>tufiltcl</b>: {{tufiltcl}}</div>{{/tufiltcl}}
-{{#upqumax}}<div><b>upqumax</b>: {{upqumax}}</div>{{/upqumax}}
-{{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContCurrLimIEC_collapse" aria-expanded="true" aria-controls="WindContCurrLimIEC_collapse" style="margin-left: 10px;">WindContCurrLimIEC</a></legend>
+                    <div id="WindContCurrLimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#imax}}<div><b>imax</b>: {{imax}}</div>{{/imax}}
+                    {{#imaxdip}}<div><b>imaxdip</b>: {{imaxdip}}</div>{{/imaxdip}}
+                    {{#kpqu}}<div><b>kpqu</b>: {{kpqu}}</div>{{/kpqu}}
+                    {{#mdfslim}}<div><b>mdfslim</b>: {{mdfslim}}</div>{{/mdfslim}}
+                    {{#mqpri}}<div><b>mqpri</b>: {{mqpri}}</div>{{/mqpri}}
+                    {{#tufiltcl}}<div><b>tufiltcl</b>: {{tufiltcl}}</div>{{/tufiltcl}}
+                    {{#upqumax}}<div><b>upqumax</b>: {{upqumax}}</div>{{/upqumax}}
+                    {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContCurrLimIEC_collapse" aria-expanded="true" aria-controls="WindContCurrLimIEC_collapse" style="margin-left: 10px;">WindContCurrLimIEC</a></legend>
+                    <div id="WindContCurrLimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='imax'>imax: </label><div class='col-sm-8'><input id='imax' class='form-control' type='text'{{#imax}} value='{{imax}}'{{/imax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='imaxdip'>imaxdip: </label><div class='col-sm-8'><input id='imaxdip' class='form-control' type='text'{{#imaxdip}} value='{{imaxdip}}'{{/imaxdip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpqu'>kpqu: </label><div class='col-sm-8'><input id='kpqu' class='form-control' type='text'{{#kpqu}} value='{{kpqu}}'{{/kpqu}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mdfslim'>mdfslim: </label><div class='col-sm-8'><input id='mdfslim' class='form-check-input' type='checkbox'{{#mdfslim}} checked{{/mdfslim}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mqpri'>mqpri: </label><div class='col-sm-8'><input id='mqpri' class='form-check-input' type='checkbox'{{#mqpri}} checked{{/mqpri}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tufiltcl'>tufiltcl: </label><div class='col-sm-8'><input id='tufiltcl' class='form-control' type='text'{{#tufiltcl}} value='{{tufiltcl}}'{{/tufiltcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='upqumax'>upqumax: </label><div class='col-sm-8'><input id='upqumax' class='form-control' type='text'{{#upqumax}} value='{{upqumax}}'{{/upqumax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * One-dimensional aerodynamic model.
@@ -2377,19 +2969,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindAeroOneDimIEC_collapse" aria-expanded="true" aria-controls="WindAeroOneDimIEC_collapse">WindAeroOneDimIEC</a>
-<div id="WindAeroOneDimIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#thetaomega}}<div><b>thetaomega</b>: {{thetaomega}}</div>{{/thetaomega}}
-{{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);})'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindAeroOneDimIEC_collapse" aria-expanded="true" aria-controls="WindAeroOneDimIEC_collapse" style="margin-left: 10px;">WindAeroOneDimIEC</a></legend>
+                    <div id="WindAeroOneDimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#thetaomega}}<div><b>thetaomega</b>: {{thetaomega}}</div>{{/thetaomega}}
+                    {{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);})'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindAeroOneDimIEC_collapse" aria-expanded="true" aria-controls="WindAeroOneDimIEC_collapse" style="margin-left: 10px;">WindAeroOneDimIEC</a></legend>
+                    <div id="WindAeroOneDimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetaomega'>thetaomega: </label><div class='col-sm-8'><input id='thetaomega' class='form-control' type='text'{{#thetaomega}} value='{{thetaomega}}'{{/thetaomega}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Parent class supporting relationships to wind turbines Type 3 and 4 and wind plant IEC and user defined wind plants including their control models.
@@ -2444,17 +3069,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindPlantDynamics_collapse" aria-expanded="true" aria-controls="WindPlantDynamics_collapse">WindPlantDynamics</a>
-<div id="WindPlantDynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
-`
-{{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantDynamics_collapse" aria-expanded="true" aria-controls="WindPlantDynamics_collapse" style="margin-left: 10px;">WindPlantDynamics</a></legend>
+                    <div id="WindPlantDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+                    `
+                    {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantDynamics_collapse" aria-expanded="true" aria-controls="WindPlantDynamics_collapse" style="margin-left: 10px;">WindPlantDynamics</a></legend>
+                    <div id="WindPlantDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Parent class supporting relationships to IEC wind turbines Type 3 and 4 including their control models.
@@ -2519,22 +3175,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindTurbineType3or4IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType3or4IEC_collapse">WindTurbineType3or4IEC</a>
-<div id="WindTurbineType3or4IEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindTurbineType3or4Dynamics.prototype.template.call (this) +
-`
-{{#WindRefFrameRotIEC}}<div><b>WindRefFrameRotIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindRefFrameRotIEC}}&quot;);})'>{{WindRefFrameRotIEC}}</a></div>{{/WindRefFrameRotIEC}}
-{{#WindContQPQULimIEC}}<div><b>WindContQPQULimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContQPQULimIEC}}&quot;);})'>{{WindContQPQULimIEC}}</a></div>{{/WindContQPQULimIEC}}
-{{#WindContCurrLimIEC}}<div><b>WindContCurrLimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContCurrLimIEC}}&quot;);})'>{{WindContCurrLimIEC}}</a></div>{{/WindContCurrLimIEC}}
-{{#WIndContQIEC}}<div><b>WIndContQIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WIndContQIEC}}&quot;);})'>{{WIndContQIEC}}</a></div>{{/WIndContQIEC}}
-{{#WindContQLimIEC}}<div><b>WindContQLimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContQLimIEC}}&quot;);})'>{{WindContQLimIEC}}</a></div>{{/WindContQLimIEC}}
-{{#WindProtectionIEC}}<div><b>WindProtectionIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindProtectionIEC}}&quot;);})'>{{WindProtectionIEC}}</a></div>{{/WindProtectionIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType3or4IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType3or4IEC_collapse" style="margin-left: 10px;">WindTurbineType3or4IEC</a></legend>
+                    <div id="WindTurbineType3or4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType3or4Dynamics.prototype.template.call (this) +
+                    `
+                    {{#WindRefFrameRotIEC}}<div><b>WindRefFrameRotIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindRefFrameRotIEC}}&quot;);})'>{{WindRefFrameRotIEC}}</a></div>{{/WindRefFrameRotIEC}}
+                    {{#WindContQPQULimIEC}}<div><b>WindContQPQULimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContQPQULimIEC}}&quot;);})'>{{WindContQPQULimIEC}}</a></div>{{/WindContQPQULimIEC}}
+                    {{#WindContCurrLimIEC}}<div><b>WindContCurrLimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContCurrLimIEC}}&quot;);})'>{{WindContCurrLimIEC}}</a></div>{{/WindContCurrLimIEC}}
+                    {{#WIndContQIEC}}<div><b>WIndContQIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WIndContQIEC}}&quot;);})'>{{WIndContQIEC}}</a></div>{{/WIndContQIEC}}
+                    {{#WindContQLimIEC}}<div><b>WindContQLimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContQLimIEC}}&quot;);})'>{{WindContQLimIEC}}</a></div>{{/WindContQLimIEC}}
+                    {{#WindProtectionIEC}}<div><b>WindProtectionIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindProtectionIEC}}&quot;);})'>{{WindProtectionIEC}}</a></div>{{/WindProtectionIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType3or4IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType3or4IEC_collapse" style="margin-left: 10px;">WindTurbineType3or4IEC</a></legend>
+                    <div id="WindTurbineType3or4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType3or4Dynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindRefFrameRotIEC'>WindRefFrameRotIEC: </label><div class='col-sm-8'><input id='WindRefFrameRotIEC' class='form-control' type='text'{{#WindRefFrameRotIEC}} value='{{WindRefFrameRotIEC}}'{{/WindRefFrameRotIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContQPQULimIEC'>WindContQPQULimIEC: </label><div class='col-sm-8'><input id='WindContQPQULimIEC' class='form-control' type='text'{{#WindContQPQULimIEC}} value='{{WindContQPQULimIEC}}'{{/WindContQPQULimIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContCurrLimIEC'>WindContCurrLimIEC: </label><div class='col-sm-8'><input id='WindContCurrLimIEC' class='form-control' type='text'{{#WindContCurrLimIEC}} value='{{WindContCurrLimIEC}}'{{/WindContCurrLimIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WIndContQIEC'>WIndContQIEC: </label><div class='col-sm-8'><input id='WIndContQIEC' class='form-control' type='text'{{#WIndContQIEC}} value='{{WIndContQIEC}}'{{/WIndContQIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContQLimIEC'>WindContQLimIEC: </label><div class='col-sm-8'><input id='WindContQLimIEC' class='form-control' type='text'{{#WindContQLimIEC}} value='{{WindContQLimIEC}}'{{/WindContQLimIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindProtectionIEC'>WindProtectionIEC: </label><div class='col-sm-8'><input id='WindProtectionIEC' class='form-control' type='text'{{#WindProtectionIEC}} value='{{WindProtectionIEC}}'{{/WindProtectionIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Parent class supporting relationships to IEC wind turbines Type 4 including their control models.
@@ -2589,17 +3281,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindTurbineType4IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4IEC_collapse">WindTurbineType4IEC</a>
-<div id="WindTurbineType4IEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindTurbineType3or4IEC.prototype.template.call (this) +
-`
-{{#WindGenType3aIEC}}<div><b>WindGenType3aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenType3aIEC}}&quot;);})'>{{WindGenType3aIEC}}</a></div>{{/WindGenType3aIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType4IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4IEC_collapse" style="margin-left: 10px;">WindTurbineType4IEC</a></legend>
+                    <div id="WindTurbineType4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType3or4IEC.prototype.template.call (this) +
+                    `
+                    {{#WindGenType3aIEC}}<div><b>WindGenType3aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenType3aIEC}}&quot;);})'>{{WindGenType3aIEC}}</a></div>{{/WindGenType3aIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType4IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4IEC_collapse" style="margin-left: 10px;">WindTurbineType4IEC</a></legend>
+                    <div id="WindTurbineType4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType3or4IEC.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenType3aIEC'>WindGenType3aIEC: </label><div class='col-sm-8'><input id='WindGenType3aIEC' class='form-control' type='text'{{#WindGenType3aIEC}} value='{{WindGenType3aIEC}}'{{/WindGenType3aIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Parent class supporting relationships to IEC wind turbines Type 3 including their control models.
@@ -2664,22 +3387,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindTurbineType3IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType3IEC_collapse">WindTurbineType3IEC</a>
-<div id="WindTurbineType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindTurbineType3or4IEC.prototype.template.call (this) +
-`
-{{#WindGenType3IEC}}<div><b>WindGenType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenType3IEC}}&quot;);})'>{{WindGenType3IEC}}</a></div>{{/WindGenType3IEC}}
-{{#WindContPitchAngleIEC}}<div><b>WindContPitchAngleIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContPitchAngleIEC}}&quot;);})'>{{WindContPitchAngleIEC}}</a></div>{{/WindContPitchAngleIEC}}
-{{#WindContPType3IEC}}<div><b>WindContPType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContPType3IEC}}&quot;);})'>{{WindContPType3IEC}}</a></div>{{/WindContPType3IEC}}
-{{#WindAeroTwoDimIEC}}<div><b>WindAeroTwoDimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindAeroTwoDimIEC}}&quot;);})'>{{WindAeroTwoDimIEC}}</a></div>{{/WindAeroTwoDimIEC}}
-{{#WindMechIEC}}<div><b>WindMechIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindMechIEC}}&quot;);})'>{{WindMechIEC}}</a></div>{{/WindMechIEC}}
-{{#WindAeroOneDimIEC}}<div><b>WindAeroOneDimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindAeroOneDimIEC}}&quot;);})'>{{WindAeroOneDimIEC}}</a></div>{{/WindAeroOneDimIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType3IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType3IEC_collapse" style="margin-left: 10px;">WindTurbineType3IEC</a></legend>
+                    <div id="WindTurbineType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType3or4IEC.prototype.template.call (this) +
+                    `
+                    {{#WindGenType3IEC}}<div><b>WindGenType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenType3IEC}}&quot;);})'>{{WindGenType3IEC}}</a></div>{{/WindGenType3IEC}}
+                    {{#WindContPitchAngleIEC}}<div><b>WindContPitchAngleIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContPitchAngleIEC}}&quot;);})'>{{WindContPitchAngleIEC}}</a></div>{{/WindContPitchAngleIEC}}
+                    {{#WindContPType3IEC}}<div><b>WindContPType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContPType3IEC}}&quot;);})'>{{WindContPType3IEC}}</a></div>{{/WindContPType3IEC}}
+                    {{#WindAeroTwoDimIEC}}<div><b>WindAeroTwoDimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindAeroTwoDimIEC}}&quot;);})'>{{WindAeroTwoDimIEC}}</a></div>{{/WindAeroTwoDimIEC}}
+                    {{#WindMechIEC}}<div><b>WindMechIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindMechIEC}}&quot;);})'>{{WindMechIEC}}</a></div>{{/WindMechIEC}}
+                    {{#WindAeroOneDimIEC}}<div><b>WindAeroOneDimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindAeroOneDimIEC}}&quot;);})'>{{WindAeroOneDimIEC}}</a></div>{{/WindAeroOneDimIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType3IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType3IEC_collapse" style="margin-left: 10px;">WindTurbineType3IEC</a></legend>
+                    <div id="WindTurbineType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType3or4IEC.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenType3IEC'>WindGenType3IEC: </label><div class='col-sm-8'><input id='WindGenType3IEC' class='form-control' type='text'{{#WindGenType3IEC}} value='{{WindGenType3IEC}}'{{/WindGenType3IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContPitchAngleIEC'>WindContPitchAngleIEC: </label><div class='col-sm-8'><input id='WindContPitchAngleIEC' class='form-control' type='text'{{#WindContPitchAngleIEC}} value='{{WindContPitchAngleIEC}}'{{/WindContPitchAngleIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContPType3IEC'>WindContPType3IEC: </label><div class='col-sm-8'><input id='WindContPType3IEC' class='form-control' type='text'{{#WindContPType3IEC}} value='{{WindContPType3IEC}}'{{/WindContPType3IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindAeroTwoDimIEC'>WindAeroTwoDimIEC: </label><div class='col-sm-8'><input id='WindAeroTwoDimIEC' class='form-control' type='text'{{#WindAeroTwoDimIEC}} value='{{WindAeroTwoDimIEC}}'{{/WindAeroTwoDimIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindMechIEC'>WindMechIEC: </label><div class='col-sm-8'><input id='WindMechIEC' class='form-control' type='text'{{#WindMechIEC}} value='{{WindMechIEC}}'{{/WindMechIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindAeroOneDimIEC'>WindAeroOneDimIEC: </label><div class='col-sm-8'><input id='WindAeroOneDimIEC' class='form-control' type='text'{{#WindAeroOneDimIEC}} value='{{WindAeroOneDimIEC}}'{{/WindAeroOneDimIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Wind turbine IEC Type 4A.
@@ -2738,18 +3497,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindTurbineType4aIEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4aIEC_collapse">WindTurbineType4aIEC</a>
-<div id="WindTurbineType4aIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindTurbineType4IEC.prototype.template.call (this) +
-`
-{{#WindGenType4IEC}}<div><b>WindGenType4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenType4IEC}}&quot;);})'>{{WindGenType4IEC}}</a></div>{{/WindGenType4IEC}}
-{{#WindContPType4aIEC}}<div><b>WindContPType4aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContPType4aIEC}}&quot;);})'>{{WindContPType4aIEC}}</a></div>{{/WindContPType4aIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType4aIEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4aIEC_collapse" style="margin-left: 10px;">WindTurbineType4aIEC</a></legend>
+                    <div id="WindTurbineType4aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType4IEC.prototype.template.call (this) +
+                    `
+                    {{#WindGenType4IEC}}<div><b>WindGenType4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenType4IEC}}&quot;);})'>{{WindGenType4IEC}}</a></div>{{/WindGenType4IEC}}
+                    {{#WindContPType4aIEC}}<div><b>WindContPType4aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContPType4aIEC}}&quot;);})'>{{WindContPType4aIEC}}</a></div>{{/WindContPType4aIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType4aIEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4aIEC_collapse" style="margin-left: 10px;">WindTurbineType4aIEC</a></legend>
+                    <div id="WindTurbineType4aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType4IEC.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenType4IEC'>WindGenType4IEC: </label><div class='col-sm-8'><input id='WindGenType4IEC' class='form-control' type='text'{{#WindGenType4IEC}} value='{{WindGenType4IEC}}'{{/WindGenType4IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContPType4aIEC'>WindContPType4aIEC: </label><div class='col-sm-8'><input id='WindContPType4aIEC' class='form-control' type='text'{{#WindContPType4aIEC}} value='{{WindContPType4aIEC}}'{{/WindContPType4aIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Wind turbine IEC Type 4A.
@@ -2810,19 +3601,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindTurbineType4bIEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4bIEC_collapse">WindTurbineType4bIEC</a>
-<div id="WindTurbineType4bIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindTurbineType4IEC.prototype.template.call (this) +
-`
-{{#WindContPType4bIEC}}<div><b>WindContPType4bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContPType4bIEC}}&quot;);})'>{{WindContPType4bIEC}}</a></div>{{/WindContPType4bIEC}}
-{{#WindGenType4IEC}}<div><b>WindGenType4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenType4IEC}}&quot;);})'>{{WindGenType4IEC}}</a></div>{{/WindGenType4IEC}}
-{{#WindMechIEC}}<div><b>WindMechIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindMechIEC}}&quot;);})'>{{WindMechIEC}}</a></div>{{/WindMechIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType4bIEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4bIEC_collapse" style="margin-left: 10px;">WindTurbineType4bIEC</a></legend>
+                    <div id="WindTurbineType4bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType4IEC.prototype.template.call (this) +
+                    `
+                    {{#WindContPType4bIEC}}<div><b>WindContPType4bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContPType4bIEC}}&quot;);})'>{{WindContPType4bIEC}}</a></div>{{/WindContPType4bIEC}}
+                    {{#WindGenType4IEC}}<div><b>WindGenType4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenType4IEC}}&quot;);})'>{{WindGenType4IEC}}</a></div>{{/WindGenType4IEC}}
+                    {{#WindMechIEC}}<div><b>WindMechIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindMechIEC}}&quot;);})'>{{WindMechIEC}}</a></div>{{/WindMechIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType4bIEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4bIEC_collapse" style="margin-left: 10px;">WindTurbineType4bIEC</a></legend>
+                    <div id="WindTurbineType4bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType4IEC.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContPType4bIEC'>WindContPType4bIEC: </label><div class='col-sm-8'><input id='WindContPType4bIEC' class='form-control' type='text'{{#WindContPType4bIEC}} value='{{WindContPType4bIEC}}'{{/WindContPType4bIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenType4IEC'>WindGenType4IEC: </label><div class='col-sm-8'><input id='WindGenType4IEC' class='form-control' type='text'{{#WindGenType4IEC}} value='{{WindGenType4IEC}}'{{/WindGenType4IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindMechIEC'>WindMechIEC: </label><div class='col-sm-8'><input id='WindMechIEC' class='form-control' type='text'{{#WindMechIEC}} value='{{WindMechIEC}}'{{/WindMechIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * IEC Type 3A generator set model.
@@ -2883,19 +3707,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindGenType3aIEC_collapse" aria-expanded="true" aria-controls="WindGenType3aIEC_collapse">WindGenType3aIEC</a>
-<div id="WindGenType3aIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindGenType3IEC.prototype.template.call (this) +
-`
-{{#kpc}}<div><b>kpc</b>: {{kpc}}</div>{{/kpc}}
-{{#tic}}<div><b>tic</b>: {{tic}}</div>{{/tic}}
-{{#WindTurbineType4IEC}}<div><b>WindTurbineType4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4IEC}}&quot;);})'>{{WindTurbineType4IEC}}</a></div>{{/WindTurbineType4IEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType3aIEC_collapse" aria-expanded="true" aria-controls="WindGenType3aIEC_collapse" style="margin-left: 10px;">WindGenType3aIEC</a></legend>
+                    <div id="WindGenType3aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindGenType3IEC.prototype.template.call (this) +
+                    `
+                    {{#kpc}}<div><b>kpc</b>: {{kpc}}</div>{{/kpc}}
+                    {{#tic}}<div><b>tic</b>: {{tic}}</div>{{/tic}}
+                    {{#WindTurbineType4IEC}}<div><b>WindTurbineType4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4IEC}}&quot;);})'>{{WindTurbineType4IEC}}</a></div>{{/WindTurbineType4IEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType3aIEC_collapse" aria-expanded="true" aria-controls="WindGenType3aIEC_collapse" style="margin-left: 10px;">WindGenType3aIEC</a></legend>
+                    <div id="WindGenType3aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindGenType3IEC.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpc'>kpc: </label><div class='col-sm-8'><input id='kpc' class='form-control' type='text'{{#kpc}} value='{{kpc}}'{{/kpc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tic'>tic: </label><div class='col-sm-8'><input id='tic' class='form-control' type='text'{{#tic}} value='{{tic}}'{{/tic}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType4IEC'>WindTurbineType4IEC: </label><div class='col-sm-8'><input id='WindTurbineType4IEC' class='form-control' type='text'{{#WindTurbineType4IEC}} value='{{WindTurbineType4IEC}}'{{/WindTurbineType4IEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * IEC Type 3B generator set model.
@@ -2956,19 +3813,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindGenType3bIEC_collapse" aria-expanded="true" aria-controls="WindGenType3bIEC_collapse">WindGenType3bIEC</a>
-<div id="WindGenType3bIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindGenType3IEC.prototype.template.call (this) +
-`
-{{#mwtcwp}}<div><b>mwtcwp</b>: {{mwtcwp}}</div>{{/mwtcwp}}
-{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
-{{#two}}<div><b>two</b>: {{two}}</div>{{/two}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType3bIEC_collapse" aria-expanded="true" aria-controls="WindGenType3bIEC_collapse" style="margin-left: 10px;">WindGenType3bIEC</a></legend>
+                    <div id="WindGenType3bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindGenType3IEC.prototype.template.call (this) +
+                    `
+                    {{#mwtcwp}}<div><b>mwtcwp</b>: {{mwtcwp}}</div>{{/mwtcwp}}
+                    {{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+                    {{#two}}<div><b>two</b>: {{two}}</div>{{/two}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType3bIEC_collapse" aria-expanded="true" aria-controls="WindGenType3bIEC_collapse" style="margin-left: 10px;">WindGenType3bIEC</a></legend>
+                    <div id="WindGenType3bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindGenType3IEC.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mwtcwp'>mwtcwp: </label><div class='col-sm-8'><input id='mwtcwp' class='form-check-input' type='checkbox'{{#mwtcwp}} checked{{/mwtcwp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tg'>tg: </label><div class='col-sm-8'><input id='tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='two'>two: </label><div class='col-sm-8'><input id='two' class='form-control' type='text'{{#two}} value='{{two}}'{{/two}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Parent class supporting relationships to IEC wind turbines Type 1 and 2 including their control models.
@@ -3027,18 +3917,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindTurbineType1or2IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType1or2IEC_collapse">WindTurbineType1or2IEC</a>
-<div id="WindTurbineType1or2IEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindTurbineType1or2Dynamics.prototype.template.call (this) +
-`
-{{#WindProtectionIEC}}<div><b>WindProtectionIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindProtectionIEC}}&quot;);})'>{{WindProtectionIEC}}</a></div>{{/WindProtectionIEC}}
-{{#WindMechIEC}}<div><b>WindMechIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindMechIEC}}&quot;);})'>{{WindMechIEC}}</a></div>{{/WindMechIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType1or2IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType1or2IEC_collapse" style="margin-left: 10px;">WindTurbineType1or2IEC</a></legend>
+                    <div id="WindTurbineType1or2IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType1or2Dynamics.prototype.template.call (this) +
+                    `
+                    {{#WindProtectionIEC}}<div><b>WindProtectionIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindProtectionIEC}}&quot;);})'>{{WindProtectionIEC}}</a></div>{{/WindProtectionIEC}}
+                    {{#WindMechIEC}}<div><b>WindMechIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindMechIEC}}&quot;);})'>{{WindMechIEC}}</a></div>{{/WindMechIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType1or2IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType1or2IEC_collapse" style="margin-left: 10px;">WindTurbineType1or2IEC</a></legend>
+                    <div id="WindTurbineType1or2IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType1or2Dynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindProtectionIEC'>WindProtectionIEC: </label><div class='col-sm-8'><input id='WindProtectionIEC' class='form-control' type='text'{{#WindProtectionIEC}} value='{{WindProtectionIEC}}'{{/WindProtectionIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindMechIEC'>WindMechIEC: </label><div class='col-sm-8'><input id='WindMechIEC' class='form-control' type='text'{{#WindMechIEC}} value='{{WindMechIEC}}'{{/WindMechIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Wind turbine IEC Type 1B.
@@ -3095,17 +4017,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindGenTurbineType1bIEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType1bIEC_collapse">WindGenTurbineType1bIEC</a>
-<div id="WindGenTurbineType1bIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindTurbineType1or2IEC.prototype.template.call (this) +
-`
-{{#WindPitchContPowerIEC}}<div><b>WindPitchContPowerIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPitchContPowerIEC}}&quot;);})'>{{WindPitchContPowerIEC}}</a></div>{{/WindPitchContPowerIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenTurbineType1bIEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType1bIEC_collapse" style="margin-left: 10px;">WindGenTurbineType1bIEC</a></legend>
+                    <div id="WindGenTurbineType1bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType1or2IEC.prototype.template.call (this) +
+                    `
+                    {{#WindPitchContPowerIEC}}<div><b>WindPitchContPowerIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPitchContPowerIEC}}&quot;);})'>{{WindPitchContPowerIEC}}</a></div>{{/WindPitchContPowerIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenTurbineType1bIEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType1bIEC_collapse" style="margin-left: 10px;">WindGenTurbineType1bIEC</a></legend>
+                    <div id="WindGenTurbineType1bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType1or2IEC.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPitchContPowerIEC'>WindPitchContPowerIEC: </label><div class='col-sm-8'><input id='WindPitchContPowerIEC' class='form-control' type='text'{{#WindPitchContPowerIEC}} value='{{WindPitchContPowerIEC}}'{{/WindPitchContPowerIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Wind turbine IEC Type 1A.
@@ -3162,17 +4115,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindGenTurbineType1aIEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType1aIEC_collapse">WindGenTurbineType1aIEC</a>
-<div id="WindGenTurbineType1aIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindTurbineType1or2IEC.prototype.template.call (this) +
-`
-{{#WindAeroConstIEC}}<div><b>WindAeroConstIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindAeroConstIEC}}&quot;);})'>{{WindAeroConstIEC}}</a></div>{{/WindAeroConstIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenTurbineType1aIEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType1aIEC_collapse" style="margin-left: 10px;">WindGenTurbineType1aIEC</a></legend>
+                    <div id="WindGenTurbineType1aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType1or2IEC.prototype.template.call (this) +
+                    `
+                    {{#WindAeroConstIEC}}<div><b>WindAeroConstIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindAeroConstIEC}}&quot;);})'>{{WindAeroConstIEC}}</a></div>{{/WindAeroConstIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenTurbineType1aIEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType1aIEC_collapse" style="margin-left: 10px;">WindGenTurbineType1aIEC</a></legend>
+                    <div id="WindGenTurbineType1aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType1or2IEC.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindAeroConstIEC'>WindAeroConstIEC: </label><div class='col-sm-8'><input id='WindAeroConstIEC' class='form-control' type='text'{{#WindAeroConstIEC}} value='{{WindAeroConstIEC}}'{{/WindAeroConstIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Wind turbine IEC Type 2.
@@ -3231,18 +4215,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindGenTurbineType2IEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType2IEC_collapse">WindGenTurbineType2IEC</a>
-<div id="WindGenTurbineType2IEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindTurbineType1or2IEC.prototype.template.call (this) +
-`
-{{#WindContRotorRIEC}}<div><b>WindContRotorRIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContRotorRIEC}}&quot;);})'>{{WindContRotorRIEC}}</a></div>{{/WindContRotorRIEC}}
-{{#WindPitchContPowerIEC}}<div><b>WindPitchContPowerIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPitchContPowerIEC}}&quot;);})'>{{WindPitchContPowerIEC}}</a></div>{{/WindPitchContPowerIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenTurbineType2IEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType2IEC_collapse" style="margin-left: 10px;">WindGenTurbineType2IEC</a></legend>
+                    <div id="WindGenTurbineType2IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType1or2IEC.prototype.template.call (this) +
+                    `
+                    {{#WindContRotorRIEC}}<div><b>WindContRotorRIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContRotorRIEC}}&quot;);})'>{{WindContRotorRIEC}}</a></div>{{/WindContRotorRIEC}}
+                    {{#WindPitchContPowerIEC}}<div><b>WindPitchContPowerIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPitchContPowerIEC}}&quot;);})'>{{WindPitchContPowerIEC}}</a></div>{{/WindPitchContPowerIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenTurbineType2IEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType2IEC_collapse" style="margin-left: 10px;">WindGenTurbineType2IEC</a></legend>
+                    <div id="WindGenTurbineType2IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindTurbineType1or2IEC.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContRotorRIEC'>WindContRotorRIEC: </label><div class='col-sm-8'><input id='WindContRotorRIEC' class='form-control' type='text'{{#WindContRotorRIEC}} value='{{WindContRotorRIEC}}'{{/WindContRotorRIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPitchContPowerIEC'>WindPitchContPowerIEC: </label><div class='col-sm-8'><input id='WindPitchContPowerIEC' class='form-control' type='text'{{#WindPitchContPowerIEC}} value='{{WindPitchContPowerIEC}}'{{/WindPitchContPowerIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Simplified IEC type plant level model.
@@ -3301,18 +4317,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindPlantIEC_collapse" aria-expanded="true" aria-controls="WindPlantIEC_collapse">WindPlantIEC</a>
-<div id="WindPlantIEC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindPlantDynamics.prototype.template.call (this) +
-`
-{{#WindPlantReactiveControlIEC}}<div><b>WindPlantReactiveControlIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantReactiveControlIEC}}&quot;);})'>{{WindPlantReactiveControlIEC}}</a></div>{{/WindPlantReactiveControlIEC}}
-{{#WindPlantFreqPcontrolIEC}}<div><b>WindPlantFreqPcontrolIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantFreqPcontrolIEC}}&quot;);})'>{{WindPlantFreqPcontrolIEC}}</a></div>{{/WindPlantFreqPcontrolIEC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantIEC_collapse" aria-expanded="true" aria-controls="WindPlantIEC_collapse" style="margin-left: 10px;">WindPlantIEC</a></legend>
+                    <div id="WindPlantIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindPlantDynamics.prototype.template.call (this) +
+                    `
+                    {{#WindPlantReactiveControlIEC}}<div><b>WindPlantReactiveControlIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantReactiveControlIEC}}&quot;);})'>{{WindPlantReactiveControlIEC}}</a></div>{{/WindPlantReactiveControlIEC}}
+                    {{#WindPlantFreqPcontrolIEC}}<div><b>WindPlantFreqPcontrolIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantFreqPcontrolIEC}}&quot;);})'>{{WindPlantFreqPcontrolIEC}}</a></div>{{/WindPlantFreqPcontrolIEC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantIEC_collapse" aria-expanded="true" aria-controls="WindPlantIEC_collapse" style="margin-left: 10px;">WindPlantIEC</a></legend>
+                    <div id="WindPlantIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindPlantDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantReactiveControlIEC'>WindPlantReactiveControlIEC: </label><div class='col-sm-8'><input id='WindPlantReactiveControlIEC' class='form-control' type='text'{{#WindPlantReactiveControlIEC}} value='{{WindPlantReactiveControlIEC}}'{{/WindPlantReactiveControlIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantFreqPcontrolIEC'>WindPlantFreqPcontrolIEC: </label><div class='col-sm-8'><input id='WindPlantFreqPcontrolIEC' class='form-control' type='text'{{#WindPlantFreqPcontrolIEC}} value='{{WindPlantFreqPcontrolIEC}}'{{/WindPlantFreqPcontrolIEC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
@@ -3338,7 +4386,6 @@ define
                 WindPlantDynamics: WindPlantDynamics,
                 WindMechIEC: WindMechIEC,
                 WindGenType3bIEC: WindGenType3bIEC,
-                WindQcontrolModeKind: WindQcontrolModeKind,
                 WindContPType4bIEC: WindContPType4bIEC,
                 WindTurbineType1or2Dynamics: WindTurbineType1or2Dynamics,
                 WindContQPQULimIEC: WindContQPQULimIEC,
@@ -3346,13 +4393,10 @@ define
                 WindRefFrameRotIEC: WindRefFrameRotIEC,
                 WindContPType4aIEC: WindContPType4aIEC,
                 WindAeroOneDimIEC: WindAeroOneDimIEC,
-                WindLookupTableFunctionKind: WindLookupTableFunctionKind,
-                WindPlantQcontrolModeKind: WindPlantQcontrolModeKind,
                 WindPitchContPowerIEC: WindPitchContPowerIEC,
                 WindProtectionIEC: WindProtectionIEC,
                 WindDynamicsLookupTable: WindDynamicsLookupTable,
                 WindTurbineType3or4IEC: WindTurbineType3or4IEC,
-                WindUVRTQcontrolModeKind: WindUVRTQcontrolModeKind,
                 WindAeroTwoDimIEC: WindAeroTwoDimIEC,
                 WindPlantFreqPcontrolIEC: WindPlantFreqPcontrolIEC,
                 WindGenType3IEC: WindGenType3IEC

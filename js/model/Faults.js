@@ -12,72 +12,13 @@ define
          * The type of fault connection among phases.
          *
          */
-        class PhaseConnectedFaultKind extends base.Element
+        var PhaseConnectedFaultKind =
         {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.PhaseConnectedFaultKind;
-                if (null == bucket)
-                   cim_data.PhaseConnectedFaultKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.PhaseConnectedFaultKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "PhaseConnectedFaultKind";
-                base.parse_element (/<cim:PhaseConnectedFaultKind.lineToGround>([\s\S]*?)<\/cim:PhaseConnectedFaultKind.lineToGround>/g, obj, "lineToGround", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseConnectedFaultKind.lineToLine>([\s\S]*?)<\/cim:PhaseConnectedFaultKind.lineToLine>/g, obj, "lineToLine", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseConnectedFaultKind.lineToLineToGround>([\s\S]*?)<\/cim:PhaseConnectedFaultKind.lineToLineToGround>/g, obj, "lineToLineToGround", base.to_string, sub, context);
-
-                var bucket = context.parsed.PhaseConnectedFaultKind;
-                if (null == bucket)
-                   context.parsed.PhaseConnectedFaultKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "PhaseConnectedFaultKind", "lineToGround", base.from_string, fields);
-                base.export_element (obj, "PhaseConnectedFaultKind", "lineToLine", base.from_string, fields);
-                base.export_element (obj, "PhaseConnectedFaultKind", "lineToLineToGround", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#PhaseConnectedFaultKind_collapse" aria-expanded="true" aria-controls="PhaseConnectedFaultKind_collapse">PhaseConnectedFaultKind</a>
-<div id="PhaseConnectedFaultKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#lineToGround}}<div><b>lineToGround</b>: {{lineToGround}}</div>{{/lineToGround}}
-{{#lineToLine}}<div><b>lineToLine</b>: {{lineToLine}}</div>{{/lineToLine}}
-{{#lineToLineToGround}}<div><b>lineToLineToGround</b>: {{lineToLineToGround}}</div>{{/lineToLineToGround}}
-</div>
-`
-                );
-           }        }
+            lineToGround: "lineToGround",
+            lineToLine: "lineToLine",
+            lineToLineToGround: "lineToLineToGround"
+        };
+        Object.freeze (PhaseConnectedFaultKind);
 
         /**
          * Type of cause of the fault.
@@ -130,16 +71,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FaultCauseType_collapse" aria-expanded="true" aria-controls="FaultCauseType_collapse">FaultCauseType</a>
-<div id="FaultCauseType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultCauseType_collapse" aria-expanded="true" aria-controls="FaultCauseType_collapse" style="margin-left: 10px;">FaultCauseType</a></legend>
+                    <div id="FaultCauseType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultCauseType_collapse" aria-expanded="true" aria-controls="FaultCauseType_collapse" style="margin-left: 10px;">FaultCauseType</a></legend>
+                    <div id="FaultCauseType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Impedance description for the fault.
@@ -200,20 +171,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FaultImpedance_collapse" aria-expanded="true" aria-controls="FaultImpedance_collapse">FaultImpedance</a>
-<div id="FaultImpedance_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#rGround}}<div><b>rGround</b>: {{rGround}}</div>{{/rGround}}
-{{#rLineToLine}}<div><b>rLineToLine</b>: {{rLineToLine}}</div>{{/rLineToLine}}
-{{#xGround}}<div><b>xGround</b>: {{xGround}}</div>{{/xGround}}
-{{#xLineToLine}}<div><b>xLineToLine</b>: {{xLineToLine}}</div>{{/xLineToLine}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultImpedance_collapse" aria-expanded="true" aria-controls="FaultImpedance_collapse" style="margin-left: 10px;">FaultImpedance</a></legend>
+                    <div id="FaultImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#rGround}}<div><b>rGround</b>: {{rGround}}</div>{{/rGround}}
+                    {{#rLineToLine}}<div><b>rLineToLine</b>: {{rLineToLine}}</div>{{/rLineToLine}}
+                    {{#xGround}}<div><b>xGround</b>: {{xGround}}</div>{{/xGround}}
+                    {{#xLineToLine}}<div><b>xLineToLine</b>: {{xLineToLine}}</div>{{/xLineToLine}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultImpedance_collapse" aria-expanded="true" aria-controls="FaultImpedance_collapse" style="margin-left: 10px;">FaultImpedance</a></legend>
+                    <div id="FaultImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rGround'>rGround: </label><div class='col-sm-8'><input id='rGround' class='form-control' type='text'{{#rGround}} value='{{rGround}}'{{/rGround}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rLineToLine'>rLineToLine: </label><div class='col-sm-8'><input id='rLineToLine' class='form-control' type='text'{{#rLineToLine}} value='{{rLineToLine}}'{{/rLineToLine}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xGround'>xGround: </label><div class='col-sm-8'><input id='xGround' class='form-control' type='text'{{#xGround}} value='{{xGround}}'{{/xGround}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xLineToLine'>xLineToLine: </label><div class='col-sm-8'><input id='xLineToLine' class='form-control' type='text'{{#xLineToLine}} value='{{xLineToLine}}'{{/xLineToLine}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Abnormal condition causing current flow through conducting equipment, such as caused by equipment failure or short circuits from objects not typically modeled (for example, a tree falling on a line).
@@ -243,7 +248,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Fault";
-                base.parse_element (/<cim:Fault.kind>([\s\S]*?)<\/cim:Fault.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Fault.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:Fault.phases>([\s\S]*?)<\/cim:Fault.phases>/g, obj, "phases", base.to_string, sub, context);
                 base.parse_element (/<cim:Fault.impedance>([\s\S]*?)<\/cim:Fault.impedance>/g, obj, "impedance", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Fault.FaultyEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FaultyEquipment", sub, context);
@@ -276,21 +281,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Fault_collapse" aria-expanded="true" aria-controls="Fault_collapse">Fault</a>
-<div id="Fault_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
-{{#impedance}}<div><b>impedance</b>: {{impedance}}</div>{{/impedance}}
-{{#FaultyEquipment}}<div><b>FaultyEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FaultyEquipment}}&quot;);})'>{{FaultyEquipment}}</a></div>{{/FaultyEquipment}}
-{{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Outage}}&quot;);})'>{{Outage}}</a></div>{{/Outage}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Fault_collapse" aria-expanded="true" aria-controls="Fault_collapse" style="margin-left: 10px;">Fault</a></legend>
+                    <div id="Fault_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
+                    {{#impedance}}<div><b>impedance</b>: {{impedance}}</div>{{/impedance}}
+                    {{#FaultyEquipment}}<div><b>FaultyEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FaultyEquipment}}&quot;);})'>{{FaultyEquipment}}</a></div>{{/FaultyEquipment}}
+                    {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Outage}}&quot;);})'>{{Outage}}</a></div>{{/Outage}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.PhaseConnectedFaultKind = []; if (!obj.kind) obj.PhaseConnectedFaultKind.push ({ id: '', selected: true}); for (var property in PhaseConnectedFaultKind) obj.PhaseConnectedFaultKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.PhaseConnectedFaultKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Fault_collapse" aria-expanded="true" aria-controls="Fault_collapse" style="margin-left: 10px;">Fault</a></legend>
+                    <div id="Fault_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#PhaseConnectedFaultKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseConnectedFaultKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phases'>phases: </label><div class='col-sm-8'><input id='phases' class='form-control' type='text'{{#phases}} value='{{phases}}'{{/phases}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='impedance'>impedance: </label><div class='col-sm-8'><input id='impedance' class='form-control' type='text'{{#impedance}} value='{{impedance}}'{{/impedance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FaultyEquipment'>FaultyEquipment: </label><div class='col-sm-8'><input id='FaultyEquipment' class='form-control' type='text'{{#FaultyEquipment}} value='{{FaultyEquipment}}'{{/FaultyEquipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Outage'>Outage: </label><div class='col-sm-8'><input id='Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A fault that occurs on an AC line segment at some point along the length.
@@ -347,18 +389,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#LineFault_collapse" aria-expanded="true" aria-controls="LineFault_collapse">LineFault</a>
-<div id="LineFault_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Fault.prototype.template.call (this) +
-`
-{{#lengthFromTerminal1}}<div><b>lengthFromTerminal1</b>: {{lengthFromTerminal1}}</div>{{/lengthFromTerminal1}}
-{{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ACLineSegment}}&quot;);})'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LineFault_collapse" aria-expanded="true" aria-controls="LineFault_collapse" style="margin-left: 10px;">LineFault</a></legend>
+                    <div id="LineFault_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Fault.prototype.template.call (this) +
+                    `
+                    {{#lengthFromTerminal1}}<div><b>lengthFromTerminal1</b>: {{lengthFromTerminal1}}</div>{{/lengthFromTerminal1}}
+                    {{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ACLineSegment}}&quot;);})'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LineFault_collapse" aria-expanded="true" aria-controls="LineFault_collapse" style="margin-left: 10px;">LineFault</a></legend>
+                    <div id="LineFault_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Fault.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lengthFromTerminal1'>lengthFromTerminal1: </label><div class='col-sm-8'><input id='lengthFromTerminal1' class='form-control' type='text'{{#lengthFromTerminal1}} value='{{lengthFromTerminal1}}'{{/lengthFromTerminal1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ACLineSegment'>ACLineSegment: </label><div class='col-sm-8'><input id='ACLineSegment' class='form-control' type='text'{{#ACLineSegment}} value='{{ACLineSegment}}'{{/ACLineSegment}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A fault applied at the terminal, external to the equipment.
@@ -415,24 +489,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EquipmentFault_collapse" aria-expanded="true" aria-controls="EquipmentFault_collapse">EquipmentFault</a>
-<div id="EquipmentFault_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Fault.prototype.template.call (this) +
-`
-{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquipmentFault_collapse" aria-expanded="true" aria-controls="EquipmentFault_collapse" style="margin-left: 10px;">EquipmentFault</a></legend>
+                    <div id="EquipmentFault_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Fault.prototype.template.call (this) +
+                    `
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquipmentFault_collapse" aria-expanded="true" aria-controls="EquipmentFault_collapse" style="margin-left: 10px;">EquipmentFault</a></legend>
+                    <div id="EquipmentFault_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Fault.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
                 LineFault: LineFault,
                 FaultCauseType: FaultCauseType,
                 Fault: Fault,
-                PhaseConnectedFaultKind: PhaseConnectedFaultKind,
                 FaultImpedance: FaultImpedance,
                 EquipmentFault: EquipmentFault
             }

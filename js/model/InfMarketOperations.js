@@ -71,24 +71,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BilateralTransaction_collapse" aria-expanded="true" aria-controls="BilateralTransaction_collapse">BilateralTransaction</a>
-<div id="BilateralTransaction_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
-{{#transactionType}}<div><b>transactionType</b>: {{transactionType}}</div>{{/transactionType}}
-{{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
-{{#purchaseTimeMin}}<div><b>purchaseTimeMin</b>: {{purchaseTimeMin}}</div>{{/purchaseTimeMin}}
-{{#purchaseTimeMax}}<div><b>purchaseTimeMax</b>: {{purchaseTimeMax}}</div>{{/purchaseTimeMax}}
-{{#curtailTimeMin}}<div><b>curtailTimeMin</b>: {{curtailTimeMin}}</div>{{/curtailTimeMin}}
-{{#curtailTimeMax}}<div><b>curtailTimeMax</b>: {{curtailTimeMax}}</div>{{/curtailTimeMax}}
-{{#totalTranChargeMax}}<div><b>totalTranChargeMax</b>: {{totalTranChargeMax}}</div>{{/totalTranChargeMax}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BilateralTransaction_collapse" aria-expanded="true" aria-controls="BilateralTransaction_collapse" style="margin-left: 10px;">BilateralTransaction</a></legend>
+                    <div id="BilateralTransaction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
+                    {{#transactionType}}<div><b>transactionType</b>: {{transactionType}}</div>{{/transactionType}}
+                    {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+                    {{#purchaseTimeMin}}<div><b>purchaseTimeMin</b>: {{purchaseTimeMin}}</div>{{/purchaseTimeMin}}
+                    {{#purchaseTimeMax}}<div><b>purchaseTimeMax</b>: {{purchaseTimeMax}}</div>{{/purchaseTimeMax}}
+                    {{#curtailTimeMin}}<div><b>curtailTimeMin</b>: {{curtailTimeMin}}</div>{{/curtailTimeMin}}
+                    {{#curtailTimeMax}}<div><b>curtailTimeMax</b>: {{curtailTimeMax}}</div>{{/curtailTimeMax}}
+                    {{#totalTranChargeMax}}<div><b>totalTranChargeMax</b>: {{totalTranChargeMax}}</div>{{/totalTranChargeMax}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BilateralTransaction_collapse" aria-expanded="true" aria-controls="BilateralTransaction_collapse" style="margin-left: 10px;">BilateralTransaction</a></legend>
+                    <div id="BilateralTransaction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scope'>scope: </label><div class='col-sm-8'><input id='scope' class='form-control' type='text'{{#scope}} value='{{scope}}'{{/scope}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionType'>transactionType: </label><div class='col-sm-8'><input id='transactionType' class='form-control' type='text'{{#transactionType}} value='{{transactionType}}'{{/transactionType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='purchaseTimeMin'>purchaseTimeMin: </label><div class='col-sm-8'><input id='purchaseTimeMin' class='form-control' type='text'{{#purchaseTimeMin}} value='{{purchaseTimeMin}}'{{/purchaseTimeMin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='purchaseTimeMax'>purchaseTimeMax: </label><div class='col-sm-8'><input id='purchaseTimeMax' class='form-control' type='text'{{#purchaseTimeMax}} value='{{purchaseTimeMax}}'{{/purchaseTimeMax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='curtailTimeMin'>curtailTimeMin: </label><div class='col-sm-8'><input id='curtailTimeMin' class='form-control' type='text'{{#curtailTimeMin}} value='{{curtailTimeMin}}'{{/curtailTimeMin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='curtailTimeMax'>curtailTimeMax: </label><div class='col-sm-8'><input id='curtailTimeMax' class='form-control' type='text'{{#curtailTimeMax}} value='{{curtailTimeMax}}'{{/curtailTimeMax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='totalTranChargeMax'>totalTranChargeMax: </label><div class='col-sm-8'><input id='totalTranChargeMax' class='form-control' type='text'{{#totalTranChargeMax}} value='{{totalTranChargeMax}}'{{/totalTranChargeMax}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Participation level of a given Pnode in a given AggregatePnode.
@@ -143,17 +181,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Participation_collapse" aria-expanded="true" aria-controls="Participation_collapse">Participation</a>
-<div id="Participation_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#factor}}<div><b>factor</b>: {{factor}}</div>{{/factor}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Participation_collapse" aria-expanded="true" aria-controls="Participation_collapse" style="margin-left: 10px;">Participation</a></legend>
+                    <div id="Participation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#factor}}<div><b>factor</b>: {{factor}}</div>{{/factor}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Participation_collapse" aria-expanded="true" aria-controls="Participation_collapse" style="margin-left: 10px;">Participation</a></legend>
+                    <div id="Participation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='factor'>factor: </label><div class='col-sm-8'><input id='factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This class represent the resource certification for a specific product type.
@@ -234,29 +303,72 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ResourceCertification_collapse" aria-expanded="true" aria-controls="ResourceCertification_collapse">ResourceCertification</a>
-<div id="ResourceCertification_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#certifiedDAM}}<div><b>certifiedDAM</b>: {{certifiedDAM}}</div>{{/certifiedDAM}}
-{{#certifiedNonspinDAM}}<div><b>certifiedNonspinDAM</b>: {{certifiedNonspinDAM}}</div>{{/certifiedNonspinDAM}}
-{{#certifiedNonspinDAMMw}}<div><b>certifiedNonspinDAMMw</b>: {{certifiedNonspinDAMMw}}</div>{{/certifiedNonspinDAMMw}}
-{{#certifiedNonspinRTM}}<div><b>certifiedNonspinRTM</b>: {{certifiedNonspinRTM}}</div>{{/certifiedNonspinRTM}}
-{{#certifiedNonspinRTMMw}}<div><b>certifiedNonspinRTMMw</b>: {{certifiedNonspinRTMMw}}</div>{{/certifiedNonspinRTMMw}}
-{{#certifiedPIRP}}<div><b>certifiedPIRP</b>: {{certifiedPIRP}}</div>{{/certifiedPIRP}}
-{{#certifiedRegulation}}<div><b>certifiedRegulation</b>: {{certifiedRegulation}}</div>{{/certifiedRegulation}}
-{{#certifiedRegulationMw}}<div><b>certifiedRegulationMw</b>: {{certifiedRegulationMw}}</div>{{/certifiedRegulationMw}}
-{{#certifiedReplaceAS}}<div><b>certifiedReplaceAS</b>: {{certifiedReplaceAS}}</div>{{/certifiedReplaceAS}}
-{{#certifiedSpin}}<div><b>certifiedSpin</b>: {{certifiedSpin}}</div>{{/certifiedSpin}}
-{{#certifiedSpinMw}}<div><b>certifiedSpinMw</b>: {{certifiedSpinMw}}</div>{{/certifiedSpinMw}}
-{{#certifiedRTM}}<div><b>certifiedRTM</b>: {{certifiedRTM}}</div>{{/certifiedRTM}}
-{{#certifiedRUC}}<div><b>certifiedRUC</b>: {{certifiedRUC}}</div>{{/certifiedRUC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceCertification_collapse" aria-expanded="true" aria-controls="ResourceCertification_collapse" style="margin-left: 10px;">ResourceCertification</a></legend>
+                    <div id="ResourceCertification_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#certifiedDAM}}<div><b>certifiedDAM</b>: {{certifiedDAM}}</div>{{/certifiedDAM}}
+                    {{#certifiedNonspinDAM}}<div><b>certifiedNonspinDAM</b>: {{certifiedNonspinDAM}}</div>{{/certifiedNonspinDAM}}
+                    {{#certifiedNonspinDAMMw}}<div><b>certifiedNonspinDAMMw</b>: {{certifiedNonspinDAMMw}}</div>{{/certifiedNonspinDAMMw}}
+                    {{#certifiedNonspinRTM}}<div><b>certifiedNonspinRTM</b>: {{certifiedNonspinRTM}}</div>{{/certifiedNonspinRTM}}
+                    {{#certifiedNonspinRTMMw}}<div><b>certifiedNonspinRTMMw</b>: {{certifiedNonspinRTMMw}}</div>{{/certifiedNonspinRTMMw}}
+                    {{#certifiedPIRP}}<div><b>certifiedPIRP</b>: {{certifiedPIRP}}</div>{{/certifiedPIRP}}
+                    {{#certifiedRegulation}}<div><b>certifiedRegulation</b>: {{certifiedRegulation}}</div>{{/certifiedRegulation}}
+                    {{#certifiedRegulationMw}}<div><b>certifiedRegulationMw</b>: {{certifiedRegulationMw}}</div>{{/certifiedRegulationMw}}
+                    {{#certifiedReplaceAS}}<div><b>certifiedReplaceAS</b>: {{certifiedReplaceAS}}</div>{{/certifiedReplaceAS}}
+                    {{#certifiedSpin}}<div><b>certifiedSpin</b>: {{certifiedSpin}}</div>{{/certifiedSpin}}
+                    {{#certifiedSpinMw}}<div><b>certifiedSpinMw</b>: {{certifiedSpinMw}}</div>{{/certifiedSpinMw}}
+                    {{#certifiedRTM}}<div><b>certifiedRTM</b>: {{certifiedRTM}}</div>{{/certifiedRTM}}
+                    {{#certifiedRUC}}<div><b>certifiedRUC</b>: {{certifiedRUC}}</div>{{/certifiedRUC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceCertification_collapse" aria-expanded="true" aria-controls="ResourceCertification_collapse" style="margin-left: 10px;">ResourceCertification</a></legend>
+                    <div id="ResourceCertification_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedDAM'>certifiedDAM: </label><div class='col-sm-8'><input id='certifiedDAM' class='form-control' type='text'{{#certifiedDAM}} value='{{certifiedDAM}}'{{/certifiedDAM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedNonspinDAM'>certifiedNonspinDAM: </label><div class='col-sm-8'><input id='certifiedNonspinDAM' class='form-control' type='text'{{#certifiedNonspinDAM}} value='{{certifiedNonspinDAM}}'{{/certifiedNonspinDAM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedNonspinDAMMw'>certifiedNonspinDAMMw: </label><div class='col-sm-8'><input id='certifiedNonspinDAMMw' class='form-control' type='text'{{#certifiedNonspinDAMMw}} value='{{certifiedNonspinDAMMw}}'{{/certifiedNonspinDAMMw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedNonspinRTM'>certifiedNonspinRTM: </label><div class='col-sm-8'><input id='certifiedNonspinRTM' class='form-control' type='text'{{#certifiedNonspinRTM}} value='{{certifiedNonspinRTM}}'{{/certifiedNonspinRTM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedNonspinRTMMw'>certifiedNonspinRTMMw: </label><div class='col-sm-8'><input id='certifiedNonspinRTMMw' class='form-control' type='text'{{#certifiedNonspinRTMMw}} value='{{certifiedNonspinRTMMw}}'{{/certifiedNonspinRTMMw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedPIRP'>certifiedPIRP: </label><div class='col-sm-8'><input id='certifiedPIRP' class='form-control' type='text'{{#certifiedPIRP}} value='{{certifiedPIRP}}'{{/certifiedPIRP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedRegulation'>certifiedRegulation: </label><div class='col-sm-8'><input id='certifiedRegulation' class='form-control' type='text'{{#certifiedRegulation}} value='{{certifiedRegulation}}'{{/certifiedRegulation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedRegulationMw'>certifiedRegulationMw: </label><div class='col-sm-8'><input id='certifiedRegulationMw' class='form-control' type='text'{{#certifiedRegulationMw}} value='{{certifiedRegulationMw}}'{{/certifiedRegulationMw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedReplaceAS'>certifiedReplaceAS: </label><div class='col-sm-8'><input id='certifiedReplaceAS' class='form-control' type='text'{{#certifiedReplaceAS}} value='{{certifiedReplaceAS}}'{{/certifiedReplaceAS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedSpin'>certifiedSpin: </label><div class='col-sm-8'><input id='certifiedSpin' class='form-control' type='text'{{#certifiedSpin}} value='{{certifiedSpin}}'{{/certifiedSpin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedSpinMw'>certifiedSpinMw: </label><div class='col-sm-8'><input id='certifiedSpinMw' class='form-control' type='text'{{#certifiedSpinMw}} value='{{certifiedSpinMw}}'{{/certifiedSpinMw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedRTM'>certifiedRTM: </label><div class='col-sm-8'><input id='certifiedRTM' class='form-control' type='text'{{#certifiedRTM}} value='{{certifiedRTM}}'{{/certifiedRTM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedRUC'>certifiedRUC: </label><div class='col-sm-8'><input id='certifiedRUC' class='form-control' type='text'{{#certifiedRUC}} value='{{certifiedRUC}}'{{/certifiedRUC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

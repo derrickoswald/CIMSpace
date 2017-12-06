@@ -9,6 +9,29 @@ define
     {
 
         /**
+         * Type of turbine.
+         *
+         */
+        var TurbineType =
+        {
+            francis: "francis",
+            pelton: "pelton",
+            kaplan: "kaplan"
+        };
+        Object.freeze (TurbineType);
+
+        /**
+         * Boiler control mode.
+         *
+         */
+        var BoilerControlMode =
+        {
+            following: "following",
+            coordinated: "coordinated"
+        };
+        Object.freeze (BoilerControlMode);
+
+        /**
          * Relationship between the combustion turbine's power output rating in gross active power (X-axis) and the ambient air temperature (Y-axis).
          *
          */
@@ -61,156 +84,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CTTempActivePowerCurve_collapse" aria-expanded="true" aria-controls="CTTempActivePowerCurve_collapse">CTTempActivePowerCurve</a>
-<div id="CTTempActivePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#CombustionTurbine}}<div><b>CombustionTurbine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombustionTurbine}}&quot;);})'>{{CombustionTurbine}}</a></div>{{/CombustionTurbine}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CTTempActivePowerCurve_collapse" aria-expanded="true" aria-controls="CTTempActivePowerCurve_collapse" style="margin-left: 10px;">CTTempActivePowerCurve</a></legend>
+                    <div id="CTTempActivePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#CombustionTurbine}}<div><b>CombustionTurbine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombustionTurbine}}&quot;);})'>{{CombustionTurbine}}</a></div>{{/CombustionTurbine}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Type of turbine.
-         *
-         */
-        class TurbineType extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.TurbineType;
-                if (null == bucket)
-                   cim_data.TurbineType = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.TurbineType[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "TurbineType";
-                base.parse_element (/<cim:TurbineType.francis>([\s\S]*?)<\/cim:TurbineType.francis>/g, obj, "francis", base.to_string, sub, context);
-                base.parse_element (/<cim:TurbineType.pelton>([\s\S]*?)<\/cim:TurbineType.pelton>/g, obj, "pelton", base.to_string, sub, context);
-                base.parse_element (/<cim:TurbineType.kaplan>([\s\S]*?)<\/cim:TurbineType.kaplan>/g, obj, "kaplan", base.to_string, sub, context);
-
-                var bucket = context.parsed.TurbineType;
-                if (null == bucket)
-                   context.parsed.TurbineType = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "TurbineType", "francis", base.from_string, fields);
-                base.export_element (obj, "TurbineType", "pelton", base.from_string, fields);
-                base.export_element (obj, "TurbineType", "kaplan", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TurbineType_collapse" aria-expanded="true" aria-controls="TurbineType_collapse">TurbineType</a>
-<div id="TurbineType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#francis}}<div><b>francis</b>: {{francis}}</div>{{/francis}}
-{{#pelton}}<div><b>pelton</b>: {{pelton}}</div>{{/pelton}}
-{{#kaplan}}<div><b>kaplan</b>: {{kaplan}}</div>{{/kaplan}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CTTempActivePowerCurve_collapse" aria-expanded="true" aria-controls="CTTempActivePowerCurve_collapse" style="margin-left: 10px;">CTTempActivePowerCurve</a></legend>
+                    <div id="CTTempActivePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CombustionTurbine'>CombustionTurbine: </label><div class='col-sm-8'><input id='CombustionTurbine' class='form-control' type='text'{{#CombustionTurbine}} value='{{CombustionTurbine}}'{{/CombustionTurbine}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        /**
-         * Boiler control mode.
-         *
-         */
-        class BoilerControlMode extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.BoilerControlMode;
-                if (null == bucket)
-                   cim_data.BoilerControlMode = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.BoilerControlMode[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "BoilerControlMode";
-                base.parse_element (/<cim:BoilerControlMode.following>([\s\S]*?)<\/cim:BoilerControlMode.following>/g, obj, "following", base.to_string, sub, context);
-                base.parse_element (/<cim:BoilerControlMode.coordinated>([\s\S]*?)<\/cim:BoilerControlMode.coordinated>/g, obj, "coordinated", base.to_string, sub, context);
-
-                var bucket = context.parsed.BoilerControlMode;
-                if (null == bucket)
-                   context.parsed.BoilerControlMode = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "BoilerControlMode", "following", base.from_string, fields);
-                base.export_element (obj, "BoilerControlMode", "coordinated", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#BoilerControlMode_collapse" aria-expanded="true" aria-controls="BoilerControlMode_collapse">BoilerControlMode</a>
-<div id="BoilerControlMode_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#following}}<div><b>following</b>: {{following}}</div>{{/following}}
-{{#coordinated}}<div><b>coordinated</b>: {{coordinated}}</div>{{/coordinated}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         /**
          * Steam supply for steam turbine.
@@ -265,17 +180,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SteamSupply_collapse" aria-expanded="true" aria-controls="SteamSupply_collapse">SteamSupply</a>
-<div id="SteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-{{#steamSupplyRating}}<div><b>steamSupplyRating</b>: {{steamSupplyRating}}</div>{{/steamSupplyRating}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SteamSupply_collapse" aria-expanded="true" aria-controls="SteamSupply_collapse" style="margin-left: 10px;">SteamSupply</a></legend>
+                    <div id="SteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    {{#steamSupplyRating}}<div><b>steamSupplyRating</b>: {{steamSupplyRating}}</div>{{/steamSupplyRating}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SteamSupply_collapse" aria-expanded="true" aria-controls="SteamSupply_collapse" style="margin-left: 10px;">SteamSupply</a></legend>
+                    <div id="SteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='steamSupplyRating'>steamSupplyRating: </label><div class='col-sm-8'><input id='steamSupplyRating' class='form-control' type='text'{{#steamSupplyRating}} value='{{steamSupplyRating}}'{{/steamSupplyRating}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The machine used to develop mechanical energy used to drive a generator.
@@ -330,17 +276,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PrimeMover_collapse" aria-expanded="true" aria-controls="PrimeMover_collapse">PrimeMover</a>
-<div id="PrimeMover_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-{{#primeMoverRating}}<div><b>primeMoverRating</b>: {{primeMoverRating}}</div>{{/primeMoverRating}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PrimeMover_collapse" aria-expanded="true" aria-controls="PrimeMover_collapse" style="margin-left: 10px;">PrimeMover</a></legend>
+                    <div id="PrimeMover_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    {{#primeMoverRating}}<div><b>primeMoverRating</b>: {{primeMoverRating}}</div>{{/primeMoverRating}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PrimeMover_collapse" aria-expanded="true" aria-controls="PrimeMover_collapse" style="margin-left: 10px;">PrimeMover</a></legend>
+                    <div id="PrimeMover_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='primeMoverRating'>primeMoverRating: </label><div class='col-sm-8'><input id='primeMoverRating' class='form-control' type='text'{{#primeMoverRating}} value='{{primeMoverRating}}'{{/primeMoverRating}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Boiling water reactor used as a steam supply to a steam turbine.
@@ -435,37 +412,88 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BWRSteamSupply_collapse" aria-expanded="true" aria-controls="BWRSteamSupply_collapse">BWRSteamSupply</a>
-<div id="BWRSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + SteamSupply.prototype.template.call (this) +
-`
-{{#highPowerLimit}}<div><b>highPowerLimit</b>: {{highPowerLimit}}</div>{{/highPowerLimit}}
-{{#inCoreThermalTC}}<div><b>inCoreThermalTC</b>: {{inCoreThermalTC}}</div>{{/inCoreThermalTC}}
-{{#integralGain}}<div><b>integralGain</b>: {{integralGain}}</div>{{/integralGain}}
-{{#lowerLimit}}<div><b>lowerLimit</b>: {{lowerLimit}}</div>{{/lowerLimit}}
-{{#lowPowerLimit}}<div><b>lowPowerLimit</b>: {{lowPowerLimit}}</div>{{/lowPowerLimit}}
-{{#pressureLimit}}<div><b>pressureLimit</b>: {{pressureLimit}}</div>{{/pressureLimit}}
-{{#pressureSetpointGA}}<div><b>pressureSetpointGA</b>: {{pressureSetpointGA}}</div>{{/pressureSetpointGA}}
-{{#pressureSetpointTC1}}<div><b>pressureSetpointTC1</b>: {{pressureSetpointTC1}}</div>{{/pressureSetpointTC1}}
-{{#pressureSetpointTC2}}<div><b>pressureSetpointTC2</b>: {{pressureSetpointTC2}}</div>{{/pressureSetpointTC2}}
-{{#proportionalGain}}<div><b>proportionalGain</b>: {{proportionalGain}}</div>{{/proportionalGain}}
-{{#rfAux1}}<div><b>rfAux1</b>: {{rfAux1}}</div>{{/rfAux1}}
-{{#rfAux2}}<div><b>rfAux2</b>: {{rfAux2}}</div>{{/rfAux2}}
-{{#rfAux3}}<div><b>rfAux3</b>: {{rfAux3}}</div>{{/rfAux3}}
-{{#rfAux4}}<div><b>rfAux4</b>: {{rfAux4}}</div>{{/rfAux4}}
-{{#rfAux5}}<div><b>rfAux5</b>: {{rfAux5}}</div>{{/rfAux5}}
-{{#rfAux6}}<div><b>rfAux6</b>: {{rfAux6}}</div>{{/rfAux6}}
-{{#rfAux7}}<div><b>rfAux7</b>: {{rfAux7}}</div>{{/rfAux7}}
-{{#rfAux8}}<div><b>rfAux8</b>: {{rfAux8}}</div>{{/rfAux8}}
-{{#rodPattern}}<div><b>rodPattern</b>: {{rodPattern}}</div>{{/rodPattern}}
-{{#rodPatternConstant}}<div><b>rodPatternConstant</b>: {{rodPatternConstant}}</div>{{/rodPatternConstant}}
-{{#upperLimit}}<div><b>upperLimit</b>: {{upperLimit}}</div>{{/upperLimit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BWRSteamSupply_collapse" aria-expanded="true" aria-controls="BWRSteamSupply_collapse" style="margin-left: 10px;">BWRSteamSupply</a></legend>
+                    <div id="BWRSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SteamSupply.prototype.template.call (this) +
+                    `
+                    {{#highPowerLimit}}<div><b>highPowerLimit</b>: {{highPowerLimit}}</div>{{/highPowerLimit}}
+                    {{#inCoreThermalTC}}<div><b>inCoreThermalTC</b>: {{inCoreThermalTC}}</div>{{/inCoreThermalTC}}
+                    {{#integralGain}}<div><b>integralGain</b>: {{integralGain}}</div>{{/integralGain}}
+                    {{#lowerLimit}}<div><b>lowerLimit</b>: {{lowerLimit}}</div>{{/lowerLimit}}
+                    {{#lowPowerLimit}}<div><b>lowPowerLimit</b>: {{lowPowerLimit}}</div>{{/lowPowerLimit}}
+                    {{#pressureLimit}}<div><b>pressureLimit</b>: {{pressureLimit}}</div>{{/pressureLimit}}
+                    {{#pressureSetpointGA}}<div><b>pressureSetpointGA</b>: {{pressureSetpointGA}}</div>{{/pressureSetpointGA}}
+                    {{#pressureSetpointTC1}}<div><b>pressureSetpointTC1</b>: {{pressureSetpointTC1}}</div>{{/pressureSetpointTC1}}
+                    {{#pressureSetpointTC2}}<div><b>pressureSetpointTC2</b>: {{pressureSetpointTC2}}</div>{{/pressureSetpointTC2}}
+                    {{#proportionalGain}}<div><b>proportionalGain</b>: {{proportionalGain}}</div>{{/proportionalGain}}
+                    {{#rfAux1}}<div><b>rfAux1</b>: {{rfAux1}}</div>{{/rfAux1}}
+                    {{#rfAux2}}<div><b>rfAux2</b>: {{rfAux2}}</div>{{/rfAux2}}
+                    {{#rfAux3}}<div><b>rfAux3</b>: {{rfAux3}}</div>{{/rfAux3}}
+                    {{#rfAux4}}<div><b>rfAux4</b>: {{rfAux4}}</div>{{/rfAux4}}
+                    {{#rfAux5}}<div><b>rfAux5</b>: {{rfAux5}}</div>{{/rfAux5}}
+                    {{#rfAux6}}<div><b>rfAux6</b>: {{rfAux6}}</div>{{/rfAux6}}
+                    {{#rfAux7}}<div><b>rfAux7</b>: {{rfAux7}}</div>{{/rfAux7}}
+                    {{#rfAux8}}<div><b>rfAux8</b>: {{rfAux8}}</div>{{/rfAux8}}
+                    {{#rodPattern}}<div><b>rodPattern</b>: {{rodPattern}}</div>{{/rodPattern}}
+                    {{#rodPatternConstant}}<div><b>rodPatternConstant</b>: {{rodPatternConstant}}</div>{{/rodPatternConstant}}
+                    {{#upperLimit}}<div><b>upperLimit</b>: {{upperLimit}}</div>{{/upperLimit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BWRSteamSupply_collapse" aria-expanded="true" aria-controls="BWRSteamSupply_collapse" style="margin-left: 10px;">BWRSteamSupply</a></legend>
+                    <div id="BWRSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SteamSupply.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='highPowerLimit'>highPowerLimit: </label><div class='col-sm-8'><input id='highPowerLimit' class='form-control' type='text'{{#highPowerLimit}} value='{{highPowerLimit}}'{{/highPowerLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inCoreThermalTC'>inCoreThermalTC: </label><div class='col-sm-8'><input id='inCoreThermalTC' class='form-control' type='text'{{#inCoreThermalTC}} value='{{inCoreThermalTC}}'{{/inCoreThermalTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='integralGain'>integralGain: </label><div class='col-sm-8'><input id='integralGain' class='form-control' type='text'{{#integralGain}} value='{{integralGain}}'{{/integralGain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowerLimit'>lowerLimit: </label><div class='col-sm-8'><input id='lowerLimit' class='form-control' type='text'{{#lowerLimit}} value='{{lowerLimit}}'{{/lowerLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowPowerLimit'>lowPowerLimit: </label><div class='col-sm-8'><input id='lowPowerLimit' class='form-control' type='text'{{#lowPowerLimit}} value='{{lowPowerLimit}}'{{/lowPowerLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureLimit'>pressureLimit: </label><div class='col-sm-8'><input id='pressureLimit' class='form-control' type='text'{{#pressureLimit}} value='{{pressureLimit}}'{{/pressureLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureSetpointGA'>pressureSetpointGA: </label><div class='col-sm-8'><input id='pressureSetpointGA' class='form-control' type='text'{{#pressureSetpointGA}} value='{{pressureSetpointGA}}'{{/pressureSetpointGA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureSetpointTC1'>pressureSetpointTC1: </label><div class='col-sm-8'><input id='pressureSetpointTC1' class='form-control' type='text'{{#pressureSetpointTC1}} value='{{pressureSetpointTC1}}'{{/pressureSetpointTC1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureSetpointTC2'>pressureSetpointTC2: </label><div class='col-sm-8'><input id='pressureSetpointTC2' class='form-control' type='text'{{#pressureSetpointTC2}} value='{{pressureSetpointTC2}}'{{/pressureSetpointTC2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='proportionalGain'>proportionalGain: </label><div class='col-sm-8'><input id='proportionalGain' class='form-control' type='text'{{#proportionalGain}} value='{{proportionalGain}}'{{/proportionalGain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux1'>rfAux1: </label><div class='col-sm-8'><input id='rfAux1' class='form-control' type='text'{{#rfAux1}} value='{{rfAux1}}'{{/rfAux1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux2'>rfAux2: </label><div class='col-sm-8'><input id='rfAux2' class='form-control' type='text'{{#rfAux2}} value='{{rfAux2}}'{{/rfAux2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux3'>rfAux3: </label><div class='col-sm-8'><input id='rfAux3' class='form-control' type='text'{{#rfAux3}} value='{{rfAux3}}'{{/rfAux3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux4'>rfAux4: </label><div class='col-sm-8'><input id='rfAux4' class='form-control' type='text'{{#rfAux4}} value='{{rfAux4}}'{{/rfAux4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux5'>rfAux5: </label><div class='col-sm-8'><input id='rfAux5' class='form-control' type='text'{{#rfAux5}} value='{{rfAux5}}'{{/rfAux5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux6'>rfAux6: </label><div class='col-sm-8'><input id='rfAux6' class='form-control' type='text'{{#rfAux6}} value='{{rfAux6}}'{{/rfAux6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux7'>rfAux7: </label><div class='col-sm-8'><input id='rfAux7' class='form-control' type='text'{{#rfAux7}} value='{{rfAux7}}'{{/rfAux7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux8'>rfAux8: </label><div class='col-sm-8'><input id='rfAux8' class='form-control' type='text'{{#rfAux8}} value='{{rfAux8}}'{{/rfAux8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rodPattern'>rodPattern: </label><div class='col-sm-8'><input id='rodPattern' class='form-control' type='text'{{#rodPattern}} value='{{rodPattern}}'{{/rodPattern}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rodPatternConstant'>rodPatternConstant: </label><div class='col-sm-8'><input id='rodPatternConstant' class='form-control' type='text'{{#rodPatternConstant}} value='{{rodPatternConstant}}'{{/rodPatternConstant}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='upperLimit'>upperLimit: </label><div class='col-sm-8'><input id='upperLimit' class='form-control' type='text'{{#upperLimit}} value='{{upperLimit}}'{{/upperLimit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Fossil fueled boiler (e.g., coal, oil, gas).
@@ -497,7 +525,7 @@ define
                 obj.cls = "FossilSteamSupply";
                 base.parse_element (/<cim:FossilSteamSupply.auxPowerVersusFrequency>([\s\S]*?)<\/cim:FossilSteamSupply.auxPowerVersusFrequency>/g, obj, "auxPowerVersusFrequency", base.to_string, sub, context);
                 base.parse_element (/<cim:FossilSteamSupply.auxPowerVersusVoltage>([\s\S]*?)<\/cim:FossilSteamSupply.auxPowerVersusVoltage>/g, obj, "auxPowerVersusVoltage", base.to_string, sub, context);
-                base.parse_element (/<cim:FossilSteamSupply.boilerControlMode>([\s\S]*?)<\/cim:FossilSteamSupply.boilerControlMode>/g, obj, "boilerControlMode", base.to_string, sub, context);
+                base.parse_attribute (/<cim:FossilSteamSupply.boilerControlMode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "boilerControlMode", sub, context);
                 base.parse_element (/<cim:FossilSteamSupply.controlErrorBiasP>([\s\S]*?)<\/cim:FossilSteamSupply.controlErrorBiasP>/g, obj, "controlErrorBiasP", base.to_float, sub, context);
                 base.parse_element (/<cim:FossilSteamSupply.controlIC>([\s\S]*?)<\/cim:FossilSteamSupply.controlIC>/g, obj, "controlIC", base.to_float, sub, context);
                 base.parse_element (/<cim:FossilSteamSupply.controlPC>([\s\S]*?)<\/cim:FossilSteamSupply.controlPC>/g, obj, "controlPC", base.to_float, sub, context);
@@ -570,42 +598,100 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FossilSteamSupply_collapse" aria-expanded="true" aria-controls="FossilSteamSupply_collapse">FossilSteamSupply</a>
-<div id="FossilSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + SteamSupply.prototype.template.call (this) +
-`
-{{#auxPowerVersusFrequency}}<div><b>auxPowerVersusFrequency</b>: {{auxPowerVersusFrequency}}</div>{{/auxPowerVersusFrequency}}
-{{#auxPowerVersusVoltage}}<div><b>auxPowerVersusVoltage</b>: {{auxPowerVersusVoltage}}</div>{{/auxPowerVersusVoltage}}
-{{#boilerControlMode}}<div><b>boilerControlMode</b>: {{boilerControlMode}}</div>{{/boilerControlMode}}
-{{#controlErrorBiasP}}<div><b>controlErrorBiasP</b>: {{controlErrorBiasP}}</div>{{/controlErrorBiasP}}
-{{#controlIC}}<div><b>controlIC</b>: {{controlIC}}</div>{{/controlIC}}
-{{#controlPC}}<div><b>controlPC</b>: {{controlPC}}</div>{{/controlPC}}
-{{#controlPEB}}<div><b>controlPEB</b>: {{controlPEB}}</div>{{/controlPEB}}
-{{#controlPED}}<div><b>controlPED</b>: {{controlPED}}</div>{{/controlPED}}
-{{#controlTC}}<div><b>controlTC</b>: {{controlTC}}</div>{{/controlTC}}
-{{#feedWaterIG}}<div><b>feedWaterIG</b>: {{feedWaterIG}}</div>{{/feedWaterIG}}
-{{#feedWaterPG}}<div><b>feedWaterPG</b>: {{feedWaterPG}}</div>{{/feedWaterPG}}
-{{#feedWaterTC}}<div><b>feedWaterTC</b>: {{feedWaterTC}}</div>{{/feedWaterTC}}
-{{#fuelDemandLimit}}<div><b>fuelDemandLimit</b>: {{fuelDemandLimit}}</div>{{/fuelDemandLimit}}
-{{#fuelSupplyDelay}}<div><b>fuelSupplyDelay</b>: {{fuelSupplyDelay}}</div>{{/fuelSupplyDelay}}
-{{#fuelSupplyTC}}<div><b>fuelSupplyTC</b>: {{fuelSupplyTC}}</div>{{/fuelSupplyTC}}
-{{#maxErrorRateP}}<div><b>maxErrorRateP</b>: {{maxErrorRateP}}</div>{{/maxErrorRateP}}
-{{#mechPowerSensorLag}}<div><b>mechPowerSensorLag</b>: {{mechPowerSensorLag}}</div>{{/mechPowerSensorLag}}
-{{#minErrorRateP}}<div><b>minErrorRateP</b>: {{minErrorRateP}}</div>{{/minErrorRateP}}
-{{#pressureCtrlDG}}<div><b>pressureCtrlDG</b>: {{pressureCtrlDG}}</div>{{/pressureCtrlDG}}
-{{#pressureCtrlIG}}<div><b>pressureCtrlIG</b>: {{pressureCtrlIG}}</div>{{/pressureCtrlIG}}
-{{#pressureCtrlPG}}<div><b>pressureCtrlPG</b>: {{pressureCtrlPG}}</div>{{/pressureCtrlPG}}
-{{#pressureFeedback}}<div><b>pressureFeedback</b>: {{pressureFeedback}}</div>{{/pressureFeedback}}
-{{#superHeater1Capacity}}<div><b>superHeater1Capacity</b>: {{superHeater1Capacity}}</div>{{/superHeater1Capacity}}
-{{#superHeater2Capacity}}<div><b>superHeater2Capacity</b>: {{superHeater2Capacity}}</div>{{/superHeater2Capacity}}
-{{#superHeaterPipePD}}<div><b>superHeaterPipePD</b>: {{superHeaterPipePD}}</div>{{/superHeaterPipePD}}
-{{#throttlePressureSP}}<div><b>throttlePressureSP</b>: {{throttlePressureSP}}</div>{{/throttlePressureSP}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FossilSteamSupply_collapse" aria-expanded="true" aria-controls="FossilSteamSupply_collapse" style="margin-left: 10px;">FossilSteamSupply</a></legend>
+                    <div id="FossilSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SteamSupply.prototype.template.call (this) +
+                    `
+                    {{#auxPowerVersusFrequency}}<div><b>auxPowerVersusFrequency</b>: {{auxPowerVersusFrequency}}</div>{{/auxPowerVersusFrequency}}
+                    {{#auxPowerVersusVoltage}}<div><b>auxPowerVersusVoltage</b>: {{auxPowerVersusVoltage}}</div>{{/auxPowerVersusVoltage}}
+                    {{#boilerControlMode}}<div><b>boilerControlMode</b>: {{boilerControlMode}}</div>{{/boilerControlMode}}
+                    {{#controlErrorBiasP}}<div><b>controlErrorBiasP</b>: {{controlErrorBiasP}}</div>{{/controlErrorBiasP}}
+                    {{#controlIC}}<div><b>controlIC</b>: {{controlIC}}</div>{{/controlIC}}
+                    {{#controlPC}}<div><b>controlPC</b>: {{controlPC}}</div>{{/controlPC}}
+                    {{#controlPEB}}<div><b>controlPEB</b>: {{controlPEB}}</div>{{/controlPEB}}
+                    {{#controlPED}}<div><b>controlPED</b>: {{controlPED}}</div>{{/controlPED}}
+                    {{#controlTC}}<div><b>controlTC</b>: {{controlTC}}</div>{{/controlTC}}
+                    {{#feedWaterIG}}<div><b>feedWaterIG</b>: {{feedWaterIG}}</div>{{/feedWaterIG}}
+                    {{#feedWaterPG}}<div><b>feedWaterPG</b>: {{feedWaterPG}}</div>{{/feedWaterPG}}
+                    {{#feedWaterTC}}<div><b>feedWaterTC</b>: {{feedWaterTC}}</div>{{/feedWaterTC}}
+                    {{#fuelDemandLimit}}<div><b>fuelDemandLimit</b>: {{fuelDemandLimit}}</div>{{/fuelDemandLimit}}
+                    {{#fuelSupplyDelay}}<div><b>fuelSupplyDelay</b>: {{fuelSupplyDelay}}</div>{{/fuelSupplyDelay}}
+                    {{#fuelSupplyTC}}<div><b>fuelSupplyTC</b>: {{fuelSupplyTC}}</div>{{/fuelSupplyTC}}
+                    {{#maxErrorRateP}}<div><b>maxErrorRateP</b>: {{maxErrorRateP}}</div>{{/maxErrorRateP}}
+                    {{#mechPowerSensorLag}}<div><b>mechPowerSensorLag</b>: {{mechPowerSensorLag}}</div>{{/mechPowerSensorLag}}
+                    {{#minErrorRateP}}<div><b>minErrorRateP</b>: {{minErrorRateP}}</div>{{/minErrorRateP}}
+                    {{#pressureCtrlDG}}<div><b>pressureCtrlDG</b>: {{pressureCtrlDG}}</div>{{/pressureCtrlDG}}
+                    {{#pressureCtrlIG}}<div><b>pressureCtrlIG</b>: {{pressureCtrlIG}}</div>{{/pressureCtrlIG}}
+                    {{#pressureCtrlPG}}<div><b>pressureCtrlPG</b>: {{pressureCtrlPG}}</div>{{/pressureCtrlPG}}
+                    {{#pressureFeedback}}<div><b>pressureFeedback</b>: {{pressureFeedback}}</div>{{/pressureFeedback}}
+                    {{#superHeater1Capacity}}<div><b>superHeater1Capacity</b>: {{superHeater1Capacity}}</div>{{/superHeater1Capacity}}
+                    {{#superHeater2Capacity}}<div><b>superHeater2Capacity</b>: {{superHeater2Capacity}}</div>{{/superHeater2Capacity}}
+                    {{#superHeaterPipePD}}<div><b>superHeaterPipePD</b>: {{superHeaterPipePD}}</div>{{/superHeaterPipePD}}
+                    {{#throttlePressureSP}}<div><b>throttlePressureSP</b>: {{throttlePressureSP}}</div>{{/throttlePressureSP}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.BoilerControlMode = []; if (!obj.boilerControlMode) obj.BoilerControlMode.push ({ id: '', selected: true}); for (var property in BoilerControlMode) obj.BoilerControlMode.push ({ id: property, selected: obj.boilerControlMode && obj.boilerControlMode.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.BoilerControlMode;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FossilSteamSupply_collapse" aria-expanded="true" aria-controls="FossilSteamSupply_collapse" style="margin-left: 10px;">FossilSteamSupply</a></legend>
+                    <div id="FossilSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SteamSupply.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='auxPowerVersusFrequency'>auxPowerVersusFrequency: </label><div class='col-sm-8'><input id='auxPowerVersusFrequency' class='form-control' type='text'{{#auxPowerVersusFrequency}} value='{{auxPowerVersusFrequency}}'{{/auxPowerVersusFrequency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='auxPowerVersusVoltage'>auxPowerVersusVoltage: </label><div class='col-sm-8'><input id='auxPowerVersusVoltage' class='form-control' type='text'{{#auxPowerVersusVoltage}} value='{{auxPowerVersusVoltage}}'{{/auxPowerVersusVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='boilerControlMode'>boilerControlMode: </label><div class='col-sm-8'><select id='boilerControlMode' class='form-control'>{{#BoilerControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BoilerControlMode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlErrorBiasP'>controlErrorBiasP: </label><div class='col-sm-8'><input id='controlErrorBiasP' class='form-control' type='text'{{#controlErrorBiasP}} value='{{controlErrorBiasP}}'{{/controlErrorBiasP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlIC'>controlIC: </label><div class='col-sm-8'><input id='controlIC' class='form-control' type='text'{{#controlIC}} value='{{controlIC}}'{{/controlIC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlPC'>controlPC: </label><div class='col-sm-8'><input id='controlPC' class='form-control' type='text'{{#controlPC}} value='{{controlPC}}'{{/controlPC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlPEB'>controlPEB: </label><div class='col-sm-8'><input id='controlPEB' class='form-control' type='text'{{#controlPEB}} value='{{controlPEB}}'{{/controlPEB}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlPED'>controlPED: </label><div class='col-sm-8'><input id='controlPED' class='form-control' type='text'{{#controlPED}} value='{{controlPED}}'{{/controlPED}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlTC'>controlTC: </label><div class='col-sm-8'><input id='controlTC' class='form-control' type='text'{{#controlTC}} value='{{controlTC}}'{{/controlTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='feedWaterIG'>feedWaterIG: </label><div class='col-sm-8'><input id='feedWaterIG' class='form-control' type='text'{{#feedWaterIG}} value='{{feedWaterIG}}'{{/feedWaterIG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='feedWaterPG'>feedWaterPG: </label><div class='col-sm-8'><input id='feedWaterPG' class='form-control' type='text'{{#feedWaterPG}} value='{{feedWaterPG}}'{{/feedWaterPG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='feedWaterTC'>feedWaterTC: </label><div class='col-sm-8'><input id='feedWaterTC' class='form-control' type='text'{{#feedWaterTC}} value='{{feedWaterTC}}'{{/feedWaterTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelDemandLimit'>fuelDemandLimit: </label><div class='col-sm-8'><input id='fuelDemandLimit' class='form-control' type='text'{{#fuelDemandLimit}} value='{{fuelDemandLimit}}'{{/fuelDemandLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelSupplyDelay'>fuelSupplyDelay: </label><div class='col-sm-8'><input id='fuelSupplyDelay' class='form-control' type='text'{{#fuelSupplyDelay}} value='{{fuelSupplyDelay}}'{{/fuelSupplyDelay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelSupplyTC'>fuelSupplyTC: </label><div class='col-sm-8'><input id='fuelSupplyTC' class='form-control' type='text'{{#fuelSupplyTC}} value='{{fuelSupplyTC}}'{{/fuelSupplyTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxErrorRateP'>maxErrorRateP: </label><div class='col-sm-8'><input id='maxErrorRateP' class='form-control' type='text'{{#maxErrorRateP}} value='{{maxErrorRateP}}'{{/maxErrorRateP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mechPowerSensorLag'>mechPowerSensorLag: </label><div class='col-sm-8'><input id='mechPowerSensorLag' class='form-control' type='text'{{#mechPowerSensorLag}} value='{{mechPowerSensorLag}}'{{/mechPowerSensorLag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minErrorRateP'>minErrorRateP: </label><div class='col-sm-8'><input id='minErrorRateP' class='form-control' type='text'{{#minErrorRateP}} value='{{minErrorRateP}}'{{/minErrorRateP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureCtrlDG'>pressureCtrlDG: </label><div class='col-sm-8'><input id='pressureCtrlDG' class='form-control' type='text'{{#pressureCtrlDG}} value='{{pressureCtrlDG}}'{{/pressureCtrlDG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureCtrlIG'>pressureCtrlIG: </label><div class='col-sm-8'><input id='pressureCtrlIG' class='form-control' type='text'{{#pressureCtrlIG}} value='{{pressureCtrlIG}}'{{/pressureCtrlIG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureCtrlPG'>pressureCtrlPG: </label><div class='col-sm-8'><input id='pressureCtrlPG' class='form-control' type='text'{{#pressureCtrlPG}} value='{{pressureCtrlPG}}'{{/pressureCtrlPG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureFeedback'>pressureFeedback: </label><div class='col-sm-8'><input id='pressureFeedback' class='form-control' type='text'{{#pressureFeedback}} value='{{pressureFeedback}}'{{/pressureFeedback}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='superHeater1Capacity'>superHeater1Capacity: </label><div class='col-sm-8'><input id='superHeater1Capacity' class='form-control' type='text'{{#superHeater1Capacity}} value='{{superHeater1Capacity}}'{{/superHeater1Capacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='superHeater2Capacity'>superHeater2Capacity: </label><div class='col-sm-8'><input id='superHeater2Capacity' class='form-control' type='text'{{#superHeater2Capacity}} value='{{superHeater2Capacity}}'{{/superHeater2Capacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='superHeaterPipePD'>superHeaterPipePD: </label><div class='col-sm-8'><input id='superHeaterPipePD' class='form-control' type='text'{{#superHeaterPipePD}} value='{{superHeaterPipePD}}'{{/superHeaterPipePD}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='throttlePressureSP'>throttlePressureSP: </label><div class='col-sm-8'><input id='throttlePressureSP' class='form-control' type='text'{{#throttlePressureSP}} value='{{throttlePressureSP}}'{{/throttlePressureSP}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Once-through supercritical boiler.
@@ -658,16 +744,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Supercritical_collapse" aria-expanded="true" aria-controls="Supercritical_collapse">Supercritical</a>
-<div id="Supercritical_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + FossilSteamSupply.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Supercritical_collapse" aria-expanded="true" aria-controls="Supercritical_collapse" style="margin-left: 10px;">Supercritical</a></legend>
+                    <div id="Supercritical_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + FossilSteamSupply.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Supercritical_collapse" aria-expanded="true" aria-controls="Supercritical_collapse" style="margin-left: 10px;">Supercritical</a></legend>
+                    <div id="Supercritical_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + FossilSteamSupply.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Pressurized water reactor used as a steam supply to a steam turbine.
@@ -760,36 +876,86 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PWRSteamSupply_collapse" aria-expanded="true" aria-controls="PWRSteamSupply_collapse">PWRSteamSupply</a>
-<div id="PWRSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + SteamSupply.prototype.template.call (this) +
-`
-{{#coldLegFBLagTC}}<div><b>coldLegFBLagTC</b>: {{coldLegFBLagTC}}</div>{{/coldLegFBLagTC}}
-{{#coldLegFBLeadTC1}}<div><b>coldLegFBLeadTC1</b>: {{coldLegFBLeadTC1}}</div>{{/coldLegFBLeadTC1}}
-{{#coldLegFBLeadTC2}}<div><b>coldLegFBLeadTC2</b>: {{coldLegFBLeadTC2}}</div>{{/coldLegFBLeadTC2}}
-{{#coldLegFG1}}<div><b>coldLegFG1</b>: {{coldLegFG1}}</div>{{/coldLegFG1}}
-{{#coldLegFG2}}<div><b>coldLegFG2</b>: {{coldLegFG2}}</div>{{/coldLegFG2}}
-{{#coldLegLagTC}}<div><b>coldLegLagTC</b>: {{coldLegLagTC}}</div>{{/coldLegLagTC}}
-{{#coreHTLagTC1}}<div><b>coreHTLagTC1</b>: {{coreHTLagTC1}}</div>{{/coreHTLagTC1}}
-{{#coreHTLagTC2}}<div><b>coreHTLagTC2</b>: {{coreHTLagTC2}}</div>{{/coreHTLagTC2}}
-{{#coreNeutronicsEffTC}}<div><b>coreNeutronicsEffTC</b>: {{coreNeutronicsEffTC}}</div>{{/coreNeutronicsEffTC}}
-{{#coreNeutronicsHT}}<div><b>coreNeutronicsHT</b>: {{coreNeutronicsHT}}</div>{{/coreNeutronicsHT}}
-{{#feedbackFactor}}<div><b>feedbackFactor</b>: {{feedbackFactor}}</div>{{/feedbackFactor}}
-{{#hotLegLagTC}}<div><b>hotLegLagTC</b>: {{hotLegLagTC}}</div>{{/hotLegLagTC}}
-{{#hotLegSteamGain}}<div><b>hotLegSteamGain</b>: {{hotLegSteamGain}}</div>{{/hotLegSteamGain}}
-{{#hotLegToColdLegGain}}<div><b>hotLegToColdLegGain</b>: {{hotLegToColdLegGain}}</div>{{/hotLegToColdLegGain}}
-{{#pressureCG}}<div><b>pressureCG</b>: {{pressureCG}}</div>{{/pressureCG}}
-{{#steamFlowFG}}<div><b>steamFlowFG</b>: {{steamFlowFG}}</div>{{/steamFlowFG}}
-{{#steamPressureDropLagTC}}<div><b>steamPressureDropLagTC</b>: {{steamPressureDropLagTC}}</div>{{/steamPressureDropLagTC}}
-{{#steamPressureFG}}<div><b>steamPressureFG</b>: {{steamPressureFG}}</div>{{/steamPressureFG}}
-{{#throttlePressureFactor}}<div><b>throttlePressureFactor</b>: {{throttlePressureFactor}}</div>{{/throttlePressureFactor}}
-{{#throttlePressureSP}}<div><b>throttlePressureSP</b>: {{throttlePressureSP}}</div>{{/throttlePressureSP}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PWRSteamSupply_collapse" aria-expanded="true" aria-controls="PWRSteamSupply_collapse" style="margin-left: 10px;">PWRSteamSupply</a></legend>
+                    <div id="PWRSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SteamSupply.prototype.template.call (this) +
+                    `
+                    {{#coldLegFBLagTC}}<div><b>coldLegFBLagTC</b>: {{coldLegFBLagTC}}</div>{{/coldLegFBLagTC}}
+                    {{#coldLegFBLeadTC1}}<div><b>coldLegFBLeadTC1</b>: {{coldLegFBLeadTC1}}</div>{{/coldLegFBLeadTC1}}
+                    {{#coldLegFBLeadTC2}}<div><b>coldLegFBLeadTC2</b>: {{coldLegFBLeadTC2}}</div>{{/coldLegFBLeadTC2}}
+                    {{#coldLegFG1}}<div><b>coldLegFG1</b>: {{coldLegFG1}}</div>{{/coldLegFG1}}
+                    {{#coldLegFG2}}<div><b>coldLegFG2</b>: {{coldLegFG2}}</div>{{/coldLegFG2}}
+                    {{#coldLegLagTC}}<div><b>coldLegLagTC</b>: {{coldLegLagTC}}</div>{{/coldLegLagTC}}
+                    {{#coreHTLagTC1}}<div><b>coreHTLagTC1</b>: {{coreHTLagTC1}}</div>{{/coreHTLagTC1}}
+                    {{#coreHTLagTC2}}<div><b>coreHTLagTC2</b>: {{coreHTLagTC2}}</div>{{/coreHTLagTC2}}
+                    {{#coreNeutronicsEffTC}}<div><b>coreNeutronicsEffTC</b>: {{coreNeutronicsEffTC}}</div>{{/coreNeutronicsEffTC}}
+                    {{#coreNeutronicsHT}}<div><b>coreNeutronicsHT</b>: {{coreNeutronicsHT}}</div>{{/coreNeutronicsHT}}
+                    {{#feedbackFactor}}<div><b>feedbackFactor</b>: {{feedbackFactor}}</div>{{/feedbackFactor}}
+                    {{#hotLegLagTC}}<div><b>hotLegLagTC</b>: {{hotLegLagTC}}</div>{{/hotLegLagTC}}
+                    {{#hotLegSteamGain}}<div><b>hotLegSteamGain</b>: {{hotLegSteamGain}}</div>{{/hotLegSteamGain}}
+                    {{#hotLegToColdLegGain}}<div><b>hotLegToColdLegGain</b>: {{hotLegToColdLegGain}}</div>{{/hotLegToColdLegGain}}
+                    {{#pressureCG}}<div><b>pressureCG</b>: {{pressureCG}}</div>{{/pressureCG}}
+                    {{#steamFlowFG}}<div><b>steamFlowFG</b>: {{steamFlowFG}}</div>{{/steamFlowFG}}
+                    {{#steamPressureDropLagTC}}<div><b>steamPressureDropLagTC</b>: {{steamPressureDropLagTC}}</div>{{/steamPressureDropLagTC}}
+                    {{#steamPressureFG}}<div><b>steamPressureFG</b>: {{steamPressureFG}}</div>{{/steamPressureFG}}
+                    {{#throttlePressureFactor}}<div><b>throttlePressureFactor</b>: {{throttlePressureFactor}}</div>{{/throttlePressureFactor}}
+                    {{#throttlePressureSP}}<div><b>throttlePressureSP</b>: {{throttlePressureSP}}</div>{{/throttlePressureSP}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PWRSteamSupply_collapse" aria-expanded="true" aria-controls="PWRSteamSupply_collapse" style="margin-left: 10px;">PWRSteamSupply</a></legend>
+                    <div id="PWRSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SteamSupply.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coldLegFBLagTC'>coldLegFBLagTC: </label><div class='col-sm-8'><input id='coldLegFBLagTC' class='form-control' type='text'{{#coldLegFBLagTC}} value='{{coldLegFBLagTC}}'{{/coldLegFBLagTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coldLegFBLeadTC1'>coldLegFBLeadTC1: </label><div class='col-sm-8'><input id='coldLegFBLeadTC1' class='form-control' type='text'{{#coldLegFBLeadTC1}} value='{{coldLegFBLeadTC1}}'{{/coldLegFBLeadTC1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coldLegFBLeadTC2'>coldLegFBLeadTC2: </label><div class='col-sm-8'><input id='coldLegFBLeadTC2' class='form-control' type='text'{{#coldLegFBLeadTC2}} value='{{coldLegFBLeadTC2}}'{{/coldLegFBLeadTC2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coldLegFG1'>coldLegFG1: </label><div class='col-sm-8'><input id='coldLegFG1' class='form-control' type='text'{{#coldLegFG1}} value='{{coldLegFG1}}'{{/coldLegFG1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coldLegFG2'>coldLegFG2: </label><div class='col-sm-8'><input id='coldLegFG2' class='form-control' type='text'{{#coldLegFG2}} value='{{coldLegFG2}}'{{/coldLegFG2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coldLegLagTC'>coldLegLagTC: </label><div class='col-sm-8'><input id='coldLegLagTC' class='form-control' type='text'{{#coldLegLagTC}} value='{{coldLegLagTC}}'{{/coldLegLagTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreHTLagTC1'>coreHTLagTC1: </label><div class='col-sm-8'><input id='coreHTLagTC1' class='form-control' type='text'{{#coreHTLagTC1}} value='{{coreHTLagTC1}}'{{/coreHTLagTC1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreHTLagTC2'>coreHTLagTC2: </label><div class='col-sm-8'><input id='coreHTLagTC2' class='form-control' type='text'{{#coreHTLagTC2}} value='{{coreHTLagTC2}}'{{/coreHTLagTC2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreNeutronicsEffTC'>coreNeutronicsEffTC: </label><div class='col-sm-8'><input id='coreNeutronicsEffTC' class='form-control' type='text'{{#coreNeutronicsEffTC}} value='{{coreNeutronicsEffTC}}'{{/coreNeutronicsEffTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreNeutronicsHT'>coreNeutronicsHT: </label><div class='col-sm-8'><input id='coreNeutronicsHT' class='form-control' type='text'{{#coreNeutronicsHT}} value='{{coreNeutronicsHT}}'{{/coreNeutronicsHT}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='feedbackFactor'>feedbackFactor: </label><div class='col-sm-8'><input id='feedbackFactor' class='form-control' type='text'{{#feedbackFactor}} value='{{feedbackFactor}}'{{/feedbackFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hotLegLagTC'>hotLegLagTC: </label><div class='col-sm-8'><input id='hotLegLagTC' class='form-control' type='text'{{#hotLegLagTC}} value='{{hotLegLagTC}}'{{/hotLegLagTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hotLegSteamGain'>hotLegSteamGain: </label><div class='col-sm-8'><input id='hotLegSteamGain' class='form-control' type='text'{{#hotLegSteamGain}} value='{{hotLegSteamGain}}'{{/hotLegSteamGain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hotLegToColdLegGain'>hotLegToColdLegGain: </label><div class='col-sm-8'><input id='hotLegToColdLegGain' class='form-control' type='text'{{#hotLegToColdLegGain}} value='{{hotLegToColdLegGain}}'{{/hotLegToColdLegGain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureCG'>pressureCG: </label><div class='col-sm-8'><input id='pressureCG' class='form-control' type='text'{{#pressureCG}} value='{{pressureCG}}'{{/pressureCG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='steamFlowFG'>steamFlowFG: </label><div class='col-sm-8'><input id='steamFlowFG' class='form-control' type='text'{{#steamFlowFG}} value='{{steamFlowFG}}'{{/steamFlowFG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='steamPressureDropLagTC'>steamPressureDropLagTC: </label><div class='col-sm-8'><input id='steamPressureDropLagTC' class='form-control' type='text'{{#steamPressureDropLagTC}} value='{{steamPressureDropLagTC}}'{{/steamPressureDropLagTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='steamPressureFG'>steamPressureFG: </label><div class='col-sm-8'><input id='steamPressureFG' class='form-control' type='text'{{#steamPressureFG}} value='{{steamPressureFG}}'{{/steamPressureFG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='throttlePressureFactor'>throttlePressureFactor: </label><div class='col-sm-8'><input id='throttlePressureFactor' class='form-control' type='text'{{#throttlePressureFactor}} value='{{throttlePressureFactor}}'{{/throttlePressureFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='throttlePressureSP'>throttlePressureSP: </label><div class='col-sm-8'><input id='throttlePressureSP' class='form-control' type='text'{{#throttlePressureSP}} value='{{throttlePressureSP}}'{{/throttlePressureSP}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The heat recovery system associated with combustion turbines in order to produce steam for combined cycle plants.
@@ -844,17 +1010,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#HeatRecoveryBoiler_collapse" aria-expanded="true" aria-controls="HeatRecoveryBoiler_collapse">HeatRecoveryBoiler</a>
-<div id="HeatRecoveryBoiler_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + FossilSteamSupply.prototype.template.call (this) +
-`
-{{#steamSupplyRating2}}<div><b>steamSupplyRating2</b>: {{steamSupplyRating2}}</div>{{/steamSupplyRating2}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HeatRecoveryBoiler_collapse" aria-expanded="true" aria-controls="HeatRecoveryBoiler_collapse" style="margin-left: 10px;">HeatRecoveryBoiler</a></legend>
+                    <div id="HeatRecoveryBoiler_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + FossilSteamSupply.prototype.template.call (this) +
+                    `
+                    {{#steamSupplyRating2}}<div><b>steamSupplyRating2</b>: {{steamSupplyRating2}}</div>{{/steamSupplyRating2}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HeatRecoveryBoiler_collapse" aria-expanded="true" aria-controls="HeatRecoveryBoiler_collapse" style="margin-left: 10px;">HeatRecoveryBoiler</a></legend>
+                    <div id="HeatRecoveryBoiler_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + FossilSteamSupply.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='steamSupplyRating2'>steamSupplyRating2: </label><div class='col-sm-8'><input id='steamSupplyRating2' class='form-control' type='text'{{#steamSupplyRating2}} value='{{steamSupplyRating2}}'{{/steamSupplyRating2}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Drum boiler.
@@ -909,17 +1106,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DrumBoiler_collapse" aria-expanded="true" aria-controls="DrumBoiler_collapse">DrumBoiler</a>
-<div id="DrumBoiler_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + FossilSteamSupply.prototype.template.call (this) +
-`
-{{#drumBoilerRating}}<div><b>drumBoilerRating</b>: {{drumBoilerRating}}</div>{{/drumBoilerRating}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DrumBoiler_collapse" aria-expanded="true" aria-controls="DrumBoiler_collapse" style="margin-left: 10px;">DrumBoiler</a></legend>
+                    <div id="DrumBoiler_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + FossilSteamSupply.prototype.template.call (this) +
+                    `
+                    {{#drumBoilerRating}}<div><b>drumBoilerRating</b>: {{drumBoilerRating}}</div>{{/drumBoilerRating}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DrumBoiler_collapse" aria-expanded="true" aria-controls="DrumBoiler_collapse" style="margin-left: 10px;">DrumBoiler</a></legend>
+                    <div id="DrumBoiler_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + FossilSteamSupply.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='drumBoilerRating'>drumBoilerRating: </label><div class='col-sm-8'><input id='drumBoilerRating' class='form-control' type='text'{{#drumBoilerRating}} value='{{drumBoilerRating}}'{{/drumBoilerRating}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Once-through subcritical boiler.
@@ -972,16 +1200,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Subcritical_collapse" aria-expanded="true" aria-controls="Subcritical_collapse">Subcritical</a>
-<div id="Subcritical_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + FossilSteamSupply.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Subcritical_collapse" aria-expanded="true" aria-controls="Subcritical_collapse" style="margin-left: 10px;">Subcritical</a></legend>
+                    <div id="Subcritical_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + FossilSteamSupply.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Subcritical_collapse" aria-expanded="true" aria-controls="Subcritical_collapse" style="margin-left: 10px;">Subcritical</a></legend>
+                    <div id="Subcritical_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + FossilSteamSupply.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A water driven prime mover.
@@ -1022,7 +1280,7 @@ define
                 base.parse_element (/<cim:HydroTurbine.transientDroopTime>([\s\S]*?)<\/cim:HydroTurbine.transientDroopTime>/g, obj, "transientDroopTime", base.to_string, sub, context);
                 base.parse_element (/<cim:HydroTurbine.transientRegulation>([\s\S]*?)<\/cim:HydroTurbine.transientRegulation>/g, obj, "transientRegulation", base.to_string, sub, context);
                 base.parse_element (/<cim:HydroTurbine.turbineRating>([\s\S]*?)<\/cim:HydroTurbine.turbineRating>/g, obj, "turbineRating", base.to_string, sub, context);
-                base.parse_element (/<cim:HydroTurbine.turbineType>([\s\S]*?)<\/cim:HydroTurbine.turbineType>/g, obj, "turbineType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:HydroTurbine.turbineType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "turbineType", sub, context);
                 base.parse_element (/<cim:HydroTurbine.waterStartingTime>([\s\S]*?)<\/cim:HydroTurbine.waterStartingTime>/g, obj, "waterStartingTime", base.to_string, sub, context);
 
                 var bucket = context.parsed.HydroTurbine;
@@ -1058,27 +1316,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#HydroTurbine_collapse" aria-expanded="true" aria-controls="HydroTurbine_collapse">HydroTurbine</a>
-<div id="HydroTurbine_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PrimeMover.prototype.template.call (this) +
-`
-{{#gateRateLimit}}<div><b>gateRateLimit</b>: {{gateRateLimit}}</div>{{/gateRateLimit}}
-{{#gateUpperLimit}}<div><b>gateUpperLimit</b>: {{gateUpperLimit}}</div>{{/gateUpperLimit}}
-{{#maxHeadMaxP}}<div><b>maxHeadMaxP</b>: {{maxHeadMaxP}}</div>{{/maxHeadMaxP}}
-{{#minHeadMaxP}}<div><b>minHeadMaxP</b>: {{minHeadMaxP}}</div>{{/minHeadMaxP}}
-{{#speedRating}}<div><b>speedRating</b>: {{speedRating}}</div>{{/speedRating}}
-{{#speedRegulation}}<div><b>speedRegulation</b>: {{speedRegulation}}</div>{{/speedRegulation}}
-{{#transientDroopTime}}<div><b>transientDroopTime</b>: {{transientDroopTime}}</div>{{/transientDroopTime}}
-{{#transientRegulation}}<div><b>transientRegulation</b>: {{transientRegulation}}</div>{{/transientRegulation}}
-{{#turbineRating}}<div><b>turbineRating</b>: {{turbineRating}}</div>{{/turbineRating}}
-{{#turbineType}}<div><b>turbineType</b>: {{turbineType}}</div>{{/turbineType}}
-{{#waterStartingTime}}<div><b>waterStartingTime</b>: {{waterStartingTime}}</div>{{/waterStartingTime}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroTurbine_collapse" aria-expanded="true" aria-controls="HydroTurbine_collapse" style="margin-left: 10px;">HydroTurbine</a></legend>
+                    <div id="HydroTurbine_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PrimeMover.prototype.template.call (this) +
+                    `
+                    {{#gateRateLimit}}<div><b>gateRateLimit</b>: {{gateRateLimit}}</div>{{/gateRateLimit}}
+                    {{#gateUpperLimit}}<div><b>gateUpperLimit</b>: {{gateUpperLimit}}</div>{{/gateUpperLimit}}
+                    {{#maxHeadMaxP}}<div><b>maxHeadMaxP</b>: {{maxHeadMaxP}}</div>{{/maxHeadMaxP}}
+                    {{#minHeadMaxP}}<div><b>minHeadMaxP</b>: {{minHeadMaxP}}</div>{{/minHeadMaxP}}
+                    {{#speedRating}}<div><b>speedRating</b>: {{speedRating}}</div>{{/speedRating}}
+                    {{#speedRegulation}}<div><b>speedRegulation</b>: {{speedRegulation}}</div>{{/speedRegulation}}
+                    {{#transientDroopTime}}<div><b>transientDroopTime</b>: {{transientDroopTime}}</div>{{/transientDroopTime}}
+                    {{#transientRegulation}}<div><b>transientRegulation</b>: {{transientRegulation}}</div>{{/transientRegulation}}
+                    {{#turbineRating}}<div><b>turbineRating</b>: {{turbineRating}}</div>{{/turbineRating}}
+                    {{#turbineType}}<div><b>turbineType</b>: {{turbineType}}</div>{{/turbineType}}
+                    {{#waterStartingTime}}<div><b>waterStartingTime</b>: {{waterStartingTime}}</div>{{/waterStartingTime}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.TurbineType = []; if (!obj.turbineType) obj.TurbineType.push ({ id: '', selected: true}); for (var property in TurbineType) obj.TurbineType.push ({ id: property, selected: obj.turbineType && obj.turbineType.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.TurbineType;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroTurbine_collapse" aria-expanded="true" aria-controls="HydroTurbine_collapse" style="margin-left: 10px;">HydroTurbine</a></legend>
+                    <div id="HydroTurbine_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PrimeMover.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gateRateLimit'>gateRateLimit: </label><div class='col-sm-8'><input id='gateRateLimit' class='form-control' type='text'{{#gateRateLimit}} value='{{gateRateLimit}}'{{/gateRateLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gateUpperLimit'>gateUpperLimit: </label><div class='col-sm-8'><input id='gateUpperLimit' class='form-control' type='text'{{#gateUpperLimit}} value='{{gateUpperLimit}}'{{/gateUpperLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxHeadMaxP'>maxHeadMaxP: </label><div class='col-sm-8'><input id='maxHeadMaxP' class='form-control' type='text'{{#maxHeadMaxP}} value='{{maxHeadMaxP}}'{{/maxHeadMaxP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minHeadMaxP'>minHeadMaxP: </label><div class='col-sm-8'><input id='minHeadMaxP' class='form-control' type='text'{{#minHeadMaxP}} value='{{minHeadMaxP}}'{{/minHeadMaxP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='speedRating'>speedRating: </label><div class='col-sm-8'><input id='speedRating' class='form-control' type='text'{{#speedRating}} value='{{speedRating}}'{{/speedRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='speedRegulation'>speedRegulation: </label><div class='col-sm-8'><input id='speedRegulation' class='form-control' type='text'{{#speedRegulation}} value='{{speedRegulation}}'{{/speedRegulation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transientDroopTime'>transientDroopTime: </label><div class='col-sm-8'><input id='transientDroopTime' class='form-control' type='text'{{#transientDroopTime}} value='{{transientDroopTime}}'{{/transientDroopTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transientRegulation'>transientRegulation: </label><div class='col-sm-8'><input id='transientRegulation' class='form-control' type='text'{{#transientRegulation}} value='{{transientRegulation}}'{{/transientRegulation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='turbineRating'>turbineRating: </label><div class='col-sm-8'><input id='turbineRating' class='form-control' type='text'{{#turbineRating}} value='{{turbineRating}}'{{/turbineRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='turbineType'>turbineType: </label><div class='col-sm-8'><select id='turbineType' class='form-control'>{{#TurbineType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TurbineType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='waterStartingTime'>waterStartingTime: </label><div class='col-sm-8'><input id='waterStartingTime' class='form-control' type='text'{{#waterStartingTime}} value='{{waterStartingTime}}'{{/waterStartingTime}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Steam turbine.
@@ -1155,28 +1456,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SteamTurbine_collapse" aria-expanded="true" aria-controls="SteamTurbine_collapse">SteamTurbine</a>
-<div id="SteamTurbine_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PrimeMover.prototype.template.call (this) +
-`
-{{#crossoverTC}}<div><b>crossoverTC</b>: {{crossoverTC}}</div>{{/crossoverTC}}
-{{#reheater1TC}}<div><b>reheater1TC</b>: {{reheater1TC}}</div>{{/reheater1TC}}
-{{#reheater2TC}}<div><b>reheater2TC</b>: {{reheater2TC}}</div>{{/reheater2TC}}
-{{#shaft1PowerHP}}<div><b>shaft1PowerHP</b>: {{shaft1PowerHP}}</div>{{/shaft1PowerHP}}
-{{#shaft1PowerIP}}<div><b>shaft1PowerIP</b>: {{shaft1PowerIP}}</div>{{/shaft1PowerIP}}
-{{#shaft1PowerLP1}}<div><b>shaft1PowerLP1</b>: {{shaft1PowerLP1}}</div>{{/shaft1PowerLP1}}
-{{#shaft1PowerLP2}}<div><b>shaft1PowerLP2</b>: {{shaft1PowerLP2}}</div>{{/shaft1PowerLP2}}
-{{#shaft2PowerHP}}<div><b>shaft2PowerHP</b>: {{shaft2PowerHP}}</div>{{/shaft2PowerHP}}
-{{#shaft2PowerIP}}<div><b>shaft2PowerIP</b>: {{shaft2PowerIP}}</div>{{/shaft2PowerIP}}
-{{#shaft2PowerLP1}}<div><b>shaft2PowerLP1</b>: {{shaft2PowerLP1}}</div>{{/shaft2PowerLP1}}
-{{#shaft2PowerLP2}}<div><b>shaft2PowerLP2</b>: {{shaft2PowerLP2}}</div>{{/shaft2PowerLP2}}
-{{#steamChestTC}}<div><b>steamChestTC</b>: {{steamChestTC}}</div>{{/steamChestTC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SteamTurbine_collapse" aria-expanded="true" aria-controls="SteamTurbine_collapse" style="margin-left: 10px;">SteamTurbine</a></legend>
+                    <div id="SteamTurbine_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PrimeMover.prototype.template.call (this) +
+                    `
+                    {{#crossoverTC}}<div><b>crossoverTC</b>: {{crossoverTC}}</div>{{/crossoverTC}}
+                    {{#reheater1TC}}<div><b>reheater1TC</b>: {{reheater1TC}}</div>{{/reheater1TC}}
+                    {{#reheater2TC}}<div><b>reheater2TC</b>: {{reheater2TC}}</div>{{/reheater2TC}}
+                    {{#shaft1PowerHP}}<div><b>shaft1PowerHP</b>: {{shaft1PowerHP}}</div>{{/shaft1PowerHP}}
+                    {{#shaft1PowerIP}}<div><b>shaft1PowerIP</b>: {{shaft1PowerIP}}</div>{{/shaft1PowerIP}}
+                    {{#shaft1PowerLP1}}<div><b>shaft1PowerLP1</b>: {{shaft1PowerLP1}}</div>{{/shaft1PowerLP1}}
+                    {{#shaft1PowerLP2}}<div><b>shaft1PowerLP2</b>: {{shaft1PowerLP2}}</div>{{/shaft1PowerLP2}}
+                    {{#shaft2PowerHP}}<div><b>shaft2PowerHP</b>: {{shaft2PowerHP}}</div>{{/shaft2PowerHP}}
+                    {{#shaft2PowerIP}}<div><b>shaft2PowerIP</b>: {{shaft2PowerIP}}</div>{{/shaft2PowerIP}}
+                    {{#shaft2PowerLP1}}<div><b>shaft2PowerLP1</b>: {{shaft2PowerLP1}}</div>{{/shaft2PowerLP1}}
+                    {{#shaft2PowerLP2}}<div><b>shaft2PowerLP2</b>: {{shaft2PowerLP2}}</div>{{/shaft2PowerLP2}}
+                    {{#steamChestTC}}<div><b>steamChestTC</b>: {{steamChestTC}}</div>{{/steamChestTC}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SteamTurbine_collapse" aria-expanded="true" aria-controls="SteamTurbine_collapse" style="margin-left: 10px;">SteamTurbine</a></legend>
+                    <div id="SteamTurbine_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PrimeMover.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='crossoverTC'>crossoverTC: </label><div class='col-sm-8'><input id='crossoverTC' class='form-control' type='text'{{#crossoverTC}} value='{{crossoverTC}}'{{/crossoverTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reheater1TC'>reheater1TC: </label><div class='col-sm-8'><input id='reheater1TC' class='form-control' type='text'{{#reheater1TC}} value='{{reheater1TC}}'{{/reheater1TC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reheater2TC'>reheater2TC: </label><div class='col-sm-8'><input id='reheater2TC' class='form-control' type='text'{{#reheater2TC}} value='{{reheater2TC}}'{{/reheater2TC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft1PowerHP'>shaft1PowerHP: </label><div class='col-sm-8'><input id='shaft1PowerHP' class='form-control' type='text'{{#shaft1PowerHP}} value='{{shaft1PowerHP}}'{{/shaft1PowerHP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft1PowerIP'>shaft1PowerIP: </label><div class='col-sm-8'><input id='shaft1PowerIP' class='form-control' type='text'{{#shaft1PowerIP}} value='{{shaft1PowerIP}}'{{/shaft1PowerIP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft1PowerLP1'>shaft1PowerLP1: </label><div class='col-sm-8'><input id='shaft1PowerLP1' class='form-control' type='text'{{#shaft1PowerLP1}} value='{{shaft1PowerLP1}}'{{/shaft1PowerLP1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft1PowerLP2'>shaft1PowerLP2: </label><div class='col-sm-8'><input id='shaft1PowerLP2' class='form-control' type='text'{{#shaft1PowerLP2}} value='{{shaft1PowerLP2}}'{{/shaft1PowerLP2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft2PowerHP'>shaft2PowerHP: </label><div class='col-sm-8'><input id='shaft2PowerHP' class='form-control' type='text'{{#shaft2PowerHP}} value='{{shaft2PowerHP}}'{{/shaft2PowerHP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft2PowerIP'>shaft2PowerIP: </label><div class='col-sm-8'><input id='shaft2PowerIP' class='form-control' type='text'{{#shaft2PowerIP}} value='{{shaft2PowerIP}}'{{/shaft2PowerIP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft2PowerLP1'>shaft2PowerLP1: </label><div class='col-sm-8'><input id='shaft2PowerLP1' class='form-control' type='text'{{#shaft2PowerLP1}} value='{{shaft2PowerLP1}}'{{/shaft2PowerLP1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft2PowerLP2'>shaft2PowerLP2: </label><div class='col-sm-8'><input id='shaft2PowerLP2' class='form-control' type='text'{{#shaft2PowerLP2}} value='{{shaft2PowerLP2}}'{{/shaft2PowerLP2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='steamChestTC'>steamChestTC: </label><div class='col-sm-8'><input id='steamChestTC' class='form-control' type='text'{{#steamChestTC}} value='{{steamChestTC}}'{{/steamChestTC}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A prime mover that is typically fueled by gas or light oil.
@@ -1251,45 +1594,84 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CombustionTurbine_collapse" aria-expanded="true" aria-controls="CombustionTurbine_collapse">CombustionTurbine</a>
-<div id="CombustionTurbine_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PrimeMover.prototype.template.call (this) +
-`
-{{#ambientTemp}}<div><b>ambientTemp</b>: {{ambientTemp}}</div>{{/ambientTemp}}
-{{#auxPowerVersusFrequency}}<div><b>auxPowerVersusFrequency</b>: {{auxPowerVersusFrequency}}</div>{{/auxPowerVersusFrequency}}
-{{#auxPowerVersusVoltage}}<div><b>auxPowerVersusVoltage</b>: {{auxPowerVersusVoltage}}</div>{{/auxPowerVersusVoltage}}
-{{#capabilityVersusFrequency}}<div><b>capabilityVersusFrequency</b>: {{capabilityVersusFrequency}}</div>{{/capabilityVersusFrequency}}
-{{#heatRecoveryFlag}}<div><b>heatRecoveryFlag</b>: {{heatRecoveryFlag}}</div>{{/heatRecoveryFlag}}
-{{#powerVariationByTemp}}<div><b>powerVariationByTemp</b>: {{powerVariationByTemp}}</div>{{/powerVariationByTemp}}
-{{#referenceTemp}}<div><b>referenceTemp</b>: {{referenceTemp}}</div>{{/referenceTemp}}
-{{#timeConstant}}<div><b>timeConstant</b>: {{timeConstant}}</div>{{/timeConstant}}
-{{#AirCompressor}}<div><b>AirCompressor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AirCompressor}}&quot;);})'>{{AirCompressor}}</a></div>{{/AirCompressor}}
-{{#HeatRecoveryBoiler}}<div><b>HeatRecoveryBoiler</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HeatRecoveryBoiler}}&quot;);})'>{{HeatRecoveryBoiler}}</a></div>{{/HeatRecoveryBoiler}}
-{{#CTTempActivePowerCurve}}<div><b>CTTempActivePowerCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CTTempActivePowerCurve}}&quot;);})'>{{CTTempActivePowerCurve}}</a></div>{{/CTTempActivePowerCurve}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CombustionTurbine_collapse" aria-expanded="true" aria-controls="CombustionTurbine_collapse" style="margin-left: 10px;">CombustionTurbine</a></legend>
+                    <div id="CombustionTurbine_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PrimeMover.prototype.template.call (this) +
+                    `
+                    {{#ambientTemp}}<div><b>ambientTemp</b>: {{ambientTemp}}</div>{{/ambientTemp}}
+                    {{#auxPowerVersusFrequency}}<div><b>auxPowerVersusFrequency</b>: {{auxPowerVersusFrequency}}</div>{{/auxPowerVersusFrequency}}
+                    {{#auxPowerVersusVoltage}}<div><b>auxPowerVersusVoltage</b>: {{auxPowerVersusVoltage}}</div>{{/auxPowerVersusVoltage}}
+                    {{#capabilityVersusFrequency}}<div><b>capabilityVersusFrequency</b>: {{capabilityVersusFrequency}}</div>{{/capabilityVersusFrequency}}
+                    {{#heatRecoveryFlag}}<div><b>heatRecoveryFlag</b>: {{heatRecoveryFlag}}</div>{{/heatRecoveryFlag}}
+                    {{#powerVariationByTemp}}<div><b>powerVariationByTemp</b>: {{powerVariationByTemp}}</div>{{/powerVariationByTemp}}
+                    {{#referenceTemp}}<div><b>referenceTemp</b>: {{referenceTemp}}</div>{{/referenceTemp}}
+                    {{#timeConstant}}<div><b>timeConstant</b>: {{timeConstant}}</div>{{/timeConstant}}
+                    {{#AirCompressor}}<div><b>AirCompressor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AirCompressor}}&quot;);})'>{{AirCompressor}}</a></div>{{/AirCompressor}}
+                    {{#HeatRecoveryBoiler}}<div><b>HeatRecoveryBoiler</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HeatRecoveryBoiler}}&quot;);})'>{{HeatRecoveryBoiler}}</a></div>{{/HeatRecoveryBoiler}}
+                    {{#CTTempActivePowerCurve}}<div><b>CTTempActivePowerCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CTTempActivePowerCurve}}&quot;);})'>{{CTTempActivePowerCurve}}</a></div>{{/CTTempActivePowerCurve}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CombustionTurbine_collapse" aria-expanded="true" aria-controls="CombustionTurbine_collapse" style="margin-left: 10px;">CombustionTurbine</a></legend>
+                    <div id="CombustionTurbine_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PrimeMover.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ambientTemp'>ambientTemp: </label><div class='col-sm-8'><input id='ambientTemp' class='form-control' type='text'{{#ambientTemp}} value='{{ambientTemp}}'{{/ambientTemp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='auxPowerVersusFrequency'>auxPowerVersusFrequency: </label><div class='col-sm-8'><input id='auxPowerVersusFrequency' class='form-control' type='text'{{#auxPowerVersusFrequency}} value='{{auxPowerVersusFrequency}}'{{/auxPowerVersusFrequency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='auxPowerVersusVoltage'>auxPowerVersusVoltage: </label><div class='col-sm-8'><input id='auxPowerVersusVoltage' class='form-control' type='text'{{#auxPowerVersusVoltage}} value='{{auxPowerVersusVoltage}}'{{/auxPowerVersusVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='capabilityVersusFrequency'>capabilityVersusFrequency: </label><div class='col-sm-8'><input id='capabilityVersusFrequency' class='form-control' type='text'{{#capabilityVersusFrequency}} value='{{capabilityVersusFrequency}}'{{/capabilityVersusFrequency}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='heatRecoveryFlag'>heatRecoveryFlag: </label><div class='col-sm-8'><input id='heatRecoveryFlag' class='form-check-input' type='checkbox'{{#heatRecoveryFlag}} checked{{/heatRecoveryFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='powerVariationByTemp'>powerVariationByTemp: </label><div class='col-sm-8'><input id='powerVariationByTemp' class='form-control' type='text'{{#powerVariationByTemp}} value='{{powerVariationByTemp}}'{{/powerVariationByTemp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='referenceTemp'>referenceTemp: </label><div class='col-sm-8'><input id='referenceTemp' class='form-control' type='text'{{#referenceTemp}} value='{{referenceTemp}}'{{/referenceTemp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeConstant'>timeConstant: </label><div class='col-sm-8'><input id='timeConstant' class='form-control' type='text'{{#timeConstant}} value='{{timeConstant}}'{{/timeConstant}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AirCompressor'>AirCompressor: </label><div class='col-sm-8'><input id='AirCompressor' class='form-control' type='text'{{#AirCompressor}} value='{{AirCompressor}}'{{/AirCompressor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HeatRecoveryBoiler'>HeatRecoveryBoiler: </label><div class='col-sm-8'><input id='HeatRecoveryBoiler' class='form-control' type='text'{{#HeatRecoveryBoiler}} value='{{HeatRecoveryBoiler}}'{{/HeatRecoveryBoiler}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CTTempActivePowerCurve'>CTTempActivePowerCurve: </label><div class='col-sm-8'><input id='CTTempActivePowerCurve' class='form-control' type='text'{{#CTTempActivePowerCurve}} value='{{CTTempActivePowerCurve}}'{{/CTTempActivePowerCurve}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
+                FossilSteamSupply: FossilSteamSupply,
                 BWRSteamSupply: BWRSteamSupply,
                 HeatRecoveryBoiler: HeatRecoveryBoiler,
-                BoilerControlMode: BoilerControlMode,
+                PWRSteamSupply: PWRSteamSupply,
                 CTTempActivePowerCurve: CTTempActivePowerCurve,
                 PrimeMover: PrimeMover,
+                CombustionTurbine: CombustionTurbine,
+                HydroTurbine: HydroTurbine,
                 Subcritical: Subcritical,
                 SteamSupply: SteamSupply,
                 Supercritical: Supercritical,
-                TurbineType: TurbineType,
-                SteamTurbine: SteamTurbine,
-                FossilSteamSupply: FossilSteamSupply,
-                PWRSteamSupply: PWRSteamSupply,
-                CombustionTurbine: CombustionTurbine,
-                HydroTurbine: HydroTurbine,
-                DrumBoiler: DrumBoiler
+                DrumBoiler: DrumBoiler,
+                SteamTurbine: SteamTurbine
             }
         );
     }

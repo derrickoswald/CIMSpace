@@ -59,16 +59,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ModelingAuthority_collapse" aria-expanded="true" aria-controls="ModelingAuthority_collapse">ModelingAuthority</a>
-<div id="ModelingAuthority_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ModelingAuthority_collapse" aria-expanded="true" aria-controls="ModelingAuthority_collapse" style="margin-left: 10px;">ModelingAuthority</a></legend>
+                    <div id="ModelingAuthority_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ModelingAuthority_collapse" aria-expanded="true" aria-controls="ModelingAuthority_collapse" style="margin-left: 10px;">ModelingAuthority</a></legend>
+                    <div id="ModelingAuthority_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A Modeling Authority Set is a group of objects in a network model where the data is supplied and maintained by the same Modeling Authority.
@@ -125,17 +155,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ModelingAuthoritySet_collapse" aria-expanded="true" aria-controls="ModelingAuthoritySet_collapse">ModelingAuthoritySet</a>
-<div id="ModelingAuthoritySet_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#ModelingAuthority}}<div><b>ModelingAuthority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ModelingAuthority}}&quot;);})'>{{ModelingAuthority}}</a></div>{{/ModelingAuthority}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ModelingAuthoritySet_collapse" aria-expanded="true" aria-controls="ModelingAuthoritySet_collapse" style="margin-left: 10px;">ModelingAuthoritySet</a></legend>
+                    <div id="ModelingAuthoritySet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#ModelingAuthority}}<div><b>ModelingAuthority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ModelingAuthority}}&quot;);})'>{{ModelingAuthority}}</a></div>{{/ModelingAuthority}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ModelingAuthoritySet_collapse" aria-expanded="true" aria-controls="ModelingAuthoritySet_collapse" style="margin-left: 10px;">ModelingAuthoritySet</a></legend>
+                    <div id="ModelingAuthoritySet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ModelingAuthority'>ModelingAuthority: </label><div class='col-sm-8'><input id='ModelingAuthority' class='form-control' type='text'{{#ModelingAuthority}} value='{{ModelingAuthority}}'{{/ModelingAuthority}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

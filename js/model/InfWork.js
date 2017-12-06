@@ -11,6 +11,45 @@ define
     {
 
         /**
+         * Kinds of activities to be performed on a Compatible Unit.
+         *
+         */
+        var WorkActionKind =
+        {
+            install: "install",
+            remove: "remove",
+            abandon: "abandon",
+            transfer: "transfer"
+        };
+        Object.freeze (WorkActionKind);
+
+        /**
+         * Kind of condition factor.
+         *
+         */
+        var ConditionFactorKind =
+        {
+            labor: "labor",
+            accountAllocation: "accountAllocation",
+            material: "material",
+            travel: "travel",
+            other: "other"
+        };
+        Object.freeze (ConditionFactorKind);
+
+        /**
+         * Kind of design.
+         *
+         */
+        var DesignKind =
+        {
+            estimated: "estimated",
+            asBuilt: "asBuilt",
+            other: "other"
+        };
+        Object.freeze (DesignKind);
+
+        /**
          * A type of ActivityRecord that records information about the status of an item, such as a Work or WorkTask, at a point in time.
          *
          */
@@ -63,91 +102,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WorkStatusEntry_collapse" aria-expanded="true" aria-controls="WorkStatusEntry_collapse">WorkStatusEntry</a>
-<div id="WorkStatusEntry_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.ActivityRecord.prototype.template.call (this) +
-`
-{{#percentComplete}}<div><b>percentComplete</b>: {{percentComplete}}</div>{{/percentComplete}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkStatusEntry_collapse" aria-expanded="true" aria-controls="WorkStatusEntry_collapse" style="margin-left: 10px;">WorkStatusEntry</a></legend>
+                    <div id="WorkStatusEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.ActivityRecord.prototype.template.call (this) +
+                    `
+                    {{#percentComplete}}<div><b>percentComplete</b>: {{percentComplete}}</div>{{/percentComplete}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kinds of activities to be performed on a Compatible Unit.
-         *
-         */
-        class WorkActionKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.WorkActionKind;
-                if (null == bucket)
-                   cim_data.WorkActionKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.WorkActionKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "WorkActionKind";
-                base.parse_element (/<cim:WorkActionKind.install>([\s\S]*?)<\/cim:WorkActionKind.install>/g, obj, "install", base.to_string, sub, context);
-                base.parse_element (/<cim:WorkActionKind.remove>([\s\S]*?)<\/cim:WorkActionKind.remove>/g, obj, "remove", base.to_string, sub, context);
-                base.parse_element (/<cim:WorkActionKind.abandon>([\s\S]*?)<\/cim:WorkActionKind.abandon>/g, obj, "abandon", base.to_string, sub, context);
-                base.parse_element (/<cim:WorkActionKind.transfer>([\s\S]*?)<\/cim:WorkActionKind.transfer>/g, obj, "transfer", base.to_string, sub, context);
-
-                var bucket = context.parsed.WorkActionKind;
-                if (null == bucket)
-                   context.parsed.WorkActionKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "WorkActionKind", "install", base.from_string, fields);
-                base.export_element (obj, "WorkActionKind", "remove", base.from_string, fields);
-                base.export_element (obj, "WorkActionKind", "abandon", base.from_string, fields);
-                base.export_element (obj, "WorkActionKind", "transfer", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WorkActionKind_collapse" aria-expanded="true" aria-controls="WorkActionKind_collapse">WorkActionKind</a>
-<div id="WorkActionKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#install}}<div><b>install</b>: {{install}}</div>{{/install}}
-{{#remove}}<div><b>remove</b>: {{remove}}</div>{{/remove}}
-{{#abandon}}<div><b>abandon</b>: {{abandon}}</div>{{/abandon}}
-{{#transfer}}<div><b>transfer</b>: {{transfer}}</div>{{/transfer}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkStatusEntry_collapse" aria-expanded="true" aria-controls="WorkStatusEntry_collapse" style="margin-left: 10px;">WorkStatusEntry</a></legend>
+                    <div id="WorkStatusEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.ActivityRecord.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='percentComplete'>percentComplete: </label><div class='col-sm-8'><input id='percentComplete' class='form-control' type='text'{{#percentComplete}} value='{{percentComplete}}'{{/percentComplete}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Shadow class for Document, to isolate subclassing from this package.
@@ -202,93 +198,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WorkDocument_collapse" aria-expanded="true" aria-controls="WorkDocument_collapse">WorkDocument</a>
-<div id="WorkDocument_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkDocument_collapse" aria-expanded="true" aria-controls="WorkDocument_collapse" style="margin-left: 10px;">WorkDocument</a></legend>
+                    <div id="WorkDocument_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of condition factor.
-         *
-         */
-        class ConditionFactorKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ConditionFactorKind;
-                if (null == bucket)
-                   cim_data.ConditionFactorKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ConditionFactorKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ConditionFactorKind";
-                base.parse_element (/<cim:ConditionFactorKind.labor>([\s\S]*?)<\/cim:ConditionFactorKind.labor>/g, obj, "labor", base.to_string, sub, context);
-                base.parse_element (/<cim:ConditionFactorKind.accountAllocation>([\s\S]*?)<\/cim:ConditionFactorKind.accountAllocation>/g, obj, "accountAllocation", base.to_string, sub, context);
-                base.parse_element (/<cim:ConditionFactorKind.material>([\s\S]*?)<\/cim:ConditionFactorKind.material>/g, obj, "material", base.to_string, sub, context);
-                base.parse_element (/<cim:ConditionFactorKind.travel>([\s\S]*?)<\/cim:ConditionFactorKind.travel>/g, obj, "travel", base.to_string, sub, context);
-                base.parse_element (/<cim:ConditionFactorKind.other>([\s\S]*?)<\/cim:ConditionFactorKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.ConditionFactorKind;
-                if (null == bucket)
-                   context.parsed.ConditionFactorKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ConditionFactorKind", "labor", base.from_string, fields);
-                base.export_element (obj, "ConditionFactorKind", "accountAllocation", base.from_string, fields);
-                base.export_element (obj, "ConditionFactorKind", "material", base.from_string, fields);
-                base.export_element (obj, "ConditionFactorKind", "travel", base.from_string, fields);
-                base.export_element (obj, "ConditionFactorKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ConditionFactorKind_collapse" aria-expanded="true" aria-controls="ConditionFactorKind_collapse">ConditionFactorKind</a>
-<div id="ConditionFactorKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#labor}}<div><b>labor</b>: {{labor}}</div>{{/labor}}
-{{#accountAllocation}}<div><b>accountAllocation</b>: {{accountAllocation}}</div>{{/accountAllocation}}
-{{#material}}<div><b>material</b>: {{material}}</div>{{/material}}
-{{#travel}}<div><b>travel</b>: {{travel}}</div>{{/travel}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkDocument_collapse" aria-expanded="true" aria-controls="WorkDocument_collapse" style="margin-left: 10px;">WorkDocument</a></legend>
+                    <div id="WorkDocument_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Shadow class for IdentifiedObject, to isolate subclassing from this package.
@@ -343,16 +292,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WorkIdentifiedObject_collapse" aria-expanded="true" aria-controls="WorkIdentifiedObject_collapse">WorkIdentifiedObject</a>
-<div id="WorkIdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkIdentifiedObject_collapse" aria-expanded="true" aria-controls="WorkIdentifiedObject_collapse" style="margin-left: 10px;">WorkIdentifiedObject</a></legend>
+                    <div id="WorkIdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkIdentifiedObject_collapse" aria-expanded="true" aria-controls="WorkIdentifiedObject_collapse" style="margin-left: 10px;">WorkIdentifiedObject</a></legend>
+                    <div id="WorkIdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A set of tasks is required to implement a design.
@@ -411,90 +390,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OldWorkTask_collapse" aria-expanded="true" aria-controls="OldWorkTask_collapse">OldWorkTask</a>
-<div id="OldWorkTask_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Work.WorkTask.prototype.template.call (this) +
-`
-{{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);})'>{{Design}}</a></div>{{/Design}}
-{{#WorkFlowStep}}<div><b>WorkFlowStep</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkFlowStep}}&quot;);})'>{{WorkFlowStep}}</a></div>{{/WorkFlowStep}}
-{{#OverheadCost}}<div><b>OverheadCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverheadCost}}&quot;);})'>{{OverheadCost}}</a></div>{{/OverheadCost}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldWorkTask_collapse" aria-expanded="true" aria-controls="OldWorkTask_collapse" style="margin-left: 10px;">OldWorkTask</a></legend>
+                    <div id="OldWorkTask_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Work.WorkTask.prototype.template.call (this) +
+                    `
+                    {{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);})'>{{Design}}</a></div>{{/Design}}
+                    {{#WorkFlowStep}}<div><b>WorkFlowStep</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkFlowStep}}&quot;);})'>{{WorkFlowStep}}</a></div>{{/WorkFlowStep}}
+                    {{#OverheadCost}}<div><b>OverheadCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverheadCost}}&quot;);})'>{{OverheadCost}}</a></div>{{/OverheadCost}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of design.
-         *
-         */
-        class DesignKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.DesignKind;
-                if (null == bucket)
-                   cim_data.DesignKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.DesignKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "DesignKind";
-                base.parse_element (/<cim:DesignKind.estimated>([\s\S]*?)<\/cim:DesignKind.estimated>/g, obj, "estimated", base.to_string, sub, context);
-                base.parse_element (/<cim:DesignKind.asBuilt>([\s\S]*?)<\/cim:DesignKind.asBuilt>/g, obj, "asBuilt", base.to_string, sub, context);
-                base.parse_element (/<cim:DesignKind.other>([\s\S]*?)<\/cim:DesignKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.DesignKind;
-                if (null == bucket)
-                   context.parsed.DesignKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "DesignKind", "estimated", base.from_string, fields);
-                base.export_element (obj, "DesignKind", "asBuilt", base.from_string, fields);
-                base.export_element (obj, "DesignKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DesignKind_collapse" aria-expanded="true" aria-controls="DesignKind_collapse">DesignKind</a>
-<div id="DesignKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#estimated}}<div><b>estimated</b>: {{estimated}}</div>{{/estimated}}
-{{#asBuilt}}<div><b>asBuilt</b>: {{asBuilt}}</div>{{/asBuilt}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldWorkTask_collapse" aria-expanded="true" aria-controls="OldWorkTask_collapse" style="margin-left: 10px;">OldWorkTask</a></legend>
+                    <div id="OldWorkTask_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Work.WorkTask.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Design'>Design: </label><div class='col-sm-8'><input id='Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkFlowStep'>WorkFlowStep: </label><div class='col-sm-8'><input id='WorkFlowStep' class='form-control' type='text'{{#WorkFlowStep}} value='{{WorkFlowStep}}'{{/WorkFlowStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OverheadCost'>OverheadCost: </label><div class='col-sm-8'><input id='OverheadCost' class='form-control' type='text'{{#OverheadCost}} value='{{OverheadCost}}'{{/OverheadCost}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Business justification for capital expenditures, usually addressing operations and maintenance costs as well.
@@ -549,17 +490,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BusinessCase_collapse" aria-expanded="true" aria-controls="BusinessCase_collapse">BusinessCase</a>
-<div id="BusinessCase_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkDocument.prototype.template.call (this) +
-`
-{{#corporateCode}}<div><b>corporateCode</b>: {{corporateCode}}</div>{{/corporateCode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BusinessCase_collapse" aria-expanded="true" aria-controls="BusinessCase_collapse" style="margin-left: 10px;">BusinessCase</a></legend>
+                    <div id="BusinessCase_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.template.call (this) +
+                    `
+                    {{#corporateCode}}<div><b>corporateCode</b>: {{corporateCode}}</div>{{/corporateCode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BusinessCase_collapse" aria-expanded="true" aria-controls="BusinessCase_collapse" style="margin-left: 10px;">BusinessCase</a></legend>
+                    <div id="BusinessCase_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='corporateCode'>corporateCode: </label><div class='col-sm-8'><input id='corporateCode' class='form-control' type='text'{{#corporateCode}} value='{{corporateCode}}'{{/corporateCode}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Special requirements and/or regulations may pertain to certain types of assets or work.
@@ -616,17 +588,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Regulation_collapse" aria-expanded="true" aria-controls="Regulation_collapse">Regulation</a>
-<div id="Regulation_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkDocument.prototype.template.call (this) +
-`
-{{#referenceNumber}}<div><b>referenceNumber</b>: {{referenceNumber}}</div>{{/referenceNumber}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Regulation_collapse" aria-expanded="true" aria-controls="Regulation_collapse" style="margin-left: 10px;">Regulation</a></legend>
+                    <div id="Regulation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.template.call (this) +
+                    `
+                    {{#referenceNumber}}<div><b>referenceNumber</b>: {{referenceNumber}}</div>{{/referenceNumber}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Regulation_collapse" aria-expanded="true" aria-controls="Regulation_collapse" style="margin-left: 10px;">Regulation</a></legend>
+                    <div id="Regulation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='referenceNumber'>referenceNumber: </label><div class='col-sm-8'><input id='referenceNumber' class='form-control' type='text'{{#referenceNumber}} value='{{referenceNumber}}'{{/referenceNumber}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An assignment is given to an ErpPerson, Crew, Organisation, Equipment Item, Tool, etc. and may be used to perform Work, WorkTasks, Procedures, etc.
@@ -683,17 +686,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Assignment_collapse" aria-expanded="true" aria-controls="Assignment_collapse">Assignment</a>
-<div id="Assignment_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkDocument.prototype.template.call (this) +
-`
-{{#effectivePeriod}}<div><b>effectivePeriod</b>: {{effectivePeriod}}</div>{{/effectivePeriod}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Assignment_collapse" aria-expanded="true" aria-controls="Assignment_collapse" style="margin-left: 10px;">Assignment</a></legend>
+                    <div id="Assignment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.template.call (this) +
+                    `
+                    {{#effectivePeriod}}<div><b>effectivePeriod</b>: {{effectivePeriod}}</div>{{/effectivePeriod}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Assignment_collapse" aria-expanded="true" aria-controls="Assignment_collapse" style="margin-left: 10px;">Assignment</a></legend>
+                    <div id="Assignment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectivePeriod'>effectivePeriod: </label><div class='col-sm-8'><input id='effectivePeriod' class='form-control' type='text'{{#effectivePeriod}} value='{{effectivePeriod}}'{{/effectivePeriod}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A collection of related work.
@@ -756,20 +790,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Project_collapse" aria-expanded="true" aria-controls="Project_collapse">Project</a>
-<div id="Project_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkDocument.prototype.template.call (this) +
-`
-{{#budget}}<div><b>budget</b>: {{budget}}</div>{{/budget}}
-{{#ParentProject}}<div><b>ParentProject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentProject}}&quot;);})'>{{ParentProject}}</a></div>{{/ParentProject}}
-{{#BusinessCase}}<div><b>BusinessCase</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BusinessCase}}&quot;);})'>{{BusinessCase}}</a></div>{{/BusinessCase}}
-{{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);})'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Project_collapse" aria-expanded="true" aria-controls="Project_collapse" style="margin-left: 10px;">Project</a></legend>
+                    <div id="Project_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.template.call (this) +
+                    `
+                    {{#budget}}<div><b>budget</b>: {{budget}}</div>{{/budget}}
+                    {{#ParentProject}}<div><b>ParentProject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentProject}}&quot;);})'>{{ParentProject}}</a></div>{{/ParentProject}}
+                    {{#BusinessCase}}<div><b>BusinessCase</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BusinessCase}}&quot;);})'>{{BusinessCase}}</a></div>{{/BusinessCase}}
+                    {{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);})'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Project_collapse" aria-expanded="true" aria-controls="Project_collapse" style="margin-left: 10px;">Project</a></legend>
+                    <div id="Project_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='budget'>budget: </label><div class='col-sm-8'><input id='budget' class='form-control' type='text'{{#budget}} value='{{budget}}'{{/budget}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ParentProject'>ParentProject: </label><div class='col-sm-8'><input id='ParentProject' class='form-control' type='text'{{#ParentProject}} value='{{ParentProject}}'{{/ParentProject}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BusinessCase'>BusinessCase: </label><div class='col-sm-8'><input id='BusinessCase' class='form-control' type='text'{{#BusinessCase}} value='{{BusinessCase}}'{{/BusinessCase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A roll up by cost type for the entire cost of a work order.
@@ -826,17 +894,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WorkCostSummary_collapse" aria-expanded="true" aria-controls="WorkCostSummary_collapse">WorkCostSummary</a>
-<div id="WorkCostSummary_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkDocument.prototype.template.call (this) +
-`
-{{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);})'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkCostSummary_collapse" aria-expanded="true" aria-controls="WorkCostSummary_collapse" style="margin-left: 10px;">WorkCostSummary</a></legend>
+                    <div id="WorkCostSummary_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.template.call (this) +
+                    `
+                    {{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);})'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkCostSummary_collapse" aria-expanded="true" aria-controls="WorkCostSummary_collapse" style="margin-left: 10px;">WorkCostSummary</a></legend>
+                    <div id="WorkCostSummary_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A collection of all of the individual cost items collected from multiple sources.
@@ -907,25 +1006,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WorkCostDetail_collapse" aria-expanded="true" aria-controls="WorkCostDetail_collapse">WorkCostDetail</a>
-<div id="WorkCostDetail_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkDocument.prototype.template.call (this) +
-`
-{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
-{{#isDebit}}<div><b>isDebit</b>: {{isDebit}}</div>{{/isDebit}}
-{{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
-{{#CostType}}<div><b>CostType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CostType}}&quot;);})'>{{CostType}}</a></div>{{/CostType}}
-{{#OverheadCost}}<div><b>OverheadCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverheadCost}}&quot;);})'>{{OverheadCost}}</a></div>{{/OverheadCost}}
-{{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
-{{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);})'>{{Design}}</a></div>{{/Design}}
-{{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);})'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
-{{#WorkCostSummary}}<div><b>WorkCostSummary</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostSummary}}&quot;);})'>{{WorkCostSummary}}</a></div>{{/WorkCostSummary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkCostDetail_collapse" aria-expanded="true" aria-controls="WorkCostDetail_collapse" style="margin-left: 10px;">WorkCostDetail</a></legend>
+                    <div id="WorkCostDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.template.call (this) +
+                    `
+                    {{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+                    {{#isDebit}}<div><b>isDebit</b>: {{isDebit}}</div>{{/isDebit}}
+                    {{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
+                    {{#CostType}}<div><b>CostType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CostType}}&quot;);})'>{{CostType}}</a></div>{{/CostType}}
+                    {{#OverheadCost}}<div><b>OverheadCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverheadCost}}&quot;);})'>{{OverheadCost}}</a></div>{{/OverheadCost}}
+                    {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
+                    {{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);})'>{{Design}}</a></div>{{/Design}}
+                    {{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);})'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
+                    {{#WorkCostSummary}}<div><b>WorkCostSummary</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostSummary}}&quot;);})'>{{WorkCostSummary}}</a></div>{{/WorkCostSummary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkCostDetail_collapse" aria-expanded="true" aria-controls="WorkCostDetail_collapse" style="margin-left: 10px;">WorkCostDetail</a></legend>
+                    <div id="WorkCostDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isDebit'>isDebit: </label><div class='col-sm-8'><input id='isDebit' class='form-check-input' type='checkbox'{{#isDebit}} checked{{/isDebit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CostType'>CostType: </label><div class='col-sm-8'><input id='CostType' class='form-control' type='text'{{#CostType}} value='{{CostType}}'{{/CostType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OverheadCost'>OverheadCost: </label><div class='col-sm-8'><input id='OverheadCost' class='form-control' type='text'{{#OverheadCost}} value='{{OverheadCost}}'{{/OverheadCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Design'>Design: </label><div class='col-sm-8'><input id='Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostSummary'>WorkCostSummary: </label><div class='col-sm-8'><input id='WorkCostSummary' class='form-control' type='text'{{#WorkCostSummary}} value='{{WorkCostSummary}}'{{/WorkCostSummary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A pre-planned job model containing labor, material, and accounting requirements for standardized job planning.
@@ -990,22 +1128,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CompatibleUnit_collapse" aria-expanded="true" aria-controls="CompatibleUnit_collapse">CompatibleUnit</a>
-<div id="CompatibleUnit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkDocument.prototype.template.call (this) +
-`
-{{#estCost}}<div><b>estCost</b>: {{estCost}}</div>{{/estCost}}
-{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
-{{#CUGroup}}<div><b>CUGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUGroup}}&quot;);})'>{{CUGroup}}</a></div>{{/CUGroup}}
-{{#PropertyUnit}}<div><b>PropertyUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PropertyUnit}}&quot;);})'>{{PropertyUnit}}</a></div>{{/PropertyUnit}}
-{{#CostType}}<div><b>CostType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CostType}}&quot;);})'>{{CostType}}</a></div>{{/CostType}}
-{{#CUAllowableAction}}<div><b>CUAllowableAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUAllowableAction}}&quot;);})'>{{CUAllowableAction}}</a></div>{{/CUAllowableAction}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CompatibleUnit_collapse" aria-expanded="true" aria-controls="CompatibleUnit_collapse" style="margin-left: 10px;">CompatibleUnit</a></legend>
+                    <div id="CompatibleUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.template.call (this) +
+                    `
+                    {{#estCost}}<div><b>estCost</b>: {{estCost}}</div>{{/estCost}}
+                    {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+                    {{#CUGroup}}<div><b>CUGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUGroup}}&quot;);})'>{{CUGroup}}</a></div>{{/CUGroup}}
+                    {{#PropertyUnit}}<div><b>PropertyUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PropertyUnit}}&quot;);})'>{{PropertyUnit}}</a></div>{{/PropertyUnit}}
+                    {{#CostType}}<div><b>CostType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CostType}}&quot;);})'>{{CostType}}</a></div>{{/CostType}}
+                    {{#CUAllowableAction}}<div><b>CUAllowableAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUAllowableAction}}&quot;);})'>{{CUAllowableAction}}</a></div>{{/CUAllowableAction}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CompatibleUnit_collapse" aria-expanded="true" aria-controls="CompatibleUnit_collapse" style="margin-left: 10px;">CompatibleUnit</a></legend>
+                    <div id="CompatibleUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='estCost'>estCost: </label><div class='col-sm-8'><input id='estCost' class='form-control' type='text'{{#estCost}} value='{{estCost}}'{{/estCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUGroup'>CUGroup: </label><div class='col-sm-8'><input id='CUGroup' class='form-control' type='text'{{#CUGroup}} value='{{CUGroup}}'{{/CUGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PropertyUnit'>PropertyUnit: </label><div class='col-sm-8'><input id='PropertyUnit' class='form-control' type='text'{{#PropertyUnit}} value='{{PropertyUnit}}'{{/PropertyUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CostType'>CostType: </label><div class='col-sm-8'><input id='CostType' class='form-control' type='text'{{#CostType}} value='{{CostType}}'{{/CostType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUAllowableAction'>CUAllowableAction: </label><div class='col-sm-8'><input id='CUAllowableAction' class='form-control' type='text'{{#CUAllowableAction}} value='{{CUAllowableAction}}'{{/CUAllowableAction}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Questions and answers associated with a type of document for purposes of clarification.
@@ -1074,23 +1248,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#InfoQuestion_collapse" aria-expanded="true" aria-controls="InfoQuestion_collapse">InfoQuestion</a>
-<div id="InfoQuestion_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkDocument.prototype.template.call (this) +
-`
-{{#answer}}<div><b>answer</b>: {{answer}}</div>{{/answer}}
-{{#answerDateTime}}<div><b>answerDateTime</b>: {{answerDateTime}}</div>{{/answerDateTime}}
-{{#answerRemark}}<div><b>answerRemark</b>: {{answerRemark}}</div>{{/answerRemark}}
-{{#questionCode}}<div><b>questionCode</b>: {{questionCode}}</div>{{/questionCode}}
-{{#questionRemark}}<div><b>questionRemark</b>: {{questionRemark}}</div>{{/questionRemark}}
-{{#questionText}}<div><b>questionText</b>: {{questionText}}</div>{{/questionText}}
-{{#questionType}}<div><b>questionType</b>: {{questionType}}</div>{{/questionType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InfoQuestion_collapse" aria-expanded="true" aria-controls="InfoQuestion_collapse" style="margin-left: 10px;">InfoQuestion</a></legend>
+                    <div id="InfoQuestion_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.template.call (this) +
+                    `
+                    {{#answer}}<div><b>answer</b>: {{answer}}</div>{{/answer}}
+                    {{#answerDateTime}}<div><b>answerDateTime</b>: {{answerDateTime}}</div>{{/answerDateTime}}
+                    {{#answerRemark}}<div><b>answerRemark</b>: {{answerRemark}}</div>{{/answerRemark}}
+                    {{#questionCode}}<div><b>questionCode</b>: {{questionCode}}</div>{{/questionCode}}
+                    {{#questionRemark}}<div><b>questionRemark</b>: {{questionRemark}}</div>{{/questionRemark}}
+                    {{#questionText}}<div><b>questionText</b>: {{questionText}}</div>{{/questionText}}
+                    {{#questionType}}<div><b>questionType</b>: {{questionType}}</div>{{/questionType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InfoQuestion_collapse" aria-expanded="true" aria-controls="InfoQuestion_collapse" style="margin-left: 10px;">InfoQuestion</a></legend>
+                    <div id="InfoQuestion_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='answer'>answer: </label><div class='col-sm-8'><input id='answer' class='form-control' type='text'{{#answer}} value='{{answer}}'{{/answer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='answerDateTime'>answerDateTime: </label><div class='col-sm-8'><input id='answerDateTime' class='form-control' type='text'{{#answerDateTime}} value='{{answerDateTime}}'{{/answerDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='answerRemark'>answerRemark: </label><div class='col-sm-8'><input id='answerRemark' class='form-control' type='text'{{#answerRemark}} value='{{answerRemark}}'{{/answerRemark}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='questionCode'>questionCode: </label><div class='col-sm-8'><input id='questionCode' class='form-control' type='text'{{#questionCode}} value='{{questionCode}}'{{/questionCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='questionRemark'>questionRemark: </label><div class='col-sm-8'><input id='questionRemark' class='form-control' type='text'{{#questionRemark}} value='{{questionRemark}}'{{/questionRemark}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='questionText'>questionText: </label><div class='col-sm-8'><input id='questionText' class='form-control' type='text'{{#questionText}} value='{{questionText}}'{{/questionText}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='questionType'>questionType: </label><div class='col-sm-8'><input id='questionType' class='form-control' type='text'{{#questionType}} value='{{questionType}}'{{/questionType}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Documentation for a generic material item that may be used for design, work and other purposes.
@@ -1153,20 +1364,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TypeMaterial_collapse" aria-expanded="true" aria-controls="TypeMaterial_collapse">TypeMaterial</a>
-<div id="TypeMaterial_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkDocument.prototype.template.call (this) +
-`
-{{#costType}}<div><b>costType</b>: {{costType}}</div>{{/costType}}
-{{#estUnitCost}}<div><b>estUnitCost</b>: {{estUnitCost}}</div>{{/estUnitCost}}
-{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
-{{#stockItem}}<div><b>stockItem</b>: {{stockItem}}</div>{{/stockItem}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TypeMaterial_collapse" aria-expanded="true" aria-controls="TypeMaterial_collapse" style="margin-left: 10px;">TypeMaterial</a></legend>
+                    <div id="TypeMaterial_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.template.call (this) +
+                    `
+                    {{#costType}}<div><b>costType</b>: {{costType}}</div>{{/costType}}
+                    {{#estUnitCost}}<div><b>estUnitCost</b>: {{estUnitCost}}</div>{{/estUnitCost}}
+                    {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+                    {{#stockItem}}<div><b>stockItem</b>: {{stockItem}}</div>{{/stockItem}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TypeMaterial_collapse" aria-expanded="true" aria-controls="TypeMaterial_collapse" style="margin-left: 10px;">TypeMaterial</a></legend>
+                    <div id="TypeMaterial_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='costType'>costType: </label><div class='col-sm-8'><input id='costType' class='form-control' type='text'{{#costType}} value='{{costType}}'{{/costType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='estUnitCost'>estUnitCost: </label><div class='col-sm-8'><input id='estUnitCost' class='form-control' type='text'{{#estUnitCost}} value='{{estUnitCost}}'{{/estUnitCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='stockItem'>stockItem: </label><div class='col-sm-8'><input id='stockItem' class='form-check-input' type='checkbox'{{#stockItem}} checked{{/stockItem}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This document provides information for non-standard items like customer contributions (e.g., customer digs trench), vouchers (e.g., credit), and contractor bids.
@@ -1221,17 +1466,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#NonStandardItem_collapse" aria-expanded="true" aria-controls="NonStandardItem_collapse">NonStandardItem</a>
-<div id="NonStandardItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkDocument.prototype.template.call (this) +
-`
-{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonStandardItem_collapse" aria-expanded="true" aria-controls="NonStandardItem_collapse" style="margin-left: 10px;">NonStandardItem</a></legend>
+                    <div id="NonStandardItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.template.call (this) +
+                    `
+                    {{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonStandardItem_collapse" aria-expanded="true" aria-controls="NonStandardItem_collapse" style="margin-left: 10px;">NonStandardItem</a></legend>
+                    <div id="NonStandardItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A permit is sometimes needed to provide legal access to land or equipment.
@@ -1296,21 +1572,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AccessPermit_collapse" aria-expanded="true" aria-controls="AccessPermit_collapse">AccessPermit</a>
-<div id="AccessPermit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkDocument.prototype.template.call (this) +
-`
-{{#applicationNumber}}<div><b>applicationNumber</b>: {{applicationNumber}}</div>{{/applicationNumber}}
-{{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
-{{#expirationDate}}<div><b>expirationDate</b>: {{expirationDate}}</div>{{/expirationDate}}
-{{#payment}}<div><b>payment</b>: {{payment}}</div>{{/payment}}
-{{#permitID}}<div><b>permitID</b>: {{permitID}}</div>{{/permitID}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccessPermit_collapse" aria-expanded="true" aria-controls="AccessPermit_collapse" style="margin-left: 10px;">AccessPermit</a></legend>
+                    <div id="AccessPermit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.template.call (this) +
+                    `
+                    {{#applicationNumber}}<div><b>applicationNumber</b>: {{applicationNumber}}</div>{{/applicationNumber}}
+                    {{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
+                    {{#expirationDate}}<div><b>expirationDate</b>: {{expirationDate}}</div>{{/expirationDate}}
+                    {{#payment}}<div><b>payment</b>: {{payment}}</div>{{/payment}}
+                    {{#permitID}}<div><b>permitID</b>: {{permitID}}</div>{{/permitID}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccessPermit_collapse" aria-expanded="true" aria-controls="AccessPermit_collapse" style="margin-left: 10px;">AccessPermit</a></legend>
+                    <div id="AccessPermit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='applicationNumber'>applicationNumber: </label><div class='col-sm-8'><input id='applicationNumber' class='form-control' type='text'{{#applicationNumber}} value='{{applicationNumber}}'{{/applicationNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='expirationDate'>expirationDate: </label><div class='col-sm-8'><input id='expirationDate' class='form-control' type='text'{{#expirationDate}} value='{{expirationDate}}'{{/expirationDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='payment'>payment: </label><div class='col-sm-8'><input id='payment' class='form-control' type='text'{{#payment}} value='{{payment}}'{{/payment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='permitID'>permitID: </label><div class='col-sm-8'><input id='permitID' class='form-control' type='text'{{#permitID}} value='{{permitID}}'{{/permitID}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A request for other utilities to mark their underground facilities prior to commencement of construction and/or maintenance.
@@ -1369,19 +1680,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OneCallRequest_collapse" aria-expanded="true" aria-controls="OneCallRequest_collapse">OneCallRequest</a>
-<div id="OneCallRequest_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkDocument.prototype.template.call (this) +
-`
-{{#explosivesUsed}}<div><b>explosivesUsed</b>: {{explosivesUsed}}</div>{{/explosivesUsed}}
-{{#markedIndicator}}<div><b>markedIndicator</b>: {{markedIndicator}}</div>{{/markedIndicator}}
-{{#markingInstruction}}<div><b>markingInstruction</b>: {{markingInstruction}}</div>{{/markingInstruction}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OneCallRequest_collapse" aria-expanded="true" aria-controls="OneCallRequest_collapse" style="margin-left: 10px;">OneCallRequest</a></legend>
+                    <div id="OneCallRequest_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.template.call (this) +
+                    `
+                    {{#explosivesUsed}}<div><b>explosivesUsed</b>: {{explosivesUsed}}</div>{{/explosivesUsed}}
+                    {{#markedIndicator}}<div><b>markedIndicator</b>: {{markedIndicator}}</div>{{/markedIndicator}}
+                    {{#markingInstruction}}<div><b>markingInstruction</b>: {{markingInstruction}}</div>{{/markingInstruction}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OneCallRequest_collapse" aria-expanded="true" aria-controls="OneCallRequest_collapse" style="margin-left: 10px;">OneCallRequest</a></legend>
+                    <div id="OneCallRequest_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='explosivesUsed'>explosivesUsed: </label><div class='col-sm-8'><input id='explosivesUsed' class='form-check-input' type='checkbox'{{#explosivesUsed}} checked{{/explosivesUsed}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='markedIndicator'>markedIndicator: </label><div class='col-sm-8'><input id='markedIndicator' class='form-check-input' type='checkbox'{{#markedIndicator}} checked{{/markedIndicator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='markingInstruction'>markingInstruction: </label><div class='col-sm-8'><input id='markingInstruction' class='form-control' type='text'{{#markingInstruction}} value='{{markingInstruction}}'{{/markingInstruction}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A design for consideration by customers, potential customers, or internal work.
@@ -1414,7 +1758,7 @@ define
                 obj = WorkDocument.prototype.parse.call (this, context, sub);
                 obj.cls = "Design";
                 base.parse_element (/<cim:Design.costEstimate>([\s\S]*?)<\/cim:Design.costEstimate>/g, obj, "costEstimate", base.to_string, sub, context);
-                base.parse_element (/<cim:Design.kind>([\s\S]*?)<\/cim:Design.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Design.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:Design.price>([\s\S]*?)<\/cim:Design.price>/g, obj, "price", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Design.Work\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Work", sub, context);
                 base.parse_attribute (/<cim:Design.ErpQuoteLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpQuoteLineItem", sub, context);
@@ -1446,21 +1790,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Design_collapse" aria-expanded="true" aria-controls="Design_collapse">Design</a>
-<div id="Design_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkDocument.prototype.template.call (this) +
-`
-{{#costEstimate}}<div><b>costEstimate</b>: {{costEstimate}}</div>{{/costEstimate}}
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#price}}<div><b>price</b>: {{price}}</div>{{/price}}
-{{#Work}}<div><b>Work</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Work}}&quot;);})'>{{Work}}</a></div>{{/Work}}
-{{#ErpQuoteLineItem}}<div><b>ErpQuoteLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuoteLineItem}}&quot;);})'>{{ErpQuoteLineItem}}</a></div>{{/ErpQuoteLineItem}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Design_collapse" aria-expanded="true" aria-controls="Design_collapse" style="margin-left: 10px;">Design</a></legend>
+                    <div id="Design_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.template.call (this) +
+                    `
+                    {{#costEstimate}}<div><b>costEstimate</b>: {{costEstimate}}</div>{{/costEstimate}}
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#price}}<div><b>price</b>: {{price}}</div>{{/price}}
+                    {{#Work}}<div><b>Work</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Work}}&quot;);})'>{{Work}}</a></div>{{/Work}}
+                    {{#ErpQuoteLineItem}}<div><b>ErpQuoteLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuoteLineItem}}&quot;);})'>{{ErpQuoteLineItem}}</a></div>{{/ErpQuoteLineItem}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.DesignKind = []; if (!obj.kind) obj.DesignKind.push ({ id: '', selected: true}); for (var property in DesignKind) obj.DesignKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.DesignKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Design_collapse" aria-expanded="true" aria-controls="Design_collapse" style="margin-left: 10px;">Design</a></legend>
+                    <div id="Design_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkDocument.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='costEstimate'>costEstimate: </label><div class='col-sm-8'><input id='costEstimate' class='form-control' type='text'{{#costEstimate}} value='{{costEstimate}}'{{/costEstimate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#DesignKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DesignKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='price'>price: </label><div class='col-sm-8'><input id='price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Work'>Work: </label><div class='col-sm-8'><input id='Work' class='form-control' type='text'{{#Work}} value='{{Work}}'{{/Work}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpQuoteLineItem'>ErpQuoteLineItem: </label><div class='col-sm-8'><input id='ErpQuoteLineItem' class='form-control' type='text'{{#ErpQuoteLineItem}} value='{{ErpQuoteLineItem}}'{{/ErpQuoteLineItem}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Labor used for work order.
@@ -1527,23 +1908,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#LaborItem_collapse" aria-expanded="true" aria-controls="LaborItem_collapse">LaborItem</a>
-<div id="LaborItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
-{{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
-{{#laborDuration}}<div><b>laborDuration</b>: {{laborDuration}}</div>{{/laborDuration}}
-{{#laborRate}}<div><b>laborRate</b>: {{laborRate}}</div>{{/laborRate}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);})'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
-{{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LaborItem_collapse" aria-expanded="true" aria-controls="LaborItem_collapse" style="margin-left: 10px;">LaborItem</a></legend>
+                    <div id="LaborItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
+                    {{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
+                    {{#laborDuration}}<div><b>laborDuration</b>: {{laborDuration}}</div>{{/laborDuration}}
+                    {{#laborRate}}<div><b>laborRate</b>: {{laborRate}}</div>{{/laborRate}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);})'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
+                    {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LaborItem_collapse" aria-expanded="true" aria-controls="LaborItem_collapse" style="margin-left: 10px;">LaborItem</a></legend>
+                    <div id="LaborItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='activityCode'>activityCode: </label><div class='col-sm-8'><input id='activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cost'>cost: </label><div class='col-sm-8'><input id='cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='laborDuration'>laborDuration: </label><div class='col-sm-8'><input id='laborDuration' class='form-control' type='text'{{#laborDuration}} value='{{laborDuration}}'{{/laborDuration}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='laborRate'>laborRate: </label><div class='col-sm-8'><input id='laborRate' class='form-control' type='text'{{#laborRate}} value='{{laborRate}}'{{/laborRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This is to specify the various condition factors for a design that may alter the cost estimate or the allocation.
@@ -1574,7 +1992,7 @@ define
                 obj = WorkIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ConditionFactor";
                 base.parse_element (/<cim:ConditionFactor.cfValue>([\s\S]*?)<\/cim:ConditionFactor.cfValue>/g, obj, "cfValue", base.to_string, sub, context);
-                base.parse_element (/<cim:ConditionFactor.kind>([\s\S]*?)<\/cim:ConditionFactor.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ConditionFactor.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:ConditionFactor.status>([\s\S]*?)<\/cim:ConditionFactor.status>/g, obj, "status", base.to_string, sub, context);
 
                 var bucket = context.parsed.ConditionFactor;
@@ -1602,19 +2020,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ConditionFactor_collapse" aria-expanded="true" aria-controls="ConditionFactor_collapse">ConditionFactor</a>
-<div id="ConditionFactor_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#cfValue}}<div><b>cfValue</b>: {{cfValue}}</div>{{/cfValue}}
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConditionFactor_collapse" aria-expanded="true" aria-controls="ConditionFactor_collapse" style="margin-left: 10px;">ConditionFactor</a></legend>
+                    <div id="ConditionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#cfValue}}<div><b>cfValue</b>: {{cfValue}}</div>{{/cfValue}}
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ConditionFactorKind = []; if (!obj.kind) obj.ConditionFactorKind.push ({ id: '', selected: true}); for (var property in ConditionFactorKind) obj.ConditionFactorKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ConditionFactorKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConditionFactor_collapse" aria-expanded="true" aria-controls="ConditionFactor_collapse" style="margin-left: 10px;">ConditionFactor</a></legend>
+                    <div id="ConditionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cfValue'>cfValue: </label><div class='col-sm-8'><input id='cfValue' class='form-control' type='text'{{#cfValue}} value='{{cfValue}}'{{/cfValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ConditionFactorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ConditionFactorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The way material and assets are used to perform a certain type of work task.
@@ -1673,18 +2126,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Usage_collapse" aria-expanded="true" aria-controls="Usage_collapse">Usage</a>
-<div id="Usage_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Usage_collapse" aria-expanded="true" aria-controls="Usage_collapse" style="margin-left: 10px;">Usage</a></legend>
+                    <div id="Usage_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Usage_collapse" aria-expanded="true" aria-controls="Usage_collapse" style="margin-left: 10px;">Usage</a></legend>
+                    <div id="Usage_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A categorization for resources, often costs, in accounting transactions.
@@ -1751,22 +2236,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CostType_collapse" aria-expanded="true" aria-controls="CostType_collapse">CostType</a>
-<div id="CostType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#amountAssignable}}<div><b>amountAssignable</b>: {{amountAssignable}}</div>{{/amountAssignable}}
-{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
-{{#level}}<div><b>level</b>: {{level}}</div>{{/level}}
-{{#stage}}<div><b>stage</b>: {{stage}}</div>{{/stage}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#ParentCostType}}<div><b>ParentCostType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentCostType}}&quot;);})'>{{ParentCostType}}</a></div>{{/ParentCostType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CostType_collapse" aria-expanded="true" aria-controls="CostType_collapse" style="margin-left: 10px;">CostType</a></legend>
+                    <div id="CostType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#amountAssignable}}<div><b>amountAssignable</b>: {{amountAssignable}}</div>{{/amountAssignable}}
+                    {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+                    {{#level}}<div><b>level</b>: {{level}}</div>{{/level}}
+                    {{#stage}}<div><b>stage</b>: {{stage}}</div>{{/stage}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#ParentCostType}}<div><b>ParentCostType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentCostType}}&quot;);})'>{{ParentCostType}}</a></div>{{/ParentCostType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CostType_collapse" aria-expanded="true" aria-controls="CostType_collapse" style="margin-left: 10px;">CostType</a></legend>
+                    <div id="CostType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='amountAssignable'>amountAssignable: </label><div class='col-sm-8'><input id='amountAssignable' class='form-check-input' type='checkbox'{{#amountAssignable}} checked{{/amountAssignable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='code'>code: </label><div class='col-sm-8'><input id='code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='level'>level: </label><div class='col-sm-8'><input id='level' class='form-control' type='text'{{#level}} value='{{level}}'{{/level}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stage'>stage: </label><div class='col-sm-8'><input id='stage' class='form-control' type='text'{{#stage}} value='{{stage}}'{{/stage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ParentCostType'>ParentCostType: </label><div class='col-sm-8'><input id='ParentCostType' class='form-control' type='text'{{#ParentCostType}} value='{{ParentCostType}}'{{/ParentCostType}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Labor code associated with various compatible unit labor items.
@@ -1823,18 +2344,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CULaborCode_collapse" aria-expanded="true" aria-controls="CULaborCode_collapse">CULaborCode</a>
-<div id="CULaborCode_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CULaborCode_collapse" aria-expanded="true" aria-controls="CULaborCode_collapse" style="margin-left: 10px;">CULaborCode</a></legend>
+                    <div id="CULaborCode_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CULaborCode_collapse" aria-expanded="true" aria-controls="CULaborCode_collapse" style="margin-left: 10px;">CULaborCode</a></legend>
+                    <div id="CULaborCode_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='code'>code: </label><div class='col-sm-8'><input id='code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A logical part of the design (e.g., pole and all equipment on a pole).
@@ -1893,18 +2446,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DesignLocation_collapse" aria-expanded="true" aria-controls="DesignLocation_collapse">DesignLocation</a>
-<div id="DesignLocation_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#spanLength}}<div><b>spanLength</b>: {{spanLength}}</div>{{/spanLength}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DesignLocation_collapse" aria-expanded="true" aria-controls="DesignLocation_collapse" style="margin-left: 10px;">DesignLocation</a></legend>
+                    <div id="DesignLocation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#spanLength}}<div><b>spanLength</b>: {{spanLength}}</div>{{/spanLength}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DesignLocation_collapse" aria-expanded="true" aria-controls="DesignLocation_collapse" style="margin-left: 10px;">DesignLocation</a></legend>
+                    <div id="DesignLocation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='spanLength'>spanLength: </label><div class='col-sm-8'><input id='spanLength' class='form-control' type='text'{{#spanLength}} value='{{spanLength}}'{{/spanLength}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Compatible unit for various types of WorkEquipmentAssets, including vehicles.
@@ -1965,20 +2550,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CUWorkEquipmentItem_collapse" aria-expanded="true" aria-controls="CUWorkEquipmentItem_collapse">CUWorkEquipmentItem</a>
-<div id="CUWorkEquipmentItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#equipCode}}<div><b>equipCode</b>: {{equipCode}}</div>{{/equipCode}}
-{{#rate}}<div><b>rate</b>: {{rate}}</div>{{/rate}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUWorkEquipmentItem_collapse" aria-expanded="true" aria-controls="CUWorkEquipmentItem_collapse" style="margin-left: 10px;">CUWorkEquipmentItem</a></legend>
+                    <div id="CUWorkEquipmentItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#equipCode}}<div><b>equipCode</b>: {{equipCode}}</div>{{/equipCode}}
+                    {{#rate}}<div><b>rate</b>: {{rate}}</div>{{/rate}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUWorkEquipmentItem_collapse" aria-expanded="true" aria-controls="CUWorkEquipmentItem_collapse" style="margin-left: 10px;">CUWorkEquipmentItem</a></legend>
+                    <div id="CUWorkEquipmentItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='equipCode'>equipCode: </label><div class='col-sm-8'><input id='equipCode' class='form-control' type='text'{{#equipCode}} value='{{equipCode}}'{{/equipCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rate'>rate: </label><div class='col-sm-8'><input id='rate' class='form-control' type='text'{{#rate}} value='{{rate}}'{{/rate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Compatible unit of a consumable supply item.
@@ -2041,20 +2660,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CUMaterialItem_collapse" aria-expanded="true" aria-controls="CUMaterialItem_collapse">CUMaterialItem</a>
-<div id="CUMaterialItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#corporateCode}}<div><b>corporateCode</b>: {{corporateCode}}</div>{{/corporateCode}}
-{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);})'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUMaterialItem_collapse" aria-expanded="true" aria-controls="CUMaterialItem_collapse" style="margin-left: 10px;">CUMaterialItem</a></legend>
+                    <div id="CUMaterialItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#corporateCode}}<div><b>corporateCode</b>: {{corporateCode}}</div>{{/corporateCode}}
+                    {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);})'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUMaterialItem_collapse" aria-expanded="true" aria-controls="CUMaterialItem_collapse" style="margin-left: 10px;">CUMaterialItem</a></legend>
+                    <div id="CUMaterialItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='corporateCode'>corporateCode: </label><div class='col-sm-8'><input id='corporateCode' class='form-control' type='text'{{#corporateCode}} value='{{corporateCode}}'{{/corporateCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Overhead cost applied to work order.
@@ -2113,19 +2766,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OverheadCost_collapse" aria-expanded="true" aria-controls="OverheadCost_collapse">OverheadCost</a>
-<div id="OverheadCost_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
-{{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverheadCost_collapse" aria-expanded="true" aria-controls="OverheadCost_collapse" style="margin-left: 10px;">OverheadCost</a></legend>
+                    <div id="OverheadCost_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+                    {{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverheadCost_collapse" aria-expanded="true" aria-controls="OverheadCost_collapse" style="margin-left: 10px;">OverheadCost</a></legend>
+                    <div id="OverheadCost_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='code'>code: </label><div class='col-sm-8'><input id='code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cost'>cost: </label><div class='col-sm-8'><input id='cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A pre-defined set of work steps for a given type of work.
@@ -2184,19 +2870,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WorkFlowStep_collapse" aria-expanded="true" aria-controls="WorkFlowStep_collapse">WorkFlowStep</a>
-<div id="WorkFlowStep_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#Work}}<div><b>Work</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Work}}&quot;);})'>{{Work}}</a></div>{{/Work}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkFlowStep_collapse" aria-expanded="true" aria-controls="WorkFlowStep_collapse" style="margin-left: 10px;">WorkFlowStep</a></legend>
+                    <div id="WorkFlowStep_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#Work}}<div><b>Work</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Work}}&quot;);})'>{{Work}}</a></div>{{/Work}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkFlowStep_collapse" aria-expanded="true" aria-controls="WorkFlowStep_collapse" style="margin-left: 10px;">WorkFlowStep</a></legend>
+                    <div id="WorkFlowStep_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Work'>Work: </label><div class='col-sm-8'><input id='Work' class='form-control' type='text'{{#Work}} value='{{Work}}'{{/Work}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Allowed actions: Install, Remove, Transfer, Abandon, etc.
@@ -2251,17 +2970,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CUAllowableAction_collapse" aria-expanded="true" aria-controls="CUAllowableAction_collapse">CUAllowableAction</a>
-<div id="CUAllowableAction_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUAllowableAction_collapse" aria-expanded="true" aria-controls="CUAllowableAction_collapse" style="margin-left: 10px;">CUAllowableAction</a></legend>
+                    <div id="CUAllowableAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUAllowableAction_collapse" aria-expanded="true" aria-controls="CUAllowableAction_collapse" style="margin-left: 10px;">CUAllowableAction</a></legend>
+                    <div id="CUAllowableAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Certain skills are required and must be certified in order for a person (typically a member of a crew) to be qualified to work on types of equipment.
@@ -2316,17 +3066,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#QualificationRequirement_collapse" aria-expanded="true" aria-controls="QualificationRequirement_collapse">QualificationRequirement</a>
-<div id="QualificationRequirement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#qualificationID}}<div><b>qualificationID</b>: {{qualificationID}}</div>{{/qualificationID}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#QualificationRequirement_collapse" aria-expanded="true" aria-controls="QualificationRequirement_collapse" style="margin-left: 10px;">QualificationRequirement</a></legend>
+                    <div id="QualificationRequirement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#qualificationID}}<div><b>qualificationID</b>: {{qualificationID}}</div>{{/qualificationID}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#QualificationRequirement_collapse" aria-expanded="true" aria-controls="QualificationRequirement_collapse" style="margin-left: 10px;">QualificationRequirement</a></legend>
+                    <div id="QualificationRequirement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qualificationID'>qualificationID: </label><div class='col-sm-8'><input id='qualificationID' class='form-control' type='text'{{#qualificationID}} value='{{qualificationID}}'{{/qualificationID}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Contractor information for work task.
@@ -2391,22 +3172,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ContractorItem_collapse" aria-expanded="true" aria-controls="ContractorItem_collapse">ContractorItem</a>
-<div id="ContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
-{{#bidAmount}}<div><b>bidAmount</b>: {{bidAmount}}</div>{{/bidAmount}}
-{{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);})'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
-{{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContractorItem_collapse" aria-expanded="true" aria-controls="ContractorItem_collapse" style="margin-left: 10px;">ContractorItem</a></legend>
+                    <div id="ContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
+                    {{#bidAmount}}<div><b>bidAmount</b>: {{bidAmount}}</div>{{/bidAmount}}
+                    {{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);})'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
+                    {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContractorItem_collapse" aria-expanded="true" aria-controls="ContractorItem_collapse" style="margin-left: 10px;">ContractorItem</a></legend>
+                    <div id="ContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='activityCode'>activityCode: </label><div class='col-sm-8'><input id='activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidAmount'>bidAmount: </label><div class='col-sm-8'><input id='bidAmount' class='form-control' type='text'{{#bidAmount}} value='{{bidAmount}}'{{/bidAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cost'>cost: </label><div class='col-sm-8'><input id='cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A Compatible Unit Group identifies a set of compatible units which may be jointly utilized for estimating and designating jobs.
@@ -2461,17 +3278,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CUGroup_collapse" aria-expanded="true" aria-controls="CUGroup_collapse">CUGroup</a>
-<div id="CUGroup_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUGroup_collapse" aria-expanded="true" aria-controls="CUGroup_collapse" style="margin-left: 10px;">CUGroup</a></legend>
+                    <div id="CUGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUGroup_collapse" aria-expanded="true" aria-controls="CUGroup_collapse" style="margin-left: 10px;">CUGroup</a></legend>
+                    <div id="CUGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The patterns of shifts worked by people or crews.
@@ -2532,20 +3380,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ShiftPattern_collapse" aria-expanded="true" aria-controls="ShiftPattern_collapse">ShiftPattern</a>
-<div id="ShiftPattern_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#assignmentType}}<div><b>assignmentType</b>: {{assignmentType}}</div>{{/assignmentType}}
-{{#cycleCount}}<div><b>cycleCount</b>: {{cycleCount}}</div>{{/cycleCount}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShiftPattern_collapse" aria-expanded="true" aria-controls="ShiftPattern_collapse" style="margin-left: 10px;">ShiftPattern</a></legend>
+                    <div id="ShiftPattern_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#assignmentType}}<div><b>assignmentType</b>: {{assignmentType}}</div>{{/assignmentType}}
+                    {{#cycleCount}}<div><b>cycleCount</b>: {{cycleCount}}</div>{{/cycleCount}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShiftPattern_collapse" aria-expanded="true" aria-controls="ShiftPattern_collapse" style="margin-left: 10px;">ShiftPattern</a></legend>
+                    <div id="ShiftPattern_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='assignmentType'>assignmentType: </label><div class='col-sm-8'><input id='assignmentType' class='form-control' type='text'{{#assignmentType}} value='{{assignmentType}}'{{/assignmentType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cycleCount'>cycleCount: </label><div class='col-sm-8'><input id='cycleCount' class='form-control' type='text'{{#cycleCount}} value='{{cycleCount}}'{{/cycleCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Compatible unit labor item.
@@ -2608,21 +3490,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CULaborItem_collapse" aria-expanded="true" aria-controls="CULaborItem_collapse">CULaborItem</a>
-<div id="CULaborItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
-{{#laborDuration}}<div><b>laborDuration</b>: {{laborDuration}}</div>{{/laborDuration}}
-{{#laborRate}}<div><b>laborRate</b>: {{laborRate}}</div>{{/laborRate}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#CULaborCode}}<div><b>CULaborCode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CULaborCode}}&quot;);})'>{{CULaborCode}}</a></div>{{/CULaborCode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CULaborItem_collapse" aria-expanded="true" aria-controls="CULaborItem_collapse" style="margin-left: 10px;">CULaborItem</a></legend>
+                    <div id="CULaborItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
+                    {{#laborDuration}}<div><b>laborDuration</b>: {{laborDuration}}</div>{{/laborDuration}}
+                    {{#laborRate}}<div><b>laborRate</b>: {{laborRate}}</div>{{/laborRate}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#CULaborCode}}<div><b>CULaborCode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CULaborCode}}&quot;);})'>{{CULaborCode}}</a></div>{{/CULaborCode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CULaborItem_collapse" aria-expanded="true" aria-controls="CULaborItem_collapse" style="margin-left: 10px;">CULaborItem</a></legend>
+                    <div id="CULaborItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='activityCode'>activityCode: </label><div class='col-sm-8'><input id='activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='laborDuration'>laborDuration: </label><div class='col-sm-8'><input id='laborDuration' class='form-control' type='text'{{#laborDuration}} value='{{laborDuration}}'{{/laborDuration}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='laborRate'>laborRate: </label><div class='col-sm-8'><input id='laborRate' class='form-control' type='text'{{#laborRate}} value='{{laborRate}}'{{/laborRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CULaborCode'>CULaborCode: </label><div class='col-sm-8'><input id='CULaborCode' class='form-control' type='text'{{#CULaborCode}} value='{{CULaborCode}}'{{/CULaborCode}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Unit of property for reporting purposes.
@@ -2653,7 +3570,7 @@ define
                 obj = WorkIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "PropertyUnit";
                 base.parse_element (/<cim:PropertyUnit.accountingUsage>([\s\S]*?)<\/cim:PropertyUnit.accountingUsage>/g, obj, "accountingUsage", base.to_string, sub, context);
-                base.parse_element (/<cim:PropertyUnit.activityCode>([\s\S]*?)<\/cim:PropertyUnit.activityCode>/g, obj, "activityCode", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PropertyUnit.activityCode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "activityCode", sub, context);
                 base.parse_element (/<cim:PropertyUnit.propertyAccount>([\s\S]*?)<\/cim:PropertyUnit.propertyAccount>/g, obj, "propertyAccount", base.to_string, sub, context);
                 base.parse_element (/<cim:PropertyUnit.status>([\s\S]*?)<\/cim:PropertyUnit.status>/g, obj, "status", base.to_string, sub, context);
 
@@ -2683,20 +3600,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PropertyUnit_collapse" aria-expanded="true" aria-controls="PropertyUnit_collapse">PropertyUnit</a>
-<div id="PropertyUnit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#accountingUsage}}<div><b>accountingUsage</b>: {{accountingUsage}}</div>{{/accountingUsage}}
-{{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
-{{#propertyAccount}}<div><b>propertyAccount</b>: {{propertyAccount}}</div>{{/propertyAccount}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PropertyUnit_collapse" aria-expanded="true" aria-controls="PropertyUnit_collapse" style="margin-left: 10px;">PropertyUnit</a></legend>
+                    <div id="PropertyUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#accountingUsage}}<div><b>accountingUsage</b>: {{accountingUsage}}</div>{{/accountingUsage}}
+                    {{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
+                    {{#propertyAccount}}<div><b>propertyAccount</b>: {{propertyAccount}}</div>{{/propertyAccount}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.WorkActionKind = []; if (!obj.activityCode) obj.WorkActionKind.push ({ id: '', selected: true}); for (var property in WorkActionKind) obj.WorkActionKind.push ({ id: property, selected: obj.activityCode && obj.activityCode.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.WorkActionKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PropertyUnit_collapse" aria-expanded="true" aria-controls="PropertyUnit_collapse" style="margin-left: 10px;">PropertyUnit</a></legend>
+                    <div id="PropertyUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accountingUsage'>accountingUsage: </label><div class='col-sm-8'><input id='accountingUsage' class='form-control' type='text'{{#accountingUsage}} value='{{accountingUsage}}'{{/accountingUsage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='activityCode'>activityCode: </label><div class='col-sm-8'><select id='activityCode' class='form-control'>{{#WorkActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkActionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='propertyAccount'>propertyAccount: </label><div class='col-sm-8'><input id='propertyAccount' class='form-control' type='text'{{#propertyAccount}} value='{{propertyAccount}}'{{/propertyAccount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Capabilities of a crew.
@@ -2759,21 +3712,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Capability_collapse" aria-expanded="true" aria-controls="Capability_collapse">Capability</a>
-<div id="Capability_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#performanceFactor}}<div><b>performanceFactor</b>: {{performanceFactor}}</div>{{/performanceFactor}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-{{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
-{{#Crew}}<div><b>Crew</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Crew}}&quot;);})'>{{Crew}}</a></div>{{/Crew}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Capability_collapse" aria-expanded="true" aria-controls="Capability_collapse" style="margin-left: 10px;">Capability</a></legend>
+                    <div id="Capability_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#performanceFactor}}<div><b>performanceFactor</b>: {{performanceFactor}}</div>{{/performanceFactor}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
+                    {{#Crew}}<div><b>Crew</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Crew}}&quot;);})'>{{Crew}}</a></div>{{/Crew}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Capability_collapse" aria-expanded="true" aria-controls="Capability_collapse" style="margin-left: 10px;">Capability</a></legend>
+                    <div id="Capability_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='performanceFactor'>performanceFactor: </label><div class='col-sm-8'><input id='performanceFactor' class='form-control' type='text'{{#performanceFactor}} value='{{performanceFactor}}'{{/performanceFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Crew'>Crew: </label><div class='col-sm-8'><input id='Crew' class='form-control' type='text'{{#Crew}} value='{{Crew}}'{{/Crew}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Compatible unit at a given design location.
@@ -2804,7 +3792,7 @@ define
                 obj = WorkIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "DesignLocationCU";
                 base.parse_element (/<cim:DesignLocationCU.cuAccount>([\s\S]*?)<\/cim:DesignLocationCU.cuAccount>/g, obj, "cuAccount", base.to_string, sub, context);
-                base.parse_element (/<cim:DesignLocationCU.cuAction>([\s\S]*?)<\/cim:DesignLocationCU.cuAction>/g, obj, "cuAction", base.to_string, sub, context);
+                base.parse_attribute (/<cim:DesignLocationCU.cuAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "cuAction", sub, context);
                 base.parse_element (/<cim:DesignLocationCU.cuQuantity>([\s\S]*?)<\/cim:DesignLocationCU.cuQuantity>/g, obj, "cuQuantity", base.to_string, sub, context);
                 base.parse_element (/<cim:DesignLocationCU.cuUsage>([\s\S]*?)<\/cim:DesignLocationCU.cuUsage>/g, obj, "cuUsage", base.to_string, sub, context);
                 base.parse_element (/<cim:DesignLocationCU.removalDate>([\s\S]*?)<\/cim:DesignLocationCU.removalDate>/g, obj, "removalDate", base.to_string, sub, context);
@@ -2842,24 +3830,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DesignLocationCU_collapse" aria-expanded="true" aria-controls="DesignLocationCU_collapse">DesignLocationCU</a>
-<div id="DesignLocationCU_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#cuAccount}}<div><b>cuAccount</b>: {{cuAccount}}</div>{{/cuAccount}}
-{{#cuAction}}<div><b>cuAction</b>: {{cuAction}}</div>{{/cuAction}}
-{{#cuQuantity}}<div><b>cuQuantity</b>: {{cuQuantity}}</div>{{/cuQuantity}}
-{{#cuUsage}}<div><b>cuUsage</b>: {{cuUsage}}</div>{{/cuUsage}}
-{{#removalDate}}<div><b>removalDate</b>: {{removalDate}}</div>{{/removalDate}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#toBeEnergised}}<div><b>toBeEnergised</b>: {{toBeEnergised}}</div>{{/toBeEnergised}}
-{{#DesignLocation}}<div><b>DesignLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DesignLocation}}&quot;);})'>{{DesignLocation}}</a></div>{{/DesignLocation}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DesignLocationCU_collapse" aria-expanded="true" aria-controls="DesignLocationCU_collapse" style="margin-left: 10px;">DesignLocationCU</a></legend>
+                    <div id="DesignLocationCU_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#cuAccount}}<div><b>cuAccount</b>: {{cuAccount}}</div>{{/cuAccount}}
+                    {{#cuAction}}<div><b>cuAction</b>: {{cuAction}}</div>{{/cuAction}}
+                    {{#cuQuantity}}<div><b>cuQuantity</b>: {{cuQuantity}}</div>{{/cuQuantity}}
+                    {{#cuUsage}}<div><b>cuUsage</b>: {{cuUsage}}</div>{{/cuUsage}}
+                    {{#removalDate}}<div><b>removalDate</b>: {{removalDate}}</div>{{/removalDate}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#toBeEnergised}}<div><b>toBeEnergised</b>: {{toBeEnergised}}</div>{{/toBeEnergised}}
+                    {{#DesignLocation}}<div><b>DesignLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DesignLocation}}&quot;);})'>{{DesignLocation}}</a></div>{{/DesignLocation}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.WorkActionKind = []; if (!obj.cuAction) obj.WorkActionKind.push ({ id: '', selected: true}); for (var property in WorkActionKind) obj.WorkActionKind.push ({ id: property, selected: obj.cuAction && obj.cuAction.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.WorkActionKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DesignLocationCU_collapse" aria-expanded="true" aria-controls="DesignLocationCU_collapse" style="margin-left: 10px;">DesignLocationCU</a></legend>
+                    <div id="DesignLocationCU_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cuAccount'>cuAccount: </label><div class='col-sm-8'><input id='cuAccount' class='form-control' type='text'{{#cuAccount}} value='{{cuAccount}}'{{/cuAccount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cuAction'>cuAction: </label><div class='col-sm-8'><select id='cuAction' class='form-control'>{{#WorkActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkActionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cuQuantity'>cuQuantity: </label><div class='col-sm-8'><input id='cuQuantity' class='form-control' type='text'{{#cuQuantity}} value='{{cuQuantity}}'{{/cuQuantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cuUsage'>cuUsage: </label><div class='col-sm-8'><input id='cuUsage' class='form-control' type='text'{{#cuUsage}} value='{{cuUsage}}'{{/cuUsage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='removalDate'>removalDate: </label><div class='col-sm-8'><input id='removalDate' class='form-control' type='text'{{#removalDate}} value='{{removalDate}}'{{/removalDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='toBeEnergised'>toBeEnergised: </label><div class='col-sm-8'><input id='toBeEnergised' class='form-check-input' type='checkbox'{{#toBeEnergised}} checked{{/toBeEnergised}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Various cost items that are not associated with compatible units.
@@ -2932,25 +3960,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MiscCostItem_collapse" aria-expanded="true" aria-controls="MiscCostItem_collapse">MiscCostItem</a>
-<div id="MiscCostItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#account}}<div><b>account</b>: {{account}}</div>{{/account}}
-{{#costPerUnit}}<div><b>costPerUnit</b>: {{costPerUnit}}</div>{{/costPerUnit}}
-{{#costType}}<div><b>costType</b>: {{costType}}</div>{{/costType}}
-{{#externalRefID}}<div><b>externalRefID</b>: {{externalRefID}}</div>{{/externalRefID}}
-{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
-{{#DesignLocation}}<div><b>DesignLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DesignLocation}}&quot;);})'>{{DesignLocation}}</a></div>{{/DesignLocation}}
-{{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);})'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MiscCostItem_collapse" aria-expanded="true" aria-controls="MiscCostItem_collapse" style="margin-left: 10px;">MiscCostItem</a></legend>
+                    <div id="MiscCostItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#account}}<div><b>account</b>: {{account}}</div>{{/account}}
+                    {{#costPerUnit}}<div><b>costPerUnit</b>: {{costPerUnit}}</div>{{/costPerUnit}}
+                    {{#costType}}<div><b>costType</b>: {{costType}}</div>{{/costType}}
+                    {{#externalRefID}}<div><b>externalRefID</b>: {{externalRefID}}</div>{{/externalRefID}}
+                    {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
+                    {{#DesignLocation}}<div><b>DesignLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DesignLocation}}&quot;);})'>{{DesignLocation}}</a></div>{{/DesignLocation}}
+                    {{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);})'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MiscCostItem_collapse" aria-expanded="true" aria-controls="MiscCostItem_collapse" style="margin-left: 10px;">MiscCostItem</a></legend>
+                    <div id="MiscCostItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='account'>account: </label><div class='col-sm-8'><input id='account' class='form-control' type='text'{{#account}} value='{{account}}'{{/account}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='costPerUnit'>costPerUnit: </label><div class='col-sm-8'><input id='costPerUnit' class='form-control' type='text'{{#costPerUnit}} value='{{costPerUnit}}'{{/costPerUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='costType'>costType: </label><div class='col-sm-8'><input id='costType' class='form-control' type='text'{{#costType}} value='{{costType}}'{{/costType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='externalRefID'>externalRefID: </label><div class='col-sm-8'><input id='externalRefID' class='form-control' type='text'{{#externalRefID}} value='{{externalRefID}}'{{/externalRefID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Compatible unit contractor item.
@@ -3009,19 +4076,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CUContractorItem_collapse" aria-expanded="true" aria-controls="CUContractorItem_collapse">CUContractorItem</a>
-<div id="CUContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
-{{#bidAmount}}<div><b>bidAmount</b>: {{bidAmount}}</div>{{/bidAmount}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUContractorItem_collapse" aria-expanded="true" aria-controls="CUContractorItem_collapse" style="margin-left: 10px;">CUContractorItem</a></legend>
+                    <div id="CUContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
+                    {{#bidAmount}}<div><b>bidAmount</b>: {{bidAmount}}</div>{{/bidAmount}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUContractorItem_collapse" aria-expanded="true" aria-controls="CUContractorItem_collapse" style="margin-left: 10px;">CUContractorItem</a></legend>
+                    <div id="CUContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='activityCode'>activityCode: </label><div class='col-sm-8'><input id='activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidAmount'>bidAmount: </label><div class='col-sm-8'><input id='bidAmount' class='form-control' type='text'{{#bidAmount}} value='{{bidAmount}}'{{/bidAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Compatible unit for various types of assets such as transformers switches, substation fences, poles, etc..
@@ -3082,20 +4182,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CUAsset_collapse" aria-expanded="true" aria-controls="CUAsset_collapse">CUAsset</a>
-<div id="CUAsset_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WorkIdentifiedObject.prototype.template.call (this) +
-`
-{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#typeAssetCode}}<div><b>typeAssetCode</b>: {{typeAssetCode}}</div>{{/typeAssetCode}}
-{{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUAsset_collapse" aria-expanded="true" aria-controls="CUAsset_collapse" style="margin-left: 10px;">CUAsset</a></legend>
+                    <div id="CUAsset_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#typeAssetCode}}<div><b>typeAssetCode</b>: {{typeAssetCode}}</div>{{/typeAssetCode}}
+                    {{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUAsset_collapse" aria-expanded="true" aria-controls="CUAsset_collapse" style="margin-left: 10px;">CUAsset</a></legend>
+                    <div id="CUAsset_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WorkIdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='typeAssetCode'>typeAssetCode: </label><div class='col-sm-8'><input id='typeAssetCode' class='form-control' type='text'{{#typeAssetCode}} value='{{typeAssetCode}}'{{/typeAssetCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
@@ -3111,7 +4245,6 @@ define
                 Capability: Capability,
                 CUMaterialItem: CUMaterialItem,
                 WorkDocument: WorkDocument,
-                ConditionFactorKind: ConditionFactorKind,
                 WorkStatusEntry: WorkStatusEntry,
                 CompatibleUnit: CompatibleUnit,
                 NonStandardItem: NonStandardItem,
@@ -3128,14 +4261,12 @@ define
                 CUAllowableAction: CUAllowableAction,
                 Project: Project,
                 CUWorkEquipmentItem: CUWorkEquipmentItem,
-                WorkActionKind: WorkActionKind,
                 DesignLocationCU: DesignLocationCU,
                 DesignLocation: DesignLocation,
                 CUGroup: CUGroup,
-                DesignKind: DesignKind,
+                WorkCostDetail: WorkCostDetail,
                 PropertyUnit: PropertyUnit,
                 OverheadCost: OverheadCost,
-                WorkCostDetail: WorkCostDetail,
                 WorkFlowStep: WorkFlowStep,
                 OneCallRequest: OneCallRequest,
                 QualificationRequirement: QualificationRequirement,

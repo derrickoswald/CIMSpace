@@ -11,6 +11,75 @@ define
     {
 
         /**
+         * Enumeration of phase identifiers.
+         *
+         * Allows designation of phases for both transmission and distribution equipment, circuits and loads.
+         *
+         */
+        var PhaseCode =
+        {
+            ABCN: "ABCN",
+            ABC: "ABC",
+            ABN: "ABN",
+            ACN: "ACN",
+            BCN: "BCN",
+            AB: "AB",
+            AC: "AC",
+            BC: "BC",
+            AN: "AN",
+            BN: "BN",
+            CN: "CN",
+            A: "A",
+            B: "B",
+            C: "C",
+            N: "N",
+            s1N: "s1N",
+            s2N: "s2N",
+            s12N: "s12N",
+            s1: "s1",
+            s2: "s2",
+            s12: "s12"
+        };
+        Object.freeze (PhaseCode);
+
+        /**
+         * Switching arrangement for bay.
+         *
+         */
+        var BreakerConfiguration =
+        {
+            singleBreaker: "singleBreaker",
+            breakerAndAHalf: "breakerAndAHalf",
+            doubleBreaker: "doubleBreaker",
+            noBreaker: "noBreaker"
+        };
+        Object.freeze (BreakerConfiguration);
+
+        /**
+         * Style or shape of curve.
+         *
+         */
+        var CurveStyle =
+        {
+            constantYValue: "constantYValue",
+            straightLineYValues: "straightLineYValues"
+        };
+        Object.freeze (CurveStyle);
+
+        /**
+         * Busbar layout for bay.
+         *
+         */
+        var BusbarConfiguration =
+        {
+            singleBus: "singleBus",
+            doubleBus: "doubleBus",
+            mainWithTransfer: "mainWithTransfer",
+            ringBus: "ringBus"
+        };
+        Object.freeze (BusbarConfiguration);
+
+        /**
          * Type of name.
          *
          * Possible values for attribute 'name' are implementation dependent but standard profiles may specify types. An enterprise may have multiple IT systems each having its own local name for the same object, e.g. a planning system may have different names from an EMS. An object may also have different names within the same IT system, e.g. localName as defined in CIM version 14. The definition from CIM14 is:
@@ -69,19 +138,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#NameType_collapse" aria-expanded="true" aria-controls="NameType_collapse">NameType</a>
-<div id="NameType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
-{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
-{{#NameTypeAuthority}}<div><b>NameTypeAuthority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NameTypeAuthority}}&quot;);})'>{{NameTypeAuthority}}</a></div>{{/NameTypeAuthority}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NameType_collapse" aria-expanded="true" aria-controls="NameType_collapse" style="margin-left: 10px;">NameType</a></legend>
+                    <div id="NameType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+                    {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+                    {{#NameTypeAuthority}}<div><b>NameTypeAuthority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NameTypeAuthority}}&quot;);})'>{{NameTypeAuthority}}</a></div>{{/NameTypeAuthority}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NameType_collapse" aria-expanded="true" aria-controls="NameType_collapse" style="margin-left: 10px;">NameType</a></legend>
+                    <div id="NameType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='NameTypeAuthority'>NameTypeAuthority: </label><div class='col-sm-8'><input id='NameTypeAuthority' class='form-control' type='text'{{#NameTypeAuthority}} value='{{NameTypeAuthority}}'{{/NameTypeAuthority}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * TimePoints for a schedule where the time between the points varies.
@@ -142,147 +244,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#IrregularTimePoint_collapse" aria-expanded="true" aria-controls="IrregularTimePoint_collapse">IrregularTimePoint</a>
-<div id="IrregularTimePoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#time}}<div><b>time</b>: {{time}}</div>{{/time}}
-{{#value1}}<div><b>value1</b>: {{value1}}</div>{{/value1}}
-{{#value2}}<div><b>value2</b>: {{value2}}</div>{{/value2}}
-{{#IntervalSchedule}}<div><b>IntervalSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IntervalSchedule}}&quot;);})'>{{IntervalSchedule}}</a></div>{{/IntervalSchedule}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IrregularTimePoint_collapse" aria-expanded="true" aria-controls="IrregularTimePoint_collapse" style="margin-left: 10px;">IrregularTimePoint</a></legend>
+                    <div id="IrregularTimePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#time}}<div><b>time</b>: {{time}}</div>{{/time}}
+                    {{#value1}}<div><b>value1</b>: {{value1}}</div>{{/value1}}
+                    {{#value2}}<div><b>value2</b>: {{value2}}</div>{{/value2}}
+                    {{#IntervalSchedule}}<div><b>IntervalSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IntervalSchedule}}&quot;);})'>{{IntervalSchedule}}</a></div>{{/IntervalSchedule}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Enumeration of phase identifiers.
-         *
-         * Allows designation of phases for both transmission and distribution equipment, circuits and loads.
-         *
-         */
-        class PhaseCode extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.PhaseCode;
-                if (null == bucket)
-                   cim_data.PhaseCode = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.PhaseCode[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "PhaseCode";
-                base.parse_element (/<cim:PhaseCode.ABCN>([\s\S]*?)<\/cim:PhaseCode.ABCN>/g, obj, "ABCN", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.ABC>([\s\S]*?)<\/cim:PhaseCode.ABC>/g, obj, "ABC", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.ABN>([\s\S]*?)<\/cim:PhaseCode.ABN>/g, obj, "ABN", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.ACN>([\s\S]*?)<\/cim:PhaseCode.ACN>/g, obj, "ACN", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.BCN>([\s\S]*?)<\/cim:PhaseCode.BCN>/g, obj, "BCN", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.AB>([\s\S]*?)<\/cim:PhaseCode.AB>/g, obj, "AB", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.AC>([\s\S]*?)<\/cim:PhaseCode.AC>/g, obj, "AC", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.BC>([\s\S]*?)<\/cim:PhaseCode.BC>/g, obj, "BC", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.AN>([\s\S]*?)<\/cim:PhaseCode.AN>/g, obj, "AN", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.BN>([\s\S]*?)<\/cim:PhaseCode.BN>/g, obj, "BN", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.CN>([\s\S]*?)<\/cim:PhaseCode.CN>/g, obj, "CN", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.A>([\s\S]*?)<\/cim:PhaseCode.A>/g, obj, "A", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.B>([\s\S]*?)<\/cim:PhaseCode.B>/g, obj, "B", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.C>([\s\S]*?)<\/cim:PhaseCode.C>/g, obj, "C", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.N>([\s\S]*?)<\/cim:PhaseCode.N>/g, obj, "N", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.s1N>([\s\S]*?)<\/cim:PhaseCode.s1N>/g, obj, "s1N", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.s2N>([\s\S]*?)<\/cim:PhaseCode.s2N>/g, obj, "s2N", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.s12N>([\s\S]*?)<\/cim:PhaseCode.s12N>/g, obj, "s12N", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.s1>([\s\S]*?)<\/cim:PhaseCode.s1>/g, obj, "s1", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.s2>([\s\S]*?)<\/cim:PhaseCode.s2>/g, obj, "s2", base.to_string, sub, context);
-                base.parse_element (/<cim:PhaseCode.s12>([\s\S]*?)<\/cim:PhaseCode.s12>/g, obj, "s12", base.to_string, sub, context);
-
-                var bucket = context.parsed.PhaseCode;
-                if (null == bucket)
-                   context.parsed.PhaseCode = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "PhaseCode", "ABCN", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "ABC", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "ABN", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "ACN", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "BCN", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "AB", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "AC", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "BC", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "AN", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "BN", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "CN", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "A", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "B", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "C", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "N", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "s1N", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "s2N", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "s12N", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "s1", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "s2", base.from_string, fields);
-                base.export_element (obj, "PhaseCode", "s12", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PhaseCode_collapse" aria-expanded="true" aria-controls="PhaseCode_collapse">PhaseCode</a>
-<div id="PhaseCode_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#ABCN}}<div><b>ABCN</b>: {{ABCN}}</div>{{/ABCN}}
-{{#ABC}}<div><b>ABC</b>: {{ABC}}</div>{{/ABC}}
-{{#ABN}}<div><b>ABN</b>: {{ABN}}</div>{{/ABN}}
-{{#ACN}}<div><b>ACN</b>: {{ACN}}</div>{{/ACN}}
-{{#BCN}}<div><b>BCN</b>: {{BCN}}</div>{{/BCN}}
-{{#AB}}<div><b>AB</b>: {{AB}}</div>{{/AB}}
-{{#AC}}<div><b>AC</b>: {{AC}}</div>{{/AC}}
-{{#BC}}<div><b>BC</b>: {{BC}}</div>{{/BC}}
-{{#AN}}<div><b>AN</b>: {{AN}}</div>{{/AN}}
-{{#BN}}<div><b>BN</b>: {{BN}}</div>{{/BN}}
-{{#CN}}<div><b>CN</b>: {{CN}}</div>{{/CN}}
-{{#A}}<div><b>A</b>: {{A}}</div>{{/A}}
-{{#B}}<div><b>B</b>: {{B}}</div>{{/B}}
-{{#C}}<div><b>C</b>: {{C}}</div>{{/C}}
-{{#N}}<div><b>N</b>: {{N}}</div>{{/N}}
-{{#s1N}}<div><b>s1N</b>: {{s1N}}</div>{{/s1N}}
-{{#s2N}}<div><b>s2N</b>: {{s2N}}</div>{{/s2N}}
-{{#s12N}}<div><b>s12N</b>: {{s12N}}</div>{{/s12N}}
-{{#s1}}<div><b>s1</b>: {{s1}}</div>{{/s1}}
-{{#s2}}<div><b>s2</b>: {{s2}}</div>{{/s2}}
-{{#s12}}<div><b>s12</b>: {{s12}}</div>{{/s12}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IrregularTimePoint_collapse" aria-expanded="true" aria-controls="IrregularTimePoint_collapse" style="margin-left: 10px;">IrregularTimePoint</a></legend>
+                    <div id="IrregularTimePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='time'>time: </label><div class='col-sm-8'><input id='time' class='form-control' type='text'{{#time}} value='{{time}}'{{/time}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value1'>value1: </label><div class='col-sm-8'><input id='value1' class='form-control' type='text'{{#value1}} value='{{value1}}'{{/value1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value2'>value2: </label><div class='col-sm-8'><input id='value2' class='form-control' type='text'{{#value2}} value='{{value2}}'{{/value2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='IntervalSchedule'>IntervalSchedule: </label><div class='col-sm-8'><input id='IntervalSchedule' class='form-control' type='text'{{#IntervalSchedule}} value='{{IntervalSchedule}}'{{/IntervalSchedule}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Time point for a schedule where the time between the consecutive points is constant.
@@ -343,20 +352,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RegularTimePoint_collapse" aria-expanded="true" aria-controls="RegularTimePoint_collapse">RegularTimePoint</a>
-<div id="RegularTimePoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-{{#value1}}<div><b>value1</b>: {{value1}}</div>{{/value1}}
-{{#value2}}<div><b>value2</b>: {{value2}}</div>{{/value2}}
-{{#IntervalSchedule}}<div><b>IntervalSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IntervalSchedule}}&quot;);})'>{{IntervalSchedule}}</a></div>{{/IntervalSchedule}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RegularTimePoint_collapse" aria-expanded="true" aria-controls="RegularTimePoint_collapse" style="margin-left: 10px;">RegularTimePoint</a></legend>
+                    <div id="RegularTimePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+                    {{#value1}}<div><b>value1</b>: {{value1}}</div>{{/value1}}
+                    {{#value2}}<div><b>value2</b>: {{value2}}</div>{{/value2}}
+                    {{#IntervalSchedule}}<div><b>IntervalSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IntervalSchedule}}&quot;);})'>{{IntervalSchedule}}</a></div>{{/IntervalSchedule}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RegularTimePoint_collapse" aria-expanded="true" aria-controls="RegularTimePoint_collapse" style="margin-left: 10px;">RegularTimePoint</a></legend>
+                    <div id="RegularTimePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value1'>value1: </label><div class='col-sm-8'><input id='value1' class='form-control' type='text'{{#value1}} value='{{value1}}'{{/value1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value2'>value2: </label><div class='col-sm-8'><input id='value2' class='form-control' type='text'{{#value2}} value='{{value2}}'{{/value2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='IntervalSchedule'>IntervalSchedule: </label><div class='col-sm-8'><input id='IntervalSchedule' class='form-control' type='text'{{#IntervalSchedule}} value='{{IntervalSchedule}}'{{/IntervalSchedule}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The Name class provides the means to define any number of human readable  names for an object.
@@ -417,19 +460,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Name_collapse" aria-expanded="true" aria-controls="Name_collapse">Name</a>
-<div id="Name_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
-{{#NameType}}<div><b>NameType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NameType}}&quot;);})'>{{NameType}}</a></div>{{/NameType}}
-{{#IdentifiedObject}}<div><b>IdentifiedObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IdentifiedObject}}&quot;);})'>{{IdentifiedObject}}</a></div>{{/IdentifiedObject}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Name_collapse" aria-expanded="true" aria-controls="Name_collapse" style="margin-left: 10px;">Name</a></legend>
+                    <div id="Name_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+                    {{#NameType}}<div><b>NameType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NameType}}&quot;);})'>{{NameType}}</a></div>{{/NameType}}
+                    {{#IdentifiedObject}}<div><b>IdentifiedObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IdentifiedObject}}&quot;);})'>{{IdentifiedObject}}</a></div>{{/IdentifiedObject}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Name_collapse" aria-expanded="true" aria-controls="Name_collapse" style="margin-left: 10px;">Name</a></legend>
+                    <div id="Name_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='NameType'>NameType: </label><div class='col-sm-8'><input id='NameType' class='form-control' type='text'{{#NameType}} value='{{NameType}}'{{/NameType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='IdentifiedObject'>IdentifiedObject: </label><div class='col-sm-8'><input id='IdentifiedObject' class='form-control' type='text'{{#IdentifiedObject}} value='{{IdentifiedObject}}'{{/IdentifiedObject}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This is a root class to provide common identification for all classes needing identification and naming attributes.
@@ -499,20 +575,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#IdentifiedObject_collapse" aria-expanded="true" aria-controls="IdentifiedObject_collapse">IdentifiedObject</a>
-<div id="IdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#aliasName}}<div><b>aliasName</b>: {{aliasName}}</div>{{/aliasName}}
-{{#mRID}}<div><b>mRID</b>: {{mRID}}</div>{{/mRID}}
-{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
-{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IdentifiedObject_collapse" aria-expanded="true" aria-controls="IdentifiedObject_collapse" style="margin-left: 10px;">IdentifiedObject</a></legend>
+                    <div id="IdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#aliasName}}<div><b>aliasName</b>: {{aliasName}}</div>{{/aliasName}}
+                    {{#mRID}}<div><b>mRID</b>: {{mRID}}</div>{{/mRID}}
+                    {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+                    {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IdentifiedObject_collapse" aria-expanded="true" aria-controls="IdentifiedObject_collapse" style="margin-left: 10px;">IdentifiedObject</a></legend>
+                    <div id="IdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='aliasName'>aliasName: </label><div class='col-sm-8'><input id='aliasName' class='form-control' type='text'{{#aliasName}} value='{{aliasName}}'{{/aliasName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mRID'>mRID: </label><div class='col-sm-8'><input id='mRID' class='form-control' type='text'{{#mRID}} value='{{mRID}}'{{/mRID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Multi-purpose data points for defining a curve.
@@ -577,21 +687,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CurveData_collapse" aria-expanded="true" aria-controls="CurveData_collapse">CurveData</a>
-<div id="CurveData_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#xvalue}}<div><b>xvalue</b>: {{xvalue}}</div>{{/xvalue}}
-{{#y1value}}<div><b>y1value</b>: {{y1value}}</div>{{/y1value}}
-{{#y2value}}<div><b>y2value</b>: {{y2value}}</div>{{/y2value}}
-{{#y3value}}<div><b>y3value</b>: {{y3value}}</div>{{/y3value}}
-{{#Curve}}<div><b>Curve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Curve}}&quot;);})'>{{Curve}}</a></div>{{/Curve}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurveData_collapse" aria-expanded="true" aria-controls="CurveData_collapse" style="margin-left: 10px;">CurveData</a></legend>
+                    <div id="CurveData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#xvalue}}<div><b>xvalue</b>: {{xvalue}}</div>{{/xvalue}}
+                    {{#y1value}}<div><b>y1value</b>: {{y1value}}</div>{{/y1value}}
+                    {{#y2value}}<div><b>y2value</b>: {{y2value}}</div>{{/y2value}}
+                    {{#y3value}}<div><b>y3value</b>: {{y3value}}</div>{{/y3value}}
+                    {{#Curve}}<div><b>Curve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Curve}}&quot;);})'>{{Curve}}</a></div>{{/Curve}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurveData_collapse" aria-expanded="true" aria-controls="CurveData_collapse" style="margin-left: 10px;">CurveData</a></legend>
+                    <div id="CurveData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xvalue'>xvalue: </label><div class='col-sm-8'><input id='xvalue' class='form-control' type='text'{{#xvalue}} value='{{xvalue}}'{{/xvalue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y1value'>y1value: </label><div class='col-sm-8'><input id='y1value' class='form-control' type='text'{{#y1value}} value='{{y1value}}'{{/y1value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y2value'>y2value: </label><div class='col-sm-8'><input id='y2value' class='form-control' type='text'{{#y2value}} value='{{y2value}}'{{/y2value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y3value'>y3value: </label><div class='col-sm-8'><input id='y3value' class='form-control' type='text'{{#y3value}} value='{{y3value}}'{{/y3value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Curve'>Curve: </label><div class='col-sm-8'><input id='Curve' class='form-control' type='text'{{#Curve}} value='{{Curve}}'{{/Curve}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Authority responsible for creation and management of names of a given type; typically an organization or an enterprise system.
@@ -648,92 +793,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#NameTypeAuthority_collapse" aria-expanded="true" aria-controls="NameTypeAuthority_collapse">NameTypeAuthority</a>
-<div id="NameTypeAuthority_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
-{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NameTypeAuthority_collapse" aria-expanded="true" aria-controls="NameTypeAuthority_collapse" style="margin-left: 10px;">NameTypeAuthority</a></legend>
+                    <div id="NameTypeAuthority_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+                    {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Switching arrangement for bay.
-         *
-         */
-        class BreakerConfiguration extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.BreakerConfiguration;
-                if (null == bucket)
-                   cim_data.BreakerConfiguration = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.BreakerConfiguration[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "BreakerConfiguration";
-                base.parse_element (/<cim:BreakerConfiguration.singleBreaker>([\s\S]*?)<\/cim:BreakerConfiguration.singleBreaker>/g, obj, "singleBreaker", base.to_string, sub, context);
-                base.parse_element (/<cim:BreakerConfiguration.breakerAndAHalf>([\s\S]*?)<\/cim:BreakerConfiguration.breakerAndAHalf>/g, obj, "breakerAndAHalf", base.to_string, sub, context);
-                base.parse_element (/<cim:BreakerConfiguration.doubleBreaker>([\s\S]*?)<\/cim:BreakerConfiguration.doubleBreaker>/g, obj, "doubleBreaker", base.to_string, sub, context);
-                base.parse_element (/<cim:BreakerConfiguration.noBreaker>([\s\S]*?)<\/cim:BreakerConfiguration.noBreaker>/g, obj, "noBreaker", base.to_string, sub, context);
-
-                var bucket = context.parsed.BreakerConfiguration;
-                if (null == bucket)
-                   context.parsed.BreakerConfiguration = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "BreakerConfiguration", "singleBreaker", base.from_string, fields);
-                base.export_element (obj, "BreakerConfiguration", "breakerAndAHalf", base.from_string, fields);
-                base.export_element (obj, "BreakerConfiguration", "doubleBreaker", base.from_string, fields);
-                base.export_element (obj, "BreakerConfiguration", "noBreaker", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BreakerConfiguration_collapse" aria-expanded="true" aria-controls="BreakerConfiguration_collapse">BreakerConfiguration</a>
-<div id="BreakerConfiguration_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#singleBreaker}}<div><b>singleBreaker</b>: {{singleBreaker}}</div>{{/singleBreaker}}
-{{#breakerAndAHalf}}<div><b>breakerAndAHalf</b>: {{breakerAndAHalf}}</div>{{/breakerAndAHalf}}
-{{#doubleBreaker}}<div><b>doubleBreaker</b>: {{doubleBreaker}}</div>{{/doubleBreaker}}
-{{#noBreaker}}<div><b>noBreaker</b>: {{noBreaker}}</div>{{/noBreaker}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NameTypeAuthority_collapse" aria-expanded="true" aria-controls="NameTypeAuthority_collapse" style="margin-left: 10px;">NameTypeAuthority</a></legend>
+                    <div id="NameTypeAuthority_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Specifies the operations contract relationship between a power system resource and a contract participant.
@@ -792,161 +895,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OperatingShare_collapse" aria-expanded="true" aria-controls="OperatingShare_collapse">OperatingShare</a>
-<div id="OperatingShare_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#percentage}}<div><b>percentage</b>: {{percentage}}</div>{{/percentage}}
-{{#OperatingParticipant}}<div><b>OperatingParticipant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperatingParticipant}}&quot;);})'>{{OperatingParticipant}}</a></div>{{/OperatingParticipant}}
-{{#PowerSystemResource}}<div><b>PowerSystemResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemResource}}&quot;);})'>{{PowerSystemResource}}</a></div>{{/PowerSystemResource}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperatingShare_collapse" aria-expanded="true" aria-controls="OperatingShare_collapse" style="margin-left: 10px;">OperatingShare</a></legend>
+                    <div id="OperatingShare_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#percentage}}<div><b>percentage</b>: {{percentage}}</div>{{/percentage}}
+                    {{#OperatingParticipant}}<div><b>OperatingParticipant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperatingParticipant}}&quot;);})'>{{OperatingParticipant}}</a></div>{{/OperatingParticipant}}
+                    {{#PowerSystemResource}}<div><b>PowerSystemResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemResource}}&quot;);})'>{{PowerSystemResource}}</a></div>{{/PowerSystemResource}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Style or shape of curve.
-         *
-         */
-        class CurveStyle extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.CurveStyle;
-                if (null == bucket)
-                   cim_data.CurveStyle = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.CurveStyle[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "CurveStyle";
-                base.parse_element (/<cim:CurveStyle.constantYValue>([\s\S]*?)<\/cim:CurveStyle.constantYValue>/g, obj, "constantYValue", base.to_string, sub, context);
-                base.parse_element (/<cim:CurveStyle.straightLineYValues>([\s\S]*?)<\/cim:CurveStyle.straightLineYValues>/g, obj, "straightLineYValues", base.to_string, sub, context);
-
-                var bucket = context.parsed.CurveStyle;
-                if (null == bucket)
-                   context.parsed.CurveStyle = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "CurveStyle", "constantYValue", base.from_string, fields);
-                base.export_element (obj, "CurveStyle", "straightLineYValues", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CurveStyle_collapse" aria-expanded="true" aria-controls="CurveStyle_collapse">CurveStyle</a>
-<div id="CurveStyle_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#constantYValue}}<div><b>constantYValue</b>: {{constantYValue}}</div>{{/constantYValue}}
-{{#straightLineYValues}}<div><b>straightLineYValues</b>: {{straightLineYValues}}</div>{{/straightLineYValues}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperatingShare_collapse" aria-expanded="true" aria-controls="OperatingShare_collapse" style="margin-left: 10px;">OperatingShare</a></legend>
+                    <div id="OperatingShare_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='percentage'>percentage: </label><div class='col-sm-8'><input id='percentage' class='form-control' type='text'{{#percentage}} value='{{percentage}}'{{/percentage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OperatingParticipant'>OperatingParticipant: </label><div class='col-sm-8'><input id='OperatingParticipant' class='form-control' type='text'{{#OperatingParticipant}} value='{{OperatingParticipant}}'{{/OperatingParticipant}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource}}'{{/PowerSystemResource}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        /**
-         * Busbar layout for bay.
-         *
-         */
-        class BusbarConfiguration extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.BusbarConfiguration;
-                if (null == bucket)
-                   cim_data.BusbarConfiguration = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.BusbarConfiguration[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "BusbarConfiguration";
-                base.parse_element (/<cim:BusbarConfiguration.singleBus>([\s\S]*?)<\/cim:BusbarConfiguration.singleBus>/g, obj, "singleBus", base.to_string, sub, context);
-                base.parse_element (/<cim:BusbarConfiguration.doubleBus>([\s\S]*?)<\/cim:BusbarConfiguration.doubleBus>/g, obj, "doubleBus", base.to_string, sub, context);
-                base.parse_element (/<cim:BusbarConfiguration.mainWithTransfer>([\s\S]*?)<\/cim:BusbarConfiguration.mainWithTransfer>/g, obj, "mainWithTransfer", base.to_string, sub, context);
-                base.parse_element (/<cim:BusbarConfiguration.ringBus>([\s\S]*?)<\/cim:BusbarConfiguration.ringBus>/g, obj, "ringBus", base.to_string, sub, context);
-
-                var bucket = context.parsed.BusbarConfiguration;
-                if (null == bucket)
-                   context.parsed.BusbarConfiguration = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "BusbarConfiguration", "singleBus", base.from_string, fields);
-                base.export_element (obj, "BusbarConfiguration", "doubleBus", base.from_string, fields);
-                base.export_element (obj, "BusbarConfiguration", "mainWithTransfer", base.from_string, fields);
-                base.export_element (obj, "BusbarConfiguration", "ringBus", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#BusbarConfiguration_collapse" aria-expanded="true" aria-controls="BusbarConfiguration_collapse">BusbarConfiguration</a>
-<div id="BusbarConfiguration_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#singleBus}}<div><b>singleBus</b>: {{singleBus}}</div>{{/singleBus}}
-{{#doubleBus}}<div><b>doubleBus</b>: {{doubleBus}}</div>{{/doubleBus}}
-{{#mainWithTransfer}}<div><b>mainWithTransfer</b>: {{mainWithTransfer}}</div>{{/mainWithTransfer}}
-{{#ringBus}}<div><b>ringBus</b>: {{ringBus}}</div>{{/ringBus}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         /**
          * A multi-purpose curve or functional relationship between an independent variable (X-axis) and dependent (Y-axis) variables.
@@ -976,7 +970,7 @@ define
 
                 obj = IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Curve";
-                base.parse_element (/<cim:Curve.curveStyle>([\s\S]*?)<\/cim:Curve.curveStyle>/g, obj, "curveStyle", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Curve.curveStyle\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "curveStyle", sub, context);
                 base.parse_element (/<cim:Curve.xMultiplier>([\s\S]*?)<\/cim:Curve.xMultiplier>/g, obj, "xMultiplier", base.to_string, sub, context);
                 base.parse_element (/<cim:Curve.xUnit>([\s\S]*?)<\/cim:Curve.xUnit>/g, obj, "xUnit", base.to_string, sub, context);
                 base.parse_element (/<cim:Curve.y1Multiplier>([\s\S]*?)<\/cim:Curve.y1Multiplier>/g, obj, "y1Multiplier", base.to_string, sub, context);
@@ -1017,25 +1011,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Curve_collapse" aria-expanded="true" aria-controls="Curve_collapse">Curve</a>
-<div id="Curve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IdentifiedObject.prototype.template.call (this) +
-`
-{{#curveStyle}}<div><b>curveStyle</b>: {{curveStyle}}</div>{{/curveStyle}}
-{{#xMultiplier}}<div><b>xMultiplier</b>: {{xMultiplier}}</div>{{/xMultiplier}}
-{{#xUnit}}<div><b>xUnit</b>: {{xUnit}}</div>{{/xUnit}}
-{{#y1Multiplier}}<div><b>y1Multiplier</b>: {{y1Multiplier}}</div>{{/y1Multiplier}}
-{{#y1Unit}}<div><b>y1Unit</b>: {{y1Unit}}</div>{{/y1Unit}}
-{{#y2Multiplier}}<div><b>y2Multiplier</b>: {{y2Multiplier}}</div>{{/y2Multiplier}}
-{{#y2Unit}}<div><b>y2Unit</b>: {{y2Unit}}</div>{{/y2Unit}}
-{{#y3Multiplier}}<div><b>y3Multiplier</b>: {{y3Multiplier}}</div>{{/y3Multiplier}}
-{{#y3Unit}}<div><b>y3Unit</b>: {{y3Unit}}</div>{{/y3Unit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Curve_collapse" aria-expanded="true" aria-controls="Curve_collapse" style="margin-left: 10px;">Curve</a></legend>
+                    <div id="Curve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#curveStyle}}<div><b>curveStyle</b>: {{curveStyle}}</div>{{/curveStyle}}
+                    {{#xMultiplier}}<div><b>xMultiplier</b>: {{xMultiplier}}</div>{{/xMultiplier}}
+                    {{#xUnit}}<div><b>xUnit</b>: {{xUnit}}</div>{{/xUnit}}
+                    {{#y1Multiplier}}<div><b>y1Multiplier</b>: {{y1Multiplier}}</div>{{/y1Multiplier}}
+                    {{#y1Unit}}<div><b>y1Unit</b>: {{y1Unit}}</div>{{/y1Unit}}
+                    {{#y2Multiplier}}<div><b>y2Multiplier</b>: {{y2Multiplier}}</div>{{/y2Multiplier}}
+                    {{#y2Unit}}<div><b>y2Unit</b>: {{y2Unit}}</div>{{/y2Unit}}
+                    {{#y3Multiplier}}<div><b>y3Multiplier</b>: {{y3Multiplier}}</div>{{/y3Multiplier}}
+                    {{#y3Unit}}<div><b>y3Unit</b>: {{y3Unit}}</div>{{/y3Unit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.CurveStyle = []; if (!obj.curveStyle) obj.CurveStyle.push ({ id: '', selected: true}); for (var property in CurveStyle) obj.CurveStyle.push ({ id: property, selected: obj.curveStyle && obj.curveStyle.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.CurveStyle;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Curve_collapse" aria-expanded="true" aria-controls="Curve_collapse" style="margin-left: 10px;">Curve</a></legend>
+                    <div id="Curve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='curveStyle'>curveStyle: </label><div class='col-sm-8'><select id='curveStyle' class='form-control'>{{#CurveStyle}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CurveStyle}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xMultiplier'>xMultiplier: </label><div class='col-sm-8'><input id='xMultiplier' class='form-control' type='text'{{#xMultiplier}} value='{{xMultiplier}}'{{/xMultiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xUnit'>xUnit: </label><div class='col-sm-8'><input id='xUnit' class='form-control' type='text'{{#xUnit}} value='{{xUnit}}'{{/xUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y1Multiplier'>y1Multiplier: </label><div class='col-sm-8'><input id='y1Multiplier' class='form-control' type='text'{{#y1Multiplier}} value='{{y1Multiplier}}'{{/y1Multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y1Unit'>y1Unit: </label><div class='col-sm-8'><input id='y1Unit' class='form-control' type='text'{{#y1Unit}} value='{{y1Unit}}'{{/y1Unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y2Multiplier'>y2Multiplier: </label><div class='col-sm-8'><input id='y2Multiplier' class='form-control' type='text'{{#y2Multiplier}} value='{{y2Multiplier}}'{{/y2Multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y2Unit'>y2Unit: </label><div class='col-sm-8'><input id='y2Unit' class='form-control' type='text'{{#y2Unit}} value='{{y2Unit}}'{{/y2Unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y3Multiplier'>y3Multiplier: </label><div class='col-sm-8'><input id='y3Multiplier' class='form-control' type='text'{{#y3Multiplier}} value='{{y3Multiplier}}'{{/y3Multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y3Unit'>y3Unit: </label><div class='col-sm-8'><input id='y3Unit' class='form-control' type='text'{{#y3Unit}} value='{{y3Unit}}'{{/y3Unit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Classifying instances of the same class, e.g. overhead and underground ACLineSegments.
@@ -1090,16 +1125,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PSRType_collapse" aria-expanded="true" aria-controls="PSRType_collapse">PSRType</a>
-<div id="PSRType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PSRType_collapse" aria-expanded="true" aria-controls="PSRType_collapse" style="margin-left: 10px;">PSRType</a></legend>
+                    <div id="PSRType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PSRType_collapse" aria-expanded="true" aria-controls="PSRType_collapse" style="margin-left: 10px;">PSRType</a></legend>
+                    <div id="PSRType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Defines a system base voltage which is referenced.
@@ -1154,17 +1219,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BaseVoltage_collapse" aria-expanded="true" aria-controls="BaseVoltage_collapse">BaseVoltage</a>
-<div id="BaseVoltage_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IdentifiedObject.prototype.template.call (this) +
-`
-{{#nominalVoltage}}<div><b>nominalVoltage</b>: {{nominalVoltage}}</div>{{/nominalVoltage}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BaseVoltage_collapse" aria-expanded="true" aria-controls="BaseVoltage_collapse" style="margin-left: 10px;">BaseVoltage</a></legend>
+                    <div id="BaseVoltage_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#nominalVoltage}}<div><b>nominalVoltage</b>: {{nominalVoltage}}</div>{{/nominalVoltage}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BaseVoltage_collapse" aria-expanded="true" aria-controls="BaseVoltage_collapse" style="margin-left: 10px;">BaseVoltage</a></legend>
+                    <div id="BaseVoltage_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nominalVoltage'>nominalVoltage: </label><div class='col-sm-8'><input id='nominalVoltage' class='form-control' type='text'{{#nominalVoltage}} value='{{nominalVoltage}}'{{/nominalVoltage}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Connectivity nodes are points where terminals of AC conducting equipment are connected together with zero impedance.
@@ -1221,18 +1317,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ConnectivityNode_collapse" aria-expanded="true" aria-controls="ConnectivityNode_collapse">ConnectivityNode</a>
-<div id="ConnectivityNode_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IdentifiedObject.prototype.template.call (this) +
-`
-{{#ConnectivityNodeContainer}}<div><b>ConnectivityNodeContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConnectivityNodeContainer}}&quot;);})'>{{ConnectivityNodeContainer}}</a></div>{{/ConnectivityNodeContainer}}
-{{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);})'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConnectivityNode_collapse" aria-expanded="true" aria-controls="ConnectivityNode_collapse" style="margin-left: 10px;">ConnectivityNode</a></legend>
+                    <div id="ConnectivityNode_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#ConnectivityNodeContainer}}<div><b>ConnectivityNodeContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConnectivityNodeContainer}}&quot;);})'>{{ConnectivityNodeContainer}}</a></div>{{/ConnectivityNodeContainer}}
+                    {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);})'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConnectivityNode_collapse" aria-expanded="true" aria-controls="ConnectivityNode_collapse" style="margin-left: 10px;">ConnectivityNode</a></legend>
+                    <div id="ConnectivityNode_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConnectivityNodeContainer'>ConnectivityNodeContainer: </label><div class='col-sm-8'><input id='ConnectivityNodeContainer' class='form-control' type='text'{{#ConnectivityNodeContainer}} value='{{ConnectivityNodeContainer}}'{{/ConnectivityNodeContainer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TopologicalNode'>TopologicalNode: </label><div class='col-sm-8'><input id='TopologicalNode' class='form-control' type='text'{{#TopologicalNode}} value='{{TopologicalNode}}'{{/TopologicalNode}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A geographical region of a power system network model.
@@ -1285,16 +1413,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GeographicalRegion_collapse" aria-expanded="true" aria-controls="GeographicalRegion_collapse">GeographicalRegion</a>
-<div id="GeographicalRegion_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GeographicalRegion_collapse" aria-expanded="true" aria-controls="GeographicalRegion_collapse" style="margin-left: 10px;">GeographicalRegion</a></legend>
+                    <div id="GeographicalRegion_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GeographicalRegion_collapse" aria-expanded="true" aria-controls="GeographicalRegion_collapse" style="margin-left: 10px;">GeographicalRegion</a></legend>
+                    <div id="GeographicalRegion_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Schedule of values at points in time.
@@ -1357,21 +1515,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BasicIntervalSchedule_collapse" aria-expanded="true" aria-controls="BasicIntervalSchedule_collapse">BasicIntervalSchedule</a>
-<div id="BasicIntervalSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IdentifiedObject.prototype.template.call (this) +
-`
-{{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
-{{#value1Multiplier}}<div><b>value1Multiplier</b>: {{value1Multiplier}}</div>{{/value1Multiplier}}
-{{#value1Unit}}<div><b>value1Unit</b>: {{value1Unit}}</div>{{/value1Unit}}
-{{#value2Multiplier}}<div><b>value2Multiplier</b>: {{value2Multiplier}}</div>{{/value2Multiplier}}
-{{#value2Unit}}<div><b>value2Unit</b>: {{value2Unit}}</div>{{/value2Unit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BasicIntervalSchedule_collapse" aria-expanded="true" aria-controls="BasicIntervalSchedule_collapse" style="margin-left: 10px;">BasicIntervalSchedule</a></legend>
+                    <div id="BasicIntervalSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+                    {{#value1Multiplier}}<div><b>value1Multiplier</b>: {{value1Multiplier}}</div>{{/value1Multiplier}}
+                    {{#value1Unit}}<div><b>value1Unit</b>: {{value1Unit}}</div>{{/value1Unit}}
+                    {{#value2Multiplier}}<div><b>value2Multiplier</b>: {{value2Multiplier}}</div>{{/value2Multiplier}}
+                    {{#value2Unit}}<div><b>value2Unit</b>: {{value2Unit}}</div>{{/value2Unit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BasicIntervalSchedule_collapse" aria-expanded="true" aria-controls="BasicIntervalSchedule_collapse" style="margin-left: 10px;">BasicIntervalSchedule</a></legend>
+                    <div id="BasicIntervalSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startTime'>startTime: </label><div class='col-sm-8'><input id='startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value1Multiplier'>value1Multiplier: </label><div class='col-sm-8'><input id='value1Multiplier' class='form-control' type='text'{{#value1Multiplier}} value='{{value1Multiplier}}'{{/value1Multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value1Unit'>value1Unit: </label><div class='col-sm-8'><input id='value1Unit' class='form-control' type='text'{{#value1Unit}} value='{{value1Unit}}'{{/value1Unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value2Multiplier'>value2Multiplier: </label><div class='col-sm-8'><input id='value2Multiplier' class='form-control' type='text'{{#value2Multiplier}} value='{{value2Multiplier}}'{{/value2Multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value2Unit'>value2Unit: </label><div class='col-sm-8'><input id='value2Unit' class='form-control' type='text'{{#value2Unit}} value='{{value2Unit}}'{{/value2Unit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An electrical connection point (AC or DC) to a piece of conducting equipment.
@@ -1432,19 +1625,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ACDCTerminal_collapse" aria-expanded="true" aria-controls="ACDCTerminal_collapse">ACDCTerminal</a>
-<div id="ACDCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IdentifiedObject.prototype.template.call (this) +
-`
-{{#connected}}<div><b>connected</b>: {{connected}}</div>{{/connected}}
-{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-{{#BusNameMarker}}<div><b>BusNameMarker</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BusNameMarker}}&quot;);})'>{{BusNameMarker}}</a></div>{{/BusNameMarker}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ACDCTerminal_collapse" aria-expanded="true" aria-controls="ACDCTerminal_collapse" style="margin-left: 10px;">ACDCTerminal</a></legend>
+                    <div id="ACDCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#connected}}<div><b>connected</b>: {{connected}}</div>{{/connected}}
+                    {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+                    {{#BusNameMarker}}<div><b>BusNameMarker</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BusNameMarker}}&quot;);})'>{{BusNameMarker}}</a></div>{{/BusNameMarker}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ACDCTerminal_collapse" aria-expanded="true" aria-controls="ACDCTerminal_collapse" style="margin-left: 10px;">ACDCTerminal</a></legend>
+                    <div id="ACDCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='connected'>connected: </label><div class='col-sm-8'><input id='connected' class='form-check-input' type='checkbox'{{#connected}} checked{{/connected}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BusNameMarker'>BusNameMarker: </label><div class='col-sm-8'><input id='BusNameMarker' class='form-control' type='text'{{#BusNameMarker}} value='{{BusNameMarker}}'{{/BusNameMarker}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An operator of multiple power system resource objects.
@@ -1499,16 +1725,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OperatingParticipant_collapse" aria-expanded="true" aria-controls="OperatingParticipant_collapse">OperatingParticipant</a>
-<div id="OperatingParticipant_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperatingParticipant_collapse" aria-expanded="true" aria-controls="OperatingParticipant_collapse" style="margin-left: 10px;">OperatingParticipant</a></legend>
+                    <div id="OperatingParticipant_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperatingParticipant_collapse" aria-expanded="true" aria-controls="OperatingParticipant_collapse" style="margin-left: 10px;">OperatingParticipant</a></legend>
+                    <div id="OperatingParticipant_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The BasePower class defines the base power used in the per unit calculations.
@@ -1563,17 +1819,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BasePower_collapse" aria-expanded="true" aria-controls="BasePower_collapse">BasePower</a>
-<div id="BasePower_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IdentifiedObject.prototype.template.call (this) +
-`
-{{#basePower}}<div><b>basePower</b>: {{basePower}}</div>{{/basePower}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BasePower_collapse" aria-expanded="true" aria-controls="BasePower_collapse" style="margin-left: 10px;">BasePower</a></legend>
+                    <div id="BasePower_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#basePower}}<div><b>basePower</b>: {{basePower}}</div>{{/basePower}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BasePower_collapse" aria-expanded="true" aria-controls="BasePower_collapse" style="margin-left: 10px;">BasePower</a></legend>
+                    <div id="BasePower_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='basePower'>basePower: </label><div class='col-sm-8'><input id='basePower' class='form-control' type='text'{{#basePower}} value='{{basePower}}'{{/basePower}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A reporting super group, groups reporting groups for a higher level report.
@@ -1626,16 +1913,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ReportingSuperGroup_collapse" aria-expanded="true" aria-controls="ReportingSuperGroup_collapse">ReportingSuperGroup</a>
-<div id="ReportingSuperGroup_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReportingSuperGroup_collapse" aria-expanded="true" aria-controls="ReportingSuperGroup_collapse" style="margin-left: 10px;">ReportingSuperGroup</a></legend>
+                    <div id="ReportingSuperGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReportingSuperGroup_collapse" aria-expanded="true" aria-controls="ReportingSuperGroup_collapse" style="margin-left: 10px;">ReportingSuperGroup</a></legend>
+                    <div id="ReportingSuperGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An AC electrical connection point to a piece of conducting equipment.
@@ -1667,7 +1984,7 @@ define
 
                 obj = ACDCTerminal.prototype.parse.call (this, context, sub);
                 obj.cls = "Terminal";
-                base.parse_element (/<cim:Terminal.phases>([\s\S]*?)<\/cim:Terminal.phases>/g, obj, "phases", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Terminal.phases\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phases", sub, context);
                 base.parse_attribute (/<cim:Terminal.TopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TopologicalNode", sub, context);
                 base.parse_attribute (/<cim:Terminal.ConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConductingEquipment", sub, context);
                 base.parse_attribute (/<cim:Terminal.SvPowerFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SvPowerFlow", sub, context);
@@ -1702,22 +2019,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Terminal_collapse" aria-expanded="true" aria-controls="Terminal_collapse">Terminal</a>
-<div id="Terminal_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ACDCTerminal.prototype.template.call (this) +
-`
-{{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
-{{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);})'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
-{{#ConductingEquipment}}<div><b>ConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConductingEquipment}}&quot;);})'>{{ConductingEquipment}}</a></div>{{/ConductingEquipment}}
-{{#SvPowerFlow}}<div><b>SvPowerFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SvPowerFlow}}&quot;);})'>{{SvPowerFlow}}</a></div>{{/SvPowerFlow}}
-{{#Bushing}}<div><b>Bushing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bushing}}&quot;);})'>{{Bushing}}</a></div>{{/Bushing}}
-{{#ConnectivityNode}}<div><b>ConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConnectivityNode}}&quot;);})'>{{ConnectivityNode}}</a></div>{{/ConnectivityNode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Terminal_collapse" aria-expanded="true" aria-controls="Terminal_collapse" style="margin-left: 10px;">Terminal</a></legend>
+                    <div id="Terminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ACDCTerminal.prototype.template.call (this) +
+                    `
+                    {{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
+                    {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);})'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
+                    {{#SvPowerFlow}}<div><b>SvPowerFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SvPowerFlow}}&quot;);})'>{{SvPowerFlow}}</a></div>{{/SvPowerFlow}}
+                    {{#Bushing}}<div><b>Bushing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bushing}}&quot;);})'>{{Bushing}}</a></div>{{/Bushing}}
+                    {{#ConnectivityNode}}<div><b>ConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConnectivityNode}}&quot;);})'>{{ConnectivityNode}}</a></div>{{/ConnectivityNode}}
+                    {{#ConductingEquipment}}<div><b>ConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConductingEquipment}}&quot;);})'>{{ConductingEquipment}}</a></div>{{/ConductingEquipment}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.PhaseCode = []; if (!obj.phases) obj.PhaseCode.push ({ id: '', selected: true}); for (var property in PhaseCode) obj.PhaseCode.push ({ id: property, selected: obj.phases && obj.phases.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.PhaseCode;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Terminal_collapse" aria-expanded="true" aria-controls="Terminal_collapse" style="margin-left: 10px;">Terminal</a></legend>
+                    <div id="Terminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ACDCTerminal.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phases'>phases: </label><div class='col-sm-8'><select id='phases' class='form-control'>{{#PhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseCode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TopologicalNode'>TopologicalNode: </label><div class='col-sm-8'><input id='TopologicalNode' class='form-control' type='text'{{#TopologicalNode}} value='{{TopologicalNode}}'{{/TopologicalNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SvPowerFlow'>SvPowerFlow: </label><div class='col-sm-8'><input id='SvPowerFlow' class='form-control' type='text'{{#SvPowerFlow}} value='{{SvPowerFlow}}'{{/SvPowerFlow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Bushing'>Bushing: </label><div class='col-sm-8'><input id='Bushing' class='form-control' type='text'{{#Bushing}} value='{{Bushing}}'{{/Bushing}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConnectivityNode'>ConnectivityNode: </label><div class='col-sm-8'><input id='ConnectivityNode' class='form-control' type='text'{{#ConnectivityNode}} value='{{ConnectivityNode}}'{{/ConnectivityNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConductingEquipment'>ConductingEquipment: </label><div class='col-sm-8'><input id='ConductingEquipment' class='form-control' type='text'{{#ConductingEquipment}} value='{{ConductingEquipment}}'{{/ConductingEquipment}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A subset of a geographical region of a power system network model.
@@ -1772,17 +2127,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SubGeographicalRegion_collapse" aria-expanded="true" aria-controls="SubGeographicalRegion_collapse">SubGeographicalRegion</a>
-<div id="SubGeographicalRegion_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IdentifiedObject.prototype.template.call (this) +
-`
-{{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);})'>{{Region}}</a></div>{{/Region}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SubGeographicalRegion_collapse" aria-expanded="true" aria-controls="SubGeographicalRegion_collapse" style="margin-left: 10px;">SubGeographicalRegion</a></legend>
+                    <div id="SubGeographicalRegion_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);})'>{{Region}}</a></div>{{/Region}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SubGeographicalRegion_collapse" aria-expanded="true" aria-controls="SubGeographicalRegion_collapse" style="margin-left: 10px;">SubGeographicalRegion</a></legend>
+                    <div id="SubGeographicalRegion_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Region'>Region: </label><div class='col-sm-8'><input id='Region' class='form-control' type='text'{{#Region}} value='{{Region}}'{{/Region}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A power system resource can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area.
@@ -1843,19 +2229,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PowerSystemResource_collapse" aria-expanded="true" aria-controls="PowerSystemResource_collapse">PowerSystemResource</a>
-<div id="PowerSystemResource_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IdentifiedObject.prototype.template.call (this) +
-`
-{{#AssetDatasheet}}<div><b>AssetDatasheet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetDatasheet}}&quot;);})'>{{AssetDatasheet}}</a></div>{{/AssetDatasheet}}
-{{#Location}}<div><b>Location</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Location}}&quot;);})'>{{Location}}</a></div>{{/Location}}
-{{#PSRType}}<div><b>PSRType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PSRType}}&quot;);})'>{{PSRType}}</a></div>{{/PSRType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemResource_collapse" aria-expanded="true" aria-controls="PowerSystemResource_collapse" style="margin-left: 10px;">PowerSystemResource</a></legend>
+                    <div id="PowerSystemResource_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#AssetDatasheet}}<div><b>AssetDatasheet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetDatasheet}}&quot;);})'>{{AssetDatasheet}}</a></div>{{/AssetDatasheet}}
+                    {{#Location}}<div><b>Location</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Location}}&quot;);})'>{{Location}}</a></div>{{/Location}}
+                    {{#PSRType}}<div><b>PSRType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PSRType}}&quot;);})'>{{PSRType}}</a></div>{{/PSRType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemResource_collapse" aria-expanded="true" aria-controls="PowerSystemResource_collapse" style="margin-left: 10px;">PowerSystemResource</a></legend>
+                    <div id="PowerSystemResource_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetDatasheet'>AssetDatasheet: </label><div class='col-sm-8'><input id='AssetDatasheet' class='form-control' type='text'{{#AssetDatasheet}} value='{{AssetDatasheet}}'{{/AssetDatasheet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Location'>Location: </label><div class='col-sm-8'><input id='Location' class='form-control' type='text'{{#Location}} value='{{Location}}'{{/Location}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PSRType'>PSRType: </label><div class='col-sm-8'><input id='PSRType' class='form-control' type='text'{{#PSRType}} value='{{PSRType}}'{{/PSRType}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The schedule has time points where the time between them varies.
@@ -1908,16 +2327,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#IrregularIntervalSchedule_collapse" aria-expanded="true" aria-controls="IrregularIntervalSchedule_collapse">IrregularIntervalSchedule</a>
-<div id="IrregularIntervalSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + BasicIntervalSchedule.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IrregularIntervalSchedule_collapse" aria-expanded="true" aria-controls="IrregularIntervalSchedule_collapse" style="margin-left: 10px;">IrregularIntervalSchedule</a></legend>
+                    <div id="IrregularIntervalSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + BasicIntervalSchedule.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IrregularIntervalSchedule_collapse" aria-expanded="true" aria-controls="IrregularIntervalSchedule_collapse" style="margin-left: 10px;">IrregularIntervalSchedule</a></legend>
+                    <div id="IrregularIntervalSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + BasicIntervalSchedule.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class describe a base frequency for a power system network.
@@ -1974,17 +2423,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BaseFrequency_collapse" aria-expanded="true" aria-controls="BaseFrequency_collapse">BaseFrequency</a>
-<div id="BaseFrequency_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IdentifiedObject.prototype.template.call (this) +
-`
-{{#frequency}}<div><b>frequency</b>: {{frequency}}</div>{{/frequency}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BaseFrequency_collapse" aria-expanded="true" aria-controls="BaseFrequency_collapse" style="margin-left: 10px;">BaseFrequency</a></legend>
+                    <div id="BaseFrequency_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#frequency}}<div><b>frequency</b>: {{frequency}}</div>{{/frequency}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BaseFrequency_collapse" aria-expanded="true" aria-controls="BaseFrequency_collapse" style="margin-left: 10px;">BaseFrequency</a></legend>
+                    <div id="BaseFrequency_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='frequency'>frequency: </label><div class='col-sm-8'><input id='frequency' class='form-control' type='text'{{#frequency}} value='{{frequency}}'{{/frequency}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A reporting group is used for various ad-hoc groupings used for reporting.
@@ -2039,17 +2519,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ReportingGroup_collapse" aria-expanded="true" aria-controls="ReportingGroup_collapse">ReportingGroup</a>
-<div id="ReportingGroup_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IdentifiedObject.prototype.template.call (this) +
-`
-{{#ReportingSuperGroup}}<div><b>ReportingSuperGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReportingSuperGroup}}&quot;);})'>{{ReportingSuperGroup}}</a></div>{{/ReportingSuperGroup}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReportingGroup_collapse" aria-expanded="true" aria-controls="ReportingGroup_collapse" style="margin-left: 10px;">ReportingGroup</a></legend>
+                    <div id="ReportingGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#ReportingSuperGroup}}<div><b>ReportingSuperGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReportingSuperGroup}}&quot;);})'>{{ReportingSuperGroup}}</a></div>{{/ReportingSuperGroup}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReportingGroup_collapse" aria-expanded="true" aria-controls="ReportingGroup_collapse" style="margin-left: 10px;">ReportingGroup</a></legend>
+                    <div id="ReportingGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReportingSuperGroup'>ReportingSuperGroup: </label><div class='col-sm-8'><input id='ReportingSuperGroup' class='form-control' type='text'{{#ReportingSuperGroup}} value='{{ReportingSuperGroup}}'{{/ReportingSuperGroup}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The schedule has time points where the time between them is constant.
@@ -2106,18 +2617,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RegularIntervalSchedule_collapse" aria-expanded="true" aria-controls="RegularIntervalSchedule_collapse">RegularIntervalSchedule</a>
-<div id="RegularIntervalSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + BasicIntervalSchedule.prototype.template.call (this) +
-`
-{{#endTime}}<div><b>endTime</b>: {{endTime}}</div>{{/endTime}}
-{{#timeStep}}<div><b>timeStep</b>: {{timeStep}}</div>{{/timeStep}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RegularIntervalSchedule_collapse" aria-expanded="true" aria-controls="RegularIntervalSchedule_collapse" style="margin-left: 10px;">RegularIntervalSchedule</a></legend>
+                    <div id="RegularIntervalSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + BasicIntervalSchedule.prototype.template.call (this) +
+                    `
+                    {{#endTime}}<div><b>endTime</b>: {{endTime}}</div>{{/endTime}}
+                    {{#timeStep}}<div><b>timeStep</b>: {{timeStep}}</div>{{/timeStep}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RegularIntervalSchedule_collapse" aria-expanded="true" aria-controls="RegularIntervalSchedule_collapse" style="margin-left: 10px;">RegularIntervalSchedule</a></legend>
+                    <div id="RegularIntervalSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + BasicIntervalSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endTime'>endTime: </label><div class='col-sm-8'><input id='endTime' class='form-control' type='text'{{#endTime}} value='{{endTime}}'{{/endTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeStep'>timeStep: </label><div class='col-sm-8'><input id='timeStep' class='form-control' type='text'{{#timeStep}} value='{{timeStep}}'{{/timeStep}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A base class for all objects that may contain connectivity nodes or topological nodes.
@@ -2170,16 +2713,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ConnectivityNodeContainer_collapse" aria-expanded="true" aria-controls="ConnectivityNodeContainer_collapse">ConnectivityNodeContainer</a>
-<div id="ConnectivityNodeContainer_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemResource.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConnectivityNodeContainer_collapse" aria-expanded="true" aria-controls="ConnectivityNodeContainer_collapse" style="margin-left: 10px;">ConnectivityNodeContainer</a></legend>
+                    <div id="ConnectivityNodeContainer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemResource.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConnectivityNodeContainer_collapse" aria-expanded="true" aria-controls="ConnectivityNodeContainer_collapse" style="margin-left: 10px;">ConnectivityNodeContainer</a></legend>
+                    <div id="ConnectivityNodeContainer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The parts of a power system that are physical devices, electronic or mechanical.
@@ -2238,19 +2811,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Equipment_collapse" aria-expanded="true" aria-controls="Equipment_collapse">Equipment</a>
-<div id="Equipment_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemResource.prototype.template.call (this) +
-`
-{{#normallyInService}}<div><b>normallyInService</b>: {{normallyInService}}</div>{{/normallyInService}}
-{{#aggregate}}<div><b>aggregate</b>: {{aggregate}}</div>{{/aggregate}}
-{{#EquipmentContainer}}<div><b>EquipmentContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EquipmentContainer}}&quot;);})'>{{EquipmentContainer}}</a></div>{{/EquipmentContainer}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Equipment_collapse" aria-expanded="true" aria-controls="Equipment_collapse" style="margin-left: 10px;">Equipment</a></legend>
+                    <div id="Equipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemResource.prototype.template.call (this) +
+                    `
+                    {{#normallyInService}}<div><b>normallyInService</b>: {{normallyInService}}</div>{{/normallyInService}}
+                    {{#aggregate}}<div><b>aggregate</b>: {{aggregate}}</div>{{/aggregate}}
+                    {{#EquipmentContainer}}<div><b>EquipmentContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EquipmentContainer}}&quot;);})'>{{EquipmentContainer}}</a></div>{{/EquipmentContainer}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Equipment_collapse" aria-expanded="true" aria-controls="Equipment_collapse" style="margin-left: 10px;">Equipment</a></legend>
+                    <div id="Equipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='normallyInService'>normallyInService: </label><div class='col-sm-8'><input id='normallyInService' class='form-check-input' type='checkbox'{{#normallyInService}} checked{{/normallyInService}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='aggregate'>aggregate: </label><div class='col-sm-8'><input id='aggregate' class='form-check-input' type='checkbox'{{#aggregate}} checked{{/aggregate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EquipmentContainer'>EquipmentContainer: </label><div class='col-sm-8'><input id='EquipmentContainer' class='form-control' type='text'{{#EquipmentContainer}} value='{{EquipmentContainer}}'{{/EquipmentContainer}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A modeling construct to provide a root class for containing equipment.
@@ -2303,16 +2909,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EquipmentContainer_collapse" aria-expanded="true" aria-controls="EquipmentContainer_collapse">EquipmentContainer</a>
-<div id="EquipmentContainer_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ConnectivityNodeContainer.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquipmentContainer_collapse" aria-expanded="true" aria-controls="EquipmentContainer_collapse" style="margin-left: 10px;">EquipmentContainer</a></legend>
+                    <div id="EquipmentContainer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ConnectivityNodeContainer.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquipmentContainer_collapse" aria-expanded="true" aria-controls="EquipmentContainer_collapse" style="margin-left: 10px;">EquipmentContainer</a></legend>
+                    <div id="EquipmentContainer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ConnectivityNodeContainer.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A collection of equipment at one common system voltage forming a switchgear.
@@ -2375,20 +3011,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VoltageLevel_collapse" aria-expanded="true" aria-controls="VoltageLevel_collapse">VoltageLevel</a>
-<div id="VoltageLevel_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EquipmentContainer.prototype.template.call (this) +
-`
-{{#highVoltageLimit}}<div><b>highVoltageLimit</b>: {{highVoltageLimit}}</div>{{/highVoltageLimit}}
-{{#lowVoltageLimit}}<div><b>lowVoltageLimit</b>: {{lowVoltageLimit}}</div>{{/lowVoltageLimit}}
-{{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseVoltage}}&quot;);})'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
-{{#Substation}}<div><b>Substation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Substation}}&quot;);})'>{{Substation}}</a></div>{{/Substation}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageLevel_collapse" aria-expanded="true" aria-controls="VoltageLevel_collapse" style="margin-left: 10px;">VoltageLevel</a></legend>
+                    <div id="VoltageLevel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EquipmentContainer.prototype.template.call (this) +
+                    `
+                    {{#highVoltageLimit}}<div><b>highVoltageLimit</b>: {{highVoltageLimit}}</div>{{/highVoltageLimit}}
+                    {{#lowVoltageLimit}}<div><b>lowVoltageLimit</b>: {{lowVoltageLimit}}</div>{{/lowVoltageLimit}}
+                    {{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseVoltage}}&quot;);})'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
+                    {{#Substation}}<div><b>Substation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Substation}}&quot;);})'>{{Substation}}</a></div>{{/Substation}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageLevel_collapse" aria-expanded="true" aria-controls="VoltageLevel_collapse" style="margin-left: 10px;">VoltageLevel</a></legend>
+                    <div id="VoltageLevel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EquipmentContainer.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='highVoltageLimit'>highVoltageLimit: </label><div class='col-sm-8'><input id='highVoltageLimit' class='form-control' type='text'{{#highVoltageLimit}} value='{{highVoltageLimit}}'{{/highVoltageLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowVoltageLimit'>lowVoltageLimit: </label><div class='col-sm-8'><input id='lowVoltageLimit' class='form-control' type='text'{{#lowVoltageLimit}} value='{{lowVoltageLimit}}'{{/lowVoltageLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BaseVoltage'>BaseVoltage: </label><div class='col-sm-8'><input id='BaseVoltage' class='form-control' type='text'{{#BaseVoltage}} value='{{BaseVoltage}}'{{/BaseVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Substation'>Substation: </label><div class='col-sm-8'><input id='Substation' class='form-control' type='text'{{#Substation}} value='{{Substation}}'{{/Substation}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The parts of the AC power system that are designed to carry current or that are conductively connected through terminals.
@@ -2449,20 +3119,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ConductingEquipment_collapse" aria-expanded="true" aria-controls="ConductingEquipment_collapse">ConductingEquipment</a>
-<div id="ConductingEquipment_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Equipment.prototype.template.call (this) +
-`
-{{#GroundingAction}}<div><b>GroundingAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GroundingAction}}&quot;);})'>{{GroundingAction}}</a></div>{{/GroundingAction}}
-{{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseVoltage}}&quot;);})'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
-{{#SvStatus}}<div><b>SvStatus</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SvStatus}}&quot;);})'>{{SvStatus}}</a></div>{{/SvStatus}}
-{{#JumpingAction}}<div><b>JumpingAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{JumpingAction}}&quot;);})'>{{JumpingAction}}</a></div>{{/JumpingAction}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConductingEquipment_collapse" aria-expanded="true" aria-controls="ConductingEquipment_collapse" style="margin-left: 10px;">ConductingEquipment</a></legend>
+                    <div id="ConductingEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Equipment.prototype.template.call (this) +
+                    `
+                    {{#GroundingAction}}<div><b>GroundingAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GroundingAction}}&quot;);})'>{{GroundingAction}}</a></div>{{/GroundingAction}}
+                    {{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseVoltage}}&quot;);})'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
+                    {{#SvStatus}}<div><b>SvStatus</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SvStatus}}&quot;);})'>{{SvStatus}}</a></div>{{/SvStatus}}
+                    {{#JumpingAction}}<div><b>JumpingAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{JumpingAction}}&quot;);})'>{{JumpingAction}}</a></div>{{/JumpingAction}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConductingEquipment_collapse" aria-expanded="true" aria-controls="ConductingEquipment_collapse" style="margin-left: 10px;">ConductingEquipment</a></legend>
+                    <div id="ConductingEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Equipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GroundingAction'>GroundingAction: </label><div class='col-sm-8'><input id='GroundingAction' class='form-control' type='text'{{#GroundingAction}} value='{{GroundingAction}}'{{/GroundingAction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BaseVoltage'>BaseVoltage: </label><div class='col-sm-8'><input id='BaseVoltage' class='form-control' type='text'{{#BaseVoltage}} value='{{BaseVoltage}}'{{/BaseVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SvStatus'>SvStatus: </label><div class='col-sm-8'><input id='SvStatus' class='form-control' type='text'{{#SvStatus}} value='{{SvStatus}}'{{/SvStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='JumpingAction'>JumpingAction: </label><div class='col-sm-8'><input id='JumpingAction' class='form-control' type='text'{{#JumpingAction}} value='{{JumpingAction}}'{{/JumpingAction}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A collection of equipment for purposes other than generation or utilization, through which electric energy in bulk is passed for the purposes of switching or modifying its characteristics.
@@ -2517,17 +3221,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Substation_collapse" aria-expanded="true" aria-controls="Substation_collapse">Substation</a>
-<div id="Substation_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EquipmentContainer.prototype.template.call (this) +
-`
-{{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);})'>{{Region}}</a></div>{{/Region}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Substation_collapse" aria-expanded="true" aria-controls="Substation_collapse" style="margin-left: 10px;">Substation</a></legend>
+                    <div id="Substation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EquipmentContainer.prototype.template.call (this) +
+                    `
+                    {{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);})'>{{Region}}</a></div>{{/Region}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Substation_collapse" aria-expanded="true" aria-controls="Substation_collapse" style="margin-left: 10px;">Substation</a></legend>
+                    <div id="Substation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EquipmentContainer.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Region'>Region: </label><div class='col-sm-8'><input id='Region' class='form-control' type='text'{{#Region}} value='{{Region}}'{{/Region}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A collection of power system resources (within a given substation) including conducting equipment, protection relays, measurements, and telemetry.
@@ -2561,8 +3296,8 @@ define
                 obj.cls = "Bay";
                 base.parse_element (/<cim:Bay.bayEnergyMeasFlag>([\s\S]*?)<\/cim:Bay.bayEnergyMeasFlag>/g, obj, "bayEnergyMeasFlag", base.to_boolean, sub, context);
                 base.parse_element (/<cim:Bay.bayPowerMeasFlag>([\s\S]*?)<\/cim:Bay.bayPowerMeasFlag>/g, obj, "bayPowerMeasFlag", base.to_boolean, sub, context);
-                base.parse_element (/<cim:Bay.breakerConfiguration>([\s\S]*?)<\/cim:Bay.breakerConfiguration>/g, obj, "breakerConfiguration", base.to_string, sub, context);
-                base.parse_element (/<cim:Bay.busBarConfiguration>([\s\S]*?)<\/cim:Bay.busBarConfiguration>/g, obj, "busBarConfiguration", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Bay.breakerConfiguration\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "breakerConfiguration", sub, context);
+                base.parse_attribute (/<cim:Bay.busBarConfiguration\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "busBarConfiguration", sub, context);
                 base.parse_attribute (/<cim:Bay.Substation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Substation", sub, context);
                 base.parse_attribute (/<cim:Bay.VoltageLevel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VoltageLevel", sub, context);
 
@@ -2594,22 +3329,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Bay_collapse" aria-expanded="true" aria-controls="Bay_collapse">Bay</a>
-<div id="Bay_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EquipmentContainer.prototype.template.call (this) +
-`
-{{#bayEnergyMeasFlag}}<div><b>bayEnergyMeasFlag</b>: {{bayEnergyMeasFlag}}</div>{{/bayEnergyMeasFlag}}
-{{#bayPowerMeasFlag}}<div><b>bayPowerMeasFlag</b>: {{bayPowerMeasFlag}}</div>{{/bayPowerMeasFlag}}
-{{#breakerConfiguration}}<div><b>breakerConfiguration</b>: {{breakerConfiguration}}</div>{{/breakerConfiguration}}
-{{#busBarConfiguration}}<div><b>busBarConfiguration</b>: {{busBarConfiguration}}</div>{{/busBarConfiguration}}
-{{#Substation}}<div><b>Substation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Substation}}&quot;);})'>{{Substation}}</a></div>{{/Substation}}
-{{#VoltageLevel}}<div><b>VoltageLevel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageLevel}}&quot;);})'>{{VoltageLevel}}</a></div>{{/VoltageLevel}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Bay_collapse" aria-expanded="true" aria-controls="Bay_collapse" style="margin-left: 10px;">Bay</a></legend>
+                    <div id="Bay_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EquipmentContainer.prototype.template.call (this) +
+                    `
+                    {{#bayEnergyMeasFlag}}<div><b>bayEnergyMeasFlag</b>: {{bayEnergyMeasFlag}}</div>{{/bayEnergyMeasFlag}}
+                    {{#bayPowerMeasFlag}}<div><b>bayPowerMeasFlag</b>: {{bayPowerMeasFlag}}</div>{{/bayPowerMeasFlag}}
+                    {{#breakerConfiguration}}<div><b>breakerConfiguration</b>: {{breakerConfiguration}}</div>{{/breakerConfiguration}}
+                    {{#busBarConfiguration}}<div><b>busBarConfiguration</b>: {{busBarConfiguration}}</div>{{/busBarConfiguration}}
+                    {{#Substation}}<div><b>Substation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Substation}}&quot;);})'>{{Substation}}</a></div>{{/Substation}}
+                    {{#VoltageLevel}}<div><b>VoltageLevel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageLevel}}&quot;);})'>{{VoltageLevel}}</a></div>{{/VoltageLevel}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.BreakerConfiguration = []; if (!obj.breakerConfiguration) obj.BreakerConfiguration.push ({ id: '', selected: true}); for (var property in BreakerConfiguration) obj.BreakerConfiguration.push ({ id: property, selected: obj.breakerConfiguration && obj.breakerConfiguration.endsWith ('.' + property)});
+                obj.BusbarConfiguration = []; if (!obj.busBarConfiguration) obj.BusbarConfiguration.push ({ id: '', selected: true}); for (var property in BusbarConfiguration) obj.BusbarConfiguration.push ({ id: property, selected: obj.busBarConfiguration && obj.busBarConfiguration.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.BreakerConfiguration;
+                delete obj.BusbarConfiguration;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Bay_collapse" aria-expanded="true" aria-controls="Bay_collapse" style="margin-left: 10px;">Bay</a></legend>
+                    <div id="Bay_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EquipmentContainer.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='bayEnergyMeasFlag'>bayEnergyMeasFlag: </label><div class='col-sm-8'><input id='bayEnergyMeasFlag' class='form-check-input' type='checkbox'{{#bayEnergyMeasFlag}} checked{{/bayEnergyMeasFlag}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='bayPowerMeasFlag'>bayPowerMeasFlag: </label><div class='col-sm-8'><input id='bayPowerMeasFlag' class='form-check-input' type='checkbox'{{#bayPowerMeasFlag}} checked{{/bayPowerMeasFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='breakerConfiguration'>breakerConfiguration: </label><div class='col-sm-8'><select id='breakerConfiguration' class='form-control'>{{#BreakerConfiguration}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BreakerConfiguration}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='busBarConfiguration'>busBarConfiguration: </label><div class='col-sm-8'><select id='busBarConfiguration' class='form-control'>{{#BusbarConfiguration}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BusbarConfiguration}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Substation'>Substation: </label><div class='col-sm-8'><input id='Substation' class='form-control' type='text'{{#Substation}} value='{{Substation}}'{{/Substation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VoltageLevel'>VoltageLevel: </label><div class='col-sm-8'><input id='VoltageLevel' class='form-control' type='text'{{#VoltageLevel}} value='{{VoltageLevel}}'{{/VoltageLevel}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
@@ -2622,11 +3397,9 @@ define
                 Terminal: Terminal,
                 ConductingEquipment: ConductingEquipment,
                 Substation: Substation,
-                CurveStyle: CurveStyle,
                 RegularIntervalSchedule: RegularIntervalSchedule,
                 PSRType: PSRType,
                 BaseVoltage: BaseVoltage,
-                BusbarConfiguration: BusbarConfiguration,
                 ACDCTerminal: ACDCTerminal,
                 Curve: Curve,
                 OperatingShare: OperatingShare,
@@ -2634,9 +3407,7 @@ define
                 BasicIntervalSchedule: BasicIntervalSchedule,
                 BasePower: BasePower,
                 ConnectivityNodeContainer: ConnectivityNodeContainer,
-                PhaseCode: PhaseCode,
                 ConnectivityNode: ConnectivityNode,
-                BreakerConfiguration: BreakerConfiguration,
                 NameType: NameType,
                 PowerSystemResource: PowerSystemResource,
                 Bay: Bay,

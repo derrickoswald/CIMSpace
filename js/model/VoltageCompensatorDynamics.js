@@ -69,20 +69,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GenICompensationForGenJ_collapse" aria-expanded="true" aria-controls="GenICompensationForGenJ_collapse">GenICompensationForGenJ</a>
-<div id="GenICompensationForGenJ_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#rcij}}<div><b>rcij</b>: {{rcij}}</div>{{/rcij}}
-{{#xcij}}<div><b>xcij</b>: {{xcij}}</div>{{/xcij}}
-{{#VcompIEEEType2}}<div><b>VcompIEEEType2</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VcompIEEEType2}}&quot;);})'>{{VcompIEEEType2}}</a></div>{{/VcompIEEEType2}}
-{{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineDynamics}}&quot;);})'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenICompensationForGenJ_collapse" aria-expanded="true" aria-controls="GenICompensationForGenJ_collapse" style="margin-left: 10px;">GenICompensationForGenJ</a></legend>
+                    <div id="GenICompensationForGenJ_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#rcij}}<div><b>rcij</b>: {{rcij}}</div>{{/rcij}}
+                    {{#xcij}}<div><b>xcij</b>: {{xcij}}</div>{{/xcij}}
+                    {{#VcompIEEEType2}}<div><b>VcompIEEEType2</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VcompIEEEType2}}&quot;);})'>{{VcompIEEEType2}}</a></div>{{/VcompIEEEType2}}
+                    {{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineDynamics}}&quot;);})'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenICompensationForGenJ_collapse" aria-expanded="true" aria-controls="GenICompensationForGenJ_collapse" style="margin-left: 10px;">GenICompensationForGenJ</a></legend>
+                    <div id="GenICompensationForGenJ_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rcij'>rcij: </label><div class='col-sm-8'><input id='rcij' class='form-control' type='text'{{#rcij}} value='{{rcij}}'{{/rcij}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xcij'>xcij: </label><div class='col-sm-8'><input id='xcij' class='form-control' type='text'{{#xcij}} value='{{xcij}}'{{/xcij}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VcompIEEEType2'>VcompIEEEType2: </label><div class='col-sm-8'><input id='VcompIEEEType2' class='form-control' type='text'{{#VcompIEEEType2}} value='{{VcompIEEEType2}}'{{/VcompIEEEType2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SynchronousMachineDynamics'>SynchronousMachineDynamics: </label><div class='col-sm-8'><input id='SynchronousMachineDynamics' class='form-control' type='text'{{#SynchronousMachineDynamics}} value='{{SynchronousMachineDynamics}}'{{/SynchronousMachineDynamics}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Voltage compensator function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -139,18 +173,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VoltageCompensatorDynamics_collapse" aria-expanded="true" aria-controls="VoltageCompensatorDynamics_collapse">VoltageCompensatorDynamics</a>
-<div id="VoltageCompensatorDynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
-`
-{{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
-{{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageCompensatorDynamics_collapse" aria-expanded="true" aria-controls="VoltageCompensatorDynamics_collapse" style="margin-left: 10px;">VoltageCompensatorDynamics</a></legend>
+                    <div id="VoltageCompensatorDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+                    `
+                    {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
+                    {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageCompensatorDynamics_collapse" aria-expanded="true" aria-controls="VoltageCompensatorDynamics_collapse" style="margin-left: 10px;">VoltageCompensatorDynamics</a></legend>
+                    <div id="VoltageCompensatorDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * <font color="#0f0f0f">The class represents the terminal voltage transducer and the load compensator as defined in the IEEE Std 421.5-2005, Section 4.
@@ -207,17 +273,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VCompIEEEType2_collapse" aria-expanded="true" aria-controls="VCompIEEEType2_collapse">VCompIEEEType2</a>
-<div id="VCompIEEEType2_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + VoltageCompensatorDynamics.prototype.template.call (this) +
-`
-{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VCompIEEEType2_collapse" aria-expanded="true" aria-controls="VCompIEEEType2_collapse" style="margin-left: 10px;">VCompIEEEType2</a></legend>
+                    <div id="VCompIEEEType2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + VoltageCompensatorDynamics.prototype.template.call (this) +
+                    `
+                    {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VCompIEEEType2_collapse" aria-expanded="true" aria-controls="VCompIEEEType2_collapse" style="margin-left: 10px;">VCompIEEEType2</a></legend>
+                    <div id="VCompIEEEType2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + VoltageCompensatorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr'>tr: </label><div class='col-sm-8'><input id='tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * <font color="#0f0f0f">The class represents the terminal voltage transducer and the load compensator as defined in the IEEE Std 421.5-2005, Section 4.
@@ -278,19 +375,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VCompIEEEType1_collapse" aria-expanded="true" aria-controls="VCompIEEEType1_collapse">VCompIEEEType1</a>
-<div id="VCompIEEEType1_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + VoltageCompensatorDynamics.prototype.template.call (this) +
-`
-{{#rc}}<div><b>rc</b>: {{rc}}</div>{{/rc}}
-{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
-{{#xc}}<div><b>xc</b>: {{xc}}</div>{{/xc}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VCompIEEEType1_collapse" aria-expanded="true" aria-controls="VCompIEEEType1_collapse" style="margin-left: 10px;">VCompIEEEType1</a></legend>
+                    <div id="VCompIEEEType1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + VoltageCompensatorDynamics.prototype.template.call (this) +
+                    `
+                    {{#rc}}<div><b>rc</b>: {{rc}}</div>{{/rc}}
+                    {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+                    {{#xc}}<div><b>xc</b>: {{xc}}</div>{{/xc}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VCompIEEEType1_collapse" aria-expanded="true" aria-controls="VCompIEEEType1_collapse" style="margin-left: 10px;">VCompIEEEType1</a></legend>
+                    <div id="VCompIEEEType1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + VoltageCompensatorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rc'>rc: </label><div class='col-sm-8'><input id='rc' class='form-control' type='text'{{#rc}} value='{{rc}}'{{/rc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr'>tr: </label><div class='col-sm-8'><input id='tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xc'>xc: </label><div class='col-sm-8'><input id='xc' class='form-control' type='text'{{#xc}} value='{{xc}}'{{/xc}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

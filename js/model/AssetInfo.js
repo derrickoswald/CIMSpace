@@ -11,6 +11,110 @@ define
     {
 
         /**
+         * Kind of cable outer jacket.
+         *
+         */
+        var CableOuterJacketKind =
+        {
+            none: "none",
+            linearLowDensityPolyethylene: "linearLowDensityPolyethylene",
+            pvc: "pvc",
+            polyethylene: "polyethylene",
+            insulating: "insulating",
+            semiconducting: "semiconducting",
+            other: "other"
+        };
+        Object.freeze (CableOuterJacketKind);
+
+        /**
+         * Kind of wire insulation.
+         *
+         */
+        var WireInsulationKind =
+        {
+            asbestosAndVarnishedCambric: "asbestosAndVarnishedCambric",
+            butyl: "butyl",
+            ethylenePropyleneRubber: "ethylenePropyleneRubber",
+            highMolecularWeightPolyethylene: "highMolecularWeightPolyethylene",
+            treeResistantHighMolecularWeightPolyethylene: "treeResistantHighMolecularWeightPolyethylene",
+            lowCapacitanceRubber: "lowCapacitanceRubber",
+            oilPaper: "oilPaper",
+            ozoneResistantRubber: "ozoneResistantRubber",
+            beltedPilc: "beltedPilc",
+            unbeltedPilc: "unbeltedPilc",
+            rubber: "rubber",
+            siliconRubber: "siliconRubber",
+            varnishedCambricCloth: "varnishedCambricCloth",
+            varnishedDacronGlass: "varnishedDacronGlass",
+            crosslinkedPolyethylene: "crosslinkedPolyethylene",
+            treeRetardantCrosslinkedPolyethylene: "treeRetardantCrosslinkedPolyethylene",
+            highPressureFluidFilled: "highPressureFluidFilled",
+            other: "other"
+        };
+        Object.freeze (WireInsulationKind);
+
+        /**
+         * Kind of wire material.
+         *
+         */
+        var WireMaterialKind =
+        {
+            copper: "copper",
+            steel: "steel",
+            aluminum: "aluminum",
+            aluminumSteel: "aluminumSteel",
+            acsr: "acsr",
+            aluminumAlloy: "aluminumAlloy",
+            aluminumAlloySteel: "aluminumAlloySteel",
+            aaac: "aaac",
+            other: "other"
+        };
+        Object.freeze (WireMaterialKind);
+
+        /**
+         * Kind of cable construction.
+         *
+         */
+        var CableConstructionKind =
+        {
+            compacted: "compacted",
+            compressed: "compressed",
+            sector: "sector",
+            segmental: "segmental",
+            solid: "solid",
+            stranded: "stranded",
+            other: "other"
+        };
+        Object.freeze (CableConstructionKind);
+
+        /**
+         * Kind of cable shield material.
+         *
+         */
+        var CableShieldMaterialKind =
+        {
+            lead: "lead",
+            copper: "copper",
+            steel: "steel",
+            aluminum: "aluminum",
+            other: "other"
+        };
+        Object.freeze (CableShieldMaterialKind);
+
+        /**
+         * Kind of wire usage.
+         *
+         */
+        var WireUsageKind =
+        {
+            transmission: "transmission",
+            distribution: "distribution",
+            secondary: "secondary",
+            other: "other"
+        };
+        Object.freeze (WireUsageKind);
+
+        /**
          * Wire spacing data that associates multiple wire positions with the line segment, and allows to calculate line segment impedances.
          *
          * Number of phases can be derived from the number of associated wire positions whose phase is not neutral.
@@ -43,7 +147,7 @@ define
                 base.parse_element (/<cim:WireSpacingInfo.isCable>([\s\S]*?)<\/cim:WireSpacingInfo.isCable>/g, obj, "isCable", base.to_boolean, sub, context);
                 base.parse_element (/<cim:WireSpacingInfo.phaseWireCount>([\s\S]*?)<\/cim:WireSpacingInfo.phaseWireCount>/g, obj, "phaseWireCount", base.to_string, sub, context);
                 base.parse_element (/<cim:WireSpacingInfo.phaseWireSpacing>([\s\S]*?)<\/cim:WireSpacingInfo.phaseWireSpacing>/g, obj, "phaseWireSpacing", base.to_string, sub, context);
-                base.parse_element (/<cim:WireSpacingInfo.usage>([\s\S]*?)<\/cim:WireSpacingInfo.usage>/g, obj, "usage", base.to_string, sub, context);
+                base.parse_attribute (/<cim:WireSpacingInfo.usage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "usage", sub, context);
                 base.parse_attribute (/<cim:WireSpacingInfo.DuctBank\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DuctBank", sub, context);
 
                 var bucket = context.parsed.WireSpacingInfo;
@@ -73,104 +177,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WireSpacingInfo_collapse" aria-expanded="true" aria-controls="WireSpacingInfo_collapse">WireSpacingInfo</a>
-<div id="WireSpacingInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#isCable}}<div><b>isCable</b>: {{isCable}}</div>{{/isCable}}
-{{#phaseWireCount}}<div><b>phaseWireCount</b>: {{phaseWireCount}}</div>{{/phaseWireCount}}
-{{#phaseWireSpacing}}<div><b>phaseWireSpacing</b>: {{phaseWireSpacing}}</div>{{/phaseWireSpacing}}
-{{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
-{{#DuctBank}}<div><b>DuctBank</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DuctBank}}&quot;);})'>{{DuctBank}}</a></div>{{/DuctBank}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WireSpacingInfo_collapse" aria-expanded="true" aria-controls="WireSpacingInfo_collapse" style="margin-left: 10px;">WireSpacingInfo</a></legend>
+                    <div id="WireSpacingInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#isCable}}<div><b>isCable</b>: {{isCable}}</div>{{/isCable}}
+                    {{#phaseWireCount}}<div><b>phaseWireCount</b>: {{phaseWireCount}}</div>{{/phaseWireCount}}
+                    {{#phaseWireSpacing}}<div><b>phaseWireSpacing</b>: {{phaseWireSpacing}}</div>{{/phaseWireSpacing}}
+                    {{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
+                    {{#DuctBank}}<div><b>DuctBank</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DuctBank}}&quot;);})'>{{DuctBank}}</a></div>{{/DuctBank}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of cable outer jacket.
-         *
-         */
-        class CableOuterJacketKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.CableOuterJacketKind;
-                if (null == bucket)
-                   cim_data.CableOuterJacketKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.CableOuterJacketKind[this._id];
+                super.condition (obj);
+                obj.WireUsageKind = []; if (!obj.usage) obj.WireUsageKind.push ({ id: '', selected: true}); for (var property in WireUsageKind) obj.WireUsageKind.push ({ id: property, selected: obj.usage && obj.usage.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "CableOuterJacketKind";
-                base.parse_element (/<cim:CableOuterJacketKind.none>([\s\S]*?)<\/cim:CableOuterJacketKind.none>/g, obj, "none", base.to_string, sub, context);
-                base.parse_element (/<cim:CableOuterJacketKind.linearLowDensityPolyethylene>([\s\S]*?)<\/cim:CableOuterJacketKind.linearLowDensityPolyethylene>/g, obj, "linearLowDensityPolyethylene", base.to_string, sub, context);
-                base.parse_element (/<cim:CableOuterJacketKind.pvc>([\s\S]*?)<\/cim:CableOuterJacketKind.pvc>/g, obj, "pvc", base.to_string, sub, context);
-                base.parse_element (/<cim:CableOuterJacketKind.polyethylene>([\s\S]*?)<\/cim:CableOuterJacketKind.polyethylene>/g, obj, "polyethylene", base.to_string, sub, context);
-                base.parse_element (/<cim:CableOuterJacketKind.insulating>([\s\S]*?)<\/cim:CableOuterJacketKind.insulating>/g, obj, "insulating", base.to_string, sub, context);
-                base.parse_element (/<cim:CableOuterJacketKind.semiconducting>([\s\S]*?)<\/cim:CableOuterJacketKind.semiconducting>/g, obj, "semiconducting", base.to_string, sub, context);
-                base.parse_element (/<cim:CableOuterJacketKind.other>([\s\S]*?)<\/cim:CableOuterJacketKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.CableOuterJacketKind;
-                if (null == bucket)
-                   context.parsed.CableOuterJacketKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.WireUsageKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "CableOuterJacketKind", "none", base.from_string, fields);
-                base.export_element (obj, "CableOuterJacketKind", "linearLowDensityPolyethylene", base.from_string, fields);
-                base.export_element (obj, "CableOuterJacketKind", "pvc", base.from_string, fields);
-                base.export_element (obj, "CableOuterJacketKind", "polyethylene", base.from_string, fields);
-                base.export_element (obj, "CableOuterJacketKind", "insulating", base.from_string, fields);
-                base.export_element (obj, "CableOuterJacketKind", "semiconducting", base.from_string, fields);
-                base.export_element (obj, "CableOuterJacketKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CableOuterJacketKind_collapse" aria-expanded="true" aria-controls="CableOuterJacketKind_collapse">CableOuterJacketKind</a>
-<div id="CableOuterJacketKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
-{{#linearLowDensityPolyethylene}}<div><b>linearLowDensityPolyethylene</b>: {{linearLowDensityPolyethylene}}</div>{{/linearLowDensityPolyethylene}}
-{{#pvc}}<div><b>pvc</b>: {{pvc}}</div>{{/pvc}}
-{{#polyethylene}}<div><b>polyethylene</b>: {{polyethylene}}</div>{{/polyethylene}}
-{{#insulating}}<div><b>insulating</b>: {{insulating}}</div>{{/insulating}}
-{{#semiconducting}}<div><b>semiconducting</b>: {{semiconducting}}</div>{{/semiconducting}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WireSpacingInfo_collapse" aria-expanded="true" aria-controls="WireSpacingInfo_collapse" style="margin-left: 10px;">WireSpacingInfo</a></legend>
+                    <div id="WireSpacingInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isCable'>isCable: </label><div class='col-sm-8'><input id='isCable' class='form-check-input' type='checkbox'{{#isCable}} checked{{/isCable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseWireCount'>phaseWireCount: </label><div class='col-sm-8'><input id='phaseWireCount' class='form-control' type='text'{{#phaseWireCount}} value='{{phaseWireCount}}'{{/phaseWireCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseWireSpacing'>phaseWireSpacing: </label><div class='col-sm-8'><input id='phaseWireSpacing' class='form-control' type='text'{{#phaseWireSpacing}} value='{{phaseWireSpacing}}'{{/phaseWireSpacing}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='usage'>usage: </label><div class='col-sm-8'><select id='usage' class='form-control'>{{#WireUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WireUsageKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DuctBank'>DuctBank: </label><div class='col-sm-8'><input id='DuctBank' class='form-control' type='text'{{#DuctBank}} value='{{DuctBank}}'{{/DuctBank}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Tap changer data.
@@ -253,31 +311,76 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TapChangerInfo_collapse" aria-expanded="true" aria-controls="TapChangerInfo_collapse">TapChangerInfo</a>
-<div id="TapChangerInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#bil}}<div><b>bil</b>: {{bil}}</div>{{/bil}}
-{{#ctRating}}<div><b>ctRating</b>: {{ctRating}}</div>{{/ctRating}}
-{{#ctRatio}}<div><b>ctRatio</b>: {{ctRatio}}</div>{{/ctRatio}}
-{{#frequency}}<div><b>frequency</b>: {{frequency}}</div>{{/frequency}}
-{{#highStep}}<div><b>highStep</b>: {{highStep}}</div>{{/highStep}}
-{{#isTcul}}<div><b>isTcul</b>: {{isTcul}}</div>{{/isTcul}}
-{{#lowStep}}<div><b>lowStep</b>: {{lowStep}}</div>{{/lowStep}}
-{{#neutralStep}}<div><b>neutralStep</b>: {{neutralStep}}</div>{{/neutralStep}}
-{{#neutralU}}<div><b>neutralU</b>: {{neutralU}}</div>{{/neutralU}}
-{{#ptRatio}}<div><b>ptRatio</b>: {{ptRatio}}</div>{{/ptRatio}}
-{{#ratedApparentPower}}<div><b>ratedApparentPower</b>: {{ratedApparentPower}}</div>{{/ratedApparentPower}}
-{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
-{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
-{{#stepPhaseIncrement}}<div><b>stepPhaseIncrement</b>: {{stepPhaseIncrement}}</div>{{/stepPhaseIncrement}}
-{{#stepVoltageIncrement}}<div><b>stepVoltageIncrement</b>: {{stepVoltageIncrement}}</div>{{/stepVoltageIncrement}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TapChangerInfo_collapse" aria-expanded="true" aria-controls="TapChangerInfo_collapse" style="margin-left: 10px;">TapChangerInfo</a></legend>
+                    <div id="TapChangerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#bil}}<div><b>bil</b>: {{bil}}</div>{{/bil}}
+                    {{#ctRating}}<div><b>ctRating</b>: {{ctRating}}</div>{{/ctRating}}
+                    {{#ctRatio}}<div><b>ctRatio</b>: {{ctRatio}}</div>{{/ctRatio}}
+                    {{#frequency}}<div><b>frequency</b>: {{frequency}}</div>{{/frequency}}
+                    {{#highStep}}<div><b>highStep</b>: {{highStep}}</div>{{/highStep}}
+                    {{#isTcul}}<div><b>isTcul</b>: {{isTcul}}</div>{{/isTcul}}
+                    {{#lowStep}}<div><b>lowStep</b>: {{lowStep}}</div>{{/lowStep}}
+                    {{#neutralStep}}<div><b>neutralStep</b>: {{neutralStep}}</div>{{/neutralStep}}
+                    {{#neutralU}}<div><b>neutralU</b>: {{neutralU}}</div>{{/neutralU}}
+                    {{#ptRatio}}<div><b>ptRatio</b>: {{ptRatio}}</div>{{/ptRatio}}
+                    {{#ratedApparentPower}}<div><b>ratedApparentPower</b>: {{ratedApparentPower}}</div>{{/ratedApparentPower}}
+                    {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+                    {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+                    {{#stepPhaseIncrement}}<div><b>stepPhaseIncrement</b>: {{stepPhaseIncrement}}</div>{{/stepPhaseIncrement}}
+                    {{#stepVoltageIncrement}}<div><b>stepVoltageIncrement</b>: {{stepVoltageIncrement}}</div>{{/stepVoltageIncrement}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TapChangerInfo_collapse" aria-expanded="true" aria-controls="TapChangerInfo_collapse" style="margin-left: 10px;">TapChangerInfo</a></legend>
+                    <div id="TapChangerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bil'>bil: </label><div class='col-sm-8'><input id='bil' class='form-control' type='text'{{#bil}} value='{{bil}}'{{/bil}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ctRating'>ctRating: </label><div class='col-sm-8'><input id='ctRating' class='form-control' type='text'{{#ctRating}} value='{{ctRating}}'{{/ctRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ctRatio'>ctRatio: </label><div class='col-sm-8'><input id='ctRatio' class='form-control' type='text'{{#ctRatio}} value='{{ctRatio}}'{{/ctRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='frequency'>frequency: </label><div class='col-sm-8'><input id='frequency' class='form-control' type='text'{{#frequency}} value='{{frequency}}'{{/frequency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='highStep'>highStep: </label><div class='col-sm-8'><input id='highStep' class='form-control' type='text'{{#highStep}} value='{{highStep}}'{{/highStep}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isTcul'>isTcul: </label><div class='col-sm-8'><input id='isTcul' class='form-check-input' type='checkbox'{{#isTcul}} checked{{/isTcul}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowStep'>lowStep: </label><div class='col-sm-8'><input id='lowStep' class='form-control' type='text'{{#lowStep}} value='{{lowStep}}'{{/lowStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='neutralStep'>neutralStep: </label><div class='col-sm-8'><input id='neutralStep' class='form-control' type='text'{{#neutralStep}} value='{{neutralStep}}'{{/neutralStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='neutralU'>neutralU: </label><div class='col-sm-8'><input id='neutralU' class='form-control' type='text'{{#neutralU}} value='{{neutralU}}'{{/neutralU}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ptRatio'>ptRatio: </label><div class='col-sm-8'><input id='ptRatio' class='form-control' type='text'{{#ptRatio}} value='{{ptRatio}}'{{/ptRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedApparentPower'>ratedApparentPower: </label><div class='col-sm-8'><input id='ratedApparentPower' class='form-control' type='text'{{#ratedApparentPower}} value='{{ratedApparentPower}}'{{/ratedApparentPower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stepPhaseIncrement'>stepPhaseIncrement: </label><div class='col-sm-8'><input id='stepPhaseIncrement' class='form-control' type='text'{{#stepPhaseIncrement}} value='{{stepPhaseIncrement}}'{{/stepPhaseIncrement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stepVoltageIncrement'>stepVoltageIncrement: </label><div class='col-sm-8'><input id='stepVoltageIncrement' class='form-control' type='text'{{#stepVoltageIncrement}} value='{{stepVoltageIncrement}}'{{/stepVoltageIncrement}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Set of transformer tank data, from an equipment library.
@@ -332,133 +435,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransformerTankInfo_collapse" aria-expanded="true" aria-controls="TransformerTankInfo_collapse">TransformerTankInfo</a>
-<div id="TransformerTankInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#PowerTransformerInfo}}<div><b>PowerTransformerInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerTransformerInfo}}&quot;);})'>{{PowerTransformerInfo}}</a></div>{{/PowerTransformerInfo}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerTankInfo_collapse" aria-expanded="true" aria-controls="TransformerTankInfo_collapse" style="margin-left: 10px;">TransformerTankInfo</a></legend>
+                    <div id="TransformerTankInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#PowerTransformerInfo}}<div><b>PowerTransformerInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerTransformerInfo}}&quot;);})'>{{PowerTransformerInfo}}</a></div>{{/PowerTransformerInfo}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of wire insulation.
-         *
-         */
-        class WireInsulationKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.WireInsulationKind;
-                if (null == bucket)
-                   cim_data.WireInsulationKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.WireInsulationKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "WireInsulationKind";
-                base.parse_element (/<cim:WireInsulationKind.asbestosAndVarnishedCambric>([\s\S]*?)<\/cim:WireInsulationKind.asbestosAndVarnishedCambric>/g, obj, "asbestosAndVarnishedCambric", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.butyl>([\s\S]*?)<\/cim:WireInsulationKind.butyl>/g, obj, "butyl", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.ethylenePropyleneRubber>([\s\S]*?)<\/cim:WireInsulationKind.ethylenePropyleneRubber>/g, obj, "ethylenePropyleneRubber", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.highMolecularWeightPolyethylene>([\s\S]*?)<\/cim:WireInsulationKind.highMolecularWeightPolyethylene>/g, obj, "highMolecularWeightPolyethylene", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.treeResistantHighMolecularWeightPolyethylene>([\s\S]*?)<\/cim:WireInsulationKind.treeResistantHighMolecularWeightPolyethylene>/g, obj, "treeResistantHighMolecularWeightPolyethylene", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.lowCapacitanceRubber>([\s\S]*?)<\/cim:WireInsulationKind.lowCapacitanceRubber>/g, obj, "lowCapacitanceRubber", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.oilPaper>([\s\S]*?)<\/cim:WireInsulationKind.oilPaper>/g, obj, "oilPaper", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.ozoneResistantRubber>([\s\S]*?)<\/cim:WireInsulationKind.ozoneResistantRubber>/g, obj, "ozoneResistantRubber", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.beltedPilc>([\s\S]*?)<\/cim:WireInsulationKind.beltedPilc>/g, obj, "beltedPilc", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.unbeltedPilc>([\s\S]*?)<\/cim:WireInsulationKind.unbeltedPilc>/g, obj, "unbeltedPilc", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.rubber>([\s\S]*?)<\/cim:WireInsulationKind.rubber>/g, obj, "rubber", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.siliconRubber>([\s\S]*?)<\/cim:WireInsulationKind.siliconRubber>/g, obj, "siliconRubber", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.varnishedCambricCloth>([\s\S]*?)<\/cim:WireInsulationKind.varnishedCambricCloth>/g, obj, "varnishedCambricCloth", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.varnishedDacronGlass>([\s\S]*?)<\/cim:WireInsulationKind.varnishedDacronGlass>/g, obj, "varnishedDacronGlass", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.crosslinkedPolyethylene>([\s\S]*?)<\/cim:WireInsulationKind.crosslinkedPolyethylene>/g, obj, "crosslinkedPolyethylene", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.treeRetardantCrosslinkedPolyethylene>([\s\S]*?)<\/cim:WireInsulationKind.treeRetardantCrosslinkedPolyethylene>/g, obj, "treeRetardantCrosslinkedPolyethylene", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.highPressureFluidFilled>([\s\S]*?)<\/cim:WireInsulationKind.highPressureFluidFilled>/g, obj, "highPressureFluidFilled", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInsulationKind.other>([\s\S]*?)<\/cim:WireInsulationKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.WireInsulationKind;
-                if (null == bucket)
-                   context.parsed.WireInsulationKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "WireInsulationKind", "asbestosAndVarnishedCambric", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "butyl", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "ethylenePropyleneRubber", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "highMolecularWeightPolyethylene", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "treeResistantHighMolecularWeightPolyethylene", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "lowCapacitanceRubber", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "oilPaper", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "ozoneResistantRubber", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "beltedPilc", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "unbeltedPilc", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "rubber", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "siliconRubber", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "varnishedCambricCloth", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "varnishedDacronGlass", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "crosslinkedPolyethylene", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "treeRetardantCrosslinkedPolyethylene", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "highPressureFluidFilled", base.from_string, fields);
-                base.export_element (obj, "WireInsulationKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WireInsulationKind_collapse" aria-expanded="true" aria-controls="WireInsulationKind_collapse">WireInsulationKind</a>
-<div id="WireInsulationKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#asbestosAndVarnishedCambric}}<div><b>asbestosAndVarnishedCambric</b>: {{asbestosAndVarnishedCambric}}</div>{{/asbestosAndVarnishedCambric}}
-{{#butyl}}<div><b>butyl</b>: {{butyl}}</div>{{/butyl}}
-{{#ethylenePropyleneRubber}}<div><b>ethylenePropyleneRubber</b>: {{ethylenePropyleneRubber}}</div>{{/ethylenePropyleneRubber}}
-{{#highMolecularWeightPolyethylene}}<div><b>highMolecularWeightPolyethylene</b>: {{highMolecularWeightPolyethylene}}</div>{{/highMolecularWeightPolyethylene}}
-{{#treeResistantHighMolecularWeightPolyethylene}}<div><b>treeResistantHighMolecularWeightPolyethylene</b>: {{treeResistantHighMolecularWeightPolyethylene}}</div>{{/treeResistantHighMolecularWeightPolyethylene}}
-{{#lowCapacitanceRubber}}<div><b>lowCapacitanceRubber</b>: {{lowCapacitanceRubber}}</div>{{/lowCapacitanceRubber}}
-{{#oilPaper}}<div><b>oilPaper</b>: {{oilPaper}}</div>{{/oilPaper}}
-{{#ozoneResistantRubber}}<div><b>ozoneResistantRubber</b>: {{ozoneResistantRubber}}</div>{{/ozoneResistantRubber}}
-{{#beltedPilc}}<div><b>beltedPilc</b>: {{beltedPilc}}</div>{{/beltedPilc}}
-{{#unbeltedPilc}}<div><b>unbeltedPilc</b>: {{unbeltedPilc}}</div>{{/unbeltedPilc}}
-{{#rubber}}<div><b>rubber</b>: {{rubber}}</div>{{/rubber}}
-{{#siliconRubber}}<div><b>siliconRubber</b>: {{siliconRubber}}</div>{{/siliconRubber}}
-{{#varnishedCambricCloth}}<div><b>varnishedCambricCloth</b>: {{varnishedCambricCloth}}</div>{{/varnishedCambricCloth}}
-{{#varnishedDacronGlass}}<div><b>varnishedDacronGlass</b>: {{varnishedDacronGlass}}</div>{{/varnishedDacronGlass}}
-{{#crosslinkedPolyethylene}}<div><b>crosslinkedPolyethylene</b>: {{crosslinkedPolyethylene}}</div>{{/crosslinkedPolyethylene}}
-{{#treeRetardantCrosslinkedPolyethylene}}<div><b>treeRetardantCrosslinkedPolyethylene</b>: {{treeRetardantCrosslinkedPolyethylene}}</div>{{/treeRetardantCrosslinkedPolyethylene}}
-{{#highPressureFluidFilled}}<div><b>highPressureFluidFilled</b>: {{highPressureFluidFilled}}</div>{{/highPressureFluidFilled}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerTankInfo_collapse" aria-expanded="true" aria-controls="TransformerTankInfo_collapse" style="margin-left: 10px;">TransformerTankInfo</a></legend>
+                    <div id="TransformerTankInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PowerTransformerInfo'>PowerTransformerInfo: </label><div class='col-sm-8'><input id='PowerTransformerInfo' class='form-control' type='text'{{#PowerTransformerInfo}} value='{{PowerTransformerInfo}}'{{/PowerTransformerInfo}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Busbar section data.
@@ -515,18 +533,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BusbarSectionInfo_collapse" aria-expanded="true" aria-controls="BusbarSectionInfo_collapse">BusbarSectionInfo</a>
-<div id="BusbarSectionInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
-{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BusbarSectionInfo_collapse" aria-expanded="true" aria-controls="BusbarSectionInfo_collapse" style="margin-left: 10px;">BusbarSectionInfo</a></legend>
+                    <div id="BusbarSectionInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+                    {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BusbarSectionInfo_collapse" aria-expanded="true" aria-controls="BusbarSectionInfo_collapse" style="margin-left: 10px;">BusbarSectionInfo</a></legend>
+                    <div id="BusbarSectionInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Set of power transformer data, from an equipment library.
@@ -579,16 +629,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PowerTransformerInfo_collapse" aria-expanded="true" aria-controls="PowerTransformerInfo_collapse">PowerTransformerInfo</a>
-<div id="PowerTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerTransformerInfo_collapse" aria-expanded="true" aria-controls="PowerTransformerInfo_collapse" style="margin-left: 10px;">PowerTransformerInfo</a></legend>
+                    <div id="PowerTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerTransformerInfo_collapse" aria-expanded="true" aria-controls="PowerTransformerInfo_collapse" style="margin-left: 10px;">PowerTransformerInfo</a></legend>
+                    <div id="PowerTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Wire data that can be specified per line segment phase, or for the line segment as a whole in case its phases all have the same wire characteristics.
@@ -622,9 +702,9 @@ define
                 base.parse_element (/<cim:WireInfo.coreStrandCount>([\s\S]*?)<\/cim:WireInfo.coreStrandCount>/g, obj, "coreStrandCount", base.to_string, sub, context);
                 base.parse_element (/<cim:WireInfo.gmr>([\s\S]*?)<\/cim:WireInfo.gmr>/g, obj, "gmr", base.to_string, sub, context);
                 base.parse_element (/<cim:WireInfo.insulated>([\s\S]*?)<\/cim:WireInfo.insulated>/g, obj, "insulated", base.to_boolean, sub, context);
-                base.parse_element (/<cim:WireInfo.insulationMaterial>([\s\S]*?)<\/cim:WireInfo.insulationMaterial>/g, obj, "insulationMaterial", base.to_string, sub, context);
+                base.parse_attribute (/<cim:WireInfo.insulationMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "insulationMaterial", sub, context);
                 base.parse_element (/<cim:WireInfo.insulationThickness>([\s\S]*?)<\/cim:WireInfo.insulationThickness>/g, obj, "insulationThickness", base.to_string, sub, context);
-                base.parse_element (/<cim:WireInfo.material>([\s\S]*?)<\/cim:WireInfo.material>/g, obj, "material", base.to_string, sub, context);
+                base.parse_attribute (/<cim:WireInfo.material\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "material", sub, context);
                 base.parse_element (/<cim:WireInfo.rAC25>([\s\S]*?)<\/cim:WireInfo.rAC25>/g, obj, "rAC25", base.to_string, sub, context);
                 base.parse_element (/<cim:WireInfo.rAC50>([\s\S]*?)<\/cim:WireInfo.rAC50>/g, obj, "rAC50", base.to_string, sub, context);
                 base.parse_element (/<cim:WireInfo.rAC75>([\s\S]*?)<\/cim:WireInfo.rAC75>/g, obj, "rAC75", base.to_string, sub, context);
@@ -671,31 +751,80 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WireInfo_collapse" aria-expanded="true" aria-controls="WireInfo_collapse">WireInfo</a>
-<div id="WireInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#coreRadius}}<div><b>coreRadius</b>: {{coreRadius}}</div>{{/coreRadius}}
-{{#coreStrandCount}}<div><b>coreStrandCount</b>: {{coreStrandCount}}</div>{{/coreStrandCount}}
-{{#gmr}}<div><b>gmr</b>: {{gmr}}</div>{{/gmr}}
-{{#insulated}}<div><b>insulated</b>: {{insulated}}</div>{{/insulated}}
-{{#insulationMaterial}}<div><b>insulationMaterial</b>: {{insulationMaterial}}</div>{{/insulationMaterial}}
-{{#insulationThickness}}<div><b>insulationThickness</b>: {{insulationThickness}}</div>{{/insulationThickness}}
-{{#material}}<div><b>material</b>: {{material}}</div>{{/material}}
-{{#rAC25}}<div><b>rAC25</b>: {{rAC25}}</div>{{/rAC25}}
-{{#rAC50}}<div><b>rAC50</b>: {{rAC50}}</div>{{/rAC50}}
-{{#rAC75}}<div><b>rAC75</b>: {{rAC75}}</div>{{/rAC75}}
-{{#radius}}<div><b>radius</b>: {{radius}}</div>{{/radius}}
-{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
-{{#rDC20}}<div><b>rDC20</b>: {{rDC20}}</div>{{/rDC20}}
-{{#sizeDescription}}<div><b>sizeDescription</b>: {{sizeDescription}}</div>{{/sizeDescription}}
-{{#strandCount}}<div><b>strandCount</b>: {{strandCount}}</div>{{/strandCount}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WireInfo_collapse" aria-expanded="true" aria-controls="WireInfo_collapse" style="margin-left: 10px;">WireInfo</a></legend>
+                    <div id="WireInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#coreRadius}}<div><b>coreRadius</b>: {{coreRadius}}</div>{{/coreRadius}}
+                    {{#coreStrandCount}}<div><b>coreStrandCount</b>: {{coreStrandCount}}</div>{{/coreStrandCount}}
+                    {{#gmr}}<div><b>gmr</b>: {{gmr}}</div>{{/gmr}}
+                    {{#insulated}}<div><b>insulated</b>: {{insulated}}</div>{{/insulated}}
+                    {{#insulationMaterial}}<div><b>insulationMaterial</b>: {{insulationMaterial}}</div>{{/insulationMaterial}}
+                    {{#insulationThickness}}<div><b>insulationThickness</b>: {{insulationThickness}}</div>{{/insulationThickness}}
+                    {{#material}}<div><b>material</b>: {{material}}</div>{{/material}}
+                    {{#rAC25}}<div><b>rAC25</b>: {{rAC25}}</div>{{/rAC25}}
+                    {{#rAC50}}<div><b>rAC50</b>: {{rAC50}}</div>{{/rAC50}}
+                    {{#rAC75}}<div><b>rAC75</b>: {{rAC75}}</div>{{/rAC75}}
+                    {{#radius}}<div><b>radius</b>: {{radius}}</div>{{/radius}}
+                    {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+                    {{#rDC20}}<div><b>rDC20</b>: {{rDC20}}</div>{{/rDC20}}
+                    {{#sizeDescription}}<div><b>sizeDescription</b>: {{sizeDescription}}</div>{{/sizeDescription}}
+                    {{#strandCount}}<div><b>strandCount</b>: {{strandCount}}</div>{{/strandCount}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.WireInsulationKind = []; if (!obj.insulationMaterial) obj.WireInsulationKind.push ({ id: '', selected: true}); for (var property in WireInsulationKind) obj.WireInsulationKind.push ({ id: property, selected: obj.insulationMaterial && obj.insulationMaterial.endsWith ('.' + property)});
+                obj.WireMaterialKind = []; if (!obj.material) obj.WireMaterialKind.push ({ id: '', selected: true}); for (var property in WireMaterialKind) obj.WireMaterialKind.push ({ id: property, selected: obj.material && obj.material.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.WireInsulationKind;
+                delete obj.WireMaterialKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WireInfo_collapse" aria-expanded="true" aria-controls="WireInfo_collapse" style="margin-left: 10px;">WireInfo</a></legend>
+                    <div id="WireInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreRadius'>coreRadius: </label><div class='col-sm-8'><input id='coreRadius' class='form-control' type='text'{{#coreRadius}} value='{{coreRadius}}'{{/coreRadius}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreStrandCount'>coreStrandCount: </label><div class='col-sm-8'><input id='coreStrandCount' class='form-control' type='text'{{#coreStrandCount}} value='{{coreStrandCount}}'{{/coreStrandCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gmr'>gmr: </label><div class='col-sm-8'><input id='gmr' class='form-control' type='text'{{#gmr}} value='{{gmr}}'{{/gmr}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='insulated'>insulated: </label><div class='col-sm-8'><input id='insulated' class='form-check-input' type='checkbox'{{#insulated}} checked{{/insulated}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='insulationMaterial'>insulationMaterial: </label><div class='col-sm-8'><select id='insulationMaterial' class='form-control'>{{#WireInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WireInsulationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='insulationThickness'>insulationThickness: </label><div class='col-sm-8'><input id='insulationThickness' class='form-control' type='text'{{#insulationThickness}} value='{{insulationThickness}}'{{/insulationThickness}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='material'>material: </label><div class='col-sm-8'><select id='material' class='form-control'>{{#WireMaterialKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WireMaterialKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rAC25'>rAC25: </label><div class='col-sm-8'><input id='rAC25' class='form-control' type='text'{{#rAC25}} value='{{rAC25}}'{{/rAC25}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rAC50'>rAC50: </label><div class='col-sm-8'><input id='rAC50' class='form-control' type='text'{{#rAC50}} value='{{rAC50}}'{{/rAC50}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rAC75'>rAC75: </label><div class='col-sm-8'><input id='rAC75' class='form-control' type='text'{{#rAC75}} value='{{rAC75}}'{{/rAC75}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='radius'>radius: </label><div class='col-sm-8'><input id='radius' class='form-control' type='text'{{#radius}} value='{{radius}}'{{/radius}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rDC20'>rDC20: </label><div class='col-sm-8'><input id='rDC20' class='form-control' type='text'{{#rDC20}} value='{{rDC20}}'{{/rDC20}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sizeDescription'>sizeDescription: </label><div class='col-sm-8'><input id='sizeDescription' class='form-control' type='text'{{#sizeDescription}} value='{{sizeDescription}}'{{/sizeDescription}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='strandCount'>strandCount: </label><div class='col-sm-8'><input id='strandCount' class='form-control' type='text'{{#strandCount}} value='{{strandCount}}'{{/strandCount}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Properties of shunt capacitor, shunt reactor or switchable bank of shunt capacitor or reactor assets.
@@ -758,21 +887,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ShuntCompensatorInfo_collapse" aria-expanded="true" aria-controls="ShuntCompensatorInfo_collapse">ShuntCompensatorInfo</a>
-<div id="ShuntCompensatorInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#maxPowerLoss}}<div><b>maxPowerLoss</b>: {{maxPowerLoss}}</div>{{/maxPowerLoss}}
-{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
-{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
-{{#ratedReactivePower}}<div><b>ratedReactivePower</b>: {{ratedReactivePower}}</div>{{/ratedReactivePower}}
-{{#ShuntCompensatorControl}}<div><b>ShuntCompensatorControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensatorControl}}&quot;);})'>{{ShuntCompensatorControl}}</a></div>{{/ShuntCompensatorControl}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShuntCompensatorInfo_collapse" aria-expanded="true" aria-controls="ShuntCompensatorInfo_collapse" style="margin-left: 10px;">ShuntCompensatorInfo</a></legend>
+                    <div id="ShuntCompensatorInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#maxPowerLoss}}<div><b>maxPowerLoss</b>: {{maxPowerLoss}}</div>{{/maxPowerLoss}}
+                    {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+                    {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+                    {{#ratedReactivePower}}<div><b>ratedReactivePower</b>: {{ratedReactivePower}}</div>{{/ratedReactivePower}}
+                    {{#ShuntCompensatorControl}}<div><b>ShuntCompensatorControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensatorControl}}&quot;);})'>{{ShuntCompensatorControl}}</a></div>{{/ShuntCompensatorControl}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShuntCompensatorInfo_collapse" aria-expanded="true" aria-controls="ShuntCompensatorInfo_collapse" style="margin-left: 10px;">ShuntCompensatorInfo</a></legend>
+                    <div id="ShuntCompensatorInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxPowerLoss'>maxPowerLoss: </label><div class='col-sm-8'><input id='maxPowerLoss' class='form-control' type='text'{{#maxPowerLoss}} value='{{maxPowerLoss}}'{{/maxPowerLoss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedReactivePower'>ratedReactivePower: </label><div class='col-sm-8'><input id='ratedReactivePower' class='form-control' type='text'{{#ratedReactivePower}} value='{{ratedReactivePower}}'{{/ratedReactivePower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ShuntCompensatorControl'>ShuntCompensatorControl: </label><div class='col-sm-8'><input id='ShuntCompensatorControl' class='form-control' type='text'{{#ShuntCompensatorControl}} value='{{ShuntCompensatorControl}}'{{/ShuntCompensatorControl}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Switch data.
@@ -835,21 +999,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SwitchInfo_collapse" aria-expanded="true" aria-controls="SwitchInfo_collapse">SwitchInfo</a>
-<div id="SwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#breakingCapacity}}<div><b>breakingCapacity</b>: {{breakingCapacity}}</div>{{/breakingCapacity}}
-{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
-{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
-{{#isSinglePhase}}<div><b>isSinglePhase</b>: {{isSinglePhase}}</div>{{/isSinglePhase}}
-{{#isUnganged}}<div><b>isUnganged</b>: {{isUnganged}}</div>{{/isUnganged}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SwitchInfo_collapse" aria-expanded="true" aria-controls="SwitchInfo_collapse" style="margin-left: 10px;">SwitchInfo</a></legend>
+                    <div id="SwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#breakingCapacity}}<div><b>breakingCapacity</b>: {{breakingCapacity}}</div>{{/breakingCapacity}}
+                    {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+                    {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+                    {{#isSinglePhase}}<div><b>isSinglePhase</b>: {{isSinglePhase}}</div>{{/isSinglePhase}}
+                    {{#isUnganged}}<div><b>isUnganged</b>: {{isUnganged}}</div>{{/isUnganged}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SwitchInfo_collapse" aria-expanded="true" aria-controls="SwitchInfo_collapse" style="margin-left: 10px;">SwitchInfo</a></legend>
+                    <div id="SwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='breakingCapacity'>breakingCapacity: </label><div class='col-sm-8'><input id='breakingCapacity' class='form-control' type='text'{{#breakingCapacity}} value='{{breakingCapacity}}'{{/breakingCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isSinglePhase'>isSinglePhase: </label><div class='col-sm-8'><input id='isSinglePhase' class='form-check-input' type='checkbox'{{#isSinglePhase}} checked{{/isSinglePhase}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isUnganged'>isUnganged: </label><div class='col-sm-8'><input id='isUnganged' class='form-check-input' type='checkbox'{{#isUnganged}} checked{{/isUnganged}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Identification, spacing and configuration of the wires of a conductor with respect to a structure.
@@ -910,20 +1109,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WirePosition_collapse" aria-expanded="true" aria-controls="WirePosition_collapse">WirePosition</a>
-<div id="WirePosition_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
-{{#xCoord}}<div><b>xCoord</b>: {{xCoord}}</div>{{/xCoord}}
-{{#yCoord}}<div><b>yCoord</b>: {{yCoord}}</div>{{/yCoord}}
-{{#WireSpacingInfo}}<div><b>WireSpacingInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WireSpacingInfo}}&quot;);})'>{{WireSpacingInfo}}</a></div>{{/WireSpacingInfo}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WirePosition_collapse" aria-expanded="true" aria-controls="WirePosition_collapse" style="margin-left: 10px;">WirePosition</a></legend>
+                    <div id="WirePosition_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
+                    {{#xCoord}}<div><b>xCoord</b>: {{xCoord}}</div>{{/xCoord}}
+                    {{#yCoord}}<div><b>yCoord</b>: {{yCoord}}</div>{{/yCoord}}
+                    {{#WireSpacingInfo}}<div><b>WireSpacingInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WireSpacingInfo}}&quot;);})'>{{WireSpacingInfo}}</a></div>{{/WireSpacingInfo}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WirePosition_collapse" aria-expanded="true" aria-controls="WirePosition_collapse" style="margin-left: 10px;">WirePosition</a></legend>
+                    <div id="WirePosition_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phase'>phase: </label><div class='col-sm-8'><input id='phase' class='form-control' type='text'{{#phase}} value='{{phase}}'{{/phase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xCoord'>xCoord: </label><div class='col-sm-8'><input id='xCoord' class='form-control' type='text'{{#xCoord}} value='{{xCoord}}'{{/xCoord}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='yCoord'>yCoord: </label><div class='col-sm-8'><input id='yCoord' class='form-control' type='text'{{#yCoord}} value='{{yCoord}}'{{/yCoord}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WireSpacingInfo'>WireSpacingInfo: </label><div class='col-sm-8'><input id='WireSpacingInfo' class='form-control' type='text'{{#WireSpacingInfo}} value='{{WireSpacingInfo}}'{{/WireSpacingInfo}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Transformer end data.
@@ -1000,28 +1233,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransformerEndInfo_collapse" aria-expanded="true" aria-controls="TransformerEndInfo_collapse">TransformerEndInfo</a>
-<div id="TransformerEndInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#connectionKind}}<div><b>connectionKind</b>: {{connectionKind}}</div>{{/connectionKind}}
-{{#emergencyS}}<div><b>emergencyS</b>: {{emergencyS}}</div>{{/emergencyS}}
-{{#endNumber}}<div><b>endNumber</b>: {{endNumber}}</div>{{/endNumber}}
-{{#insulationU}}<div><b>insulationU</b>: {{insulationU}}</div>{{/insulationU}}
-{{#phaseAngleClock}}<div><b>phaseAngleClock</b>: {{phaseAngleClock}}</div>{{/phaseAngleClock}}
-{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
-{{#ratedS}}<div><b>ratedS</b>: {{ratedS}}</div>{{/ratedS}}
-{{#ratedU}}<div><b>ratedU</b>: {{ratedU}}</div>{{/ratedU}}
-{{#shortTermS}}<div><b>shortTermS</b>: {{shortTermS}}</div>{{/shortTermS}}
-{{#TransformerStarImpedance}}<div><b>TransformerStarImpedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerStarImpedance}}&quot;);})'>{{TransformerStarImpedance}}</a></div>{{/TransformerStarImpedance}}
-{{#TransformerTankInfo}}<div><b>TransformerTankInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerTankInfo}}&quot;);})'>{{TransformerTankInfo}}</a></div>{{/TransformerTankInfo}}
-{{#CoreAdmittance}}<div><b>CoreAdmittance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CoreAdmittance}}&quot;);})'>{{CoreAdmittance}}</a></div>{{/CoreAdmittance}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerEndInfo_collapse" aria-expanded="true" aria-controls="TransformerEndInfo_collapse" style="margin-left: 10px;">TransformerEndInfo</a></legend>
+                    <div id="TransformerEndInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#connectionKind}}<div><b>connectionKind</b>: {{connectionKind}}</div>{{/connectionKind}}
+                    {{#emergencyS}}<div><b>emergencyS</b>: {{emergencyS}}</div>{{/emergencyS}}
+                    {{#endNumber}}<div><b>endNumber</b>: {{endNumber}}</div>{{/endNumber}}
+                    {{#insulationU}}<div><b>insulationU</b>: {{insulationU}}</div>{{/insulationU}}
+                    {{#phaseAngleClock}}<div><b>phaseAngleClock</b>: {{phaseAngleClock}}</div>{{/phaseAngleClock}}
+                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+                    {{#ratedS}}<div><b>ratedS</b>: {{ratedS}}</div>{{/ratedS}}
+                    {{#ratedU}}<div><b>ratedU</b>: {{ratedU}}</div>{{/ratedU}}
+                    {{#shortTermS}}<div><b>shortTermS</b>: {{shortTermS}}</div>{{/shortTermS}}
+                    {{#TransformerStarImpedance}}<div><b>TransformerStarImpedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerStarImpedance}}&quot;);})'>{{TransformerStarImpedance}}</a></div>{{/TransformerStarImpedance}}
+                    {{#TransformerTankInfo}}<div><b>TransformerTankInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerTankInfo}}&quot;);})'>{{TransformerTankInfo}}</a></div>{{/TransformerTankInfo}}
+                    {{#CoreAdmittance}}<div><b>CoreAdmittance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CoreAdmittance}}&quot;);})'>{{CoreAdmittance}}</a></div>{{/CoreAdmittance}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerEndInfo_collapse" aria-expanded="true" aria-controls="TransformerEndInfo_collapse" style="margin-left: 10px;">TransformerEndInfo</a></legend>
+                    <div id="TransformerEndInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='connectionKind'>connectionKind: </label><div class='col-sm-8'><input id='connectionKind' class='form-control' type='text'{{#connectionKind}} value='{{connectionKind}}'{{/connectionKind}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emergencyS'>emergencyS: </label><div class='col-sm-8'><input id='emergencyS' class='form-control' type='text'{{#emergencyS}} value='{{emergencyS}}'{{/emergencyS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endNumber'>endNumber: </label><div class='col-sm-8'><input id='endNumber' class='form-control' type='text'{{#endNumber}} value='{{endNumber}}'{{/endNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='insulationU'>insulationU: </label><div class='col-sm-8'><input id='insulationU' class='form-control' type='text'{{#insulationU}} value='{{insulationU}}'{{/insulationU}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseAngleClock'>phaseAngleClock: </label><div class='col-sm-8'><input id='phaseAngleClock' class='form-control' type='text'{{#phaseAngleClock}} value='{{phaseAngleClock}}'{{/phaseAngleClock}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedS'>ratedS: </label><div class='col-sm-8'><input id='ratedS' class='form-control' type='text'{{#ratedS}} value='{{ratedS}}'{{/ratedS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedU'>ratedU: </label><div class='col-sm-8'><input id='ratedU' class='form-control' type='text'{{#ratedU}} value='{{ratedU}}'{{/ratedU}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shortTermS'>shortTermS: </label><div class='col-sm-8'><input id='shortTermS' class='form-control' type='text'{{#shortTermS}} value='{{shortTermS}}'{{/shortTermS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransformerStarImpedance'>TransformerStarImpedance: </label><div class='col-sm-8'><input id='TransformerStarImpedance' class='form-control' type='text'{{#TransformerStarImpedance}} value='{{TransformerStarImpedance}}'{{/TransformerStarImpedance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransformerTankInfo'>TransformerTankInfo: </label><div class='col-sm-8'><input id='TransformerTankInfo' class='form-control' type='text'{{#TransformerTankInfo}} value='{{TransformerTankInfo}}'{{/TransformerTankInfo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CoreAdmittance'>CoreAdmittance: </label><div class='col-sm-8'><input id='CoreAdmittance' class='form-control' type='text'{{#CoreAdmittance}} value='{{CoreAdmittance}}'{{/CoreAdmittance}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Test result for transformer ends, such as short-circuit, open-circuit (excitation) or no-load test.
@@ -1078,341 +1353,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransformerTest_collapse" aria-expanded="true" aria-controls="TransformerTest_collapse">TransformerTest</a>
-<div id="TransformerTest_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#basePower}}<div><b>basePower</b>: {{basePower}}</div>{{/basePower}}
-{{#temperature}}<div><b>temperature</b>: {{temperature}}</div>{{/temperature}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerTest_collapse" aria-expanded="true" aria-controls="TransformerTest_collapse" style="margin-left: 10px;">TransformerTest</a></legend>
+                    <div id="TransformerTest_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#basePower}}<div><b>basePower</b>: {{basePower}}</div>{{/basePower}}
+                    {{#temperature}}<div><b>temperature</b>: {{temperature}}</div>{{/temperature}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of wire material.
-         *
-         */
-        class WireMaterialKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.WireMaterialKind;
-                if (null == bucket)
-                   cim_data.WireMaterialKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.WireMaterialKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "WireMaterialKind";
-                base.parse_element (/<cim:WireMaterialKind.copper>([\s\S]*?)<\/cim:WireMaterialKind.copper>/g, obj, "copper", base.to_string, sub, context);
-                base.parse_element (/<cim:WireMaterialKind.steel>([\s\S]*?)<\/cim:WireMaterialKind.steel>/g, obj, "steel", base.to_string, sub, context);
-                base.parse_element (/<cim:WireMaterialKind.aluminum>([\s\S]*?)<\/cim:WireMaterialKind.aluminum>/g, obj, "aluminum", base.to_string, sub, context);
-                base.parse_element (/<cim:WireMaterialKind.aluminumSteel>([\s\S]*?)<\/cim:WireMaterialKind.aluminumSteel>/g, obj, "aluminumSteel", base.to_string, sub, context);
-                base.parse_element (/<cim:WireMaterialKind.acsr>([\s\S]*?)<\/cim:WireMaterialKind.acsr>/g, obj, "acsr", base.to_string, sub, context);
-                base.parse_element (/<cim:WireMaterialKind.aluminumAlloy>([\s\S]*?)<\/cim:WireMaterialKind.aluminumAlloy>/g, obj, "aluminumAlloy", base.to_string, sub, context);
-                base.parse_element (/<cim:WireMaterialKind.aluminumAlloySteel>([\s\S]*?)<\/cim:WireMaterialKind.aluminumAlloySteel>/g, obj, "aluminumAlloySteel", base.to_string, sub, context);
-                base.parse_element (/<cim:WireMaterialKind.aaac>([\s\S]*?)<\/cim:WireMaterialKind.aaac>/g, obj, "aaac", base.to_string, sub, context);
-                base.parse_element (/<cim:WireMaterialKind.other>([\s\S]*?)<\/cim:WireMaterialKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.WireMaterialKind;
-                if (null == bucket)
-                   context.parsed.WireMaterialKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "WireMaterialKind", "copper", base.from_string, fields);
-                base.export_element (obj, "WireMaterialKind", "steel", base.from_string, fields);
-                base.export_element (obj, "WireMaterialKind", "aluminum", base.from_string, fields);
-                base.export_element (obj, "WireMaterialKind", "aluminumSteel", base.from_string, fields);
-                base.export_element (obj, "WireMaterialKind", "acsr", base.from_string, fields);
-                base.export_element (obj, "WireMaterialKind", "aluminumAlloy", base.from_string, fields);
-                base.export_element (obj, "WireMaterialKind", "aluminumAlloySteel", base.from_string, fields);
-                base.export_element (obj, "WireMaterialKind", "aaac", base.from_string, fields);
-                base.export_element (obj, "WireMaterialKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WireMaterialKind_collapse" aria-expanded="true" aria-controls="WireMaterialKind_collapse">WireMaterialKind</a>
-<div id="WireMaterialKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#copper}}<div><b>copper</b>: {{copper}}</div>{{/copper}}
-{{#steel}}<div><b>steel</b>: {{steel}}</div>{{/steel}}
-{{#aluminum}}<div><b>aluminum</b>: {{aluminum}}</div>{{/aluminum}}
-{{#aluminumSteel}}<div><b>aluminumSteel</b>: {{aluminumSteel}}</div>{{/aluminumSteel}}
-{{#acsr}}<div><b>acsr</b>: {{acsr}}</div>{{/acsr}}
-{{#aluminumAlloy}}<div><b>aluminumAlloy</b>: {{aluminumAlloy}}</div>{{/aluminumAlloy}}
-{{#aluminumAlloySteel}}<div><b>aluminumAlloySteel</b>: {{aluminumAlloySteel}}</div>{{/aluminumAlloySteel}}
-{{#aaac}}<div><b>aaac</b>: {{aaac}}</div>{{/aaac}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerTest_collapse" aria-expanded="true" aria-controls="TransformerTest_collapse" style="margin-left: 10px;">TransformerTest</a></legend>
+                    <div id="TransformerTest_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='basePower'>basePower: </label><div class='col-sm-8'><input id='basePower' class='form-control' type='text'{{#basePower}} value='{{basePower}}'{{/basePower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='temperature'>temperature: </label><div class='col-sm-8'><input id='temperature' class='form-control' type='text'{{#temperature}} value='{{temperature}}'{{/temperature}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of cable construction.
-         *
-         */
-        class CableConstructionKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.CableConstructionKind;
-                if (null == bucket)
-                   cim_data.CableConstructionKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.CableConstructionKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "CableConstructionKind";
-                base.parse_element (/<cim:CableConstructionKind.compacted>([\s\S]*?)<\/cim:CableConstructionKind.compacted>/g, obj, "compacted", base.to_string, sub, context);
-                base.parse_element (/<cim:CableConstructionKind.compressed>([\s\S]*?)<\/cim:CableConstructionKind.compressed>/g, obj, "compressed", base.to_string, sub, context);
-                base.parse_element (/<cim:CableConstructionKind.sector>([\s\S]*?)<\/cim:CableConstructionKind.sector>/g, obj, "sector", base.to_string, sub, context);
-                base.parse_element (/<cim:CableConstructionKind.segmental>([\s\S]*?)<\/cim:CableConstructionKind.segmental>/g, obj, "segmental", base.to_string, sub, context);
-                base.parse_element (/<cim:CableConstructionKind.solid>([\s\S]*?)<\/cim:CableConstructionKind.solid>/g, obj, "solid", base.to_string, sub, context);
-                base.parse_element (/<cim:CableConstructionKind.stranded>([\s\S]*?)<\/cim:CableConstructionKind.stranded>/g, obj, "stranded", base.to_string, sub, context);
-                base.parse_element (/<cim:CableConstructionKind.other>([\s\S]*?)<\/cim:CableConstructionKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.CableConstructionKind;
-                if (null == bucket)
-                   context.parsed.CableConstructionKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "CableConstructionKind", "compacted", base.from_string, fields);
-                base.export_element (obj, "CableConstructionKind", "compressed", base.from_string, fields);
-                base.export_element (obj, "CableConstructionKind", "sector", base.from_string, fields);
-                base.export_element (obj, "CableConstructionKind", "segmental", base.from_string, fields);
-                base.export_element (obj, "CableConstructionKind", "solid", base.from_string, fields);
-                base.export_element (obj, "CableConstructionKind", "stranded", base.from_string, fields);
-                base.export_element (obj, "CableConstructionKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#CableConstructionKind_collapse" aria-expanded="true" aria-controls="CableConstructionKind_collapse">CableConstructionKind</a>
-<div id="CableConstructionKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#compacted}}<div><b>compacted</b>: {{compacted}}</div>{{/compacted}}
-{{#compressed}}<div><b>compressed</b>: {{compressed}}</div>{{/compressed}}
-{{#sector}}<div><b>sector</b>: {{sector}}</div>{{/sector}}
-{{#segmental}}<div><b>segmental</b>: {{segmental}}</div>{{/segmental}}
-{{#solid}}<div><b>solid</b>: {{solid}}</div>{{/solid}}
-{{#stranded}}<div><b>stranded</b>: {{stranded}}</div>{{/stranded}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
-                );
-           }        }
-
-        /**
-         * Kind of cable shield material.
-         *
-         */
-        class CableShieldMaterialKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.CableShieldMaterialKind;
-                if (null == bucket)
-                   cim_data.CableShieldMaterialKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.CableShieldMaterialKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "CableShieldMaterialKind";
-                base.parse_element (/<cim:CableShieldMaterialKind.lead>([\s\S]*?)<\/cim:CableShieldMaterialKind.lead>/g, obj, "lead", base.to_string, sub, context);
-                base.parse_element (/<cim:CableShieldMaterialKind.copper>([\s\S]*?)<\/cim:CableShieldMaterialKind.copper>/g, obj, "copper", base.to_string, sub, context);
-                base.parse_element (/<cim:CableShieldMaterialKind.steel>([\s\S]*?)<\/cim:CableShieldMaterialKind.steel>/g, obj, "steel", base.to_string, sub, context);
-                base.parse_element (/<cim:CableShieldMaterialKind.aluminum>([\s\S]*?)<\/cim:CableShieldMaterialKind.aluminum>/g, obj, "aluminum", base.to_string, sub, context);
-                base.parse_element (/<cim:CableShieldMaterialKind.other>([\s\S]*?)<\/cim:CableShieldMaterialKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.CableShieldMaterialKind;
-                if (null == bucket)
-                   context.parsed.CableShieldMaterialKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "CableShieldMaterialKind", "lead", base.from_string, fields);
-                base.export_element (obj, "CableShieldMaterialKind", "copper", base.from_string, fields);
-                base.export_element (obj, "CableShieldMaterialKind", "steel", base.from_string, fields);
-                base.export_element (obj, "CableShieldMaterialKind", "aluminum", base.from_string, fields);
-                base.export_element (obj, "CableShieldMaterialKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#CableShieldMaterialKind_collapse" aria-expanded="true" aria-controls="CableShieldMaterialKind_collapse">CableShieldMaterialKind</a>
-<div id="CableShieldMaterialKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#lead}}<div><b>lead</b>: {{lead}}</div>{{/lead}}
-{{#copper}}<div><b>copper</b>: {{copper}}</div>{{/copper}}
-{{#steel}}<div><b>steel</b>: {{steel}}</div>{{/steel}}
-{{#aluminum}}<div><b>aluminum</b>: {{aluminum}}</div>{{/aluminum}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
-                );
-           }        }
-
-        /**
-         * Kind of wire usage.
-         *
-         */
-        class WireUsageKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.WireUsageKind;
-                if (null == bucket)
-                   cim_data.WireUsageKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.WireUsageKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "WireUsageKind";
-                base.parse_element (/<cim:WireUsageKind.transmission>([\s\S]*?)<\/cim:WireUsageKind.transmission>/g, obj, "transmission", base.to_string, sub, context);
-                base.parse_element (/<cim:WireUsageKind.distribution>([\s\S]*?)<\/cim:WireUsageKind.distribution>/g, obj, "distribution", base.to_string, sub, context);
-                base.parse_element (/<cim:WireUsageKind.secondary>([\s\S]*?)<\/cim:WireUsageKind.secondary>/g, obj, "secondary", base.to_string, sub, context);
-                base.parse_element (/<cim:WireUsageKind.other>([\s\S]*?)<\/cim:WireUsageKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.WireUsageKind;
-                if (null == bucket)
-                   context.parsed.WireUsageKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "WireUsageKind", "transmission", base.from_string, fields);
-                base.export_element (obj, "WireUsageKind", "distribution", base.from_string, fields);
-                base.export_element (obj, "WireUsageKind", "secondary", base.from_string, fields);
-                base.export_element (obj, "WireUsageKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#WireUsageKind_collapse" aria-expanded="true" aria-controls="WireUsageKind_collapse">WireUsageKind</a>
-<div id="WireUsageKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#transmission}}<div><b>transmission</b>: {{transmission}}</div>{{/transmission}}
-{{#distribution}}<div><b>distribution</b>: {{distribution}}</div>{{/distribution}}
-{{#secondary}}<div><b>secondary</b>: {{secondary}}</div>{{/secondary}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         /**
          * Cable data.
@@ -1442,16 +1426,16 @@ define
 
                 obj = WireInfo.prototype.parse.call (this, context, sub);
                 obj.cls = "CableInfo";
-                base.parse_element (/<cim:CableInfo.constructionKind>([\s\S]*?)<\/cim:CableInfo.constructionKind>/g, obj, "constructionKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CableInfo.constructionKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "constructionKind", sub, context);
                 base.parse_element (/<cim:CableInfo.diameterOverCore>([\s\S]*?)<\/cim:CableInfo.diameterOverCore>/g, obj, "diameterOverCore", base.to_string, sub, context);
                 base.parse_element (/<cim:CableInfo.diameterOverInsulation>([\s\S]*?)<\/cim:CableInfo.diameterOverInsulation>/g, obj, "diameterOverInsulation", base.to_string, sub, context);
                 base.parse_element (/<cim:CableInfo.diameterOverJacket>([\s\S]*?)<\/cim:CableInfo.diameterOverJacket>/g, obj, "diameterOverJacket", base.to_string, sub, context);
                 base.parse_element (/<cim:CableInfo.diameterOverScreen>([\s\S]*?)<\/cim:CableInfo.diameterOverScreen>/g, obj, "diameterOverScreen", base.to_string, sub, context);
                 base.parse_element (/<cim:CableInfo.isStrandFill>([\s\S]*?)<\/cim:CableInfo.isStrandFill>/g, obj, "isStrandFill", base.to_boolean, sub, context);
                 base.parse_element (/<cim:CableInfo.nominalTemperature>([\s\S]*?)<\/cim:CableInfo.nominalTemperature>/g, obj, "nominalTemperature", base.to_string, sub, context);
-                base.parse_element (/<cim:CableInfo.outerJacketKind>([\s\S]*?)<\/cim:CableInfo.outerJacketKind>/g, obj, "outerJacketKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CableInfo.outerJacketKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "outerJacketKind", sub, context);
                 base.parse_element (/<cim:CableInfo.sheathAsNeutral>([\s\S]*?)<\/cim:CableInfo.sheathAsNeutral>/g, obj, "sheathAsNeutral", base.to_boolean, sub, context);
-                base.parse_element (/<cim:CableInfo.shieldMaterial>([\s\S]*?)<\/cim:CableInfo.shieldMaterial>/g, obj, "shieldMaterial", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CableInfo.shieldMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "shieldMaterial", sub, context);
 
                 var bucket = context.parsed.CableInfo;
                 if (null == bucket)
@@ -1485,26 +1469,72 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CableInfo_collapse" aria-expanded="true" aria-controls="CableInfo_collapse">CableInfo</a>
-<div id="CableInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WireInfo.prototype.template.call (this) +
-`
-{{#constructionKind}}<div><b>constructionKind</b>: {{constructionKind}}</div>{{/constructionKind}}
-{{#diameterOverCore}}<div><b>diameterOverCore</b>: {{diameterOverCore}}</div>{{/diameterOverCore}}
-{{#diameterOverInsulation}}<div><b>diameterOverInsulation</b>: {{diameterOverInsulation}}</div>{{/diameterOverInsulation}}
-{{#diameterOverJacket}}<div><b>diameterOverJacket</b>: {{diameterOverJacket}}</div>{{/diameterOverJacket}}
-{{#diameterOverScreen}}<div><b>diameterOverScreen</b>: {{diameterOverScreen}}</div>{{/diameterOverScreen}}
-{{#isStrandFill}}<div><b>isStrandFill</b>: {{isStrandFill}}</div>{{/isStrandFill}}
-{{#nominalTemperature}}<div><b>nominalTemperature</b>: {{nominalTemperature}}</div>{{/nominalTemperature}}
-{{#outerJacketKind}}<div><b>outerJacketKind</b>: {{outerJacketKind}}</div>{{/outerJacketKind}}
-{{#sheathAsNeutral}}<div><b>sheathAsNeutral</b>: {{sheathAsNeutral}}</div>{{/sheathAsNeutral}}
-{{#shieldMaterial}}<div><b>shieldMaterial</b>: {{shieldMaterial}}</div>{{/shieldMaterial}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CableInfo_collapse" aria-expanded="true" aria-controls="CableInfo_collapse" style="margin-left: 10px;">CableInfo</a></legend>
+                    <div id="CableInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WireInfo.prototype.template.call (this) +
+                    `
+                    {{#constructionKind}}<div><b>constructionKind</b>: {{constructionKind}}</div>{{/constructionKind}}
+                    {{#diameterOverCore}}<div><b>diameterOverCore</b>: {{diameterOverCore}}</div>{{/diameterOverCore}}
+                    {{#diameterOverInsulation}}<div><b>diameterOverInsulation</b>: {{diameterOverInsulation}}</div>{{/diameterOverInsulation}}
+                    {{#diameterOverJacket}}<div><b>diameterOverJacket</b>: {{diameterOverJacket}}</div>{{/diameterOverJacket}}
+                    {{#diameterOverScreen}}<div><b>diameterOverScreen</b>: {{diameterOverScreen}}</div>{{/diameterOverScreen}}
+                    {{#isStrandFill}}<div><b>isStrandFill</b>: {{isStrandFill}}</div>{{/isStrandFill}}
+                    {{#nominalTemperature}}<div><b>nominalTemperature</b>: {{nominalTemperature}}</div>{{/nominalTemperature}}
+                    {{#outerJacketKind}}<div><b>outerJacketKind</b>: {{outerJacketKind}}</div>{{/outerJacketKind}}
+                    {{#sheathAsNeutral}}<div><b>sheathAsNeutral</b>: {{sheathAsNeutral}}</div>{{/sheathAsNeutral}}
+                    {{#shieldMaterial}}<div><b>shieldMaterial</b>: {{shieldMaterial}}</div>{{/shieldMaterial}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.CableConstructionKind = []; if (!obj.constructionKind) obj.CableConstructionKind.push ({ id: '', selected: true}); for (var property in CableConstructionKind) obj.CableConstructionKind.push ({ id: property, selected: obj.constructionKind && obj.constructionKind.endsWith ('.' + property)});
+                obj.CableOuterJacketKind = []; if (!obj.outerJacketKind) obj.CableOuterJacketKind.push ({ id: '', selected: true}); for (var property in CableOuterJacketKind) obj.CableOuterJacketKind.push ({ id: property, selected: obj.outerJacketKind && obj.outerJacketKind.endsWith ('.' + property)});
+                obj.CableShieldMaterialKind = []; if (!obj.shieldMaterial) obj.CableShieldMaterialKind.push ({ id: '', selected: true}); for (var property in CableShieldMaterialKind) obj.CableShieldMaterialKind.push ({ id: property, selected: obj.shieldMaterial && obj.shieldMaterial.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.CableConstructionKind;
+                delete obj.CableOuterJacketKind;
+                delete obj.CableShieldMaterialKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CableInfo_collapse" aria-expanded="true" aria-controls="CableInfo_collapse" style="margin-left: 10px;">CableInfo</a></legend>
+                    <div id="CableInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WireInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='constructionKind'>constructionKind: </label><div class='col-sm-8'><select id='constructionKind' class='form-control'>{{#CableConstructionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CableConstructionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diameterOverCore'>diameterOverCore: </label><div class='col-sm-8'><input id='diameterOverCore' class='form-control' type='text'{{#diameterOverCore}} value='{{diameterOverCore}}'{{/diameterOverCore}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diameterOverInsulation'>diameterOverInsulation: </label><div class='col-sm-8'><input id='diameterOverInsulation' class='form-control' type='text'{{#diameterOverInsulation}} value='{{diameterOverInsulation}}'{{/diameterOverInsulation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diameterOverJacket'>diameterOverJacket: </label><div class='col-sm-8'><input id='diameterOverJacket' class='form-control' type='text'{{#diameterOverJacket}} value='{{diameterOverJacket}}'{{/diameterOverJacket}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diameterOverScreen'>diameterOverScreen: </label><div class='col-sm-8'><input id='diameterOverScreen' class='form-control' type='text'{{#diameterOverScreen}} value='{{diameterOverScreen}}'{{/diameterOverScreen}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isStrandFill'>isStrandFill: </label><div class='col-sm-8'><input id='isStrandFill' class='form-check-input' type='checkbox'{{#isStrandFill}} checked{{/isStrandFill}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nominalTemperature'>nominalTemperature: </label><div class='col-sm-8'><input id='nominalTemperature' class='form-control' type='text'{{#nominalTemperature}} value='{{nominalTemperature}}'{{/nominalTemperature}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='outerJacketKind'>outerJacketKind: </label><div class='col-sm-8'><select id='outerJacketKind' class='form-control'>{{#CableOuterJacketKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CableOuterJacketKind}}</select></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='sheathAsNeutral'>sheathAsNeutral: </label><div class='col-sm-8'><input id='sheathAsNeutral' class='form-check-input' type='checkbox'{{#sheathAsNeutral}} checked{{/sheathAsNeutral}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shieldMaterial'>shieldMaterial: </label><div class='col-sm-8'><select id='shieldMaterial' class='form-control'>{{#CableShieldMaterialKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CableShieldMaterialKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Concentric neutral cable data.
@@ -1567,21 +1597,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ConcentricNeutralCableInfo_collapse" aria-expanded="true" aria-controls="ConcentricNeutralCableInfo_collapse">ConcentricNeutralCableInfo</a>
-<div id="ConcentricNeutralCableInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + CableInfo.prototype.template.call (this) +
-`
-{{#diameterOverNeutral}}<div><b>diameterOverNeutral</b>: {{diameterOverNeutral}}</div>{{/diameterOverNeutral}}
-{{#neutralStrandCount}}<div><b>neutralStrandCount</b>: {{neutralStrandCount}}</div>{{/neutralStrandCount}}
-{{#neutralStrandGmr}}<div><b>neutralStrandGmr</b>: {{neutralStrandGmr}}</div>{{/neutralStrandGmr}}
-{{#neutralStrandRadius}}<div><b>neutralStrandRadius</b>: {{neutralStrandRadius}}</div>{{/neutralStrandRadius}}
-{{#neutralStrandRDC20}}<div><b>neutralStrandRDC20</b>: {{neutralStrandRDC20}}</div>{{/neutralStrandRDC20}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConcentricNeutralCableInfo_collapse" aria-expanded="true" aria-controls="ConcentricNeutralCableInfo_collapse" style="margin-left: 10px;">ConcentricNeutralCableInfo</a></legend>
+                    <div id="ConcentricNeutralCableInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + CableInfo.prototype.template.call (this) +
+                    `
+                    {{#diameterOverNeutral}}<div><b>diameterOverNeutral</b>: {{diameterOverNeutral}}</div>{{/diameterOverNeutral}}
+                    {{#neutralStrandCount}}<div><b>neutralStrandCount</b>: {{neutralStrandCount}}</div>{{/neutralStrandCount}}
+                    {{#neutralStrandGmr}}<div><b>neutralStrandGmr</b>: {{neutralStrandGmr}}</div>{{/neutralStrandGmr}}
+                    {{#neutralStrandRadius}}<div><b>neutralStrandRadius</b>: {{neutralStrandRadius}}</div>{{/neutralStrandRadius}}
+                    {{#neutralStrandRDC20}}<div><b>neutralStrandRDC20</b>: {{neutralStrandRDC20}}</div>{{/neutralStrandRDC20}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConcentricNeutralCableInfo_collapse" aria-expanded="true" aria-controls="ConcentricNeutralCableInfo_collapse" style="margin-left: 10px;">ConcentricNeutralCableInfo</a></legend>
+                    <div id="ConcentricNeutralCableInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + CableInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diameterOverNeutral'>diameterOverNeutral: </label><div class='col-sm-8'><input id='diameterOverNeutral' class='form-control' type='text'{{#diameterOverNeutral}} value='{{diameterOverNeutral}}'{{/diameterOverNeutral}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='neutralStrandCount'>neutralStrandCount: </label><div class='col-sm-8'><input id='neutralStrandCount' class='form-control' type='text'{{#neutralStrandCount}} value='{{neutralStrandCount}}'{{/neutralStrandCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='neutralStrandGmr'>neutralStrandGmr: </label><div class='col-sm-8'><input id='neutralStrandGmr' class='form-control' type='text'{{#neutralStrandGmr}} value='{{neutralStrandGmr}}'{{/neutralStrandGmr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='neutralStrandRadius'>neutralStrandRadius: </label><div class='col-sm-8'><input id='neutralStrandRadius' class='form-control' type='text'{{#neutralStrandRadius}} value='{{neutralStrandRadius}}'{{/neutralStrandRadius}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='neutralStrandRDC20'>neutralStrandRDC20: </label><div class='col-sm-8'><input id='neutralStrandRDC20' class='form-control' type='text'{{#neutralStrandRDC20}} value='{{neutralStrandRDC20}}'{{/neutralStrandRDC20}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Overhead wire data.
@@ -1634,16 +1699,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OverheadWireInfo_collapse" aria-expanded="true" aria-controls="OverheadWireInfo_collapse">OverheadWireInfo</a>
-<div id="OverheadWireInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WireInfo.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverheadWireInfo_collapse" aria-expanded="true" aria-controls="OverheadWireInfo_collapse" style="margin-left: 10px;">OverheadWireInfo</a></legend>
+                    <div id="OverheadWireInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WireInfo.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverheadWireInfo_collapse" aria-expanded="true" aria-controls="OverheadWireInfo_collapse" style="margin-left: 10px;">OverheadWireInfo</a></legend>
+                    <div id="OverheadWireInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WireInfo.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Tape shield cable data.
@@ -1700,18 +1795,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TapeShieldCableInfo_collapse" aria-expanded="true" aria-controls="TapeShieldCableInfo_collapse">TapeShieldCableInfo</a>
-<div id="TapeShieldCableInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + CableInfo.prototype.template.call (this) +
-`
-{{#tapeLap}}<div><b>tapeLap</b>: {{tapeLap}}</div>{{/tapeLap}}
-{{#tapeThickness}}<div><b>tapeThickness</b>: {{tapeThickness}}</div>{{/tapeThickness}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TapeShieldCableInfo_collapse" aria-expanded="true" aria-controls="TapeShieldCableInfo_collapse" style="margin-left: 10px;">TapeShieldCableInfo</a></legend>
+                    <div id="TapeShieldCableInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + CableInfo.prototype.template.call (this) +
+                    `
+                    {{#tapeLap}}<div><b>tapeLap</b>: {{tapeLap}}</div>{{/tapeLap}}
+                    {{#tapeThickness}}<div><b>tapeThickness</b>: {{tapeThickness}}</div>{{/tapeThickness}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TapeShieldCableInfo_collapse" aria-expanded="true" aria-controls="TapeShieldCableInfo_collapse" style="margin-left: 10px;">TapeShieldCableInfo</a></legend>
+                    <div id="TapeShieldCableInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + CableInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tapeLap'>tapeLap: </label><div class='col-sm-8'><input id='tapeLap' class='form-control' type='text'{{#tapeLap}} value='{{tapeLap}}'{{/tapeLap}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tapeThickness'>tapeThickness: </label><div class='col-sm-8'><input id='tapeThickness' class='form-control' type='text'{{#tapeThickness}} value='{{tapeThickness}}'{{/tapeThickness}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Short-circuit test results determine mesh impedance parameters.
@@ -1780,23 +1907,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ShortCircuitTest_collapse" aria-expanded="true" aria-controls="ShortCircuitTest_collapse">ShortCircuitTest</a>
-<div id="ShortCircuitTest_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TransformerTest.prototype.template.call (this) +
-`
-{{#energisedEndStep}}<div><b>energisedEndStep</b>: {{energisedEndStep}}</div>{{/energisedEndStep}}
-{{#groundedEndStep}}<div><b>groundedEndStep</b>: {{groundedEndStep}}</div>{{/groundedEndStep}}
-{{#leakageImpedance}}<div><b>leakageImpedance</b>: {{leakageImpedance}}</div>{{/leakageImpedance}}
-{{#leakageImpedanceZero}}<div><b>leakageImpedanceZero</b>: {{leakageImpedanceZero}}</div>{{/leakageImpedanceZero}}
-{{#loss}}<div><b>loss</b>: {{loss}}</div>{{/loss}}
-{{#lossZero}}<div><b>lossZero</b>: {{lossZero}}</div>{{/lossZero}}
-{{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);})'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShortCircuitTest_collapse" aria-expanded="true" aria-controls="ShortCircuitTest_collapse" style="margin-left: 10px;">ShortCircuitTest</a></legend>
+                    <div id="ShortCircuitTest_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TransformerTest.prototype.template.call (this) +
+                    `
+                    {{#energisedEndStep}}<div><b>energisedEndStep</b>: {{energisedEndStep}}</div>{{/energisedEndStep}}
+                    {{#groundedEndStep}}<div><b>groundedEndStep</b>: {{groundedEndStep}}</div>{{/groundedEndStep}}
+                    {{#leakageImpedance}}<div><b>leakageImpedance</b>: {{leakageImpedance}}</div>{{/leakageImpedance}}
+                    {{#leakageImpedanceZero}}<div><b>leakageImpedanceZero</b>: {{leakageImpedanceZero}}</div>{{/leakageImpedanceZero}}
+                    {{#loss}}<div><b>loss</b>: {{loss}}</div>{{/loss}}
+                    {{#lossZero}}<div><b>lossZero</b>: {{lossZero}}</div>{{/lossZero}}
+                    {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);})'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShortCircuitTest_collapse" aria-expanded="true" aria-controls="ShortCircuitTest_collapse" style="margin-left: 10px;">ShortCircuitTest</a></legend>
+                    <div id="ShortCircuitTest_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TransformerTest.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energisedEndStep'>energisedEndStep: </label><div class='col-sm-8'><input id='energisedEndStep' class='form-control' type='text'{{#energisedEndStep}} value='{{energisedEndStep}}'{{/energisedEndStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='groundedEndStep'>groundedEndStep: </label><div class='col-sm-8'><input id='groundedEndStep' class='form-control' type='text'{{#groundedEndStep}} value='{{groundedEndStep}}'{{/groundedEndStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='leakageImpedance'>leakageImpedance: </label><div class='col-sm-8'><input id='leakageImpedance' class='form-control' type='text'{{#leakageImpedance}} value='{{leakageImpedance}}'{{/leakageImpedance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='leakageImpedanceZero'>leakageImpedanceZero: </label><div class='col-sm-8'><input id='leakageImpedanceZero' class='form-control' type='text'{{#leakageImpedanceZero}} value='{{leakageImpedanceZero}}'{{/leakageImpedanceZero}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loss'>loss: </label><div class='col-sm-8'><input id='loss' class='form-control' type='text'{{#loss}} value='{{loss}}'{{/loss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lossZero'>lossZero: </label><div class='col-sm-8'><input id='lossZero' class='form-control' type='text'{{#lossZero}} value='{{lossZero}}'{{/lossZero}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * No-load test results determine core admittance parameters.
@@ -1863,22 +2027,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#NoLoadTest_collapse" aria-expanded="true" aria-controls="NoLoadTest_collapse">NoLoadTest</a>
-<div id="NoLoadTest_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TransformerTest.prototype.template.call (this) +
-`
-{{#energisedEndVoltage}}<div><b>energisedEndVoltage</b>: {{energisedEndVoltage}}</div>{{/energisedEndVoltage}}
-{{#excitingCurrent}}<div><b>excitingCurrent</b>: {{excitingCurrent}}</div>{{/excitingCurrent}}
-{{#excitingCurrentZero}}<div><b>excitingCurrentZero</b>: {{excitingCurrentZero}}</div>{{/excitingCurrentZero}}
-{{#loss}}<div><b>loss</b>: {{loss}}</div>{{/loss}}
-{{#lossZero}}<div><b>lossZero</b>: {{lossZero}}</div>{{/lossZero}}
-{{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);})'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NoLoadTest_collapse" aria-expanded="true" aria-controls="NoLoadTest_collapse" style="margin-left: 10px;">NoLoadTest</a></legend>
+                    <div id="NoLoadTest_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TransformerTest.prototype.template.call (this) +
+                    `
+                    {{#energisedEndVoltage}}<div><b>energisedEndVoltage</b>: {{energisedEndVoltage}}</div>{{/energisedEndVoltage}}
+                    {{#excitingCurrent}}<div><b>excitingCurrent</b>: {{excitingCurrent}}</div>{{/excitingCurrent}}
+                    {{#excitingCurrentZero}}<div><b>excitingCurrentZero</b>: {{excitingCurrentZero}}</div>{{/excitingCurrentZero}}
+                    {{#loss}}<div><b>loss</b>: {{loss}}</div>{{/loss}}
+                    {{#lossZero}}<div><b>lossZero</b>: {{lossZero}}</div>{{/lossZero}}
+                    {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);})'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NoLoadTest_collapse" aria-expanded="true" aria-controls="NoLoadTest_collapse" style="margin-left: 10px;">NoLoadTest</a></legend>
+                    <div id="NoLoadTest_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TransformerTest.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energisedEndVoltage'>energisedEndVoltage: </label><div class='col-sm-8'><input id='energisedEndVoltage' class='form-control' type='text'{{#energisedEndVoltage}} value='{{energisedEndVoltage}}'{{/energisedEndVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='excitingCurrent'>excitingCurrent: </label><div class='col-sm-8'><input id='excitingCurrent' class='form-control' type='text'{{#excitingCurrent}} value='{{excitingCurrent}}'{{/excitingCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='excitingCurrentZero'>excitingCurrentZero: </label><div class='col-sm-8'><input id='excitingCurrentZero' class='form-control' type='text'{{#excitingCurrentZero}} value='{{excitingCurrentZero}}'{{/excitingCurrentZero}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loss'>loss: </label><div class='col-sm-8'><input id='loss' class='form-control' type='text'{{#loss}} value='{{loss}}'{{/loss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lossZero'>lossZero: </label><div class='col-sm-8'><input id='lossZero' class='form-control' type='text'{{#lossZero}} value='{{lossZero}}'{{/lossZero}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Open-circuit test results verify winding turn ratios and phase shifts.
@@ -1947,48 +2147,79 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OpenCircuitTest_collapse" aria-expanded="true" aria-controls="OpenCircuitTest_collapse">OpenCircuitTest</a>
-<div id="OpenCircuitTest_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TransformerTest.prototype.template.call (this) +
-`
-{{#energisedEndStep}}<div><b>energisedEndStep</b>: {{energisedEndStep}}</div>{{/energisedEndStep}}
-{{#energisedEndVoltage}}<div><b>energisedEndVoltage</b>: {{energisedEndVoltage}}</div>{{/energisedEndVoltage}}
-{{#openEndStep}}<div><b>openEndStep</b>: {{openEndStep}}</div>{{/openEndStep}}
-{{#openEndVoltage}}<div><b>openEndVoltage</b>: {{openEndVoltage}}</div>{{/openEndVoltage}}
-{{#phaseShift}}<div><b>phaseShift</b>: {{phaseShift}}</div>{{/phaseShift}}
-{{#OpenEnd}}<div><b>OpenEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OpenEnd}}&quot;);})'>{{OpenEnd}}</a></div>{{/OpenEnd}}
-{{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);})'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OpenCircuitTest_collapse" aria-expanded="true" aria-controls="OpenCircuitTest_collapse" style="margin-left: 10px;">OpenCircuitTest</a></legend>
+                    <div id="OpenCircuitTest_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TransformerTest.prototype.template.call (this) +
+                    `
+                    {{#energisedEndStep}}<div><b>energisedEndStep</b>: {{energisedEndStep}}</div>{{/energisedEndStep}}
+                    {{#energisedEndVoltage}}<div><b>energisedEndVoltage</b>: {{energisedEndVoltage}}</div>{{/energisedEndVoltage}}
+                    {{#openEndStep}}<div><b>openEndStep</b>: {{openEndStep}}</div>{{/openEndStep}}
+                    {{#openEndVoltage}}<div><b>openEndVoltage</b>: {{openEndVoltage}}</div>{{/openEndVoltage}}
+                    {{#phaseShift}}<div><b>phaseShift</b>: {{phaseShift}}</div>{{/phaseShift}}
+                    {{#OpenEnd}}<div><b>OpenEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OpenEnd}}&quot;);})'>{{OpenEnd}}</a></div>{{/OpenEnd}}
+                    {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);})'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OpenCircuitTest_collapse" aria-expanded="true" aria-controls="OpenCircuitTest_collapse" style="margin-left: 10px;">OpenCircuitTest</a></legend>
+                    <div id="OpenCircuitTest_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TransformerTest.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energisedEndStep'>energisedEndStep: </label><div class='col-sm-8'><input id='energisedEndStep' class='form-control' type='text'{{#energisedEndStep}} value='{{energisedEndStep}}'{{/energisedEndStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energisedEndVoltage'>energisedEndVoltage: </label><div class='col-sm-8'><input id='energisedEndVoltage' class='form-control' type='text'{{#energisedEndVoltage}} value='{{energisedEndVoltage}}'{{/energisedEndVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='openEndStep'>openEndStep: </label><div class='col-sm-8'><input id='openEndStep' class='form-control' type='text'{{#openEndStep}} value='{{openEndStep}}'{{/openEndStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='openEndVoltage'>openEndVoltage: </label><div class='col-sm-8'><input id='openEndVoltage' class='form-control' type='text'{{#openEndVoltage}} value='{{openEndVoltage}}'{{/openEndVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseShift'>phaseShift: </label><div class='col-sm-8'><input id='phaseShift' class='form-control' type='text'{{#phaseShift}} value='{{phaseShift}}'{{/phaseShift}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OpenEnd'>OpenEnd: </label><div class='col-sm-8'><input id='OpenEnd' class='form-control' type='text'{{#OpenEnd}} value='{{OpenEnd}}'{{/OpenEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
                 ShuntCompensatorInfo: ShuntCompensatorInfo,
                 TapeShieldCableInfo: TapeShieldCableInfo,
                 TapChangerInfo: TapChangerInfo,
-                CableOuterJacketKind: CableOuterJacketKind,
                 SwitchInfo: SwitchInfo,
-                CableShieldMaterialKind: CableShieldMaterialKind,
                 TransformerTest: TransformerTest,
                 ShortCircuitTest: ShortCircuitTest,
                 TransformerTankInfo: TransformerTankInfo,
                 PowerTransformerInfo: PowerTransformerInfo,
                 BusbarSectionInfo: BusbarSectionInfo,
-                WireInsulationKind: WireInsulationKind,
                 TransformerEndInfo: TransformerEndInfo,
                 CableInfo: CableInfo,
-                WireUsageKind: WireUsageKind,
-                CableConstructionKind: CableConstructionKind,
                 WireSpacingInfo: WireSpacingInfo,
                 NoLoadTest: NoLoadTest,
                 OverheadWireInfo: OverheadWireInfo,
                 WireInfo: WireInfo,
                 ConcentricNeutralCableInfo: ConcentricNeutralCableInfo,
-                WireMaterialKind: WireMaterialKind,
                 OpenCircuitTest: OpenCircuitTest,
                 WirePosition: WirePosition
             }

@@ -59,16 +59,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StateVariable_collapse" aria-expanded="true" aria-controls="StateVariable_collapse">StateVariable</a>
-<div id="StateVariable_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StateVariable_collapse" aria-expanded="true" aria-controls="StateVariable_collapse" style="margin-left: 10px;">StateVariable</a></legend>
+                    <div id="StateVariable_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StateVariable_collapse" aria-expanded="true" aria-controls="StateVariable_collapse" style="margin-left: 10px;">StateVariable</a></legend>
+                    <div id="StateVariable_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The SvInjection is reporting the calculated bus injection minus the sum of the terminal flows.
@@ -129,19 +159,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SvInjection_collapse" aria-expanded="true" aria-controls="SvInjection_collapse">SvInjection</a>
-<div id="SvInjection_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StateVariable.prototype.template.call (this) +
-`
-{{#pInjection}}<div><b>pInjection</b>: {{pInjection}}</div>{{/pInjection}}
-{{#qInjection}}<div><b>qInjection</b>: {{qInjection}}</div>{{/qInjection}}
-{{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);})'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvInjection_collapse" aria-expanded="true" aria-controls="SvInjection_collapse" style="margin-left: 10px;">SvInjection</a></legend>
+                    <div id="SvInjection_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StateVariable.prototype.template.call (this) +
+                    `
+                    {{#pInjection}}<div><b>pInjection</b>: {{pInjection}}</div>{{/pInjection}}
+                    {{#qInjection}}<div><b>qInjection</b>: {{qInjection}}</div>{{/qInjection}}
+                    {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);})'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvInjection_collapse" aria-expanded="true" aria-controls="SvInjection_collapse" style="margin-left: 10px;">SvInjection</a></legend>
+                    <div id="SvInjection_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StateVariable.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pInjection'>pInjection: </label><div class='col-sm-8'><input id='pInjection' class='form-control' type='text'{{#pInjection}} value='{{pInjection}}'{{/pInjection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qInjection'>qInjection: </label><div class='col-sm-8'><input id='qInjection' class='form-control' type='text'{{#qInjection}} value='{{qInjection}}'{{/qInjection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TopologicalNode'>TopologicalNode: </label><div class='col-sm-8'><input id='TopologicalNode' class='form-control' type='text'{{#TopologicalNode}} value='{{TopologicalNode}}'{{/TopologicalNode}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * State variable for status.
@@ -198,18 +261,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SvStatus_collapse" aria-expanded="true" aria-controls="SvStatus_collapse">SvStatus</a>
-<div id="SvStatus_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StateVariable.prototype.template.call (this) +
-`
-{{#inService}}<div><b>inService</b>: {{inService}}</div>{{/inService}}
-{{#ConductingEquipment}}<div><b>ConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConductingEquipment}}&quot;);})'>{{ConductingEquipment}}</a></div>{{/ConductingEquipment}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvStatus_collapse" aria-expanded="true" aria-controls="SvStatus_collapse" style="margin-left: 10px;">SvStatus</a></legend>
+                    <div id="SvStatus_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StateVariable.prototype.template.call (this) +
+                    `
+                    {{#inService}}<div><b>inService</b>: {{inService}}</div>{{/inService}}
+                    {{#ConductingEquipment}}<div><b>ConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConductingEquipment}}&quot;);})'>{{ConductingEquipment}}</a></div>{{/ConductingEquipment}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvStatus_collapse" aria-expanded="true" aria-controls="SvStatus_collapse" style="margin-left: 10px;">SvStatus</a></legend>
+                    <div id="SvStatus_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StateVariable.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='inService'>inService: </label><div class='col-sm-8'><input id='inService' class='form-check-input' type='checkbox'{{#inService}} checked{{/inService}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConductingEquipment'>ConductingEquipment: </label><div class='col-sm-8'><input id='ConductingEquipment' class='form-control' type='text'{{#ConductingEquipment}} value='{{ConductingEquipment}}'{{/ConductingEquipment}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * State variable for transformer tap step.
@@ -268,18 +363,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SvTapStep_collapse" aria-expanded="true" aria-controls="SvTapStep_collapse">SvTapStep</a>
-<div id="SvTapStep_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StateVariable.prototype.template.call (this) +
-`
-{{#position}}<div><b>position</b>: {{position}}</div>{{/position}}
-{{#TapChanger}}<div><b>TapChanger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TapChanger}}&quot;);})'>{{TapChanger}}</a></div>{{/TapChanger}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvTapStep_collapse" aria-expanded="true" aria-controls="SvTapStep_collapse" style="margin-left: 10px;">SvTapStep</a></legend>
+                    <div id="SvTapStep_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StateVariable.prototype.template.call (this) +
+                    `
+                    {{#position}}<div><b>position</b>: {{position}}</div>{{/position}}
+                    {{#TapChanger}}<div><b>TapChanger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TapChanger}}&quot;);})'>{{TapChanger}}</a></div>{{/TapChanger}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvTapStep_collapse" aria-expanded="true" aria-controls="SvTapStep_collapse" style="margin-left: 10px;">SvTapStep</a></legend>
+                    <div id="SvTapStep_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StateVariable.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='position'>position: </label><div class='col-sm-8'><input id='position' class='form-control' type='text'{{#position}} value='{{position}}'{{/position}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TapChanger'>TapChanger: </label><div class='col-sm-8'><input id='TapChanger' class='form-control' type='text'{{#TapChanger}} value='{{TapChanger}}'{{/TapChanger}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * State variable for the number of sections in service for a shunt compensator.
@@ -336,18 +463,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SvShuntCompensatorSections_collapse" aria-expanded="true" aria-controls="SvShuntCompensatorSections_collapse">SvShuntCompensatorSections</a>
-<div id="SvShuntCompensatorSections_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StateVariable.prototype.template.call (this) +
-`
-{{#sections}}<div><b>sections</b>: {{sections}}</div>{{/sections}}
-{{#ShuntCompensator}}<div><b>ShuntCompensator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensator}}&quot;);})'>{{ShuntCompensator}}</a></div>{{/ShuntCompensator}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvShuntCompensatorSections_collapse" aria-expanded="true" aria-controls="SvShuntCompensatorSections_collapse" style="margin-left: 10px;">SvShuntCompensatorSections</a></legend>
+                    <div id="SvShuntCompensatorSections_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StateVariable.prototype.template.call (this) +
+                    `
+                    {{#sections}}<div><b>sections</b>: {{sections}}</div>{{/sections}}
+                    {{#ShuntCompensator}}<div><b>ShuntCompensator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensator}}&quot;);})'>{{ShuntCompensator}}</a></div>{{/ShuntCompensator}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvShuntCompensatorSections_collapse" aria-expanded="true" aria-controls="SvShuntCompensatorSections_collapse" style="margin-left: 10px;">SvShuntCompensatorSections</a></legend>
+                    <div id="SvShuntCompensatorSections_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StateVariable.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sections'>sections: </label><div class='col-sm-8'><input id='sections' class='form-control' type='text'{{#sections}} value='{{sections}}'{{/sections}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ShuntCompensator'>ShuntCompensator: </label><div class='col-sm-8'><input id='ShuntCompensator' class='form-control' type='text'{{#ShuntCompensator}} value='{{ShuntCompensator}}'{{/ShuntCompensator}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * State variable for power flow.
@@ -408,19 +567,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SvPowerFlow_collapse" aria-expanded="true" aria-controls="SvPowerFlow_collapse">SvPowerFlow</a>
-<div id="SvPowerFlow_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StateVariable.prototype.template.call (this) +
-`
-{{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
-{{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
-{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvPowerFlow_collapse" aria-expanded="true" aria-controls="SvPowerFlow_collapse" style="margin-left: 10px;">SvPowerFlow</a></legend>
+                    <div id="SvPowerFlow_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StateVariable.prototype.template.call (this) +
+                    `
+                    {{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
+                    {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvPowerFlow_collapse" aria-expanded="true" aria-controls="SvPowerFlow_collapse" style="margin-left: 10px;">SvPowerFlow</a></legend>
+                    <div id="SvPowerFlow_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StateVariable.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p'>p: </label><div class='col-sm-8'><input id='p' class='form-control' type='text'{{#p}} value='{{p}}'{{/p}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q'>q: </label><div class='col-sm-8'><input id='q' class='form-control' type='text'{{#q}} value='{{q}}'{{/q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * State variable for voltage.
@@ -479,19 +671,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SvVoltage_collapse" aria-expanded="true" aria-controls="SvVoltage_collapse">SvVoltage</a>
-<div id="SvVoltage_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StateVariable.prototype.template.call (this) +
-`
-{{#angle}}<div><b>angle</b>: {{angle}}</div>{{/angle}}
-{{#v}}<div><b>v</b>: {{v}}</div>{{/v}}
-{{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);})'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvVoltage_collapse" aria-expanded="true" aria-controls="SvVoltage_collapse" style="margin-left: 10px;">SvVoltage</a></legend>
+                    <div id="SvVoltage_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StateVariable.prototype.template.call (this) +
+                    `
+                    {{#angle}}<div><b>angle</b>: {{angle}}</div>{{/angle}}
+                    {{#v}}<div><b>v</b>: {{v}}</div>{{/v}}
+                    {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);})'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvVoltage_collapse" aria-expanded="true" aria-controls="SvVoltage_collapse" style="margin-left: 10px;">SvVoltage</a></legend>
+                    <div id="SvVoltage_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StateVariable.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='angle'>angle: </label><div class='col-sm-8'><input id='angle' class='form-control' type='text'{{#angle}} value='{{angle}}'{{/angle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='v'>v: </label><div class='col-sm-8'><input id='v' class='form-control' type='text'{{#v}} value='{{v}}'{{/v}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TopologicalNode'>TopologicalNode: </label><div class='col-sm-8'><input id='TopologicalNode' class='form-control' type='text'{{#TopologicalNode}} value='{{TopologicalNode}}'{{/TopologicalNode}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

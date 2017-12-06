@@ -9,6 +9,91 @@ define
     {
 
         /**
+         * Kind of customer.
+         *
+         */
+        var CustomerKind =
+        {
+            residential: "residential",
+            residentialAndCommercial: "residentialAndCommercial",
+            residentialAndStreetlight: "residentialAndStreetlight",
+            residentialStreetlightOthers: "residentialStreetlightOthers",
+            residentialFarmService: "residentialFarmService",
+            commercialIndustrial: "commercialIndustrial",
+            pumpingLoad: "pumpingLoad",
+            windMachine: "windMachine",
+            energyServiceSupplier: "energyServiceSupplier",
+            energyServiceScheduler: "energyServiceScheduler",
+            internalUse: "internalUse",
+            other: "other"
+        };
+        Object.freeze (CustomerKind);
+
+        /**
+         * Kind of trouble reporting.
+         *
+         */
+        var TroubleReportingKind =
+        {
+            call: "call",
+            email: "email",
+            letter: "letter",
+            other: "other",
+            ivr: "ivr"
+        };
+        Object.freeze (TroubleReportingKind);
+
+        /**
+         * Kind of service.
+         *
+         */
+        var ServiceKind =
+        {
+            electricity: "electricity",
+            gas: "gas",
+            water: "water",
+            time: "time",
+            heat: "heat",
+            refuse: "refuse",
+            sewerage: "sewerage",
+            rates: "rates",
+            tvLicence: "tvLicence",
+            internet: "internet",
+            other: "other"
+        };
+        Object.freeze (ServiceKind);
+
+        /**
+         * Kind of trigger to notify customer.
+         *
+         */
+        var NotificationTriggerKind =
+        {
+            initialEtr: "initialEtr",
+            etrChange: "etrChange",
+            powerRestored: "powerRestored",
+            powerOut: "powerOut",
+            informDispatched: "informDispatched"
+        };
+        Object.freeze (NotificationTriggerKind);
+
+        /**
+         * Accounting classification of the type of revenue collected for the customer agreement, typically used to break down accounts for revenue accounting.
+         *
+         */
+        var RevenueKind =
+        {
+            residential: "residential",
+            nonResidential: "nonResidential",
+            commercial: "commercial",
+            industrial: "industrial",
+            irrigation: "irrigation",
+            streetLight: "streetLight",
+            other: "other"
+        };
+        Object.freeze (RevenueKind);
+
+        /**
          * Conditions for notifying the customer about the changes in the status of their service (e.g., outage restore, estimated restoration time, tariff or service level change, etc.)
          *
          */
@@ -36,7 +121,7 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "CustomerNotification";
-                base.parse_element (/<cim:CustomerNotification.trigger>([\s\S]*?)<\/cim:CustomerNotification.trigger>/g, obj, "trigger", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CustomerNotification.trigger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "trigger", sub, context);
                 base.parse_element (/<cim:CustomerNotification.earliestDateTimeToCall>([\s\S]*?)<\/cim:CustomerNotification.earliestDateTimeToCall>/g, obj, "earliestDateTimeToCall", base.to_datetime, sub, context);
                 base.parse_element (/<cim:CustomerNotification.latestDateTimeToCall>([\s\S]*?)<\/cim:CustomerNotification.latestDateTimeToCall>/g, obj, "latestDateTimeToCall", base.to_datetime, sub, context);
                 base.parse_element (/<cim:CustomerNotification.contactType>([\s\S]*?)<\/cim:CustomerNotification.contactType>/g, obj, "contactType", base.to_string, sub, context);
@@ -73,23 +158,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CustomerNotification_collapse" aria-expanded="true" aria-controls="CustomerNotification_collapse">CustomerNotification</a>
-<div id="CustomerNotification_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#trigger}}<div><b>trigger</b>: {{trigger}}</div>{{/trigger}}
-{{#earliestDateTimeToCall}}<div><b>earliestDateTimeToCall</b>: {{earliestDateTimeToCall}}</div>{{/earliestDateTimeToCall}}
-{{#latestDateTimeToCall}}<div><b>latestDateTimeToCall</b>: {{latestDateTimeToCall}}</div>{{/latestDateTimeToCall}}
-{{#contactType}}<div><b>contactType</b>: {{contactType}}</div>{{/contactType}}
-{{#contactValue}}<div><b>contactValue</b>: {{contactValue}}</div>{{/contactValue}}
-{{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
-{{#Incident}}<div><b>Incident</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Incident}}&quot;);})'>{{Incident}}</a></div>{{/Incident}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerNotification_collapse" aria-expanded="true" aria-controls="CustomerNotification_collapse" style="margin-left: 10px;">CustomerNotification</a></legend>
+                    <div id="CustomerNotification_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#trigger}}<div><b>trigger</b>: {{trigger}}</div>{{/trigger}}
+                    {{#earliestDateTimeToCall}}<div><b>earliestDateTimeToCall</b>: {{earliestDateTimeToCall}}</div>{{/earliestDateTimeToCall}}
+                    {{#latestDateTimeToCall}}<div><b>latestDateTimeToCall</b>: {{latestDateTimeToCall}}</div>{{/latestDateTimeToCall}}
+                    {{#contactType}}<div><b>contactType</b>: {{contactType}}</div>{{/contactType}}
+                    {{#contactValue}}<div><b>contactValue</b>: {{contactValue}}</div>{{/contactValue}}
+                    {{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
+                    {{#Incident}}<div><b>Incident</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Incident}}&quot;);})'>{{Incident}}</a></div>{{/Incident}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.NotificationTriggerKind = []; if (!obj.trigger) obj.NotificationTriggerKind.push ({ id: '', selected: true}); for (var property in NotificationTriggerKind) obj.NotificationTriggerKind.push ({ id: property, selected: obj.trigger && obj.trigger.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.NotificationTriggerKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerNotification_collapse" aria-expanded="true" aria-controls="CustomerNotification_collapse" style="margin-left: 10px;">CustomerNotification</a></legend>
+                    <div id="CustomerNotification_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='trigger'>trigger: </label><div class='col-sm-8'><select id='trigger' class='form-control'>{{#NotificationTriggerKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/NotificationTriggerKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='earliestDateTimeToCall'>earliestDateTimeToCall: </label><div class='col-sm-8'><input id='earliestDateTimeToCall' class='form-control' type='text'{{#earliestDateTimeToCall}} value='{{earliestDateTimeToCall}}'{{/earliestDateTimeToCall}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='latestDateTimeToCall'>latestDateTimeToCall: </label><div class='col-sm-8'><input id='latestDateTimeToCall' class='form-control' type='text'{{#latestDateTimeToCall}} value='{{latestDateTimeToCall}}'{{/latestDateTimeToCall}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='contactType'>contactType: </label><div class='col-sm-8'><input id='contactType' class='form-control' type='text'{{#contactType}} value='{{contactType}}'{{/contactType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='contactValue'>contactValue: </label><div class='col-sm-8'><input id='contactValue' class='form-control' type='text'{{#contactValue}} value='{{contactValue}}'{{/contactValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Customer'>Customer: </label><div class='col-sm-8'><input id='Customer' class='form-control' type='text'{{#Customer}} value='{{Customer}}'{{/Customer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Incident'>Incident: </label><div class='col-sm-8'><input id='Incident' class='form-control' type='text'{{#Incident}} value='{{Incident}}'{{/Incident}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Grouping of pricing components and prices used in the creation of customer charges and the eligibility criteria under which these terms may be offered to a customer.
@@ -125,7 +249,7 @@ define
                 base.parse_element (/<cim:PricingStructure.dailyCeilingUsage>([\s\S]*?)<\/cim:PricingStructure.dailyCeilingUsage>/g, obj, "dailyCeilingUsage", base.to_string, sub, context);
                 base.parse_element (/<cim:PricingStructure.dailyEstimatedUsage>([\s\S]*?)<\/cim:PricingStructure.dailyEstimatedUsage>/g, obj, "dailyEstimatedUsage", base.to_string, sub, context);
                 base.parse_element (/<cim:PricingStructure.dailyFloorUsage>([\s\S]*?)<\/cim:PricingStructure.dailyFloorUsage>/g, obj, "dailyFloorUsage", base.to_string, sub, context);
-                base.parse_element (/<cim:PricingStructure.revenueKind>([\s\S]*?)<\/cim:PricingStructure.revenueKind>/g, obj, "revenueKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PricingStructure.revenueKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "revenueKind", sub, context);
                 base.parse_element (/<cim:PricingStructure.taxExemption>([\s\S]*?)<\/cim:PricingStructure.taxExemption>/g, obj, "taxExemption", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:PricingStructure.ServiceCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ServiceCategory", sub, context);
 
@@ -158,121 +282,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PricingStructure_collapse" aria-expanded="true" aria-controls="PricingStructure_collapse">PricingStructure</a>
-<div id="PricingStructure_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
-{{#dailyCeilingUsage}}<div><b>dailyCeilingUsage</b>: {{dailyCeilingUsage}}</div>{{/dailyCeilingUsage}}
-{{#dailyEstimatedUsage}}<div><b>dailyEstimatedUsage</b>: {{dailyEstimatedUsage}}</div>{{/dailyEstimatedUsage}}
-{{#dailyFloorUsage}}<div><b>dailyFloorUsage</b>: {{dailyFloorUsage}}</div>{{/dailyFloorUsage}}
-{{#revenueKind}}<div><b>revenueKind</b>: {{revenueKind}}</div>{{/revenueKind}}
-{{#taxExemption}}<div><b>taxExemption</b>: {{taxExemption}}</div>{{/taxExemption}}
-{{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceCategory}}&quot;);})'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PricingStructure_collapse" aria-expanded="true" aria-controls="PricingStructure_collapse" style="margin-left: 10px;">PricingStructure</a></legend>
+                    <div id="PricingStructure_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+                    {{#dailyCeilingUsage}}<div><b>dailyCeilingUsage</b>: {{dailyCeilingUsage}}</div>{{/dailyCeilingUsage}}
+                    {{#dailyEstimatedUsage}}<div><b>dailyEstimatedUsage</b>: {{dailyEstimatedUsage}}</div>{{/dailyEstimatedUsage}}
+                    {{#dailyFloorUsage}}<div><b>dailyFloorUsage</b>: {{dailyFloorUsage}}</div>{{/dailyFloorUsage}}
+                    {{#revenueKind}}<div><b>revenueKind</b>: {{revenueKind}}</div>{{/revenueKind}}
+                    {{#taxExemption}}<div><b>taxExemption</b>: {{taxExemption}}</div>{{/taxExemption}}
+                    {{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceCategory}}&quot;);})'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of customer.
-         *
-         */
-        class CustomerKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.CustomerKind;
-                if (null == bucket)
-                   cim_data.CustomerKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.CustomerKind[this._id];
+                super.condition (obj);
+                obj.RevenueKind = []; if (!obj.revenueKind) obj.RevenueKind.push ({ id: '', selected: true}); for (var property in RevenueKind) obj.RevenueKind.push ({ id: property, selected: obj.revenueKind && obj.revenueKind.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "CustomerKind";
-                base.parse_element (/<cim:CustomerKind.residential>([\s\S]*?)<\/cim:CustomerKind.residential>/g, obj, "residential", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerKind.residentialAndCommercial>([\s\S]*?)<\/cim:CustomerKind.residentialAndCommercial>/g, obj, "residentialAndCommercial", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerKind.residentialAndStreetlight>([\s\S]*?)<\/cim:CustomerKind.residentialAndStreetlight>/g, obj, "residentialAndStreetlight", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerKind.residentialStreetlightOthers>([\s\S]*?)<\/cim:CustomerKind.residentialStreetlightOthers>/g, obj, "residentialStreetlightOthers", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerKind.residentialFarmService>([\s\S]*?)<\/cim:CustomerKind.residentialFarmService>/g, obj, "residentialFarmService", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerKind.commercialIndustrial>([\s\S]*?)<\/cim:CustomerKind.commercialIndustrial>/g, obj, "commercialIndustrial", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerKind.pumpingLoad>([\s\S]*?)<\/cim:CustomerKind.pumpingLoad>/g, obj, "pumpingLoad", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerKind.windMachine>([\s\S]*?)<\/cim:CustomerKind.windMachine>/g, obj, "windMachine", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerKind.energyServiceSupplier>([\s\S]*?)<\/cim:CustomerKind.energyServiceSupplier>/g, obj, "energyServiceSupplier", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerKind.energyServiceScheduler>([\s\S]*?)<\/cim:CustomerKind.energyServiceScheduler>/g, obj, "energyServiceScheduler", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerKind.internalUse>([\s\S]*?)<\/cim:CustomerKind.internalUse>/g, obj, "internalUse", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerKind.other>([\s\S]*?)<\/cim:CustomerKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.CustomerKind;
-                if (null == bucket)
-                   context.parsed.CustomerKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.RevenueKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "CustomerKind", "residential", base.from_string, fields);
-                base.export_element (obj, "CustomerKind", "residentialAndCommercial", base.from_string, fields);
-                base.export_element (obj, "CustomerKind", "residentialAndStreetlight", base.from_string, fields);
-                base.export_element (obj, "CustomerKind", "residentialStreetlightOthers", base.from_string, fields);
-                base.export_element (obj, "CustomerKind", "residentialFarmService", base.from_string, fields);
-                base.export_element (obj, "CustomerKind", "commercialIndustrial", base.from_string, fields);
-                base.export_element (obj, "CustomerKind", "pumpingLoad", base.from_string, fields);
-                base.export_element (obj, "CustomerKind", "windMachine", base.from_string, fields);
-                base.export_element (obj, "CustomerKind", "energyServiceSupplier", base.from_string, fields);
-                base.export_element (obj, "CustomerKind", "energyServiceScheduler", base.from_string, fields);
-                base.export_element (obj, "CustomerKind", "internalUse", base.from_string, fields);
-                base.export_element (obj, "CustomerKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CustomerKind_collapse" aria-expanded="true" aria-controls="CustomerKind_collapse">CustomerKind</a>
-<div id="CustomerKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#residential}}<div><b>residential</b>: {{residential}}</div>{{/residential}}
-{{#residentialAndCommercial}}<div><b>residentialAndCommercial</b>: {{residentialAndCommercial}}</div>{{/residentialAndCommercial}}
-{{#residentialAndStreetlight}}<div><b>residentialAndStreetlight</b>: {{residentialAndStreetlight}}</div>{{/residentialAndStreetlight}}
-{{#residentialStreetlightOthers}}<div><b>residentialStreetlightOthers</b>: {{residentialStreetlightOthers}}</div>{{/residentialStreetlightOthers}}
-{{#residentialFarmService}}<div><b>residentialFarmService</b>: {{residentialFarmService}}</div>{{/residentialFarmService}}
-{{#commercialIndustrial}}<div><b>commercialIndustrial</b>: {{commercialIndustrial}}</div>{{/commercialIndustrial}}
-{{#pumpingLoad}}<div><b>pumpingLoad</b>: {{pumpingLoad}}</div>{{/pumpingLoad}}
-{{#windMachine}}<div><b>windMachine</b>: {{windMachine}}</div>{{/windMachine}}
-{{#energyServiceSupplier}}<div><b>energyServiceSupplier</b>: {{energyServiceSupplier}}</div>{{/energyServiceSupplier}}
-{{#energyServiceScheduler}}<div><b>energyServiceScheduler</b>: {{energyServiceScheduler}}</div>{{/energyServiceScheduler}}
-{{#internalUse}}<div><b>internalUse</b>: {{internalUse}}</div>{{/internalUse}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PricingStructure_collapse" aria-expanded="true" aria-controls="PricingStructure_collapse" style="margin-left: 10px;">PricingStructure</a></legend>
+                    <div id="PricingStructure_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='code'>code: </label><div class='col-sm-8'><input id='code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dailyCeilingUsage'>dailyCeilingUsage: </label><div class='col-sm-8'><input id='dailyCeilingUsage' class='form-control' type='text'{{#dailyCeilingUsage}} value='{{dailyCeilingUsage}}'{{/dailyCeilingUsage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dailyEstimatedUsage'>dailyEstimatedUsage: </label><div class='col-sm-8'><input id='dailyEstimatedUsage' class='form-control' type='text'{{#dailyEstimatedUsage}} value='{{dailyEstimatedUsage}}'{{/dailyEstimatedUsage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dailyFloorUsage'>dailyFloorUsage: </label><div class='col-sm-8'><input id='dailyFloorUsage' class='form-control' type='text'{{#dailyFloorUsage}} value='{{dailyFloorUsage}}'{{/dailyFloorUsage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='revenueKind'>revenueKind: </label><div class='col-sm-8'><select id='revenueKind' class='form-control'>{{#RevenueKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RevenueKind}}</select></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='taxExemption'>taxExemption: </label><div class='col-sm-8'><input id='taxExemption' class='form-check-input' type='checkbox'{{#taxExemption}} checked{{/taxExemption}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceCategory'>ServiceCategory: </label><div class='col-sm-8'><input id='ServiceCategory' class='form-control' type='text'{{#ServiceCategory}} value='{{ServiceCategory}}'{{/ServiceCategory}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Document, approved by the responsible regulatory agency, listing the terms and conditions, including a schedule of prices, under which utility services will be provided.
@@ -331,18 +396,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Tariff_collapse" aria-expanded="true" aria-controls="Tariff_collapse">Tariff</a>
-<div id="Tariff_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#endDate}}<div><b>endDate</b>: {{endDate}}</div>{{/endDate}}
-{{#startDate}}<div><b>startDate</b>: {{startDate}}</div>{{/startDate}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Tariff_collapse" aria-expanded="true" aria-controls="Tariff_collapse" style="margin-left: 10px;">Tariff</a></legend>
+                    <div id="Tariff_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#endDate}}<div><b>endDate</b>: {{endDate}}</div>{{/endDate}}
+                    {{#startDate}}<div><b>startDate</b>: {{startDate}}</div>{{/startDate}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Tariff_collapse" aria-expanded="true" aria-controls="Tariff_collapse" style="margin-left: 10px;">Tariff</a></legend>
+                    <div id="Tariff_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endDate'>endDate: </label><div class='col-sm-8'><input id='endDate' class='form-control' type='text'{{#endDate}} value='{{endDate}}'{{/endDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startDate'>startDate: </label><div class='col-sm-8'><input id='startDate' class='form-control' type='text'{{#startDate}} value='{{startDate}}'{{/startDate}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Organisation receiving services from service supplier.
@@ -372,7 +469,7 @@ define
 
                 obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
                 obj.cls = "Customer";
-                base.parse_element (/<cim:Customer.kind>([\s\S]*?)<\/cim:Customer.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Customer.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:Customer.pucNumber>([\s\S]*?)<\/cim:Customer.pucNumber>/g, obj, "pucNumber", base.to_string, sub, context);
                 base.parse_element (/<cim:Customer.specialNeed>([\s\S]*?)<\/cim:Customer.specialNeed>/g, obj, "specialNeed", base.to_string, sub, context);
                 base.parse_element (/<cim:Customer.status>([\s\S]*?)<\/cim:Customer.status>/g, obj, "status", base.to_string, sub, context);
@@ -409,195 +506,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Customer_collapse" aria-expanded="true" aria-controls="Customer_collapse">Customer</a>
-<div id="Customer_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.OrganisationRole.prototype.template.call (this) +
-`
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#pucNumber}}<div><b>pucNumber</b>: {{pucNumber}}</div>{{/pucNumber}}
-{{#specialNeed}}<div><b>specialNeed</b>: {{specialNeed}}</div>{{/specialNeed}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#vip}}<div><b>vip</b>: {{vip}}</div>{{/vip}}
-{{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
-{{#locale}}<div><b>locale</b>: {{locale}}</div>{{/locale}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Customer_collapse" aria-expanded="true" aria-controls="Customer_collapse" style="margin-left: 10px;">Customer</a></legend>
+                    <div id="Customer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#pucNumber}}<div><b>pucNumber</b>: {{pucNumber}}</div>{{/pucNumber}}
+                    {{#specialNeed}}<div><b>specialNeed</b>: {{specialNeed}}</div>{{/specialNeed}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#vip}}<div><b>vip</b>: {{vip}}</div>{{/vip}}
+                    {{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+                    {{#locale}}<div><b>locale</b>: {{locale}}</div>{{/locale}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of trouble reporting.
-         *
-         */
-        class TroubleReportingKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.TroubleReportingKind;
-                if (null == bucket)
-                   cim_data.TroubleReportingKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.TroubleReportingKind[this._id];
+                super.condition (obj);
+                obj.CustomerKind = []; if (!obj.kind) obj.CustomerKind.push ({ id: '', selected: true}); for (var property in CustomerKind) obj.CustomerKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "TroubleReportingKind";
-                base.parse_element (/<cim:TroubleReportingKind.call>([\s\S]*?)<\/cim:TroubleReportingKind.call>/g, obj, "call", base.to_string, sub, context);
-                base.parse_element (/<cim:TroubleReportingKind.email>([\s\S]*?)<\/cim:TroubleReportingKind.email>/g, obj, "email", base.to_string, sub, context);
-                base.parse_element (/<cim:TroubleReportingKind.letter>([\s\S]*?)<\/cim:TroubleReportingKind.letter>/g, obj, "letter", base.to_string, sub, context);
-                base.parse_element (/<cim:TroubleReportingKind.other>([\s\S]*?)<\/cim:TroubleReportingKind.other>/g, obj, "other", base.to_string, sub, context);
-                base.parse_element (/<cim:TroubleReportingKind.ivr>([\s\S]*?)<\/cim:TroubleReportingKind.ivr>/g, obj, "ivr", base.to_string, sub, context);
-
-                var bucket = context.parsed.TroubleReportingKind;
-                if (null == bucket)
-                   context.parsed.TroubleReportingKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.CustomerKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "TroubleReportingKind", "call", base.from_string, fields);
-                base.export_element (obj, "TroubleReportingKind", "email", base.from_string, fields);
-                base.export_element (obj, "TroubleReportingKind", "letter", base.from_string, fields);
-                base.export_element (obj, "TroubleReportingKind", "other", base.from_string, fields);
-                base.export_element (obj, "TroubleReportingKind", "ivr", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TroubleReportingKind_collapse" aria-expanded="true" aria-controls="TroubleReportingKind_collapse">TroubleReportingKind</a>
-<div id="TroubleReportingKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#call}}<div><b>call</b>: {{call}}</div>{{/call}}
-{{#email}}<div><b>email</b>: {{email}}</div>{{/email}}
-{{#letter}}<div><b>letter</b>: {{letter}}</div>{{/letter}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-{{#ivr}}<div><b>ivr</b>: {{ivr}}</div>{{/ivr}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Customer_collapse" aria-expanded="true" aria-controls="Customer_collapse" style="margin-left: 10px;">Customer</a></legend>
+                    <div id="Customer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#CustomerKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CustomerKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pucNumber'>pucNumber: </label><div class='col-sm-8'><input id='pucNumber' class='form-control' type='text'{{#pucNumber}} value='{{pucNumber}}'{{/pucNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='specialNeed'>specialNeed: </label><div class='col-sm-8'><input id='specialNeed' class='form-control' type='text'{{#specialNeed}} value='{{specialNeed}}'{{/specialNeed}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='vip'>vip: </label><div class='col-sm-8'><input id='vip' class='form-check-input' type='checkbox'{{#vip}} checked{{/vip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priority'>priority: </label><div class='col-sm-8'><input id='priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='locale'>locale: </label><div class='col-sm-8'><input id='locale' class='form-control' type='text'{{#locale}} value='{{locale}}'{{/locale}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of service.
-         *
-         */
-        class ServiceKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ServiceKind;
-                if (null == bucket)
-                   cim_data.ServiceKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.ServiceKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ServiceKind";
-                base.parse_element (/<cim:ServiceKind.electricity>([\s\S]*?)<\/cim:ServiceKind.electricity>/g, obj, "electricity", base.to_string, sub, context);
-                base.parse_element (/<cim:ServiceKind.gas>([\s\S]*?)<\/cim:ServiceKind.gas>/g, obj, "gas", base.to_string, sub, context);
-                base.parse_element (/<cim:ServiceKind.water>([\s\S]*?)<\/cim:ServiceKind.water>/g, obj, "water", base.to_string, sub, context);
-                base.parse_element (/<cim:ServiceKind.time>([\s\S]*?)<\/cim:ServiceKind.time>/g, obj, "time", base.to_string, sub, context);
-                base.parse_element (/<cim:ServiceKind.heat>([\s\S]*?)<\/cim:ServiceKind.heat>/g, obj, "heat", base.to_string, sub, context);
-                base.parse_element (/<cim:ServiceKind.refuse>([\s\S]*?)<\/cim:ServiceKind.refuse>/g, obj, "refuse", base.to_string, sub, context);
-                base.parse_element (/<cim:ServiceKind.sewerage>([\s\S]*?)<\/cim:ServiceKind.sewerage>/g, obj, "sewerage", base.to_string, sub, context);
-                base.parse_element (/<cim:ServiceKind.rates>([\s\S]*?)<\/cim:ServiceKind.rates>/g, obj, "rates", base.to_string, sub, context);
-                base.parse_element (/<cim:ServiceKind.tvLicence>([\s\S]*?)<\/cim:ServiceKind.tvLicence>/g, obj, "tvLicence", base.to_string, sub, context);
-                base.parse_element (/<cim:ServiceKind.internet>([\s\S]*?)<\/cim:ServiceKind.internet>/g, obj, "internet", base.to_string, sub, context);
-                base.parse_element (/<cim:ServiceKind.other>([\s\S]*?)<\/cim:ServiceKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.ServiceKind;
-                if (null == bucket)
-                   context.parsed.ServiceKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ServiceKind", "electricity", base.from_string, fields);
-                base.export_element (obj, "ServiceKind", "gas", base.from_string, fields);
-                base.export_element (obj, "ServiceKind", "water", base.from_string, fields);
-                base.export_element (obj, "ServiceKind", "time", base.from_string, fields);
-                base.export_element (obj, "ServiceKind", "heat", base.from_string, fields);
-                base.export_element (obj, "ServiceKind", "refuse", base.from_string, fields);
-                base.export_element (obj, "ServiceKind", "sewerage", base.from_string, fields);
-                base.export_element (obj, "ServiceKind", "rates", base.from_string, fields);
-                base.export_element (obj, "ServiceKind", "tvLicence", base.from_string, fields);
-                base.export_element (obj, "ServiceKind", "internet", base.from_string, fields);
-                base.export_element (obj, "ServiceKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#ServiceKind_collapse" aria-expanded="true" aria-controls="ServiceKind_collapse">ServiceKind</a>
-<div id="ServiceKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#electricity}}<div><b>electricity</b>: {{electricity}}</div>{{/electricity}}
-{{#gas}}<div><b>gas</b>: {{gas}}</div>{{/gas}}
-{{#water}}<div><b>water</b>: {{water}}</div>{{/water}}
-{{#time}}<div><b>time</b>: {{time}}</div>{{/time}}
-{{#heat}}<div><b>heat</b>: {{heat}}</div>{{/heat}}
-{{#refuse}}<div><b>refuse</b>: {{refuse}}</div>{{/refuse}}
-{{#sewerage}}<div><b>sewerage</b>: {{sewerage}}</div>{{/sewerage}}
-{{#rates}}<div><b>rates</b>: {{rates}}</div>{{/rates}}
-{{#tvLicence}}<div><b>tvLicence</b>: {{tvLicence}}</div>{{/tvLicence}}
-{{#internet}}<div><b>internet</b>: {{internet}}</div>{{/internet}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         /**
          * Hazardous situation associated with an incident.
@@ -656,95 +620,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#IncidentHazard_collapse" aria-expanded="true" aria-controls="IncidentHazard_collapse">IncidentHazard</a>
-<div id="IncidentHazard_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Hazard.prototype.template.call (this) +
-`
-{{#Incident}}<div><b>Incident</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Incident}}&quot;);})'>{{Incident}}</a></div>{{/Incident}}
-{{#TroubleTicket}}<div><b>TroubleTicket</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TroubleTicket}}&quot;);})'>{{TroubleTicket}}</a></div>{{/TroubleTicket}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IncidentHazard_collapse" aria-expanded="true" aria-controls="IncidentHazard_collapse" style="margin-left: 10px;">IncidentHazard</a></legend>
+                    <div id="IncidentHazard_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Hazard.prototype.template.call (this) +
+                    `
+                    {{#Incident}}<div><b>Incident</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Incident}}&quot;);})'>{{Incident}}</a></div>{{/Incident}}
+                    {{#TroubleTicket}}<div><b>TroubleTicket</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TroubleTicket}}&quot;);})'>{{TroubleTicket}}</a></div>{{/TroubleTicket}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of trigger to notify customer.
-         *
-         */
-        class NotificationTriggerKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.NotificationTriggerKind;
-                if (null == bucket)
-                   cim_data.NotificationTriggerKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.NotificationTriggerKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "NotificationTriggerKind";
-                base.parse_element (/<cim:NotificationTriggerKind.initialEtr>([\s\S]*?)<\/cim:NotificationTriggerKind.initialEtr>/g, obj, "initialEtr", base.to_string, sub, context);
-                base.parse_element (/<cim:NotificationTriggerKind.etrChange>([\s\S]*?)<\/cim:NotificationTriggerKind.etrChange>/g, obj, "etrChange", base.to_string, sub, context);
-                base.parse_element (/<cim:NotificationTriggerKind.powerRestored>([\s\S]*?)<\/cim:NotificationTriggerKind.powerRestored>/g, obj, "powerRestored", base.to_string, sub, context);
-                base.parse_element (/<cim:NotificationTriggerKind.powerOut>([\s\S]*?)<\/cim:NotificationTriggerKind.powerOut>/g, obj, "powerOut", base.to_string, sub, context);
-                base.parse_element (/<cim:NotificationTriggerKind.informDispatched>([\s\S]*?)<\/cim:NotificationTriggerKind.informDispatched>/g, obj, "informDispatched", base.to_string, sub, context);
-
-                var bucket = context.parsed.NotificationTriggerKind;
-                if (null == bucket)
-                   context.parsed.NotificationTriggerKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "NotificationTriggerKind", "initialEtr", base.from_string, fields);
-                base.export_element (obj, "NotificationTriggerKind", "etrChange", base.from_string, fields);
-                base.export_element (obj, "NotificationTriggerKind", "powerRestored", base.from_string, fields);
-                base.export_element (obj, "NotificationTriggerKind", "powerOut", base.from_string, fields);
-                base.export_element (obj, "NotificationTriggerKind", "informDispatched", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#NotificationTriggerKind_collapse" aria-expanded="true" aria-controls="NotificationTriggerKind_collapse">NotificationTriggerKind</a>
-<div id="NotificationTriggerKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#initialEtr}}<div><b>initialEtr</b>: {{initialEtr}}</div>{{/initialEtr}}
-{{#etrChange}}<div><b>etrChange</b>: {{etrChange}}</div>{{/etrChange}}
-{{#powerRestored}}<div><b>powerRestored</b>: {{powerRestored}}</div>{{/powerRestored}}
-{{#powerOut}}<div><b>powerOut</b>: {{powerOut}}</div>{{/powerOut}}
-{{#informDispatched}}<div><b>informDispatched</b>: {{informDispatched}}</div>{{/informDispatched}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IncidentHazard_collapse" aria-expanded="true" aria-controls="IncidentHazard_collapse" style="margin-left: 10px;">IncidentHazard</a></legend>
+                    <div id="IncidentHazard_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Hazard.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Incident'>Incident: </label><div class='col-sm-8'><input id='Incident' class='form-control' type='text'{{#Incident}} value='{{Incident}}'{{/Incident}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TroubleTicket'>TroubleTicket: </label><div class='col-sm-8'><input id='TroubleTicket' class='form-control' type='text'{{#TroubleTicket}} value='{{TroubleTicket}}'{{/TroubleTicket}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Agreement between the customer and the service supplier to pay for service at a specific service location.
@@ -811,22 +730,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CustomerAgreement_collapse" aria-expanded="true" aria-controls="CustomerAgreement_collapse">CustomerAgreement</a>
-<div id="CustomerAgreement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Agreement.prototype.template.call (this) +
-`
-{{#loadMgmt}}<div><b>loadMgmt</b>: {{loadMgmt}}</div>{{/loadMgmt}}
-{{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceCategory}}&quot;);})'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
-{{#ServiceSupplier}}<div><b>ServiceSupplier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceSupplier}}&quot;);})'>{{ServiceSupplier}}</a></div>{{/ServiceSupplier}}
-{{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
-{{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
-{{#StandardIndustryCode}}<div><b>StandardIndustryCode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StandardIndustryCode}}&quot;);})'>{{StandardIndustryCode}}</a></div>{{/StandardIndustryCode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerAgreement_collapse" aria-expanded="true" aria-controls="CustomerAgreement_collapse" style="margin-left: 10px;">CustomerAgreement</a></legend>
+                    <div id="CustomerAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.template.call (this) +
+                    `
+                    {{#loadMgmt}}<div><b>loadMgmt</b>: {{loadMgmt}}</div>{{/loadMgmt}}
+                    {{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceCategory}}&quot;);})'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
+                    {{#ServiceSupplier}}<div><b>ServiceSupplier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceSupplier}}&quot;);})'>{{ServiceSupplier}}</a></div>{{/ServiceSupplier}}
+                    {{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
+                    {{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
+                    {{#StandardIndustryCode}}<div><b>StandardIndustryCode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StandardIndustryCode}}&quot;);})'>{{StandardIndustryCode}}</a></div>{{/StandardIndustryCode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerAgreement_collapse" aria-expanded="true" aria-controls="CustomerAgreement_collapse" style="margin-left: 10px;">CustomerAgreement</a></legend>
+                    <div id="CustomerAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadMgmt'>loadMgmt: </label><div class='col-sm-8'><input id='loadMgmt' class='form-control' type='text'{{#loadMgmt}} value='{{loadMgmt}}'{{/loadMgmt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceCategory'>ServiceCategory: </label><div class='col-sm-8'><input id='ServiceCategory' class='form-control' type='text'{{#ServiceCategory}} value='{{ServiceCategory}}'{{/ServiceCategory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceSupplier'>ServiceSupplier: </label><div class='col-sm-8'><input id='ServiceSupplier' class='form-control' type='text'{{#ServiceSupplier}} value='{{ServiceSupplier}}'{{/ServiceSupplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Customer'>Customer: </label><div class='col-sm-8'><input id='Customer' class='form-control' type='text'{{#Customer}} value='{{Customer}}'{{/Customer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StandardIndustryCode'>StandardIndustryCode: </label><div class='col-sm-8'><input id='StandardIndustryCode' class='form-control' type='text'{{#StandardIndustryCode}} value='{{StandardIndustryCode}}'{{/StandardIndustryCode}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A real estate location, commonly referred to as premises.
@@ -885,19 +840,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ServiceLocation_collapse" aria-expanded="true" aria-controls="ServiceLocation_collapse">ServiceLocation</a>
-<div id="ServiceLocation_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Work.WorkLocation.prototype.template.call (this) +
-`
-{{#accessMethod}}<div><b>accessMethod</b>: {{accessMethod}}</div>{{/accessMethod}}
-{{#needsInspection}}<div><b>needsInspection</b>: {{needsInspection}}</div>{{/needsInspection}}
-{{#siteAccessProblem}}<div><b>siteAccessProblem</b>: {{siteAccessProblem}}</div>{{/siteAccessProblem}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceLocation_collapse" aria-expanded="true" aria-controls="ServiceLocation_collapse" style="margin-left: 10px;">ServiceLocation</a></legend>
+                    <div id="ServiceLocation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Work.WorkLocation.prototype.template.call (this) +
+                    `
+                    {{#accessMethod}}<div><b>accessMethod</b>: {{accessMethod}}</div>{{/accessMethod}}
+                    {{#needsInspection}}<div><b>needsInspection</b>: {{needsInspection}}</div>{{/needsInspection}}
+                    {{#siteAccessProblem}}<div><b>siteAccessProblem</b>: {{siteAccessProblem}}</div>{{/siteAccessProblem}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceLocation_collapse" aria-expanded="true" aria-controls="ServiceLocation_collapse" style="margin-left: 10px;">ServiceLocation</a></legend>
+                    <div id="ServiceLocation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Work.WorkLocation.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accessMethod'>accessMethod: </label><div class='col-sm-8'><input id='accessMethod' class='form-control' type='text'{{#accessMethod}} value='{{accessMethod}}'{{/accessMethod}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='needsInspection'>needsInspection: </label><div class='col-sm-8'><input id='needsInspection' class='form-check-input' type='checkbox'{{#needsInspection}} checked{{/needsInspection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='siteAccessProblem'>siteAccessProblem: </label><div class='col-sm-8'><input id='siteAccessProblem' class='form-control' type='text'{{#siteAccessProblem}} value='{{siteAccessProblem}}'{{/siteAccessProblem}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Category of service provided to the customer.
@@ -927,7 +915,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ServiceCategory";
-                base.parse_element (/<cim:ServiceCategory.kind>([\s\S]*?)<\/cim:ServiceCategory.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ServiceCategory.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
 
                 var bucket = context.parsed.ServiceCategory;
                 if (null == bucket)
@@ -952,100 +940,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ServiceCategory_collapse" aria-expanded="true" aria-controls="ServiceCategory_collapse">ServiceCategory</a>
-<div id="ServiceCategory_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceCategory_collapse" aria-expanded="true" aria-controls="ServiceCategory_collapse" style="margin-left: 10px;">ServiceCategory</a></legend>
+                    <div id="ServiceCategory_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Accounting classification of the type of revenue collected for the customer agreement, typically used to break down accounts for revenue accounting.
-         *
-         */
-        class RevenueKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.RevenueKind;
-                if (null == bucket)
-                   cim_data.RevenueKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.RevenueKind[this._id];
+                super.condition (obj);
+                obj.ServiceKind = []; if (!obj.kind) obj.ServiceKind.push ({ id: '', selected: true}); for (var property in ServiceKind) obj.ServiceKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "RevenueKind";
-                base.parse_element (/<cim:RevenueKind.residential>([\s\S]*?)<\/cim:RevenueKind.residential>/g, obj, "residential", base.to_string, sub, context);
-                base.parse_element (/<cim:RevenueKind.nonResidential>([\s\S]*?)<\/cim:RevenueKind.nonResidential>/g, obj, "nonResidential", base.to_string, sub, context);
-                base.parse_element (/<cim:RevenueKind.commercial>([\s\S]*?)<\/cim:RevenueKind.commercial>/g, obj, "commercial", base.to_string, sub, context);
-                base.parse_element (/<cim:RevenueKind.industrial>([\s\S]*?)<\/cim:RevenueKind.industrial>/g, obj, "industrial", base.to_string, sub, context);
-                base.parse_element (/<cim:RevenueKind.irrigation>([\s\S]*?)<\/cim:RevenueKind.irrigation>/g, obj, "irrigation", base.to_string, sub, context);
-                base.parse_element (/<cim:RevenueKind.streetLight>([\s\S]*?)<\/cim:RevenueKind.streetLight>/g, obj, "streetLight", base.to_string, sub, context);
-                base.parse_element (/<cim:RevenueKind.other>([\s\S]*?)<\/cim:RevenueKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.RevenueKind;
-                if (null == bucket)
-                   context.parsed.RevenueKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.ServiceKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "RevenueKind", "residential", base.from_string, fields);
-                base.export_element (obj, "RevenueKind", "nonResidential", base.from_string, fields);
-                base.export_element (obj, "RevenueKind", "commercial", base.from_string, fields);
-                base.export_element (obj, "RevenueKind", "industrial", base.from_string, fields);
-                base.export_element (obj, "RevenueKind", "irrigation", base.from_string, fields);
-                base.export_element (obj, "RevenueKind", "streetLight", base.from_string, fields);
-                base.export_element (obj, "RevenueKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RevenueKind_collapse" aria-expanded="true" aria-controls="RevenueKind_collapse">RevenueKind</a>
-<div id="RevenueKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#residential}}<div><b>residential</b>: {{residential}}</div>{{/residential}}
-{{#nonResidential}}<div><b>nonResidential</b>: {{nonResidential}}</div>{{/nonResidential}}
-{{#commercial}}<div><b>commercial</b>: {{commercial}}</div>{{/commercial}}
-{{#industrial}}<div><b>industrial</b>: {{industrial}}</div>{{/industrial}}
-{{#irrigation}}<div><b>irrigation</b>: {{irrigation}}</div>{{/irrigation}}
-{{#streetLight}}<div><b>streetLight</b>: {{streetLight}}</div>{{/streetLight}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceCategory_collapse" aria-expanded="true" aria-controls="ServiceCategory_collapse" style="margin-left: 10px;">ServiceCategory</a></legend>
+                    <div id="ServiceCategory_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ServiceKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ServiceKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         class TroubleTicket extends Common.Document
         {
@@ -1073,7 +1011,7 @@ define
                 obj.cls = "TroubleTicket";
                 base.parse_element (/<cim:TroubleTicket.dateTimeOfReport>([\s\S]*?)<\/cim:TroubleTicket.dateTimeOfReport>/g, obj, "dateTimeOfReport", base.to_datetime, sub, context);
                 base.parse_element (/<cim:TroubleTicket.troubleCode>([\s\S]*?)<\/cim:TroubleTicket.troubleCode>/g, obj, "troubleCode", base.to_string, sub, context);
-                base.parse_element (/<cim:TroubleTicket.reportingKind>([\s\S]*?)<\/cim:TroubleTicket.reportingKind>/g, obj, "reportingKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:TroubleTicket.reportingKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "reportingKind", sub, context);
                 base.parse_element (/<cim:TroubleTicket.resolvedDateTime>([\s\S]*?)<\/cim:TroubleTicket.resolvedDateTime>/g, obj, "resolvedDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:TroubleTicket.firstResponder>([\s\S]*?)<\/cim:TroubleTicket.firstResponder>/g, obj, "firstResponder", base.to_string, sub, context);
                 base.parse_attribute (/<cim:TroubleTicket.Notification\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Notification", sub, context);
@@ -1110,24 +1048,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TroubleTicket_collapse" aria-expanded="true" aria-controls="TroubleTicket_collapse">TroubleTicket</a>
-<div id="TroubleTicket_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#dateTimeOfReport}}<div><b>dateTimeOfReport</b>: {{dateTimeOfReport}}</div>{{/dateTimeOfReport}}
-{{#troubleCode}}<div><b>troubleCode</b>: {{troubleCode}}</div>{{/troubleCode}}
-{{#reportingKind}}<div><b>reportingKind</b>: {{reportingKind}}</div>{{/reportingKind}}
-{{#resolvedDateTime}}<div><b>resolvedDateTime</b>: {{resolvedDateTime}}</div>{{/resolvedDateTime}}
-{{#firstResponder}}<div><b>firstResponder</b>: {{firstResponder}}</div>{{/firstResponder}}
-{{#Notification}}<div><b>Notification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Notification}}&quot;);})'>{{Notification}}</a></div>{{/Notification}}
-{{#Incident}}<div><b>Incident</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Incident}}&quot;);})'>{{Incident}}</a></div>{{/Incident}}
-{{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TroubleTicket_collapse" aria-expanded="true" aria-controls="TroubleTicket_collapse" style="margin-left: 10px;">TroubleTicket</a></legend>
+                    <div id="TroubleTicket_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#dateTimeOfReport}}<div><b>dateTimeOfReport</b>: {{dateTimeOfReport}}</div>{{/dateTimeOfReport}}
+                    {{#troubleCode}}<div><b>troubleCode</b>: {{troubleCode}}</div>{{/troubleCode}}
+                    {{#reportingKind}}<div><b>reportingKind</b>: {{reportingKind}}</div>{{/reportingKind}}
+                    {{#resolvedDateTime}}<div><b>resolvedDateTime</b>: {{resolvedDateTime}}</div>{{/resolvedDateTime}}
+                    {{#firstResponder}}<div><b>firstResponder</b>: {{firstResponder}}</div>{{/firstResponder}}
+                    {{#Notification}}<div><b>Notification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Notification}}&quot;);})'>{{Notification}}</a></div>{{/Notification}}
+                    {{#Incident}}<div><b>Incident</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Incident}}&quot;);})'>{{Incident}}</a></div>{{/Incident}}
+                    {{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.TroubleReportingKind = []; if (!obj.reportingKind) obj.TroubleReportingKind.push ({ id: '', selected: true}); for (var property in TroubleReportingKind) obj.TroubleReportingKind.push ({ id: property, selected: obj.reportingKind && obj.reportingKind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.TroubleReportingKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TroubleTicket_collapse" aria-expanded="true" aria-controls="TroubleTicket_collapse" style="margin-left: 10px;">TroubleTicket</a></legend>
+                    <div id="TroubleTicket_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dateTimeOfReport'>dateTimeOfReport: </label><div class='col-sm-8'><input id='dateTimeOfReport' class='form-control' type='text'{{#dateTimeOfReport}} value='{{dateTimeOfReport}}'{{/dateTimeOfReport}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='troubleCode'>troubleCode: </label><div class='col-sm-8'><input id='troubleCode' class='form-control' type='text'{{#troubleCode}} value='{{troubleCode}}'{{/troubleCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reportingKind'>reportingKind: </label><div class='col-sm-8'><select id='reportingKind' class='form-control'>{{#TroubleReportingKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TroubleReportingKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resolvedDateTime'>resolvedDateTime: </label><div class='col-sm-8'><input id='resolvedDateTime' class='form-control' type='text'{{#resolvedDateTime}} value='{{resolvedDateTime}}'{{/resolvedDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='firstResponder'>firstResponder: </label><div class='col-sm-8'><input id='firstResponder' class='form-control' type='text'{{#firstResponder}} value='{{firstResponder}}'{{/firstResponder}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Notification'>Notification: </label><div class='col-sm-8'><input id='Notification' class='form-control' type='text'{{#Notification}} value='{{Notification}}'{{/Notification}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Incident'>Incident: </label><div class='col-sm-8'><input id='Incident' class='form-control' type='text'{{#Incident}} value='{{Incident}}'{{/Incident}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Customer'>Customer: </label><div class='col-sm-8'><input id='Customer' class='form-control' type='text'{{#Customer}} value='{{Customer}}'{{/Customer}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Assignment of a group of products and services purchased by the customer through a customer agreement, used as a mechanism for customer billing and payment.
@@ -1188,37 +1166,65 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CustomerAccount_collapse" aria-expanded="true" aria-controls="CustomerAccount_collapse">CustomerAccount</a>
-<div id="CustomerAccount_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#billingCycle}}<div><b>billingCycle</b>: {{billingCycle}}</div>{{/billingCycle}}
-{{#budgetBill}}<div><b>budgetBill</b>: {{budgetBill}}</div>{{/budgetBill}}
-{{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerAccount_collapse" aria-expanded="true" aria-controls="CustomerAccount_collapse" style="margin-left: 10px;">CustomerAccount</a></legend>
+                    <div id="CustomerAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#billingCycle}}<div><b>billingCycle</b>: {{billingCycle}}</div>{{/billingCycle}}
+                    {{#budgetBill}}<div><b>budgetBill</b>: {{budgetBill}}</div>{{/budgetBill}}
+                    {{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerAccount_collapse" aria-expanded="true" aria-controls="CustomerAccount_collapse" style="margin-left: 10px;">CustomerAccount</a></legend>
+                    <div id="CustomerAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='billingCycle'>billingCycle: </label><div class='col-sm-8'><input id='billingCycle' class='form-control' type='text'{{#billingCycle}} value='{{billingCycle}}'{{/billingCycle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='budgetBill'>budgetBill: </label><div class='col-sm-8'><input id='budgetBill' class='form-control' type='text'{{#budgetBill}} value='{{budgetBill}}'{{/budgetBill}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Customer'>Customer: </label><div class='col-sm-8'><input id='Customer' class='form-control' type='text'{{#Customer}} value='{{Customer}}'{{/Customer}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
-                RevenueKind: RevenueKind,
-                CustomerAccount: CustomerAccount,
-                CustomerKind: CustomerKind,
-                PricingStructure: PricingStructure,
-                TroubleTicket: TroubleTicket,
-                CustomerNotification: CustomerNotification,
                 Customer: Customer,
                 Tariff: Tariff,
-                TroubleReportingKind: TroubleReportingKind,
-                ServiceKind: ServiceKind,
                 IncidentHazard: IncidentHazard,
                 ServiceCategory: ServiceCategory,
+                CustomerAccount: CustomerAccount,
                 ServiceLocation: ServiceLocation,
-                NotificationTriggerKind: NotificationTriggerKind,
-                CustomerAgreement: CustomerAgreement
+                PricingStructure: PricingStructure,
+                TroubleTicket: TroubleTicket,
+                CustomerAgreement: CustomerAgreement,
+                CustomerNotification: CustomerNotification
             }
         );
     }

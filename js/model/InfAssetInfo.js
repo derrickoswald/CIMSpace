@@ -8,143 +8,152 @@ define
          * Kind of transformer construction.
          *
          */
-        class TransformerCoreKind extends base.Element
+        var TransformerCoreKind =
         {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.TransformerCoreKind;
-                if (null == bucket)
-                   cim_data.TransformerCoreKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.TransformerCoreKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "TransformerCoreKind";
-                base.parse_element (/<cim:TransformerCoreKind.core>([\s\S]*?)<\/cim:TransformerCoreKind.core>/g, obj, "core", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerCoreKind.shell>([\s\S]*?)<\/cim:TransformerCoreKind.shell>/g, obj, "shell", base.to_string, sub, context);
-
-                var bucket = context.parsed.TransformerCoreKind;
-                if (null == bucket)
-                   context.parsed.TransformerCoreKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "TransformerCoreKind", "core", base.from_string, fields);
-                base.export_element (obj, "TransformerCoreKind", "shell", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#TransformerCoreKind_collapse" aria-expanded="true" aria-controls="TransformerCoreKind_collapse">TransformerCoreKind</a>
-<div id="TransformerCoreKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#core}}<div><b>core</b>: {{core}}</div>{{/core}}
-{{#shell}}<div><b>shell</b>: {{shell}}</div>{{/shell}}
-</div>
-`
-                );
-           }        }
+            core: "core",
+            shell: "shell"
+        };
+        Object.freeze (TransformerCoreKind);
 
         /**
          * Kind of control for shunt impedance.
          *
          */
-        class ShuntImpedanceControlKind extends base.Element
+        var ShuntImpedanceControlKind =
         {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ShuntImpedanceControlKind;
-                if (null == bucket)
-                   cim_data.ShuntImpedanceControlKind = bucket = {};
-                bucket[this._id] = template;
-            }
+            fixed: "fixed",
+            localOnly: "localOnly",
+            remoteOnly: "remoteOnly",
+            remoteWithLocalOverride: "remoteWithLocalOverride"
+        };
+        Object.freeze (ShuntImpedanceControlKind);
 
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.ShuntImpedanceControlKind[this._id];
-            }
+        /**
+         * Kind of composite switch.
+         *
+         */
+        var CompositeSwitchKind =
+        {
+            throwOver: "throwOver",
+            escoThrowOver: "escoThrowOver",
+            ral: "ral",
+            gral: "gral",
+            regulatorBypass: "regulatorBypass",
+            ugMultiSwitch: "ugMultiSwitch",
+            other: "other"
+        };
+        Object.freeze (CompositeSwitchKind);
 
-            parse (context, sub)
-            {
-                var obj;
+        /**
+         * Kind of transformer construction.
+         *
+         */
+        var TransformerConstructionKind =
+        {
+            onePhase: "onePhase",
+            threePhase: "threePhase",
+            aerial: "aerial",
+            overhead: "overhead",
+            dryType: "dryType",
+            network: "network",
+            padmountDeadFront: "padmountDeadFront",
+            padmountFeedThrough: "padmountFeedThrough",
+            padmountLiveFront: "padmountLiveFront",
+            padmountLoopThrough: "padmountLoopThrough",
+            padmounted: "padmounted",
+            subway: "subway",
+            underground: "underground",
+            vault: "vault",
+            vaultThreePhase: "vaultThreePhase",
+            unknown: "unknown"
+        };
+        Object.freeze (TransformerConstructionKind);
 
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ShuntImpedanceControlKind";
-                base.parse_element (/<cim:ShuntImpedanceControlKind.fixed>([\s\S]*?)<\/cim:ShuntImpedanceControlKind.fixed>/g, obj, "fixed", base.to_string, sub, context);
-                base.parse_element (/<cim:ShuntImpedanceControlKind.localOnly>([\s\S]*?)<\/cim:ShuntImpedanceControlKind.localOnly>/g, obj, "localOnly", base.to_string, sub, context);
-                base.parse_element (/<cim:ShuntImpedanceControlKind.remoteOnly>([\s\S]*?)<\/cim:ShuntImpedanceControlKind.remoteOnly>/g, obj, "remoteOnly", base.to_string, sub, context);
-                base.parse_element (/<cim:ShuntImpedanceControlKind.remoteWithLocalOverride>([\s\S]*?)<\/cim:ShuntImpedanceControlKind.remoteWithLocalOverride>/g, obj, "remoteWithLocalOverride", base.to_string, sub, context);
+        /**
+         * Insulation kind for windings.
+         *
+         */
+        var WindingInsulationKind =
+        {
+            paper: "paper",
+            thermallyUpgradedPaper: "thermallyUpgradedPaper",
+            nomex: "nomex",
+            other: "other"
+        };
+        Object.freeze (WindingInsulationKind);
 
-                var bucket = context.parsed.ShuntImpedanceControlKind;
-                if (null == bucket)
-                   context.parsed.ShuntImpedanceControlKind = bucket = {};
-                bucket[obj.id] = obj;
+        /**
+         * Kind of local control for shunt impedance.
+         *
+         */
+        var ShuntImpedanceLocalControlKind =
+        {
+            none: "none",
+            powerFactor: "powerFactor",
+            time: "time",
+            temperature: "temperature",
+            reactivePower: "reactivePower",
+            current: "current",
+            voltage: "voltage"
+        };
+        Object.freeze (ShuntImpedanceLocalControlKind);
 
-                return (obj);
-            }
+        /**
+         * Kind of resetting the fault indicators.
+         *
+         */
+        var FaultIndicatorResetKind =
+        {
+            automatic: "automatic",
+            manual: "manual",
+            remote: "remote",
+            other: "other"
+        };
+        Object.freeze (FaultIndicatorResetKind);
 
-            export (obj, full)
-            {
-                var fields = [];
+        /**
+         * Function of a transformer.
+         *
+         */
+        var TransformerFunctionKind =
+        {
+            powerTransformer: "powerTransformer",
+            voltageRegulator: "voltageRegulator",
+            autotransformer: "autotransformer",
+            secondaryTransformer: "secondaryTransformer",
+            other: "other"
+        };
+        Object.freeze (TransformerFunctionKind);
 
-                base.export_element (obj, "ShuntImpedanceControlKind", "fixed", base.from_string, fields);
-                base.export_element (obj, "ShuntImpedanceControlKind", "localOnly", base.from_string, fields);
-                base.export_element (obj, "ShuntImpedanceControlKind", "remoteOnly", base.from_string, fields);
-                base.export_element (obj, "ShuntImpedanceControlKind", "remoteWithLocalOverride", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+        /**
+         * Kind of regulation branch for shunt impedance.
+         *
+         */
+        var RegulationBranchKind =
+        {
+            line: "line",
+            transformer: "transformer",
+            switch: "switch",
+            breaker: "breaker",
+            recloser: "recloser",
+            fuse: "fuse",
+            sectionner: "sectionner",
+            other: "other"
+        };
+        Object.freeze (RegulationBranchKind);
 
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#ShuntImpedanceControlKind_collapse" aria-expanded="true" aria-controls="ShuntImpedanceControlKind_collapse">ShuntImpedanceControlKind</a>
-<div id="ShuntImpedanceControlKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#fixed}}<div><b>fixed</b>: {{fixed}}</div>{{/fixed}}
-{{#localOnly}}<div><b>localOnly</b>: {{localOnly}}</div>{{/localOnly}}
-{{#remoteOnly}}<div><b>remoteOnly</b>: {{remoteOnly}}</div>{{/remoteOnly}}
-{{#remoteWithLocalOverride}}<div><b>remoteWithLocalOverride</b>: {{remoteWithLocalOverride}}</div>{{/remoteWithLocalOverride}}
-</div>
-`
-                );
-           }        }
+        /**
+         * Kind of oil preservation.
+         *
+         */
+        var OilPreservationKind =
+        {
+            freeBreathing: "freeBreathing",
+            nitrogenBlanket: "nitrogenBlanket",
+            conservator: "conservator",
+            other: "other"
+        };
+        Object.freeze (OilPreservationKind);
 
         /**
          * Parameters of fault indicator asset.
@@ -174,7 +183,7 @@ define
 
                 obj = Assets.AssetInfo.prototype.parse.call (this, context, sub);
                 obj.cls = "FaultIndicatorInfo";
-                base.parse_element (/<cim:FaultIndicatorInfo.resetKind>([\s\S]*?)<\/cim:FaultIndicatorInfo.resetKind>/g, obj, "resetKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:FaultIndicatorInfo.resetKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "resetKind", sub, context);
 
                 var bucket = context.parsed.FaultIndicatorInfo;
                 if (null == bucket)
@@ -199,17 +208,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FaultIndicatorInfo_collapse" aria-expanded="true" aria-controls="FaultIndicatorInfo_collapse">FaultIndicatorInfo</a>
-<div id="FaultIndicatorInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#resetKind}}<div><b>resetKind</b>: {{resetKind}}</div>{{/resetKind}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultIndicatorInfo_collapse" aria-expanded="true" aria-controls="FaultIndicatorInfo_collapse" style="margin-left: 10px;">FaultIndicatorInfo</a></legend>
+                    <div id="FaultIndicatorInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#resetKind}}<div><b>resetKind</b>: {{resetKind}}</div>{{/resetKind}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.FaultIndicatorResetKind = []; if (!obj.resetKind) obj.FaultIndicatorResetKind.push ({ id: '', selected: true}); for (var property in FaultIndicatorResetKind) obj.FaultIndicatorResetKind.push ({ id: property, selected: obj.resetKind && obj.resetKind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.FaultIndicatorResetKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultIndicatorInfo_collapse" aria-expanded="true" aria-controls="FaultIndicatorInfo_collapse" style="margin-left: 10px;">FaultIndicatorInfo</a></legend>
+                    <div id="FaultIndicatorInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resetKind'>resetKind: </label><div class='col-sm-8'><select id='resetKind' class='form-control'>{{#FaultIndicatorResetKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FaultIndicatorResetKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Provides pricing and other relevant information about a specific manufacturer's product (i.e., AssetModel), and its price from a given supplier.
@@ -270,19 +312,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AssetModelCatalogueItem_collapse" aria-expanded="true" aria-controls="AssetModelCatalogueItem_collapse">AssetModelCatalogueItem</a>
-<div id="AssetModelCatalogueItem_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#unitCost}}<div><b>unitCost</b>: {{unitCost}}</div>{{/unitCost}}
-{{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModel}}&quot;);})'>{{AssetModel}}</a></div>{{/AssetModel}}
-{{#AssetModelCatalogue}}<div><b>AssetModelCatalogue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogue}}&quot;);})'>{{AssetModelCatalogue}}</a></div>{{/AssetModelCatalogue}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AssetModelCatalogueItem_collapse" aria-expanded="true" aria-controls="AssetModelCatalogueItem_collapse" style="margin-left: 10px;">AssetModelCatalogueItem</a></legend>
+                    <div id="AssetModelCatalogueItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#unitCost}}<div><b>unitCost</b>: {{unitCost}}</div>{{/unitCost}}
+                    {{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModel}}&quot;);})'>{{AssetModel}}</a></div>{{/AssetModel}}
+                    {{#AssetModelCatalogue}}<div><b>AssetModelCatalogue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogue}}&quot;);})'>{{AssetModelCatalogue}}</a></div>{{/AssetModelCatalogue}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AssetModelCatalogueItem_collapse" aria-expanded="true" aria-controls="AssetModelCatalogueItem_collapse" style="margin-left: 10px;">AssetModelCatalogueItem</a></legend>
+                    <div id="AssetModelCatalogueItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitCost'>unitCost: </label><div class='col-sm-8'><input id='unitCost' class='form-control' type='text'{{#unitCost}} value='{{unitCost}}'{{/unitCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetModel'>AssetModel: </label><div class='col-sm-8'><input id='AssetModel' class='form-control' type='text'{{#AssetModel}} value='{{AssetModel}}'{{/AssetModel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetModelCatalogue'>AssetModelCatalogue: </label><div class='col-sm-8'><input id='AssetModelCatalogue' class='form-control' type='text'{{#AssetModelCatalogue}} value='{{AssetModelCatalogue}}'{{/AssetModelCatalogue}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Properties of switch assets.
@@ -349,23 +424,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OldSwitchInfo_collapse" aria-expanded="true" aria-controls="OldSwitchInfo_collapse">OldSwitchInfo</a>
-<div id="OldSwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + AssetInfo.SwitchInfo.prototype.template.call (this) +
-`
-{{#dielectricStrength}}<div><b>dielectricStrength</b>: {{dielectricStrength}}</div>{{/dielectricStrength}}
-{{#loadBreak}}<div><b>loadBreak</b>: {{loadBreak}}</div>{{/loadBreak}}
-{{#makingCapacity}}<div><b>makingCapacity</b>: {{makingCapacity}}</div>{{/makingCapacity}}
-{{#minimumCurrent}}<div><b>minimumCurrent</b>: {{minimumCurrent}}</div>{{/minimumCurrent}}
-{{#poleCount}}<div><b>poleCount</b>: {{poleCount}}</div>{{/poleCount}}
-{{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
-{{#withstandCurrent}}<div><b>withstandCurrent</b>: {{withstandCurrent}}</div>{{/withstandCurrent}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldSwitchInfo_collapse" aria-expanded="true" aria-controls="OldSwitchInfo_collapse" style="margin-left: 10px;">OldSwitchInfo</a></legend>
+                    <div id="OldSwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AssetInfo.SwitchInfo.prototype.template.call (this) +
+                    `
+                    {{#dielectricStrength}}<div><b>dielectricStrength</b>: {{dielectricStrength}}</div>{{/dielectricStrength}}
+                    {{#loadBreak}}<div><b>loadBreak</b>: {{loadBreak}}</div>{{/loadBreak}}
+                    {{#makingCapacity}}<div><b>makingCapacity</b>: {{makingCapacity}}</div>{{/makingCapacity}}
+                    {{#minimumCurrent}}<div><b>minimumCurrent</b>: {{minimumCurrent}}</div>{{/minimumCurrent}}
+                    {{#poleCount}}<div><b>poleCount</b>: {{poleCount}}</div>{{/poleCount}}
+                    {{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
+                    {{#withstandCurrent}}<div><b>withstandCurrent</b>: {{withstandCurrent}}</div>{{/withstandCurrent}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldSwitchInfo_collapse" aria-expanded="true" aria-controls="OldSwitchInfo_collapse" style="margin-left: 10px;">OldSwitchInfo</a></legend>
+                    <div id="OldSwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AssetInfo.SwitchInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dielectricStrength'>dielectricStrength: </label><div class='col-sm-8'><input id='dielectricStrength' class='form-control' type='text'{{#dielectricStrength}} value='{{dielectricStrength}}'{{/dielectricStrength}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='loadBreak'>loadBreak: </label><div class='col-sm-8'><input id='loadBreak' class='form-check-input' type='checkbox'{{#loadBreak}} checked{{/loadBreak}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='makingCapacity'>makingCapacity: </label><div class='col-sm-8'><input id='makingCapacity' class='form-control' type='text'{{#makingCapacity}} value='{{makingCapacity}}'{{/makingCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumCurrent'>minimumCurrent: </label><div class='col-sm-8'><input id='minimumCurrent' class='form-control' type='text'{{#minimumCurrent}} value='{{minimumCurrent}}'{{/minimumCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='poleCount'>poleCount: </label><div class='col-sm-8'><input id='poleCount' class='form-control' type='text'{{#poleCount}} value='{{poleCount}}'{{/poleCount}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='remote'>remote: </label><div class='col-sm-8'><input id='remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='withstandCurrent'>withstandCurrent: </label><div class='col-sm-8'><input id='withstandCurrent' class='form-control' type='text'{{#withstandCurrent}} value='{{withstandCurrent}}'{{/withstandCurrent}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Properties of current transformer asset.
@@ -450,32 +562,78 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CurrentTransformerInfo_collapse" aria-expanded="true" aria-controls="CurrentTransformerInfo_collapse">CurrentTransformerInfo</a>
-<div id="CurrentTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
-{{#accuracyLimit}}<div><b>accuracyLimit</b>: {{accuracyLimit}}</div>{{/accuracyLimit}}
-{{#coreCount}}<div><b>coreCount</b>: {{coreCount}}</div>{{/coreCount}}
-{{#ctClass}}<div><b>ctClass</b>: {{ctClass}}</div>{{/ctClass}}
-{{#kneePointCurrent}}<div><b>kneePointCurrent</b>: {{kneePointCurrent}}</div>{{/kneePointCurrent}}
-{{#kneePointVoltage}}<div><b>kneePointVoltage</b>: {{kneePointVoltage}}</div>{{/kneePointVoltage}}
-{{#maxRatio}}<div><b>maxRatio</b>: {{maxRatio}}</div>{{/maxRatio}}
-{{#nominalRatio}}<div><b>nominalRatio</b>: {{nominalRatio}}</div>{{/nominalRatio}}
-{{#primaryFlsRating}}<div><b>primaryFlsRating</b>: {{primaryFlsRating}}</div>{{/primaryFlsRating}}
-{{#primaryRatio}}<div><b>primaryRatio</b>: {{primaryRatio}}</div>{{/primaryRatio}}
-{{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
-{{#secondaryFlsRating}}<div><b>secondaryFlsRating</b>: {{secondaryFlsRating}}</div>{{/secondaryFlsRating}}
-{{#secondaryRatio}}<div><b>secondaryRatio</b>: {{secondaryRatio}}</div>{{/secondaryRatio}}
-{{#tertiaryFlsRating}}<div><b>tertiaryFlsRating</b>: {{tertiaryFlsRating}}</div>{{/tertiaryFlsRating}}
-{{#tertiaryRatio}}<div><b>tertiaryRatio</b>: {{tertiaryRatio}}</div>{{/tertiaryRatio}}
-{{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentTransformerInfo_collapse" aria-expanded="true" aria-controls="CurrentTransformerInfo_collapse" style="margin-left: 10px;">CurrentTransformerInfo</a></legend>
+                    <div id="CurrentTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
+                    {{#accuracyLimit}}<div><b>accuracyLimit</b>: {{accuracyLimit}}</div>{{/accuracyLimit}}
+                    {{#coreCount}}<div><b>coreCount</b>: {{coreCount}}</div>{{/coreCount}}
+                    {{#ctClass}}<div><b>ctClass</b>: {{ctClass}}</div>{{/ctClass}}
+                    {{#kneePointCurrent}}<div><b>kneePointCurrent</b>: {{kneePointCurrent}}</div>{{/kneePointCurrent}}
+                    {{#kneePointVoltage}}<div><b>kneePointVoltage</b>: {{kneePointVoltage}}</div>{{/kneePointVoltage}}
+                    {{#maxRatio}}<div><b>maxRatio</b>: {{maxRatio}}</div>{{/maxRatio}}
+                    {{#nominalRatio}}<div><b>nominalRatio</b>: {{nominalRatio}}</div>{{/nominalRatio}}
+                    {{#primaryFlsRating}}<div><b>primaryFlsRating</b>: {{primaryFlsRating}}</div>{{/primaryFlsRating}}
+                    {{#primaryRatio}}<div><b>primaryRatio</b>: {{primaryRatio}}</div>{{/primaryRatio}}
+                    {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+                    {{#secondaryFlsRating}}<div><b>secondaryFlsRating</b>: {{secondaryFlsRating}}</div>{{/secondaryFlsRating}}
+                    {{#secondaryRatio}}<div><b>secondaryRatio</b>: {{secondaryRatio}}</div>{{/secondaryRatio}}
+                    {{#tertiaryFlsRating}}<div><b>tertiaryFlsRating</b>: {{tertiaryFlsRating}}</div>{{/tertiaryFlsRating}}
+                    {{#tertiaryRatio}}<div><b>tertiaryRatio</b>: {{tertiaryRatio}}</div>{{/tertiaryRatio}}
+                    {{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentTransformerInfo_collapse" aria-expanded="true" aria-controls="CurrentTransformerInfo_collapse" style="margin-left: 10px;">CurrentTransformerInfo</a></legend>
+                    <div id="CurrentTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accuracyLimit'>accuracyLimit: </label><div class='col-sm-8'><input id='accuracyLimit' class='form-control' type='text'{{#accuracyLimit}} value='{{accuracyLimit}}'{{/accuracyLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreCount'>coreCount: </label><div class='col-sm-8'><input id='coreCount' class='form-control' type='text'{{#coreCount}} value='{{coreCount}}'{{/coreCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ctClass'>ctClass: </label><div class='col-sm-8'><input id='ctClass' class='form-control' type='text'{{#ctClass}} value='{{ctClass}}'{{/ctClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kneePointCurrent'>kneePointCurrent: </label><div class='col-sm-8'><input id='kneePointCurrent' class='form-control' type='text'{{#kneePointCurrent}} value='{{kneePointCurrent}}'{{/kneePointCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kneePointVoltage'>kneePointVoltage: </label><div class='col-sm-8'><input id='kneePointVoltage' class='form-control' type='text'{{#kneePointVoltage}} value='{{kneePointVoltage}}'{{/kneePointVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxRatio'>maxRatio: </label><div class='col-sm-8'><input id='maxRatio' class='form-control' type='text'{{#maxRatio}} value='{{maxRatio}}'{{/maxRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nominalRatio'>nominalRatio: </label><div class='col-sm-8'><input id='nominalRatio' class='form-control' type='text'{{#nominalRatio}} value='{{nominalRatio}}'{{/nominalRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='primaryFlsRating'>primaryFlsRating: </label><div class='col-sm-8'><input id='primaryFlsRating' class='form-control' type='text'{{#primaryFlsRating}} value='{{primaryFlsRating}}'{{/primaryFlsRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='primaryRatio'>primaryRatio: </label><div class='col-sm-8'><input id='primaryRatio' class='form-control' type='text'{{#primaryRatio}} value='{{primaryRatio}}'{{/primaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='secondaryFlsRating'>secondaryFlsRating: </label><div class='col-sm-8'><input id='secondaryFlsRating' class='form-control' type='text'{{#secondaryFlsRating}} value='{{secondaryFlsRating}}'{{/secondaryFlsRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><input id='secondaryRatio' class='form-control' type='text'{{#secondaryRatio}} value='{{secondaryRatio}}'{{/secondaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tertiaryFlsRating'>tertiaryFlsRating: </label><div class='col-sm-8'><input id='tertiaryFlsRating' class='form-control' type='text'{{#tertiaryFlsRating}} value='{{tertiaryFlsRating}}'{{/tertiaryFlsRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><input id='tertiaryRatio' class='form-control' type='text'{{#tertiaryRatio}} value='{{tertiaryRatio}}'{{/tertiaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='usage'>usage: </label><div class='col-sm-8'><input id='usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Properties of surge arrester.
@@ -546,108 +704,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SurgeArresterInfo_collapse" aria-expanded="true" aria-controls="SurgeArresterInfo_collapse">SurgeArresterInfo</a>
-<div id="SurgeArresterInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#continuousOperatingVoltage}}<div><b>continuousOperatingVoltage</b>: {{continuousOperatingVoltage}}</div>{{/continuousOperatingVoltage}}
-{{#isPolymer}}<div><b>isPolymer</b>: {{isPolymer}}</div>{{/isPolymer}}
-{{#lightningImpulseDischargeVoltage}}<div><b>lightningImpulseDischargeVoltage</b>: {{lightningImpulseDischargeVoltage}}</div>{{/lightningImpulseDischargeVoltage}}
-{{#lineDischargeClass}}<div><b>lineDischargeClass</b>: {{lineDischargeClass}}</div>{{/lineDischargeClass}}
-{{#nominalDischargeCurrent}}<div><b>nominalDischargeCurrent</b>: {{nominalDischargeCurrent}}</div>{{/nominalDischargeCurrent}}
-{{#pressureReliefClass}}<div><b>pressureReliefClass</b>: {{pressureReliefClass}}</div>{{/pressureReliefClass}}
-{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
-{{#steepFrontDischargeVoltage}}<div><b>steepFrontDischargeVoltage</b>: {{steepFrontDischargeVoltage}}</div>{{/steepFrontDischargeVoltage}}
-{{#switchingImpulseDischargeVoltage}}<div><b>switchingImpulseDischargeVoltage</b>: {{switchingImpulseDischargeVoltage}}</div>{{/switchingImpulseDischargeVoltage}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SurgeArresterInfo_collapse" aria-expanded="true" aria-controls="SurgeArresterInfo_collapse" style="margin-left: 10px;">SurgeArresterInfo</a></legend>
+                    <div id="SurgeArresterInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#continuousOperatingVoltage}}<div><b>continuousOperatingVoltage</b>: {{continuousOperatingVoltage}}</div>{{/continuousOperatingVoltage}}
+                    {{#isPolymer}}<div><b>isPolymer</b>: {{isPolymer}}</div>{{/isPolymer}}
+                    {{#lightningImpulseDischargeVoltage}}<div><b>lightningImpulseDischargeVoltage</b>: {{lightningImpulseDischargeVoltage}}</div>{{/lightningImpulseDischargeVoltage}}
+                    {{#lineDischargeClass}}<div><b>lineDischargeClass</b>: {{lineDischargeClass}}</div>{{/lineDischargeClass}}
+                    {{#nominalDischargeCurrent}}<div><b>nominalDischargeCurrent</b>: {{nominalDischargeCurrent}}</div>{{/nominalDischargeCurrent}}
+                    {{#pressureReliefClass}}<div><b>pressureReliefClass</b>: {{pressureReliefClass}}</div>{{/pressureReliefClass}}
+                    {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+                    {{#steepFrontDischargeVoltage}}<div><b>steepFrontDischargeVoltage</b>: {{steepFrontDischargeVoltage}}</div>{{/steepFrontDischargeVoltage}}
+                    {{#switchingImpulseDischargeVoltage}}<div><b>switchingImpulseDischargeVoltage</b>: {{switchingImpulseDischargeVoltage}}</div>{{/switchingImpulseDischargeVoltage}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of composite switch.
-         *
-         */
-        class CompositeSwitchKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.CompositeSwitchKind;
-                if (null == bucket)
-                   cim_data.CompositeSwitchKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.CompositeSwitchKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "CompositeSwitchKind";
-                base.parse_element (/<cim:CompositeSwitchKind.throwOver>([\s\S]*?)<\/cim:CompositeSwitchKind.throwOver>/g, obj, "throwOver", base.to_string, sub, context);
-                base.parse_element (/<cim:CompositeSwitchKind.escoThrowOver>([\s\S]*?)<\/cim:CompositeSwitchKind.escoThrowOver>/g, obj, "escoThrowOver", base.to_string, sub, context);
-                base.parse_element (/<cim:CompositeSwitchKind.ral>([\s\S]*?)<\/cim:CompositeSwitchKind.ral>/g, obj, "ral", base.to_string, sub, context);
-                base.parse_element (/<cim:CompositeSwitchKind.gral>([\s\S]*?)<\/cim:CompositeSwitchKind.gral>/g, obj, "gral", base.to_string, sub, context);
-                base.parse_element (/<cim:CompositeSwitchKind.regulatorBypass>([\s\S]*?)<\/cim:CompositeSwitchKind.regulatorBypass>/g, obj, "regulatorBypass", base.to_string, sub, context);
-                base.parse_element (/<cim:CompositeSwitchKind.ugMultiSwitch>([\s\S]*?)<\/cim:CompositeSwitchKind.ugMultiSwitch>/g, obj, "ugMultiSwitch", base.to_string, sub, context);
-                base.parse_element (/<cim:CompositeSwitchKind.other>([\s\S]*?)<\/cim:CompositeSwitchKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.CompositeSwitchKind;
-                if (null == bucket)
-                   context.parsed.CompositeSwitchKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "CompositeSwitchKind", "throwOver", base.from_string, fields);
-                base.export_element (obj, "CompositeSwitchKind", "escoThrowOver", base.from_string, fields);
-                base.export_element (obj, "CompositeSwitchKind", "ral", base.from_string, fields);
-                base.export_element (obj, "CompositeSwitchKind", "gral", base.from_string, fields);
-                base.export_element (obj, "CompositeSwitchKind", "regulatorBypass", base.from_string, fields);
-                base.export_element (obj, "CompositeSwitchKind", "ugMultiSwitch", base.from_string, fields);
-                base.export_element (obj, "CompositeSwitchKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CompositeSwitchKind_collapse" aria-expanded="true" aria-controls="CompositeSwitchKind_collapse">CompositeSwitchKind</a>
-<div id="CompositeSwitchKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#throwOver}}<div><b>throwOver</b>: {{throwOver}}</div>{{/throwOver}}
-{{#escoThrowOver}}<div><b>escoThrowOver</b>: {{escoThrowOver}}</div>{{/escoThrowOver}}
-{{#ral}}<div><b>ral</b>: {{ral}}</div>{{/ral}}
-{{#gral}}<div><b>gral</b>: {{gral}}</div>{{/gral}}
-{{#regulatorBypass}}<div><b>regulatorBypass</b>: {{regulatorBypass}}</div>{{/regulatorBypass}}
-{{#ugMultiSwitch}}<div><b>ugMultiSwitch</b>: {{ugMultiSwitch}}</div>{{/ugMultiSwitch}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SurgeArresterInfo_collapse" aria-expanded="true" aria-controls="SurgeArresterInfo_collapse" style="margin-left: 10px;">SurgeArresterInfo</a></legend>
+                    <div id="SurgeArresterInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='continuousOperatingVoltage'>continuousOperatingVoltage: </label><div class='col-sm-8'><input id='continuousOperatingVoltage' class='form-control' type='text'{{#continuousOperatingVoltage}} value='{{continuousOperatingVoltage}}'{{/continuousOperatingVoltage}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isPolymer'>isPolymer: </label><div class='col-sm-8'><input id='isPolymer' class='form-check-input' type='checkbox'{{#isPolymer}} checked{{/isPolymer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lightningImpulseDischargeVoltage'>lightningImpulseDischargeVoltage: </label><div class='col-sm-8'><input id='lightningImpulseDischargeVoltage' class='form-control' type='text'{{#lightningImpulseDischargeVoltage}} value='{{lightningImpulseDischargeVoltage}}'{{/lightningImpulseDischargeVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lineDischargeClass'>lineDischargeClass: </label><div class='col-sm-8'><input id='lineDischargeClass' class='form-control' type='text'{{#lineDischargeClass}} value='{{lineDischargeClass}}'{{/lineDischargeClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nominalDischargeCurrent'>nominalDischargeCurrent: </label><div class='col-sm-8'><input id='nominalDischargeCurrent' class='form-control' type='text'{{#nominalDischargeCurrent}} value='{{nominalDischargeCurrent}}'{{/nominalDischargeCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureReliefClass'>pressureReliefClass: </label><div class='col-sm-8'><input id='pressureReliefClass' class='form-control' type='text'{{#pressureReliefClass}} value='{{pressureReliefClass}}'{{/pressureReliefClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='steepFrontDischargeVoltage'>steepFrontDischargeVoltage: </label><div class='col-sm-8'><input id='steepFrontDischargeVoltage' class='form-control' type='text'{{#steepFrontDischargeVoltage}} value='{{steepFrontDischargeVoltage}}'{{/steepFrontDischargeVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='switchingImpulseDischargeVoltage'>switchingImpulseDischargeVoltage: </label><div class='col-sm-8'><input id='switchingImpulseDischargeVoltage' class='form-control' type='text'{{#switchingImpulseDischargeVoltage}} value='{{switchingImpulseDischargeVoltage}}'{{/switchingImpulseDischargeVoltage}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Catalogue of available types of products and materials that are used to build or install, maintain or operate an Asset.
@@ -704,17 +818,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AssetModelCatalogue_collapse" aria-expanded="true" aria-controls="AssetModelCatalogue_collapse">AssetModelCatalogue</a>
-<div id="AssetModelCatalogue_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AssetModelCatalogue_collapse" aria-expanded="true" aria-controls="AssetModelCatalogue_collapse" style="margin-left: 10px;">AssetModelCatalogue</a></legend>
+                    <div id="AssetModelCatalogue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AssetModelCatalogue_collapse" aria-expanded="true" aria-controls="AssetModelCatalogue_collapse" style="margin-left: 10px;">AssetModelCatalogue</a></legend>
+                    <div id="AssetModelCatalogue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Properties of protection equipment asset.
@@ -771,202 +916,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ProtectionEquipmentInfo_collapse" aria-expanded="true" aria-controls="ProtectionEquipmentInfo_collapse">ProtectionEquipmentInfo</a>
-<div id="ProtectionEquipmentInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#groundTrip}}<div><b>groundTrip</b>: {{groundTrip}}</div>{{/groundTrip}}
-{{#phaseTrip}}<div><b>phaseTrip</b>: {{phaseTrip}}</div>{{/phaseTrip}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProtectionEquipmentInfo_collapse" aria-expanded="true" aria-controls="ProtectionEquipmentInfo_collapse" style="margin-left: 10px;">ProtectionEquipmentInfo</a></legend>
+                    <div id="ProtectionEquipmentInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#groundTrip}}<div><b>groundTrip</b>: {{groundTrip}}</div>{{/groundTrip}}
+                    {{#phaseTrip}}<div><b>phaseTrip</b>: {{phaseTrip}}</div>{{/phaseTrip}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of transformer construction.
-         *
-         */
-        class TransformerConstructionKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.TransformerConstructionKind;
-                if (null == bucket)
-                   cim_data.TransformerConstructionKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.TransformerConstructionKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "TransformerConstructionKind";
-                base.parse_element (/<cim:TransformerConstructionKind.onePhase>([\s\S]*?)<\/cim:TransformerConstructionKind.onePhase>/g, obj, "onePhase", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.threePhase>([\s\S]*?)<\/cim:TransformerConstructionKind.threePhase>/g, obj, "threePhase", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.aerial>([\s\S]*?)<\/cim:TransformerConstructionKind.aerial>/g, obj, "aerial", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.overhead>([\s\S]*?)<\/cim:TransformerConstructionKind.overhead>/g, obj, "overhead", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.dryType>([\s\S]*?)<\/cim:TransformerConstructionKind.dryType>/g, obj, "dryType", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.network>([\s\S]*?)<\/cim:TransformerConstructionKind.network>/g, obj, "network", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.padmountDeadFront>([\s\S]*?)<\/cim:TransformerConstructionKind.padmountDeadFront>/g, obj, "padmountDeadFront", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.padmountFeedThrough>([\s\S]*?)<\/cim:TransformerConstructionKind.padmountFeedThrough>/g, obj, "padmountFeedThrough", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.padmountLiveFront>([\s\S]*?)<\/cim:TransformerConstructionKind.padmountLiveFront>/g, obj, "padmountLiveFront", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.padmountLoopThrough>([\s\S]*?)<\/cim:TransformerConstructionKind.padmountLoopThrough>/g, obj, "padmountLoopThrough", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.padmounted>([\s\S]*?)<\/cim:TransformerConstructionKind.padmounted>/g, obj, "padmounted", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.subway>([\s\S]*?)<\/cim:TransformerConstructionKind.subway>/g, obj, "subway", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.underground>([\s\S]*?)<\/cim:TransformerConstructionKind.underground>/g, obj, "underground", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.vault>([\s\S]*?)<\/cim:TransformerConstructionKind.vault>/g, obj, "vault", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.vaultThreePhase>([\s\S]*?)<\/cim:TransformerConstructionKind.vaultThreePhase>/g, obj, "vaultThreePhase", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerConstructionKind.unknown>([\s\S]*?)<\/cim:TransformerConstructionKind.unknown>/g, obj, "unknown", base.to_string, sub, context);
-
-                var bucket = context.parsed.TransformerConstructionKind;
-                if (null == bucket)
-                   context.parsed.TransformerConstructionKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "TransformerConstructionKind", "onePhase", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "threePhase", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "aerial", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "overhead", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "dryType", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "network", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "padmountDeadFront", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "padmountFeedThrough", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "padmountLiveFront", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "padmountLoopThrough", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "padmounted", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "subway", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "underground", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "vault", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "vaultThreePhase", base.from_string, fields);
-                base.export_element (obj, "TransformerConstructionKind", "unknown", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransformerConstructionKind_collapse" aria-expanded="true" aria-controls="TransformerConstructionKind_collapse">TransformerConstructionKind</a>
-<div id="TransformerConstructionKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#onePhase}}<div><b>onePhase</b>: {{onePhase}}</div>{{/onePhase}}
-{{#threePhase}}<div><b>threePhase</b>: {{threePhase}}</div>{{/threePhase}}
-{{#aerial}}<div><b>aerial</b>: {{aerial}}</div>{{/aerial}}
-{{#overhead}}<div><b>overhead</b>: {{overhead}}</div>{{/overhead}}
-{{#dryType}}<div><b>dryType</b>: {{dryType}}</div>{{/dryType}}
-{{#network}}<div><b>network</b>: {{network}}</div>{{/network}}
-{{#padmountDeadFront}}<div><b>padmountDeadFront</b>: {{padmountDeadFront}}</div>{{/padmountDeadFront}}
-{{#padmountFeedThrough}}<div><b>padmountFeedThrough</b>: {{padmountFeedThrough}}</div>{{/padmountFeedThrough}}
-{{#padmountLiveFront}}<div><b>padmountLiveFront</b>: {{padmountLiveFront}}</div>{{/padmountLiveFront}}
-{{#padmountLoopThrough}}<div><b>padmountLoopThrough</b>: {{padmountLoopThrough}}</div>{{/padmountLoopThrough}}
-{{#padmounted}}<div><b>padmounted</b>: {{padmounted}}</div>{{/padmounted}}
-{{#subway}}<div><b>subway</b>: {{subway}}</div>{{/subway}}
-{{#underground}}<div><b>underground</b>: {{underground}}</div>{{/underground}}
-{{#vault}}<div><b>vault</b>: {{vault}}</div>{{/vault}}
-{{#vaultThreePhase}}<div><b>vaultThreePhase</b>: {{vaultThreePhase}}</div>{{/vaultThreePhase}}
-{{#unknown}}<div><b>unknown</b>: {{unknown}}</div>{{/unknown}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProtectionEquipmentInfo_collapse" aria-expanded="true" aria-controls="ProtectionEquipmentInfo_collapse" style="margin-left: 10px;">ProtectionEquipmentInfo</a></legend>
+                    <div id="ProtectionEquipmentInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='groundTrip'>groundTrip: </label><div class='col-sm-8'><input id='groundTrip' class='form-control' type='text'{{#groundTrip}} value='{{groundTrip}}'{{/groundTrip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseTrip'>phaseTrip: </label><div class='col-sm-8'><input id='phaseTrip' class='form-control' type='text'{{#phaseTrip}} value='{{phaseTrip}}'{{/phaseTrip}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        /**
-         * Insulation kind for windings.
-         *
-         */
-        class WindingInsulationKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.WindingInsulationKind;
-                if (null == bucket)
-                   cim_data.WindingInsulationKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.WindingInsulationKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "WindingInsulationKind";
-                base.parse_element (/<cim:WindingInsulationKind.paper>([\s\S]*?)<\/cim:WindingInsulationKind.paper>/g, obj, "paper", base.to_string, sub, context);
-                base.parse_element (/<cim:WindingInsulationKind.thermallyUpgradedPaper>([\s\S]*?)<\/cim:WindingInsulationKind.thermallyUpgradedPaper>/g, obj, "thermallyUpgradedPaper", base.to_string, sub, context);
-                base.parse_element (/<cim:WindingInsulationKind.nomex>([\s\S]*?)<\/cim:WindingInsulationKind.nomex>/g, obj, "nomex", base.to_string, sub, context);
-                base.parse_element (/<cim:WindingInsulationKind.other>([\s\S]*?)<\/cim:WindingInsulationKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.WindingInsulationKind;
-                if (null == bucket)
-                   context.parsed.WindingInsulationKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "WindingInsulationKind", "paper", base.from_string, fields);
-                base.export_element (obj, "WindingInsulationKind", "thermallyUpgradedPaper", base.from_string, fields);
-                base.export_element (obj, "WindingInsulationKind", "nomex", base.from_string, fields);
-                base.export_element (obj, "WindingInsulationKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#WindingInsulationKind_collapse" aria-expanded="true" aria-controls="WindingInsulationKind_collapse">WindingInsulationKind</a>
-<div id="WindingInsulationKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#paper}}<div><b>paper</b>: {{paper}}</div>{{/paper}}
-{{#thermallyUpgradedPaper}}<div><b>thermallyUpgradedPaper</b>: {{thermallyUpgradedPaper}}</div>{{/thermallyUpgradedPaper}}
-{{#nomex}}<div><b>nomex</b>: {{nomex}}</div>{{/nomex}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         class OldTransformerTankInfo extends AssetInfo.TransformerTankInfo
         {
@@ -992,12 +985,12 @@ define
 
                 obj = AssetInfo.TransformerTankInfo.prototype.parse.call (this, context, sub);
                 obj.cls = "OldTransformerTankInfo";
-                base.parse_element (/<cim:OldTransformerTankInfo.constructionKind>([\s\S]*?)<\/cim:OldTransformerTankInfo.constructionKind>/g, obj, "constructionKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:OldTransformerTankInfo.constructionKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "constructionKind", sub, context);
                 base.parse_element (/<cim:OldTransformerTankInfo.coreCoilsWeight>([\s\S]*?)<\/cim:OldTransformerTankInfo.coreCoilsWeight>/g, obj, "coreCoilsWeight", base.to_string, sub, context);
-                base.parse_element (/<cim:OldTransformerTankInfo.coreKind>([\s\S]*?)<\/cim:OldTransformerTankInfo.coreKind>/g, obj, "coreKind", base.to_string, sub, context);
-                base.parse_element (/<cim:OldTransformerTankInfo.function>([\s\S]*?)<\/cim:OldTransformerTankInfo.function>/g, obj, "function", base.to_string, sub, context);
+                base.parse_attribute (/<cim:OldTransformerTankInfo.coreKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "coreKind", sub, context);
+                base.parse_attribute (/<cim:OldTransformerTankInfo.function\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "function", sub, context);
                 base.parse_element (/<cim:OldTransformerTankInfo.neutralBIL>([\s\S]*?)<\/cim:OldTransformerTankInfo.neutralBIL>/g, obj, "neutralBIL", base.to_string, sub, context);
-                base.parse_element (/<cim:OldTransformerTankInfo.oilPreservationKind>([\s\S]*?)<\/cim:OldTransformerTankInfo.oilPreservationKind>/g, obj, "oilPreservationKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:OldTransformerTankInfo.oilPreservationKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "oilPreservationKind", sub, context);
 
                 var bucket = context.parsed.OldTransformerTankInfo;
                 if (null == bucket)
@@ -1027,22 +1020,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OldTransformerTankInfo_collapse" aria-expanded="true" aria-controls="OldTransformerTankInfo_collapse">OldTransformerTankInfo</a>
-<div id="OldTransformerTankInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + AssetInfo.TransformerTankInfo.prototype.template.call (this) +
-`
-{{#constructionKind}}<div><b>constructionKind</b>: {{constructionKind}}</div>{{/constructionKind}}
-{{#coreCoilsWeight}}<div><b>coreCoilsWeight</b>: {{coreCoilsWeight}}</div>{{/coreCoilsWeight}}
-{{#coreKind}}<div><b>coreKind</b>: {{coreKind}}</div>{{/coreKind}}
-{{#function}}<div><b>function</b>: {{function}}</div>{{/function}}
-{{#neutralBIL}}<div><b>neutralBIL</b>: {{neutralBIL}}</div>{{/neutralBIL}}
-{{#oilPreservationKind}}<div><b>oilPreservationKind</b>: {{oilPreservationKind}}</div>{{/oilPreservationKind}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldTransformerTankInfo_collapse" aria-expanded="true" aria-controls="OldTransformerTankInfo_collapse" style="margin-left: 10px;">OldTransformerTankInfo</a></legend>
+                    <div id="OldTransformerTankInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AssetInfo.TransformerTankInfo.prototype.template.call (this) +
+                    `
+                    {{#constructionKind}}<div><b>constructionKind</b>: {{constructionKind}}</div>{{/constructionKind}}
+                    {{#coreCoilsWeight}}<div><b>coreCoilsWeight</b>: {{coreCoilsWeight}}</div>{{/coreCoilsWeight}}
+                    {{#coreKind}}<div><b>coreKind</b>: {{coreKind}}</div>{{/coreKind}}
+                    {{#function}}<div><b>function</b>: {{function}}</div>{{/function}}
+                    {{#neutralBIL}}<div><b>neutralBIL</b>: {{neutralBIL}}</div>{{/neutralBIL}}
+                    {{#oilPreservationKind}}<div><b>oilPreservationKind</b>: {{oilPreservationKind}}</div>{{/oilPreservationKind}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.TransformerConstructionKind = []; if (!obj.constructionKind) obj.TransformerConstructionKind.push ({ id: '', selected: true}); for (var property in TransformerConstructionKind) obj.TransformerConstructionKind.push ({ id: property, selected: obj.constructionKind && obj.constructionKind.endsWith ('.' + property)});
+                obj.TransformerCoreKind = []; if (!obj.coreKind) obj.TransformerCoreKind.push ({ id: '', selected: true}); for (var property in TransformerCoreKind) obj.TransformerCoreKind.push ({ id: property, selected: obj.coreKind && obj.coreKind.endsWith ('.' + property)});
+                obj.TransformerFunctionKind = []; if (!obj.function) obj.TransformerFunctionKind.push ({ id: '', selected: true}); for (var property in TransformerFunctionKind) obj.TransformerFunctionKind.push ({ id: property, selected: obj.function && obj.function.endsWith ('.' + property)});
+                obj.OilPreservationKind = []; if (!obj.oilPreservationKind) obj.OilPreservationKind.push ({ id: '', selected: true}); for (var property in OilPreservationKind) obj.OilPreservationKind.push ({ id: property, selected: obj.oilPreservationKind && obj.oilPreservationKind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.TransformerConstructionKind;
+                delete obj.TransformerCoreKind;
+                delete obj.TransformerFunctionKind;
+                delete obj.OilPreservationKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldTransformerTankInfo_collapse" aria-expanded="true" aria-controls="OldTransformerTankInfo_collapse" style="margin-left: 10px;">OldTransformerTankInfo</a></legend>
+                    <div id="OldTransformerTankInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AssetInfo.TransformerTankInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='constructionKind'>constructionKind: </label><div class='col-sm-8'><select id='constructionKind' class='form-control'>{{#TransformerConstructionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerConstructionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreCoilsWeight'>coreCoilsWeight: </label><div class='col-sm-8'><input id='coreCoilsWeight' class='form-control' type='text'{{#coreCoilsWeight}} value='{{coreCoilsWeight}}'{{/coreCoilsWeight}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreKind'>coreKind: </label><div class='col-sm-8'><select id='coreKind' class='form-control'>{{#TransformerCoreKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerCoreKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='function'>function: </label><div class='col-sm-8'><select id='function' class='form-control'>{{#TransformerFunctionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerFunctionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='neutralBIL'>neutralBIL: </label><div class='col-sm-8'><input id='neutralBIL' class='form-control' type='text'{{#neutralBIL}} value='{{neutralBIL}}'{{/neutralBIL}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oilPreservationKind'>oilPreservationKind: </label><div class='col-sm-8'><select id='oilPreservationKind' class='form-control'>{{#OilPreservationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OilPreservationKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Properties of a composite switch.
@@ -1075,7 +1112,7 @@ define
                 base.parse_element (/<cim:CompositeSwitchInfo.ganged>([\s\S]*?)<\/cim:CompositeSwitchInfo.ganged>/g, obj, "ganged", base.to_boolean, sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.initOpMode>([\s\S]*?)<\/cim:CompositeSwitchInfo.initOpMode>/g, obj, "initOpMode", base.to_string, sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.interruptingRating>([\s\S]*?)<\/cim:CompositeSwitchInfo.interruptingRating>/g, obj, "interruptingRating", base.to_string, sub, context);
-                base.parse_element (/<cim:CompositeSwitchInfo.kind>([\s\S]*?)<\/cim:CompositeSwitchInfo.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CompositeSwitchInfo.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.phaseCode>([\s\S]*?)<\/cim:CompositeSwitchInfo.phaseCode>/g, obj, "phaseCode", base.to_string, sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.phaseCount>([\s\S]*?)<\/cim:CompositeSwitchInfo.phaseCount>/g, obj, "phaseCount", base.to_string, sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.ratedVoltage>([\s\S]*?)<\/cim:CompositeSwitchInfo.ratedVoltage>/g, obj, "ratedVoltage", base.to_string, sub, context);
@@ -1113,182 +1150,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CompositeSwitchInfo_collapse" aria-expanded="true" aria-controls="CompositeSwitchInfo_collapse">CompositeSwitchInfo</a>
-<div id="CompositeSwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#ganged}}<div><b>ganged</b>: {{ganged}}</div>{{/ganged}}
-{{#initOpMode}}<div><b>initOpMode</b>: {{initOpMode}}</div>{{/initOpMode}}
-{{#interruptingRating}}<div><b>interruptingRating</b>: {{interruptingRating}}</div>{{/interruptingRating}}
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#phaseCode}}<div><b>phaseCode</b>: {{phaseCode}}</div>{{/phaseCode}}
-{{#phaseCount}}<div><b>phaseCount</b>: {{phaseCount}}</div>{{/phaseCount}}
-{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
-{{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
-{{#switchStateCount}}<div><b>switchStateCount</b>: {{switchStateCount}}</div>{{/switchStateCount}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CompositeSwitchInfo_collapse" aria-expanded="true" aria-controls="CompositeSwitchInfo_collapse" style="margin-left: 10px;">CompositeSwitchInfo</a></legend>
+                    <div id="CompositeSwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#ganged}}<div><b>ganged</b>: {{ganged}}</div>{{/ganged}}
+                    {{#initOpMode}}<div><b>initOpMode</b>: {{initOpMode}}</div>{{/initOpMode}}
+                    {{#interruptingRating}}<div><b>interruptingRating</b>: {{interruptingRating}}</div>{{/interruptingRating}}
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#phaseCode}}<div><b>phaseCode</b>: {{phaseCode}}</div>{{/phaseCode}}
+                    {{#phaseCount}}<div><b>phaseCount</b>: {{phaseCount}}</div>{{/phaseCount}}
+                    {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+                    {{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
+                    {{#switchStateCount}}<div><b>switchStateCount</b>: {{switchStateCount}}</div>{{/switchStateCount}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of local control for shunt impedance.
-         *
-         */
-        class ShuntImpedanceLocalControlKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ShuntImpedanceLocalControlKind;
-                if (null == bucket)
-                   cim_data.ShuntImpedanceLocalControlKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ShuntImpedanceLocalControlKind[this._id];
+                super.condition (obj);
+                obj.CompositeSwitchKind = []; if (!obj.kind) obj.CompositeSwitchKind.push ({ id: '', selected: true}); for (var property in CompositeSwitchKind) obj.CompositeSwitchKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ShuntImpedanceLocalControlKind";
-                base.parse_element (/<cim:ShuntImpedanceLocalControlKind.none>([\s\S]*?)<\/cim:ShuntImpedanceLocalControlKind.none>/g, obj, "none", base.to_string, sub, context);
-                base.parse_element (/<cim:ShuntImpedanceLocalControlKind.powerFactor>([\s\S]*?)<\/cim:ShuntImpedanceLocalControlKind.powerFactor>/g, obj, "powerFactor", base.to_string, sub, context);
-                base.parse_element (/<cim:ShuntImpedanceLocalControlKind.time>([\s\S]*?)<\/cim:ShuntImpedanceLocalControlKind.time>/g, obj, "time", base.to_string, sub, context);
-                base.parse_element (/<cim:ShuntImpedanceLocalControlKind.temperature>([\s\S]*?)<\/cim:ShuntImpedanceLocalControlKind.temperature>/g, obj, "temperature", base.to_string, sub, context);
-                base.parse_element (/<cim:ShuntImpedanceLocalControlKind.reactivePower>([\s\S]*?)<\/cim:ShuntImpedanceLocalControlKind.reactivePower>/g, obj, "reactivePower", base.to_string, sub, context);
-                base.parse_element (/<cim:ShuntImpedanceLocalControlKind.current>([\s\S]*?)<\/cim:ShuntImpedanceLocalControlKind.current>/g, obj, "current", base.to_string, sub, context);
-                base.parse_element (/<cim:ShuntImpedanceLocalControlKind.voltage>([\s\S]*?)<\/cim:ShuntImpedanceLocalControlKind.voltage>/g, obj, "voltage", base.to_string, sub, context);
-
-                var bucket = context.parsed.ShuntImpedanceLocalControlKind;
-                if (null == bucket)
-                   context.parsed.ShuntImpedanceLocalControlKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.CompositeSwitchKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ShuntImpedanceLocalControlKind", "none", base.from_string, fields);
-                base.export_element (obj, "ShuntImpedanceLocalControlKind", "powerFactor", base.from_string, fields);
-                base.export_element (obj, "ShuntImpedanceLocalControlKind", "time", base.from_string, fields);
-                base.export_element (obj, "ShuntImpedanceLocalControlKind", "temperature", base.from_string, fields);
-                base.export_element (obj, "ShuntImpedanceLocalControlKind", "reactivePower", base.from_string, fields);
-                base.export_element (obj, "ShuntImpedanceLocalControlKind", "current", base.from_string, fields);
-                base.export_element (obj, "ShuntImpedanceLocalControlKind", "voltage", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ShuntImpedanceLocalControlKind_collapse" aria-expanded="true" aria-controls="ShuntImpedanceLocalControlKind_collapse">ShuntImpedanceLocalControlKind</a>
-<div id="ShuntImpedanceLocalControlKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#none}}<div><b>none</b>: {{none}}</div>{{/none}}
-{{#powerFactor}}<div><b>powerFactor</b>: {{powerFactor}}</div>{{/powerFactor}}
-{{#time}}<div><b>time</b>: {{time}}</div>{{/time}}
-{{#temperature}}<div><b>temperature</b>: {{temperature}}</div>{{/temperature}}
-{{#reactivePower}}<div><b>reactivePower</b>: {{reactivePower}}</div>{{/reactivePower}}
-{{#current}}<div><b>current</b>: {{current}}</div>{{/current}}
-{{#voltage}}<div><b>voltage</b>: {{voltage}}</div>{{/voltage}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CompositeSwitchInfo_collapse" aria-expanded="true" aria-controls="CompositeSwitchInfo_collapse" style="margin-left: 10px;">CompositeSwitchInfo</a></legend>
+                    <div id="CompositeSwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='ganged'>ganged: </label><div class='col-sm-8'><input id='ganged' class='form-check-input' type='checkbox'{{#ganged}} checked{{/ganged}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='initOpMode'>initOpMode: </label><div class='col-sm-8'><input id='initOpMode' class='form-control' type='text'{{#initOpMode}} value='{{initOpMode}}'{{/initOpMode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='interruptingRating'>interruptingRating: </label><div class='col-sm-8'><input id='interruptingRating' class='form-control' type='text'{{#interruptingRating}} value='{{interruptingRating}}'{{/interruptingRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#CompositeSwitchKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CompositeSwitchKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseCode'>phaseCode: </label><div class='col-sm-8'><input id='phaseCode' class='form-control' type='text'{{#phaseCode}} value='{{phaseCode}}'{{/phaseCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseCount'>phaseCount: </label><div class='col-sm-8'><input id='phaseCount' class='form-control' type='text'{{#phaseCount}} value='{{phaseCount}}'{{/phaseCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='remote'>remote: </label><div class='col-sm-8'><input id='remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='switchStateCount'>switchStateCount: </label><div class='col-sm-8'><input id='switchStateCount' class='form-control' type='text'{{#switchStateCount}} value='{{switchStateCount}}'{{/switchStateCount}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of resetting the fault indicators.
-         *
-         */
-        class FaultIndicatorResetKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.FaultIndicatorResetKind;
-                if (null == bucket)
-                   cim_data.FaultIndicatorResetKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.FaultIndicatorResetKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "FaultIndicatorResetKind";
-                base.parse_element (/<cim:FaultIndicatorResetKind.automatic>([\s\S]*?)<\/cim:FaultIndicatorResetKind.automatic>/g, obj, "automatic", base.to_string, sub, context);
-                base.parse_element (/<cim:FaultIndicatorResetKind.manual>([\s\S]*?)<\/cim:FaultIndicatorResetKind.manual>/g, obj, "manual", base.to_string, sub, context);
-                base.parse_element (/<cim:FaultIndicatorResetKind.remote>([\s\S]*?)<\/cim:FaultIndicatorResetKind.remote>/g, obj, "remote", base.to_string, sub, context);
-                base.parse_element (/<cim:FaultIndicatorResetKind.other>([\s\S]*?)<\/cim:FaultIndicatorResetKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.FaultIndicatorResetKind;
-                if (null == bucket)
-                   context.parsed.FaultIndicatorResetKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "FaultIndicatorResetKind", "automatic", base.from_string, fields);
-                base.export_element (obj, "FaultIndicatorResetKind", "manual", base.from_string, fields);
-                base.export_element (obj, "FaultIndicatorResetKind", "remote", base.from_string, fields);
-                base.export_element (obj, "FaultIndicatorResetKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#FaultIndicatorResetKind_collapse" aria-expanded="true" aria-controls="FaultIndicatorResetKind_collapse">FaultIndicatorResetKind</a>
-<div id="FaultIndicatorResetKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#automatic}}<div><b>automatic</b>: {{automatic}}</div>{{/automatic}}
-{{#manual}}<div><b>manual</b>: {{manual}}</div>{{/manual}}
-{{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         /**
          * Properties of potential transformer asset.
@@ -1355,100 +1276,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PotentialTransformerInfo_collapse" aria-expanded="true" aria-controls="PotentialTransformerInfo_collapse">PotentialTransformerInfo</a>
-<div id="PotentialTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetInfo.prototype.template.call (this) +
-`
-{{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
-{{#nominalRatio}}<div><b>nominalRatio</b>: {{nominalRatio}}</div>{{/nominalRatio}}
-{{#primaryRatio}}<div><b>primaryRatio</b>: {{primaryRatio}}</div>{{/primaryRatio}}
-{{#ptClass}}<div><b>ptClass</b>: {{ptClass}}</div>{{/ptClass}}
-{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
-{{#secondaryRatio}}<div><b>secondaryRatio</b>: {{secondaryRatio}}</div>{{/secondaryRatio}}
-{{#tertiaryRatio}}<div><b>tertiaryRatio</b>: {{tertiaryRatio}}</div>{{/tertiaryRatio}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PotentialTransformerInfo_collapse" aria-expanded="true" aria-controls="PotentialTransformerInfo_collapse" style="margin-left: 10px;">PotentialTransformerInfo</a></legend>
+                    <div id="PotentialTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.template.call (this) +
+                    `
+                    {{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
+                    {{#nominalRatio}}<div><b>nominalRatio</b>: {{nominalRatio}}</div>{{/nominalRatio}}
+                    {{#primaryRatio}}<div><b>primaryRatio</b>: {{primaryRatio}}</div>{{/primaryRatio}}
+                    {{#ptClass}}<div><b>ptClass</b>: {{ptClass}}</div>{{/ptClass}}
+                    {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+                    {{#secondaryRatio}}<div><b>secondaryRatio</b>: {{secondaryRatio}}</div>{{/secondaryRatio}}
+                    {{#tertiaryRatio}}<div><b>tertiaryRatio</b>: {{tertiaryRatio}}</div>{{/tertiaryRatio}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Function of a transformer.
-         *
-         */
-        class TransformerFunctionKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.TransformerFunctionKind;
-                if (null == bucket)
-                   cim_data.TransformerFunctionKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.TransformerFunctionKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "TransformerFunctionKind";
-                base.parse_element (/<cim:TransformerFunctionKind.powerTransformer>([\s\S]*?)<\/cim:TransformerFunctionKind.powerTransformer>/g, obj, "powerTransformer", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerFunctionKind.voltageRegulator>([\s\S]*?)<\/cim:TransformerFunctionKind.voltageRegulator>/g, obj, "voltageRegulator", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerFunctionKind.autotransformer>([\s\S]*?)<\/cim:TransformerFunctionKind.autotransformer>/g, obj, "autotransformer", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerFunctionKind.secondaryTransformer>([\s\S]*?)<\/cim:TransformerFunctionKind.secondaryTransformer>/g, obj, "secondaryTransformer", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerFunctionKind.other>([\s\S]*?)<\/cim:TransformerFunctionKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.TransformerFunctionKind;
-                if (null == bucket)
-                   context.parsed.TransformerFunctionKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "TransformerFunctionKind", "powerTransformer", base.from_string, fields);
-                base.export_element (obj, "TransformerFunctionKind", "voltageRegulator", base.from_string, fields);
-                base.export_element (obj, "TransformerFunctionKind", "autotransformer", base.from_string, fields);
-                base.export_element (obj, "TransformerFunctionKind", "secondaryTransformer", base.from_string, fields);
-                base.export_element (obj, "TransformerFunctionKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransformerFunctionKind_collapse" aria-expanded="true" aria-controls="TransformerFunctionKind_collapse">TransformerFunctionKind</a>
-<div id="TransformerFunctionKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#powerTransformer}}<div><b>powerTransformer</b>: {{powerTransformer}}</div>{{/powerTransformer}}
-{{#voltageRegulator}}<div><b>voltageRegulator</b>: {{voltageRegulator}}</div>{{/voltageRegulator}}
-{{#autotransformer}}<div><b>autotransformer</b>: {{autotransformer}}</div>{{/autotransformer}}
-{{#secondaryTransformer}}<div><b>secondaryTransformer</b>: {{secondaryTransformer}}</div>{{/secondaryTransformer}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PotentialTransformerInfo_collapse" aria-expanded="true" aria-controls="PotentialTransformerInfo_collapse" style="margin-left: 10px;">PotentialTransformerInfo</a></legend>
+                    <div id="PotentialTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nominalRatio'>nominalRatio: </label><div class='col-sm-8'><input id='nominalRatio' class='form-control' type='text'{{#nominalRatio}} value='{{nominalRatio}}'{{/nominalRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='primaryRatio'>primaryRatio: </label><div class='col-sm-8'><input id='primaryRatio' class='form-control' type='text'{{#primaryRatio}} value='{{primaryRatio}}'{{/primaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ptClass'>ptClass: </label><div class='col-sm-8'><input id='ptClass' class='form-control' type='text'{{#ptClass}} value='{{ptClass}}'{{/ptClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><input id='secondaryRatio' class='form-control' type='text'{{#secondaryRatio}} value='{{secondaryRatio}}'{{/secondaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><input id='tertiaryRatio' class='form-control' type='text'{{#tertiaryRatio}} value='{{tertiaryRatio}}'{{/tertiaryRatio}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         class OldTransformerEndInfo extends AssetInfo.TransformerEndInfo
         {
@@ -1477,7 +1358,7 @@ define
                 base.parse_element (/<cim:OldTransformerEndInfo.dayOverLoadRating>([\s\S]*?)<\/cim:OldTransformerEndInfo.dayOverLoadRating>/g, obj, "dayOverLoadRating", base.to_string, sub, context);
                 base.parse_element (/<cim:OldTransformerEndInfo.hourOverLoadRating>([\s\S]*?)<\/cim:OldTransformerEndInfo.hourOverLoadRating>/g, obj, "hourOverLoadRating", base.to_string, sub, context);
                 base.parse_element (/<cim:OldTransformerEndInfo.solidInsulationWeight>([\s\S]*?)<\/cim:OldTransformerEndInfo.solidInsulationWeight>/g, obj, "solidInsulationWeight", base.to_string, sub, context);
-                base.parse_element (/<cim:OldTransformerEndInfo.windingInsulationKind>([\s\S]*?)<\/cim:OldTransformerEndInfo.windingInsulationKind>/g, obj, "windingInsulationKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:OldTransformerEndInfo.windingInsulationKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "windingInsulationKind", sub, context);
 
                 var bucket = context.parsed.OldTransformerEndInfo;
                 if (null == bucket)
@@ -1505,180 +1386,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OldTransformerEndInfo_collapse" aria-expanded="true" aria-controls="OldTransformerEndInfo_collapse">OldTransformerEndInfo</a>
-<div id="OldTransformerEndInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + AssetInfo.TransformerEndInfo.prototype.template.call (this) +
-`
-{{#dayOverLoadRating}}<div><b>dayOverLoadRating</b>: {{dayOverLoadRating}}</div>{{/dayOverLoadRating}}
-{{#hourOverLoadRating}}<div><b>hourOverLoadRating</b>: {{hourOverLoadRating}}</div>{{/hourOverLoadRating}}
-{{#solidInsulationWeight}}<div><b>solidInsulationWeight</b>: {{solidInsulationWeight}}</div>{{/solidInsulationWeight}}
-{{#windingInsulationKind}}<div><b>windingInsulationKind</b>: {{windingInsulationKind}}</div>{{/windingInsulationKind}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldTransformerEndInfo_collapse" aria-expanded="true" aria-controls="OldTransformerEndInfo_collapse" style="margin-left: 10px;">OldTransformerEndInfo</a></legend>
+                    <div id="OldTransformerEndInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AssetInfo.TransformerEndInfo.prototype.template.call (this) +
+                    `
+                    {{#dayOverLoadRating}}<div><b>dayOverLoadRating</b>: {{dayOverLoadRating}}</div>{{/dayOverLoadRating}}
+                    {{#hourOverLoadRating}}<div><b>hourOverLoadRating</b>: {{hourOverLoadRating}}</div>{{/hourOverLoadRating}}
+                    {{#solidInsulationWeight}}<div><b>solidInsulationWeight</b>: {{solidInsulationWeight}}</div>{{/solidInsulationWeight}}
+                    {{#windingInsulationKind}}<div><b>windingInsulationKind</b>: {{windingInsulationKind}}</div>{{/windingInsulationKind}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of regulation branch for shunt impedance.
-         *
-         */
-        class RegulationBranchKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.RegulationBranchKind;
-                if (null == bucket)
-                   cim_data.RegulationBranchKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.RegulationBranchKind[this._id];
+                super.condition (obj);
+                obj.WindingInsulationKind = []; if (!obj.windingInsulationKind) obj.WindingInsulationKind.push ({ id: '', selected: true}); for (var property in WindingInsulationKind) obj.WindingInsulationKind.push ({ id: property, selected: obj.windingInsulationKind && obj.windingInsulationKind.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "RegulationBranchKind";
-                base.parse_element (/<cim:RegulationBranchKind.line>([\s\S]*?)<\/cim:RegulationBranchKind.line>/g, obj, "line", base.to_string, sub, context);
-                base.parse_element (/<cim:RegulationBranchKind.transformer>([\s\S]*?)<\/cim:RegulationBranchKind.transformer>/g, obj, "transformer", base.to_string, sub, context);
-                base.parse_element (/<cim:RegulationBranchKind.switch>([\s\S]*?)<\/cim:RegulationBranchKind.switch>/g, obj, "switch", base.to_string, sub, context);
-                base.parse_element (/<cim:RegulationBranchKind.breaker>([\s\S]*?)<\/cim:RegulationBranchKind.breaker>/g, obj, "breaker", base.to_string, sub, context);
-                base.parse_element (/<cim:RegulationBranchKind.recloser>([\s\S]*?)<\/cim:RegulationBranchKind.recloser>/g, obj, "recloser", base.to_string, sub, context);
-                base.parse_element (/<cim:RegulationBranchKind.fuse>([\s\S]*?)<\/cim:RegulationBranchKind.fuse>/g, obj, "fuse", base.to_string, sub, context);
-                base.parse_element (/<cim:RegulationBranchKind.sectionner>([\s\S]*?)<\/cim:RegulationBranchKind.sectionner>/g, obj, "sectionner", base.to_string, sub, context);
-                base.parse_element (/<cim:RegulationBranchKind.other>([\s\S]*?)<\/cim:RegulationBranchKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.RegulationBranchKind;
-                if (null == bucket)
-                   context.parsed.RegulationBranchKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.WindingInsulationKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "RegulationBranchKind", "line", base.from_string, fields);
-                base.export_element (obj, "RegulationBranchKind", "transformer", base.from_string, fields);
-                base.export_element (obj, "RegulationBranchKind", "switch", base.from_string, fields);
-                base.export_element (obj, "RegulationBranchKind", "breaker", base.from_string, fields);
-                base.export_element (obj, "RegulationBranchKind", "recloser", base.from_string, fields);
-                base.export_element (obj, "RegulationBranchKind", "fuse", base.from_string, fields);
-                base.export_element (obj, "RegulationBranchKind", "sectionner", base.from_string, fields);
-                base.export_element (obj, "RegulationBranchKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RegulationBranchKind_collapse" aria-expanded="true" aria-controls="RegulationBranchKind_collapse">RegulationBranchKind</a>
-<div id="RegulationBranchKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#line}}<div><b>line</b>: {{line}}</div>{{/line}}
-{{#transformer}}<div><b>transformer</b>: {{transformer}}</div>{{/transformer}}
-{{#switch}}<div><b>switch</b>: {{switch}}</div>{{/switch}}
-{{#breaker}}<div><b>breaker</b>: {{breaker}}</div>{{/breaker}}
-{{#recloser}}<div><b>recloser</b>: {{recloser}}</div>{{/recloser}}
-{{#fuse}}<div><b>fuse</b>: {{fuse}}</div>{{/fuse}}
-{{#sectionner}}<div><b>sectionner</b>: {{sectionner}}</div>{{/sectionner}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldTransformerEndInfo_collapse" aria-expanded="true" aria-controls="OldTransformerEndInfo_collapse" style="margin-left: 10px;">OldTransformerEndInfo</a></legend>
+                    <div id="OldTransformerEndInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AssetInfo.TransformerEndInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dayOverLoadRating'>dayOverLoadRating: </label><div class='col-sm-8'><input id='dayOverLoadRating' class='form-control' type='text'{{#dayOverLoadRating}} value='{{dayOverLoadRating}}'{{/dayOverLoadRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hourOverLoadRating'>hourOverLoadRating: </label><div class='col-sm-8'><input id='hourOverLoadRating' class='form-control' type='text'{{#hourOverLoadRating}} value='{{hourOverLoadRating}}'{{/hourOverLoadRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='solidInsulationWeight'>solidInsulationWeight: </label><div class='col-sm-8'><input id='solidInsulationWeight' class='form-control' type='text'{{#solidInsulationWeight}} value='{{solidInsulationWeight}}'{{/solidInsulationWeight}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='windingInsulationKind'>windingInsulationKind: </label><div class='col-sm-8'><select id='windingInsulationKind' class='form-control'>{{#WindingInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindingInsulationKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of oil preservation.
-         *
-         */
-        class OilPreservationKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.OilPreservationKind;
-                if (null == bucket)
-                   cim_data.OilPreservationKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.OilPreservationKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "OilPreservationKind";
-                base.parse_element (/<cim:OilPreservationKind.freeBreathing>([\s\S]*?)<\/cim:OilPreservationKind.freeBreathing>/g, obj, "freeBreathing", base.to_string, sub, context);
-                base.parse_element (/<cim:OilPreservationKind.nitrogenBlanket>([\s\S]*?)<\/cim:OilPreservationKind.nitrogenBlanket>/g, obj, "nitrogenBlanket", base.to_string, sub, context);
-                base.parse_element (/<cim:OilPreservationKind.conservator>([\s\S]*?)<\/cim:OilPreservationKind.conservator>/g, obj, "conservator", base.to_string, sub, context);
-                base.parse_element (/<cim:OilPreservationKind.other>([\s\S]*?)<\/cim:OilPreservationKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.OilPreservationKind;
-                if (null == bucket)
-                   context.parsed.OilPreservationKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "OilPreservationKind", "freeBreathing", base.from_string, fields);
-                base.export_element (obj, "OilPreservationKind", "nitrogenBlanket", base.from_string, fields);
-                base.export_element (obj, "OilPreservationKind", "conservator", base.from_string, fields);
-                base.export_element (obj, "OilPreservationKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#OilPreservationKind_collapse" aria-expanded="true" aria-controls="OilPreservationKind_collapse">OilPreservationKind</a>
-<div id="OilPreservationKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#freeBreathing}}<div><b>freeBreathing</b>: {{freeBreathing}}</div>{{/freeBreathing}}
-{{#nitrogenBlanket}}<div><b>nitrogenBlanket</b>: {{nitrogenBlanket}}</div>{{/nitrogenBlanket}}
-{{#conservator}}<div><b>conservator</b>: {{conservator}}</div>{{/conservator}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         /**
          * Properties of recloser assets.
@@ -1741,21 +1498,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RecloserInfo_collapse" aria-expanded="true" aria-controls="RecloserInfo_collapse">RecloserInfo</a>
-<div id="RecloserInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + OldSwitchInfo.prototype.template.call (this) +
-`
-{{#groundTripCapable}}<div><b>groundTripCapable</b>: {{groundTripCapable}}</div>{{/groundTripCapable}}
-{{#groundTripNormalEnabled}}<div><b>groundTripNormalEnabled</b>: {{groundTripNormalEnabled}}</div>{{/groundTripNormalEnabled}}
-{{#groundTripRating}}<div><b>groundTripRating</b>: {{groundTripRating}}</div>{{/groundTripRating}}
-{{#phaseTripRating}}<div><b>phaseTripRating</b>: {{phaseTripRating}}</div>{{/phaseTripRating}}
-{{#recloseLockoutCount}}<div><b>recloseLockoutCount</b>: {{recloseLockoutCount}}</div>{{/recloseLockoutCount}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RecloserInfo_collapse" aria-expanded="true" aria-controls="RecloserInfo_collapse" style="margin-left: 10px;">RecloserInfo</a></legend>
+                    <div id="RecloserInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OldSwitchInfo.prototype.template.call (this) +
+                    `
+                    {{#groundTripCapable}}<div><b>groundTripCapable</b>: {{groundTripCapable}}</div>{{/groundTripCapable}}
+                    {{#groundTripNormalEnabled}}<div><b>groundTripNormalEnabled</b>: {{groundTripNormalEnabled}}</div>{{/groundTripNormalEnabled}}
+                    {{#groundTripRating}}<div><b>groundTripRating</b>: {{groundTripRating}}</div>{{/groundTripRating}}
+                    {{#phaseTripRating}}<div><b>phaseTripRating</b>: {{phaseTripRating}}</div>{{/phaseTripRating}}
+                    {{#recloseLockoutCount}}<div><b>recloseLockoutCount</b>: {{recloseLockoutCount}}</div>{{/recloseLockoutCount}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RecloserInfo_collapse" aria-expanded="true" aria-controls="RecloserInfo_collapse" style="margin-left: 10px;">RecloserInfo</a></legend>
+                    <div id="RecloserInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OldSwitchInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='groundTripCapable'>groundTripCapable: </label><div class='col-sm-8'><input id='groundTripCapable' class='form-check-input' type='checkbox'{{#groundTripCapable}} checked{{/groundTripCapable}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='groundTripNormalEnabled'>groundTripNormalEnabled: </label><div class='col-sm-8'><input id='groundTripNormalEnabled' class='form-check-input' type='checkbox'{{#groundTripNormalEnabled}} checked{{/groundTripNormalEnabled}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='groundTripRating'>groundTripRating: </label><div class='col-sm-8'><input id='groundTripRating' class='form-control' type='text'{{#groundTripRating}} value='{{groundTripRating}}'{{/groundTripRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseTripRating'>phaseTripRating: </label><div class='col-sm-8'><input id='phaseTripRating' class='form-control' type='text'{{#phaseTripRating}} value='{{phaseTripRating}}'{{/phaseTripRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='recloseLockoutCount'>recloseLockoutCount: </label><div class='col-sm-8'><input id='recloseLockoutCount' class='form-control' type='text'{{#recloseLockoutCount}} value='{{recloseLockoutCount}}'{{/recloseLockoutCount}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Properties of breaker assets.
@@ -1810,17 +1602,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BreakerInfo_collapse" aria-expanded="true" aria-controls="BreakerInfo_collapse">BreakerInfo</a>
-<div id="BreakerInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + OldSwitchInfo.prototype.template.call (this) +
-`
-{{#phaseTrip}}<div><b>phaseTrip</b>: {{phaseTrip}}</div>{{/phaseTrip}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BreakerInfo_collapse" aria-expanded="true" aria-controls="BreakerInfo_collapse" style="margin-left: 10px;">BreakerInfo</a></legend>
+                    <div id="BreakerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OldSwitchInfo.prototype.template.call (this) +
+                    `
+                    {{#phaseTrip}}<div><b>phaseTrip</b>: {{phaseTrip}}</div>{{/phaseTrip}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BreakerInfo_collapse" aria-expanded="true" aria-controls="BreakerInfo_collapse" style="margin-left: 10px;">BreakerInfo</a></legend>
+                    <div id="BreakerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OldSwitchInfo.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseTrip'>phaseTrip: </label><div class='col-sm-8'><input id='phaseTrip' class='form-control' type='text'{{#phaseTrip}} value='{{phaseTrip}}'{{/phaseTrip}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
@@ -1829,23 +1652,13 @@ define
                 OldSwitchInfo: OldSwitchInfo,
                 AssetModelCatalogue: AssetModelCatalogue,
                 FaultIndicatorInfo: FaultIndicatorInfo,
-                ProtectionEquipmentInfo: ProtectionEquipmentInfo,
-                TransformerCoreKind: TransformerCoreKind,
-                CompositeSwitchKind: CompositeSwitchKind,
-                TransformerFunctionKind: TransformerFunctionKind,
-                CurrentTransformerInfo: CurrentTransformerInfo,
-                ShuntImpedanceControlKind: ShuntImpedanceControlKind,
-                ShuntImpedanceLocalControlKind: ShuntImpedanceLocalControlKind,
-                OldTransformerEndInfo: OldTransformerEndInfo,
-                OilPreservationKind: OilPreservationKind,
-                TransformerConstructionKind: TransformerConstructionKind,
-                WindingInsulationKind: WindingInsulationKind,
                 AssetModelCatalogueItem: AssetModelCatalogueItem,
-                RegulationBranchKind: RegulationBranchKind,
+                ProtectionEquipmentInfo: ProtectionEquipmentInfo,
                 SurgeArresterInfo: SurgeArresterInfo,
+                CurrentTransformerInfo: CurrentTransformerInfo,
                 BreakerInfo: BreakerInfo,
                 CompositeSwitchInfo: CompositeSwitchInfo,
-                FaultIndicatorResetKind: FaultIndicatorResetKind,
+                OldTransformerEndInfo: OldTransformerEndInfo,
                 RecloserInfo: RecloserInfo
             }
         );

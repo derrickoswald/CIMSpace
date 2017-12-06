@@ -9,6 +9,75 @@ define
     {
 
         /**
+         * Active power control modes for HVDC line operating as Current Source Converter.
+         *
+         */
+        var CsPpccControlKind =
+        {
+            activePower: "activePower",
+            dcVoltage: "dcVoltage",
+            dcCurrent: "dcCurrent"
+        };
+        Object.freeze (CsPpccControlKind);
+
+        /**
+         * The operating mode of an HVDC bipole.
+         *
+         */
+        var DCConverterOperatingModeKind =
+        {
+            bipolar: "bipolar",
+            monopolarMetallicReturn: "monopolarMetallicReturn",
+            monopolarGroundReturn: "monopolarGroundReturn"
+        };
+        Object.freeze (DCConverterOperatingModeKind);
+
+        var VsQpccControlKind =
+        {
+            reactivePcc: "reactivePcc",
+            voltagePcc: "voltagePcc",
+            powerFactorPcc: "powerFactorPcc"
+        };
+        Object.freeze (VsQpccControlKind);
+
+        /**
+         * Types applicable to the control of real power and/or DC voltage by voltage source converter.
+         *
+         */
+        var VsPpccControlKind =
+        {
+            pPcc: "pPcc",
+            udc: "udc",
+            pPccAndUdcDroop: "pPccAndUdcDroop",
+            pPccAndUdcDroopWithCompensation: "pPccAndUdcDroopWithCompensation",
+            pPccAndUdcDroopPilot: "pPccAndUdcDroopPilot"
+        };
+        Object.freeze (VsPpccControlKind);
+
+        /**
+         * Operating mode for HVDC line operating as Current Source Converter.
+         *
+         */
+        var CsOperatingModeKind =
+        {
+            inverter: "inverter",
+            rectifier: "rectifier"
+        };
+        Object.freeze (CsOperatingModeKind);
+
+        /**
+         * Polarity for DC circuits.
+         *
+         */
+        var DCPolarityKind =
+        {
+            positive: "positive",
+            middle: "middle",
+            negative: "negative"
+        };
+        Object.freeze (DCPolarityKind);
+
+        /**
          * DC nodes are points where terminals of DC conducting equipment are connected together with zero impedance.
          *
          */
@@ -63,18 +132,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCNode_collapse" aria-expanded="true" aria-controls="DCNode_collapse">DCNode</a>
-<div id="DCNode_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCTopologicalNode}}&quot;);})'>{{DCTopologicalNode}}</a></div>{{/DCTopologicalNode}}
-{{#DCEquipmentContainer}}<div><b>DCEquipmentContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCEquipmentContainer}}&quot;);})'>{{DCEquipmentContainer}}</a></div>{{/DCEquipmentContainer}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCNode_collapse" aria-expanded="true" aria-controls="DCNode_collapse" style="margin-left: 10px;">DCNode</a></legend>
+                    <div id="DCNode_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCTopologicalNode}}&quot;);})'>{{DCTopologicalNode}}</a></div>{{/DCTopologicalNode}}
+                    {{#DCEquipmentContainer}}<div><b>DCEquipmentContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCEquipmentContainer}}&quot;);})'>{{DCEquipmentContainer}}</a></div>{{/DCEquipmentContainer}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCNode_collapse" aria-expanded="true" aria-controls="DCNode_collapse" style="margin-left: 10px;">DCNode</a></legend>
+                    <div id="DCNode_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCTopologicalNode'>DCTopologicalNode: </label><div class='col-sm-8'><input id='DCTopologicalNode' class='form-control' type='text'{{#DCTopologicalNode}} value='{{DCTopologicalNode}}'{{/DCTopologicalNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCEquipmentContainer'>DCEquipmentContainer: </label><div class='col-sm-8'><input id='DCEquipmentContainer' class='form-control' type='text'{{#DCEquipmentContainer}} value='{{DCEquipmentContainer}}'{{/DCEquipmentContainer}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An electrically connected subset of the network.
@@ -129,225 +230,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCTopologicalIsland_collapse" aria-expanded="true" aria-controls="DCTopologicalIsland_collapse">DCTopologicalIsland</a>
-<div id="DCTopologicalIsland_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCTopologicalIsland_collapse" aria-expanded="true" aria-controls="DCTopologicalIsland_collapse" style="margin-left: 10px;">DCTopologicalIsland</a></legend>
+                    <div id="DCTopologicalIsland_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Active power control modes for HVDC line operating as Current Source Converter.
-         *
-         */
-        class CsPpccControlKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.CsPpccControlKind;
-                if (null == bucket)
-                   cim_data.CsPpccControlKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.CsPpccControlKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "CsPpccControlKind";
-                base.parse_element (/<cim:CsPpccControlKind.activePower>([\s\S]*?)<\/cim:CsPpccControlKind.activePower>/g, obj, "activePower", base.to_string, sub, context);
-                base.parse_element (/<cim:CsPpccControlKind.dcVoltage>([\s\S]*?)<\/cim:CsPpccControlKind.dcVoltage>/g, obj, "dcVoltage", base.to_string, sub, context);
-                base.parse_element (/<cim:CsPpccControlKind.dcCurrent>([\s\S]*?)<\/cim:CsPpccControlKind.dcCurrent>/g, obj, "dcCurrent", base.to_string, sub, context);
-
-                var bucket = context.parsed.CsPpccControlKind;
-                if (null == bucket)
-                   context.parsed.CsPpccControlKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "CsPpccControlKind", "activePower", base.from_string, fields);
-                base.export_element (obj, "CsPpccControlKind", "dcVoltage", base.from_string, fields);
-                base.export_element (obj, "CsPpccControlKind", "dcCurrent", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CsPpccControlKind_collapse" aria-expanded="true" aria-controls="CsPpccControlKind_collapse">CsPpccControlKind</a>
-<div id="CsPpccControlKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#activePower}}<div><b>activePower</b>: {{activePower}}</div>{{/activePower}}
-{{#dcVoltage}}<div><b>dcVoltage</b>: {{dcVoltage}}</div>{{/dcVoltage}}
-{{#dcCurrent}}<div><b>dcCurrent</b>: {{dcCurrent}}</div>{{/dcCurrent}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCTopologicalIsland_collapse" aria-expanded="true" aria-controls="DCTopologicalIsland_collapse" style="margin-left: 10px;">DCTopologicalIsland</a></legend>
+                    <div id="DCTopologicalIsland_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        /**
-         * The operating mode of an HVDC bipole.
-         *
-         */
-        class DCConverterOperatingModeKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.DCConverterOperatingModeKind;
-                if (null == bucket)
-                   cim_data.DCConverterOperatingModeKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.DCConverterOperatingModeKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "DCConverterOperatingModeKind";
-                base.parse_element (/<cim:DCConverterOperatingModeKind.bipolar>([\s\S]*?)<\/cim:DCConverterOperatingModeKind.bipolar>/g, obj, "bipolar", base.to_string, sub, context);
-                base.parse_element (/<cim:DCConverterOperatingModeKind.monopolarMetallicReturn>([\s\S]*?)<\/cim:DCConverterOperatingModeKind.monopolarMetallicReturn>/g, obj, "monopolarMetallicReturn", base.to_string, sub, context);
-                base.parse_element (/<cim:DCConverterOperatingModeKind.monopolarGroundReturn>([\s\S]*?)<\/cim:DCConverterOperatingModeKind.monopolarGroundReturn>/g, obj, "monopolarGroundReturn", base.to_string, sub, context);
-
-                var bucket = context.parsed.DCConverterOperatingModeKind;
-                if (null == bucket)
-                   context.parsed.DCConverterOperatingModeKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "DCConverterOperatingModeKind", "bipolar", base.from_string, fields);
-                base.export_element (obj, "DCConverterOperatingModeKind", "monopolarMetallicReturn", base.from_string, fields);
-                base.export_element (obj, "DCConverterOperatingModeKind", "monopolarGroundReturn", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#DCConverterOperatingModeKind_collapse" aria-expanded="true" aria-controls="DCConverterOperatingModeKind_collapse">DCConverterOperatingModeKind</a>
-<div id="DCConverterOperatingModeKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#bipolar}}<div><b>bipolar</b>: {{bipolar}}</div>{{/bipolar}}
-{{#monopolarMetallicReturn}}<div><b>monopolarMetallicReturn</b>: {{monopolarMetallicReturn}}</div>{{/monopolarMetallicReturn}}
-{{#monopolarGroundReturn}}<div><b>monopolarGroundReturn</b>: {{monopolarGroundReturn}}</div>{{/monopolarGroundReturn}}
-</div>
-`
-                );
-           }        }
-
-        class VsQpccControlKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.VsQpccControlKind;
-                if (null == bucket)
-                   cim_data.VsQpccControlKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.VsQpccControlKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "VsQpccControlKind";
-                base.parse_element (/<cim:VsQpccControlKind.reactivePcc>([\s\S]*?)<\/cim:VsQpccControlKind.reactivePcc>/g, obj, "reactivePcc", base.to_string, sub, context);
-                base.parse_element (/<cim:VsQpccControlKind.voltagePcc>([\s\S]*?)<\/cim:VsQpccControlKind.voltagePcc>/g, obj, "voltagePcc", base.to_string, sub, context);
-                base.parse_element (/<cim:VsQpccControlKind.powerFactorPcc>([\s\S]*?)<\/cim:VsQpccControlKind.powerFactorPcc>/g, obj, "powerFactorPcc", base.to_string, sub, context);
-
-                var bucket = context.parsed.VsQpccControlKind;
-                if (null == bucket)
-                   context.parsed.VsQpccControlKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "VsQpccControlKind", "reactivePcc", base.from_string, fields);
-                base.export_element (obj, "VsQpccControlKind", "voltagePcc", base.from_string, fields);
-                base.export_element (obj, "VsQpccControlKind", "powerFactorPcc", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#VsQpccControlKind_collapse" aria-expanded="true" aria-controls="VsQpccControlKind_collapse">VsQpccControlKind</a>
-<div id="VsQpccControlKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#reactivePcc}}<div><b>reactivePcc</b>: {{reactivePcc}}</div>{{/reactivePcc}}
-{{#voltagePcc}}<div><b>voltagePcc</b>: {{voltagePcc}}</div>{{/voltagePcc}}
-{{#powerFactorPcc}}<div><b>powerFactorPcc</b>: {{powerFactorPcc}}</div>{{/powerFactorPcc}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         /**
          * An electrical connection point at a piece of DC conducting equipment.
@@ -406,18 +328,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCBaseTerminal_collapse" aria-expanded="true" aria-controls="DCBaseTerminal_collapse">DCBaseTerminal</a>
-<div id="DCBaseTerminal_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.ACDCTerminal.prototype.template.call (this) +
-`
-{{#DCNode}}<div><b>DCNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCNode}}&quot;);})'>{{DCNode}}</a></div>{{/DCNode}}
-{{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCTopologicalNode}}&quot;);})'>{{DCTopologicalNode}}</a></div>{{/DCTopologicalNode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCBaseTerminal_collapse" aria-expanded="true" aria-controls="DCBaseTerminal_collapse" style="margin-left: 10px;">DCBaseTerminal</a></legend>
+                    <div id="DCBaseTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.ACDCTerminal.prototype.template.call (this) +
+                    `
+                    {{#DCNode}}<div><b>DCNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCNode}}&quot;);})'>{{DCNode}}</a></div>{{/DCNode}}
+                    {{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCTopologicalNode}}&quot;);})'>{{DCTopologicalNode}}</a></div>{{/DCTopologicalNode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCBaseTerminal_collapse" aria-expanded="true" aria-controls="DCBaseTerminal_collapse" style="margin-left: 10px;">DCBaseTerminal</a></legend>
+                    <div id="DCBaseTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.ACDCTerminal.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCNode'>DCNode: </label><div class='col-sm-8'><input id='DCNode' class='form-control' type='text'{{#DCNode}} value='{{DCNode}}'{{/DCNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCTopologicalNode'>DCTopologicalNode: </label><div class='col-sm-8'><input id='DCTopologicalNode' class='form-control' type='text'{{#DCTopologicalNode}} value='{{DCTopologicalNode}}'{{/DCTopologicalNode}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A unit with valves for three phases, together with unit control equipment, essential protective and switching devices, DC storage capacitors, phase reactors and auxiliaries, if any, used for conversion.
@@ -506,34 +460,82 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ACDCConverter_collapse" aria-expanded="true" aria-controls="ACDCConverter_collapse">ACDCConverter</a>
-<div id="ACDCConverter_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.ConductingEquipment.prototype.template.call (this) +
-`
-{{#baseS}}<div><b>baseS</b>: {{baseS}}</div>{{/baseS}}
-{{#switchingLoss}}<div><b>switchingLoss</b>: {{switchingLoss}}</div>{{/switchingLoss}}
-{{#targetPpcc}}<div><b>targetPpcc</b>: {{targetPpcc}}</div>{{/targetPpcc}}
-{{#targetUdc}}<div><b>targetUdc</b>: {{targetUdc}}</div>{{/targetUdc}}
-{{#idc}}<div><b>idc</b>: {{idc}}</div>{{/idc}}
-{{#idleLoss}}<div><b>idleLoss</b>: {{idleLoss}}</div>{{/idleLoss}}
-{{#maxUdc}}<div><b>maxUdc</b>: {{maxUdc}}</div>{{/maxUdc}}
-{{#minUdc}}<div><b>minUdc</b>: {{minUdc}}</div>{{/minUdc}}
-{{#poleLossP}}<div><b>poleLossP</b>: {{poleLossP}}</div>{{/poleLossP}}
-{{#ratedUdc}}<div><b>ratedUdc</b>: {{ratedUdc}}</div>{{/ratedUdc}}
-{{#resistiveLoss}}<div><b>resistiveLoss</b>: {{resistiveLoss}}</div>{{/resistiveLoss}}
-{{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
-{{#udc}}<div><b>udc</b>: {{udc}}</div>{{/udc}}
-{{#valveU0}}<div><b>valveU0</b>: {{valveU0}}</div>{{/valveU0}}
-{{#numberOfValves}}<div><b>numberOfValves</b>: {{numberOfValves}}</div>{{/numberOfValves}}
-{{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
-{{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
-{{#PccTerminal}}<div><b>PccTerminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PccTerminal}}&quot;);})'>{{PccTerminal}}</a></div>{{/PccTerminal}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ACDCConverter_collapse" aria-expanded="true" aria-controls="ACDCConverter_collapse" style="margin-left: 10px;">ACDCConverter</a></legend>
+                    <div id="ACDCConverter_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.ConductingEquipment.prototype.template.call (this) +
+                    `
+                    {{#baseS}}<div><b>baseS</b>: {{baseS}}</div>{{/baseS}}
+                    {{#switchingLoss}}<div><b>switchingLoss</b>: {{switchingLoss}}</div>{{/switchingLoss}}
+                    {{#targetPpcc}}<div><b>targetPpcc</b>: {{targetPpcc}}</div>{{/targetPpcc}}
+                    {{#targetUdc}}<div><b>targetUdc</b>: {{targetUdc}}</div>{{/targetUdc}}
+                    {{#idc}}<div><b>idc</b>: {{idc}}</div>{{/idc}}
+                    {{#idleLoss}}<div><b>idleLoss</b>: {{idleLoss}}</div>{{/idleLoss}}
+                    {{#maxUdc}}<div><b>maxUdc</b>: {{maxUdc}}</div>{{/maxUdc}}
+                    {{#minUdc}}<div><b>minUdc</b>: {{minUdc}}</div>{{/minUdc}}
+                    {{#poleLossP}}<div><b>poleLossP</b>: {{poleLossP}}</div>{{/poleLossP}}
+                    {{#ratedUdc}}<div><b>ratedUdc</b>: {{ratedUdc}}</div>{{/ratedUdc}}
+                    {{#resistiveLoss}}<div><b>resistiveLoss</b>: {{resistiveLoss}}</div>{{/resistiveLoss}}
+                    {{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
+                    {{#udc}}<div><b>udc</b>: {{udc}}</div>{{/udc}}
+                    {{#valveU0}}<div><b>valveU0</b>: {{valveU0}}</div>{{/valveU0}}
+                    {{#numberOfValves}}<div><b>numberOfValves</b>: {{numberOfValves}}</div>{{/numberOfValves}}
+                    {{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
+                    {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
+                    {{#PccTerminal}}<div><b>PccTerminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PccTerminal}}&quot;);})'>{{PccTerminal}}</a></div>{{/PccTerminal}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ACDCConverter_collapse" aria-expanded="true" aria-controls="ACDCConverter_collapse" style="margin-left: 10px;">ACDCConverter</a></legend>
+                    <div id="ACDCConverter_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.ConductingEquipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='baseS'>baseS: </label><div class='col-sm-8'><input id='baseS' class='form-control' type='text'{{#baseS}} value='{{baseS}}'{{/baseS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='switchingLoss'>switchingLoss: </label><div class='col-sm-8'><input id='switchingLoss' class='form-control' type='text'{{#switchingLoss}} value='{{switchingLoss}}'{{/switchingLoss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetPpcc'>targetPpcc: </label><div class='col-sm-8'><input id='targetPpcc' class='form-control' type='text'{{#targetPpcc}} value='{{targetPpcc}}'{{/targetPpcc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetUdc'>targetUdc: </label><div class='col-sm-8'><input id='targetUdc' class='form-control' type='text'{{#targetUdc}} value='{{targetUdc}}'{{/targetUdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='idc'>idc: </label><div class='col-sm-8'><input id='idc' class='form-control' type='text'{{#idc}} value='{{idc}}'{{/idc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='idleLoss'>idleLoss: </label><div class='col-sm-8'><input id='idleLoss' class='form-control' type='text'{{#idleLoss}} value='{{idleLoss}}'{{/idleLoss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxUdc'>maxUdc: </label><div class='col-sm-8'><input id='maxUdc' class='form-control' type='text'{{#maxUdc}} value='{{maxUdc}}'{{/maxUdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minUdc'>minUdc: </label><div class='col-sm-8'><input id='minUdc' class='form-control' type='text'{{#minUdc}} value='{{minUdc}}'{{/minUdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='poleLossP'>poleLossP: </label><div class='col-sm-8'><input id='poleLossP' class='form-control' type='text'{{#poleLossP}} value='{{poleLossP}}'{{/poleLossP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedUdc'>ratedUdc: </label><div class='col-sm-8'><input id='ratedUdc' class='form-control' type='text'{{#ratedUdc}} value='{{ratedUdc}}'{{/ratedUdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resistiveLoss'>resistiveLoss: </label><div class='col-sm-8'><input id='resistiveLoss' class='form-control' type='text'{{#resistiveLoss}} value='{{resistiveLoss}}'{{/resistiveLoss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uc'>uc: </label><div class='col-sm-8'><input id='uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='udc'>udc: </label><div class='col-sm-8'><input id='udc' class='form-control' type='text'{{#udc}} value='{{udc}}'{{/udc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='valveU0'>valveU0: </label><div class='col-sm-8'><input id='valveU0' class='form-control' type='text'{{#valveU0}} value='{{valveU0}}'{{/valveU0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='numberOfValves'>numberOfValves: </label><div class='col-sm-8'><input id='numberOfValves' class='form-control' type='text'{{#numberOfValves}} value='{{numberOfValves}}'{{/numberOfValves}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p'>p: </label><div class='col-sm-8'><input id='p' class='form-control' type='text'{{#p}} value='{{p}}'{{/p}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q'>q: </label><div class='col-sm-8'><input id='q' class='form-control' type='text'{{#q}} value='{{q}}'{{/q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PccTerminal'>PccTerminal: </label><div class='col-sm-8'><input id='PccTerminal' class='form-control' type='text'{{#PccTerminal}} value='{{PccTerminal}}'{{/PccTerminal}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class PerLengthDCLineParameter extends Wires.PerLengthLineParameter
         {
@@ -588,96 +590,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PerLengthDCLineParameter_collapse" aria-expanded="true" aria-controls="PerLengthDCLineParameter_collapse">PerLengthDCLineParameter</a>
-<div id="PerLengthDCLineParameter_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Wires.PerLengthLineParameter.prototype.template.call (this) +
-`
-{{#capacitance}}<div><b>capacitance</b>: {{capacitance}}</div>{{/capacitance}}
-{{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
-{{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PerLengthDCLineParameter_collapse" aria-expanded="true" aria-controls="PerLengthDCLineParameter_collapse" style="margin-left: 10px;">PerLengthDCLineParameter</a></legend>
+                    <div id="PerLengthDCLineParameter_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.PerLengthLineParameter.prototype.template.call (this) +
+                    `
+                    {{#capacitance}}<div><b>capacitance</b>: {{capacitance}}</div>{{/capacitance}}
+                    {{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
+                    {{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Types applicable to the control of real power and/or DC voltage by voltage source converter.
-         *
-         */
-        class VsPpccControlKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.VsPpccControlKind;
-                if (null == bucket)
-                   cim_data.VsPpccControlKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.VsPpccControlKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "VsPpccControlKind";
-                base.parse_element (/<cim:VsPpccControlKind.pPcc>([\s\S]*?)<\/cim:VsPpccControlKind.pPcc>/g, obj, "pPcc", base.to_string, sub, context);
-                base.parse_element (/<cim:VsPpccControlKind.udc>([\s\S]*?)<\/cim:VsPpccControlKind.udc>/g, obj, "udc", base.to_string, sub, context);
-                base.parse_element (/<cim:VsPpccControlKind.pPccAndUdcDroop>([\s\S]*?)<\/cim:VsPpccControlKind.pPccAndUdcDroop>/g, obj, "pPccAndUdcDroop", base.to_string, sub, context);
-                base.parse_element (/<cim:VsPpccControlKind.pPccAndUdcDroopWithCompensation>([\s\S]*?)<\/cim:VsPpccControlKind.pPccAndUdcDroopWithCompensation>/g, obj, "pPccAndUdcDroopWithCompensation", base.to_string, sub, context);
-                base.parse_element (/<cim:VsPpccControlKind.pPccAndUdcDroopPilot>([\s\S]*?)<\/cim:VsPpccControlKind.pPccAndUdcDroopPilot>/g, obj, "pPccAndUdcDroopPilot", base.to_string, sub, context);
-
-                var bucket = context.parsed.VsPpccControlKind;
-                if (null == bucket)
-                   context.parsed.VsPpccControlKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "VsPpccControlKind", "pPcc", base.from_string, fields);
-                base.export_element (obj, "VsPpccControlKind", "udc", base.from_string, fields);
-                base.export_element (obj, "VsPpccControlKind", "pPccAndUdcDroop", base.from_string, fields);
-                base.export_element (obj, "VsPpccControlKind", "pPccAndUdcDroopWithCompensation", base.from_string, fields);
-                base.export_element (obj, "VsPpccControlKind", "pPccAndUdcDroopPilot", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VsPpccControlKind_collapse" aria-expanded="true" aria-controls="VsPpccControlKind_collapse">VsPpccControlKind</a>
-<div id="VsPpccControlKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#pPcc}}<div><b>pPcc</b>: {{pPcc}}</div>{{/pPcc}}
-{{#udc}}<div><b>udc</b>: {{udc}}</div>{{/udc}}
-{{#pPccAndUdcDroop}}<div><b>pPccAndUdcDroop</b>: {{pPccAndUdcDroop}}</div>{{/pPccAndUdcDroop}}
-{{#pPccAndUdcDroopWithCompensation}}<div><b>pPccAndUdcDroopWithCompensation</b>: {{pPccAndUdcDroopWithCompensation}}</div>{{/pPccAndUdcDroopWithCompensation}}
-{{#pPccAndUdcDroopPilot}}<div><b>pPccAndUdcDroopPilot</b>: {{pPccAndUdcDroopPilot}}</div>{{/pPccAndUdcDroopPilot}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PerLengthDCLineParameter_collapse" aria-expanded="true" aria-controls="PerLengthDCLineParameter_collapse" style="margin-left: 10px;">PerLengthDCLineParameter</a></legend>
+                    <div id="PerLengthDCLineParameter_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.PerLengthLineParameter.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='capacitance'>capacitance: </label><div class='col-sm-8'><input id='capacitance' class='form-control' type='text'{{#capacitance}} value='{{capacitance}}'{{/capacitance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inductance'>inductance: </label><div class='col-sm-8'><input id='inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resistance'>resistance: </label><div class='col-sm-8'><input id='resistance' class='form-control' type='text'{{#resistance}} value='{{resistance}}'{{/resistance}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * A modeling construct to provide a root class for containment of DC as well as AC equipment.
@@ -732,16 +690,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCEquipmentContainer_collapse" aria-expanded="true" aria-controls="DCEquipmentContainer_collapse">DCEquipmentContainer</a>
-<div id="DCEquipmentContainer_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.EquipmentContainer.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCEquipmentContainer_collapse" aria-expanded="true" aria-controls="DCEquipmentContainer_collapse" style="margin-left: 10px;">DCEquipmentContainer</a></legend>
+                    <div id="DCEquipmentContainer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.EquipmentContainer.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCEquipmentContainer_collapse" aria-expanded="true" aria-controls="DCEquipmentContainer_collapse" style="margin-left: 10px;">DCEquipmentContainer</a></legend>
+                    <div id="DCEquipmentContainer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.EquipmentContainer.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The P-Q capability curve for a voltage source converter, with P on x-axis and Qmin and Qmax on y1-axis and y2-axis.
@@ -794,155 +782,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VsCapabilityCurve_collapse" aria-expanded="true" aria-controls="VsCapabilityCurve_collapse">VsCapabilityCurve</a>
-<div id="VsCapabilityCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VsCapabilityCurve_collapse" aria-expanded="true" aria-controls="VsCapabilityCurve_collapse" style="margin-left: 10px;">VsCapabilityCurve</a></legend>
+                    <div id="VsCapabilityCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Operating mode for HVDC line operating as Current Source Converter.
-         *
-         */
-        class CsOperatingModeKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.CsOperatingModeKind;
-                if (null == bucket)
-                   cim_data.CsOperatingModeKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.CsOperatingModeKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "CsOperatingModeKind";
-                base.parse_element (/<cim:CsOperatingModeKind.inverter>([\s\S]*?)<\/cim:CsOperatingModeKind.inverter>/g, obj, "inverter", base.to_string, sub, context);
-                base.parse_element (/<cim:CsOperatingModeKind.rectifier>([\s\S]*?)<\/cim:CsOperatingModeKind.rectifier>/g, obj, "rectifier", base.to_string, sub, context);
-
-                var bucket = context.parsed.CsOperatingModeKind;
-                if (null == bucket)
-                   context.parsed.CsOperatingModeKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "CsOperatingModeKind", "inverter", base.from_string, fields);
-                base.export_element (obj, "CsOperatingModeKind", "rectifier", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CsOperatingModeKind_collapse" aria-expanded="true" aria-controls="CsOperatingModeKind_collapse">CsOperatingModeKind</a>
-<div id="CsOperatingModeKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#inverter}}<div><b>inverter</b>: {{inverter}}</div>{{/inverter}}
-{{#rectifier}}<div><b>rectifier</b>: {{rectifier}}</div>{{/rectifier}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VsCapabilityCurve_collapse" aria-expanded="true" aria-controls="VsCapabilityCurve_collapse" style="margin-left: 10px;">VsCapabilityCurve</a></legend>
+                    <div id="VsCapabilityCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        /**
-         * Polarity for DC circuits.
-         *
-         */
-        class DCPolarityKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.DCPolarityKind;
-                if (null == bucket)
-                   cim_data.DCPolarityKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.DCPolarityKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "DCPolarityKind";
-                base.parse_element (/<cim:DCPolarityKind.positive>([\s\S]*?)<\/cim:DCPolarityKind.positive>/g, obj, "positive", base.to_string, sub, context);
-                base.parse_element (/<cim:DCPolarityKind.middle>([\s\S]*?)<\/cim:DCPolarityKind.middle>/g, obj, "middle", base.to_string, sub, context);
-                base.parse_element (/<cim:DCPolarityKind.negative>([\s\S]*?)<\/cim:DCPolarityKind.negative>/g, obj, "negative", base.to_string, sub, context);
-
-                var bucket = context.parsed.DCPolarityKind;
-                if (null == bucket)
-                   context.parsed.DCPolarityKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "DCPolarityKind", "positive", base.from_string, fields);
-                base.export_element (obj, "DCPolarityKind", "middle", base.from_string, fields);
-                base.export_element (obj, "DCPolarityKind", "negative", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#DCPolarityKind_collapse" aria-expanded="true" aria-controls="DCPolarityKind_collapse">DCPolarityKind</a>
-<div id="DCPolarityKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#positive}}<div><b>positive</b>: {{positive}}</div>{{/positive}}
-{{#middle}}<div><b>middle</b>: {{middle}}</div>{{/middle}}
-{{#negative}}<div><b>negative</b>: {{negative}}</div>{{/negative}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         /**
          * The parts of the DC power system that are designed to carry current or that are conductively connected through DC terminals.
@@ -995,16 +874,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCConductingEquipment_collapse" aria-expanded="true" aria-controls="DCConductingEquipment_collapse">DCConductingEquipment</a>
-<div id="DCConductingEquipment_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Equipment.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCConductingEquipment_collapse" aria-expanded="true" aria-controls="DCConductingEquipment_collapse" style="margin-left: 10px;">DCConductingEquipment</a></legend>
+                    <div id="DCConductingEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Equipment.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCConductingEquipment_collapse" aria-expanded="true" aria-controls="DCConductingEquipment_collapse" style="margin-left: 10px;">DCConductingEquipment</a></legend>
+                    <div id="DCConductingEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Equipment.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A DC electrical connection point at the AC/DC converter.
@@ -1036,7 +945,7 @@ define
 
                 obj = DCBaseTerminal.prototype.parse.call (this, context, sub);
                 obj.cls = "ACDCConverterDCTerminal";
-                base.parse_element (/<cim:ACDCConverterDCTerminal.polarity>([\s\S]*?)<\/cim:ACDCConverterDCTerminal.polarity>/g, obj, "polarity", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ACDCConverterDCTerminal.polarity\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "polarity", sub, context);
                 base.parse_attribute (/<cim:ACDCConverterDCTerminal.DCConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCConductingEquipment", sub, context);
 
                 var bucket = context.parsed.ACDCConverterDCTerminal;
@@ -1063,18 +972,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ACDCConverterDCTerminal_collapse" aria-expanded="true" aria-controls="ACDCConverterDCTerminal_collapse">ACDCConverterDCTerminal</a>
-<div id="ACDCConverterDCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DCBaseTerminal.prototype.template.call (this) +
-`
-{{#polarity}}<div><b>polarity</b>: {{polarity}}</div>{{/polarity}}
-{{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCConductingEquipment}}&quot;);})'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ACDCConverterDCTerminal_collapse" aria-expanded="true" aria-controls="ACDCConverterDCTerminal_collapse" style="margin-left: 10px;">ACDCConverterDCTerminal</a></legend>
+                    <div id="ACDCConverterDCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCBaseTerminal.prototype.template.call (this) +
+                    `
+                    {{#polarity}}<div><b>polarity</b>: {{polarity}}</div>{{/polarity}}
+                    {{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCConductingEquipment}}&quot;);})'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.DCPolarityKind = []; if (!obj.polarity) obj.DCPolarityKind.push ({ id: '', selected: true}); for (var property in DCPolarityKind) obj.DCPolarityKind.push ({ id: property, selected: obj.polarity && obj.polarity.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.DCPolarityKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ACDCConverterDCTerminal_collapse" aria-expanded="true" aria-controls="ACDCConverterDCTerminal_collapse" style="margin-left: 10px;">ACDCConverterDCTerminal</a></legend>
+                    <div id="ACDCConverterDCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCBaseTerminal.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='polarity'>polarity: </label><div class='col-sm-8'><select id='polarity' class='form-control'>{{#DCPolarityKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DCPolarityKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCConductingEquipment'>DCConductingEquipment: </label><div class='col-sm-8'><input id='DCConductingEquipment' class='form-control' type='text'{{#DCConductingEquipment}} value='{{DCConductingEquipment}}'{{/DCConductingEquipment}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An electrical connection point to generic DC conducting equipment.
@@ -1129,17 +1072,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCTerminal_collapse" aria-expanded="true" aria-controls="DCTerminal_collapse">DCTerminal</a>
-<div id="DCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DCBaseTerminal.prototype.template.call (this) +
-`
-{{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCConductingEquipment}}&quot;);})'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCTerminal_collapse" aria-expanded="true" aria-controls="DCTerminal_collapse" style="margin-left: 10px;">DCTerminal</a></legend>
+                    <div id="DCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCBaseTerminal.prototype.template.call (this) +
+                    `
+                    {{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCConductingEquipment}}&quot;);})'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCTerminal_collapse" aria-expanded="true" aria-controls="DCTerminal_collapse" style="margin-left: 10px;">DCTerminal</a></legend>
+                    <div id="DCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCBaseTerminal.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCConductingEquipment'>DCConductingEquipment: </label><div class='col-sm-8'><input id='DCConductingEquipment' class='form-control' type='text'{{#DCConductingEquipment}} value='{{DCConductingEquipment}}'{{/DCConductingEquipment}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * DC side of the current source converter (CSC).
@@ -1171,7 +1145,7 @@ define
                 obj.cls = "CsConverter";
                 base.parse_element (/<cim:CsConverter.maxIdc>([\s\S]*?)<\/cim:CsConverter.maxIdc>/g, obj, "maxIdc", base.to_string, sub, context);
                 base.parse_element (/<cim:CsConverter.ratedIdc>([\s\S]*?)<\/cim:CsConverter.ratedIdc>/g, obj, "ratedIdc", base.to_string, sub, context);
-                base.parse_element (/<cim:CsConverter.pPccControl>([\s\S]*?)<\/cim:CsConverter.pPccControl>/g, obj, "pPccControl", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CsConverter.pPccControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "pPccControl", sub, context);
                 base.parse_element (/<cim:CsConverter.alpha>([\s\S]*?)<\/cim:CsConverter.alpha>/g, obj, "alpha", base.to_string, sub, context);
                 base.parse_element (/<cim:CsConverter.gamma>([\s\S]*?)<\/cim:CsConverter.gamma>/g, obj, "gamma", base.to_string, sub, context);
                 base.parse_element (/<cim:CsConverter.maxAlpha>([\s\S]*?)<\/cim:CsConverter.maxAlpha>/g, obj, "maxAlpha", base.to_string, sub, context);
@@ -1182,7 +1156,7 @@ define
                 base.parse_element (/<cim:CsConverter.targetGamma>([\s\S]*?)<\/cim:CsConverter.targetGamma>/g, obj, "targetGamma", base.to_string, sub, context);
                 base.parse_element (/<cim:CsConverter.targetIdc>([\s\S]*?)<\/cim:CsConverter.targetIdc>/g, obj, "targetIdc", base.to_string, sub, context);
                 base.parse_element (/<cim:CsConverter.minIdc>([\s\S]*?)<\/cim:CsConverter.minIdc>/g, obj, "minIdc", base.to_string, sub, context);
-                base.parse_element (/<cim:CsConverter.operatingMode>([\s\S]*?)<\/cim:CsConverter.operatingMode>/g, obj, "operatingMode", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CsConverter.operatingMode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "operatingMode", sub, context);
 
                 var bucket = context.parsed.CsConverter;
                 if (null == bucket)
@@ -1220,30 +1194,78 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CsConverter_collapse" aria-expanded="true" aria-controls="CsConverter_collapse">CsConverter</a>
-<div id="CsConverter_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ACDCConverter.prototype.template.call (this) +
-`
-{{#maxIdc}}<div><b>maxIdc</b>: {{maxIdc}}</div>{{/maxIdc}}
-{{#ratedIdc}}<div><b>ratedIdc</b>: {{ratedIdc}}</div>{{/ratedIdc}}
-{{#pPccControl}}<div><b>pPccControl</b>: {{pPccControl}}</div>{{/pPccControl}}
-{{#alpha}}<div><b>alpha</b>: {{alpha}}</div>{{/alpha}}
-{{#gamma}}<div><b>gamma</b>: {{gamma}}</div>{{/gamma}}
-{{#maxAlpha}}<div><b>maxAlpha</b>: {{maxAlpha}}</div>{{/maxAlpha}}
-{{#maxGamma}}<div><b>maxGamma</b>: {{maxGamma}}</div>{{/maxGamma}}
-{{#minAlpha}}<div><b>minAlpha</b>: {{minAlpha}}</div>{{/minAlpha}}
-{{#minGamma}}<div><b>minGamma</b>: {{minGamma}}</div>{{/minGamma}}
-{{#targetAlpha}}<div><b>targetAlpha</b>: {{targetAlpha}}</div>{{/targetAlpha}}
-{{#targetGamma}}<div><b>targetGamma</b>: {{targetGamma}}</div>{{/targetGamma}}
-{{#targetIdc}}<div><b>targetIdc</b>: {{targetIdc}}</div>{{/targetIdc}}
-{{#minIdc}}<div><b>minIdc</b>: {{minIdc}}</div>{{/minIdc}}
-{{#operatingMode}}<div><b>operatingMode</b>: {{operatingMode}}</div>{{/operatingMode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CsConverter_collapse" aria-expanded="true" aria-controls="CsConverter_collapse" style="margin-left: 10px;">CsConverter</a></legend>
+                    <div id="CsConverter_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ACDCConverter.prototype.template.call (this) +
+                    `
+                    {{#maxIdc}}<div><b>maxIdc</b>: {{maxIdc}}</div>{{/maxIdc}}
+                    {{#ratedIdc}}<div><b>ratedIdc</b>: {{ratedIdc}}</div>{{/ratedIdc}}
+                    {{#pPccControl}}<div><b>pPccControl</b>: {{pPccControl}}</div>{{/pPccControl}}
+                    {{#alpha}}<div><b>alpha</b>: {{alpha}}</div>{{/alpha}}
+                    {{#gamma}}<div><b>gamma</b>: {{gamma}}</div>{{/gamma}}
+                    {{#maxAlpha}}<div><b>maxAlpha</b>: {{maxAlpha}}</div>{{/maxAlpha}}
+                    {{#maxGamma}}<div><b>maxGamma</b>: {{maxGamma}}</div>{{/maxGamma}}
+                    {{#minAlpha}}<div><b>minAlpha</b>: {{minAlpha}}</div>{{/minAlpha}}
+                    {{#minGamma}}<div><b>minGamma</b>: {{minGamma}}</div>{{/minGamma}}
+                    {{#targetAlpha}}<div><b>targetAlpha</b>: {{targetAlpha}}</div>{{/targetAlpha}}
+                    {{#targetGamma}}<div><b>targetGamma</b>: {{targetGamma}}</div>{{/targetGamma}}
+                    {{#targetIdc}}<div><b>targetIdc</b>: {{targetIdc}}</div>{{/targetIdc}}
+                    {{#minIdc}}<div><b>minIdc</b>: {{minIdc}}</div>{{/minIdc}}
+                    {{#operatingMode}}<div><b>operatingMode</b>: {{operatingMode}}</div>{{/operatingMode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.CsPpccControlKind = []; if (!obj.pPccControl) obj.CsPpccControlKind.push ({ id: '', selected: true}); for (var property in CsPpccControlKind) obj.CsPpccControlKind.push ({ id: property, selected: obj.pPccControl && obj.pPccControl.endsWith ('.' + property)});
+                obj.CsOperatingModeKind = []; if (!obj.operatingMode) obj.CsOperatingModeKind.push ({ id: '', selected: true}); for (var property in CsOperatingModeKind) obj.CsOperatingModeKind.push ({ id: property, selected: obj.operatingMode && obj.operatingMode.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.CsPpccControlKind;
+                delete obj.CsOperatingModeKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CsConverter_collapse" aria-expanded="true" aria-controls="CsConverter_collapse" style="margin-left: 10px;">CsConverter</a></legend>
+                    <div id="CsConverter_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ACDCConverter.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxIdc'>maxIdc: </label><div class='col-sm-8'><input id='maxIdc' class='form-control' type='text'{{#maxIdc}} value='{{maxIdc}}'{{/maxIdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedIdc'>ratedIdc: </label><div class='col-sm-8'><input id='ratedIdc' class='form-control' type='text'{{#ratedIdc}} value='{{ratedIdc}}'{{/ratedIdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pPccControl'>pPccControl: </label><div class='col-sm-8'><select id='pPccControl' class='form-control'>{{#CsPpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CsPpccControlKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='alpha'>alpha: </label><div class='col-sm-8'><input id='alpha' class='form-control' type='text'{{#alpha}} value='{{alpha}}'{{/alpha}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gamma'>gamma: </label><div class='col-sm-8'><input id='gamma' class='form-control' type='text'{{#gamma}} value='{{gamma}}'{{/gamma}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxAlpha'>maxAlpha: </label><div class='col-sm-8'><input id='maxAlpha' class='form-control' type='text'{{#maxAlpha}} value='{{maxAlpha}}'{{/maxAlpha}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxGamma'>maxGamma: </label><div class='col-sm-8'><input id='maxGamma' class='form-control' type='text'{{#maxGamma}} value='{{maxGamma}}'{{/maxGamma}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minAlpha'>minAlpha: </label><div class='col-sm-8'><input id='minAlpha' class='form-control' type='text'{{#minAlpha}} value='{{minAlpha}}'{{/minAlpha}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minGamma'>minGamma: </label><div class='col-sm-8'><input id='minGamma' class='form-control' type='text'{{#minGamma}} value='{{minGamma}}'{{/minGamma}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetAlpha'>targetAlpha: </label><div class='col-sm-8'><input id='targetAlpha' class='form-control' type='text'{{#targetAlpha}} value='{{targetAlpha}}'{{/targetAlpha}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetGamma'>targetGamma: </label><div class='col-sm-8'><input id='targetGamma' class='form-control' type='text'{{#targetGamma}} value='{{targetGamma}}'{{/targetGamma}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetIdc'>targetIdc: </label><div class='col-sm-8'><input id='targetIdc' class='form-control' type='text'{{#targetIdc}} value='{{targetIdc}}'{{/targetIdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minIdc'>minIdc: </label><div class='col-sm-8'><input id='minIdc' class='form-control' type='text'{{#minIdc}} value='{{minIdc}}'{{/minIdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='operatingMode'>operatingMode: </label><div class='col-sm-8'><select id='operatingMode' class='form-control'>{{#CsOperatingModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CsOperatingModeKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * DC side of the voltage source converter (VSC).
@@ -1273,7 +1295,7 @@ define
 
                 obj = ACDCConverter.prototype.parse.call (this, context, sub);
                 obj.cls = "VsConverter";
-                base.parse_element (/<cim:VsConverter.pPccControl>([\s\S]*?)<\/cim:VsConverter.pPccControl>/g, obj, "pPccControl", base.to_string, sub, context);
+                base.parse_attribute (/<cim:VsConverter.pPccControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "pPccControl", sub, context);
                 base.parse_element (/<cim:VsConverter.qShare>([\s\S]*?)<\/cim:VsConverter.qShare>/g, obj, "qShare", base.to_string, sub, context);
                 base.parse_element (/<cim:VsConverter.targetQpcc>([\s\S]*?)<\/cim:VsConverter.targetQpcc>/g, obj, "targetQpcc", base.to_string, sub, context);
                 base.parse_element (/<cim:VsConverter.targetUpcc>([\s\S]*?)<\/cim:VsConverter.targetUpcc>/g, obj, "targetUpcc", base.to_string, sub, context);
@@ -1283,7 +1305,7 @@ define
                 base.parse_element (/<cim:VsConverter.uf>([\s\S]*?)<\/cim:VsConverter.uf>/g, obj, "uf", base.to_string, sub, context);
                 base.parse_element (/<cim:VsConverter.maxValveCurrent>([\s\S]*?)<\/cim:VsConverter.maxValveCurrent>/g, obj, "maxValveCurrent", base.to_string, sub, context);
                 base.parse_element (/<cim:VsConverter.maxModulationIndex>([\s\S]*?)<\/cim:VsConverter.maxModulationIndex>/g, obj, "maxModulationIndex", base.to_float, sub, context);
-                base.parse_element (/<cim:VsConverter.qPccControl>([\s\S]*?)<\/cim:VsConverter.qPccControl>/g, obj, "qPccControl", base.to_string, sub, context);
+                base.parse_attribute (/<cim:VsConverter.qPccControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "qPccControl", sub, context);
                 base.parse_attribute (/<cim:VsConverter.CapabilityCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CapabilityCurve", sub, context);
 
                 var bucket = context.parsed.VsConverter;
@@ -1320,28 +1342,74 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VsConverter_collapse" aria-expanded="true" aria-controls="VsConverter_collapse">VsConverter</a>
-<div id="VsConverter_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ACDCConverter.prototype.template.call (this) +
-`
-{{#pPccControl}}<div><b>pPccControl</b>: {{pPccControl}}</div>{{/pPccControl}}
-{{#qShare}}<div><b>qShare</b>: {{qShare}}</div>{{/qShare}}
-{{#targetQpcc}}<div><b>targetQpcc</b>: {{targetQpcc}}</div>{{/targetQpcc}}
-{{#targetUpcc}}<div><b>targetUpcc</b>: {{targetUpcc}}</div>{{/targetUpcc}}
-{{#droopCompensation}}<div><b>droopCompensation</b>: {{droopCompensation}}</div>{{/droopCompensation}}
-{{#droop}}<div><b>droop</b>: {{droop}}</div>{{/droop}}
-{{#delta}}<div><b>delta</b>: {{delta}}</div>{{/delta}}
-{{#uf}}<div><b>uf</b>: {{uf}}</div>{{/uf}}
-{{#maxValveCurrent}}<div><b>maxValveCurrent</b>: {{maxValveCurrent}}</div>{{/maxValveCurrent}}
-{{#maxModulationIndex}}<div><b>maxModulationIndex</b>: {{maxModulationIndex}}</div>{{/maxModulationIndex}}
-{{#qPccControl}}<div><b>qPccControl</b>: {{qPccControl}}</div>{{/qPccControl}}
-{{#CapabilityCurve}}<div><b>CapabilityCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CapabilityCurve}}&quot;);})'>{{CapabilityCurve}}</a></div>{{/CapabilityCurve}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VsConverter_collapse" aria-expanded="true" aria-controls="VsConverter_collapse" style="margin-left: 10px;">VsConverter</a></legend>
+                    <div id="VsConverter_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ACDCConverter.prototype.template.call (this) +
+                    `
+                    {{#pPccControl}}<div><b>pPccControl</b>: {{pPccControl}}</div>{{/pPccControl}}
+                    {{#qShare}}<div><b>qShare</b>: {{qShare}}</div>{{/qShare}}
+                    {{#targetQpcc}}<div><b>targetQpcc</b>: {{targetQpcc}}</div>{{/targetQpcc}}
+                    {{#targetUpcc}}<div><b>targetUpcc</b>: {{targetUpcc}}</div>{{/targetUpcc}}
+                    {{#droopCompensation}}<div><b>droopCompensation</b>: {{droopCompensation}}</div>{{/droopCompensation}}
+                    {{#droop}}<div><b>droop</b>: {{droop}}</div>{{/droop}}
+                    {{#delta}}<div><b>delta</b>: {{delta}}</div>{{/delta}}
+                    {{#uf}}<div><b>uf</b>: {{uf}}</div>{{/uf}}
+                    {{#maxValveCurrent}}<div><b>maxValveCurrent</b>: {{maxValveCurrent}}</div>{{/maxValveCurrent}}
+                    {{#maxModulationIndex}}<div><b>maxModulationIndex</b>: {{maxModulationIndex}}</div>{{/maxModulationIndex}}
+                    {{#qPccControl}}<div><b>qPccControl</b>: {{qPccControl}}</div>{{/qPccControl}}
+                    {{#CapabilityCurve}}<div><b>CapabilityCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CapabilityCurve}}&quot;);})'>{{CapabilityCurve}}</a></div>{{/CapabilityCurve}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.VsPpccControlKind = []; if (!obj.pPccControl) obj.VsPpccControlKind.push ({ id: '', selected: true}); for (var property in VsPpccControlKind) obj.VsPpccControlKind.push ({ id: property, selected: obj.pPccControl && obj.pPccControl.endsWith ('.' + property)});
+                obj.VsQpccControlKind = []; if (!obj.qPccControl) obj.VsQpccControlKind.push ({ id: '', selected: true}); for (var property in VsQpccControlKind) obj.VsQpccControlKind.push ({ id: property, selected: obj.qPccControl && obj.qPccControl.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.VsPpccControlKind;
+                delete obj.VsQpccControlKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VsConverter_collapse" aria-expanded="true" aria-controls="VsConverter_collapse" style="margin-left: 10px;">VsConverter</a></legend>
+                    <div id="VsConverter_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ACDCConverter.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pPccControl'>pPccControl: </label><div class='col-sm-8'><select id='pPccControl' class='form-control'>{{#VsPpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/VsPpccControlKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qShare'>qShare: </label><div class='col-sm-8'><input id='qShare' class='form-control' type='text'{{#qShare}} value='{{qShare}}'{{/qShare}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetQpcc'>targetQpcc: </label><div class='col-sm-8'><input id='targetQpcc' class='form-control' type='text'{{#targetQpcc}} value='{{targetQpcc}}'{{/targetQpcc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetUpcc'>targetUpcc: </label><div class='col-sm-8'><input id='targetUpcc' class='form-control' type='text'{{#targetUpcc}} value='{{targetUpcc}}'{{/targetUpcc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='droopCompensation'>droopCompensation: </label><div class='col-sm-8'><input id='droopCompensation' class='form-control' type='text'{{#droopCompensation}} value='{{droopCompensation}}'{{/droopCompensation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='droop'>droop: </label><div class='col-sm-8'><input id='droop' class='form-control' type='text'{{#droop}} value='{{droop}}'{{/droop}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='delta'>delta: </label><div class='col-sm-8'><input id='delta' class='form-control' type='text'{{#delta}} value='{{delta}}'{{/delta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uf'>uf: </label><div class='col-sm-8'><input id='uf' class='form-control' type='text'{{#uf}} value='{{uf}}'{{/uf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxValveCurrent'>maxValveCurrent: </label><div class='col-sm-8'><input id='maxValveCurrent' class='form-control' type='text'{{#maxValveCurrent}} value='{{maxValveCurrent}}'{{/maxValveCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxModulationIndex'>maxModulationIndex: </label><div class='col-sm-8'><input id='maxModulationIndex' class='form-control' type='text'{{#maxModulationIndex}} value='{{maxModulationIndex}}'{{/maxModulationIndex}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qPccControl'>qPccControl: </label><div class='col-sm-8'><select id='qPccControl' class='form-control'>{{#VsQpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/VsQpccControlKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CapabilityCurve'>CapabilityCurve: </label><div class='col-sm-8'><input id='CapabilityCurve' class='form-control' type='text'{{#CapabilityCurve}} value='{{CapabilityCurve}}'{{/CapabilityCurve}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Overhead lines and/or cables connecting two or more HVDC substations.
@@ -1396,17 +1464,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCLine_collapse" aria-expanded="true" aria-controls="DCLine_collapse">DCLine</a>
-<div id="DCLine_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DCEquipmentContainer.prototype.template.call (this) +
-`
-{{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);})'>{{Region}}</a></div>{{/Region}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCLine_collapse" aria-expanded="true" aria-controls="DCLine_collapse" style="margin-left: 10px;">DCLine</a></legend>
+                    <div id="DCLine_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCEquipmentContainer.prototype.template.call (this) +
+                    `
+                    {{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);})'>{{Region}}</a></div>{{/Region}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCLine_collapse" aria-expanded="true" aria-controls="DCLine_collapse" style="margin-left: 10px;">DCLine</a></legend>
+                    <div id="DCLine_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCEquipmentContainer.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Region'>Region: </label><div class='col-sm-8'><input id='Region' class='form-control' type='text'{{#Region}} value='{{Region}}'{{/Region}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Indivisible operative unit comprising all equipment between the point of common coupling on the AC side and the point of common coupling � DC side, essentially one or more converters, together with one or more converter transformers, converter control equipment, essential protective and switching devices and auxiliaries, if any, used for conversion.
@@ -1436,7 +1535,7 @@ define
 
                 obj = DCEquipmentContainer.prototype.parse.call (this, context, sub);
                 obj.cls = "DCConverterUnit";
-                base.parse_element (/<cim:DCConverterUnit.operationMode>([\s\S]*?)<\/cim:DCConverterUnit.operationMode>/g, obj, "operationMode", base.to_string, sub, context);
+                base.parse_attribute (/<cim:DCConverterUnit.operationMode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "operationMode", sub, context);
                 base.parse_attribute (/<cim:DCConverterUnit.Substation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Substation", sub, context);
 
                 var bucket = context.parsed.DCConverterUnit;
@@ -1463,18 +1562,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCConverterUnit_collapse" aria-expanded="true" aria-controls="DCConverterUnit_collapse">DCConverterUnit</a>
-<div id="DCConverterUnit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DCEquipmentContainer.prototype.template.call (this) +
-`
-{{#operationMode}}<div><b>operationMode</b>: {{operationMode}}</div>{{/operationMode}}
-{{#Substation}}<div><b>Substation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Substation}}&quot;);})'>{{Substation}}</a></div>{{/Substation}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCConverterUnit_collapse" aria-expanded="true" aria-controls="DCConverterUnit_collapse" style="margin-left: 10px;">DCConverterUnit</a></legend>
+                    <div id="DCConverterUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCEquipmentContainer.prototype.template.call (this) +
+                    `
+                    {{#operationMode}}<div><b>operationMode</b>: {{operationMode}}</div>{{/operationMode}}
+                    {{#Substation}}<div><b>Substation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Substation}}&quot;);})'>{{Substation}}</a></div>{{/Substation}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.DCConverterOperatingModeKind = []; if (!obj.operationMode) obj.DCConverterOperatingModeKind.push ({ id: '', selected: true}); for (var property in DCConverterOperatingModeKind) obj.DCConverterOperatingModeKind.push ({ id: property, selected: obj.operationMode && obj.operationMode.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.DCConverterOperatingModeKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCConverterUnit_collapse" aria-expanded="true" aria-controls="DCConverterUnit_collapse" style="margin-left: 10px;">DCConverterUnit</a></legend>
+                    <div id="DCConverterUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCEquipmentContainer.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='operationMode'>operationMode: </label><div class='col-sm-8'><select id='operationMode' class='form-control'>{{#DCConverterOperatingModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DCConverterOperatingModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Substation'>Substation: </label><div class='col-sm-8'><input id='Substation' class='form-control' type='text'{{#Substation}} value='{{Substation}}'{{/Substation}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A switch within the DC system.
@@ -1527,16 +1660,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCSwitch_collapse" aria-expanded="true" aria-controls="DCSwitch_collapse">DCSwitch</a>
-<div id="DCSwitch_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DCConductingEquipment.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCSwitch_collapse" aria-expanded="true" aria-controls="DCSwitch_collapse" style="margin-left: 10px;">DCSwitch</a></legend>
+                    <div id="DCSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCConductingEquipment.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCSwitch_collapse" aria-expanded="true" aria-controls="DCSwitch_collapse" style="margin-left: 10px;">DCSwitch</a></legend>
+                    <div id="DCSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCConductingEquipment.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A disconnector within a DC system.
@@ -1589,16 +1752,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCDisconnector_collapse" aria-expanded="true" aria-controls="DCDisconnector_collapse">DCDisconnector</a>
-<div id="DCDisconnector_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DCSwitch.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCDisconnector_collapse" aria-expanded="true" aria-controls="DCDisconnector_collapse" style="margin-left: 10px;">DCDisconnector</a></legend>
+                    <div id="DCDisconnector_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCSwitch.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCDisconnector_collapse" aria-expanded="true" aria-controls="DCDisconnector_collapse" style="margin-left: 10px;">DCDisconnector</a></legend>
+                    <div id="DCDisconnector_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCSwitch.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A series device within the DC system, typically a reactor used for filtering or smoothing.
@@ -1659,19 +1852,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCSeriesDevice_collapse" aria-expanded="true" aria-controls="DCSeriesDevice_collapse">DCSeriesDevice</a>
-<div id="DCSeriesDevice_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DCConductingEquipment.prototype.template.call (this) +
-`
-{{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
-{{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
-{{#ratedUdc}}<div><b>ratedUdc</b>: {{ratedUdc}}</div>{{/ratedUdc}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCSeriesDevice_collapse" aria-expanded="true" aria-controls="DCSeriesDevice_collapse" style="margin-left: 10px;">DCSeriesDevice</a></legend>
+                    <div id="DCSeriesDevice_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCConductingEquipment.prototype.template.call (this) +
+                    `
+                    {{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
+                    {{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
+                    {{#ratedUdc}}<div><b>ratedUdc</b>: {{ratedUdc}}</div>{{/ratedUdc}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCSeriesDevice_collapse" aria-expanded="true" aria-controls="DCSeriesDevice_collapse" style="margin-left: 10px;">DCSeriesDevice</a></legend>
+                    <div id="DCSeriesDevice_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCConductingEquipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resistance'>resistance: </label><div class='col-sm-8'><input id='resistance' class='form-control' type='text'{{#resistance}} value='{{resistance}}'{{/resistance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inductance'>inductance: </label><div class='col-sm-8'><input id='inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedUdc'>ratedUdc: </label><div class='col-sm-8'><input id='ratedUdc' class='form-control' type='text'{{#ratedUdc}} value='{{ratedUdc}}'{{/ratedUdc}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A busbar within a DC system.
@@ -1724,16 +1950,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCBusbar_collapse" aria-expanded="true" aria-controls="DCBusbar_collapse">DCBusbar</a>
-<div id="DCBusbar_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DCConductingEquipment.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCBusbar_collapse" aria-expanded="true" aria-controls="DCBusbar_collapse" style="margin-left: 10px;">DCBusbar</a></legend>
+                    <div id="DCBusbar_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCConductingEquipment.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCBusbar_collapse" aria-expanded="true" aria-controls="DCBusbar_collapse" style="margin-left: 10px;">DCBusbar</a></legend>
+                    <div id="DCBusbar_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCConductingEquipment.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A shunt device within the DC system, typically used for filtering.
@@ -1794,19 +2050,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCShunt_collapse" aria-expanded="true" aria-controls="DCShunt_collapse">DCShunt</a>
-<div id="DCShunt_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DCConductingEquipment.prototype.template.call (this) +
-`
-{{#capacitance}}<div><b>capacitance</b>: {{capacitance}}</div>{{/capacitance}}
-{{#ratedUdc}}<div><b>ratedUdc</b>: {{ratedUdc}}</div>{{/ratedUdc}}
-{{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCShunt_collapse" aria-expanded="true" aria-controls="DCShunt_collapse" style="margin-left: 10px;">DCShunt</a></legend>
+                    <div id="DCShunt_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCConductingEquipment.prototype.template.call (this) +
+                    `
+                    {{#capacitance}}<div><b>capacitance</b>: {{capacitance}}</div>{{/capacitance}}
+                    {{#ratedUdc}}<div><b>ratedUdc</b>: {{ratedUdc}}</div>{{/ratedUdc}}
+                    {{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCShunt_collapse" aria-expanded="true" aria-controls="DCShunt_collapse" style="margin-left: 10px;">DCShunt</a></legend>
+                    <div id="DCShunt_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCConductingEquipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='capacitance'>capacitance: </label><div class='col-sm-8'><input id='capacitance' class='form-control' type='text'{{#capacitance}} value='{{capacitance}}'{{/capacitance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedUdc'>ratedUdc: </label><div class='col-sm-8'><input id='ratedUdc' class='form-control' type='text'{{#ratedUdc}} value='{{ratedUdc}}'{{/ratedUdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resistance'>resistance: </label><div class='col-sm-8'><input id='resistance' class='form-control' type='text'{{#resistance}} value='{{resistance}}'{{/resistance}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A wire or combination of wires not insulated from one another, with consistent electrical characteristics, used to carry direct current between points in the DC region of the power system.
@@ -1869,21 +2158,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCLineSegment_collapse" aria-expanded="true" aria-controls="DCLineSegment_collapse">DCLineSegment</a>
-<div id="DCLineSegment_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DCConductingEquipment.prototype.template.call (this) +
-`
-{{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
-{{#capacitance}}<div><b>capacitance</b>: {{capacitance}}</div>{{/capacitance}}
-{{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
-{{#length}}<div><b>length</b>: {{length}}</div>{{/length}}
-{{#PerLengthParameter}}<div><b>PerLengthParameter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PerLengthParameter}}&quot;);})'>{{PerLengthParameter}}</a></div>{{/PerLengthParameter}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCLineSegment_collapse" aria-expanded="true" aria-controls="DCLineSegment_collapse" style="margin-left: 10px;">DCLineSegment</a></legend>
+                    <div id="DCLineSegment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCConductingEquipment.prototype.template.call (this) +
+                    `
+                    {{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
+                    {{#capacitance}}<div><b>capacitance</b>: {{capacitance}}</div>{{/capacitance}}
+                    {{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
+                    {{#length}}<div><b>length</b>: {{length}}</div>{{/length}}
+                    {{#PerLengthParameter}}<div><b>PerLengthParameter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PerLengthParameter}}&quot;);})'>{{PerLengthParameter}}</a></div>{{/PerLengthParameter}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCLineSegment_collapse" aria-expanded="true" aria-controls="DCLineSegment_collapse" style="margin-left: 10px;">DCLineSegment</a></legend>
+                    <div id="DCLineSegment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCConductingEquipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resistance'>resistance: </label><div class='col-sm-8'><input id='resistance' class='form-control' type='text'{{#resistance}} value='{{resistance}}'{{/resistance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='capacitance'>capacitance: </label><div class='col-sm-8'><input id='capacitance' class='form-control' type='text'{{#capacitance}} value='{{capacitance}}'{{/capacitance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inductance'>inductance: </label><div class='col-sm-8'><input id='inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='length'>length: </label><div class='col-sm-8'><input id='length' class='form-control' type='text'{{#length}} value='{{length}}'{{/length}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PerLengthParameter'>PerLengthParameter: </label><div class='col-sm-8'><input id='PerLengthParameter' class='form-control' type='text'{{#PerLengthParameter}} value='{{PerLengthParameter}}'{{/PerLengthParameter}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A ground within a DC system.
@@ -1940,18 +2264,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCGround_collapse" aria-expanded="true" aria-controls="DCGround_collapse">DCGround</a>
-<div id="DCGround_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DCConductingEquipment.prototype.template.call (this) +
-`
-{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
-{{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCGround_collapse" aria-expanded="true" aria-controls="DCGround_collapse" style="margin-left: 10px;">DCGround</a></legend>
+                    <div id="DCGround_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCConductingEquipment.prototype.template.call (this) +
+                    `
+                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+                    {{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCGround_collapse" aria-expanded="true" aria-controls="DCGround_collapse" style="margin-left: 10px;">DCGround</a></legend>
+                    <div id="DCGround_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCConductingEquipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inductance'>inductance: </label><div class='col-sm-8'><input id='inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A breaker within a DC system.
@@ -2004,16 +2360,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCBreaker_collapse" aria-expanded="true" aria-controls="DCBreaker_collapse">DCBreaker</a>
-<div id="DCBreaker_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DCSwitch.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCBreaker_collapse" aria-expanded="true" aria-controls="DCBreaker_collapse" style="margin-left: 10px;">DCBreaker</a></legend>
+                    <div id="DCBreaker_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCSwitch.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCBreaker_collapse" aria-expanded="true" aria-controls="DCBreaker_collapse" style="margin-left: 10px;">DCBreaker</a></legend>
+                    <div id="DCBreaker_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCSwitch.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Low resistance equipment used in the internal DC circuit to balance voltages.
@@ -2068,45 +2454,69 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DCChopper_collapse" aria-expanded="true" aria-controls="DCChopper_collapse">DCChopper</a>
-<div id="DCChopper_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DCConductingEquipment.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCChopper_collapse" aria-expanded="true" aria-controls="DCChopper_collapse" style="margin-left: 10px;">DCChopper</a></legend>
+                    <div id="DCChopper_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCConductingEquipment.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCChopper_collapse" aria-expanded="true" aria-controls="DCChopper_collapse" style="margin-left: 10px;">DCChopper</a></legend>
+                    <div id="DCChopper_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DCConductingEquipment.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
                 DCShunt: DCShunt,
+                DCTopologicalIsland: DCTopologicalIsland,
                 DCEquipmentContainer: DCEquipmentContainer,
-                VsQpccControlKind: VsQpccControlKind,
+                DCDisconnector: DCDisconnector,
                 DCGround: DCGround,
-                CsPpccControlKind: CsPpccControlKind,
+                VsConverter: VsConverter,
                 DCChopper: DCChopper,
                 DCConductingEquipment: DCConductingEquipment,
-                DCConverterOperatingModeKind: DCConverterOperatingModeKind,
                 DCBreaker: DCBreaker,
                 PerLengthDCLineParameter: PerLengthDCLineParameter,
-                DCBaseTerminal: DCBaseTerminal,
-                DCSwitch: DCSwitch,
-                DCSeriesDevice: DCSeriesDevice,
-                VsPpccControlKind: VsPpccControlKind,
-                CsOperatingModeKind: CsOperatingModeKind,
-                DCTopologicalIsland: DCTopologicalIsland,
-                DCPolarityKind: DCPolarityKind,
-                DCDisconnector: DCDisconnector,
-                VsConverter: VsConverter,
                 ACDCConverter: ACDCConverter,
                 CsConverter: CsConverter,
+                DCBaseTerminal: DCBaseTerminal,
                 DCLineSegment: DCLineSegment,
                 VsCapabilityCurve: VsCapabilityCurve,
+                DCSwitch: DCSwitch,
                 DCConverterUnit: DCConverterUnit,
                 DCTerminal: DCTerminal,
                 DCBusbar: DCBusbar,
+                DCSeriesDevice: DCSeriesDevice,
                 DCLine: DCLine,
                 ACDCConverterDCTerminal: ACDCConverterDCTerminal,
                 DCNode: DCNode

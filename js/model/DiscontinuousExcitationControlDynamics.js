@@ -65,18 +65,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DiscontinuousExcitationControlDynamics_collapse" aria-expanded="true" aria-controls="DiscontinuousExcitationControlDynamics_collapse">DiscontinuousExcitationControlDynamics</a>
-<div id="DiscontinuousExcitationControlDynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
-`
-{{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
-{{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscontinuousExcitationControlDynamics_collapse" aria-expanded="true" aria-controls="DiscontinuousExcitationControlDynamics_collapse" style="margin-left: 10px;">DiscontinuousExcitationControlDynamics</a></legend>
+                    <div id="DiscontinuousExcitationControlDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+                    `
+                    {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+                    {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscontinuousExcitationControlDynamics_collapse" aria-expanded="true" aria-controls="DiscontinuousExcitationControlDynamics_collapse" style="margin-left: 10px;">DiscontinuousExcitationControlDynamics</a></legend>
+                    <div id="DiscontinuousExcitationControlDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Type DEC2A model for the discontinuous excitation control.
@@ -141,21 +173,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DiscExcContIEEEDEC2A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC2A_collapse">DiscExcContIEEEDEC2A</a>
-<div id="DiscExcContIEEEDEC2A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
-`
-{{#td1}}<div><b>td1</b>: {{td1}}</div>{{/td1}}
-{{#td2}}<div><b>td2</b>: {{td2}}</div>{{/td2}}
-{{#vdmax}}<div><b>vdmax</b>: {{vdmax}}</div>{{/vdmax}}
-{{#vdmin}}<div><b>vdmin</b>: {{vdmin}}</div>{{/vdmin}}
-{{#vk}}<div><b>vk</b>: {{vk}}</div>{{/vk}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscExcContIEEEDEC2A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC2A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC2A</a></legend>
+                    <div id="DiscExcContIEEEDEC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
+                    `
+                    {{#td1}}<div><b>td1</b>: {{td1}}</div>{{/td1}}
+                    {{#td2}}<div><b>td2</b>: {{td2}}</div>{{/td2}}
+                    {{#vdmax}}<div><b>vdmax</b>: {{vdmax}}</div>{{/vdmax}}
+                    {{#vdmin}}<div><b>vdmin</b>: {{vdmin}}</div>{{/vdmin}}
+                    {{#vk}}<div><b>vk</b>: {{vk}}</div>{{/vk}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscExcContIEEEDEC2A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC2A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC2A</a></legend>
+                    <div id="DiscExcContIEEEDEC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DiscontinuousExcitationControlDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td1'>td1: </label><div class='col-sm-8'><input id='td1' class='form-control' type='text'{{#td1}} value='{{td1}}'{{/td1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td2'>td2: </label><div class='col-sm-8'><input id='td2' class='form-control' type='text'{{#td2}} value='{{td2}}'{{/td2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vdmax'>vdmax: </label><div class='col-sm-8'><input id='vdmax' class='form-control' type='text'{{#vdmax}} value='{{vdmax}}'{{/vdmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vdmin'>vdmin: </label><div class='col-sm-8'><input id='vdmin' class='form-control' type='text'{{#vdmin}} value='{{vdmin}}'{{/vdmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vk'>vk: </label><div class='col-sm-8'><input id='vk' class='form-control' type='text'{{#vk}} value='{{vk}}'{{/vk}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.
@@ -246,34 +313,82 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DiscExcContIEEEDEC1A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC1A_collapse">DiscExcContIEEEDEC1A</a>
-<div id="DiscExcContIEEEDEC1A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
-`
-{{#esc}}<div><b>esc</b>: {{esc}}</div>{{/esc}}
-{{#kan}}<div><b>kan</b>: {{kan}}</div>{{/kan}}
-{{#ketl}}<div><b>ketl</b>: {{ketl}}</div>{{/ketl}}
-{{#tan}}<div><b>tan</b>: {{tan}}</div>{{/tan}}
-{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
-{{#tl1}}<div><b>tl1</b>: {{tl1}}</div>{{/tl1}}
-{{#tl2}}<div><b>tl2</b>: {{tl2}}</div>{{/tl2}}
-{{#tw5}}<div><b>tw5</b>: {{tw5}}</div>{{/tw5}}
-{{#val}}<div><b>val</b>: {{val}}</div>{{/val}}
-{{#vanmax}}<div><b>vanmax</b>: {{vanmax}}</div>{{/vanmax}}
-{{#vomax}}<div><b>vomax</b>: {{vomax}}</div>{{/vomax}}
-{{#vomin}}<div><b>vomin</b>: {{vomin}}</div>{{/vomin}}
-{{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
-{{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
-{{#vtc}}<div><b>vtc</b>: {{vtc}}</div>{{/vtc}}
-{{#vtlmt}}<div><b>vtlmt</b>: {{vtlmt}}</div>{{/vtlmt}}
-{{#vtm}}<div><b>vtm</b>: {{vtm}}</div>{{/vtm}}
-{{#vtn}}<div><b>vtn</b>: {{vtn}}</div>{{/vtn}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscExcContIEEEDEC1A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC1A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC1A</a></legend>
+                    <div id="DiscExcContIEEEDEC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
+                    `
+                    {{#esc}}<div><b>esc</b>: {{esc}}</div>{{/esc}}
+                    {{#kan}}<div><b>kan</b>: {{kan}}</div>{{/kan}}
+                    {{#ketl}}<div><b>ketl</b>: {{ketl}}</div>{{/ketl}}
+                    {{#tan}}<div><b>tan</b>: {{tan}}</div>{{/tan}}
+                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+                    {{#tl1}}<div><b>tl1</b>: {{tl1}}</div>{{/tl1}}
+                    {{#tl2}}<div><b>tl2</b>: {{tl2}}</div>{{/tl2}}
+                    {{#tw5}}<div><b>tw5</b>: {{tw5}}</div>{{/tw5}}
+                    {{#val}}<div><b>val</b>: {{val}}</div>{{/val}}
+                    {{#vanmax}}<div><b>vanmax</b>: {{vanmax}}</div>{{/vanmax}}
+                    {{#vomax}}<div><b>vomax</b>: {{vomax}}</div>{{/vomax}}
+                    {{#vomin}}<div><b>vomin</b>: {{vomin}}</div>{{/vomin}}
+                    {{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
+                    {{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
+                    {{#vtc}}<div><b>vtc</b>: {{vtc}}</div>{{/vtc}}
+                    {{#vtlmt}}<div><b>vtlmt</b>: {{vtlmt}}</div>{{/vtlmt}}
+                    {{#vtm}}<div><b>vtm</b>: {{vtm}}</div>{{/vtm}}
+                    {{#vtn}}<div><b>vtn</b>: {{vtn}}</div>{{/vtn}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscExcContIEEEDEC1A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC1A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC1A</a></legend>
+                    <div id="DiscExcContIEEEDEC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DiscontinuousExcitationControlDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='esc'>esc: </label><div class='col-sm-8'><input id='esc' class='form-control' type='text'{{#esc}} value='{{esc}}'{{/esc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kan'>kan: </label><div class='col-sm-8'><input id='kan' class='form-control' type='text'{{#kan}} value='{{kan}}'{{/kan}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ketl'>ketl: </label><div class='col-sm-8'><input id='ketl' class='form-control' type='text'{{#ketl}} value='{{ketl}}'{{/ketl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tan'>tan: </label><div class='col-sm-8'><input id='tan' class='form-control' type='text'{{#tan}} value='{{tan}}'{{/tan}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td'>td: </label><div class='col-sm-8'><input id='td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl1'>tl1: </label><div class='col-sm-8'><input id='tl1' class='form-control' type='text'{{#tl1}} value='{{tl1}}'{{/tl1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl2'>tl2: </label><div class='col-sm-8'><input id='tl2' class='form-control' type='text'{{#tl2}} value='{{tl2}}'{{/tl2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw5'>tw5: </label><div class='col-sm-8'><input id='tw5' class='form-control' type='text'{{#tw5}} value='{{tw5}}'{{/tw5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='val'>val: </label><div class='col-sm-8'><input id='val' class='form-control' type='text'{{#val}} value='{{val}}'{{/val}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vanmax'>vanmax: </label><div class='col-sm-8'><input id='vanmax' class='form-control' type='text'{{#vanmax}} value='{{vanmax}}'{{/vanmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vomax'>vomax: </label><div class='col-sm-8'><input id='vomax' class='form-control' type='text'{{#vomax}} value='{{vomax}}'{{/vomax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vomin'>vomin: </label><div class='col-sm-8'><input id='vomin' class='form-control' type='text'{{#vomin}} value='{{vomin}}'{{/vomin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmax'>vsmax: </label><div class='col-sm-8'><input id='vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmin'>vsmin: </label><div class='col-sm-8'><input id='vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vtc'>vtc: </label><div class='col-sm-8'><input id='vtc' class='form-control' type='text'{{#vtc}} value='{{vtc}}'{{/vtc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vtlmt'>vtlmt: </label><div class='col-sm-8'><input id='vtlmt' class='form-control' type='text'{{#vtlmt}} value='{{vtlmt}}'{{/vtlmt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vtm'>vtm: </label><div class='col-sm-8'><input id='vtm' class='form-control' type='text'{{#vtm}} value='{{vtm}}'{{/vtm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vtn'>vtn: </label><div class='col-sm-8'><input id='vtn' class='form-control' type='text'{{#vtn}} value='{{vtn}}'{{/vtn}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Type DEC3A model.
@@ -332,18 +447,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DiscExcContIEEEDEC3A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC3A_collapse">DiscExcContIEEEDEC3A</a>
-<div id="DiscExcContIEEEDEC3A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
-`
-{{#tdr}}<div><b>tdr</b>: {{tdr}}</div>{{/tdr}}
-{{#vtmin}}<div><b>vtmin</b>: {{vtmin}}</div>{{/vtmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscExcContIEEEDEC3A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC3A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC3A</a></legend>
+                    <div id="DiscExcContIEEEDEC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
+                    `
+                    {{#tdr}}<div><b>tdr</b>: {{tdr}}</div>{{/tdr}}
+                    {{#vtmin}}<div><b>vtmin</b>: {{vtmin}}</div>{{/vtmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscExcContIEEEDEC3A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC3A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC3A</a></legend>
+                    <div id="DiscExcContIEEEDEC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DiscontinuousExcitationControlDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tdr'>tdr: </label><div class='col-sm-8'><input id='tdr' class='form-control' type='text'{{#tdr}} value='{{tdr}}'{{/tdr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vtmin'>vtmin: </label><div class='col-sm-8'><input id='vtmin' class='form-control' type='text'{{#vtmin}} value='{{vtmin}}'{{/vtmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

@@ -57,17 +57,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ResourceGroupReq_collapse" aria-expanded="true" aria-controls="ResourceGroupReq_collapse">ResourceGroupReq</a>
-<div id="ResourceGroupReq_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#ResourceGroup}}<div><b>ResourceGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ResourceGroup}}&quot;);})'>{{ResourceGroup}}</a></div>{{/ResourceGroup}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceGroupReq_collapse" aria-expanded="true" aria-controls="ResourceGroupReq_collapse" style="margin-left: 10px;">ResourceGroupReq</a></legend>
+                    <div id="ResourceGroupReq_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#ResourceGroup}}<div><b>ResourceGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ResourceGroup}}&quot;);})'>{{ResourceGroup}}</a></div>{{/ResourceGroup}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceGroupReq_collapse" aria-expanded="true" aria-controls="ResourceGroupReq_collapse" style="margin-left: 10px;">ResourceGroupReq</a></legend>
+                    <div id="ResourceGroupReq_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceGroup'>ResourceGroup: </label><div class='col-sm-8'><input id='ResourceGroup' class='form-control' type='text'{{#ResourceGroup}} value='{{ResourceGroup}}'{{/ResourceGroup}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A curve relating  reserve requirement versus time, showing the values of a specific reserve requirement for each unit of the period covered.
@@ -124,17 +155,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ReserveReqCurve_collapse" aria-expanded="true" aria-controls="ReserveReqCurve_collapse">ReserveReqCurve</a>
-<div id="ReserveReqCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#ReserveReq}}<div><b>ReserveReq</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReserveReq}}&quot;);})'>{{ReserveReq}}</a></div>{{/ReserveReq}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReserveReqCurve_collapse" aria-expanded="true" aria-controls="ReserveReqCurve_collapse" style="margin-left: 10px;">ReserveReqCurve</a></legend>
+                    <div id="ReserveReqCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#ReserveReq}}<div><b>ReserveReq</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReserveReq}}&quot;);})'>{{ReserveReq}}</a></div>{{/ReserveReq}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReserveReqCurve_collapse" aria-expanded="true" aria-controls="ReserveReqCurve_collapse" style="margin-left: 10px;">ReserveReqCurve</a></legend>
+                    <div id="ReserveReqCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReserveReq'>ReserveReq: </label><div class='col-sm-8'><input id='ReserveReq' class='form-control' type='text'{{#ReserveReq}} value='{{ReserveReq}}'{{/ReserveReq}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A logical grouping of resources that are used to model location of types of requirements for ancillary services such as spinning reserve zones, regulation zones, etc.
@@ -191,18 +253,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ResourceGroup_collapse" aria-expanded="true" aria-controls="ResourceGroup_collapse">ResourceGroup</a>
-<div id="ResourceGroup_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceGroup_collapse" aria-expanded="true" aria-controls="ResourceGroup_collapse" style="margin-left: 10px;">ResourceGroup</a></legend>
+                    <div id="ResourceGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceGroup_collapse" aria-expanded="true" aria-controls="ResourceGroup_collapse" style="margin-left: 10px;">ResourceGroup</a></legend>
+                    <div id="ResourceGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Optionally, this curve expresses elasticity of the associated requirement.
@@ -259,17 +353,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SensitivityPriceCurve_collapse" aria-expanded="true" aria-controls="SensitivityPriceCurve_collapse">SensitivityPriceCurve</a>
-<div id="SensitivityPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#ReserveReq}}<div><b>ReserveReq</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReserveReq}}&quot;);})'>{{ReserveReq}}</a></div>{{/ReserveReq}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SensitivityPriceCurve_collapse" aria-expanded="true" aria-controls="SensitivityPriceCurve_collapse" style="margin-left: 10px;">SensitivityPriceCurve</a></legend>
+                    <div id="SensitivityPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#ReserveReq}}<div><b>ReserveReq</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReserveReq}}&quot;);})'>{{ReserveReq}}</a></div>{{/ReserveReq}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SensitivityPriceCurve_collapse" aria-expanded="true" aria-controls="SensitivityPriceCurve_collapse" style="margin-left: 10px;">SensitivityPriceCurve</a></legend>
+                    <div id="SensitivityPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReserveReq'>ReserveReq: </label><div class='col-sm-8'><input id='ReserveReq' class='form-control' type='text'{{#ReserveReq}} value='{{ReserveReq}}'{{/ReserveReq}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Requirements for minimum amount of reserve and/or regulation to be supplied by a set of qualified resources.
@@ -328,19 +453,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ReserveReq_collapse" aria-expanded="true" aria-controls="ReserveReq_collapse">ReserveReq</a>
-<div id="ReserveReq_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ResourceGroupReq.prototype.template.call (this) +
-`
-{{#MarketProduct}}<div><b>MarketProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketProduct}}&quot;);})'>{{MarketProduct}}</a></div>{{/MarketProduct}}
-{{#SensitivityPriceCurve}}<div><b>SensitivityPriceCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SensitivityPriceCurve}}&quot;);})'>{{SensitivityPriceCurve}}</a></div>{{/SensitivityPriceCurve}}
-{{#ReserveReqCurve}}<div><b>ReserveReqCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReserveReqCurve}}&quot;);})'>{{ReserveReqCurve}}</a></div>{{/ReserveReqCurve}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReserveReq_collapse" aria-expanded="true" aria-controls="ReserveReq_collapse" style="margin-left: 10px;">ReserveReq</a></legend>
+                    <div id="ReserveReq_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ResourceGroupReq.prototype.template.call (this) +
+                    `
+                    {{#MarketProduct}}<div><b>MarketProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketProduct}}&quot;);})'>{{MarketProduct}}</a></div>{{/MarketProduct}}
+                    {{#SensitivityPriceCurve}}<div><b>SensitivityPriceCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SensitivityPriceCurve}}&quot;);})'>{{SensitivityPriceCurve}}</a></div>{{/SensitivityPriceCurve}}
+                    {{#ReserveReqCurve}}<div><b>ReserveReqCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReserveReqCurve}}&quot;);})'>{{ReserveReqCurve}}</a></div>{{/ReserveReqCurve}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReserveReq_collapse" aria-expanded="true" aria-controls="ReserveReq_collapse" style="margin-left: 10px;">ReserveReq</a></legend>
+                    <div id="ReserveReq_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ResourceGroupReq.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SensitivityPriceCurve'>SensitivityPriceCurve: </label><div class='col-sm-8'><input id='SensitivityPriceCurve' class='form-control' type='text'{{#SensitivityPriceCurve}} value='{{SensitivityPriceCurve}}'{{/SensitivityPriceCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReserveReqCurve'>ReserveReqCurve: </label><div class='col-sm-8'><input id='ReserveReqCurve' class='form-control' type='text'{{#ReserveReqCurve}} value='{{ReserveReqCurve}}'{{/ReserveReqCurve}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

@@ -14,93 +14,243 @@ define
          * Kind of fill for Joint.
          *
          */
-        class JointFillKind extends base.Element
+        var JointFillKind =
         {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.JointFillKind;
-                if (null == bucket)
-                   cim_data.JointFillKind = bucket = {};
-                bucket[this._id] = template;
-            }
+            noFillPrefab: "noFillPrefab",
+            airNoFilling: "airNoFilling",
+            petrolatum: "petrolatum",
+            asphaltic: "asphaltic",
+            oil: "oil",
+            bluefill254: "bluefill254",
+            noVoid: "noVoid",
+            epoxy: "epoxy",
+            insoluseal: "insoluseal",
+            other: "other"
+        };
+        Object.freeze (JointFillKind);
 
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.JointFillKind[this._id];
-            }
+        /**
+         * Insulation kind for bushings.
+         *
+         */
+        var BushingInsulationKind =
+        {
+            paperoil: "paperoil",
+            compound: "compound",
+            solidPorcelain: "solidPorcelain",
+            other: "other"
+        };
+        Object.freeze (BushingInsulationKind);
 
-            parse (context, sub)
-            {
-                var obj;
+        /**
+         * Kind of anchor.
+         *
+         */
+        var AnchorKind =
+        {
+            concrete: "concrete",
+            helix: "helix",
+            multiHelix: "multiHelix",
+            rod: "rod",
+            screw: "screw",
+            unknown: "unknown",
+            other: "other"
+        };
+        Object.freeze (AnchorKind);
 
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "JointFillKind";
-                base.parse_element (/<cim:JointFillKind.noFillPrefab>([\s\S]*?)<\/cim:JointFillKind.noFillPrefab>/g, obj, "noFillPrefab", base.to_string, sub, context);
-                base.parse_element (/<cim:JointFillKind.airNoFilling>([\s\S]*?)<\/cim:JointFillKind.airNoFilling>/g, obj, "airNoFilling", base.to_string, sub, context);
-                base.parse_element (/<cim:JointFillKind.petrolatum>([\s\S]*?)<\/cim:JointFillKind.petrolatum>/g, obj, "petrolatum", base.to_string, sub, context);
-                base.parse_element (/<cim:JointFillKind.asphaltic>([\s\S]*?)<\/cim:JointFillKind.asphaltic>/g, obj, "asphaltic", base.to_string, sub, context);
-                base.parse_element (/<cim:JointFillKind.oil>([\s\S]*?)<\/cim:JointFillKind.oil>/g, obj, "oil", base.to_string, sub, context);
-                base.parse_element (/<cim:JointFillKind.bluefill254>([\s\S]*?)<\/cim:JointFillKind.bluefill254>/g, obj, "bluefill254", base.to_string, sub, context);
-                base.parse_element (/<cim:JointFillKind.noVoid>([\s\S]*?)<\/cim:JointFillKind.noVoid>/g, obj, "noVoid", base.to_string, sub, context);
-                base.parse_element (/<cim:JointFillKind.epoxy>([\s\S]*?)<\/cim:JointFillKind.epoxy>/g, obj, "epoxy", base.to_string, sub, context);
-                base.parse_element (/<cim:JointFillKind.insoluseal>([\s\S]*?)<\/cim:JointFillKind.insoluseal>/g, obj, "insoluseal", base.to_string, sub, context);
-                base.parse_element (/<cim:JointFillKind.other>([\s\S]*?)<\/cim:JointFillKind.other>/g, obj, "other", base.to_string, sub, context);
+        /**
+         * Kind of treatment for poles.
+         *
+         */
+        var PoleTreatmentKind =
+        {
+            full: "full",
+            butt: "butt",
+            natural: "natural",
+            grayStain: "grayStain",
+            greenStain: "greenStain",
+            penta: "penta",
+            unknown: "unknown",
+            other: "other"
+        };
+        Object.freeze (PoleTreatmentKind);
 
-                var bucket = context.parsed.JointFillKind;
-                if (null == bucket)
-                   context.parsed.JointFillKind = bucket = {};
-                bucket[obj.id] = obj;
+        /**
+         * Kind of cooling.
+         *
+         */
+        var CoolingKind =
+        {
+            selfCooling: "selfCooling",
+            forcedAir: "forcedAir",
+            forcedOilAndAir: "forcedOilAndAir",
+            other: "other"
+        };
+        Object.freeze (CoolingKind);
 
-                return (obj);
-            }
+        /**
+         * Kind of structure support.
+         *
+         */
+        var StructureSupportKind =
+        {
+            anchor: "anchor",
+            guy: "guy"
+        };
+        Object.freeze (StructureSupportKind);
 
-            export (obj, full)
-            {
-                var fields = [];
+        /**
+         * Preservative kind for poles.
+         *
+         */
+        var PolePreservativeKind =
+        {
+            creosote: "creosote",
+            cellon: "cellon",
+            naphthena: "naphthena",
+            penta: "penta",
+            chemonite: "chemonite",
+            unknown: "unknown",
+            other: "other"
+        };
+        Object.freeze (PolePreservativeKind);
 
-                base.export_element (obj, "JointFillKind", "noFillPrefab", base.from_string, fields);
-                base.export_element (obj, "JointFillKind", "airNoFilling", base.from_string, fields);
-                base.export_element (obj, "JointFillKind", "petrolatum", base.from_string, fields);
-                base.export_element (obj, "JointFillKind", "asphaltic", base.from_string, fields);
-                base.export_element (obj, "JointFillKind", "oil", base.from_string, fields);
-                base.export_element (obj, "JointFillKind", "bluefill254", base.from_string, fields);
-                base.export_element (obj, "JointFillKind", "noVoid", base.from_string, fields);
-                base.export_element (obj, "JointFillKind", "epoxy", base.from_string, fields);
-                base.export_element (obj, "JointFillKind", "insoluseal", base.from_string, fields);
-                base.export_element (obj, "JointFillKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+        /**
+         * Kind of configuration for joints.
+         *
+         */
+        var JointConfigurationKind =
+        {
+            wires3to1: "wires3to1",
+            wires2to1: "wires2to1",
+            wires1to1: "wires1to1",
+            other: "other"
+        };
+        Object.freeze (JointConfigurationKind);
 
-                return (fields);
-            }
+        /**
+         * Kind of tower construction.
+         *
+         */
+        var TowerConstructionKind =
+        {
+            suspension: "suspension",
+            tension: "tension"
+        };
+        Object.freeze (TowerConstructionKind);
 
+        /**
+         * Kind of lamp for the streetlight.
+         *
+         */
+        var StreetlightLampKind =
+        {
+            highPressureSodium: "highPressureSodium",
+            mercuryVapor: "mercuryVapor",
+            metalHalide: "metalHalide",
+            other: "other"
+        };
+        Object.freeze (StreetlightLampKind);
 
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#JointFillKind_collapse" aria-expanded="true" aria-controls="JointFillKind_collapse">JointFillKind</a>
-<div id="JointFillKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#noFillPrefab}}<div><b>noFillPrefab</b>: {{noFillPrefab}}</div>{{/noFillPrefab}}
-{{#airNoFilling}}<div><b>airNoFilling</b>: {{airNoFilling}}</div>{{/airNoFilling}}
-{{#petrolatum}}<div><b>petrolatum</b>: {{petrolatum}}</div>{{/petrolatum}}
-{{#asphaltic}}<div><b>asphaltic</b>: {{asphaltic}}</div>{{/asphaltic}}
-{{#oil}}<div><b>oil</b>: {{oil}}</div>{{/oil}}
-{{#bluefill254}}<div><b>bluefill254</b>: {{bluefill254}}</div>{{/bluefill254}}
-{{#noVoid}}<div><b>noVoid</b>: {{noVoid}}</div>{{/noVoid}}
-{{#epoxy}}<div><b>epoxy</b>: {{epoxy}}</div>{{/epoxy}}
-{{#insoluseal}}<div><b>insoluseal</b>: {{insoluseal}}</div>{{/insoluseal}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
-                );
-           }        }
+        /**
+         * Kind of PF test for bushing insulation.
+         *
+         */
+        var BushingInsulationPfTestKind =
+        {
+            c1: "c1",
+            c2: "c2"
+        };
+        Object.freeze (BushingInsulationPfTestKind);
+
+        /**
+         * Kind of FACTS device.
+         *
+         */
+        var FACTSDeviceKind =
+        {
+            svc: "svc",
+            statcom: "statcom",
+            tcpar: "tcpar",
+            tcsc: "tcsc",
+            tcvl: "tcvl",
+            tsbr: "tsbr",
+            tssc: "tssc",
+            upfc: "upfc"
+        };
+        Object.freeze (FACTSDeviceKind);
+
+        /**
+         * Kind of medium.
+         *
+         */
+        var MediumKind =
+        {
+            gas: "gas",
+            liquid: "liquid",
+            solid: "solid"
+        };
+        Object.freeze (MediumKind);
+
+        /**
+         * Kind of underground structure.
+         *
+         */
+        var UndergroundStructureKind =
+        {
+            burd: "burd",
+            enclosure: "enclosure",
+            handhole: "handhole",
+            manhole: "manhole",
+            pad: "pad",
+            subsurfaceEnclosure: "subsurfaceEnclosure",
+            trench: "trench",
+            tunnel: "tunnel",
+            vault: "vault",
+            pullbox: "pullbox"
+        };
+        Object.freeze (UndergroundStructureKind);
+
+        /**
+         * Kind of base for poles.
+         *
+         */
+        var PoleBaseKind =
+        {
+            asphalt: "asphalt",
+            cement: "cement",
+            dirt: "dirt",
+            unknown: "unknown",
+            other: "other"
+        };
+        Object.freeze (PoleBaseKind);
+
+        /**
+         * How the failure has been isolated.
+         *
+         */
+        var FailureIsolationMethodKind =
+        {
+            breakerOperation: "breakerOperation",
+            fuse: "fuse",
+            burnedInTheClear: "burnedInTheClear",
+            manuallyIsolated: "manuallyIsolated",
+            other: "other"
+        };
+        Object.freeze (FailureIsolationMethodKind);
+
+        /**
+         * Kind of material used for structures.
+         *
+         */
+        var StructureMaterialKind =
+        {
+            wood: "wood",
+            steel: "steel",
+            concrete: "concrete",
+            other: "other"
+        };
+        Object.freeze (StructureMaterialKind);
 
         /**
          * FACTS device asset.
@@ -130,7 +280,7 @@ define
 
                 obj = Assets.Asset.prototype.parse.call (this, context, sub);
                 obj.cls = "FACTSDevice";
-                base.parse_element (/<cim:FACTSDevice.kind>([\s\S]*?)<\/cim:FACTSDevice.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:FACTSDevice.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
 
                 var bucket = context.parsed.FACTSDevice;
                 if (null == bucket)
@@ -155,91 +305,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FACTSDevice_collapse" aria-expanded="true" aria-controls="FACTSDevice_collapse">FACTSDevice</a>
-<div id="FACTSDevice_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.Asset.prototype.template.call (this) +
-`
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FACTSDevice_collapse" aria-expanded="true" aria-controls="FACTSDevice_collapse" style="margin-left: 10px;">FACTSDevice</a></legend>
+                    <div id="FACTSDevice_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.Asset.prototype.template.call (this) +
+                    `
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Insulation kind for bushings.
-         *
-         */
-        class BushingInsulationKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.BushingInsulationKind;
-                if (null == bucket)
-                   cim_data.BushingInsulationKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.BushingInsulationKind[this._id];
+                super.condition (obj);
+                obj.FACTSDeviceKind = []; if (!obj.kind) obj.FACTSDeviceKind.push ({ id: '', selected: true}); for (var property in FACTSDeviceKind) obj.FACTSDeviceKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "BushingInsulationKind";
-                base.parse_element (/<cim:BushingInsulationKind.paperoil>([\s\S]*?)<\/cim:BushingInsulationKind.paperoil>/g, obj, "paperoil", base.to_string, sub, context);
-                base.parse_element (/<cim:BushingInsulationKind.compound>([\s\S]*?)<\/cim:BushingInsulationKind.compound>/g, obj, "compound", base.to_string, sub, context);
-                base.parse_element (/<cim:BushingInsulationKind.solidPorcelain>([\s\S]*?)<\/cim:BushingInsulationKind.solidPorcelain>/g, obj, "solidPorcelain", base.to_string, sub, context);
-                base.parse_element (/<cim:BushingInsulationKind.other>([\s\S]*?)<\/cim:BushingInsulationKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.BushingInsulationKind;
-                if (null == bucket)
-                   context.parsed.BushingInsulationKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.FACTSDeviceKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "BushingInsulationKind", "paperoil", base.from_string, fields);
-                base.export_element (obj, "BushingInsulationKind", "compound", base.from_string, fields);
-                base.export_element (obj, "BushingInsulationKind", "solidPorcelain", base.from_string, fields);
-                base.export_element (obj, "BushingInsulationKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BushingInsulationKind_collapse" aria-expanded="true" aria-controls="BushingInsulationKind_collapse">BushingInsulationKind</a>
-<div id="BushingInsulationKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#paperoil}}<div><b>paperoil</b>: {{paperoil}}</div>{{/paperoil}}
-{{#compound}}<div><b>compound</b>: {{compound}}</div>{{/compound}}
-{{#solidPorcelain}}<div><b>solidPorcelain</b>: {{solidPorcelain}}</div>{{/solidPorcelain}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FACTSDevice_collapse" aria-expanded="true" aria-controls="FACTSDevice_collapse" style="margin-left: 10px;">FACTSDevice</a></legend>
+                    <div id="FACTSDevice_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.Asset.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#FACTSDeviceKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FACTSDeviceKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Specification can be used for various purposes relative to an asset, a logical device (PowerSystemResource), location, etc.
@@ -294,16 +403,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Specification_collapse" aria-expanded="true" aria-controls="Specification_collapse">Specification</a>
-<div id="Specification_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Specification_collapse" aria-expanded="true" aria-controls="Specification_collapse" style="margin-left: 10px;">Specification</a></legend>
+                    <div id="Specification_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Specification_collapse" aria-expanded="true" aria-controls="Specification_collapse" style="margin-left: 10px;">Specification</a></legend>
+                    <div id="Specification_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An event where an asset has failed to perform its functions within specified parameters.
@@ -334,7 +473,7 @@ define
                 obj = Common.ActivityRecord.prototype.parse.call (this, context, sub);
                 obj.cls = "FailureEvent";
                 base.parse_element (/<cim:FailureEvent.corporateCode>([\s\S]*?)<\/cim:FailureEvent.corporateCode>/g, obj, "corporateCode", base.to_string, sub, context);
-                base.parse_element (/<cim:FailureEvent.failureIsolationMethod>([\s\S]*?)<\/cim:FailureEvent.failureIsolationMethod>/g, obj, "failureIsolationMethod", base.to_string, sub, context);
+                base.parse_attribute (/<cim:FailureEvent.failureIsolationMethod\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "failureIsolationMethod", sub, context);
                 base.parse_element (/<cim:FailureEvent.faultLocatingMethod>([\s\S]*?)<\/cim:FailureEvent.faultLocatingMethod>/g, obj, "faultLocatingMethod", base.to_string, sub, context);
                 base.parse_element (/<cim:FailureEvent.location>([\s\S]*?)<\/cim:FailureEvent.location>/g, obj, "location", base.to_string, sub, context);
 
@@ -364,103 +503,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FailureEvent_collapse" aria-expanded="true" aria-controls="FailureEvent_collapse">FailureEvent</a>
-<div id="FailureEvent_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.ActivityRecord.prototype.template.call (this) +
-`
-{{#corporateCode}}<div><b>corporateCode</b>: {{corporateCode}}</div>{{/corporateCode}}
-{{#failureIsolationMethod}}<div><b>failureIsolationMethod</b>: {{failureIsolationMethod}}</div>{{/failureIsolationMethod}}
-{{#faultLocatingMethod}}<div><b>faultLocatingMethod</b>: {{faultLocatingMethod}}</div>{{/faultLocatingMethod}}
-{{#location}}<div><b>location</b>: {{location}}</div>{{/location}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FailureEvent_collapse" aria-expanded="true" aria-controls="FailureEvent_collapse" style="margin-left: 10px;">FailureEvent</a></legend>
+                    <div id="FailureEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.ActivityRecord.prototype.template.call (this) +
+                    `
+                    {{#corporateCode}}<div><b>corporateCode</b>: {{corporateCode}}</div>{{/corporateCode}}
+                    {{#failureIsolationMethod}}<div><b>failureIsolationMethod</b>: {{failureIsolationMethod}}</div>{{/failureIsolationMethod}}
+                    {{#faultLocatingMethod}}<div><b>faultLocatingMethod</b>: {{faultLocatingMethod}}</div>{{/faultLocatingMethod}}
+                    {{#location}}<div><b>location</b>: {{location}}</div>{{/location}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of anchor.
-         *
-         */
-        class AnchorKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.AnchorKind;
-                if (null == bucket)
-                   cim_data.AnchorKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.AnchorKind[this._id];
+                super.condition (obj);
+                obj.FailureIsolationMethodKind = []; if (!obj.failureIsolationMethod) obj.FailureIsolationMethodKind.push ({ id: '', selected: true}); for (var property in FailureIsolationMethodKind) obj.FailureIsolationMethodKind.push ({ id: property, selected: obj.failureIsolationMethod && obj.failureIsolationMethod.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "AnchorKind";
-                base.parse_element (/<cim:AnchorKind.concrete>([\s\S]*?)<\/cim:AnchorKind.concrete>/g, obj, "concrete", base.to_string, sub, context);
-                base.parse_element (/<cim:AnchorKind.helix>([\s\S]*?)<\/cim:AnchorKind.helix>/g, obj, "helix", base.to_string, sub, context);
-                base.parse_element (/<cim:AnchorKind.multiHelix>([\s\S]*?)<\/cim:AnchorKind.multiHelix>/g, obj, "multiHelix", base.to_string, sub, context);
-                base.parse_element (/<cim:AnchorKind.rod>([\s\S]*?)<\/cim:AnchorKind.rod>/g, obj, "rod", base.to_string, sub, context);
-                base.parse_element (/<cim:AnchorKind.screw>([\s\S]*?)<\/cim:AnchorKind.screw>/g, obj, "screw", base.to_string, sub, context);
-                base.parse_element (/<cim:AnchorKind.unknown>([\s\S]*?)<\/cim:AnchorKind.unknown>/g, obj, "unknown", base.to_string, sub, context);
-                base.parse_element (/<cim:AnchorKind.other>([\s\S]*?)<\/cim:AnchorKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.AnchorKind;
-                if (null == bucket)
-                   context.parsed.AnchorKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.FailureIsolationMethodKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "AnchorKind", "concrete", base.from_string, fields);
-                base.export_element (obj, "AnchorKind", "helix", base.from_string, fields);
-                base.export_element (obj, "AnchorKind", "multiHelix", base.from_string, fields);
-                base.export_element (obj, "AnchorKind", "rod", base.from_string, fields);
-                base.export_element (obj, "AnchorKind", "screw", base.from_string, fields);
-                base.export_element (obj, "AnchorKind", "unknown", base.from_string, fields);
-                base.export_element (obj, "AnchorKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AnchorKind_collapse" aria-expanded="true" aria-controls="AnchorKind_collapse">AnchorKind</a>
-<div id="AnchorKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#concrete}}<div><b>concrete</b>: {{concrete}}</div>{{/concrete}}
-{{#helix}}<div><b>helix</b>: {{helix}}</div>{{/helix}}
-{{#multiHelix}}<div><b>multiHelix</b>: {{multiHelix}}</div>{{/multiHelix}}
-{{#rod}}<div><b>rod</b>: {{rod}}</div>{{/rod}}
-{{#screw}}<div><b>screw</b>: {{screw}}</div>{{/screw}}
-{{#unknown}}<div><b>unknown</b>: {{unknown}}</div>{{/unknown}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FailureEvent_collapse" aria-expanded="true" aria-controls="FailureEvent_collapse" style="margin-left: 10px;">FailureEvent</a></legend>
+                    <div id="FailureEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.ActivityRecord.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='corporateCode'>corporateCode: </label><div class='col-sm-8'><input id='corporateCode' class='form-control' type='text'{{#corporateCode}} value='{{corporateCode}}'{{/corporateCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='failureIsolationMethod'>failureIsolationMethod: </label><div class='col-sm-8'><select id='failureIsolationMethod' class='form-control'>{{#FailureIsolationMethodKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FailureIsolationMethodKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='faultLocatingMethod'>faultLocatingMethod: </label><div class='col-sm-8'><input id='faultLocatingMethod' class='form-control' type='text'{{#faultLocatingMethod}} value='{{faultLocatingMethod}}'{{/faultLocatingMethod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='location'>location: </label><div class='col-sm-8'><input id='location' class='form-control' type='text'{{#location}} value='{{location}}'{{/location}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Construction holding assets such as conductors, transformers, switchgear, etc.
@@ -495,7 +587,7 @@ define
                 base.parse_element (/<cim:Structure.fumigantAppliedDate>([\s\S]*?)<\/cim:Structure.fumigantAppliedDate>/g, obj, "fumigantAppliedDate", base.to_string, sub, context);
                 base.parse_element (/<cim:Structure.fumigantName>([\s\S]*?)<\/cim:Structure.fumigantName>/g, obj, "fumigantName", base.to_string, sub, context);
                 base.parse_element (/<cim:Structure.height>([\s\S]*?)<\/cim:Structure.height>/g, obj, "height", base.to_string, sub, context);
-                base.parse_element (/<cim:Structure.materialKind>([\s\S]*?)<\/cim:Structure.materialKind>/g, obj, "materialKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Structure.materialKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "materialKind", sub, context);
                 base.parse_element (/<cim:Structure.ratedVoltage>([\s\S]*?)<\/cim:Structure.ratedVoltage>/g, obj, "ratedVoltage", base.to_string, sub, context);
                 base.parse_element (/<cim:Structure.removeWeed>([\s\S]*?)<\/cim:Structure.removeWeed>/g, obj, "removeWeed", base.to_boolean, sub, context);
                 base.parse_element (/<cim:Structure.weedRemovedDate>([\s\S]*?)<\/cim:Structure.weedRemovedDate>/g, obj, "weedRemovedDate", base.to_string, sub, context);
@@ -529,109 +621,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Structure_collapse" aria-expanded="true" aria-controls="Structure_collapse">Structure</a>
-<div id="Structure_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetContainer.prototype.template.call (this) +
-`
-{{#fumigantAppliedDate}}<div><b>fumigantAppliedDate</b>: {{fumigantAppliedDate}}</div>{{/fumigantAppliedDate}}
-{{#fumigantName}}<div><b>fumigantName</b>: {{fumigantName}}</div>{{/fumigantName}}
-{{#height}}<div><b>height</b>: {{height}}</div>{{/height}}
-{{#materialKind}}<div><b>materialKind</b>: {{materialKind}}</div>{{/materialKind}}
-{{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
-{{#removeWeed}}<div><b>removeWeed</b>: {{removeWeed}}</div>{{/removeWeed}}
-{{#weedRemovedDate}}<div><b>weedRemovedDate</b>: {{weedRemovedDate}}</div>{{/weedRemovedDate}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Structure_collapse" aria-expanded="true" aria-controls="Structure_collapse" style="margin-left: 10px;">Structure</a></legend>
+                    <div id="Structure_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetContainer.prototype.template.call (this) +
+                    `
+                    {{#fumigantAppliedDate}}<div><b>fumigantAppliedDate</b>: {{fumigantAppliedDate}}</div>{{/fumigantAppliedDate}}
+                    {{#fumigantName}}<div><b>fumigantName</b>: {{fumigantName}}</div>{{/fumigantName}}
+                    {{#height}}<div><b>height</b>: {{height}}</div>{{/height}}
+                    {{#materialKind}}<div><b>materialKind</b>: {{materialKind}}</div>{{/materialKind}}
+                    {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+                    {{#removeWeed}}<div><b>removeWeed</b>: {{removeWeed}}</div>{{/removeWeed}}
+                    {{#weedRemovedDate}}<div><b>weedRemovedDate</b>: {{weedRemovedDate}}</div>{{/weedRemovedDate}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of treatment for poles.
-         *
-         */
-        class PoleTreatmentKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.PoleTreatmentKind;
-                if (null == bucket)
-                   cim_data.PoleTreatmentKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.PoleTreatmentKind[this._id];
+                super.condition (obj);
+                obj.StructureMaterialKind = []; if (!obj.materialKind) obj.StructureMaterialKind.push ({ id: '', selected: true}); for (var property in StructureMaterialKind) obj.StructureMaterialKind.push ({ id: property, selected: obj.materialKind && obj.materialKind.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "PoleTreatmentKind";
-                base.parse_element (/<cim:PoleTreatmentKind.full>([\s\S]*?)<\/cim:PoleTreatmentKind.full>/g, obj, "full", base.to_string, sub, context);
-                base.parse_element (/<cim:PoleTreatmentKind.butt>([\s\S]*?)<\/cim:PoleTreatmentKind.butt>/g, obj, "butt", base.to_string, sub, context);
-                base.parse_element (/<cim:PoleTreatmentKind.natural>([\s\S]*?)<\/cim:PoleTreatmentKind.natural>/g, obj, "natural", base.to_string, sub, context);
-                base.parse_element (/<cim:PoleTreatmentKind.grayStain>([\s\S]*?)<\/cim:PoleTreatmentKind.grayStain>/g, obj, "grayStain", base.to_string, sub, context);
-                base.parse_element (/<cim:PoleTreatmentKind.greenStain>([\s\S]*?)<\/cim:PoleTreatmentKind.greenStain>/g, obj, "greenStain", base.to_string, sub, context);
-                base.parse_element (/<cim:PoleTreatmentKind.penta>([\s\S]*?)<\/cim:PoleTreatmentKind.penta>/g, obj, "penta", base.to_string, sub, context);
-                base.parse_element (/<cim:PoleTreatmentKind.unknown>([\s\S]*?)<\/cim:PoleTreatmentKind.unknown>/g, obj, "unknown", base.to_string, sub, context);
-                base.parse_element (/<cim:PoleTreatmentKind.other>([\s\S]*?)<\/cim:PoleTreatmentKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.PoleTreatmentKind;
-                if (null == bucket)
-                   context.parsed.PoleTreatmentKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.StructureMaterialKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "PoleTreatmentKind", "full", base.from_string, fields);
-                base.export_element (obj, "PoleTreatmentKind", "butt", base.from_string, fields);
-                base.export_element (obj, "PoleTreatmentKind", "natural", base.from_string, fields);
-                base.export_element (obj, "PoleTreatmentKind", "grayStain", base.from_string, fields);
-                base.export_element (obj, "PoleTreatmentKind", "greenStain", base.from_string, fields);
-                base.export_element (obj, "PoleTreatmentKind", "penta", base.from_string, fields);
-                base.export_element (obj, "PoleTreatmentKind", "unknown", base.from_string, fields);
-                base.export_element (obj, "PoleTreatmentKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PoleTreatmentKind_collapse" aria-expanded="true" aria-controls="PoleTreatmentKind_collapse">PoleTreatmentKind</a>
-<div id="PoleTreatmentKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#full}}<div><b>full</b>: {{full}}</div>{{/full}}
-{{#butt}}<div><b>butt</b>: {{butt}}</div>{{/butt}}
-{{#natural}}<div><b>natural</b>: {{natural}}</div>{{/natural}}
-{{#grayStain}}<div><b>grayStain</b>: {{grayStain}}</div>{{/grayStain}}
-{{#greenStain}}<div><b>greenStain</b>: {{greenStain}}</div>{{/greenStain}}
-{{#penta}}<div><b>penta</b>: {{penta}}</div>{{/penta}}
-{{#unknown}}<div><b>unknown</b>: {{unknown}}</div>{{/unknown}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Structure_collapse" aria-expanded="true" aria-controls="Structure_collapse" style="margin-left: 10px;">Structure</a></legend>
+                    <div id="Structure_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetContainer.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fumigantAppliedDate'>fumigantAppliedDate: </label><div class='col-sm-8'><input id='fumigantAppliedDate' class='form-control' type='text'{{#fumigantAppliedDate}} value='{{fumigantAppliedDate}}'{{/fumigantAppliedDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fumigantName'>fumigantName: </label><div class='col-sm-8'><input id='fumigantName' class='form-control' type='text'{{#fumigantName}} value='{{fumigantName}}'{{/fumigantName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='height'>height: </label><div class='col-sm-8'><input id='height' class='form-control' type='text'{{#height}} value='{{height}}'{{/height}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='materialKind'>materialKind: </label><div class='col-sm-8'><select id='materialKind' class='form-control'>{{#StructureMaterialKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StructureMaterialKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='removeWeed'>removeWeed: </label><div class='col-sm-8'><input id='removeWeed' class='form-check-input' type='checkbox'{{#removeWeed}} checked{{/removeWeed}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='weedRemovedDate'>weedRemovedDate: </label><div class='col-sm-8'><input id='weedRemovedDate' class='form-control' type='text'{{#weedRemovedDate}} value='{{weedRemovedDate}}'{{/weedRemovedDate}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Generic asset or material item that may be used for planning, work or design purposes.
@@ -696,96 +741,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GenericAssetModelOrMaterial_collapse" aria-expanded="true" aria-controls="GenericAssetModelOrMaterial_collapse">GenericAssetModelOrMaterial</a>
-<div id="GenericAssetModelOrMaterial_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetModel.prototype.template.call (this) +
-`
-{{#estimatedUnitCost}}<div><b>estimatedUnitCost</b>: {{estimatedUnitCost}}</div>{{/estimatedUnitCost}}
-{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
-{{#stockItem}}<div><b>stockItem</b>: {{stockItem}}</div>{{/stockItem}}
-{{#CUWorkEquipmentAsset}}<div><b>CUWorkEquipmentAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUWorkEquipmentAsset}}&quot;);})'>{{CUWorkEquipmentAsset}}</a></div>{{/CUWorkEquipmentAsset}}
-{{#TypeAssetCatalogue}}<div><b>TypeAssetCatalogue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAssetCatalogue}}&quot;);})'>{{TypeAssetCatalogue}}</a></div>{{/TypeAssetCatalogue}}
-{{#CUAsset}}<div><b>CUAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUAsset}}&quot;);})'>{{CUAsset}}</a></div>{{/CUAsset}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenericAssetModelOrMaterial_collapse" aria-expanded="true" aria-controls="GenericAssetModelOrMaterial_collapse" style="margin-left: 10px;">GenericAssetModelOrMaterial</a></legend>
+                    <div id="GenericAssetModelOrMaterial_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetModel.prototype.template.call (this) +
+                    `
+                    {{#estimatedUnitCost}}<div><b>estimatedUnitCost</b>: {{estimatedUnitCost}}</div>{{/estimatedUnitCost}}
+                    {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+                    {{#stockItem}}<div><b>stockItem</b>: {{stockItem}}</div>{{/stockItem}}
+                    {{#CUWorkEquipmentAsset}}<div><b>CUWorkEquipmentAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUWorkEquipmentAsset}}&quot;);})'>{{CUWorkEquipmentAsset}}</a></div>{{/CUWorkEquipmentAsset}}
+                    {{#TypeAssetCatalogue}}<div><b>TypeAssetCatalogue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAssetCatalogue}}&quot;);})'>{{TypeAssetCatalogue}}</a></div>{{/TypeAssetCatalogue}}
+                    {{#CUAsset}}<div><b>CUAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUAsset}}&quot;);})'>{{CUAsset}}</a></div>{{/CUAsset}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of cooling.
-         *
-         */
-        class CoolingKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.CoolingKind;
-                if (null == bucket)
-                   cim_data.CoolingKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.CoolingKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "CoolingKind";
-                base.parse_element (/<cim:CoolingKind.selfCooling>([\s\S]*?)<\/cim:CoolingKind.selfCooling>/g, obj, "selfCooling", base.to_string, sub, context);
-                base.parse_element (/<cim:CoolingKind.forcedAir>([\s\S]*?)<\/cim:CoolingKind.forcedAir>/g, obj, "forcedAir", base.to_string, sub, context);
-                base.parse_element (/<cim:CoolingKind.forcedOilAndAir>([\s\S]*?)<\/cim:CoolingKind.forcedOilAndAir>/g, obj, "forcedOilAndAir", base.to_string, sub, context);
-                base.parse_element (/<cim:CoolingKind.other>([\s\S]*?)<\/cim:CoolingKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.CoolingKind;
-                if (null == bucket)
-                   context.parsed.CoolingKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "CoolingKind", "selfCooling", base.from_string, fields);
-                base.export_element (obj, "CoolingKind", "forcedAir", base.from_string, fields);
-                base.export_element (obj, "CoolingKind", "forcedOilAndAir", base.from_string, fields);
-                base.export_element (obj, "CoolingKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CoolingKind_collapse" aria-expanded="true" aria-controls="CoolingKind_collapse">CoolingKind</a>
-<div id="CoolingKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#selfCooling}}<div><b>selfCooling</b>: {{selfCooling}}</div>{{/selfCooling}}
-{{#forcedAir}}<div><b>forcedAir</b>: {{forcedAir}}</div>{{/forcedAir}}
-{{#forcedOilAndAir}}<div><b>forcedOilAndAir</b>: {{forcedOilAndAir}}</div>{{/forcedOilAndAir}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenericAssetModelOrMaterial_collapse" aria-expanded="true" aria-controls="GenericAssetModelOrMaterial_collapse" style="margin-left: 10px;">GenericAssetModelOrMaterial</a></legend>
+                    <div id="GenericAssetModelOrMaterial_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetModel.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='estimatedUnitCost'>estimatedUnitCost: </label><div class='col-sm-8'><input id='estimatedUnitCost' class='form-control' type='text'{{#estimatedUnitCost}} value='{{estimatedUnitCost}}'{{/estimatedUnitCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='stockItem'>stockItem: </label><div class='col-sm-8'><input id='stockItem' class='form-check-input' type='checkbox'{{#stockItem}} checked{{/stockItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUWorkEquipmentAsset'>CUWorkEquipmentAsset: </label><div class='col-sm-8'><input id='CUWorkEquipmentAsset' class='form-control' type='text'{{#CUWorkEquipmentAsset}} value='{{CUWorkEquipmentAsset}}'{{/CUWorkEquipmentAsset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeAssetCatalogue'>TypeAssetCatalogue: </label><div class='col-sm-8'><input id='TypeAssetCatalogue' class='form-control' type='text'{{#TypeAssetCatalogue}} value='{{TypeAssetCatalogue}}'{{/TypeAssetCatalogue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUAsset'>CUAsset: </label><div class='col-sm-8'><input id='CUAsset' class='form-control' type='text'{{#CUAsset}} value='{{CUAsset}}'{{/CUAsset}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * There are often stages of power which are associated with stages of cooling.
@@ -817,7 +824,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "CoolingPowerRating";
-                base.parse_element (/<cim:CoolingPowerRating.coolingKind>([\s\S]*?)<\/cim:CoolingPowerRating.coolingKind>/g, obj, "coolingKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CoolingPowerRating.coolingKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "coolingKind", sub, context);
                 base.parse_element (/<cim:CoolingPowerRating.powerRating>([\s\S]*?)<\/cim:CoolingPowerRating.powerRating>/g, obj, "powerRating", base.to_string, sub, context);
                 base.parse_element (/<cim:CoolingPowerRating.stage>([\s\S]*?)<\/cim:CoolingPowerRating.stage>/g, obj, "stage", base.to_string, sub, context);
 
@@ -846,87 +853,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CoolingPowerRating_collapse" aria-expanded="true" aria-controls="CoolingPowerRating_collapse">CoolingPowerRating</a>
-<div id="CoolingPowerRating_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#coolingKind}}<div><b>coolingKind</b>: {{coolingKind}}</div>{{/coolingKind}}
-{{#powerRating}}<div><b>powerRating</b>: {{powerRating}}</div>{{/powerRating}}
-{{#stage}}<div><b>stage</b>: {{stage}}</div>{{/stage}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CoolingPowerRating_collapse" aria-expanded="true" aria-controls="CoolingPowerRating_collapse" style="margin-left: 10px;">CoolingPowerRating</a></legend>
+                    <div id="CoolingPowerRating_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#coolingKind}}<div><b>coolingKind</b>: {{coolingKind}}</div>{{/coolingKind}}
+                    {{#powerRating}}<div><b>powerRating</b>: {{powerRating}}</div>{{/powerRating}}
+                    {{#stage}}<div><b>stage</b>: {{stage}}</div>{{/stage}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of structure support.
-         *
-         */
-        class StructureSupportKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.StructureSupportKind;
-                if (null == bucket)
-                   cim_data.StructureSupportKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.StructureSupportKind[this._id];
+                super.condition (obj);
+                obj.CoolingKind = []; if (!obj.coolingKind) obj.CoolingKind.push ({ id: '', selected: true}); for (var property in CoolingKind) obj.CoolingKind.push ({ id: property, selected: obj.coolingKind && obj.coolingKind.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "StructureSupportKind";
-                base.parse_element (/<cim:StructureSupportKind.anchor>([\s\S]*?)<\/cim:StructureSupportKind.anchor>/g, obj, "anchor", base.to_string, sub, context);
-                base.parse_element (/<cim:StructureSupportKind.guy>([\s\S]*?)<\/cim:StructureSupportKind.guy>/g, obj, "guy", base.to_string, sub, context);
-
-                var bucket = context.parsed.StructureSupportKind;
-                if (null == bucket)
-                   context.parsed.StructureSupportKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.CoolingKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "StructureSupportKind", "anchor", base.from_string, fields);
-                base.export_element (obj, "StructureSupportKind", "guy", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StructureSupportKind_collapse" aria-expanded="true" aria-controls="StructureSupportKind_collapse">StructureSupportKind</a>
-<div id="StructureSupportKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#anchor}}<div><b>anchor</b>: {{anchor}}</div>{{/anchor}}
-{{#guy}}<div><b>guy</b>: {{guy}}</div>{{/guy}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CoolingPowerRating_collapse" aria-expanded="true" aria-controls="CoolingPowerRating_collapse" style="margin-left: 10px;">CoolingPowerRating</a></legend>
+                    <div id="CoolingPowerRating_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coolingKind'>coolingKind: </label><div class='col-sm-8'><select id='coolingKind' class='form-control'>{{#CoolingKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CoolingKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='powerRating'>powerRating: </label><div class='col-sm-8'><input id='powerRating' class='form-control' type='text'{{#powerRating}} value='{{powerRating}}'{{/powerRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stage'>stage: </label><div class='col-sm-8'><input id='stage' class='form-control' type='text'{{#stage}} value='{{stage}}'{{/stage}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Various current financial properties associated with a particular asset.
@@ -1005,111 +979,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FinancialInfo_collapse" aria-expanded="true" aria-controls="FinancialInfo_collapse">FinancialInfo</a>
-<div id="FinancialInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#account}}<div><b>account</b>: {{account}}</div>{{/account}}
-{{#actualPurchaseCost}}<div><b>actualPurchaseCost</b>: {{actualPurchaseCost}}</div>{{/actualPurchaseCost}}
-{{#costDescription}}<div><b>costDescription</b>: {{costDescription}}</div>{{/costDescription}}
-{{#costType}}<div><b>costType</b>: {{costType}}</div>{{/costType}}
-{{#financialValue}}<div><b>financialValue</b>: {{financialValue}}</div>{{/financialValue}}
-{{#plantTransferDateTime}}<div><b>plantTransferDateTime</b>: {{plantTransferDateTime}}</div>{{/plantTransferDateTime}}
-{{#purchaseDateTime}}<div><b>purchaseDateTime</b>: {{purchaseDateTime}}</div>{{/purchaseDateTime}}
-{{#purchaseOrderNumber}}<div><b>purchaseOrderNumber</b>: {{purchaseOrderNumber}}</div>{{/purchaseOrderNumber}}
-{{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
-{{#valueDateTime}}<div><b>valueDateTime</b>: {{valueDateTime}}</div>{{/valueDateTime}}
-{{#warrantyEndDateTime}}<div><b>warrantyEndDateTime</b>: {{warrantyEndDateTime}}</div>{{/warrantyEndDateTime}}
-{{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FinancialInfo_collapse" aria-expanded="true" aria-controls="FinancialInfo_collapse" style="margin-left: 10px;">FinancialInfo</a></legend>
+                    <div id="FinancialInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#account}}<div><b>account</b>: {{account}}</div>{{/account}}
+                    {{#actualPurchaseCost}}<div><b>actualPurchaseCost</b>: {{actualPurchaseCost}}</div>{{/actualPurchaseCost}}
+                    {{#costDescription}}<div><b>costDescription</b>: {{costDescription}}</div>{{/costDescription}}
+                    {{#costType}}<div><b>costType</b>: {{costType}}</div>{{/costType}}
+                    {{#financialValue}}<div><b>financialValue</b>: {{financialValue}}</div>{{/financialValue}}
+                    {{#plantTransferDateTime}}<div><b>plantTransferDateTime</b>: {{plantTransferDateTime}}</div>{{/plantTransferDateTime}}
+                    {{#purchaseDateTime}}<div><b>purchaseDateTime</b>: {{purchaseDateTime}}</div>{{/purchaseDateTime}}
+                    {{#purchaseOrderNumber}}<div><b>purchaseOrderNumber</b>: {{purchaseOrderNumber}}</div>{{/purchaseOrderNumber}}
+                    {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+                    {{#valueDateTime}}<div><b>valueDateTime</b>: {{valueDateTime}}</div>{{/valueDateTime}}
+                    {{#warrantyEndDateTime}}<div><b>warrantyEndDateTime</b>: {{warrantyEndDateTime}}</div>{{/warrantyEndDateTime}}
+                    {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Preservative kind for poles.
-         *
-         */
-        class PolePreservativeKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.PolePreservativeKind;
-                if (null == bucket)
-                   cim_data.PolePreservativeKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.PolePreservativeKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "PolePreservativeKind";
-                base.parse_element (/<cim:PolePreservativeKind.creosote>([\s\S]*?)<\/cim:PolePreservativeKind.creosote>/g, obj, "creosote", base.to_string, sub, context);
-                base.parse_element (/<cim:PolePreservativeKind.cellon>([\s\S]*?)<\/cim:PolePreservativeKind.cellon>/g, obj, "cellon", base.to_string, sub, context);
-                base.parse_element (/<cim:PolePreservativeKind.naphthena>([\s\S]*?)<\/cim:PolePreservativeKind.naphthena>/g, obj, "naphthena", base.to_string, sub, context);
-                base.parse_element (/<cim:PolePreservativeKind.penta>([\s\S]*?)<\/cim:PolePreservativeKind.penta>/g, obj, "penta", base.to_string, sub, context);
-                base.parse_element (/<cim:PolePreservativeKind.chemonite>([\s\S]*?)<\/cim:PolePreservativeKind.chemonite>/g, obj, "chemonite", base.to_string, sub, context);
-                base.parse_element (/<cim:PolePreservativeKind.unknown>([\s\S]*?)<\/cim:PolePreservativeKind.unknown>/g, obj, "unknown", base.to_string, sub, context);
-                base.parse_element (/<cim:PolePreservativeKind.other>([\s\S]*?)<\/cim:PolePreservativeKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.PolePreservativeKind;
-                if (null == bucket)
-                   context.parsed.PolePreservativeKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "PolePreservativeKind", "creosote", base.from_string, fields);
-                base.export_element (obj, "PolePreservativeKind", "cellon", base.from_string, fields);
-                base.export_element (obj, "PolePreservativeKind", "naphthena", base.from_string, fields);
-                base.export_element (obj, "PolePreservativeKind", "penta", base.from_string, fields);
-                base.export_element (obj, "PolePreservativeKind", "chemonite", base.from_string, fields);
-                base.export_element (obj, "PolePreservativeKind", "unknown", base.from_string, fields);
-                base.export_element (obj, "PolePreservativeKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PolePreservativeKind_collapse" aria-expanded="true" aria-controls="PolePreservativeKind_collapse">PolePreservativeKind</a>
-<div id="PolePreservativeKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#creosote}}<div><b>creosote</b>: {{creosote}}</div>{{/creosote}}
-{{#cellon}}<div><b>cellon</b>: {{cellon}}</div>{{/cellon}}
-{{#naphthena}}<div><b>naphthena</b>: {{naphthena}}</div>{{/naphthena}}
-{{#penta}}<div><b>penta</b>: {{penta}}</div>{{/penta}}
-{{#chemonite}}<div><b>chemonite</b>: {{chemonite}}</div>{{/chemonite}}
-{{#unknown}}<div><b>unknown</b>: {{unknown}}</div>{{/unknown}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FinancialInfo_collapse" aria-expanded="true" aria-controls="FinancialInfo_collapse" style="margin-left: 10px;">FinancialInfo</a></legend>
+                    <div id="FinancialInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='account'>account: </label><div class='col-sm-8'><input id='account' class='form-control' type='text'{{#account}} value='{{account}}'{{/account}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualPurchaseCost'>actualPurchaseCost: </label><div class='col-sm-8'><input id='actualPurchaseCost' class='form-control' type='text'{{#actualPurchaseCost}} value='{{actualPurchaseCost}}'{{/actualPurchaseCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='costDescription'>costDescription: </label><div class='col-sm-8'><input id='costDescription' class='form-control' type='text'{{#costDescription}} value='{{costDescription}}'{{/costDescription}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='costType'>costType: </label><div class='col-sm-8'><input id='costType' class='form-control' type='text'{{#costType}} value='{{costType}}'{{/costType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='financialValue'>financialValue: </label><div class='col-sm-8'><input id='financialValue' class='form-control' type='text'{{#financialValue}} value='{{financialValue}}'{{/financialValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plantTransferDateTime'>plantTransferDateTime: </label><div class='col-sm-8'><input id='plantTransferDateTime' class='form-control' type='text'{{#plantTransferDateTime}} value='{{plantTransferDateTime}}'{{/plantTransferDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='purchaseDateTime'>purchaseDateTime: </label><div class='col-sm-8'><input id='purchaseDateTime' class='form-control' type='text'{{#purchaseDateTime}} value='{{purchaseDateTime}}'{{/purchaseDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='purchaseOrderNumber'>purchaseOrderNumber: </label><div class='col-sm-8'><input id='purchaseOrderNumber' class='form-control' type='text'{{#purchaseOrderNumber}} value='{{purchaseOrderNumber}}'{{/purchaseOrderNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='valueDateTime'>valueDateTime: </label><div class='col-sm-8'><input id='valueDateTime' class='form-control' type='text'{{#valueDateTime}} value='{{valueDateTime}}'{{/valueDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='warrantyEndDateTime'>warrantyEndDateTime: </label><div class='col-sm-8'><input id='warrantyEndDateTime' class='form-control' type='text'{{#warrantyEndDateTime}} value='{{warrantyEndDateTime}}'{{/warrantyEndDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Asset'>Asset: </label><div class='col-sm-8'><input id='Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Support for structure assets.
@@ -1139,11 +1072,11 @@ define
 
                 obj = Assets.Asset.prototype.parse.call (this, context, sub);
                 obj.cls = "StructureSupport";
-                base.parse_element (/<cim:StructureSupport.anchorKind>([\s\S]*?)<\/cim:StructureSupport.anchorKind>/g, obj, "anchorKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:StructureSupport.anchorKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "anchorKind", sub, context);
                 base.parse_element (/<cim:StructureSupport.anchorRodCount>([\s\S]*?)<\/cim:StructureSupport.anchorRodCount>/g, obj, "anchorRodCount", base.to_string, sub, context);
                 base.parse_element (/<cim:StructureSupport.anchorRodLength>([\s\S]*?)<\/cim:StructureSupport.anchorRodLength>/g, obj, "anchorRodLength", base.to_string, sub, context);
                 base.parse_element (/<cim:StructureSupport.direction>([\s\S]*?)<\/cim:StructureSupport.direction>/g, obj, "direction", base.to_string, sub, context);
-                base.parse_element (/<cim:StructureSupport.kind>([\s\S]*?)<\/cim:StructureSupport.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:StructureSupport.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:StructureSupport.length>([\s\S]*?)<\/cim:StructureSupport.length>/g, obj, "length", base.to_string, sub, context);
                 base.parse_element (/<cim:StructureSupport.size>([\s\S]*?)<\/cim:StructureSupport.size>/g, obj, "size", base.to_string, sub, context);
                 base.parse_attribute (/<cim:StructureSupport.SecuredStructure\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SecuredStructure", sub, context);
@@ -1178,24 +1111,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StructureSupport_collapse" aria-expanded="true" aria-controls="StructureSupport_collapse">StructureSupport</a>
-<div id="StructureSupport_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.Asset.prototype.template.call (this) +
-`
-{{#anchorKind}}<div><b>anchorKind</b>: {{anchorKind}}</div>{{/anchorKind}}
-{{#anchorRodCount}}<div><b>anchorRodCount</b>: {{anchorRodCount}}</div>{{/anchorRodCount}}
-{{#anchorRodLength}}<div><b>anchorRodLength</b>: {{anchorRodLength}}</div>{{/anchorRodLength}}
-{{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#length}}<div><b>length</b>: {{length}}</div>{{/length}}
-{{#size}}<div><b>size</b>: {{size}}</div>{{/size}}
-{{#SecuredStructure}}<div><b>SecuredStructure</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecuredStructure}}&quot;);})'>{{SecuredStructure}}</a></div>{{/SecuredStructure}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StructureSupport_collapse" aria-expanded="true" aria-controls="StructureSupport_collapse" style="margin-left: 10px;">StructureSupport</a></legend>
+                    <div id="StructureSupport_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.Asset.prototype.template.call (this) +
+                    `
+                    {{#anchorKind}}<div><b>anchorKind</b>: {{anchorKind}}</div>{{/anchorKind}}
+                    {{#anchorRodCount}}<div><b>anchorRodCount</b>: {{anchorRodCount}}</div>{{/anchorRodCount}}
+                    {{#anchorRodLength}}<div><b>anchorRodLength</b>: {{anchorRodLength}}</div>{{/anchorRodLength}}
+                    {{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#length}}<div><b>length</b>: {{length}}</div>{{/length}}
+                    {{#size}}<div><b>size</b>: {{size}}</div>{{/size}}
+                    {{#SecuredStructure}}<div><b>SecuredStructure</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecuredStructure}}&quot;);})'>{{SecuredStructure}}</a></div>{{/SecuredStructure}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.AnchorKind = []; if (!obj.anchorKind) obj.AnchorKind.push ({ id: '', selected: true}); for (var property in AnchorKind) obj.AnchorKind.push ({ id: property, selected: obj.anchorKind && obj.anchorKind.endsWith ('.' + property)});
+                obj.StructureSupportKind = []; if (!obj.kind) obj.StructureSupportKind.push ({ id: '', selected: true}); for (var property in StructureSupportKind) obj.StructureSupportKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.AnchorKind;
+                delete obj.StructureSupportKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StructureSupport_collapse" aria-expanded="true" aria-controls="StructureSupport_collapse" style="margin-left: 10px;">StructureSupport</a></legend>
+                    <div id="StructureSupport_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.Asset.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='anchorKind'>anchorKind: </label><div class='col-sm-8'><select id='anchorKind' class='form-control'>{{#AnchorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AnchorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='anchorRodCount'>anchorRodCount: </label><div class='col-sm-8'><input id='anchorRodCount' class='form-control' type='text'{{#anchorRodCount}} value='{{anchorRodCount}}'{{/anchorRodCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='anchorRodLength'>anchorRodLength: </label><div class='col-sm-8'><input id='anchorRodLength' class='form-control' type='text'{{#anchorRodLength}} value='{{anchorRodLength}}'{{/anchorRodLength}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='direction'>direction: </label><div class='col-sm-8'><input id='direction' class='form-control' type='text'{{#direction}} value='{{direction}}'{{/direction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#StructureSupportKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StructureSupportKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='length'>length: </label><div class='col-sm-8'><input id='length' class='form-control' type='text'{{#length}} value='{{length}}'{{/length}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='size'>size: </label><div class='col-sm-8'><input id='size' class='form-control' type='text'{{#size}} value='{{size}}'{{/size}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SecuredStructure'>SecuredStructure: </label><div class='col-sm-8'><input id='SecuredStructure' class='form-control' type='text'{{#SecuredStructure}} value='{{SecuredStructure}}'{{/SecuredStructure}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A duct contains individual wires in the layout as specified with associated wire spacing instances; number of them gives the number of conductors in this duct.
@@ -1250,91 +1225,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DuctBank_collapse" aria-expanded="true" aria-controls="DuctBank_collapse">DuctBank</a>
-<div id="DuctBank_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetContainer.prototype.template.call (this) +
-`
-{{#circuitCount}}<div><b>circuitCount</b>: {{circuitCount}}</div>{{/circuitCount}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DuctBank_collapse" aria-expanded="true" aria-controls="DuctBank_collapse" style="margin-left: 10px;">DuctBank</a></legend>
+                    <div id="DuctBank_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetContainer.prototype.template.call (this) +
+                    `
+                    {{#circuitCount}}<div><b>circuitCount</b>: {{circuitCount}}</div>{{/circuitCount}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of configuration for joints.
-         *
-         */
-        class JointConfigurationKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.JointConfigurationKind;
-                if (null == bucket)
-                   cim_data.JointConfigurationKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.JointConfigurationKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "JointConfigurationKind";
-                base.parse_element (/<cim:JointConfigurationKind.wires3to1>([\s\S]*?)<\/cim:JointConfigurationKind.wires3to1>/g, obj, "wires3to1", base.to_string, sub, context);
-                base.parse_element (/<cim:JointConfigurationKind.wires2to1>([\s\S]*?)<\/cim:JointConfigurationKind.wires2to1>/g, obj, "wires2to1", base.to_string, sub, context);
-                base.parse_element (/<cim:JointConfigurationKind.wires1to1>([\s\S]*?)<\/cim:JointConfigurationKind.wires1to1>/g, obj, "wires1to1", base.to_string, sub, context);
-                base.parse_element (/<cim:JointConfigurationKind.other>([\s\S]*?)<\/cim:JointConfigurationKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.JointConfigurationKind;
-                if (null == bucket)
-                   context.parsed.JointConfigurationKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "JointConfigurationKind", "wires3to1", base.from_string, fields);
-                base.export_element (obj, "JointConfigurationKind", "wires2to1", base.from_string, fields);
-                base.export_element (obj, "JointConfigurationKind", "wires1to1", base.from_string, fields);
-                base.export_element (obj, "JointConfigurationKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#JointConfigurationKind_collapse" aria-expanded="true" aria-controls="JointConfigurationKind_collapse">JointConfigurationKind</a>
-<div id="JointConfigurationKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#wires3to1}}<div><b>wires3to1</b>: {{wires3to1}}</div>{{/wires3to1}}
-{{#wires2to1}}<div><b>wires2to1</b>: {{wires2to1}}</div>{{/wires2to1}}
-{{#wires1to1}}<div><b>wires1to1</b>: {{wires1to1}}</div>{{/wires1to1}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DuctBank_collapse" aria-expanded="true" aria-controls="DuctBank_collapse" style="margin-left: 10px;">DuctBank</a></legend>
+                    <div id="DuctBank_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetContainer.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='circuitCount'>circuitCount: </label><div class='col-sm-8'><input id='circuitCount' class='form-control' type='text'{{#circuitCount}} value='{{circuitCount}}'{{/circuitCount}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Bushing asset.
@@ -1368,7 +1300,7 @@ define
                 base.parse_element (/<cim:Bushing.c1PowerFactor>([\s\S]*?)<\/cim:Bushing.c1PowerFactor>/g, obj, "c1PowerFactor", base.to_float, sub, context);
                 base.parse_element (/<cim:Bushing.c2Capacitance>([\s\S]*?)<\/cim:Bushing.c2Capacitance>/g, obj, "c2Capacitance", base.to_string, sub, context);
                 base.parse_element (/<cim:Bushing.c2PowerFactor>([\s\S]*?)<\/cim:Bushing.c2PowerFactor>/g, obj, "c2PowerFactor", base.to_float, sub, context);
-                base.parse_element (/<cim:Bushing.insulationKind>([\s\S]*?)<\/cim:Bushing.insulationKind>/g, obj, "insulationKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Bushing.insulationKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "insulationKind", sub, context);
                 base.parse_attribute (/<cim:Bushing.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
 
                 var bucket = context.parsed.Bushing;
@@ -1399,22 +1331,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Bushing_collapse" aria-expanded="true" aria-controls="Bushing_collapse">Bushing</a>
-<div id="Bushing_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.Asset.prototype.template.call (this) +
-`
-{{#c1Capacitance}}<div><b>c1Capacitance</b>: {{c1Capacitance}}</div>{{/c1Capacitance}}
-{{#c1PowerFactor}}<div><b>c1PowerFactor</b>: {{c1PowerFactor}}</div>{{/c1PowerFactor}}
-{{#c2Capacitance}}<div><b>c2Capacitance</b>: {{c2Capacitance}}</div>{{/c2Capacitance}}
-{{#c2PowerFactor}}<div><b>c2PowerFactor</b>: {{c2PowerFactor}}</div>{{/c2PowerFactor}}
-{{#insulationKind}}<div><b>insulationKind</b>: {{insulationKind}}</div>{{/insulationKind}}
-{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Bushing_collapse" aria-expanded="true" aria-controls="Bushing_collapse" style="margin-left: 10px;">Bushing</a></legend>
+                    <div id="Bushing_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.Asset.prototype.template.call (this) +
+                    `
+                    {{#c1Capacitance}}<div><b>c1Capacitance</b>: {{c1Capacitance}}</div>{{/c1Capacitance}}
+                    {{#c1PowerFactor}}<div><b>c1PowerFactor</b>: {{c1PowerFactor}}</div>{{/c1PowerFactor}}
+                    {{#c2Capacitance}}<div><b>c2Capacitance</b>: {{c2Capacitance}}</div>{{/c2Capacitance}}
+                    {{#c2PowerFactor}}<div><b>c2PowerFactor</b>: {{c2PowerFactor}}</div>{{/c2PowerFactor}}
+                    {{#insulationKind}}<div><b>insulationKind</b>: {{insulationKind}}</div>{{/insulationKind}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.BushingInsulationKind = []; if (!obj.insulationKind) obj.BushingInsulationKind.push ({ id: '', selected: true}); for (var property in BushingInsulationKind) obj.BushingInsulationKind.push ({ id: property, selected: obj.insulationKind && obj.insulationKind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.BushingInsulationKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Bushing_collapse" aria-expanded="true" aria-controls="Bushing_collapse" style="margin-left: 10px;">Bushing</a></legend>
+                    <div id="Bushing_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.Asset.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='c1Capacitance'>c1Capacitance: </label><div class='col-sm-8'><input id='c1Capacitance' class='form-control' type='text'{{#c1Capacitance}} value='{{c1Capacitance}}'{{/c1Capacitance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='c1PowerFactor'>c1PowerFactor: </label><div class='col-sm-8'><input id='c1PowerFactor' class='form-control' type='text'{{#c1PowerFactor}} value='{{c1PowerFactor}}'{{/c1PowerFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='c2Capacitance'>c2Capacitance: </label><div class='col-sm-8'><input id='c2Capacitance' class='form-control' type='text'{{#c2Capacitance}} value='{{c2Capacitance}}'{{/c2Capacitance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='c2PowerFactor'>c2PowerFactor: </label><div class='col-sm-8'><input id='c2PowerFactor' class='form-control' type='text'{{#c2PowerFactor}} value='{{c2PowerFactor}}'{{/c2PowerFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='insulationKind'>insulationKind: </label><div class='col-sm-8'><select id='insulationKind' class='form-control'>{{#BushingInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BushingInsulationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Information regarding the experienced and expected reliability of a specific asset, type of asset, or asset model.
@@ -1473,386 +1443,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ReliabilityInfo_collapse" aria-expanded="true" aria-controls="ReliabilityInfo_collapse">ReliabilityInfo</a>
-<div id="ReliabilityInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#momFailureRate}}<div><b>momFailureRate</b>: {{momFailureRate}}</div>{{/momFailureRate}}
-{{#mTTR}}<div><b>mTTR</b>: {{mTTR}}</div>{{/mTTR}}
-{{#Specification}}<div><b>Specification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Specification}}&quot;);})'>{{Specification}}</a></div>{{/Specification}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReliabilityInfo_collapse" aria-expanded="true" aria-controls="ReliabilityInfo_collapse" style="margin-left: 10px;">ReliabilityInfo</a></legend>
+                    <div id="ReliabilityInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#momFailureRate}}<div><b>momFailureRate</b>: {{momFailureRate}}</div>{{/momFailureRate}}
+                    {{#mTTR}}<div><b>mTTR</b>: {{mTTR}}</div>{{/mTTR}}
+                    {{#Specification}}<div><b>Specification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Specification}}&quot;);})'>{{Specification}}</a></div>{{/Specification}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of tower construction.
-         *
-         */
-        class TowerConstructionKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.TowerConstructionKind;
-                if (null == bucket)
-                   cim_data.TowerConstructionKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.TowerConstructionKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "TowerConstructionKind";
-                base.parse_element (/<cim:TowerConstructionKind.suspension>([\s\S]*?)<\/cim:TowerConstructionKind.suspension>/g, obj, "suspension", base.to_string, sub, context);
-                base.parse_element (/<cim:TowerConstructionKind.tension>([\s\S]*?)<\/cim:TowerConstructionKind.tension>/g, obj, "tension", base.to_string, sub, context);
-
-                var bucket = context.parsed.TowerConstructionKind;
-                if (null == bucket)
-                   context.parsed.TowerConstructionKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "TowerConstructionKind", "suspension", base.from_string, fields);
-                base.export_element (obj, "TowerConstructionKind", "tension", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TowerConstructionKind_collapse" aria-expanded="true" aria-controls="TowerConstructionKind_collapse">TowerConstructionKind</a>
-<div id="TowerConstructionKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#suspension}}<div><b>suspension</b>: {{suspension}}</div>{{/suspension}}
-{{#tension}}<div><b>tension</b>: {{tension}}</div>{{/tension}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReliabilityInfo_collapse" aria-expanded="true" aria-controls="ReliabilityInfo_collapse" style="margin-left: 10px;">ReliabilityInfo</a></legend>
+                    <div id="ReliabilityInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='momFailureRate'>momFailureRate: </label><div class='col-sm-8'><input id='momFailureRate' class='form-control' type='text'{{#momFailureRate}} value='{{momFailureRate}}'{{/momFailureRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mTTR'>mTTR: </label><div class='col-sm-8'><input id='mTTR' class='form-control' type='text'{{#mTTR}} value='{{mTTR}}'{{/mTTR}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Specification'>Specification: </label><div class='col-sm-8'><input id='Specification' class='form-control' type='text'{{#Specification}} value='{{Specification}}'{{/Specification}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of lamp for the streetlight.
-         *
-         */
-        class StreetlightLampKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.StreetlightLampKind;
-                if (null == bucket)
-                   cim_data.StreetlightLampKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.StreetlightLampKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "StreetlightLampKind";
-                base.parse_element (/<cim:StreetlightLampKind.highPressureSodium>([\s\S]*?)<\/cim:StreetlightLampKind.highPressureSodium>/g, obj, "highPressureSodium", base.to_string, sub, context);
-                base.parse_element (/<cim:StreetlightLampKind.mercuryVapor>([\s\S]*?)<\/cim:StreetlightLampKind.mercuryVapor>/g, obj, "mercuryVapor", base.to_string, sub, context);
-                base.parse_element (/<cim:StreetlightLampKind.metalHalide>([\s\S]*?)<\/cim:StreetlightLampKind.metalHalide>/g, obj, "metalHalide", base.to_string, sub, context);
-                base.parse_element (/<cim:StreetlightLampKind.other>([\s\S]*?)<\/cim:StreetlightLampKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.StreetlightLampKind;
-                if (null == bucket)
-                   context.parsed.StreetlightLampKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "StreetlightLampKind", "highPressureSodium", base.from_string, fields);
-                base.export_element (obj, "StreetlightLampKind", "mercuryVapor", base.from_string, fields);
-                base.export_element (obj, "StreetlightLampKind", "metalHalide", base.from_string, fields);
-                base.export_element (obj, "StreetlightLampKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#StreetlightLampKind_collapse" aria-expanded="true" aria-controls="StreetlightLampKind_collapse">StreetlightLampKind</a>
-<div id="StreetlightLampKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#highPressureSodium}}<div><b>highPressureSodium</b>: {{highPressureSodium}}</div>{{/highPressureSodium}}
-{{#mercuryVapor}}<div><b>mercuryVapor</b>: {{mercuryVapor}}</div>{{/mercuryVapor}}
-{{#metalHalide}}<div><b>metalHalide</b>: {{metalHalide}}</div>{{/metalHalide}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
-                );
-           }        }
-
-        /**
-         * Kind of PF test for bushing insulation.
-         *
-         */
-        class BushingInsulationPfTestKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.BushingInsulationPfTestKind;
-                if (null == bucket)
-                   cim_data.BushingInsulationPfTestKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.BushingInsulationPfTestKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "BushingInsulationPfTestKind";
-                base.parse_element (/<cim:BushingInsulationPfTestKind.c1>([\s\S]*?)<\/cim:BushingInsulationPfTestKind.c1>/g, obj, "c1", base.to_string, sub, context);
-                base.parse_element (/<cim:BushingInsulationPfTestKind.c2>([\s\S]*?)<\/cim:BushingInsulationPfTestKind.c2>/g, obj, "c2", base.to_string, sub, context);
-
-                var bucket = context.parsed.BushingInsulationPfTestKind;
-                if (null == bucket)
-                   context.parsed.BushingInsulationPfTestKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "BushingInsulationPfTestKind", "c1", base.from_string, fields);
-                base.export_element (obj, "BushingInsulationPfTestKind", "c2", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#BushingInsulationPfTestKind_collapse" aria-expanded="true" aria-controls="BushingInsulationPfTestKind_collapse">BushingInsulationPfTestKind</a>
-<div id="BushingInsulationPfTestKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#c1}}<div><b>c1</b>: {{c1}}</div>{{/c1}}
-{{#c2}}<div><b>c2</b>: {{c2}}</div>{{/c2}}
-</div>
-`
-                );
-           }        }
-
-        /**
-         * Kind of FACTS device.
-         *
-         */
-        class FACTSDeviceKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.FACTSDeviceKind;
-                if (null == bucket)
-                   cim_data.FACTSDeviceKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.FACTSDeviceKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "FACTSDeviceKind";
-                base.parse_element (/<cim:FACTSDeviceKind.svc>([\s\S]*?)<\/cim:FACTSDeviceKind.svc>/g, obj, "svc", base.to_string, sub, context);
-                base.parse_element (/<cim:FACTSDeviceKind.statcom>([\s\S]*?)<\/cim:FACTSDeviceKind.statcom>/g, obj, "statcom", base.to_string, sub, context);
-                base.parse_element (/<cim:FACTSDeviceKind.tcpar>([\s\S]*?)<\/cim:FACTSDeviceKind.tcpar>/g, obj, "tcpar", base.to_string, sub, context);
-                base.parse_element (/<cim:FACTSDeviceKind.tcsc>([\s\S]*?)<\/cim:FACTSDeviceKind.tcsc>/g, obj, "tcsc", base.to_string, sub, context);
-                base.parse_element (/<cim:FACTSDeviceKind.tcvl>([\s\S]*?)<\/cim:FACTSDeviceKind.tcvl>/g, obj, "tcvl", base.to_string, sub, context);
-                base.parse_element (/<cim:FACTSDeviceKind.tsbr>([\s\S]*?)<\/cim:FACTSDeviceKind.tsbr>/g, obj, "tsbr", base.to_string, sub, context);
-                base.parse_element (/<cim:FACTSDeviceKind.tssc>([\s\S]*?)<\/cim:FACTSDeviceKind.tssc>/g, obj, "tssc", base.to_string, sub, context);
-                base.parse_element (/<cim:FACTSDeviceKind.upfc>([\s\S]*?)<\/cim:FACTSDeviceKind.upfc>/g, obj, "upfc", base.to_string, sub, context);
-
-                var bucket = context.parsed.FACTSDeviceKind;
-                if (null == bucket)
-                   context.parsed.FACTSDeviceKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "FACTSDeviceKind", "svc", base.from_string, fields);
-                base.export_element (obj, "FACTSDeviceKind", "statcom", base.from_string, fields);
-                base.export_element (obj, "FACTSDeviceKind", "tcpar", base.from_string, fields);
-                base.export_element (obj, "FACTSDeviceKind", "tcsc", base.from_string, fields);
-                base.export_element (obj, "FACTSDeviceKind", "tcvl", base.from_string, fields);
-                base.export_element (obj, "FACTSDeviceKind", "tsbr", base.from_string, fields);
-                base.export_element (obj, "FACTSDeviceKind", "tssc", base.from_string, fields);
-                base.export_element (obj, "FACTSDeviceKind", "upfc", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#FACTSDeviceKind_collapse" aria-expanded="true" aria-controls="FACTSDeviceKind_collapse">FACTSDeviceKind</a>
-<div id="FACTSDeviceKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#svc}}<div><b>svc</b>: {{svc}}</div>{{/svc}}
-{{#statcom}}<div><b>statcom</b>: {{statcom}}</div>{{/statcom}}
-{{#tcpar}}<div><b>tcpar</b>: {{tcpar}}</div>{{/tcpar}}
-{{#tcsc}}<div><b>tcsc</b>: {{tcsc}}</div>{{/tcsc}}
-{{#tcvl}}<div><b>tcvl</b>: {{tcvl}}</div>{{/tcvl}}
-{{#tsbr}}<div><b>tsbr</b>: {{tsbr}}</div>{{/tsbr}}
-{{#tssc}}<div><b>tssc</b>: {{tssc}}</div>{{/tssc}}
-{{#upfc}}<div><b>upfc</b>: {{upfc}}</div>{{/upfc}}
-</div>
-`
-                );
-           }        }
-
-        /**
-         * Kind of medium.
-         *
-         */
-        class MediumKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.MediumKind;
-                if (null == bucket)
-                   cim_data.MediumKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.MediumKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "MediumKind";
-                base.parse_element (/<cim:MediumKind.gas>([\s\S]*?)<\/cim:MediumKind.gas>/g, obj, "gas", base.to_string, sub, context);
-                base.parse_element (/<cim:MediumKind.liquid>([\s\S]*?)<\/cim:MediumKind.liquid>/g, obj, "liquid", base.to_string, sub, context);
-                base.parse_element (/<cim:MediumKind.solid>([\s\S]*?)<\/cim:MediumKind.solid>/g, obj, "solid", base.to_string, sub, context);
-
-                var bucket = context.parsed.MediumKind;
-                if (null == bucket)
-                   context.parsed.MediumKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "MediumKind", "gas", base.from_string, fields);
-                base.export_element (obj, "MediumKind", "liquid", base.from_string, fields);
-                base.export_element (obj, "MediumKind", "solid", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#MediumKind_collapse" aria-expanded="true" aria-controls="MediumKind_collapse">MediumKind</a>
-<div id="MediumKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#gas}}<div><b>gas</b>: {{gas}}</div>{{/gas}}
-{{#liquid}}<div><b>liquid</b>: {{liquid}}</div>{{/liquid}}
-{{#solid}}<div><b>solid</b>: {{solid}}</div>{{/solid}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         /**
          * Winding insulation condition as a result of a test.
@@ -1919,23 +1555,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindingInsulation_collapse" aria-expanded="true" aria-controls="WindingInsulation_collapse">WindingInsulation</a>
-<div id="WindingInsulation_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#insulationPFStatus}}<div><b>insulationPFStatus</b>: {{insulationPFStatus}}</div>{{/insulationPFStatus}}
-{{#insulationResistance}}<div><b>insulationResistance</b>: {{insulationResistance}}</div>{{/insulationResistance}}
-{{#leakageReactance}}<div><b>leakageReactance</b>: {{leakageReactance}}</div>{{/leakageReactance}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#ToWinding}}<div><b>ToWinding</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ToWinding}}&quot;);})'>{{ToWinding}}</a></div>{{/ToWinding}}
-{{#FromWinding}}<div><b>FromWinding</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FromWinding}}&quot;);})'>{{FromWinding}}</a></div>{{/FromWinding}}
-{{#TransformerObservation}}<div><b>TransformerObservation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerObservation}}&quot;);})'>{{TransformerObservation}}</a></div>{{/TransformerObservation}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindingInsulation_collapse" aria-expanded="true" aria-controls="WindingInsulation_collapse" style="margin-left: 10px;">WindingInsulation</a></legend>
+                    <div id="WindingInsulation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#insulationPFStatus}}<div><b>insulationPFStatus</b>: {{insulationPFStatus}}</div>{{/insulationPFStatus}}
+                    {{#insulationResistance}}<div><b>insulationResistance</b>: {{insulationResistance}}</div>{{/insulationResistance}}
+                    {{#leakageReactance}}<div><b>leakageReactance</b>: {{leakageReactance}}</div>{{/leakageReactance}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#ToWinding}}<div><b>ToWinding</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ToWinding}}&quot;);})'>{{ToWinding}}</a></div>{{/ToWinding}}
+                    {{#FromWinding}}<div><b>FromWinding</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FromWinding}}&quot;);})'>{{FromWinding}}</a></div>{{/FromWinding}}
+                    {{#TransformerObservation}}<div><b>TransformerObservation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerObservation}}&quot;);})'>{{TransformerObservation}}</a></div>{{/TransformerObservation}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindingInsulation_collapse" aria-expanded="true" aria-controls="WindingInsulation_collapse" style="margin-left: 10px;">WindingInsulation</a></legend>
+                    <div id="WindingInsulation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='insulationPFStatus'>insulationPFStatus: </label><div class='col-sm-8'><input id='insulationPFStatus' class='form-control' type='text'{{#insulationPFStatus}} value='{{insulationPFStatus}}'{{/insulationPFStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='insulationResistance'>insulationResistance: </label><div class='col-sm-8'><input id='insulationResistance' class='form-control' type='text'{{#insulationResistance}} value='{{insulationResistance}}'{{/insulationResistance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='leakageReactance'>leakageReactance: </label><div class='col-sm-8'><input id='leakageReactance' class='form-control' type='text'{{#leakageReactance}} value='{{leakageReactance}}'{{/leakageReactance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ToWinding'>ToWinding: </label><div class='col-sm-8'><input id='ToWinding' class='form-control' type='text'{{#ToWinding}} value='{{ToWinding}}'{{/ToWinding}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FromWinding'>FromWinding: </label><div class='col-sm-8'><input id='FromWinding' class='form-control' type='text'{{#FromWinding}} value='{{FromWinding}}'{{/FromWinding}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransformerObservation'>TransformerObservation: </label><div class='col-sm-8'><input id='TransformerObservation' class='form-control' type='text'{{#TransformerObservation}} value='{{TransformerObservation}}'{{/TransformerObservation}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Enclosure that offers protection to the equipment it contains and/or safety to people/animals outside it.
@@ -1988,262 +1661,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Cabinet_collapse" aria-expanded="true" aria-controls="Cabinet_collapse">Cabinet</a>
-<div id="Cabinet_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetContainer.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Cabinet_collapse" aria-expanded="true" aria-controls="Cabinet_collapse" style="margin-left: 10px;">Cabinet</a></legend>
+                    <div id="Cabinet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetContainer.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of underground structure.
-         *
-         */
-        class UndergroundStructureKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.UndergroundStructureKind;
-                if (null == bucket)
-                   cim_data.UndergroundStructureKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.UndergroundStructureKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "UndergroundStructureKind";
-                base.parse_element (/<cim:UndergroundStructureKind.burd>([\s\S]*?)<\/cim:UndergroundStructureKind.burd>/g, obj, "burd", base.to_string, sub, context);
-                base.parse_element (/<cim:UndergroundStructureKind.enclosure>([\s\S]*?)<\/cim:UndergroundStructureKind.enclosure>/g, obj, "enclosure", base.to_string, sub, context);
-                base.parse_element (/<cim:UndergroundStructureKind.handhole>([\s\S]*?)<\/cim:UndergroundStructureKind.handhole>/g, obj, "handhole", base.to_string, sub, context);
-                base.parse_element (/<cim:UndergroundStructureKind.manhole>([\s\S]*?)<\/cim:UndergroundStructureKind.manhole>/g, obj, "manhole", base.to_string, sub, context);
-                base.parse_element (/<cim:UndergroundStructureKind.pad>([\s\S]*?)<\/cim:UndergroundStructureKind.pad>/g, obj, "pad", base.to_string, sub, context);
-                base.parse_element (/<cim:UndergroundStructureKind.subsurfaceEnclosure>([\s\S]*?)<\/cim:UndergroundStructureKind.subsurfaceEnclosure>/g, obj, "subsurfaceEnclosure", base.to_string, sub, context);
-                base.parse_element (/<cim:UndergroundStructureKind.trench>([\s\S]*?)<\/cim:UndergroundStructureKind.trench>/g, obj, "trench", base.to_string, sub, context);
-                base.parse_element (/<cim:UndergroundStructureKind.tunnel>([\s\S]*?)<\/cim:UndergroundStructureKind.tunnel>/g, obj, "tunnel", base.to_string, sub, context);
-                base.parse_element (/<cim:UndergroundStructureKind.vault>([\s\S]*?)<\/cim:UndergroundStructureKind.vault>/g, obj, "vault", base.to_string, sub, context);
-                base.parse_element (/<cim:UndergroundStructureKind.pullbox>([\s\S]*?)<\/cim:UndergroundStructureKind.pullbox>/g, obj, "pullbox", base.to_string, sub, context);
-
-                var bucket = context.parsed.UndergroundStructureKind;
-                if (null == bucket)
-                   context.parsed.UndergroundStructureKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "UndergroundStructureKind", "burd", base.from_string, fields);
-                base.export_element (obj, "UndergroundStructureKind", "enclosure", base.from_string, fields);
-                base.export_element (obj, "UndergroundStructureKind", "handhole", base.from_string, fields);
-                base.export_element (obj, "UndergroundStructureKind", "manhole", base.from_string, fields);
-                base.export_element (obj, "UndergroundStructureKind", "pad", base.from_string, fields);
-                base.export_element (obj, "UndergroundStructureKind", "subsurfaceEnclosure", base.from_string, fields);
-                base.export_element (obj, "UndergroundStructureKind", "trench", base.from_string, fields);
-                base.export_element (obj, "UndergroundStructureKind", "tunnel", base.from_string, fields);
-                base.export_element (obj, "UndergroundStructureKind", "vault", base.from_string, fields);
-                base.export_element (obj, "UndergroundStructureKind", "pullbox", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#UndergroundStructureKind_collapse" aria-expanded="true" aria-controls="UndergroundStructureKind_collapse">UndergroundStructureKind</a>
-<div id="UndergroundStructureKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#burd}}<div><b>burd</b>: {{burd}}</div>{{/burd}}
-{{#enclosure}}<div><b>enclosure</b>: {{enclosure}}</div>{{/enclosure}}
-{{#handhole}}<div><b>handhole</b>: {{handhole}}</div>{{/handhole}}
-{{#manhole}}<div><b>manhole</b>: {{manhole}}</div>{{/manhole}}
-{{#pad}}<div><b>pad</b>: {{pad}}</div>{{/pad}}
-{{#subsurfaceEnclosure}}<div><b>subsurfaceEnclosure</b>: {{subsurfaceEnclosure}}</div>{{/subsurfaceEnclosure}}
-{{#trench}}<div><b>trench</b>: {{trench}}</div>{{/trench}}
-{{#tunnel}}<div><b>tunnel</b>: {{tunnel}}</div>{{/tunnel}}
-{{#vault}}<div><b>vault</b>: {{vault}}</div>{{/vault}}
-{{#pullbox}}<div><b>pullbox</b>: {{pullbox}}</div>{{/pullbox}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Cabinet_collapse" aria-expanded="true" aria-controls="Cabinet_collapse" style="margin-left: 10px;">Cabinet</a></legend>
+                    <div id="Cabinet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetContainer.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of base for poles.
-         *
-         */
-        class PoleBaseKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.PoleBaseKind;
-                if (null == bucket)
-                   cim_data.PoleBaseKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.PoleBaseKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "PoleBaseKind";
-                base.parse_element (/<cim:PoleBaseKind.asphalt>([\s\S]*?)<\/cim:PoleBaseKind.asphalt>/g, obj, "asphalt", base.to_string, sub, context);
-                base.parse_element (/<cim:PoleBaseKind.cement>([\s\S]*?)<\/cim:PoleBaseKind.cement>/g, obj, "cement", base.to_string, sub, context);
-                base.parse_element (/<cim:PoleBaseKind.dirt>([\s\S]*?)<\/cim:PoleBaseKind.dirt>/g, obj, "dirt", base.to_string, sub, context);
-                base.parse_element (/<cim:PoleBaseKind.unknown>([\s\S]*?)<\/cim:PoleBaseKind.unknown>/g, obj, "unknown", base.to_string, sub, context);
-                base.parse_element (/<cim:PoleBaseKind.other>([\s\S]*?)<\/cim:PoleBaseKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.PoleBaseKind;
-                if (null == bucket)
-                   context.parsed.PoleBaseKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "PoleBaseKind", "asphalt", base.from_string, fields);
-                base.export_element (obj, "PoleBaseKind", "cement", base.from_string, fields);
-                base.export_element (obj, "PoleBaseKind", "dirt", base.from_string, fields);
-                base.export_element (obj, "PoleBaseKind", "unknown", base.from_string, fields);
-                base.export_element (obj, "PoleBaseKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#PoleBaseKind_collapse" aria-expanded="true" aria-controls="PoleBaseKind_collapse">PoleBaseKind</a>
-<div id="PoleBaseKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#asphalt}}<div><b>asphalt</b>: {{asphalt}}</div>{{/asphalt}}
-{{#cement}}<div><b>cement</b>: {{cement}}</div>{{/cement}}
-{{#dirt}}<div><b>dirt</b>: {{dirt}}</div>{{/dirt}}
-{{#unknown}}<div><b>unknown</b>: {{unknown}}</div>{{/unknown}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
-                );
-           }        }
-
-        /**
-         * How the failure has been isolated.
-         *
-         */
-        class FailureIsolationMethodKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.FailureIsolationMethodKind;
-                if (null == bucket)
-                   cim_data.FailureIsolationMethodKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.FailureIsolationMethodKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "FailureIsolationMethodKind";
-                base.parse_element (/<cim:FailureIsolationMethodKind.breakerOperation>([\s\S]*?)<\/cim:FailureIsolationMethodKind.breakerOperation>/g, obj, "breakerOperation", base.to_string, sub, context);
-                base.parse_element (/<cim:FailureIsolationMethodKind.fuse>([\s\S]*?)<\/cim:FailureIsolationMethodKind.fuse>/g, obj, "fuse", base.to_string, sub, context);
-                base.parse_element (/<cim:FailureIsolationMethodKind.burnedInTheClear>([\s\S]*?)<\/cim:FailureIsolationMethodKind.burnedInTheClear>/g, obj, "burnedInTheClear", base.to_string, sub, context);
-                base.parse_element (/<cim:FailureIsolationMethodKind.manuallyIsolated>([\s\S]*?)<\/cim:FailureIsolationMethodKind.manuallyIsolated>/g, obj, "manuallyIsolated", base.to_string, sub, context);
-                base.parse_element (/<cim:FailureIsolationMethodKind.other>([\s\S]*?)<\/cim:FailureIsolationMethodKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.FailureIsolationMethodKind;
-                if (null == bucket)
-                   context.parsed.FailureIsolationMethodKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "FailureIsolationMethodKind", "breakerOperation", base.from_string, fields);
-                base.export_element (obj, "FailureIsolationMethodKind", "fuse", base.from_string, fields);
-                base.export_element (obj, "FailureIsolationMethodKind", "burnedInTheClear", base.from_string, fields);
-                base.export_element (obj, "FailureIsolationMethodKind", "manuallyIsolated", base.from_string, fields);
-                base.export_element (obj, "FailureIsolationMethodKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#FailureIsolationMethodKind_collapse" aria-expanded="true" aria-controls="FailureIsolationMethodKind_collapse">FailureIsolationMethodKind</a>
-<div id="FailureIsolationMethodKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#breakerOperation}}<div><b>breakerOperation</b>: {{breakerOperation}}</div>{{/breakerOperation}}
-{{#fuse}}<div><b>fuse</b>: {{fuse}}</div>{{/fuse}}
-{{#burnedInTheClear}}<div><b>burnedInTheClear</b>: {{burnedInTheClear}}</div>{{/burnedInTheClear}}
-{{#manuallyIsolated}}<div><b>manuallyIsolated</b>: {{manuallyIsolated}}</div>{{/manuallyIsolated}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         /**
          * An Asset Property that is described through curves rather than as a data point.
@@ -2300,91 +1757,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AssetPropertyCurve_collapse" aria-expanded="true" aria-controls="AssetPropertyCurve_collapse">AssetPropertyCurve</a>
-<div id="AssetPropertyCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#Specification}}<div><b>Specification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Specification}}&quot;);})'>{{Specification}}</a></div>{{/Specification}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AssetPropertyCurve_collapse" aria-expanded="true" aria-controls="AssetPropertyCurve_collapse" style="margin-left: 10px;">AssetPropertyCurve</a></legend>
+                    <div id="AssetPropertyCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#Specification}}<div><b>Specification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Specification}}&quot;);})'>{{Specification}}</a></div>{{/Specification}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of material used for structures.
-         *
-         */
-        class StructureMaterialKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.StructureMaterialKind;
-                if (null == bucket)
-                   cim_data.StructureMaterialKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.StructureMaterialKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "StructureMaterialKind";
-                base.parse_element (/<cim:StructureMaterialKind.wood>([\s\S]*?)<\/cim:StructureMaterialKind.wood>/g, obj, "wood", base.to_string, sub, context);
-                base.parse_element (/<cim:StructureMaterialKind.steel>([\s\S]*?)<\/cim:StructureMaterialKind.steel>/g, obj, "steel", base.to_string, sub, context);
-                base.parse_element (/<cim:StructureMaterialKind.concrete>([\s\S]*?)<\/cim:StructureMaterialKind.concrete>/g, obj, "concrete", base.to_string, sub, context);
-                base.parse_element (/<cim:StructureMaterialKind.other>([\s\S]*?)<\/cim:StructureMaterialKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.StructureMaterialKind;
-                if (null == bucket)
-                   context.parsed.StructureMaterialKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "StructureMaterialKind", "wood", base.from_string, fields);
-                base.export_element (obj, "StructureMaterialKind", "steel", base.from_string, fields);
-                base.export_element (obj, "StructureMaterialKind", "concrete", base.from_string, fields);
-                base.export_element (obj, "StructureMaterialKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StructureMaterialKind_collapse" aria-expanded="true" aria-controls="StructureMaterialKind_collapse">StructureMaterialKind</a>
-<div id="StructureMaterialKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#wood}}<div><b>wood</b>: {{wood}}</div>{{/wood}}
-{{#steel}}<div><b>steel</b>: {{steel}}</div>{{/steel}}
-{{#concrete}}<div><b>concrete</b>: {{concrete}}</div>{{/concrete}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AssetPropertyCurve_collapse" aria-expanded="true" aria-controls="AssetPropertyCurve_collapse" style="margin-left: 10px;">AssetPropertyCurve</a></legend>
+                    <div id="AssetPropertyCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Specification'>Specification: </label><div class='col-sm-8'><input id='Specification' class='form-control' type='text'{{#Specification}} value='{{Specification}}'{{/Specification}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * As applicable, the basic linear, area, or volume dimensions of an asset, asset type (AssetModel) or other type of object (such as land area).
@@ -2449,21 +1863,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DimensionsInfo_collapse" aria-expanded="true" aria-controls="DimensionsInfo_collapse">DimensionsInfo</a>
-<div id="DimensionsInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#orientation}}<div><b>orientation</b>: {{orientation}}</div>{{/orientation}}
-{{#sizeDepth}}<div><b>sizeDepth</b>: {{sizeDepth}}</div>{{/sizeDepth}}
-{{#sizeDiameter}}<div><b>sizeDiameter</b>: {{sizeDiameter}}</div>{{/sizeDiameter}}
-{{#sizeLength}}<div><b>sizeLength</b>: {{sizeLength}}</div>{{/sizeLength}}
-{{#sizeWidth}}<div><b>sizeWidth</b>: {{sizeWidth}}</div>{{/sizeWidth}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DimensionsInfo_collapse" aria-expanded="true" aria-controls="DimensionsInfo_collapse" style="margin-left: 10px;">DimensionsInfo</a></legend>
+                    <div id="DimensionsInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#orientation}}<div><b>orientation</b>: {{orientation}}</div>{{/orientation}}
+                    {{#sizeDepth}}<div><b>sizeDepth</b>: {{sizeDepth}}</div>{{/sizeDepth}}
+                    {{#sizeDiameter}}<div><b>sizeDiameter</b>: {{sizeDiameter}}</div>{{/sizeDiameter}}
+                    {{#sizeLength}}<div><b>sizeLength</b>: {{sizeLength}}</div>{{/sizeLength}}
+                    {{#sizeWidth}}<div><b>sizeWidth</b>: {{sizeWidth}}</div>{{/sizeWidth}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DimensionsInfo_collapse" aria-expanded="true" aria-controls="DimensionsInfo_collapse" style="margin-left: 10px;">DimensionsInfo</a></legend>
+                    <div id="DimensionsInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='orientation'>orientation: </label><div class='col-sm-8'><input id='orientation' class='form-control' type='text'{{#orientation}} value='{{orientation}}'{{/orientation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sizeDepth'>sizeDepth: </label><div class='col-sm-8'><input id='sizeDepth' class='form-control' type='text'{{#sizeDepth}} value='{{sizeDepth}}'{{/sizeDepth}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sizeDiameter'>sizeDiameter: </label><div class='col-sm-8'><input id='sizeDiameter' class='form-control' type='text'{{#sizeDiameter}} value='{{sizeDiameter}}'{{/sizeDiameter}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sizeLength'>sizeLength: </label><div class='col-sm-8'><input id='sizeLength' class='form-control' type='text'{{#sizeLength}} value='{{sizeLength}}'{{/sizeLength}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sizeWidth'>sizeWidth: </label><div class='col-sm-8'><input id='sizeWidth' class='form-control' type='text'{{#sizeWidth}} value='{{sizeWidth}}'{{/sizeWidth}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Common information captured during transformer inspections and/or diagnostics.
@@ -2550,32 +1999,78 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransformerObservation_collapse" aria-expanded="true" aria-controls="TransformerObservation_collapse">TransformerObservation</a>
-<div id="TransformerObservation_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#bushingTemp}}<div><b>bushingTemp</b>: {{bushingTemp}}</div>{{/bushingTemp}}
-{{#dga}}<div><b>dga</b>: {{dga}}</div>{{/dga}}
-{{#freqResp}}<div><b>freqResp</b>: {{freqResp}}</div>{{/freqResp}}
-{{#furfuralDP}}<div><b>furfuralDP</b>: {{furfuralDP}}</div>{{/furfuralDP}}
-{{#hotSpotTemp}}<div><b>hotSpotTemp</b>: {{hotSpotTemp}}</div>{{/hotSpotTemp}}
-{{#oilColor}}<div><b>oilColor</b>: {{oilColor}}</div>{{/oilColor}}
-{{#oilDielectricStrength}}<div><b>oilDielectricStrength</b>: {{oilDielectricStrength}}</div>{{/oilDielectricStrength}}
-{{#oilIFT}}<div><b>oilIFT</b>: {{oilIFT}}</div>{{/oilIFT}}
-{{#oilLevel}}<div><b>oilLevel</b>: {{oilLevel}}</div>{{/oilLevel}}
-{{#oilNeutralizationNumber}}<div><b>oilNeutralizationNumber</b>: {{oilNeutralizationNumber}}</div>{{/oilNeutralizationNumber}}
-{{#pumpVibration}}<div><b>pumpVibration</b>: {{pumpVibration}}</div>{{/pumpVibration}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#topOilTemp}}<div><b>topOilTemp</b>: {{topOilTemp}}</div>{{/topOilTemp}}
-{{#waterContent}}<div><b>waterContent</b>: {{waterContent}}</div>{{/waterContent}}
-{{#Reconditioning}}<div><b>Reconditioning</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reconditioning}}&quot;);})'>{{Reconditioning}}</a></div>{{/Reconditioning}}
-{{#Transformer}}<div><b>Transformer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Transformer}}&quot;);})'>{{Transformer}}</a></div>{{/Transformer}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerObservation_collapse" aria-expanded="true" aria-controls="TransformerObservation_collapse" style="margin-left: 10px;">TransformerObservation</a></legend>
+                    <div id="TransformerObservation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#bushingTemp}}<div><b>bushingTemp</b>: {{bushingTemp}}</div>{{/bushingTemp}}
+                    {{#dga}}<div><b>dga</b>: {{dga}}</div>{{/dga}}
+                    {{#freqResp}}<div><b>freqResp</b>: {{freqResp}}</div>{{/freqResp}}
+                    {{#furfuralDP}}<div><b>furfuralDP</b>: {{furfuralDP}}</div>{{/furfuralDP}}
+                    {{#hotSpotTemp}}<div><b>hotSpotTemp</b>: {{hotSpotTemp}}</div>{{/hotSpotTemp}}
+                    {{#oilColor}}<div><b>oilColor</b>: {{oilColor}}</div>{{/oilColor}}
+                    {{#oilDielectricStrength}}<div><b>oilDielectricStrength</b>: {{oilDielectricStrength}}</div>{{/oilDielectricStrength}}
+                    {{#oilIFT}}<div><b>oilIFT</b>: {{oilIFT}}</div>{{/oilIFT}}
+                    {{#oilLevel}}<div><b>oilLevel</b>: {{oilLevel}}</div>{{/oilLevel}}
+                    {{#oilNeutralizationNumber}}<div><b>oilNeutralizationNumber</b>: {{oilNeutralizationNumber}}</div>{{/oilNeutralizationNumber}}
+                    {{#pumpVibration}}<div><b>pumpVibration</b>: {{pumpVibration}}</div>{{/pumpVibration}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#topOilTemp}}<div><b>topOilTemp</b>: {{topOilTemp}}</div>{{/topOilTemp}}
+                    {{#waterContent}}<div><b>waterContent</b>: {{waterContent}}</div>{{/waterContent}}
+                    {{#Reconditioning}}<div><b>Reconditioning</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reconditioning}}&quot;);})'>{{Reconditioning}}</a></div>{{/Reconditioning}}
+                    {{#Transformer}}<div><b>Transformer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Transformer}}&quot;);})'>{{Transformer}}</a></div>{{/Transformer}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerObservation_collapse" aria-expanded="true" aria-controls="TransformerObservation_collapse" style="margin-left: 10px;">TransformerObservation</a></legend>
+                    <div id="TransformerObservation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bushingTemp'>bushingTemp: </label><div class='col-sm-8'><input id='bushingTemp' class='form-control' type='text'{{#bushingTemp}} value='{{bushingTemp}}'{{/bushingTemp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dga'>dga: </label><div class='col-sm-8'><input id='dga' class='form-control' type='text'{{#dga}} value='{{dga}}'{{/dga}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='freqResp'>freqResp: </label><div class='col-sm-8'><input id='freqResp' class='form-control' type='text'{{#freqResp}} value='{{freqResp}}'{{/freqResp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='furfuralDP'>furfuralDP: </label><div class='col-sm-8'><input id='furfuralDP' class='form-control' type='text'{{#furfuralDP}} value='{{furfuralDP}}'{{/furfuralDP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hotSpotTemp'>hotSpotTemp: </label><div class='col-sm-8'><input id='hotSpotTemp' class='form-control' type='text'{{#hotSpotTemp}} value='{{hotSpotTemp}}'{{/hotSpotTemp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oilColor'>oilColor: </label><div class='col-sm-8'><input id='oilColor' class='form-control' type='text'{{#oilColor}} value='{{oilColor}}'{{/oilColor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oilDielectricStrength'>oilDielectricStrength: </label><div class='col-sm-8'><input id='oilDielectricStrength' class='form-control' type='text'{{#oilDielectricStrength}} value='{{oilDielectricStrength}}'{{/oilDielectricStrength}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oilIFT'>oilIFT: </label><div class='col-sm-8'><input id='oilIFT' class='form-control' type='text'{{#oilIFT}} value='{{oilIFT}}'{{/oilIFT}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oilLevel'>oilLevel: </label><div class='col-sm-8'><input id='oilLevel' class='form-control' type='text'{{#oilLevel}} value='{{oilLevel}}'{{/oilLevel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oilNeutralizationNumber'>oilNeutralizationNumber: </label><div class='col-sm-8'><input id='oilNeutralizationNumber' class='form-control' type='text'{{#oilNeutralizationNumber}} value='{{oilNeutralizationNumber}}'{{/oilNeutralizationNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pumpVibration'>pumpVibration: </label><div class='col-sm-8'><input id='pumpVibration' class='form-control' type='text'{{#pumpVibration}} value='{{pumpVibration}}'{{/pumpVibration}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='topOilTemp'>topOilTemp: </label><div class='col-sm-8'><input id='topOilTemp' class='form-control' type='text'{{#topOilTemp}} value='{{topOilTemp}}'{{/topOilTemp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='waterContent'>waterContent: </label><div class='col-sm-8'><input id='waterContent' class='form-control' type='text'{{#waterContent}} value='{{waterContent}}'{{/waterContent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Reconditioning'>Reconditioning: </label><div class='col-sm-8'><input id='Reconditioning' class='form-control' type='text'{{#Reconditioning}} value='{{Reconditioning}}'{{/Reconditioning}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Transformer'>Transformer: </label><div class='col-sm-8'><input id='Transformer' class='form-control' type='text'{{#Transformer}} value='{{Transformer}}'{{/Transformer}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Joint connects two or more cables.
@@ -2607,8 +2102,8 @@ define
 
                 obj = Assets.Asset.prototype.parse.call (this, context, sub);
                 obj.cls = "Joint";
-                base.parse_element (/<cim:Joint.configurationKind>([\s\S]*?)<\/cim:Joint.configurationKind>/g, obj, "configurationKind", base.to_string, sub, context);
-                base.parse_element (/<cim:Joint.fillKind>([\s\S]*?)<\/cim:Joint.fillKind>/g, obj, "fillKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Joint.configurationKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "configurationKind", sub, context);
+                base.parse_attribute (/<cim:Joint.fillKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "fillKind", sub, context);
                 base.parse_element (/<cim:Joint.insulation>([\s\S]*?)<\/cim:Joint.insulation>/g, obj, "insulation", base.to_string, sub, context);
 
                 var bucket = context.parsed.Joint;
@@ -2636,19 +2131,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Joint_collapse" aria-expanded="true" aria-controls="Joint_collapse">Joint</a>
-<div id="Joint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.Asset.prototype.template.call (this) +
-`
-{{#configurationKind}}<div><b>configurationKind</b>: {{configurationKind}}</div>{{/configurationKind}}
-{{#fillKind}}<div><b>fillKind</b>: {{fillKind}}</div>{{/fillKind}}
-{{#insulation}}<div><b>insulation</b>: {{insulation}}</div>{{/insulation}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Joint_collapse" aria-expanded="true" aria-controls="Joint_collapse" style="margin-left: 10px;">Joint</a></legend>
+                    <div id="Joint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.Asset.prototype.template.call (this) +
+                    `
+                    {{#configurationKind}}<div><b>configurationKind</b>: {{configurationKind}}</div>{{/configurationKind}}
+                    {{#fillKind}}<div><b>fillKind</b>: {{fillKind}}</div>{{/fillKind}}
+                    {{#insulation}}<div><b>insulation</b>: {{insulation}}</div>{{/insulation}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.JointConfigurationKind = []; if (!obj.configurationKind) obj.JointConfigurationKind.push ({ id: '', selected: true}); for (var property in JointConfigurationKind) obj.JointConfigurationKind.push ({ id: property, selected: obj.configurationKind && obj.configurationKind.endsWith ('.' + property)});
+                obj.JointFillKind = []; if (!obj.fillKind) obj.JointFillKind.push ({ id: '', selected: true}); for (var property in JointFillKind) obj.JointFillKind.push ({ id: property, selected: obj.fillKind && obj.fillKind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.JointConfigurationKind;
+                delete obj.JointFillKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Joint_collapse" aria-expanded="true" aria-controls="Joint_collapse" style="margin-left: 10px;">Joint</a></legend>
+                    <div id="Joint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.Asset.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='configurationKind'>configurationKind: </label><div class='col-sm-8'><select id='configurationKind' class='form-control'>{{#JointConfigurationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/JointConfigurationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fillKind'>fillKind: </label><div class='col-sm-8'><select id='fillKind' class='form-control'>{{#JointFillKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/JointFillKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='insulation'>insulation: </label><div class='col-sm-8'><input id='insulation' class='form-control' type='text'{{#insulation}} value='{{insulation}}'{{/insulation}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Reconditioning information for an asset.
@@ -2705,18 +2237,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Reconditioning_collapse" aria-expanded="true" aria-controls="Reconditioning_collapse">Reconditioning</a>
-<div id="Reconditioning_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
-{{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Reconditioning_collapse" aria-expanded="true" aria-controls="Reconditioning_collapse" style="margin-left: 10px;">Reconditioning</a></legend>
+                    <div id="Reconditioning_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
+                    {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Reconditioning_collapse" aria-expanded="true" aria-controls="Reconditioning_collapse" style="margin-left: 10px;">Reconditioning</a></legend>
+                    <div id="Reconditioning_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dateTime'>dateTime: </label><div class='col-sm-8'><input id='dateTime' class='form-control' type='text'{{#dateTime}} value='{{dateTime}}'{{/dateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Asset'>Asset: </label><div class='col-sm-8'><input id='Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A substance that either (1) provides the means of transmission of a force or effect, such as hydraulic fluid, or (2) is used for a surrounding or enveloping substance, such as oil in a transformer or circuit breaker.
@@ -2746,7 +2310,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Medium";
-                base.parse_element (/<cim:Medium.kind>([\s\S]*?)<\/cim:Medium.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Medium.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:Medium.volumeSpec>([\s\S]*?)<\/cim:Medium.volumeSpec>/g, obj, "volumeSpec", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Medium.Specification\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Specification", sub, context);
 
@@ -2775,19 +2339,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Medium_collapse" aria-expanded="true" aria-controls="Medium_collapse">Medium</a>
-<div id="Medium_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#volumeSpec}}<div><b>volumeSpec</b>: {{volumeSpec}}</div>{{/volumeSpec}}
-{{#Specification}}<div><b>Specification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Specification}}&quot;);})'>{{Specification}}</a></div>{{/Specification}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Medium_collapse" aria-expanded="true" aria-controls="Medium_collapse" style="margin-left: 10px;">Medium</a></legend>
+                    <div id="Medium_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#volumeSpec}}<div><b>volumeSpec</b>: {{volumeSpec}}</div>{{/volumeSpec}}
+                    {{#Specification}}<div><b>Specification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Specification}}&quot;);})'>{{Specification}}</a></div>{{/Specification}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.MediumKind = []; if (!obj.kind) obj.MediumKind.push ({ id: '', selected: true}); for (var property in MediumKind) obj.MediumKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.MediumKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Medium_collapse" aria-expanded="true" aria-controls="Medium_collapse" style="margin-left: 10px;">Medium</a></legend>
+                    <div id="Medium_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#MediumKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MediumKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='volumeSpec'>volumeSpec: </label><div class='col-sm-8'><input id='volumeSpec' class='form-control' type='text'{{#volumeSpec}} value='{{volumeSpec}}'{{/volumeSpec}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Specification'>Specification: </label><div class='col-sm-8'><input id='Specification' class='form-control' type='text'{{#Specification}} value='{{Specification}}'{{/Specification}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A facility may contain buildings, storage facilities, switching facilities, power generation, manufacturing facilities, maintenance facilities, etc.
@@ -2842,17 +2441,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Facility_collapse" aria-expanded="true" aria-controls="Facility_collapse">Facility</a>
-<div id="Facility_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.AssetContainer.prototype.template.call (this) +
-`
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Facility_collapse" aria-expanded="true" aria-controls="Facility_collapse" style="margin-left: 10px;">Facility</a></legend>
+                    <div id="Facility_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetContainer.prototype.template.call (this) +
+                    `
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Facility_collapse" aria-expanded="true" aria-controls="Facility_collapse" style="margin-left: 10px;">Facility</a></legend>
+                    <div id="Facility_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.AssetContainer.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><input id='kind' class='form-control' type='text'{{#kind}} value='{{kind}}'{{/kind}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Bushing insulation power factor condition as a result of a test.
@@ -2885,7 +2515,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "BushingInsulationPF";
                 base.parse_element (/<cim:BushingInsulationPF.status>([\s\S]*?)<\/cim:BushingInsulationPF.status>/g, obj, "status", base.to_string, sub, context);
-                base.parse_element (/<cim:BushingInsulationPF.testKind>([\s\S]*?)<\/cim:BushingInsulationPF.testKind>/g, obj, "testKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:BushingInsulationPF.testKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "testKind", sub, context);
                 base.parse_attribute (/<cim:BushingInsulationPF.Bushing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Bushing", sub, context);
                 base.parse_attribute (/<cim:BushingInsulationPF.TransformerObservation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerObservation", sub, context);
 
@@ -2915,20 +2545,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BushingInsulationPF_collapse" aria-expanded="true" aria-controls="BushingInsulationPF_collapse">BushingInsulationPF</a>
-<div id="BushingInsulationPF_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#testKind}}<div><b>testKind</b>: {{testKind}}</div>{{/testKind}}
-{{#Bushing}}<div><b>Bushing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bushing}}&quot;);})'>{{Bushing}}</a></div>{{/Bushing}}
-{{#TransformerObservation}}<div><b>TransformerObservation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerObservation}}&quot;);})'>{{TransformerObservation}}</a></div>{{/TransformerObservation}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BushingInsulationPF_collapse" aria-expanded="true" aria-controls="BushingInsulationPF_collapse" style="margin-left: 10px;">BushingInsulationPF</a></legend>
+                    <div id="BushingInsulationPF_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#testKind}}<div><b>testKind</b>: {{testKind}}</div>{{/testKind}}
+                    {{#Bushing}}<div><b>Bushing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bushing}}&quot;);})'>{{Bushing}}</a></div>{{/Bushing}}
+                    {{#TransformerObservation}}<div><b>TransformerObservation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerObservation}}&quot;);})'>{{TransformerObservation}}</a></div>{{/TransformerObservation}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.BushingInsulationPfTestKind = []; if (!obj.testKind) obj.BushingInsulationPfTestKind.push ({ id: '', selected: true}); for (var property in BushingInsulationPfTestKind) obj.BushingInsulationPfTestKind.push ({ id: property, selected: obj.testKind && obj.testKind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.BushingInsulationPfTestKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BushingInsulationPF_collapse" aria-expanded="true" aria-controls="BushingInsulationPF_collapse" style="margin-left: 10px;">BushingInsulationPF</a></legend>
+                    <div id="BushingInsulationPF_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='testKind'>testKind: </label><div class='col-sm-8'><select id='testKind' class='form-control'>{{#BushingInsulationPfTestKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BushingInsulationPfTestKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Bushing'>Bushing: </label><div class='col-sm-8'><input id='Bushing' class='form-control' type='text'{{#Bushing}} value='{{Bushing}}'{{/Bushing}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransformerObservation'>TransformerObservation: </label><div class='col-sm-8'><input id='TransformerObservation' class='form-control' type='text'{{#TransformerObservation}} value='{{TransformerObservation}}'{{/TransformerObservation}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Streetlight asset.
@@ -2959,7 +2625,7 @@ define
                 obj = Assets.Asset.prototype.parse.call (this, context, sub);
                 obj.cls = "Streetlight";
                 base.parse_element (/<cim:Streetlight.armLength>([\s\S]*?)<\/cim:Streetlight.armLength>/g, obj, "armLength", base.to_string, sub, context);
-                base.parse_element (/<cim:Streetlight.lampKind>([\s\S]*?)<\/cim:Streetlight.lampKind>/g, obj, "lampKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Streetlight.lampKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "lampKind", sub, context);
                 base.parse_element (/<cim:Streetlight.lightRating>([\s\S]*?)<\/cim:Streetlight.lightRating>/g, obj, "lightRating", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Streetlight.Pole\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Pole", sub, context);
 
@@ -2989,20 +2655,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Streetlight_collapse" aria-expanded="true" aria-controls="Streetlight_collapse">Streetlight</a>
-<div id="Streetlight_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.Asset.prototype.template.call (this) +
-`
-{{#armLength}}<div><b>armLength</b>: {{armLength}}</div>{{/armLength}}
-{{#lampKind}}<div><b>lampKind</b>: {{lampKind}}</div>{{/lampKind}}
-{{#lightRating}}<div><b>lightRating</b>: {{lightRating}}</div>{{/lightRating}}
-{{#Pole}}<div><b>Pole</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Pole}}&quot;);})'>{{Pole}}</a></div>{{/Pole}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Streetlight_collapse" aria-expanded="true" aria-controls="Streetlight_collapse" style="margin-left: 10px;">Streetlight</a></legend>
+                    <div id="Streetlight_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.Asset.prototype.template.call (this) +
+                    `
+                    {{#armLength}}<div><b>armLength</b>: {{armLength}}</div>{{/armLength}}
+                    {{#lampKind}}<div><b>lampKind</b>: {{lampKind}}</div>{{/lampKind}}
+                    {{#lightRating}}<div><b>lightRating</b>: {{lightRating}}</div>{{/lightRating}}
+                    {{#Pole}}<div><b>Pole</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Pole}}&quot;);})'>{{Pole}}</a></div>{{/Pole}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.StreetlightLampKind = []; if (!obj.lampKind) obj.StreetlightLampKind.push ({ id: '', selected: true}); for (var property in StreetlightLampKind) obj.StreetlightLampKind.push ({ id: property, selected: obj.lampKind && obj.lampKind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.StreetlightLampKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Streetlight_collapse" aria-expanded="true" aria-controls="Streetlight_collapse" style="margin-left: 10px;">Streetlight</a></legend>
+                    <div id="Streetlight_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.Asset.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='armLength'>armLength: </label><div class='col-sm-8'><input id='armLength' class='form-control' type='text'{{#armLength}} value='{{armLength}}'{{/armLength}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lampKind'>lampKind: </label><div class='col-sm-8'><select id='lampKind' class='form-control'>{{#StreetlightLampKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StreetlightLampKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lightRating'>lightRating: </label><div class='col-sm-8'><input id='lightRating' class='form-control' type='text'{{#lightRating}} value='{{lightRating}}'{{/lightRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Pole'>Pole: </label><div class='col-sm-8'><input id='Pole' class='form-control' type='text'{{#Pole}} value='{{Pole}}'{{/Pole}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Pole asset.
@@ -3032,17 +2734,17 @@ define
 
                 obj = Structure.prototype.parse.call (this, context, sub);
                 obj.cls = "Pole";
-                base.parse_element (/<cim:Pole.baseKind>([\s\S]*?)<\/cim:Pole.baseKind>/g, obj, "baseKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Pole.baseKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "baseKind", sub, context);
                 base.parse_element (/<cim:Pole.breastBlock>([\s\S]*?)<\/cim:Pole.breastBlock>/g, obj, "breastBlock", base.to_boolean, sub, context);
                 base.parse_element (/<cim:Pole.classification>([\s\S]*?)<\/cim:Pole.classification>/g, obj, "classification", base.to_string, sub, context);
                 base.parse_element (/<cim:Pole.construction>([\s\S]*?)<\/cim:Pole.construction>/g, obj, "construction", base.to_string, sub, context);
                 base.parse_element (/<cim:Pole.diameter>([\s\S]*?)<\/cim:Pole.diameter>/g, obj, "diameter", base.to_string, sub, context);
                 base.parse_element (/<cim:Pole.jpaReference>([\s\S]*?)<\/cim:Pole.jpaReference>/g, obj, "jpaReference", base.to_string, sub, context);
                 base.parse_element (/<cim:Pole.length>([\s\S]*?)<\/cim:Pole.length>/g, obj, "length", base.to_string, sub, context);
-                base.parse_element (/<cim:Pole.preservativeKind>([\s\S]*?)<\/cim:Pole.preservativeKind>/g, obj, "preservativeKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Pole.preservativeKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "preservativeKind", sub, context);
                 base.parse_element (/<cim:Pole.speciesType>([\s\S]*?)<\/cim:Pole.speciesType>/g, obj, "speciesType", base.to_string, sub, context);
                 base.parse_element (/<cim:Pole.treatedDateTime>([\s\S]*?)<\/cim:Pole.treatedDateTime>/g, obj, "treatedDateTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:Pole.treatmentKind>([\s\S]*?)<\/cim:Pole.treatmentKind>/g, obj, "treatmentKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Pole.treatmentKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "treatmentKind", sub, context);
 
                 var bucket = context.parsed.Pole;
                 if (null == bucket)
@@ -3077,27 +2779,74 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Pole_collapse" aria-expanded="true" aria-controls="Pole_collapse">Pole</a>
-<div id="Pole_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Structure.prototype.template.call (this) +
-`
-{{#baseKind}}<div><b>baseKind</b>: {{baseKind}}</div>{{/baseKind}}
-{{#breastBlock}}<div><b>breastBlock</b>: {{breastBlock}}</div>{{/breastBlock}}
-{{#classification}}<div><b>classification</b>: {{classification}}</div>{{/classification}}
-{{#construction}}<div><b>construction</b>: {{construction}}</div>{{/construction}}
-{{#diameter}}<div><b>diameter</b>: {{diameter}}</div>{{/diameter}}
-{{#jpaReference}}<div><b>jpaReference</b>: {{jpaReference}}</div>{{/jpaReference}}
-{{#length}}<div><b>length</b>: {{length}}</div>{{/length}}
-{{#preservativeKind}}<div><b>preservativeKind</b>: {{preservativeKind}}</div>{{/preservativeKind}}
-{{#speciesType}}<div><b>speciesType</b>: {{speciesType}}</div>{{/speciesType}}
-{{#treatedDateTime}}<div><b>treatedDateTime</b>: {{treatedDateTime}}</div>{{/treatedDateTime}}
-{{#treatmentKind}}<div><b>treatmentKind</b>: {{treatmentKind}}</div>{{/treatmentKind}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pole_collapse" aria-expanded="true" aria-controls="Pole_collapse" style="margin-left: 10px;">Pole</a></legend>
+                    <div id="Pole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Structure.prototype.template.call (this) +
+                    `
+                    {{#baseKind}}<div><b>baseKind</b>: {{baseKind}}</div>{{/baseKind}}
+                    {{#breastBlock}}<div><b>breastBlock</b>: {{breastBlock}}</div>{{/breastBlock}}
+                    {{#classification}}<div><b>classification</b>: {{classification}}</div>{{/classification}}
+                    {{#construction}}<div><b>construction</b>: {{construction}}</div>{{/construction}}
+                    {{#diameter}}<div><b>diameter</b>: {{diameter}}</div>{{/diameter}}
+                    {{#jpaReference}}<div><b>jpaReference</b>: {{jpaReference}}</div>{{/jpaReference}}
+                    {{#length}}<div><b>length</b>: {{length}}</div>{{/length}}
+                    {{#preservativeKind}}<div><b>preservativeKind</b>: {{preservativeKind}}</div>{{/preservativeKind}}
+                    {{#speciesType}}<div><b>speciesType</b>: {{speciesType}}</div>{{/speciesType}}
+                    {{#treatedDateTime}}<div><b>treatedDateTime</b>: {{treatedDateTime}}</div>{{/treatedDateTime}}
+                    {{#treatmentKind}}<div><b>treatmentKind</b>: {{treatmentKind}}</div>{{/treatmentKind}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.PoleBaseKind = []; if (!obj.baseKind) obj.PoleBaseKind.push ({ id: '', selected: true}); for (var property in PoleBaseKind) obj.PoleBaseKind.push ({ id: property, selected: obj.baseKind && obj.baseKind.endsWith ('.' + property)});
+                obj.PolePreservativeKind = []; if (!obj.preservativeKind) obj.PolePreservativeKind.push ({ id: '', selected: true}); for (var property in PolePreservativeKind) obj.PolePreservativeKind.push ({ id: property, selected: obj.preservativeKind && obj.preservativeKind.endsWith ('.' + property)});
+                obj.PoleTreatmentKind = []; if (!obj.treatmentKind) obj.PoleTreatmentKind.push ({ id: '', selected: true}); for (var property in PoleTreatmentKind) obj.PoleTreatmentKind.push ({ id: property, selected: obj.treatmentKind && obj.treatmentKind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.PoleBaseKind;
+                delete obj.PolePreservativeKind;
+                delete obj.PoleTreatmentKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pole_collapse" aria-expanded="true" aria-controls="Pole_collapse" style="margin-left: 10px;">Pole</a></legend>
+                    <div id="Pole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Structure.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='baseKind'>baseKind: </label><div class='col-sm-8'><select id='baseKind' class='form-control'>{{#PoleBaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PoleBaseKind}}</select></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='breastBlock'>breastBlock: </label><div class='col-sm-8'><input id='breastBlock' class='form-check-input' type='checkbox'{{#breastBlock}} checked{{/breastBlock}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='classification'>classification: </label><div class='col-sm-8'><input id='classification' class='form-control' type='text'{{#classification}} value='{{classification}}'{{/classification}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='construction'>construction: </label><div class='col-sm-8'><input id='construction' class='form-control' type='text'{{#construction}} value='{{construction}}'{{/construction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diameter'>diameter: </label><div class='col-sm-8'><input id='diameter' class='form-control' type='text'{{#diameter}} value='{{diameter}}'{{/diameter}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='jpaReference'>jpaReference: </label><div class='col-sm-8'><input id='jpaReference' class='form-control' type='text'{{#jpaReference}} value='{{jpaReference}}'{{/jpaReference}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='length'>length: </label><div class='col-sm-8'><input id='length' class='form-control' type='text'{{#length}} value='{{length}}'{{/length}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='preservativeKind'>preservativeKind: </label><div class='col-sm-8'><select id='preservativeKind' class='form-control'>{{#PolePreservativeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PolePreservativeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='speciesType'>speciesType: </label><div class='col-sm-8'><input id='speciesType' class='form-control' type='text'{{#speciesType}} value='{{speciesType}}'{{/speciesType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='treatedDateTime'>treatedDateTime: </label><div class='col-sm-8'><input id='treatedDateTime' class='form-control' type='text'{{#treatedDateTime}} value='{{treatedDateTime}}'{{/treatedDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='treatmentKind'>treatmentKind: </label><div class='col-sm-8'><select id='treatmentKind' class='form-control'>{{#PoleTreatmentKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PoleTreatmentKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Tower asset.
@@ -3129,7 +2878,7 @@ define
 
                 obj = Structure.prototype.parse.call (this, context, sub);
                 obj.cls = "Tower";
-                base.parse_element (/<cim:Tower.constructionKind>([\s\S]*?)<\/cim:Tower.constructionKind>/g, obj, "constructionKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Tower.constructionKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "constructionKind", sub, context);
 
                 var bucket = context.parsed.Tower;
                 if (null == bucket)
@@ -3154,17 +2903,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Tower_collapse" aria-expanded="true" aria-controls="Tower_collapse">Tower</a>
-<div id="Tower_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Structure.prototype.template.call (this) +
-`
-{{#constructionKind}}<div><b>constructionKind</b>: {{constructionKind}}</div>{{/constructionKind}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Tower_collapse" aria-expanded="true" aria-controls="Tower_collapse" style="margin-left: 10px;">Tower</a></legend>
+                    <div id="Tower_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Structure.prototype.template.call (this) +
+                    `
+                    {{#constructionKind}}<div><b>constructionKind</b>: {{constructionKind}}</div>{{/constructionKind}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.TowerConstructionKind = []; if (!obj.constructionKind) obj.TowerConstructionKind.push ({ id: '', selected: true}); for (var property in TowerConstructionKind) obj.TowerConstructionKind.push ({ id: property, selected: obj.constructionKind && obj.constructionKind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.TowerConstructionKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Tower_collapse" aria-expanded="true" aria-controls="Tower_collapse" style="margin-left: 10px;">Tower</a></legend>
+                    <div id="Tower_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Structure.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='constructionKind'>constructionKind: </label><div class='col-sm-8'><select id='constructionKind' class='form-control'>{{#TowerConstructionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TowerConstructionKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Underground structure.
@@ -3195,7 +2977,7 @@ define
                 obj = Structure.prototype.parse.call (this, context, sub);
                 obj.cls = "UndergroundStructure";
                 base.parse_element (/<cim:UndergroundStructure.hasVentilation>([\s\S]*?)<\/cim:UndergroundStructure.hasVentilation>/g, obj, "hasVentilation", base.to_boolean, sub, context);
-                base.parse_element (/<cim:UndergroundStructure.kind>([\s\S]*?)<\/cim:UndergroundStructure.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:UndergroundStructure.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:UndergroundStructure.material>([\s\S]*?)<\/cim:UndergroundStructure.material>/g, obj, "material", base.to_string, sub, context);
                 base.parse_element (/<cim:UndergroundStructure.sealingWarrantyExpiresDate>([\s\S]*?)<\/cim:UndergroundStructure.sealingWarrantyExpiresDate>/g, obj, "sealingWarrantyExpiresDate", base.to_string, sub, context);
 
@@ -3225,65 +3007,84 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#UndergroundStructure_collapse" aria-expanded="true" aria-controls="UndergroundStructure_collapse">UndergroundStructure</a>
-<div id="UndergroundStructure_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Structure.prototype.template.call (this) +
-`
-{{#hasVentilation}}<div><b>hasVentilation</b>: {{hasVentilation}}</div>{{/hasVentilation}}
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#material}}<div><b>material</b>: {{material}}</div>{{/material}}
-{{#sealingWarrantyExpiresDate}}<div><b>sealingWarrantyExpiresDate</b>: {{sealingWarrantyExpiresDate}}</div>{{/sealingWarrantyExpiresDate}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UndergroundStructure_collapse" aria-expanded="true" aria-controls="UndergroundStructure_collapse" style="margin-left: 10px;">UndergroundStructure</a></legend>
+                    <div id="UndergroundStructure_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Structure.prototype.template.call (this) +
+                    `
+                    {{#hasVentilation}}<div><b>hasVentilation</b>: {{hasVentilation}}</div>{{/hasVentilation}}
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#material}}<div><b>material</b>: {{material}}</div>{{/material}}
+                    {{#sealingWarrantyExpiresDate}}<div><b>sealingWarrantyExpiresDate</b>: {{sealingWarrantyExpiresDate}}</div>{{/sealingWarrantyExpiresDate}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.UndergroundStructureKind = []; if (!obj.kind) obj.UndergroundStructureKind.push ({ id: '', selected: true}); for (var property in UndergroundStructureKind) obj.UndergroundStructureKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.UndergroundStructureKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UndergroundStructure_collapse" aria-expanded="true" aria-controls="UndergroundStructure_collapse" style="margin-left: 10px;">UndergroundStructure</a></legend>
+                    <div id="UndergroundStructure_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Structure.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='hasVentilation'>hasVentilation: </label><div class='col-sm-8'><input id='hasVentilation' class='form-check-input' type='checkbox'{{#hasVentilation}} checked{{/hasVentilation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#UndergroundStructureKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UndergroundStructureKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='material'>material: </label><div class='col-sm-8'><input id='material' class='form-control' type='text'{{#material}} value='{{material}}'{{/material}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sealingWarrantyExpiresDate'>sealingWarrantyExpiresDate: </label><div class='col-sm-8'><input id='sealingWarrantyExpiresDate' class='form-control' type='text'{{#sealingWarrantyExpiresDate}} value='{{sealingWarrantyExpiresDate}}'{{/sealingWarrantyExpiresDate}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
-                TowerConstructionKind: TowerConstructionKind,
                 FailureEvent: FailureEvent,
-                BushingInsulationPfTestKind: BushingInsulationPfTestKind,
-                FinancialInfo: FinancialInfo,
-                BushingInsulationPF: BushingInsulationPF,
-                StructureSupportKind: StructureSupportKind,
-                GenericAssetModelOrMaterial: GenericAssetModelOrMaterial,
-                TransformerObservation: TransformerObservation,
-                CoolingPowerRating: CoolingPowerRating,
-                Reconditioning: Reconditioning,
-                Medium: Medium,
-                Cabinet: Cabinet,
-                StreetlightLampKind: StreetlightLampKind,
-                PoleBaseKind: PoleBaseKind,
-                Tower: Tower,
-                DimensionsInfo: DimensionsInfo,
-                JointConfigurationKind: JointConfigurationKind,
-                JointFillKind: JointFillKind,
-                AnchorKind: AnchorKind,
                 Specification: Specification,
                 Bushing: Bushing,
-                UndergroundStructureKind: UndergroundStructureKind,
                 StructureSupport: StructureSupport,
                 Facility: Facility,
+                FinancialInfo: FinancialInfo,
                 DuctBank: DuctBank,
-                FailureIsolationMethodKind: FailureIsolationMethodKind,
-                CoolingKind: CoolingKind,
-                MediumKind: MediumKind,
+                BushingInsulationPF: BushingInsulationPF,
                 Streetlight: Streetlight,
                 UndergroundStructure: UndergroundStructure,
                 Joint: Joint,
                 WindingInsulation: WindingInsulation,
-                FACTSDeviceKind: FACTSDeviceKind,
+                GenericAssetModelOrMaterial: GenericAssetModelOrMaterial,
                 ReliabilityInfo: ReliabilityInfo,
-                BushingInsulationKind: BushingInsulationKind,
                 Pole: Pole,
                 FACTSDevice: FACTSDevice,
+                CoolingPowerRating: CoolingPowerRating,
                 AssetPropertyCurve: AssetPropertyCurve,
+                TransformerObservation: TransformerObservation,
+                Reconditioning: Reconditioning,
+                Medium: Medium,
+                Cabinet: Cabinet,
                 Structure: Structure,
-                PoleTreatmentKind: PoleTreatmentKind,
-                PolePreservativeKind: PolePreservativeKind,
-                StructureMaterialKind: StructureMaterialKind
+                Tower: Tower,
+                DimensionsInfo: DimensionsInfo
             }
         );
     }

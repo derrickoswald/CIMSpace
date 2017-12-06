@@ -67,19 +67,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RecloseSequence_collapse" aria-expanded="true" aria-controls="RecloseSequence_collapse">RecloseSequence</a>
-<div id="RecloseSequence_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#recloseDelay}}<div><b>recloseDelay</b>: {{recloseDelay}}</div>{{/recloseDelay}}
-{{#recloseStep}}<div><b>recloseStep</b>: {{recloseStep}}</div>{{/recloseStep}}
-{{#ProtectedSwitch}}<div><b>ProtectedSwitch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProtectedSwitch}}&quot;);})'>{{ProtectedSwitch}}</a></div>{{/ProtectedSwitch}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RecloseSequence_collapse" aria-expanded="true" aria-controls="RecloseSequence_collapse" style="margin-left: 10px;">RecloseSequence</a></legend>
+                    <div id="RecloseSequence_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#recloseDelay}}<div><b>recloseDelay</b>: {{recloseDelay}}</div>{{/recloseDelay}}
+                    {{#recloseStep}}<div><b>recloseStep</b>: {{recloseStep}}</div>{{/recloseStep}}
+                    {{#ProtectedSwitch}}<div><b>ProtectedSwitch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProtectedSwitch}}&quot;);})'>{{ProtectedSwitch}}</a></div>{{/ProtectedSwitch}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RecloseSequence_collapse" aria-expanded="true" aria-controls="RecloseSequence_collapse" style="margin-left: 10px;">RecloseSequence</a></legend>
+                    <div id="RecloseSequence_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='recloseDelay'>recloseDelay: </label><div class='col-sm-8'><input id='recloseDelay' class='form-control' type='text'{{#recloseDelay}} value='{{recloseDelay}}'{{/recloseDelay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='recloseStep'>recloseStep: </label><div class='col-sm-8'><input id='recloseStep' class='form-control' type='text'{{#recloseStep}} value='{{recloseStep}}'{{/recloseStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProtectedSwitch'>ProtectedSwitch: </label><div class='col-sm-8'><input id='ProtectedSwitch' class='form-control' type='text'{{#ProtectedSwitch}} value='{{ProtectedSwitch}}'{{/ProtectedSwitch}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An electrical device designed to respond to input conditions in a prescribed manner and after specified conditions are met to cause contact operation or similar abrupt change in associated electric control circuits, or simply to display the detected condition.
@@ -146,22 +179,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ProtectionEquipment_collapse" aria-expanded="true" aria-controls="ProtectionEquipment_collapse">ProtectionEquipment</a>
-<div id="ProtectionEquipment_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Equipment.prototype.template.call (this) +
-`
-{{#highLimit}}<div><b>highLimit</b>: {{highLimit}}</div>{{/highLimit}}
-{{#lowLimit}}<div><b>lowLimit</b>: {{lowLimit}}</div>{{/lowLimit}}
-{{#powerDirectionFlag}}<div><b>powerDirectionFlag</b>: {{powerDirectionFlag}}</div>{{/powerDirectionFlag}}
-{{#relayDelayTime}}<div><b>relayDelayTime</b>: {{relayDelayTime}}</div>{{/relayDelayTime}}
-{{#unitMultiplier}}<div><b>unitMultiplier</b>: {{unitMultiplier}}</div>{{/unitMultiplier}}
-{{#unitSymbol}}<div><b>unitSymbol</b>: {{unitSymbol}}</div>{{/unitSymbol}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProtectionEquipment_collapse" aria-expanded="true" aria-controls="ProtectionEquipment_collapse" style="margin-left: 10px;">ProtectionEquipment</a></legend>
+                    <div id="ProtectionEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Equipment.prototype.template.call (this) +
+                    `
+                    {{#highLimit}}<div><b>highLimit</b>: {{highLimit}}</div>{{/highLimit}}
+                    {{#lowLimit}}<div><b>lowLimit</b>: {{lowLimit}}</div>{{/lowLimit}}
+                    {{#powerDirectionFlag}}<div><b>powerDirectionFlag</b>: {{powerDirectionFlag}}</div>{{/powerDirectionFlag}}
+                    {{#relayDelayTime}}<div><b>relayDelayTime</b>: {{relayDelayTime}}</div>{{/relayDelayTime}}
+                    {{#unitMultiplier}}<div><b>unitMultiplier</b>: {{unitMultiplier}}</div>{{/unitMultiplier}}
+                    {{#unitSymbol}}<div><b>unitSymbol</b>: {{unitSymbol}}</div>{{/unitSymbol}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProtectionEquipment_collapse" aria-expanded="true" aria-controls="ProtectionEquipment_collapse" style="margin-left: 10px;">ProtectionEquipment</a></legend>
+                    <div id="ProtectionEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Equipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='highLimit'>highLimit: </label><div class='col-sm-8'><input id='highLimit' class='form-control' type='text'{{#highLimit}} value='{{highLimit}}'{{/highLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowLimit'>lowLimit: </label><div class='col-sm-8'><input id='lowLimit' class='form-control' type='text'{{#lowLimit}} value='{{lowLimit}}'{{/lowLimit}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='powerDirectionFlag'>powerDirectionFlag: </label><div class='col-sm-8'><input id='powerDirectionFlag' class='form-check-input' type='checkbox'{{#powerDirectionFlag}} checked{{/powerDirectionFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='relayDelayTime'>relayDelayTime: </label><div class='col-sm-8'><input id='relayDelayTime' class='form-control' type='text'{{#relayDelayTime}} value='{{relayDelayTime}}'{{/relayDelayTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><input id='unitMultiplier' class='form-control' type='text'{{#unitMultiplier}} value='{{unitMultiplier}}'{{/unitMultiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitSymbol'>unitSymbol: </label><div class='col-sm-8'><input id='unitSymbol' class='form-control' type='text'{{#unitSymbol}} value='{{unitSymbol}}'{{/unitSymbol}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A device that checks current flow values in any direction or designated direction.
@@ -228,23 +297,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CurrentRelay_collapse" aria-expanded="true" aria-controls="CurrentRelay_collapse">CurrentRelay</a>
-<div id="CurrentRelay_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ProtectionEquipment.prototype.template.call (this) +
-`
-{{#currentLimit1}}<div><b>currentLimit1</b>: {{currentLimit1}}</div>{{/currentLimit1}}
-{{#currentLimit2}}<div><b>currentLimit2</b>: {{currentLimit2}}</div>{{/currentLimit2}}
-{{#currentLimit3}}<div><b>currentLimit3</b>: {{currentLimit3}}</div>{{/currentLimit3}}
-{{#inverseTimeFlag}}<div><b>inverseTimeFlag</b>: {{inverseTimeFlag}}</div>{{/inverseTimeFlag}}
-{{#timeDelay1}}<div><b>timeDelay1</b>: {{timeDelay1}}</div>{{/timeDelay1}}
-{{#timeDelay2}}<div><b>timeDelay2</b>: {{timeDelay2}}</div>{{/timeDelay2}}
-{{#timeDelay3}}<div><b>timeDelay3</b>: {{timeDelay3}}</div>{{/timeDelay3}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentRelay_collapse" aria-expanded="true" aria-controls="CurrentRelay_collapse" style="margin-left: 10px;">CurrentRelay</a></legend>
+                    <div id="CurrentRelay_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ProtectionEquipment.prototype.template.call (this) +
+                    `
+                    {{#currentLimit1}}<div><b>currentLimit1</b>: {{currentLimit1}}</div>{{/currentLimit1}}
+                    {{#currentLimit2}}<div><b>currentLimit2</b>: {{currentLimit2}}</div>{{/currentLimit2}}
+                    {{#currentLimit3}}<div><b>currentLimit3</b>: {{currentLimit3}}</div>{{/currentLimit3}}
+                    {{#inverseTimeFlag}}<div><b>inverseTimeFlag</b>: {{inverseTimeFlag}}</div>{{/inverseTimeFlag}}
+                    {{#timeDelay1}}<div><b>timeDelay1</b>: {{timeDelay1}}</div>{{/timeDelay1}}
+                    {{#timeDelay2}}<div><b>timeDelay2</b>: {{timeDelay2}}</div>{{/timeDelay2}}
+                    {{#timeDelay3}}<div><b>timeDelay3</b>: {{timeDelay3}}</div>{{/timeDelay3}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentRelay_collapse" aria-expanded="true" aria-controls="CurrentRelay_collapse" style="margin-left: 10px;">CurrentRelay</a></legend>
+                    <div id="CurrentRelay_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ProtectionEquipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='currentLimit1'>currentLimit1: </label><div class='col-sm-8'><input id='currentLimit1' class='form-control' type='text'{{#currentLimit1}} value='{{currentLimit1}}'{{/currentLimit1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='currentLimit2'>currentLimit2: </label><div class='col-sm-8'><input id='currentLimit2' class='form-control' type='text'{{#currentLimit2}} value='{{currentLimit2}}'{{/currentLimit2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='currentLimit3'>currentLimit3: </label><div class='col-sm-8'><input id='currentLimit3' class='form-control' type='text'{{#currentLimit3}} value='{{currentLimit3}}'{{/currentLimit3}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='inverseTimeFlag'>inverseTimeFlag: </label><div class='col-sm-8'><input id='inverseTimeFlag' class='form-check-input' type='checkbox'{{#inverseTimeFlag}} checked{{/inverseTimeFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeDelay1'>timeDelay1: </label><div class='col-sm-8'><input id='timeDelay1' class='form-control' type='text'{{#timeDelay1}} value='{{timeDelay1}}'{{/timeDelay1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeDelay2'>timeDelay2: </label><div class='col-sm-8'><input id='timeDelay2' class='form-control' type='text'{{#timeDelay2}} value='{{timeDelay2}}'{{/timeDelay2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeDelay3'>timeDelay3: </label><div class='col-sm-8'><input id='timeDelay3' class='form-control' type='text'{{#timeDelay3}} value='{{timeDelay3}}'{{/timeDelay3}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A device that operates when two AC circuits are within the desired limits of frequency, phase angle, and voltage, to permit or to cause the paralleling of these two circuits.
@@ -305,19 +411,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SynchrocheckRelay_collapse" aria-expanded="true" aria-controls="SynchrocheckRelay_collapse">SynchrocheckRelay</a>
-<div id="SynchrocheckRelay_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ProtectionEquipment.prototype.template.call (this) +
-`
-{{#maxAngleDiff}}<div><b>maxAngleDiff</b>: {{maxAngleDiff}}</div>{{/maxAngleDiff}}
-{{#maxFreqDiff}}<div><b>maxFreqDiff</b>: {{maxFreqDiff}}</div>{{/maxFreqDiff}}
-{{#maxVoltDiff}}<div><b>maxVoltDiff</b>: {{maxVoltDiff}}</div>{{/maxVoltDiff}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchrocheckRelay_collapse" aria-expanded="true" aria-controls="SynchrocheckRelay_collapse" style="margin-left: 10px;">SynchrocheckRelay</a></legend>
+                    <div id="SynchrocheckRelay_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ProtectionEquipment.prototype.template.call (this) +
+                    `
+                    {{#maxAngleDiff}}<div><b>maxAngleDiff</b>: {{maxAngleDiff}}</div>{{/maxAngleDiff}}
+                    {{#maxFreqDiff}}<div><b>maxFreqDiff</b>: {{maxFreqDiff}}</div>{{/maxFreqDiff}}
+                    {{#maxVoltDiff}}<div><b>maxVoltDiff</b>: {{maxVoltDiff}}</div>{{/maxVoltDiff}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchrocheckRelay_collapse" aria-expanded="true" aria-controls="SynchrocheckRelay_collapse" style="margin-left: 10px;">SynchrocheckRelay</a></legend>
+                    <div id="SynchrocheckRelay_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ProtectionEquipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxAngleDiff'>maxAngleDiff: </label><div class='col-sm-8'><input id='maxAngleDiff' class='form-control' type='text'{{#maxAngleDiff}} value='{{maxAngleDiff}}'{{/maxAngleDiff}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxFreqDiff'>maxFreqDiff: </label><div class='col-sm-8'><input id='maxFreqDiff' class='form-control' type='text'{{#maxFreqDiff}} value='{{maxFreqDiff}}'{{/maxFreqDiff}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxVoltDiff'>maxVoltDiff: </label><div class='col-sm-8'><input id='maxVoltDiff' class='form-control' type='text'{{#maxVoltDiff}} value='{{maxVoltDiff}}'{{/maxVoltDiff}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

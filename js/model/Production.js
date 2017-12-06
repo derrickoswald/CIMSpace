@@ -14,69 +14,100 @@ define
          * Specifies the capability of the hydro generating unit to convert energy as a generator or pump.
          *
          */
-        class HydroEnergyConversionKind extends base.Element
+        var HydroEnergyConversionKind =
         {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.HydroEnergyConversionKind;
-                if (null == bucket)
-                   cim_data.HydroEnergyConversionKind = bucket = {};
-                bucket[this._id] = template;
-            }
+            generator: "generator",
+            pumpAndGenerator: "pumpAndGenerator"
+        };
+        Object.freeze (HydroEnergyConversionKind);
 
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.HydroEnergyConversionKind[this._id];
-            }
+        /**
+         * Kind of wind generating unit.
+         *
+         */
+        var WindGenUnitKind =
+        {
+            offshore: "offshore",
+            onshore: "onshore"
+        };
+        Object.freeze (WindGenUnitKind);
 
-            parse (context, sub)
-            {
-                var obj;
+        /**
+         * The type of hydro power plant.
+         *
+         */
+        var HydroPlantStorageKind =
+        {
+            runOfRiver: "runOfRiver",
+            pumpedStorage: "pumpedStorage",
+            storage: "storage"
+        };
+        Object.freeze (HydroPlantStorageKind);
 
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "HydroEnergyConversionKind";
-                base.parse_element (/<cim:HydroEnergyConversionKind.generator>([\s\S]*?)<\/cim:HydroEnergyConversionKind.generator>/g, obj, "generator", base.to_string, sub, context);
-                base.parse_element (/<cim:HydroEnergyConversionKind.pumpAndGenerator>([\s\S]*?)<\/cim:HydroEnergyConversionKind.pumpAndGenerator>/g, obj, "pumpAndGenerator", base.to_string, sub, context);
+        /**
+         * The source of controls for a generating unit.
+         *
+         */
+        var GeneratorControlSource =
+        {
+            unavailable: "unavailable",
+            offAGC: "offAGC",
+            onAGC: "onAGC",
+            plantControl: "plantControl"
+        };
+        Object.freeze (GeneratorControlSource);
 
-                var bucket = context.parsed.HydroEnergyConversionKind;
-                if (null == bucket)
-                   context.parsed.HydroEnergyConversionKind = bucket = {};
-                bucket[obj.id] = obj;
+        /**
+         * The type of emission.
+         *
+         */
+        var EmissionType =
+        {
+            sulfurDioxide: "sulfurDioxide",
+            carbonDioxide: "carbonDioxide",
+            nitrogenOxide: "nitrogenOxide",
+            hydrogenSulfide: "hydrogenSulfide",
+            chlorine: "chlorine",
+            carbonDisulfide: "carbonDisulfide"
+        };
+        Object.freeze (EmissionType);
 
-                return (obj);
-            }
+        /**
+         * Type of fuel.
+         *
+         */
+        var FuelType =
+        {
+            coal: "coal",
+            oil: "oil",
+            gas: "gas",
+            lignite: "lignite",
+            hardCoal: "hardCoal",
+            oilShale: "oilShale"
+        };
+        Object.freeze (FuelType);
 
-            export (obj, full)
-            {
-                var fields = [];
+        /**
+         * The source of the emission value.
+         *
+         */
+        var EmissionValueSource =
+        {
+            measured: "measured",
+            calculated: "calculated"
+        };
+        Object.freeze (EmissionValueSource);
 
-                base.export_element (obj, "HydroEnergyConversionKind", "generator", base.from_string, fields);
-                base.export_element (obj, "HydroEnergyConversionKind", "pumpAndGenerator", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#HydroEnergyConversionKind_collapse" aria-expanded="true" aria-controls="HydroEnergyConversionKind_collapse">HydroEnergyConversionKind</a>
-<div id="HydroEnergyConversionKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#generator}}<div><b>generator</b>: {{generator}}</div>{{/generator}}
-{{#pumpAndGenerator}}<div><b>pumpAndGenerator</b>: {{pumpAndGenerator}}</div>{{/pumpAndGenerator}}
-</div>
-`
-                );
-           }        }
+        /**
+         * Unit control modes.
+         *
+         */
+        var GeneratorControlMode =
+        {
+            setpoint: "setpoint",
+            pulse: "pulse"
+        };
+        Object.freeze (GeneratorControlMode);
 
         /**
          * Quantity of emission per fuel heat content.
@@ -139,89 +170,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Emission_collapse" aria-expanded="true" aria-controls="Emission_collapse">Emission</a>
-<div id="Emission_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Emission_collapse" aria-expanded="true" aria-controls="Emission_collapse" style="margin-left: 10px;">Emission</a></legend>
+                    <div id="Emission_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of wind generating unit.
-         *
-         */
-        class WindGenUnitKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.WindGenUnitKind;
-                if (null == bucket)
-                   cim_data.WindGenUnitKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.WindGenUnitKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "WindGenUnitKind";
-                base.parse_element (/<cim:WindGenUnitKind.offshore>([\s\S]*?)<\/cim:WindGenUnitKind.offshore>/g, obj, "offshore", base.to_string, sub, context);
-                base.parse_element (/<cim:WindGenUnitKind.onshore>([\s\S]*?)<\/cim:WindGenUnitKind.onshore>/g, obj, "onshore", base.to_string, sub, context);
-
-                var bucket = context.parsed.WindGenUnitKind;
-                if (null == bucket)
-                   context.parsed.WindGenUnitKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "WindGenUnitKind", "offshore", base.from_string, fields);
-                base.export_element (obj, "WindGenUnitKind", "onshore", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindGenUnitKind_collapse" aria-expanded="true" aria-controls="WindGenUnitKind_collapse">WindGenUnitKind</a>
-<div id="WindGenUnitKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#offshore}}<div><b>offshore</b>: {{offshore}}</div>{{/offshore}}
-{{#onshore}}<div><b>onshore</b>: {{onshore}}</div>{{/onshore}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Emission_collapse" aria-expanded="true" aria-controls="Emission_collapse" style="margin-left: 10px;">Emission</a></legend>
+                    <div id="Emission_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><input id='denominatorMultiplier' class='form-control' type='text'{{#denominatorMultiplier}} value='{{denominatorMultiplier}}'{{/denominatorMultiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><input id='denominatorUnit' class='form-control' type='text'{{#denominatorUnit}} value='{{denominatorUnit}}'{{/denominatorUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><input id='multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><input id='unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * A synchronous motor-driven pump, typically associated with a pumped storage plant.
@@ -288,23 +286,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#HydroPump_collapse" aria-expanded="true" aria-controls="HydroPump_collapse">HydroPump</a>
-<div id="HydroPump_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Equipment.prototype.template.call (this) +
-`
-{{#pumpDischAtMaxHead}}<div><b>pumpDischAtMaxHead</b>: {{pumpDischAtMaxHead}}</div>{{/pumpDischAtMaxHead}}
-{{#pumpDischAtMinHead}}<div><b>pumpDischAtMinHead</b>: {{pumpDischAtMinHead}}</div>{{/pumpDischAtMinHead}}
-{{#pumpPowerAtMaxHead}}<div><b>pumpPowerAtMaxHead</b>: {{pumpPowerAtMaxHead}}</div>{{/pumpPowerAtMaxHead}}
-{{#pumpPowerAtMinHead}}<div><b>pumpPowerAtMinHead</b>: {{pumpPowerAtMinHead}}</div>{{/pumpPowerAtMinHead}}
-{{#RotatingMachine}}<div><b>RotatingMachine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RotatingMachine}}&quot;);})'>{{RotatingMachine}}</a></div>{{/RotatingMachine}}
-{{#HydroPumpOpSchedule}}<div><b>HydroPumpOpSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPumpOpSchedule}}&quot;);})'>{{HydroPumpOpSchedule}}</a></div>{{/HydroPumpOpSchedule}}
-{{#HydroPowerPlant}}<div><b>HydroPowerPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPowerPlant}}&quot;);})'>{{HydroPowerPlant}}</a></div>{{/HydroPowerPlant}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroPump_collapse" aria-expanded="true" aria-controls="HydroPump_collapse" style="margin-left: 10px;">HydroPump</a></legend>
+                    <div id="HydroPump_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Equipment.prototype.template.call (this) +
+                    `
+                    {{#pumpDischAtMaxHead}}<div><b>pumpDischAtMaxHead</b>: {{pumpDischAtMaxHead}}</div>{{/pumpDischAtMaxHead}}
+                    {{#pumpDischAtMinHead}}<div><b>pumpDischAtMinHead</b>: {{pumpDischAtMinHead}}</div>{{/pumpDischAtMinHead}}
+                    {{#pumpPowerAtMaxHead}}<div><b>pumpPowerAtMaxHead</b>: {{pumpPowerAtMaxHead}}</div>{{/pumpPowerAtMaxHead}}
+                    {{#pumpPowerAtMinHead}}<div><b>pumpPowerAtMinHead</b>: {{pumpPowerAtMinHead}}</div>{{/pumpPowerAtMinHead}}
+                    {{#RotatingMachine}}<div><b>RotatingMachine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RotatingMachine}}&quot;);})'>{{RotatingMachine}}</a></div>{{/RotatingMachine}}
+                    {{#HydroPumpOpSchedule}}<div><b>HydroPumpOpSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPumpOpSchedule}}&quot;);})'>{{HydroPumpOpSchedule}}</a></div>{{/HydroPumpOpSchedule}}
+                    {{#HydroPowerPlant}}<div><b>HydroPowerPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPowerPlant}}&quot;);})'>{{HydroPowerPlant}}</a></div>{{/HydroPowerPlant}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroPump_collapse" aria-expanded="true" aria-controls="HydroPump_collapse" style="margin-left: 10px;">HydroPump</a></legend>
+                    <div id="HydroPump_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Equipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pumpDischAtMaxHead'>pumpDischAtMaxHead: </label><div class='col-sm-8'><input id='pumpDischAtMaxHead' class='form-control' type='text'{{#pumpDischAtMaxHead}} value='{{pumpDischAtMaxHead}}'{{/pumpDischAtMaxHead}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pumpDischAtMinHead'>pumpDischAtMinHead: </label><div class='col-sm-8'><input id='pumpDischAtMinHead' class='form-control' type='text'{{#pumpDischAtMinHead}} value='{{pumpDischAtMinHead}}'{{/pumpDischAtMinHead}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pumpPowerAtMaxHead'>pumpPowerAtMaxHead: </label><div class='col-sm-8'><input id='pumpPowerAtMaxHead' class='form-control' type='text'{{#pumpPowerAtMaxHead}} value='{{pumpPowerAtMaxHead}}'{{/pumpPowerAtMaxHead}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pumpPowerAtMinHead'>pumpPowerAtMinHead: </label><div class='col-sm-8'><input id='pumpPowerAtMinHead' class='form-control' type='text'{{#pumpPowerAtMinHead}} value='{{pumpPowerAtMinHead}}'{{/pumpPowerAtMinHead}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RotatingMachine'>RotatingMachine: </label><div class='col-sm-8'><input id='RotatingMachine' class='form-control' type='text'{{#RotatingMachine}} value='{{RotatingMachine}}'{{/RotatingMachine}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HydroPumpOpSchedule'>HydroPumpOpSchedule: </label><div class='col-sm-8'><input id='HydroPumpOpSchedule' class='form-control' type='text'{{#HydroPumpOpSchedule}} value='{{HydroPumpOpSchedule}}'{{/HydroPumpOpSchedule}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HydroPowerPlant'>HydroPowerPlant: </label><div class='col-sm-8'><input id='HydroPowerPlant' class='form-control' type='text'{{#HydroPowerPlant}} value='{{HydroPowerPlant}}'{{/HydroPowerPlant}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Relationship between penstock head loss (in meters) and  total discharge through the penstock (in cubic meters per second).
@@ -361,17 +396,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PenstockLossCurve_collapse" aria-expanded="true" aria-controls="PenstockLossCurve_collapse">PenstockLossCurve</a>
-<div id="PenstockLossCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#HydroGeneratingUnit}}<div><b>HydroGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroGeneratingUnit}}&quot;);})'>{{HydroGeneratingUnit}}</a></div>{{/HydroGeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PenstockLossCurve_collapse" aria-expanded="true" aria-controls="PenstockLossCurve_collapse" style="margin-left: 10px;">PenstockLossCurve</a></legend>
+                    <div id="PenstockLossCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#HydroGeneratingUnit}}<div><b>HydroGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroGeneratingUnit}}&quot;);})'>{{HydroGeneratingUnit}}</a></div>{{/HydroGeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PenstockLossCurve_collapse" aria-expanded="true" aria-controls="PenstockLossCurve_collapse" style="margin-left: 10px;">PenstockLossCurve</a></legend>
+                    <div id="PenstockLossCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HydroGeneratingUnit'>HydroGeneratingUnit: </label><div class='col-sm-8'><input id='HydroGeneratingUnit' class='form-control' type='text'{{#HydroGeneratingUnit}} value='{{HydroGeneratingUnit}}'{{/HydroGeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A set of thermal generating units for the production of electrical energy and process steam (usually from the output of the steam turbines).
@@ -438,22 +504,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CogenerationPlant_collapse" aria-expanded="true" aria-controls="CogenerationPlant_collapse">CogenerationPlant</a>
-<div id="CogenerationPlant_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-{{#cogenHPSendoutRating}}<div><b>cogenHPSendoutRating</b>: {{cogenHPSendoutRating}}</div>{{/cogenHPSendoutRating}}
-{{#cogenHPSteamRating}}<div><b>cogenHPSteamRating</b>: {{cogenHPSteamRating}}</div>{{/cogenHPSteamRating}}
-{{#cogenLPSendoutRating}}<div><b>cogenLPSendoutRating</b>: {{cogenLPSendoutRating}}</div>{{/cogenLPSendoutRating}}
-{{#cogenLPSteamRating}}<div><b>cogenLPSteamRating</b>: {{cogenLPSteamRating}}</div>{{/cogenLPSteamRating}}
-{{#ratedP}}<div><b>ratedP</b>: {{ratedP}}</div>{{/ratedP}}
-{{#SteamSendoutSchedule}}<div><b>SteamSendoutSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SteamSendoutSchedule}}&quot;);})'>{{SteamSendoutSchedule}}</a></div>{{/SteamSendoutSchedule}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CogenerationPlant_collapse" aria-expanded="true" aria-controls="CogenerationPlant_collapse" style="margin-left: 10px;">CogenerationPlant</a></legend>
+                    <div id="CogenerationPlant_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    {{#cogenHPSendoutRating}}<div><b>cogenHPSendoutRating</b>: {{cogenHPSendoutRating}}</div>{{/cogenHPSendoutRating}}
+                    {{#cogenHPSteamRating}}<div><b>cogenHPSteamRating</b>: {{cogenHPSteamRating}}</div>{{/cogenHPSteamRating}}
+                    {{#cogenLPSendoutRating}}<div><b>cogenLPSendoutRating</b>: {{cogenLPSendoutRating}}</div>{{/cogenLPSendoutRating}}
+                    {{#cogenLPSteamRating}}<div><b>cogenLPSteamRating</b>: {{cogenLPSteamRating}}</div>{{/cogenLPSteamRating}}
+                    {{#ratedP}}<div><b>ratedP</b>: {{ratedP}}</div>{{/ratedP}}
+                    {{#SteamSendoutSchedule}}<div><b>SteamSendoutSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SteamSendoutSchedule}}&quot;);})'>{{SteamSendoutSchedule}}</a></div>{{/SteamSendoutSchedule}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CogenerationPlant_collapse" aria-expanded="true" aria-controls="CogenerationPlant_collapse" style="margin-left: 10px;">CogenerationPlant</a></legend>
+                    <div id="CogenerationPlant_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cogenHPSendoutRating'>cogenHPSendoutRating: </label><div class='col-sm-8'><input id='cogenHPSendoutRating' class='form-control' type='text'{{#cogenHPSendoutRating}} value='{{cogenHPSendoutRating}}'{{/cogenHPSendoutRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cogenHPSteamRating'>cogenHPSteamRating: </label><div class='col-sm-8'><input id='cogenHPSteamRating' class='form-control' type='text'{{#cogenHPSteamRating}} value='{{cogenHPSteamRating}}'{{/cogenHPSteamRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cogenLPSendoutRating'>cogenLPSendoutRating: </label><div class='col-sm-8'><input id='cogenLPSendoutRating' class='form-control' type='text'{{#cogenLPSendoutRating}} value='{{cogenLPSendoutRating}}'{{/cogenLPSendoutRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cogenLPSteamRating'>cogenLPSteamRating: </label><div class='col-sm-8'><input id='cogenLPSteamRating' class='form-control' type='text'{{#cogenLPSteamRating}} value='{{cogenLPSteamRating}}'{{/cogenLPSteamRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedP'>ratedP: </label><div class='col-sm-8'><input id='ratedP' class='form-control' type='text'{{#ratedP}} value='{{ratedP}}'{{/ratedP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SteamSendoutSchedule'>SteamSendoutSchedule: </label><div class='col-sm-8'><input id='SteamSendoutSchedule' class='form-control' type='text'{{#SteamSendoutSchedule}} value='{{SteamSendoutSchedule}}'{{/SteamSendoutSchedule}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Relationship between unit incremental heat rate in (delta energy/time) per (delta active power) and unit output in active power.
@@ -512,89 +614,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#IncrementalHeatRateCurve_collapse" aria-expanded="true" aria-controls="IncrementalHeatRateCurve_collapse">IncrementalHeatRateCurve</a>
-<div id="IncrementalHeatRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
-{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IncrementalHeatRateCurve_collapse" aria-expanded="true" aria-controls="IncrementalHeatRateCurve_collapse" style="margin-left: 10px;">IncrementalHeatRateCurve</a></legend>
+                    <div id="IncrementalHeatRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
+                    {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * The type of hydro power plant.
-         *
-         */
-        class HydroPlantStorageKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.HydroPlantStorageKind;
-                if (null == bucket)
-                   cim_data.HydroPlantStorageKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.HydroPlantStorageKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "HydroPlantStorageKind";
-                base.parse_element (/<cim:HydroPlantStorageKind.runOfRiver>([\s\S]*?)<\/cim:HydroPlantStorageKind.runOfRiver>/g, obj, "runOfRiver", base.to_string, sub, context);
-                base.parse_element (/<cim:HydroPlantStorageKind.pumpedStorage>([\s\S]*?)<\/cim:HydroPlantStorageKind.pumpedStorage>/g, obj, "pumpedStorage", base.to_string, sub, context);
-                base.parse_element (/<cim:HydroPlantStorageKind.storage>([\s\S]*?)<\/cim:HydroPlantStorageKind.storage>/g, obj, "storage", base.to_string, sub, context);
-
-                var bucket = context.parsed.HydroPlantStorageKind;
-                if (null == bucket)
-                   context.parsed.HydroPlantStorageKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "HydroPlantStorageKind", "runOfRiver", base.from_string, fields);
-                base.export_element (obj, "HydroPlantStorageKind", "pumpedStorage", base.from_string, fields);
-                base.export_element (obj, "HydroPlantStorageKind", "storage", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#HydroPlantStorageKind_collapse" aria-expanded="true" aria-controls="HydroPlantStorageKind_collapse">HydroPlantStorageKind</a>
-<div id="HydroPlantStorageKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#runOfRiver}}<div><b>runOfRiver</b>: {{runOfRiver}}</div>{{/runOfRiver}}
-{{#pumpedStorage}}<div><b>pumpedStorage</b>: {{pumpedStorage}}</div>{{/pumpedStorage}}
-{{#storage}}<div><b>storage</b>: {{storage}}</div>{{/storage}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IncrementalHeatRateCurve_collapse" aria-expanded="true" aria-controls="IncrementalHeatRateCurve_collapse" style="margin-left: 10px;">IncrementalHeatRateCurve</a></legend>
+                    <div id="IncrementalHeatRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isNetGrossP'>isNetGrossP: </label><div class='col-sm-8'><input id='isNetGrossP' class='form-check-input' type='checkbox'{{#isNetGrossP}} checked{{/isNetGrossP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * A water storage facility within a hydro system, including: ponds, lakes, lagoons, and rivers.
@@ -675,29 +738,72 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Reservoir_collapse" aria-expanded="true" aria-controls="Reservoir_collapse">Reservoir</a>
-<div id="Reservoir_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-{{#activeStorageCapacity}}<div><b>activeStorageCapacity</b>: {{activeStorageCapacity}}</div>{{/activeStorageCapacity}}
-{{#energyStorageRating}}<div><b>energyStorageRating</b>: {{energyStorageRating}}</div>{{/energyStorageRating}}
-{{#fullSupplyLevel}}<div><b>fullSupplyLevel</b>: {{fullSupplyLevel}}</div>{{/fullSupplyLevel}}
-{{#grossCapacity}}<div><b>grossCapacity</b>: {{grossCapacity}}</div>{{/grossCapacity}}
-{{#normalMinOperateLevel}}<div><b>normalMinOperateLevel</b>: {{normalMinOperateLevel}}</div>{{/normalMinOperateLevel}}
-{{#riverOutletWorks}}<div><b>riverOutletWorks</b>: {{riverOutletWorks}}</div>{{/riverOutletWorks}}
-{{#spillTravelDelay}}<div><b>spillTravelDelay</b>: {{spillTravelDelay}}</div>{{/spillTravelDelay}}
-{{#spillwayCapacity}}<div><b>spillwayCapacity</b>: {{spillwayCapacity}}</div>{{/spillwayCapacity}}
-{{#spillwayCrestLength}}<div><b>spillwayCrestLength</b>: {{spillwayCrestLength}}</div>{{/spillwayCrestLength}}
-{{#spillwayCrestLevel}}<div><b>spillwayCrestLevel</b>: {{spillwayCrestLevel}}</div>{{/spillwayCrestLevel}}
-{{#spillWayGateType}}<div><b>spillWayGateType</b>: {{spillWayGateType}}</div>{{/spillWayGateType}}
-{{#TargetLevelSchedule}}<div><b>TargetLevelSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetLevelSchedule}}&quot;);})'>{{TargetLevelSchedule}}</a></div>{{/TargetLevelSchedule}}
-{{#SpillsFromReservoir}}<div><b>SpillsFromReservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SpillsFromReservoir}}&quot;);})'>{{SpillsFromReservoir}}</a></div>{{/SpillsFromReservoir}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Reservoir_collapse" aria-expanded="true" aria-controls="Reservoir_collapse" style="margin-left: 10px;">Reservoir</a></legend>
+                    <div id="Reservoir_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    {{#activeStorageCapacity}}<div><b>activeStorageCapacity</b>: {{activeStorageCapacity}}</div>{{/activeStorageCapacity}}
+                    {{#energyStorageRating}}<div><b>energyStorageRating</b>: {{energyStorageRating}}</div>{{/energyStorageRating}}
+                    {{#fullSupplyLevel}}<div><b>fullSupplyLevel</b>: {{fullSupplyLevel}}</div>{{/fullSupplyLevel}}
+                    {{#grossCapacity}}<div><b>grossCapacity</b>: {{grossCapacity}}</div>{{/grossCapacity}}
+                    {{#normalMinOperateLevel}}<div><b>normalMinOperateLevel</b>: {{normalMinOperateLevel}}</div>{{/normalMinOperateLevel}}
+                    {{#riverOutletWorks}}<div><b>riverOutletWorks</b>: {{riverOutletWorks}}</div>{{/riverOutletWorks}}
+                    {{#spillTravelDelay}}<div><b>spillTravelDelay</b>: {{spillTravelDelay}}</div>{{/spillTravelDelay}}
+                    {{#spillwayCapacity}}<div><b>spillwayCapacity</b>: {{spillwayCapacity}}</div>{{/spillwayCapacity}}
+                    {{#spillwayCrestLength}}<div><b>spillwayCrestLength</b>: {{spillwayCrestLength}}</div>{{/spillwayCrestLength}}
+                    {{#spillwayCrestLevel}}<div><b>spillwayCrestLevel</b>: {{spillwayCrestLevel}}</div>{{/spillwayCrestLevel}}
+                    {{#spillWayGateType}}<div><b>spillWayGateType</b>: {{spillWayGateType}}</div>{{/spillWayGateType}}
+                    {{#TargetLevelSchedule}}<div><b>TargetLevelSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetLevelSchedule}}&quot;);})'>{{TargetLevelSchedule}}</a></div>{{/TargetLevelSchedule}}
+                    {{#SpillsFromReservoir}}<div><b>SpillsFromReservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SpillsFromReservoir}}&quot;);})'>{{SpillsFromReservoir}}</a></div>{{/SpillsFromReservoir}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Reservoir_collapse" aria-expanded="true" aria-controls="Reservoir_collapse" style="margin-left: 10px;">Reservoir</a></legend>
+                    <div id="Reservoir_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='activeStorageCapacity'>activeStorageCapacity: </label><div class='col-sm-8'><input id='activeStorageCapacity' class='form-control' type='text'{{#activeStorageCapacity}} value='{{activeStorageCapacity}}'{{/activeStorageCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyStorageRating'>energyStorageRating: </label><div class='col-sm-8'><input id='energyStorageRating' class='form-control' type='text'{{#energyStorageRating}} value='{{energyStorageRating}}'{{/energyStorageRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fullSupplyLevel'>fullSupplyLevel: </label><div class='col-sm-8'><input id='fullSupplyLevel' class='form-control' type='text'{{#fullSupplyLevel}} value='{{fullSupplyLevel}}'{{/fullSupplyLevel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='grossCapacity'>grossCapacity: </label><div class='col-sm-8'><input id='grossCapacity' class='form-control' type='text'{{#grossCapacity}} value='{{grossCapacity}}'{{/grossCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='normalMinOperateLevel'>normalMinOperateLevel: </label><div class='col-sm-8'><input id='normalMinOperateLevel' class='form-control' type='text'{{#normalMinOperateLevel}} value='{{normalMinOperateLevel}}'{{/normalMinOperateLevel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='riverOutletWorks'>riverOutletWorks: </label><div class='col-sm-8'><input id='riverOutletWorks' class='form-control' type='text'{{#riverOutletWorks}} value='{{riverOutletWorks}}'{{/riverOutletWorks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='spillTravelDelay'>spillTravelDelay: </label><div class='col-sm-8'><input id='spillTravelDelay' class='form-control' type='text'{{#spillTravelDelay}} value='{{spillTravelDelay}}'{{/spillTravelDelay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='spillwayCapacity'>spillwayCapacity: </label><div class='col-sm-8'><input id='spillwayCapacity' class='form-control' type='text'{{#spillwayCapacity}} value='{{spillwayCapacity}}'{{/spillwayCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='spillwayCrestLength'>spillwayCrestLength: </label><div class='col-sm-8'><input id='spillwayCrestLength' class='form-control' type='text'{{#spillwayCrestLength}} value='{{spillwayCrestLength}}'{{/spillwayCrestLength}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='spillwayCrestLevel'>spillwayCrestLevel: </label><div class='col-sm-8'><input id='spillwayCrestLevel' class='form-control' type='text'{{#spillwayCrestLevel}} value='{{spillwayCrestLevel}}'{{/spillwayCrestLevel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='spillWayGateType'>spillWayGateType: </label><div class='col-sm-8'><input id='spillWayGateType' class='form-control' type='text'{{#spillWayGateType}} value='{{spillWayGateType}}'{{/spillWayGateType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TargetLevelSchedule'>TargetLevelSchedule: </label><div class='col-sm-8'><input id='TargetLevelSchedule' class='form-control' type='text'{{#TargetLevelSchedule}} value='{{TargetLevelSchedule}}'{{/TargetLevelSchedule}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SpillsFromReservoir'>SpillsFromReservoir: </label><div class='col-sm-8'><input id='SpillsFromReservoir' class='form-control' type='text'{{#SpillsFromReservoir}} value='{{SpillsFromReservoir}}'{{/SpillsFromReservoir}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Classification of level.
@@ -758,19 +864,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Classification_collapse" aria-expanded="true" aria-controls="Classification_collapse">Classification</a>
-<div id="Classification_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Classification_collapse" aria-expanded="true" aria-controls="Classification_collapse" style="margin-left: 10px;">Classification</a></legend>
+                    <div id="Classification_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Classification_collapse" aria-expanded="true" aria-controls="Classification_collapse" style="margin-left: 10px;">Classification</a></legend>
+                    <div id="Classification_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><input id='multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><input id='unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The quantity of ignition fuel (Y-axis) used to restart and repay the auxiliary power consumed versus the number of hours (X-axis) the unit was off line.
@@ -800,7 +939,7 @@ define
 
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "StartIgnFuelCurve";
-                base.parse_element (/<cim:StartIgnFuelCurve.ignitionFuelType>([\s\S]*?)<\/cim:StartIgnFuelCurve.ignitionFuelType>/g, obj, "ignitionFuelType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:StartIgnFuelCurve.ignitionFuelType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ignitionFuelType", sub, context);
                 base.parse_attribute (/<cim:StartIgnFuelCurve.StartupModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartupModel", sub, context);
 
                 var bucket = context.parsed.StartIgnFuelCurve;
@@ -827,18 +966,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StartIgnFuelCurve_collapse" aria-expanded="true" aria-controls="StartIgnFuelCurve_collapse">StartIgnFuelCurve</a>
-<div id="StartIgnFuelCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#ignitionFuelType}}<div><b>ignitionFuelType</b>: {{ignitionFuelType}}</div>{{/ignitionFuelType}}
-{{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);})'>{{StartupModel}}</a></div>{{/StartupModel}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartIgnFuelCurve_collapse" aria-expanded="true" aria-controls="StartIgnFuelCurve_collapse" style="margin-left: 10px;">StartIgnFuelCurve</a></legend>
+                    <div id="StartIgnFuelCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#ignitionFuelType}}<div><b>ignitionFuelType</b>: {{ignitionFuelType}}</div>{{/ignitionFuelType}}
+                    {{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);})'>{{StartupModel}}</a></div>{{/StartupModel}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.FuelType = []; if (!obj.ignitionFuelType) obj.FuelType.push ({ id: '', selected: true}); for (var property in FuelType) obj.FuelType.push ({ id: property, selected: obj.ignitionFuelType && obj.ignitionFuelType.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.FuelType;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartIgnFuelCurve_collapse" aria-expanded="true" aria-controls="StartIgnFuelCurve_collapse" style="margin-left: 10px;">StartIgnFuelCurve</a></legend>
+                    <div id="StartIgnFuelCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ignitionFuelType'>ignitionFuelType: </label><div class='col-sm-8'><select id='ignitionFuelType' class='form-control'>{{#FuelType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FuelType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartupModel'>StartupModel: </label><div class='col-sm-8'><input id='StartupModel' class='form-control' type='text'{{#StartupModel}} value='{{StartupModel}}'{{/StartupModel}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Relationship between reservoir volume and reservoir level.
@@ -895,17 +1068,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#LevelVsVolumeCurve_collapse" aria-expanded="true" aria-controls="LevelVsVolumeCurve_collapse">LevelVsVolumeCurve</a>
-<div id="LevelVsVolumeCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);})'>{{Reservoir}}</a></div>{{/Reservoir}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LevelVsVolumeCurve_collapse" aria-expanded="true" aria-controls="LevelVsVolumeCurve_collapse" style="margin-left: 10px;">LevelVsVolumeCurve</a></legend>
+                    <div id="LevelVsVolumeCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);})'>{{Reservoir}}</a></div>{{/Reservoir}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LevelVsVolumeCurve_collapse" aria-expanded="true" aria-controls="LevelVsVolumeCurve_collapse" style="margin-left: 10px;">LevelVsVolumeCurve</a></legend>
+                    <div id="LevelVsVolumeCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Reservoir'>Reservoir: </label><div class='col-sm-8'><input id='Reservoir' class='form-control' type='text'{{#Reservoir}} value='{{Reservoir}}'{{/Reservoir}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Relationship between the generating unit's gross active power output on the X-axis (measured at the terminals of the machine(s)) and the generating unit's net active power output on the Y-axis (based on utility-defined measurements at the power station).
@@ -962,17 +1166,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GrossToNetActivePowerCurve_collapse" aria-expanded="true" aria-controls="GrossToNetActivePowerCurve_collapse">GrossToNetActivePowerCurve</a>
-<div id="GrossToNetActivePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);})'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GrossToNetActivePowerCurve_collapse" aria-expanded="true" aria-controls="GrossToNetActivePowerCurve_collapse" style="margin-left: 10px;">GrossToNetActivePowerCurve</a></legend>
+                    <div id="GrossToNetActivePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);})'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GrossToNetActivePowerCurve_collapse" aria-expanded="true" aria-controls="GrossToNetActivePowerCurve_collapse" style="margin-left: 10px;">GrossToNetActivePowerCurve</a></legend>
+                    <div id="GrossToNetActivePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GeneratingUnit'>GeneratingUnit: </label><div class='col-sm-8'><input id='GeneratingUnit' class='form-control' type='text'{{#GeneratingUnit}} value='{{GeneratingUnit}}'{{/GeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Combustion turbine air compressor which is an integral part of a compressed air energy storage (CAES) plant.
@@ -1031,19 +1266,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AirCompressor_collapse" aria-expanded="true" aria-controls="AirCompressor_collapse">AirCompressor</a>
-<div id="AirCompressor_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-{{#airCompressorRating}}<div><b>airCompressorRating</b>: {{airCompressorRating}}</div>{{/airCompressorRating}}
-{{#CombustionTurbine}}<div><b>CombustionTurbine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombustionTurbine}}&quot;);})'>{{CombustionTurbine}}</a></div>{{/CombustionTurbine}}
-{{#CAESPlant}}<div><b>CAESPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CAESPlant}}&quot;);})'>{{CAESPlant}}</a></div>{{/CAESPlant}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AirCompressor_collapse" aria-expanded="true" aria-controls="AirCompressor_collapse" style="margin-left: 10px;">AirCompressor</a></legend>
+                    <div id="AirCompressor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    {{#airCompressorRating}}<div><b>airCompressorRating</b>: {{airCompressorRating}}</div>{{/airCompressorRating}}
+                    {{#CombustionTurbine}}<div><b>CombustionTurbine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombustionTurbine}}&quot;);})'>{{CombustionTurbine}}</a></div>{{/CombustionTurbine}}
+                    {{#CAESPlant}}<div><b>CAESPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CAESPlant}}&quot;);})'>{{CAESPlant}}</a></div>{{/CAESPlant}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AirCompressor_collapse" aria-expanded="true" aria-controls="AirCompressor_collapse" style="margin-left: 10px;">AirCompressor</a></legend>
+                    <div id="AirCompressor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='airCompressorRating'>airCompressorRating: </label><div class='col-sm-8'><input id='airCompressorRating' class='form-control' type='text'{{#airCompressorRating}} value='{{airCompressorRating}}'{{/airCompressorRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CombustionTurbine'>CombustionTurbine: </label><div class='col-sm-8'><input id='CombustionTurbine' class='form-control' type='text'{{#CombustionTurbine}} value='{{CombustionTurbine}}'{{/CombustionTurbine}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CAESPlant'>CAESPlant: </label><div class='col-sm-8'><input id='CAESPlant' class='form-control' type='text'{{#CAESPlant}} value='{{CAESPlant}}'{{/CAESPlant}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Heat generated, in energy pertime unit of elapsed time.
@@ -1106,21 +1374,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#HeatRate_collapse" aria-expanded="true" aria-controls="HeatRate_collapse">HeatRate</a>
-<div id="HeatRate_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HeatRate_collapse" aria-expanded="true" aria-controls="HeatRate_collapse" style="margin-left: 10px;">HeatRate</a></legend>
+                    <div id="HeatRate_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HeatRate_collapse" aria-expanded="true" aria-controls="HeatRate_collapse" style="margin-left: 10px;">HeatRate</a></legend>
+                    <div id="HeatRate_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><input id='denominatorMultiplier' class='form-control' type='text'{{#denominatorMultiplier}} value='{{denominatorMultiplier}}'{{/denominatorMultiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><input id='denominatorUnit' class='form-control' type='text'{{#denominatorUnit}} value='{{denominatorUnit}}'{{/denominatorUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><input id='multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><input id='unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The amount of fuel of a given type which is allocated for consumption over a specified period of time.
@@ -1152,7 +1455,7 @@ define
                 obj.cls = "FuelAllocationSchedule";
                 base.parse_element (/<cim:FuelAllocationSchedule.fuelAllocationEndDate>([\s\S]*?)<\/cim:FuelAllocationSchedule.fuelAllocationEndDate>/g, obj, "fuelAllocationEndDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:FuelAllocationSchedule.fuelAllocationStartDate>([\s\S]*?)<\/cim:FuelAllocationSchedule.fuelAllocationStartDate>/g, obj, "fuelAllocationStartDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:FuelAllocationSchedule.fuelType>([\s\S]*?)<\/cim:FuelAllocationSchedule.fuelType>/g, obj, "fuelType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:FuelAllocationSchedule.fuelType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "fuelType", sub, context);
                 base.parse_element (/<cim:FuelAllocationSchedule.maxFuelAllocation>([\s\S]*?)<\/cim:FuelAllocationSchedule.maxFuelAllocation>/g, obj, "maxFuelAllocation", base.to_float, sub, context);
                 base.parse_element (/<cim:FuelAllocationSchedule.minFuelAllocation>([\s\S]*?)<\/cim:FuelAllocationSchedule.minFuelAllocation>/g, obj, "minFuelAllocation", base.to_float, sub, context);
                 base.parse_attribute (/<cim:FuelAllocationSchedule.FossilFuel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FossilFuel", sub, context);
@@ -1187,177 +1490,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FuelAllocationSchedule_collapse" aria-expanded="true" aria-controls="FuelAllocationSchedule_collapse">FuelAllocationSchedule</a>
-<div id="FuelAllocationSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#fuelAllocationEndDate}}<div><b>fuelAllocationEndDate</b>: {{fuelAllocationEndDate}}</div>{{/fuelAllocationEndDate}}
-{{#fuelAllocationStartDate}}<div><b>fuelAllocationStartDate</b>: {{fuelAllocationStartDate}}</div>{{/fuelAllocationStartDate}}
-{{#fuelType}}<div><b>fuelType</b>: {{fuelType}}</div>{{/fuelType}}
-{{#maxFuelAllocation}}<div><b>maxFuelAllocation</b>: {{maxFuelAllocation}}</div>{{/maxFuelAllocation}}
-{{#minFuelAllocation}}<div><b>minFuelAllocation</b>: {{minFuelAllocation}}</div>{{/minFuelAllocation}}
-{{#FossilFuel}}<div><b>FossilFuel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FossilFuel}}&quot;);})'>{{FossilFuel}}</a></div>{{/FossilFuel}}
-{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FuelAllocationSchedule_collapse" aria-expanded="true" aria-controls="FuelAllocationSchedule_collapse" style="margin-left: 10px;">FuelAllocationSchedule</a></legend>
+                    <div id="FuelAllocationSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#fuelAllocationEndDate}}<div><b>fuelAllocationEndDate</b>: {{fuelAllocationEndDate}}</div>{{/fuelAllocationEndDate}}
+                    {{#fuelAllocationStartDate}}<div><b>fuelAllocationStartDate</b>: {{fuelAllocationStartDate}}</div>{{/fuelAllocationStartDate}}
+                    {{#fuelType}}<div><b>fuelType</b>: {{fuelType}}</div>{{/fuelType}}
+                    {{#maxFuelAllocation}}<div><b>maxFuelAllocation</b>: {{maxFuelAllocation}}</div>{{/maxFuelAllocation}}
+                    {{#minFuelAllocation}}<div><b>minFuelAllocation</b>: {{minFuelAllocation}}</div>{{/minFuelAllocation}}
+                    {{#FossilFuel}}<div><b>FossilFuel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FossilFuel}}&quot;);})'>{{FossilFuel}}</a></div>{{/FossilFuel}}
+                    {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * The source of controls for a generating unit.
-         *
-         */
-        class GeneratorControlSource extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.GeneratorControlSource;
-                if (null == bucket)
-                   cim_data.GeneratorControlSource = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.GeneratorControlSource[this._id];
+                super.condition (obj);
+                obj.FuelType = []; if (!obj.fuelType) obj.FuelType.push ({ id: '', selected: true}); for (var property in FuelType) obj.FuelType.push ({ id: property, selected: obj.fuelType && obj.fuelType.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "GeneratorControlSource";
-                base.parse_element (/<cim:GeneratorControlSource.unavailable>([\s\S]*?)<\/cim:GeneratorControlSource.unavailable>/g, obj, "unavailable", base.to_string, sub, context);
-                base.parse_element (/<cim:GeneratorControlSource.offAGC>([\s\S]*?)<\/cim:GeneratorControlSource.offAGC>/g, obj, "offAGC", base.to_string, sub, context);
-                base.parse_element (/<cim:GeneratorControlSource.onAGC>([\s\S]*?)<\/cim:GeneratorControlSource.onAGC>/g, obj, "onAGC", base.to_string, sub, context);
-                base.parse_element (/<cim:GeneratorControlSource.plantControl>([\s\S]*?)<\/cim:GeneratorControlSource.plantControl>/g, obj, "plantControl", base.to_string, sub, context);
-
-                var bucket = context.parsed.GeneratorControlSource;
-                if (null == bucket)
-                   context.parsed.GeneratorControlSource = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.FuelType;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "GeneratorControlSource", "unavailable", base.from_string, fields);
-                base.export_element (obj, "GeneratorControlSource", "offAGC", base.from_string, fields);
-                base.export_element (obj, "GeneratorControlSource", "onAGC", base.from_string, fields);
-                base.export_element (obj, "GeneratorControlSource", "plantControl", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GeneratorControlSource_collapse" aria-expanded="true" aria-controls="GeneratorControlSource_collapse">GeneratorControlSource</a>
-<div id="GeneratorControlSource_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#unavailable}}<div><b>unavailable</b>: {{unavailable}}</div>{{/unavailable}}
-{{#offAGC}}<div><b>offAGC</b>: {{offAGC}}</div>{{/offAGC}}
-{{#onAGC}}<div><b>onAGC</b>: {{onAGC}}</div>{{/onAGC}}
-{{#plantControl}}<div><b>plantControl</b>: {{plantControl}}</div>{{/plantControl}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FuelAllocationSchedule_collapse" aria-expanded="true" aria-controls="FuelAllocationSchedule_collapse" style="margin-left: 10px;">FuelAllocationSchedule</a></legend>
+                    <div id="FuelAllocationSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelAllocationEndDate'>fuelAllocationEndDate: </label><div class='col-sm-8'><input id='fuelAllocationEndDate' class='form-control' type='text'{{#fuelAllocationEndDate}} value='{{fuelAllocationEndDate}}'{{/fuelAllocationEndDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelAllocationStartDate'>fuelAllocationStartDate: </label><div class='col-sm-8'><input id='fuelAllocationStartDate' class='form-control' type='text'{{#fuelAllocationStartDate}} value='{{fuelAllocationStartDate}}'{{/fuelAllocationStartDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelType'>fuelType: </label><div class='col-sm-8'><select id='fuelType' class='form-control'>{{#FuelType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FuelType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxFuelAllocation'>maxFuelAllocation: </label><div class='col-sm-8'><input id='maxFuelAllocation' class='form-control' type='text'{{#maxFuelAllocation}} value='{{maxFuelAllocation}}'{{/maxFuelAllocation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minFuelAllocation'>minFuelAllocation: </label><div class='col-sm-8'><input id='minFuelAllocation' class='form-control' type='text'{{#minFuelAllocation}} value='{{minFuelAllocation}}'{{/minFuelAllocation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FossilFuel'>FossilFuel: </label><div class='col-sm-8'><input id='FossilFuel' class='form-control' type='text'{{#FossilFuel}} value='{{FossilFuel}}'{{/FossilFuel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        /**
-         * The type of emission.
-         *
-         */
-        class EmissionType extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.EmissionType;
-                if (null == bucket)
-                   cim_data.EmissionType = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.EmissionType[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "EmissionType";
-                base.parse_element (/<cim:EmissionType.sulfurDioxide>([\s\S]*?)<\/cim:EmissionType.sulfurDioxide>/g, obj, "sulfurDioxide", base.to_string, sub, context);
-                base.parse_element (/<cim:EmissionType.carbonDioxide>([\s\S]*?)<\/cim:EmissionType.carbonDioxide>/g, obj, "carbonDioxide", base.to_string, sub, context);
-                base.parse_element (/<cim:EmissionType.nitrogenOxide>([\s\S]*?)<\/cim:EmissionType.nitrogenOxide>/g, obj, "nitrogenOxide", base.to_string, sub, context);
-                base.parse_element (/<cim:EmissionType.hydrogenSulfide>([\s\S]*?)<\/cim:EmissionType.hydrogenSulfide>/g, obj, "hydrogenSulfide", base.to_string, sub, context);
-                base.parse_element (/<cim:EmissionType.chlorine>([\s\S]*?)<\/cim:EmissionType.chlorine>/g, obj, "chlorine", base.to_string, sub, context);
-                base.parse_element (/<cim:EmissionType.carbonDisulfide>([\s\S]*?)<\/cim:EmissionType.carbonDisulfide>/g, obj, "carbonDisulfide", base.to_string, sub, context);
-
-                var bucket = context.parsed.EmissionType;
-                if (null == bucket)
-                   context.parsed.EmissionType = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "EmissionType", "sulfurDioxide", base.from_string, fields);
-                base.export_element (obj, "EmissionType", "carbonDioxide", base.from_string, fields);
-                base.export_element (obj, "EmissionType", "nitrogenOxide", base.from_string, fields);
-                base.export_element (obj, "EmissionType", "hydrogenSulfide", base.from_string, fields);
-                base.export_element (obj, "EmissionType", "chlorine", base.from_string, fields);
-                base.export_element (obj, "EmissionType", "carbonDisulfide", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#EmissionType_collapse" aria-expanded="true" aria-controls="EmissionType_collapse">EmissionType</a>
-<div id="EmissionType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#sulfurDioxide}}<div><b>sulfurDioxide</b>: {{sulfurDioxide}}</div>{{/sulfurDioxide}}
-{{#carbonDioxide}}<div><b>carbonDioxide</b>: {{carbonDioxide}}</div>{{/carbonDioxide}}
-{{#nitrogenOxide}}<div><b>nitrogenOxide</b>: {{nitrogenOxide}}</div>{{/nitrogenOxide}}
-{{#hydrogenSulfide}}<div><b>hydrogenSulfide</b>: {{hydrogenSulfide}}</div>{{/hydrogenSulfide}}
-{{#chlorine}}<div><b>chlorine</b>: {{chlorine}}</div>{{/chlorine}}
-{{#carbonDisulfide}}<div><b>carbonDisulfide</b>: {{carbonDisulfide}}</div>{{/carbonDisulfide}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         /**
          * Relationship between unit efficiency in percent and unit output active power for a given net head in meters.
@@ -1414,17 +1602,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#HydroGeneratingEfficiencyCurve_collapse" aria-expanded="true" aria-controls="HydroGeneratingEfficiencyCurve_collapse">HydroGeneratingEfficiencyCurve</a>
-<div id="HydroGeneratingEfficiencyCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#HydroGeneratingUnit}}<div><b>HydroGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroGeneratingUnit}}&quot;);})'>{{HydroGeneratingUnit}}</a></div>{{/HydroGeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroGeneratingEfficiencyCurve_collapse" aria-expanded="true" aria-controls="HydroGeneratingEfficiencyCurve_collapse" style="margin-left: 10px;">HydroGeneratingEfficiencyCurve</a></legend>
+                    <div id="HydroGeneratingEfficiencyCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#HydroGeneratingUnit}}<div><b>HydroGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroGeneratingUnit}}&quot;);})'>{{HydroGeneratingUnit}}</a></div>{{/HydroGeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroGeneratingEfficiencyCurve_collapse" aria-expanded="true" aria-controls="HydroGeneratingEfficiencyCurve_collapse" style="margin-left: 10px;">HydroGeneratingEfficiencyCurve</a></legend>
+                    <div id="HydroGeneratingEfficiencyCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HydroGeneratingUnit'>HydroGeneratingUnit: </label><div class='col-sm-8'><input id='HydroGeneratingUnit' class='form-control' type='text'{{#HydroGeneratingUnit}} value='{{HydroGeneratingUnit}}'{{/HydroGeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The generating unit's Operator-approved current operating schedule (or plan), typically produced with the aid of unit commitment type analyses.
@@ -1481,17 +1700,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GenUnitOpSchedule_collapse" aria-expanded="true" aria-controls="GenUnitOpSchedule_collapse">GenUnitOpSchedule</a>
-<div id="GenUnitOpSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.RegularIntervalSchedule.prototype.template.call (this) +
-`
-{{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);})'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenUnitOpSchedule_collapse" aria-expanded="true" aria-controls="GenUnitOpSchedule_collapse" style="margin-left: 10px;">GenUnitOpSchedule</a></legend>
+                    <div id="GenUnitOpSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.template.call (this) +
+                    `
+                    {{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);})'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenUnitOpSchedule_collapse" aria-expanded="true" aria-controls="GenUnitOpSchedule_collapse" style="margin-left: 10px;">GenUnitOpSchedule</a></legend>
+                    <div id="GenUnitOpSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GeneratingUnit'>GeneratingUnit: </label><div class='col-sm-8'><input id='GeneratingUnit' class='form-control' type='text'{{#GeneratingUnit}} value='{{GeneratingUnit}}'{{/GeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Relationship between unit heat rate per active power (Y-axis) and  unit output (X-axis).
@@ -1550,98 +1800,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#HeatRateCurve_collapse" aria-expanded="true" aria-controls="HeatRateCurve_collapse">HeatRateCurve</a>
-<div id="HeatRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
-{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HeatRateCurve_collapse" aria-expanded="true" aria-controls="HeatRateCurve_collapse" style="margin-left: 10px;">HeatRateCurve</a></legend>
+                    <div id="HeatRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
+                    {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Type of fuel.
-         *
-         */
-        class FuelType extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.FuelType;
-                if (null == bucket)
-                   cim_data.FuelType = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.FuelType[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "FuelType";
-                base.parse_element (/<cim:FuelType.coal>([\s\S]*?)<\/cim:FuelType.coal>/g, obj, "coal", base.to_string, sub, context);
-                base.parse_element (/<cim:FuelType.oil>([\s\S]*?)<\/cim:FuelType.oil>/g, obj, "oil", base.to_string, sub, context);
-                base.parse_element (/<cim:FuelType.gas>([\s\S]*?)<\/cim:FuelType.gas>/g, obj, "gas", base.to_string, sub, context);
-                base.parse_element (/<cim:FuelType.lignite>([\s\S]*?)<\/cim:FuelType.lignite>/g, obj, "lignite", base.to_string, sub, context);
-                base.parse_element (/<cim:FuelType.hardCoal>([\s\S]*?)<\/cim:FuelType.hardCoal>/g, obj, "hardCoal", base.to_string, sub, context);
-                base.parse_element (/<cim:FuelType.oilShale>([\s\S]*?)<\/cim:FuelType.oilShale>/g, obj, "oilShale", base.to_string, sub, context);
-
-                var bucket = context.parsed.FuelType;
-                if (null == bucket)
-                   context.parsed.FuelType = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "FuelType", "coal", base.from_string, fields);
-                base.export_element (obj, "FuelType", "oil", base.from_string, fields);
-                base.export_element (obj, "FuelType", "gas", base.from_string, fields);
-                base.export_element (obj, "FuelType", "lignite", base.from_string, fields);
-                base.export_element (obj, "FuelType", "hardCoal", base.from_string, fields);
-                base.export_element (obj, "FuelType", "oilShale", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FuelType_collapse" aria-expanded="true" aria-controls="FuelType_collapse">FuelType</a>
-<div id="FuelType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#coal}}<div><b>coal</b>: {{coal}}</div>{{/coal}}
-{{#oil}}<div><b>oil</b>: {{oil}}</div>{{/oil}}
-{{#gas}}<div><b>gas</b>: {{gas}}</div>{{/gas}}
-{{#lignite}}<div><b>lignite</b>: {{lignite}}</div>{{/lignite}}
-{{#hardCoal}}<div><b>hardCoal</b>: {{hardCoal}}</div>{{/hardCoal}}
-{{#oilShale}}<div><b>oilShale</b>: {{oilShale}}</div>{{/oilShale}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HeatRateCurve_collapse" aria-expanded="true" aria-controls="HeatRateCurve_collapse" style="margin-left: 10px;">HeatRateCurve</a></legend>
+                    <div id="HeatRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isNetGrossP'>isNetGrossP: </label><div class='col-sm-8'><input id='isNetGrossP' class='form-check-input' type='checkbox'{{#isNetGrossP}} checked{{/isNetGrossP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Relationship between unit operating cost (Y-axis) and unit output active power (X-axis).
@@ -1700,18 +1902,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GenUnitOpCostCurve_collapse" aria-expanded="true" aria-controls="GenUnitOpCostCurve_collapse">GenUnitOpCostCurve</a>
-<div id="GenUnitOpCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
-{{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);})'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenUnitOpCostCurve_collapse" aria-expanded="true" aria-controls="GenUnitOpCostCurve_collapse" style="margin-left: 10px;">GenUnitOpCostCurve</a></legend>
+                    <div id="GenUnitOpCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
+                    {{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);})'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenUnitOpCostCurve_collapse" aria-expanded="true" aria-controls="GenUnitOpCostCurve_collapse" style="margin-left: 10px;">GenUnitOpCostCurve</a></legend>
+                    <div id="GenUnitOpCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isNetGrossP'>isNetGrossP: </label><div class='col-sm-8'><input id='isNetGrossP' class='form-check-input' type='checkbox'{{#isNetGrossP}} checked{{/isNetGrossP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GeneratingUnit'>GeneratingUnit: </label><div class='col-sm-8'><input id='GeneratingUnit' class='form-control' type='text'{{#GeneratingUnit}} value='{{GeneratingUnit}}'{{/GeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The cogeneration plant's steam sendout schedule in volume per time unit.
@@ -1766,17 +2000,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SteamSendoutSchedule_collapse" aria-expanded="true" aria-controls="SteamSendoutSchedule_collapse">SteamSendoutSchedule</a>
-<div id="SteamSendoutSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.RegularIntervalSchedule.prototype.template.call (this) +
-`
-{{#CogenerationPlant}}<div><b>CogenerationPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CogenerationPlant}}&quot;);})'>{{CogenerationPlant}}</a></div>{{/CogenerationPlant}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SteamSendoutSchedule_collapse" aria-expanded="true" aria-controls="SteamSendoutSchedule_collapse" style="margin-left: 10px;">SteamSendoutSchedule</a></legend>
+                    <div id="SteamSendoutSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.template.call (this) +
+                    `
+                    {{#CogenerationPlant}}<div><b>CogenerationPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CogenerationPlant}}&quot;);})'>{{CogenerationPlant}}</a></div>{{/CogenerationPlant}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SteamSendoutSchedule_collapse" aria-expanded="true" aria-controls="SteamSendoutSchedule_collapse" style="margin-left: 10px;">SteamSendoutSchedule</a></legend>
+                    <div id="SteamSendoutSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CogenerationPlant'>CogenerationPlant: </label><div class='col-sm-8'><input id='CogenerationPlant' class='form-control' type='text'{{#CogenerationPlant}} value='{{CogenerationPlant}}'{{/CogenerationPlant}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Relationship between tailbay head loss hight (y-axis) and the total discharge into the power station's tailbay volume per time unit (x-axis) .
@@ -1833,17 +2098,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TailbayLossCurve_collapse" aria-expanded="true" aria-controls="TailbayLossCurve_collapse">TailbayLossCurve</a>
-<div id="TailbayLossCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#HydroGeneratingUnit}}<div><b>HydroGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroGeneratingUnit}}&quot;);})'>{{HydroGeneratingUnit}}</a></div>{{/HydroGeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TailbayLossCurve_collapse" aria-expanded="true" aria-controls="TailbayLossCurve_collapse" style="margin-left: 10px;">TailbayLossCurve</a></legend>
+                    <div id="TailbayLossCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#HydroGeneratingUnit}}<div><b>HydroGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroGeneratingUnit}}&quot;);})'>{{HydroGeneratingUnit}}</a></div>{{/HydroGeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TailbayLossCurve_collapse" aria-expanded="true" aria-controls="TailbayLossCurve_collapse" style="margin-left: 10px;">TailbayLossCurve</a></legend>
+                    <div id="TailbayLossCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HydroGeneratingUnit'>HydroGeneratingUnit: </label><div class='col-sm-8'><input id='HydroGeneratingUnit' class='form-control' type='text'{{#HydroGeneratingUnit}} value='{{HydroGeneratingUnit}}'{{/HydroGeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Compressed air energy storage plant.
@@ -1904,88 +2200,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CAESPlant_collapse" aria-expanded="true" aria-controls="CAESPlant_collapse">CAESPlant</a>
-<div id="CAESPlant_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-{{#energyStorageCapacity}}<div><b>energyStorageCapacity</b>: {{energyStorageCapacity}}</div>{{/energyStorageCapacity}}
-{{#ratedCapacityP}}<div><b>ratedCapacityP</b>: {{ratedCapacityP}}</div>{{/ratedCapacityP}}
-{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
-{{#AirCompressor}}<div><b>AirCompressor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AirCompressor}}&quot;);})'>{{AirCompressor}}</a></div>{{/AirCompressor}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CAESPlant_collapse" aria-expanded="true" aria-controls="CAESPlant_collapse" style="margin-left: 10px;">CAESPlant</a></legend>
+                    <div id="CAESPlant_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    {{#energyStorageCapacity}}<div><b>energyStorageCapacity</b>: {{energyStorageCapacity}}</div>{{/energyStorageCapacity}}
+                    {{#ratedCapacityP}}<div><b>ratedCapacityP</b>: {{ratedCapacityP}}</div>{{/ratedCapacityP}}
+                    {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+                    {{#AirCompressor}}<div><b>AirCompressor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AirCompressor}}&quot;);})'>{{AirCompressor}}</a></div>{{/AirCompressor}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * The source of the emission value.
-         *
-         */
-        class EmissionValueSource extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.EmissionValueSource;
-                if (null == bucket)
-                   cim_data.EmissionValueSource = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.EmissionValueSource[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "EmissionValueSource";
-                base.parse_element (/<cim:EmissionValueSource.measured>([\s\S]*?)<\/cim:EmissionValueSource.measured>/g, obj, "measured", base.to_string, sub, context);
-                base.parse_element (/<cim:EmissionValueSource.calculated>([\s\S]*?)<\/cim:EmissionValueSource.calculated>/g, obj, "calculated", base.to_string, sub, context);
-
-                var bucket = context.parsed.EmissionValueSource;
-                if (null == bucket)
-                   context.parsed.EmissionValueSource = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "EmissionValueSource", "measured", base.from_string, fields);
-                base.export_element (obj, "EmissionValueSource", "calculated", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EmissionValueSource_collapse" aria-expanded="true" aria-controls="EmissionValueSource_collapse">EmissionValueSource</a>
-<div id="EmissionValueSource_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#measured}}<div><b>measured</b>: {{measured}}</div>{{/measured}}
-{{#calculated}}<div><b>calculated</b>: {{calculated}}</div>{{/calculated}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CAESPlant_collapse" aria-expanded="true" aria-controls="CAESPlant_collapse" style="margin-left: 10px;">CAESPlant</a></legend>
+                    <div id="CAESPlant_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyStorageCapacity'>energyStorageCapacity: </label><div class='col-sm-8'><input id='energyStorageCapacity' class='form-control' type='text'{{#energyStorageCapacity}} value='{{energyStorageCapacity}}'{{/energyStorageCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCapacityP'>ratedCapacityP: </label><div class='col-sm-8'><input id='ratedCapacityP' class='form-control' type='text'{{#ratedCapacityP}} value='{{ratedCapacityP}}'{{/ratedCapacityP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AirCompressor'>AirCompressor: </label><div class='col-sm-8'><input id='AirCompressor' class='form-control' type='text'{{#AirCompressor}} value='{{AirCompressor}}'{{/AirCompressor}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Relationship between the unit's emission rate in units of mass per hour (Y-axis) and output active power (X-axis) for a given type of emission.
@@ -2018,7 +2280,7 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "EmissionCurve";
                 base.parse_element (/<cim:EmissionCurve.emissionContent>([\s\S]*?)<\/cim:EmissionCurve.emissionContent>/g, obj, "emissionContent", base.to_string, sub, context);
-                base.parse_element (/<cim:EmissionCurve.emissionType>([\s\S]*?)<\/cim:EmissionCurve.emissionType>/g, obj, "emissionType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:EmissionCurve.emissionType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "emissionType", sub, context);
                 base.parse_element (/<cim:EmissionCurve.isNetGrossP>([\s\S]*?)<\/cim:EmissionCurve.isNetGrossP>/g, obj, "isNetGrossP", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:EmissionCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context);
 
@@ -2048,88 +2310,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EmissionCurve_collapse" aria-expanded="true" aria-controls="EmissionCurve_collapse">EmissionCurve</a>
-<div id="EmissionCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#emissionContent}}<div><b>emissionContent</b>: {{emissionContent}}</div>{{/emissionContent}}
-{{#emissionType}}<div><b>emissionType</b>: {{emissionType}}</div>{{/emissionType}}
-{{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
-{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EmissionCurve_collapse" aria-expanded="true" aria-controls="EmissionCurve_collapse" style="margin-left: 10px;">EmissionCurve</a></legend>
+                    <div id="EmissionCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#emissionContent}}<div><b>emissionContent</b>: {{emissionContent}}</div>{{/emissionContent}}
+                    {{#emissionType}}<div><b>emissionType</b>: {{emissionType}}</div>{{/emissionType}}
+                    {{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
+                    {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Unit control modes.
-         *
-         */
-        class GeneratorControlMode extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.GeneratorControlMode;
-                if (null == bucket)
-                   cim_data.GeneratorControlMode = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.GeneratorControlMode[this._id];
+                super.condition (obj);
+                obj.EmissionType = []; if (!obj.emissionType) obj.EmissionType.push ({ id: '', selected: true}); for (var property in EmissionType) obj.EmissionType.push ({ id: property, selected: obj.emissionType && obj.emissionType.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "GeneratorControlMode";
-                base.parse_element (/<cim:GeneratorControlMode.setpoint>([\s\S]*?)<\/cim:GeneratorControlMode.setpoint>/g, obj, "setpoint", base.to_string, sub, context);
-                base.parse_element (/<cim:GeneratorControlMode.pulse>([\s\S]*?)<\/cim:GeneratorControlMode.pulse>/g, obj, "pulse", base.to_string, sub, context);
-
-                var bucket = context.parsed.GeneratorControlMode;
-                if (null == bucket)
-                   context.parsed.GeneratorControlMode = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.EmissionType;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "GeneratorControlMode", "setpoint", base.from_string, fields);
-                base.export_element (obj, "GeneratorControlMode", "pulse", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GeneratorControlMode_collapse" aria-expanded="true" aria-controls="GeneratorControlMode_collapse">GeneratorControlMode</a>
-<div id="GeneratorControlMode_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#setpoint}}<div><b>setpoint</b>: {{setpoint}}</div>{{/setpoint}}
-{{#pulse}}<div><b>pulse</b>: {{pulse}}</div>{{/pulse}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EmissionCurve_collapse" aria-expanded="true" aria-controls="EmissionCurve_collapse" style="margin-left: 10px;">EmissionCurve</a></legend>
+                    <div id="EmissionCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emissionContent'>emissionContent: </label><div class='col-sm-8'><input id='emissionContent' class='form-control' type='text'{{#emissionContent}} value='{{emissionContent}}'{{/emissionContent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emissionType'>emissionType: </label><div class='col-sm-8'><select id='emissionType' class='form-control'>{{#EmissionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EmissionType}}</select></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isNetGrossP'>isNetGrossP: </label><div class='col-sm-8'><input id='isNetGrossP' class='form-check-input' type='checkbox'{{#isNetGrossP}} checked{{/isNetGrossP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * The quantity of main fuel (Y-axis) used to restart and repay the auxiliary power consumed versus the number of hours (X-axis) the unit was off line.
@@ -2159,7 +2389,7 @@ define
 
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "StartMainFuelCurve";
-                base.parse_element (/<cim:StartMainFuelCurve.mainFuelType>([\s\S]*?)<\/cim:StartMainFuelCurve.mainFuelType>/g, obj, "mainFuelType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:StartMainFuelCurve.mainFuelType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "mainFuelType", sub, context);
                 base.parse_attribute (/<cim:StartMainFuelCurve.StartupModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartupModel", sub, context);
 
                 var bucket = context.parsed.StartMainFuelCurve;
@@ -2186,18 +2416,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StartMainFuelCurve_collapse" aria-expanded="true" aria-controls="StartMainFuelCurve_collapse">StartMainFuelCurve</a>
-<div id="StartMainFuelCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#mainFuelType}}<div><b>mainFuelType</b>: {{mainFuelType}}</div>{{/mainFuelType}}
-{{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);})'>{{StartupModel}}</a></div>{{/StartupModel}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartMainFuelCurve_collapse" aria-expanded="true" aria-controls="StartMainFuelCurve_collapse" style="margin-left: 10px;">StartMainFuelCurve</a></legend>
+                    <div id="StartMainFuelCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#mainFuelType}}<div><b>mainFuelType</b>: {{mainFuelType}}</div>{{/mainFuelType}}
+                    {{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);})'>{{StartupModel}}</a></div>{{/StartupModel}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.FuelType = []; if (!obj.mainFuelType) obj.FuelType.push ({ id: '', selected: true}); for (var property in FuelType) obj.FuelType.push ({ id: property, selected: obj.mainFuelType && obj.mainFuelType.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.FuelType;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartMainFuelCurve_collapse" aria-expanded="true" aria-controls="StartMainFuelCurve_collapse" style="margin-left: 10px;">StartMainFuelCurve</a></legend>
+                    <div id="StartMainFuelCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mainFuelType'>mainFuelType: </label><div class='col-sm-8'><select id='mainFuelType' class='form-control'>{{#FuelType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FuelType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartupModel'>StartupModel: </label><div class='col-sm-8'><input id='StartupModel' class='form-control' type='text'{{#StartupModel}} value='{{StartupModel}}'{{/StartupModel}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Rate in gross active power/minute (Y-axis) at which a unit can be loaded versus the number of hours (X-axis) the unit was off line.
@@ -2254,18 +2518,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StartRampCurve_collapse" aria-expanded="true" aria-controls="StartRampCurve_collapse">StartRampCurve</a>
-<div id="StartRampCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#hotStandbyRamp}}<div><b>hotStandbyRamp</b>: {{hotStandbyRamp}}</div>{{/hotStandbyRamp}}
-{{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);})'>{{StartupModel}}</a></div>{{/StartupModel}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartRampCurve_collapse" aria-expanded="true" aria-controls="StartRampCurve_collapse" style="margin-left: 10px;">StartRampCurve</a></legend>
+                    <div id="StartRampCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#hotStandbyRamp}}<div><b>hotStandbyRamp</b>: {{hotStandbyRamp}}</div>{{/hotStandbyRamp}}
+                    {{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);})'>{{StartupModel}}</a></div>{{/StartupModel}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartRampCurve_collapse" aria-expanded="true" aria-controls="StartRampCurve_collapse" style="margin-left: 10px;">StartRampCurve</a></legend>
+                    <div id="StartRampCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hotStandbyRamp'>hotStandbyRamp: </label><div class='col-sm-8'><input id='hotStandbyRamp' class='form-control' type='text'{{#hotStandbyRamp}} value='{{hotStandbyRamp}}'{{/hotStandbyRamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartupModel'>StartupModel: </label><div class='col-sm-8'><input id='StartupModel' class='form-control' type='text'{{#StartupModel}} value='{{StartupModel}}'{{/StartupModel}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The fossil fuel consumed by the non-nuclear thermal generating unit.
@@ -2297,7 +2593,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "FossilFuel";
-                base.parse_element (/<cim:FossilFuel.fossilFuelType>([\s\S]*?)<\/cim:FossilFuel.fossilFuelType>/g, obj, "fossilFuelType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:FossilFuel.fossilFuelType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "fossilFuelType", sub, context);
                 base.parse_element (/<cim:FossilFuel.fuelCost>([\s\S]*?)<\/cim:FossilFuel.fuelCost>/g, obj, "fuelCost", base.to_string, sub, context);
                 base.parse_element (/<cim:FossilFuel.fuelDispatchCost>([\s\S]*?)<\/cim:FossilFuel.fuelDispatchCost>/g, obj, "fuelDispatchCost", base.to_string, sub, context);
                 base.parse_element (/<cim:FossilFuel.fuelEffFactor>([\s\S]*?)<\/cim:FossilFuel.fuelEffFactor>/g, obj, "fuelEffFactor", base.to_string, sub, context);
@@ -2342,27 +2638,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FossilFuel_collapse" aria-expanded="true" aria-controls="FossilFuel_collapse">FossilFuel</a>
-<div id="FossilFuel_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#fossilFuelType}}<div><b>fossilFuelType</b>: {{fossilFuelType}}</div>{{/fossilFuelType}}
-{{#fuelCost}}<div><b>fuelCost</b>: {{fuelCost}}</div>{{/fuelCost}}
-{{#fuelDispatchCost}}<div><b>fuelDispatchCost</b>: {{fuelDispatchCost}}</div>{{/fuelDispatchCost}}
-{{#fuelEffFactor}}<div><b>fuelEffFactor</b>: {{fuelEffFactor}}</div>{{/fuelEffFactor}}
-{{#fuelHandlingCost}}<div><b>fuelHandlingCost</b>: {{fuelHandlingCost}}</div>{{/fuelHandlingCost}}
-{{#fuelHeatContent}}<div><b>fuelHeatContent</b>: {{fuelHeatContent}}</div>{{/fuelHeatContent}}
-{{#fuelMixture}}<div><b>fuelMixture</b>: {{fuelMixture}}</div>{{/fuelMixture}}
-{{#fuelSulfur}}<div><b>fuelSulfur</b>: {{fuelSulfur}}</div>{{/fuelSulfur}}
-{{#highBreakpointP}}<div><b>highBreakpointP</b>: {{highBreakpointP}}</div>{{/highBreakpointP}}
-{{#lowBreakpointP}}<div><b>lowBreakpointP</b>: {{lowBreakpointP}}</div>{{/lowBreakpointP}}
-{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FossilFuel_collapse" aria-expanded="true" aria-controls="FossilFuel_collapse" style="margin-left: 10px;">FossilFuel</a></legend>
+                    <div id="FossilFuel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#fossilFuelType}}<div><b>fossilFuelType</b>: {{fossilFuelType}}</div>{{/fossilFuelType}}
+                    {{#fuelCost}}<div><b>fuelCost</b>: {{fuelCost}}</div>{{/fuelCost}}
+                    {{#fuelDispatchCost}}<div><b>fuelDispatchCost</b>: {{fuelDispatchCost}}</div>{{/fuelDispatchCost}}
+                    {{#fuelEffFactor}}<div><b>fuelEffFactor</b>: {{fuelEffFactor}}</div>{{/fuelEffFactor}}
+                    {{#fuelHandlingCost}}<div><b>fuelHandlingCost</b>: {{fuelHandlingCost}}</div>{{/fuelHandlingCost}}
+                    {{#fuelHeatContent}}<div><b>fuelHeatContent</b>: {{fuelHeatContent}}</div>{{/fuelHeatContent}}
+                    {{#fuelMixture}}<div><b>fuelMixture</b>: {{fuelMixture}}</div>{{/fuelMixture}}
+                    {{#fuelSulfur}}<div><b>fuelSulfur</b>: {{fuelSulfur}}</div>{{/fuelSulfur}}
+                    {{#highBreakpointP}}<div><b>highBreakpointP</b>: {{highBreakpointP}}</div>{{/highBreakpointP}}
+                    {{#lowBreakpointP}}<div><b>lowBreakpointP</b>: {{lowBreakpointP}}</div>{{/lowBreakpointP}}
+                    {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.FuelType = []; if (!obj.fossilFuelType) obj.FuelType.push ({ id: '', selected: true}); for (var property in FuelType) obj.FuelType.push ({ id: property, selected: obj.fossilFuelType && obj.fossilFuelType.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.FuelType;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FossilFuel_collapse" aria-expanded="true" aria-controls="FossilFuel_collapse" style="margin-left: 10px;">FossilFuel</a></legend>
+                    <div id="FossilFuel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fossilFuelType'>fossilFuelType: </label><div class='col-sm-8'><select id='fossilFuelType' class='form-control'>{{#FuelType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FuelType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelCost'>fuelCost: </label><div class='col-sm-8'><input id='fuelCost' class='form-control' type='text'{{#fuelCost}} value='{{fuelCost}}'{{/fuelCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelDispatchCost'>fuelDispatchCost: </label><div class='col-sm-8'><input id='fuelDispatchCost' class='form-control' type='text'{{#fuelDispatchCost}} value='{{fuelDispatchCost}}'{{/fuelDispatchCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelEffFactor'>fuelEffFactor: </label><div class='col-sm-8'><input id='fuelEffFactor' class='form-control' type='text'{{#fuelEffFactor}} value='{{fuelEffFactor}}'{{/fuelEffFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelHandlingCost'>fuelHandlingCost: </label><div class='col-sm-8'><input id='fuelHandlingCost' class='form-control' type='text'{{#fuelHandlingCost}} value='{{fuelHandlingCost}}'{{/fuelHandlingCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelHeatContent'>fuelHeatContent: </label><div class='col-sm-8'><input id='fuelHeatContent' class='form-control' type='text'{{#fuelHeatContent}} value='{{fuelHeatContent}}'{{/fuelHeatContent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelMixture'>fuelMixture: </label><div class='col-sm-8'><input id='fuelMixture' class='form-control' type='text'{{#fuelMixture}} value='{{fuelMixture}}'{{/fuelMixture}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelSulfur'>fuelSulfur: </label><div class='col-sm-8'><input id='fuelSulfur' class='form-control' type='text'{{#fuelSulfur}} value='{{fuelSulfur}}'{{/fuelSulfur}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='highBreakpointP'>highBreakpointP: </label><div class='col-sm-8'><input id='highBreakpointP' class='form-control' type='text'{{#highBreakpointP}} value='{{highBreakpointP}}'{{/highBreakpointP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowBreakpointP'>lowBreakpointP: </label><div class='col-sm-8'><input id='lowBreakpointP' class='form-control' type='text'{{#lowBreakpointP}} value='{{lowBreakpointP}}'{{/lowBreakpointP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A single or set of synchronous machines for converting mechanical power into alternating-current power.
@@ -2402,8 +2741,8 @@ define
                 base.parse_element (/<cim:GeneratingUnit.controlPulseLow>([\s\S]*?)<\/cim:GeneratingUnit.controlPulseLow>/g, obj, "controlPulseLow", base.to_string, sub, context);
                 base.parse_element (/<cim:GeneratingUnit.controlResponseRate>([\s\S]*?)<\/cim:GeneratingUnit.controlResponseRate>/g, obj, "controlResponseRate", base.to_string, sub, context);
                 base.parse_element (/<cim:GeneratingUnit.efficiency>([\s\S]*?)<\/cim:GeneratingUnit.efficiency>/g, obj, "efficiency", base.to_string, sub, context);
-                base.parse_element (/<cim:GeneratingUnit.genControlMode>([\s\S]*?)<\/cim:GeneratingUnit.genControlMode>/g, obj, "genControlMode", base.to_string, sub, context);
-                base.parse_element (/<cim:GeneratingUnit.genControlSource>([\s\S]*?)<\/cim:GeneratingUnit.genControlSource>/g, obj, "genControlSource", base.to_string, sub, context);
+                base.parse_attribute (/<cim:GeneratingUnit.genControlMode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "genControlMode", sub, context);
+                base.parse_attribute (/<cim:GeneratingUnit.genControlSource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "genControlSource", sub, context);
                 base.parse_element (/<cim:GeneratingUnit.governorMPL>([\s\S]*?)<\/cim:GeneratingUnit.governorMPL>/g, obj, "governorMPL", base.to_string, sub, context);
                 base.parse_element (/<cim:GeneratingUnit.governorSCD>([\s\S]*?)<\/cim:GeneratingUnit.governorSCD>/g, obj, "governorSCD", base.to_string, sub, context);
                 base.parse_element (/<cim:GeneratingUnit.highControlLimit>([\s\S]*?)<\/cim:GeneratingUnit.highControlLimit>/g, obj, "highControlLimit", base.to_string, sub, context);
@@ -2493,54 +2832,126 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GeneratingUnit_collapse" aria-expanded="true" aria-controls="GeneratingUnit_collapse">GeneratingUnit</a>
-<div id="GeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Equipment.prototype.template.call (this) +
-`
-{{#allocSpinResP}}<div><b>allocSpinResP</b>: {{allocSpinResP}}</div>{{/allocSpinResP}}
-{{#autoCntrlMarginP}}<div><b>autoCntrlMarginP</b>: {{autoCntrlMarginP}}</div>{{/autoCntrlMarginP}}
-{{#baseP}}<div><b>baseP</b>: {{baseP}}</div>{{/baseP}}
-{{#controlDeadband}}<div><b>controlDeadband</b>: {{controlDeadband}}</div>{{/controlDeadband}}
-{{#controlPulseHigh}}<div><b>controlPulseHigh</b>: {{controlPulseHigh}}</div>{{/controlPulseHigh}}
-{{#controlPulseLow}}<div><b>controlPulseLow</b>: {{controlPulseLow}}</div>{{/controlPulseLow}}
-{{#controlResponseRate}}<div><b>controlResponseRate</b>: {{controlResponseRate}}</div>{{/controlResponseRate}}
-{{#efficiency}}<div><b>efficiency</b>: {{efficiency}}</div>{{/efficiency}}
-{{#genControlMode}}<div><b>genControlMode</b>: {{genControlMode}}</div>{{/genControlMode}}
-{{#genControlSource}}<div><b>genControlSource</b>: {{genControlSource}}</div>{{/genControlSource}}
-{{#governorMPL}}<div><b>governorMPL</b>: {{governorMPL}}</div>{{/governorMPL}}
-{{#governorSCD}}<div><b>governorSCD</b>: {{governorSCD}}</div>{{/governorSCD}}
-{{#highControlLimit}}<div><b>highControlLimit</b>: {{highControlLimit}}</div>{{/highControlLimit}}
-{{#initialP}}<div><b>initialP</b>: {{initialP}}</div>{{/initialP}}
-{{#longPF}}<div><b>longPF</b>: {{longPF}}</div>{{/longPF}}
-{{#lowControlLimit}}<div><b>lowControlLimit</b>: {{lowControlLimit}}</div>{{/lowControlLimit}}
-{{#lowerRampRate}}<div><b>lowerRampRate</b>: {{lowerRampRate}}</div>{{/lowerRampRate}}
-{{#maxEconomicP}}<div><b>maxEconomicP</b>: {{maxEconomicP}}</div>{{/maxEconomicP}}
-{{#maximumAllowableSpinningReserve}}<div><b>maximumAllowableSpinningReserve</b>: {{maximumAllowableSpinningReserve}}</div>{{/maximumAllowableSpinningReserve}}
-{{#maxOperatingP}}<div><b>maxOperatingP</b>: {{maxOperatingP}}</div>{{/maxOperatingP}}
-{{#minEconomicP}}<div><b>minEconomicP</b>: {{minEconomicP}}</div>{{/minEconomicP}}
-{{#minimumOffTime}}<div><b>minimumOffTime</b>: {{minimumOffTime}}</div>{{/minimumOffTime}}
-{{#minOperatingP}}<div><b>minOperatingP</b>: {{minOperatingP}}</div>{{/minOperatingP}}
-{{#modelDetail}}<div><b>modelDetail</b>: {{modelDetail}}</div>{{/modelDetail}}
-{{#nominalP}}<div><b>nominalP</b>: {{nominalP}}</div>{{/nominalP}}
-{{#normalPF}}<div><b>normalPF</b>: {{normalPF}}</div>{{/normalPF}}
-{{#penaltyFactor}}<div><b>penaltyFactor</b>: {{penaltyFactor}}</div>{{/penaltyFactor}}
-{{#raiseRampRate}}<div><b>raiseRampRate</b>: {{raiseRampRate}}</div>{{/raiseRampRate}}
-{{#ratedGrossMaxP}}<div><b>ratedGrossMaxP</b>: {{ratedGrossMaxP}}</div>{{/ratedGrossMaxP}}
-{{#ratedGrossMinP}}<div><b>ratedGrossMinP</b>: {{ratedGrossMinP}}</div>{{/ratedGrossMinP}}
-{{#ratedNetMaxP}}<div><b>ratedNetMaxP</b>: {{ratedNetMaxP}}</div>{{/ratedNetMaxP}}
-{{#shortPF}}<div><b>shortPF</b>: {{shortPF}}</div>{{/shortPF}}
-{{#startupCost}}<div><b>startupCost</b>: {{startupCost}}</div>{{/startupCost}}
-{{#startupTime}}<div><b>startupTime</b>: {{startupTime}}</div>{{/startupTime}}
-{{#tieLinePF}}<div><b>tieLinePF</b>: {{tieLinePF}}</div>{{/tieLinePF}}
-{{#variableCost}}<div><b>variableCost</b>: {{variableCost}}</div>{{/variableCost}}
-{{#totalEfficiency}}<div><b>totalEfficiency</b>: {{totalEfficiency}}</div>{{/totalEfficiency}}
-{{#GenUnitOpSchedule}}<div><b>GenUnitOpSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenUnitOpSchedule}}&quot;);})'>{{GenUnitOpSchedule}}</a></div>{{/GenUnitOpSchedule}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GeneratingUnit_collapse" aria-expanded="true" aria-controls="GeneratingUnit_collapse" style="margin-left: 10px;">GeneratingUnit</a></legend>
+                    <div id="GeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Equipment.prototype.template.call (this) +
+                    `
+                    {{#allocSpinResP}}<div><b>allocSpinResP</b>: {{allocSpinResP}}</div>{{/allocSpinResP}}
+                    {{#autoCntrlMarginP}}<div><b>autoCntrlMarginP</b>: {{autoCntrlMarginP}}</div>{{/autoCntrlMarginP}}
+                    {{#baseP}}<div><b>baseP</b>: {{baseP}}</div>{{/baseP}}
+                    {{#controlDeadband}}<div><b>controlDeadband</b>: {{controlDeadband}}</div>{{/controlDeadband}}
+                    {{#controlPulseHigh}}<div><b>controlPulseHigh</b>: {{controlPulseHigh}}</div>{{/controlPulseHigh}}
+                    {{#controlPulseLow}}<div><b>controlPulseLow</b>: {{controlPulseLow}}</div>{{/controlPulseLow}}
+                    {{#controlResponseRate}}<div><b>controlResponseRate</b>: {{controlResponseRate}}</div>{{/controlResponseRate}}
+                    {{#efficiency}}<div><b>efficiency</b>: {{efficiency}}</div>{{/efficiency}}
+                    {{#genControlMode}}<div><b>genControlMode</b>: {{genControlMode}}</div>{{/genControlMode}}
+                    {{#genControlSource}}<div><b>genControlSource</b>: {{genControlSource}}</div>{{/genControlSource}}
+                    {{#governorMPL}}<div><b>governorMPL</b>: {{governorMPL}}</div>{{/governorMPL}}
+                    {{#governorSCD}}<div><b>governorSCD</b>: {{governorSCD}}</div>{{/governorSCD}}
+                    {{#highControlLimit}}<div><b>highControlLimit</b>: {{highControlLimit}}</div>{{/highControlLimit}}
+                    {{#initialP}}<div><b>initialP</b>: {{initialP}}</div>{{/initialP}}
+                    {{#longPF}}<div><b>longPF</b>: {{longPF}}</div>{{/longPF}}
+                    {{#lowControlLimit}}<div><b>lowControlLimit</b>: {{lowControlLimit}}</div>{{/lowControlLimit}}
+                    {{#lowerRampRate}}<div><b>lowerRampRate</b>: {{lowerRampRate}}</div>{{/lowerRampRate}}
+                    {{#maxEconomicP}}<div><b>maxEconomicP</b>: {{maxEconomicP}}</div>{{/maxEconomicP}}
+                    {{#maximumAllowableSpinningReserve}}<div><b>maximumAllowableSpinningReserve</b>: {{maximumAllowableSpinningReserve}}</div>{{/maximumAllowableSpinningReserve}}
+                    {{#maxOperatingP}}<div><b>maxOperatingP</b>: {{maxOperatingP}}</div>{{/maxOperatingP}}
+                    {{#minEconomicP}}<div><b>minEconomicP</b>: {{minEconomicP}}</div>{{/minEconomicP}}
+                    {{#minimumOffTime}}<div><b>minimumOffTime</b>: {{minimumOffTime}}</div>{{/minimumOffTime}}
+                    {{#minOperatingP}}<div><b>minOperatingP</b>: {{minOperatingP}}</div>{{/minOperatingP}}
+                    {{#modelDetail}}<div><b>modelDetail</b>: {{modelDetail}}</div>{{/modelDetail}}
+                    {{#nominalP}}<div><b>nominalP</b>: {{nominalP}}</div>{{/nominalP}}
+                    {{#normalPF}}<div><b>normalPF</b>: {{normalPF}}</div>{{/normalPF}}
+                    {{#penaltyFactor}}<div><b>penaltyFactor</b>: {{penaltyFactor}}</div>{{/penaltyFactor}}
+                    {{#raiseRampRate}}<div><b>raiseRampRate</b>: {{raiseRampRate}}</div>{{/raiseRampRate}}
+                    {{#ratedGrossMaxP}}<div><b>ratedGrossMaxP</b>: {{ratedGrossMaxP}}</div>{{/ratedGrossMaxP}}
+                    {{#ratedGrossMinP}}<div><b>ratedGrossMinP</b>: {{ratedGrossMinP}}</div>{{/ratedGrossMinP}}
+                    {{#ratedNetMaxP}}<div><b>ratedNetMaxP</b>: {{ratedNetMaxP}}</div>{{/ratedNetMaxP}}
+                    {{#shortPF}}<div><b>shortPF</b>: {{shortPF}}</div>{{/shortPF}}
+                    {{#startupCost}}<div><b>startupCost</b>: {{startupCost}}</div>{{/startupCost}}
+                    {{#startupTime}}<div><b>startupTime</b>: {{startupTime}}</div>{{/startupTime}}
+                    {{#tieLinePF}}<div><b>tieLinePF</b>: {{tieLinePF}}</div>{{/tieLinePF}}
+                    {{#variableCost}}<div><b>variableCost</b>: {{variableCost}}</div>{{/variableCost}}
+                    {{#totalEfficiency}}<div><b>totalEfficiency</b>: {{totalEfficiency}}</div>{{/totalEfficiency}}
+                    {{#GenUnitOpSchedule}}<div><b>GenUnitOpSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenUnitOpSchedule}}&quot;);})'>{{GenUnitOpSchedule}}</a></div>{{/GenUnitOpSchedule}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.GeneratorControlMode = []; if (!obj.genControlMode) obj.GeneratorControlMode.push ({ id: '', selected: true}); for (var property in GeneratorControlMode) obj.GeneratorControlMode.push ({ id: property, selected: obj.genControlMode && obj.genControlMode.endsWith ('.' + property)});
+                obj.GeneratorControlSource = []; if (!obj.genControlSource) obj.GeneratorControlSource.push ({ id: '', selected: true}); for (var property in GeneratorControlSource) obj.GeneratorControlSource.push ({ id: property, selected: obj.genControlSource && obj.genControlSource.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.GeneratorControlMode;
+                delete obj.GeneratorControlSource;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GeneratingUnit_collapse" aria-expanded="true" aria-controls="GeneratingUnit_collapse" style="margin-left: 10px;">GeneratingUnit</a></legend>
+                    <div id="GeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Equipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='allocSpinResP'>allocSpinResP: </label><div class='col-sm-8'><input id='allocSpinResP' class='form-control' type='text'{{#allocSpinResP}} value='{{allocSpinResP}}'{{/allocSpinResP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='autoCntrlMarginP'>autoCntrlMarginP: </label><div class='col-sm-8'><input id='autoCntrlMarginP' class='form-control' type='text'{{#autoCntrlMarginP}} value='{{autoCntrlMarginP}}'{{/autoCntrlMarginP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='baseP'>baseP: </label><div class='col-sm-8'><input id='baseP' class='form-control' type='text'{{#baseP}} value='{{baseP}}'{{/baseP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlDeadband'>controlDeadband: </label><div class='col-sm-8'><input id='controlDeadband' class='form-control' type='text'{{#controlDeadband}} value='{{controlDeadband}}'{{/controlDeadband}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlPulseHigh'>controlPulseHigh: </label><div class='col-sm-8'><input id='controlPulseHigh' class='form-control' type='text'{{#controlPulseHigh}} value='{{controlPulseHigh}}'{{/controlPulseHigh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlPulseLow'>controlPulseLow: </label><div class='col-sm-8'><input id='controlPulseLow' class='form-control' type='text'{{#controlPulseLow}} value='{{controlPulseLow}}'{{/controlPulseLow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlResponseRate'>controlResponseRate: </label><div class='col-sm-8'><input id='controlResponseRate' class='form-control' type='text'{{#controlResponseRate}} value='{{controlResponseRate}}'{{/controlResponseRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efficiency'>efficiency: </label><div class='col-sm-8'><input id='efficiency' class='form-control' type='text'{{#efficiency}} value='{{efficiency}}'{{/efficiency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='genControlMode'>genControlMode: </label><div class='col-sm-8'><select id='genControlMode' class='form-control'>{{#GeneratorControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/GeneratorControlMode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='genControlSource'>genControlSource: </label><div class='col-sm-8'><select id='genControlSource' class='form-control'>{{#GeneratorControlSource}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/GeneratorControlSource}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='governorMPL'>governorMPL: </label><div class='col-sm-8'><input id='governorMPL' class='form-control' type='text'{{#governorMPL}} value='{{governorMPL}}'{{/governorMPL}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='governorSCD'>governorSCD: </label><div class='col-sm-8'><input id='governorSCD' class='form-control' type='text'{{#governorSCD}} value='{{governorSCD}}'{{/governorSCD}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='highControlLimit'>highControlLimit: </label><div class='col-sm-8'><input id='highControlLimit' class='form-control' type='text'{{#highControlLimit}} value='{{highControlLimit}}'{{/highControlLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='initialP'>initialP: </label><div class='col-sm-8'><input id='initialP' class='form-control' type='text'{{#initialP}} value='{{initialP}}'{{/initialP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='longPF'>longPF: </label><div class='col-sm-8'><input id='longPF' class='form-control' type='text'{{#longPF}} value='{{longPF}}'{{/longPF}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowControlLimit'>lowControlLimit: </label><div class='col-sm-8'><input id='lowControlLimit' class='form-control' type='text'{{#lowControlLimit}} value='{{lowControlLimit}}'{{/lowControlLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowerRampRate'>lowerRampRate: </label><div class='col-sm-8'><input id='lowerRampRate' class='form-control' type='text'{{#lowerRampRate}} value='{{lowerRampRate}}'{{/lowerRampRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxEconomicP'>maxEconomicP: </label><div class='col-sm-8'><input id='maxEconomicP' class='form-control' type='text'{{#maxEconomicP}} value='{{maxEconomicP}}'{{/maxEconomicP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumAllowableSpinningReserve'>maximumAllowableSpinningReserve: </label><div class='col-sm-8'><input id='maximumAllowableSpinningReserve' class='form-control' type='text'{{#maximumAllowableSpinningReserve}} value='{{maximumAllowableSpinningReserve}}'{{/maximumAllowableSpinningReserve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxOperatingP'>maxOperatingP: </label><div class='col-sm-8'><input id='maxOperatingP' class='form-control' type='text'{{#maxOperatingP}} value='{{maxOperatingP}}'{{/maxOperatingP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minEconomicP'>minEconomicP: </label><div class='col-sm-8'><input id='minEconomicP' class='form-control' type='text'{{#minEconomicP}} value='{{minEconomicP}}'{{/minEconomicP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumOffTime'>minimumOffTime: </label><div class='col-sm-8'><input id='minimumOffTime' class='form-control' type='text'{{#minimumOffTime}} value='{{minimumOffTime}}'{{/minimumOffTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minOperatingP'>minOperatingP: </label><div class='col-sm-8'><input id='minOperatingP' class='form-control' type='text'{{#minOperatingP}} value='{{minOperatingP}}'{{/minOperatingP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='modelDetail'>modelDetail: </label><div class='col-sm-8'><input id='modelDetail' class='form-control' type='text'{{#modelDetail}} value='{{modelDetail}}'{{/modelDetail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nominalP'>nominalP: </label><div class='col-sm-8'><input id='nominalP' class='form-control' type='text'{{#nominalP}} value='{{nominalP}}'{{/nominalP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='normalPF'>normalPF: </label><div class='col-sm-8'><input id='normalPF' class='form-control' type='text'{{#normalPF}} value='{{normalPF}}'{{/normalPF}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='penaltyFactor'>penaltyFactor: </label><div class='col-sm-8'><input id='penaltyFactor' class='form-control' type='text'{{#penaltyFactor}} value='{{penaltyFactor}}'{{/penaltyFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='raiseRampRate'>raiseRampRate: </label><div class='col-sm-8'><input id='raiseRampRate' class='form-control' type='text'{{#raiseRampRate}} value='{{raiseRampRate}}'{{/raiseRampRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedGrossMaxP'>ratedGrossMaxP: </label><div class='col-sm-8'><input id='ratedGrossMaxP' class='form-control' type='text'{{#ratedGrossMaxP}} value='{{ratedGrossMaxP}}'{{/ratedGrossMaxP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedGrossMinP'>ratedGrossMinP: </label><div class='col-sm-8'><input id='ratedGrossMinP' class='form-control' type='text'{{#ratedGrossMinP}} value='{{ratedGrossMinP}}'{{/ratedGrossMinP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedNetMaxP'>ratedNetMaxP: </label><div class='col-sm-8'><input id='ratedNetMaxP' class='form-control' type='text'{{#ratedNetMaxP}} value='{{ratedNetMaxP}}'{{/ratedNetMaxP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shortPF'>shortPF: </label><div class='col-sm-8'><input id='shortPF' class='form-control' type='text'{{#shortPF}} value='{{shortPF}}'{{/shortPF}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startupCost'>startupCost: </label><div class='col-sm-8'><input id='startupCost' class='form-control' type='text'{{#startupCost}} value='{{startupCost}}'{{/startupCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startupTime'>startupTime: </label><div class='col-sm-8'><input id='startupTime' class='form-control' type='text'{{#startupTime}} value='{{startupTime}}'{{/startupTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tieLinePF'>tieLinePF: </label><div class='col-sm-8'><input id='tieLinePF' class='form-control' type='text'{{#tieLinePF}} value='{{tieLinePF}}'{{/tieLinePF}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='variableCost'>variableCost: </label><div class='col-sm-8'><input id='variableCost' class='form-control' type='text'{{#variableCost}} value='{{variableCost}}'{{/variableCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='totalEfficiency'>totalEfficiency: </label><div class='col-sm-8'><input id='totalEfficiency' class='form-control' type='text'{{#totalEfficiency}} value='{{totalEfficiency}}'{{/totalEfficiency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GenUnitOpSchedule'>GenUnitOpSchedule: </label><div class='col-sm-8'><input id='GenUnitOpSchedule' class='form-control' type='text'{{#GenUnitOpSchedule}} value='{{GenUnitOpSchedule}}'{{/GenUnitOpSchedule}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A hydro power station which can generate or pump.
@@ -2574,7 +2985,7 @@ define
                 obj.cls = "HydroPowerPlant";
                 base.parse_element (/<cim:HydroPowerPlant.dischargeTravelDelay>([\s\S]*?)<\/cim:HydroPowerPlant.dischargeTravelDelay>/g, obj, "dischargeTravelDelay", base.to_string, sub, context);
                 base.parse_element (/<cim:HydroPowerPlant.genRatedP>([\s\S]*?)<\/cim:HydroPowerPlant.genRatedP>/g, obj, "genRatedP", base.to_string, sub, context);
-                base.parse_element (/<cim:HydroPowerPlant.hydroPlantStorageType>([\s\S]*?)<\/cim:HydroPowerPlant.hydroPlantStorageType>/g, obj, "hydroPlantStorageType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:HydroPowerPlant.hydroPlantStorageType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "hydroPlantStorageType", sub, context);
                 base.parse_element (/<cim:HydroPowerPlant.penstockType>([\s\S]*?)<\/cim:HydroPowerPlant.penstockType>/g, obj, "penstockType", base.to_string, sub, context);
                 base.parse_element (/<cim:HydroPowerPlant.plantDischargeCapacity>([\s\S]*?)<\/cim:HydroPowerPlant.plantDischargeCapacity>/g, obj, "plantDischargeCapacity", base.to_string, sub, context);
                 base.parse_element (/<cim:HydroPowerPlant.plantRatedHead>([\s\S]*?)<\/cim:HydroPowerPlant.plantRatedHead>/g, obj, "plantRatedHead", base.to_string, sub, context);
@@ -2617,27 +3028,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#HydroPowerPlant_collapse" aria-expanded="true" aria-controls="HydroPowerPlant_collapse">HydroPowerPlant</a>
-<div id="HydroPowerPlant_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-{{#dischargeTravelDelay}}<div><b>dischargeTravelDelay</b>: {{dischargeTravelDelay}}</div>{{/dischargeTravelDelay}}
-{{#genRatedP}}<div><b>genRatedP</b>: {{genRatedP}}</div>{{/genRatedP}}
-{{#hydroPlantStorageType}}<div><b>hydroPlantStorageType</b>: {{hydroPlantStorageType}}</div>{{/hydroPlantStorageType}}
-{{#penstockType}}<div><b>penstockType</b>: {{penstockType}}</div>{{/penstockType}}
-{{#plantDischargeCapacity}}<div><b>plantDischargeCapacity</b>: {{plantDischargeCapacity}}</div>{{/plantDischargeCapacity}}
-{{#plantRatedHead}}<div><b>plantRatedHead</b>: {{plantRatedHead}}</div>{{/plantRatedHead}}
-{{#pumpRatedP}}<div><b>pumpRatedP</b>: {{pumpRatedP}}</div>{{/pumpRatedP}}
-{{#surgeTankCode}}<div><b>surgeTankCode</b>: {{surgeTankCode}}</div>{{/surgeTankCode}}
-{{#surgeTankCrestLevel}}<div><b>surgeTankCrestLevel</b>: {{surgeTankCrestLevel}}</div>{{/surgeTankCrestLevel}}
-{{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);})'>{{Reservoir}}</a></div>{{/Reservoir}}
-{{#GenSourcePumpDischargeReservoir}}<div><b>GenSourcePumpDischargeReservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenSourcePumpDischargeReservoir}}&quot;);})'>{{GenSourcePumpDischargeReservoir}}</a></div>{{/GenSourcePumpDischargeReservoir}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroPowerPlant_collapse" aria-expanded="true" aria-controls="HydroPowerPlant_collapse" style="margin-left: 10px;">HydroPowerPlant</a></legend>
+                    <div id="HydroPowerPlant_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    {{#dischargeTravelDelay}}<div><b>dischargeTravelDelay</b>: {{dischargeTravelDelay}}</div>{{/dischargeTravelDelay}}
+                    {{#genRatedP}}<div><b>genRatedP</b>: {{genRatedP}}</div>{{/genRatedP}}
+                    {{#hydroPlantStorageType}}<div><b>hydroPlantStorageType</b>: {{hydroPlantStorageType}}</div>{{/hydroPlantStorageType}}
+                    {{#penstockType}}<div><b>penstockType</b>: {{penstockType}}</div>{{/penstockType}}
+                    {{#plantDischargeCapacity}}<div><b>plantDischargeCapacity</b>: {{plantDischargeCapacity}}</div>{{/plantDischargeCapacity}}
+                    {{#plantRatedHead}}<div><b>plantRatedHead</b>: {{plantRatedHead}}</div>{{/plantRatedHead}}
+                    {{#pumpRatedP}}<div><b>pumpRatedP</b>: {{pumpRatedP}}</div>{{/pumpRatedP}}
+                    {{#surgeTankCode}}<div><b>surgeTankCode</b>: {{surgeTankCode}}</div>{{/surgeTankCode}}
+                    {{#surgeTankCrestLevel}}<div><b>surgeTankCrestLevel</b>: {{surgeTankCrestLevel}}</div>{{/surgeTankCrestLevel}}
+                    {{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);})'>{{Reservoir}}</a></div>{{/Reservoir}}
+                    {{#GenSourcePumpDischargeReservoir}}<div><b>GenSourcePumpDischargeReservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenSourcePumpDischargeReservoir}}&quot;);})'>{{GenSourcePumpDischargeReservoir}}</a></div>{{/GenSourcePumpDischargeReservoir}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.HydroPlantStorageKind = []; if (!obj.hydroPlantStorageType) obj.HydroPlantStorageKind.push ({ id: '', selected: true}); for (var property in HydroPlantStorageKind) obj.HydroPlantStorageKind.push ({ id: property, selected: obj.hydroPlantStorageType && obj.hydroPlantStorageType.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.HydroPlantStorageKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroPowerPlant_collapse" aria-expanded="true" aria-controls="HydroPowerPlant_collapse" style="margin-left: 10px;">HydroPowerPlant</a></legend>
+                    <div id="HydroPowerPlant_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dischargeTravelDelay'>dischargeTravelDelay: </label><div class='col-sm-8'><input id='dischargeTravelDelay' class='form-control' type='text'{{#dischargeTravelDelay}} value='{{dischargeTravelDelay}}'{{/dischargeTravelDelay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='genRatedP'>genRatedP: </label><div class='col-sm-8'><input id='genRatedP' class='form-control' type='text'{{#genRatedP}} value='{{genRatedP}}'{{/genRatedP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hydroPlantStorageType'>hydroPlantStorageType: </label><div class='col-sm-8'><select id='hydroPlantStorageType' class='form-control'>{{#HydroPlantStorageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/HydroPlantStorageKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='penstockType'>penstockType: </label><div class='col-sm-8'><input id='penstockType' class='form-control' type='text'{{#penstockType}} value='{{penstockType}}'{{/penstockType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plantDischargeCapacity'>plantDischargeCapacity: </label><div class='col-sm-8'><input id='plantDischargeCapacity' class='form-control' type='text'{{#plantDischargeCapacity}} value='{{plantDischargeCapacity}}'{{/plantDischargeCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plantRatedHead'>plantRatedHead: </label><div class='col-sm-8'><input id='plantRatedHead' class='form-control' type='text'{{#plantRatedHead}} value='{{plantRatedHead}}'{{/plantRatedHead}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pumpRatedP'>pumpRatedP: </label><div class='col-sm-8'><input id='pumpRatedP' class='form-control' type='text'{{#pumpRatedP}} value='{{pumpRatedP}}'{{/pumpRatedP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='surgeTankCode'>surgeTankCode: </label><div class='col-sm-8'><input id='surgeTankCode' class='form-control' type='text'{{#surgeTankCode}} value='{{surgeTankCode}}'{{/surgeTankCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='surgeTankCrestLevel'>surgeTankCrestLevel: </label><div class='col-sm-8'><input id='surgeTankCrestLevel' class='form-control' type='text'{{#surgeTankCrestLevel}} value='{{surgeTankCrestLevel}}'{{/surgeTankCrestLevel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Reservoir'>Reservoir: </label><div class='col-sm-8'><input id='Reservoir' class='form-control' type='text'{{#Reservoir}} value='{{Reservoir}}'{{/Reservoir}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GenSourcePumpDischargeReservoir'>GenSourcePumpDischargeReservoir: </label><div class='col-sm-8'><input id='GenSourcePumpDischargeReservoir' class='form-control' type='text'{{#GenSourcePumpDischargeReservoir}} value='{{GenSourcePumpDischargeReservoir}}'{{/GenSourcePumpDischargeReservoir}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The hydro pump's Operator-approved current operating schedule (or plan), typically produced with the aid of unit commitment type analyses.
@@ -2694,17 +3148,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#HydroPumpOpSchedule_collapse" aria-expanded="true" aria-controls="HydroPumpOpSchedule_collapse">HydroPumpOpSchedule</a>
-<div id="HydroPumpOpSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.RegularIntervalSchedule.prototype.template.call (this) +
-`
-{{#HydroPump}}<div><b>HydroPump</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPump}}&quot;);})'>{{HydroPump}}</a></div>{{/HydroPump}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroPumpOpSchedule_collapse" aria-expanded="true" aria-controls="HydroPumpOpSchedule_collapse" style="margin-left: 10px;">HydroPumpOpSchedule</a></legend>
+                    <div id="HydroPumpOpSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.template.call (this) +
+                    `
+                    {{#HydroPump}}<div><b>HydroPump</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPump}}&quot;);})'>{{HydroPump}}</a></div>{{/HydroPump}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroPumpOpSchedule_collapse" aria-expanded="true" aria-controls="HydroPumpOpSchedule_collapse" style="margin-left: 10px;">HydroPumpOpSchedule</a></legend>
+                    <div id="HydroPumpOpSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HydroPump'>HydroPump: </label><div class='col-sm-8'><input id='HydroPump' class='form-control' type='text'{{#HydroPump}} value='{{HydroPump}}'{{/HydroPump}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Relationship between the rate in gross active power/minute (Y-axis) at which a unit should be shutdown and its present gross MW output (X-axis).
@@ -2763,19 +3248,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ShutdownCurve_collapse" aria-expanded="true" aria-controls="ShutdownCurve_collapse">ShutdownCurve</a>
-<div id="ShutdownCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#shutdownCost}}<div><b>shutdownCost</b>: {{shutdownCost}}</div>{{/shutdownCost}}
-{{#shutdownDate}}<div><b>shutdownDate</b>: {{shutdownDate}}</div>{{/shutdownDate}}
-{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShutdownCurve_collapse" aria-expanded="true" aria-controls="ShutdownCurve_collapse" style="margin-left: 10px;">ShutdownCurve</a></legend>
+                    <div id="ShutdownCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#shutdownCost}}<div><b>shutdownCost</b>: {{shutdownCost}}</div>{{/shutdownCost}}
+                    {{#shutdownDate}}<div><b>shutdownDate</b>: {{shutdownDate}}</div>{{/shutdownDate}}
+                    {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShutdownCurve_collapse" aria-expanded="true" aria-controls="ShutdownCurve_collapse" style="margin-left: 10px;">ShutdownCurve</a></legend>
+                    <div id="ShutdownCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shutdownCost'>shutdownCost: </label><div class='col-sm-8'><input id='shutdownCost' class='form-control' type='text'{{#shutdownCost}} value='{{shutdownCost}}'{{/shutdownCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shutdownDate'>shutdownDate: </label><div class='col-sm-8'><input id='shutdownDate' class='form-control' type='text'{{#shutdownDate}} value='{{shutdownDate}}'{{/shutdownDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Accounts for tracking emissions usage and credits for thermal generating units.
@@ -2807,8 +3325,8 @@ define
 
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "EmissionAccount";
-                base.parse_element (/<cim:EmissionAccount.emissionType>([\s\S]*?)<\/cim:EmissionAccount.emissionType>/g, obj, "emissionType", base.to_string, sub, context);
-                base.parse_element (/<cim:EmissionAccount.emissionValueSource>([\s\S]*?)<\/cim:EmissionAccount.emissionValueSource>/g, obj, "emissionValueSource", base.to_string, sub, context);
+                base.parse_attribute (/<cim:EmissionAccount.emissionType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "emissionType", sub, context);
+                base.parse_attribute (/<cim:EmissionAccount.emissionValueSource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "emissionValueSource", sub, context);
                 base.parse_attribute (/<cim:EmissionAccount.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context);
 
                 var bucket = context.parsed.EmissionAccount;
@@ -2836,19 +3354,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EmissionAccount_collapse" aria-expanded="true" aria-controls="EmissionAccount_collapse">EmissionAccount</a>
-<div id="EmissionAccount_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#emissionType}}<div><b>emissionType</b>: {{emissionType}}</div>{{/emissionType}}
-{{#emissionValueSource}}<div><b>emissionValueSource</b>: {{emissionValueSource}}</div>{{/emissionValueSource}}
-{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EmissionAccount_collapse" aria-expanded="true" aria-controls="EmissionAccount_collapse" style="margin-left: 10px;">EmissionAccount</a></legend>
+                    <div id="EmissionAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#emissionType}}<div><b>emissionType</b>: {{emissionType}}</div>{{/emissionType}}
+                    {{#emissionValueSource}}<div><b>emissionValueSource</b>: {{emissionValueSource}}</div>{{/emissionValueSource}}
+                    {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.EmissionType = []; if (!obj.emissionType) obj.EmissionType.push ({ id: '', selected: true}); for (var property in EmissionType) obj.EmissionType.push ({ id: property, selected: obj.emissionType && obj.emissionType.endsWith ('.' + property)});
+                obj.EmissionValueSource = []; if (!obj.emissionValueSource) obj.EmissionValueSource.push ({ id: '', selected: true}); for (var property in EmissionValueSource) obj.EmissionValueSource.push ({ id: property, selected: obj.emissionValueSource && obj.emissionValueSource.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.EmissionType;
+                delete obj.EmissionValueSource;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EmissionAccount_collapse" aria-expanded="true" aria-controls="EmissionAccount_collapse" style="margin-left: 10px;">EmissionAccount</a></legend>
+                    <div id="EmissionAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emissionType'>emissionType: </label><div class='col-sm-8'><select id='emissionType' class='form-control'>{{#EmissionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EmissionType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emissionValueSource'>emissionValueSource: </label><div class='col-sm-8'><select id='emissionValueSource' class='form-control'>{{#EmissionValueSource}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EmissionValueSource}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Relationship between unit heat input in energy per time for main fuel (Y1-axis) and supplemental fuel (Y2-axis) versus unit output in active power (X-axis).
@@ -2915,22 +3470,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#HeatInputCurve_collapse" aria-expanded="true" aria-controls="HeatInputCurve_collapse">HeatInputCurve</a>
-<div id="HeatInputCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#auxPowerMult}}<div><b>auxPowerMult</b>: {{auxPowerMult}}</div>{{/auxPowerMult}}
-{{#auxPowerOffset}}<div><b>auxPowerOffset</b>: {{auxPowerOffset}}</div>{{/auxPowerOffset}}
-{{#heatInputEff}}<div><b>heatInputEff</b>: {{heatInputEff}}</div>{{/heatInputEff}}
-{{#heatInputOffset}}<div><b>heatInputOffset</b>: {{heatInputOffset}}</div>{{/heatInputOffset}}
-{{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
-{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HeatInputCurve_collapse" aria-expanded="true" aria-controls="HeatInputCurve_collapse" style="margin-left: 10px;">HeatInputCurve</a></legend>
+                    <div id="HeatInputCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#auxPowerMult}}<div><b>auxPowerMult</b>: {{auxPowerMult}}</div>{{/auxPowerMult}}
+                    {{#auxPowerOffset}}<div><b>auxPowerOffset</b>: {{auxPowerOffset}}</div>{{/auxPowerOffset}}
+                    {{#heatInputEff}}<div><b>heatInputEff</b>: {{heatInputEff}}</div>{{/heatInputEff}}
+                    {{#heatInputOffset}}<div><b>heatInputOffset</b>: {{heatInputOffset}}</div>{{/heatInputOffset}}
+                    {{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
+                    {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HeatInputCurve_collapse" aria-expanded="true" aria-controls="HeatInputCurve_collapse" style="margin-left: 10px;">HeatInputCurve</a></legend>
+                    <div id="HeatInputCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='auxPowerMult'>auxPowerMult: </label><div class='col-sm-8'><input id='auxPowerMult' class='form-control' type='text'{{#auxPowerMult}} value='{{auxPowerMult}}'{{/auxPowerMult}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='auxPowerOffset'>auxPowerOffset: </label><div class='col-sm-8'><input id='auxPowerOffset' class='form-control' type='text'{{#auxPowerOffset}} value='{{auxPowerOffset}}'{{/auxPowerOffset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='heatInputEff'>heatInputEff: </label><div class='col-sm-8'><input id='heatInputEff' class='form-control' type='text'{{#heatInputEff}} value='{{heatInputEff}}'{{/heatInputEff}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='heatInputOffset'>heatInputOffset: </label><div class='col-sm-8'><input id='heatInputOffset' class='form-control' type='text'{{#heatInputOffset}} value='{{heatInputOffset}}'{{/heatInputOffset}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isNetGrossP'>isNetGrossP: </label><div class='col-sm-8'><input id='isNetGrossP' class='form-check-input' type='checkbox'{{#isNetGrossP}} checked{{/isNetGrossP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Unit start up characteristics depending on how long the unit has been off line.
@@ -3011,30 +3602,74 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StartupModel_collapse" aria-expanded="true" aria-controls="StartupModel_collapse">StartupModel</a>
-<div id="StartupModel_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#fixedMaintCost}}<div><b>fixedMaintCost</b>: {{fixedMaintCost}}</div>{{/fixedMaintCost}}
-{{#hotStandbyHeat}}<div><b>hotStandbyHeat</b>: {{hotStandbyHeat}}</div>{{/hotStandbyHeat}}
-{{#incrementalMaintCost}}<div><b>incrementalMaintCost</b>: {{incrementalMaintCost}}</div>{{/incrementalMaintCost}}
-{{#minimumDownTime}}<div><b>minimumDownTime</b>: {{minimumDownTime}}</div>{{/minimumDownTime}}
-{{#minimumRunTime}}<div><b>minimumRunTime</b>: {{minimumRunTime}}</div>{{/minimumRunTime}}
-{{#riskFactorCost}}<div><b>riskFactorCost</b>: {{riskFactorCost}}</div>{{/riskFactorCost}}
-{{#startupCost}}<div><b>startupCost</b>: {{startupCost}}</div>{{/startupCost}}
-{{#startupDate}}<div><b>startupDate</b>: {{startupDate}}</div>{{/startupDate}}
-{{#startupPriority}}<div><b>startupPriority</b>: {{startupPriority}}</div>{{/startupPriority}}
-{{#stbyAuxP}}<div><b>stbyAuxP</b>: {{stbyAuxP}}</div>{{/stbyAuxP}}
-{{#StartIgnFuelCurve}}<div><b>StartIgnFuelCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartIgnFuelCurve}}&quot;);})'>{{StartIgnFuelCurve}}</a></div>{{/StartIgnFuelCurve}}
-{{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
-{{#StartMainFuelCurve}}<div><b>StartMainFuelCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartMainFuelCurve}}&quot;);})'>{{StartMainFuelCurve}}</a></div>{{/StartMainFuelCurve}}
-{{#StartRampCurve}}<div><b>StartRampCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartRampCurve}}&quot;);})'>{{StartRampCurve}}</a></div>{{/StartRampCurve}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartupModel_collapse" aria-expanded="true" aria-controls="StartupModel_collapse" style="margin-left: 10px;">StartupModel</a></legend>
+                    <div id="StartupModel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#fixedMaintCost}}<div><b>fixedMaintCost</b>: {{fixedMaintCost}}</div>{{/fixedMaintCost}}
+                    {{#hotStandbyHeat}}<div><b>hotStandbyHeat</b>: {{hotStandbyHeat}}</div>{{/hotStandbyHeat}}
+                    {{#incrementalMaintCost}}<div><b>incrementalMaintCost</b>: {{incrementalMaintCost}}</div>{{/incrementalMaintCost}}
+                    {{#minimumDownTime}}<div><b>minimumDownTime</b>: {{minimumDownTime}}</div>{{/minimumDownTime}}
+                    {{#minimumRunTime}}<div><b>minimumRunTime</b>: {{minimumRunTime}}</div>{{/minimumRunTime}}
+                    {{#riskFactorCost}}<div><b>riskFactorCost</b>: {{riskFactorCost}}</div>{{/riskFactorCost}}
+                    {{#startupCost}}<div><b>startupCost</b>: {{startupCost}}</div>{{/startupCost}}
+                    {{#startupDate}}<div><b>startupDate</b>: {{startupDate}}</div>{{/startupDate}}
+                    {{#startupPriority}}<div><b>startupPriority</b>: {{startupPriority}}</div>{{/startupPriority}}
+                    {{#stbyAuxP}}<div><b>stbyAuxP</b>: {{stbyAuxP}}</div>{{/stbyAuxP}}
+                    {{#StartIgnFuelCurve}}<div><b>StartIgnFuelCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartIgnFuelCurve}}&quot;);})'>{{StartIgnFuelCurve}}</a></div>{{/StartIgnFuelCurve}}
+                    {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
+                    {{#StartMainFuelCurve}}<div><b>StartMainFuelCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartMainFuelCurve}}&quot;);})'>{{StartMainFuelCurve}}</a></div>{{/StartMainFuelCurve}}
+                    {{#StartRampCurve}}<div><b>StartRampCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartRampCurve}}&quot;);})'>{{StartRampCurve}}</a></div>{{/StartRampCurve}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartupModel_collapse" aria-expanded="true" aria-controls="StartupModel_collapse" style="margin-left: 10px;">StartupModel</a></legend>
+                    <div id="StartupModel_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fixedMaintCost'>fixedMaintCost: </label><div class='col-sm-8'><input id='fixedMaintCost' class='form-control' type='text'{{#fixedMaintCost}} value='{{fixedMaintCost}}'{{/fixedMaintCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hotStandbyHeat'>hotStandbyHeat: </label><div class='col-sm-8'><input id='hotStandbyHeat' class='form-control' type='text'{{#hotStandbyHeat}} value='{{hotStandbyHeat}}'{{/hotStandbyHeat}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='incrementalMaintCost'>incrementalMaintCost: </label><div class='col-sm-8'><input id='incrementalMaintCost' class='form-control' type='text'{{#incrementalMaintCost}} value='{{incrementalMaintCost}}'{{/incrementalMaintCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumDownTime'>minimumDownTime: </label><div class='col-sm-8'><input id='minimumDownTime' class='form-control' type='text'{{#minimumDownTime}} value='{{minimumDownTime}}'{{/minimumDownTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumRunTime'>minimumRunTime: </label><div class='col-sm-8'><input id='minimumRunTime' class='form-control' type='text'{{#minimumRunTime}} value='{{minimumRunTime}}'{{/minimumRunTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='riskFactorCost'>riskFactorCost: </label><div class='col-sm-8'><input id='riskFactorCost' class='form-control' type='text'{{#riskFactorCost}} value='{{riskFactorCost}}'{{/riskFactorCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startupCost'>startupCost: </label><div class='col-sm-8'><input id='startupCost' class='form-control' type='text'{{#startupCost}} value='{{startupCost}}'{{/startupCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startupDate'>startupDate: </label><div class='col-sm-8'><input id='startupDate' class='form-control' type='text'{{#startupDate}} value='{{startupDate}}'{{/startupDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startupPriority'>startupPriority: </label><div class='col-sm-8'><input id='startupPriority' class='form-control' type='text'{{#startupPriority}} value='{{startupPriority}}'{{/startupPriority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stbyAuxP'>stbyAuxP: </label><div class='col-sm-8'><input id='stbyAuxP' class='form-control' type='text'{{#stbyAuxP}} value='{{stbyAuxP}}'{{/stbyAuxP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartIgnFuelCurve'>StartIgnFuelCurve: </label><div class='col-sm-8'><input id='StartIgnFuelCurve' class='form-control' type='text'{{#StartIgnFuelCurve}} value='{{StartIgnFuelCurve}}'{{/StartIgnFuelCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartMainFuelCurve'>StartMainFuelCurve: </label><div class='col-sm-8'><input id='StartMainFuelCurve' class='form-control' type='text'{{#StartMainFuelCurve}} value='{{StartMainFuelCurve}}'{{/StartMainFuelCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartRampCurve'>StartRampCurve: </label><div class='col-sm-8'><input id='StartRampCurve' class='form-control' type='text'{{#StartRampCurve}} value='{{StartRampCurve}}'{{/StartRampCurve}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Cost, in units of currency, per quantity of heat generated.
@@ -3097,21 +3732,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CostPerHeatUnit_collapse" aria-expanded="true" aria-controls="CostPerHeatUnit_collapse">CostPerHeatUnit</a>
-<div id="CostPerHeatUnit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
-{{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CostPerHeatUnit_collapse" aria-expanded="true" aria-controls="CostPerHeatUnit_collapse" style="margin-left: 10px;">CostPerHeatUnit</a></legend>
+                    <div id="CostPerHeatUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
+                    {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CostPerHeatUnit_collapse" aria-expanded="true" aria-controls="CostPerHeatUnit_collapse" style="margin-left: 10px;">CostPerHeatUnit</a></legend>
+                    <div id="CostPerHeatUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><input id='denominatorMultiplier' class='form-control' type='text'{{#denominatorMultiplier}} value='{{denominatorMultiplier}}'{{/denominatorMultiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><input id='denominatorUnit' class='form-control' type='text'{{#denominatorUnit}} value='{{denominatorUnit}}'{{/denominatorUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><input id='multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><input id='unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A set of combustion turbines and steam turbines where the exhaust heat from the combustion turbines is recovered to make steam for the steam turbines, resulting in greater overall plant efficiency.
@@ -3166,17 +3836,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CombinedCyclePlant_collapse" aria-expanded="true" aria-controls="CombinedCyclePlant_collapse">CombinedCyclePlant</a>
-<div id="CombinedCyclePlant_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-{{#combCyclePlantRating}}<div><b>combCyclePlantRating</b>: {{combCyclePlantRating}}</div>{{/combCyclePlantRating}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CombinedCyclePlant_collapse" aria-expanded="true" aria-controls="CombinedCyclePlant_collapse" style="margin-left: 10px;">CombinedCyclePlant</a></legend>
+                    <div id="CombinedCyclePlant_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    {{#combCyclePlantRating}}<div><b>combCyclePlantRating</b>: {{combCyclePlantRating}}</div>{{/combCyclePlantRating}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CombinedCyclePlant_collapse" aria-expanded="true" aria-controls="CombinedCyclePlant_collapse" style="margin-left: 10px;">CombinedCyclePlant</a></legend>
+                    <div id="CombinedCyclePlant_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='combCyclePlantRating'>combCyclePlantRating: </label><div class='col-sm-8'><input id='combCyclePlantRating' class='form-control' type='text'{{#combCyclePlantRating}} value='{{combCyclePlantRating}}'{{/combCyclePlantRating}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Reservoir water level targets from advanced studies or "rule curves".
@@ -3237,19 +3938,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TargetLevelSchedule_collapse" aria-expanded="true" aria-controls="TargetLevelSchedule_collapse">TargetLevelSchedule</a>
-<div id="TargetLevelSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#highLevelLimit}}<div><b>highLevelLimit</b>: {{highLevelLimit}}</div>{{/highLevelLimit}}
-{{#lowLevelLimit}}<div><b>lowLevelLimit</b>: {{lowLevelLimit}}</div>{{/lowLevelLimit}}
-{{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);})'>{{Reservoir}}</a></div>{{/Reservoir}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TargetLevelSchedule_collapse" aria-expanded="true" aria-controls="TargetLevelSchedule_collapse" style="margin-left: 10px;">TargetLevelSchedule</a></legend>
+                    <div id="TargetLevelSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#highLevelLimit}}<div><b>highLevelLimit</b>: {{highLevelLimit}}</div>{{/highLevelLimit}}
+                    {{#lowLevelLimit}}<div><b>lowLevelLimit</b>: {{lowLevelLimit}}</div>{{/lowLevelLimit}}
+                    {{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);})'>{{Reservoir}}</a></div>{{/Reservoir}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TargetLevelSchedule_collapse" aria-expanded="true" aria-controls="TargetLevelSchedule_collapse" style="margin-left: 10px;">TargetLevelSchedule</a></legend>
+                    <div id="TargetLevelSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='highLevelLimit'>highLevelLimit: </label><div class='col-sm-8'><input id='highLevelLimit' class='form-control' type='text'{{#highLevelLimit}} value='{{highLevelLimit}}'{{/highLevelLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowLevelLimit'>lowLevelLimit: </label><div class='col-sm-8'><input id='lowLevelLimit' class='form-control' type='text'{{#lowLevelLimit}} value='{{lowLevelLimit}}'{{/lowLevelLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Reservoir'>Reservoir: </label><div class='col-sm-8'><input id='Reservoir' class='form-control' type='text'{{#Reservoir}} value='{{Reservoir}}'{{/Reservoir}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Natural water inflow to a reservoir, usually forecasted from predicted rain and snowmelt.
@@ -3306,17 +4040,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#InflowForecast_collapse" aria-expanded="true" aria-controls="InflowForecast_collapse">InflowForecast</a>
-<div id="InflowForecast_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.RegularIntervalSchedule.prototype.template.call (this) +
-`
-{{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);})'>{{Reservoir}}</a></div>{{/Reservoir}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InflowForecast_collapse" aria-expanded="true" aria-controls="InflowForecast_collapse" style="margin-left: 10px;">InflowForecast</a></legend>
+                    <div id="InflowForecast_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.template.call (this) +
+                    `
+                    {{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);})'>{{Reservoir}}</a></div>{{/Reservoir}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InflowForecast_collapse" aria-expanded="true" aria-controls="InflowForecast_collapse" style="margin-left: 10px;">InflowForecast</a></legend>
+                    <div id="InflowForecast_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Reservoir'>Reservoir: </label><div class='col-sm-8'><input id='Reservoir' class='form-control' type='text'{{#Reservoir}} value='{{Reservoir}}'{{/Reservoir}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A generating unit whose prime mover could be a steam turbine, combustion turbine, or diesel engine.
@@ -3387,25 +4152,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ThermalGeneratingUnit_collapse" aria-expanded="true" aria-controls="ThermalGeneratingUnit_collapse">ThermalGeneratingUnit</a>
-<div id="ThermalGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + GeneratingUnit.prototype.template.call (this) +
-`
-{{#oMCost}}<div><b>oMCost</b>: {{oMCost}}</div>{{/oMCost}}
-{{#ShutdownCurve}}<div><b>ShutdownCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShutdownCurve}}&quot;);})'>{{ShutdownCurve}}</a></div>{{/ShutdownCurve}}
-{{#CogenerationPlant}}<div><b>CogenerationPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CogenerationPlant}}&quot;);})'>{{CogenerationPlant}}</a></div>{{/CogenerationPlant}}
-{{#HeatRateCurve}}<div><b>HeatRateCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HeatRateCurve}}&quot;);})'>{{HeatRateCurve}}</a></div>{{/HeatRateCurve}}
-{{#CAESPlant}}<div><b>CAESPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CAESPlant}}&quot;);})'>{{CAESPlant}}</a></div>{{/CAESPlant}}
-{{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);})'>{{StartupModel}}</a></div>{{/StartupModel}}
-{{#CombinedCyclePlant}}<div><b>CombinedCyclePlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombinedCyclePlant}}&quot;);})'>{{CombinedCyclePlant}}</a></div>{{/CombinedCyclePlant}}
-{{#IncrementalHeatRateCurve}}<div><b>IncrementalHeatRateCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IncrementalHeatRateCurve}}&quot;);})'>{{IncrementalHeatRateCurve}}</a></div>{{/IncrementalHeatRateCurve}}
-{{#HeatInputCurve}}<div><b>HeatInputCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HeatInputCurve}}&quot;);})'>{{HeatInputCurve}}</a></div>{{/HeatInputCurve}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ThermalGeneratingUnit_collapse" aria-expanded="true" aria-controls="ThermalGeneratingUnit_collapse" style="margin-left: 10px;">ThermalGeneratingUnit</a></legend>
+                    <div id="ThermalGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + GeneratingUnit.prototype.template.call (this) +
+                    `
+                    {{#oMCost}}<div><b>oMCost</b>: {{oMCost}}</div>{{/oMCost}}
+                    {{#ShutdownCurve}}<div><b>ShutdownCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShutdownCurve}}&quot;);})'>{{ShutdownCurve}}</a></div>{{/ShutdownCurve}}
+                    {{#CogenerationPlant}}<div><b>CogenerationPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CogenerationPlant}}&quot;);})'>{{CogenerationPlant}}</a></div>{{/CogenerationPlant}}
+                    {{#HeatRateCurve}}<div><b>HeatRateCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HeatRateCurve}}&quot;);})'>{{HeatRateCurve}}</a></div>{{/HeatRateCurve}}
+                    {{#CAESPlant}}<div><b>CAESPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CAESPlant}}&quot;);})'>{{CAESPlant}}</a></div>{{/CAESPlant}}
+                    {{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);})'>{{StartupModel}}</a></div>{{/StartupModel}}
+                    {{#CombinedCyclePlant}}<div><b>CombinedCyclePlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombinedCyclePlant}}&quot;);})'>{{CombinedCyclePlant}}</a></div>{{/CombinedCyclePlant}}
+                    {{#IncrementalHeatRateCurve}}<div><b>IncrementalHeatRateCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IncrementalHeatRateCurve}}&quot;);})'>{{IncrementalHeatRateCurve}}</a></div>{{/IncrementalHeatRateCurve}}
+                    {{#HeatInputCurve}}<div><b>HeatInputCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HeatInputCurve}}&quot;);})'>{{HeatInputCurve}}</a></div>{{/HeatInputCurve}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ThermalGeneratingUnit_collapse" aria-expanded="true" aria-controls="ThermalGeneratingUnit_collapse" style="margin-left: 10px;">ThermalGeneratingUnit</a></legend>
+                    <div id="ThermalGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + GeneratingUnit.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oMCost'>oMCost: </label><div class='col-sm-8'><input id='oMCost' class='form-control' type='text'{{#oMCost}} value='{{oMCost}}'{{/oMCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ShutdownCurve'>ShutdownCurve: </label><div class='col-sm-8'><input id='ShutdownCurve' class='form-control' type='text'{{#ShutdownCurve}} value='{{ShutdownCurve}}'{{/ShutdownCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CogenerationPlant'>CogenerationPlant: </label><div class='col-sm-8'><input id='CogenerationPlant' class='form-control' type='text'{{#CogenerationPlant}} value='{{CogenerationPlant}}'{{/CogenerationPlant}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HeatRateCurve'>HeatRateCurve: </label><div class='col-sm-8'><input id='HeatRateCurve' class='form-control' type='text'{{#HeatRateCurve}} value='{{HeatRateCurve}}'{{/HeatRateCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CAESPlant'>CAESPlant: </label><div class='col-sm-8'><input id='CAESPlant' class='form-control' type='text'{{#CAESPlant}} value='{{CAESPlant}}'{{/CAESPlant}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartupModel'>StartupModel: </label><div class='col-sm-8'><input id='StartupModel' class='form-control' type='text'{{#StartupModel}} value='{{StartupModel}}'{{/StartupModel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CombinedCyclePlant'>CombinedCyclePlant: </label><div class='col-sm-8'><input id='CombinedCyclePlant' class='form-control' type='text'{{#CombinedCyclePlant}} value='{{CombinedCyclePlant}}'{{/CombinedCyclePlant}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='IncrementalHeatRateCurve'>IncrementalHeatRateCurve: </label><div class='col-sm-8'><input id='IncrementalHeatRateCurve' class='form-control' type='text'{{#IncrementalHeatRateCurve}} value='{{IncrementalHeatRateCurve}}'{{/IncrementalHeatRateCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HeatInputCurve'>HeatInputCurve: </label><div class='col-sm-8'><input id='HeatInputCurve' class='form-control' type='text'{{#HeatInputCurve}} value='{{HeatInputCurve}}'{{/HeatInputCurve}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A generating unit whose prime mover is a hydraulic turbine (e.g., Francis, Pelton, Kaplan).
@@ -3435,7 +4239,7 @@ define
 
                 obj = GeneratingUnit.prototype.parse.call (this, context, sub);
                 obj.cls = "HydroGeneratingUnit";
-                base.parse_element (/<cim:HydroGeneratingUnit.energyConversionCapability>([\s\S]*?)<\/cim:HydroGeneratingUnit.energyConversionCapability>/g, obj, "energyConversionCapability", base.to_string, sub, context);
+                base.parse_attribute (/<cim:HydroGeneratingUnit.energyConversionCapability\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "energyConversionCapability", sub, context);
                 base.parse_element (/<cim:HydroGeneratingUnit.hydroUnitWaterCost>([\s\S]*?)<\/cim:HydroGeneratingUnit.hydroUnitWaterCost>/g, obj, "hydroUnitWaterCost", base.to_string, sub, context);
                 base.parse_attribute (/<cim:HydroGeneratingUnit.PenstockLossCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PenstockLossCurve", sub, context);
                 base.parse_attribute (/<cim:HydroGeneratingUnit.HydroPowerPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroPowerPlant", sub, context);
@@ -3466,20 +4270,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#HydroGeneratingUnit_collapse" aria-expanded="true" aria-controls="HydroGeneratingUnit_collapse">HydroGeneratingUnit</a>
-<div id="HydroGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + GeneratingUnit.prototype.template.call (this) +
-`
-{{#energyConversionCapability}}<div><b>energyConversionCapability</b>: {{energyConversionCapability}}</div>{{/energyConversionCapability}}
-{{#hydroUnitWaterCost}}<div><b>hydroUnitWaterCost</b>: {{hydroUnitWaterCost}}</div>{{/hydroUnitWaterCost}}
-{{#PenstockLossCurve}}<div><b>PenstockLossCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PenstockLossCurve}}&quot;);})'>{{PenstockLossCurve}}</a></div>{{/PenstockLossCurve}}
-{{#HydroPowerPlant}}<div><b>HydroPowerPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPowerPlant}}&quot;);})'>{{HydroPowerPlant}}</a></div>{{/HydroPowerPlant}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroGeneratingUnit_collapse" aria-expanded="true" aria-controls="HydroGeneratingUnit_collapse" style="margin-left: 10px;">HydroGeneratingUnit</a></legend>
+                    <div id="HydroGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + GeneratingUnit.prototype.template.call (this) +
+                    `
+                    {{#energyConversionCapability}}<div><b>energyConversionCapability</b>: {{energyConversionCapability}}</div>{{/energyConversionCapability}}
+                    {{#hydroUnitWaterCost}}<div><b>hydroUnitWaterCost</b>: {{hydroUnitWaterCost}}</div>{{/hydroUnitWaterCost}}
+                    {{#PenstockLossCurve}}<div><b>PenstockLossCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PenstockLossCurve}}&quot;);})'>{{PenstockLossCurve}}</a></div>{{/PenstockLossCurve}}
+                    {{#HydroPowerPlant}}<div><b>HydroPowerPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPowerPlant}}&quot;);})'>{{HydroPowerPlant}}</a></div>{{/HydroPowerPlant}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.HydroEnergyConversionKind = []; if (!obj.energyConversionCapability) obj.HydroEnergyConversionKind.push ({ id: '', selected: true}); for (var property in HydroEnergyConversionKind) obj.HydroEnergyConversionKind.push ({ id: property, selected: obj.energyConversionCapability && obj.energyConversionCapability.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.HydroEnergyConversionKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroGeneratingUnit_collapse" aria-expanded="true" aria-controls="HydroGeneratingUnit_collapse" style="margin-left: 10px;">HydroGeneratingUnit</a></legend>
+                    <div id="HydroGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + GeneratingUnit.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyConversionCapability'>energyConversionCapability: </label><div class='col-sm-8'><select id='energyConversionCapability' class='form-control'>{{#HydroEnergyConversionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/HydroEnergyConversionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hydroUnitWaterCost'>hydroUnitWaterCost: </label><div class='col-sm-8'><input id='hydroUnitWaterCost' class='form-control' type='text'{{#hydroUnitWaterCost}} value='{{hydroUnitWaterCost}}'{{/hydroUnitWaterCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PenstockLossCurve'>PenstockLossCurve: </label><div class='col-sm-8'><input id='PenstockLossCurve' class='form-control' type='text'{{#PenstockLossCurve}} value='{{PenstockLossCurve}}'{{/PenstockLossCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HydroPowerPlant'>HydroPowerPlant: </label><div class='col-sm-8'><input id='HydroPowerPlant' class='form-control' type='text'{{#HydroPowerPlant}} value='{{HydroPowerPlant}}'{{/HydroPowerPlant}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A wind driven generating unit.
@@ -3511,7 +4351,7 @@ define
 
                 obj = GeneratingUnit.prototype.parse.call (this, context, sub);
                 obj.cls = "WindGeneratingUnit";
-                base.parse_element (/<cim:WindGeneratingUnit.windGenUnitType>([\s\S]*?)<\/cim:WindGeneratingUnit.windGenUnitType>/g, obj, "windGenUnitType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:WindGeneratingUnit.windGenUnitType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "windGenUnitType", sub, context);
 
                 var bucket = context.parsed.WindGeneratingUnit;
                 if (null == bucket)
@@ -3536,17 +4376,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindGeneratingUnit_collapse" aria-expanded="true" aria-controls="WindGeneratingUnit_collapse">WindGeneratingUnit</a>
-<div id="WindGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + GeneratingUnit.prototype.template.call (this) +
-`
-{{#windGenUnitType}}<div><b>windGenUnitType</b>: {{windGenUnitType}}</div>{{/windGenUnitType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGeneratingUnit_collapse" aria-expanded="true" aria-controls="WindGeneratingUnit_collapse" style="margin-left: 10px;">WindGeneratingUnit</a></legend>
+                    <div id="WindGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + GeneratingUnit.prototype.template.call (this) +
+                    `
+                    {{#windGenUnitType}}<div><b>windGenUnitType</b>: {{windGenUnitType}}</div>{{/windGenUnitType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.WindGenUnitKind = []; if (!obj.windGenUnitType) obj.WindGenUnitKind.push ({ id: '', selected: true}); for (var property in WindGenUnitKind) obj.WindGenUnitKind.push ({ id: property, selected: obj.windGenUnitType && obj.windGenUnitType.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.WindGenUnitKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGeneratingUnit_collapse" aria-expanded="true" aria-controls="WindGeneratingUnit_collapse" style="margin-left: 10px;">WindGeneratingUnit</a></legend>
+                    <div id="WindGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + GeneratingUnit.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='windGenUnitType'>windGenUnitType: </label><div class='col-sm-8'><select id='windGenUnitType' class='form-control'>{{#WindGenUnitKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindGenUnitKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A nuclear generating unit.
@@ -3599,16 +4472,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#NuclearGeneratingUnit_collapse" aria-expanded="true" aria-controls="NuclearGeneratingUnit_collapse">NuclearGeneratingUnit</a>
-<div id="NuclearGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + GeneratingUnit.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NuclearGeneratingUnit_collapse" aria-expanded="true" aria-controls="NuclearGeneratingUnit_collapse" style="margin-left: 10px;">NuclearGeneratingUnit</a></legend>
+                    <div id="NuclearGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + GeneratingUnit.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NuclearGeneratingUnit_collapse" aria-expanded="true" aria-controls="NuclearGeneratingUnit_collapse" style="margin-left: 10px;">NuclearGeneratingUnit</a></legend>
+                    <div id="NuclearGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + GeneratingUnit.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A solar thermal generating unit.
@@ -3661,20 +4564,49 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SolarGeneratingUnit_collapse" aria-expanded="true" aria-controls="SolarGeneratingUnit_collapse">SolarGeneratingUnit</a>
-<div id="SolarGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + GeneratingUnit.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SolarGeneratingUnit_collapse" aria-expanded="true" aria-controls="SolarGeneratingUnit_collapse" style="margin-left: 10px;">SolarGeneratingUnit</a></legend>
+                    <div id="SolarGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + GeneratingUnit.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SolarGeneratingUnit_collapse" aria-expanded="true" aria-controls="SolarGeneratingUnit_collapse" style="margin-left: 10px;">SolarGeneratingUnit</a></legend>
+                    <div id="SolarGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + GeneratingUnit.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
-                HydroEnergyConversionKind: HydroEnergyConversionKind,
                 HydroGeneratingUnit: HydroGeneratingUnit,
                 EmissionCurve: EmissionCurve,
                 Classification: Classification,
@@ -3688,15 +4620,11 @@ define
                 GeneratingUnit: GeneratingUnit,
                 ShutdownCurve: ShutdownCurve,
                 WindGeneratingUnit: WindGeneratingUnit,
-                FuelType: FuelType,
-                EmissionType: EmissionType,
-                EmissionValueSource: EmissionValueSource,
                 TargetLevelSchedule: TargetLevelSchedule,
                 FuelAllocationSchedule: FuelAllocationSchedule,
                 Reservoir: Reservoir,
                 HeatRateCurve: HeatRateCurve,
                 IncrementalHeatRateCurve: IncrementalHeatRateCurve,
-                WindGenUnitKind: WindGenUnitKind,
                 EmissionAccount: EmissionAccount,
                 CombinedCyclePlant: CombinedCyclePlant,
                 SteamSendoutSchedule: SteamSendoutSchedule,
@@ -3706,14 +4634,11 @@ define
                 ThermalGeneratingUnit: ThermalGeneratingUnit,
                 LevelVsVolumeCurve: LevelVsVolumeCurve,
                 CogenerationPlant: CogenerationPlant,
-                GeneratorControlMode: GeneratorControlMode,
-                StartupModel: StartupModel,
                 AirCompressor: AirCompressor,
+                StartupModel: StartupModel,
                 HeatInputCurve: HeatInputCurve,
                 NuclearGeneratingUnit: NuclearGeneratingUnit,
                 SolarGeneratingUnit: SolarGeneratingUnit,
-                HydroPlantStorageKind: HydroPlantStorageKind,
-                GeneratorControlSource: GeneratorControlSource,
                 HydroPump: HydroPump,
                 StartRampCurve: StartRampCurve,
                 PenstockLossCurve: PenstockLossCurve,

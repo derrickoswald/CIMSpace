@@ -61,16 +61,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EquivalentNetwork_collapse" aria-expanded="true" aria-controls="EquivalentNetwork_collapse">EquivalentNetwork</a>
-<div id="EquivalentNetwork_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.ConnectivityNodeContainer.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentNetwork_collapse" aria-expanded="true" aria-controls="EquivalentNetwork_collapse" style="margin-left: 10px;">EquivalentNetwork</a></legend>
+                    <div id="EquivalentNetwork_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.ConnectivityNodeContainer.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentNetwork_collapse" aria-expanded="true" aria-controls="EquivalentNetwork_collapse" style="margin-left: 10px;">EquivalentNetwork</a></legend>
+                    <div id="EquivalentNetwork_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.ConnectivityNodeContainer.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents equivalent objects that are the result of a network reduction.
@@ -127,17 +157,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EquivalentEquipment_collapse" aria-expanded="true" aria-controls="EquivalentEquipment_collapse">EquivalentEquipment</a>
-<div id="EquivalentEquipment_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.ConductingEquipment.prototype.template.call (this) +
-`
-{{#EquivalentNetwork}}<div><b>EquivalentNetwork</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EquivalentNetwork}}&quot;);})'>{{EquivalentNetwork}}</a></div>{{/EquivalentNetwork}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentEquipment_collapse" aria-expanded="true" aria-controls="EquivalentEquipment_collapse" style="margin-left: 10px;">EquivalentEquipment</a></legend>
+                    <div id="EquivalentEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.ConductingEquipment.prototype.template.call (this) +
+                    `
+                    {{#EquivalentNetwork}}<div><b>EquivalentNetwork</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EquivalentNetwork}}&quot;);})'>{{EquivalentNetwork}}</a></div>{{/EquivalentNetwork}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentEquipment_collapse" aria-expanded="true" aria-controls="EquivalentEquipment_collapse" style="margin-left: 10px;">EquivalentEquipment</a></legend>
+                    <div id="EquivalentEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.ConductingEquipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EquivalentNetwork'>EquivalentNetwork: </label><div class='col-sm-8'><input id='EquivalentNetwork' class='form-control' type='text'{{#EquivalentNetwork}} value='{{EquivalentNetwork}}'{{/EquivalentNetwork}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents equivalent shunts.
@@ -194,18 +255,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EquivalentShunt_collapse" aria-expanded="true" aria-controls="EquivalentShunt_collapse">EquivalentShunt</a>
-<div id="EquivalentShunt_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EquivalentEquipment.prototype.template.call (this) +
-`
-{{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
-{{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentShunt_collapse" aria-expanded="true" aria-controls="EquivalentShunt_collapse" style="margin-left: 10px;">EquivalentShunt</a></legend>
+                    <div id="EquivalentShunt_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EquivalentEquipment.prototype.template.call (this) +
+                    `
+                    {{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+                    {{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentShunt_collapse" aria-expanded="true" aria-controls="EquivalentShunt_collapse" style="margin-left: 10px;">EquivalentShunt</a></legend>
+                    <div id="EquivalentShunt_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EquivalentEquipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b'>b: </label><div class='col-sm-8'><input id='b' class='form-control' type='text'{{#b}} value='{{b}}'{{/b}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='g'>g: </label><div class='col-sm-8'><input id='g' class='form-control' type='text'{{#g}} value='{{g}}'{{/g}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents equivalent branches.
@@ -290,32 +383,78 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EquivalentBranch_collapse" aria-expanded="true" aria-controls="EquivalentBranch_collapse">EquivalentBranch</a>
-<div id="EquivalentBranch_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EquivalentEquipment.prototype.template.call (this) +
-`
-{{#negativeR12}}<div><b>negativeR12</b>: {{negativeR12}}</div>{{/negativeR12}}
-{{#negativeR21}}<div><b>negativeR21</b>: {{negativeR21}}</div>{{/negativeR21}}
-{{#negativeX12}}<div><b>negativeX12</b>: {{negativeX12}}</div>{{/negativeX12}}
-{{#negativeX21}}<div><b>negativeX21</b>: {{negativeX21}}</div>{{/negativeX21}}
-{{#positiveR12}}<div><b>positiveR12</b>: {{positiveR12}}</div>{{/positiveR12}}
-{{#positiveR21}}<div><b>positiveR21</b>: {{positiveR21}}</div>{{/positiveR21}}
-{{#positiveX12}}<div><b>positiveX12</b>: {{positiveX12}}</div>{{/positiveX12}}
-{{#positiveX21}}<div><b>positiveX21</b>: {{positiveX21}}</div>{{/positiveX21}}
-{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
-{{#r21}}<div><b>r21</b>: {{r21}}</div>{{/r21}}
-{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
-{{#x21}}<div><b>x21</b>: {{x21}}</div>{{/x21}}
-{{#zeroR12}}<div><b>zeroR12</b>: {{zeroR12}}</div>{{/zeroR12}}
-{{#zeroR21}}<div><b>zeroR21</b>: {{zeroR21}}</div>{{/zeroR21}}
-{{#zeroX12}}<div><b>zeroX12</b>: {{zeroX12}}</div>{{/zeroX12}}
-{{#zeroX21}}<div><b>zeroX21</b>: {{zeroX21}}</div>{{/zeroX21}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentBranch_collapse" aria-expanded="true" aria-controls="EquivalentBranch_collapse" style="margin-left: 10px;">EquivalentBranch</a></legend>
+                    <div id="EquivalentBranch_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EquivalentEquipment.prototype.template.call (this) +
+                    `
+                    {{#negativeR12}}<div><b>negativeR12</b>: {{negativeR12}}</div>{{/negativeR12}}
+                    {{#negativeR21}}<div><b>negativeR21</b>: {{negativeR21}}</div>{{/negativeR21}}
+                    {{#negativeX12}}<div><b>negativeX12</b>: {{negativeX12}}</div>{{/negativeX12}}
+                    {{#negativeX21}}<div><b>negativeX21</b>: {{negativeX21}}</div>{{/negativeX21}}
+                    {{#positiveR12}}<div><b>positiveR12</b>: {{positiveR12}}</div>{{/positiveR12}}
+                    {{#positiveR21}}<div><b>positiveR21</b>: {{positiveR21}}</div>{{/positiveR21}}
+                    {{#positiveX12}}<div><b>positiveX12</b>: {{positiveX12}}</div>{{/positiveX12}}
+                    {{#positiveX21}}<div><b>positiveX21</b>: {{positiveX21}}</div>{{/positiveX21}}
+                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+                    {{#r21}}<div><b>r21</b>: {{r21}}</div>{{/r21}}
+                    {{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+                    {{#x21}}<div><b>x21</b>: {{x21}}</div>{{/x21}}
+                    {{#zeroR12}}<div><b>zeroR12</b>: {{zeroR12}}</div>{{/zeroR12}}
+                    {{#zeroR21}}<div><b>zeroR21</b>: {{zeroR21}}</div>{{/zeroR21}}
+                    {{#zeroX12}}<div><b>zeroX12</b>: {{zeroX12}}</div>{{/zeroX12}}
+                    {{#zeroX21}}<div><b>zeroX21</b>: {{zeroX21}}</div>{{/zeroX21}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentBranch_collapse" aria-expanded="true" aria-controls="EquivalentBranch_collapse" style="margin-left: 10px;">EquivalentBranch</a></legend>
+                    <div id="EquivalentBranch_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EquivalentEquipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='negativeR12'>negativeR12: </label><div class='col-sm-8'><input id='negativeR12' class='form-control' type='text'{{#negativeR12}} value='{{negativeR12}}'{{/negativeR12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='negativeR21'>negativeR21: </label><div class='col-sm-8'><input id='negativeR21' class='form-control' type='text'{{#negativeR21}} value='{{negativeR21}}'{{/negativeR21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='negativeX12'>negativeX12: </label><div class='col-sm-8'><input id='negativeX12' class='form-control' type='text'{{#negativeX12}} value='{{negativeX12}}'{{/negativeX12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='negativeX21'>negativeX21: </label><div class='col-sm-8'><input id='negativeX21' class='form-control' type='text'{{#negativeX21}} value='{{negativeX21}}'{{/negativeX21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='positiveR12'>positiveR12: </label><div class='col-sm-8'><input id='positiveR12' class='form-control' type='text'{{#positiveR12}} value='{{positiveR12}}'{{/positiveR12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='positiveR21'>positiveR21: </label><div class='col-sm-8'><input id='positiveR21' class='form-control' type='text'{{#positiveR21}} value='{{positiveR21}}'{{/positiveR21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='positiveX12'>positiveX12: </label><div class='col-sm-8'><input id='positiveX12' class='form-control' type='text'{{#positiveX12}} value='{{positiveX12}}'{{/positiveX12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='positiveX21'>positiveX21: </label><div class='col-sm-8'><input id='positiveX21' class='form-control' type='text'{{#positiveX21}} value='{{positiveX21}}'{{/positiveX21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r21'>r21: </label><div class='col-sm-8'><input id='r21' class='form-control' type='text'{{#r21}} value='{{r21}}'{{/r21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x'>x: </label><div class='col-sm-8'><input id='x' class='form-control' type='text'{{#x}} value='{{x}}'{{/x}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x21'>x21: </label><div class='col-sm-8'><input id='x21' class='form-control' type='text'{{#x21}} value='{{x21}}'{{/x21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zeroR12'>zeroR12: </label><div class='col-sm-8'><input id='zeroR12' class='form-control' type='text'{{#zeroR12}} value='{{zeroR12}}'{{/zeroR12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zeroR21'>zeroR21: </label><div class='col-sm-8'><input id='zeroR21' class='form-control' type='text'{{#zeroR21}} value='{{zeroR21}}'{{/zeroR21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zeroX12'>zeroX12: </label><div class='col-sm-8'><input id='zeroX12' class='form-control' type='text'{{#zeroX12}} value='{{zeroX12}}'{{/zeroX12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zeroX21'>zeroX21: </label><div class='col-sm-8'><input id='zeroX21' class='form-control' type='text'{{#zeroX21}} value='{{zeroX21}}'{{/zeroX21}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This class represents equivalent injections (generation or load).
@@ -402,32 +541,78 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EquivalentInjection_collapse" aria-expanded="true" aria-controls="EquivalentInjection_collapse">EquivalentInjection</a>
-<div id="EquivalentInjection_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EquivalentEquipment.prototype.template.call (this) +
-`
-{{#maxP}}<div><b>maxP</b>: {{maxP}}</div>{{/maxP}}
-{{#maxQ}}<div><b>maxQ</b>: {{maxQ}}</div>{{/maxQ}}
-{{#minP}}<div><b>minP</b>: {{minP}}</div>{{/minP}}
-{{#minQ}}<div><b>minQ</b>: {{minQ}}</div>{{/minQ}}
-{{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
-{{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
-{{#r2}}<div><b>r2</b>: {{r2}}</div>{{/r2}}
-{{#regulationCapability}}<div><b>regulationCapability</b>: {{regulationCapability}}</div>{{/regulationCapability}}
-{{#regulationStatus}}<div><b>regulationStatus</b>: {{regulationStatus}}</div>{{/regulationStatus}}
-{{#regulationTarget}}<div><b>regulationTarget</b>: {{regulationTarget}}</div>{{/regulationTarget}}
-{{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
-{{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
-{{#x2}}<div><b>x2</b>: {{x2}}</div>{{/x2}}
-{{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
-{{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
-{{#ReactiveCapabilityCurve}}<div><b>ReactiveCapabilityCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReactiveCapabilityCurve}}&quot;);})'>{{ReactiveCapabilityCurve}}</a></div>{{/ReactiveCapabilityCurve}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentInjection_collapse" aria-expanded="true" aria-controls="EquivalentInjection_collapse" style="margin-left: 10px;">EquivalentInjection</a></legend>
+                    <div id="EquivalentInjection_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EquivalentEquipment.prototype.template.call (this) +
+                    `
+                    {{#maxP}}<div><b>maxP</b>: {{maxP}}</div>{{/maxP}}
+                    {{#maxQ}}<div><b>maxQ</b>: {{maxQ}}</div>{{/maxQ}}
+                    {{#minP}}<div><b>minP</b>: {{minP}}</div>{{/minP}}
+                    {{#minQ}}<div><b>minQ</b>: {{minQ}}</div>{{/minQ}}
+                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+                    {{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
+                    {{#r2}}<div><b>r2</b>: {{r2}}</div>{{/r2}}
+                    {{#regulationCapability}}<div><b>regulationCapability</b>: {{regulationCapability}}</div>{{/regulationCapability}}
+                    {{#regulationStatus}}<div><b>regulationStatus</b>: {{regulationStatus}}</div>{{/regulationStatus}}
+                    {{#regulationTarget}}<div><b>regulationTarget</b>: {{regulationTarget}}</div>{{/regulationTarget}}
+                    {{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
+                    {{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
+                    {{#x2}}<div><b>x2</b>: {{x2}}</div>{{/x2}}
+                    {{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
+                    {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
+                    {{#ReactiveCapabilityCurve}}<div><b>ReactiveCapabilityCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReactiveCapabilityCurve}}&quot;);})'>{{ReactiveCapabilityCurve}}</a></div>{{/ReactiveCapabilityCurve}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentInjection_collapse" aria-expanded="true" aria-controls="EquivalentInjection_collapse" style="margin-left: 10px;">EquivalentInjection</a></legend>
+                    <div id="EquivalentInjection_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EquivalentEquipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxP'>maxP: </label><div class='col-sm-8'><input id='maxP' class='form-control' type='text'{{#maxP}} value='{{maxP}}'{{/maxP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxQ'>maxQ: </label><div class='col-sm-8'><input id='maxQ' class='form-control' type='text'{{#maxQ}} value='{{maxQ}}'{{/maxQ}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minP'>minP: </label><div class='col-sm-8'><input id='minP' class='form-control' type='text'{{#minP}} value='{{minP}}'{{/minP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minQ'>minQ: </label><div class='col-sm-8'><input id='minQ' class='form-control' type='text'{{#minQ}} value='{{minQ}}'{{/minQ}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r0'>r0: </label><div class='col-sm-8'><input id='r0' class='form-control' type='text'{{#r0}} value='{{r0}}'{{/r0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r2'>r2: </label><div class='col-sm-8'><input id='r2' class='form-control' type='text'{{#r2}} value='{{r2}}'{{/r2}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='regulationCapability'>regulationCapability: </label><div class='col-sm-8'><input id='regulationCapability' class='form-check-input' type='checkbox'{{#regulationCapability}} checked{{/regulationCapability}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='regulationStatus'>regulationStatus: </label><div class='col-sm-8'><input id='regulationStatus' class='form-check-input' type='checkbox'{{#regulationStatus}} checked{{/regulationStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='regulationTarget'>regulationTarget: </label><div class='col-sm-8'><input id='regulationTarget' class='form-control' type='text'{{#regulationTarget}} value='{{regulationTarget}}'{{/regulationTarget}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x'>x: </label><div class='col-sm-8'><input id='x' class='form-control' type='text'{{#x}} value='{{x}}'{{/x}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x0'>x0: </label><div class='col-sm-8'><input id='x0' class='form-control' type='text'{{#x0}} value='{{x0}}'{{/x0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x2'>x2: </label><div class='col-sm-8'><input id='x2' class='form-control' type='text'{{#x2}} value='{{x2}}'{{/x2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p'>p: </label><div class='col-sm-8'><input id='p' class='form-control' type='text'{{#p}} value='{{p}}'{{/p}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q'>q: </label><div class='col-sm-8'><input id='q' class='form-control' type='text'{{#q}} value='{{q}}'{{/q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReactiveCapabilityCurve'>ReactiveCapabilityCurve: </label><div class='col-sm-8'><input id='ReactiveCapabilityCurve' class='form-control' type='text'{{#ReactiveCapabilityCurve}} value='{{ReactiveCapabilityCurve}}'{{/ReactiveCapabilityCurve}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

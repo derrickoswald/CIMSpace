@@ -14,149 +14,64 @@ define
          * Type of connection for the UEL input used in ExcIEEEST1A.
          *
          */
-        class ExcIEEEST1AUELselectorKind extends base.Element
+        var ExcIEEEST1AUELselectorKind =
         {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ExcIEEEST1AUELselectorKind;
-                if (null == bucket)
-                   cim_data.ExcIEEEST1AUELselectorKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.ExcIEEEST1AUELselectorKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ExcIEEEST1AUELselectorKind";
-                base.parse_element (/<cim:ExcIEEEST1AUELselectorKind.ignoreUELsignal>([\s\S]*?)<\/cim:ExcIEEEST1AUELselectorKind.ignoreUELsignal>/g, obj, "ignoreUELsignal", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcIEEEST1AUELselectorKind.inputHVgateVoltageOutput>([\s\S]*?)<\/cim:ExcIEEEST1AUELselectorKind.inputHVgateVoltageOutput>/g, obj, "inputHVgateVoltageOutput", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcIEEEST1AUELselectorKind.inputHVgateErrorSignal>([\s\S]*?)<\/cim:ExcIEEEST1AUELselectorKind.inputHVgateErrorSignal>/g, obj, "inputHVgateErrorSignal", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcIEEEST1AUELselectorKind.inputAddedToErrorSignal>([\s\S]*?)<\/cim:ExcIEEEST1AUELselectorKind.inputAddedToErrorSignal>/g, obj, "inputAddedToErrorSignal", base.to_string, sub, context);
-
-                var bucket = context.parsed.ExcIEEEST1AUELselectorKind;
-                if (null == bucket)
-                   context.parsed.ExcIEEEST1AUELselectorKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ExcIEEEST1AUELselectorKind", "ignoreUELsignal", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1AUELselectorKind", "inputHVgateVoltageOutput", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1AUELselectorKind", "inputHVgateErrorSignal", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1AUELselectorKind", "inputAddedToErrorSignal", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#ExcIEEEST1AUELselectorKind_collapse" aria-expanded="true" aria-controls="ExcIEEEST1AUELselectorKind_collapse">ExcIEEEST1AUELselectorKind</a>
-<div id="ExcIEEEST1AUELselectorKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#ignoreUELsignal}}<div><b>ignoreUELsignal</b>: {{ignoreUELsignal}}</div>{{/ignoreUELsignal}}
-{{#inputHVgateVoltageOutput}}<div><b>inputHVgateVoltageOutput</b>: {{inputHVgateVoltageOutput}}</div>{{/inputHVgateVoltageOutput}}
-{{#inputHVgateErrorSignal}}<div><b>inputHVgateErrorSignal</b>: {{inputHVgateErrorSignal}}</div>{{/inputHVgateErrorSignal}}
-{{#inputAddedToErrorSignal}}<div><b>inputAddedToErrorSignal</b>: {{inputAddedToErrorSignal}}</div>{{/inputAddedToErrorSignal}}
-</div>
-`
-                );
-           }        }
+            ignoreUELsignal: "ignoreUELsignal",
+            inputHVgateVoltageOutput: "inputHVgateVoltageOutput",
+            inputHVgateErrorSignal: "inputHVgateErrorSignal",
+            inputAddedToErrorSignal: "inputAddedToErrorSignal"
+        };
+        Object.freeze (ExcIEEEST1AUELselectorKind);
 
         /**
          * Type of connection for the OEL input used for static excitation systems type 7B.
          *
          */
-        class ExcST7BOELselectorKind extends base.Element
+        var ExcST7BOELselectorKind =
         {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ExcST7BOELselectorKind;
-                if (null == bucket)
-                   cim_data.ExcST7BOELselectorKind = bucket = {};
-                bucket[this._id] = template;
-            }
+            noOELinput: "noOELinput",
+            addVref: "addVref",
+            inputLVgate: "inputLVgate",
+            outputLVgate: "outputLVgate"
+        };
+        Object.freeze (ExcST7BOELselectorKind);
 
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.ExcST7BOELselectorKind[this._id];
-            }
+        /**
+         * Type of connection for the OEL input used for static excitation systems type 6B.
+         *
+         */
+        var ExcST6BOELselectorKind =
+        {
+            noOELinput: "noOELinput",
+            beforeUEL: "beforeUEL",
+            afterUEL: "afterUEL"
+        };
+        Object.freeze (ExcST6BOELselectorKind);
 
-            parse (context, sub)
-            {
-                var obj;
+        /**
+         * Type of connection for the UEL input used for static excitation systems type 7B.
+         *
+         */
+        var ExcST7BUELselectorKind =
+        {
+            noUELinput: "noUELinput",
+            addVref: "addVref",
+            inputHVgate: "inputHVgate",
+            outputHVgate: "outputHVgate"
+        };
+        Object.freeze (ExcST7BUELselectorKind);
 
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ExcST7BOELselectorKind";
-                base.parse_element (/<cim:ExcST7BOELselectorKind.noOELinput>([\s\S]*?)<\/cim:ExcST7BOELselectorKind.noOELinput>/g, obj, "noOELinput", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcST7BOELselectorKind.addVref>([\s\S]*?)<\/cim:ExcST7BOELselectorKind.addVref>/g, obj, "addVref", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcST7BOELselectorKind.inputLVgate>([\s\S]*?)<\/cim:ExcST7BOELselectorKind.inputLVgate>/g, obj, "inputLVgate", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcST7BOELselectorKind.outputLVgate>([\s\S]*?)<\/cim:ExcST7BOELselectorKind.outputLVgate>/g, obj, "outputLVgate", base.to_string, sub, context);
-
-                var bucket = context.parsed.ExcST7BOELselectorKind;
-                if (null == bucket)
-                   context.parsed.ExcST7BOELselectorKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ExcST7BOELselectorKind", "noOELinput", base.from_string, fields);
-                base.export_element (obj, "ExcST7BOELselectorKind", "addVref", base.from_string, fields);
-                base.export_element (obj, "ExcST7BOELselectorKind", "inputLVgate", base.from_string, fields);
-                base.export_element (obj, "ExcST7BOELselectorKind", "outputLVgate", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#ExcST7BOELselectorKind_collapse" aria-expanded="true" aria-controls="ExcST7BOELselectorKind_collapse">ExcST7BOELselectorKind</a>
-<div id="ExcST7BOELselectorKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#noOELinput}}<div><b>noOELinput</b>: {{noOELinput}}</div>{{/noOELinput}}
-{{#addVref}}<div><b>addVref</b>: {{addVref}}</div>{{/addVref}}
-{{#inputLVgate}}<div><b>inputLVgate</b>: {{inputLVgate}}</div>{{/inputLVgate}}
-{{#outputLVgate}}<div><b>outputLVgate</b>: {{outputLVgate}}</div>{{/outputLVgate}}
-</div>
-`
-                );
-           }        }
+        /**
+         * Type of rate feedback signals.
+         *
+         */
+        var ExcREXSFeedbackSignalKind =
+        {
+            fieldVoltage: "fieldVoltage",
+            fieldCurrent: "fieldCurrent",
+            outputVoltage: "outputVoltage"
+        };
+        Object.freeze (ExcREXSFeedbackSignalKind);
 
         /**
          * Excitation system function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -225,240 +140,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcitationSystemDynamics_collapse" aria-expanded="true" aria-controls="ExcitationSystemDynamics_collapse">ExcitationSystemDynamics</a>
-<div id="ExcitationSystemDynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
-`
-{{#PowerSystemStabilizerDynamics}}<div><b>PowerSystemStabilizerDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemStabilizerDynamics}}&quot;);})'>{{PowerSystemStabilizerDynamics}}</a></div>{{/PowerSystemStabilizerDynamics}}
-{{#UnderexcitationLimiterDynamics}}<div><b>UnderexcitationLimiterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UnderexcitationLimiterDynamics}}&quot;);})'>{{UnderexcitationLimiterDynamics}}</a></div>{{/UnderexcitationLimiterDynamics}}
-{{#DiscontinuousExcitationControlDynamics}}<div><b>DiscontinuousExcitationControlDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscontinuousExcitationControlDynamics}}&quot;);})'>{{DiscontinuousExcitationControlDynamics}}</a></div>{{/DiscontinuousExcitationControlDynamics}}
-{{#PFVArControllerType1Dynamics}}<div><b>PFVArControllerType1Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1Dynamics}}&quot;);})'>{{PFVArControllerType1Dynamics}}</a></div>{{/PFVArControllerType1Dynamics}}
-{{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineDynamics}}&quot;);})'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
-{{#VoltageCompensatorDynamics}}<div><b>VoltageCompensatorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageCompensatorDynamics}}&quot;);})'>{{VoltageCompensatorDynamics}}</a></div>{{/VoltageCompensatorDynamics}}
-{{#OverexcitationLimiterDynamics}}<div><b>OverexcitationLimiterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverexcitationLimiterDynamics}}&quot;);})'>{{OverexcitationLimiterDynamics}}</a></div>{{/OverexcitationLimiterDynamics}}
-{{#PFVArControllerType2Dynamics}}<div><b>PFVArControllerType2Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType2Dynamics}}&quot;);})'>{{PFVArControllerType2Dynamics}}</a></div>{{/PFVArControllerType2Dynamics}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcitationSystemDynamics_collapse" aria-expanded="true" aria-controls="ExcitationSystemDynamics_collapse" style="margin-left: 10px;">ExcitationSystemDynamics</a></legend>
+                    <div id="ExcitationSystemDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+                    `
+                    {{#PowerSystemStabilizerDynamics}}<div><b>PowerSystemStabilizerDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemStabilizerDynamics}}&quot;);})'>{{PowerSystemStabilizerDynamics}}</a></div>{{/PowerSystemStabilizerDynamics}}
+                    {{#UnderexcitationLimiterDynamics}}<div><b>UnderexcitationLimiterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UnderexcitationLimiterDynamics}}&quot;);})'>{{UnderexcitationLimiterDynamics}}</a></div>{{/UnderexcitationLimiterDynamics}}
+                    {{#DiscontinuousExcitationControlDynamics}}<div><b>DiscontinuousExcitationControlDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscontinuousExcitationControlDynamics}}&quot;);})'>{{DiscontinuousExcitationControlDynamics}}</a></div>{{/DiscontinuousExcitationControlDynamics}}
+                    {{#PFVArControllerType1Dynamics}}<div><b>PFVArControllerType1Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1Dynamics}}&quot;);})'>{{PFVArControllerType1Dynamics}}</a></div>{{/PFVArControllerType1Dynamics}}
+                    {{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineDynamics}}&quot;);})'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
+                    {{#VoltageCompensatorDynamics}}<div><b>VoltageCompensatorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageCompensatorDynamics}}&quot;);})'>{{VoltageCompensatorDynamics}}</a></div>{{/VoltageCompensatorDynamics}}
+                    {{#OverexcitationLimiterDynamics}}<div><b>OverexcitationLimiterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverexcitationLimiterDynamics}}&quot;);})'>{{OverexcitationLimiterDynamics}}</a></div>{{/OverexcitationLimiterDynamics}}
+                    {{#PFVArControllerType2Dynamics}}<div><b>PFVArControllerType2Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType2Dynamics}}&quot;);})'>{{PFVArControllerType2Dynamics}}</a></div>{{/PFVArControllerType2Dynamics}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Type of connection for the OEL input used for static excitation systems type 6B.
-         *
-         */
-        class ExcST6BOELselectorKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ExcST6BOELselectorKind;
-                if (null == bucket)
-                   cim_data.ExcST6BOELselectorKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ExcST6BOELselectorKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ExcST6BOELselectorKind";
-                base.parse_element (/<cim:ExcST6BOELselectorKind.noOELinput>([\s\S]*?)<\/cim:ExcST6BOELselectorKind.noOELinput>/g, obj, "noOELinput", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcST6BOELselectorKind.beforeUEL>([\s\S]*?)<\/cim:ExcST6BOELselectorKind.beforeUEL>/g, obj, "beforeUEL", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcST6BOELselectorKind.afterUEL>([\s\S]*?)<\/cim:ExcST6BOELselectorKind.afterUEL>/g, obj, "afterUEL", base.to_string, sub, context);
-
-                var bucket = context.parsed.ExcST6BOELselectorKind;
-                if (null == bucket)
-                   context.parsed.ExcST6BOELselectorKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ExcST6BOELselectorKind", "noOELinput", base.from_string, fields);
-                base.export_element (obj, "ExcST6BOELselectorKind", "beforeUEL", base.from_string, fields);
-                base.export_element (obj, "ExcST6BOELselectorKind", "afterUEL", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcST6BOELselectorKind_collapse" aria-expanded="true" aria-controls="ExcST6BOELselectorKind_collapse">ExcST6BOELselectorKind</a>
-<div id="ExcST6BOELselectorKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#noOELinput}}<div><b>noOELinput</b>: {{noOELinput}}</div>{{/noOELinput}}
-{{#beforeUEL}}<div><b>beforeUEL</b>: {{beforeUEL}}</div>{{/beforeUEL}}
-{{#afterUEL}}<div><b>afterUEL</b>: {{afterUEL}}</div>{{/afterUEL}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcitationSystemDynamics_collapse" aria-expanded="true" aria-controls="ExcitationSystemDynamics_collapse" style="margin-left: 10px;">ExcitationSystemDynamics</a></legend>
+                    <div id="ExcitationSystemDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PowerSystemStabilizerDynamics'>PowerSystemStabilizerDynamics: </label><div class='col-sm-8'><input id='PowerSystemStabilizerDynamics' class='form-control' type='text'{{#PowerSystemStabilizerDynamics}} value='{{PowerSystemStabilizerDynamics}}'{{/PowerSystemStabilizerDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UnderexcitationLimiterDynamics'>UnderexcitationLimiterDynamics: </label><div class='col-sm-8'><input id='UnderexcitationLimiterDynamics' class='form-control' type='text'{{#UnderexcitationLimiterDynamics}} value='{{UnderexcitationLimiterDynamics}}'{{/UnderexcitationLimiterDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DiscontinuousExcitationControlDynamics'>DiscontinuousExcitationControlDynamics: </label><div class='col-sm-8'><input id='DiscontinuousExcitationControlDynamics' class='form-control' type='text'{{#DiscontinuousExcitationControlDynamics}} value='{{DiscontinuousExcitationControlDynamics}}'{{/DiscontinuousExcitationControlDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PFVArControllerType1Dynamics'>PFVArControllerType1Dynamics: </label><div class='col-sm-8'><input id='PFVArControllerType1Dynamics' class='form-control' type='text'{{#PFVArControllerType1Dynamics}} value='{{PFVArControllerType1Dynamics}}'{{/PFVArControllerType1Dynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SynchronousMachineDynamics'>SynchronousMachineDynamics: </label><div class='col-sm-8'><input id='SynchronousMachineDynamics' class='form-control' type='text'{{#SynchronousMachineDynamics}} value='{{SynchronousMachineDynamics}}'{{/SynchronousMachineDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VoltageCompensatorDynamics'>VoltageCompensatorDynamics: </label><div class='col-sm-8'><input id='VoltageCompensatorDynamics' class='form-control' type='text'{{#VoltageCompensatorDynamics}} value='{{VoltageCompensatorDynamics}}'{{/VoltageCompensatorDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OverexcitationLimiterDynamics'>OverexcitationLimiterDynamics: </label><div class='col-sm-8'><input id='OverexcitationLimiterDynamics' class='form-control' type='text'{{#OverexcitationLimiterDynamics}} value='{{OverexcitationLimiterDynamics}}'{{/OverexcitationLimiterDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PFVArControllerType2Dynamics'>PFVArControllerType2Dynamics: </label><div class='col-sm-8'><input id='PFVArControllerType2Dynamics' class='form-control' type='text'{{#PFVArControllerType2Dynamics}} value='{{PFVArControllerType2Dynamics}}'{{/PFVArControllerType2Dynamics}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        /**
-         * Type of connection for the UEL input used for static excitation systems type 7B.
-         *
-         */
-        class ExcST7BUELselectorKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ExcST7BUELselectorKind;
-                if (null == bucket)
-                   cim_data.ExcST7BUELselectorKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.ExcST7BUELselectorKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ExcST7BUELselectorKind";
-                base.parse_element (/<cim:ExcST7BUELselectorKind.noUELinput>([\s\S]*?)<\/cim:ExcST7BUELselectorKind.noUELinput>/g, obj, "noUELinput", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcST7BUELselectorKind.addVref>([\s\S]*?)<\/cim:ExcST7BUELselectorKind.addVref>/g, obj, "addVref", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcST7BUELselectorKind.inputHVgate>([\s\S]*?)<\/cim:ExcST7BUELselectorKind.inputHVgate>/g, obj, "inputHVgate", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcST7BUELselectorKind.outputHVgate>([\s\S]*?)<\/cim:ExcST7BUELselectorKind.outputHVgate>/g, obj, "outputHVgate", base.to_string, sub, context);
-
-                var bucket = context.parsed.ExcST7BUELselectorKind;
-                if (null == bucket)
-                   context.parsed.ExcST7BUELselectorKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ExcST7BUELselectorKind", "noUELinput", base.from_string, fields);
-                base.export_element (obj, "ExcST7BUELselectorKind", "addVref", base.from_string, fields);
-                base.export_element (obj, "ExcST7BUELselectorKind", "inputHVgate", base.from_string, fields);
-                base.export_element (obj, "ExcST7BUELselectorKind", "outputHVgate", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#ExcST7BUELselectorKind_collapse" aria-expanded="true" aria-controls="ExcST7BUELselectorKind_collapse">ExcST7BUELselectorKind</a>
-<div id="ExcST7BUELselectorKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#noUELinput}}<div><b>noUELinput</b>: {{noUELinput}}</div>{{/noUELinput}}
-{{#addVref}}<div><b>addVref</b>: {{addVref}}</div>{{/addVref}}
-{{#inputHVgate}}<div><b>inputHVgate</b>: {{inputHVgate}}</div>{{/inputHVgate}}
-{{#outputHVgate}}<div><b>outputHVgate</b>: {{outputHVgate}}</div>{{/outputHVgate}}
-</div>
-`
-                );
-           }        }
-
-        /**
-         * Type of rate feedback signals.
-         *
-         */
-        class ExcREXSFeedbackSignalKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ExcREXSFeedbackSignalKind;
-                if (null == bucket)
-                   cim_data.ExcREXSFeedbackSignalKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.ExcREXSFeedbackSignalKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ExcREXSFeedbackSignalKind";
-                base.parse_element (/<cim:ExcREXSFeedbackSignalKind.fieldVoltage>([\s\S]*?)<\/cim:ExcREXSFeedbackSignalKind.fieldVoltage>/g, obj, "fieldVoltage", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcREXSFeedbackSignalKind.fieldCurrent>([\s\S]*?)<\/cim:ExcREXSFeedbackSignalKind.fieldCurrent>/g, obj, "fieldCurrent", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcREXSFeedbackSignalKind.outputVoltage>([\s\S]*?)<\/cim:ExcREXSFeedbackSignalKind.outputVoltage>/g, obj, "outputVoltage", base.to_string, sub, context);
-
-                var bucket = context.parsed.ExcREXSFeedbackSignalKind;
-                if (null == bucket)
-                   context.parsed.ExcREXSFeedbackSignalKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ExcREXSFeedbackSignalKind", "fieldVoltage", base.from_string, fields);
-                base.export_element (obj, "ExcREXSFeedbackSignalKind", "fieldCurrent", base.from_string, fields);
-                base.export_element (obj, "ExcREXSFeedbackSignalKind", "outputVoltage", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#ExcREXSFeedbackSignalKind_collapse" aria-expanded="true" aria-controls="ExcREXSFeedbackSignalKind_collapse">ExcREXSFeedbackSignalKind</a>
-<div id="ExcREXSFeedbackSignalKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#fieldVoltage}}<div><b>fieldVoltage</b>: {{fieldVoltage}}</div>{{/fieldVoltage}}
-{{#fieldCurrent}}<div><b>fieldCurrent</b>: {{fieldCurrent}}</div>{{/fieldCurrent}}
-{{#outputVoltage}}<div><b>outputVoltage</b>: {{outputVoltage}}</div>{{/outputVoltage}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type DC1A model.
@@ -545,32 +282,78 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEDC1A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC1A_collapse">ExcIEEEDC1A</a>
-<div id="ExcIEEEDC1A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
-{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
-{{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
-{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC1A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC1A_collapse" style="margin-left: 10px;">ExcIEEEDC1A</a></legend>
+                    <div id="ExcIEEEDC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+                    {{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+                    {{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+                    {{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC1A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC1A_collapse" style="margin-left: 10px;">ExcIEEEDC1A</a></legend>
+                    <div id="ExcIEEEDC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd1'>efd1: </label><div class='col-sm-8'><input id='efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd2'>efd2: </label><div class='col-sm-8'><input id='efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='exclim'>exclim: </label><div class='col-sm-8'><input id='exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd1'>seefd1: </label><div class='col-sm-8'><input id='seefd1' class='form-control' type='text'{{#seefd1}} value='{{seefd1}}'{{/seefd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd2'>seefd2: </label><div class='col-sm-8'><input id='seefd2' class='form-control' type='text'{{#seefd2}} value='{{seefd2}}'{{/seefd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='uelin'>uelin: </label><div class='col-sm-8'><input id='uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Simple excitation system model representing generic characteristics of many excitation systems; intended for use where negative field current may be a problem.
@@ -639,24 +422,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcSCRX_collapse" aria-expanded="true" aria-controls="ExcSCRX_collapse">ExcSCRX</a>
-<div id="ExcSCRX_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#cswitch}}<div><b>cswitch</b>: {{cswitch}}</div>{{/cswitch}}
-{{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
-{{#emin}}<div><b>emin</b>: {{emin}}</div>{{/emin}}
-{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-{{#rcrfd}}<div><b>rcrfd</b>: {{rcrfd}}</div>{{/rcrfd}}
-{{#tatb}}<div><b>tatb</b>: {{tatb}}</div>{{/tatb}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcSCRX_collapse" aria-expanded="true" aria-controls="ExcSCRX_collapse" style="margin-left: 10px;">ExcSCRX</a></legend>
+                    <div id="ExcSCRX_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#cswitch}}<div><b>cswitch</b>: {{cswitch}}</div>{{/cswitch}}
+                    {{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
+                    {{#emin}}<div><b>emin</b>: {{emin}}</div>{{/emin}}
+                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+                    {{#rcrfd}}<div><b>rcrfd</b>: {{rcrfd}}</div>{{/rcrfd}}
+                    {{#tatb}}<div><b>tatb</b>: {{tatb}}</div>{{/tatb}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcSCRX_collapse" aria-expanded="true" aria-controls="ExcSCRX_collapse" style="margin-left: 10px;">ExcSCRX</a></legend>
+                    <div id="ExcSCRX_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='cswitch'>cswitch: </label><div class='col-sm-8'><input id='cswitch' class='form-check-input' type='checkbox'{{#cswitch}} checked{{/cswitch}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emax'>emax: </label><div class='col-sm-8'><input id='emax' class='form-control' type='text'{{#emax}} value='{{emax}}'{{/emax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emin'>emin: </label><div class='col-sm-8'><input id='emin' class='form-control' type='text'{{#emin}} value='{{emin}}'{{/emin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rcrfd'>rcrfd: </label><div class='col-sm-8'><input id='rcrfd' class='form-control' type='text'{{#rcrfd}} value='{{rcrfd}}'{{/rcrfd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tatb'>tatb: </label><div class='col-sm-8'><input id='tatb' class='form-control' type='text'{{#tatb}} value='{{tatb}}'{{/tatb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type DC4B model.
@@ -749,35 +570,84 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEDC4B_collapse" aria-expanded="true" aria-controls="ExcIEEEDC4B_collapse">ExcIEEEDC4B</a>
-<div id="ExcIEEEDC4B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
-{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
-{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
-{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
-{{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC4B_collapse" aria-expanded="true" aria-controls="ExcIEEEDC4B_collapse" style="margin-left: 10px;">ExcIEEEDC4B</a></legend>
+                    <div id="ExcIEEEDC4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+                    {{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
+                    {{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+                    {{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+                    {{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC4B_collapse" aria-expanded="true" aria-controls="ExcIEEEDC4B_collapse" style="margin-left: 10px;">ExcIEEEDC4B</a></legend>
+                    <div id="ExcIEEEDC4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd1'>efd1: </label><div class='col-sm-8'><input id='efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd2'>efd2: </label><div class='col-sm-8'><input id='efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='oelin'>oelin: </label><div class='col-sm-8'><input id='oelin' class='form-check-input' type='checkbox'{{#oelin}} checked{{/oelin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd1'>seefd1: </label><div class='col-sm-8'><input id='seefd1' class='form-control' type='text'{{#seefd1}} value='{{seefd1}}'{{/seefd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd2'>seefd2: </label><div class='col-sm-8'><input id='seefd2' class='form-control' type='text'{{#seefd2}} value='{{seefd2}}'{{/seefd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td'>td: </label><div class='col-sm-8'><input id='td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='uelin'>uelin: </label><div class='col-sm-8'><input id='uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vemin'>vemin: </label><div class='col-sm-8'><input id='vemin' class='form-control' type='text'{{#vemin}} value='{{vemin}}'{{/vemin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC3A model.
@@ -874,37 +744,88 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEAC3A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC3A_collapse">ExcIEEEAC3A</a>
-<div id="ExcIEEEAC3A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efdn}}<div><b>efdn</b>: {{efdn}}</div>{{/efdn}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#kn}}<div><b>kn</b>: {{kn}}</div>{{/kn}}
-{{#kr}}<div><b>kr</b>: {{kr}}</div>{{/kr}}
-{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
-{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
-{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
-{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
-{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
-{{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
-{{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC3A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC3A_collapse" style="margin-left: 10px;">ExcIEEEAC3A</a></legend>
+                    <div id="ExcIEEEAC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efdn}}<div><b>efdn</b>: {{efdn}}</div>{{/efdn}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#kn}}<div><b>kn</b>: {{kn}}</div>{{/kn}}
+                    {{#kr}}<div><b>kr</b>: {{kr}}</div>{{/kr}}
+                    {{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+                    {{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+                    {{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
+                    {{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC3A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC3A_collapse" style="margin-left: 10px;">ExcIEEEAC3A</a></legend>
+                    <div id="ExcIEEEAC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdn'>efdn: </label><div class='col-sm-8'><input id='efdn' class='form-control' type='text'{{#efdn}} value='{{efdn}}'{{/efdn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kn'>kn: </label><div class='col-sm-8'><input id='kn' class='form-control' type='text'{{#kn}} value='{{kn}}'{{/kn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kr'>kr: </label><div class='col-sm-8'><input id='kr' class='form-control' type='text'{{#kr}} value='{{kr}}'{{/kr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve1'>seve1: </label><div class='col-sm-8'><input id='seve1' class='form-control' type='text'{{#seve1}} value='{{seve1}}'{{/seve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve2'>seve2: </label><div class='col-sm-8'><input id='seve2' class='form-control' type='text'{{#seve2}} value='{{seve2}}'{{/seve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamax'>vamax: </label><div class='col-sm-8'><input id='vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamin'>vamin: </label><div class='col-sm-8'><input id='vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve1'>ve1: </label><div class='col-sm-8'><input id='ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve2'>ve2: </label><div class='col-sm-8'><input id='ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vemin'>vemin: </label><div class='col-sm-8'><input id='vemin' class='form-control' type='text'{{#vemin}} value='{{vemin}}'{{/vemin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vfemax'>vfemax: </label><div class='col-sm-8'><input id='vfemax' class='form-control' type='text'{{#vfemax}} value='{{vfemax}}'{{/vfemax}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Manual excitation control with field circuit resistance.
@@ -965,19 +886,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcAVR5_collapse" aria-expanded="true" aria-controls="ExcAVR5_collapse">ExcAVR5</a>
-<div id="ExcAVR5_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#rex}}<div><b>rex</b>: {{rex}}</div>{{/rex}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR5_collapse" aria-expanded="true" aria-controls="ExcAVR5_collapse" style="margin-left: 10px;">ExcAVR5</a></legend>
+                    <div id="ExcAVR5_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#rex}}<div><b>rex</b>: {{rex}}</div>{{/rex}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR5_collapse" aria-expanded="true" aria-controls="ExcAVR5_collapse" style="margin-left: 10px;">ExcAVR5</a></legend>
+                    <div id="ExcAVR5_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rex'>rex: </label><div class='col-sm-8'><input id='rex' class='form-control' type='text'{{#rex}} value='{{rex}}'{{/rex}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE ST2A static excitation system - another lead-lag block added to match  the model defined by WECC.
@@ -1060,31 +1014,76 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcST2A_collapse" aria-expanded="true" aria-controls="ExcST2A_collapse">ExcST2A</a>
-<div id="ExcST2A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST2A_collapse" aria-expanded="true" aria-controls="ExcST2A_collapse" style="margin-left: 10px;">ExcST2A</a></legend>
+                    <div id="ExcST2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST2A_collapse" aria-expanded="true" aria-controls="ExcST2A_collapse" style="margin-left: 10px;">ExcST2A</a></legend>
+                    <div id="ExcST2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmax'>efdmax: </label><div class='col-sm-8'><input id='efdmax' class='form-control' type='text'{{#efdmax}} value='{{efdmax}}'{{/efdmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='uelin'>uelin: </label><div class='col-sm-8'><input id='uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Detailed Excitation System Model - ELIN (VATECH).
@@ -1193,43 +1192,100 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcELIN2_collapse" aria-expanded="true" aria-controls="ExcELIN2_collapse">ExcELIN2</a>
-<div id="ExcELIN2_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efdbas}}<div><b>efdbas</b>: {{efdbas}}</div>{{/efdbas}}
-{{#iefmax}}<div><b>iefmax</b>: {{iefmax}}</div>{{/iefmax}}
-{{#iefmax2}}<div><b>iefmax2</b>: {{iefmax2}}</div>{{/iefmax2}}
-{{#iefmin}}<div><b>iefmin</b>: {{iefmin}}</div>{{/iefmin}}
-{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-{{#k1ec}}<div><b>k1ec</b>: {{k1ec}}</div>{{/k1ec}}
-{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
-{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
-{{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
-{{#kd1}}<div><b>kd1</b>: {{kd1}}</div>{{/kd1}}
-{{#ke2}}<div><b>ke2</b>: {{ke2}}</div>{{/ke2}}
-{{#ketb}}<div><b>ketb</b>: {{ketb}}</div>{{/ketb}}
-{{#pid1max}}<div><b>pid1max</b>: {{pid1max}}</div>{{/pid1max}}
-{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
-{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
-{{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#te2}}<div><b>te2</b>: {{te2}}</div>{{/te2}}
-{{#ti1}}<div><b>ti1</b>: {{ti1}}</div>{{/ti1}}
-{{#ti3}}<div><b>ti3</b>: {{ti3}}</div>{{/ti3}}
-{{#ti4}}<div><b>ti4</b>: {{ti4}}</div>{{/ti4}}
-{{#tr4}}<div><b>tr4</b>: {{tr4}}</div>{{/tr4}}
-{{#upmax}}<div><b>upmax</b>: {{upmax}}</div>{{/upmax}}
-{{#upmin}}<div><b>upmin</b>: {{upmin}}</div>{{/upmin}}
-{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
-{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
-{{#xp}}<div><b>xp</b>: {{xp}}</div>{{/xp}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcELIN2_collapse" aria-expanded="true" aria-controls="ExcELIN2_collapse" style="margin-left: 10px;">ExcELIN2</a></legend>
+                    <div id="ExcELIN2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efdbas}}<div><b>efdbas</b>: {{efdbas}}</div>{{/efdbas}}
+                    {{#iefmax}}<div><b>iefmax</b>: {{iefmax}}</div>{{/iefmax}}
+                    {{#iefmax2}}<div><b>iefmax2</b>: {{iefmax2}}</div>{{/iefmax2}}
+                    {{#iefmin}}<div><b>iefmin</b>: {{iefmin}}</div>{{/iefmin}}
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#k1ec}}<div><b>k1ec</b>: {{k1ec}}</div>{{/k1ec}}
+                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+                    {{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+                    {{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
+                    {{#kd1}}<div><b>kd1</b>: {{kd1}}</div>{{/kd1}}
+                    {{#ke2}}<div><b>ke2</b>: {{ke2}}</div>{{/ke2}}
+                    {{#ketb}}<div><b>ketb</b>: {{ketb}}</div>{{/ketb}}
+                    {{#pid1max}}<div><b>pid1max</b>: {{pid1max}}</div>{{/pid1max}}
+                    {{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+                    {{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+                    {{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#te2}}<div><b>te2</b>: {{te2}}</div>{{/te2}}
+                    {{#ti1}}<div><b>ti1</b>: {{ti1}}</div>{{/ti1}}
+                    {{#ti3}}<div><b>ti3</b>: {{ti3}}</div>{{/ti3}}
+                    {{#ti4}}<div><b>ti4</b>: {{ti4}}</div>{{/ti4}}
+                    {{#tr4}}<div><b>tr4</b>: {{tr4}}</div>{{/tr4}}
+                    {{#upmax}}<div><b>upmax</b>: {{upmax}}</div>{{/upmax}}
+                    {{#upmin}}<div><b>upmin</b>: {{upmin}}</div>{{/upmin}}
+                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+                    {{#xp}}<div><b>xp</b>: {{xp}}</div>{{/xp}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcELIN2_collapse" aria-expanded="true" aria-controls="ExcELIN2_collapse" style="margin-left: 10px;">ExcELIN2</a></legend>
+                    <div id="ExcELIN2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdbas'>efdbas: </label><div class='col-sm-8'><input id='efdbas' class='form-control' type='text'{{#efdbas}} value='{{efdbas}}'{{/efdbas}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='iefmax'>iefmax: </label><div class='col-sm-8'><input id='iefmax' class='form-control' type='text'{{#iefmax}} value='{{iefmax}}'{{/iefmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='iefmax2'>iefmax2: </label><div class='col-sm-8'><input id='iefmax2' class='form-control' type='text'{{#iefmax2}} value='{{iefmax2}}'{{/iefmax2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='iefmin'>iefmin: </label><div class='col-sm-8'><input id='iefmin' class='form-control' type='text'{{#iefmin}} value='{{iefmin}}'{{/iefmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1ec'>k1ec: </label><div class='col-sm-8'><input id='k1ec' class='form-control' type='text'{{#k1ec}} value='{{k1ec}}'{{/k1ec}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k3'>k3: </label><div class='col-sm-8'><input id='k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k4'>k4: </label><div class='col-sm-8'><input id='k4' class='form-control' type='text'{{#k4}} value='{{k4}}'{{/k4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd1'>kd1: </label><div class='col-sm-8'><input id='kd1' class='form-control' type='text'{{#kd1}} value='{{kd1}}'{{/kd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke2'>ke2: </label><div class='col-sm-8'><input id='ke2' class='form-control' type='text'{{#ke2}} value='{{ke2}}'{{/ke2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ketb'>ketb: </label><div class='col-sm-8'><input id='ketb' class='form-control' type='text'{{#ketb}} value='{{ketb}}'{{/ketb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pid1max'>pid1max: </label><div class='col-sm-8'><input id='pid1max' class='form-control' type='text'{{#pid1max}} value='{{pid1max}}'{{/pid1max}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve1'>seve1: </label><div class='col-sm-8'><input id='seve1' class='form-control' type='text'{{#seve1}} value='{{seve1}}'{{/seve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve2'>seve2: </label><div class='col-sm-8'><input id='seve2' class='form-control' type='text'{{#seve2}} value='{{seve2}}'{{/seve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb1'>tb1: </label><div class='col-sm-8'><input id='tb1' class='form-control' type='text'{{#tb1}} value='{{tb1}}'{{/tb1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te2'>te2: </label><div class='col-sm-8'><input id='te2' class='form-control' type='text'{{#te2}} value='{{te2}}'{{/te2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti1'>ti1: </label><div class='col-sm-8'><input id='ti1' class='form-control' type='text'{{#ti1}} value='{{ti1}}'{{/ti1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti3'>ti3: </label><div class='col-sm-8'><input id='ti3' class='form-control' type='text'{{#ti3}} value='{{ti3}}'{{/ti3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti4'>ti4: </label><div class='col-sm-8'><input id='ti4' class='form-control' type='text'{{#ti4}} value='{{ti4}}'{{/ti4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr4'>tr4: </label><div class='col-sm-8'><input id='tr4' class='form-control' type='text'{{#tr4}} value='{{tr4}}'{{/tr4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='upmax'>upmax: </label><div class='col-sm-8'><input id='upmax' class='form-control' type='text'{{#upmax}} value='{{upmax}}'{{/upmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='upmin'>upmin: </label><div class='col-sm-8'><input id='upmin' class='form-control' type='text'{{#upmin}} value='{{upmin}}'{{/upmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve1'>ve1: </label><div class='col-sm-8'><input id='ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve2'>ve2: </label><div class='col-sm-8'><input id='ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xp'>xp: </label><div class='col-sm-8'><input id='xp' class='form-control' type='text'{{#xp}} value='{{xp}}'{{/xp}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type DC3A model.
@@ -1306,27 +1362,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEDC3A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC3A_collapse">ExcIEEEDC3A</a>
-<div id="ExcIEEEDC3A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
-{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
-{{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kv}}<div><b>kv</b>: {{kv}}</div>{{/kv}}
-{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
-{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#trh}}<div><b>trh</b>: {{trh}}</div>{{/trh}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC3A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC3A_collapse" style="margin-left: 10px;">ExcIEEEDC3A</a></legend>
+                    <div id="ExcIEEEDC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+                    {{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+                    {{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kv}}<div><b>kv</b>: {{kv}}</div>{{/kv}}
+                    {{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+                    {{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#trh}}<div><b>trh</b>: {{trh}}</div>{{/trh}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC3A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC3A_collapse" style="margin-left: 10px;">ExcIEEEDC3A</a></legend>
+                    <div id="ExcIEEEDC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd1'>efd1: </label><div class='col-sm-8'><input id='efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd2'>efd2: </label><div class='col-sm-8'><input id='efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='exclim'>exclim: </label><div class='col-sm-8'><input id='exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kv'>kv: </label><div class='col-sm-8'><input id='kv' class='form-control' type='text'{{#kv}} value='{{kv}}'{{/kv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd1'>seefd1: </label><div class='col-sm-8'><input id='seefd1' class='form-control' type='text'{{#seefd1}} value='{{seefd1}}'{{/seefd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd2'>seefd2: </label><div class='col-sm-8'><input id='seefd2' class='form-control' type='text'{{#seefd2}} value='{{seefd2}}'{{/seefd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='trh'>trh: </label><div class='col-sm-8'><input id='trh' class='form-control' type='text'{{#trh}} value='{{trh}}'{{/trh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC2A model.
@@ -1423,37 +1520,88 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEAC2A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC2A_collapse">ExcIEEEAC2A</a>
-<div id="ExcIEEEAC2A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kb}}<div><b>kb</b>: {{kb}}</div>{{/kb}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
-{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
-{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
-{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
-{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
-{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
-{{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC2A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC2A_collapse" style="margin-left: 10px;">ExcIEEEAC2A</a></legend>
+                    <div id="ExcIEEEAC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kb}}<div><b>kb</b>: {{kb}}</div>{{/kb}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+                    {{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+                    {{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+                    {{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC2A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC2A_collapse" style="margin-left: 10px;">ExcIEEEAC2A</a></legend>
+                    <div id="ExcIEEEAC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kb'>kb: </label><div class='col-sm-8'><input id='kb' class='form-control' type='text'{{#kb}} value='{{kb}}'{{/kb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh'>kh: </label><div class='col-sm-8'><input id='kh' class='form-control' type='text'{{#kh}} value='{{kh}}'{{/kh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve1'>seve1: </label><div class='col-sm-8'><input id='seve1' class='form-control' type='text'{{#seve1}} value='{{seve1}}'{{/seve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve2'>seve2: </label><div class='col-sm-8'><input id='seve2' class='form-control' type='text'{{#seve2}} value='{{seve2}}'{{/seve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamax'>vamax: </label><div class='col-sm-8'><input id='vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamin'>vamin: </label><div class='col-sm-8'><input id='vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve1'>ve1: </label><div class='col-sm-8'><input id='ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve2'>ve2: </label><div class='col-sm-8'><input id='ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vfemax'>vfemax: </label><div class='col-sm-8'><input id='vfemax' class='form-control' type='text'{{#vfemax}} value='{{vfemax}}'{{/vfemax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE AC1A alternator-supplied rectifier excitation system with different rate feedback source.
@@ -1550,38 +1698,90 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcAC1A_collapse" aria-expanded="true" aria-controls="ExcAC1A_collapse">ExcAC1A</a>
-<div id="ExcAC1A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#hvlvgates}}<div><b>hvlvgates</b>: {{hvlvgates}}</div>{{/hvlvgates}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#kf1}}<div><b>kf1</b>: {{kf1}}</div>{{/kf1}}
-{{#kf2}}<div><b>kf2</b>: {{kf2}}</div>{{/kf2}}
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
-{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
-{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
-{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
-{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC1A_collapse" aria-expanded="true" aria-controls="ExcAC1A_collapse" style="margin-left: 10px;">ExcAC1A</a></legend>
+                    <div id="ExcAC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#hvlvgates}}<div><b>hvlvgates</b>: {{hvlvgates}}</div>{{/hvlvgates}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#kf1}}<div><b>kf1</b>: {{kf1}}</div>{{/kf1}}
+                    {{#kf2}}<div><b>kf2</b>: {{kf2}}</div>{{/kf2}}
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+                    {{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC1A_collapse" aria-expanded="true" aria-controls="ExcAC1A_collapse" style="margin-left: 10px;">ExcAC1A</a></legend>
+                    <div id="ExcAC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='hvlvgates'>hvlvgates: </label><div class='col-sm-8'><input id='hvlvgates' class='form-check-input' type='checkbox'{{#hvlvgates}} checked{{/hvlvgates}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf1'>kf1: </label><div class='col-sm-8'><input id='kf1' class='form-control' type='text'{{#kf1}} value='{{kf1}}'{{/kf1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf2'>kf2: </label><div class='col-sm-8'><input id='kf2' class='form-control' type='text'{{#kf2}} value='{{kf2}}'{{/kf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve1'>seve1: </label><div class='col-sm-8'><input id='seve1' class='form-control' type='text'{{#seve1}} value='{{seve1}}'{{/seve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve2'>seve2: </label><div class='col-sm-8'><input id='seve2' class='form-control' type='text'{{#seve2}} value='{{seve2}}'{{/seve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamax'>vamax: </label><div class='col-sm-8'><input id='vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamin'>vamin: </label><div class='col-sm-8'><input id='vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve1'>ve1: </label><div class='col-sm-8'><input id='ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve2'>ve2: </label><div class='col-sm-8'><input id='ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Simplified Excitation System Model.
@@ -1654,26 +1854,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcSEXS_collapse" aria-expanded="true" aria-controls="ExcSEXS_collapse">ExcSEXS</a>
-<div id="ExcSEXS_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
-{{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
-{{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
-{{#emin}}<div><b>emin</b>: {{emin}}</div>{{/emin}}
-{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#tatb}}<div><b>tatb</b>: {{tatb}}</div>{{/tatb}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcSEXS_collapse" aria-expanded="true" aria-controls="ExcSEXS_collapse" style="margin-left: 10px;">ExcSEXS</a></legend>
+                    <div id="ExcSEXS_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+                    {{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
+                    {{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
+                    {{#emin}}<div><b>emin</b>: {{emin}}</div>{{/emin}}
+                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#tatb}}<div><b>tatb</b>: {{tatb}}</div>{{/tatb}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcSEXS_collapse" aria-expanded="true" aria-controls="ExcSEXS_collapse" style="margin-left: 10px;">ExcSEXS</a></legend>
+                    <div id="ExcSEXS_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmax'>efdmax: </label><div class='col-sm-8'><input id='efdmax' class='form-control' type='text'{{#efdmax}} value='{{efdmax}}'{{/efdmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmin'>efdmin: </label><div class='col-sm-8'><input id='efdmin' class='form-control' type='text'{{#efdmin}} value='{{efdmin}}'{{/efdmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emax'>emax: </label><div class='col-sm-8'><input id='emax' class='form-control' type='text'{{#emax}} value='{{emax}}'{{/emax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emin'>emin: </label><div class='col-sm-8'><input id='emin' class='form-control' type='text'{{#emin}} value='{{emin}}'{{/emin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tatb'>tatb: </label><div class='col-sm-8'><input id='tatb' class='form-control' type='text'{{#tatb}} value='{{tatb}}'{{/tatb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Italian excitation system corresponding to IEEE (1968) Type 2 Model.
@@ -1754,29 +1994,72 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcAVR2_collapse" aria-expanded="true" aria-controls="ExcAVR2_collapse">ExcAVR2</a>
-<div id="ExcAVR2_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
-{{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
-{{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
-{{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
-{{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
-{{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR2_collapse" aria-expanded="true" aria-controls="ExcAVR2_collapse" style="margin-left: 10px;">ExcAVR2</a></legend>
+                    <div id="ExcAVR2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
+                    {{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
+                    {{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
+                    {{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
+                    {{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
+                    {{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR2_collapse" aria-expanded="true" aria-controls="ExcAVR2_collapse" style="margin-left: 10px;">ExcAVR2</a></legend>
+                    <div id="ExcAVR2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='e1'>e1: </label><div class='col-sm-8'><input id='e1' class='form-control' type='text'{{#e1}} value='{{e1}}'{{/e1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='e2'>e2: </label><div class='col-sm-8'><input id='e2' class='form-control' type='text'{{#e2}} value='{{e2}}'{{/e2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='se1'>se1: </label><div class='col-sm-8'><input id='se1' class='form-control' type='text'{{#se1}} value='{{se1}}'{{/se1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='se2'>se2: </label><div class='col-sm-8'><input id='se2' class='form-control' type='text'{{#se2}} value='{{se2}}'{{/se2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf1'>tf1: </label><div class='col-sm-8'><input id='tf1' class='form-control' type='text'{{#tf1}} value='{{tf1}}'{{/tf1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf2'>tf2: </label><div class='col-sm-8'><input id='tf2' class='form-control' type='text'{{#tf2}} value='{{tf2}}'{{/tf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmn'>vrmn: </label><div class='col-sm-8'><input id='vrmn' class='form-control' type='text'{{#vrmn}} value='{{vrmn}}'{{/vrmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmx'>vrmx: </label><div class='col-sm-8'><input id='vrmx' class='form-control' type='text'{{#vrmx}} value='{{vrmx}}'{{/vrmx}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This is modified IEEE DC3A direct current commutator exciters with speed input, and death band.
@@ -1863,32 +2146,78 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcDC3A_collapse" aria-expanded="true" aria-controls="ExcDC3A_collapse">ExcDC3A</a>
-<div id="ExcDC3A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#edfmax}}<div><b>edfmax</b>: {{edfmax}}</div>{{/edfmax}}
-{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
-{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
-{{#efdlim}}<div><b>efdlim</b>: {{efdlim}}</div>{{/efdlim}}
-{{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
-{{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kr}}<div><b>kr</b>: {{kr}}</div>{{/kr}}
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#kv}}<div><b>kv</b>: {{kv}}</div>{{/kv}}
-{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
-{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#trh}}<div><b>trh</b>: {{trh}}</div>{{/trh}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC3A_collapse" aria-expanded="true" aria-controls="ExcDC3A_collapse" style="margin-left: 10px;">ExcDC3A</a></legend>
+                    <div id="ExcDC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#edfmax}}<div><b>edfmax</b>: {{edfmax}}</div>{{/edfmax}}
+                    {{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+                    {{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+                    {{#efdlim}}<div><b>efdlim</b>: {{efdlim}}</div>{{/efdlim}}
+                    {{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
+                    {{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kr}}<div><b>kr</b>: {{kr}}</div>{{/kr}}
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#kv}}<div><b>kv</b>: {{kv}}</div>{{/kv}}
+                    {{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+                    {{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#trh}}<div><b>trh</b>: {{trh}}</div>{{/trh}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC3A_collapse" aria-expanded="true" aria-controls="ExcDC3A_collapse" style="margin-left: 10px;">ExcDC3A</a></legend>
+                    <div id="ExcDC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='edfmax'>edfmax: </label><div class='col-sm-8'><input id='edfmax' class='form-control' type='text'{{#edfmax}} value='{{edfmax}}'{{/edfmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd1'>efd1: </label><div class='col-sm-8'><input id='efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd2'>efd2: </label><div class='col-sm-8'><input id='efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='efdlim'>efdlim: </label><div class='col-sm-8'><input id='efdlim' class='form-check-input' type='checkbox'{{#efdlim}} checked{{/efdlim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmin'>efdmin: </label><div class='col-sm-8'><input id='efdmin' class='form-control' type='text'{{#efdmin}} value='{{efdmin}}'{{/efdmin}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='exclim'>exclim: </label><div class='col-sm-8'><input id='exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kr'>kr: </label><div class='col-sm-8'><input id='kr' class='form-control' type='text'{{#kr}} value='{{kr}}'{{/kr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kv'>kv: </label><div class='col-sm-8'><input id='kv' class='form-control' type='text'{{#kv}} value='{{kv}}'{{/kv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd1'>seefd1: </label><div class='col-sm-8'><input id='seefd1' class='form-control' type='text'{{#seefd1}} value='{{seefd1}}'{{/seefd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd2'>seefd2: </label><div class='col-sm-8'><input id='seefd2' class='form-control' type='text'{{#seefd2}} value='{{seefd2}}'{{/seefd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='trh'>trh: </label><div class='col-sm-8'><input id='trh' class='form-control' type='text'{{#trh}} value='{{trh}}'{{/trh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE ST6B static excitation system with PID controller and optional inner feedbacks loop.
@@ -1928,7 +2257,7 @@ define
                 base.parse_element (/<cim:ExcST6B.km>([\s\S]*?)<\/cim:ExcST6B.km>/g, obj, "km", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST6B.kpa>([\s\S]*?)<\/cim:ExcST6B.kpa>/g, obj, "kpa", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST6B.kvd>([\s\S]*?)<\/cim:ExcST6B.kvd>/g, obj, "kvd", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcST6B.oelin>([\s\S]*?)<\/cim:ExcST6B.oelin>/g, obj, "oelin", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ExcST6B.oelin\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "oelin", sub, context);
                 base.parse_element (/<cim:ExcST6B.tg>([\s\S]*?)<\/cim:ExcST6B.tg>/g, obj, "tg", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST6B.ts>([\s\S]*?)<\/cim:ExcST6B.ts>/g, obj, "ts", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST6B.tvd>([\s\S]*?)<\/cim:ExcST6B.tvd>/g, obj, "tvd", base.to_string, sub, context);
@@ -1987,39 +2316,94 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcST6B_collapse" aria-expanded="true" aria-controls="ExcST6B_collapse">ExcST6B</a>
-<div id="ExcST6B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#ilr}}<div><b>ilr</b>: {{ilr}}</div>{{/ilr}}
-{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-{{#kcl}}<div><b>kcl</b>: {{kcl}}</div>{{/kcl}}
-{{#kff}}<div><b>kff</b>: {{kff}}</div>{{/kff}}
-{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
-{{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
-{{#klr}}<div><b>klr</b>: {{klr}}</div>{{/klr}}
-{{#km}}<div><b>km</b>: {{km}}</div>{{/km}}
-{{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
-{{#kvd}}<div><b>kvd</b>: {{kvd}}</div>{{/kvd}}
-{{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
-{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
-{{#ts}}<div><b>ts</b>: {{ts}}</div>{{/ts}}
-{{#tvd}}<div><b>tvd</b>: {{tvd}}</div>{{/tvd}}
-{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
-{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
-{{#vilim}}<div><b>vilim</b>: {{vilim}}</div>{{/vilim}}
-{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
-{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
-{{#vmult}}<div><b>vmult</b>: {{vmult}}</div>{{/vmult}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-{{#xc}}<div><b>xc</b>: {{xc}}</div>{{/xc}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST6B_collapse" aria-expanded="true" aria-controls="ExcST6B_collapse" style="margin-left: 10px;">ExcST6B</a></legend>
+                    <div id="ExcST6B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#ilr}}<div><b>ilr</b>: {{ilr}}</div>{{/ilr}}
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#kcl}}<div><b>kcl</b>: {{kcl}}</div>{{/kcl}}
+                    {{#kff}}<div><b>kff</b>: {{kff}}</div>{{/kff}}
+                    {{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+                    {{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
+                    {{#klr}}<div><b>klr</b>: {{klr}}</div>{{/klr}}
+                    {{#km}}<div><b>km</b>: {{km}}</div>{{/km}}
+                    {{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
+                    {{#kvd}}<div><b>kvd</b>: {{kvd}}</div>{{/kvd}}
+                    {{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
+                    {{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+                    {{#ts}}<div><b>ts</b>: {{ts}}</div>{{/ts}}
+                    {{#tvd}}<div><b>tvd</b>: {{tvd}}</div>{{/tvd}}
+                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+                    {{#vilim}}<div><b>vilim</b>: {{vilim}}</div>{{/vilim}}
+                    {{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+                    {{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+                    {{#vmult}}<div><b>vmult</b>: {{vmult}}</div>{{/vmult}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    {{#xc}}<div><b>xc</b>: {{xc}}</div>{{/xc}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ExcST6BOELselectorKind = []; if (!obj.oelin) obj.ExcST6BOELselectorKind.push ({ id: '', selected: true}); for (var property in ExcST6BOELselectorKind) obj.ExcST6BOELselectorKind.push ({ id: property, selected: obj.oelin && obj.oelin.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ExcST6BOELselectorKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST6B_collapse" aria-expanded="true" aria-controls="ExcST6B_collapse" style="margin-left: 10px;">ExcST6B</a></legend>
+                    <div id="ExcST6B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ilr'>ilr: </label><div class='col-sm-8'><input id='ilr' class='form-control' type='text'{{#ilr}} value='{{ilr}}'{{/ilr}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-check-input' type='checkbox'{{#k1}} checked{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kcl'>kcl: </label><div class='col-sm-8'><input id='kcl' class='form-control' type='text'{{#kcl}} value='{{kcl}}'{{/kcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kff'>kff: </label><div class='col-sm-8'><input id='kff' class='form-control' type='text'{{#kff}} value='{{kff}}'{{/kff}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kg'>kg: </label><div class='col-sm-8'><input id='kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kia'>kia: </label><div class='col-sm-8'><input id='kia' class='form-control' type='text'{{#kia}} value='{{kia}}'{{/kia}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='klr'>klr: </label><div class='col-sm-8'><input id='klr' class='form-control' type='text'{{#klr}} value='{{klr}}'{{/klr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='km'>km: </label><div class='col-sm-8'><input id='km' class='form-control' type='text'{{#km}} value='{{km}}'{{/km}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpa'>kpa: </label><div class='col-sm-8'><input id='kpa' class='form-control' type='text'{{#kpa}} value='{{kpa}}'{{/kpa}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kvd'>kvd: </label><div class='col-sm-8'><input id='kvd' class='form-control' type='text'{{#kvd}} value='{{kvd}}'{{/kvd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oelin'>oelin: </label><div class='col-sm-8'><select id='oelin' class='form-control'>{{#ExcST6BOELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcST6BOELselectorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tg'>tg: </label><div class='col-sm-8'><input id='tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts'>ts: </label><div class='col-sm-8'><input id='ts' class='form-control' type='text'{{#ts}} value='{{ts}}'{{/ts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tvd'>tvd: </label><div class='col-sm-8'><input id='tvd' class='form-control' type='text'{{#tvd}} value='{{tvd}}'{{/tvd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamax'>vamax: </label><div class='col-sm-8'><input id='vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamin'>vamin: </label><div class='col-sm-8'><input id='vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='vilim'>vilim: </label><div class='col-sm-8'><input id='vilim' class='form-check-input' type='checkbox'{{#vilim}} checked{{/vilim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimax'>vimax: </label><div class='col-sm-8'><input id='vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimin'>vimin: </label><div class='col-sm-8'><input id='vimin' class='form-control' type='text'{{#vimin}} value='{{vimin}}'{{/vimin}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='vmult'>vmult: </label><div class='col-sm-8'><input id='vmult' class='form-check-input' type='checkbox'{{#vmult}} checked{{/vmult}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xc'>xc: </label><div class='col-sm-8'><input id='xc' class='form-control' type='text'{{#xc}} value='{{xc}}'{{/xc}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Proportional/Integral Regulator Excitation System Model.
@@ -2120,39 +2504,92 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcPIC_collapse" aria-expanded="true" aria-controls="ExcPIC_collapse">ExcPIC</a>
-<div id="ExcPIC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
-{{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
-{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
-{{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
-{{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
-{{#ta1}}<div><b>ta1</b>: {{ta1}}</div>{{/ta1}}
-{{#ta2}}<div><b>ta2</b>: {{ta2}}</div>{{/ta2}}
-{{#ta3}}<div><b>ta3</b>: {{ta3}}</div>{{/ta3}}
-{{#ta4}}<div><b>ta4</b>: {{ta4}}</div>{{/ta4}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
-{{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
-{{#vr1}}<div><b>vr1</b>: {{vr1}}</div>{{/vr1}}
-{{#vr2}}<div><b>vr2</b>: {{vr2}}</div>{{/vr2}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcPIC_collapse" aria-expanded="true" aria-controls="ExcPIC_collapse" style="margin-left: 10px;">ExcPIC</a></legend>
+                    <div id="ExcPIC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
+                    {{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
+                    {{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+                    {{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
+                    {{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
+                    {{#ta1}}<div><b>ta1</b>: {{ta1}}</div>{{/ta1}}
+                    {{#ta2}}<div><b>ta2</b>: {{ta2}}</div>{{/ta2}}
+                    {{#ta3}}<div><b>ta3</b>: {{ta3}}</div>{{/ta3}}
+                    {{#ta4}}<div><b>ta4</b>: {{ta4}}</div>{{/ta4}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
+                    {{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
+                    {{#vr1}}<div><b>vr1</b>: {{vr1}}</div>{{/vr1}}
+                    {{#vr2}}<div><b>vr2</b>: {{vr2}}</div>{{/vr2}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcPIC_collapse" aria-expanded="true" aria-controls="ExcPIC_collapse" style="margin-left: 10px;">ExcPIC</a></legend>
+                    <div id="ExcPIC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='e1'>e1: </label><div class='col-sm-8'><input id='e1' class='form-control' type='text'{{#e1}} value='{{e1}}'{{/e1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='e2'>e2: </label><div class='col-sm-8'><input id='e2' class='form-control' type='text'{{#e2}} value='{{e2}}'{{/e2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmax'>efdmax: </label><div class='col-sm-8'><input id='efdmax' class='form-control' type='text'{{#efdmax}} value='{{efdmax}}'{{/efdmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmin'>efdmin: </label><div class='col-sm-8'><input id='efdmin' class='form-control' type='text'{{#efdmin}} value='{{efdmin}}'{{/efdmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='se1'>se1: </label><div class='col-sm-8'><input id='se1' class='form-control' type='text'{{#se1}} value='{{se1}}'{{/se1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='se2'>se2: </label><div class='col-sm-8'><input id='se2' class='form-control' type='text'{{#se2}} value='{{se2}}'{{/se2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta1'>ta1: </label><div class='col-sm-8'><input id='ta1' class='form-control' type='text'{{#ta1}} value='{{ta1}}'{{/ta1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta2'>ta2: </label><div class='col-sm-8'><input id='ta2' class='form-control' type='text'{{#ta2}} value='{{ta2}}'{{/ta2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta3'>ta3: </label><div class='col-sm-8'><input id='ta3' class='form-control' type='text'{{#ta3}} value='{{ta3}}'{{/ta3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta4'>ta4: </label><div class='col-sm-8'><input id='ta4' class='form-control' type='text'{{#ta4}} value='{{ta4}}'{{/ta4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf1'>tf1: </label><div class='col-sm-8'><input id='tf1' class='form-control' type='text'{{#tf1}} value='{{tf1}}'{{/tf1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf2'>tf2: </label><div class='col-sm-8'><input id='tf2' class='form-control' type='text'{{#tf2}} value='{{tf2}}'{{/tf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vr1'>vr1: </label><div class='col-sm-8'><input id='vr1' class='form-control' type='text'{{#vr1}} value='{{vr1}}'{{/vr1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vr2'>vr2: </label><div class='col-sm-8'><input id='vr2' class='form-control' type='text'{{#vr2}} value='{{vr2}}'{{/vr2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Czech Proportion/Integral Exciter.
@@ -2225,26 +2662,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcCZ_collapse" aria-expanded="true" aria-controls="ExcCZ_collapse">ExcCZ</a>
-<div id="ExcCZ_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
-{{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcCZ_collapse" aria-expanded="true" aria-controls="ExcCZ_collapse" style="margin-left: 10px;">ExcCZ</a></legend>
+                    <div id="ExcCZ_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+                    {{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcCZ_collapse" aria-expanded="true" aria-controls="ExcCZ_collapse" style="margin-left: 10px;">ExcCZ</a></legend>
+                    <div id="ExcCZ_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmax'>efdmax: </label><div class='col-sm-8'><input id='efdmax' class='form-control' type='text'{{#efdmax}} value='{{efdmax}}'{{/efdmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmin'>efdmin: </label><div class='col-sm-8'><input id='efdmin' class='form-control' type='text'{{#efdmin}} value='{{efdmin}}'{{/efdmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE AC8B alternator-supplied rectifier excitation system with speed input and input limiter.
@@ -2351,43 +2828,100 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcAC8B_collapse" aria-expanded="true" aria-controls="ExcAC8B_collapse">ExcAC8B</a>
-<div id="ExcAC8B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#inlim}}<div><b>inlim</b>: {{inlim}}</div>{{/inlim}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#kdr}}<div><b>kdr</b>: {{kdr}}</div>{{/kdr}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
-{{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#pidlim}}<div><b>pidlim</b>: {{pidlim}}</div>{{/pidlim}}
-{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
-{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tdr}}<div><b>tdr</b>: {{tdr}}</div>{{/tdr}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#telim}}<div><b>telim</b>: {{telim}}</div>{{/telim}}
-{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
-{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
-{{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
-{{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
-{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
-{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
-{{#vpidmax}}<div><b>vpidmax</b>: {{vpidmax}}</div>{{/vpidmax}}
-{{#vpidmin}}<div><b>vpidmin</b>: {{vpidmin}}</div>{{/vpidmin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-{{#vtmult}}<div><b>vtmult</b>: {{vtmult}}</div>{{/vtmult}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC8B_collapse" aria-expanded="true" aria-controls="ExcAC8B_collapse" style="margin-left: 10px;">ExcAC8B</a></legend>
+                    <div id="ExcAC8B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#inlim}}<div><b>inlim</b>: {{inlim}}</div>{{/inlim}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#kdr}}<div><b>kdr</b>: {{kdr}}</div>{{/kdr}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
+                    {{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#pidlim}}<div><b>pidlim</b>: {{pidlim}}</div>{{/pidlim}}
+                    {{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+                    {{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tdr}}<div><b>tdr</b>: {{tdr}}</div>{{/tdr}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#telim}}<div><b>telim</b>: {{telim}}</div>{{/telim}}
+                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+                    {{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
+                    {{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
+                    {{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+                    {{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+                    {{#vpidmax}}<div><b>vpidmax</b>: {{vpidmax}}</div>{{/vpidmax}}
+                    {{#vpidmin}}<div><b>vpidmin</b>: {{vpidmin}}</div>{{/vpidmin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    {{#vtmult}}<div><b>vtmult</b>: {{vtmult}}</div>{{/vtmult}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC8B_collapse" aria-expanded="true" aria-controls="ExcAC8B_collapse" style="margin-left: 10px;">ExcAC8B</a></legend>
+                    <div id="ExcAC8B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='inlim'>inlim: </label><div class='col-sm-8'><input id='inlim' class='form-check-input' type='checkbox'{{#inlim}} checked{{/inlim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kdr'>kdr: </label><div class='col-sm-8'><input id='kdr' class='form-control' type='text'{{#kdr}} value='{{kdr}}'{{/kdr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kir'>kir: </label><div class='col-sm-8'><input id='kir' class='form-control' type='text'{{#kir}} value='{{kir}}'{{/kir}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpr'>kpr: </label><div class='col-sm-8'><input id='kpr' class='form-control' type='text'{{#kpr}} value='{{kpr}}'{{/kpr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='pidlim'>pidlim: </label><div class='col-sm-8'><input id='pidlim' class='form-check-input' type='checkbox'{{#pidlim}} checked{{/pidlim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve1'>seve1: </label><div class='col-sm-8'><input id='seve1' class='form-control' type='text'{{#seve1}} value='{{seve1}}'{{/seve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve2'>seve2: </label><div class='col-sm-8'><input id='seve2' class='form-control' type='text'{{#seve2}} value='{{seve2}}'{{/seve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tdr'>tdr: </label><div class='col-sm-8'><input id='tdr' class='form-control' type='text'{{#tdr}} value='{{tdr}}'{{/tdr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='telim'>telim: </label><div class='col-sm-8'><input id='telim' class='form-check-input' type='checkbox'{{#telim}} checked{{/telim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve1'>ve1: </label><div class='col-sm-8'><input id='ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve2'>ve2: </label><div class='col-sm-8'><input id='ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vemin'>vemin: </label><div class='col-sm-8'><input id='vemin' class='form-control' type='text'{{#vemin}} value='{{vemin}}'{{/vemin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vfemax'>vfemax: </label><div class='col-sm-8'><input id='vfemax' class='form-control' type='text'{{#vfemax}} value='{{vfemax}}'{{/vfemax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimax'>vimax: </label><div class='col-sm-8'><input id='vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimin'>vimin: </label><div class='col-sm-8'><input id='vimin' class='form-control' type='text'{{#vimin}} value='{{vimin}}'{{/vimin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vpidmax'>vpidmax: </label><div class='col-sm-8'><input id='vpidmax' class='form-control' type='text'{{#vpidmax}} value='{{vpidmax}}'{{/vpidmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vpidmin'>vpidmin: </label><div class='col-sm-8'><input id='vpidmin' class='form-control' type='text'{{#vpidmin}} value='{{vpidmin}}'{{/vpidmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='vtmult'>vtmult: </label><div class='col-sm-8'><input id='vtmult' class='form-check-input' type='checkbox'{{#vtmult}} checked{{/vtmult}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC5A model.
@@ -2470,30 +3004,74 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEAC5A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC5A_collapse">ExcIEEEAC5A</a>
-<div id="ExcIEEEAC5A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
-{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
-{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
-{{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
-{{#tf3}}<div><b>tf3</b>: {{tf3}}</div>{{/tf3}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC5A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC5A_collapse" style="margin-left: 10px;">ExcIEEEAC5A</a></legend>
+                    <div id="ExcIEEEAC5A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+                    {{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+                    {{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
+                    {{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
+                    {{#tf3}}<div><b>tf3</b>: {{tf3}}</div>{{/tf3}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC5A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC5A_collapse" style="margin-left: 10px;">ExcIEEEAC5A</a></legend>
+                    <div id="ExcIEEEAC5A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd1'>efd1: </label><div class='col-sm-8'><input id='efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd2'>efd2: </label><div class='col-sm-8'><input id='efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd1'>seefd1: </label><div class='col-sm-8'><input id='seefd1' class='form-control' type='text'{{#seefd1}} value='{{seefd1}}'{{/seefd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd2'>seefd2: </label><div class='col-sm-8'><input id='seefd2' class='form-control' type='text'{{#seefd2}} value='{{seefd2}}'{{/seefd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf1'>tf1: </label><div class='col-sm-8'><input id='tf1' class='form-control' type='text'{{#tf1}} value='{{tf1}}'{{/tf1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf2'>tf2: </label><div class='col-sm-8'><input id='tf2' class='form-control' type='text'{{#tf2}} value='{{tf2}}'{{/tf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf3'>tf3: </label><div class='col-sm-8'><input id='tf3' class='form-control' type='text'{{#tf3}} value='{{tf3}}'{{/tf3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type ST2A model.
@@ -2574,29 +3152,72 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEST2A_collapse" aria-expanded="true" aria-controls="ExcIEEEST2A_collapse">ExcIEEEST2A</a>
-<div id="ExcIEEEST2A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST2A_collapse" aria-expanded="true" aria-controls="ExcIEEEST2A_collapse" style="margin-left: 10px;">ExcIEEEST2A</a></legend>
+                    <div id="ExcIEEEST2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST2A_collapse" aria-expanded="true" aria-controls="ExcIEEEST2A_collapse" style="margin-left: 10px;">ExcIEEEST2A</a></legend>
+                    <div id="ExcIEEEST2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmax'>efdmax: </label><div class='col-sm-8'><input id='efdmax' class='form-control' type='text'{{#efdmax}} value='{{efdmax}}'{{/efdmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='uelin'>uelin: </label><div class='col-sm-8'><input id='uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type ST5B model.
@@ -2685,33 +3306,80 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEST5B_collapse" aria-expanded="true" aria-controls="ExcIEEEST5B_collapse">ExcIEEEST5B</a>
-<div id="ExcIEEEST5B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kr}}<div><b>kr</b>: {{kr}}</div>{{/kr}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
-{{#tb2}}<div><b>tb2</b>: {{tb2}}</div>{{/tb2}}
-{{#tc1}}<div><b>tc1</b>: {{tc1}}</div>{{/tc1}}
-{{#tc2}}<div><b>tc2</b>: {{tc2}}</div>{{/tc2}}
-{{#tob1}}<div><b>tob1</b>: {{tob1}}</div>{{/tob1}}
-{{#tob2}}<div><b>tob2</b>: {{tob2}}</div>{{/tob2}}
-{{#toc1}}<div><b>toc1</b>: {{toc1}}</div>{{/toc1}}
-{{#toc2}}<div><b>toc2</b>: {{toc2}}</div>{{/toc2}}
-{{#tub1}}<div><b>tub1</b>: {{tub1}}</div>{{/tub1}}
-{{#tub2}}<div><b>tub2</b>: {{tub2}}</div>{{/tub2}}
-{{#tuc1}}<div><b>tuc1</b>: {{tuc1}}</div>{{/tuc1}}
-{{#tuc2}}<div><b>tuc2</b>: {{tuc2}}</div>{{/tuc2}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST5B_collapse" aria-expanded="true" aria-controls="ExcIEEEST5B_collapse" style="margin-left: 10px;">ExcIEEEST5B</a></legend>
+                    <div id="ExcIEEEST5B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kr}}<div><b>kr</b>: {{kr}}</div>{{/kr}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
+                    {{#tb2}}<div><b>tb2</b>: {{tb2}}</div>{{/tb2}}
+                    {{#tc1}}<div><b>tc1</b>: {{tc1}}</div>{{/tc1}}
+                    {{#tc2}}<div><b>tc2</b>: {{tc2}}</div>{{/tc2}}
+                    {{#tob1}}<div><b>tob1</b>: {{tob1}}</div>{{/tob1}}
+                    {{#tob2}}<div><b>tob2</b>: {{tob2}}</div>{{/tob2}}
+                    {{#toc1}}<div><b>toc1</b>: {{toc1}}</div>{{/toc1}}
+                    {{#toc2}}<div><b>toc2</b>: {{toc2}}</div>{{/toc2}}
+                    {{#tub1}}<div><b>tub1</b>: {{tub1}}</div>{{/tub1}}
+                    {{#tub2}}<div><b>tub2</b>: {{tub2}}</div>{{/tub2}}
+                    {{#tuc1}}<div><b>tuc1</b>: {{tuc1}}</div>{{/tuc1}}
+                    {{#tuc2}}<div><b>tuc2</b>: {{tuc2}}</div>{{/tuc2}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST5B_collapse" aria-expanded="true" aria-controls="ExcIEEEST5B_collapse" style="margin-left: 10px;">ExcIEEEST5B</a></legend>
+                    <div id="ExcIEEEST5B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kr'>kr: </label><div class='col-sm-8'><input id='kr' class='form-control' type='text'{{#kr}} value='{{kr}}'{{/kr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb1'>tb1: </label><div class='col-sm-8'><input id='tb1' class='form-control' type='text'{{#tb1}} value='{{tb1}}'{{/tb1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb2'>tb2: </label><div class='col-sm-8'><input id='tb2' class='form-control' type='text'{{#tb2}} value='{{tb2}}'{{/tb2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc1'>tc1: </label><div class='col-sm-8'><input id='tc1' class='form-control' type='text'{{#tc1}} value='{{tc1}}'{{/tc1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc2'>tc2: </label><div class='col-sm-8'><input id='tc2' class='form-control' type='text'{{#tc2}} value='{{tc2}}'{{/tc2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tob1'>tob1: </label><div class='col-sm-8'><input id='tob1' class='form-control' type='text'{{#tob1}} value='{{tob1}}'{{/tob1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tob2'>tob2: </label><div class='col-sm-8'><input id='tob2' class='form-control' type='text'{{#tob2}} value='{{tob2}}'{{/tob2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='toc1'>toc1: </label><div class='col-sm-8'><input id='toc1' class='form-control' type='text'{{#toc1}} value='{{toc1}}'{{/toc1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='toc2'>toc2: </label><div class='col-sm-8'><input id='toc2' class='form-control' type='text'{{#toc2}} value='{{toc2}}'{{/toc2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tub1'>tub1: </label><div class='col-sm-8'><input id='tub1' class='form-control' type='text'{{#tub1}} value='{{tub1}}'{{/tub1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tub2'>tub2: </label><div class='col-sm-8'><input id='tub2' class='form-control' type='text'{{#tub2}} value='{{tub2}}'{{/tub2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tuc1'>tuc1: </label><div class='col-sm-8'><input id='tuc1' class='form-control' type='text'{{#tuc1}} value='{{tuc1}}'{{/tuc1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tuc2'>tuc2: </label><div class='col-sm-8'><input id='tuc2' class='form-control' type='text'{{#tuc2}} value='{{tuc2}}'{{/tuc2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE AC4A alternator-supplied rectifier excitation system with different minimum controller output.
@@ -2782,25 +3450,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcAC4A_collapse" aria-expanded="true" aria-controls="ExcAC4A_collapse">ExcAC4A</a>
-<div id="ExcAC4A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
-{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC4A_collapse" aria-expanded="true" aria-controls="ExcAC4A_collapse" style="margin-left: 10px;">ExcAC4A</a></legend>
+                    <div id="ExcAC4A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+                    {{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC4A_collapse" aria-expanded="true" aria-controls="ExcAC4A_collapse" style="margin-left: 10px;">ExcAC4A</a></legend>
+                    <div id="ExcAC4A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimax'>vimax: </label><div class='col-sm-8'><input id='vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimin'>vimin: </label><div class='col-sm-8'><input id='vimin' class='form-control' type='text'{{#vimin}} value='{{vimin}}'{{/vimin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC8B model.
@@ -2891,34 +3598,82 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEAC8B_collapse" aria-expanded="true" aria-controls="ExcIEEEAC8B_collapse">ExcIEEEAC8B</a>
-<div id="ExcIEEEAC8B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#kdr}}<div><b>kdr</b>: {{kdr}}</div>{{/kdr}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
-{{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
-{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
-{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tdr}}<div><b>tdr</b>: {{tdr}}</div>{{/tdr}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
-{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
-{{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
-{{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC8B_collapse" aria-expanded="true" aria-controls="ExcIEEEAC8B_collapse" style="margin-left: 10px;">ExcIEEEAC8B</a></legend>
+                    <div id="ExcIEEEAC8B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#kdr}}<div><b>kdr</b>: {{kdr}}</div>{{/kdr}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
+                    {{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
+                    {{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+                    {{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tdr}}<div><b>tdr</b>: {{tdr}}</div>{{/tdr}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+                    {{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
+                    {{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC8B_collapse" aria-expanded="true" aria-controls="ExcIEEEAC8B_collapse" style="margin-left: 10px;">ExcIEEEAC8B</a></legend>
+                    <div id="ExcIEEEAC8B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kdr'>kdr: </label><div class='col-sm-8'><input id='kdr' class='form-control' type='text'{{#kdr}} value='{{kdr}}'{{/kdr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kir'>kir: </label><div class='col-sm-8'><input id='kir' class='form-control' type='text'{{#kir}} value='{{kir}}'{{/kir}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpr'>kpr: </label><div class='col-sm-8'><input id='kpr' class='form-control' type='text'{{#kpr}} value='{{kpr}}'{{/kpr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve1'>seve1: </label><div class='col-sm-8'><input id='seve1' class='form-control' type='text'{{#seve1}} value='{{seve1}}'{{/seve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve2'>seve2: </label><div class='col-sm-8'><input id='seve2' class='form-control' type='text'{{#seve2}} value='{{seve2}}'{{/seve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tdr'>tdr: </label><div class='col-sm-8'><input id='tdr' class='form-control' type='text'{{#tdr}} value='{{tdr}}'{{/tdr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve1'>ve1: </label><div class='col-sm-8'><input id='ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve2'>ve2: </label><div class='col-sm-8'><input id='ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vemin'>vemin: </label><div class='col-sm-8'><input id='vemin' class='form-control' type='text'{{#vemin}} value='{{vemin}}'{{/vemin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vfemax'>vfemax: </label><div class='col-sm-8'><input id='vfemax' class='form-control' type='text'{{#vfemax}} value='{{vfemax}}'{{/vfemax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Slovakian Excitation System Model.
@@ -3037,48 +3792,110 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcSK_collapse" aria-expanded="true" aria-controls="ExcSK_collapse">ExcSK</a>
-<div id="ExcSK_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
-{{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
-{{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
-{{#emin}}<div><b>emin</b>: {{emin}}</div>{{/emin}}
-{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kce}}<div><b>kce</b>: {{kce}}</div>{{/kce}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#kgob}}<div><b>kgob</b>: {{kgob}}</div>{{/kgob}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#kqi}}<div><b>kqi</b>: {{kqi}}</div>{{/kqi}}
-{{#kqob}}<div><b>kqob</b>: {{kqob}}</div>{{/kqob}}
-{{#kqp}}<div><b>kqp</b>: {{kqp}}</div>{{/kqp}}
-{{#nq}}<div><b>nq</b>: {{nq}}</div>{{/nq}}
-{{#qconoff}}<div><b>qconoff</b>: {{qconoff}}</div>{{/qconoff}}
-{{#qz}}<div><b>qz</b>: {{qz}}</div>{{/qz}}
-{{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
-{{#sbase}}<div><b>sbase</b>: {{sbase}}</div>{{/sbase}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#ti}}<div><b>ti</b>: {{ti}}</div>{{/ti}}
-{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
-{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
-{{#uimax}}<div><b>uimax</b>: {{uimax}}</div>{{/uimax}}
-{{#uimin}}<div><b>uimin</b>: {{uimin}}</div>{{/uimin}}
-{{#urmax}}<div><b>urmax</b>: {{urmax}}</div>{{/urmax}}
-{{#urmin}}<div><b>urmin</b>: {{urmin}}</div>{{/urmin}}
-{{#vtmax}}<div><b>vtmax</b>: {{vtmax}}</div>{{/vtmax}}
-{{#vtmin}}<div><b>vtmin</b>: {{vtmin}}</div>{{/vtmin}}
-{{#yp}}<div><b>yp</b>: {{yp}}</div>{{/yp}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcSK_collapse" aria-expanded="true" aria-controls="ExcSK_collapse" style="margin-left: 10px;">ExcSK</a></legend>
+                    <div id="ExcSK_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+                    {{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
+                    {{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
+                    {{#emin}}<div><b>emin</b>: {{emin}}</div>{{/emin}}
+                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kce}}<div><b>kce</b>: {{kce}}</div>{{/kce}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#kgob}}<div><b>kgob</b>: {{kgob}}</div>{{/kgob}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#kqi}}<div><b>kqi</b>: {{kqi}}</div>{{/kqi}}
+                    {{#kqob}}<div><b>kqob</b>: {{kqob}}</div>{{/kqob}}
+                    {{#kqp}}<div><b>kqp</b>: {{kqp}}</div>{{/kqp}}
+                    {{#nq}}<div><b>nq</b>: {{nq}}</div>{{/nq}}
+                    {{#qconoff}}<div><b>qconoff</b>: {{qconoff}}</div>{{/qconoff}}
+                    {{#qz}}<div><b>qz</b>: {{qz}}</div>{{/qz}}
+                    {{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
+                    {{#sbase}}<div><b>sbase</b>: {{sbase}}</div>{{/sbase}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#ti}}<div><b>ti</b>: {{ti}}</div>{{/ti}}
+                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+                    {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+                    {{#uimax}}<div><b>uimax</b>: {{uimax}}</div>{{/uimax}}
+                    {{#uimin}}<div><b>uimin</b>: {{uimin}}</div>{{/uimin}}
+                    {{#urmax}}<div><b>urmax</b>: {{urmax}}</div>{{/urmax}}
+                    {{#urmin}}<div><b>urmin</b>: {{urmin}}</div>{{/urmin}}
+                    {{#vtmax}}<div><b>vtmax</b>: {{vtmax}}</div>{{/vtmax}}
+                    {{#vtmin}}<div><b>vtmin</b>: {{vtmin}}</div>{{/vtmin}}
+                    {{#yp}}<div><b>yp</b>: {{yp}}</div>{{/yp}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcSK_collapse" aria-expanded="true" aria-controls="ExcSK_collapse" style="margin-left: 10px;">ExcSK</a></legend>
+                    <div id="ExcSK_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmax'>efdmax: </label><div class='col-sm-8'><input id='efdmax' class='form-control' type='text'{{#efdmax}} value='{{efdmax}}'{{/efdmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmin'>efdmin: </label><div class='col-sm-8'><input id='efdmin' class='form-control' type='text'{{#efdmin}} value='{{efdmin}}'{{/efdmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emax'>emax: </label><div class='col-sm-8'><input id='emax' class='form-control' type='text'{{#emax}} value='{{emax}}'{{/emax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emin'>emin: </label><div class='col-sm-8'><input id='emin' class='form-control' type='text'{{#emin}} value='{{emin}}'{{/emin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kce'>kce: </label><div class='col-sm-8'><input id='kce' class='form-control' type='text'{{#kce}} value='{{kce}}'{{/kce}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kgob'>kgob: </label><div class='col-sm-8'><input id='kgob' class='form-control' type='text'{{#kgob}} value='{{kgob}}'{{/kgob}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kqi'>kqi: </label><div class='col-sm-8'><input id='kqi' class='form-control' type='text'{{#kqi}} value='{{kqi}}'{{/kqi}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kqob'>kqob: </label><div class='col-sm-8'><input id='kqob' class='form-control' type='text'{{#kqob}} value='{{kqob}}'{{/kqob}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kqp'>kqp: </label><div class='col-sm-8'><input id='kqp' class='form-control' type='text'{{#kqp}} value='{{kqp}}'{{/kqp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nq'>nq: </label><div class='col-sm-8'><input id='nq' class='form-control' type='text'{{#nq}} value='{{nq}}'{{/nq}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='qconoff'>qconoff: </label><div class='col-sm-8'><input id='qconoff' class='form-check-input' type='checkbox'{{#qconoff}} checked{{/qconoff}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qz'>qz: </label><div class='col-sm-8'><input id='qz' class='form-control' type='text'{{#qz}} value='{{qz}}'{{/qz}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='remote'>remote: </label><div class='col-sm-8'><input id='remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sbase'>sbase: </label><div class='col-sm-8'><input id='sbase' class='form-control' type='text'{{#sbase}} value='{{sbase}}'{{/sbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti'>ti: </label><div class='col-sm-8'><input id='ti' class='form-control' type='text'{{#ti}} value='{{ti}}'{{/ti}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr'>tr: </label><div class='col-sm-8'><input id='tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uimax'>uimax: </label><div class='col-sm-8'><input id='uimax' class='form-control' type='text'{{#uimax}} value='{{uimax}}'{{/uimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uimin'>uimin: </label><div class='col-sm-8'><input id='uimin' class='form-control' type='text'{{#uimin}} value='{{uimin}}'{{/uimin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='urmax'>urmax: </label><div class='col-sm-8'><input id='urmax' class='form-control' type='text'{{#urmax}} value='{{urmax}}'{{/urmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='urmin'>urmin: </label><div class='col-sm-8'><input id='urmin' class='form-control' type='text'{{#urmin}} value='{{urmin}}'{{/urmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vtmax'>vtmax: </label><div class='col-sm-8'><input id='vtmax' class='form-control' type='text'{{#vtmax}} value='{{vtmax}}'{{/vtmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vtmin'>vtmin: </label><div class='col-sm-8'><input id='vtmin' class='form-control' type='text'{{#vtmin}} value='{{vtmin}}'{{/vtmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='yp'>yp: </label><div class='col-sm-8'><input id='yp' class='form-control' type='text'{{#yp}} value='{{yp}}'{{/yp}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * General Purpose Rotating Excitation System Model.
@@ -3112,7 +3929,7 @@ define
                 obj.cls = "ExcREXS";
                 base.parse_element (/<cim:ExcREXS.e1>([\s\S]*?)<\/cim:ExcREXS.e1>/g, obj, "e1", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcREXS.e2>([\s\S]*?)<\/cim:ExcREXS.e2>/g, obj, "e2", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcREXS.fbf>([\s\S]*?)<\/cim:ExcREXS.fbf>/g, obj, "fbf", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ExcREXS.fbf\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "fbf", sub, context);
                 base.parse_element (/<cim:ExcREXS.flimf>([\s\S]*?)<\/cim:ExcREXS.flimf>/g, obj, "flimf", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcREXS.kc>([\s\S]*?)<\/cim:ExcREXS.kc>/g, obj, "kc", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcREXS.kd>([\s\S]*?)<\/cim:ExcREXS.kd>/g, obj, "kd", base.to_string, sub, context);
@@ -3205,52 +4022,120 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcREXS_collapse" aria-expanded="true" aria-controls="ExcREXS_collapse">ExcREXS</a>
-<div id="ExcREXS_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
-{{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
-{{#fbf}}<div><b>fbf</b>: {{fbf}}</div>{{/fbf}}
-{{#flimf}}<div><b>flimf</b>: {{flimf}}</div>{{/flimf}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kefd}}<div><b>kefd</b>: {{kefd}}</div>{{/kefd}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
-{{#kii}}<div><b>kii</b>: {{kii}}</div>{{/kii}}
-{{#kip}}<div><b>kip</b>: {{kip}}</div>{{/kip}}
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#kvi}}<div><b>kvi</b>: {{kvi}}</div>{{/kvi}}
-{{#kvp}}<div><b>kvp</b>: {{kvp}}</div>{{/kvp}}
-{{#kvphz}}<div><b>kvphz</b>: {{kvphz}}</div>{{/kvphz}}
-{{#nvphz}}<div><b>nvphz</b>: {{nvphz}}</div>{{/nvphz}}
-{{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
-{{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
-{{#tb2}}<div><b>tb2</b>: {{tb2}}</div>{{/tb2}}
-{{#tc1}}<div><b>tc1</b>: {{tc1}}</div>{{/tc1}}
-{{#tc2}}<div><b>tc2</b>: {{tc2}}</div>{{/tc2}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
-{{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
-{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
-{{#vcmax}}<div><b>vcmax</b>: {{vcmax}}</div>{{/vcmax}}
-{{#vfmax}}<div><b>vfmax</b>: {{vfmax}}</div>{{/vfmax}}
-{{#vfmin}}<div><b>vfmin</b>: {{vfmin}}</div>{{/vfmin}}
-{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-{{#xc}}<div><b>xc</b>: {{xc}}</div>{{/xc}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcREXS_collapse" aria-expanded="true" aria-controls="ExcREXS_collapse" style="margin-left: 10px;">ExcREXS</a></legend>
+                    <div id="ExcREXS_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
+                    {{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
+                    {{#fbf}}<div><b>fbf</b>: {{fbf}}</div>{{/fbf}}
+                    {{#flimf}}<div><b>flimf</b>: {{flimf}}</div>{{/flimf}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kefd}}<div><b>kefd</b>: {{kefd}}</div>{{/kefd}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+                    {{#kii}}<div><b>kii</b>: {{kii}}</div>{{/kii}}
+                    {{#kip}}<div><b>kip</b>: {{kip}}</div>{{/kip}}
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#kvi}}<div><b>kvi</b>: {{kvi}}</div>{{/kvi}}
+                    {{#kvp}}<div><b>kvp</b>: {{kvp}}</div>{{/kvp}}
+                    {{#kvphz}}<div><b>kvphz</b>: {{kvphz}}</div>{{/kvphz}}
+                    {{#nvphz}}<div><b>nvphz</b>: {{nvphz}}</div>{{/nvphz}}
+                    {{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
+                    {{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
+                    {{#tb2}}<div><b>tb2</b>: {{tb2}}</div>{{/tb2}}
+                    {{#tc1}}<div><b>tc1</b>: {{tc1}}</div>{{/tc1}}
+                    {{#tc2}}<div><b>tc2</b>: {{tc2}}</div>{{/tc2}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
+                    {{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
+                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+                    {{#vcmax}}<div><b>vcmax</b>: {{vcmax}}</div>{{/vcmax}}
+                    {{#vfmax}}<div><b>vfmax</b>: {{vfmax}}</div>{{/vfmax}}
+                    {{#vfmin}}<div><b>vfmin</b>: {{vfmin}}</div>{{/vfmin}}
+                    {{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    {{#xc}}<div><b>xc</b>: {{xc}}</div>{{/xc}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ExcREXSFeedbackSignalKind = []; if (!obj.fbf) obj.ExcREXSFeedbackSignalKind.push ({ id: '', selected: true}); for (var property in ExcREXSFeedbackSignalKind) obj.ExcREXSFeedbackSignalKind.push ({ id: property, selected: obj.fbf && obj.fbf.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ExcREXSFeedbackSignalKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcREXS_collapse" aria-expanded="true" aria-controls="ExcREXS_collapse" style="margin-left: 10px;">ExcREXS</a></legend>
+                    <div id="ExcREXS_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='e1'>e1: </label><div class='col-sm-8'><input id='e1' class='form-control' type='text'{{#e1}} value='{{e1}}'{{/e1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='e2'>e2: </label><div class='col-sm-8'><input id='e2' class='form-control' type='text'{{#e2}} value='{{e2}}'{{/e2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fbf'>fbf: </label><div class='col-sm-8'><select id='fbf' class='form-control'>{{#ExcREXSFeedbackSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcREXSFeedbackSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flimf'>flimf: </label><div class='col-sm-8'><input id='flimf' class='form-control' type='text'{{#flimf}} value='{{flimf}}'{{/flimf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kefd'>kefd: </label><div class='col-sm-8'><input id='kefd' class='form-control' type='text'{{#kefd}} value='{{kefd}}'{{/kefd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh'>kh: </label><div class='col-sm-8'><input id='kh' class='form-control' type='text'{{#kh}} value='{{kh}}'{{/kh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kii'>kii: </label><div class='col-sm-8'><input id='kii' class='form-control' type='text'{{#kii}} value='{{kii}}'{{/kii}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kip'>kip: </label><div class='col-sm-8'><input id='kip' class='form-control' type='text'{{#kip}} value='{{kip}}'{{/kip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kvi'>kvi: </label><div class='col-sm-8'><input id='kvi' class='form-control' type='text'{{#kvi}} value='{{kvi}}'{{/kvi}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kvp'>kvp: </label><div class='col-sm-8'><input id='kvp' class='form-control' type='text'{{#kvp}} value='{{kvp}}'{{/kvp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kvphz'>kvphz: </label><div class='col-sm-8'><input id='kvphz' class='form-control' type='text'{{#kvphz}} value='{{kvphz}}'{{/kvphz}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nvphz'>nvphz: </label><div class='col-sm-8'><input id='nvphz' class='form-control' type='text'{{#nvphz}} value='{{nvphz}}'{{/nvphz}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='se1'>se1: </label><div class='col-sm-8'><input id='se1' class='form-control' type='text'{{#se1}} value='{{se1}}'{{/se1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='se2'>se2: </label><div class='col-sm-8'><input id='se2' class='form-control' type='text'{{#se2}} value='{{se2}}'{{/se2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb1'>tb1: </label><div class='col-sm-8'><input id='tb1' class='form-control' type='text'{{#tb1}} value='{{tb1}}'{{/tb1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb2'>tb2: </label><div class='col-sm-8'><input id='tb2' class='form-control' type='text'{{#tb2}} value='{{tb2}}'{{/tb2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc1'>tc1: </label><div class='col-sm-8'><input id='tc1' class='form-control' type='text'{{#tc1}} value='{{tc1}}'{{/tc1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc2'>tc2: </label><div class='col-sm-8'><input id='tc2' class='form-control' type='text'{{#tc2}} value='{{tc2}}'{{/tc2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf1'>tf1: </label><div class='col-sm-8'><input id='tf1' class='form-control' type='text'{{#tf1}} value='{{tf1}}'{{/tf1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf2'>tf2: </label><div class='col-sm-8'><input id='tf2' class='form-control' type='text'{{#tf2}} value='{{tf2}}'{{/tf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vcmax'>vcmax: </label><div class='col-sm-8'><input id='vcmax' class='form-control' type='text'{{#vcmax}} value='{{vcmax}}'{{/vcmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vfmax'>vfmax: </label><div class='col-sm-8'><input id='vfmax' class='form-control' type='text'{{#vfmax}} value='{{vfmax}}'{{/vfmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vfmin'>vfmin: </label><div class='col-sm-8'><input id='vfmin' class='form-control' type='text'{{#vfmin}} value='{{vfmin}}'{{/vfmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimax'>vimax: </label><div class='col-sm-8'><input id='vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xc'>xc: </label><div class='col-sm-8'><input id='xc' class='form-control' type='text'{{#xc}} value='{{xc}}'{{/xc}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Italian excitation system.
@@ -3333,30 +4218,74 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcANS_collapse" aria-expanded="true" aria-controls="ExcANS_collapse">ExcANS</a>
-<div id="ExcANS_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#blint}}<div><b>blint</b>: {{blint}}</div>{{/blint}}
-{{#ifmn}}<div><b>ifmn</b>: {{ifmn}}</div>{{/ifmn}}
-{{#ifmx}}<div><b>ifmx</b>: {{ifmx}}</div>{{/ifmx}}
-{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
-{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
-{{#kce}}<div><b>kce</b>: {{kce}}</div>{{/kce}}
-{{#krvecc}}<div><b>krvecc</b>: {{krvecc}}</div>{{/krvecc}}
-{{#kvfif}}<div><b>kvfif</b>: {{kvfif}}</div>{{/kvfif}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
-{{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcANS_collapse" aria-expanded="true" aria-controls="ExcANS_collapse" style="margin-left: 10px;">ExcANS</a></legend>
+                    <div id="ExcANS_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#blint}}<div><b>blint</b>: {{blint}}</div>{{/blint}}
+                    {{#ifmn}}<div><b>ifmn</b>: {{ifmn}}</div>{{/ifmn}}
+                    {{#ifmx}}<div><b>ifmx</b>: {{ifmx}}</div>{{/ifmx}}
+                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+                    {{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+                    {{#kce}}<div><b>kce</b>: {{kce}}</div>{{/kce}}
+                    {{#krvecc}}<div><b>krvecc</b>: {{krvecc}}</div>{{/krvecc}}
+                    {{#kvfif}}<div><b>kvfif</b>: {{kvfif}}</div>{{/kvfif}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
+                    {{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcANS_collapse" aria-expanded="true" aria-controls="ExcANS_collapse" style="margin-left: 10px;">ExcANS</a></legend>
+                    <div id="ExcANS_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='blint'>blint: </label><div class='col-sm-8'><input id='blint' class='form-control' type='text'{{#blint}} value='{{blint}}'{{/blint}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ifmn'>ifmn: </label><div class='col-sm-8'><input id='ifmn' class='form-control' type='text'{{#ifmn}} value='{{ifmn}}'{{/ifmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ifmx'>ifmx: </label><div class='col-sm-8'><input id='ifmx' class='form-control' type='text'{{#ifmx}} value='{{ifmx}}'{{/ifmx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k3'>k3: </label><div class='col-sm-8'><input id='k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kce'>kce: </label><div class='col-sm-8'><input id='kce' class='form-control' type='text'{{#kce}} value='{{kce}}'{{/kce}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='krvecc'>krvecc: </label><div class='col-sm-8'><input id='krvecc' class='form-control' type='text'{{#krvecc}} value='{{krvecc}}'{{/krvecc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kvfif'>kvfif: </label><div class='col-sm-8'><input id='kvfif' class='form-control' type='text'{{#kvfif}} value='{{kvfif}}'{{/kvfif}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmn'>vrmn: </label><div class='col-sm-8'><input id='vrmn' class='form-control' type='text'{{#vrmn}} value='{{vrmn}}'{{/vrmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmx'>vrmx: </label><div class='col-sm-8'><input id='vrmx' class='form-control' type='text'{{#vrmx}} value='{{vrmx}}'{{/vrmx}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC7B model.
@@ -3463,42 +4392,98 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEAC7B_collapse" aria-expanded="true" aria-controls="ExcIEEEAC7B_collapse">ExcIEEEAC7B</a>
-<div id="ExcIEEEAC7B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#kdr}}<div><b>kdr</b>: {{kdr}}</div>{{/kdr}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf1}}<div><b>kf1</b>: {{kf1}}</div>{{/kf1}}
-{{#kf2}}<div><b>kf2</b>: {{kf2}}</div>{{/kf2}}
-{{#kf3}}<div><b>kf3</b>: {{kf3}}</div>{{/kf3}}
-{{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
-{{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
-{{#kl}}<div><b>kl</b>: {{kl}}</div>{{/kl}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
-{{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
-{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
-{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
-{{#tdr}}<div><b>tdr</b>: {{tdr}}</div>{{/tdr}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
-{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
-{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
-{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
-{{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
-{{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC7B_collapse" aria-expanded="true" aria-controls="ExcIEEEAC7B_collapse" style="margin-left: 10px;">ExcIEEEAC7B</a></legend>
+                    <div id="ExcIEEEAC7B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#kdr}}<div><b>kdr</b>: {{kdr}}</div>{{/kdr}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf1}}<div><b>kf1</b>: {{kf1}}</div>{{/kf1}}
+                    {{#kf2}}<div><b>kf2</b>: {{kf2}}</div>{{/kf2}}
+                    {{#kf3}}<div><b>kf3</b>: {{kf3}}</div>{{/kf3}}
+                    {{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
+                    {{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
+                    {{#kl}}<div><b>kl</b>: {{kl}}</div>{{/kl}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
+                    {{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
+                    {{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+                    {{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+                    {{#tdr}}<div><b>tdr</b>: {{tdr}}</div>{{/tdr}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+                    {{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
+                    {{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC7B_collapse" aria-expanded="true" aria-controls="ExcIEEEAC7B_collapse" style="margin-left: 10px;">ExcIEEEAC7B</a></legend>
+                    <div id="ExcIEEEAC7B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kdr'>kdr: </label><div class='col-sm-8'><input id='kdr' class='form-control' type='text'{{#kdr}} value='{{kdr}}'{{/kdr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf1'>kf1: </label><div class='col-sm-8'><input id='kf1' class='form-control' type='text'{{#kf1}} value='{{kf1}}'{{/kf1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf2'>kf2: </label><div class='col-sm-8'><input id='kf2' class='form-control' type='text'{{#kf2}} value='{{kf2}}'{{/kf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf3'>kf3: </label><div class='col-sm-8'><input id='kf3' class='form-control' type='text'{{#kf3}} value='{{kf3}}'{{/kf3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kia'>kia: </label><div class='col-sm-8'><input id='kia' class='form-control' type='text'{{#kia}} value='{{kia}}'{{/kia}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kir'>kir: </label><div class='col-sm-8'><input id='kir' class='form-control' type='text'{{#kir}} value='{{kir}}'{{/kir}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl'>kl: </label><div class='col-sm-8'><input id='kl' class='form-control' type='text'{{#kl}} value='{{kl}}'{{/kl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpa'>kpa: </label><div class='col-sm-8'><input id='kpa' class='form-control' type='text'{{#kpa}} value='{{kpa}}'{{/kpa}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpr'>kpr: </label><div class='col-sm-8'><input id='kpr' class='form-control' type='text'{{#kpr}} value='{{kpr}}'{{/kpr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve1'>seve1: </label><div class='col-sm-8'><input id='seve1' class='form-control' type='text'{{#seve1}} value='{{seve1}}'{{/seve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve2'>seve2: </label><div class='col-sm-8'><input id='seve2' class='form-control' type='text'{{#seve2}} value='{{seve2}}'{{/seve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tdr'>tdr: </label><div class='col-sm-8'><input id='tdr' class='form-control' type='text'{{#tdr}} value='{{tdr}}'{{/tdr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamax'>vamax: </label><div class='col-sm-8'><input id='vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamin'>vamin: </label><div class='col-sm-8'><input id='vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve1'>ve1: </label><div class='col-sm-8'><input id='ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve2'>ve2: </label><div class='col-sm-8'><input id='ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vemin'>vemin: </label><div class='col-sm-8'><input id='vemin' class='form-control' type='text'{{#vemin}} value='{{vemin}}'{{/vemin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vfemax'>vfemax: </label><div class='col-sm-8'><input id='vfemax' class='form-control' type='text'{{#vfemax}} value='{{vfemax}}'{{/vfemax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type ST4B model.
@@ -3585,32 +4570,78 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEST4B_collapse" aria-expanded="true" aria-controls="ExcIEEEST4B_collapse">ExcIEEEST4B</a>
-<div id="ExcIEEEST4B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#kim}}<div><b>kim</b>: {{kim}}</div>{{/kim}}
-{{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#kpm}}<div><b>kpm</b>: {{kpm}}</div>{{/kpm}}
-{{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#thetap}}<div><b>thetap</b>: {{thetap}}</div>{{/thetap}}
-{{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
-{{#vmmax}}<div><b>vmmax</b>: {{vmmax}}</div>{{/vmmax}}
-{{#vmmin}}<div><b>vmmin</b>: {{vmmin}}</div>{{/vmmin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-{{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST4B_collapse" aria-expanded="true" aria-controls="ExcIEEEST4B_collapse" style="margin-left: 10px;">ExcIEEEST4B</a></legend>
+                    <div id="ExcIEEEST4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kim}}<div><b>kim</b>: {{kim}}</div>{{/kim}}
+                    {{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#kpm}}<div><b>kpm</b>: {{kpm}}</div>{{/kpm}}
+                    {{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#thetap}}<div><b>thetap</b>: {{thetap}}</div>{{/thetap}}
+                    {{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
+                    {{#vmmax}}<div><b>vmmax</b>: {{vmmax}}</div>{{/vmmax}}
+                    {{#vmmin}}<div><b>vmmin</b>: {{vmmin}}</div>{{/vmmin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    {{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST4B_collapse" aria-expanded="true" aria-controls="ExcIEEEST4B_collapse" style="margin-left: 10px;">ExcIEEEST4B</a></legend>
+                    <div id="ExcIEEEST4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kg'>kg: </label><div class='col-sm-8'><input id='kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kim'>kim: </label><div class='col-sm-8'><input id='kim' class='form-control' type='text'{{#kim}} value='{{kim}}'{{/kim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kir'>kir: </label><div class='col-sm-8'><input id='kir' class='form-control' type='text'{{#kir}} value='{{kir}}'{{/kir}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpm'>kpm: </label><div class='col-sm-8'><input id='kpm' class='form-control' type='text'{{#kpm}} value='{{kpm}}'{{/kpm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpr'>kpr: </label><div class='col-sm-8'><input id='kpr' class='form-control' type='text'{{#kpr}} value='{{kpr}}'{{/kpr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetap'>thetap: </label><div class='col-sm-8'><input id='thetap' class='form-control' type='text'{{#thetap}} value='{{thetap}}'{{/thetap}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vbmax'>vbmax: </label><div class='col-sm-8'><input id='vbmax' class='form-control' type='text'{{#vbmax}} value='{{vbmax}}'{{/vbmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmmax'>vmmax: </label><div class='col-sm-8'><input id='vmmax' class='form-control' type='text'{{#vmmax}} value='{{vmmax}}'{{/vmmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmmin'>vmmin: </label><div class='col-sm-8'><input id='vmmin' class='form-control' type='text'{{#vmmin}} value='{{vmmin}}'{{/vmmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xl'>xl: </label><div class='col-sm-8'><input id='xl' class='form-control' type='text'{{#xl}} value='{{xl}}'{{/xl}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE ST7B static excitation system without stator current limiter (SCL) and current compensator (DROOP) inputs.
@@ -3644,14 +4675,14 @@ define
                 base.parse_element (/<cim:ExcST7B.kia>([\s\S]*?)<\/cim:ExcST7B.kia>/g, obj, "kia", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST7B.kl>([\s\S]*?)<\/cim:ExcST7B.kl>/g, obj, "kl", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST7B.kpa>([\s\S]*?)<\/cim:ExcST7B.kpa>/g, obj, "kpa", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcST7B.oelin>([\s\S]*?)<\/cim:ExcST7B.oelin>/g, obj, "oelin", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ExcST7B.oelin\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "oelin", sub, context);
                 base.parse_element (/<cim:ExcST7B.tb>([\s\S]*?)<\/cim:ExcST7B.tb>/g, obj, "tb", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST7B.tc>([\s\S]*?)<\/cim:ExcST7B.tc>/g, obj, "tc", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST7B.tf>([\s\S]*?)<\/cim:ExcST7B.tf>/g, obj, "tf", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST7B.tg>([\s\S]*?)<\/cim:ExcST7B.tg>/g, obj, "tg", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST7B.tia>([\s\S]*?)<\/cim:ExcST7B.tia>/g, obj, "tia", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST7B.ts>([\s\S]*?)<\/cim:ExcST7B.ts>/g, obj, "ts", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcST7B.uelin>([\s\S]*?)<\/cim:ExcST7B.uelin>/g, obj, "uelin", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ExcST7B.uelin\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "uelin", sub, context);
                 base.parse_element (/<cim:ExcST7B.vmax>([\s\S]*?)<\/cim:ExcST7B.vmax>/g, obj, "vmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST7B.vmin>([\s\S]*?)<\/cim:ExcST7B.vmin>/g, obj, "vmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST7B.vrmax>([\s\S]*?)<\/cim:ExcST7B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
@@ -3695,32 +4726,82 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcST7B_collapse" aria-expanded="true" aria-controls="ExcST7B_collapse">ExcST7B</a>
-<div id="ExcST7B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
-{{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
-{{#kl}}<div><b>kl</b>: {{kl}}</div>{{/kl}}
-{{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
-{{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
-{{#tia}}<div><b>tia</b>: {{tia}}</div>{{/tia}}
-{{#ts}}<div><b>ts</b>: {{ts}}</div>{{/ts}}
-{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
-{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
-{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST7B_collapse" aria-expanded="true" aria-controls="ExcST7B_collapse" style="margin-left: 10px;">ExcST7B</a></legend>
+                    <div id="ExcST7B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+                    {{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
+                    {{#kl}}<div><b>kl</b>: {{kl}}</div>{{/kl}}
+                    {{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
+                    {{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+                    {{#tia}}<div><b>tia</b>: {{tia}}</div>{{/tia}}
+                    {{#ts}}<div><b>ts</b>: {{ts}}</div>{{/ts}}
+                    {{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+                    {{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+                    {{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ExcST7BOELselectorKind = []; if (!obj.oelin) obj.ExcST7BOELselectorKind.push ({ id: '', selected: true}); for (var property in ExcST7BOELselectorKind) obj.ExcST7BOELselectorKind.push ({ id: property, selected: obj.oelin && obj.oelin.endsWith ('.' + property)});
+                obj.ExcST7BUELselectorKind = []; if (!obj.uelin) obj.ExcST7BUELselectorKind.push ({ id: '', selected: true}); for (var property in ExcST7BUELselectorKind) obj.ExcST7BUELselectorKind.push ({ id: property, selected: obj.uelin && obj.uelin.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ExcST7BOELselectorKind;
+                delete obj.ExcST7BUELselectorKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST7B_collapse" aria-expanded="true" aria-controls="ExcST7B_collapse" style="margin-left: 10px;">ExcST7B</a></legend>
+                    <div id="ExcST7B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh'>kh: </label><div class='col-sm-8'><input id='kh' class='form-control' type='text'{{#kh}} value='{{kh}}'{{/kh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kia'>kia: </label><div class='col-sm-8'><input id='kia' class='form-control' type='text'{{#kia}} value='{{kia}}'{{/kia}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl'>kl: </label><div class='col-sm-8'><input id='kl' class='form-control' type='text'{{#kl}} value='{{kl}}'{{/kl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpa'>kpa: </label><div class='col-sm-8'><input id='kpa' class='form-control' type='text'{{#kpa}} value='{{kpa}}'{{/kpa}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oelin'>oelin: </label><div class='col-sm-8'><select id='oelin' class='form-control'>{{#ExcST7BOELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcST7BOELselectorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tg'>tg: </label><div class='col-sm-8'><input id='tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tia'>tia: </label><div class='col-sm-8'><input id='tia' class='form-control' type='text'{{#tia}} value='{{tia}}'{{/tia}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts'>ts: </label><div class='col-sm-8'><input id='ts' class='form-control' type='text'{{#ts}} value='{{ts}}'{{/ts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uelin'>uelin: </label><div class='col-sm-8'><select id='uelin' class='form-control'>{{#ExcST7BUELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcST7BUELselectorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmax'>vmax: </label><div class='col-sm-8'><input id='vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmin'>vmin: </label><div class='col-sm-8'><input id='vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE DC1A direct current commutator exciter with speed input and without underexcitation limiters (UEL) inputs.
@@ -3809,34 +4890,82 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcDC1A_collapse" aria-expanded="true" aria-controls="ExcDC1A_collapse">ExcDC1A</a>
-<div id="ExcDC1A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#edfmax}}<div><b>edfmax</b>: {{edfmax}}</div>{{/edfmax}}
-{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
-{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
-{{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
-{{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
-{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC1A_collapse" aria-expanded="true" aria-controls="ExcDC1A_collapse" style="margin-left: 10px;">ExcDC1A</a></legend>
+                    <div id="ExcDC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#edfmax}}<div><b>edfmax</b>: {{edfmax}}</div>{{/edfmax}}
+                    {{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+                    {{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+                    {{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
+                    {{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+                    {{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC1A_collapse" aria-expanded="true" aria-controls="ExcDC1A_collapse" style="margin-left: 10px;">ExcDC1A</a></legend>
+                    <div id="ExcDC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='edfmax'>edfmax: </label><div class='col-sm-8'><input id='edfmax' class='form-control' type='text'{{#edfmax}} value='{{edfmax}}'{{/edfmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd1'>efd1: </label><div class='col-sm-8'><input id='efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd2'>efd2: </label><div class='col-sm-8'><input id='efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmin'>efdmin: </label><div class='col-sm-8'><input id='efdmin' class='form-control' type='text'{{#efdmin}} value='{{efdmin}}'{{/efdmin}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='exclim'>exclim: </label><div class='col-sm-8'><input id='exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd1'>seefd1: </label><div class='col-sm-8'><input id='seefd1' class='form-control' type='text'{{#seefd1}} value='{{seefd1}}'{{/seefd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd2'>seefd2: </label><div class='col-sm-8'><input id='seefd2' class='form-control' type='text'{{#seefd2}} value='{{seefd2}}'{{/seefd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE ST3A static excitation system with added speed multiplier.
@@ -3929,36 +5058,86 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcST3A_collapse" aria-expanded="true" aria-controls="ExcST3A_collapse">ExcST3A</a>
-<div id="ExcST3A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#kj}}<div><b>kj</b>: {{kj}}</div>{{/kj}}
-{{#km}}<div><b>km</b>: {{km}}</div>{{/km}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#ks1}}<div><b>ks1</b>: {{ks1}}</div>{{/ks1}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#thetap}}<div><b>thetap</b>: {{thetap}}</div>{{/thetap}}
-{{#tm}}<div><b>tm</b>: {{tm}}</div>{{/tm}}
-{{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
-{{#vgmax}}<div><b>vgmax</b>: {{vgmax}}</div>{{/vgmax}}
-{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
-{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-{{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST3A_collapse" aria-expanded="true" aria-controls="ExcST3A_collapse" style="margin-left: 10px;">ExcST3A</a></legend>
+                    <div id="ExcST3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kj}}<div><b>kj</b>: {{kj}}</div>{{/kj}}
+                    {{#km}}<div><b>km</b>: {{km}}</div>{{/km}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#ks1}}<div><b>ks1</b>: {{ks1}}</div>{{/ks1}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#thetap}}<div><b>thetap</b>: {{thetap}}</div>{{/thetap}}
+                    {{#tm}}<div><b>tm</b>: {{tm}}</div>{{/tm}}
+                    {{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
+                    {{#vgmax}}<div><b>vgmax</b>: {{vgmax}}</div>{{/vgmax}}
+                    {{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+                    {{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    {{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST3A_collapse" aria-expanded="true" aria-controls="ExcST3A_collapse" style="margin-left: 10px;">ExcST3A</a></legend>
+                    <div id="ExcST3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmax'>efdmax: </label><div class='col-sm-8'><input id='efdmax' class='form-control' type='text'{{#efdmax}} value='{{efdmax}}'{{/efdmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kg'>kg: </label><div class='col-sm-8'><input id='kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kj'>kj: </label><div class='col-sm-8'><input id='kj' class='form-control' type='text'{{#kj}} value='{{kj}}'{{/kj}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='km'>km: </label><div class='col-sm-8'><input id='km' class='form-control' type='text'{{#km}} value='{{km}}'{{/km}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks1'>ks1: </label><div class='col-sm-8'><input id='ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetap'>thetap: </label><div class='col-sm-8'><input id='thetap' class='form-control' type='text'{{#thetap}} value='{{thetap}}'{{/thetap}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tm'>tm: </label><div class='col-sm-8'><input id='tm' class='form-control' type='text'{{#tm}} value='{{tm}}'{{/tm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vbmax'>vbmax: </label><div class='col-sm-8'><input id='vbmax' class='form-control' type='text'{{#vbmax}} value='{{vbmax}}'{{/vbmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vgmax'>vgmax: </label><div class='col-sm-8'><input id='vgmax' class='form-control' type='text'{{#vgmax}} value='{{vgmax}}'{{/vgmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimax'>vimax: </label><div class='col-sm-8'><input id='vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimin'>vimin: </label><div class='col-sm-8'><input id='vimin' class='form-control' type='text'{{#vimin}} value='{{vimin}}'{{/vimin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xl'>xl: </label><div class='col-sm-8'><input id='xl' class='form-control' type='text'{{#xl}} value='{{xl}}'{{/xl}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC1A model.
@@ -4049,34 +5228,82 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEAC1A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC1A_collapse">ExcIEEEAC1A</a>
-<div id="ExcIEEEAC1A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
-{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
-{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
-{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
-{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC1A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC1A_collapse" style="margin-left: 10px;">ExcIEEEAC1A</a></legend>
+                    <div id="ExcIEEEAC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+                    {{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC1A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC1A_collapse" style="margin-left: 10px;">ExcIEEEAC1A</a></legend>
+                    <div id="ExcIEEEAC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve1'>seve1: </label><div class='col-sm-8'><input id='seve1' class='form-control' type='text'{{#seve1}} value='{{seve1}}'{{/seve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve2'>seve2: </label><div class='col-sm-8'><input id='seve2' class='form-control' type='text'{{#seve2}} value='{{seve2}}'{{/seve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamax'>vamax: </label><div class='col-sm-8'><input id='vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamin'>vamin: </label><div class='col-sm-8'><input id='vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve1'>ve1: </label><div class='col-sm-8'><input id='ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve2'>ve2: </label><div class='col-sm-8'><input id='ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE AC5A alternator-supplied rectifier excitation system with different minimum controller output.
@@ -4165,34 +5392,82 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcAC5A_collapse" aria-expanded="true" aria-controls="ExcAC5A_collapse">ExcAC5A</a>
-<div id="ExcAC5A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
-{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
-{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
-{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
-{{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
-{{#tf3}}<div><b>tf3</b>: {{tf3}}</div>{{/tf3}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC5A_collapse" aria-expanded="true" aria-controls="ExcAC5A_collapse" style="margin-left: 10px;">ExcAC5A</a></legend>
+                    <div id="ExcAC5A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
+                    {{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+                    {{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+                    {{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
+                    {{#tf2}}<div><b>tf2</b>: {{tf2}}</div>{{/tf2}}
+                    {{#tf3}}<div><b>tf3</b>: {{tf3}}</div>{{/tf3}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC5A_collapse" aria-expanded="true" aria-controls="ExcAC5A_collapse" style="margin-left: 10px;">ExcAC5A</a></legend>
+                    <div id="ExcAC5A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a'>a: </label><div class='col-sm-8'><input id='a' class='form-control' type='text'{{#a}} value='{{a}}'{{/a}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd1'>efd1: </label><div class='col-sm-8'><input id='efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd2'>efd2: </label><div class='col-sm-8'><input id='efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd1'>seefd1: </label><div class='col-sm-8'><input id='seefd1' class='form-control' type='text'{{#seefd1}} value='{{seefd1}}'{{/seefd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd2'>seefd2: </label><div class='col-sm-8'><input id='seefd2' class='form-control' type='text'{{#seefd2}} value='{{seefd2}}'{{/seefd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf1'>tf1: </label><div class='col-sm-8'><input id='tf1' class='form-control' type='text'{{#tf1}} value='{{tf1}}'{{/tf1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf2'>tf2: </label><div class='col-sm-8'><input id='tf2' class='form-control' type='text'{{#tf2}} value='{{tf2}}'{{/tf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf3'>tf3: </label><div class='col-sm-8'><input id='tf3' class='form-control' type='text'{{#tf3}} value='{{tf3}}'{{/tf3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Hungarian Excitation System Model, with built-in voltage transducer.
@@ -4269,28 +5544,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcHU_collapse" aria-expanded="true" aria-controls="ExcHU_collapse">ExcHU</a>
-<div id="ExcHU_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#ae}}<div><b>ae</b>: {{ae}}</div>{{/ae}}
-{{#ai}}<div><b>ai</b>: {{ai}}</div>{{/ai}}
-{{#atr}}<div><b>atr</b>: {{atr}}</div>{{/atr}}
-{{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
-{{#emin}}<div><b>emin</b>: {{emin}}</div>{{/emin}}
-{{#imax}}<div><b>imax</b>: {{imax}}</div>{{/imax}}
-{{#imin}}<div><b>imin</b>: {{imin}}</div>{{/imin}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#ti}}<div><b>ti</b>: {{ti}}</div>{{/ti}}
-{{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcHU_collapse" aria-expanded="true" aria-controls="ExcHU_collapse" style="margin-left: 10px;">ExcHU</a></legend>
+                    <div id="ExcHU_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#ae}}<div><b>ae</b>: {{ae}}</div>{{/ae}}
+                    {{#ai}}<div><b>ai</b>: {{ai}}</div>{{/ai}}
+                    {{#atr}}<div><b>atr</b>: {{atr}}</div>{{/atr}}
+                    {{#emax}}<div><b>emax</b>: {{emax}}</div>{{/emax}}
+                    {{#emin}}<div><b>emin</b>: {{emin}}</div>{{/emin}}
+                    {{#imax}}<div><b>imax</b>: {{imax}}</div>{{/imax}}
+                    {{#imin}}<div><b>imin</b>: {{imin}}</div>{{/imin}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#ti}}<div><b>ti</b>: {{ti}}</div>{{/ti}}
+                    {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcHU_collapse" aria-expanded="true" aria-controls="ExcHU_collapse" style="margin-left: 10px;">ExcHU</a></legend>
+                    <div id="ExcHU_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ae'>ae: </label><div class='col-sm-8'><input id='ae' class='form-control' type='text'{{#ae}} value='{{ae}}'{{/ae}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ai'>ai: </label><div class='col-sm-8'><input id='ai' class='form-control' type='text'{{#ai}} value='{{ai}}'{{/ai}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='atr'>atr: </label><div class='col-sm-8'><input id='atr' class='form-control' type='text'{{#atr}} value='{{atr}}'{{/atr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emax'>emax: </label><div class='col-sm-8'><input id='emax' class='form-control' type='text'{{#emax}} value='{{emax}}'{{/emax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emin'>emin: </label><div class='col-sm-8'><input id='emin' class='form-control' type='text'{{#emin}} value='{{emin}}'{{/emin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='imax'>imax: </label><div class='col-sm-8'><input id='imax' class='form-control' type='text'{{#imax}} value='{{imax}}'{{/imax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='imin'>imin: </label><div class='col-sm-8'><input id='imin' class='form-control' type='text'{{#imin}} value='{{imin}}'{{/imin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti'>ti: </label><div class='col-sm-8'><input id='ti' class='form-control' type='text'{{#ti}} value='{{ti}}'{{/ti}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr'>tr: </label><div class='col-sm-8'><input id='tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * IVO excitation system.
@@ -4385,37 +5702,88 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcAVR7_collapse" aria-expanded="true" aria-controls="ExcAVR7_collapse">ExcAVR7</a>
-<div id="ExcAVR7_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#a1}}<div><b>a1</b>: {{a1}}</div>{{/a1}}
-{{#a2}}<div><b>a2</b>: {{a2}}</div>{{/a2}}
-{{#a3}}<div><b>a3</b>: {{a3}}</div>{{/a3}}
-{{#a4}}<div><b>a4</b>: {{a4}}</div>{{/a4}}
-{{#a5}}<div><b>a5</b>: {{a5}}</div>{{/a5}}
-{{#a6}}<div><b>a6</b>: {{a6}}</div>{{/a6}}
-{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
-{{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#vmax1}}<div><b>vmax1</b>: {{vmax1}}</div>{{/vmax1}}
-{{#vmax3}}<div><b>vmax3</b>: {{vmax3}}</div>{{/vmax3}}
-{{#vmax5}}<div><b>vmax5</b>: {{vmax5}}</div>{{/vmax5}}
-{{#vmin1}}<div><b>vmin1</b>: {{vmin1}}</div>{{/vmin1}}
-{{#vmin3}}<div><b>vmin3</b>: {{vmin3}}</div>{{/vmin3}}
-{{#vmin5}}<div><b>vmin5</b>: {{vmin5}}</div>{{/vmin5}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR7_collapse" aria-expanded="true" aria-controls="ExcAVR7_collapse" style="margin-left: 10px;">ExcAVR7</a></legend>
+                    <div id="ExcAVR7_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#a1}}<div><b>a1</b>: {{a1}}</div>{{/a1}}
+                    {{#a2}}<div><b>a2</b>: {{a2}}</div>{{/a2}}
+                    {{#a3}}<div><b>a3</b>: {{a3}}</div>{{/a3}}
+                    {{#a4}}<div><b>a4</b>: {{a4}}</div>{{/a4}}
+                    {{#a5}}<div><b>a5</b>: {{a5}}</div>{{/a5}}
+                    {{#a6}}<div><b>a6</b>: {{a6}}</div>{{/a6}}
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+                    {{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#vmax1}}<div><b>vmax1</b>: {{vmax1}}</div>{{/vmax1}}
+                    {{#vmax3}}<div><b>vmax3</b>: {{vmax3}}</div>{{/vmax3}}
+                    {{#vmax5}}<div><b>vmax5</b>: {{vmax5}}</div>{{/vmax5}}
+                    {{#vmin1}}<div><b>vmin1</b>: {{vmin1}}</div>{{/vmin1}}
+                    {{#vmin3}}<div><b>vmin3</b>: {{vmin3}}</div>{{/vmin3}}
+                    {{#vmin5}}<div><b>vmin5</b>: {{vmin5}}</div>{{/vmin5}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR7_collapse" aria-expanded="true" aria-controls="ExcAVR7_collapse" style="margin-left: 10px;">ExcAVR7</a></legend>
+                    <div id="ExcAVR7_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a1'>a1: </label><div class='col-sm-8'><input id='a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a2'>a2: </label><div class='col-sm-8'><input id='a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a3'>a3: </label><div class='col-sm-8'><input id='a3' class='form-control' type='text'{{#a3}} value='{{a3}}'{{/a3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a4'>a4: </label><div class='col-sm-8'><input id='a4' class='form-control' type='text'{{#a4}} value='{{a4}}'{{/a4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a5'>a5: </label><div class='col-sm-8'><input id='a5' class='form-control' type='text'{{#a5}} value='{{a5}}'{{/a5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a6'>a6: </label><div class='col-sm-8'><input id='a6' class='form-control' type='text'{{#a6}} value='{{a6}}'{{/a6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k3'>k3: </label><div class='col-sm-8'><input id='k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k5'>k5: </label><div class='col-sm-8'><input id='k5' class='form-control' type='text'{{#k5}} value='{{k5}}'{{/k5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmax1'>vmax1: </label><div class='col-sm-8'><input id='vmax1' class='form-control' type='text'{{#vmax1}} value='{{vmax1}}'{{/vmax1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmax3'>vmax3: </label><div class='col-sm-8'><input id='vmax3' class='form-control' type='text'{{#vmax3}} value='{{vmax3}}'{{/vmax3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmax5'>vmax5: </label><div class='col-sm-8'><input id='vmax5' class='form-control' type='text'{{#vmax5}} value='{{vmax5}}'{{/vmax5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmin1'>vmin1: </label><div class='col-sm-8'><input id='vmin1' class='form-control' type='text'{{#vmin1}} value='{{vmin1}}'{{/vmin1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmin3'>vmin3: </label><div class='col-sm-8'><input id='vmin3' class='form-control' type='text'{{#vmin3}} value='{{vmin3}}'{{/vmin3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmin5'>vmin5: </label><div class='col-sm-8'><input id='vmin5' class='form-control' type='text'{{#vmin5}} value='{{vmin5}}'{{/vmin5}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type ST7B model.
@@ -4451,13 +5819,13 @@ define
                 base.parse_element (/<cim:ExcIEEEST7B.kia>([\s\S]*?)<\/cim:ExcIEEEST7B.kia>/g, obj, "kia", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST7B.kl>([\s\S]*?)<\/cim:ExcIEEEST7B.kl>/g, obj, "kl", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST7B.kpa>([\s\S]*?)<\/cim:ExcIEEEST7B.kpa>/g, obj, "kpa", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcIEEEST7B.oelin>([\s\S]*?)<\/cim:ExcIEEEST7B.oelin>/g, obj, "oelin", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ExcIEEEST7B.oelin\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "oelin", sub, context);
                 base.parse_element (/<cim:ExcIEEEST7B.tb>([\s\S]*?)<\/cim:ExcIEEEST7B.tb>/g, obj, "tb", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST7B.tc>([\s\S]*?)<\/cim:ExcIEEEST7B.tc>/g, obj, "tc", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST7B.tf>([\s\S]*?)<\/cim:ExcIEEEST7B.tf>/g, obj, "tf", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST7B.tg>([\s\S]*?)<\/cim:ExcIEEEST7B.tg>/g, obj, "tg", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST7B.tia>([\s\S]*?)<\/cim:ExcIEEEST7B.tia>/g, obj, "tia", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcIEEEST7B.uelin>([\s\S]*?)<\/cim:ExcIEEEST7B.uelin>/g, obj, "uelin", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ExcIEEEST7B.uelin\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "uelin", sub, context);
                 base.parse_element (/<cim:ExcIEEEST7B.vmax>([\s\S]*?)<\/cim:ExcIEEEST7B.vmax>/g, obj, "vmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST7B.vmin>([\s\S]*?)<\/cim:ExcIEEEST7B.vmin>/g, obj, "vmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST7B.vrmax>([\s\S]*?)<\/cim:ExcIEEEST7B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
@@ -4500,31 +5868,80 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEST7B_collapse" aria-expanded="true" aria-controls="ExcIEEEST7B_collapse">ExcIEEEST7B</a>
-<div id="ExcIEEEST7B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
-{{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
-{{#kl}}<div><b>kl</b>: {{kl}}</div>{{/kl}}
-{{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
-{{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
-{{#tia}}<div><b>tia</b>: {{tia}}</div>{{/tia}}
-{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
-{{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
-{{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST7B_collapse" aria-expanded="true" aria-controls="ExcIEEEST7B_collapse" style="margin-left: 10px;">ExcIEEEST7B</a></legend>
+                    <div id="ExcIEEEST7B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+                    {{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
+                    {{#kl}}<div><b>kl</b>: {{kl}}</div>{{/kl}}
+                    {{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
+                    {{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+                    {{#tia}}<div><b>tia</b>: {{tia}}</div>{{/tia}}
+                    {{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+                    {{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
+                    {{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ExcST7BOELselectorKind = []; if (!obj.oelin) obj.ExcST7BOELselectorKind.push ({ id: '', selected: true}); for (var property in ExcST7BOELselectorKind) obj.ExcST7BOELselectorKind.push ({ id: property, selected: obj.oelin && obj.oelin.endsWith ('.' + property)});
+                obj.ExcST7BUELselectorKind = []; if (!obj.uelin) obj.ExcST7BUELselectorKind.push ({ id: '', selected: true}); for (var property in ExcST7BUELselectorKind) obj.ExcST7BUELselectorKind.push ({ id: property, selected: obj.uelin && obj.uelin.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ExcST7BOELselectorKind;
+                delete obj.ExcST7BUELselectorKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST7B_collapse" aria-expanded="true" aria-controls="ExcIEEEST7B_collapse" style="margin-left: 10px;">ExcIEEEST7B</a></legend>
+                    <div id="ExcIEEEST7B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh'>kh: </label><div class='col-sm-8'><input id='kh' class='form-control' type='text'{{#kh}} value='{{kh}}'{{/kh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kia'>kia: </label><div class='col-sm-8'><input id='kia' class='form-control' type='text'{{#kia}} value='{{kia}}'{{/kia}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl'>kl: </label><div class='col-sm-8'><input id='kl' class='form-control' type='text'{{#kl}} value='{{kl}}'{{/kl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpa'>kpa: </label><div class='col-sm-8'><input id='kpa' class='form-control' type='text'{{#kpa}} value='{{kpa}}'{{/kpa}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oelin'>oelin: </label><div class='col-sm-8'><select id='oelin' class='form-control'>{{#ExcST7BOELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcST7BOELselectorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tg'>tg: </label><div class='col-sm-8'><input id='tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tia'>tia: </label><div class='col-sm-8'><input id='tia' class='form-control' type='text'{{#tia}} value='{{tia}}'{{/tia}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uelin'>uelin: </label><div class='col-sm-8'><select id='uelin' class='form-control'>{{#ExcST7BUELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcST7BUELselectorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmax'>vmax: </label><div class='col-sm-8'><input id='vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmin'>vmin: </label><div class='col-sm-8'><input id='vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type DC2A model.
@@ -4611,32 +6028,78 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEDC2A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC2A_collapse">ExcIEEEDC2A</a>
-<div id="ExcIEEEDC2A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
-{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
-{{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
-{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC2A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC2A_collapse" style="margin-left: 10px;">ExcIEEEDC2A</a></legend>
+                    <div id="ExcIEEEDC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+                    {{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+                    {{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+                    {{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC2A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC2A_collapse" style="margin-left: 10px;">ExcIEEEDC2A</a></legend>
+                    <div id="ExcIEEEDC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd1'>efd1: </label><div class='col-sm-8'><input id='efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd2'>efd2: </label><div class='col-sm-8'><input id='efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='exclim'>exclim: </label><div class='col-sm-8'><input id='exclim' class='form-control' type='text'{{#exclim}} value='{{exclim}}'{{/exclim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd1'>seefd1: </label><div class='col-sm-8'><input id='seefd1' class='form-control' type='text'{{#seefd1}} value='{{seefd1}}'{{/seefd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd2'>seefd2: </label><div class='col-sm-8'><input id='seefd2' class='form-control' type='text'{{#seefd2}} value='{{seefd2}}'{{/seefd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='uelin'>uelin: </label><div class='col-sm-8'><input id='uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Italian excitation system.
@@ -4715,28 +6178,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcAVR3_collapse" aria-expanded="true" aria-controls="ExcAVR3_collapse">ExcAVR3</a>
-<div id="ExcAVR3_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
-{{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
-{{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
-{{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR3_collapse" aria-expanded="true" aria-controls="ExcAVR3_collapse" style="margin-left: 10px;">ExcAVR3</a></legend>
+                    <div id="ExcAVR3_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
+                    {{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
+                    {{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
+                    {{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR3_collapse" aria-expanded="true" aria-controls="ExcAVR3_collapse" style="margin-left: 10px;">ExcAVR3</a></legend>
+                    <div id="ExcAVR3_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='e1'>e1: </label><div class='col-sm-8'><input id='e1' class='form-control' type='text'{{#e1}} value='{{e1}}'{{/e1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='e2'>e2: </label><div class='col-sm-8'><input id='e2' class='form-control' type='text'{{#e2}} value='{{e2}}'{{/e2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='se1'>se1: </label><div class='col-sm-8'><input id='se1' class='form-control' type='text'{{#se1}} value='{{se1}}'{{/se1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='se2'>se2: </label><div class='col-sm-8'><input id='se2' class='form-control' type='text'{{#se2}} value='{{se2}}'{{/se2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmn'>vrmn: </label><div class='col-sm-8'><input id='vrmn' class='form-control' type='text'{{#vrmn}} value='{{vrmn}}'{{/vrmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmx'>vrmx: </label><div class='col-sm-8'><input id='vrmx' class='form-control' type='text'{{#vrmx}} value='{{vrmx}}'{{/vrmx}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC4A model.
@@ -4809,25 +6314,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEAC4A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC4A_collapse">ExcIEEEAC4A</a>
-<div id="ExcIEEEAC4A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
-{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC4A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC4A_collapse" style="margin-left: 10px;">ExcIEEEAC4A</a></legend>
+                    <div id="ExcIEEEAC4A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+                    {{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC4A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC4A_collapse" style="margin-left: 10px;">ExcIEEEAC4A</a></legend>
+                    <div id="ExcIEEEAC4A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimax'>vimax: </label><div class='col-sm-8'><input id='vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimin'>vimin: </label><div class='col-sm-8'><input id='vimin' class='form-control' type='text'{{#vimin}} value='{{vimin}}'{{/vimin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE AC2A alternator-supplied rectifier excitation system with different field current limit.
@@ -4936,44 +6480,102 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcAC2A_collapse" aria-expanded="true" aria-controls="ExcAC2A_collapse">ExcAC2A</a>
-<div id="ExcAC2A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#hvgate}}<div><b>hvgate</b>: {{hvgate}}</div>{{/hvgate}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kb}}<div><b>kb</b>: {{kb}}</div>{{/kb}}
-{{#kb1}}<div><b>kb1</b>: {{kb1}}</div>{{/kb1}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
-{{#kl}}<div><b>kl</b>: {{kl}}</div>{{/kl}}
-{{#kl1}}<div><b>kl1</b>: {{kl1}}</div>{{/kl1}}
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#lvgate}}<div><b>lvgate</b>: {{lvgate}}</div>{{/lvgate}}
-{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
-{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
-{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
-{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
-{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
-{{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
-{{#vlr}}<div><b>vlr</b>: {{vlr}}</div>{{/vlr}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC2A_collapse" aria-expanded="true" aria-controls="ExcAC2A_collapse" style="margin-left: 10px;">ExcAC2A</a></legend>
+                    <div id="ExcAC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#hvgate}}<div><b>hvgate</b>: {{hvgate}}</div>{{/hvgate}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kb}}<div><b>kb</b>: {{kb}}</div>{{/kb}}
+                    {{#kb1}}<div><b>kb1</b>: {{kb1}}</div>{{/kb1}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+                    {{#kl}}<div><b>kl</b>: {{kl}}</div>{{/kl}}
+                    {{#kl1}}<div><b>kl1</b>: {{kl1}}</div>{{/kl1}}
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#lvgate}}<div><b>lvgate</b>: {{lvgate}}</div>{{/lvgate}}
+                    {{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+                    {{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+                    {{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
+                    {{#vlr}}<div><b>vlr</b>: {{vlr}}</div>{{/vlr}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC2A_collapse" aria-expanded="true" aria-controls="ExcAC2A_collapse" style="margin-left: 10px;">ExcAC2A</a></legend>
+                    <div id="ExcAC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='hvgate'>hvgate: </label><div class='col-sm-8'><input id='hvgate' class='form-check-input' type='checkbox'{{#hvgate}} checked{{/hvgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kb'>kb: </label><div class='col-sm-8'><input id='kb' class='form-control' type='text'{{#kb}} value='{{kb}}'{{/kb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kb1'>kb1: </label><div class='col-sm-8'><input id='kb1' class='form-control' type='text'{{#kb1}} value='{{kb1}}'{{/kb1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh'>kh: </label><div class='col-sm-8'><input id='kh' class='form-control' type='text'{{#kh}} value='{{kh}}'{{/kh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl'>kl: </label><div class='col-sm-8'><input id='kl' class='form-control' type='text'{{#kl}} value='{{kl}}'{{/kl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl1'>kl1: </label><div class='col-sm-8'><input id='kl1' class='form-control' type='text'{{#kl1}} value='{{kl1}}'{{/kl1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='lvgate'>lvgate: </label><div class='col-sm-8'><input id='lvgate' class='form-check-input' type='checkbox'{{#lvgate}} checked{{/lvgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve1'>seve1: </label><div class='col-sm-8'><input id='seve1' class='form-control' type='text'{{#seve1}} value='{{seve1}}'{{/seve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve2'>seve2: </label><div class='col-sm-8'><input id='seve2' class='form-control' type='text'{{#seve2}} value='{{seve2}}'{{/seve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamax'>vamax: </label><div class='col-sm-8'><input id='vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamin'>vamin: </label><div class='col-sm-8'><input id='vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve1'>ve1: </label><div class='col-sm-8'><input id='ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve2'>ve2: </label><div class='col-sm-8'><input id='ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vfemax'>vfemax: </label><div class='col-sm-8'><input id='vfemax' class='form-control' type='text'{{#vfemax}} value='{{vfemax}}'{{/vfemax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vlr'>vlr: </label><div class='col-sm-8'><input id='vlr' class='form-control' type='text'{{#vlr}} value='{{vlr}}'{{/vlr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This is modified old IEEE type 3 excitation system.
@@ -5054,30 +6656,74 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcDC3A1_collapse" aria-expanded="true" aria-controls="ExcDC3A1_collapse">ExcDC3A1</a>
-<div id="ExcDC3A1_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#vb1max}}<div><b>vb1max</b>: {{vb1max}}</div>{{/vb1max}}
-{{#vblim}}<div><b>vblim</b>: {{vblim}}</div>{{/vblim}}
-{{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC3A1_collapse" aria-expanded="true" aria-controls="ExcDC3A1_collapse" style="margin-left: 10px;">ExcDC3A1</a></legend>
+                    <div id="ExcDC3A1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#vb1max}}<div><b>vb1max</b>: {{vb1max}}</div>{{/vb1max}}
+                    {{#vblim}}<div><b>vblim</b>: {{vblim}}</div>{{/vblim}}
+                    {{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC3A1_collapse" aria-expanded="true" aria-controls="ExcDC3A1_collapse" style="margin-left: 10px;">ExcDC3A1</a></legend>
+                    <div id="ExcDC3A1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='exclim'>exclim: </label><div class='col-sm-8'><input id='exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vb1max'>vb1max: </label><div class='col-sm-8'><input id='vb1max' class='form-control' type='text'{{#vb1max}} value='{{vb1max}}'{{/vb1max}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='vblim'>vblim: </label><div class='col-sm-8'><input id='vblim' class='form-check-input' type='checkbox'{{#vblim}} checked{{/vblim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vbmax'>vbmax: </label><div class='col-sm-8'><input id='vbmax' class='form-control' type='text'{{#vbmax}} value='{{vbmax}}'{{/vbmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type ST1A model.
@@ -5121,7 +6767,7 @@ define
                 base.parse_element (/<cim:ExcIEEEST1A.tc>([\s\S]*?)<\/cim:ExcIEEEST1A.tc>/g, obj, "tc", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST1A.tc1>([\s\S]*?)<\/cim:ExcIEEEST1A.tc1>/g, obj, "tc1", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST1A.tf>([\s\S]*?)<\/cim:ExcIEEEST1A.tf>/g, obj, "tf", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcIEEEST1A.uelin>([\s\S]*?)<\/cim:ExcIEEEST1A.uelin>/g, obj, "uelin", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ExcIEEEST1A.uelin\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "uelin", sub, context);
                 base.parse_element (/<cim:ExcIEEEST1A.vamax>([\s\S]*?)<\/cim:ExcIEEEST1A.vamax>/g, obj, "vamax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST1A.vamin>([\s\S]*?)<\/cim:ExcIEEEST1A.vamin>/g, obj, "vamin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST1A.vimax>([\s\S]*?)<\/cim:ExcIEEEST1A.vimax>/g, obj, "vimax", base.to_string, sub, context);
@@ -5170,35 +6816,86 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEST1A_collapse" aria-expanded="true" aria-controls="ExcIEEEST1A_collapse">ExcIEEEST1A</a>
-<div id="ExcIEEEST1A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#ilr}}<div><b>ilr</b>: {{ilr}}</div>{{/ilr}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#klr}}<div><b>klr</b>: {{klr}}</div>{{/klr}}
-{{#pssin}}<div><b>pssin</b>: {{pssin}}</div>{{/pssin}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#tc1}}<div><b>tc1</b>: {{tc1}}</div>{{/tc1}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
-{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
-{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
-{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
-{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST1A_collapse" aria-expanded="true" aria-controls="ExcIEEEST1A_collapse" style="margin-left: 10px;">ExcIEEEST1A</a></legend>
+                    <div id="ExcIEEEST1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#ilr}}<div><b>ilr</b>: {{ilr}}</div>{{/ilr}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#klr}}<div><b>klr</b>: {{klr}}</div>{{/klr}}
+                    {{#pssin}}<div><b>pssin</b>: {{pssin}}</div>{{/pssin}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#tc1}}<div><b>tc1</b>: {{tc1}}</div>{{/tc1}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#uelin}}<div><b>uelin</b>: {{uelin}}</div>{{/uelin}}
+                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+                    {{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+                    {{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ExcIEEEST1AUELselectorKind = []; if (!obj.uelin) obj.ExcIEEEST1AUELselectorKind.push ({ id: '', selected: true}); for (var property in ExcIEEEST1AUELselectorKind) obj.ExcIEEEST1AUELselectorKind.push ({ id: property, selected: obj.uelin && obj.uelin.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ExcIEEEST1AUELselectorKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST1A_collapse" aria-expanded="true" aria-controls="ExcIEEEST1A_collapse" style="margin-left: 10px;">ExcIEEEST1A</a></legend>
+                    <div id="ExcIEEEST1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ilr'>ilr: </label><div class='col-sm-8'><input id='ilr' class='form-control' type='text'{{#ilr}} value='{{ilr}}'{{/ilr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='klr'>klr: </label><div class='col-sm-8'><input id='klr' class='form-control' type='text'{{#klr}} value='{{klr}}'{{/klr}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='pssin'>pssin: </label><div class='col-sm-8'><input id='pssin' class='form-check-input' type='checkbox'{{#pssin}} checked{{/pssin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb1'>tb1: </label><div class='col-sm-8'><input id='tb1' class='form-control' type='text'{{#tb1}} value='{{tb1}}'{{/tb1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc1'>tc1: </label><div class='col-sm-8'><input id='tc1' class='form-control' type='text'{{#tc1}} value='{{tc1}}'{{/tc1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uelin'>uelin: </label><div class='col-sm-8'><select id='uelin' class='form-control'>{{#ExcIEEEST1AUELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcIEEEST1AUELselectorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamax'>vamax: </label><div class='col-sm-8'><input id='vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamin'>vamin: </label><div class='col-sm-8'><input id='vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimax'>vimax: </label><div class='col-sm-8'><input id='vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimin'>vimin: </label><div class='col-sm-8'><input id='vimin' class='form-control' type='text'{{#vimin}} value='{{vimin}}'{{/vimin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Transformer fed static excitation system (static with ABB regulator).
@@ -5275,27 +6972,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcBBC_collapse" aria-expanded="true" aria-controls="ExcBBC_collapse">ExcBBC</a>
-<div id="ExcBBC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
-{{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
-{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-{{#switch}}<div><b>switch</b>: {{switch}}</div>{{/switch}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-{{#xe}}<div><b>xe</b>: {{xe}}</div>{{/xe}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcBBC_collapse" aria-expanded="true" aria-controls="ExcBBC_collapse" style="margin-left: 10px;">ExcBBC</a></legend>
+                    <div id="ExcBBC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efdmax}}<div><b>efdmax</b>: {{efdmax}}</div>{{/efdmax}}
+                    {{#efdmin}}<div><b>efdmin</b>: {{efdmin}}</div>{{/efdmin}}
+                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+                    {{#switch}}<div><b>switch</b>: {{switch}}</div>{{/switch}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    {{#xe}}<div><b>xe</b>: {{xe}}</div>{{/xe}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcBBC_collapse" aria-expanded="true" aria-controls="ExcBBC_collapse" style="margin-left: 10px;">ExcBBC</a></legend>
+                    <div id="ExcBBC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmax'>efdmax: </label><div class='col-sm-8'><input id='efdmax' class='form-control' type='text'{{#efdmax}} value='{{efdmax}}'{{/efdmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdmin'>efdmin: </label><div class='col-sm-8'><input id='efdmin' class='form-control' type='text'{{#efdmin}} value='{{efdmin}}'{{/efdmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='switch'>switch: </label><div class='col-sm-8'><input id='switch' class='form-check-input' type='checkbox'{{#switch}} checked{{/switch}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xe'>xe: </label><div class='col-sm-8'><input id='xe' class='form-control' type='text'{{#xe}} value='{{xe}}'{{/xe}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE ST4B static excitation system with maximum inner loop feedback gain <b>Vgmax</b>.
@@ -5386,35 +7124,84 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcST4B_collapse" aria-expanded="true" aria-controls="ExcST4B_collapse">ExcST4B</a>
-<div id="ExcST4B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#kim}}<div><b>kim</b>: {{kim}}</div>{{/kim}}
-{{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#kpm}}<div><b>kpm</b>: {{kpm}}</div>{{/kpm}}
-{{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
-{{#lvgate}}<div><b>lvgate</b>: {{lvgate}}</div>{{/lvgate}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#thetap}}<div><b>thetap</b>: {{thetap}}</div>{{/thetap}}
-{{#uel}}<div><b>uel</b>: {{uel}}</div>{{/uel}}
-{{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
-{{#vgmax}}<div><b>vgmax</b>: {{vgmax}}</div>{{/vgmax}}
-{{#vmmax}}<div><b>vmmax</b>: {{vmmax}}</div>{{/vmmax}}
-{{#vmmin}}<div><b>vmmin</b>: {{vmmin}}</div>{{/vmmin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-{{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST4B_collapse" aria-expanded="true" aria-controls="ExcST4B_collapse" style="margin-left: 10px;">ExcST4B</a></legend>
+                    <div id="ExcST4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kim}}<div><b>kim</b>: {{kim}}</div>{{/kim}}
+                    {{#kir}}<div><b>kir</b>: {{kir}}</div>{{/kir}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#kpm}}<div><b>kpm</b>: {{kpm}}</div>{{/kpm}}
+                    {{#kpr}}<div><b>kpr</b>: {{kpr}}</div>{{/kpr}}
+                    {{#lvgate}}<div><b>lvgate</b>: {{lvgate}}</div>{{/lvgate}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#thetap}}<div><b>thetap</b>: {{thetap}}</div>{{/thetap}}
+                    {{#uel}}<div><b>uel</b>: {{uel}}</div>{{/uel}}
+                    {{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
+                    {{#vgmax}}<div><b>vgmax</b>: {{vgmax}}</div>{{/vgmax}}
+                    {{#vmmax}}<div><b>vmmax</b>: {{vmmax}}</div>{{/vmmax}}
+                    {{#vmmin}}<div><b>vmmin</b>: {{vmmin}}</div>{{/vmmin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    {{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST4B_collapse" aria-expanded="true" aria-controls="ExcST4B_collapse" style="margin-left: 10px;">ExcST4B</a></legend>
+                    <div id="ExcST4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kg'>kg: </label><div class='col-sm-8'><input id='kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kim'>kim: </label><div class='col-sm-8'><input id='kim' class='form-control' type='text'{{#kim}} value='{{kim}}'{{/kim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kir'>kir: </label><div class='col-sm-8'><input id='kir' class='form-control' type='text'{{#kir}} value='{{kir}}'{{/kir}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpm'>kpm: </label><div class='col-sm-8'><input id='kpm' class='form-control' type='text'{{#kpm}} value='{{kpm}}'{{/kpm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpr'>kpr: </label><div class='col-sm-8'><input id='kpr' class='form-control' type='text'{{#kpr}} value='{{kpr}}'{{/kpr}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='lvgate'>lvgate: </label><div class='col-sm-8'><input id='lvgate' class='form-check-input' type='checkbox'{{#lvgate}} checked{{/lvgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetap'>thetap: </label><div class='col-sm-8'><input id='thetap' class='form-control' type='text'{{#thetap}} value='{{thetap}}'{{/thetap}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='uel'>uel: </label><div class='col-sm-8'><input id='uel' class='form-check-input' type='checkbox'{{#uel}} checked{{/uel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vbmax'>vbmax: </label><div class='col-sm-8'><input id='vbmax' class='form-control' type='text'{{#vbmax}} value='{{vbmax}}'{{/vbmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vgmax'>vgmax: </label><div class='col-sm-8'><input id='vgmax' class='form-control' type='text'{{#vgmax}} value='{{vgmax}}'{{/vgmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmmax'>vmmax: </label><div class='col-sm-8'><input id='vmmax' class='form-control' type='text'{{#vmmax}} value='{{vmmax}}'{{/vmmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmmin'>vmmin: </label><div class='col-sm-8'><input id='vmmin' class='form-control' type='text'{{#vmmin}} value='{{vmmin}}'{{/vmmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xl'>xl: </label><div class='col-sm-8'><input id='xl' class='form-control' type='text'{{#xl}} value='{{xl}}'{{/xl}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE AC6A alternator-supplied rectifier excitation system with speed input.
@@ -5513,39 +7300,92 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcAC6A_collapse" aria-expanded="true" aria-controls="ExcAC6A_collapse">ExcAC6A</a>
-<div id="ExcAC6A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
-{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#th}}<div><b>th</b>: {{th}}</div>{{/th}}
-{{#tj}}<div><b>tj</b>: {{tj}}</div>{{/tj}}
-{{#tk}}<div><b>tk</b>: {{tk}}</div>{{/tk}}
-{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
-{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
-{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
-{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
-{{#vfelim}}<div><b>vfelim</b>: {{vfelim}}</div>{{/vfelim}}
-{{#vhmax}}<div><b>vhmax</b>: {{vhmax}}</div>{{/vhmax}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC6A_collapse" aria-expanded="true" aria-controls="ExcAC6A_collapse" style="margin-left: 10px;">ExcAC6A</a></legend>
+                    <div id="ExcAC6A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+                    {{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#th}}<div><b>th</b>: {{th}}</div>{{/th}}
+                    {{#tj}}<div><b>tj</b>: {{tj}}</div>{{/tj}}
+                    {{#tk}}<div><b>tk</b>: {{tk}}</div>{{/tk}}
+                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+                    {{#vfelim}}<div><b>vfelim</b>: {{vfelim}}</div>{{/vfelim}}
+                    {{#vhmax}}<div><b>vhmax</b>: {{vhmax}}</div>{{/vhmax}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC6A_collapse" aria-expanded="true" aria-controls="ExcAC6A_collapse" style="margin-left: 10px;">ExcAC6A</a></legend>
+                    <div id="ExcAC6A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh'>kh: </label><div class='col-sm-8'><input id='kh' class='form-control' type='text'{{#kh}} value='{{kh}}'{{/kh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve1'>seve1: </label><div class='col-sm-8'><input id='seve1' class='form-control' type='text'{{#seve1}} value='{{seve1}}'{{/seve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve2'>seve2: </label><div class='col-sm-8'><input id='seve2' class='form-control' type='text'{{#seve2}} value='{{seve2}}'{{/seve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th'>th: </label><div class='col-sm-8'><input id='th' class='form-control' type='text'{{#th}} value='{{th}}'{{/th}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tj'>tj: </label><div class='col-sm-8'><input id='tj' class='form-control' type='text'{{#tj}} value='{{tj}}'{{/tj}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tk'>tk: </label><div class='col-sm-8'><input id='tk' class='form-control' type='text'{{#tk}} value='{{tk}}'{{/tk}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamax'>vamax: </label><div class='col-sm-8'><input id='vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamin'>vamin: </label><div class='col-sm-8'><input id='vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve1'>ve1: </label><div class='col-sm-8'><input id='ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve2'>ve2: </label><div class='col-sm-8'><input id='ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vfelim'>vfelim: </label><div class='col-sm-8'><input id='vfelim' class='form-control' type='text'{{#vfelim}} value='{{vfelim}}'{{/vfelim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vhmax'>vhmax: </label><div class='col-sm-8'><input id='vhmax' class='form-control' type='text'{{#vhmax}} value='{{vhmax}}'{{/vhmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE Type ST1 Excitation System with semi-continuous and acting terminal voltage limiter.
@@ -5636,35 +7476,84 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcOEX3T_collapse" aria-expanded="true" aria-controls="ExcOEX3T_collapse">ExcOEX3T</a>
-<div id="ExcOEX3T_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
-{{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#see1}}<div><b>see1</b>: {{see1}}</div>{{/see1}}
-{{#see2}}<div><b>see2</b>: {{see2}}</div>{{/see2}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcOEX3T_collapse" aria-expanded="true" aria-controls="ExcOEX3T_collapse" style="margin-left: 10px;">ExcOEX3T</a></legend>
+                    <div id="ExcOEX3T_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
+                    {{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#see1}}<div><b>see1</b>: {{see1}}</div>{{/see1}}
+                    {{#see2}}<div><b>see2</b>: {{see2}}</div>{{/see2}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcOEX3T_collapse" aria-expanded="true" aria-controls="ExcOEX3T_collapse" style="margin-left: 10px;">ExcOEX3T</a></legend>
+                    <div id="ExcOEX3T_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='e1'>e1: </label><div class='col-sm-8'><input id='e1' class='form-control' type='text'{{#e1}} value='{{e1}}'{{/e1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='e2'>e2: </label><div class='col-sm-8'><input id='e2' class='form-control' type='text'{{#e2}} value='{{e2}}'{{/e2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='see1'>see1: </label><div class='col-sm-8'><input id='see1' class='form-control' type='text'{{#see1}} value='{{see1}}'{{/see1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='see2'>see2: </label><div class='col-sm-8'><input id='see2' class='form-control' type='text'{{#see2}} value='{{see2}}'{{/see2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE AC3A alternator-supplied rectifier excitation system with different field current limit.
@@ -5769,42 +7658,98 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcAC3A_collapse" aria-expanded="true" aria-controls="ExcAC3A_collapse">ExcAC3A</a>
-<div id="ExcAC3A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efdn}}<div><b>efdn</b>: {{efdn}}</div>{{/efdn}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#kf1}}<div><b>kf1</b>: {{kf1}}</div>{{/kf1}}
-{{#kf2}}<div><b>kf2</b>: {{kf2}}</div>{{/kf2}}
-{{#klv}}<div><b>klv</b>: {{klv}}</div>{{/klv}}
-{{#kn}}<div><b>kn</b>: {{kn}}</div>{{/kn}}
-{{#kr}}<div><b>kr</b>: {{kr}}</div>{{/kr}}
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
-{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
-{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
-{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
-{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
-{{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
-{{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
-{{#vlv}}<div><b>vlv</b>: {{vlv}}</div>{{/vlv}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC3A_collapse" aria-expanded="true" aria-controls="ExcAC3A_collapse" style="margin-left: 10px;">ExcAC3A</a></legend>
+                    <div id="ExcAC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efdn}}<div><b>efdn</b>: {{efdn}}</div>{{/efdn}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#kf1}}<div><b>kf1</b>: {{kf1}}</div>{{/kf1}}
+                    {{#kf2}}<div><b>kf2</b>: {{kf2}}</div>{{/kf2}}
+                    {{#klv}}<div><b>klv</b>: {{klv}}</div>{{/klv}}
+                    {{#kn}}<div><b>kn</b>: {{kn}}</div>{{/kn}}
+                    {{#kr}}<div><b>kr</b>: {{kr}}</div>{{/kr}}
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+                    {{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+                    {{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
+                    {{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
+                    {{#vlv}}<div><b>vlv</b>: {{vlv}}</div>{{/vlv}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC3A_collapse" aria-expanded="true" aria-controls="ExcAC3A_collapse" style="margin-left: 10px;">ExcAC3A</a></legend>
+                    <div id="ExcAC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdn'>efdn: </label><div class='col-sm-8'><input id='efdn' class='form-control' type='text'{{#efdn}} value='{{efdn}}'{{/efdn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf1'>kf1: </label><div class='col-sm-8'><input id='kf1' class='form-control' type='text'{{#kf1}} value='{{kf1}}'{{/kf1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf2'>kf2: </label><div class='col-sm-8'><input id='kf2' class='form-control' type='text'{{#kf2}} value='{{kf2}}'{{/kf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='klv'>klv: </label><div class='col-sm-8'><input id='klv' class='form-control' type='text'{{#klv}} value='{{klv}}'{{/klv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kn'>kn: </label><div class='col-sm-8'><input id='kn' class='form-control' type='text'{{#kn}} value='{{kn}}'{{/kn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kr'>kr: </label><div class='col-sm-8'><input id='kr' class='form-control' type='text'{{#kr}} value='{{kr}}'{{/kr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve1'>seve1: </label><div class='col-sm-8'><input id='seve1' class='form-control' type='text'{{#seve1}} value='{{seve1}}'{{/seve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve2'>seve2: </label><div class='col-sm-8'><input id='seve2' class='form-control' type='text'{{#seve2}} value='{{seve2}}'{{/seve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamax'>vamax: </label><div class='col-sm-8'><input id='vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamin'>vamin: </label><div class='col-sm-8'><input id='vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve1'>ve1: </label><div class='col-sm-8'><input id='ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve2'>ve2: </label><div class='col-sm-8'><input id='ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vemin'>vemin: </label><div class='col-sm-8'><input id='vemin' class='form-control' type='text'{{#vemin}} value='{{vemin}}'{{/vemin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vfemax'>vfemax: </label><div class='col-sm-8'><input id='vfemax' class='form-control' type='text'{{#vfemax}} value='{{vfemax}}'{{/vfemax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vlv'>vlv: </label><div class='col-sm-8'><input id='vlv' class='form-control' type='text'{{#vlv}} value='{{vlv}}'{{/vlv}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type AC6A model.
@@ -5903,38 +7848,90 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEAC6A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC6A_collapse">ExcIEEEAC6A</a>
-<div id="ExcIEEEAC6A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
-{{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
-{{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#th}}<div><b>th</b>: {{th}}</div>{{/th}}
-{{#tj}}<div><b>tj</b>: {{tj}}</div>{{/tj}}
-{{#tk}}<div><b>tk</b>: {{tk}}</div>{{/tk}}
-{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
-{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
-{{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
-{{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
-{{#vfelim}}<div><b>vfelim</b>: {{vfelim}}</div>{{/vfelim}}
-{{#vhmax}}<div><b>vhmax</b>: {{vhmax}}</div>{{/vhmax}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC6A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC6A_collapse" style="margin-left: 10px;">ExcIEEEAC6A</a></legend>
+                    <div id="ExcIEEEAC6A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+                    {{#seve1}}<div><b>seve1</b>: {{seve1}}</div>{{/seve1}}
+                    {{#seve2}}<div><b>seve2</b>: {{seve2}}</div>{{/seve2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#th}}<div><b>th</b>: {{th}}</div>{{/th}}
+                    {{#tj}}<div><b>tj</b>: {{tj}}</div>{{/tj}}
+                    {{#tk}}<div><b>tk</b>: {{tk}}</div>{{/tk}}
+                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+                    {{#vfelim}}<div><b>vfelim</b>: {{vfelim}}</div>{{/vfelim}}
+                    {{#vhmax}}<div><b>vhmax</b>: {{vhmax}}</div>{{/vhmax}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC6A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC6A_collapse" style="margin-left: 10px;">ExcIEEEAC6A</a></legend>
+                    <div id="ExcIEEEAC6A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh'>kh: </label><div class='col-sm-8'><input id='kh' class='form-control' type='text'{{#kh}} value='{{kh}}'{{/kh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve1'>seve1: </label><div class='col-sm-8'><input id='seve1' class='form-control' type='text'{{#seve1}} value='{{seve1}}'{{/seve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seve2'>seve2: </label><div class='col-sm-8'><input id='seve2' class='form-control' type='text'{{#seve2}} value='{{seve2}}'{{/seve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th'>th: </label><div class='col-sm-8'><input id='th' class='form-control' type='text'{{#th}} value='{{th}}'{{/th}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tj'>tj: </label><div class='col-sm-8'><input id='tj' class='form-control' type='text'{{#tj}} value='{{tj}}'{{/tj}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tk'>tk: </label><div class='col-sm-8'><input id='tk' class='form-control' type='text'{{#tk}} value='{{tk}}'{{/tk}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamax'>vamax: </label><div class='col-sm-8'><input id='vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamin'>vamin: </label><div class='col-sm-8'><input id='vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve1'>ve1: </label><div class='col-sm-8'><input id='ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ve2'>ve2: </label><div class='col-sm-8'><input id='ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vfelim'>vfelim: </label><div class='col-sm-8'><input id='vfelim' class='form-control' type='text'{{#vfelim}} value='{{vfelim}}'{{/vfelim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vhmax'>vhmax: </label><div class='col-sm-8'><input id='vhmax' class='form-control' type='text'{{#vhmax}} value='{{vhmax}}'{{/vhmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modification of an old IEEE ST1A static excitation system without overexcitation limiter (OEL) and underexcitation limiter (UEL).
@@ -6023,34 +8020,82 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcST1A_collapse" aria-expanded="true" aria-controls="ExcST1A_collapse">ExcST1A</a>
-<div id="ExcST1A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#ilr}}<div><b>ilr</b>: {{ilr}}</div>{{/ilr}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#klr}}<div><b>klr</b>: {{klr}}</div>{{/klr}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#tc1}}<div><b>tc1</b>: {{tc1}}</div>{{/tc1}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
-{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
-{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
-{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-{{#xe}}<div><b>xe</b>: {{xe}}</div>{{/xe}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST1A_collapse" aria-expanded="true" aria-controls="ExcST1A_collapse" style="margin-left: 10px;">ExcST1A</a></legend>
+                    <div id="ExcST1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#ilr}}<div><b>ilr</b>: {{ilr}}</div>{{/ilr}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#klr}}<div><b>klr</b>: {{klr}}</div>{{/klr}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tb1}}<div><b>tb1</b>: {{tb1}}</div>{{/tb1}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#tc1}}<div><b>tc1</b>: {{tc1}}</div>{{/tc1}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+                    {{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+                    {{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    {{#xe}}<div><b>xe</b>: {{xe}}</div>{{/xe}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST1A_collapse" aria-expanded="true" aria-controls="ExcST1A_collapse" style="margin-left: 10px;">ExcST1A</a></legend>
+                    <div id="ExcST1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ilr'>ilr: </label><div class='col-sm-8'><input id='ilr' class='form-control' type='text'{{#ilr}} value='{{ilr}}'{{/ilr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='klr'>klr: </label><div class='col-sm-8'><input id='klr' class='form-control' type='text'{{#klr}} value='{{klr}}'{{/klr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb1'>tb1: </label><div class='col-sm-8'><input id='tb1' class='form-control' type='text'{{#tb1}} value='{{tb1}}'{{/tb1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc1'>tc1: </label><div class='col-sm-8'><input id='tc1' class='form-control' type='text'{{#tc1}} value='{{tc1}}'{{/tc1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamax'>vamax: </label><div class='col-sm-8'><input id='vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamin'>vamin: </label><div class='col-sm-8'><input id='vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimax'>vimax: </label><div class='col-sm-8'><input id='vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimin'>vimin: </label><div class='col-sm-8'><input id='vimin' class='form-control' type='text'{{#vimin}} value='{{vimin}}'{{/vimin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xe'>xe: </label><div class='col-sm-8'><input id='xe' class='form-control' type='text'{{#xe}} value='{{xe}}'{{/xe}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Static PI transformer fed excitation system: ELIN (VATECH) - simplified model.
@@ -6135,31 +8180,76 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcELIN1_collapse" aria-expanded="true" aria-controls="ExcELIN1_collapse">ExcELIN1</a>
-<div id="ExcELIN1_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#dpnf}}<div><b>dpnf</b>: {{dpnf}}</div>{{/dpnf}}
-{{#efmax}}<div><b>efmax</b>: {{efmax}}</div>{{/efmax}}
-{{#efmin}}<div><b>efmin</b>: {{efmin}}</div>{{/efmin}}
-{{#ks1}}<div><b>ks1</b>: {{ks1}}</div>{{/ks1}}
-{{#ks2}}<div><b>ks2</b>: {{ks2}}</div>{{/ks2}}
-{{#smax}}<div><b>smax</b>: {{smax}}</div>{{/smax}}
-{{#tfi}}<div><b>tfi</b>: {{tfi}}</div>{{/tfi}}
-{{#tnu}}<div><b>tnu</b>: {{tnu}}</div>{{/tnu}}
-{{#ts1}}<div><b>ts1</b>: {{ts1}}</div>{{/ts1}}
-{{#ts2}}<div><b>ts2</b>: {{ts2}}</div>{{/ts2}}
-{{#tsw}}<div><b>tsw</b>: {{tsw}}</div>{{/tsw}}
-{{#vpi}}<div><b>vpi</b>: {{vpi}}</div>{{/vpi}}
-{{#vpnf}}<div><b>vpnf</b>: {{vpnf}}</div>{{/vpnf}}
-{{#vpu}}<div><b>vpu</b>: {{vpu}}</div>{{/vpu}}
-{{#xe}}<div><b>xe</b>: {{xe}}</div>{{/xe}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcELIN1_collapse" aria-expanded="true" aria-controls="ExcELIN1_collapse" style="margin-left: 10px;">ExcELIN1</a></legend>
+                    <div id="ExcELIN1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#dpnf}}<div><b>dpnf</b>: {{dpnf}}</div>{{/dpnf}}
+                    {{#efmax}}<div><b>efmax</b>: {{efmax}}</div>{{/efmax}}
+                    {{#efmin}}<div><b>efmin</b>: {{efmin}}</div>{{/efmin}}
+                    {{#ks1}}<div><b>ks1</b>: {{ks1}}</div>{{/ks1}}
+                    {{#ks2}}<div><b>ks2</b>: {{ks2}}</div>{{/ks2}}
+                    {{#smax}}<div><b>smax</b>: {{smax}}</div>{{/smax}}
+                    {{#tfi}}<div><b>tfi</b>: {{tfi}}</div>{{/tfi}}
+                    {{#tnu}}<div><b>tnu</b>: {{tnu}}</div>{{/tnu}}
+                    {{#ts1}}<div><b>ts1</b>: {{ts1}}</div>{{/ts1}}
+                    {{#ts2}}<div><b>ts2</b>: {{ts2}}</div>{{/ts2}}
+                    {{#tsw}}<div><b>tsw</b>: {{tsw}}</div>{{/tsw}}
+                    {{#vpi}}<div><b>vpi</b>: {{vpi}}</div>{{/vpi}}
+                    {{#vpnf}}<div><b>vpnf</b>: {{vpnf}}</div>{{/vpnf}}
+                    {{#vpu}}<div><b>vpu</b>: {{vpu}}</div>{{/vpu}}
+                    {{#xe}}<div><b>xe</b>: {{xe}}</div>{{/xe}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcELIN1_collapse" aria-expanded="true" aria-controls="ExcELIN1_collapse" style="margin-left: 10px;">ExcELIN1</a></legend>
+                    <div id="ExcELIN1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpnf'>dpnf: </label><div class='col-sm-8'><input id='dpnf' class='form-control' type='text'{{#dpnf}} value='{{dpnf}}'{{/dpnf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efmax'>efmax: </label><div class='col-sm-8'><input id='efmax' class='form-control' type='text'{{#efmax}} value='{{efmax}}'{{/efmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efmin'>efmin: </label><div class='col-sm-8'><input id='efmin' class='form-control' type='text'{{#efmin}} value='{{efmin}}'{{/efmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks1'>ks1: </label><div class='col-sm-8'><input id='ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks2'>ks2: </label><div class='col-sm-8'><input id='ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='smax'>smax: </label><div class='col-sm-8'><input id='smax' class='form-control' type='text'{{#smax}} value='{{smax}}'{{/smax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tfi'>tfi: </label><div class='col-sm-8'><input id='tfi' class='form-control' type='text'{{#tfi}} value='{{tfi}}'{{/tfi}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tnu'>tnu: </label><div class='col-sm-8'><input id='tnu' class='form-control' type='text'{{#tnu}} value='{{tnu}}'{{/tnu}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts1'>ts1: </label><div class='col-sm-8'><input id='ts1' class='form-control' type='text'{{#ts1}} value='{{ts1}}'{{/ts1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts2'>ts2: </label><div class='col-sm-8'><input id='ts2' class='form-control' type='text'{{#ts2}} value='{{ts2}}'{{/ts2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tsw'>tsw: </label><div class='col-sm-8'><input id='tsw' class='form-control' type='text'{{#tsw}} value='{{tsw}}'{{/tsw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vpi'>vpi: </label><div class='col-sm-8'><input id='vpi' class='form-control' type='text'{{#vpi}} value='{{vpi}}'{{/vpi}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vpnf'>vpnf: </label><div class='col-sm-8'><input id='vpnf' class='form-control' type='text'{{#vpnf}} value='{{vpnf}}'{{/vpnf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vpu'>vpu: </label><div class='col-sm-8'><input id='vpu' class='form-control' type='text'{{#vpu}} value='{{vpu}}'{{/vpu}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xe'>xe: </label><div class='col-sm-8'><input id='xe' class='form-control' type='text'{{#xe}} value='{{xe}}'{{/xe}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Italian excitation system.
@@ -6242,30 +8332,74 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcAVR4_collapse" aria-expanded="true" aria-controls="ExcAVR4_collapse">ExcAVR4</a>
-<div id="ExcAVR4_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#imul}}<div><b>imul</b>: {{imul}}</div>{{/imul}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kif}}<div><b>kif</b>: {{kif}}</div>{{/kif}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t1if}}<div><b>t1if</b>: {{t1if}}</div>{{/t1if}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#tif}}<div><b>tif</b>: {{tif}}</div>{{/tif}}
-{{#vfmn}}<div><b>vfmn</b>: {{vfmn}}</div>{{/vfmn}}
-{{#vfmx}}<div><b>vfmx</b>: {{vfmx}}</div>{{/vfmx}}
-{{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
-{{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR4_collapse" aria-expanded="true" aria-controls="ExcAVR4_collapse" style="margin-left: 10px;">ExcAVR4</a></legend>
+                    <div id="ExcAVR4_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#imul}}<div><b>imul</b>: {{imul}}</div>{{/imul}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kif}}<div><b>kif</b>: {{kif}}</div>{{/kif}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t1if}}<div><b>t1if</b>: {{t1if}}</div>{{/t1if}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#tif}}<div><b>tif</b>: {{tif}}</div>{{/tif}}
+                    {{#vfmn}}<div><b>vfmn</b>: {{vfmn}}</div>{{/vfmn}}
+                    {{#vfmx}}<div><b>vfmx</b>: {{vfmx}}</div>{{/vfmx}}
+                    {{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
+                    {{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR4_collapse" aria-expanded="true" aria-controls="ExcAVR4_collapse" style="margin-left: 10px;">ExcAVR4</a></legend>
+                    <div id="ExcAVR4_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='imul'>imul: </label><div class='col-sm-8'><input id='imul' class='form-check-input' type='checkbox'{{#imul}} checked{{/imul}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kif'>kif: </label><div class='col-sm-8'><input id='kif' class='form-control' type='text'{{#kif}} value='{{kif}}'{{/kif}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1if'>t1if: </label><div class='col-sm-8'><input id='t1if' class='form-control' type='text'{{#t1if}} value='{{t1if}}'{{/t1if}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tif'>tif: </label><div class='col-sm-8'><input id='tif' class='form-control' type='text'{{#tif}} value='{{tif}}'{{/tif}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vfmn'>vfmn: </label><div class='col-sm-8'><input id='vfmn' class='form-control' type='text'{{#vfmn}} value='{{vfmn}}'{{/vfmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vfmx'>vfmx: </label><div class='col-sm-8'><input id='vfmx' class='form-control' type='text'{{#vfmx}} value='{{vfmx}}'{{/vfmx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmn'>vrmn: </label><div class='col-sm-8'><input id='vrmn' class='form-control' type='text'{{#vrmn}} value='{{vrmn}}'{{/vrmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmx'>vrmx: </label><div class='col-sm-8'><input id='vrmx' class='form-control' type='text'{{#vrmx}} value='{{vrmx}}'{{/vrmx}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type ST3A model.
@@ -6360,36 +8494,86 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEST3A_collapse" aria-expanded="true" aria-controls="ExcIEEEST3A_collapse">ExcIEEEST3A</a>
-<div id="ExcIEEEST3A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
-{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#km}}<div><b>km</b>: {{km}}</div>{{/km}}
-{{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#thetap}}<div><b>thetap</b>: {{thetap}}</div>{{/thetap}}
-{{#tm}}<div><b>tm</b>: {{tm}}</div>{{/tm}}
-{{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
-{{#vgmax}}<div><b>vgmax</b>: {{vgmax}}</div>{{/vgmax}}
-{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
-{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
-{{#vmmax}}<div><b>vmmax</b>: {{vmmax}}</div>{{/vmmax}}
-{{#vmmin}}<div><b>vmmin</b>: {{vmmin}}</div>{{/vmmin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-{{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST3A_collapse" aria-expanded="true" aria-controls="ExcIEEEST3A_collapse" style="margin-left: 10px;">ExcIEEEST3A</a></legend>
+                    <div id="ExcIEEEST3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
+                    {{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#km}}<div><b>km</b>: {{km}}</div>{{/km}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#thetap}}<div><b>thetap</b>: {{thetap}}</div>{{/thetap}}
+                    {{#tm}}<div><b>tm</b>: {{tm}}</div>{{/tm}}
+                    {{#vbmax}}<div><b>vbmax</b>: {{vbmax}}</div>{{/vbmax}}
+                    {{#vgmax}}<div><b>vgmax</b>: {{vgmax}}</div>{{/vgmax}}
+                    {{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+                    {{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+                    {{#vmmax}}<div><b>vmmax</b>: {{vmmax}}</div>{{/vmmax}}
+                    {{#vmmin}}<div><b>vmmin</b>: {{vmmin}}</div>{{/vmmin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    {{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST3A_collapse" aria-expanded="true" aria-controls="ExcIEEEST3A_collapse" style="margin-left: 10px;">ExcIEEEST3A</a></legend>
+                    <div id="ExcIEEEST3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kc'>kc: </label><div class='col-sm-8'><input id='kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kg'>kg: </label><div class='col-sm-8'><input id='kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='km'>km: </label><div class='col-sm-8'><input id='km' class='form-control' type='text'{{#km}} value='{{km}}'{{/km}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetap'>thetap: </label><div class='col-sm-8'><input id='thetap' class='form-control' type='text'{{#thetap}} value='{{thetap}}'{{/thetap}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tm'>tm: </label><div class='col-sm-8'><input id='tm' class='form-control' type='text'{{#tm}} value='{{tm}}'{{/tm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vbmax'>vbmax: </label><div class='col-sm-8'><input id='vbmax' class='form-control' type='text'{{#vbmax}} value='{{vbmax}}'{{/vbmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vgmax'>vgmax: </label><div class='col-sm-8'><input id='vgmax' class='form-control' type='text'{{#vgmax}} value='{{vgmax}}'{{/vgmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimax'>vimax: </label><div class='col-sm-8'><input id='vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimin'>vimin: </label><div class='col-sm-8'><input id='vimin' class='form-control' type='text'{{#vimin}} value='{{vimin}}'{{/vimin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmmax'>vmmax: </label><div class='col-sm-8'><input id='vmmax' class='form-control' type='text'{{#vmmax}} value='{{vmmax}}'{{/vmmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vmmin'>vmmin: </label><div class='col-sm-8'><input id='vmmin' class='form-control' type='text'{{#vmmin}} value='{{vmmin}}'{{/vmmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xl'>xl: </label><div class='col-sm-8'><input id='xl' class='form-control' type='text'{{#xl}} value='{{xl}}'{{/xl}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE DC2A direct current commutator exciters with speed input, one more leg block in feedback loop and without underexcitation limiters (UEL) inputs.
@@ -6480,34 +8664,82 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcDC2A_collapse" aria-expanded="true" aria-controls="ExcDC2A_collapse">ExcDC2A</a>
-<div id="ExcDC2A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
-{{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
-{{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
-{{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-{{#vtlim}}<div><b>vtlim</b>: {{vtlim}}</div>{{/vtlim}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC2A_collapse" aria-expanded="true" aria-controls="ExcDC2A_collapse" style="margin-left: 10px;">ExcDC2A</a></legend>
+                    <div id="ExcDC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#efd1}}<div><b>efd1</b>: {{efd1}}</div>{{/efd1}}
+                    {{#efd2}}<div><b>efd2</b>: {{efd2}}</div>{{/efd2}}
+                    {{#exclim}}<div><b>exclim</b>: {{exclim}}</div>{{/exclim}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#ke}}<div><b>ke</b>: {{ke}}</div>{{/ke}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#seefd1}}<div><b>seefd1</b>: {{seefd1}}</div>{{/seefd1}}
+                    {{#seefd2}}<div><b>seefd2</b>: {{seefd2}}</div>{{/seefd2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#tf1}}<div><b>tf1</b>: {{tf1}}</div>{{/tf1}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    {{#vtlim}}<div><b>vtlim</b>: {{vtlim}}</div>{{/vtlim}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC2A_collapse" aria-expanded="true" aria-controls="ExcDC2A_collapse" style="margin-left: 10px;">ExcDC2A</a></legend>
+                    <div id="ExcDC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd1'>efd1: </label><div class='col-sm-8'><input id='efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efd2'>efd2: </label><div class='col-sm-8'><input id='efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='exclim'>exclim: </label><div class='col-sm-8'><input id='exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ke'>ke: </label><div class='col-sm-8'><input id='ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd1'>seefd1: </label><div class='col-sm-8'><input id='seefd1' class='form-control' type='text'{{#seefd1}} value='{{seefd1}}'{{/seefd1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='seefd2'>seefd2: </label><div class='col-sm-8'><input id='seefd2' class='form-control' type='text'{{#seefd2}} value='{{seefd2}}'{{/seefd2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf1'>tf1: </label><div class='col-sm-8'><input id='tf1' class='form-control' type='text'{{#tf1}} value='{{tf1}}'{{/tf1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='vtlim'>vtlim: </label><div class='col-sm-8'><input id='vtlim' class='form-check-input' type='checkbox'{{#vtlim}} checked{{/vtlim}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Italian excitation system corresponding to IEEE (1968) Type 1 Model.
@@ -6586,28 +8818,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcAVR1_collapse" aria-expanded="true" aria-controls="ExcAVR1_collapse">ExcAVR1</a>
-<div id="ExcAVR1_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
-{{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
-{{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
-{{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
-{{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR1_collapse" aria-expanded="true" aria-controls="ExcAVR1_collapse" style="margin-left: 10px;">ExcAVR1</a></legend>
+                    <div id="ExcAVR1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#e1}}<div><b>e1</b>: {{e1}}</div>{{/e1}}
+                    {{#e2}}<div><b>e2</b>: {{e2}}</div>{{/e2}}
+                    {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#se1}}<div><b>se1</b>: {{se1}}</div>{{/se1}}
+                    {{#se2}}<div><b>se2</b>: {{se2}}</div>{{/se2}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
+                    {{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR1_collapse" aria-expanded="true" aria-controls="ExcAVR1_collapse" style="margin-left: 10px;">ExcAVR1</a></legend>
+                    <div id="ExcAVR1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='e1'>e1: </label><div class='col-sm-8'><input id='e1' class='form-control' type='text'{{#e1}} value='{{e1}}'{{/e1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='e2'>e2: </label><div class='col-sm-8'><input id='e2' class='form-control' type='text'{{#e2}} value='{{e2}}'{{/e2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='se1'>se1: </label><div class='col-sm-8'><input id='se1' class='form-control' type='text'{{#se1}} value='{{se1}}'{{/se1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='se2'>se2: </label><div class='col-sm-8'><input id='se2' class='form-control' type='text'{{#se2}} value='{{se2}}'{{/se2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmn'>vrmn: </label><div class='col-sm-8'><input id='vrmn' class='form-control' type='text'{{#vrmn}} value='{{vrmn}}'{{/vrmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmx'>vrmx: </label><div class='col-sm-8'><input id='vrmx' class='form-control' type='text'{{#vrmx}} value='{{vrmx}}'{{/vrmx}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type ST6B model.
@@ -6647,7 +8921,7 @@ define
                 base.parse_element (/<cim:ExcIEEEST6B.klr>([\s\S]*?)<\/cim:ExcIEEEST6B.klr>/g, obj, "klr", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST6B.km>([\s\S]*?)<\/cim:ExcIEEEST6B.km>/g, obj, "km", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST6B.kpa>([\s\S]*?)<\/cim:ExcIEEEST6B.kpa>/g, obj, "kpa", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcIEEEST6B.oelin>([\s\S]*?)<\/cim:ExcIEEEST6B.oelin>/g, obj, "oelin", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ExcIEEEST6B.oelin\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "oelin", sub, context);
                 base.parse_element (/<cim:ExcIEEEST6B.tg>([\s\S]*?)<\/cim:ExcIEEEST6B.tg>/g, obj, "tg", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST6B.vamax>([\s\S]*?)<\/cim:ExcIEEEST6B.vamax>/g, obj, "vamax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST6B.vamin>([\s\S]*?)<\/cim:ExcIEEEST6B.vamin>/g, obj, "vamin", base.to_string, sub, context);
@@ -6690,34 +8964,86 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcIEEEST6B_collapse" aria-expanded="true" aria-controls="ExcIEEEST6B_collapse">ExcIEEEST6B</a>
-<div id="ExcIEEEST6B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#ilr}}<div><b>ilr</b>: {{ilr}}</div>{{/ilr}}
-{{#kci}}<div><b>kci</b>: {{kci}}</div>{{/kci}}
-{{#kff}}<div><b>kff</b>: {{kff}}</div>{{/kff}}
-{{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
-{{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
-{{#klr}}<div><b>klr</b>: {{klr}}</div>{{/klr}}
-{{#km}}<div><b>km</b>: {{km}}</div>{{/km}}
-{{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
-{{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
-{{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
-{{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
-{{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST6B_collapse" aria-expanded="true" aria-controls="ExcIEEEST6B_collapse" style="margin-left: 10px;">ExcIEEEST6B</a></legend>
+                    <div id="ExcIEEEST6B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#ilr}}<div><b>ilr</b>: {{ilr}}</div>{{/ilr}}
+                    {{#kci}}<div><b>kci</b>: {{kci}}</div>{{/kci}}
+                    {{#kff}}<div><b>kff</b>: {{kff}}</div>{{/kff}}
+                    {{#kg}}<div><b>kg</b>: {{kg}}</div>{{/kg}}
+                    {{#kia}}<div><b>kia</b>: {{kia}}</div>{{/kia}}
+                    {{#klr}}<div><b>klr</b>: {{klr}}</div>{{/klr}}
+                    {{#km}}<div><b>km</b>: {{km}}</div>{{/km}}
+                    {{#kpa}}<div><b>kpa</b>: {{kpa}}</div>{{/kpa}}
+                    {{#oelin}}<div><b>oelin</b>: {{oelin}}</div>{{/oelin}}
+                    {{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
+                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ExcST6BOELselectorKind = []; if (!obj.oelin) obj.ExcST6BOELselectorKind.push ({ id: '', selected: true}); for (var property in ExcST6BOELselectorKind) obj.ExcST6BOELselectorKind.push ({ id: property, selected: obj.oelin && obj.oelin.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ExcST6BOELselectorKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST6B_collapse" aria-expanded="true" aria-controls="ExcIEEEST6B_collapse" style="margin-left: 10px;">ExcIEEEST6B</a></legend>
+                    <div id="ExcIEEEST6B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ilr'>ilr: </label><div class='col-sm-8'><input id='ilr' class='form-control' type='text'{{#ilr}} value='{{ilr}}'{{/ilr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kci'>kci: </label><div class='col-sm-8'><input id='kci' class='form-control' type='text'{{#kci}} value='{{kci}}'{{/kci}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kff'>kff: </label><div class='col-sm-8'><input id='kff' class='form-control' type='text'{{#kff}} value='{{kff}}'{{/kff}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kg'>kg: </label><div class='col-sm-8'><input id='kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kia'>kia: </label><div class='col-sm-8'><input id='kia' class='form-control' type='text'{{#kia}} value='{{kia}}'{{/kia}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='klr'>klr: </label><div class='col-sm-8'><input id='klr' class='form-control' type='text'{{#klr}} value='{{klr}}'{{/klr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='km'>km: </label><div class='col-sm-8'><input id='km' class='form-control' type='text'{{#km}} value='{{km}}'{{/km}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpa'>kpa: </label><div class='col-sm-8'><input id='kpa' class='form-control' type='text'{{#kpa}} value='{{kpa}}'{{/kpa}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oelin'>oelin: </label><div class='col-sm-8'><select id='oelin' class='form-control'>{{#ExcST6BOELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcST6BOELselectorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tg'>tg: </label><div class='col-sm-8'><input id='tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamax'>vamax: </label><div class='col-sm-8'><input id='vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vamin'>vamin: </label><div class='col-sm-8'><input id='vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
+                ExcAVR3: ExcAVR3,
+                ExcAVR7: ExcAVR7,
                 ExcAVR1: ExcAVR1,
+                ExcST4B: ExcST4B,
+                ExcIEEEDC1A: ExcIEEEDC1A,
+                ExcIEEEAC4A: ExcIEEEAC4A,
+                ExcPIC: ExcPIC,
                 ExcST2A: ExcST2A,
                 ExcAC4A: ExcAC4A,
                 ExcIEEEST4B: ExcIEEEST4B,
@@ -6726,40 +9052,21 @@ define
                 ExcAVR4: ExcAVR4,
                 ExcST7B: ExcST7B,
                 ExcIEEEAC7B: ExcIEEEAC7B,
-                ExcIEEEAC2A: ExcIEEEAC2A,
                 ExcIEEEAC5A: ExcIEEEAC5A,
+                ExcIEEEAC2A: ExcIEEEAC2A,
+                ExcAVR2: ExcAVR2,
+                ExcBBC: ExcBBC,
                 ExcST1A: ExcST1A,
                 ExcIEEEDC2A: ExcIEEEDC2A,
                 ExcIEEEDC4B: ExcIEEEDC4B,
                 ExcAC3A: ExcAC3A,
-                ExcSCRX: ExcSCRX,
-                ExcST6B: ExcST6B,
-                ExcREXSFeedbackSignalKind: ExcREXSFeedbackSignalKind,
-                ExcAC2A: ExcAC2A,
-                ExcitationSystemDynamics: ExcitationSystemDynamics,
-                ExcAC1A: ExcAC1A,
-                ExcDC3A: ExcDC3A,
-                ExcELIN1: ExcELIN1,
-                ExcDC3A1: ExcDC3A1,
-                ExcIEEEST6B: ExcIEEEST6B,
-                ExcIEEEST1A: ExcIEEEST1A,
-                ExcAC8B: ExcAC8B,
-                ExcIEEEAC1A: ExcIEEEAC1A,
-                ExcST4B: ExcST4B,
-                ExcAVR7: ExcAVR7,
-                ExcAVR3: ExcAVR3,
-                ExcSEXS: ExcSEXS,
-                ExcIEEEAC4A: ExcIEEEAC4A,
-                ExcIEEEDC1A: ExcIEEEDC1A,
-                ExcPIC: ExcPIC,
-                ExcIEEEST1AUELselectorKind: ExcIEEEST1AUELselectorKind,
-                ExcAVR2: ExcAVR2,
-                ExcST6BOELselectorKind: ExcST6BOELselectorKind,
-                ExcBBC: ExcBBC,
                 ExcCZ: ExcCZ,
+                ExcSCRX: ExcSCRX,
                 ExcDC2A: ExcDC2A,
+                ExcST6B: ExcST6B,
                 ExcIEEEST5B: ExcIEEEST5B,
                 ExcIEEEST3A: ExcIEEEST3A,
+                ExcAC2A: ExcAC2A,
                 ExcIEEEAC8B: ExcIEEEAC8B,
                 ExcIEEEAC3A: ExcIEEEAC3A,
                 ExcIEEEAC6A: ExcIEEEAC6A,
@@ -6768,15 +9075,23 @@ define
                 ExcAC6A: ExcAC6A,
                 ExcDC1A: ExcDC1A,
                 ExcOEX3T: ExcOEX3T,
-                ExcST7BUELselectorKind: ExcST7BUELselectorKind,
-                ExcST7BOELselectorKind: ExcST7BOELselectorKind,
+                ExcitationSystemDynamics: ExcitationSystemDynamics,
+                ExcAC1A: ExcAC1A,
+                ExcDC3A: ExcDC3A,
                 ExcHU: ExcHU,
+                ExcELIN1: ExcELIN1,
                 ExcREXS: ExcREXS,
                 ExcST3A: ExcST3A,
                 ExcSK: ExcSK,
+                ExcDC3A1: ExcDC3A1,
+                ExcIEEEST6B: ExcIEEEST6B,
+                ExcIEEEST1A: ExcIEEEST1A,
                 ExcAC5A: ExcAC5A,
+                ExcAC8B: ExcAC8B,
+                ExcIEEEAC1A: ExcIEEEAC1A,
                 ExcANS: ExcANS,
-                ExcAVR5: ExcAVR5
+                ExcAVR5: ExcAVR5,
+                ExcSEXS: ExcSEXS
             }
         );
     }

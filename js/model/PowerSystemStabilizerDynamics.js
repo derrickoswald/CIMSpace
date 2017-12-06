@@ -11,6 +11,27 @@ define
     {
 
         /**
+         * Input signal type.
+         *
+         * In Dynamics modelling, commonly represented by j parameter.
+         *
+         */
+        var InputSignalKind =
+        {
+            rotorSpeed: "rotorSpeed",
+            rotorAngularFrequencyDeviation: "rotorAngularFrequencyDeviation",
+            busFrequency: "busFrequency",
+            busFrequencyDeviation: "busFrequencyDeviation",
+            generatorElectricalPower: "generatorElectricalPower",
+            generatorAcceleratingPower: "generatorAcceleratingPower",
+            busVoltage: "busVoltage",
+            busVoltageDerivative: "busVoltageDerivative",
+            branchCurrent: "branchCurrent",
+            fieldCurrent: "fieldCurrent"
+        };
+        Object.freeze (InputSignalKind);
+
+        /**
          * Power system stabilizer function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
          *
          */
@@ -63,111 +84,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PowerSystemStabilizerDynamics_collapse" aria-expanded="true" aria-controls="PowerSystemStabilizerDynamics_collapse">PowerSystemStabilizerDynamics</a>
-<div id="PowerSystemStabilizerDynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
-`
-{{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemStabilizerDynamics_collapse" aria-expanded="true" aria-controls="PowerSystemStabilizerDynamics_collapse" style="margin-left: 10px;">PowerSystemStabilizerDynamics</a></legend>
+                    <div id="PowerSystemStabilizerDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
+                    `
+                    {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Input signal type.
-         *
-         * In Dynamics modelling, commonly represented by j parameter.
-         *
-         */
-        class InputSignalKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.InputSignalKind;
-                if (null == bucket)
-                   cim_data.InputSignalKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.InputSignalKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "InputSignalKind";
-                base.parse_element (/<cim:InputSignalKind.rotorSpeed>([\s\S]*?)<\/cim:InputSignalKind.rotorSpeed>/g, obj, "rotorSpeed", base.to_string, sub, context);
-                base.parse_element (/<cim:InputSignalKind.rotorAngularFrequencyDeviation>([\s\S]*?)<\/cim:InputSignalKind.rotorAngularFrequencyDeviation>/g, obj, "rotorAngularFrequencyDeviation", base.to_string, sub, context);
-                base.parse_element (/<cim:InputSignalKind.busFrequency>([\s\S]*?)<\/cim:InputSignalKind.busFrequency>/g, obj, "busFrequency", base.to_string, sub, context);
-                base.parse_element (/<cim:InputSignalKind.busFrequencyDeviation>([\s\S]*?)<\/cim:InputSignalKind.busFrequencyDeviation>/g, obj, "busFrequencyDeviation", base.to_string, sub, context);
-                base.parse_element (/<cim:InputSignalKind.generatorElectricalPower>([\s\S]*?)<\/cim:InputSignalKind.generatorElectricalPower>/g, obj, "generatorElectricalPower", base.to_string, sub, context);
-                base.parse_element (/<cim:InputSignalKind.generatorAcceleratingPower>([\s\S]*?)<\/cim:InputSignalKind.generatorAcceleratingPower>/g, obj, "generatorAcceleratingPower", base.to_string, sub, context);
-                base.parse_element (/<cim:InputSignalKind.busVoltage>([\s\S]*?)<\/cim:InputSignalKind.busVoltage>/g, obj, "busVoltage", base.to_string, sub, context);
-                base.parse_element (/<cim:InputSignalKind.busVoltageDerivative>([\s\S]*?)<\/cim:InputSignalKind.busVoltageDerivative>/g, obj, "busVoltageDerivative", base.to_string, sub, context);
-                base.parse_element (/<cim:InputSignalKind.branchCurrent>([\s\S]*?)<\/cim:InputSignalKind.branchCurrent>/g, obj, "branchCurrent", base.to_string, sub, context);
-                base.parse_element (/<cim:InputSignalKind.fieldCurrent>([\s\S]*?)<\/cim:InputSignalKind.fieldCurrent>/g, obj, "fieldCurrent", base.to_string, sub, context);
-
-                var bucket = context.parsed.InputSignalKind;
-                if (null == bucket)
-                   context.parsed.InputSignalKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "InputSignalKind", "rotorSpeed", base.from_string, fields);
-                base.export_element (obj, "InputSignalKind", "rotorAngularFrequencyDeviation", base.from_string, fields);
-                base.export_element (obj, "InputSignalKind", "busFrequency", base.from_string, fields);
-                base.export_element (obj, "InputSignalKind", "busFrequencyDeviation", base.from_string, fields);
-                base.export_element (obj, "InputSignalKind", "generatorElectricalPower", base.from_string, fields);
-                base.export_element (obj, "InputSignalKind", "generatorAcceleratingPower", base.from_string, fields);
-                base.export_element (obj, "InputSignalKind", "busVoltage", base.from_string, fields);
-                base.export_element (obj, "InputSignalKind", "busVoltageDerivative", base.from_string, fields);
-                base.export_element (obj, "InputSignalKind", "branchCurrent", base.from_string, fields);
-                base.export_element (obj, "InputSignalKind", "fieldCurrent", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#InputSignalKind_collapse" aria-expanded="true" aria-controls="InputSignalKind_collapse">InputSignalKind</a>
-<div id="InputSignalKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#rotorSpeed}}<div><b>rotorSpeed</b>: {{rotorSpeed}}</div>{{/rotorSpeed}}
-{{#rotorAngularFrequencyDeviation}}<div><b>rotorAngularFrequencyDeviation</b>: {{rotorAngularFrequencyDeviation}}</div>{{/rotorAngularFrequencyDeviation}}
-{{#busFrequency}}<div><b>busFrequency</b>: {{busFrequency}}</div>{{/busFrequency}}
-{{#busFrequencyDeviation}}<div><b>busFrequencyDeviation</b>: {{busFrequencyDeviation}}</div>{{/busFrequencyDeviation}}
-{{#generatorElectricalPower}}<div><b>generatorElectricalPower</b>: {{generatorElectricalPower}}</div>{{/generatorElectricalPower}}
-{{#generatorAcceleratingPower}}<div><b>generatorAcceleratingPower</b>: {{generatorAcceleratingPower}}</div>{{/generatorAcceleratingPower}}
-{{#busVoltage}}<div><b>busVoltage</b>: {{busVoltage}}</div>{{/busVoltage}}
-{{#busVoltageDerivative}}<div><b>busVoltageDerivative</b>: {{busVoltageDerivative}}</div>{{/busVoltageDerivative}}
-{{#branchCurrent}}<div><b>branchCurrent</b>: {{branchCurrent}}</div>{{/branchCurrent}}
-{{#fieldCurrent}}<div><b>fieldCurrent</b>: {{fieldCurrent}}</div>{{/fieldCurrent}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemStabilizerDynamics_collapse" aria-expanded="true" aria-controls="PowerSystemStabilizerDynamics_collapse" style="margin-left: 10px;">PowerSystemStabilizerDynamics</a></legend>
+                    <div id="PowerSystemStabilizerDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * PTI Microprocessor-Based Stabilizer type 1.
@@ -242,27 +200,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PssPTIST1_collapse" aria-expanded="true" aria-controls="PssPTIST1_collapse">PssPTIST1</a>
-<div id="PssPTIST1_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#dtc}}<div><b>dtc</b>: {{dtc}}</div>{{/dtc}}
-{{#dtf}}<div><b>dtf</b>: {{dtf}}</div>{{/dtf}}
-{{#dtp}}<div><b>dtp</b>: {{dtp}}</div>{{/dtp}}
-{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-{{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssPTIST1_collapse" aria-expanded="true" aria-controls="PssPTIST1_collapse" style="margin-left: 10px;">PssPTIST1</a></legend>
+                    <div id="PssPTIST1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#dtc}}<div><b>dtc</b>: {{dtc}}</div>{{/dtc}}
+                    {{#dtf}}<div><b>dtf</b>: {{dtf}}</div>{{/dtf}}
+                    {{#dtp}}<div><b>dtp</b>: {{dtp}}</div>{{/dtp}}
+                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+                    {{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssPTIST1_collapse" aria-expanded="true" aria-controls="PssPTIST1_collapse" style="margin-left: 10px;">PssPTIST1</a></legend>
+                    <div id="PssPTIST1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dtc'>dtc: </label><div class='col-sm-8'><input id='dtc' class='form-control' type='text'{{#dtc}} value='{{dtc}}'{{/dtc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dtf'>dtf: </label><div class='col-sm-8'><input id='dtf' class='form-control' type='text'{{#dtf}} value='{{dtf}}'{{/dtf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dtp'>dtp: </label><div class='col-sm-8'><input id='dtp' class='form-control' type='text'{{#dtp}} value='{{dtp}}'{{/dtp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='m'>m: </label><div class='col-sm-8'><input id='m' class='form-control' type='text'{{#m}} value='{{m}}'{{/m}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type PSS2B power system stabilizer model.
@@ -294,8 +293,8 @@ define
 
                 obj = PowerSystemStabilizerDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "PssIEEE2B";
-                base.parse_element (/<cim:PssIEEE2B.inputSignal1Type>([\s\S]*?)<\/cim:PssIEEE2B.inputSignal1Type>/g, obj, "inputSignal1Type", base.to_string, sub, context);
-                base.parse_element (/<cim:PssIEEE2B.inputSignal2Type>([\s\S]*?)<\/cim:PssIEEE2B.inputSignal2Type>/g, obj, "inputSignal2Type", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PssIEEE2B.inputSignal1Type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "inputSignal1Type", sub, context);
+                base.parse_attribute (/<cim:PssIEEE2B.inputSignal2Type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "inputSignal2Type", sub, context);
                 base.parse_element (/<cim:PssIEEE2B.ks1>([\s\S]*?)<\/cim:PssIEEE2B.ks1>/g, obj, "ks1", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE2B.ks2>([\s\S]*?)<\/cim:PssIEEE2B.ks2>/g, obj, "ks2", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE2B.ks3>([\s\S]*?)<\/cim:PssIEEE2B.ks3>/g, obj, "ks3", base.to_string, sub, context);
@@ -371,43 +370,104 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PssIEEE2B_collapse" aria-expanded="true" aria-controls="PssIEEE2B_collapse">PssIEEE2B</a>
-<div id="PssIEEE2B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#inputSignal1Type}}<div><b>inputSignal1Type</b>: {{inputSignal1Type}}</div>{{/inputSignal1Type}}
-{{#inputSignal2Type}}<div><b>inputSignal2Type</b>: {{inputSignal2Type}}</div>{{/inputSignal2Type}}
-{{#ks1}}<div><b>ks1</b>: {{ks1}}</div>{{/ks1}}
-{{#ks2}}<div><b>ks2</b>: {{ks2}}</div>{{/ks2}}
-{{#ks3}}<div><b>ks3</b>: {{ks3}}</div>{{/ks3}}
-{{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
-{{#n}}<div><b>n</b>: {{n}}</div>{{/n}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t10}}<div><b>t10</b>: {{t10}}</div>{{/t10}}
-{{#t11}}<div><b>t11</b>: {{t11}}</div>{{/t11}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
-{{#t8}}<div><b>t8</b>: {{t8}}</div>{{/t8}}
-{{#t9}}<div><b>t9</b>: {{t9}}</div>{{/t9}}
-{{#tw1}}<div><b>tw1</b>: {{tw1}}</div>{{/tw1}}
-{{#tw2}}<div><b>tw2</b>: {{tw2}}</div>{{/tw2}}
-{{#tw3}}<div><b>tw3</b>: {{tw3}}</div>{{/tw3}}
-{{#tw4}}<div><b>tw4</b>: {{tw4}}</div>{{/tw4}}
-{{#vsi1max}}<div><b>vsi1max</b>: {{vsi1max}}</div>{{/vsi1max}}
-{{#vsi1min}}<div><b>vsi1min</b>: {{vsi1min}}</div>{{/vsi1min}}
-{{#vsi2max}}<div><b>vsi2max</b>: {{vsi2max}}</div>{{/vsi2max}}
-{{#vsi2min}}<div><b>vsi2min</b>: {{vsi2min}}</div>{{/vsi2min}}
-{{#vstmax}}<div><b>vstmax</b>: {{vstmax}}</div>{{/vstmax}}
-{{#vstmin}}<div><b>vstmin</b>: {{vstmin}}</div>{{/vstmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE2B_collapse" aria-expanded="true" aria-controls="PssIEEE2B_collapse" style="margin-left: 10px;">PssIEEE2B</a></legend>
+                    <div id="PssIEEE2B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#inputSignal1Type}}<div><b>inputSignal1Type</b>: {{inputSignal1Type}}</div>{{/inputSignal1Type}}
+                    {{#inputSignal2Type}}<div><b>inputSignal2Type</b>: {{inputSignal2Type}}</div>{{/inputSignal2Type}}
+                    {{#ks1}}<div><b>ks1</b>: {{ks1}}</div>{{/ks1}}
+                    {{#ks2}}<div><b>ks2</b>: {{ks2}}</div>{{/ks2}}
+                    {{#ks3}}<div><b>ks3</b>: {{ks3}}</div>{{/ks3}}
+                    {{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
+                    {{#n}}<div><b>n</b>: {{n}}</div>{{/n}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t10}}<div><b>t10</b>: {{t10}}</div>{{/t10}}
+                    {{#t11}}<div><b>t11</b>: {{t11}}</div>{{/t11}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
+                    {{#t8}}<div><b>t8</b>: {{t8}}</div>{{/t8}}
+                    {{#t9}}<div><b>t9</b>: {{t9}}</div>{{/t9}}
+                    {{#tw1}}<div><b>tw1</b>: {{tw1}}</div>{{/tw1}}
+                    {{#tw2}}<div><b>tw2</b>: {{tw2}}</div>{{/tw2}}
+                    {{#tw3}}<div><b>tw3</b>: {{tw3}}</div>{{/tw3}}
+                    {{#tw4}}<div><b>tw4</b>: {{tw4}}</div>{{/tw4}}
+                    {{#vsi1max}}<div><b>vsi1max</b>: {{vsi1max}}</div>{{/vsi1max}}
+                    {{#vsi1min}}<div><b>vsi1min</b>: {{vsi1min}}</div>{{/vsi1min}}
+                    {{#vsi2max}}<div><b>vsi2max</b>: {{vsi2max}}</div>{{/vsi2max}}
+                    {{#vsi2min}}<div><b>vsi2min</b>: {{vsi2min}}</div>{{/vsi2min}}
+                    {{#vstmax}}<div><b>vstmax</b>: {{vstmax}}</div>{{/vstmax}}
+                    {{#vstmin}}<div><b>vstmin</b>: {{vstmin}}</div>{{/vstmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.InputSignalKind = []; if (!obj.inputSignal1Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
+                obj.InputSignalKind = []; if (!obj.inputSignal2Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.InputSignalKind;
+                delete obj.InputSignalKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE2B_collapse" aria-expanded="true" aria-controls="PssIEEE2B_collapse" style="margin-left: 10px;">PssIEEE2B</a></legend>
+                    <div id="PssIEEE2B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks1'>ks1: </label><div class='col-sm-8'><input id='ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks2'>ks2: </label><div class='col-sm-8'><input id='ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks3'>ks3: </label><div class='col-sm-8'><input id='ks3' class='form-control' type='text'{{#ks3}} value='{{ks3}}'{{/ks3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='m'>m: </label><div class='col-sm-8'><input id='m' class='form-control' type='text'{{#m}} value='{{m}}'{{/m}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='n'>n: </label><div class='col-sm-8'><input id='n' class='form-control' type='text'{{#n}} value='{{n}}'{{/n}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t10'>t10: </label><div class='col-sm-8'><input id='t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t11'>t11: </label><div class='col-sm-8'><input id='t11' class='form-control' type='text'{{#t11}} value='{{t11}}'{{/t11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t7'>t7: </label><div class='col-sm-8'><input id='t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t8'>t8: </label><div class='col-sm-8'><input id='t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t9'>t9: </label><div class='col-sm-8'><input id='t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw1'>tw1: </label><div class='col-sm-8'><input id='tw1' class='form-control' type='text'{{#tw1}} value='{{tw1}}'{{/tw1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw2'>tw2: </label><div class='col-sm-8'><input id='tw2' class='form-control' type='text'{{#tw2}} value='{{tw2}}'{{/tw2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw3'>tw3: </label><div class='col-sm-8'><input id='tw3' class='form-control' type='text'{{#tw3}} value='{{tw3}}'{{/tw3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw4'>tw4: </label><div class='col-sm-8'><input id='tw4' class='form-control' type='text'{{#tw4}} value='{{tw4}}'{{/tw4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi1max'>vsi1max: </label><div class='col-sm-8'><input id='vsi1max' class='form-control' type='text'{{#vsi1max}} value='{{vsi1max}}'{{/vsi1max}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi1min'>vsi1min: </label><div class='col-sm-8'><input id='vsi1min' class='form-control' type='text'{{#vsi1min}} value='{{vsi1min}}'{{/vsi1min}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi2max'>vsi2max: </label><div class='col-sm-8'><input id='vsi2max' class='form-control' type='text'{{#vsi2max}} value='{{vsi2max}}'{{/vsi2max}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi2min'>vsi2min: </label><div class='col-sm-8'><input id='vsi2min' class='form-control' type='text'{{#vsi2min}} value='{{vsi2min}}'{{/vsi2min}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmax'>vstmax: </label><div class='col-sm-8'><input id='vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmin'>vstmin: </label><div class='col-sm-8'><input id='vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * PTI Microprocessor-Based Stabilizer type 1.
@@ -437,8 +497,8 @@ define
 
                 obj = PowerSystemStabilizerDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "Pss2ST";
-                base.parse_element (/<cim:Pss2ST.inputSignal1Type>([\s\S]*?)<\/cim:Pss2ST.inputSignal1Type>/g, obj, "inputSignal1Type", base.to_string, sub, context);
-                base.parse_element (/<cim:Pss2ST.inputSignal2Type>([\s\S]*?)<\/cim:Pss2ST.inputSignal2Type>/g, obj, "inputSignal2Type", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Pss2ST.inputSignal1Type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "inputSignal1Type", sub, context);
+                base.parse_attribute (/<cim:Pss2ST.inputSignal2Type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "inputSignal2Type", sub, context);
                 base.parse_element (/<cim:Pss2ST.k1>([\s\S]*?)<\/cim:Pss2ST.k1>/g, obj, "k1", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss2ST.k2>([\s\S]*?)<\/cim:Pss2ST.k2>/g, obj, "k2", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss2ST.lsmax>([\s\S]*?)<\/cim:Pss2ST.lsmax>/g, obj, "lsmax", base.to_string, sub, context);
@@ -496,34 +556,86 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Pss2ST_collapse" aria-expanded="true" aria-controls="Pss2ST_collapse">Pss2ST</a>
-<div id="Pss2ST_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#inputSignal1Type}}<div><b>inputSignal1Type</b>: {{inputSignal1Type}}</div>{{/inputSignal1Type}}
-{{#inputSignal2Type}}<div><b>inputSignal2Type</b>: {{inputSignal2Type}}</div>{{/inputSignal2Type}}
-{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
-{{#lsmax}}<div><b>lsmax</b>: {{lsmax}}</div>{{/lsmax}}
-{{#lsmin}}<div><b>lsmin</b>: {{lsmin}}</div>{{/lsmin}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t10}}<div><b>t10</b>: {{t10}}</div>{{/t10}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
-{{#t8}}<div><b>t8</b>: {{t8}}</div>{{/t8}}
-{{#t9}}<div><b>t9</b>: {{t9}}</div>{{/t9}}
-{{#vcl}}<div><b>vcl</b>: {{vcl}}</div>{{/vcl}}
-{{#vcu}}<div><b>vcu</b>: {{vcu}}</div>{{/vcu}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss2ST_collapse" aria-expanded="true" aria-controls="Pss2ST_collapse" style="margin-left: 10px;">Pss2ST</a></legend>
+                    <div id="Pss2ST_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#inputSignal1Type}}<div><b>inputSignal1Type</b>: {{inputSignal1Type}}</div>{{/inputSignal1Type}}
+                    {{#inputSignal2Type}}<div><b>inputSignal2Type</b>: {{inputSignal2Type}}</div>{{/inputSignal2Type}}
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+                    {{#lsmax}}<div><b>lsmax</b>: {{lsmax}}</div>{{/lsmax}}
+                    {{#lsmin}}<div><b>lsmin</b>: {{lsmin}}</div>{{/lsmin}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t10}}<div><b>t10</b>: {{t10}}</div>{{/t10}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
+                    {{#t8}}<div><b>t8</b>: {{t8}}</div>{{/t8}}
+                    {{#t9}}<div><b>t9</b>: {{t9}}</div>{{/t9}}
+                    {{#vcl}}<div><b>vcl</b>: {{vcl}}</div>{{/vcl}}
+                    {{#vcu}}<div><b>vcu</b>: {{vcu}}</div>{{/vcu}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.InputSignalKind = []; if (!obj.inputSignal1Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
+                obj.InputSignalKind = []; if (!obj.inputSignal2Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.InputSignalKind;
+                delete obj.InputSignalKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss2ST_collapse" aria-expanded="true" aria-controls="Pss2ST_collapse" style="margin-left: 10px;">Pss2ST</a></legend>
+                    <div id="Pss2ST_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lsmax'>lsmax: </label><div class='col-sm-8'><input id='lsmax' class='form-control' type='text'{{#lsmax}} value='{{lsmax}}'{{/lsmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lsmin'>lsmin: </label><div class='col-sm-8'><input id='lsmin' class='form-control' type='text'{{#lsmin}} value='{{lsmin}}'{{/lsmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t10'>t10: </label><div class='col-sm-8'><input id='t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t7'>t7: </label><div class='col-sm-8'><input id='t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t8'>t8: </label><div class='col-sm-8'><input id='t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t9'>t9: </label><div class='col-sm-8'><input id='t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vcl'>vcl: </label><div class='col-sm-8'><input id='vcl' class='form-control' type='text'{{#vcl}} value='{{vcl}}'{{/vcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vcu'>vcu: </label><div class='col-sm-8'><input id='vcu' class='form-control' type='text'{{#vcu}} value='{{vcu}}'{{/vcu}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Italian PSS - three input PSS (speed, frequency, power).
@@ -606,31 +718,76 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Pss1_collapse" aria-expanded="true" aria-controls="Pss1_collapse">Pss1</a>
-<div id="Pss1_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#kpe}}<div><b>kpe</b>: {{kpe}}</div>{{/kpe}}
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#kw}}<div><b>kw</b>: {{kw}}</div>{{/kw}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#t10}}<div><b>t10</b>: {{t10}}</div>{{/t10}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
-{{#t8}}<div><b>t8</b>: {{t8}}</div>{{/t8}}
-{{#t9}}<div><b>t9</b>: {{t9}}</div>{{/t9}}
-{{#tpe}}<div><b>tpe</b>: {{tpe}}</div>{{/tpe}}
-{{#vadat}}<div><b>vadat</b>: {{vadat}}</div>{{/vadat}}
-{{#vsmn}}<div><b>vsmn</b>: {{vsmn}}</div>{{/vsmn}}
-{{#vsmx}}<div><b>vsmx</b>: {{vsmx}}</div>{{/vsmx}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss1_collapse" aria-expanded="true" aria-controls="Pss1_collapse" style="margin-left: 10px;">Pss1</a></legend>
+                    <div id="Pss1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#kpe}}<div><b>kpe</b>: {{kpe}}</div>{{/kpe}}
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#kw}}<div><b>kw</b>: {{kw}}</div>{{/kw}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#t10}}<div><b>t10</b>: {{t10}}</div>{{/t10}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
+                    {{#t8}}<div><b>t8</b>: {{t8}}</div>{{/t8}}
+                    {{#t9}}<div><b>t9</b>: {{t9}}</div>{{/t9}}
+                    {{#tpe}}<div><b>tpe</b>: {{tpe}}</div>{{/tpe}}
+                    {{#vadat}}<div><b>vadat</b>: {{vadat}}</div>{{/vadat}}
+                    {{#vsmn}}<div><b>vsmn</b>: {{vsmn}}</div>{{/vsmn}}
+                    {{#vsmx}}<div><b>vsmx</b>: {{vsmx}}</div>{{/vsmx}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss1_collapse" aria-expanded="true" aria-controls="Pss1_collapse" style="margin-left: 10px;">Pss1</a></legend>
+                    <div id="Pss1_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpe'>kpe: </label><div class='col-sm-8'><input id='kpe' class='form-control' type='text'{{#kpe}} value='{{kpe}}'{{/kpe}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kw'>kw: </label><div class='col-sm-8'><input id='kw' class='form-control' type='text'{{#kw}} value='{{kw}}'{{/kw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t10'>t10: </label><div class='col-sm-8'><input id='t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t7'>t7: </label><div class='col-sm-8'><input id='t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t8'>t8: </label><div class='col-sm-8'><input id='t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t9'>t9: </label><div class='col-sm-8'><input id='t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpe'>tpe: </label><div class='col-sm-8'><input id='tpe' class='form-control' type='text'{{#tpe}} value='{{tpe}}'{{/tpe}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='vadat'>vadat: </label><div class='col-sm-8'><input id='vadat' class='form-check-input' type='checkbox'{{#vadat}} checked{{/vadat}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmn'>vsmn: </label><div class='col-sm-8'><input id='vsmn' class='form-control' type='text'{{#vsmn}} value='{{vsmn}}'{{/vsmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmx'>vsmx: </label><div class='col-sm-8'><input id='vsmx' class='form-control' type='text'{{#vsmx}} value='{{vsmx}}'{{/vsmx}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Model for Siemens �H infinity� power system stabilizer with generator electrical power input.
@@ -709,29 +866,72 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PssSH_collapse" aria-expanded="true" aria-controls="PssSH_collapse">PssSH</a>
-<div id="PssSH_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-{{#k0}}<div><b>k0</b>: {{k0}}</div>{{/k0}}
-{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
-{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
-{{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
-{{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
-{{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSH_collapse" aria-expanded="true" aria-controls="PssSH_collapse" style="margin-left: 10px;">PssSH</a></legend>
+                    <div id="PssSH_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+                    {{#k0}}<div><b>k0</b>: {{k0}}</div>{{/k0}}
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+                    {{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+                    {{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+                    {{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
+                    {{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSH_collapse" aria-expanded="true" aria-controls="PssSH_collapse" style="margin-left: 10px;">PssSH</a></legend>
+                    <div id="PssSH_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k0'>k0: </label><div class='col-sm-8'><input id='k0' class='form-control' type='text'{{#k0}} value='{{k0}}'{{/k0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k3'>k3: </label><div class='col-sm-8'><input id='k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k4'>k4: </label><div class='col-sm-8'><input id='k4' class='form-control' type='text'{{#k4}} value='{{k4}}'{{/k4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td'>td: </label><div class='col-sm-8'><input id='td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmax'>vsmax: </label><div class='col-sm-8'><input id='vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmin'>vsmin: </label><div class='col-sm-8'><input id='vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Single input power system stabilizer.
@@ -771,7 +971,7 @@ define
                 base.parse_element (/<cim:Pss1A.a6>([\s\S]*?)<\/cim:Pss1A.a6>/g, obj, "a6", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss1A.a7>([\s\S]*?)<\/cim:Pss1A.a7>/g, obj, "a7", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss1A.a8>([\s\S]*?)<\/cim:Pss1A.a8>/g, obj, "a8", base.to_string, sub, context);
-                base.parse_element (/<cim:Pss1A.inputSignalType>([\s\S]*?)<\/cim:Pss1A.inputSignalType>/g, obj, "inputSignalType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Pss1A.inputSignalType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "inputSignalType", sub, context);
                 base.parse_element (/<cim:Pss1A.kd>([\s\S]*?)<\/cim:Pss1A.kd>/g, obj, "kd", base.to_boolean, sub, context);
                 base.parse_element (/<cim:Pss1A.ks>([\s\S]*?)<\/cim:Pss1A.ks>/g, obj, "ks", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss1A.t1>([\s\S]*?)<\/cim:Pss1A.t1>/g, obj, "t1", base.to_string, sub, context);
@@ -830,38 +1030,92 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Pss1A_collapse" aria-expanded="true" aria-controls="Pss1A_collapse">Pss1A</a>
-<div id="Pss1A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#a1}}<div><b>a1</b>: {{a1}}</div>{{/a1}}
-{{#a2}}<div><b>a2</b>: {{a2}}</div>{{/a2}}
-{{#a3}}<div><b>a3</b>: {{a3}}</div>{{/a3}}
-{{#a4}}<div><b>a4</b>: {{a4}}</div>{{/a4}}
-{{#a5}}<div><b>a5</b>: {{a5}}</div>{{/a5}}
-{{#a6}}<div><b>a6</b>: {{a6}}</div>{{/a6}}
-{{#a7}}<div><b>a7</b>: {{a7}}</div>{{/a7}}
-{{#a8}}<div><b>a8</b>: {{a8}}</div>{{/a8}}
-{{#inputSignalType}}<div><b>inputSignalType</b>: {{inputSignalType}}</div>{{/inputSignalType}}
-{{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#tdelay}}<div><b>tdelay</b>: {{tdelay}}</div>{{/tdelay}}
-{{#vcl}}<div><b>vcl</b>: {{vcl}}</div>{{/vcl}}
-{{#vcu}}<div><b>vcu</b>: {{vcu}}</div>{{/vcu}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss1A_collapse" aria-expanded="true" aria-controls="Pss1A_collapse" style="margin-left: 10px;">Pss1A</a></legend>
+                    <div id="Pss1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#a1}}<div><b>a1</b>: {{a1}}</div>{{/a1}}
+                    {{#a2}}<div><b>a2</b>: {{a2}}</div>{{/a2}}
+                    {{#a3}}<div><b>a3</b>: {{a3}}</div>{{/a3}}
+                    {{#a4}}<div><b>a4</b>: {{a4}}</div>{{/a4}}
+                    {{#a5}}<div><b>a5</b>: {{a5}}</div>{{/a5}}
+                    {{#a6}}<div><b>a6</b>: {{a6}}</div>{{/a6}}
+                    {{#a7}}<div><b>a7</b>: {{a7}}</div>{{/a7}}
+                    {{#a8}}<div><b>a8</b>: {{a8}}</div>{{/a8}}
+                    {{#inputSignalType}}<div><b>inputSignalType</b>: {{inputSignalType}}</div>{{/inputSignalType}}
+                    {{#kd}}<div><b>kd</b>: {{kd}}</div>{{/kd}}
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#tdelay}}<div><b>tdelay</b>: {{tdelay}}</div>{{/tdelay}}
+                    {{#vcl}}<div><b>vcl</b>: {{vcl}}</div>{{/vcl}}
+                    {{#vcu}}<div><b>vcu</b>: {{vcu}}</div>{{/vcu}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.InputSignalKind = []; if (!obj.inputSignalType) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignalType && obj.inputSignalType.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.InputSignalKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss1A_collapse" aria-expanded="true" aria-controls="Pss1A_collapse" style="margin-left: 10px;">Pss1A</a></legend>
+                    <div id="Pss1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a1'>a1: </label><div class='col-sm-8'><input id='a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a2'>a2: </label><div class='col-sm-8'><input id='a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a3'>a3: </label><div class='col-sm-8'><input id='a3' class='form-control' type='text'{{#a3}} value='{{a3}}'{{/a3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a4'>a4: </label><div class='col-sm-8'><input id='a4' class='form-control' type='text'{{#a4}} value='{{a4}}'{{/a4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a5'>a5: </label><div class='col-sm-8'><input id='a5' class='form-control' type='text'{{#a5}} value='{{a5}}'{{/a5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a6'>a6: </label><div class='col-sm-8'><input id='a6' class='form-control' type='text'{{#a6}} value='{{a6}}'{{/a6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a7'>a7: </label><div class='col-sm-8'><input id='a7' class='form-control' type='text'{{#a7}} value='{{a7}}'{{/a7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a8'>a8: </label><div class='col-sm-8'><input id='a8' class='form-control' type='text'{{#a8}} value='{{a8}}'{{/a8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignalType'>inputSignalType: </label><div class='col-sm-8'><select id='inputSignalType' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-check-input' type='checkbox'{{#kd}} checked{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tdelay'>tdelay: </label><div class='col-sm-8'><input id='tdelay' class='form-control' type='text'{{#tdelay}} value='{{tdelay}}'{{/tdelay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vcl'>vcl: </label><div class='col-sm-8'><input id='vcl' class='form-control' type='text'{{#vcl}} value='{{vcl}}'{{/vcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vcu'>vcu: </label><div class='col-sm-8'><input id='vcu' class='form-control' type='text'{{#vcu}} value='{{vcu}}'{{/vcu}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * PSS Slovakian type � three inputs.
@@ -936,27 +1190,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PssSK_collapse" aria-expanded="true" aria-controls="PssSK_collapse">PssSK</a>
-<div id="PssSK_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
-{{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
-{{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSK_collapse" aria-expanded="true" aria-controls="PssSK_collapse" style="margin-left: 10px;">PssSK</a></legend>
+                    <div id="PssSK_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+                    {{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
+                    {{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSK_collapse" aria-expanded="true" aria-controls="PssSK_collapse" style="margin-left: 10px;">PssSK</a></legend>
+                    <div id="PssSK_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k3'>k3: </label><div class='col-sm-8'><input id='k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmax'>vsmax: </label><div class='col-sm-8'><input id='vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmin'>vsmin: </label><div class='col-sm-8'><input id='vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type PSS1A power system stabilizer model.
@@ -990,7 +1285,7 @@ define
                 obj.cls = "PssIEEE1A";
                 base.parse_element (/<cim:PssIEEE1A.a1>([\s\S]*?)<\/cim:PssIEEE1A.a1>/g, obj, "a1", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE1A.a2>([\s\S]*?)<\/cim:PssIEEE1A.a2>/g, obj, "a2", base.to_string, sub, context);
-                base.parse_element (/<cim:PssIEEE1A.inputSignalType>([\s\S]*?)<\/cim:PssIEEE1A.inputSignalType>/g, obj, "inputSignalType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PssIEEE1A.inputSignalType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "inputSignalType", sub, context);
                 base.parse_element (/<cim:PssIEEE1A.ks>([\s\S]*?)<\/cim:PssIEEE1A.ks>/g, obj, "ks", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE1A.t1>([\s\S]*?)<\/cim:PssIEEE1A.t1>/g, obj, "t1", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE1A.t2>([\s\S]*?)<\/cim:PssIEEE1A.t2>/g, obj, "t2", base.to_string, sub, context);
@@ -1035,28 +1330,72 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PssIEEE1A_collapse" aria-expanded="true" aria-controls="PssIEEE1A_collapse">PssIEEE1A</a>
-<div id="PssIEEE1A_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#a1}}<div><b>a1</b>: {{a1}}</div>{{/a1}}
-{{#a2}}<div><b>a2</b>: {{a2}}</div>{{/a2}}
-{{#inputSignalType}}<div><b>inputSignalType</b>: {{inputSignalType}}</div>{{/inputSignalType}}
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-{{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE1A_collapse" aria-expanded="true" aria-controls="PssIEEE1A_collapse" style="margin-left: 10px;">PssIEEE1A</a></legend>
+                    <div id="PssIEEE1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#a1}}<div><b>a1</b>: {{a1}}</div>{{/a1}}
+                    {{#a2}}<div><b>a2</b>: {{a2}}</div>{{/a2}}
+                    {{#inputSignalType}}<div><b>inputSignalType</b>: {{inputSignalType}}</div>{{/inputSignalType}}
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.InputSignalKind = []; if (!obj.inputSignalType) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignalType && obj.inputSignalType.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.InputSignalKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE1A_collapse" aria-expanded="true" aria-controls="PssIEEE1A_collapse" style="margin-left: 10px;">PssIEEE1A</a></legend>
+                    <div id="PssIEEE1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a1'>a1: </label><div class='col-sm-8'><input id='a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a2'>a2: </label><div class='col-sm-8'><input id='a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignalType'>inputSignalType: </label><div class='col-sm-8'><select id='inputSignalType' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * PTI Microprocessor-Based Stabilizer type 3.
@@ -1177,50 +1516,114 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PssPTIST3_collapse" aria-expanded="true" aria-controls="PssPTIST3_collapse">PssPTIST3</a>
-<div id="PssPTIST3_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#a0}}<div><b>a0</b>: {{a0}}</div>{{/a0}}
-{{#a1}}<div><b>a1</b>: {{a1}}</div>{{/a1}}
-{{#a2}}<div><b>a2</b>: {{a2}}</div>{{/a2}}
-{{#a3}}<div><b>a3</b>: {{a3}}</div>{{/a3}}
-{{#a4}}<div><b>a4</b>: {{a4}}</div>{{/a4}}
-{{#a5}}<div><b>a5</b>: {{a5}}</div>{{/a5}}
-{{#al}}<div><b>al</b>: {{al}}</div>{{/al}}
-{{#athres}}<div><b>athres</b>: {{athres}}</div>{{/athres}}
-{{#b0}}<div><b>b0</b>: {{b0}}</div>{{/b0}}
-{{#b1}}<div><b>b1</b>: {{b1}}</div>{{/b1}}
-{{#b2}}<div><b>b2</b>: {{b2}}</div>{{/b2}}
-{{#b3}}<div><b>b3</b>: {{b3}}</div>{{/b3}}
-{{#b4}}<div><b>b4</b>: {{b4}}</div>{{/b4}}
-{{#b5}}<div><b>b5</b>: {{b5}}</div>{{/b5}}
-{{#dl}}<div><b>dl</b>: {{dl}}</div>{{/dl}}
-{{#dtc}}<div><b>dtc</b>: {{dtc}}</div>{{/dtc}}
-{{#dtf}}<div><b>dtf</b>: {{dtf}}</div>{{/dtf}}
-{{#dtp}}<div><b>dtp</b>: {{dtp}}</div>{{/dtp}}
-{{#isw}}<div><b>isw</b>: {{isw}}</div>{{/isw}}
-{{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-{{#lthres}}<div><b>lthres</b>: {{lthres}}</div>{{/lthres}}
-{{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
-{{#nav}}<div><b>nav</b>: {{nav}}</div>{{/nav}}
-{{#ncl}}<div><b>ncl</b>: {{ncl}}</div>{{/ncl}}
-{{#ncr}}<div><b>ncr</b>: {{ncr}}</div>{{/ncr}}
-{{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-{{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssPTIST3_collapse" aria-expanded="true" aria-controls="PssPTIST3_collapse" style="margin-left: 10px;">PssPTIST3</a></legend>
+                    <div id="PssPTIST3_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#a0}}<div><b>a0</b>: {{a0}}</div>{{/a0}}
+                    {{#a1}}<div><b>a1</b>: {{a1}}</div>{{/a1}}
+                    {{#a2}}<div><b>a2</b>: {{a2}}</div>{{/a2}}
+                    {{#a3}}<div><b>a3</b>: {{a3}}</div>{{/a3}}
+                    {{#a4}}<div><b>a4</b>: {{a4}}</div>{{/a4}}
+                    {{#a5}}<div><b>a5</b>: {{a5}}</div>{{/a5}}
+                    {{#al}}<div><b>al</b>: {{al}}</div>{{/al}}
+                    {{#athres}}<div><b>athres</b>: {{athres}}</div>{{/athres}}
+                    {{#b0}}<div><b>b0</b>: {{b0}}</div>{{/b0}}
+                    {{#b1}}<div><b>b1</b>: {{b1}}</div>{{/b1}}
+                    {{#b2}}<div><b>b2</b>: {{b2}}</div>{{/b2}}
+                    {{#b3}}<div><b>b3</b>: {{b3}}</div>{{/b3}}
+                    {{#b4}}<div><b>b4</b>: {{b4}}</div>{{/b4}}
+                    {{#b5}}<div><b>b5</b>: {{b5}}</div>{{/b5}}
+                    {{#dl}}<div><b>dl</b>: {{dl}}</div>{{/dl}}
+                    {{#dtc}}<div><b>dtc</b>: {{dtc}}</div>{{/dtc}}
+                    {{#dtf}}<div><b>dtf</b>: {{dtf}}</div>{{/dtf}}
+                    {{#dtp}}<div><b>dtp</b>: {{dtp}}</div>{{/dtp}}
+                    {{#isw}}<div><b>isw</b>: {{isw}}</div>{{/isw}}
+                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+                    {{#lthres}}<div><b>lthres</b>: {{lthres}}</div>{{/lthres}}
+                    {{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
+                    {{#nav}}<div><b>nav</b>: {{nav}}</div>{{/nav}}
+                    {{#ncl}}<div><b>ncl</b>: {{ncl}}</div>{{/ncl}}
+                    {{#ncr}}<div><b>ncr</b>: {{ncr}}</div>{{/ncr}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssPTIST3_collapse" aria-expanded="true" aria-controls="PssPTIST3_collapse" style="margin-left: 10px;">PssPTIST3</a></legend>
+                    <div id="PssPTIST3_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a0'>a0: </label><div class='col-sm-8'><input id='a0' class='form-control' type='text'{{#a0}} value='{{a0}}'{{/a0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a1'>a1: </label><div class='col-sm-8'><input id='a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a2'>a2: </label><div class='col-sm-8'><input id='a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a3'>a3: </label><div class='col-sm-8'><input id='a3' class='form-control' type='text'{{#a3}} value='{{a3}}'{{/a3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a4'>a4: </label><div class='col-sm-8'><input id='a4' class='form-control' type='text'{{#a4}} value='{{a4}}'{{/a4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a5'>a5: </label><div class='col-sm-8'><input id='a5' class='form-control' type='text'{{#a5}} value='{{a5}}'{{/a5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='al'>al: </label><div class='col-sm-8'><input id='al' class='form-control' type='text'{{#al}} value='{{al}}'{{/al}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='athres'>athres: </label><div class='col-sm-8'><input id='athres' class='form-control' type='text'{{#athres}} value='{{athres}}'{{/athres}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b0'>b0: </label><div class='col-sm-8'><input id='b0' class='form-control' type='text'{{#b0}} value='{{b0}}'{{/b0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b1'>b1: </label><div class='col-sm-8'><input id='b1' class='form-control' type='text'{{#b1}} value='{{b1}}'{{/b1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b2'>b2: </label><div class='col-sm-8'><input id='b2' class='form-control' type='text'{{#b2}} value='{{b2}}'{{/b2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b3'>b3: </label><div class='col-sm-8'><input id='b3' class='form-control' type='text'{{#b3}} value='{{b3}}'{{/b3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b4'>b4: </label><div class='col-sm-8'><input id='b4' class='form-control' type='text'{{#b4}} value='{{b4}}'{{/b4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b5'>b5: </label><div class='col-sm-8'><input id='b5' class='form-control' type='text'{{#b5}} value='{{b5}}'{{/b5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dl'>dl: </label><div class='col-sm-8'><input id='dl' class='form-control' type='text'{{#dl}} value='{{dl}}'{{/dl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dtc'>dtc: </label><div class='col-sm-8'><input id='dtc' class='form-control' type='text'{{#dtc}} value='{{dtc}}'{{/dtc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dtf'>dtf: </label><div class='col-sm-8'><input id='dtf' class='form-control' type='text'{{#dtf}} value='{{dtf}}'{{/dtf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dtp'>dtp: </label><div class='col-sm-8'><input id='dtp' class='form-control' type='text'{{#dtp}} value='{{dtp}}'{{/dtp}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isw'>isw: </label><div class='col-sm-8'><input id='isw' class='form-check-input' type='checkbox'{{#isw}} checked{{/isw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lthres'>lthres: </label><div class='col-sm-8'><input id='lthres' class='form-control' type='text'{{#lthres}} value='{{lthres}}'{{/lthres}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='m'>m: </label><div class='col-sm-8'><input id='m' class='form-control' type='text'{{#m}} value='{{m}}'{{/m}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nav'>nav: </label><div class='col-sm-8'><input id='nav' class='form-control' type='text'{{#nav}} value='{{nav}}'{{/nav}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ncl'>ncl: </label><div class='col-sm-8'><input id='ncl' class='form-control' type='text'{{#ncl}} value='{{ncl}}'{{/ncl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ncr'>ncr: </label><div class='col-sm-8'><input id='ncr' class='form-control' type='text'{{#ncr}} value='{{ncr}}'{{/ncr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type PSS2B power system stabilizer model.
@@ -1409,83 +1812,180 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PssIEEE4B_collapse" aria-expanded="true" aria-controls="PssIEEE4B_collapse">PssIEEE4B</a>
-<div id="PssIEEE4B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#bwh1}}<div><b>bwh1</b>: {{bwh1}}</div>{{/bwh1}}
-{{#bwh2}}<div><b>bwh2</b>: {{bwh2}}</div>{{/bwh2}}
-{{#bwl1}}<div><b>bwl1</b>: {{bwl1}}</div>{{/bwl1}}
-{{#bwl2}}<div><b>bwl2</b>: {{bwl2}}</div>{{/bwl2}}
-{{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
-{{#kh1}}<div><b>kh1</b>: {{kh1}}</div>{{/kh1}}
-{{#kh11}}<div><b>kh11</b>: {{kh11}}</div>{{/kh11}}
-{{#kh17}}<div><b>kh17</b>: {{kh17}}</div>{{/kh17}}
-{{#kh2}}<div><b>kh2</b>: {{kh2}}</div>{{/kh2}}
-{{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
-{{#ki1}}<div><b>ki1</b>: {{ki1}}</div>{{/ki1}}
-{{#ki11}}<div><b>ki11</b>: {{ki11}}</div>{{/ki11}}
-{{#ki17}}<div><b>ki17</b>: {{ki17}}</div>{{/ki17}}
-{{#ki2}}<div><b>ki2</b>: {{ki2}}</div>{{/ki2}}
-{{#kl}}<div><b>kl</b>: {{kl}}</div>{{/kl}}
-{{#kl1}}<div><b>kl1</b>: {{kl1}}</div>{{/kl1}}
-{{#kl11}}<div><b>kl11</b>: {{kl11}}</div>{{/kl11}}
-{{#kl17}}<div><b>kl17</b>: {{kl17}}</div>{{/kl17}}
-{{#kl2}}<div><b>kl2</b>: {{kl2}}</div>{{/kl2}}
-{{#omeganh1}}<div><b>omeganh1</b>: {{omeganh1}}</div>{{/omeganh1}}
-{{#omeganh2}}<div><b>omeganh2</b>: {{omeganh2}}</div>{{/omeganh2}}
-{{#omeganl1}}<div><b>omeganl1</b>: {{omeganl1}}</div>{{/omeganl1}}
-{{#omeganl2}}<div><b>omeganl2</b>: {{omeganl2}}</div>{{/omeganl2}}
-{{#th1}}<div><b>th1</b>: {{th1}}</div>{{/th1}}
-{{#th10}}<div><b>th10</b>: {{th10}}</div>{{/th10}}
-{{#th11}}<div><b>th11</b>: {{th11}}</div>{{/th11}}
-{{#th12}}<div><b>th12</b>: {{th12}}</div>{{/th12}}
-{{#th2}}<div><b>th2</b>: {{th2}}</div>{{/th2}}
-{{#th3}}<div><b>th3</b>: {{th3}}</div>{{/th3}}
-{{#th4}}<div><b>th4</b>: {{th4}}</div>{{/th4}}
-{{#th5}}<div><b>th5</b>: {{th5}}</div>{{/th5}}
-{{#th6}}<div><b>th6</b>: {{th6}}</div>{{/th6}}
-{{#th7}}<div><b>th7</b>: {{th7}}</div>{{/th7}}
-{{#th8}}<div><b>th8</b>: {{th8}}</div>{{/th8}}
-{{#th9}}<div><b>th9</b>: {{th9}}</div>{{/th9}}
-{{#ti1}}<div><b>ti1</b>: {{ti1}}</div>{{/ti1}}
-{{#ti10}}<div><b>ti10</b>: {{ti10}}</div>{{/ti10}}
-{{#ti11}}<div><b>ti11</b>: {{ti11}}</div>{{/ti11}}
-{{#ti12}}<div><b>ti12</b>: {{ti12}}</div>{{/ti12}}
-{{#ti2}}<div><b>ti2</b>: {{ti2}}</div>{{/ti2}}
-{{#ti3}}<div><b>ti3</b>: {{ti3}}</div>{{/ti3}}
-{{#ti4}}<div><b>ti4</b>: {{ti4}}</div>{{/ti4}}
-{{#ti5}}<div><b>ti5</b>: {{ti5}}</div>{{/ti5}}
-{{#ti6}}<div><b>ti6</b>: {{ti6}}</div>{{/ti6}}
-{{#ti7}}<div><b>ti7</b>: {{ti7}}</div>{{/ti7}}
-{{#ti8}}<div><b>ti8</b>: {{ti8}}</div>{{/ti8}}
-{{#ti9}}<div><b>ti9</b>: {{ti9}}</div>{{/ti9}}
-{{#tl1}}<div><b>tl1</b>: {{tl1}}</div>{{/tl1}}
-{{#tl10}}<div><b>tl10</b>: {{tl10}}</div>{{/tl10}}
-{{#tl11}}<div><b>tl11</b>: {{tl11}}</div>{{/tl11}}
-{{#tl12}}<div><b>tl12</b>: {{tl12}}</div>{{/tl12}}
-{{#tl2}}<div><b>tl2</b>: {{tl2}}</div>{{/tl2}}
-{{#tl3}}<div><b>tl3</b>: {{tl3}}</div>{{/tl3}}
-{{#tl4}}<div><b>tl4</b>: {{tl4}}</div>{{/tl4}}
-{{#tl5}}<div><b>tl5</b>: {{tl5}}</div>{{/tl5}}
-{{#tl6}}<div><b>tl6</b>: {{tl6}}</div>{{/tl6}}
-{{#tl7}}<div><b>tl7</b>: {{tl7}}</div>{{/tl7}}
-{{#tl8}}<div><b>tl8</b>: {{tl8}}</div>{{/tl8}}
-{{#tl9}}<div><b>tl9</b>: {{tl9}}</div>{{/tl9}}
-{{#vhmax}}<div><b>vhmax</b>: {{vhmax}}</div>{{/vhmax}}
-{{#vhmin}}<div><b>vhmin</b>: {{vhmin}}</div>{{/vhmin}}
-{{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
-{{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
-{{#vlmax}}<div><b>vlmax</b>: {{vlmax}}</div>{{/vlmax}}
-{{#vlmin}}<div><b>vlmin</b>: {{vlmin}}</div>{{/vlmin}}
-{{#vstmax}}<div><b>vstmax</b>: {{vstmax}}</div>{{/vstmax}}
-{{#vstmin}}<div><b>vstmin</b>: {{vstmin}}</div>{{/vstmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE4B_collapse" aria-expanded="true" aria-controls="PssIEEE4B_collapse" style="margin-left: 10px;">PssIEEE4B</a></legend>
+                    <div id="PssIEEE4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#bwh1}}<div><b>bwh1</b>: {{bwh1}}</div>{{/bwh1}}
+                    {{#bwh2}}<div><b>bwh2</b>: {{bwh2}}</div>{{/bwh2}}
+                    {{#bwl1}}<div><b>bwl1</b>: {{bwl1}}</div>{{/bwl1}}
+                    {{#bwl2}}<div><b>bwl2</b>: {{bwl2}}</div>{{/bwl2}}
+                    {{#kh}}<div><b>kh</b>: {{kh}}</div>{{/kh}}
+                    {{#kh1}}<div><b>kh1</b>: {{kh1}}</div>{{/kh1}}
+                    {{#kh11}}<div><b>kh11</b>: {{kh11}}</div>{{/kh11}}
+                    {{#kh17}}<div><b>kh17</b>: {{kh17}}</div>{{/kh17}}
+                    {{#kh2}}<div><b>kh2</b>: {{kh2}}</div>{{/kh2}}
+                    {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#ki1}}<div><b>ki1</b>: {{ki1}}</div>{{/ki1}}
+                    {{#ki11}}<div><b>ki11</b>: {{ki11}}</div>{{/ki11}}
+                    {{#ki17}}<div><b>ki17</b>: {{ki17}}</div>{{/ki17}}
+                    {{#ki2}}<div><b>ki2</b>: {{ki2}}</div>{{/ki2}}
+                    {{#kl}}<div><b>kl</b>: {{kl}}</div>{{/kl}}
+                    {{#kl1}}<div><b>kl1</b>: {{kl1}}</div>{{/kl1}}
+                    {{#kl11}}<div><b>kl11</b>: {{kl11}}</div>{{/kl11}}
+                    {{#kl17}}<div><b>kl17</b>: {{kl17}}</div>{{/kl17}}
+                    {{#kl2}}<div><b>kl2</b>: {{kl2}}</div>{{/kl2}}
+                    {{#omeganh1}}<div><b>omeganh1</b>: {{omeganh1}}</div>{{/omeganh1}}
+                    {{#omeganh2}}<div><b>omeganh2</b>: {{omeganh2}}</div>{{/omeganh2}}
+                    {{#omeganl1}}<div><b>omeganl1</b>: {{omeganl1}}</div>{{/omeganl1}}
+                    {{#omeganl2}}<div><b>omeganl2</b>: {{omeganl2}}</div>{{/omeganl2}}
+                    {{#th1}}<div><b>th1</b>: {{th1}}</div>{{/th1}}
+                    {{#th10}}<div><b>th10</b>: {{th10}}</div>{{/th10}}
+                    {{#th11}}<div><b>th11</b>: {{th11}}</div>{{/th11}}
+                    {{#th12}}<div><b>th12</b>: {{th12}}</div>{{/th12}}
+                    {{#th2}}<div><b>th2</b>: {{th2}}</div>{{/th2}}
+                    {{#th3}}<div><b>th3</b>: {{th3}}</div>{{/th3}}
+                    {{#th4}}<div><b>th4</b>: {{th4}}</div>{{/th4}}
+                    {{#th5}}<div><b>th5</b>: {{th5}}</div>{{/th5}}
+                    {{#th6}}<div><b>th6</b>: {{th6}}</div>{{/th6}}
+                    {{#th7}}<div><b>th7</b>: {{th7}}</div>{{/th7}}
+                    {{#th8}}<div><b>th8</b>: {{th8}}</div>{{/th8}}
+                    {{#th9}}<div><b>th9</b>: {{th9}}</div>{{/th9}}
+                    {{#ti1}}<div><b>ti1</b>: {{ti1}}</div>{{/ti1}}
+                    {{#ti10}}<div><b>ti10</b>: {{ti10}}</div>{{/ti10}}
+                    {{#ti11}}<div><b>ti11</b>: {{ti11}}</div>{{/ti11}}
+                    {{#ti12}}<div><b>ti12</b>: {{ti12}}</div>{{/ti12}}
+                    {{#ti2}}<div><b>ti2</b>: {{ti2}}</div>{{/ti2}}
+                    {{#ti3}}<div><b>ti3</b>: {{ti3}}</div>{{/ti3}}
+                    {{#ti4}}<div><b>ti4</b>: {{ti4}}</div>{{/ti4}}
+                    {{#ti5}}<div><b>ti5</b>: {{ti5}}</div>{{/ti5}}
+                    {{#ti6}}<div><b>ti6</b>: {{ti6}}</div>{{/ti6}}
+                    {{#ti7}}<div><b>ti7</b>: {{ti7}}</div>{{/ti7}}
+                    {{#ti8}}<div><b>ti8</b>: {{ti8}}</div>{{/ti8}}
+                    {{#ti9}}<div><b>ti9</b>: {{ti9}}</div>{{/ti9}}
+                    {{#tl1}}<div><b>tl1</b>: {{tl1}}</div>{{/tl1}}
+                    {{#tl10}}<div><b>tl10</b>: {{tl10}}</div>{{/tl10}}
+                    {{#tl11}}<div><b>tl11</b>: {{tl11}}</div>{{/tl11}}
+                    {{#tl12}}<div><b>tl12</b>: {{tl12}}</div>{{/tl12}}
+                    {{#tl2}}<div><b>tl2</b>: {{tl2}}</div>{{/tl2}}
+                    {{#tl3}}<div><b>tl3</b>: {{tl3}}</div>{{/tl3}}
+                    {{#tl4}}<div><b>tl4</b>: {{tl4}}</div>{{/tl4}}
+                    {{#tl5}}<div><b>tl5</b>: {{tl5}}</div>{{/tl5}}
+                    {{#tl6}}<div><b>tl6</b>: {{tl6}}</div>{{/tl6}}
+                    {{#tl7}}<div><b>tl7</b>: {{tl7}}</div>{{/tl7}}
+                    {{#tl8}}<div><b>tl8</b>: {{tl8}}</div>{{/tl8}}
+                    {{#tl9}}<div><b>tl9</b>: {{tl9}}</div>{{/tl9}}
+                    {{#vhmax}}<div><b>vhmax</b>: {{vhmax}}</div>{{/vhmax}}
+                    {{#vhmin}}<div><b>vhmin</b>: {{vhmin}}</div>{{/vhmin}}
+                    {{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
+                    {{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+                    {{#vlmax}}<div><b>vlmax</b>: {{vlmax}}</div>{{/vlmax}}
+                    {{#vlmin}}<div><b>vlmin</b>: {{vlmin}}</div>{{/vlmin}}
+                    {{#vstmax}}<div><b>vstmax</b>: {{vstmax}}</div>{{/vstmax}}
+                    {{#vstmin}}<div><b>vstmin</b>: {{vstmin}}</div>{{/vstmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE4B_collapse" aria-expanded="true" aria-controls="PssIEEE4B_collapse" style="margin-left: 10px;">PssIEEE4B</a></legend>
+                    <div id="PssIEEE4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bwh1'>bwh1: </label><div class='col-sm-8'><input id='bwh1' class='form-control' type='text'{{#bwh1}} value='{{bwh1}}'{{/bwh1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bwh2'>bwh2: </label><div class='col-sm-8'><input id='bwh2' class='form-control' type='text'{{#bwh2}} value='{{bwh2}}'{{/bwh2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bwl1'>bwl1: </label><div class='col-sm-8'><input id='bwl1' class='form-control' type='text'{{#bwl1}} value='{{bwl1}}'{{/bwl1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bwl2'>bwl2: </label><div class='col-sm-8'><input id='bwl2' class='form-control' type='text'{{#bwl2}} value='{{bwl2}}'{{/bwl2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh'>kh: </label><div class='col-sm-8'><input id='kh' class='form-control' type='text'{{#kh}} value='{{kh}}'{{/kh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh1'>kh1: </label><div class='col-sm-8'><input id='kh1' class='form-control' type='text'{{#kh1}} value='{{kh1}}'{{/kh1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh11'>kh11: </label><div class='col-sm-8'><input id='kh11' class='form-control' type='text'{{#kh11}} value='{{kh11}}'{{/kh11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh17'>kh17: </label><div class='col-sm-8'><input id='kh17' class='form-control' type='text'{{#kh17}} value='{{kh17}}'{{/kh17}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh2'>kh2: </label><div class='col-sm-8'><input id='kh2' class='form-control' type='text'{{#kh2}} value='{{kh2}}'{{/kh2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki1'>ki1: </label><div class='col-sm-8'><input id='ki1' class='form-control' type='text'{{#ki1}} value='{{ki1}}'{{/ki1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki11'>ki11: </label><div class='col-sm-8'><input id='ki11' class='form-control' type='text'{{#ki11}} value='{{ki11}}'{{/ki11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki17'>ki17: </label><div class='col-sm-8'><input id='ki17' class='form-control' type='text'{{#ki17}} value='{{ki17}}'{{/ki17}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki2'>ki2: </label><div class='col-sm-8'><input id='ki2' class='form-control' type='text'{{#ki2}} value='{{ki2}}'{{/ki2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl'>kl: </label><div class='col-sm-8'><input id='kl' class='form-control' type='text'{{#kl}} value='{{kl}}'{{/kl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl1'>kl1: </label><div class='col-sm-8'><input id='kl1' class='form-control' type='text'{{#kl1}} value='{{kl1}}'{{/kl1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl11'>kl11: </label><div class='col-sm-8'><input id='kl11' class='form-control' type='text'{{#kl11}} value='{{kl11}}'{{/kl11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl17'>kl17: </label><div class='col-sm-8'><input id='kl17' class='form-control' type='text'{{#kl17}} value='{{kl17}}'{{/kl17}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl2'>kl2: </label><div class='col-sm-8'><input id='kl2' class='form-control' type='text'{{#kl2}} value='{{kl2}}'{{/kl2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omeganh1'>omeganh1: </label><div class='col-sm-8'><input id='omeganh1' class='form-control' type='text'{{#omeganh1}} value='{{omeganh1}}'{{/omeganh1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omeganh2'>omeganh2: </label><div class='col-sm-8'><input id='omeganh2' class='form-control' type='text'{{#omeganh2}} value='{{omeganh2}}'{{/omeganh2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omeganl1'>omeganl1: </label><div class='col-sm-8'><input id='omeganl1' class='form-control' type='text'{{#omeganl1}} value='{{omeganl1}}'{{/omeganl1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omeganl2'>omeganl2: </label><div class='col-sm-8'><input id='omeganl2' class='form-control' type='text'{{#omeganl2}} value='{{omeganl2}}'{{/omeganl2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th1'>th1: </label><div class='col-sm-8'><input id='th1' class='form-control' type='text'{{#th1}} value='{{th1}}'{{/th1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th10'>th10: </label><div class='col-sm-8'><input id='th10' class='form-control' type='text'{{#th10}} value='{{th10}}'{{/th10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th11'>th11: </label><div class='col-sm-8'><input id='th11' class='form-control' type='text'{{#th11}} value='{{th11}}'{{/th11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th12'>th12: </label><div class='col-sm-8'><input id='th12' class='form-control' type='text'{{#th12}} value='{{th12}}'{{/th12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th2'>th2: </label><div class='col-sm-8'><input id='th2' class='form-control' type='text'{{#th2}} value='{{th2}}'{{/th2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th3'>th3: </label><div class='col-sm-8'><input id='th3' class='form-control' type='text'{{#th3}} value='{{th3}}'{{/th3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th4'>th4: </label><div class='col-sm-8'><input id='th4' class='form-control' type='text'{{#th4}} value='{{th4}}'{{/th4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th5'>th5: </label><div class='col-sm-8'><input id='th5' class='form-control' type='text'{{#th5}} value='{{th5}}'{{/th5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th6'>th6: </label><div class='col-sm-8'><input id='th6' class='form-control' type='text'{{#th6}} value='{{th6}}'{{/th6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th7'>th7: </label><div class='col-sm-8'><input id='th7' class='form-control' type='text'{{#th7}} value='{{th7}}'{{/th7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th8'>th8: </label><div class='col-sm-8'><input id='th8' class='form-control' type='text'{{#th8}} value='{{th8}}'{{/th8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th9'>th9: </label><div class='col-sm-8'><input id='th9' class='form-control' type='text'{{#th9}} value='{{th9}}'{{/th9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti1'>ti1: </label><div class='col-sm-8'><input id='ti1' class='form-control' type='text'{{#ti1}} value='{{ti1}}'{{/ti1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti10'>ti10: </label><div class='col-sm-8'><input id='ti10' class='form-control' type='text'{{#ti10}} value='{{ti10}}'{{/ti10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti11'>ti11: </label><div class='col-sm-8'><input id='ti11' class='form-control' type='text'{{#ti11}} value='{{ti11}}'{{/ti11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti12'>ti12: </label><div class='col-sm-8'><input id='ti12' class='form-control' type='text'{{#ti12}} value='{{ti12}}'{{/ti12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti2'>ti2: </label><div class='col-sm-8'><input id='ti2' class='form-control' type='text'{{#ti2}} value='{{ti2}}'{{/ti2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti3'>ti3: </label><div class='col-sm-8'><input id='ti3' class='form-control' type='text'{{#ti3}} value='{{ti3}}'{{/ti3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti4'>ti4: </label><div class='col-sm-8'><input id='ti4' class='form-control' type='text'{{#ti4}} value='{{ti4}}'{{/ti4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti5'>ti5: </label><div class='col-sm-8'><input id='ti5' class='form-control' type='text'{{#ti5}} value='{{ti5}}'{{/ti5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti6'>ti6: </label><div class='col-sm-8'><input id='ti6' class='form-control' type='text'{{#ti6}} value='{{ti6}}'{{/ti6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti7'>ti7: </label><div class='col-sm-8'><input id='ti7' class='form-control' type='text'{{#ti7}} value='{{ti7}}'{{/ti7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti8'>ti8: </label><div class='col-sm-8'><input id='ti8' class='form-control' type='text'{{#ti8}} value='{{ti8}}'{{/ti8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti9'>ti9: </label><div class='col-sm-8'><input id='ti9' class='form-control' type='text'{{#ti9}} value='{{ti9}}'{{/ti9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl1'>tl1: </label><div class='col-sm-8'><input id='tl1' class='form-control' type='text'{{#tl1}} value='{{tl1}}'{{/tl1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl10'>tl10: </label><div class='col-sm-8'><input id='tl10' class='form-control' type='text'{{#tl10}} value='{{tl10}}'{{/tl10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl11'>tl11: </label><div class='col-sm-8'><input id='tl11' class='form-control' type='text'{{#tl11}} value='{{tl11}}'{{/tl11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl12'>tl12: </label><div class='col-sm-8'><input id='tl12' class='form-control' type='text'{{#tl12}} value='{{tl12}}'{{/tl12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl2'>tl2: </label><div class='col-sm-8'><input id='tl2' class='form-control' type='text'{{#tl2}} value='{{tl2}}'{{/tl2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl3'>tl3: </label><div class='col-sm-8'><input id='tl3' class='form-control' type='text'{{#tl3}} value='{{tl3}}'{{/tl3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl4'>tl4: </label><div class='col-sm-8'><input id='tl4' class='form-control' type='text'{{#tl4}} value='{{tl4}}'{{/tl4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl5'>tl5: </label><div class='col-sm-8'><input id='tl5' class='form-control' type='text'{{#tl5}} value='{{tl5}}'{{/tl5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl6'>tl6: </label><div class='col-sm-8'><input id='tl6' class='form-control' type='text'{{#tl6}} value='{{tl6}}'{{/tl6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl7'>tl7: </label><div class='col-sm-8'><input id='tl7' class='form-control' type='text'{{#tl7}} value='{{tl7}}'{{/tl7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl8'>tl8: </label><div class='col-sm-8'><input id='tl8' class='form-control' type='text'{{#tl8}} value='{{tl8}}'{{/tl8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl9'>tl9: </label><div class='col-sm-8'><input id='tl9' class='form-control' type='text'{{#tl9}} value='{{tl9}}'{{/tl9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vhmax'>vhmax: </label><div class='col-sm-8'><input id='vhmax' class='form-control' type='text'{{#vhmax}} value='{{vhmax}}'{{/vhmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vhmin'>vhmin: </label><div class='col-sm-8'><input id='vhmin' class='form-control' type='text'{{#vhmin}} value='{{vhmin}}'{{/vhmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimax'>vimax: </label><div class='col-sm-8'><input id='vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimin'>vimin: </label><div class='col-sm-8'><input id='vimin' class='form-control' type='text'{{#vimin}} value='{{vimin}}'{{/vimin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vlmax'>vlmax: </label><div class='col-sm-8'><input id='vlmax' class='form-control' type='text'{{#vlmax}} value='{{vlmax}}'{{/vlmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vlmin'>vlmin: </label><div class='col-sm-8'><input id='vlmin' class='form-control' type='text'{{#vlmin}} value='{{vlmin}}'{{/vlmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmax'>vstmax: </label><div class='col-sm-8'><input id='vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmin'>vstmin: </label><div class='col-sm-8'><input id='vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Italian PSS - Detailed PSS.
@@ -1572,33 +2072,80 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Pss5_collapse" aria-expanded="true" aria-controls="Pss5_collapse">Pss5</a>
-<div id="Pss5_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#ctw2}}<div><b>ctw2</b>: {{ctw2}}</div>{{/ctw2}}
-{{#deadband}}<div><b>deadband</b>: {{deadband}}</div>{{/deadband}}
-{{#isfreq}}<div><b>isfreq</b>: {{isfreq}}</div>{{/isfreq}}
-{{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
-{{#kpe}}<div><b>kpe</b>: {{kpe}}</div>{{/kpe}}
-{{#kpss}}<div><b>kpss</b>: {{kpss}}</div>{{/kpss}}
-{{#pmm}}<div><b>pmm</b>: {{pmm}}</div>{{/pmm}}
-{{#tl1}}<div><b>tl1</b>: {{tl1}}</div>{{/tl1}}
-{{#tl2}}<div><b>tl2</b>: {{tl2}}</div>{{/tl2}}
-{{#tl3}}<div><b>tl3</b>: {{tl3}}</div>{{/tl3}}
-{{#tl4}}<div><b>tl4</b>: {{tl4}}</div>{{/tl4}}
-{{#tpe}}<div><b>tpe</b>: {{tpe}}</div>{{/tpe}}
-{{#tw1}}<div><b>tw1</b>: {{tw1}}</div>{{/tw1}}
-{{#tw2}}<div><b>tw2</b>: {{tw2}}</div>{{/tw2}}
-{{#vadat}}<div><b>vadat</b>: {{vadat}}</div>{{/vadat}}
-{{#vsmn}}<div><b>vsmn</b>: {{vsmn}}</div>{{/vsmn}}
-{{#vsmx}}<div><b>vsmx</b>: {{vsmx}}</div>{{/vsmx}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss5_collapse" aria-expanded="true" aria-controls="Pss5_collapse" style="margin-left: 10px;">Pss5</a></legend>
+                    <div id="Pss5_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#ctw2}}<div><b>ctw2</b>: {{ctw2}}</div>{{/ctw2}}
+                    {{#deadband}}<div><b>deadband</b>: {{deadband}}</div>{{/deadband}}
+                    {{#isfreq}}<div><b>isfreq</b>: {{isfreq}}</div>{{/isfreq}}
+                    {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
+                    {{#kpe}}<div><b>kpe</b>: {{kpe}}</div>{{/kpe}}
+                    {{#kpss}}<div><b>kpss</b>: {{kpss}}</div>{{/kpss}}
+                    {{#pmm}}<div><b>pmm</b>: {{pmm}}</div>{{/pmm}}
+                    {{#tl1}}<div><b>tl1</b>: {{tl1}}</div>{{/tl1}}
+                    {{#tl2}}<div><b>tl2</b>: {{tl2}}</div>{{/tl2}}
+                    {{#tl3}}<div><b>tl3</b>: {{tl3}}</div>{{/tl3}}
+                    {{#tl4}}<div><b>tl4</b>: {{tl4}}</div>{{/tl4}}
+                    {{#tpe}}<div><b>tpe</b>: {{tpe}}</div>{{/tpe}}
+                    {{#tw1}}<div><b>tw1</b>: {{tw1}}</div>{{/tw1}}
+                    {{#tw2}}<div><b>tw2</b>: {{tw2}}</div>{{/tw2}}
+                    {{#vadat}}<div><b>vadat</b>: {{vadat}}</div>{{/vadat}}
+                    {{#vsmn}}<div><b>vsmn</b>: {{vsmn}}</div>{{/vsmn}}
+                    {{#vsmx}}<div><b>vsmx</b>: {{vsmx}}</div>{{/vsmx}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss5_collapse" aria-expanded="true" aria-controls="Pss5_collapse" style="margin-left: 10px;">Pss5</a></legend>
+                    <div id="Pss5_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='ctw2'>ctw2: </label><div class='col-sm-8'><input id='ctw2' class='form-check-input' type='checkbox'{{#ctw2}} checked{{/ctw2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='deadband'>deadband: </label><div class='col-sm-8'><input id='deadband' class='form-control' type='text'{{#deadband}} value='{{deadband}}'{{/deadband}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isfreq'>isfreq: </label><div class='col-sm-8'><input id='isfreq' class='form-check-input' type='checkbox'{{#isfreq}} checked{{/isfreq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpe'>kpe: </label><div class='col-sm-8'><input id='kpe' class='form-control' type='text'{{#kpe}} value='{{kpe}}'{{/kpe}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpss'>kpss: </label><div class='col-sm-8'><input id='kpss' class='form-control' type='text'{{#kpss}} value='{{kpss}}'{{/kpss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmm'>pmm: </label><div class='col-sm-8'><input id='pmm' class='form-control' type='text'{{#pmm}} value='{{pmm}}'{{/pmm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl1'>tl1: </label><div class='col-sm-8'><input id='tl1' class='form-control' type='text'{{#tl1}} value='{{tl1}}'{{/tl1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl2'>tl2: </label><div class='col-sm-8'><input id='tl2' class='form-control' type='text'{{#tl2}} value='{{tl2}}'{{/tl2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl3'>tl3: </label><div class='col-sm-8'><input id='tl3' class='form-control' type='text'{{#tl3}} value='{{tl3}}'{{/tl3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl4'>tl4: </label><div class='col-sm-8'><input id='tl4' class='form-control' type='text'{{#tl4}} value='{{tl4}}'{{/tl4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpe'>tpe: </label><div class='col-sm-8'><input id='tpe' class='form-control' type='text'{{#tpe}} value='{{tpe}}'{{/tpe}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw1'>tw1: </label><div class='col-sm-8'><input id='tw1' class='form-control' type='text'{{#tw1}} value='{{tw1}}'{{/tw1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw2'>tw2: </label><div class='col-sm-8'><input id='tw2' class='form-control' type='text'{{#tw2}} value='{{tw2}}'{{/tw2}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='vadat'>vadat: </label><div class='col-sm-8'><input id='vadat' class='form-check-input' type='checkbox'{{#vadat}} checked{{/vadat}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmn'>vsmn: </label><div class='col-sm-8'><input id='vsmn' class='form-control' type='text'{{#vsmn}} value='{{vsmn}}'{{/vsmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmx'>vsmx: </label><div class='col-sm-8'><input id='vsmx' class='form-control' type='text'{{#vsmx}} value='{{vsmx}}'{{/vsmx}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Power sensitive stabilizer model.
@@ -1673,27 +2220,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PssSB4_collapse" aria-expanded="true" aria-controls="PssSB4_collapse">PssSB4</a>
-<div id="PssSB4_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#kx}}<div><b>kx</b>: {{kx}}</div>{{/kx}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
-{{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
-{{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
-{{#tx1}}<div><b>tx1</b>: {{tx1}}</div>{{/tx1}}
-{{#tx2}}<div><b>tx2</b>: {{tx2}}</div>{{/tx2}}
-{{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
-{{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSB4_collapse" aria-expanded="true" aria-controls="PssSB4_collapse" style="margin-left: 10px;">PssSB4</a></legend>
+                    <div id="PssSB4_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#kx}}<div><b>kx</b>: {{kx}}</div>{{/kx}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+                    {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+                    {{#tx1}}<div><b>tx1</b>: {{tx1}}</div>{{/tx1}}
+                    {{#tx2}}<div><b>tx2</b>: {{tx2}}</div>{{/tx2}}
+                    {{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
+                    {{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSB4_collapse" aria-expanded="true" aria-controls="PssSB4_collapse" style="margin-left: 10px;">PssSB4</a></legend>
+                    <div id="PssSB4_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kx'>kx: </label><div class='col-sm-8'><input id='kx' class='form-control' type='text'{{#kx}} value='{{kx}}'{{/kx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td'>td: </label><div class='col-sm-8'><input id='td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tt'>tt: </label><div class='col-sm-8'><input id='tt' class='form-control' type='text'{{#tt}} value='{{tt}}'{{/tt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tx1'>tx1: </label><div class='col-sm-8'><input id='tx1' class='form-control' type='text'{{#tx1}} value='{{tx1}}'{{/tx1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tx2'>tx2: </label><div class='col-sm-8'><input id='tx2' class='form-control' type='text'{{#tx2}} value='{{tx2}}'{{/tx2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmax'>vsmax: </label><div class='col-sm-8'><input id='vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmin'>vsmin: </label><div class='col-sm-8'><input id='vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class represents IEEE Std 421.5-2005 type PSS3B power system stabilizer model.
@@ -1733,8 +2321,8 @@ define
                 base.parse_element (/<cim:PssIEEE3B.a6>([\s\S]*?)<\/cim:PssIEEE3B.a6>/g, obj, "a6", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE3B.a7>([\s\S]*?)<\/cim:PssIEEE3B.a7>/g, obj, "a7", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE3B.a8>([\s\S]*?)<\/cim:PssIEEE3B.a8>/g, obj, "a8", base.to_string, sub, context);
-                base.parse_element (/<cim:PssIEEE3B.inputSignal1Type>([\s\S]*?)<\/cim:PssIEEE3B.inputSignal1Type>/g, obj, "inputSignal1Type", base.to_string, sub, context);
-                base.parse_element (/<cim:PssIEEE3B.inputSignal2Type>([\s\S]*?)<\/cim:PssIEEE3B.inputSignal2Type>/g, obj, "inputSignal2Type", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PssIEEE3B.inputSignal1Type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "inputSignal1Type", sub, context);
+                base.parse_attribute (/<cim:PssIEEE3B.inputSignal2Type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "inputSignal2Type", sub, context);
                 base.parse_element (/<cim:PssIEEE3B.ks1>([\s\S]*?)<\/cim:PssIEEE3B.ks1>/g, obj, "ks1", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE3B.ks2>([\s\S]*?)<\/cim:PssIEEE3B.ks2>/g, obj, "ks2", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE3B.t1>([\s\S]*?)<\/cim:PssIEEE3B.t1>/g, obj, "t1", base.to_string, sub, context);
@@ -1786,35 +2374,88 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PssIEEE3B_collapse" aria-expanded="true" aria-controls="PssIEEE3B_collapse">PssIEEE3B</a>
-<div id="PssIEEE3B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#a1}}<div><b>a1</b>: {{a1}}</div>{{/a1}}
-{{#a2}}<div><b>a2</b>: {{a2}}</div>{{/a2}}
-{{#a3}}<div><b>a3</b>: {{a3}}</div>{{/a3}}
-{{#a4}}<div><b>a4</b>: {{a4}}</div>{{/a4}}
-{{#a5}}<div><b>a5</b>: {{a5}}</div>{{/a5}}
-{{#a6}}<div><b>a6</b>: {{a6}}</div>{{/a6}}
-{{#a7}}<div><b>a7</b>: {{a7}}</div>{{/a7}}
-{{#a8}}<div><b>a8</b>: {{a8}}</div>{{/a8}}
-{{#inputSignal1Type}}<div><b>inputSignal1Type</b>: {{inputSignal1Type}}</div>{{/inputSignal1Type}}
-{{#inputSignal2Type}}<div><b>inputSignal2Type</b>: {{inputSignal2Type}}</div>{{/inputSignal2Type}}
-{{#ks1}}<div><b>ks1</b>: {{ks1}}</div>{{/ks1}}
-{{#ks2}}<div><b>ks2</b>: {{ks2}}</div>{{/ks2}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#tw1}}<div><b>tw1</b>: {{tw1}}</div>{{/tw1}}
-{{#tw2}}<div><b>tw2</b>: {{tw2}}</div>{{/tw2}}
-{{#tw3}}<div><b>tw3</b>: {{tw3}}</div>{{/tw3}}
-{{#vstmax}}<div><b>vstmax</b>: {{vstmax}}</div>{{/vstmax}}
-{{#vstmin}}<div><b>vstmin</b>: {{vstmin}}</div>{{/vstmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE3B_collapse" aria-expanded="true" aria-controls="PssIEEE3B_collapse" style="margin-left: 10px;">PssIEEE3B</a></legend>
+                    <div id="PssIEEE3B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#a1}}<div><b>a1</b>: {{a1}}</div>{{/a1}}
+                    {{#a2}}<div><b>a2</b>: {{a2}}</div>{{/a2}}
+                    {{#a3}}<div><b>a3</b>: {{a3}}</div>{{/a3}}
+                    {{#a4}}<div><b>a4</b>: {{a4}}</div>{{/a4}}
+                    {{#a5}}<div><b>a5</b>: {{a5}}</div>{{/a5}}
+                    {{#a6}}<div><b>a6</b>: {{a6}}</div>{{/a6}}
+                    {{#a7}}<div><b>a7</b>: {{a7}}</div>{{/a7}}
+                    {{#a8}}<div><b>a8</b>: {{a8}}</div>{{/a8}}
+                    {{#inputSignal1Type}}<div><b>inputSignal1Type</b>: {{inputSignal1Type}}</div>{{/inputSignal1Type}}
+                    {{#inputSignal2Type}}<div><b>inputSignal2Type</b>: {{inputSignal2Type}}</div>{{/inputSignal2Type}}
+                    {{#ks1}}<div><b>ks1</b>: {{ks1}}</div>{{/ks1}}
+                    {{#ks2}}<div><b>ks2</b>: {{ks2}}</div>{{/ks2}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#tw1}}<div><b>tw1</b>: {{tw1}}</div>{{/tw1}}
+                    {{#tw2}}<div><b>tw2</b>: {{tw2}}</div>{{/tw2}}
+                    {{#tw3}}<div><b>tw3</b>: {{tw3}}</div>{{/tw3}}
+                    {{#vstmax}}<div><b>vstmax</b>: {{vstmax}}</div>{{/vstmax}}
+                    {{#vstmin}}<div><b>vstmin</b>: {{vstmin}}</div>{{/vstmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.InputSignalKind = []; if (!obj.inputSignal1Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
+                obj.InputSignalKind = []; if (!obj.inputSignal2Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.InputSignalKind;
+                delete obj.InputSignalKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE3B_collapse" aria-expanded="true" aria-controls="PssIEEE3B_collapse" style="margin-left: 10px;">PssIEEE3B</a></legend>
+                    <div id="PssIEEE3B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a1'>a1: </label><div class='col-sm-8'><input id='a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a2'>a2: </label><div class='col-sm-8'><input id='a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a3'>a3: </label><div class='col-sm-8'><input id='a3' class='form-control' type='text'{{#a3}} value='{{a3}}'{{/a3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a4'>a4: </label><div class='col-sm-8'><input id='a4' class='form-control' type='text'{{#a4}} value='{{a4}}'{{/a4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a5'>a5: </label><div class='col-sm-8'><input id='a5' class='form-control' type='text'{{#a5}} value='{{a5}}'{{/a5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a6'>a6: </label><div class='col-sm-8'><input id='a6' class='form-control' type='text'{{#a6}} value='{{a6}}'{{/a6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a7'>a7: </label><div class='col-sm-8'><input id='a7' class='form-control' type='text'{{#a7}} value='{{a7}}'{{/a7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a8'>a8: </label><div class='col-sm-8'><input id='a8' class='form-control' type='text'{{#a8}} value='{{a8}}'{{/a8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks1'>ks1: </label><div class='col-sm-8'><input id='ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks2'>ks2: </label><div class='col-sm-8'><input id='ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw1'>tw1: </label><div class='col-sm-8'><input id='tw1' class='form-control' type='text'{{#tw1}} value='{{tw1}}'{{/tw1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw2'>tw2: </label><div class='col-sm-8'><input id='tw2' class='form-control' type='text'{{#tw2}} value='{{tw2}}'{{/tw2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw3'>tw3: </label><div class='col-sm-8'><input id='tw3' class='form-control' type='text'{{#tw3}} value='{{tw3}}'{{/tw3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmax'>vstmax: </label><div class='col-sm-8'><input id='vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmin'>vstmin: </label><div class='col-sm-8'><input id='vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Power system stabilizer typically associated with ExcELIN2 (though PssIEEE2B or Pss2B can also be used).
@@ -1889,27 +2530,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PssELIN2_collapse" aria-expanded="true" aria-controls="PssELIN2_collapse">PssELIN2</a>
-<div id="PssELIN2_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#apss}}<div><b>apss</b>: {{apss}}</div>{{/apss}}
-{{#ks1}}<div><b>ks1</b>: {{ks1}}</div>{{/ks1}}
-{{#ks2}}<div><b>ks2</b>: {{ks2}}</div>{{/ks2}}
-{{#ppss}}<div><b>ppss</b>: {{ppss}}</div>{{/ppss}}
-{{#psslim}}<div><b>psslim</b>: {{psslim}}</div>{{/psslim}}
-{{#ts1}}<div><b>ts1</b>: {{ts1}}</div>{{/ts1}}
-{{#ts2}}<div><b>ts2</b>: {{ts2}}</div>{{/ts2}}
-{{#ts3}}<div><b>ts3</b>: {{ts3}}</div>{{/ts3}}
-{{#ts4}}<div><b>ts4</b>: {{ts4}}</div>{{/ts4}}
-{{#ts5}}<div><b>ts5</b>: {{ts5}}</div>{{/ts5}}
-{{#ts6}}<div><b>ts6</b>: {{ts6}}</div>{{/ts6}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssELIN2_collapse" aria-expanded="true" aria-controls="PssELIN2_collapse" style="margin-left: 10px;">PssELIN2</a></legend>
+                    <div id="PssELIN2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#apss}}<div><b>apss</b>: {{apss}}</div>{{/apss}}
+                    {{#ks1}}<div><b>ks1</b>: {{ks1}}</div>{{/ks1}}
+                    {{#ks2}}<div><b>ks2</b>: {{ks2}}</div>{{/ks2}}
+                    {{#ppss}}<div><b>ppss</b>: {{ppss}}</div>{{/ppss}}
+                    {{#psslim}}<div><b>psslim</b>: {{psslim}}</div>{{/psslim}}
+                    {{#ts1}}<div><b>ts1</b>: {{ts1}}</div>{{/ts1}}
+                    {{#ts2}}<div><b>ts2</b>: {{ts2}}</div>{{/ts2}}
+                    {{#ts3}}<div><b>ts3</b>: {{ts3}}</div>{{/ts3}}
+                    {{#ts4}}<div><b>ts4</b>: {{ts4}}</div>{{/ts4}}
+                    {{#ts5}}<div><b>ts5</b>: {{ts5}}</div>{{/ts5}}
+                    {{#ts6}}<div><b>ts6</b>: {{ts6}}</div>{{/ts6}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssELIN2_collapse" aria-expanded="true" aria-controls="PssELIN2_collapse" style="margin-left: 10px;">PssELIN2</a></legend>
+                    <div id="PssELIN2_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='apss'>apss: </label><div class='col-sm-8'><input id='apss' class='form-control' type='text'{{#apss}} value='{{apss}}'{{/apss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks1'>ks1: </label><div class='col-sm-8'><input id='ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks2'>ks2: </label><div class='col-sm-8'><input id='ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ppss'>ppss: </label><div class='col-sm-8'><input id='ppss' class='form-control' type='text'{{#ppss}} value='{{ppss}}'{{/ppss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='psslim'>psslim: </label><div class='col-sm-8'><input id='psslim' class='form-control' type='text'{{#psslim}} value='{{psslim}}'{{/psslim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts1'>ts1: </label><div class='col-sm-8'><input id='ts1' class='form-control' type='text'{{#ts1}} value='{{ts1}}'{{/ts1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts2'>ts2: </label><div class='col-sm-8'><input id='ts2' class='form-control' type='text'{{#ts2}} value='{{ts2}}'{{/ts2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts3'>ts3: </label><div class='col-sm-8'><input id='ts3' class='form-control' type='text'{{#ts3}} value='{{ts3}}'{{/ts3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts4'>ts4: </label><div class='col-sm-8'><input id='ts4' class='form-control' type='text'{{#ts4}} value='{{ts4}}'{{/ts4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts5'>ts5: </label><div class='col-sm-8'><input id='ts5' class='form-control' type='text'{{#ts5}} value='{{ts5}}'{{/ts5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts6'>ts6: </label><div class='col-sm-8'><input id='ts6' class='form-control' type='text'{{#ts6}} value='{{ts6}}'{{/ts6}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Modified IEEE PSS2B Model.
@@ -1942,8 +2624,8 @@ define
                 obj = PowerSystemStabilizerDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "Pss2B";
                 base.parse_element (/<cim:Pss2B.a>([\s\S]*?)<\/cim:Pss2B.a>/g, obj, "a", base.to_float, sub, context);
-                base.parse_element (/<cim:Pss2B.inputSignal1Type>([\s\S]*?)<\/cim:Pss2B.inputSignal1Type>/g, obj, "inputSignal1Type", base.to_string, sub, context);
-                base.parse_element (/<cim:Pss2B.inputSignal2Type>([\s\S]*?)<\/cim:Pss2B.inputSignal2Type>/g, obj, "inputSignal2Type", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Pss2B.inputSignal1Type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "inputSignal1Type", sub, context);
+                base.parse_attribute (/<cim:Pss2B.inputSignal2Type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "inputSignal2Type", sub, context);
                 base.parse_element (/<cim:Pss2B.ks1>([\s\S]*?)<\/cim:Pss2B.ks1>/g, obj, "ks1", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss2B.ks2>([\s\S]*?)<\/cim:Pss2B.ks2>/g, obj, "ks2", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss2B.ks3>([\s\S]*?)<\/cim:Pss2B.ks3>/g, obj, "ks3", base.to_string, sub, context);
@@ -2026,47 +2708,112 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Pss2B_collapse" aria-expanded="true" aria-controls="Pss2B_collapse">Pss2B</a>
-<div id="Pss2B_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
-{{#inputSignal1Type}}<div><b>inputSignal1Type</b>: {{inputSignal1Type}}</div>{{/inputSignal1Type}}
-{{#inputSignal2Type}}<div><b>inputSignal2Type</b>: {{inputSignal2Type}}</div>{{/inputSignal2Type}}
-{{#ks1}}<div><b>ks1</b>: {{ks1}}</div>{{/ks1}}
-{{#ks2}}<div><b>ks2</b>: {{ks2}}</div>{{/ks2}}
-{{#ks3}}<div><b>ks3</b>: {{ks3}}</div>{{/ks3}}
-{{#ks4}}<div><b>ks4</b>: {{ks4}}</div>{{/ks4}}
-{{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
-{{#n}}<div><b>n</b>: {{n}}</div>{{/n}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t10}}<div><b>t10</b>: {{t10}}</div>{{/t10}}
-{{#t11}}<div><b>t11</b>: {{t11}}</div>{{/t11}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
-{{#t8}}<div><b>t8</b>: {{t8}}</div>{{/t8}}
-{{#t9}}<div><b>t9</b>: {{t9}}</div>{{/t9}}
-{{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
-{{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
-{{#tw1}}<div><b>tw1</b>: {{tw1}}</div>{{/tw1}}
-{{#tw2}}<div><b>tw2</b>: {{tw2}}</div>{{/tw2}}
-{{#tw3}}<div><b>tw3</b>: {{tw3}}</div>{{/tw3}}
-{{#tw4}}<div><b>tw4</b>: {{tw4}}</div>{{/tw4}}
-{{#vsi1max}}<div><b>vsi1max</b>: {{vsi1max}}</div>{{/vsi1max}}
-{{#vsi1min}}<div><b>vsi1min</b>: {{vsi1min}}</div>{{/vsi1min}}
-{{#vsi2max}}<div><b>vsi2max</b>: {{vsi2max}}</div>{{/vsi2max}}
-{{#vsi2min}}<div><b>vsi2min</b>: {{vsi2min}}</div>{{/vsi2min}}
-{{#vstmax}}<div><b>vstmax</b>: {{vstmax}}</div>{{/vstmax}}
-{{#vstmin}}<div><b>vstmin</b>: {{vstmin}}</div>{{/vstmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss2B_collapse" aria-expanded="true" aria-controls="Pss2B_collapse" style="margin-left: 10px;">Pss2B</a></legend>
+                    <div id="Pss2B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
+                    {{#inputSignal1Type}}<div><b>inputSignal1Type</b>: {{inputSignal1Type}}</div>{{/inputSignal1Type}}
+                    {{#inputSignal2Type}}<div><b>inputSignal2Type</b>: {{inputSignal2Type}}</div>{{/inputSignal2Type}}
+                    {{#ks1}}<div><b>ks1</b>: {{ks1}}</div>{{/ks1}}
+                    {{#ks2}}<div><b>ks2</b>: {{ks2}}</div>{{/ks2}}
+                    {{#ks3}}<div><b>ks3</b>: {{ks3}}</div>{{/ks3}}
+                    {{#ks4}}<div><b>ks4</b>: {{ks4}}</div>{{/ks4}}
+                    {{#m}}<div><b>m</b>: {{m}}</div>{{/m}}
+                    {{#n}}<div><b>n</b>: {{n}}</div>{{/n}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t10}}<div><b>t10</b>: {{t10}}</div>{{/t10}}
+                    {{#t11}}<div><b>t11</b>: {{t11}}</div>{{/t11}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
+                    {{#t8}}<div><b>t8</b>: {{t8}}</div>{{/t8}}
+                    {{#t9}}<div><b>t9</b>: {{t9}}</div>{{/t9}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
+                    {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
+                    {{#tw1}}<div><b>tw1</b>: {{tw1}}</div>{{/tw1}}
+                    {{#tw2}}<div><b>tw2</b>: {{tw2}}</div>{{/tw2}}
+                    {{#tw3}}<div><b>tw3</b>: {{tw3}}</div>{{/tw3}}
+                    {{#tw4}}<div><b>tw4</b>: {{tw4}}</div>{{/tw4}}
+                    {{#vsi1max}}<div><b>vsi1max</b>: {{vsi1max}}</div>{{/vsi1max}}
+                    {{#vsi1min}}<div><b>vsi1min</b>: {{vsi1min}}</div>{{/vsi1min}}
+                    {{#vsi2max}}<div><b>vsi2max</b>: {{vsi2max}}</div>{{/vsi2max}}
+                    {{#vsi2min}}<div><b>vsi2min</b>: {{vsi2min}}</div>{{/vsi2min}}
+                    {{#vstmax}}<div><b>vstmax</b>: {{vstmax}}</div>{{/vstmax}}
+                    {{#vstmin}}<div><b>vstmin</b>: {{vstmin}}</div>{{/vstmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.InputSignalKind = []; if (!obj.inputSignal1Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
+                obj.InputSignalKind = []; if (!obj.inputSignal2Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.InputSignalKind;
+                delete obj.InputSignalKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss2B_collapse" aria-expanded="true" aria-controls="Pss2B_collapse" style="margin-left: 10px;">Pss2B</a></legend>
+                    <div id="Pss2B_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a'>a: </label><div class='col-sm-8'><input id='a' class='form-control' type='text'{{#a}} value='{{a}}'{{/a}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks1'>ks1: </label><div class='col-sm-8'><input id='ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks2'>ks2: </label><div class='col-sm-8'><input id='ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks3'>ks3: </label><div class='col-sm-8'><input id='ks3' class='form-control' type='text'{{#ks3}} value='{{ks3}}'{{/ks3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks4'>ks4: </label><div class='col-sm-8'><input id='ks4' class='form-control' type='text'{{#ks4}} value='{{ks4}}'{{/ks4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='m'>m: </label><div class='col-sm-8'><input id='m' class='form-control' type='text'{{#m}} value='{{m}}'{{/m}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='n'>n: </label><div class='col-sm-8'><input id='n' class='form-control' type='text'{{#n}} value='{{n}}'{{/n}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t10'>t10: </label><div class='col-sm-8'><input id='t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t11'>t11: </label><div class='col-sm-8'><input id='t11' class='form-control' type='text'{{#t11}} value='{{t11}}'{{/t11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t7'>t7: </label><div class='col-sm-8'><input id='t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t8'>t8: </label><div class='col-sm-8'><input id='t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t9'>t9: </label><div class='col-sm-8'><input id='t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw1'>tw1: </label><div class='col-sm-8'><input id='tw1' class='form-control' type='text'{{#tw1}} value='{{tw1}}'{{/tw1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw2'>tw2: </label><div class='col-sm-8'><input id='tw2' class='form-control' type='text'{{#tw2}} value='{{tw2}}'{{/tw2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw3'>tw3: </label><div class='col-sm-8'><input id='tw3' class='form-control' type='text'{{#tw3}} value='{{tw3}}'{{/tw3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw4'>tw4: </label><div class='col-sm-8'><input id='tw4' class='form-control' type='text'{{#tw4}} value='{{tw4}}'{{/tw4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi1max'>vsi1max: </label><div class='col-sm-8'><input id='vsi1max' class='form-control' type='text'{{#vsi1max}} value='{{vsi1max}}'{{/vsi1max}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi1min'>vsi1min: </label><div class='col-sm-8'><input id='vsi1min' class='form-control' type='text'{{#vsi1min}} value='{{vsi1min}}'{{/vsi1min}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi2max'>vsi2max: </label><div class='col-sm-8'><input id='vsi2max' class='form-control' type='text'{{#vsi2max}} value='{{vsi2max}}'{{/vsi2max}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi2min'>vsi2min: </label><div class='col-sm-8'><input id='vsi2min' class='form-control' type='text'{{#vsi2min}} value='{{vsi2min}}'{{/vsi2min}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmax'>vstmax: </label><div class='col-sm-8'><input id='vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmin'>vstmin: </label><div class='col-sm-8'><input id='vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Dual input Power System Stabilizer, based on IEEE type 2, with modified output limiter defined by WECC (Western Electricity Coordinating Council, USA).
@@ -2096,8 +2843,8 @@ define
 
                 obj = PowerSystemStabilizerDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "PssWECC";
-                base.parse_element (/<cim:PssWECC.inputSignal1Type>([\s\S]*?)<\/cim:PssWECC.inputSignal1Type>/g, obj, "inputSignal1Type", base.to_string, sub, context);
-                base.parse_element (/<cim:PssWECC.inputSignal2Type>([\s\S]*?)<\/cim:PssWECC.inputSignal2Type>/g, obj, "inputSignal2Type", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PssWECC.inputSignal1Type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "inputSignal1Type", sub, context);
+                base.parse_attribute (/<cim:PssWECC.inputSignal2Type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "inputSignal2Type", sub, context);
                 base.parse_element (/<cim:PssWECC.k1>([\s\S]*?)<\/cim:PssWECC.k1>/g, obj, "k1", base.to_string, sub, context);
                 base.parse_element (/<cim:PssWECC.k2>([\s\S]*?)<\/cim:PssWECC.k2>/g, obj, "k2", base.to_string, sub, context);
                 base.parse_element (/<cim:PssWECC.t1>([\s\S]*?)<\/cim:PssWECC.t1>/g, obj, "t1", base.to_string, sub, context);
@@ -2155,34 +2902,86 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PssWECC_collapse" aria-expanded="true" aria-controls="PssWECC_collapse">PssWECC</a>
-<div id="PssWECC_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#inputSignal1Type}}<div><b>inputSignal1Type</b>: {{inputSignal1Type}}</div>{{/inputSignal1Type}}
-{{#inputSignal2Type}}<div><b>inputSignal2Type</b>: {{inputSignal2Type}}</div>{{/inputSignal2Type}}
-{{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-{{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
-{{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
-{{#t10}}<div><b>t10</b>: {{t10}}</div>{{/t10}}
-{{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
-{{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-{{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-{{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-{{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
-{{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
-{{#t8}}<div><b>t8</b>: {{t8}}</div>{{/t8}}
-{{#t9}}<div><b>t9</b>: {{t9}}</div>{{/t9}}
-{{#vcl}}<div><b>vcl</b>: {{vcl}}</div>{{/vcl}}
-{{#vcu}}<div><b>vcu</b>: {{vcu}}</div>{{/vcu}}
-{{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
-{{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssWECC_collapse" aria-expanded="true" aria-controls="PssWECC_collapse" style="margin-left: 10px;">PssWECC</a></legend>
+                    <div id="PssWECC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#inputSignal1Type}}<div><b>inputSignal1Type</b>: {{inputSignal1Type}}</div>{{/inputSignal1Type}}
+                    {{#inputSignal2Type}}<div><b>inputSignal2Type</b>: {{inputSignal2Type}}</div>{{/inputSignal2Type}}
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+                    {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
+                    {{#t10}}<div><b>t10</b>: {{t10}}</div>{{/t10}}
+                    {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
+                    {{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
+                    {{#t8}}<div><b>t8</b>: {{t8}}</div>{{/t8}}
+                    {{#t9}}<div><b>t9</b>: {{t9}}</div>{{/t9}}
+                    {{#vcl}}<div><b>vcl</b>: {{vcl}}</div>{{/vcl}}
+                    {{#vcu}}<div><b>vcu</b>: {{vcu}}</div>{{/vcu}}
+                    {{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
+                    {{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.InputSignalKind = []; if (!obj.inputSignal1Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
+                obj.InputSignalKind = []; if (!obj.inputSignal2Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.InputSignalKind;
+                delete obj.InputSignalKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssWECC_collapse" aria-expanded="true" aria-controls="PssWECC_collapse" style="margin-left: 10px;">PssWECC</a></legend>
+                    <div id="PssWECC_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t10'>t10: </label><div class='col-sm-8'><input id='t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t7'>t7: </label><div class='col-sm-8'><input id='t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t8'>t8: </label><div class='col-sm-8'><input id='t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t9'>t9: </label><div class='col-sm-8'><input id='t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vcl'>vcl: </label><div class='col-sm-8'><input id='vcl' class='form-control' type='text'{{#vcl}} value='{{vcl}}'{{/vcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vcu'>vcu: </label><div class='col-sm-8'><input id='vcu' class='form-control' type='text'{{#vcu}} value='{{vcu}}'{{/vcu}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmax'>vsmax: </label><div class='col-sm-8'><input id='vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmin'>vsmin: </label><div class='col-sm-8'><input id='vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
@@ -2195,7 +2994,6 @@ define
                 PssIEEE1A: PssIEEE1A,
                 PssIEEE4B: PssIEEE4B,
                 Pss1A: Pss1A,
-                InputSignalKind: InputSignalKind,
                 PssIEEE3B: PssIEEE3B,
                 PssPTIST1: PssPTIST1,
                 Pss1: Pss1,

@@ -85,28 +85,70 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RemoteConnectDisconnectInfo_collapse" aria-expanded="true" aria-controls="RemoteConnectDisconnectInfo_collapse">RemoteConnectDisconnectInfo</a>
-<div id="RemoteConnectDisconnectInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#armedTimeout}}<div><b>armedTimeout</b>: {{armedTimeout}}</div>{{/armedTimeout}}
-{{#customerVoltageLimit}}<div><b>customerVoltageLimit</b>: {{customerVoltageLimit}}</div>{{/customerVoltageLimit}}
-{{#energyLimit}}<div><b>energyLimit</b>: {{energyLimit}}</div>{{/energyLimit}}
-{{#energyUsageStartDateTime}}<div><b>energyUsageStartDateTime</b>: {{energyUsageStartDateTime}}</div>{{/energyUsageStartDateTime}}
-{{#energyUsageWarning}}<div><b>energyUsageWarning</b>: {{energyUsageWarning}}</div>{{/energyUsageWarning}}
-{{#isArmConnect}}<div><b>isArmConnect</b>: {{isArmConnect}}</div>{{/isArmConnect}}
-{{#isArmDisconnect}}<div><b>isArmDisconnect</b>: {{isArmDisconnect}}</div>{{/isArmDisconnect}}
-{{#isEnergyLimiting}}<div><b>isEnergyLimiting</b>: {{isEnergyLimiting}}</div>{{/isEnergyLimiting}}
-{{#needsPowerLimitCheck}}<div><b>needsPowerLimitCheck</b>: {{needsPowerLimitCheck}}</div>{{/needsPowerLimitCheck}}
-{{#needsVoltageLimitCheck}}<div><b>needsVoltageLimitCheck</b>: {{needsVoltageLimitCheck}}</div>{{/needsVoltageLimitCheck}}
-{{#powerLimit}}<div><b>powerLimit</b>: {{powerLimit}}</div>{{/powerLimit}}
-{{#usePushbutton}}<div><b>usePushbutton</b>: {{usePushbutton}}</div>{{/usePushbutton}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteConnectDisconnectInfo_collapse" aria-expanded="true" aria-controls="RemoteConnectDisconnectInfo_collapse" style="margin-left: 10px;">RemoteConnectDisconnectInfo</a></legend>
+                    <div id="RemoteConnectDisconnectInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#armedTimeout}}<div><b>armedTimeout</b>: {{armedTimeout}}</div>{{/armedTimeout}}
+                    {{#customerVoltageLimit}}<div><b>customerVoltageLimit</b>: {{customerVoltageLimit}}</div>{{/customerVoltageLimit}}
+                    {{#energyLimit}}<div><b>energyLimit</b>: {{energyLimit}}</div>{{/energyLimit}}
+                    {{#energyUsageStartDateTime}}<div><b>energyUsageStartDateTime</b>: {{energyUsageStartDateTime}}</div>{{/energyUsageStartDateTime}}
+                    {{#energyUsageWarning}}<div><b>energyUsageWarning</b>: {{energyUsageWarning}}</div>{{/energyUsageWarning}}
+                    {{#isArmConnect}}<div><b>isArmConnect</b>: {{isArmConnect}}</div>{{/isArmConnect}}
+                    {{#isArmDisconnect}}<div><b>isArmDisconnect</b>: {{isArmDisconnect}}</div>{{/isArmDisconnect}}
+                    {{#isEnergyLimiting}}<div><b>isEnergyLimiting</b>: {{isEnergyLimiting}}</div>{{/isEnergyLimiting}}
+                    {{#needsPowerLimitCheck}}<div><b>needsPowerLimitCheck</b>: {{needsPowerLimitCheck}}</div>{{/needsPowerLimitCheck}}
+                    {{#needsVoltageLimitCheck}}<div><b>needsVoltageLimitCheck</b>: {{needsVoltageLimitCheck}}</div>{{/needsVoltageLimitCheck}}
+                    {{#powerLimit}}<div><b>powerLimit</b>: {{powerLimit}}</div>{{/powerLimit}}
+                    {{#usePushbutton}}<div><b>usePushbutton</b>: {{usePushbutton}}</div>{{/usePushbutton}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteConnectDisconnectInfo_collapse" aria-expanded="true" aria-controls="RemoteConnectDisconnectInfo_collapse" style="margin-left: 10px;">RemoteConnectDisconnectInfo</a></legend>
+                    <div id="RemoteConnectDisconnectInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='armedTimeout'>armedTimeout: </label><div class='col-sm-8'><input id='armedTimeout' class='form-control' type='text'{{#armedTimeout}} value='{{armedTimeout}}'{{/armedTimeout}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='customerVoltageLimit'>customerVoltageLimit: </label><div class='col-sm-8'><input id='customerVoltageLimit' class='form-control' type='text'{{#customerVoltageLimit}} value='{{customerVoltageLimit}}'{{/customerVoltageLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyLimit'>energyLimit: </label><div class='col-sm-8'><input id='energyLimit' class='form-control' type='text'{{#energyLimit}} value='{{energyLimit}}'{{/energyLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyUsageStartDateTime'>energyUsageStartDateTime: </label><div class='col-sm-8'><input id='energyUsageStartDateTime' class='form-control' type='text'{{#energyUsageStartDateTime}} value='{{energyUsageStartDateTime}}'{{/energyUsageStartDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyUsageWarning'>energyUsageWarning: </label><div class='col-sm-8'><input id='energyUsageWarning' class='form-control' type='text'{{#energyUsageWarning}} value='{{energyUsageWarning}}'{{/energyUsageWarning}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isArmConnect'>isArmConnect: </label><div class='col-sm-8'><input id='isArmConnect' class='form-check-input' type='checkbox'{{#isArmConnect}} checked{{/isArmConnect}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isArmDisconnect'>isArmDisconnect: </label><div class='col-sm-8'><input id='isArmDisconnect' class='form-check-input' type='checkbox'{{#isArmDisconnect}} checked{{/isArmDisconnect}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isEnergyLimiting'>isEnergyLimiting: </label><div class='col-sm-8'><input id='isEnergyLimiting' class='form-check-input' type='checkbox'{{#isEnergyLimiting}} checked{{/isEnergyLimiting}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='needsPowerLimitCheck'>needsPowerLimitCheck: </label><div class='col-sm-8'><input id='needsPowerLimitCheck' class='form-check-input' type='checkbox'{{#needsPowerLimitCheck}} checked{{/needsPowerLimitCheck}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='needsVoltageLimitCheck'>needsVoltageLimitCheck: </label><div class='col-sm-8'><input id='needsVoltageLimitCheck' class='form-check-input' type='checkbox'{{#needsVoltageLimitCheck}} checked{{/needsVoltageLimitCheck}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='powerLimit'>powerLimit: </label><div class='col-sm-8'><input id='powerLimit' class='form-control' type='text'{{#powerLimit}} value='{{powerLimit}}'{{/powerLimit}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='usePushbutton'>usePushbutton: </label><div class='col-sm-8'><input id='usePushbutton' class='form-check-input' type='checkbox'{{#usePushbutton}} checked{{/usePushbutton}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A function that will disconnect and reconnect the customer's load under defined conditions.
@@ -175,24 +217,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ConnectDisconnectFunction_collapse" aria-expanded="true" aria-controls="ConnectDisconnectFunction_collapse">ConnectDisconnectFunction</a>
-<div id="ConnectDisconnectFunction_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Metering.EndDeviceFunction.prototype.template.call (this) +
-`
-{{#eventCount}}<div><b>eventCount</b>: {{eventCount}}</div>{{/eventCount}}
-{{#isConnected}}<div><b>isConnected</b>: {{isConnected}}</div>{{/isConnected}}
-{{#isDelayedDiscon}}<div><b>isDelayedDiscon</b>: {{isDelayedDiscon}}</div>{{/isDelayedDiscon}}
-{{#isLocalAutoDisconOp}}<div><b>isLocalAutoDisconOp</b>: {{isLocalAutoDisconOp}}</div>{{/isLocalAutoDisconOp}}
-{{#isLocalAutoReconOp}}<div><b>isLocalAutoReconOp</b>: {{isLocalAutoReconOp}}</div>{{/isLocalAutoReconOp}}
-{{#isRemoteAutoDisconOp}}<div><b>isRemoteAutoDisconOp</b>: {{isRemoteAutoDisconOp}}</div>{{/isRemoteAutoDisconOp}}
-{{#isRemoteAutoReconOp}}<div><b>isRemoteAutoReconOp</b>: {{isRemoteAutoReconOp}}</div>{{/isRemoteAutoReconOp}}
-{{#rcdInfo}}<div><b>rcdInfo</b>: {{rcdInfo}}</div>{{/rcdInfo}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConnectDisconnectFunction_collapse" aria-expanded="true" aria-controls="ConnectDisconnectFunction_collapse" style="margin-left: 10px;">ConnectDisconnectFunction</a></legend>
+                    <div id="ConnectDisconnectFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Metering.EndDeviceFunction.prototype.template.call (this) +
+                    `
+                    {{#eventCount}}<div><b>eventCount</b>: {{eventCount}}</div>{{/eventCount}}
+                    {{#isConnected}}<div><b>isConnected</b>: {{isConnected}}</div>{{/isConnected}}
+                    {{#isDelayedDiscon}}<div><b>isDelayedDiscon</b>: {{isDelayedDiscon}}</div>{{/isDelayedDiscon}}
+                    {{#isLocalAutoDisconOp}}<div><b>isLocalAutoDisconOp</b>: {{isLocalAutoDisconOp}}</div>{{/isLocalAutoDisconOp}}
+                    {{#isLocalAutoReconOp}}<div><b>isLocalAutoReconOp</b>: {{isLocalAutoReconOp}}</div>{{/isLocalAutoReconOp}}
+                    {{#isRemoteAutoDisconOp}}<div><b>isRemoteAutoDisconOp</b>: {{isRemoteAutoDisconOp}}</div>{{/isRemoteAutoDisconOp}}
+                    {{#isRemoteAutoReconOp}}<div><b>isRemoteAutoReconOp</b>: {{isRemoteAutoReconOp}}</div>{{/isRemoteAutoReconOp}}
+                    {{#rcdInfo}}<div><b>rcdInfo</b>: {{rcdInfo}}</div>{{/rcdInfo}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConnectDisconnectFunction_collapse" aria-expanded="true" aria-controls="ConnectDisconnectFunction_collapse" style="margin-left: 10px;">ConnectDisconnectFunction</a></legend>
+                    <div id="ConnectDisconnectFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Metering.EndDeviceFunction.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eventCount'>eventCount: </label><div class='col-sm-8'><input id='eventCount' class='form-control' type='text'{{#eventCount}} value='{{eventCount}}'{{/eventCount}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isConnected'>isConnected: </label><div class='col-sm-8'><input id='isConnected' class='form-check-input' type='checkbox'{{#isConnected}} checked{{/isConnected}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isDelayedDiscon'>isDelayedDiscon: </label><div class='col-sm-8'><input id='isDelayedDiscon' class='form-check-input' type='checkbox'{{#isDelayedDiscon}} checked{{/isDelayedDiscon}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isLocalAutoDisconOp'>isLocalAutoDisconOp: </label><div class='col-sm-8'><input id='isLocalAutoDisconOp' class='form-check-input' type='checkbox'{{#isLocalAutoDisconOp}} checked{{/isLocalAutoDisconOp}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isLocalAutoReconOp'>isLocalAutoReconOp: </label><div class='col-sm-8'><input id='isLocalAutoReconOp' class='form-check-input' type='checkbox'{{#isLocalAutoReconOp}} checked{{/isLocalAutoReconOp}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isRemoteAutoDisconOp'>isRemoteAutoDisconOp: </label><div class='col-sm-8'><input id='isRemoteAutoDisconOp' class='form-check-input' type='checkbox'{{#isRemoteAutoDisconOp}} checked{{/isRemoteAutoDisconOp}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isRemoteAutoReconOp'>isRemoteAutoReconOp: </label><div class='col-sm-8'><input id='isRemoteAutoReconOp' class='form-check-input' type='checkbox'{{#isRemoteAutoReconOp}} checked{{/isRemoteAutoReconOp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rcdInfo'>rcdInfo: </label><div class='col-sm-8'><input id='rcdInfo' class='form-control' type='text'{{#rcdInfo}} value='{{rcdInfo}}'{{/rcdInfo}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

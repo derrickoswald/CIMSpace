@@ -65,18 +65,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Season_collapse" aria-expanded="true" aria-controls="Season_collapse">Season</a>
-<div id="Season_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#endDate}}<div><b>endDate</b>: {{endDate}}</div>{{/endDate}}
-{{#startDate}}<div><b>startDate</b>: {{startDate}}</div>{{/startDate}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Season_collapse" aria-expanded="true" aria-controls="Season_collapse" style="margin-left: 10px;">Season</a></legend>
+                    <div id="Season_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#endDate}}<div><b>endDate</b>: {{endDate}}</div>{{/endDate}}
+                    {{#startDate}}<div><b>startDate</b>: {{startDate}}</div>{{/startDate}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Season_collapse" aria-expanded="true" aria-controls="Season_collapse" style="margin-left: 10px;">Season</a></legend>
+                    <div id="Season_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endDate'>endDate: </label><div class='col-sm-8'><input id='endDate' class='form-control' type='text'{{#endDate}} value='{{endDate}}'{{/endDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startDate'>startDate: </label><div class='col-sm-8'><input id='startDate' class='form-control' type='text'{{#startDate}} value='{{startDate}}'{{/startDate}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A time schedule covering a 24 hour period, with curve data for a specific type of season and day.
@@ -133,18 +165,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SeasonDayTypeSchedule_collapse" aria-expanded="true" aria-controls="SeasonDayTypeSchedule_collapse">SeasonDayTypeSchedule</a>
-<div id="SeasonDayTypeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.RegularIntervalSchedule.prototype.template.call (this) +
-`
-{{#Season}}<div><b>Season</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Season}}&quot;);})'>{{Season}}</a></div>{{/Season}}
-{{#DayType}}<div><b>DayType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DayType}}&quot;);})'>{{DayType}}</a></div>{{/DayType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SeasonDayTypeSchedule_collapse" aria-expanded="true" aria-controls="SeasonDayTypeSchedule_collapse" style="margin-left: 10px;">SeasonDayTypeSchedule</a></legend>
+                    <div id="SeasonDayTypeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.template.call (this) +
+                    `
+                    {{#Season}}<div><b>Season</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Season}}&quot;);})'>{{Season}}</a></div>{{/Season}}
+                    {{#DayType}}<div><b>DayType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DayType}}&quot;);})'>{{DayType}}</a></div>{{/DayType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SeasonDayTypeSchedule_collapse" aria-expanded="true" aria-controls="SeasonDayTypeSchedule_collapse" style="margin-left: 10px;">SeasonDayTypeSchedule</a></legend>
+                    <div id="SeasonDayTypeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Season'>Season: </label><div class='col-sm-8'><input id='Season' class='form-control' type='text'{{#Season}} value='{{Season}}'{{/Season}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DayType'>DayType: </label><div class='col-sm-8'><input id='DayType' class='form-control' type='text'{{#DayType}} value='{{DayType}}'{{/DayType}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class is the third level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
@@ -199,17 +263,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#LoadGroup_collapse" aria-expanded="true" aria-controls="LoadGroup_collapse">LoadGroup</a>
-<div id="LoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#SubLoadArea}}<div><b>SubLoadArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SubLoadArea}}&quot;);})'>{{SubLoadArea}}</a></div>{{/SubLoadArea}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadGroup_collapse" aria-expanded="true" aria-controls="LoadGroup_collapse" style="margin-left: 10px;">LoadGroup</a></legend>
+                    <div id="LoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#SubLoadArea}}<div><b>SubLoadArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SubLoadArea}}&quot;);})'>{{SubLoadArea}}</a></div>{{/SubLoadArea}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadGroup_collapse" aria-expanded="true" aria-controls="LoadGroup_collapse" style="margin-left: 10px;">LoadGroup</a></legend>
+                    <div id="LoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SubLoadArea'>SubLoadArea: </label><div class='col-sm-8'><input id='SubLoadArea' class='form-control' type='text'{{#SubLoadArea}} value='{{SubLoadArea}}'{{/SubLoadArea}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Describes an area having energy production or consumption.
@@ -266,17 +361,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EnergyArea_collapse" aria-expanded="true" aria-controls="EnergyArea_collapse">EnergyArea</a>
-<div id="EnergyArea_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#ControlArea}}<div><b>ControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlArea}}&quot;);})'>{{ControlArea}}</a></div>{{/ControlArea}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyArea_collapse" aria-expanded="true" aria-controls="EnergyArea_collapse" style="margin-left: 10px;">EnergyArea</a></legend>
+                    <div id="EnergyArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#ControlArea}}<div><b>ControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlArea}}&quot;);})'>{{ControlArea}}</a></div>{{/ControlArea}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyArea_collapse" aria-expanded="true" aria-controls="EnergyArea_collapse" style="margin-left: 10px;">EnergyArea</a></legend>
+                    <div id="EnergyArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ControlArea'>ControlArea: </label><div class='col-sm-8'><input id='ControlArea' class='form-control' type='text'{{#ControlArea}} value='{{ControlArea}}'{{/ControlArea}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Group of similar days.
@@ -331,16 +457,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DayType_collapse" aria-expanded="true" aria-controls="DayType_collapse">DayType</a>
-<div id="DayType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DayType_collapse" aria-expanded="true" aria-controls="DayType_collapse" style="margin-left: 10px;">DayType</a></legend>
+                    <div id="DayType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DayType_collapse" aria-expanded="true" aria-controls="DayType_collapse" style="margin-left: 10px;">DayType</a></legend>
+                    <div id="DayType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Models the characteristic response of the load demand due to changes in system conditions such as voltage and frequency.
@@ -417,27 +573,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#LoadResponseCharacteristic_collapse" aria-expanded="true" aria-controls="LoadResponseCharacteristic_collapse">LoadResponseCharacteristic</a>
-<div id="LoadResponseCharacteristic_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#exponentModel}}<div><b>exponentModel</b>: {{exponentModel}}</div>{{/exponentModel}}
-{{#pConstantCurrent}}<div><b>pConstantCurrent</b>: {{pConstantCurrent}}</div>{{/pConstantCurrent}}
-{{#pConstantImpedance}}<div><b>pConstantImpedance</b>: {{pConstantImpedance}}</div>{{/pConstantImpedance}}
-{{#pConstantPower}}<div><b>pConstantPower</b>: {{pConstantPower}}</div>{{/pConstantPower}}
-{{#pFrequencyExponent}}<div><b>pFrequencyExponent</b>: {{pFrequencyExponent}}</div>{{/pFrequencyExponent}}
-{{#pVoltageExponent}}<div><b>pVoltageExponent</b>: {{pVoltageExponent}}</div>{{/pVoltageExponent}}
-{{#qConstantCurrent}}<div><b>qConstantCurrent</b>: {{qConstantCurrent}}</div>{{/qConstantCurrent}}
-{{#qConstantImpedance}}<div><b>qConstantImpedance</b>: {{qConstantImpedance}}</div>{{/qConstantImpedance}}
-{{#qConstantPower}}<div><b>qConstantPower</b>: {{qConstantPower}}</div>{{/qConstantPower}}
-{{#qFrequencyExponent}}<div><b>qFrequencyExponent</b>: {{qFrequencyExponent}}</div>{{/qFrequencyExponent}}
-{{#qVoltageExponent}}<div><b>qVoltageExponent</b>: {{qVoltageExponent}}</div>{{/qVoltageExponent}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadResponseCharacteristic_collapse" aria-expanded="true" aria-controls="LoadResponseCharacteristic_collapse" style="margin-left: 10px;">LoadResponseCharacteristic</a></legend>
+                    <div id="LoadResponseCharacteristic_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#exponentModel}}<div><b>exponentModel</b>: {{exponentModel}}</div>{{/exponentModel}}
+                    {{#pConstantCurrent}}<div><b>pConstantCurrent</b>: {{pConstantCurrent}}</div>{{/pConstantCurrent}}
+                    {{#pConstantImpedance}}<div><b>pConstantImpedance</b>: {{pConstantImpedance}}</div>{{/pConstantImpedance}}
+                    {{#pConstantPower}}<div><b>pConstantPower</b>: {{pConstantPower}}</div>{{/pConstantPower}}
+                    {{#pFrequencyExponent}}<div><b>pFrequencyExponent</b>: {{pFrequencyExponent}}</div>{{/pFrequencyExponent}}
+                    {{#pVoltageExponent}}<div><b>pVoltageExponent</b>: {{pVoltageExponent}}</div>{{/pVoltageExponent}}
+                    {{#qConstantCurrent}}<div><b>qConstantCurrent</b>: {{qConstantCurrent}}</div>{{/qConstantCurrent}}
+                    {{#qConstantImpedance}}<div><b>qConstantImpedance</b>: {{qConstantImpedance}}</div>{{/qConstantImpedance}}
+                    {{#qConstantPower}}<div><b>qConstantPower</b>: {{qConstantPower}}</div>{{/qConstantPower}}
+                    {{#qFrequencyExponent}}<div><b>qFrequencyExponent</b>: {{qFrequencyExponent}}</div>{{/qFrequencyExponent}}
+                    {{#qVoltageExponent}}<div><b>qVoltageExponent</b>: {{qVoltageExponent}}</div>{{/qVoltageExponent}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadResponseCharacteristic_collapse" aria-expanded="true" aria-controls="LoadResponseCharacteristic_collapse" style="margin-left: 10px;">LoadResponseCharacteristic</a></legend>
+                    <div id="LoadResponseCharacteristic_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='exponentModel'>exponentModel: </label><div class='col-sm-8'><input id='exponentModel' class='form-check-input' type='checkbox'{{#exponentModel}} checked{{/exponentModel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pConstantCurrent'>pConstantCurrent: </label><div class='col-sm-8'><input id='pConstantCurrent' class='form-control' type='text'{{#pConstantCurrent}} value='{{pConstantCurrent}}'{{/pConstantCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pConstantImpedance'>pConstantImpedance: </label><div class='col-sm-8'><input id='pConstantImpedance' class='form-control' type='text'{{#pConstantImpedance}} value='{{pConstantImpedance}}'{{/pConstantImpedance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pConstantPower'>pConstantPower: </label><div class='col-sm-8'><input id='pConstantPower' class='form-control' type='text'{{#pConstantPower}} value='{{pConstantPower}}'{{/pConstantPower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pFrequencyExponent'>pFrequencyExponent: </label><div class='col-sm-8'><input id='pFrequencyExponent' class='form-control' type='text'{{#pFrequencyExponent}} value='{{pFrequencyExponent}}'{{/pFrequencyExponent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pVoltageExponent'>pVoltageExponent: </label><div class='col-sm-8'><input id='pVoltageExponent' class='form-control' type='text'{{#pVoltageExponent}} value='{{pVoltageExponent}}'{{/pVoltageExponent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qConstantCurrent'>qConstantCurrent: </label><div class='col-sm-8'><input id='qConstantCurrent' class='form-control' type='text'{{#qConstantCurrent}} value='{{qConstantCurrent}}'{{/qConstantCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qConstantImpedance'>qConstantImpedance: </label><div class='col-sm-8'><input id='qConstantImpedance' class='form-control' type='text'{{#qConstantImpedance}} value='{{qConstantImpedance}}'{{/qConstantImpedance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qConstantPower'>qConstantPower: </label><div class='col-sm-8'><input id='qConstantPower' class='form-control' type='text'{{#qConstantPower}} value='{{qConstantPower}}'{{/qConstantPower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qFrequencyExponent'>qFrequencyExponent: </label><div class='col-sm-8'><input id='qFrequencyExponent' class='form-control' type='text'{{#qFrequencyExponent}} value='{{qFrequencyExponent}}'{{/qFrequencyExponent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qVoltageExponent'>qVoltageExponent: </label><div class='col-sm-8'><input id='qVoltageExponent' class='form-control' type='text'{{#qVoltageExponent}} value='{{qVoltageExponent}}'{{/qVoltageExponent}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An area or zone of the power system which is used for load shedding purposes.
@@ -494,18 +691,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PowerCutZone_collapse" aria-expanded="true" aria-controls="PowerCutZone_collapse">PowerCutZone</a>
-<div id="PowerCutZone_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-{{#cutLevel1}}<div><b>cutLevel1</b>: {{cutLevel1}}</div>{{/cutLevel1}}
-{{#cutLevel2}}<div><b>cutLevel2</b>: {{cutLevel2}}</div>{{/cutLevel2}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerCutZone_collapse" aria-expanded="true" aria-controls="PowerCutZone_collapse" style="margin-left: 10px;">PowerCutZone</a></legend>
+                    <div id="PowerCutZone_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    {{#cutLevel1}}<div><b>cutLevel1</b>: {{cutLevel1}}</div>{{/cutLevel1}}
+                    {{#cutLevel2}}<div><b>cutLevel2</b>: {{cutLevel2}}</div>{{/cutLevel2}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerCutZone_collapse" aria-expanded="true" aria-controls="PowerCutZone_collapse" style="margin-left: 10px;">PowerCutZone</a></legend>
+                    <div id="PowerCutZone_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cutLevel1'>cutLevel1: </label><div class='col-sm-8'><input id='cutLevel1' class='form-control' type='text'{{#cutLevel1}} value='{{cutLevel1}}'{{/cutLevel1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cutLevel2'>cutLevel2: </label><div class='col-sm-8'><input id='cutLevel2' class='form-control' type='text'{{#cutLevel2}} value='{{cutLevel2}}'{{/cutLevel2}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An active power (Y1-axis) and reactive power (Y2-axis) schedule (curves) versus time (X-axis) for non-conforming loads, e.g., large industrial load or power station service (where modeled).
@@ -560,17 +789,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#NonConformLoadSchedule_collapse" aria-expanded="true" aria-controls="NonConformLoadSchedule_collapse">NonConformLoadSchedule</a>
-<div id="NonConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + SeasonDayTypeSchedule.prototype.template.call (this) +
-`
-{{#NonConformLoadGroup}}<div><b>NonConformLoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NonConformLoadGroup}}&quot;);})'>{{NonConformLoadGroup}}</a></div>{{/NonConformLoadGroup}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonConformLoadSchedule_collapse" aria-expanded="true" aria-controls="NonConformLoadSchedule_collapse" style="margin-left: 10px;">NonConformLoadSchedule</a></legend>
+                    <div id="NonConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SeasonDayTypeSchedule.prototype.template.call (this) +
+                    `
+                    {{#NonConformLoadGroup}}<div><b>NonConformLoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NonConformLoadGroup}}&quot;);})'>{{NonConformLoadGroup}}</a></div>{{/NonConformLoadGroup}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonConformLoadSchedule_collapse" aria-expanded="true" aria-controls="NonConformLoadSchedule_collapse" style="margin-left: 10px;">NonConformLoadSchedule</a></legend>
+                    <div id="NonConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SeasonDayTypeSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='NonConformLoadGroup'>NonConformLoadGroup: </label><div class='col-sm-8'><input id='NonConformLoadGroup' class='form-control' type='text'{{#NonConformLoadGroup}} value='{{NonConformLoadGroup}}'{{/NonConformLoadGroup}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A curve of load  versus time (X-axis) showing the active power values (Y1-axis) and reactive power (Y2-axis) for each unit of the period covered.
@@ -627,17 +887,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ConformLoadSchedule_collapse" aria-expanded="true" aria-controls="ConformLoadSchedule_collapse">ConformLoadSchedule</a>
-<div id="ConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + SeasonDayTypeSchedule.prototype.template.call (this) +
-`
-{{#ConformLoadGroup}}<div><b>ConformLoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConformLoadGroup}}&quot;);})'>{{ConformLoadGroup}}</a></div>{{/ConformLoadGroup}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConformLoadSchedule_collapse" aria-expanded="true" aria-controls="ConformLoadSchedule_collapse" style="margin-left: 10px;">ConformLoadSchedule</a></legend>
+                    <div id="ConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SeasonDayTypeSchedule.prototype.template.call (this) +
+                    `
+                    {{#ConformLoadGroup}}<div><b>ConformLoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConformLoadGroup}}&quot;);})'>{{ConformLoadGroup}}</a></div>{{/ConformLoadGroup}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConformLoadSchedule_collapse" aria-expanded="true" aria-controls="ConformLoadSchedule_collapse" style="margin-left: 10px;">ConformLoadSchedule</a></legend>
+                    <div id="ConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SeasonDayTypeSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConformLoadGroup'>ConformLoadGroup: </label><div class='col-sm-8'><input id='ConformLoadGroup' class='form-control' type='text'{{#ConformLoadGroup}} value='{{ConformLoadGroup}}'{{/ConformLoadGroup}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Loads that do not follow a daily and seasonal load variation pattern.
@@ -690,16 +981,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#NonConformLoadGroup_collapse" aria-expanded="true" aria-controls="NonConformLoadGroup_collapse">NonConformLoadGroup</a>
-<div id="NonConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + LoadGroup.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonConformLoadGroup_collapse" aria-expanded="true" aria-controls="NonConformLoadGroup_collapse" style="margin-left: 10px;">NonConformLoadGroup</a></legend>
+                    <div id="NonConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LoadGroup.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonConformLoadGroup_collapse" aria-expanded="true" aria-controls="NonConformLoadGroup_collapse" style="margin-left: 10px;">NonConformLoadGroup</a></legend>
+                    <div id="NonConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LoadGroup.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A group of loads conforming to an allocation pattern.
@@ -752,16 +1073,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ConformLoadGroup_collapse" aria-expanded="true" aria-controls="ConformLoadGroup_collapse">ConformLoadGroup</a>
-<div id="ConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + LoadGroup.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConformLoadGroup_collapse" aria-expanded="true" aria-controls="ConformLoadGroup_collapse" style="margin-left: 10px;">ConformLoadGroup</a></legend>
+                    <div id="ConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LoadGroup.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConformLoadGroup_collapse" aria-expanded="true" aria-controls="ConformLoadGroup_collapse" style="margin-left: 10px;">ConformLoadGroup</a></legend>
+                    <div id="ConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LoadGroup.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class is the second level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
@@ -816,17 +1167,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SubLoadArea_collapse" aria-expanded="true" aria-controls="SubLoadArea_collapse">SubLoadArea</a>
-<div id="SubLoadArea_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EnergyArea.prototype.template.call (this) +
-`
-{{#LoadArea}}<div><b>LoadArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadArea}}&quot;);})'>{{LoadArea}}</a></div>{{/LoadArea}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SubLoadArea_collapse" aria-expanded="true" aria-controls="SubLoadArea_collapse" style="margin-left: 10px;">SubLoadArea</a></legend>
+                    <div id="SubLoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EnergyArea.prototype.template.call (this) +
+                    `
+                    {{#LoadArea}}<div><b>LoadArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadArea}}&quot;);})'>{{LoadArea}}</a></div>{{/LoadArea}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SubLoadArea_collapse" aria-expanded="true" aria-controls="SubLoadArea_collapse" style="margin-left: 10px;">SubLoadArea</a></legend>
+                    <div id="SubLoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EnergyArea.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadArea'>LoadArea: </label><div class='col-sm-8'><input id='LoadArea' class='form-control' type='text'{{#LoadArea}} value='{{LoadArea}}'{{/LoadArea}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The class is the root or first level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
@@ -879,16 +1261,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#LoadArea_collapse" aria-expanded="true" aria-controls="LoadArea_collapse">LoadArea</a>
-<div id="LoadArea_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + EnergyArea.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadArea_collapse" aria-expanded="true" aria-controls="LoadArea_collapse" style="margin-left: 10px;">LoadArea</a></legend>
+                    <div id="LoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EnergyArea.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadArea_collapse" aria-expanded="true" aria-controls="LoadArea_collapse" style="margin-left: 10px;">LoadArea</a></legend>
+                    <div id="LoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + EnergyArea.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

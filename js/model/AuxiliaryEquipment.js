@@ -11,6 +11,17 @@ define
     {
 
         /**
+         * The construction kind of the potential transformer.
+         *
+         */
+        var PotentialTransformerKind =
+        {
+            inductive: "inductive",
+            capacitiveCoupling: "capacitiveCoupling"
+        };
+        Object.freeze (PotentialTransformerKind);
+
+        /**
          * AuxiliaryEquipment describe equipment that is not performing any primary functions but support for the equipment performing the primary function.
          *
          * AuxiliaryEquipment is attached to primary eqipment via an association with Terminal.
@@ -65,85 +76,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AuxiliaryEquipment_collapse" aria-expanded="true" aria-controls="AuxiliaryEquipment_collapse">AuxiliaryEquipment</a>
-<div id="AuxiliaryEquipment_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Equipment.prototype.template.call (this) +
-`
-{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryEquipment_collapse" aria-expanded="true" aria-controls="AuxiliaryEquipment_collapse" style="margin-left: 10px;">AuxiliaryEquipment</a></legend>
+                    <div id="AuxiliaryEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Equipment.prototype.template.call (this) +
+                    `
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * The construction kind of the potential transformer.
-         *
-         */
-        class PotentialTransformerKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.PotentialTransformerKind;
-                if (null == bucket)
-                   cim_data.PotentialTransformerKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.PotentialTransformerKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "PotentialTransformerKind";
-                base.parse_element (/<cim:PotentialTransformerKind.inductive>([\s\S]*?)<\/cim:PotentialTransformerKind.inductive>/g, obj, "inductive", base.to_string, sub, context);
-                base.parse_element (/<cim:PotentialTransformerKind.capacitiveCoupling>([\s\S]*?)<\/cim:PotentialTransformerKind.capacitiveCoupling>/g, obj, "capacitiveCoupling", base.to_string, sub, context);
-
-                var bucket = context.parsed.PotentialTransformerKind;
-                if (null == bucket)
-                   context.parsed.PotentialTransformerKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "PotentialTransformerKind", "inductive", base.from_string, fields);
-                base.export_element (obj, "PotentialTransformerKind", "capacitiveCoupling", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PotentialTransformerKind_collapse" aria-expanded="true" aria-controls="PotentialTransformerKind_collapse">PotentialTransformerKind</a>
-<div id="PotentialTransformerKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#inductive}}<div><b>inductive</b>: {{inductive}}</div>{{/inductive}}
-{{#capacitiveCoupling}}<div><b>capacitiveCoupling</b>: {{capacitiveCoupling}}</div>{{/capacitiveCoupling}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryEquipment_collapse" aria-expanded="true" aria-controls="AuxiliaryEquipment_collapse" style="margin-left: 10px;">AuxiliaryEquipment</a></legend>
+                    <div id="AuxiliaryEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Equipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * This class describe devices that transform a measured quantity into signals that can be presented at displays, used in control or be recorded.
@@ -196,16 +170,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Sensor_collapse" aria-expanded="true" aria-controls="Sensor_collapse">Sensor</a>
-<div id="Sensor_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + AuxiliaryEquipment.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Sensor_collapse" aria-expanded="true" aria-controls="Sensor_collapse" style="margin-left: 10px;">Sensor</a></legend>
+                    <div id="Sensor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AuxiliaryEquipment.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Sensor_collapse" aria-expanded="true" aria-controls="Sensor_collapse" style="margin-left: 10px;">Sensor</a></legend>
+                    <div id="Sensor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AuxiliaryEquipment.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Line traps are devices that impede high frequency power line carrier signals yet present a negligible impedance at the main power frequency.
@@ -258,16 +262,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WaveTrap_collapse" aria-expanded="true" aria-controls="WaveTrap_collapse">WaveTrap</a>
-<div id="WaveTrap_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + AuxiliaryEquipment.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WaveTrap_collapse" aria-expanded="true" aria-controls="WaveTrap_collapse" style="margin-left: 10px;">WaveTrap</a></legend>
+                    <div id="WaveTrap_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AuxiliaryEquipment.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WaveTrap_collapse" aria-expanded="true" aria-controls="WaveTrap_collapse" style="margin-left: 10px;">WaveTrap</a></legend>
+                    <div id="WaveTrap_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AuxiliaryEquipment.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Instrument transformer (also known as Voltage Transformer) used to measure electrical qualities of the circuit that is being protected and/or monitored.
@@ -302,7 +336,7 @@ define
                 base.parse_element (/<cim:PotentialTransformer.accuracyClass>([\s\S]*?)<\/cim:PotentialTransformer.accuracyClass>/g, obj, "accuracyClass", base.to_string, sub, context);
                 base.parse_element (/<cim:PotentialTransformer.nominalRatio>([\s\S]*?)<\/cim:PotentialTransformer.nominalRatio>/g, obj, "nominalRatio", base.to_float, sub, context);
                 base.parse_element (/<cim:PotentialTransformer.ptClass>([\s\S]*?)<\/cim:PotentialTransformer.ptClass>/g, obj, "ptClass", base.to_string, sub, context);
-                base.parse_element (/<cim:PotentialTransformer.type>([\s\S]*?)<\/cim:PotentialTransformer.type>/g, obj, "type", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PotentialTransformer.type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "type", sub, context);
 
                 var bucket = context.parsed.PotentialTransformer;
                 if (null == bucket)
@@ -330,20 +364,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PotentialTransformer_collapse" aria-expanded="true" aria-controls="PotentialTransformer_collapse">PotentialTransformer</a>
-<div id="PotentialTransformer_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Sensor.prototype.template.call (this) +
-`
-{{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
-{{#nominalRatio}}<div><b>nominalRatio</b>: {{nominalRatio}}</div>{{/nominalRatio}}
-{{#ptClass}}<div><b>ptClass</b>: {{ptClass}}</div>{{/ptClass}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PotentialTransformer_collapse" aria-expanded="true" aria-controls="PotentialTransformer_collapse" style="margin-left: 10px;">PotentialTransformer</a></legend>
+                    <div id="PotentialTransformer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Sensor.prototype.template.call (this) +
+                    `
+                    {{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
+                    {{#nominalRatio}}<div><b>nominalRatio</b>: {{nominalRatio}}</div>{{/nominalRatio}}
+                    {{#ptClass}}<div><b>ptClass</b>: {{ptClass}}</div>{{/ptClass}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.PotentialTransformerKind = []; if (!obj.type) obj.PotentialTransformerKind.push ({ id: '', selected: true}); for (var property in PotentialTransformerKind) obj.PotentialTransformerKind.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.PotentialTransformerKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PotentialTransformer_collapse" aria-expanded="true" aria-controls="PotentialTransformer_collapse" style="margin-left: 10px;">PotentialTransformer</a></legend>
+                    <div id="PotentialTransformer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Sensor.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nominalRatio'>nominalRatio: </label><div class='col-sm-8'><input id='nominalRatio' class='form-control' type='text'{{#nominalRatio}} value='{{nominalRatio}}'{{/nominalRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ptClass'>ptClass: </label><div class='col-sm-8'><input id='ptClass' class='form-control' type='text'{{#ptClass}} value='{{ptClass}}'{{/ptClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><select id='type' class='form-control'>{{#PotentialTransformerKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PotentialTransformerKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A FaultIndicator is typically only an indicator (which may or may not be remotely monitored), and not a piece of equipment that actually initiates a protection event.
@@ -398,16 +468,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FaultIndicator_collapse" aria-expanded="true" aria-controls="FaultIndicator_collapse">FaultIndicator</a>
-<div id="FaultIndicator_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + AuxiliaryEquipment.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultIndicator_collapse" aria-expanded="true" aria-controls="FaultIndicator_collapse" style="margin-left: 10px;">FaultIndicator</a></legend>
+                    <div id="FaultIndicator_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AuxiliaryEquipment.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultIndicator_collapse" aria-expanded="true" aria-controls="FaultIndicator_collapse" style="margin-left: 10px;">FaultIndicator</a></legend>
+                    <div id="FaultIndicator_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AuxiliaryEquipment.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Instrument transformer used to measure electrical qualities of the circuit that is being protected and/or monitored.
@@ -472,21 +572,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CurrentTransformer_collapse" aria-expanded="true" aria-controls="CurrentTransformer_collapse">CurrentTransformer</a>
-<div id="CurrentTransformer_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Sensor.prototype.template.call (this) +
-`
-{{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
-{{#accuracyLimit}}<div><b>accuracyLimit</b>: {{accuracyLimit}}</div>{{/accuracyLimit}}
-{{#ctClass}}<div><b>ctClass</b>: {{ctClass}}</div>{{/ctClass}}
-{{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
-{{#coreBurden}}<div><b>coreBurden</b>: {{coreBurden}}</div>{{/coreBurden}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentTransformer_collapse" aria-expanded="true" aria-controls="CurrentTransformer_collapse" style="margin-left: 10px;">CurrentTransformer</a></legend>
+                    <div id="CurrentTransformer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Sensor.prototype.template.call (this) +
+                    `
+                    {{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
+                    {{#accuracyLimit}}<div><b>accuracyLimit</b>: {{accuracyLimit}}</div>{{/accuracyLimit}}
+                    {{#ctClass}}<div><b>ctClass</b>: {{ctClass}}</div>{{/ctClass}}
+                    {{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
+                    {{#coreBurden}}<div><b>coreBurden</b>: {{coreBurden}}</div>{{/coreBurden}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentTransformer_collapse" aria-expanded="true" aria-controls="CurrentTransformer_collapse" style="margin-left: 10px;">CurrentTransformer</a></legend>
+                    <div id="CurrentTransformer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Sensor.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accuracyLimit'>accuracyLimit: </label><div class='col-sm-8'><input id='accuracyLimit' class='form-control' type='text'{{#accuracyLimit}} value='{{accuracyLimit}}'{{/accuracyLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ctClass'>ctClass: </label><div class='col-sm-8'><input id='ctClass' class='form-control' type='text'{{#ctClass}} value='{{ctClass}}'{{/ctClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='usage'>usage: </label><div class='col-sm-8'><input id='usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreBurden'>coreBurden: </label><div class='col-sm-8'><input id='coreBurden' class='form-control' type='text'{{#coreBurden}} value='{{coreBurden}}'{{/coreBurden}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A sensor used mainly in overhead distribution networks as the source of both current and voltage measurements.
@@ -539,16 +674,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PostLineSensor_collapse" aria-expanded="true" aria-controls="PostLineSensor_collapse">PostLineSensor</a>
-<div id="PostLineSensor_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Sensor.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PostLineSensor_collapse" aria-expanded="true" aria-controls="PostLineSensor_collapse" style="margin-left: 10px;">PostLineSensor</a></legend>
+                    <div id="PostLineSensor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Sensor.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PostLineSensor_collapse" aria-expanded="true" aria-controls="PostLineSensor_collapse" style="margin-left: 10px;">PostLineSensor</a></legend>
+                    <div id="PostLineSensor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Sensor.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Shunt device, installed on the network, usually in the proximity of electrical equipment in order to protect the said equipment against transient voltage transients caused by lightning or switching activity.
@@ -601,22 +766,51 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SurgeArrester_collapse" aria-expanded="true" aria-controls="SurgeArrester_collapse">SurgeArrester</a>
-<div id="SurgeArrester_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + AuxiliaryEquipment.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SurgeArrester_collapse" aria-expanded="true" aria-controls="SurgeArrester_collapse" style="margin-left: 10px;">SurgeArrester</a></legend>
+                    <div id="SurgeArrester_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AuxiliaryEquipment.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SurgeArrester_collapse" aria-expanded="true" aria-controls="SurgeArrester_collapse" style="margin-left: 10px;">SurgeArrester</a></legend>
+                    <div id="SurgeArrester_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AuxiliaryEquipment.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
                 WaveTrap: WaveTrap,
                 CurrentTransformer: CurrentTransformer,
-                PotentialTransformerKind: PotentialTransformerKind,
                 Sensor: Sensor,
                 SurgeArrester: SurgeArrester,
                 PostLineSensor: PostLineSensor,

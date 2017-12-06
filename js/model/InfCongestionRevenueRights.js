@@ -61,19 +61,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ViolationLimit_collapse" aria-expanded="true" aria-controls="ViolationLimit_collapse">ViolationLimit</a>
-<div id="ViolationLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Meas.Limit.prototype.template.call (this) +
-`
-{{#enforced}}<div><b>enforced</b>: {{enforced}}</div>{{/enforced}}
-{{#MktMeasurement}}<div><b>MktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktMeasurement}}&quot;);})'>{{MktMeasurement}}</a></div>{{/MktMeasurement}}
-{{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ViolationLimit_collapse" aria-expanded="true" aria-controls="ViolationLimit_collapse" style="margin-left: 10px;">ViolationLimit</a></legend>
+                    <div id="ViolationLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.Limit.prototype.template.call (this) +
+                    `
+                    {{#enforced}}<div><b>enforced</b>: {{enforced}}</div>{{/enforced}}
+                    {{#MktMeasurement}}<div><b>MktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktMeasurement}}&quot;);})'>{{MktMeasurement}}</a></div>{{/MktMeasurement}}
+                    {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ViolationLimit_collapse" aria-expanded="true" aria-controls="ViolationLimit_collapse" style="margin-left: 10px;">ViolationLimit</a></legend>
+                    <div id="ViolationLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.Limit.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='enforced'>enforced: </label><div class='col-sm-8'><input id='enforced' class='form-check-input' type='checkbox'{{#enforced}} checked{{/enforced}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktMeasurement'>MktMeasurement: </label><div class='col-sm-8'><input id='MktMeasurement' class='form-control' type='text'{{#MktMeasurement}} value='{{MktMeasurement}}'{{/MktMeasurement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Financial Transmission Rights (FTR) regarding transmission capacity at a flowgate.
@@ -140,23 +173,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FTR_collapse" aria-expanded="true" aria-controls="FTR_collapse">FTR</a>
-<div id="FTR_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Agreement.prototype.template.call (this) +
-`
-{{#optimized}}<div><b>optimized</b>: {{optimized}}</div>{{/optimized}}
-{{#action}}<div><b>action</b>: {{action}}</div>{{/action}}
-{{#baseEnergy}}<div><b>baseEnergy</b>: {{baseEnergy}}</div>{{/baseEnergy}}
-{{#ftrType}}<div><b>ftrType</b>: {{ftrType}}</div>{{/ftrType}}
-{{#class}}<div><b>class</b>: {{class}}</div>{{/class}}
-{{#EnergyPriceCurve}}<div><b>EnergyPriceCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyPriceCurve}}&quot;);})'>{{EnergyPriceCurve}}</a></div>{{/EnergyPriceCurve}}
-{{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FTR_collapse" aria-expanded="true" aria-controls="FTR_collapse" style="margin-left: 10px;">FTR</a></legend>
+                    <div id="FTR_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.template.call (this) +
+                    `
+                    {{#optimized}}<div><b>optimized</b>: {{optimized}}</div>{{/optimized}}
+                    {{#action}}<div><b>action</b>: {{action}}</div>{{/action}}
+                    {{#baseEnergy}}<div><b>baseEnergy</b>: {{baseEnergy}}</div>{{/baseEnergy}}
+                    {{#ftrType}}<div><b>ftrType</b>: {{ftrType}}</div>{{/ftrType}}
+                    {{#class}}<div><b>class</b>: {{class}}</div>{{/class}}
+                    {{#EnergyPriceCurve}}<div><b>EnergyPriceCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyPriceCurve}}&quot;);})'>{{EnergyPriceCurve}}</a></div>{{/EnergyPriceCurve}}
+                    {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FTR_collapse" aria-expanded="true" aria-controls="FTR_collapse" style="margin-left: 10px;">FTR</a></legend>
+                    <div id="FTR_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='optimized'>optimized: </label><div class='col-sm-8'><input id='optimized' class='form-control' type='text'{{#optimized}} value='{{optimized}}'{{/optimized}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='action'>action: </label><div class='col-sm-8'><input id='action' class='form-control' type='text'{{#action}} value='{{action}}'{{/action}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='baseEnergy'>baseEnergy: </label><div class='col-sm-8'><input id='baseEnergy' class='form-control' type='text'{{#baseEnergy}} value='{{baseEnergy}}'{{/baseEnergy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ftrType'>ftrType: </label><div class='col-sm-8'><input id='ftrType' class='form-control' type='text'{{#ftrType}} value='{{ftrType}}'{{/ftrType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='class'>class: </label><div class='col-sm-8'><input id='class' class='form-control' type='text'{{#class}} value='{{class}}'{{/class}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyPriceCurve'>EnergyPriceCurve: </label><div class='col-sm-8'><input id='EnergyPriceCurve' class='form-control' type='text'{{#EnergyPriceCurve}} value='{{EnergyPriceCurve}}'{{/EnergyPriceCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

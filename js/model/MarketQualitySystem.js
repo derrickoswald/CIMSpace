@@ -69,20 +69,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AuxiliaryCost_collapse" aria-expanded="true" aria-controls="AuxiliaryCost_collapse">AuxiliaryCost</a>
-<div id="AuxiliaryCost_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
-{{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
-{{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
-{{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryCost_collapse" aria-expanded="true" aria-controls="AuxiliaryCost_collapse" style="margin-left: 10px;">AuxiliaryCost</a></legend>
+                    <div id="AuxiliaryCost_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+                    {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+                    {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+                    {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryCost_collapse" aria-expanded="true" aria-controls="AuxiliaryCost_collapse" style="margin-left: 10px;">AuxiliaryCost</a></legend>
+                    <div id="AuxiliaryCost_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Model Expected Energy  from Market Clearing
@@ -143,20 +177,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExpectedEnergyValues_collapse" aria-expanded="true" aria-controls="ExpectedEnergyValues_collapse">ExpectedEnergyValues</a>
-<div id="ExpectedEnergyValues_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#energyTypeCode}}<div><b>energyTypeCode</b>: {{energyTypeCode}}</div>{{/energyTypeCode}}
-{{#expectedMwh}}<div><b>expectedMwh</b>: {{expectedMwh}}</div>{{/expectedMwh}}
-{{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
-{{#ExpectedEnergy}}<div><b>ExpectedEnergy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExpectedEnergy}}&quot;);})'>{{ExpectedEnergy}}</a></div>{{/ExpectedEnergy}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExpectedEnergyValues_collapse" aria-expanded="true" aria-controls="ExpectedEnergyValues_collapse" style="margin-left: 10px;">ExpectedEnergyValues</a></legend>
+                    <div id="ExpectedEnergyValues_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#energyTypeCode}}<div><b>energyTypeCode</b>: {{energyTypeCode}}</div>{{/energyTypeCode}}
+                    {{#expectedMwh}}<div><b>expectedMwh</b>: {{expectedMwh}}</div>{{/expectedMwh}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+                    {{#ExpectedEnergy}}<div><b>ExpectedEnergy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExpectedEnergy}}&quot;);})'>{{ExpectedEnergy}}</a></div>{{/ExpectedEnergy}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExpectedEnergyValues_collapse" aria-expanded="true" aria-controls="ExpectedEnergyValues_collapse" style="margin-left: 10px;">ExpectedEnergyValues</a></legend>
+                    <div id="ExpectedEnergyValues_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyTypeCode'>energyTypeCode: </label><div class='col-sm-8'><input id='energyTypeCode' class='form-control' type='text'{{#energyTypeCode}} value='{{energyTypeCode}}'{{/energyTypeCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='expectedMwh'>expectedMwh: </label><div class='col-sm-8'><input id='expectedMwh' class='form-control' type='text'{{#expectedMwh}} value='{{expectedMwh}}'{{/expectedMwh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExpectedEnergy'>ExpectedEnergy: </label><div class='col-sm-8'><input id='ExpectedEnergy' class='form-control' type='text'{{#ExpectedEnergy}} value='{{ExpectedEnergy}}'{{/ExpectedEnergy}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Models Auxillary Values
@@ -213,18 +281,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AuxiliaryObject_collapse" aria-expanded="true" aria-controls="AuxiliaryObject_collapse">AuxiliaryObject</a>
-<div id="AuxiliaryObject_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#RegisteredLoad}}<div><b>RegisteredLoad</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredLoad}}&quot;);})'>{{RegisteredLoad}}</a></div>{{/RegisteredLoad}}
-{{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);})'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryObject_collapse" aria-expanded="true" aria-controls="AuxiliaryObject_collapse" style="margin-left: 10px;">AuxiliaryObject</a></legend>
+                    <div id="AuxiliaryObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#RegisteredLoad}}<div><b>RegisteredLoad</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredLoad}}&quot;);})'>{{RegisteredLoad}}</a></div>{{/RegisteredLoad}}
+                    {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);})'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryObject_collapse" aria-expanded="true" aria-controls="AuxiliaryObject_collapse" style="margin-left: 10px;">AuxiliaryObject</a></legend>
+                    <div id="AuxiliaryObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}'{{/RegisteredLoad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Models prices at Trading Hubs
@@ -283,19 +383,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TradingHubValues_collapse" aria-expanded="true" aria-controls="TradingHubValues_collapse">TradingHubValues</a>
-<div id="TradingHubValues_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#price}}<div><b>price</b>: {{price}}</div>{{/price}}
-{{#TradingHubPrice}}<div><b>TradingHubPrice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TradingHubPrice}}&quot;);})'>{{TradingHubPrice}}</a></div>{{/TradingHubPrice}}
-{{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AggregatedPnode}}&quot;);})'>{{AggregatedPnode}}</a></div>{{/AggregatedPnode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TradingHubValues_collapse" aria-expanded="true" aria-controls="TradingHubValues_collapse" style="margin-left: 10px;">TradingHubValues</a></legend>
+                    <div id="TradingHubValues_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#price}}<div><b>price</b>: {{price}}</div>{{/price}}
+                    {{#TradingHubPrice}}<div><b>TradingHubPrice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TradingHubPrice}}&quot;);})'>{{TradingHubPrice}}</a></div>{{/TradingHubPrice}}
+                    {{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AggregatedPnode}}&quot;);})'>{{AggregatedPnode}}</a></div>{{/AggregatedPnode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TradingHubValues_collapse" aria-expanded="true" aria-controls="TradingHubValues_collapse" style="margin-left: 10px;">TradingHubValues</a></legend>
+                    <div id="TradingHubValues_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='price'>price: </label><div class='col-sm-8'><input id='price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TradingHubPrice'>TradingHubPrice: </label><div class='col-sm-8'><input id='TradingHubPrice' class='form-control' type='text'{{#TradingHubPrice}} value='{{TradingHubPrice}}'{{/TradingHubPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}'{{/AggregatedPnode}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Models prices at Trading Hubs, interval based
@@ -356,20 +489,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TradingHubPrice_collapse" aria-expanded="true" aria-controls="TradingHubPrice_collapse">TradingHubPrice</a>
-<div id="TradingHubPrice_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
-{{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
-{{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
-{{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TradingHubPrice_collapse" aria-expanded="true" aria-controls="TradingHubPrice_collapse" style="margin-left: 10px;">TradingHubPrice</a></legend>
+                    <div id="TradingHubPrice_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+                    {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+                    {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+                    {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TradingHubPrice_collapse" aria-expanded="true" aria-controls="TradingHubPrice_collapse" style="margin-left: 10px;">TradingHubPrice</a></legend>
+                    <div id="TradingHubPrice_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Model Expected Energy  from Market Clearing, interval based
@@ -428,19 +595,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExpectedEnergy_collapse" aria-expanded="true" aria-controls="ExpectedEnergy_collapse">ExpectedEnergy</a>
-<div id="ExpectedEnergy_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
-{{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
-{{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExpectedEnergy_collapse" aria-expanded="true" aria-controls="ExpectedEnergy_collapse" style="margin-left: 10px;">ExpectedEnergy</a></legend>
+                    <div id="ExpectedEnergy_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+                    {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+                    {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExpectedEnergy_collapse" aria-expanded="true" aria-controls="ExpectedEnergy_collapse" style="margin-left: 10px;">ExpectedEnergy</a></legend>
+                    <div id="ExpectedEnergy_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Models 10-Minutes Auxillary Data
@@ -499,19 +699,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TenMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="TenMinAuxiliaryData_collapse">TenMinAuxiliaryData</a>
-<div id="TenMinAuxiliaryData_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
-{{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
-{{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TenMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="TenMinAuxiliaryData_collapse" style="margin-left: 10px;">TenMinAuxiliaryData</a></legend>
+                    <div id="TenMinAuxiliaryData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+                    {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+                    {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TenMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="TenMinAuxiliaryData_collapse" style="margin-left: 10px;">TenMinAuxiliaryData</a></legend>
+                    <div id="TenMinAuxiliaryData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Models Market clearing results.
@@ -572,19 +805,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AllocationResult_collapse" aria-expanded="true" aria-controls="AllocationResult_collapse">AllocationResult</a>
-<div id="AllocationResult_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
-{{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
-{{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AllocationResult_collapse" aria-expanded="true" aria-controls="AllocationResult_collapse" style="margin-left: 10px;">AllocationResult</a></legend>
+                    <div id="AllocationResult_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+                    {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+                    {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AllocationResult_collapse" aria-expanded="true" aria-controls="AllocationResult_collapse" style="margin-left: 10px;">AllocationResult</a></legend>
+                    <div id="AllocationResult_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Models Market clearing results in terms of price and MW values
@@ -651,23 +917,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AllocationResultValues_collapse" aria-expanded="true" aria-controls="AllocationResultValues_collapse">AllocationResultValues</a>
-<div id="AllocationResultValues_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#aggregateType}}<div><b>aggregateType</b>: {{aggregateType}}</div>{{/aggregateType}}
-{{#allocationMwHour}}<div><b>allocationMwHour</b>: {{allocationMwHour}}</div>{{/allocationMwHour}}
-{{#allocationPrice}}<div><b>allocationPrice</b>: {{allocationPrice}}</div>{{/allocationPrice}}
-{{#energyTypeCode}}<div><b>energyTypeCode</b>: {{energyTypeCode}}</div>{{/energyTypeCode}}
-{{#marketServiceType}}<div><b>marketServiceType</b>: {{marketServiceType}}</div>{{/marketServiceType}}
-{{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
-{{#AllocationResult}}<div><b>AllocationResult</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AllocationResult}}&quot;);})'>{{AllocationResult}}</a></div>{{/AllocationResult}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AllocationResultValues_collapse" aria-expanded="true" aria-controls="AllocationResultValues_collapse" style="margin-left: 10px;">AllocationResultValues</a></legend>
+                    <div id="AllocationResultValues_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#aggregateType}}<div><b>aggregateType</b>: {{aggregateType}}</div>{{/aggregateType}}
+                    {{#allocationMwHour}}<div><b>allocationMwHour</b>: {{allocationMwHour}}</div>{{/allocationMwHour}}
+                    {{#allocationPrice}}<div><b>allocationPrice</b>: {{allocationPrice}}</div>{{/allocationPrice}}
+                    {{#energyTypeCode}}<div><b>energyTypeCode</b>: {{energyTypeCode}}</div>{{/energyTypeCode}}
+                    {{#marketServiceType}}<div><b>marketServiceType</b>: {{marketServiceType}}</div>{{/marketServiceType}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+                    {{#AllocationResult}}<div><b>AllocationResult</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AllocationResult}}&quot;);})'>{{AllocationResult}}</a></div>{{/AllocationResult}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AllocationResultValues_collapse" aria-expanded="true" aria-controls="AllocationResultValues_collapse" style="margin-left: 10px;">AllocationResultValues</a></legend>
+                    <div id="AllocationResultValues_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='aggregateType'>aggregateType: </label><div class='col-sm-8'><input id='aggregateType' class='form-control' type='text'{{#aggregateType}} value='{{aggregateType}}'{{/aggregateType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='allocationMwHour'>allocationMwHour: </label><div class='col-sm-8'><input id='allocationMwHour' class='form-control' type='text'{{#allocationMwHour}} value='{{allocationMwHour}}'{{/allocationMwHour}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='allocationPrice'>allocationPrice: </label><div class='col-sm-8'><input id='allocationPrice' class='form-control' type='text'{{#allocationPrice}} value='{{allocationPrice}}'{{/allocationPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyTypeCode'>energyTypeCode: </label><div class='col-sm-8'><input id='energyTypeCode' class='form-control' type='text'{{#energyTypeCode}} value='{{energyTypeCode}}'{{/energyTypeCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketServiceType'>marketServiceType: </label><div class='col-sm-8'><input id='marketServiceType' class='form-control' type='text'{{#marketServiceType}} value='{{marketServiceType}}'{{/marketServiceType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AllocationResult'>AllocationResult: </label><div class='col-sm-8'><input id='AllocationResult' class='form-control' type='text'{{#AllocationResult}} value='{{AllocationResult}}'{{/AllocationResult}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Models 5-Minutes Auxillary Data
@@ -726,19 +1029,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#FiveMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="FiveMinAuxiliaryData_collapse">FiveMinAuxiliaryData</a>
-<div id="FiveMinAuxiliaryData_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
-{{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
-{{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FiveMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="FiveMinAuxiliaryData_collapse" style="margin-left: 10px;">FiveMinAuxiliaryData</a></legend>
+                    <div id="FiveMinAuxiliaryData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+                    {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+                    {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FiveMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="FiveMinAuxiliaryData_collapse" style="margin-left: 10px;">FiveMinAuxiliaryData</a></legend>
+                    <div id="FiveMinAuxiliaryData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Models Auxillary Values
@@ -813,27 +1149,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AuxiliaryValues_collapse" aria-expanded="true" aria-controls="AuxiliaryValues_collapse">AuxiliaryValues</a>
-<div id="AuxiliaryValues_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + AuxiliaryObject.prototype.template.call (this) +
-`
-{{#minExpostCapacity}}<div><b>minExpostCapacity</b>: {{minExpostCapacity}}</div>{{/minExpostCapacity}}
-{{#maxExpostCapacity}}<div><b>maxExpostCapacity</b>: {{maxExpostCapacity}}</div>{{/maxExpostCapacity}}
-{{#availUndispatchedQ}}<div><b>availUndispatchedQ</b>: {{availUndispatchedQ}}</div>{{/availUndispatchedQ}}
-{{#incrementalORAvail}}<div><b>incrementalORAvail</b>: {{incrementalORAvail}}</div>{{/incrementalORAvail}}
-{{#startUpCost}}<div><b>startUpCost</b>: {{startUpCost}}</div>{{/startUpCost}}
-{{#startUpCostEligibilityFlag}}<div><b>startUpCostEligibilityFlag</b>: {{startUpCostEligibilityFlag}}</div>{{/startUpCostEligibilityFlag}}
-{{#noLoadCost}}<div><b>noLoadCost</b>: {{noLoadCost}}</div>{{/noLoadCost}}
-{{#noLoadCostEligibilityFlag}}<div><b>noLoadCostEligibilityFlag</b>: {{noLoadCostEligibilityFlag}}</div>{{/noLoadCostEligibilityFlag}}
-{{#AuxillaryCost}}<div><b>AuxillaryCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AuxillaryCost}}&quot;);})'>{{AuxillaryCost}}</a></div>{{/AuxillaryCost}}
-{{#FiveMinAuxillaryData}}<div><b>FiveMinAuxillaryData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FiveMinAuxillaryData}}&quot;);})'>{{FiveMinAuxillaryData}}</a></div>{{/FiveMinAuxillaryData}}
-{{#TenMinAuxillaryData}}<div><b>TenMinAuxillaryData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TenMinAuxillaryData}}&quot;);})'>{{TenMinAuxillaryData}}</a></div>{{/TenMinAuxillaryData}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryValues_collapse" aria-expanded="true" aria-controls="AuxiliaryValues_collapse" style="margin-left: 10px;">AuxiliaryValues</a></legend>
+                    <div id="AuxiliaryValues_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AuxiliaryObject.prototype.template.call (this) +
+                    `
+                    {{#minExpostCapacity}}<div><b>minExpostCapacity</b>: {{minExpostCapacity}}</div>{{/minExpostCapacity}}
+                    {{#maxExpostCapacity}}<div><b>maxExpostCapacity</b>: {{maxExpostCapacity}}</div>{{/maxExpostCapacity}}
+                    {{#availUndispatchedQ}}<div><b>availUndispatchedQ</b>: {{availUndispatchedQ}}</div>{{/availUndispatchedQ}}
+                    {{#incrementalORAvail}}<div><b>incrementalORAvail</b>: {{incrementalORAvail}}</div>{{/incrementalORAvail}}
+                    {{#startUpCost}}<div><b>startUpCost</b>: {{startUpCost}}</div>{{/startUpCost}}
+                    {{#startUpCostEligibilityFlag}}<div><b>startUpCostEligibilityFlag</b>: {{startUpCostEligibilityFlag}}</div>{{/startUpCostEligibilityFlag}}
+                    {{#noLoadCost}}<div><b>noLoadCost</b>: {{noLoadCost}}</div>{{/noLoadCost}}
+                    {{#noLoadCostEligibilityFlag}}<div><b>noLoadCostEligibilityFlag</b>: {{noLoadCostEligibilityFlag}}</div>{{/noLoadCostEligibilityFlag}}
+                    {{#AuxillaryCost}}<div><b>AuxillaryCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AuxillaryCost}}&quot;);})'>{{AuxillaryCost}}</a></div>{{/AuxillaryCost}}
+                    {{#FiveMinAuxillaryData}}<div><b>FiveMinAuxillaryData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FiveMinAuxillaryData}}&quot;);})'>{{FiveMinAuxillaryData}}</a></div>{{/FiveMinAuxillaryData}}
+                    {{#TenMinAuxillaryData}}<div><b>TenMinAuxillaryData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TenMinAuxillaryData}}&quot;);})'>{{TenMinAuxillaryData}}</a></div>{{/TenMinAuxillaryData}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryValues_collapse" aria-expanded="true" aria-controls="AuxiliaryValues_collapse" style="margin-left: 10px;">AuxiliaryValues</a></legend>
+                    <div id="AuxiliaryValues_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AuxiliaryObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minExpostCapacity'>minExpostCapacity: </label><div class='col-sm-8'><input id='minExpostCapacity' class='form-control' type='text'{{#minExpostCapacity}} value='{{minExpostCapacity}}'{{/minExpostCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxExpostCapacity'>maxExpostCapacity: </label><div class='col-sm-8'><input id='maxExpostCapacity' class='form-control' type='text'{{#maxExpostCapacity}} value='{{maxExpostCapacity}}'{{/maxExpostCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='availUndispatchedQ'>availUndispatchedQ: </label><div class='col-sm-8'><input id='availUndispatchedQ' class='form-control' type='text'{{#availUndispatchedQ}} value='{{availUndispatchedQ}}'{{/availUndispatchedQ}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='incrementalORAvail'>incrementalORAvail: </label><div class='col-sm-8'><input id='incrementalORAvail' class='form-control' type='text'{{#incrementalORAvail}} value='{{incrementalORAvail}}'{{/incrementalORAvail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startUpCost'>startUpCost: </label><div class='col-sm-8'><input id='startUpCost' class='form-control' type='text'{{#startUpCost}} value='{{startUpCost}}'{{/startUpCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startUpCostEligibilityFlag'>startUpCostEligibilityFlag: </label><div class='col-sm-8'><input id='startUpCostEligibilityFlag' class='form-control' type='text'{{#startUpCostEligibilityFlag}} value='{{startUpCostEligibilityFlag}}'{{/startUpCostEligibilityFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='noLoadCost'>noLoadCost: </label><div class='col-sm-8'><input id='noLoadCost' class='form-control' type='text'{{#noLoadCost}} value='{{noLoadCost}}'{{/noLoadCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='noLoadCostEligibilityFlag'>noLoadCostEligibilityFlag: </label><div class='col-sm-8'><input id='noLoadCostEligibilityFlag' class='form-control' type='text'{{#noLoadCostEligibilityFlag}} value='{{noLoadCostEligibilityFlag}}'{{/noLoadCostEligibilityFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AuxillaryCost'>AuxillaryCost: </label><div class='col-sm-8'><input id='AuxillaryCost' class='form-control' type='text'{{#AuxillaryCost}} value='{{AuxillaryCost}}'{{/AuxillaryCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FiveMinAuxillaryData'>FiveMinAuxillaryData: </label><div class='col-sm-8'><input id='FiveMinAuxillaryData' class='form-control' type='text'{{#FiveMinAuxillaryData}} value='{{FiveMinAuxillaryData}}'{{/FiveMinAuxillaryData}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TenMinAuxillaryData'>TenMinAuxillaryData: </label><div class='col-sm-8'><input id='TenMinAuxillaryData' class='form-control' type='text'{{#TenMinAuxillaryData}} value='{{TenMinAuxillaryData}}'{{/TenMinAuxillaryData}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

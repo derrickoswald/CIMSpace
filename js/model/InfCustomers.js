@@ -9,6 +9,19 @@ define
     {
 
         /**
+         * Kind of customer billing.
+         *
+         */
+        var CustomerBillingKind =
+        {
+            consolidatedEss: "consolidatedEss",
+            consolidatedUdc: "consolidatedUdc",
+            separateEssUdc: "separateEssUdc",
+            other: "other"
+        };
+        Object.freeze (CustomerBillingKind);
+
+        /**
          * The Standard Industrial Classification (SIC) are the codes that identify the type of products/service an industry is involved in, and used for statutory reporting purposes.
          *
          * For example, in the USA these codes are located by the federal government, and then published in a book entitled "The Standard Industrial Classification Manual". The codes are arranged in a hierarchical structure.
@@ -63,17 +76,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StandardIndustryCode_collapse" aria-expanded="true" aria-controls="StandardIndustryCode_collapse">StandardIndustryCode</a>
-<div id="StandardIndustryCode_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StandardIndustryCode_collapse" aria-expanded="true" aria-controls="StandardIndustryCode_collapse" style="margin-left: 10px;">StandardIndustryCode</a></legend>
+                    <div id="StandardIndustryCode_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StandardIndustryCode_collapse" aria-expanded="true" aria-controls="StandardIndustryCode_collapse" style="margin-left: 10px;">StandardIndustryCode</a></legend>
+                    <div id="StandardIndustryCode_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='code'>code: </label><div class='col-sm-8'><input id='code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A service guarantee, often imposed by a regulator, defines conditions that, if not satisfied, will result in the utility making a monetary payment to the customer.
@@ -136,20 +180,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ServiceGuarantee_collapse" aria-expanded="true" aria-controls="ServiceGuarantee_collapse">ServiceGuarantee</a>
-<div id="ServiceGuarantee_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#applicationPeriod}}<div><b>applicationPeriod</b>: {{applicationPeriod}}</div>{{/applicationPeriod}}
-{{#automaticPay}}<div><b>automaticPay</b>: {{automaticPay}}</div>{{/automaticPay}}
-{{#payAmount}}<div><b>payAmount</b>: {{payAmount}}</div>{{/payAmount}}
-{{#serviceRequirement}}<div><b>serviceRequirement</b>: {{serviceRequirement}}</div>{{/serviceRequirement}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceGuarantee_collapse" aria-expanded="true" aria-controls="ServiceGuarantee_collapse" style="margin-left: 10px;">ServiceGuarantee</a></legend>
+                    <div id="ServiceGuarantee_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#applicationPeriod}}<div><b>applicationPeriod</b>: {{applicationPeriod}}</div>{{/applicationPeriod}}
+                    {{#automaticPay}}<div><b>automaticPay</b>: {{automaticPay}}</div>{{/automaticPay}}
+                    {{#payAmount}}<div><b>payAmount</b>: {{payAmount}}</div>{{/payAmount}}
+                    {{#serviceRequirement}}<div><b>serviceRequirement</b>: {{serviceRequirement}}</div>{{/serviceRequirement}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceGuarantee_collapse" aria-expanded="true" aria-controls="ServiceGuarantee_collapse" style="margin-left: 10px;">ServiceGuarantee</a></legend>
+                    <div id="ServiceGuarantee_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='applicationPeriod'>applicationPeriod: </label><div class='col-sm-8'><input id='applicationPeriod' class='form-control' type='text'{{#applicationPeriod}} value='{{applicationPeriod}}'{{/applicationPeriod}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='automaticPay'>automaticPay: </label><div class='col-sm-8'><input id='automaticPay' class='form-check-input' type='checkbox'{{#automaticPay}} checked{{/automaticPay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='payAmount'>payAmount: </label><div class='col-sm-8'><input id='payAmount' class='form-control' type='text'{{#payAmount}} value='{{payAmount}}'{{/payAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='serviceRequirement'>serviceRequirement: </label><div class='col-sm-8'><input id='serviceRequirement' class='form-control' type='text'{{#serviceRequirement}} value='{{serviceRequirement}}'{{/serviceRequirement}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Compliance events are used for reporting regulatory or contract compliance issues and/or variances.
@@ -206,17 +284,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ComplianceEvent_collapse" aria-expanded="true" aria-controls="ComplianceEvent_collapse">ComplianceEvent</a>
-<div id="ComplianceEvent_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.ActivityRecord.prototype.template.call (this) +
-`
-{{#deadline}}<div><b>deadline</b>: {{deadline}}</div>{{/deadline}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ComplianceEvent_collapse" aria-expanded="true" aria-controls="ComplianceEvent_collapse" style="margin-left: 10px;">ComplianceEvent</a></legend>
+                    <div id="ComplianceEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.ActivityRecord.prototype.template.call (this) +
+                    `
+                    {{#deadline}}<div><b>deadline</b>: {{deadline}}</div>{{/deadline}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ComplianceEvent_collapse" aria-expanded="true" aria-controls="ComplianceEvent_collapse" style="margin-left: 10px;">ComplianceEvent</a></legend>
+                    <div id="ComplianceEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.ActivityRecord.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='deadline'>deadline: </label><div class='col-sm-8'><input id='deadline' class='form-control' type='text'{{#deadline}} value='{{deadline}}'{{/deadline}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Billing information for work performed for the customer.
@@ -287,24 +396,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WorkBillingInfo_collapse" aria-expanded="true" aria-controls="WorkBillingInfo_collapse">WorkBillingInfo</a>
-<div id="WorkBillingInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#costEstimate}}<div><b>costEstimate</b>: {{costEstimate}}</div>{{/costEstimate}}
-{{#deposit}}<div><b>deposit</b>: {{deposit}}</div>{{/deposit}}
-{{#discount}}<div><b>discount</b>: {{discount}}</div>{{/discount}}
-{{#dueDateTime}}<div><b>dueDateTime</b>: {{dueDateTime}}</div>{{/dueDateTime}}
-{{#issueDateTime}}<div><b>issueDateTime</b>: {{issueDateTime}}</div>{{/issueDateTime}}
-{{#receivedDateTime}}<div><b>receivedDateTime</b>: {{receivedDateTime}}</div>{{/receivedDateTime}}
-{{#workPrice}}<div><b>workPrice</b>: {{workPrice}}</div>{{/workPrice}}
-{{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkBillingInfo_collapse" aria-expanded="true" aria-controls="WorkBillingInfo_collapse" style="margin-left: 10px;">WorkBillingInfo</a></legend>
+                    <div id="WorkBillingInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#costEstimate}}<div><b>costEstimate</b>: {{costEstimate}}</div>{{/costEstimate}}
+                    {{#deposit}}<div><b>deposit</b>: {{deposit}}</div>{{/deposit}}
+                    {{#discount}}<div><b>discount</b>: {{discount}}</div>{{/discount}}
+                    {{#dueDateTime}}<div><b>dueDateTime</b>: {{dueDateTime}}</div>{{/dueDateTime}}
+                    {{#issueDateTime}}<div><b>issueDateTime</b>: {{issueDateTime}}</div>{{/issueDateTime}}
+                    {{#receivedDateTime}}<div><b>receivedDateTime</b>: {{receivedDateTime}}</div>{{/receivedDateTime}}
+                    {{#workPrice}}<div><b>workPrice</b>: {{workPrice}}</div>{{/workPrice}}
+                    {{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkBillingInfo_collapse" aria-expanded="true" aria-controls="WorkBillingInfo_collapse" style="margin-left: 10px;">WorkBillingInfo</a></legend>
+                    <div id="WorkBillingInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='costEstimate'>costEstimate: </label><div class='col-sm-8'><input id='costEstimate' class='form-control' type='text'{{#costEstimate}} value='{{costEstimate}}'{{/costEstimate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='deposit'>deposit: </label><div class='col-sm-8'><input id='deposit' class='form-control' type='text'{{#deposit}} value='{{deposit}}'{{/deposit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='discount'>discount: </label><div class='col-sm-8'><input id='discount' class='form-control' type='text'{{#discount}} value='{{discount}}'{{/discount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dueDateTime'>dueDateTime: </label><div class='col-sm-8'><input id='dueDateTime' class='form-control' type='text'{{#dueDateTime}} value='{{dueDateTime}}'{{/dueDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='issueDateTime'>issueDateTime: </label><div class='col-sm-8'><input id='issueDateTime' class='form-control' type='text'{{#issueDateTime}} value='{{issueDateTime}}'{{/issueDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='receivedDateTime'>receivedDateTime: </label><div class='col-sm-8'><input id='receivedDateTime' class='form-control' type='text'{{#receivedDateTime}} value='{{receivedDateTime}}'{{/receivedDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='workPrice'>workPrice: </label><div class='col-sm-8'><input id='workPrice' class='form-control' type='text'{{#workPrice}} value='{{workPrice}}'{{/workPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A type of customer agreement involving an external agency.
@@ -359,16 +506,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExternalCustomerAgreement_collapse" aria-expanded="true" aria-controls="ExternalCustomerAgreement_collapse">ExternalCustomerAgreement</a>
-<div id="ExternalCustomerAgreement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Agreement.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExternalCustomerAgreement_collapse" aria-expanded="true" aria-controls="ExternalCustomerAgreement_collapse" style="margin-left: 10px;">ExternalCustomerAgreement</a></legend>
+                    <div id="ExternalCustomerAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExternalCustomerAgreement_collapse" aria-expanded="true" aria-controls="ExternalCustomerAgreement_collapse" style="margin-left: 10px;">ExternalCustomerAgreement</a></legend>
+                    <div id="ExternalCustomerAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Pricing can be based on power quality.
@@ -439,25 +616,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PowerQualityPricing_collapse" aria-expanded="true" aria-controls="PowerQualityPricing_collapse">PowerQualityPricing</a>
-<div id="PowerQualityPricing_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#emergencyHighVoltLimit}}<div><b>emergencyHighVoltLimit</b>: {{emergencyHighVoltLimit}}</div>{{/emergencyHighVoltLimit}}
-{{#emergencyLowVoltLimit}}<div><b>emergencyLowVoltLimit</b>: {{emergencyLowVoltLimit}}</div>{{/emergencyLowVoltLimit}}
-{{#normalHighVoltLimit}}<div><b>normalHighVoltLimit</b>: {{normalHighVoltLimit}}</div>{{/normalHighVoltLimit}}
-{{#normalLowVoltLimit}}<div><b>normalLowVoltLimit</b>: {{normalLowVoltLimit}}</div>{{/normalLowVoltLimit}}
-{{#powerFactorMin}}<div><b>powerFactorMin</b>: {{powerFactorMin}}</div>{{/powerFactorMin}}
-{{#valueUninterruptedServiceEnergy}}<div><b>valueUninterruptedServiceEnergy</b>: {{valueUninterruptedServiceEnergy}}</div>{{/valueUninterruptedServiceEnergy}}
-{{#valueUninterruptedServiceP}}<div><b>valueUninterruptedServiceP</b>: {{valueUninterruptedServiceP}}</div>{{/valueUninterruptedServiceP}}
-{{#voltImbalanceViolCost}}<div><b>voltImbalanceViolCost</b>: {{voltImbalanceViolCost}}</div>{{/voltImbalanceViolCost}}
-{{#voltLimitViolCost}}<div><b>voltLimitViolCost</b>: {{voltLimitViolCost}}</div>{{/voltLimitViolCost}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerQualityPricing_collapse" aria-expanded="true" aria-controls="PowerQualityPricing_collapse" style="margin-left: 10px;">PowerQualityPricing</a></legend>
+                    <div id="PowerQualityPricing_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#emergencyHighVoltLimit}}<div><b>emergencyHighVoltLimit</b>: {{emergencyHighVoltLimit}}</div>{{/emergencyHighVoltLimit}}
+                    {{#emergencyLowVoltLimit}}<div><b>emergencyLowVoltLimit</b>: {{emergencyLowVoltLimit}}</div>{{/emergencyLowVoltLimit}}
+                    {{#normalHighVoltLimit}}<div><b>normalHighVoltLimit</b>: {{normalHighVoltLimit}}</div>{{/normalHighVoltLimit}}
+                    {{#normalLowVoltLimit}}<div><b>normalLowVoltLimit</b>: {{normalLowVoltLimit}}</div>{{/normalLowVoltLimit}}
+                    {{#powerFactorMin}}<div><b>powerFactorMin</b>: {{powerFactorMin}}</div>{{/powerFactorMin}}
+                    {{#valueUninterruptedServiceEnergy}}<div><b>valueUninterruptedServiceEnergy</b>: {{valueUninterruptedServiceEnergy}}</div>{{/valueUninterruptedServiceEnergy}}
+                    {{#valueUninterruptedServiceP}}<div><b>valueUninterruptedServiceP</b>: {{valueUninterruptedServiceP}}</div>{{/valueUninterruptedServiceP}}
+                    {{#voltImbalanceViolCost}}<div><b>voltImbalanceViolCost</b>: {{voltImbalanceViolCost}}</div>{{/voltImbalanceViolCost}}
+                    {{#voltLimitViolCost}}<div><b>voltLimitViolCost</b>: {{voltLimitViolCost}}</div>{{/voltLimitViolCost}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerQualityPricing_collapse" aria-expanded="true" aria-controls="PowerQualityPricing_collapse" style="margin-left: 10px;">PowerQualityPricing</a></legend>
+                    <div id="PowerQualityPricing_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emergencyHighVoltLimit'>emergencyHighVoltLimit: </label><div class='col-sm-8'><input id='emergencyHighVoltLimit' class='form-control' type='text'{{#emergencyHighVoltLimit}} value='{{emergencyHighVoltLimit}}'{{/emergencyHighVoltLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emergencyLowVoltLimit'>emergencyLowVoltLimit: </label><div class='col-sm-8'><input id='emergencyLowVoltLimit' class='form-control' type='text'{{#emergencyLowVoltLimit}} value='{{emergencyLowVoltLimit}}'{{/emergencyLowVoltLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='normalHighVoltLimit'>normalHighVoltLimit: </label><div class='col-sm-8'><input id='normalHighVoltLimit' class='form-control' type='text'{{#normalHighVoltLimit}} value='{{normalHighVoltLimit}}'{{/normalHighVoltLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='normalLowVoltLimit'>normalLowVoltLimit: </label><div class='col-sm-8'><input id='normalLowVoltLimit' class='form-control' type='text'{{#normalLowVoltLimit}} value='{{normalLowVoltLimit}}'{{/normalLowVoltLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='powerFactorMin'>powerFactorMin: </label><div class='col-sm-8'><input id='powerFactorMin' class='form-control' type='text'{{#powerFactorMin}} value='{{powerFactorMin}}'{{/powerFactorMin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='valueUninterruptedServiceEnergy'>valueUninterruptedServiceEnergy: </label><div class='col-sm-8'><input id='valueUninterruptedServiceEnergy' class='form-control' type='text'{{#valueUninterruptedServiceEnergy}} value='{{valueUninterruptedServiceEnergy}}'{{/valueUninterruptedServiceEnergy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='valueUninterruptedServiceP'>valueUninterruptedServiceP: </label><div class='col-sm-8'><input id='valueUninterruptedServiceP' class='form-control' type='text'{{#valueUninterruptedServiceP}} value='{{valueUninterruptedServiceP}}'{{/valueUninterruptedServiceP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='voltImbalanceViolCost'>voltImbalanceViolCost: </label><div class='col-sm-8'><input id='voltImbalanceViolCost' class='form-control' type='text'{{#voltImbalanceViolCost}} value='{{voltImbalanceViolCost}}'{{/voltImbalanceViolCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='voltLimitViolCost'>voltLimitViolCost: </label><div class='col-sm-8'><input id='voltLimitViolCost' class='form-control' type='text'{{#voltLimitViolCost}} value='{{voltLimitViolCost}}'{{/voltLimitViolCost}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Price curve for specifying the cost of energy (X) at points in time (y1) according to a prcing structure, which is based on a tariff.
@@ -510,90 +726,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SubscribePowerCurve_collapse" aria-expanded="true" aria-controls="SubscribePowerCurve_collapse">SubscribePowerCurve</a>
-<div id="SubscribePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SubscribePowerCurve_collapse" aria-expanded="true" aria-controls="SubscribePowerCurve_collapse" style="margin-left: 10px;">SubscribePowerCurve</a></legend>
+                    <div id="SubscribePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of customer billing.
-         *
-         */
-        class CustomerBillingKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.CustomerBillingKind;
-                if (null == bucket)
-                   cim_data.CustomerBillingKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.CustomerBillingKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "CustomerBillingKind";
-                base.parse_element (/<cim:CustomerBillingKind.consolidatedEss>([\s\S]*?)<\/cim:CustomerBillingKind.consolidatedEss>/g, obj, "consolidatedEss", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerBillingKind.consolidatedUdc>([\s\S]*?)<\/cim:CustomerBillingKind.consolidatedUdc>/g, obj, "consolidatedUdc", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerBillingKind.separateEssUdc>([\s\S]*?)<\/cim:CustomerBillingKind.separateEssUdc>/g, obj, "separateEssUdc", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerBillingKind.other>([\s\S]*?)<\/cim:CustomerBillingKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.CustomerBillingKind;
-                if (null == bucket)
-                   context.parsed.CustomerBillingKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "CustomerBillingKind", "consolidatedEss", base.from_string, fields);
-                base.export_element (obj, "CustomerBillingKind", "consolidatedUdc", base.from_string, fields);
-                base.export_element (obj, "CustomerBillingKind", "separateEssUdc", base.from_string, fields);
-                base.export_element (obj, "CustomerBillingKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CustomerBillingKind_collapse" aria-expanded="true" aria-controls="CustomerBillingKind_collapse">CustomerBillingKind</a>
-<div id="CustomerBillingKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#consolidatedEss}}<div><b>consolidatedEss</b>: {{consolidatedEss}}</div>{{/consolidatedEss}}
-{{#consolidatedUdc}}<div><b>consolidatedUdc</b>: {{consolidatedUdc}}</div>{{/consolidatedUdc}}
-{{#separateEssUdc}}<div><b>separateEssUdc</b>: {{separateEssUdc}}</div>{{/separateEssUdc}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SubscribePowerCurve_collapse" aria-expanded="true" aria-controls="SubscribePowerCurve_collapse" style="margin-left: 10px;">SubscribePowerCurve</a></legend>
+                    <div id="SubscribePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * The creation of the monthly customer billing statements is the method employed to notify Customers of charges, adjustments and credits applied to their account for Services and Products.
@@ -627,7 +799,7 @@ define
                 obj.cls = "CustomerBillingInfo";
                 base.parse_element (/<cim:CustomerBillingInfo.billingDate>([\s\S]*?)<\/cim:CustomerBillingInfo.billingDate>/g, obj, "billingDate", base.to_string, sub, context);
                 base.parse_element (/<cim:CustomerBillingInfo.dueDate>([\s\S]*?)<\/cim:CustomerBillingInfo.dueDate>/g, obj, "dueDate", base.to_string, sub, context);
-                base.parse_element (/<cim:CustomerBillingInfo.kind>([\s\S]*?)<\/cim:CustomerBillingInfo.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CustomerBillingInfo.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:CustomerBillingInfo.lastPaymentAmt>([\s\S]*?)<\/cim:CustomerBillingInfo.lastPaymentAmt>/g, obj, "lastPaymentAmt", base.to_string, sub, context);
                 base.parse_element (/<cim:CustomerBillingInfo.lastPaymentDate>([\s\S]*?)<\/cim:CustomerBillingInfo.lastPaymentDate>/g, obj, "lastPaymentDate", base.to_string, sub, context);
                 base.parse_element (/<cim:CustomerBillingInfo.outBalance>([\s\S]*?)<\/cim:CustomerBillingInfo.outBalance>/g, obj, "outBalance", base.to_string, sub, context);
@@ -666,32 +838,72 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CustomerBillingInfo_collapse" aria-expanded="true" aria-controls="CustomerBillingInfo_collapse">CustomerBillingInfo</a>
-<div id="CustomerBillingInfo_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#billingDate}}<div><b>billingDate</b>: {{billingDate}}</div>{{/billingDate}}
-{{#dueDate}}<div><b>dueDate</b>: {{dueDate}}</div>{{/dueDate}}
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#lastPaymentAmt}}<div><b>lastPaymentAmt</b>: {{lastPaymentAmt}}</div>{{/lastPaymentAmt}}
-{{#lastPaymentDate}}<div><b>lastPaymentDate</b>: {{lastPaymentDate}}</div>{{/lastPaymentDate}}
-{{#outBalance}}<div><b>outBalance</b>: {{outBalance}}</div>{{/outBalance}}
-{{#pymtPlanAmt}}<div><b>pymtPlanAmt</b>: {{pymtPlanAmt}}</div>{{/pymtPlanAmt}}
-{{#pymtPlanType}}<div><b>pymtPlanType</b>: {{pymtPlanType}}</div>{{/pymtPlanType}}
-{{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerBillingInfo_collapse" aria-expanded="true" aria-controls="CustomerBillingInfo_collapse" style="margin-left: 10px;">CustomerBillingInfo</a></legend>
+                    <div id="CustomerBillingInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#billingDate}}<div><b>billingDate</b>: {{billingDate}}</div>{{/billingDate}}
+                    {{#dueDate}}<div><b>dueDate</b>: {{dueDate}}</div>{{/dueDate}}
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#lastPaymentAmt}}<div><b>lastPaymentAmt</b>: {{lastPaymentAmt}}</div>{{/lastPaymentAmt}}
+                    {{#lastPaymentDate}}<div><b>lastPaymentDate</b>: {{lastPaymentDate}}</div>{{/lastPaymentDate}}
+                    {{#outBalance}}<div><b>outBalance</b>: {{outBalance}}</div>{{/outBalance}}
+                    {{#pymtPlanAmt}}<div><b>pymtPlanAmt</b>: {{pymtPlanAmt}}</div>{{/pymtPlanAmt}}
+                    {{#pymtPlanType}}<div><b>pymtPlanType</b>: {{pymtPlanType}}</div>{{/pymtPlanType}}
+                    {{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.CustomerBillingKind = []; if (!obj.kind) obj.CustomerBillingKind.push ({ id: '', selected: true}); for (var property in CustomerBillingKind) obj.CustomerBillingKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.CustomerBillingKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerBillingInfo_collapse" aria-expanded="true" aria-controls="CustomerBillingInfo_collapse" style="margin-left: 10px;">CustomerBillingInfo</a></legend>
+                    <div id="CustomerBillingInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='billingDate'>billingDate: </label><div class='col-sm-8'><input id='billingDate' class='form-control' type='text'{{#billingDate}} value='{{billingDate}}'{{/billingDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dueDate'>dueDate: </label><div class='col-sm-8'><input id='dueDate' class='form-control' type='text'{{#dueDate}} value='{{dueDate}}'{{/dueDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#CustomerBillingKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CustomerBillingKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastPaymentAmt'>lastPaymentAmt: </label><div class='col-sm-8'><input id='lastPaymentAmt' class='form-control' type='text'{{#lastPaymentAmt}} value='{{lastPaymentAmt}}'{{/lastPaymentAmt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastPaymentDate'>lastPaymentDate: </label><div class='col-sm-8'><input id='lastPaymentDate' class='form-control' type='text'{{#lastPaymentDate}} value='{{lastPaymentDate}}'{{/lastPaymentDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='outBalance'>outBalance: </label><div class='col-sm-8'><input id='outBalance' class='form-control' type='text'{{#outBalance}} value='{{outBalance}}'{{/outBalance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pymtPlanAmt'>pymtPlanAmt: </label><div class='col-sm-8'><input id='pymtPlanAmt' class='form-control' type='text'{{#pymtPlanAmt}} value='{{pymtPlanAmt}}'{{/pymtPlanAmt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pymtPlanType'>pymtPlanType: </label><div class='col-sm-8'><input id='pymtPlanType' class='form-control' type='text'{{#pymtPlanType}} value='{{pymtPlanType}}'{{/pymtPlanType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
                 ExternalCustomerAgreement: ExternalCustomerAgreement,
                 SubscribePowerCurve: SubscribePowerCurve,
                 ComplianceEvent: ComplianceEvent,
-                CustomerBillingKind: CustomerBillingKind,
                 StandardIndustryCode: StandardIndustryCode,
                 PowerQualityPricing: PowerQualityPricing,
                 WorkBillingInfo: WorkBillingInfo,

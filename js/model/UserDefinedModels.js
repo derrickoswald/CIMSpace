@@ -65,17 +65,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PFVArControllerType2UserDefined_collapse" aria-expanded="true" aria-controls="PFVArControllerType2UserDefined_collapse">PFVArControllerType2UserDefined</a>
-<div id="PFVArControllerType2UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PFVArControllerType2Dynamics.PFVArControllerType2Dynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArControllerType2UserDefined_collapse" aria-expanded="true" aria-controls="PFVArControllerType2UserDefined_collapse" style="margin-left: 10px;">PFVArControllerType2UserDefined</a></legend>
+                    <div id="PFVArControllerType2UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PFVArControllerType2Dynamics.PFVArControllerType2Dynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArControllerType2UserDefined_collapse" aria-expanded="true" aria-controls="PFVArControllerType2UserDefined_collapse" style="margin-left: 10px;">PFVArControllerType2UserDefined</a></legend>
+                    <div id="PFVArControllerType2UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PFVArControllerType2Dynamics.PFVArControllerType2Dynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Turbine load controller function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -130,17 +161,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TurbineLoadControllerUserDefined_collapse" aria-expanded="true" aria-controls="TurbineLoadControllerUserDefined_collapse">TurbineLoadControllerUserDefined</a>
-<div id="TurbineLoadControllerUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineLoadControllerDynamics.TurbineLoadControllerDynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbineLoadControllerUserDefined_collapse" aria-expanded="true" aria-controls="TurbineLoadControllerUserDefined_collapse" style="margin-left: 10px;">TurbineLoadControllerUserDefined</a></legend>
+                    <div id="TurbineLoadControllerUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineLoadControllerDynamics.TurbineLoadControllerDynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbineLoadControllerUserDefined_collapse" aria-expanded="true" aria-controls="TurbineLoadControllerUserDefined_collapse" style="margin-left: 10px;">TurbineLoadControllerUserDefined</a></legend>
+                    <div id="TurbineLoadControllerUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineLoadControllerDynamics.TurbineLoadControllerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * <font color="#0f0f0f">Voltage adjuster</font> function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -195,17 +257,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VoltageAdjusterUserDefined_collapse" aria-expanded="true" aria-controls="VoltageAdjusterUserDefined_collapse">VoltageAdjusterUserDefined</a>
-<div id="VoltageAdjusterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + VoltageAdjusterDynamics.VoltageAdjusterDynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageAdjusterUserDefined_collapse" aria-expanded="true" aria-controls="VoltageAdjusterUserDefined_collapse" style="margin-left: 10px;">VoltageAdjusterUserDefined</a></legend>
+                    <div id="VoltageAdjusterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + VoltageAdjusterDynamics.VoltageAdjusterDynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageAdjusterUserDefined_collapse" aria-expanded="true" aria-controls="VoltageAdjusterUserDefined_collapse" style="margin-left: 10px;">VoltageAdjusterUserDefined</a></legend>
+                    <div id="VoltageAdjusterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + VoltageAdjusterDynamics.VoltageAdjusterDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Turbine-governor function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -260,17 +353,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TurbineGovernorUserDefined_collapse" aria-expanded="true" aria-controls="TurbineGovernorUserDefined_collapse">TurbineGovernorUserDefined</a>
-<div id="TurbineGovernorUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TurbineGovernorDynamics.TurbineGovernorDynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbineGovernorUserDefined_collapse" aria-expanded="true" aria-controls="TurbineGovernorUserDefined_collapse" style="margin-left: 10px;">TurbineGovernorUserDefined</a></legend>
+                    <div id="TurbineGovernorUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.TurbineGovernorDynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbineGovernorUserDefined_collapse" aria-expanded="true" aria-controls="TurbineGovernorUserDefined_collapse" style="margin-left: 10px;">TurbineGovernorUserDefined</a></legend>
+                    <div id="TurbineGovernorUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TurbineGovernorDynamics.TurbineGovernorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Load whose dynamic behaviour is described by a user-defined model.
@@ -325,17 +449,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#LoadUserDefined_collapse" aria-expanded="true" aria-controls="LoadUserDefined_collapse">LoadUserDefined</a>
-<div id="LoadUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + LoadDynamics.LoadDynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadUserDefined_collapse" aria-expanded="true" aria-controls="LoadUserDefined_collapse" style="margin-left: 10px;">LoadUserDefined</a></legend>
+                    <div id="LoadUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LoadDynamics.LoadDynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadUserDefined_collapse" aria-expanded="true" aria-controls="LoadUserDefined_collapse" style="margin-left: 10px;">LoadUserDefined</a></legend>
+                    <div id="LoadUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LoadDynamics.LoadDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Excitation system function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -390,17 +545,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ExcitationSystemUserDefined_collapse" aria-expanded="true" aria-controls="ExcitationSystemUserDefined_collapse">ExcitationSystemUserDefined</a>
-<div id="ExcitationSystemUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ExcitationSystemDynamics.ExcitationSystemDynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcitationSystemUserDefined_collapse" aria-expanded="true" aria-controls="ExcitationSystemUserDefined_collapse" style="margin-left: 10px;">ExcitationSystemUserDefined</a></legend>
+                    <div id="ExcitationSystemUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.ExcitationSystemDynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcitationSystemUserDefined_collapse" aria-expanded="true" aria-controls="ExcitationSystemUserDefined_collapse" style="margin-left: 10px;">ExcitationSystemUserDefined</a></legend>
+                    <div id="ExcitationSystemUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ExcitationSystemDynamics.ExcitationSystemDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Wind plant function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -455,17 +641,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindPlantUserDefined_collapse" aria-expanded="true" aria-controls="WindPlantUserDefined_collapse">WindPlantUserDefined</a>
-<div id="WindPlantUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindDynamics.WindPlantDynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantUserDefined_collapse" aria-expanded="true" aria-controls="WindPlantUserDefined_collapse" style="margin-left: 10px;">WindPlantUserDefined</a></legend>
+                    <div id="WindPlantUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindDynamics.WindPlantDynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantUserDefined_collapse" aria-expanded="true" aria-controls="WindPlantUserDefined_collapse" style="margin-left: 10px;">WindPlantUserDefined</a></legend>
+                    <div id="WindPlantUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindDynamics.WindPlantDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * <font color="#0f0f0f">Power system stabilizer</font> function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -520,17 +737,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PowerSystemStabilizerUserDefined_collapse" aria-expanded="true" aria-controls="PowerSystemStabilizerUserDefined_collapse">PowerSystemStabilizerUserDefined</a>
-<div id="PowerSystemStabilizerUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemStabilizerDynamics.PowerSystemStabilizerDynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemStabilizerUserDefined_collapse" aria-expanded="true" aria-controls="PowerSystemStabilizerUserDefined_collapse" style="margin-left: 10px;">PowerSystemStabilizerUserDefined</a></legend>
+                    <div id="PowerSystemStabilizerUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.PowerSystemStabilizerDynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemStabilizerUserDefined_collapse" aria-expanded="true" aria-controls="PowerSystemStabilizerUserDefined_collapse" style="margin-left: 10px;">PowerSystemStabilizerUserDefined</a></legend>
+                    <div id="PowerSystemStabilizerUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemStabilizerDynamics.PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Wind Type 3 or Type 4 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -585,17 +833,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindType3or4UserDefined_collapse" aria-expanded="true" aria-controls="WindType3or4UserDefined_collapse">WindType3or4UserDefined</a>
-<div id="WindType3or4UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindDynamics.WindTurbineType3or4Dynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindType3or4UserDefined_collapse" aria-expanded="true" aria-controls="WindType3or4UserDefined_collapse" style="margin-left: 10px;">WindType3or4UserDefined</a></legend>
+                    <div id="WindType3or4UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindDynamics.WindTurbineType3or4Dynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindType3or4UserDefined_collapse" aria-expanded="true" aria-controls="WindType3or4UserDefined_collapse" style="margin-left: 10px;">WindType3or4UserDefined</a></legend>
+                    <div id="WindType3or4UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindDynamics.WindTurbineType3or4Dynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Asynchronous machine whose dynamic behaviour is described by a user-defined model.
@@ -650,17 +929,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AsynchronousMachineUserDefined_collapse" aria-expanded="true" aria-controls="AsynchronousMachineUserDefined_collapse">AsynchronousMachineUserDefined</a>
-<div id="AsynchronousMachineUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + AsynchronousMachineDynamics.AsynchronousMachineDynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineUserDefined_collapse" aria-expanded="true" aria-controls="AsynchronousMachineUserDefined_collapse" style="margin-left: 10px;">AsynchronousMachineUserDefined</a></legend>
+                    <div id="AsynchronousMachineUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AsynchronousMachineDynamics.AsynchronousMachineDynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineUserDefined_collapse" aria-expanded="true" aria-controls="AsynchronousMachineUserDefined_collapse" style="margin-left: 10px;">AsynchronousMachineUserDefined</a></legend>
+                    <div id="AsynchronousMachineUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AsynchronousMachineDynamics.AsynchronousMachineDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Power Factor or VAr controller Type I function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -715,17 +1025,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PFVArControllerType1UserDefined_collapse" aria-expanded="true" aria-controls="PFVArControllerType1UserDefined_collapse">PFVArControllerType1UserDefined</a>
-<div id="PFVArControllerType1UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PFVArControllerType1Dynamics.PFVArControllerType1Dynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArControllerType1UserDefined_collapse" aria-expanded="true" aria-controls="PFVArControllerType1UserDefined_collapse" style="margin-left: 10px;">PFVArControllerType1UserDefined</a></legend>
+                    <div id="PFVArControllerType1UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PFVArControllerType1Dynamics.PFVArControllerType1Dynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArControllerType1UserDefined_collapse" aria-expanded="true" aria-controls="PFVArControllerType1UserDefined_collapse" style="margin-left: 10px;">PFVArControllerType1UserDefined</a></legend>
+                    <div id="PFVArControllerType1UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PFVArControllerType1Dynamics.PFVArControllerType1Dynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Mechanical load function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -780,17 +1121,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MechanicalLoadUserDefined_collapse" aria-expanded="true" aria-controls="MechanicalLoadUserDefined_collapse">MechanicalLoadUserDefined</a>
-<div id="MechanicalLoadUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + MechanicalLoadDynamics.MechanicalLoadDynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MechanicalLoadUserDefined_collapse" aria-expanded="true" aria-controls="MechanicalLoadUserDefined_collapse" style="margin-left: 10px;">MechanicalLoadUserDefined</a></legend>
+                    <div id="MechanicalLoadUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MechanicalLoadDynamics.MechanicalLoadDynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MechanicalLoadUserDefined_collapse" aria-expanded="true" aria-controls="MechanicalLoadUserDefined_collapse" style="margin-left: 10px;">MechanicalLoadUserDefined</a></legend>
+                    <div id="MechanicalLoadUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MechanicalLoadDynamics.MechanicalLoadDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Voltage compensator function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -845,17 +1217,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VoltageCompensatorUserDefined_collapse" aria-expanded="true" aria-controls="VoltageCompensatorUserDefined_collapse">VoltageCompensatorUserDefined</a>
-<div id="VoltageCompensatorUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + VoltageCompensatorDynamics.VoltageCompensatorDynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageCompensatorUserDefined_collapse" aria-expanded="true" aria-controls="VoltageCompensatorUserDefined_collapse" style="margin-left: 10px;">VoltageCompensatorUserDefined</a></legend>
+                    <div id="VoltageCompensatorUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + VoltageCompensatorDynamics.VoltageCompensatorDynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageCompensatorUserDefined_collapse" aria-expanded="true" aria-controls="VoltageCompensatorUserDefined_collapse" style="margin-left: 10px;">VoltageCompensatorUserDefined</a></legend>
+                    <div id="VoltageCompensatorUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + VoltageCompensatorDynamics.VoltageCompensatorDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Underexcitation limiter function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -910,17 +1313,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#UnderexcitationLimiterUserDefined_collapse" aria-expanded="true" aria-controls="UnderexcitationLimiterUserDefined_collapse">UnderexcitationLimiterUserDefined</a>
-<div id="UnderexcitationLimiterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + UnderexcitationLimiterDynamics.UnderexcitationLimiterDynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcitationLimiterUserDefined_collapse" aria-expanded="true" aria-controls="UnderexcitationLimiterUserDefined_collapse" style="margin-left: 10px;">UnderexcitationLimiterUserDefined</a></legend>
+                    <div id="UnderexcitationLimiterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + UnderexcitationLimiterDynamics.UnderexcitationLimiterDynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcitationLimiterUserDefined_collapse" aria-expanded="true" aria-controls="UnderexcitationLimiterUserDefined_collapse" style="margin-left: 10px;">UnderexcitationLimiterUserDefined</a></legend>
+                    <div id="UnderexcitationLimiterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + UnderexcitationLimiterDynamics.UnderexcitationLimiterDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Wind Type 1 or Type 2 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -975,17 +1409,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#WindType1or2UserDefined_collapse" aria-expanded="true" aria-controls="WindType1or2UserDefined_collapse">WindType1or2UserDefined</a>
-<div id="WindType1or2UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + WindDynamics.WindTurbineType1or2Dynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindType1or2UserDefined_collapse" aria-expanded="true" aria-controls="WindType1or2UserDefined_collapse" style="margin-left: 10px;">WindType1or2UserDefined</a></legend>
+                    <div id="WindType1or2UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindDynamics.WindTurbineType1or2Dynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindType1or2UserDefined_collapse" aria-expanded="true" aria-controls="WindType1or2UserDefined_collapse" style="margin-left: 10px;">WindType1or2UserDefined</a></legend>
+                    <div id="WindType1or2UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + WindDynamics.WindTurbineType1or2Dynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Overexcitation limiter system function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -1040,17 +1505,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OverexcitationLimiterUserDefined_collapse" aria-expanded="true" aria-controls="OverexcitationLimiterUserDefined_collapse">OverexcitationLimiterUserDefined</a>
-<div id="OverexcitationLimiterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + OverexcitationLimiterDynamics.OverexcitationLimiterDynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcitationLimiterUserDefined_collapse" aria-expanded="true" aria-controls="OverexcitationLimiterUserDefined_collapse" style="margin-left: 10px;">OverexcitationLimiterUserDefined</a></legend>
+                    <div id="OverexcitationLimiterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OverexcitationLimiterDynamics.OverexcitationLimiterDynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcitationLimiterUserDefined_collapse" aria-expanded="true" aria-controls="OverexcitationLimiterUserDefined_collapse" style="margin-left: 10px;">OverexcitationLimiterUserDefined</a></legend>
+                    <div id="OverexcitationLimiterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OverexcitationLimiterDynamics.OverexcitationLimiterDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Supports definition of one or more parameters of several different datatypes for use by proprietary user-defined models.
@@ -1149,38 +1645,90 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ProprietaryParameterDynamics_collapse" aria-expanded="true" aria-controls="ProprietaryParameterDynamics_collapse">ProprietaryParameterDynamics</a>
-<div id="ProprietaryParameterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#booleanParameterValue}}<div><b>booleanParameterValue</b>: {{booleanParameterValue}}</div>{{/booleanParameterValue}}
-{{#floatParameterValue}}<div><b>floatParameterValue</b>: {{floatParameterValue}}</div>{{/floatParameterValue}}
-{{#integerParameterValue}}<div><b>integerParameterValue</b>: {{integerParameterValue}}</div>{{/integerParameterValue}}
-{{#parameterNumber}}<div><b>parameterNumber</b>: {{parameterNumber}}</div>{{/parameterNumber}}
-{{#TurbineGovernorUserDefined}}<div><b>TurbineGovernorUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineGovernorUserDefined}}&quot;);})'>{{TurbineGovernorUserDefined}}</a></div>{{/TurbineGovernorUserDefined}}
-{{#PFVArControllerType2UserDefined}}<div><b>PFVArControllerType2UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType2UserDefined}}&quot;);})'>{{PFVArControllerType2UserDefined}}</a></div>{{/PFVArControllerType2UserDefined}}
-{{#WindType1or2UserDefined}}<div><b>WindType1or2UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindType1or2UserDefined}}&quot;);})'>{{WindType1or2UserDefined}}</a></div>{{/WindType1or2UserDefined}}
-{{#VoltageAdjusterUserDefined}}<div><b>VoltageAdjusterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageAdjusterUserDefined}}&quot;);})'>{{VoltageAdjusterUserDefined}}</a></div>{{/VoltageAdjusterUserDefined}}
-{{#TurbineLoadControllerUserDefined}}<div><b>TurbineLoadControllerUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineLoadControllerUserDefined}}&quot;);})'>{{TurbineLoadControllerUserDefined}}</a></div>{{/TurbineLoadControllerUserDefined}}
-{{#DiscontinuousExcitationControlUserDefined}}<div><b>DiscontinuousExcitationControlUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscontinuousExcitationControlUserDefined}}&quot;);})'>{{DiscontinuousExcitationControlUserDefined}}</a></div>{{/DiscontinuousExcitationControlUserDefined}}
-{{#PowerSystemStabilizerUserDefined}}<div><b>PowerSystemStabilizerUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemStabilizerUserDefined}}&quot;);})'>{{PowerSystemStabilizerUserDefined}}</a></div>{{/PowerSystemStabilizerUserDefined}}
-{{#ExcitationSystemUserDefined}}<div><b>ExcitationSystemUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemUserDefined}}&quot;);})'>{{ExcitationSystemUserDefined}}</a></div>{{/ExcitationSystemUserDefined}}
-{{#LoadUserDefined}}<div><b>LoadUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadUserDefined}}&quot;);})'>{{LoadUserDefined}}</a></div>{{/LoadUserDefined}}
-{{#AsynchronousMachineUserDefined}}<div><b>AsynchronousMachineUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineUserDefined}}&quot;);})'>{{AsynchronousMachineUserDefined}}</a></div>{{/AsynchronousMachineUserDefined}}
-{{#VoltageCompensatorUserDefined}}<div><b>VoltageCompensatorUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageCompensatorUserDefined}}&quot;);})'>{{VoltageCompensatorUserDefined}}</a></div>{{/VoltageCompensatorUserDefined}}
-{{#SynchronousMachineUserDefined}}<div><b>SynchronousMachineUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineUserDefined}}&quot;);})'>{{SynchronousMachineUserDefined}}</a></div>{{/SynchronousMachineUserDefined}}
-{{#MechanicalLoadUserDefined}}<div><b>MechanicalLoadUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MechanicalLoadUserDefined}}&quot;);})'>{{MechanicalLoadUserDefined}}</a></div>{{/MechanicalLoadUserDefined}}
-{{#WindType3or4UserDefined}}<div><b>WindType3or4UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindType3or4UserDefined}}&quot;);})'>{{WindType3or4UserDefined}}</a></div>{{/WindType3or4UserDefined}}
-{{#PFVArControllerType1UserDefined}}<div><b>PFVArControllerType1UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1UserDefined}}&quot;);})'>{{PFVArControllerType1UserDefined}}</a></div>{{/PFVArControllerType1UserDefined}}
-{{#WindPlantUserDefined}}<div><b>WindPlantUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantUserDefined}}&quot;);})'>{{WindPlantUserDefined}}</a></div>{{/WindPlantUserDefined}}
-{{#UnderexcitationLimiterUserDefined}}<div><b>UnderexcitationLimiterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UnderexcitationLimiterUserDefined}}&quot;);})'>{{UnderexcitationLimiterUserDefined}}</a></div>{{/UnderexcitationLimiterUserDefined}}
-{{#OverexcitationLimiterUserDefined}}<div><b>OverexcitationLimiterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverexcitationLimiterUserDefined}}&quot;);})'>{{OverexcitationLimiterUserDefined}}</a></div>{{/OverexcitationLimiterUserDefined}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProprietaryParameterDynamics_collapse" aria-expanded="true" aria-controls="ProprietaryParameterDynamics_collapse" style="margin-left: 10px;">ProprietaryParameterDynamics</a></legend>
+                    <div id="ProprietaryParameterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#booleanParameterValue}}<div><b>booleanParameterValue</b>: {{booleanParameterValue}}</div>{{/booleanParameterValue}}
+                    {{#floatParameterValue}}<div><b>floatParameterValue</b>: {{floatParameterValue}}</div>{{/floatParameterValue}}
+                    {{#integerParameterValue}}<div><b>integerParameterValue</b>: {{integerParameterValue}}</div>{{/integerParameterValue}}
+                    {{#parameterNumber}}<div><b>parameterNumber</b>: {{parameterNumber}}</div>{{/parameterNumber}}
+                    {{#TurbineGovernorUserDefined}}<div><b>TurbineGovernorUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineGovernorUserDefined}}&quot;);})'>{{TurbineGovernorUserDefined}}</a></div>{{/TurbineGovernorUserDefined}}
+                    {{#PFVArControllerType2UserDefined}}<div><b>PFVArControllerType2UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType2UserDefined}}&quot;);})'>{{PFVArControllerType2UserDefined}}</a></div>{{/PFVArControllerType2UserDefined}}
+                    {{#WindType1or2UserDefined}}<div><b>WindType1or2UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindType1or2UserDefined}}&quot;);})'>{{WindType1or2UserDefined}}</a></div>{{/WindType1or2UserDefined}}
+                    {{#VoltageAdjusterUserDefined}}<div><b>VoltageAdjusterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageAdjusterUserDefined}}&quot;);})'>{{VoltageAdjusterUserDefined}}</a></div>{{/VoltageAdjusterUserDefined}}
+                    {{#TurbineLoadControllerUserDefined}}<div><b>TurbineLoadControllerUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineLoadControllerUserDefined}}&quot;);})'>{{TurbineLoadControllerUserDefined}}</a></div>{{/TurbineLoadControllerUserDefined}}
+                    {{#DiscontinuousExcitationControlUserDefined}}<div><b>DiscontinuousExcitationControlUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscontinuousExcitationControlUserDefined}}&quot;);})'>{{DiscontinuousExcitationControlUserDefined}}</a></div>{{/DiscontinuousExcitationControlUserDefined}}
+                    {{#PowerSystemStabilizerUserDefined}}<div><b>PowerSystemStabilizerUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemStabilizerUserDefined}}&quot;);})'>{{PowerSystemStabilizerUserDefined}}</a></div>{{/PowerSystemStabilizerUserDefined}}
+                    {{#ExcitationSystemUserDefined}}<div><b>ExcitationSystemUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemUserDefined}}&quot;);})'>{{ExcitationSystemUserDefined}}</a></div>{{/ExcitationSystemUserDefined}}
+                    {{#LoadUserDefined}}<div><b>LoadUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadUserDefined}}&quot;);})'>{{LoadUserDefined}}</a></div>{{/LoadUserDefined}}
+                    {{#AsynchronousMachineUserDefined}}<div><b>AsynchronousMachineUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineUserDefined}}&quot;);})'>{{AsynchronousMachineUserDefined}}</a></div>{{/AsynchronousMachineUserDefined}}
+                    {{#VoltageCompensatorUserDefined}}<div><b>VoltageCompensatorUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageCompensatorUserDefined}}&quot;);})'>{{VoltageCompensatorUserDefined}}</a></div>{{/VoltageCompensatorUserDefined}}
+                    {{#SynchronousMachineUserDefined}}<div><b>SynchronousMachineUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineUserDefined}}&quot;);})'>{{SynchronousMachineUserDefined}}</a></div>{{/SynchronousMachineUserDefined}}
+                    {{#MechanicalLoadUserDefined}}<div><b>MechanicalLoadUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MechanicalLoadUserDefined}}&quot;);})'>{{MechanicalLoadUserDefined}}</a></div>{{/MechanicalLoadUserDefined}}
+                    {{#WindType3or4UserDefined}}<div><b>WindType3or4UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindType3or4UserDefined}}&quot;);})'>{{WindType3or4UserDefined}}</a></div>{{/WindType3or4UserDefined}}
+                    {{#PFVArControllerType1UserDefined}}<div><b>PFVArControllerType1UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1UserDefined}}&quot;);})'>{{PFVArControllerType1UserDefined}}</a></div>{{/PFVArControllerType1UserDefined}}
+                    {{#WindPlantUserDefined}}<div><b>WindPlantUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantUserDefined}}&quot;);})'>{{WindPlantUserDefined}}</a></div>{{/WindPlantUserDefined}}
+                    {{#UnderexcitationLimiterUserDefined}}<div><b>UnderexcitationLimiterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UnderexcitationLimiterUserDefined}}&quot;);})'>{{UnderexcitationLimiterUserDefined}}</a></div>{{/UnderexcitationLimiterUserDefined}}
+                    {{#OverexcitationLimiterUserDefined}}<div><b>OverexcitationLimiterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverexcitationLimiterUserDefined}}&quot;);})'>{{OverexcitationLimiterUserDefined}}</a></div>{{/OverexcitationLimiterUserDefined}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProprietaryParameterDynamics_collapse" aria-expanded="true" aria-controls="ProprietaryParameterDynamics_collapse" style="margin-left: 10px;">ProprietaryParameterDynamics</a></legend>
+                    <div id="ProprietaryParameterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='booleanParameterValue'>booleanParameterValue: </label><div class='col-sm-8'><input id='booleanParameterValue' class='form-check-input' type='checkbox'{{#booleanParameterValue}} checked{{/booleanParameterValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='floatParameterValue'>floatParameterValue: </label><div class='col-sm-8'><input id='floatParameterValue' class='form-control' type='text'{{#floatParameterValue}} value='{{floatParameterValue}}'{{/floatParameterValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='integerParameterValue'>integerParameterValue: </label><div class='col-sm-8'><input id='integerParameterValue' class='form-control' type='text'{{#integerParameterValue}} value='{{integerParameterValue}}'{{/integerParameterValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='parameterNumber'>parameterNumber: </label><div class='col-sm-8'><input id='parameterNumber' class='form-control' type='text'{{#parameterNumber}} value='{{parameterNumber}}'{{/parameterNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TurbineGovernorUserDefined'>TurbineGovernorUserDefined: </label><div class='col-sm-8'><input id='TurbineGovernorUserDefined' class='form-control' type='text'{{#TurbineGovernorUserDefined}} value='{{TurbineGovernorUserDefined}}'{{/TurbineGovernorUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PFVArControllerType2UserDefined'>PFVArControllerType2UserDefined: </label><div class='col-sm-8'><input id='PFVArControllerType2UserDefined' class='form-control' type='text'{{#PFVArControllerType2UserDefined}} value='{{PFVArControllerType2UserDefined}}'{{/PFVArControllerType2UserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindType1or2UserDefined'>WindType1or2UserDefined: </label><div class='col-sm-8'><input id='WindType1or2UserDefined' class='form-control' type='text'{{#WindType1or2UserDefined}} value='{{WindType1or2UserDefined}}'{{/WindType1or2UserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VoltageAdjusterUserDefined'>VoltageAdjusterUserDefined: </label><div class='col-sm-8'><input id='VoltageAdjusterUserDefined' class='form-control' type='text'{{#VoltageAdjusterUserDefined}} value='{{VoltageAdjusterUserDefined}}'{{/VoltageAdjusterUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TurbineLoadControllerUserDefined'>TurbineLoadControllerUserDefined: </label><div class='col-sm-8'><input id='TurbineLoadControllerUserDefined' class='form-control' type='text'{{#TurbineLoadControllerUserDefined}} value='{{TurbineLoadControllerUserDefined}}'{{/TurbineLoadControllerUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DiscontinuousExcitationControlUserDefined'>DiscontinuousExcitationControlUserDefined: </label><div class='col-sm-8'><input id='DiscontinuousExcitationControlUserDefined' class='form-control' type='text'{{#DiscontinuousExcitationControlUserDefined}} value='{{DiscontinuousExcitationControlUserDefined}}'{{/DiscontinuousExcitationControlUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PowerSystemStabilizerUserDefined'>PowerSystemStabilizerUserDefined: </label><div class='col-sm-8'><input id='PowerSystemStabilizerUserDefined' class='form-control' type='text'{{#PowerSystemStabilizerUserDefined}} value='{{PowerSystemStabilizerUserDefined}}'{{/PowerSystemStabilizerUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemUserDefined'>ExcitationSystemUserDefined: </label><div class='col-sm-8'><input id='ExcitationSystemUserDefined' class='form-control' type='text'{{#ExcitationSystemUserDefined}} value='{{ExcitationSystemUserDefined}}'{{/ExcitationSystemUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadUserDefined'>LoadUserDefined: </label><div class='col-sm-8'><input id='LoadUserDefined' class='form-control' type='text'{{#LoadUserDefined}} value='{{LoadUserDefined}}'{{/LoadUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AsynchronousMachineUserDefined'>AsynchronousMachineUserDefined: </label><div class='col-sm-8'><input id='AsynchronousMachineUserDefined' class='form-control' type='text'{{#AsynchronousMachineUserDefined}} value='{{AsynchronousMachineUserDefined}}'{{/AsynchronousMachineUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VoltageCompensatorUserDefined'>VoltageCompensatorUserDefined: </label><div class='col-sm-8'><input id='VoltageCompensatorUserDefined' class='form-control' type='text'{{#VoltageCompensatorUserDefined}} value='{{VoltageCompensatorUserDefined}}'{{/VoltageCompensatorUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SynchronousMachineUserDefined'>SynchronousMachineUserDefined: </label><div class='col-sm-8'><input id='SynchronousMachineUserDefined' class='form-control' type='text'{{#SynchronousMachineUserDefined}} value='{{SynchronousMachineUserDefined}}'{{/SynchronousMachineUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MechanicalLoadUserDefined'>MechanicalLoadUserDefined: </label><div class='col-sm-8'><input id='MechanicalLoadUserDefined' class='form-control' type='text'{{#MechanicalLoadUserDefined}} value='{{MechanicalLoadUserDefined}}'{{/MechanicalLoadUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindType3or4UserDefined'>WindType3or4UserDefined: </label><div class='col-sm-8'><input id='WindType3or4UserDefined' class='form-control' type='text'{{#WindType3or4UserDefined}} value='{{WindType3or4UserDefined}}'{{/WindType3or4UserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PFVArControllerType1UserDefined'>PFVArControllerType1UserDefined: </label><div class='col-sm-8'><input id='PFVArControllerType1UserDefined' class='form-control' type='text'{{#PFVArControllerType1UserDefined}} value='{{PFVArControllerType1UserDefined}}'{{/PFVArControllerType1UserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantUserDefined'>WindPlantUserDefined: </label><div class='col-sm-8'><input id='WindPlantUserDefined' class='form-control' type='text'{{#WindPlantUserDefined}} value='{{WindPlantUserDefined}}'{{/WindPlantUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UnderexcitationLimiterUserDefined'>UnderexcitationLimiterUserDefined: </label><div class='col-sm-8'><input id='UnderexcitationLimiterUserDefined' class='form-control' type='text'{{#UnderexcitationLimiterUserDefined}} value='{{UnderexcitationLimiterUserDefined}}'{{/UnderexcitationLimiterUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OverexcitationLimiterUserDefined'>OverexcitationLimiterUserDefined: </label><div class='col-sm-8'><input id='OverexcitationLimiterUserDefined' class='form-control' type='text'{{#OverexcitationLimiterUserDefined}} value='{{OverexcitationLimiterUserDefined}}'{{/OverexcitationLimiterUserDefined}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Synchronous machine whose dynamic behaviour is described by a user-defined model.
@@ -1235,17 +1783,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SynchronousMachineUserDefined_collapse" aria-expanded="true" aria-controls="SynchronousMachineUserDefined_collapse">SynchronousMachineUserDefined</a>
-<div id="SynchronousMachineUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + SynchronousMachineDynamics.SynchronousMachineDynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineUserDefined_collapse" aria-expanded="true" aria-controls="SynchronousMachineUserDefined_collapse" style="margin-left: 10px;">SynchronousMachineUserDefined</a></legend>
+                    <div id="SynchronousMachineUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SynchronousMachineDynamics.SynchronousMachineDynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineUserDefined_collapse" aria-expanded="true" aria-controls="SynchronousMachineUserDefined_collapse" style="margin-left: 10px;">SynchronousMachineUserDefined</a></legend>
+                    <div id="SynchronousMachineUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SynchronousMachineDynamics.SynchronousMachineDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Discontinuous excitation control function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
@@ -1300,17 +1879,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DiscontinuousExcitationControlUserDefined_collapse" aria-expanded="true" aria-controls="DiscontinuousExcitationControlUserDefined_collapse">DiscontinuousExcitationControlUserDefined</a>
-<div id="DiscontinuousExcitationControlUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DiscontinuousExcitationControlDynamics.DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
-`
-{{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscontinuousExcitationControlUserDefined_collapse" aria-expanded="true" aria-controls="DiscontinuousExcitationControlUserDefined_collapse" style="margin-left: 10px;">DiscontinuousExcitationControlUserDefined</a></legend>
+                    <div id="DiscontinuousExcitationControlUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DiscontinuousExcitationControlDynamics.DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
+                    `
+                    {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscontinuousExcitationControlUserDefined_collapse" aria-expanded="true" aria-controls="DiscontinuousExcitationControlUserDefined_collapse" style="margin-left: 10px;">DiscontinuousExcitationControlUserDefined</a></legend>
+                    <div id="DiscontinuousExcitationControlUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DiscontinuousExcitationControlDynamics.DiscontinuousExcitationControlDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

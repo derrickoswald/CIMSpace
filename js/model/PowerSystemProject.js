@@ -8,6 +8,29 @@ define
     function (base)
     {
 
+        /**
+         * State of the project
+         *
+         */
+        var StepKind =
+        {
+            planning: "planning",
+            design_and_construction: "design and construction",
+            commissioning: "commissioning",
+            ____list_incomplete__more_to_come: "... list incomplete, more to come",
+            revision: "revision"
+        };
+        Object.freeze (StepKind);
+
+        var ProjectStepStatusKind =
+        {
+            cancelled: "cancelled",
+            inProgress: "inProgress",
+            inactive: "inactive",
+            approved: "approved"
+        };
+        Object.freeze (ProjectStepStatusKind);
+
         class PowerSystemProjectSchedule extends base.Element
         {
             constructor (template, cim_data)
@@ -36,8 +59,8 @@ define
                 base.parse_element (/<cim:PowerSystemProjectSchedule.actualStart>([\s\S]*?)<\/cim:PowerSystemProjectSchedule.actualStart>/g, obj, "actualStart", base.to_datetime, sub, context);
                 base.parse_element (/<cim:PowerSystemProjectSchedule.scheduledEnd>([\s\S]*?)<\/cim:PowerSystemProjectSchedule.scheduledEnd>/g, obj, "scheduledEnd", base.to_datetime, sub, context);
                 base.parse_element (/<cim:PowerSystemProjectSchedule.scheduledStart>([\s\S]*?)<\/cim:PowerSystemProjectSchedule.scheduledStart>/g, obj, "scheduledStart", base.to_datetime, sub, context);
-                base.parse_element (/<cim:PowerSystemProjectSchedule.status>([\s\S]*?)<\/cim:PowerSystemProjectSchedule.status>/g, obj, "status", base.to_string, sub, context);
-                base.parse_element (/<cim:PowerSystemProjectSchedule.stepType>([\s\S]*?)<\/cim:PowerSystemProjectSchedule.stepType>/g, obj, "stepType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PowerSystemProjectSchedule.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
+                base.parse_attribute (/<cim:PowerSystemProjectSchedule.stepType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "stepType", sub, context);
                 base.parse_attribute (/<cim:PowerSystemProjectSchedule.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
 
                 var bucket = context.parsed.PowerSystemProjectSchedule;
@@ -69,100 +92,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PowerSystemProjectSchedule_collapse" aria-expanded="true" aria-controls="PowerSystemProjectSchedule_collapse">PowerSystemProjectSchedule</a>
-<div id="PowerSystemProjectSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#actualEnd}}<div><b>actualEnd</b>: {{actualEnd}}</div>{{/actualEnd}}
-{{#actualStart}}<div><b>actualStart</b>: {{actualStart}}</div>{{/actualStart}}
-{{#scheduledEnd}}<div><b>scheduledEnd</b>: {{scheduledEnd}}</div>{{/scheduledEnd}}
-{{#scheduledStart}}<div><b>scheduledStart</b>: {{scheduledStart}}</div>{{/scheduledStart}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#stepType}}<div><b>stepType</b>: {{stepType}}</div>{{/stepType}}
-{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemProjectSchedule_collapse" aria-expanded="true" aria-controls="PowerSystemProjectSchedule_collapse" style="margin-left: 10px;">PowerSystemProjectSchedule</a></legend>
+                    <div id="PowerSystemProjectSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#actualEnd}}<div><b>actualEnd</b>: {{actualEnd}}</div>{{/actualEnd}}
+                    {{#actualStart}}<div><b>actualStart</b>: {{actualStart}}</div>{{/actualStart}}
+                    {{#scheduledEnd}}<div><b>scheduledEnd</b>: {{scheduledEnd}}</div>{{/scheduledEnd}}
+                    {{#scheduledStart}}<div><b>scheduledStart</b>: {{scheduledStart}}</div>{{/scheduledStart}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#stepType}}<div><b>stepType</b>: {{stepType}}</div>{{/stepType}}
+                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * State of the project
-         *
-         */
-        class StepKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.StepKind;
-                if (null == bucket)
-                   cim_data.StepKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.StepKind[this._id];
+                super.condition (obj);
+                obj.ProjectStepStatusKind = []; if (!obj.status) obj.ProjectStepStatusKind.push ({ id: '', selected: true}); for (var property in ProjectStepStatusKind) obj.ProjectStepStatusKind.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.StepKind = []; if (!obj.stepType) obj.StepKind.push ({ id: '', selected: true}); for (var property in StepKind) obj.StepKind.push ({ id: property, selected: obj.stepType && obj.stepType.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "StepKind";
-                base.parse_element (/<cim:StepKind.planning>([\s\S]*?)<\/cim:StepKind.planning>/g, obj, "planning", base.to_string, sub, context);
-                base.parse_element (/<cim:StepKind.design and construction>([\s\S]*?)<\/cim:StepKind.design and construction>/g, obj, "design and construction", base.to_string, sub, context);
-                base.parse_element (/<cim:StepKind.commissioning>([\s\S]*?)<\/cim:StepKind.commissioning>/g, obj, "commissioning", base.to_string, sub, context);
-                base.parse_element (/<cim:StepKind.... list incomplete, more to come>([\s\S]*?)<\/cim:StepKind.... list incomplete, more to come>/g, obj, "... list incomplete, more to come", base.to_string, sub, context);
-                base.parse_element (/<cim:StepKind.revision>([\s\S]*?)<\/cim:StepKind.revision>/g, obj, "revision", base.to_string, sub, context);
-
-                var bucket = context.parsed.StepKind;
-                if (null == bucket)
-                   context.parsed.StepKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.ProjectStepStatusKind;
+                delete obj.StepKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "StepKind", "planning", base.from_string, fields);
-                base.export_element (obj, "StepKind", "design and construction", base.from_string, fields);
-                base.export_element (obj, "StepKind", "commissioning", base.from_string, fields);
-                base.export_element (obj, "StepKind", "... list incomplete, more to come", base.from_string, fields);
-                base.export_element (obj, "StepKind", "revision", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StepKind_collapse" aria-expanded="true" aria-controls="StepKind_collapse">StepKind</a>
-<div id="StepKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#planning}}<div><b>planning</b>: {{planning}}</div>{{/planning}}
-{{#design and construction}}<div><b>design and construction</b>: {{design and construction}}</div>{{/design and construction}}
-{{#commissioning}}<div><b>commissioning</b>: {{commissioning}}</div>{{/commissioning}}
-{{#... list incomplete, more to come}}<div><b>... list incomplete, more to come</b>: {{... list incomplete, more to come}}</div>{{/... list incomplete, more to come}}
-{{#revision}}<div><b>revision</b>: {{revision}}</div>{{/revision}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemProjectSchedule_collapse" aria-expanded="true" aria-controls="PowerSystemProjectSchedule_collapse" style="margin-left: 10px;">PowerSystemProjectSchedule</a></legend>
+                    <div id="PowerSystemProjectSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualEnd'>actualEnd: </label><div class='col-sm-8'><input id='actualEnd' class='form-control' type='text'{{#actualEnd}} value='{{actualEnd}}'{{/actualEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualStart'>actualStart: </label><div class='col-sm-8'><input id='actualStart' class='form-control' type='text'{{#actualStart}} value='{{actualStart}}'{{/actualStart}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scheduledEnd'>scheduledEnd: </label><div class='col-sm-8'><input id='scheduledEnd' class='form-control' type='text'{{#scheduledEnd}} value='{{scheduledEnd}}'{{/scheduledEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scheduledStart'>scheduledStart: </label><div class='col-sm-8'><input id='scheduledStart' class='form-control' type='text'{{#scheduledStart}} value='{{scheduledStart}}'{{/scheduledStart}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><select id='status' class='form-control'>{{#ProjectStepStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProjectStepStatusKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stepType'>stepType: </label><div class='col-sm-8'><select id='stepType' class='form-control'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * A (document/collection) that describe a set of changes to the network.
@@ -194,7 +181,7 @@ define
                 obj.cls = "PowerSystemProject";
                 base.parse_element (/<cim:PowerSystemProject.name>([\s\S]*?)<\/cim:PowerSystemProject.name>/g, obj, "name", base.to_string, sub, context);
                 base.parse_element (/<cim:PowerSystemProject.priority>([\s\S]*?)<\/cim:PowerSystemProject.priority>/g, obj, "priority", base.to_string, sub, context);
-                base.parse_element (/<cim:PowerSystemProject.state>([\s\S]*?)<\/cim:PowerSystemProject.state>/g, obj, "state", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PowerSystemProject.state\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "state", sub, context);
                 base.parse_element (/<cim:PowerSystemProject.type>([\s\S]*?)<\/cim:PowerSystemProject.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_element (/<cim:PowerSystemProject.version>([\s\S]*?)<\/cim:PowerSystemProject.version>/g, obj, "version", base.to_string, sub, context);
                 base.parse_element (/<cim:PowerSystemProject.description>([\s\S]*?)<\/cim:PowerSystemProject.description>/g, obj, "description", base.to_string, sub, context);
@@ -231,24 +218,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PowerSystemProject_collapse" aria-expanded="true" aria-controls="PowerSystemProject_collapse">PowerSystemProject</a>
-<div id="PowerSystemProject_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
-{{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
-{{#state}}<div><b>state</b>: {{state}}</div>{{/state}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-{{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
-{{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
-{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
-{{#Project}}<div><b>Project</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Project}}&quot;);})'>{{Project}}</a></div>{{/Project}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemProject_collapse" aria-expanded="true" aria-controls="PowerSystemProject_collapse" style="margin-left: 10px;">PowerSystemProject</a></legend>
+                    <div id="PowerSystemProject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+                    {{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+                    {{#state}}<div><b>state</b>: {{state}}</div>{{/state}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+                    {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+                    {{#Project}}<div><b>Project</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Project}}&quot;);})'>{{Project}}</a></div>{{/Project}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.StepKind = []; if (!obj.state) obj.StepKind.push ({ id: '', selected: true}); for (var property in StepKind) obj.StepKind.push ({ id: property, selected: obj.state && obj.state.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.StepKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemProject_collapse" aria-expanded="true" aria-controls="PowerSystemProject_collapse" style="margin-left: 10px;">PowerSystemProject</a></legend>
+                    <div id="PowerSystemProject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priority'>priority: </label><div class='col-sm-8'><input id='priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='state'>state: </label><div class='col-sm-8'><select id='state' class='form-control'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='version'>version: </label><div class='col-sm-8'><input id='version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Project'>Project: </label><div class='col-sm-8'><input id='Project' class='form-control' type='text'{{#Project}} value='{{Project}}'{{/Project}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The ProjectSteps are ordered by the actualStart and actualEnds so that  a dependent ProjectStep will have a actualStart after an actualEnd.
@@ -282,8 +309,8 @@ define
                 base.parse_element (/<cim:ProjectStep.actualStart>([\s\S]*?)<\/cim:ProjectStep.actualStart>/g, obj, "actualStart", base.to_datetime, sub, context);
                 base.parse_element (/<cim:ProjectStep.scheduledEnd>([\s\S]*?)<\/cim:ProjectStep.scheduledEnd>/g, obj, "scheduledEnd", base.to_datetime, sub, context);
                 base.parse_element (/<cim:ProjectStep.scheduledStart>([\s\S]*?)<\/cim:ProjectStep.scheduledStart>/g, obj, "scheduledStart", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ProjectStep.status>([\s\S]*?)<\/cim:ProjectStep.status>/g, obj, "status", base.to_string, sub, context);
-                base.parse_element (/<cim:ProjectStep.stepType>([\s\S]*?)<\/cim:ProjectStep.stepType>/g, obj, "stepType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ProjectStep.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
+                base.parse_attribute (/<cim:ProjectStep.stepType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "stepType", sub, context);
 
                 var bucket = context.parsed.ProjectStep;
                 if (null == bucket)
@@ -313,92 +340,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ProjectStep_collapse" aria-expanded="true" aria-controls="ProjectStep_collapse">ProjectStep</a>
-<div id="ProjectStep_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#actualEnd}}<div><b>actualEnd</b>: {{actualEnd}}</div>{{/actualEnd}}
-{{#actualStart}}<div><b>actualStart</b>: {{actualStart}}</div>{{/actualStart}}
-{{#scheduledEnd}}<div><b>scheduledEnd</b>: {{scheduledEnd}}</div>{{/scheduledEnd}}
-{{#scheduledStart}}<div><b>scheduledStart</b>: {{scheduledStart}}</div>{{/scheduledStart}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#stepType}}<div><b>stepType</b>: {{stepType}}</div>{{/stepType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProjectStep_collapse" aria-expanded="true" aria-controls="ProjectStep_collapse" style="margin-left: 10px;">ProjectStep</a></legend>
+                    <div id="ProjectStep_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#actualEnd}}<div><b>actualEnd</b>: {{actualEnd}}</div>{{/actualEnd}}
+                    {{#actualStart}}<div><b>actualStart</b>: {{actualStart}}</div>{{/actualStart}}
+                    {{#scheduledEnd}}<div><b>scheduledEnd</b>: {{scheduledEnd}}</div>{{/scheduledEnd}}
+                    {{#scheduledStart}}<div><b>scheduledStart</b>: {{scheduledStart}}</div>{{/scheduledStart}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#stepType}}<div><b>stepType</b>: {{stepType}}</div>{{/stepType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        class ProjectStepStatusKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ProjectStepStatusKind;
-                if (null == bucket)
-                   cim_data.ProjectStepStatusKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ProjectStepStatusKind[this._id];
+                super.condition (obj);
+                obj.ProjectStepStatusKind = []; if (!obj.status) obj.ProjectStepStatusKind.push ({ id: '', selected: true}); for (var property in ProjectStepStatusKind) obj.ProjectStepStatusKind.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.StepKind = []; if (!obj.stepType) obj.StepKind.push ({ id: '', selected: true}); for (var property in StepKind) obj.StepKind.push ({ id: property, selected: obj.stepType && obj.stepType.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ProjectStepStatusKind";
-                base.parse_element (/<cim:ProjectStepStatusKind.cancelled>([\s\S]*?)<\/cim:ProjectStepStatusKind.cancelled>/g, obj, "cancelled", base.to_string, sub, context);
-                base.parse_element (/<cim:ProjectStepStatusKind.inProgress>([\s\S]*?)<\/cim:ProjectStepStatusKind.inProgress>/g, obj, "inProgress", base.to_string, sub, context);
-                base.parse_element (/<cim:ProjectStepStatusKind.inactive>([\s\S]*?)<\/cim:ProjectStepStatusKind.inactive>/g, obj, "inactive", base.to_string, sub, context);
-                base.parse_element (/<cim:ProjectStepStatusKind.approved>([\s\S]*?)<\/cim:ProjectStepStatusKind.approved>/g, obj, "approved", base.to_string, sub, context);
-
-                var bucket = context.parsed.ProjectStepStatusKind;
-                if (null == bucket)
-                   context.parsed.ProjectStepStatusKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.ProjectStepStatusKind;
+                delete obj.StepKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ProjectStepStatusKind", "cancelled", base.from_string, fields);
-                base.export_element (obj, "ProjectStepStatusKind", "inProgress", base.from_string, fields);
-                base.export_element (obj, "ProjectStepStatusKind", "inactive", base.from_string, fields);
-                base.export_element (obj, "ProjectStepStatusKind", "approved", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ProjectStepStatusKind_collapse" aria-expanded="true" aria-controls="ProjectStepStatusKind_collapse">ProjectStepStatusKind</a>
-<div id="ProjectStepStatusKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#cancelled}}<div><b>cancelled</b>: {{cancelled}}</div>{{/cancelled}}
-{{#inProgress}}<div><b>inProgress</b>: {{inProgress}}</div>{{/inProgress}}
-{{#inactive}}<div><b>inactive</b>: {{inactive}}</div>{{/inactive}}
-{{#approved}}<div><b>approved</b>: {{approved}}</div>{{/approved}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProjectStep_collapse" aria-expanded="true" aria-controls="ProjectStep_collapse" style="margin-left: 10px;">ProjectStep</a></legend>
+                    <div id="ProjectStep_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualEnd'>actualEnd: </label><div class='col-sm-8'><input id='actualEnd' class='form-control' type='text'{{#actualEnd}} value='{{actualEnd}}'{{/actualEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualStart'>actualStart: </label><div class='col-sm-8'><input id='actualStart' class='form-control' type='text'{{#actualStart}} value='{{actualStart}}'{{/actualStart}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scheduledEnd'>scheduledEnd: </label><div class='col-sm-8'><input id='scheduledEnd' class='form-control' type='text'{{#scheduledEnd}} value='{{scheduledEnd}}'{{/scheduledEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scheduledStart'>scheduledStart: </label><div class='col-sm-8'><input id='scheduledStart' class='form-control' type='text'{{#scheduledStart}} value='{{scheduledStart}}'{{/scheduledStart}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><select id='status' class='form-control'>{{#ProjectStepStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProjectStepStatusKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stepType'>stepType: </label><div class='col-sm-8'><select id='stepType' class='form-control'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * A collection of dependent projects.
@@ -453,24 +450,53 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PowerSystemSubProject_collapse" aria-expanded="true" aria-controls="PowerSystemSubProject_collapse">PowerSystemSubProject</a>
-<div id="PowerSystemSubProject_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + PowerSystemProject.prototype.template.call (this) +
-`
-{{#Project}}<div><b>Project</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Project}}&quot;);})'>{{Project}}</a></div>{{/Project}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemSubProject_collapse" aria-expanded="true" aria-controls="PowerSystemSubProject_collapse" style="margin-left: 10px;">PowerSystemSubProject</a></legend>
+                    <div id="PowerSystemSubProject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemProject.prototype.template.call (this) +
+                    `
+                    {{#Project}}<div><b>Project</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Project}}&quot;);})'>{{Project}}</a></div>{{/Project}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemSubProject_collapse" aria-expanded="true" aria-controls="PowerSystemSubProject_collapse" style="margin-left: 10px;">PowerSystemSubProject</a></legend>
+                    <div id="PowerSystemSubProject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + PowerSystemProject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Project'>Project: </label><div class='col-sm-8'><input id='Project' class='form-control' type='text'{{#Project}} value='{{Project}}'{{/Project}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
                 PowerSystemProjectSchedule: PowerSystemProjectSchedule,
-                StepKind: StepKind,
                 PowerSystemProject: PowerSystemProject,
-                ProjectStepStatusKind: ProjectStepStatusKind,
                 ProjectStep: ProjectStep,
                 PowerSystemSubProject: PowerSystemSubProject
             }

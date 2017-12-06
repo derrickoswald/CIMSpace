@@ -61,19 +61,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SecurityConstraintsClearing_collapse" aria-expanded="true" aria-controls="SecurityConstraintsClearing_collapse">SecurityConstraintsClearing</a>
-<div id="SecurityConstraintsClearing_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + MarketPlan.MarketFactors.prototype.template.call (this) +
-`
-{{#mwLimit}}<div><b>mwLimit</b>: {{mwLimit}}</div>{{/mwLimit}}
-{{#mwFlow}}<div><b>mwFlow</b>: {{mwFlow}}</div>{{/mwFlow}}
-{{#shadowPrice}}<div><b>shadowPrice</b>: {{shadowPrice}}</div>{{/shadowPrice}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SecurityConstraintsClearing_collapse" aria-expanded="true" aria-controls="SecurityConstraintsClearing_collapse" style="margin-left: 10px;">SecurityConstraintsClearing</a></legend>
+                    <div id="SecurityConstraintsClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MarketPlan.MarketFactors.prototype.template.call (this) +
+                    `
+                    {{#mwLimit}}<div><b>mwLimit</b>: {{mwLimit}}</div>{{/mwLimit}}
+                    {{#mwFlow}}<div><b>mwFlow</b>: {{mwFlow}}</div>{{/mwFlow}}
+                    {{#shadowPrice}}<div><b>shadowPrice</b>: {{shadowPrice}}</div>{{/shadowPrice}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SecurityConstraintsClearing_collapse" aria-expanded="true" aria-controls="SecurityConstraintsClearing_collapse" style="margin-left: 10px;">SecurityConstraintsClearing</a></legend>
+                    <div id="SecurityConstraintsClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwLimit'>mwLimit: </label><div class='col-sm-8'><input id='mwLimit' class='form-control' type='text'{{#mwLimit}} value='{{mwLimit}}'{{/mwLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwFlow'>mwFlow: </label><div class='col-sm-8'><input id='mwFlow' class='form-control' type='text'{{#mwFlow}} value='{{mwFlow}}'{{/mwFlow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shadowPrice'>shadowPrice: </label><div class='col-sm-8'><input id='shadowPrice' class='form-control' type='text'{{#shadowPrice}} value='{{shadowPrice}}'{{/shadowPrice}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Market case clearing results are posted for a given settlement period.
@@ -132,19 +165,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MarketCaseClearing_collapse" aria-expanded="true" aria-controls="MarketCaseClearing_collapse">MarketCaseClearing</a>
-<div id="MarketCaseClearing_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + MarketPlan.MarketFactors.prototype.template.call (this) +
-`
-{{#caseType}}<div><b>caseType</b>: {{caseType}}</div>{{/caseType}}
-{{#postedDate}}<div><b>postedDate</b>: {{postedDate}}</div>{{/postedDate}}
-{{#modifiedDate}}<div><b>modifiedDate</b>: {{modifiedDate}}</div>{{/modifiedDate}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketCaseClearing_collapse" aria-expanded="true" aria-controls="MarketCaseClearing_collapse" style="margin-left: 10px;">MarketCaseClearing</a></legend>
+                    <div id="MarketCaseClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MarketPlan.MarketFactors.prototype.template.call (this) +
+                    `
+                    {{#caseType}}<div><b>caseType</b>: {{caseType}}</div>{{/caseType}}
+                    {{#postedDate}}<div><b>postedDate</b>: {{postedDate}}</div>{{/postedDate}}
+                    {{#modifiedDate}}<div><b>modifiedDate</b>: {{modifiedDate}}</div>{{/modifiedDate}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketCaseClearing_collapse" aria-expanded="true" aria-controls="MarketCaseClearing_collapse" style="margin-left: 10px;">MarketCaseClearing</a></legend>
+                    <div id="MarketCaseClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='caseType'>caseType: </label><div class='col-sm-8'><input id='caseType' class='form-control' type='text'{{#caseType}} value='{{caseType}}'{{/caseType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='postedDate'>postedDate: </label><div class='col-sm-8'><input id='postedDate' class='form-control' type='text'{{#postedDate}} value='{{postedDate}}'{{/postedDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='modifiedDate'>modifiedDate: </label><div class='col-sm-8'><input id='modifiedDate' class='form-control' type='text'{{#modifiedDate}} value='{{modifiedDate}}'{{/modifiedDate}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Model of market clearing related to results at the inter-ties.
@@ -199,16 +265,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#InterTieClearing_collapse" aria-expanded="true" aria-controls="InterTieClearing_collapse">InterTieClearing</a>
-<div id="InterTieClearing_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + MarketPlan.MarketFactors.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InterTieClearing_collapse" aria-expanded="true" aria-controls="InterTieClearing_collapse" style="margin-left: 10px;">InterTieClearing</a></legend>
+                    <div id="InterTieClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MarketPlan.MarketFactors.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InterTieClearing_collapse" aria-expanded="true" aria-controls="InterTieClearing_collapse" style="margin-left: 10px;">InterTieClearing</a></legend>
+                    <div id="InterTieClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Provides the tie point specific output from the market applications.
@@ -271,20 +367,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#InterTieResults_collapse" aria-expanded="true" aria-controls="InterTieResults_collapse">InterTieResults</a>
-<div id="InterTieResults_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#clearedValue}}<div><b>clearedValue</b>: {{clearedValue}}</div>{{/clearedValue}}
-{{#baseMW}}<div><b>baseMW</b>: {{baseMW}}</div>{{/baseMW}}
-{{#InterTieClearing}}<div><b>InterTieClearing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InterTieClearing}}&quot;);})'>{{InterTieClearing}}</a></div>{{/InterTieClearing}}
-{{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InterTieResults_collapse" aria-expanded="true" aria-controls="InterTieResults_collapse" style="margin-left: 10px;">InterTieResults</a></legend>
+                    <div id="InterTieResults_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#clearedValue}}<div><b>clearedValue</b>: {{clearedValue}}</div>{{/clearedValue}}
+                    {{#baseMW}}<div><b>baseMW</b>: {{baseMW}}</div>{{/baseMW}}
+                    {{#InterTieClearing}}<div><b>InterTieClearing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InterTieClearing}}&quot;);})'>{{InterTieClearing}}</a></div>{{/InterTieClearing}}
+                    {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InterTieResults_collapse" aria-expanded="true" aria-controls="InterTieResults_collapse" style="margin-left: 10px;">InterTieResults</a></legend>
+                    <div id="InterTieResults_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='clearedValue'>clearedValue: </label><div class='col-sm-8'><input id='clearedValue' class='form-control' type='text'{{#clearedValue}} value='{{clearedValue}}'{{/clearedValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='baseMW'>baseMW: </label><div class='col-sm-8'><input id='baseMW' class='form-control' type='text'{{#baseMW}} value='{{baseMW}}'{{/baseMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InterTieClearing'>InterTieClearing: </label><div class='col-sm-8'><input id='InterTieClearing' class='form-control' type='text'{{#InterTieClearing}} value='{{InterTieClearing}}'{{/InterTieClearing}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

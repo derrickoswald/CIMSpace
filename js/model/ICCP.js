@@ -4,6 +4,35 @@ define
     function (base, Core)
     {
 
+        var ICCPControlPointDeviceClass =
+        {
+            SBO: "SBO",
+            NONSBO: "NONSBO"
+        };
+        Object.freeze (ICCPControlPointDeviceClass);
+
+        var ICCPSetPointType =
+        {
+            REAL: "REAL",
+            DISCRETE: "DISCRETE"
+        };
+        Object.freeze (ICCPSetPointType);
+
+        var ICCPPScope =
+        {
+            VCC: "VCC",
+            ICC: "ICC"
+        };
+        Object.freeze (ICCPPScope);
+
+        var ICCPIndicationPointType =
+        {
+            REAL: "REAL",
+            STATE: "STATE",
+            DISCRETE: "DISCRETE"
+        };
+        Object.freeze (ICCPIndicationPointType);
+
         class IPAccessPoint extends base.Element
         {
             constructor (template, cim_data)
@@ -61,21 +90,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#IPAccessPoint_collapse" aria-expanded="true" aria-controls="IPAccessPoint_collapse">IPAccessPoint</a>
-<div id="IPAccessPoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#address}}<div><b>address</b>: {{address}}</div>{{/address}}
-{{#addressType}}<div><b>addressType</b>: {{addressType}}</div>{{/addressType}}
-{{#gateway}}<div><b>gateway</b>: {{gateway}}</div>{{/gateway}}
-{{#subnet}}<div><b>subnet</b>: {{subnet}}</div>{{/subnet}}
-{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IPAccessPoint_collapse" aria-expanded="true" aria-controls="IPAccessPoint_collapse" style="margin-left: 10px;">IPAccessPoint</a></legend>
+                    <div id="IPAccessPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#address}}<div><b>address</b>: {{address}}</div>{{/address}}
+                    {{#addressType}}<div><b>addressType</b>: {{addressType}}</div>{{/addressType}}
+                    {{#gateway}}<div><b>gateway</b>: {{gateway}}</div>{{/gateway}}
+                    {{#subnet}}<div><b>subnet</b>: {{subnet}}</div>{{/subnet}}
+                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IPAccessPoint_collapse" aria-expanded="true" aria-controls="IPAccessPoint_collapse" style="margin-left: 10px;">IPAccessPoint</a></legend>
+                    <div id="IPAccessPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='address'>address: </label><div class='col-sm-8'><input id='address' class='form-control' type='text'{{#address}} value='{{address}}'{{/address}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='addressType'>addressType: </label><div class='col-sm-8'><input id='addressType' class='form-control' type='text'{{#addressType}} value='{{addressType}}'{{/addressType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gateway'>gateway: </label><div class='col-sm-8'><input id='gateway' class='form-control' type='text'{{#gateway}} value='{{gateway}}'{{/gateway}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='subnet'>subnet: </label><div class='col-sm-8'><input id='subnet' class='form-control' type='text'{{#subnet}} value='{{subnet}}'{{/subnet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class IPAddressType extends base.Element
         {
@@ -130,19 +194,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#IPAddressType_collapse" aria-expanded="true" aria-controls="IPAddressType_collapse">IPAddressType</a>
-<div id="IPAddressType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IPAddressType_collapse" aria-expanded="true" aria-controls="IPAddressType_collapse" style="margin-left: 10px;">IPAddressType</a></legend>
+                    <div id="IPAddressType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IPAddressType_collapse" aria-expanded="true" aria-controls="IPAddressType_collapse" style="margin-left: 10px;">IPAddressType</a></legend>
+                    <div id="IPAddressType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><input id='multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><input id='unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This class represents the TASE.2 Information Message Object.
@@ -175,7 +272,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ICCPInformationMessage";
                 base.parse_element (/<cim:ICCPInformationMessage.localReference>([\s\S]*?)<\/cim:ICCPInformationMessage.localReference>/g, obj, "localReference", base.to_string, sub, context);
-                base.parse_element (/<cim:ICCPInformationMessage.scope>([\s\S]*?)<\/cim:ICCPInformationMessage.scope>/g, obj, "scope", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ICCPInformationMessage.scope\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "scope", sub, context);
 
                 var bucket = context.parsed.ICCPInformationMessage;
                 if (null == bucket)
@@ -201,146 +298,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ICCPInformationMessage_collapse" aria-expanded="true" aria-controls="ICCPInformationMessage_collapse">ICCPInformationMessage</a>
-<div id="ICCPInformationMessage_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#localReference}}<div><b>localReference</b>: {{localReference}}</div>{{/localReference}}
-{{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPInformationMessage_collapse" aria-expanded="true" aria-controls="ICCPInformationMessage_collapse" style="margin-left: 10px;">ICCPInformationMessage</a></legend>
+                    <div id="ICCPInformationMessage_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#localReference}}<div><b>localReference</b>: {{localReference}}</div>{{/localReference}}
+                    {{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        class ICCPControlPointDeviceClass extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ICCPControlPointDeviceClass;
-                if (null == bucket)
-                   cim_data.ICCPControlPointDeviceClass = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ICCPControlPointDeviceClass[this._id];
+                super.condition (obj);
+                obj.ICCPPScope = []; if (!obj.scope) obj.ICCPPScope.push ({ id: '', selected: true}); for (var property in ICCPPScope) obj.ICCPPScope.push ({ id: property, selected: obj.scope && obj.scope.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ICCPControlPointDeviceClass";
-                base.parse_element (/<cim:ICCPControlPointDeviceClass.SBO>([\s\S]*?)<\/cim:ICCPControlPointDeviceClass.SBO>/g, obj, "SBO", base.to_string, sub, context);
-                base.parse_element (/<cim:ICCPControlPointDeviceClass.NONSBO>([\s\S]*?)<\/cim:ICCPControlPointDeviceClass.NONSBO>/g, obj, "NONSBO", base.to_string, sub, context);
-
-                var bucket = context.parsed.ICCPControlPointDeviceClass;
-                if (null == bucket)
-                   context.parsed.ICCPControlPointDeviceClass = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.ICCPPScope;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ICCPControlPointDeviceClass", "SBO", base.from_string, fields);
-                base.export_element (obj, "ICCPControlPointDeviceClass", "NONSBO", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ICCPControlPointDeviceClass_collapse" aria-expanded="true" aria-controls="ICCPControlPointDeviceClass_collapse">ICCPControlPointDeviceClass</a>
-<div id="ICCPControlPointDeviceClass_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#SBO}}<div><b>SBO</b>: {{SBO}}</div>{{/SBO}}
-{{#NONSBO}}<div><b>NONSBO</b>: {{NONSBO}}</div>{{/NONSBO}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPInformationMessage_collapse" aria-expanded="true" aria-controls="ICCPInformationMessage_collapse" style="margin-left: 10px;">ICCPInformationMessage</a></legend>
+                    <div id="ICCPInformationMessage_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='localReference'>localReference: </label><div class='col-sm-8'><input id='localReference' class='form-control' type='text'{{#localReference}} value='{{localReference}}'{{/localReference}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scope'>scope: </label><div class='col-sm-8'><select id='scope' class='form-control'>{{#ICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPPScope}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        class ICCPSetPointType extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ICCPSetPointType;
-                if (null == bucket)
-                   cim_data.ICCPSetPointType = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.ICCPSetPointType[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ICCPSetPointType";
-                base.parse_element (/<cim:ICCPSetPointType.REAL>([\s\S]*?)<\/cim:ICCPSetPointType.REAL>/g, obj, "REAL", base.to_string, sub, context);
-                base.parse_element (/<cim:ICCPSetPointType.DISCRETE>([\s\S]*?)<\/cim:ICCPSetPointType.DISCRETE>/g, obj, "DISCRETE", base.to_string, sub, context);
-
-                var bucket = context.parsed.ICCPSetPointType;
-                if (null == bucket)
-                   context.parsed.ICCPSetPointType = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ICCPSetPointType", "REAL", base.from_string, fields);
-                base.export_element (obj, "ICCPSetPointType", "DISCRETE", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#ICCPSetPointType_collapse" aria-expanded="true" aria-controls="ICCPSetPointType_collapse">ICCPSetPointType</a>
-<div id="ICCPSetPointType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#REAL}}<div><b>REAL</b>: {{REAL}}</div>{{/REAL}}
-{{#DISCRETE}}<div><b>DISCRETE</b>: {{DISCRETE}}</div>{{/DISCRETE}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         /**
          * The IdentifiedObject.name attribute must have a value.
@@ -372,7 +375,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ICCPPoint";
-                base.parse_element (/<cim:ICCPPoint.scope>([\s\S]*?)<\/cim:ICCPPoint.scope>/g, obj, "scope", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ICCPPoint.scope\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "scope", sub, context);
                 base.parse_attribute (/<cim:ICCPPoint.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
 
                 var bucket = context.parsed.ICCPPoint;
@@ -399,82 +402,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ICCPPoint_collapse" aria-expanded="true" aria-controls="ICCPPoint_collapse">ICCPPoint</a>
-<div id="ICCPPoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
-{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPPoint_collapse" aria-expanded="true" aria-controls="ICCPPoint_collapse" style="margin-left: 10px;">ICCPPoint</a></legend>
+                    <div id="ICCPPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
+                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        class ICCPPScope extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ICCPPScope;
-                if (null == bucket)
-                   cim_data.ICCPPScope = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ICCPPScope[this._id];
+                super.condition (obj);
+                obj.ICCPPScope = []; if (!obj.scope) obj.ICCPPScope.push ({ id: '', selected: true}); for (var property in ICCPPScope) obj.ICCPPScope.push ({ id: property, selected: obj.scope && obj.scope.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ICCPPScope";
-                base.parse_element (/<cim:ICCPPScope.VCC>([\s\S]*?)<\/cim:ICCPPScope.VCC>/g, obj, "VCC", base.to_string, sub, context);
-                base.parse_element (/<cim:ICCPPScope.ICC>([\s\S]*?)<\/cim:ICCPPScope.ICC>/g, obj, "ICC", base.to_string, sub, context);
-
-                var bucket = context.parsed.ICCPPScope;
-                if (null == bucket)
-                   context.parsed.ICCPPScope = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.ICCPPScope;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ICCPPScope", "VCC", base.from_string, fields);
-                base.export_element (obj, "ICCPPScope", "ICC", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ICCPPScope_collapse" aria-expanded="true" aria-controls="ICCPPScope_collapse">ICCPPScope</a>
-<div id="ICCPPScope_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#VCC}}<div><b>VCC</b>: {{VCC}}</div>{{/VCC}}
-{{#ICC}}<div><b>ICC</b>: {{ICC}}</div>{{/ICC}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPPoint_collapse" aria-expanded="true" aria-controls="ICCPPoint_collapse" style="margin-left: 10px;">ICCPPoint</a></legend>
+                    <div id="ICCPPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scope'>scope: </label><div class='col-sm-8'><select id='scope' class='form-control'>{{#ICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPPScope}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * This class describe the sending (providing) side in a bilateral ICCP data exchange.
@@ -537,87 +510,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TASE2BilateralTable_collapse" aria-expanded="true" aria-controls="TASE2BilateralTable_collapse">TASE2BilateralTable</a>
-<div id="TASE2BilateralTable_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#bilateralTableID}}<div><b>bilateralTableID</b>: {{bilateralTableID}}</div>{{/bilateralTableID}}
-{{#calling}}<div><b>calling</b>: {{calling}}</div>{{/calling}}
-{{#nameOfICC}}<div><b>nameOfICC</b>: {{nameOfICC}}</div>{{/nameOfICC}}
-{{#tase2version}}<div><b>tase2version</b>: {{tase2version}}</div>{{/tase2version}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TASE2BilateralTable_collapse" aria-expanded="true" aria-controls="TASE2BilateralTable_collapse" style="margin-left: 10px;">TASE2BilateralTable</a></legend>
+                    <div id="TASE2BilateralTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#bilateralTableID}}<div><b>bilateralTableID</b>: {{bilateralTableID}}</div>{{/bilateralTableID}}
+                    {{#calling}}<div><b>calling</b>: {{calling}}</div>{{/calling}}
+                    {{#nameOfICC}}<div><b>nameOfICC</b>: {{nameOfICC}}</div>{{/nameOfICC}}
+                    {{#tase2version}}<div><b>tase2version</b>: {{tase2version}}</div>{{/tase2version}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        class ICCPIndicationPointType extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ICCPIndicationPointType;
-                if (null == bucket)
-                   cim_data.ICCPIndicationPointType = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ICCPIndicationPointType[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ICCPIndicationPointType";
-                base.parse_element (/<cim:ICCPIndicationPointType.REAL>([\s\S]*?)<\/cim:ICCPIndicationPointType.REAL>/g, obj, "REAL", base.to_string, sub, context);
-                base.parse_element (/<cim:ICCPIndicationPointType.STATE>([\s\S]*?)<\/cim:ICCPIndicationPointType.STATE>/g, obj, "STATE", base.to_string, sub, context);
-                base.parse_element (/<cim:ICCPIndicationPointType.DISCRETE>([\s\S]*?)<\/cim:ICCPIndicationPointType.DISCRETE>/g, obj, "DISCRETE", base.to_string, sub, context);
-
-                var bucket = context.parsed.ICCPIndicationPointType;
-                if (null == bucket)
-                   context.parsed.ICCPIndicationPointType = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ICCPIndicationPointType", "REAL", base.from_string, fields);
-                base.export_element (obj, "ICCPIndicationPointType", "STATE", base.from_string, fields);
-                base.export_element (obj, "ICCPIndicationPointType", "DISCRETE", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ICCPIndicationPointType_collapse" aria-expanded="true" aria-controls="ICCPIndicationPointType_collapse">ICCPIndicationPointType</a>
-<div id="ICCPIndicationPointType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#REAL}}<div><b>REAL</b>: {{REAL}}</div>{{/REAL}}
-{{#STATE}}<div><b>STATE</b>: {{STATE}}</div>{{/STATE}}
-{{#DISCRETE}}<div><b>DISCRETE</b>: {{DISCRETE}}</div>{{/DISCRETE}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TASE2BilateralTable_collapse" aria-expanded="true" aria-controls="TASE2BilateralTable_collapse" style="margin-left: 10px;">TASE2BilateralTable</a></legend>
+                    <div id="TASE2BilateralTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bilateralTableID'>bilateralTableID: </label><div class='col-sm-8'><input id='bilateralTableID' class='form-control' type='text'{{#bilateralTableID}} value='{{bilateralTableID}}'{{/bilateralTableID}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='calling'>calling: </label><div class='col-sm-8'><input id='calling' class='form-check-input' type='checkbox'{{#calling}} checked{{/calling}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nameOfICC'>nameOfICC: </label><div class='col-sm-8'><input id='nameOfICC' class='form-control' type='text'{{#nameOfICC}} value='{{nameOfICC}}'{{/nameOfICC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tase2version'>tase2version: </label><div class='col-sm-8'><input id='tase2version' class='form-control' type='text'{{#tase2version}} value='{{tase2version}}'{{/tase2version}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         class ISOAPAddressing extends base.Element
         {
@@ -672,19 +612,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ISOAPAddressing_collapse" aria-expanded="true" aria-controls="ISOAPAddressing_collapse">ISOAPAddressing</a>
-<div id="ISOAPAddressing_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ISOAPAddressing_collapse" aria-expanded="true" aria-controls="ISOAPAddressing_collapse" style="margin-left: 10px;">ISOAPAddressing</a></legend>
+                    <div id="ISOAPAddressing_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ISOAPAddressing_collapse" aria-expanded="true" aria-controls="ISOAPAddressing_collapse" style="margin-left: 10px;">ISOAPAddressing</a></legend>
+                    <div id="ISOAPAddressing_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><input id='unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><input id='multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class TCPAcessPoint extends IPAccessPoint
         {
@@ -737,18 +710,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TCPAcessPoint_collapse" aria-expanded="true" aria-controls="TCPAcessPoint_collapse">TCPAcessPoint</a>
-<div id="TCPAcessPoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + IPAccessPoint.prototype.template.call (this) +
-`
-{{#keepAliveTime}}<div><b>keepAliveTime</b>: {{keepAliveTime}}</div>{{/keepAliveTime}}
-{{#port}}<div><b>port</b>: {{port}}</div>{{/port}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TCPAcessPoint_collapse" aria-expanded="true" aria-controls="TCPAcessPoint_collapse" style="margin-left: 10px;">TCPAcessPoint</a></legend>
+                    <div id="TCPAcessPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IPAccessPoint.prototype.template.call (this) +
+                    `
+                    {{#keepAliveTime}}<div><b>keepAliveTime</b>: {{keepAliveTime}}</div>{{/keepAliveTime}}
+                    {{#port}}<div><b>port</b>: {{port}}</div>{{/port}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TCPAcessPoint_collapse" aria-expanded="true" aria-controls="TCPAcessPoint_collapse" style="margin-left: 10px;">TCPAcessPoint</a></legend>
+                    <div id="TCPAcessPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + IPAccessPoint.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='keepAliveTime'>keepAliveTime: </label><div class='col-sm-8'><input id='keepAliveTime' class='form-control' type='text'{{#keepAliveTime}} value='{{keepAliveTime}}'{{/keepAliveTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='port'>port: </label><div class='col-sm-8'><input id='port' class='form-control' type='text'{{#port}} value='{{port}}'{{/port}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class ISOUpperLayer extends TCPAcessPoint
         {
@@ -805,20 +810,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ISOUpperLayer_collapse" aria-expanded="true" aria-controls="ISOUpperLayer_collapse">ISOUpperLayer</a>
-<div id="ISOUpperLayer_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + TCPAcessPoint.prototype.template.call (this) +
-`
-{{#ap}}<div><b>ap</b>: {{ap}}</div>{{/ap}}
-{{#osiPsel}}<div><b>osiPsel</b>: {{osiPsel}}</div>{{/osiPsel}}
-{{#osiSsel}}<div><b>osiSsel</b>: {{osiSsel}}</div>{{/osiSsel}}
-{{#osiTsel}}<div><b>osiTsel</b>: {{osiTsel}}</div>{{/osiTsel}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ISOUpperLayer_collapse" aria-expanded="true" aria-controls="ISOUpperLayer_collapse" style="margin-left: 10px;">ISOUpperLayer</a></legend>
+                    <div id="ISOUpperLayer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TCPAcessPoint.prototype.template.call (this) +
+                    `
+                    {{#ap}}<div><b>ap</b>: {{ap}}</div>{{/ap}}
+                    {{#osiPsel}}<div><b>osiPsel</b>: {{osiPsel}}</div>{{/osiPsel}}
+                    {{#osiSsel}}<div><b>osiSsel</b>: {{osiSsel}}</div>{{/osiSsel}}
+                    {{#osiTsel}}<div><b>osiTsel</b>: {{osiTsel}}</div>{{/osiTsel}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ISOUpperLayer_collapse" aria-expanded="true" aria-controls="ISOUpperLayer_collapse" style="margin-left: 10px;">ISOUpperLayer</a></legend>
+                    <div id="ISOUpperLayer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + TCPAcessPoint.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ap'>ap: </label><div class='col-sm-8'><input id='ap' class='form-control' type='text'{{#ap}} value='{{ap}}'{{/ap}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='osiPsel'>osiPsel: </label><div class='col-sm-8'><input id='osiPsel' class='form-control' type='text'{{#osiPsel}} value='{{osiPsel}}'{{/osiPsel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='osiSsel'>osiSsel: </label><div class='col-sm-8'><input id='osiSsel' class='form-control' type='text'{{#osiSsel}} value='{{osiSsel}}'{{/osiSsel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='osiTsel'>osiTsel: </label><div class='col-sm-8'><input id='osiTsel' class='form-control' type='text'{{#osiTsel}} value='{{osiTsel}}'{{/osiTsel}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class ICCPIndicationPoint extends ICCPPoint
         {
@@ -844,7 +883,7 @@ define
 
                 obj = ICCPPoint.prototype.parse.call (this, context, sub);
                 obj.cls = "ICCPIndicationPoint";
-                base.parse_element (/<cim:ICCPIndicationPoint.type>([\s\S]*?)<\/cim:ICCPIndicationPoint.type>/g, obj, "type", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ICCPIndicationPoint.type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "type", sub, context);
                 base.parse_attribute (/<cim:ICCPIndicationPoint.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
 
                 var bucket = context.parsed.ICCPIndicationPoint;
@@ -871,18 +910,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ICCPIndicationPoint_collapse" aria-expanded="true" aria-controls="ICCPIndicationPoint_collapse">ICCPIndicationPoint</a>
-<div id="ICCPIndicationPoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ICCPPoint.prototype.template.call (this) +
-`
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPIndicationPoint_collapse" aria-expanded="true" aria-controls="ICCPIndicationPoint_collapse" style="margin-left: 10px;">ICCPIndicationPoint</a></legend>
+                    <div id="ICCPIndicationPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ICCPPoint.prototype.template.call (this) +
+                    `
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ICCPIndicationPointType = []; if (!obj.type) obj.ICCPIndicationPointType.push ({ id: '', selected: true}); for (var property in ICCPIndicationPointType) obj.ICCPIndicationPointType.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ICCPIndicationPointType;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPIndicationPoint_collapse" aria-expanded="true" aria-controls="ICCPIndicationPoint_collapse" style="margin-left: 10px;">ICCPIndicationPoint</a></legend>
+                    <div id="ICCPIndicationPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ICCPPoint.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><select id='type' class='form-control'>{{#ICCPIndicationPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPIndicationPointType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class ICCPControlPoint extends ICCPPoint
         {
@@ -908,7 +981,7 @@ define
 
                 obj = ICCPPoint.prototype.parse.call (this, context, sub);
                 obj.cls = "ICCPControlPoint";
-                base.parse_element (/<cim:ICCPControlPoint.deviceClass>([\s\S]*?)<\/cim:ICCPControlPoint.deviceClass>/g, obj, "deviceClass", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ICCPControlPoint.deviceClass\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "deviceClass", sub, context);
                 base.parse_attribute (/<cim:ICCPControlPoint.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
 
                 var bucket = context.parsed.ICCPControlPoint;
@@ -935,18 +1008,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ICCPControlPoint_collapse" aria-expanded="true" aria-controls="ICCPControlPoint_collapse">ICCPControlPoint</a>
-<div id="ICCPControlPoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ICCPPoint.prototype.template.call (this) +
-`
-{{#deviceClass}}<div><b>deviceClass</b>: {{deviceClass}}</div>{{/deviceClass}}
-{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPControlPoint_collapse" aria-expanded="true" aria-controls="ICCPControlPoint_collapse" style="margin-left: 10px;">ICCPControlPoint</a></legend>
+                    <div id="ICCPControlPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ICCPPoint.prototype.template.call (this) +
+                    `
+                    {{#deviceClass}}<div><b>deviceClass</b>: {{deviceClass}}</div>{{/deviceClass}}
+                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ICCPControlPointDeviceClass = []; if (!obj.deviceClass) obj.ICCPControlPointDeviceClass.push ({ id: '', selected: true}); for (var property in ICCPControlPointDeviceClass) obj.ICCPControlPointDeviceClass.push ({ id: property, selected: obj.deviceClass && obj.deviceClass.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ICCPControlPointDeviceClass;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPControlPoint_collapse" aria-expanded="true" aria-controls="ICCPControlPoint_collapse" style="margin-left: 10px;">ICCPControlPoint</a></legend>
+                    <div id="ICCPControlPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ICCPPoint.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='deviceClass'>deviceClass: </label><div class='col-sm-8'><select id='deviceClass' class='form-control'>{{#ICCPControlPointDeviceClass}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPControlPointDeviceClass}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class ICCPCommandPoint extends ICCPControlPoint
         {
@@ -997,17 +1104,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ICCPCommandPoint_collapse" aria-expanded="true" aria-controls="ICCPCommandPoint_collapse">ICCPCommandPoint</a>
-<div id="ICCPCommandPoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ICCPControlPoint.prototype.template.call (this) +
-`
-{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPCommandPoint_collapse" aria-expanded="true" aria-controls="ICCPCommandPoint_collapse" style="margin-left: 10px;">ICCPCommandPoint</a></legend>
+                    <div id="ICCPCommandPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ICCPControlPoint.prototype.template.call (this) +
+                    `
+                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPCommandPoint_collapse" aria-expanded="true" aria-controls="ICCPCommandPoint_collapse" style="margin-left: 10px;">ICCPCommandPoint</a></legend>
+                    <div id="ICCPCommandPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ICCPControlPoint.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class ICCPSetPoint extends ICCPControlPoint
         {
@@ -1033,7 +1171,7 @@ define
 
                 obj = ICCPControlPoint.prototype.parse.call (this, context, sub);
                 obj.cls = "ICCPSetPoint";
-                base.parse_element (/<cim:ICCPSetPoint.type>([\s\S]*?)<\/cim:ICCPSetPoint.type>/g, obj, "type", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ICCPSetPoint.type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "type", sub, context);
                 base.parse_attribute (/<cim:ICCPSetPoint.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
 
                 var bucket = context.parsed.ICCPSetPoint;
@@ -1060,37 +1198,67 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ICCPSetPoint_collapse" aria-expanded="true" aria-controls="ICCPSetPoint_collapse">ICCPSetPoint</a>
-<div id="ICCPSetPoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ICCPControlPoint.prototype.template.call (this) +
-`
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPSetPoint_collapse" aria-expanded="true" aria-controls="ICCPSetPoint_collapse" style="margin-left: 10px;">ICCPSetPoint</a></legend>
+                    <div id="ICCPSetPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ICCPControlPoint.prototype.template.call (this) +
+                    `
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.ICCPSetPointType = []; if (!obj.type) obj.ICCPSetPointType.push ({ id: '', selected: true}); for (var property in ICCPSetPointType) obj.ICCPSetPointType.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.ICCPSetPointType;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPSetPoint_collapse" aria-expanded="true" aria-controls="ICCPSetPoint_collapse" style="margin-left: 10px;">ICCPSetPoint</a></legend>
+                    <div id="ICCPSetPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ICCPControlPoint.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><select id='type' class='form-control'>{{#ICCPSetPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPSetPointType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
                 IPAccessPoint: IPAccessPoint,
-                ICCPPScope: ICCPPScope,
-                TCPAcessPoint: TCPAcessPoint,
-                ISOUpperLayer: ISOUpperLayer,
-                ICCPIndicationPoint: ICCPIndicationPoint,
-                ICCPSetPointType: ICCPSetPointType,
                 ICCPInformationMessage: ICCPInformationMessage,
                 ICCPControlPoint: ICCPControlPoint,
+                ISOUpperLayer: ISOUpperLayer,
+                TCPAcessPoint: TCPAcessPoint,
                 IPAddressType: IPAddressType,
-                ICCPIndicationPointType: ICCPIndicationPointType,
                 ICCPSetPoint: ICCPSetPoint,
                 TASE2BilateralTable: TASE2BilateralTable,
                 ICCPPoint: ICCPPoint,
                 ICCPCommandPoint: ICCPCommandPoint,
                 ISOAPAddressing: ISOAPAddressing,
-                ICCPControlPointDeviceClass: ICCPControlPointDeviceClass
+                ICCPIndicationPoint: ICCPIndicationPoint
             }
         );
     }

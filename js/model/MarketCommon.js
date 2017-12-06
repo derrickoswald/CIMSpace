@@ -9,6 +9,69 @@ define
     {
 
         /**
+         * Kind of market role an organisation can have.
+         *
+         */
+        var MarketRoleKind =
+        {
+            energyServiceConsumer: "energyServiceConsumer",
+            generatorOwner: "generatorOwner",
+            generatorOperator: "generatorOperator",
+            transmissionServiceProvider: "transmissionServiceProvider",
+            transmissionOwner: "transmissionOwner",
+            transmissionOperator: "transmissionOperator",
+            distributionProvider: "distributionProvider",
+            loadServingEntity: "loadServingEntity",
+            purchasingSellingEntity: "purchasingSellingEntity",
+            competitiveRetailer: "competitiveRetailer",
+            reliabilityAuthority: "reliabilityAuthority",
+            planningAuthority: "planningAuthority",
+            balancingAuthority: "balancingAuthority",
+            interchangeAuthority: "interchangeAuthority",
+            transmissionPlanner: "transmissionPlanner",
+            resourcePlanner: "resourcePlanner",
+            standardsDeveloper: "standardsDeveloper",
+            complianceMonitor: "complianceMonitor",
+            BalanceResponsibleParty: "BalanceResponsibleParty",
+            BalanceSupplier: "BalanceSupplier",
+            BillingAgent: "BillingAgent",
+            BlockEnergyTrader: "BlockEnergyTrader",
+            CapacityCoordinator: "CapacityCoordinator",
+            CapacityTrader: "CapacityTrader",
+            Consumer: "Consumer",
+            ConsumptionResponsibleParty: "ConsumptionResponsibleParty",
+            ControlAreaOperator: "ControlAreaOperator",
+            ControlBlockOperator: "ControlBlockOperator",
+            CoordinationCenterOperator: "CoordinationCenterOperator",
+            GridAccessProvider: "GridAccessProvider",
+            GridOperator: "GridOperator",
+            ImbalanceSettlementResponsible: "ImbalanceSettlementResponsible",
+            InterconnectionTradeResponsible: "InterconnectionTradeResponsible",
+            MarketInformationAggregator: "MarketInformationAggregator",
+            MarketOperator: "MarketOperator",
+            MeterAdministrator: "MeterAdministrator",
+            MeterOperator: "MeterOperator",
+            MeteredDataCollector: "MeteredDataCollector",
+            MeteredDataResponsible: "MeteredDataResponsible",
+            MeteredDataAggregator: "MeteredDataAggregator",
+            MeteringPointAdministrator: "MeteringPointAdministrator",
+            MOLResponsible: "MOLResponsible",
+            NominationValidator: "NominationValidator",
+            PartyConnectedToTheGrid: "PartyConnectedToTheGrid",
+            Producer: "Producer",
+            ProductionResponsibleParty: "ProductionResponsibleParty",
+            ReconciliationAccountable: "ReconciliationAccountable",
+            ReconciliationResponsible: "ReconciliationResponsible",
+            ReserveAllocator: "ReserveAllocator",
+            ResourceProvider: "ResourceProvider",
+            SchedulingCoordinator: "SchedulingCoordinator",
+            SystemOperator: "SystemOperator",
+            TradeResponsibleParty: "TradeResponsibleParty",
+            TransmissionCapacityAllocator: "TransmissionCapacityAllocator"
+        };
+        Object.freeze (MarketRoleKind);
+
+        /**
          * The external intended behaviour played by a party within the electricity market.
          *
          */
@@ -36,7 +99,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MarketRole";
-                base.parse_element (/<cim:MarketRole.roleType>([\s\S]*?)<\/cim:MarketRole.roleType>/g, obj, "roleType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketRole.roleType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "roleType", sub, context);
                 base.parse_element (/<cim:MarketRole.status>([\s\S]*?)<\/cim:MarketRole.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketRole.type>([\s\S]*?)<\/cim:MarketRole.type>/g, obj, "type", base.to_string, sub, context);
 
@@ -65,19 +128,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MarketRole_collapse" aria-expanded="true" aria-controls="MarketRole_collapse">MarketRole</a>
-<div id="MarketRole_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#roleType}}<div><b>roleType</b>: {{roleType}}</div>{{/roleType}}
-{{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-{{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketRole_collapse" aria-expanded="true" aria-controls="MarketRole_collapse" style="margin-left: 10px;">MarketRole</a></legend>
+                    <div id="MarketRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#roleType}}<div><b>roleType</b>: {{roleType}}</div>{{/roleType}}
+                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.MarketRoleKind = []; if (!obj.roleType) obj.MarketRoleKind.push ({ id: '', selected: true}); for (var property in MarketRoleKind) obj.MarketRoleKind.push ({ id: property, selected: obj.roleType && obj.roleType.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.MarketRoleKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketRole_collapse" aria-expanded="true" aria-controls="MarketRole_collapse" style="margin-left: 10px;">MarketRole</a></legend>
+                    <div id="MarketRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='roleType'>roleType: </label><div class='col-sm-8'><select id='roleType' class='form-control'>{{#MarketRoleKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketRoleKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A resource that is registered through the market participant registration system.
@@ -200,274 +298,114 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RegisteredResource_collapse" aria-expanded="true" aria-controls="RegisteredResource_collapse">RegisteredResource</a>
-<div id="RegisteredResource_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.PowerSystemResource.prototype.template.call (this) +
-`
-{{#ACAFlag}}<div><b>ACAFlag</b>: {{ACAFlag}}</div>{{/ACAFlag}}
-{{#ASSPOptimizationFlag}}<div><b>ASSPOptimizationFlag</b>: {{ASSPOptimizationFlag}}</div>{{/ASSPOptimizationFlag}}
-{{#commercialOpDate}}<div><b>commercialOpDate</b>: {{commercialOpDate}}</div>{{/commercialOpDate}}
-{{#contingencyAvailFlag}}<div><b>contingencyAvailFlag</b>: {{contingencyAvailFlag}}</div>{{/contingencyAvailFlag}}
-{{#dispatchFlag}}<div><b>dispatchFlag</b>: {{dispatchFlag}}</div>{{/dispatchFlag}}
-{{#ECAFlag}}<div><b>ECAFlag</b>: {{ECAFlag}}</div>{{/ECAFlag}}
-{{#endEffectiveDate}}<div><b>endEffectiveDate</b>: {{endEffectiveDate}}</div>{{/endEffectiveDate}}
-{{#flexibleOfferFlag}}<div><b>flexibleOfferFlag</b>: {{flexibleOfferFlag}}</div>{{/flexibleOfferFlag}}
-{{#hourlyPredispatch}}<div><b>hourlyPredispatch</b>: {{hourlyPredispatch}}</div>{{/hourlyPredispatch}}
-{{#isAggregatedRes}}<div><b>isAggregatedRes</b>: {{isAggregatedRes}}</div>{{/isAggregatedRes}}
-{{#lastModified}}<div><b>lastModified</b>: {{lastModified}}</div>{{/lastModified}}
-{{#LMPMFlag}}<div><b>LMPMFlag</b>: {{LMPMFlag}}</div>{{/LMPMFlag}}
-{{#marketParticipationFlag}}<div><b>marketParticipationFlag</b>: {{marketParticipationFlag}}</div>{{/marketParticipationFlag}}
-{{#maxBaseSelfSchedQty }}<div><b>maxBaseSelfSchedQty </b>: {{maxBaseSelfSchedQty }}</div>{{/maxBaseSelfSchedQty }}
-{{#maxOnTime}}<div><b>maxOnTime</b>: {{maxOnTime}}</div>{{/maxOnTime}}
-{{#minDispatchTime}}<div><b>minDispatchTime</b>: {{minDispatchTime}}</div>{{/minDispatchTime}}
-{{#minOffTime}}<div><b>minOffTime</b>: {{minOffTime}}</div>{{/minOffTime}}
-{{#minOnTime}}<div><b>minOnTime</b>: {{minOnTime}}</div>{{/minOnTime}}
-{{#mustOfferFlag}}<div><b>mustOfferFlag</b>: {{mustOfferFlag}}</div>{{/mustOfferFlag}}
-{{#nonMarket}}<div><b>nonMarket</b>: {{nonMarket}}</div>{{/nonMarket}}
-{{#pointOfDeliveryFlag}}<div><b>pointOfDeliveryFlag</b>: {{pointOfDeliveryFlag}}</div>{{/pointOfDeliveryFlag}}
-{{#priceSetFlagDA}}<div><b>priceSetFlagDA</b>: {{priceSetFlagDA}}</div>{{/priceSetFlagDA}}
-{{#priceSetFlagRT}}<div><b>priceSetFlagRT</b>: {{priceSetFlagRT}}</div>{{/priceSetFlagRT}}
-{{#registrationStatus}}<div><b>registrationStatus</b>: {{registrationStatus}}</div>{{/registrationStatus}}
-{{#resourceAdequacyFlag}}<div><b>resourceAdequacyFlag</b>: {{resourceAdequacyFlag}}</div>{{/resourceAdequacyFlag}}
-{{#SMPMFlag}}<div><b>SMPMFlag</b>: {{SMPMFlag}}</div>{{/SMPMFlag}}
-{{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
-{{#HostControlArea}}<div><b>HostControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HostControlArea}}&quot;);})'>{{HostControlArea}}</a></div>{{/HostControlArea}}
-{{#DefaultBid}}<div><b>DefaultBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DefaultBid}}&quot;);})'>{{DefaultBid}}</a></div>{{/DefaultBid}}
-{{#MktOrganisation}}<div><b>MktOrganisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktOrganisation}}&quot;);})'>{{MktOrganisation}}</a></div>{{/MktOrganisation}}
-{{#MktConnectivityNode}}<div><b>MktConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktConnectivityNode}}&quot;);})'>{{MktConnectivityNode}}</a></div>{{/MktConnectivityNode}}
-{{#Pnode}}<div><b>Pnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Pnode}}&quot;);})'>{{Pnode}}</a></div>{{/Pnode}}
-{{#AdjacentCASet}}<div><b>AdjacentCASet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AdjacentCASet}}&quot;);})'>{{AdjacentCASet}}</a></div>{{/AdjacentCASet}}
-{{#ResourceVerifiableCosts}}<div><b>ResourceVerifiableCosts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ResourceVerifiableCosts}}&quot;);})'>{{ResourceVerifiableCosts}}</a></div>{{/ResourceVerifiableCosts}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RegisteredResource_collapse" aria-expanded="true" aria-controls="RegisteredResource_collapse" style="margin-left: 10px;">RegisteredResource</a></legend>
+                    <div id="RegisteredResource_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    {{#ACAFlag}}<div><b>ACAFlag</b>: {{ACAFlag}}</div>{{/ACAFlag}}
+                    {{#ASSPOptimizationFlag}}<div><b>ASSPOptimizationFlag</b>: {{ASSPOptimizationFlag}}</div>{{/ASSPOptimizationFlag}}
+                    {{#commercialOpDate}}<div><b>commercialOpDate</b>: {{commercialOpDate}}</div>{{/commercialOpDate}}
+                    {{#contingencyAvailFlag}}<div><b>contingencyAvailFlag</b>: {{contingencyAvailFlag}}</div>{{/contingencyAvailFlag}}
+                    {{#dispatchFlag}}<div><b>dispatchFlag</b>: {{dispatchFlag}}</div>{{/dispatchFlag}}
+                    {{#ECAFlag}}<div><b>ECAFlag</b>: {{ECAFlag}}</div>{{/ECAFlag}}
+                    {{#endEffectiveDate}}<div><b>endEffectiveDate</b>: {{endEffectiveDate}}</div>{{/endEffectiveDate}}
+                    {{#flexibleOfferFlag}}<div><b>flexibleOfferFlag</b>: {{flexibleOfferFlag}}</div>{{/flexibleOfferFlag}}
+                    {{#hourlyPredispatch}}<div><b>hourlyPredispatch</b>: {{hourlyPredispatch}}</div>{{/hourlyPredispatch}}
+                    {{#isAggregatedRes}}<div><b>isAggregatedRes</b>: {{isAggregatedRes}}</div>{{/isAggregatedRes}}
+                    {{#lastModified}}<div><b>lastModified</b>: {{lastModified}}</div>{{/lastModified}}
+                    {{#LMPMFlag}}<div><b>LMPMFlag</b>: {{LMPMFlag}}</div>{{/LMPMFlag}}
+                    {{#marketParticipationFlag}}<div><b>marketParticipationFlag</b>: {{marketParticipationFlag}}</div>{{/marketParticipationFlag}}
+                    {{#maxBaseSelfSchedQty }}<div><b>maxBaseSelfSchedQty </b>: {{maxBaseSelfSchedQty }}</div>{{/maxBaseSelfSchedQty }}
+                    {{#maxOnTime}}<div><b>maxOnTime</b>: {{maxOnTime}}</div>{{/maxOnTime}}
+                    {{#minDispatchTime}}<div><b>minDispatchTime</b>: {{minDispatchTime}}</div>{{/minDispatchTime}}
+                    {{#minOffTime}}<div><b>minOffTime</b>: {{minOffTime}}</div>{{/minOffTime}}
+                    {{#minOnTime}}<div><b>minOnTime</b>: {{minOnTime}}</div>{{/minOnTime}}
+                    {{#mustOfferFlag}}<div><b>mustOfferFlag</b>: {{mustOfferFlag}}</div>{{/mustOfferFlag}}
+                    {{#nonMarket}}<div><b>nonMarket</b>: {{nonMarket}}</div>{{/nonMarket}}
+                    {{#pointOfDeliveryFlag}}<div><b>pointOfDeliveryFlag</b>: {{pointOfDeliveryFlag}}</div>{{/pointOfDeliveryFlag}}
+                    {{#priceSetFlagDA}}<div><b>priceSetFlagDA</b>: {{priceSetFlagDA}}</div>{{/priceSetFlagDA}}
+                    {{#priceSetFlagRT}}<div><b>priceSetFlagRT</b>: {{priceSetFlagRT}}</div>{{/priceSetFlagRT}}
+                    {{#registrationStatus}}<div><b>registrationStatus</b>: {{registrationStatus}}</div>{{/registrationStatus}}
+                    {{#resourceAdequacyFlag}}<div><b>resourceAdequacyFlag</b>: {{resourceAdequacyFlag}}</div>{{/resourceAdequacyFlag}}
+                    {{#SMPMFlag}}<div><b>SMPMFlag</b>: {{SMPMFlag}}</div>{{/SMPMFlag}}
+                    {{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
+                    {{#AdjacentCASet}}<div><b>AdjacentCASet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AdjacentCASet}}&quot;);})'>{{AdjacentCASet}}</a></div>{{/AdjacentCASet}}
+                    {{#MktConnectivityNode}}<div><b>MktConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktConnectivityNode}}&quot;);})'>{{MktConnectivityNode}}</a></div>{{/MktConnectivityNode}}
+                    {{#HostControlArea}}<div><b>HostControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HostControlArea}}&quot;);})'>{{HostControlArea}}</a></div>{{/HostControlArea}}
+                    {{#Pnode}}<div><b>Pnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Pnode}}&quot;);})'>{{Pnode}}</a></div>{{/Pnode}}
+                    {{#DefaultBid}}<div><b>DefaultBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DefaultBid}}&quot;);})'>{{DefaultBid}}</a></div>{{/DefaultBid}}
+                    {{#ResourceVerifiableCosts}}<div><b>ResourceVerifiableCosts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ResourceVerifiableCosts}}&quot;);})'>{{ResourceVerifiableCosts}}</a></div>{{/ResourceVerifiableCosts}}
+                    {{#MktOrganisation}}<div><b>MktOrganisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktOrganisation}}&quot;);})'>{{MktOrganisation}}</a></div>{{/MktOrganisation}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of market role an organisation can have.
-         *
-         */
-        class MarketRoleKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.MarketRoleKind;
-                if (null == bucket)
-                   cim_data.MarketRoleKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.MarketRoleKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "MarketRoleKind";
-                base.parse_element (/<cim:MarketRoleKind.energyServiceConsumer>([\s\S]*?)<\/cim:MarketRoleKind.energyServiceConsumer>/g, obj, "energyServiceConsumer", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.generatorOwner>([\s\S]*?)<\/cim:MarketRoleKind.generatorOwner>/g, obj, "generatorOwner", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.generatorOperator>([\s\S]*?)<\/cim:MarketRoleKind.generatorOperator>/g, obj, "generatorOperator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.transmissionServiceProvider>([\s\S]*?)<\/cim:MarketRoleKind.transmissionServiceProvider>/g, obj, "transmissionServiceProvider", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.transmissionOwner>([\s\S]*?)<\/cim:MarketRoleKind.transmissionOwner>/g, obj, "transmissionOwner", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.transmissionOperator>([\s\S]*?)<\/cim:MarketRoleKind.transmissionOperator>/g, obj, "transmissionOperator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.distributionProvider>([\s\S]*?)<\/cim:MarketRoleKind.distributionProvider>/g, obj, "distributionProvider", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.loadServingEntity>([\s\S]*?)<\/cim:MarketRoleKind.loadServingEntity>/g, obj, "loadServingEntity", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.purchasingSellingEntity>([\s\S]*?)<\/cim:MarketRoleKind.purchasingSellingEntity>/g, obj, "purchasingSellingEntity", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.competitiveRetailer>([\s\S]*?)<\/cim:MarketRoleKind.competitiveRetailer>/g, obj, "competitiveRetailer", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.reliabilityAuthority>([\s\S]*?)<\/cim:MarketRoleKind.reliabilityAuthority>/g, obj, "reliabilityAuthority", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.planningAuthority>([\s\S]*?)<\/cim:MarketRoleKind.planningAuthority>/g, obj, "planningAuthority", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.balancingAuthority>([\s\S]*?)<\/cim:MarketRoleKind.balancingAuthority>/g, obj, "balancingAuthority", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.interchangeAuthority>([\s\S]*?)<\/cim:MarketRoleKind.interchangeAuthority>/g, obj, "interchangeAuthority", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.transmissionPlanner>([\s\S]*?)<\/cim:MarketRoleKind.transmissionPlanner>/g, obj, "transmissionPlanner", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.resourcePlanner>([\s\S]*?)<\/cim:MarketRoleKind.resourcePlanner>/g, obj, "resourcePlanner", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.standardsDeveloper>([\s\S]*?)<\/cim:MarketRoleKind.standardsDeveloper>/g, obj, "standardsDeveloper", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.complianceMonitor>([\s\S]*?)<\/cim:MarketRoleKind.complianceMonitor>/g, obj, "complianceMonitor", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.BalanceResponsibleParty>([\s\S]*?)<\/cim:MarketRoleKind.BalanceResponsibleParty>/g, obj, "BalanceResponsibleParty", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.BalanceSupplier>([\s\S]*?)<\/cim:MarketRoleKind.BalanceSupplier>/g, obj, "BalanceSupplier", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.BillingAgent>([\s\S]*?)<\/cim:MarketRoleKind.BillingAgent>/g, obj, "BillingAgent", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.BlockEnergyTrader>([\s\S]*?)<\/cim:MarketRoleKind.BlockEnergyTrader>/g, obj, "BlockEnergyTrader", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.CapacityCoordinator>([\s\S]*?)<\/cim:MarketRoleKind.CapacityCoordinator>/g, obj, "CapacityCoordinator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.CapacityTrader>([\s\S]*?)<\/cim:MarketRoleKind.CapacityTrader>/g, obj, "CapacityTrader", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.Consumer>([\s\S]*?)<\/cim:MarketRoleKind.Consumer>/g, obj, "Consumer", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.ConsumptionResponsibleParty>([\s\S]*?)<\/cim:MarketRoleKind.ConsumptionResponsibleParty>/g, obj, "ConsumptionResponsibleParty", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.ControlAreaOperator>([\s\S]*?)<\/cim:MarketRoleKind.ControlAreaOperator>/g, obj, "ControlAreaOperator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.ControlBlockOperator>([\s\S]*?)<\/cim:MarketRoleKind.ControlBlockOperator>/g, obj, "ControlBlockOperator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.CoordinationCenterOperator>([\s\S]*?)<\/cim:MarketRoleKind.CoordinationCenterOperator>/g, obj, "CoordinationCenterOperator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.GridAccessProvider>([\s\S]*?)<\/cim:MarketRoleKind.GridAccessProvider>/g, obj, "GridAccessProvider", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.GridOperator>([\s\S]*?)<\/cim:MarketRoleKind.GridOperator>/g, obj, "GridOperator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.ImbalanceSettlementResponsible>([\s\S]*?)<\/cim:MarketRoleKind.ImbalanceSettlementResponsible>/g, obj, "ImbalanceSettlementResponsible", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.InterconnectionTradeResponsible>([\s\S]*?)<\/cim:MarketRoleKind.InterconnectionTradeResponsible>/g, obj, "InterconnectionTradeResponsible", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.MarketInformationAggregator>([\s\S]*?)<\/cim:MarketRoleKind.MarketInformationAggregator>/g, obj, "MarketInformationAggregator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.MarketOperator>([\s\S]*?)<\/cim:MarketRoleKind.MarketOperator>/g, obj, "MarketOperator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.MeterAdministrator>([\s\S]*?)<\/cim:MarketRoleKind.MeterAdministrator>/g, obj, "MeterAdministrator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.MeterOperator>([\s\S]*?)<\/cim:MarketRoleKind.MeterOperator>/g, obj, "MeterOperator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.MeteredDataCollector>([\s\S]*?)<\/cim:MarketRoleKind.MeteredDataCollector>/g, obj, "MeteredDataCollector", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.MeteredDataResponsible>([\s\S]*?)<\/cim:MarketRoleKind.MeteredDataResponsible>/g, obj, "MeteredDataResponsible", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.MeteredDataAggregator>([\s\S]*?)<\/cim:MarketRoleKind.MeteredDataAggregator>/g, obj, "MeteredDataAggregator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.MeteringPointAdministrator>([\s\S]*?)<\/cim:MarketRoleKind.MeteringPointAdministrator>/g, obj, "MeteringPointAdministrator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.MOLResponsible>([\s\S]*?)<\/cim:MarketRoleKind.MOLResponsible>/g, obj, "MOLResponsible", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.NominationValidator>([\s\S]*?)<\/cim:MarketRoleKind.NominationValidator>/g, obj, "NominationValidator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.PartyConnectedToTheGrid>([\s\S]*?)<\/cim:MarketRoleKind.PartyConnectedToTheGrid>/g, obj, "PartyConnectedToTheGrid", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.Producer>([\s\S]*?)<\/cim:MarketRoleKind.Producer>/g, obj, "Producer", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.ProductionResponsibleParty>([\s\S]*?)<\/cim:MarketRoleKind.ProductionResponsibleParty>/g, obj, "ProductionResponsibleParty", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.ReconciliationAccountable>([\s\S]*?)<\/cim:MarketRoleKind.ReconciliationAccountable>/g, obj, "ReconciliationAccountable", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.ReconciliationResponsible>([\s\S]*?)<\/cim:MarketRoleKind.ReconciliationResponsible>/g, obj, "ReconciliationResponsible", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.ReserveAllocator>([\s\S]*?)<\/cim:MarketRoleKind.ReserveAllocator>/g, obj, "ReserveAllocator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.ResourceProvider>([\s\S]*?)<\/cim:MarketRoleKind.ResourceProvider>/g, obj, "ResourceProvider", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.SchedulingCoordinator>([\s\S]*?)<\/cim:MarketRoleKind.SchedulingCoordinator>/g, obj, "SchedulingCoordinator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.SystemOperator>([\s\S]*?)<\/cim:MarketRoleKind.SystemOperator>/g, obj, "SystemOperator", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.TradeResponsibleParty>([\s\S]*?)<\/cim:MarketRoleKind.TradeResponsibleParty>/g, obj, "TradeResponsibleParty", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketRoleKind.TransmissionCapacityAllocator>([\s\S]*?)<\/cim:MarketRoleKind.TransmissionCapacityAllocator>/g, obj, "TransmissionCapacityAllocator", base.to_string, sub, context);
-
-                var bucket = context.parsed.MarketRoleKind;
-                if (null == bucket)
-                   context.parsed.MarketRoleKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "MarketRoleKind", "energyServiceConsumer", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "generatorOwner", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "generatorOperator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "transmissionServiceProvider", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "transmissionOwner", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "transmissionOperator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "distributionProvider", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "loadServingEntity", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "purchasingSellingEntity", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "competitiveRetailer", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "reliabilityAuthority", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "planningAuthority", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "balancingAuthority", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "interchangeAuthority", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "transmissionPlanner", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "resourcePlanner", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "standardsDeveloper", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "complianceMonitor", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "BalanceResponsibleParty", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "BalanceSupplier", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "BillingAgent", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "BlockEnergyTrader", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "CapacityCoordinator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "CapacityTrader", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "Consumer", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "ConsumptionResponsibleParty", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "ControlAreaOperator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "ControlBlockOperator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "CoordinationCenterOperator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "GridAccessProvider", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "GridOperator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "ImbalanceSettlementResponsible", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "InterconnectionTradeResponsible", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "MarketInformationAggregator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "MarketOperator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "MeterAdministrator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "MeterOperator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "MeteredDataCollector", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "MeteredDataResponsible", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "MeteredDataAggregator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "MeteringPointAdministrator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "MOLResponsible", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "NominationValidator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "PartyConnectedToTheGrid", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "Producer", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "ProductionResponsibleParty", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "ReconciliationAccountable", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "ReconciliationResponsible", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "ReserveAllocator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "ResourceProvider", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "SchedulingCoordinator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "SystemOperator", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "TradeResponsibleParty", base.from_string, fields);
-                base.export_element (obj, "MarketRoleKind", "TransmissionCapacityAllocator", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MarketRoleKind_collapse" aria-expanded="true" aria-controls="MarketRoleKind_collapse">MarketRoleKind</a>
-<div id="MarketRoleKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#energyServiceConsumer}}<div><b>energyServiceConsumer</b>: {{energyServiceConsumer}}</div>{{/energyServiceConsumer}}
-{{#generatorOwner}}<div><b>generatorOwner</b>: {{generatorOwner}}</div>{{/generatorOwner}}
-{{#generatorOperator}}<div><b>generatorOperator</b>: {{generatorOperator}}</div>{{/generatorOperator}}
-{{#transmissionServiceProvider}}<div><b>transmissionServiceProvider</b>: {{transmissionServiceProvider}}</div>{{/transmissionServiceProvider}}
-{{#transmissionOwner}}<div><b>transmissionOwner</b>: {{transmissionOwner}}</div>{{/transmissionOwner}}
-{{#transmissionOperator}}<div><b>transmissionOperator</b>: {{transmissionOperator}}</div>{{/transmissionOperator}}
-{{#distributionProvider}}<div><b>distributionProvider</b>: {{distributionProvider}}</div>{{/distributionProvider}}
-{{#loadServingEntity}}<div><b>loadServingEntity</b>: {{loadServingEntity}}</div>{{/loadServingEntity}}
-{{#purchasingSellingEntity}}<div><b>purchasingSellingEntity</b>: {{purchasingSellingEntity}}</div>{{/purchasingSellingEntity}}
-{{#competitiveRetailer}}<div><b>competitiveRetailer</b>: {{competitiveRetailer}}</div>{{/competitiveRetailer}}
-{{#reliabilityAuthority}}<div><b>reliabilityAuthority</b>: {{reliabilityAuthority}}</div>{{/reliabilityAuthority}}
-{{#planningAuthority}}<div><b>planningAuthority</b>: {{planningAuthority}}</div>{{/planningAuthority}}
-{{#balancingAuthority}}<div><b>balancingAuthority</b>: {{balancingAuthority}}</div>{{/balancingAuthority}}
-{{#interchangeAuthority}}<div><b>interchangeAuthority</b>: {{interchangeAuthority}}</div>{{/interchangeAuthority}}
-{{#transmissionPlanner}}<div><b>transmissionPlanner</b>: {{transmissionPlanner}}</div>{{/transmissionPlanner}}
-{{#resourcePlanner}}<div><b>resourcePlanner</b>: {{resourcePlanner}}</div>{{/resourcePlanner}}
-{{#standardsDeveloper}}<div><b>standardsDeveloper</b>: {{standardsDeveloper}}</div>{{/standardsDeveloper}}
-{{#complianceMonitor}}<div><b>complianceMonitor</b>: {{complianceMonitor}}</div>{{/complianceMonitor}}
-{{#BalanceResponsibleParty}}<div><b>BalanceResponsibleParty</b>: {{BalanceResponsibleParty}}</div>{{/BalanceResponsibleParty}}
-{{#BalanceSupplier}}<div><b>BalanceSupplier</b>: {{BalanceSupplier}}</div>{{/BalanceSupplier}}
-{{#BillingAgent}}<div><b>BillingAgent</b>: {{BillingAgent}}</div>{{/BillingAgent}}
-{{#BlockEnergyTrader}}<div><b>BlockEnergyTrader</b>: {{BlockEnergyTrader}}</div>{{/BlockEnergyTrader}}
-{{#CapacityCoordinator}}<div><b>CapacityCoordinator</b>: {{CapacityCoordinator}}</div>{{/CapacityCoordinator}}
-{{#CapacityTrader}}<div><b>CapacityTrader</b>: {{CapacityTrader}}</div>{{/CapacityTrader}}
-{{#Consumer}}<div><b>Consumer</b>: {{Consumer}}</div>{{/Consumer}}
-{{#ConsumptionResponsibleParty}}<div><b>ConsumptionResponsibleParty</b>: {{ConsumptionResponsibleParty}}</div>{{/ConsumptionResponsibleParty}}
-{{#ControlAreaOperator}}<div><b>ControlAreaOperator</b>: {{ControlAreaOperator}}</div>{{/ControlAreaOperator}}
-{{#ControlBlockOperator}}<div><b>ControlBlockOperator</b>: {{ControlBlockOperator}}</div>{{/ControlBlockOperator}}
-{{#CoordinationCenterOperator}}<div><b>CoordinationCenterOperator</b>: {{CoordinationCenterOperator}}</div>{{/CoordinationCenterOperator}}
-{{#GridAccessProvider}}<div><b>GridAccessProvider</b>: {{GridAccessProvider}}</div>{{/GridAccessProvider}}
-{{#GridOperator}}<div><b>GridOperator</b>: {{GridOperator}}</div>{{/GridOperator}}
-{{#ImbalanceSettlementResponsible}}<div><b>ImbalanceSettlementResponsible</b>: {{ImbalanceSettlementResponsible}}</div>{{/ImbalanceSettlementResponsible}}
-{{#InterconnectionTradeResponsible}}<div><b>InterconnectionTradeResponsible</b>: {{InterconnectionTradeResponsible}}</div>{{/InterconnectionTradeResponsible}}
-{{#MarketInformationAggregator}}<div><b>MarketInformationAggregator</b>: {{MarketInformationAggregator}}</div>{{/MarketInformationAggregator}}
-{{#MarketOperator}}<div><b>MarketOperator</b>: {{MarketOperator}}</div>{{/MarketOperator}}
-{{#MeterAdministrator}}<div><b>MeterAdministrator</b>: {{MeterAdministrator}}</div>{{/MeterAdministrator}}
-{{#MeterOperator}}<div><b>MeterOperator</b>: {{MeterOperator}}</div>{{/MeterOperator}}
-{{#MeteredDataCollector}}<div><b>MeteredDataCollector</b>: {{MeteredDataCollector}}</div>{{/MeteredDataCollector}}
-{{#MeteredDataResponsible}}<div><b>MeteredDataResponsible</b>: {{MeteredDataResponsible}}</div>{{/MeteredDataResponsible}}
-{{#MeteredDataAggregator}}<div><b>MeteredDataAggregator</b>: {{MeteredDataAggregator}}</div>{{/MeteredDataAggregator}}
-{{#MeteringPointAdministrator}}<div><b>MeteringPointAdministrator</b>: {{MeteringPointAdministrator}}</div>{{/MeteringPointAdministrator}}
-{{#MOLResponsible}}<div><b>MOLResponsible</b>: {{MOLResponsible}}</div>{{/MOLResponsible}}
-{{#NominationValidator}}<div><b>NominationValidator</b>: {{NominationValidator}}</div>{{/NominationValidator}}
-{{#PartyConnectedToTheGrid}}<div><b>PartyConnectedToTheGrid</b>: {{PartyConnectedToTheGrid}}</div>{{/PartyConnectedToTheGrid}}
-{{#Producer}}<div><b>Producer</b>: {{Producer}}</div>{{/Producer}}
-{{#ProductionResponsibleParty}}<div><b>ProductionResponsibleParty</b>: {{ProductionResponsibleParty}}</div>{{/ProductionResponsibleParty}}
-{{#ReconciliationAccountable}}<div><b>ReconciliationAccountable</b>: {{ReconciliationAccountable}}</div>{{/ReconciliationAccountable}}
-{{#ReconciliationResponsible}}<div><b>ReconciliationResponsible</b>: {{ReconciliationResponsible}}</div>{{/ReconciliationResponsible}}
-{{#ReserveAllocator}}<div><b>ReserveAllocator</b>: {{ReserveAllocator}}</div>{{/ReserveAllocator}}
-{{#ResourceProvider}}<div><b>ResourceProvider</b>: {{ResourceProvider}}</div>{{/ResourceProvider}}
-{{#SchedulingCoordinator}}<div><b>SchedulingCoordinator</b>: {{SchedulingCoordinator}}</div>{{/SchedulingCoordinator}}
-{{#SystemOperator}}<div><b>SystemOperator</b>: {{SystemOperator}}</div>{{/SystemOperator}}
-{{#TradeResponsibleParty}}<div><b>TradeResponsibleParty</b>: {{TradeResponsibleParty}}</div>{{/TradeResponsibleParty}}
-{{#TransmissionCapacityAllocator}}<div><b>TransmissionCapacityAllocator</b>: {{TransmissionCapacityAllocator}}</div>{{/TransmissionCapacityAllocator}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RegisteredResource_collapse" aria-expanded="true" aria-controls="RegisteredResource_collapse" style="margin-left: 10px;">RegisteredResource</a></legend>
+                    <div id="RegisteredResource_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ACAFlag'>ACAFlag: </label><div class='col-sm-8'><input id='ACAFlag' class='form-control' type='text'{{#ACAFlag}} value='{{ACAFlag}}'{{/ACAFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ASSPOptimizationFlag'>ASSPOptimizationFlag: </label><div class='col-sm-8'><input id='ASSPOptimizationFlag' class='form-control' type='text'{{#ASSPOptimizationFlag}} value='{{ASSPOptimizationFlag}}'{{/ASSPOptimizationFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='commercialOpDate'>commercialOpDate: </label><div class='col-sm-8'><input id='commercialOpDate' class='form-control' type='text'{{#commercialOpDate}} value='{{commercialOpDate}}'{{/commercialOpDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='contingencyAvailFlag'>contingencyAvailFlag: </label><div class='col-sm-8'><input id='contingencyAvailFlag' class='form-control' type='text'{{#contingencyAvailFlag}} value='{{contingencyAvailFlag}}'{{/contingencyAvailFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dispatchFlag'>dispatchFlag: </label><div class='col-sm-8'><input id='dispatchFlag' class='form-control' type='text'{{#dispatchFlag}} value='{{dispatchFlag}}'{{/dispatchFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ECAFlag'>ECAFlag: </label><div class='col-sm-8'><input id='ECAFlag' class='form-control' type='text'{{#ECAFlag}} value='{{ECAFlag}}'{{/ECAFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flexibleOfferFlag'>flexibleOfferFlag: </label><div class='col-sm-8'><input id='flexibleOfferFlag' class='form-control' type='text'{{#flexibleOfferFlag}} value='{{flexibleOfferFlag}}'{{/flexibleOfferFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hourlyPredispatch'>hourlyPredispatch: </label><div class='col-sm-8'><input id='hourlyPredispatch' class='form-control' type='text'{{#hourlyPredispatch}} value='{{hourlyPredispatch}}'{{/hourlyPredispatch}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='isAggregatedRes'>isAggregatedRes: </label><div class='col-sm-8'><input id='isAggregatedRes' class='form-control' type='text'{{#isAggregatedRes}} value='{{isAggregatedRes}}'{{/isAggregatedRes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastModified'>lastModified: </label><div class='col-sm-8'><input id='lastModified' class='form-control' type='text'{{#lastModified}} value='{{lastModified}}'{{/lastModified}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LMPMFlag'>LMPMFlag: </label><div class='col-sm-8'><input id='LMPMFlag' class='form-control' type='text'{{#LMPMFlag}} value='{{LMPMFlag}}'{{/LMPMFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketParticipationFlag'>marketParticipationFlag: </label><div class='col-sm-8'><input id='marketParticipationFlag' class='form-control' type='text'{{#marketParticipationFlag}} value='{{marketParticipationFlag}}'{{/marketParticipationFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxBaseSelfSchedQty '>maxBaseSelfSchedQty : </label><div class='col-sm-8'><input id='maxBaseSelfSchedQty ' class='form-control' type='text'{{#maxBaseSelfSchedQty }} value='{{maxBaseSelfSchedQty }}'{{/maxBaseSelfSchedQty }}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxOnTime'>maxOnTime: </label><div class='col-sm-8'><input id='maxOnTime' class='form-control' type='text'{{#maxOnTime}} value='{{maxOnTime}}'{{/maxOnTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minDispatchTime'>minDispatchTime: </label><div class='col-sm-8'><input id='minDispatchTime' class='form-control' type='text'{{#minDispatchTime}} value='{{minDispatchTime}}'{{/minDispatchTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minOffTime'>minOffTime: </label><div class='col-sm-8'><input id='minOffTime' class='form-control' type='text'{{#minOffTime}} value='{{minOffTime}}'{{/minOffTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minOnTime'>minOnTime: </label><div class='col-sm-8'><input id='minOnTime' class='form-control' type='text'{{#minOnTime}} value='{{minOnTime}}'{{/minOnTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mustOfferFlag'>mustOfferFlag: </label><div class='col-sm-8'><input id='mustOfferFlag' class='form-control' type='text'{{#mustOfferFlag}} value='{{mustOfferFlag}}'{{/mustOfferFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nonMarket'>nonMarket: </label><div class='col-sm-8'><input id='nonMarket' class='form-control' type='text'{{#nonMarket}} value='{{nonMarket}}'{{/nonMarket}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pointOfDeliveryFlag'>pointOfDeliveryFlag: </label><div class='col-sm-8'><input id='pointOfDeliveryFlag' class='form-control' type='text'{{#pointOfDeliveryFlag}} value='{{pointOfDeliveryFlag}}'{{/pointOfDeliveryFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priceSetFlagDA'>priceSetFlagDA: </label><div class='col-sm-8'><input id='priceSetFlagDA' class='form-control' type='text'{{#priceSetFlagDA}} value='{{priceSetFlagDA}}'{{/priceSetFlagDA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priceSetFlagRT'>priceSetFlagRT: </label><div class='col-sm-8'><input id='priceSetFlagRT' class='form-control' type='text'{{#priceSetFlagRT}} value='{{priceSetFlagRT}}'{{/priceSetFlagRT}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='registrationStatus'>registrationStatus: </label><div class='col-sm-8'><input id='registrationStatus' class='form-control' type='text'{{#registrationStatus}} value='{{registrationStatus}}'{{/registrationStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resourceAdequacyFlag'>resourceAdequacyFlag: </label><div class='col-sm-8'><input id='resourceAdequacyFlag' class='form-control' type='text'{{#resourceAdequacyFlag}} value='{{resourceAdequacyFlag}}'{{/resourceAdequacyFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SMPMFlag'>SMPMFlag: </label><div class='col-sm-8'><input id='SMPMFlag' class='form-control' type='text'{{#SMPMFlag}} value='{{SMPMFlag}}'{{/SMPMFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AdjacentCASet'>AdjacentCASet: </label><div class='col-sm-8'><input id='AdjacentCASet' class='form-control' type='text'{{#AdjacentCASet}} value='{{AdjacentCASet}}'{{/AdjacentCASet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktConnectivityNode'>MktConnectivityNode: </label><div class='col-sm-8'><input id='MktConnectivityNode' class='form-control' type='text'{{#MktConnectivityNode}} value='{{MktConnectivityNode}}'{{/MktConnectivityNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Pnode'>Pnode: </label><div class='col-sm-8'><input id='Pnode' class='form-control' type='text'{{#Pnode}} value='{{Pnode}}'{{/Pnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DefaultBid'>DefaultBid: </label><div class='col-sm-8'><input id='DefaultBid' class='form-control' type='text'{{#DefaultBid}} value='{{DefaultBid}}'{{/DefaultBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceVerifiableCosts'>ResourceVerifiableCosts: </label><div class='col-sm-8'><input id='ResourceVerifiableCosts' class='form-control' type='text'{{#ResourceVerifiableCosts}} value='{{ResourceVerifiableCosts}}'{{/ResourceVerifiableCosts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}'{{/MktOrganisation}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * An identification of a party acting in a electricity market business process.
@@ -522,21 +460,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MarketParticipant_collapse" aria-expanded="true" aria-controls="MarketParticipant_collapse">MarketParticipant</a>
-<div id="MarketParticipant_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Organisation.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketParticipant_collapse" aria-expanded="true" aria-controls="MarketParticipant_collapse" style="margin-left: 10px;">MarketParticipant</a></legend>
+                    <div id="MarketParticipant_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketParticipant_collapse" aria-expanded="true" aria-controls="MarketParticipant_collapse" style="margin-left: 10px;">MarketParticipant</a></legend>
+                    <div id="MarketParticipant_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
                 RegisteredResource: RegisteredResource,
-                MarketRoleKind: MarketRoleKind,
                 MarketRole: MarketRole,
                 MarketParticipant: MarketParticipant
             }

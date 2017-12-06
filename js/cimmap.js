@@ -318,9 +318,20 @@ define
 
         function detail_text (feature)
         {
+            var text
             var cls = cim.class_map (feature);
-            var template = cls.prototype.template ();
-            var text = mustache.render (template, feature);
+            if (TheEditor.visible ())
+            {
+                cls.prototype.condition (feature);
+                var template = cls.prototype.edit_template ();
+                text = mustache.render (template, feature);
+                cls.prototype.uncondition (feature);
+            }
+            else
+            {
+                var template = cls.prototype.template ();
+                text = mustache.render (template, feature);
+            }
 
             var conducting = CIM_Data.ConductingEquipment[CURRENT_FEATURE];
             if ("undefined" != typeof (conducting))
@@ -835,7 +846,7 @@ define
         {
             var text;
             if (null != CIM_Data)
-                if ("" != (text = document.getElementById ("search_text").value))
+                if ("" != (text = document.getElementById ("search_text").value.trim ()))
                 {
                     var match = [];
                     for (var id in CIM_Data.Element)

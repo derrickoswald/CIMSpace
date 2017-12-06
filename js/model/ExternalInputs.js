@@ -79,26 +79,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransmissionCapacity_collapse" aria-expanded="true" aria-controls="TransmissionCapacity_collapse">TransmissionCapacity</a>
-<div id="TransmissionCapacity_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#capacityBenefitMargin}}<div><b>capacityBenefitMargin</b>: {{capacityBenefitMargin}}</div>{{/capacityBenefitMargin}}
-{{#operationalTransmissionCapacity}}<div><b>operationalTransmissionCapacity</b>: {{operationalTransmissionCapacity}}</div>{{/operationalTransmissionCapacity}}
-{{#OTC15min_emergency}}<div><b>OTC15min_emergency</b>: {{OTC15min_emergency}}</div>{{/OTC15min_emergency}}
-{{#OTCemergency}}<div><b>OTCemergency</b>: {{OTCemergency}}</div>{{/OTCemergency}}
-{{#POD}}<div><b>POD</b>: {{POD}}</div>{{/POD}}
-{{#POR}}<div><b>POR</b>: {{POR}}</div>{{/POR}}
-{{#startOperatingDate}}<div><b>startOperatingDate</b>: {{startOperatingDate}}</div>{{/startOperatingDate}}
-{{#totalTransmissionCapacity}}<div><b>totalTransmissionCapacity</b>: {{totalTransmissionCapacity}}</div>{{/totalTransmissionCapacity}}
-{{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
-{{#GenericConstraints}}<div><b>GenericConstraints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenericConstraints}}&quot;);})'>{{GenericConstraints}}</a></div>{{/GenericConstraints}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionCapacity_collapse" aria-expanded="true" aria-controls="TransmissionCapacity_collapse" style="margin-left: 10px;">TransmissionCapacity</a></legend>
+                    <div id="TransmissionCapacity_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#capacityBenefitMargin}}<div><b>capacityBenefitMargin</b>: {{capacityBenefitMargin}}</div>{{/capacityBenefitMargin}}
+                    {{#operationalTransmissionCapacity}}<div><b>operationalTransmissionCapacity</b>: {{operationalTransmissionCapacity}}</div>{{/operationalTransmissionCapacity}}
+                    {{#OTC15min_emergency}}<div><b>OTC15min_emergency</b>: {{OTC15min_emergency}}</div>{{/OTC15min_emergency}}
+                    {{#OTCemergency}}<div><b>OTCemergency</b>: {{OTCemergency}}</div>{{/OTCemergency}}
+                    {{#POD}}<div><b>POD</b>: {{POD}}</div>{{/POD}}
+                    {{#POR}}<div><b>POR</b>: {{POR}}</div>{{/POR}}
+                    {{#startOperatingDate}}<div><b>startOperatingDate</b>: {{startOperatingDate}}</div>{{/startOperatingDate}}
+                    {{#totalTransmissionCapacity}}<div><b>totalTransmissionCapacity</b>: {{totalTransmissionCapacity}}</div>{{/totalTransmissionCapacity}}
+                    {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+                    {{#GenericConstraints}}<div><b>GenericConstraints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenericConstraints}}&quot;);})'>{{GenericConstraints}}</a></div>{{/GenericConstraints}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionCapacity_collapse" aria-expanded="true" aria-controls="TransmissionCapacity_collapse" style="margin-left: 10px;">TransmissionCapacity</a></legend>
+                    <div id="TransmissionCapacity_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='capacityBenefitMargin'>capacityBenefitMargin: </label><div class='col-sm-8'><input id='capacityBenefitMargin' class='form-control' type='text'{{#capacityBenefitMargin}} value='{{capacityBenefitMargin}}'{{/capacityBenefitMargin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='operationalTransmissionCapacity'>operationalTransmissionCapacity: </label><div class='col-sm-8'><input id='operationalTransmissionCapacity' class='form-control' type='text'{{#operationalTransmissionCapacity}} value='{{operationalTransmissionCapacity}}'{{/operationalTransmissionCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OTC15min_emergency'>OTC15min_emergency: </label><div class='col-sm-8'><input id='OTC15min_emergency' class='form-control' type='text'{{#OTC15min_emergency}} value='{{OTC15min_emergency}}'{{/OTC15min_emergency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OTCemergency'>OTCemergency: </label><div class='col-sm-8'><input id='OTCemergency' class='form-control' type='text'{{#OTCemergency}} value='{{OTCemergency}}'{{/OTCemergency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='POD'>POD: </label><div class='col-sm-8'><input id='POD' class='form-control' type='text'{{#POD}} value='{{POD}}'{{/POD}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='POR'>POR: </label><div class='col-sm-8'><input id='POR' class='form-control' type='text'{{#POR}} value='{{POR}}'{{/POR}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startOperatingDate'>startOperatingDate: </label><div class='col-sm-8'><input id='startOperatingDate' class='form-control' type='text'{{#startOperatingDate}} value='{{startOperatingDate}}'{{/startOperatingDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='totalTransmissionCapacity'>totalTransmissionCapacity: </label><div class='col-sm-8'><input id='totalTransmissionCapacity' class='form-control' type='text'{{#totalTransmissionCapacity}} value='{{totalTransmissionCapacity}}'{{/totalTransmissionCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GenericConstraints'>GenericConstraints: </label><div class='col-sm-8'><input id='GenericConstraints' class='form-control' type='text'{{#GenericConstraints}} value='{{GenericConstraints}}'{{/GenericConstraints}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Optimal Power Flow or State Estimator Filter Bank Data for OTS.
@@ -165,22 +205,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ShuntCompensatorDynamicData_collapse" aria-expanded="true" aria-controls="ShuntCompensatorDynamicData_collapse">ShuntCompensatorDynamicData</a>
-<div id="ShuntCompensatorDynamicData_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#mVARInjection}}<div><b>mVARInjection</b>: {{mVARInjection}}</div>{{/mVARInjection}}
-{{#connectionStatus}}<div><b>connectionStatus</b>: {{connectionStatus}}</div>{{/connectionStatus}}
-{{#desiredVoltage}}<div><b>desiredVoltage</b>: {{desiredVoltage}}</div>{{/desiredVoltage}}
-{{#voltageRegulationStatus}}<div><b>voltageRegulationStatus</b>: {{voltageRegulationStatus}}</div>{{/voltageRegulationStatus}}
-{{#stepPosition}}<div><b>stepPosition</b>: {{stepPosition}}</div>{{/stepPosition}}
-{{#MktShuntCompensator}}<div><b>MktShuntCompensator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktShuntCompensator}}&quot;);})'>{{MktShuntCompensator}}</a></div>{{/MktShuntCompensator}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShuntCompensatorDynamicData_collapse" aria-expanded="true" aria-controls="ShuntCompensatorDynamicData_collapse" style="margin-left: 10px;">ShuntCompensatorDynamicData</a></legend>
+                    <div id="ShuntCompensatorDynamicData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#mVARInjection}}<div><b>mVARInjection</b>: {{mVARInjection}}</div>{{/mVARInjection}}
+                    {{#connectionStatus}}<div><b>connectionStatus</b>: {{connectionStatus}}</div>{{/connectionStatus}}
+                    {{#desiredVoltage}}<div><b>desiredVoltage</b>: {{desiredVoltage}}</div>{{/desiredVoltage}}
+                    {{#voltageRegulationStatus}}<div><b>voltageRegulationStatus</b>: {{voltageRegulationStatus}}</div>{{/voltageRegulationStatus}}
+                    {{#stepPosition}}<div><b>stepPosition</b>: {{stepPosition}}</div>{{/stepPosition}}
+                    {{#MktShuntCompensator}}<div><b>MktShuntCompensator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktShuntCompensator}}&quot;);})'>{{MktShuntCompensator}}</a></div>{{/MktShuntCompensator}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShuntCompensatorDynamicData_collapse" aria-expanded="true" aria-controls="ShuntCompensatorDynamicData_collapse" style="margin-left: 10px;">ShuntCompensatorDynamicData</a></legend>
+                    <div id="ShuntCompensatorDynamicData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mVARInjection'>mVARInjection: </label><div class='col-sm-8'><input id='mVARInjection' class='form-control' type='text'{{#mVARInjection}} value='{{mVARInjection}}'{{/mVARInjection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='connectionStatus'>connectionStatus: </label><div class='col-sm-8'><input id='connectionStatus' class='form-control' type='text'{{#connectionStatus}} value='{{connectionStatus}}'{{/connectionStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='desiredVoltage'>desiredVoltage: </label><div class='col-sm-8'><input id='desiredVoltage' class='form-control' type='text'{{#desiredVoltage}} value='{{desiredVoltage}}'{{/desiredVoltage}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='voltageRegulationStatus'>voltageRegulationStatus: </label><div class='col-sm-8'><input id='voltageRegulationStatus' class='form-check-input' type='checkbox'{{#voltageRegulationStatus}} checked{{/voltageRegulationStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stepPosition'>stepPosition: </label><div class='col-sm-8'><input id='stepPosition' class='form-control' type='text'{{#stepPosition}} value='{{stepPosition}}'{{/stepPosition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktShuntCompensator'>MktShuntCompensator: </label><div class='col-sm-8'><input id='MktShuntCompensator' class='form-control' type='text'{{#MktShuntCompensator}} value='{{MktShuntCompensator}}'{{/MktShuntCompensator}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A Transmission Right(TR) can be a chain of TR's or on individual.
@@ -241,19 +317,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TREntitlement_collapse" aria-expanded="true" aria-controls="TREntitlement_collapse">TREntitlement</a>
-<div id="TREntitlement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#entitlement}}<div><b>entitlement</b>: {{entitlement}}</div>{{/entitlement}}
-{{#startOperatingDate}}<div><b>startOperatingDate</b>: {{startOperatingDate}}</div>{{/startOperatingDate}}
-{{#TransmissionContractRight}}<div><b>TransmissionContractRight</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionContractRight}}&quot;);})'>{{TransmissionContractRight}}</a></div>{{/TransmissionContractRight}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TREntitlement_collapse" aria-expanded="true" aria-controls="TREntitlement_collapse" style="margin-left: 10px;">TREntitlement</a></legend>
+                    <div id="TREntitlement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#entitlement}}<div><b>entitlement</b>: {{entitlement}}</div>{{/entitlement}}
+                    {{#startOperatingDate}}<div><b>startOperatingDate</b>: {{startOperatingDate}}</div>{{/startOperatingDate}}
+                    {{#TransmissionContractRight}}<div><b>TransmissionContractRight</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionContractRight}}&quot;);})'>{{TransmissionContractRight}}</a></div>{{/TransmissionContractRight}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TREntitlement_collapse" aria-expanded="true" aria-controls="TREntitlement_collapse" style="margin-left: 10px;">TREntitlement</a></legend>
+                    <div id="TREntitlement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='entitlement'>entitlement: </label><div class='col-sm-8'><input id='entitlement' class='form-control' type='text'{{#entitlement}} value='{{entitlement}}'{{/entitlement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startOperatingDate'>startOperatingDate: </label><div class='col-sm-8'><input id='startOperatingDate' class='form-control' type='text'{{#startOperatingDate}} value='{{startOperatingDate}}'{{/startOperatingDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransmissionContractRight'>TransmissionContractRight: </label><div class='col-sm-8'><input id='TransmissionContractRight' class='form-control' type='text'{{#TransmissionContractRight}} value='{{TransmissionContractRight}}'{{/TransmissionContractRight}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Possibly time-varying max MW or MVA and optionally Min MW limit or MVA limit (Y1 and Y2, respectively) assigned to a constraint for a specific contingency.
@@ -314,19 +423,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ContingencyConstraintLimit_collapse" aria-expanded="true" aria-controls="ContingencyConstraintLimit_collapse">ContingencyConstraintLimit</a>
-<div id="ContingencyConstraintLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#SecurityConstraintSum}}<div><b>SecurityConstraintSum</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecurityConstraintSum}}&quot;);})'>{{SecurityConstraintSum}}</a></div>{{/SecurityConstraintSum}}
-{{#MktContingency}}<div><b>MktContingency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktContingency}}&quot;);})'>{{MktContingency}}</a></div>{{/MktContingency}}
-{{#MWLimitSchedules}}<div><b>MWLimitSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MWLimitSchedules}}&quot;);})'>{{MWLimitSchedules}}</a></div>{{/MWLimitSchedules}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContingencyConstraintLimit_collapse" aria-expanded="true" aria-controls="ContingencyConstraintLimit_collapse" style="margin-left: 10px;">ContingencyConstraintLimit</a></legend>
+                    <div id="ContingencyConstraintLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#SecurityConstraintSum}}<div><b>SecurityConstraintSum</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecurityConstraintSum}}&quot;);})'>{{SecurityConstraintSum}}</a></div>{{/SecurityConstraintSum}}
+                    {{#MktContingency}}<div><b>MktContingency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktContingency}}&quot;);})'>{{MktContingency}}</a></div>{{/MktContingency}}
+                    {{#MWLimitSchedules}}<div><b>MWLimitSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MWLimitSchedules}}&quot;);})'>{{MWLimitSchedules}}</a></div>{{/MWLimitSchedules}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContingencyConstraintLimit_collapse" aria-expanded="true" aria-controls="ContingencyConstraintLimit_collapse" style="margin-left: 10px;">ContingencyConstraintLimit</a></legend>
+                    <div id="ContingencyConstraintLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SecurityConstraintSum'>SecurityConstraintSum: </label><div class='col-sm-8'><input id='SecurityConstraintSum' class='form-control' type='text'{{#SecurityConstraintSum}} value='{{SecurityConstraintSum}}'{{/SecurityConstraintSum}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktContingency'>MktContingency: </label><div class='col-sm-8'><input id='MktContingency' class='form-control' type='text'{{#MktContingency}} value='{{MktContingency}}'{{/MktContingency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MWLimitSchedules'>MWLimitSchedules: </label><div class='col-sm-8'><input id='MWLimitSchedules' class='form-control' type='text'{{#MWLimitSchedules}} value='{{MWLimitSchedules}}'{{/MWLimitSchedules}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Subclass of IEC61970:Meas:AnalogValue
@@ -379,16 +521,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MktAnalogValue_collapse" aria-expanded="true" aria-controls="MktAnalogValue_collapse">MktAnalogValue</a>
-<div id="MktAnalogValue_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Meas.AnalogValue.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktAnalogValue_collapse" aria-expanded="true" aria-controls="MktAnalogValue_collapse" style="margin-left: 10px;">MktAnalogValue</a></legend>
+                    <div id="MktAnalogValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.AnalogValue.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktAnalogValue_collapse" aria-expanded="true" aria-controls="MktAnalogValue_collapse" style="margin-left: 10px;">MktAnalogValue</a></legend>
+                    <div id="MktAnalogValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.AnalogValue.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Optimal Power Flow or State Estimator Unit Data for Operator Training Simulator.
@@ -459,24 +631,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GeneratingUnitDynamicValues_collapse" aria-expanded="true" aria-controls="GeneratingUnitDynamicValues_collapse">GeneratingUnitDynamicValues</a>
-<div id="GeneratingUnitDynamicValues_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#lossFactor}}<div><b>lossFactor</b>: {{lossFactor}}</div>{{/lossFactor}}
-{{#maximumMW}}<div><b>maximumMW</b>: {{maximumMW}}</div>{{/maximumMW}}
-{{#minimumMW}}<div><b>minimumMW</b>: {{minimumMW}}</div>{{/minimumMW}}
-{{#mVAR}}<div><b>mVAR</b>: {{mVAR}}</div>{{/mVAR}}
-{{#mw}}<div><b>mw</b>: {{mw}}</div>{{/mw}}
-{{#sensitivity}}<div><b>sensitivity</b>: {{sensitivity}}</div>{{/sensitivity}}
-{{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
-{{#MktGeneratingUnit}}<div><b>MktGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktGeneratingUnit}}&quot;);})'>{{MktGeneratingUnit}}</a></div>{{/MktGeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GeneratingUnitDynamicValues_collapse" aria-expanded="true" aria-controls="GeneratingUnitDynamicValues_collapse" style="margin-left: 10px;">GeneratingUnitDynamicValues</a></legend>
+                    <div id="GeneratingUnitDynamicValues_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#lossFactor}}<div><b>lossFactor</b>: {{lossFactor}}</div>{{/lossFactor}}
+                    {{#maximumMW}}<div><b>maximumMW</b>: {{maximumMW}}</div>{{/maximumMW}}
+                    {{#minimumMW}}<div><b>minimumMW</b>: {{minimumMW}}</div>{{/minimumMW}}
+                    {{#mVAR}}<div><b>mVAR</b>: {{mVAR}}</div>{{/mVAR}}
+                    {{#mw}}<div><b>mw</b>: {{mw}}</div>{{/mw}}
+                    {{#sensitivity}}<div><b>sensitivity</b>: {{sensitivity}}</div>{{/sensitivity}}
+                    {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+                    {{#MktGeneratingUnit}}<div><b>MktGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktGeneratingUnit}}&quot;);})'>{{MktGeneratingUnit}}</a></div>{{/MktGeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GeneratingUnitDynamicValues_collapse" aria-expanded="true" aria-controls="GeneratingUnitDynamicValues_collapse" style="margin-left: 10px;">GeneratingUnitDynamicValues</a></legend>
+                    <div id="GeneratingUnitDynamicValues_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lossFactor'>lossFactor: </label><div class='col-sm-8'><input id='lossFactor' class='form-control' type='text'{{#lossFactor}} value='{{lossFactor}}'{{/lossFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumMW'>maximumMW: </label><div class='col-sm-8'><input id='maximumMW' class='form-control' type='text'{{#maximumMW}} value='{{maximumMW}}'{{/maximumMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumMW'>minimumMW: </label><div class='col-sm-8'><input id='minimumMW' class='form-control' type='text'{{#minimumMW}} value='{{minimumMW}}'{{/minimumMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mVAR'>mVAR: </label><div class='col-sm-8'><input id='mVAR' class='form-control' type='text'{{#mVAR}} value='{{mVAR}}'{{/mVAR}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mw'>mw: </label><div class='col-sm-8'><input id='mw' class='form-control' type='text'{{#mw}} value='{{mw}}'{{/mw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sensitivity'>sensitivity: </label><div class='col-sm-8'><input id='sensitivity' class='form-control' type='text'{{#sensitivity}} value='{{sensitivity}}'{{/sensitivity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktGeneratingUnit'>MktGeneratingUnit: </label><div class='col-sm-8'><input id='MktGeneratingUnit' class='form-control' type='text'{{#MktGeneratingUnit}} value='{{MktGeneratingUnit}}'{{/MktGeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An electrical connection, link, or line consisting of one or more parallel transmission elements between two areas of the interconnected electric systems, or portions thereof.
@@ -543,22 +753,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransmissionPath_collapse" aria-expanded="true" aria-controls="TransmissionPath_collapse">TransmissionPath</a>
-<div id="TransmissionPath_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#availTransferCapability}}<div><b>availTransferCapability</b>: {{availTransferCapability}}</div>{{/availTransferCapability}}
-{{#parallelPathFlag}}<div><b>parallelPathFlag</b>: {{parallelPathFlag}}</div>{{/parallelPathFlag}}
-{{#totalTransferCapability}}<div><b>totalTransferCapability</b>: {{totalTransferCapability}}</div>{{/totalTransferCapability}}
-{{#DeliveryPoint}}<div><b>DeliveryPoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DeliveryPoint}}&quot;);})'>{{DeliveryPoint}}</a></div>{{/DeliveryPoint}}
-{{#For}}<div><b>For</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{For}}&quot;);})'>{{For}}</a></div>{{/For}}
-{{#PointOfReceipt}}<div><b>PointOfReceipt</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PointOfReceipt}}&quot;);})'>{{PointOfReceipt}}</a></div>{{/PointOfReceipt}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionPath_collapse" aria-expanded="true" aria-controls="TransmissionPath_collapse" style="margin-left: 10px;">TransmissionPath</a></legend>
+                    <div id="TransmissionPath_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#availTransferCapability}}<div><b>availTransferCapability</b>: {{availTransferCapability}}</div>{{/availTransferCapability}}
+                    {{#parallelPathFlag}}<div><b>parallelPathFlag</b>: {{parallelPathFlag}}</div>{{/parallelPathFlag}}
+                    {{#totalTransferCapability}}<div><b>totalTransferCapability</b>: {{totalTransferCapability}}</div>{{/totalTransferCapability}}
+                    {{#DeliveryPoint}}<div><b>DeliveryPoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DeliveryPoint}}&quot;);})'>{{DeliveryPoint}}</a></div>{{/DeliveryPoint}}
+                    {{#For}}<div><b>For</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{For}}&quot;);})'>{{For}}</a></div>{{/For}}
+                    {{#PointOfReceipt}}<div><b>PointOfReceipt</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PointOfReceipt}}&quot;);})'>{{PointOfReceipt}}</a></div>{{/PointOfReceipt}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionPath_collapse" aria-expanded="true" aria-controls="TransmissionPath_collapse" style="margin-left: 10px;">TransmissionPath</a></legend>
+                    <div id="TransmissionPath_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='availTransferCapability'>availTransferCapability: </label><div class='col-sm-8'><input id='availTransferCapability' class='form-control' type='text'{{#availTransferCapability}} value='{{availTransferCapability}}'{{/availTransferCapability}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='parallelPathFlag'>parallelPathFlag: </label><div class='col-sm-8'><input id='parallelPathFlag' class='form-check-input' type='checkbox'{{#parallelPathFlag}} checked{{/parallelPathFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='totalTransferCapability'>totalTransferCapability: </label><div class='col-sm-8'><input id='totalTransferCapability' class='form-control' type='text'{{#totalTransferCapability}} value='{{totalTransferCapability}}'{{/totalTransferCapability}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DeliveryPoint'>DeliveryPoint: </label><div class='col-sm-8'><input id='DeliveryPoint' class='form-control' type='text'{{#DeliveryPoint}} value='{{DeliveryPoint}}'{{/DeliveryPoint}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='For'>For: </label><div class='col-sm-8'><input id='For' class='form-control' type='text'{{#For}} value='{{For}}'{{/For}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PointOfReceipt'>PointOfReceipt: </label><div class='col-sm-8'><input id='PointOfReceipt' class='form-control' type='text'{{#PointOfReceipt}} value='{{PointOfReceipt}}'{{/PointOfReceipt}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A constraint term is one element of a linear constraint.
@@ -617,19 +863,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ConstraintTerm_collapse" aria-expanded="true" aria-controls="ConstraintTerm_collapse">ConstraintTerm</a>
-<div id="ConstraintTerm_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#factor}}<div><b>factor</b>: {{factor}}</div>{{/factor}}
-{{#function}}<div><b>function</b>: {{function}}</div>{{/function}}
-{{#SecurityConstraintSum}}<div><b>SecurityConstraintSum</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecurityConstraintSum}}&quot;);})'>{{SecurityConstraintSum}}</a></div>{{/SecurityConstraintSum}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConstraintTerm_collapse" aria-expanded="true" aria-controls="ConstraintTerm_collapse" style="margin-left: 10px;">ConstraintTerm</a></legend>
+                    <div id="ConstraintTerm_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#factor}}<div><b>factor</b>: {{factor}}</div>{{/factor}}
+                    {{#function}}<div><b>function</b>: {{function}}</div>{{/function}}
+                    {{#SecurityConstraintSum}}<div><b>SecurityConstraintSum</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecurityConstraintSum}}&quot;);})'>{{SecurityConstraintSum}}</a></div>{{/SecurityConstraintSum}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConstraintTerm_collapse" aria-expanded="true" aria-controls="ConstraintTerm_collapse" style="margin-left: 10px;">ConstraintTerm</a></legend>
+                    <div id="ConstraintTerm_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='factor'>factor: </label><div class='col-sm-8'><input id='factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='function'>function: </label><div class='col-sm-8'><input id='function' class='form-control' type='text'{{#function}} value='{{function}}'{{/function}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SecurityConstraintSum'>SecurityConstraintSum: </label><div class='col-sm-8'><input id='SecurityConstraintSum' class='form-control' type='text'{{#SecurityConstraintSum}} value='{{SecurityConstraintSum}}'{{/SecurityConstraintSum}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Subclass of IEC61970:Meas:DiscreteValue
@@ -682,16 +961,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MktDiscreteValue_collapse" aria-expanded="true" aria-controls="MktDiscreteValue_collapse">MktDiscreteValue</a>
-<div id="MktDiscreteValue_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Meas.DiscreteValue.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktDiscreteValue_collapse" aria-expanded="true" aria-controls="MktDiscreteValue_collapse" style="margin-left: 10px;">MktDiscreteValue</a></legend>
+                    <div id="MktDiscreteValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.DiscreteValue.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktDiscreteValue_collapse" aria-expanded="true" aria-controls="MktDiscreteValue_collapse" style="margin-left: 10px;">MktDiscreteValue</a></legend>
+                    <div id="MktDiscreteValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.DiscreteValue.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Models Ancillary Service Requirements.
@@ -748,17 +1057,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ASRequirements_collapse" aria-expanded="true" aria-controls="ASRequirements_collapse">ASRequirements</a>
-<div id="ASRequirements_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ASRequirements_collapse" aria-expanded="true" aria-controls="ASRequirements_collapse" style="margin-left: 10px;">ASRequirements</a></legend>
+                    <div id="ASRequirements_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ASRequirements_collapse" aria-expanded="true" aria-controls="ASRequirements_collapse" style="margin-left: 10px;">ASRequirements</a></legend>
+                    <div id="ASRequirements_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A transmission reservation is obtained from the OASIS system to reserve transmission for a specified time period, transmission path and transmission product.
@@ -821,21 +1161,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransmissionReservation_collapse" aria-expanded="true" aria-controls="TransmissionReservation_collapse">TransmissionReservation</a>
-<div id="TransmissionReservation_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#EnergyTransaction}}<div><b>EnergyTransaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyTransaction}}&quot;);})'>{{EnergyTransaction}}</a></div>{{/EnergyTransaction}}
-{{#TransmissionPath}}<div><b>TransmissionPath</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionPath}}&quot;);})'>{{TransmissionPath}}</a></div>{{/TransmissionPath}}
-{{#Sink}}<div><b>Sink</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Sink}}&quot;);})'>{{Sink}}</a></div>{{/Sink}}
-{{#TransactionBid}}<div><b>TransactionBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransactionBid}}&quot;);})'>{{TransactionBid}}</a></div>{{/TransactionBid}}
-{{#Source}}<div><b>Source</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Source}}&quot;);})'>{{Source}}</a></div>{{/Source}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionReservation_collapse" aria-expanded="true" aria-controls="TransmissionReservation_collapse" style="margin-left: 10px;">TransmissionReservation</a></legend>
+                    <div id="TransmissionReservation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#EnergyTransaction}}<div><b>EnergyTransaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyTransaction}}&quot;);})'>{{EnergyTransaction}}</a></div>{{/EnergyTransaction}}
+                    {{#TransmissionPath}}<div><b>TransmissionPath</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionPath}}&quot;);})'>{{TransmissionPath}}</a></div>{{/TransmissionPath}}
+                    {{#Sink}}<div><b>Sink</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Sink}}&quot;);})'>{{Sink}}</a></div>{{/Sink}}
+                    {{#TransactionBid}}<div><b>TransactionBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransactionBid}}&quot;);})'>{{TransactionBid}}</a></div>{{/TransactionBid}}
+                    {{#Source}}<div><b>Source</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Source}}&quot;);})'>{{Source}}</a></div>{{/Source}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionReservation_collapse" aria-expanded="true" aria-controls="TransmissionReservation_collapse" style="margin-left: 10px;">TransmissionReservation</a></legend>
+                    <div id="TransmissionReservation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyTransaction'>EnergyTransaction: </label><div class='col-sm-8'><input id='EnergyTransaction' class='form-control' type='text'{{#EnergyTransaction}} value='{{EnergyTransaction}}'{{/EnergyTransaction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransmissionPath'>TransmissionPath: </label><div class='col-sm-8'><input id='TransmissionPath' class='form-control' type='text'{{#TransmissionPath}} value='{{TransmissionPath}}'{{/TransmissionPath}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Sink'>Sink: </label><div class='col-sm-8'><input id='Sink' class='form-control' type='text'{{#Sink}} value='{{Sink}}'{{/Sink}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransactionBid'>TransactionBid: </label><div class='col-sm-8'><input id='TransactionBid' class='form-control' type='text'{{#TransactionBid}} value='{{TransactionBid}}'{{/TransactionBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Source'>Source: </label><div class='col-sm-8'><input id='Source' class='form-control' type='text'{{#Source}} value='{{Source}}'{{/Source}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * TNA Interface Definitions from OPF for VSA
@@ -900,22 +1275,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransferInterfaceSolution_collapse" aria-expanded="true" aria-controls="TransferInterfaceSolution_collapse">TransferInterfaceSolution</a>
-<div id="TransferInterfaceSolution_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#interfaceMargin}}<div><b>interfaceMargin</b>: {{interfaceMargin}}</div>{{/interfaceMargin}}
-{{#transferLimit}}<div><b>transferLimit</b>: {{transferLimit}}</div>{{/transferLimit}}
-{{#postTransferMW}}<div><b>postTransferMW</b>: {{postTransferMW}}</div>{{/postTransferMW}}
-{{#TransferInterface}}<div><b>TransferInterface</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransferInterface}}&quot;);})'>{{TransferInterface}}</a></div>{{/TransferInterface}}
-{{#MktContingencyB}}<div><b>MktContingencyB</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktContingencyB}}&quot;);})'>{{MktContingencyB}}</a></div>{{/MktContingencyB}}
-{{# MktContingencyA}}<div><b> MktContingencyA</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ MktContingencyA}}&quot;);})'>{{ MktContingencyA}}</a></div>{{/ MktContingencyA}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransferInterfaceSolution_collapse" aria-expanded="true" aria-controls="TransferInterfaceSolution_collapse" style="margin-left: 10px;">TransferInterfaceSolution</a></legend>
+                    <div id="TransferInterfaceSolution_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#interfaceMargin}}<div><b>interfaceMargin</b>: {{interfaceMargin}}</div>{{/interfaceMargin}}
+                    {{#transferLimit}}<div><b>transferLimit</b>: {{transferLimit}}</div>{{/transferLimit}}
+                    {{#postTransferMW}}<div><b>postTransferMW</b>: {{postTransferMW}}</div>{{/postTransferMW}}
+                    {{#TransferInterface}}<div><b>TransferInterface</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransferInterface}}&quot;);})'>{{TransferInterface}}</a></div>{{/TransferInterface}}
+                    {{#MktContingencyB}}<div><b>MktContingencyB</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktContingencyB}}&quot;);})'>{{MktContingencyB}}</a></div>{{/MktContingencyB}}
+                    {{# MktContingencyA}}<div><b> MktContingencyA</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ MktContingencyA}}&quot;);})'>{{ MktContingencyA}}</a></div>{{/ MktContingencyA}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransferInterfaceSolution_collapse" aria-expanded="true" aria-controls="TransferInterfaceSolution_collapse" style="margin-left: 10px;">TransferInterfaceSolution</a></legend>
+                    <div id="TransferInterfaceSolution_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='interfaceMargin'>interfaceMargin: </label><div class='col-sm-8'><input id='interfaceMargin' class='form-control' type='text'{{#interfaceMargin}} value='{{interfaceMargin}}'{{/interfaceMargin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transferLimit'>transferLimit: </label><div class='col-sm-8'><input id='transferLimit' class='form-control' type='text'{{#transferLimit}} value='{{transferLimit}}'{{/transferLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='postTransferMW'>postTransferMW: </label><div class='col-sm-8'><input id='postTransferMW' class='form-control' type='text'{{#postTransferMW}} value='{{postTransferMW}}'{{/postTransferMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransferInterface'>TransferInterface: </label><div class='col-sm-8'><input id='TransferInterface' class='form-control' type='text'{{#TransferInterface}} value='{{TransferInterface}}'{{/TransferInterface}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktContingencyB'>MktContingencyB: </label><div class='col-sm-8'><input id='MktContingencyB' class='form-control' type='text'{{#MktContingencyB}} value='{{MktContingencyB}}'{{/MktContingencyB}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=' MktContingencyA'> MktContingencyA: </label><div class='col-sm-8'><input id=' MktContingencyA' class='form-control' type='text'{{# MktContingencyA}} value='{{ MktContingencyA}}'{{/ MktContingencyA}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Default bid curve for default energy bid curve and default startup curves (cost and time)
@@ -974,19 +1385,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DefaultBidCurve_collapse" aria-expanded="true" aria-controls="DefaultBidCurve_collapse">DefaultBidCurve</a>
-<div id="DefaultBidCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#curveType}}<div><b>curveType</b>: {{curveType}}</div>{{/curveType}}
-{{#debAdderFlag}}<div><b>debAdderFlag</b>: {{debAdderFlag}}</div>{{/debAdderFlag}}
-{{#DefaultBid}}<div><b>DefaultBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DefaultBid}}&quot;);})'>{{DefaultBid}}</a></div>{{/DefaultBid}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DefaultBidCurve_collapse" aria-expanded="true" aria-controls="DefaultBidCurve_collapse" style="margin-left: 10px;">DefaultBidCurve</a></legend>
+                    <div id="DefaultBidCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#curveType}}<div><b>curveType</b>: {{curveType}}</div>{{/curveType}}
+                    {{#debAdderFlag}}<div><b>debAdderFlag</b>: {{debAdderFlag}}</div>{{/debAdderFlag}}
+                    {{#DefaultBid}}<div><b>DefaultBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DefaultBid}}&quot;);})'>{{DefaultBid}}</a></div>{{/DefaultBid}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DefaultBidCurve_collapse" aria-expanded="true" aria-controls="DefaultBidCurve_collapse" style="margin-left: 10px;">DefaultBidCurve</a></legend>
+                    <div id="DefaultBidCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='curveType'>curveType: </label><div class='col-sm-8'><input id='curveType' class='form-control' type='text'{{#curveType}} value='{{curveType}}'{{/curveType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='debAdderFlag'>debAdderFlag: </label><div class='col-sm-8'><input id='debAdderFlag' class='form-control' type='text'{{#debAdderFlag}} value='{{debAdderFlag}}'{{/debAdderFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DefaultBid'>DefaultBid: </label><div class='col-sm-8'><input id='DefaultBid' class='form-control' type='text'{{#DefaultBid}} value='{{DefaultBid}}'{{/DefaultBid}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Dynamic flows and ratings associated with a branch end.
@@ -1051,22 +1495,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BranchEndFlow_collapse" aria-expanded="true" aria-controls="BranchEndFlow_collapse">BranchEndFlow</a>
-<div id="BranchEndFlow_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#mwFlow}}<div><b>mwFlow</b>: {{mwFlow}}</div>{{/mwFlow}}
-{{#mVARFlow}}<div><b>mVARFlow</b>: {{mVARFlow}}</div>{{/mVARFlow}}
-{{#normalRating}}<div><b>normalRating</b>: {{normalRating}}</div>{{/normalRating}}
-{{#longTermRating}}<div><b>longTermRating</b>: {{longTermRating}}</div>{{/longTermRating}}
-{{#shortTermRating}}<div><b>shortTermRating</b>: {{shortTermRating}}</div>{{/shortTermRating}}
-{{#loadDumpRating}}<div><b>loadDumpRating</b>: {{loadDumpRating}}</div>{{/loadDumpRating}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BranchEndFlow_collapse" aria-expanded="true" aria-controls="BranchEndFlow_collapse" style="margin-left: 10px;">BranchEndFlow</a></legend>
+                    <div id="BranchEndFlow_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#mwFlow}}<div><b>mwFlow</b>: {{mwFlow}}</div>{{/mwFlow}}
+                    {{#mVARFlow}}<div><b>mVARFlow</b>: {{mVARFlow}}</div>{{/mVARFlow}}
+                    {{#normalRating}}<div><b>normalRating</b>: {{normalRating}}</div>{{/normalRating}}
+                    {{#longTermRating}}<div><b>longTermRating</b>: {{longTermRating}}</div>{{/longTermRating}}
+                    {{#shortTermRating}}<div><b>shortTermRating</b>: {{shortTermRating}}</div>{{/shortTermRating}}
+                    {{#loadDumpRating}}<div><b>loadDumpRating</b>: {{loadDumpRating}}</div>{{/loadDumpRating}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BranchEndFlow_collapse" aria-expanded="true" aria-controls="BranchEndFlow_collapse" style="margin-left: 10px;">BranchEndFlow</a></legend>
+                    <div id="BranchEndFlow_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwFlow'>mwFlow: </label><div class='col-sm-8'><input id='mwFlow' class='form-control' type='text'{{#mwFlow}} value='{{mwFlow}}'{{/mwFlow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mVARFlow'>mVARFlow: </label><div class='col-sm-8'><input id='mVARFlow' class='form-control' type='text'{{#mVARFlow}} value='{{mVARFlow}}'{{/mVARFlow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='normalRating'>normalRating: </label><div class='col-sm-8'><input id='normalRating' class='form-control' type='text'{{#normalRating}} value='{{normalRating}}'{{/normalRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='longTermRating'>longTermRating: </label><div class='col-sm-8'><input id='longTermRating' class='form-control' type='text'{{#longTermRating}} value='{{longTermRating}}'{{/longTermRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shortTermRating'>shortTermRating: </label><div class='col-sm-8'><input id='shortTermRating' class='form-control' type='text'{{#shortTermRating}} value='{{shortTermRating}}'{{/shortTermRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadDumpRating'>loadDumpRating: </label><div class='col-sm-8'><input id='loadDumpRating' class='form-control' type='text'{{#loadDumpRating}} value='{{loadDumpRating}}'{{/loadDumpRating}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A profile is a simpler curve type.
@@ -1119,16 +1599,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Profile_collapse" aria-expanded="true" aria-controls="Profile_collapse">Profile</a>
-<div id="Profile_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Profile_collapse" aria-expanded="true" aria-controls="Profile_collapse" style="margin-left: 10px;">Profile</a></legend>
+                    <div id="Profile_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Profile_collapse" aria-expanded="true" aria-controls="Profile_collapse" style="margin-left: 10px;">Profile</a></legend>
+                    <div id="Profile_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Resource status at the end of a given clearing period.
@@ -1201,26 +1711,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#UnitInitialConditions_collapse" aria-expanded="true" aria-controls="UnitInitialConditions_collapse">UnitInitialConditions</a>
-<div id="UnitInitialConditions_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#cumEnergy}}<div><b>cumEnergy</b>: {{cumEnergy}}</div>{{/cumEnergy}}
-{{#cumStatusChanges}}<div><b>cumStatusChanges</b>: {{cumStatusChanges}}</div>{{/cumStatusChanges}}
-{{#numberOfStartups}}<div><b>numberOfStartups</b>: {{numberOfStartups}}</div>{{/numberOfStartups}}
-{{#onlineStatus}}<div><b>onlineStatus</b>: {{onlineStatus}}</div>{{/onlineStatus}}
-{{#resourceMW}}<div><b>resourceMW</b>: {{resourceMW}}</div>{{/resourceMW}}
-{{#resourceStatus}}<div><b>resourceStatus</b>: {{resourceStatus}}</div>{{/resourceStatus}}
-{{#statusDate}}<div><b>statusDate</b>: {{statusDate}}</div>{{/statusDate}}
-{{#timeInStatus}}<div><b>timeInStatus</b>: {{timeInStatus}}</div>{{/timeInStatus}}
-{{#timeInterval}}<div><b>timeInterval</b>: {{timeInterval}}</div>{{/timeInterval}}
-{{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);})'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnitInitialConditions_collapse" aria-expanded="true" aria-controls="UnitInitialConditions_collapse" style="margin-left: 10px;">UnitInitialConditions</a></legend>
+                    <div id="UnitInitialConditions_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#cumEnergy}}<div><b>cumEnergy</b>: {{cumEnergy}}</div>{{/cumEnergy}}
+                    {{#cumStatusChanges}}<div><b>cumStatusChanges</b>: {{cumStatusChanges}}</div>{{/cumStatusChanges}}
+                    {{#numberOfStartups}}<div><b>numberOfStartups</b>: {{numberOfStartups}}</div>{{/numberOfStartups}}
+                    {{#onlineStatus}}<div><b>onlineStatus</b>: {{onlineStatus}}</div>{{/onlineStatus}}
+                    {{#resourceMW}}<div><b>resourceMW</b>: {{resourceMW}}</div>{{/resourceMW}}
+                    {{#resourceStatus}}<div><b>resourceStatus</b>: {{resourceStatus}}</div>{{/resourceStatus}}
+                    {{#statusDate}}<div><b>statusDate</b>: {{statusDate}}</div>{{/statusDate}}
+                    {{#timeInStatus}}<div><b>timeInStatus</b>: {{timeInStatus}}</div>{{/timeInStatus}}
+                    {{#timeInterval}}<div><b>timeInterval</b>: {{timeInterval}}</div>{{/timeInterval}}
+                    {{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);})'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnitInitialConditions_collapse" aria-expanded="true" aria-controls="UnitInitialConditions_collapse" style="margin-left: 10px;">UnitInitialConditions</a></legend>
+                    <div id="UnitInitialConditions_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cumEnergy'>cumEnergy: </label><div class='col-sm-8'><input id='cumEnergy' class='form-control' type='text'{{#cumEnergy}} value='{{cumEnergy}}'{{/cumEnergy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cumStatusChanges'>cumStatusChanges: </label><div class='col-sm-8'><input id='cumStatusChanges' class='form-control' type='text'{{#cumStatusChanges}} value='{{cumStatusChanges}}'{{/cumStatusChanges}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='numberOfStartups'>numberOfStartups: </label><div class='col-sm-8'><input id='numberOfStartups' class='form-control' type='text'{{#numberOfStartups}} value='{{numberOfStartups}}'{{/numberOfStartups}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='onlineStatus'>onlineStatus: </label><div class='col-sm-8'><input id='onlineStatus' class='form-check-input' type='checkbox'{{#onlineStatus}} checked{{/onlineStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resourceMW'>resourceMW: </label><div class='col-sm-8'><input id='resourceMW' class='form-control' type='text'{{#resourceMW}} value='{{resourceMW}}'{{/resourceMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resourceStatus'>resourceStatus: </label><div class='col-sm-8'><input id='resourceStatus' class='form-control' type='text'{{#resourceStatus}} value='{{resourceStatus}}'{{/resourceStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='statusDate'>statusDate: </label><div class='col-sm-8'><input id='statusDate' class='form-control' type='text'{{#statusDate}} value='{{statusDate}}'{{/statusDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeInStatus'>timeInStatus: </label><div class='col-sm-8'><input id='timeInStatus' class='form-control' type='text'{{#timeInStatus}} value='{{timeInStatus}}'{{/timeInStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeInterval'>timeInterval: </label><div class='col-sm-8'><input id='timeInterval' class='form-control' type='text'{{#timeInterval}} value='{{timeInterval}}'{{/timeInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GeneratingUnit'>GeneratingUnit: </label><div class='col-sm-8'><input id='GeneratingUnit' class='form-control' type='text'{{#GeneratingUnit}} value='{{GeneratingUnit}}'{{/GeneratingUnit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Subclass of IEC61970:Wires:ShuntCompensator
@@ -1273,16 +1823,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MktShuntCompensator_collapse" aria-expanded="true" aria-controls="MktShuntCompensator_collapse">MktShuntCompensator</a>
-<div id="MktShuntCompensator_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Wires.ShuntCompensator.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktShuntCompensator_collapse" aria-expanded="true" aria-controls="MktShuntCompensator_collapse" style="margin-left: 10px;">MktShuntCompensator</a></legend>
+                    <div id="MktShuntCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.ShuntCompensator.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktShuntCompensator_collapse" aria-expanded="true" aria-controls="MktShuntCompensator_collapse" style="margin-left: 10px;">MktShuntCompensator</a></legend>
+                    <div id="MktShuntCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.ShuntCompensator.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Subclass of IEC61970:Meas:AnalogLimit
@@ -1339,18 +1919,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MktAnalogLimit_collapse" aria-expanded="true" aria-controls="MktAnalogLimit_collapse">MktAnalogLimit</a>
-<div id="MktAnalogLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Meas.AnalogLimit.prototype.template.call (this) +
-`
-{{#exceededLimit}}<div><b>exceededLimit</b>: {{exceededLimit}}</div>{{/exceededLimit}}
-{{#limitType}}<div><b>limitType</b>: {{limitType}}</div>{{/limitType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktAnalogLimit_collapse" aria-expanded="true" aria-controls="MktAnalogLimit_collapse" style="margin-left: 10px;">MktAnalogLimit</a></legend>
+                    <div id="MktAnalogLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.AnalogLimit.prototype.template.call (this) +
+                    `
+                    {{#exceededLimit}}<div><b>exceededLimit</b>: {{exceededLimit}}</div>{{/exceededLimit}}
+                    {{#limitType}}<div><b>limitType</b>: {{limitType}}</div>{{/limitType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktAnalogLimit_collapse" aria-expanded="true" aria-controls="MktAnalogLimit_collapse" style="margin-left: 10px;">MktAnalogLimit</a></legend>
+                    <div id="MktAnalogLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.AnalogLimit.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='exceededLimit'>exceededLimit: </label><div class='col-sm-8'><input id='exceededLimit' class='form-check-input' type='checkbox'{{#exceededLimit}} checked{{/exceededLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='limitType'>limitType: </label><div class='col-sm-8'><input id='limitType' class='form-control' type='text'{{#limitType}} value='{{limitType}}'{{/limitType}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Subclass of IEC61970:Wires:SeriesCompensator
@@ -1407,18 +2019,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MktSeriesCompensator_collapse" aria-expanded="true" aria-controls="MktSeriesCompensator_collapse">MktSeriesCompensator</a>
-<div id="MktSeriesCompensator_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Wires.SeriesCompensator.prototype.template.call (this) +
-`
-{{#EndAFlow}}<div><b>EndAFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndAFlow}}&quot;);})'>{{EndAFlow}}</a></div>{{/EndAFlow}}
-{{#EndBFlow}}<div><b>EndBFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndBFlow}}&quot;);})'>{{EndBFlow}}</a></div>{{/EndBFlow}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktSeriesCompensator_collapse" aria-expanded="true" aria-controls="MktSeriesCompensator_collapse" style="margin-left: 10px;">MktSeriesCompensator</a></legend>
+                    <div id="MktSeriesCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.SeriesCompensator.prototype.template.call (this) +
+                    `
+                    {{#EndAFlow}}<div><b>EndAFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndAFlow}}&quot;);})'>{{EndAFlow}}</a></div>{{/EndAFlow}}
+                    {{#EndBFlow}}<div><b>EndBFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndBFlow}}&quot;);})'>{{EndBFlow}}</a></div>{{/EndBFlow}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktSeriesCompensator_collapse" aria-expanded="true" aria-controls="MktSeriesCompensator_collapse" style="margin-left: 10px;">MktSeriesCompensator</a></legend>
+                    <div id="MktSeriesCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.SeriesCompensator.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndAFlow'>EndAFlow: </label><div class='col-sm-8'><input id='EndAFlow' class='form-control' type='text'{{#EndAFlow}} value='{{EndAFlow}}'{{/EndAFlow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndBFlow'>EndBFlow: </label><div class='col-sm-8'><input id='EndBFlow' class='form-control' type='text'{{#EndBFlow}} value='{{EndBFlow}}'{{/EndBFlow}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Indicates whether unit is eligible for treatment as a intermittent variable renewable resource
@@ -1475,18 +2119,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#IntermittentResourceEligibility_collapse" aria-expanded="true" aria-controls="IntermittentResourceEligibility_collapse">IntermittentResourceEligibility</a>
-<div id="IntermittentResourceEligibility_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + MarketPlan.MarketFactors.prototype.template.call (this) +
-`
-{{#eligibilityStatus}}<div><b>eligibilityStatus</b>: {{eligibilityStatus}}</div>{{/eligibilityStatus}}
-{{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IntermittentResourceEligibility_collapse" aria-expanded="true" aria-controls="IntermittentResourceEligibility_collapse" style="margin-left: 10px;">IntermittentResourceEligibility</a></legend>
+                    <div id="IntermittentResourceEligibility_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MarketPlan.MarketFactors.prototype.template.call (this) +
+                    `
+                    {{#eligibilityStatus}}<div><b>eligibilityStatus</b>: {{eligibilityStatus}}</div>{{/eligibilityStatus}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IntermittentResourceEligibility_collapse" aria-expanded="true" aria-controls="IntermittentResourceEligibility_collapse" style="margin-left: 10px;">IntermittentResourceEligibility</a></legend>
+                    <div id="IntermittentResourceEligibility_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eligibilityStatus'>eligibilityStatus: </label><div class='col-sm-8'><input id='eligibilityStatus' class='form-control' type='text'{{#eligibilityStatus}} value='{{eligibilityStatus}}'{{/eligibilityStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Optimal Power Flow or State Estimator Phase Shifter Data.
@@ -1559,25 +2235,64 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TapChangerDynamicData_collapse" aria-expanded="true" aria-controls="TapChangerDynamicData_collapse">TapChangerDynamicData</a>
-<div id="TapChangerDynamicData_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#tapPosition}}<div><b>tapPosition</b>: {{tapPosition}}</div>{{/tapPosition}}
-{{#desiredVoltage}}<div><b>desiredVoltage</b>: {{desiredVoltage}}</div>{{/desiredVoltage}}
-{{#voltageRegulationStatus}}<div><b>voltageRegulationStatus</b>: {{voltageRegulationStatus}}</div>{{/voltageRegulationStatus}}
-{{#angleRegulationStatus}}<div><b>angleRegulationStatus</b>: {{angleRegulationStatus}}</div>{{/angleRegulationStatus}}
-{{#desiredMW}}<div><b>desiredMW</b>: {{desiredMW}}</div>{{/desiredMW}}
-{{#solvedAngle}}<div><b>solvedAngle</b>: {{solvedAngle}}</div>{{/solvedAngle}}
-{{#minimumAngle}}<div><b>minimumAngle</b>: {{minimumAngle}}</div>{{/minimumAngle}}
-{{#maximumAngle}}<div><b>maximumAngle</b>: {{maximumAngle}}</div>{{/maximumAngle}}
-{{#MktTapChanger}}<div><b>MktTapChanger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktTapChanger}}&quot;);})'>{{MktTapChanger}}</a></div>{{/MktTapChanger}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TapChangerDynamicData_collapse" aria-expanded="true" aria-controls="TapChangerDynamicData_collapse" style="margin-left: 10px;">TapChangerDynamicData</a></legend>
+                    <div id="TapChangerDynamicData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#tapPosition}}<div><b>tapPosition</b>: {{tapPosition}}</div>{{/tapPosition}}
+                    {{#desiredVoltage}}<div><b>desiredVoltage</b>: {{desiredVoltage}}</div>{{/desiredVoltage}}
+                    {{#voltageRegulationStatus}}<div><b>voltageRegulationStatus</b>: {{voltageRegulationStatus}}</div>{{/voltageRegulationStatus}}
+                    {{#angleRegulationStatus}}<div><b>angleRegulationStatus</b>: {{angleRegulationStatus}}</div>{{/angleRegulationStatus}}
+                    {{#desiredMW}}<div><b>desiredMW</b>: {{desiredMW}}</div>{{/desiredMW}}
+                    {{#solvedAngle}}<div><b>solvedAngle</b>: {{solvedAngle}}</div>{{/solvedAngle}}
+                    {{#minimumAngle}}<div><b>minimumAngle</b>: {{minimumAngle}}</div>{{/minimumAngle}}
+                    {{#maximumAngle}}<div><b>maximumAngle</b>: {{maximumAngle}}</div>{{/maximumAngle}}
+                    {{#MktTapChanger}}<div><b>MktTapChanger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktTapChanger}}&quot;);})'>{{MktTapChanger}}</a></div>{{/MktTapChanger}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TapChangerDynamicData_collapse" aria-expanded="true" aria-controls="TapChangerDynamicData_collapse" style="margin-left: 10px;">TapChangerDynamicData</a></legend>
+                    <div id="TapChangerDynamicData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tapPosition'>tapPosition: </label><div class='col-sm-8'><input id='tapPosition' class='form-control' type='text'{{#tapPosition}} value='{{tapPosition}}'{{/tapPosition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='desiredVoltage'>desiredVoltage: </label><div class='col-sm-8'><input id='desiredVoltage' class='form-control' type='text'{{#desiredVoltage}} value='{{desiredVoltage}}'{{/desiredVoltage}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='voltageRegulationStatus'>voltageRegulationStatus: </label><div class='col-sm-8'><input id='voltageRegulationStatus' class='form-check-input' type='checkbox'{{#voltageRegulationStatus}} checked{{/voltageRegulationStatus}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='angleRegulationStatus'>angleRegulationStatus: </label><div class='col-sm-8'><input id='angleRegulationStatus' class='form-check-input' type='checkbox'{{#angleRegulationStatus}} checked{{/angleRegulationStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='desiredMW'>desiredMW: </label><div class='col-sm-8'><input id='desiredMW' class='form-control' type='text'{{#desiredMW}} value='{{desiredMW}}'{{/desiredMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='solvedAngle'>solvedAngle: </label><div class='col-sm-8'><input id='solvedAngle' class='form-control' type='text'{{#solvedAngle}} value='{{solvedAngle}}'{{/solvedAngle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumAngle'>minimumAngle: </label><div class='col-sm-8'><input id='minimumAngle' class='form-control' type='text'{{#minimumAngle}} value='{{minimumAngle}}'{{/minimumAngle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumAngle'>maximumAngle: </label><div class='col-sm-8'><input id='maximumAngle' class='form-control' type='text'{{#maximumAngle}} value='{{maximumAngle}}'{{/maximumAngle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktTapChanger'>MktTapChanger: </label><div class='col-sm-8'><input id='MktTapChanger' class='form-control' type='text'{{#MktTapChanger}} value='{{MktTapChanger}}'{{/MktTapChanger}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This class models the load distribution factors.
@@ -1640,20 +2355,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#LoadDistributionFactor_collapse" aria-expanded="true" aria-controls="LoadDistributionFactor_collapse">LoadDistributionFactor</a>
-<div id="LoadDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#pDistFactor}}<div><b>pDistFactor</b>: {{pDistFactor}}</div>{{/pDistFactor}}
-{{#qDistFactor}}<div><b>qDistFactor</b>: {{qDistFactor}}</div>{{/qDistFactor}}
-{{#IndividualPnode}}<div><b>IndividualPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IndividualPnode}}&quot;);})'>{{IndividualPnode}}</a></div>{{/IndividualPnode}}
-{{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AggregatedPnode}}&quot;);})'>{{AggregatedPnode}}</a></div>{{/AggregatedPnode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadDistributionFactor_collapse" aria-expanded="true" aria-controls="LoadDistributionFactor_collapse" style="margin-left: 10px;">LoadDistributionFactor</a></legend>
+                    <div id="LoadDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#pDistFactor}}<div><b>pDistFactor</b>: {{pDistFactor}}</div>{{/pDistFactor}}
+                    {{#qDistFactor}}<div><b>qDistFactor</b>: {{qDistFactor}}</div>{{/qDistFactor}}
+                    {{#IndividualPnode}}<div><b>IndividualPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IndividualPnode}}&quot;);})'>{{IndividualPnode}}</a></div>{{/IndividualPnode}}
+                    {{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AggregatedPnode}}&quot;);})'>{{AggregatedPnode}}</a></div>{{/AggregatedPnode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadDistributionFactor_collapse" aria-expanded="true" aria-controls="LoadDistributionFactor_collapse" style="margin-left: 10px;">LoadDistributionFactor</a></legend>
+                    <div id="LoadDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pDistFactor'>pDistFactor: </label><div class='col-sm-8'><input id='pDistFactor' class='form-control' type='text'{{#pDistFactor}} value='{{pDistFactor}}'{{/pDistFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qDistFactor'>qDistFactor: </label><div class='col-sm-8'><input id='qDistFactor' class='form-control' type='text'{{#qDistFactor}} value='{{qDistFactor}}'{{/qDistFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='IndividualPnode'>IndividualPnode: </label><div class='col-sm-8'><input id='IndividualPnode' class='form-control' type='text'{{#IndividualPnode}} value='{{IndividualPnode}}'{{/IndividualPnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}'{{/AggregatedPnode}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The defined termination points of a transmission path (down to distribution level or to a customer - generation or consumption or both).
@@ -1708,16 +2457,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ServicePoint_collapse" aria-expanded="true" aria-controls="ServicePoint_collapse">ServicePoint</a>
-<div id="ServicePoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServicePoint_collapse" aria-expanded="true" aria-controls="ServicePoint_collapse" style="margin-left: 10px;">ServicePoint</a></legend>
+                    <div id="ServicePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServicePoint_collapse" aria-expanded="true" aria-controls="ServicePoint_collapse" style="margin-left: 10px;">ServicePoint</a></legend>
+                    <div id="ServicePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Existing Transmission Contract data for an interchange schedule
@@ -1776,19 +2555,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#InterchangeETCData_collapse" aria-expanded="true" aria-controls="InterchangeETCData_collapse">InterchangeETCData</a>
-<div id="InterchangeETCData_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#contractNumber}}<div><b>contractNumber</b>: {{contractNumber}}</div>{{/contractNumber}}
-{{#usageMW}}<div><b>usageMW</b>: {{usageMW}}</div>{{/usageMW}}
-{{#InterchangeSchedule}}<div><b>InterchangeSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InterchangeSchedule}}&quot;);})'>{{InterchangeSchedule}}</a></div>{{/InterchangeSchedule}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InterchangeETCData_collapse" aria-expanded="true" aria-controls="InterchangeETCData_collapse" style="margin-left: 10px;">InterchangeETCData</a></legend>
+                    <div id="InterchangeETCData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#contractNumber}}<div><b>contractNumber</b>: {{contractNumber}}</div>{{/contractNumber}}
+                    {{#usageMW}}<div><b>usageMW</b>: {{usageMW}}</div>{{/usageMW}}
+                    {{#InterchangeSchedule}}<div><b>InterchangeSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InterchangeSchedule}}&quot;);})'>{{InterchangeSchedule}}</a></div>{{/InterchangeSchedule}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InterchangeETCData_collapse" aria-expanded="true" aria-controls="InterchangeETCData_collapse" style="margin-left: 10px;">InterchangeETCData</a></legend>
+                    <div id="InterchangeETCData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='contractNumber'>contractNumber: </label><div class='col-sm-8'><input id='contractNumber' class='form-control' type='text'{{#contractNumber}} value='{{contractNumber}}'{{/contractNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='usageMW'>usageMW: </label><div class='col-sm-8'><input id='usageMW' class='form-control' type='text'{{#usageMW}} value='{{usageMW}}'{{/usageMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InterchangeSchedule'>InterchangeSchedule: </label><div class='col-sm-8'><input id='InterchangeSchedule' class='form-control' type='text'{{#InterchangeSchedule}} value='{{InterchangeSchedule}}'{{/InterchangeSchedule}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This class models the system distribution factors.
@@ -1849,19 +2661,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SysLoadDistributionFactor_collapse" aria-expanded="true" aria-controls="SysLoadDistributionFactor_collapse">SysLoadDistributionFactor</a>
-<div id="SysLoadDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#factor}}<div><b>factor</b>: {{factor}}</div>{{/factor}}
-{{#HostControlArea}}<div><b>HostControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HostControlArea}}&quot;);})'>{{HostControlArea}}</a></div>{{/HostControlArea}}
-{{#MktConnectivityNode}}<div><b>MktConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktConnectivityNode}}&quot;);})'>{{MktConnectivityNode}}</a></div>{{/MktConnectivityNode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SysLoadDistributionFactor_collapse" aria-expanded="true" aria-controls="SysLoadDistributionFactor_collapse" style="margin-left: 10px;">SysLoadDistributionFactor</a></legend>
+                    <div id="SysLoadDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#factor}}<div><b>factor</b>: {{factor}}</div>{{/factor}}
+                    {{#HostControlArea}}<div><b>HostControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HostControlArea}}&quot;);})'>{{HostControlArea}}</a></div>{{/HostControlArea}}
+                    {{#MktConnectivityNode}}<div><b>MktConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktConnectivityNode}}&quot;);})'>{{MktConnectivityNode}}</a></div>{{/MktConnectivityNode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SysLoadDistributionFactor_collapse" aria-expanded="true" aria-controls="SysLoadDistributionFactor_collapse" style="margin-left: 10px;">SysLoadDistributionFactor</a></legend>
+                    <div id="SysLoadDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='factor'>factor: </label><div class='col-sm-8'><input id='factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktConnectivityNode'>MktConnectivityNode: </label><div class='col-sm-8'><input id='MktConnectivityNode' class='form-control' type='text'{{#MktConnectivityNode}} value='{{MktConnectivityNode}}'{{/MktConnectivityNode}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Specifies the schedule for energy transfers between interchange areas that are necessary to satisfy the associated interchange transaction.
@@ -1940,29 +2785,72 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EnergyTransaction_collapse" aria-expanded="true" aria-controls="EnergyTransaction_collapse">EnergyTransaction</a>
-<div id="EnergyTransaction_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#capacityBacked}}<div><b>capacityBacked</b>: {{capacityBacked}}</div>{{/capacityBacked}}
-{{#congestChargeMax}}<div><b>congestChargeMax</b>: {{congestChargeMax}}</div>{{/congestChargeMax}}
-{{#deliveryPointP}}<div><b>deliveryPointP</b>: {{deliveryPointP}}</div>{{/deliveryPointP}}
-{{#energyMin}}<div><b>energyMin</b>: {{energyMin}}</div>{{/energyMin}}
-{{#firmInterchangeFlag}}<div><b>firmInterchangeFlag</b>: {{firmInterchangeFlag}}</div>{{/firmInterchangeFlag}}
-{{#payCongestion}}<div><b>payCongestion</b>: {{payCongestion}}</div>{{/payCongestion}}
-{{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
-{{#receiptPointP}}<div><b>receiptPointP</b>: {{receiptPointP}}</div>{{/receiptPointP}}
-{{#state}}<div><b>state</b>: {{state}}</div>{{/state}}
-{{#EnergyProduct}}<div><b>EnergyProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyProduct}}&quot;);})'>{{EnergyProduct}}</a></div>{{/EnergyProduct}}
-{{#TransmissionReservation}}<div><b>TransmissionReservation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionReservation}}&quot;);})'>{{TransmissionReservation}}</a></div>{{/TransmissionReservation}}
-{{#Export_SubControlArea}}<div><b>Export_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Export_SubControlArea}}&quot;);})'>{{Export_SubControlArea}}</a></div>{{/Export_SubControlArea}}
-{{#Import_SubControlArea}}<div><b>Import_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Import_SubControlArea}}&quot;);})'>{{Import_SubControlArea}}</a></div>{{/Import_SubControlArea}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyTransaction_collapse" aria-expanded="true" aria-controls="EnergyTransaction_collapse" style="margin-left: 10px;">EnergyTransaction</a></legend>
+                    <div id="EnergyTransaction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#capacityBacked}}<div><b>capacityBacked</b>: {{capacityBacked}}</div>{{/capacityBacked}}
+                    {{#congestChargeMax}}<div><b>congestChargeMax</b>: {{congestChargeMax}}</div>{{/congestChargeMax}}
+                    {{#deliveryPointP}}<div><b>deliveryPointP</b>: {{deliveryPointP}}</div>{{/deliveryPointP}}
+                    {{#energyMin}}<div><b>energyMin</b>: {{energyMin}}</div>{{/energyMin}}
+                    {{#firmInterchangeFlag}}<div><b>firmInterchangeFlag</b>: {{firmInterchangeFlag}}</div>{{/firmInterchangeFlag}}
+                    {{#payCongestion}}<div><b>payCongestion</b>: {{payCongestion}}</div>{{/payCongestion}}
+                    {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
+                    {{#receiptPointP}}<div><b>receiptPointP</b>: {{receiptPointP}}</div>{{/receiptPointP}}
+                    {{#state}}<div><b>state</b>: {{state}}</div>{{/state}}
+                    {{#EnergyProduct}}<div><b>EnergyProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyProduct}}&quot;);})'>{{EnergyProduct}}</a></div>{{/EnergyProduct}}
+                    {{#TransmissionReservation}}<div><b>TransmissionReservation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionReservation}}&quot;);})'>{{TransmissionReservation}}</a></div>{{/TransmissionReservation}}
+                    {{#Export_SubControlArea}}<div><b>Export_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Export_SubControlArea}}&quot;);})'>{{Export_SubControlArea}}</a></div>{{/Export_SubControlArea}}
+                    {{#Import_SubControlArea}}<div><b>Import_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Import_SubControlArea}}&quot;);})'>{{Import_SubControlArea}}</a></div>{{/Import_SubControlArea}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyTransaction_collapse" aria-expanded="true" aria-controls="EnergyTransaction_collapse" style="margin-left: 10px;">EnergyTransaction</a></legend>
+                    <div id="EnergyTransaction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='capacityBacked'>capacityBacked: </label><div class='col-sm-8'><input id='capacityBacked' class='form-check-input' type='checkbox'{{#capacityBacked}} checked{{/capacityBacked}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='congestChargeMax'>congestChargeMax: </label><div class='col-sm-8'><input id='congestChargeMax' class='form-control' type='text'{{#congestChargeMax}} value='{{congestChargeMax}}'{{/congestChargeMax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='deliveryPointP'>deliveryPointP: </label><div class='col-sm-8'><input id='deliveryPointP' class='form-control' type='text'{{#deliveryPointP}} value='{{deliveryPointP}}'{{/deliveryPointP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyMin'>energyMin: </label><div class='col-sm-8'><input id='energyMin' class='form-control' type='text'{{#energyMin}} value='{{energyMin}}'{{/energyMin}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='firmInterchangeFlag'>firmInterchangeFlag: </label><div class='col-sm-8'><input id='firmInterchangeFlag' class='form-check-input' type='checkbox'{{#firmInterchangeFlag}} checked{{/firmInterchangeFlag}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='payCongestion'>payCongestion: </label><div class='col-sm-8'><input id='payCongestion' class='form-check-input' type='checkbox'{{#payCongestion}} checked{{/payCongestion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reason'>reason: </label><div class='col-sm-8'><input id='reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='receiptPointP'>receiptPointP: </label><div class='col-sm-8'><input id='receiptPointP' class='form-control' type='text'{{#receiptPointP}} value='{{receiptPointP}}'{{/receiptPointP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='state'>state: </label><div class='col-sm-8'><input id='state' class='form-control' type='text'{{#state}} value='{{state}}'{{/state}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyProduct'>EnergyProduct: </label><div class='col-sm-8'><input id='EnergyProduct' class='form-control' type='text'{{#EnergyProduct}} value='{{EnergyProduct}}'{{/EnergyProduct}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransmissionReservation'>TransmissionReservation: </label><div class='col-sm-8'><input id='TransmissionReservation' class='form-control' type='text'{{#TransmissionReservation}} value='{{TransmissionReservation}}'{{/TransmissionReservation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Export_SubControlArea'>Export_SubControlArea: </label><div class='col-sm-8'><input id='Export_SubControlArea' class='form-control' type='text'{{#Export_SubControlArea}} value='{{Export_SubControlArea}}'{{/Export_SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Import_SubControlArea'>Import_SubControlArea: </label><div class='col-sm-8'><input id='Import_SubControlArea' class='form-control' type='text'{{#Import_SubControlArea}} value='{{Import_SubControlArea}}'{{/Import_SubControlArea}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Optimal Power Flow or State Estimator Load Data for OTS.
@@ -2023,19 +2911,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EnergyConsumerData_collapse" aria-expanded="true" aria-controls="EnergyConsumerData_collapse">EnergyConsumerData</a>
-<div id="EnergyConsumerData_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#loadMVAR}}<div><b>loadMVAR</b>: {{loadMVAR}}</div>{{/loadMVAR}}
-{{#loadMW}}<div><b>loadMW</b>: {{loadMW}}</div>{{/loadMW}}
-{{#MktEnergyConsumer}}<div><b>MktEnergyConsumer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktEnergyConsumer}}&quot;);})'>{{MktEnergyConsumer}}</a></div>{{/MktEnergyConsumer}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyConsumerData_collapse" aria-expanded="true" aria-controls="EnergyConsumerData_collapse" style="margin-left: 10px;">EnergyConsumerData</a></legend>
+                    <div id="EnergyConsumerData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#loadMVAR}}<div><b>loadMVAR</b>: {{loadMVAR}}</div>{{/loadMVAR}}
+                    {{#loadMW}}<div><b>loadMW</b>: {{loadMW}}</div>{{/loadMW}}
+                    {{#MktEnergyConsumer}}<div><b>MktEnergyConsumer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktEnergyConsumer}}&quot;);})'>{{MktEnergyConsumer}}</a></div>{{/MktEnergyConsumer}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyConsumerData_collapse" aria-expanded="true" aria-controls="EnergyConsumerData_collapse" style="margin-left: 10px;">EnergyConsumerData</a></legend>
+                    <div id="EnergyConsumerData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadMVAR'>loadMVAR: </label><div class='col-sm-8'><input id='loadMVAR' class='form-control' type='text'{{#loadMVAR}} value='{{loadMVAR}}'{{/loadMVAR}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadMW'>loadMW: </label><div class='col-sm-8'><input id='loadMW' class='form-control' type='text'{{#loadMW}} value='{{loadMW}}'{{/loadMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktEnergyConsumer'>MktEnergyConsumer: </label><div class='col-sm-8'><input id='MktEnergyConsumer' class='form-control' type='text'{{#MktEnergyConsumer}} value='{{MktEnergyConsumer}}'{{/MktEnergyConsumer}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Typical for regional transmission operators (RTOs), these constraints include transmission as well as generation group constraints identified in both base case and critical contingency cases.
@@ -2100,22 +3021,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SecurityConstraints_collapse" aria-expanded="true" aria-controls="SecurityConstraints_collapse">SecurityConstraints</a>
-<div id="SecurityConstraints_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#minMW}}<div><b>minMW</b>: {{minMW}}</div>{{/minMW}}
-{{#maxMW}}<div><b>maxMW</b>: {{maxMW}}</div>{{/maxMW}}
-{{#actualMW}}<div><b>actualMW</b>: {{actualMW}}</div>{{/actualMW}}
-{{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
-{{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
-{{#GeneratingBid}}<div><b>GeneratingBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingBid}}&quot;);})'>{{GeneratingBid}}</a></div>{{/GeneratingBid}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SecurityConstraints_collapse" aria-expanded="true" aria-controls="SecurityConstraints_collapse" style="margin-left: 10px;">SecurityConstraints</a></legend>
+                    <div id="SecurityConstraints_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#minMW}}<div><b>minMW</b>: {{minMW}}</div>{{/minMW}}
+                    {{#maxMW}}<div><b>maxMW</b>: {{maxMW}}</div>{{/maxMW}}
+                    {{#actualMW}}<div><b>actualMW</b>: {{actualMW}}</div>{{/actualMW}}
+                    {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
+                    {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+                    {{#GeneratingBid}}<div><b>GeneratingBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingBid}}&quot;);})'>{{GeneratingBid}}</a></div>{{/GeneratingBid}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SecurityConstraints_collapse" aria-expanded="true" aria-controls="SecurityConstraints_collapse" style="margin-left: 10px;">SecurityConstraints</a></legend>
+                    <div id="SecurityConstraints_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minMW'>minMW: </label><div class='col-sm-8'><input id='minMW' class='form-control' type='text'{{#minMW}} value='{{minMW}}'{{/minMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxMW'>maxMW: </label><div class='col-sm-8'><input id='maxMW' class='form-control' type='text'{{#maxMW}} value='{{maxMW}}'{{/maxMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualMW'>actualMW: </label><div class='col-sm-8'><input id='actualMW' class='form-control' type='text'{{#actualMW}} value='{{actualMW}}'{{/actualMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GeneratingBid'>GeneratingBid: </label><div class='col-sm-8'><input id='GeneratingBid' class='form-control' type='text'{{#GeneratingBid}} value='{{GeneratingBid}}'{{/GeneratingBid}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Typically provided by RTO systems, constraints identified in both base case and critical contingency cases have to be transferred.
@@ -2176,19 +3133,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SecurityConstraintSum_collapse" aria-expanded="true" aria-controls="SecurityConstraintSum_collapse">SecurityConstraintSum</a>
-<div id="SecurityConstraintSum_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + MarketPlan.MarketFactors.prototype.template.call (this) +
-`
-{{#DefaultConstraintLimit}}<div><b>DefaultConstraintLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DefaultConstraintLimit}}&quot;);})'>{{DefaultConstraintLimit}}</a></div>{{/DefaultConstraintLimit}}
-{{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
-{{#BaseCaseConstraintLimit}}<div><b>BaseCaseConstraintLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseCaseConstraintLimit}}&quot;);})'>{{BaseCaseConstraintLimit}}</a></div>{{/BaseCaseConstraintLimit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SecurityConstraintSum_collapse" aria-expanded="true" aria-controls="SecurityConstraintSum_collapse" style="margin-left: 10px;">SecurityConstraintSum</a></legend>
+                    <div id="SecurityConstraintSum_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MarketPlan.MarketFactors.prototype.template.call (this) +
+                    `
+                    {{#DefaultConstraintLimit}}<div><b>DefaultConstraintLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DefaultConstraintLimit}}&quot;);})'>{{DefaultConstraintLimit}}</a></div>{{/DefaultConstraintLimit}}
+                    {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
+                    {{#BaseCaseConstraintLimit}}<div><b>BaseCaseConstraintLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseCaseConstraintLimit}}&quot;);})'>{{BaseCaseConstraintLimit}}</a></div>{{/BaseCaseConstraintLimit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SecurityConstraintSum_collapse" aria-expanded="true" aria-controls="SecurityConstraintSum_collapse" style="margin-left: 10px;">SecurityConstraintSum</a></legend>
+                    <div id="SecurityConstraintSum_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DefaultConstraintLimit'>DefaultConstraintLimit: </label><div class='col-sm-8'><input id='DefaultConstraintLimit' class='form-control' type='text'{{#DefaultConstraintLimit}} value='{{DefaultConstraintLimit}}'{{/DefaultConstraintLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BaseCaseConstraintLimit'>BaseCaseConstraintLimit: </label><div class='col-sm-8'><input id='BaseCaseConstraintLimit' class='form-control' type='text'{{#BaseCaseConstraintLimit}} value='{{BaseCaseConstraintLimit}}'{{/BaseCaseConstraintLimit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Maximum MW and optionally Minimum MW (Y1 and Y2, respectively)
@@ -2243,17 +3233,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MWLimitSchedule_collapse" aria-expanded="true" aria-controls="MWLimitSchedule_collapse">MWLimitSchedule</a>
-<div id="MWLimitSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#SecurityConstraintLimit}}<div><b>SecurityConstraintLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecurityConstraintLimit}}&quot;);})'>{{SecurityConstraintLimit}}</a></div>{{/SecurityConstraintLimit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MWLimitSchedule_collapse" aria-expanded="true" aria-controls="MWLimitSchedule_collapse" style="margin-left: 10px;">MWLimitSchedule</a></legend>
+                    <div id="MWLimitSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#SecurityConstraintLimit}}<div><b>SecurityConstraintLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecurityConstraintLimit}}&quot;);})'>{{SecurityConstraintLimit}}</a></div>{{/SecurityConstraintLimit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MWLimitSchedule_collapse" aria-expanded="true" aria-controls="MWLimitSchedule_collapse" style="margin-left: 10px;">MWLimitSchedule</a></legend>
+                    <div id="MWLimitSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SecurityConstraintLimit'>SecurityConstraintLimit: </label><div class='col-sm-8'><input id='SecurityConstraintLimit' class='form-control' type='text'{{#SecurityConstraintLimit}} value='{{SecurityConstraintLimit}}'{{/SecurityConstraintLimit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Area load curve definition.
@@ -2314,20 +3335,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AreaLoadCurve_collapse" aria-expanded="true" aria-controls="AreaLoadCurve_collapse">AreaLoadCurve</a>
-<div id="AreaLoadCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.RegularIntervalSchedule.prototype.template.call (this) +
-`
-{{#forecastType}}<div><b>forecastType</b>: {{forecastType}}</div>{{/forecastType}}
-{{#AggregateNode}}<div><b>AggregateNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AggregateNode}}&quot;);})'>{{AggregateNode}}</a></div>{{/AggregateNode}}
-{{#TACArea}}<div><b>TACArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TACArea}}&quot;);})'>{{TACArea}}</a></div>{{/TACArea}}
-{{#MktLoadArea}}<div><b>MktLoadArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktLoadArea}}&quot;);})'>{{MktLoadArea}}</a></div>{{/MktLoadArea}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AreaLoadCurve_collapse" aria-expanded="true" aria-controls="AreaLoadCurve_collapse" style="margin-left: 10px;">AreaLoadCurve</a></legend>
+                    <div id="AreaLoadCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.template.call (this) +
+                    `
+                    {{#forecastType}}<div><b>forecastType</b>: {{forecastType}}</div>{{/forecastType}}
+                    {{#AggregateNode}}<div><b>AggregateNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AggregateNode}}&quot;);})'>{{AggregateNode}}</a></div>{{/AggregateNode}}
+                    {{#TACArea}}<div><b>TACArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TACArea}}&quot;);})'>{{TACArea}}</a></div>{{/TACArea}}
+                    {{#MktLoadArea}}<div><b>MktLoadArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktLoadArea}}&quot;);})'>{{MktLoadArea}}</a></div>{{/MktLoadArea}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AreaLoadCurve_collapse" aria-expanded="true" aria-controls="AreaLoadCurve_collapse" style="margin-left: 10px;">AreaLoadCurve</a></legend>
+                    <div id="AreaLoadCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='forecastType'>forecastType: </label><div class='col-sm-8'><input id='forecastType' class='form-control' type='text'{{#forecastType}} value='{{forecastType}}'{{/forecastType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}'{{/AggregateNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TACArea'>TACArea: </label><div class='col-sm-8'><input id='TACArea' class='form-control' type='text'{{#TACArea}} value='{{TACArea}}'{{/TACArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktLoadArea'>MktLoadArea: </label><div class='col-sm-8'><input id='MktLoadArea' class='form-control' type='text'{{#MktLoadArea}} value='{{MktLoadArea}}'{{/MktLoadArea}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Reserve demand curve.
@@ -2390,20 +3445,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ReserveDemandCurve_collapse" aria-expanded="true" aria-controls="ReserveDemandCurve_collapse">ReserveDemandCurve</a>
-<div id="ReserveDemandCurve_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#reqMaxMW}}<div><b>reqMaxMW</b>: {{reqMaxMW}}</div>{{/reqMaxMW}}
-{{#reserveRequirementType}}<div><b>reserveRequirementType</b>: {{reserveRequirementType}}</div>{{/reserveRequirementType}}
-{{#ASRequirements}}<div><b>ASRequirements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ASRequirements}}&quot;);})'>{{ASRequirements}}</a></div>{{/ASRequirements}}
-{{#MarketRegion}}<div><b>MarketRegion</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketRegion}}&quot;);})'>{{MarketRegion}}</a></div>{{/MarketRegion}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReserveDemandCurve_collapse" aria-expanded="true" aria-controls="ReserveDemandCurve_collapse" style="margin-left: 10px;">ReserveDemandCurve</a></legend>
+                    <div id="ReserveDemandCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#reqMaxMW}}<div><b>reqMaxMW</b>: {{reqMaxMW}}</div>{{/reqMaxMW}}
+                    {{#reserveRequirementType}}<div><b>reserveRequirementType</b>: {{reserveRequirementType}}</div>{{/reserveRequirementType}}
+                    {{#ASRequirements}}<div><b>ASRequirements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ASRequirements}}&quot;);})'>{{ASRequirements}}</a></div>{{/ASRequirements}}
+                    {{#MarketRegion}}<div><b>MarketRegion</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketRegion}}&quot;);})'>{{MarketRegion}}</a></div>{{/MarketRegion}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReserveDemandCurve_collapse" aria-expanded="true" aria-controls="ReserveDemandCurve_collapse" style="margin-left: 10px;">ReserveDemandCurve</a></legend>
+                    <div id="ReserveDemandCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reqMaxMW'>reqMaxMW: </label><div class='col-sm-8'><input id='reqMaxMW' class='form-control' type='text'{{#reqMaxMW}} value='{{reqMaxMW}}'{{/reqMaxMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reserveRequirementType'>reserveRequirementType: </label><div class='col-sm-8'><input id='reserveRequirementType' class='form-control' type='text'{{#reserveRequirementType}} value='{{reserveRequirementType}}'{{/reserveRequirementType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ASRequirements'>ASRequirements: </label><div class='col-sm-8'><input id='ASRequirements' class='form-control' type='text'{{#ASRequirements}} value='{{ASRequirements}}'{{/ASRequirements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketRegion'>MarketRegion: </label><div class='col-sm-8'><input id='MarketRegion' class='form-control' type='text'{{#MarketRegion}} value='{{MarketRegion}}'{{/MarketRegion}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Contains information about the update from SCADA
@@ -2458,17 +3547,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SCADAInformation_collapse" aria-expanded="true" aria-controls="SCADAInformation_collapse">SCADAInformation</a>
-<div id="SCADAInformation_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SCADAInformation_collapse" aria-expanded="true" aria-controls="SCADAInformation_collapse" style="margin-left: 10px;">SCADAInformation</a></legend>
+                    <div id="SCADAInformation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SCADAInformation_collapse" aria-expanded="true" aria-controls="SCADAInformation_collapse" style="margin-left: 10px;">SCADAInformation</a></legend>
+                    <div id="SCADAInformation_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeStamp'>timeStamp: </label><div class='col-sm-8'><input id='timeStamp' class='form-control' type='text'{{#timeStamp}} value='{{timeStamp}}'{{/timeStamp}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Optimal Power Flow or State Estimator Circuit Breaker Status.
@@ -2525,18 +3645,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SwitchStatus_collapse" aria-expanded="true" aria-controls="SwitchStatus_collapse">SwitchStatus</a>
-<div id="SwitchStatus_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#switchStatus}}<div><b>switchStatus</b>: {{switchStatus}}</div>{{/switchStatus}}
-{{#MktSwitch}}<div><b>MktSwitch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktSwitch}}&quot;);})'>{{MktSwitch}}</a></div>{{/MktSwitch}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SwitchStatus_collapse" aria-expanded="true" aria-controls="SwitchStatus_collapse" style="margin-left: 10px;">SwitchStatus</a></legend>
+                    <div id="SwitchStatus_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#switchStatus}}<div><b>switchStatus</b>: {{switchStatus}}</div>{{/switchStatus}}
+                    {{#MktSwitch}}<div><b>MktSwitch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktSwitch}}&quot;);})'>{{MktSwitch}}</a></div>{{/MktSwitch}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SwitchStatus_collapse" aria-expanded="true" aria-controls="SwitchStatus_collapse" style="margin-left: 10px;">SwitchStatus</a></legend>
+                    <div id="SwitchStatus_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='switchStatus'>switchStatus: </label><div class='col-sm-8'><input id='switchStatus' class='form-control' type='text'{{#switchStatus}} value='{{switchStatus}}'{{/switchStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktSwitch'>MktSwitch: </label><div class='col-sm-8'><input id='MktSwitch' class='form-control' type='text'{{#MktSwitch}} value='{{MktSwitch}}'{{/MktSwitch}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Data for profile.
@@ -2603,23 +3755,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ProfileData_collapse" aria-expanded="true" aria-controls="ProfileData_collapse">ProfileData</a>
-<div id="ProfileData_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#bidPrice}}<div><b>bidPrice</b>: {{bidPrice}}</div>{{/bidPrice}}
-{{#capacityLevel}}<div><b>capacityLevel</b>: {{capacityLevel}}</div>{{/capacityLevel}}
-{{#energyLevel}}<div><b>energyLevel</b>: {{energyLevel}}</div>{{/energyLevel}}
-{{#minimumLevel}}<div><b>minimumLevel</b>: {{minimumLevel}}</div>{{/minimumLevel}}
-{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-{{#startDateTime}}<div><b>startDateTime</b>: {{startDateTime}}</div>{{/startDateTime}}
-{{#stopDateTime}}<div><b>stopDateTime</b>: {{stopDateTime}}</div>{{/stopDateTime}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProfileData_collapse" aria-expanded="true" aria-controls="ProfileData_collapse" style="margin-left: 10px;">ProfileData</a></legend>
+                    <div id="ProfileData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#bidPrice}}<div><b>bidPrice</b>: {{bidPrice}}</div>{{/bidPrice}}
+                    {{#capacityLevel}}<div><b>capacityLevel</b>: {{capacityLevel}}</div>{{/capacityLevel}}
+                    {{#energyLevel}}<div><b>energyLevel</b>: {{energyLevel}}</div>{{/energyLevel}}
+                    {{#minimumLevel}}<div><b>minimumLevel</b>: {{minimumLevel}}</div>{{/minimumLevel}}
+                    {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+                    {{#startDateTime}}<div><b>startDateTime</b>: {{startDateTime}}</div>{{/startDateTime}}
+                    {{#stopDateTime}}<div><b>stopDateTime</b>: {{stopDateTime}}</div>{{/stopDateTime}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProfileData_collapse" aria-expanded="true" aria-controls="ProfileData_collapse" style="margin-left: 10px;">ProfileData</a></legend>
+                    <div id="ProfileData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidPrice'>bidPrice: </label><div class='col-sm-8'><input id='bidPrice' class='form-control' type='text'{{#bidPrice}} value='{{bidPrice}}'{{/bidPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='capacityLevel'>capacityLevel: </label><div class='col-sm-8'><input id='capacityLevel' class='form-control' type='text'{{#capacityLevel}} value='{{capacityLevel}}'{{/capacityLevel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyLevel'>energyLevel: </label><div class='col-sm-8'><input id='energyLevel' class='form-control' type='text'{{#energyLevel}} value='{{energyLevel}}'{{/energyLevel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumLevel'>minimumLevel: </label><div class='col-sm-8'><input id='minimumLevel' class='form-control' type='text'{{#minimumLevel}} value='{{minimumLevel}}'{{/minimumLevel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startDateTime'>startDateTime: </label><div class='col-sm-8'><input id='startDateTime' class='form-control' type='text'{{#startDateTime}} value='{{startDateTime}}'{{/startDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stopDateTime'>stopDateTime: </label><div class='col-sm-8'><input id='stopDateTime' class='form-control' type='text'{{#stopDateTime}} value='{{stopDateTime}}'{{/stopDateTime}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Curve data for default bid curve and startup cost curve.
@@ -2674,17 +3863,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DefaultBidCurveData_collapse" aria-expanded="true" aria-controls="DefaultBidCurveData_collapse">DefaultBidCurveData</a>
-<div id="DefaultBidCurveData_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.CurveData.prototype.template.call (this) +
-`
-{{#bidSegmentCalcType}}<div><b>bidSegmentCalcType</b>: {{bidSegmentCalcType}}</div>{{/bidSegmentCalcType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DefaultBidCurveData_collapse" aria-expanded="true" aria-controls="DefaultBidCurveData_collapse" style="margin-left: 10px;">DefaultBidCurveData</a></legend>
+                    <div id="DefaultBidCurveData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.CurveData.prototype.template.call (this) +
+                    `
+                    {{#bidSegmentCalcType}}<div><b>bidSegmentCalcType</b>: {{bidSegmentCalcType}}</div>{{/bidSegmentCalcType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DefaultBidCurveData_collapse" aria-expanded="true" aria-controls="DefaultBidCurveData_collapse" style="margin-left: 10px;">DefaultBidCurveData</a></legend>
+                    <div id="DefaultBidCurveData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.CurveData.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidSegmentCalcType'>bidSegmentCalcType: </label><div class='col-sm-8'><input id='bidSegmentCalcType' class='form-control' type='text'{{#bidSegmentCalcType}} value='{{bidSegmentCalcType}}'{{/bidSegmentCalcType}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Subclass of IEC61970:Wires:Switch
@@ -2737,16 +3957,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MktSwitch_collapse" aria-expanded="true" aria-controls="MktSwitch_collapse">MktSwitch</a>
-<div id="MktSwitch_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Wires.Switch.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktSwitch_collapse" aria-expanded="true" aria-controls="MktSwitch_collapse" style="margin-left: 10px;">MktSwitch</a></legend>
+                    <div id="MktSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.Switch.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktSwitch_collapse" aria-expanded="true" aria-controls="MktSwitch_collapse" style="margin-left: 10px;">MktSwitch</a></legend>
+                    <div id="MktSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.Switch.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Possibly time-varying max MW or MVA and optionally Min MW limit or MVA limit (Y1 and Y2, respectively) assigned to a contingency analysis base case.
@@ -2803,17 +4053,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BaseCaseConstraintLimit_collapse" aria-expanded="true" aria-controls="BaseCaseConstraintLimit_collapse">BaseCaseConstraintLimit</a>
-<div id="BaseCaseConstraintLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#SecurityConstraintSum}}<div><b>SecurityConstraintSum</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecurityConstraintSum}}&quot;);})'>{{SecurityConstraintSum}}</a></div>{{/SecurityConstraintSum}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BaseCaseConstraintLimit_collapse" aria-expanded="true" aria-controls="BaseCaseConstraintLimit_collapse" style="margin-left: 10px;">BaseCaseConstraintLimit</a></legend>
+                    <div id="BaseCaseConstraintLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#SecurityConstraintSum}}<div><b>SecurityConstraintSum</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecurityConstraintSum}}&quot;);})'>{{SecurityConstraintSum}}</a></div>{{/SecurityConstraintSum}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BaseCaseConstraintLimit_collapse" aria-expanded="true" aria-controls="BaseCaseConstraintLimit_collapse" style="margin-left: 10px;">BaseCaseConstraintLimit</a></legend>
+                    <div id="BaseCaseConstraintLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SecurityConstraintSum'>SecurityConstraintSum: </label><div class='col-sm-8'><input id='SecurityConstraintSum' class='form-control' type='text'{{#SecurityConstraintSum}} value='{{SecurityConstraintSum}}'{{/SecurityConstraintSum}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Measurement quality flags for Discrete Values.
@@ -2872,19 +4153,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DiscreteMeasurementValueQuality_collapse" aria-expanded="true" aria-controls="DiscreteMeasurementValueQuality_collapse">DiscreteMeasurementValueQuality</a>
-<div id="DiscreteMeasurementValueQuality_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Meas.MeasurementValueQuality.prototype.template.call (this) +
-`
-{{#manualReplaceIndicator}}<div><b>manualReplaceIndicator</b>: {{manualReplaceIndicator}}</div>{{/manualReplaceIndicator}}
-{{#removeFromOperationIndicator}}<div><b>removeFromOperationIndicator</b>: {{removeFromOperationIndicator}}</div>{{/removeFromOperationIndicator}}
-{{#MktDiscreteValue}}<div><b>MktDiscreteValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktDiscreteValue}}&quot;);})'>{{MktDiscreteValue}}</a></div>{{/MktDiscreteValue}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscreteMeasurementValueQuality_collapse" aria-expanded="true" aria-controls="DiscreteMeasurementValueQuality_collapse" style="margin-left: 10px;">DiscreteMeasurementValueQuality</a></legend>
+                    <div id="DiscreteMeasurementValueQuality_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.MeasurementValueQuality.prototype.template.call (this) +
+                    `
+                    {{#manualReplaceIndicator}}<div><b>manualReplaceIndicator</b>: {{manualReplaceIndicator}}</div>{{/manualReplaceIndicator}}
+                    {{#removeFromOperationIndicator}}<div><b>removeFromOperationIndicator</b>: {{removeFromOperationIndicator}}</div>{{/removeFromOperationIndicator}}
+                    {{#MktDiscreteValue}}<div><b>MktDiscreteValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktDiscreteValue}}&quot;);})'>{{MktDiscreteValue}}</a></div>{{/MktDiscreteValue}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscreteMeasurementValueQuality_collapse" aria-expanded="true" aria-controls="DiscreteMeasurementValueQuality_collapse" style="margin-left: 10px;">DiscreteMeasurementValueQuality</a></legend>
+                    <div id="DiscreteMeasurementValueQuality_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.MeasurementValueQuality.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='manualReplaceIndicator'>manualReplaceIndicator: </label><div class='col-sm-8'><input id='manualReplaceIndicator' class='form-check-input' type='checkbox'{{#manualReplaceIndicator}} checked{{/manualReplaceIndicator}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='removeFromOperationIndicator'>removeFromOperationIndicator: </label><div class='col-sm-8'><input id='removeFromOperationIndicator' class='form-check-input' type='checkbox'{{#removeFromOperationIndicator}} checked{{/removeFromOperationIndicator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktDiscreteValue'>MktDiscreteValue: </label><div class='col-sm-8'><input id='MktDiscreteValue' class='form-control' type='text'{{#MktDiscreteValue}} value='{{MktDiscreteValue}}'{{/MktDiscreteValue}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Subclass of IEC61970:Wires:TapChanger
@@ -2937,16 +4251,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MktTapChanger_collapse" aria-expanded="true" aria-controls="MktTapChanger_collapse">MktTapChanger</a>
-<div id="MktTapChanger_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Wires.TapChanger.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktTapChanger_collapse" aria-expanded="true" aria-controls="MktTapChanger_collapse" style="margin-left: 10px;">MktTapChanger</a></legend>
+                    <div id="MktTapChanger_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.TapChanger.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktTapChanger_collapse" aria-expanded="true" aria-controls="MktTapChanger_collapse" style="margin-left: 10px;">MktTapChanger</a></legend>
+                    <div id="MktTapChanger_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.TapChanger.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * DefaultBid is a generic class to hold Default Energy Bid, Default Startup Bid, and Default Minimum Load Bid:
@@ -3014,21 +4358,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DefaultBid_collapse" aria-expanded="true" aria-controls="DefaultBid_collapse">DefaultBid</a>
-<div id="DefaultBid_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ParticipantInterfaces.Bid.prototype.template.call (this) +
-`
-{{#bidType}}<div><b>bidType</b>: {{bidType}}</div>{{/bidType}}
-{{#minLoadCost}}<div><b>minLoadCost</b>: {{minLoadCost}}</div>{{/minLoadCost}}
-{{#peakFlag}}<div><b>peakFlag</b>: {{peakFlag}}</div>{{/peakFlag}}
-{{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
-{{#DefaultBidCurve}}<div><b>DefaultBidCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DefaultBidCurve}}&quot;);})'>{{DefaultBidCurve}}</a></div>{{/DefaultBidCurve}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DefaultBid_collapse" aria-expanded="true" aria-controls="DefaultBid_collapse" style="margin-left: 10px;">DefaultBid</a></legend>
+                    <div id="DefaultBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ParticipantInterfaces.Bid.prototype.template.call (this) +
+                    `
+                    {{#bidType}}<div><b>bidType</b>: {{bidType}}</div>{{/bidType}}
+                    {{#minLoadCost}}<div><b>minLoadCost</b>: {{minLoadCost}}</div>{{/minLoadCost}}
+                    {{#peakFlag}}<div><b>peakFlag</b>: {{peakFlag}}</div>{{/peakFlag}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+                    {{#DefaultBidCurve}}<div><b>DefaultBidCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DefaultBidCurve}}&quot;);})'>{{DefaultBidCurve}}</a></div>{{/DefaultBidCurve}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DefaultBid_collapse" aria-expanded="true" aria-controls="DefaultBid_collapse" style="margin-left: 10px;">DefaultBid</a></legend>
+                    <div id="DefaultBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ParticipantInterfaces.Bid.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidType'>bidType: </label><div class='col-sm-8'><input id='bidType' class='form-control' type='text'{{#bidType}} value='{{bidType}}'{{/bidType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minLoadCost'>minLoadCost: </label><div class='col-sm-8'><input id='minLoadCost' class='form-control' type='text'{{#minLoadCost}} value='{{minLoadCost}}'{{/minLoadCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='peakFlag'>peakFlag: </label><div class='col-sm-8'><input id='peakFlag' class='form-control' type='text'{{#peakFlag}} value='{{peakFlag}}'{{/peakFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DefaultBidCurve'>DefaultBidCurve: </label><div class='col-sm-8'><input id='DefaultBidCurve' class='form-control' type='text'{{#DefaultBidCurve}} value='{{DefaultBidCurve}}'{{/DefaultBidCurve}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This class models the generation distribution factors.
@@ -3089,19 +4468,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GenDistributionFactor_collapse" aria-expanded="true" aria-controls="GenDistributionFactor_collapse">GenDistributionFactor</a>
-<div id="GenDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#factor}}<div><b>factor</b>: {{factor}}</div>{{/factor}}
-{{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AggregatedPnode}}&quot;);})'>{{AggregatedPnode}}</a></div>{{/AggregatedPnode}}
-{{#IndividualPnode}}<div><b>IndividualPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IndividualPnode}}&quot;);})'>{{IndividualPnode}}</a></div>{{/IndividualPnode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenDistributionFactor_collapse" aria-expanded="true" aria-controls="GenDistributionFactor_collapse" style="margin-left: 10px;">GenDistributionFactor</a></legend>
+                    <div id="GenDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#factor}}<div><b>factor</b>: {{factor}}</div>{{/factor}}
+                    {{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AggregatedPnode}}&quot;);})'>{{AggregatedPnode}}</a></div>{{/AggregatedPnode}}
+                    {{#IndividualPnode}}<div><b>IndividualPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IndividualPnode}}&quot;);})'>{{IndividualPnode}}</a></div>{{/IndividualPnode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenDistributionFactor_collapse" aria-expanded="true" aria-controls="GenDistributionFactor_collapse" style="margin-left: 10px;">GenDistributionFactor</a></legend>
+                    <div id="GenDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='factor'>factor: </label><div class='col-sm-8'><input id='factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}'{{/AggregatedPnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='IndividualPnode'>IndividualPnode: </label><div class='col-sm-8'><input id='IndividualPnode' class='form-control' type='text'{{#IndividualPnode}} value='{{IndividualPnode}}'{{/IndividualPnode}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Subclass of IEC61970:Meas:AnalogLimitSet
@@ -3156,17 +4568,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MktAnalogLimitSet_collapse" aria-expanded="true" aria-controls="MktAnalogLimitSet_collapse">MktAnalogLimitSet</a>
-<div id="MktAnalogLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Meas.AnalogLimitSet.prototype.template.call (this) +
-`
-{{#ratingSet}}<div><b>ratingSet</b>: {{ratingSet}}</div>{{/ratingSet}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktAnalogLimitSet_collapse" aria-expanded="true" aria-controls="MktAnalogLimitSet_collapse" style="margin-left: 10px;">MktAnalogLimitSet</a></legend>
+                    <div id="MktAnalogLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.AnalogLimitSet.prototype.template.call (this) +
+                    `
+                    {{#ratingSet}}<div><b>ratingSet</b>: {{ratingSet}}</div>{{/ratingSet}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktAnalogLimitSet_collapse" aria-expanded="true" aria-controls="MktAnalogLimitSet_collapse" style="margin-left: 10px;">MktAnalogLimitSet</a></legend>
+                    <div id="MktAnalogLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.AnalogLimitSet.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratingSet'>ratingSet: </label><div class='col-sm-8'><input id='ratingSet' class='form-control' type='text'{{#ratingSet}} value='{{ratingSet}}'{{/ratingSet}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Subclass of IEC61970:Wires:ACLineSegment
@@ -3223,18 +4666,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MktACLineSegment_collapse" aria-expanded="true" aria-controls="MktACLineSegment_collapse">MktACLineSegment</a>
-<div id="MktACLineSegment_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Wires.ACLineSegment.prototype.template.call (this) +
-`
-{{#EndAFlow}}<div><b>EndAFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndAFlow}}&quot;);})'>{{EndAFlow}}</a></div>{{/EndAFlow}}
-{{#EndBFlow}}<div><b>EndBFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndBFlow}}&quot;);})'>{{EndBFlow}}</a></div>{{/EndBFlow}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktACLineSegment_collapse" aria-expanded="true" aria-controls="MktACLineSegment_collapse" style="margin-left: 10px;">MktACLineSegment</a></legend>
+                    <div id="MktACLineSegment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.ACLineSegment.prototype.template.call (this) +
+                    `
+                    {{#EndAFlow}}<div><b>EndAFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndAFlow}}&quot;);})'>{{EndAFlow}}</a></div>{{/EndAFlow}}
+                    {{#EndBFlow}}<div><b>EndBFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndBFlow}}&quot;);})'>{{EndBFlow}}</a></div>{{/EndBFlow}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktACLineSegment_collapse" aria-expanded="true" aria-controls="MktACLineSegment_collapse" style="margin-left: 10px;">MktACLineSegment</a></legend>
+                    <div id="MktACLineSegment_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Wires.ACLineSegment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndAFlow'>EndAFlow: </label><div class='col-sm-8'><input id='EndAFlow' class='form-control' type='text'{{#EndAFlow}} value='{{EndAFlow}}'{{/EndAFlow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndBFlow'>EndBFlow: </label><div class='col-sm-8'><input id='EndBFlow' class='form-control' type='text'{{#EndBFlow}} value='{{EndBFlow}}'{{/EndBFlow}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A containing class that groups all the distribution factors within a market.
@@ -3295,19 +4770,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DistributionFactorSet_collapse" aria-expanded="true" aria-controls="DistributionFactorSet_collapse">DistributionFactorSet</a>
-<div id="DistributionFactorSet_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
-{{#intervalEndTime}}<div><b>intervalEndTime</b>: {{intervalEndTime}}</div>{{/intervalEndTime}}
-{{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DistributionFactorSet_collapse" aria-expanded="true" aria-controls="DistributionFactorSet_collapse" style="margin-left: 10px;">DistributionFactorSet</a></legend>
+                    <div id="DistributionFactorSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+                    {{#intervalEndTime}}<div><b>intervalEndTime</b>: {{intervalEndTime}}</div>{{/intervalEndTime}}
+                    {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DistributionFactorSet_collapse" aria-expanded="true" aria-controls="DistributionFactorSet_collapse" style="margin-left: 10px;">DistributionFactorSet</a></legend>
+                    <div id="DistributionFactorSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalEndTime'>intervalEndTime: </label><div class='col-sm-8'><input id='intervalEndTime' class='form-control' type='text'{{#intervalEndTime}} value='{{intervalEndTime}}'{{/intervalEndTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A Transfer Interface is made up of branches such as transmission lines and transformers.
@@ -3364,18 +4872,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransferInterface_collapse" aria-expanded="true" aria-controls="TransferInterface_collapse">TransferInterface</a>
-<div id="TransferInterface_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#TransferInterfaceSolution}}<div><b>TransferInterfaceSolution</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransferInterfaceSolution}}&quot;);})'>{{TransferInterfaceSolution}}</a></div>{{/TransferInterfaceSolution}}
-{{#HostControlArea}}<div><b>HostControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HostControlArea}}&quot;);})'>{{HostControlArea}}</a></div>{{/HostControlArea}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransferInterface_collapse" aria-expanded="true" aria-controls="TransferInterface_collapse" style="margin-left: 10px;">TransferInterface</a></legend>
+                    <div id="TransferInterface_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#TransferInterfaceSolution}}<div><b>TransferInterfaceSolution</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransferInterfaceSolution}}&quot;);})'>{{TransferInterfaceSolution}}</a></div>{{/TransferInterfaceSolution}}
+                    {{#HostControlArea}}<div><b>HostControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HostControlArea}}&quot;);})'>{{HostControlArea}}</a></div>{{/HostControlArea}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransferInterface_collapse" aria-expanded="true" aria-controls="TransferInterface_collapse" style="margin-left: 10px;">TransferInterface</a></legend>
+                    <div id="TransferInterface_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransferInterfaceSolution'>TransferInterfaceSolution: </label><div class='col-sm-8'><input id='TransferInterfaceSolution' class='form-control' type='text'{{#TransferInterfaceSolution}} value='{{TransferInterfaceSolution}}'{{/TransferInterfaceSolution}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Generic constraints can represent secure areas, voltage profile, transient stability and voltage collapse limits.
@@ -3438,20 +4978,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#GenericConstraints_collapse" aria-expanded="true" aria-controls="GenericConstraints_collapse">GenericConstraints</a>
-<div id="GenericConstraints_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#intervalEndTime}}<div><b>intervalEndTime</b>: {{intervalEndTime}}</div>{{/intervalEndTime}}
-{{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
-{{#maxLimit}}<div><b>maxLimit</b>: {{maxLimit}}</div>{{/maxLimit}}
-{{#minLimit}}<div><b>minLimit</b>: {{minLimit}}</div>{{/minLimit}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenericConstraints_collapse" aria-expanded="true" aria-controls="GenericConstraints_collapse" style="margin-left: 10px;">GenericConstraints</a></legend>
+                    <div id="GenericConstraints_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#intervalEndTime}}<div><b>intervalEndTime</b>: {{intervalEndTime}}</div>{{/intervalEndTime}}
+                    {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
+                    {{#maxLimit}}<div><b>maxLimit</b>: {{maxLimit}}</div>{{/maxLimit}}
+                    {{#minLimit}}<div><b>minLimit</b>: {{minLimit}}</div>{{/minLimit}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenericConstraints_collapse" aria-expanded="true" aria-controls="GenericConstraints_collapse" style="margin-left: 10px;">GenericConstraints</a></legend>
+                    <div id="GenericConstraints_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalEndTime'>intervalEndTime: </label><div class='col-sm-8'><input id='intervalEndTime' class='form-control' type='text'{{#intervalEndTime}} value='{{intervalEndTime}}'{{/intervalEndTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxLimit'>maxLimit: </label><div class='col-sm-8'><input id='maxLimit' class='form-control' type='text'{{#maxLimit}} value='{{maxLimit}}'{{/maxLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minLimit'>minLimit: </label><div class='col-sm-8'><input id='minLimit' class='form-control' type='text'{{#minLimit}} value='{{minLimit}}'{{/minLimit}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This is formally called the branch group ETC/TOR entitlement with the inclusion of CVR as ETC.
@@ -3518,22 +5092,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransmissionInterfaceRightEntitlement_collapse" aria-expanded="true" aria-controls="TransmissionInterfaceRightEntitlement_collapse">TransmissionInterfaceRightEntitlement</a>
-<div id="TransmissionInterfaceRightEntitlement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#entitlement}}<div><b>entitlement</b>: {{entitlement}}</div>{{/entitlement}}
-{{#POD}}<div><b>POD</b>: {{POD}}</div>{{/POD}}
-{{#POR}}<div><b>POR</b>: {{POR}}</div>{{/POR}}
-{{#startOperatingDate}}<div><b>startOperatingDate</b>: {{startOperatingDate}}</div>{{/startOperatingDate}}
-{{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
-{{#ContractRight}}<div><b>ContractRight</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ContractRight}}&quot;);})'>{{ContractRight}}</a></div>{{/ContractRight}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionInterfaceRightEntitlement_collapse" aria-expanded="true" aria-controls="TransmissionInterfaceRightEntitlement_collapse" style="margin-left: 10px;">TransmissionInterfaceRightEntitlement</a></legend>
+                    <div id="TransmissionInterfaceRightEntitlement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#entitlement}}<div><b>entitlement</b>: {{entitlement}}</div>{{/entitlement}}
+                    {{#POD}}<div><b>POD</b>: {{POD}}</div>{{/POD}}
+                    {{#POR}}<div><b>POR</b>: {{POR}}</div>{{/POR}}
+                    {{#startOperatingDate}}<div><b>startOperatingDate</b>: {{startOperatingDate}}</div>{{/startOperatingDate}}
+                    {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+                    {{#ContractRight}}<div><b>ContractRight</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ContractRight}}&quot;);})'>{{ContractRight}}</a></div>{{/ContractRight}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionInterfaceRightEntitlement_collapse" aria-expanded="true" aria-controls="TransmissionInterfaceRightEntitlement_collapse" style="margin-left: 10px;">TransmissionInterfaceRightEntitlement</a></legend>
+                    <div id="TransmissionInterfaceRightEntitlement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='entitlement'>entitlement: </label><div class='col-sm-8'><input id='entitlement' class='form-control' type='text'{{#entitlement}} value='{{entitlement}}'{{/entitlement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='POD'>POD: </label><div class='col-sm-8'><input id='POD' class='form-control' type='text'{{#POD}} value='{{POD}}'{{/POD}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='POR'>POR: </label><div class='col-sm-8'><input id='POR' class='form-control' type='text'{{#POR}} value='{{POR}}'{{/POR}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startOperatingDate'>startOperatingDate: </label><div class='col-sm-8'><input id='startOperatingDate' class='form-control' type='text'{{#startOperatingDate}} value='{{startOperatingDate}}'{{/startOperatingDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ContractRight'>ContractRight: </label><div class='col-sm-8'><input id='ContractRight' class='form-control' type='text'{{#ContractRight}} value='{{ContractRight}}'{{/ContractRight}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * State Estimator Solution Pool Interchange and Losses
@@ -3592,19 +5202,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ControlAreaSolutionData_collapse" aria-expanded="true" aria-controls="ControlAreaSolutionData_collapse">ControlAreaSolutionData</a>
-<div id="ControlAreaSolutionData_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#solvedLosses}}<div><b>solvedLosses</b>: {{solvedLosses}}</div>{{/solvedLosses}}
-{{#solvedInterchange}}<div><b>solvedInterchange</b>: {{solvedInterchange}}</div>{{/solvedInterchange}}
-{{#MktControlArea}}<div><b>MktControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktControlArea}}&quot;);})'>{{MktControlArea}}</a></div>{{/MktControlArea}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ControlAreaSolutionData_collapse" aria-expanded="true" aria-controls="ControlAreaSolutionData_collapse" style="margin-left: 10px;">ControlAreaSolutionData</a></legend>
+                    <div id="ControlAreaSolutionData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#solvedLosses}}<div><b>solvedLosses</b>: {{solvedLosses}}</div>{{/solvedLosses}}
+                    {{#solvedInterchange}}<div><b>solvedInterchange</b>: {{solvedInterchange}}</div>{{/solvedInterchange}}
+                    {{#MktControlArea}}<div><b>MktControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktControlArea}}&quot;);})'>{{MktControlArea}}</a></div>{{/MktControlArea}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ControlAreaSolutionData_collapse" aria-expanded="true" aria-controls="ControlAreaSolutionData_collapse" style="margin-left: 10px;">ControlAreaSolutionData</a></legend>
+                    <div id="ControlAreaSolutionData_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='solvedLosses'>solvedLosses: </label><div class='col-sm-8'><input id='solvedLosses' class='form-control' type='text'{{#solvedLosses}} value='{{solvedLosses}}'{{/solvedLosses}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='solvedInterchange'>solvedInterchange: </label><div class='col-sm-8'><input id='solvedInterchange' class='form-control' type='text'{{#solvedInterchange}} value='{{solvedInterchange}}'{{/solvedInterchange}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktControlArea'>MktControlArea: </label><div class='col-sm-8'><input id='MktControlArea' class='form-control' type='text'{{#MktControlArea}} value='{{MktControlArea}}'{{/MktControlArea}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Interchange schedule class to hold information for interchange schedules such as import export type, energy type, and etc.
@@ -3679,27 +5322,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#InterchangeSchedule_collapse" aria-expanded="true" aria-controls="InterchangeSchedule_collapse">InterchangeSchedule</a>
-<div id="InterchangeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#checkOutType}}<div><b>checkOutType</b>: {{checkOutType}}</div>{{/checkOutType}}
-{{#directionType}}<div><b>directionType</b>: {{directionType}}</div>{{/directionType}}
-{{#energyType}}<div><b>energyType</b>: {{energyType}}</div>{{/energyType}}
-{{#intervalLength}}<div><b>intervalLength</b>: {{intervalLength}}</div>{{/intervalLength}}
-{{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
-{{#operatingDate}}<div><b>operatingDate</b>: {{operatingDate}}</div>{{/operatingDate}}
-{{#outOfMarketType}}<div><b>outOfMarketType</b>: {{outOfMarketType}}</div>{{/outOfMarketType}}
-{{#scheduleType}}<div><b>scheduleType</b>: {{scheduleType}}</div>{{/scheduleType}}
-{{#wcrID}}<div><b>wcrID</b>: {{wcrID}}</div>{{/wcrID}}
-{{#RegisteredInterTie}}<div><b>RegisteredInterTie</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredInterTie}}&quot;);})'>{{RegisteredInterTie}}</a></div>{{/RegisteredInterTie}}
-{{#InterTie}}<div><b>InterTie</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InterTie}}&quot;);})'>{{InterTie}}</a></div>{{/InterTie}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InterchangeSchedule_collapse" aria-expanded="true" aria-controls="InterchangeSchedule_collapse" style="margin-left: 10px;">InterchangeSchedule</a></legend>
+                    <div id="InterchangeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#checkOutType}}<div><b>checkOutType</b>: {{checkOutType}}</div>{{/checkOutType}}
+                    {{#directionType}}<div><b>directionType</b>: {{directionType}}</div>{{/directionType}}
+                    {{#energyType}}<div><b>energyType</b>: {{energyType}}</div>{{/energyType}}
+                    {{#intervalLength}}<div><b>intervalLength</b>: {{intervalLength}}</div>{{/intervalLength}}
+                    {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+                    {{#operatingDate}}<div><b>operatingDate</b>: {{operatingDate}}</div>{{/operatingDate}}
+                    {{#outOfMarketType}}<div><b>outOfMarketType</b>: {{outOfMarketType}}</div>{{/outOfMarketType}}
+                    {{#scheduleType}}<div><b>scheduleType</b>: {{scheduleType}}</div>{{/scheduleType}}
+                    {{#wcrID}}<div><b>wcrID</b>: {{wcrID}}</div>{{/wcrID}}
+                    {{#RegisteredInterTie}}<div><b>RegisteredInterTie</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredInterTie}}&quot;);})'>{{RegisteredInterTie}}</a></div>{{/RegisteredInterTie}}
+                    {{#InterTie}}<div><b>InterTie</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InterTie}}&quot;);})'>{{InterTie}}</a></div>{{/InterTie}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InterchangeSchedule_collapse" aria-expanded="true" aria-controls="InterchangeSchedule_collapse" style="margin-left: 10px;">InterchangeSchedule</a></legend>
+                    <div id="InterchangeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='checkOutType'>checkOutType: </label><div class='col-sm-8'><input id='checkOutType' class='form-control' type='text'{{#checkOutType}} value='{{checkOutType}}'{{/checkOutType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='directionType'>directionType: </label><div class='col-sm-8'><input id='directionType' class='form-control' type='text'{{#directionType}} value='{{directionType}}'{{/directionType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyType'>energyType: </label><div class='col-sm-8'><input id='energyType' class='form-control' type='text'{{#energyType}} value='{{energyType}}'{{/energyType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalLength'>intervalLength: </label><div class='col-sm-8'><input id='intervalLength' class='form-control' type='text'{{#intervalLength}} value='{{intervalLength}}'{{/intervalLength}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='operatingDate'>operatingDate: </label><div class='col-sm-8'><input id='operatingDate' class='form-control' type='text'{{#operatingDate}} value='{{operatingDate}}'{{/operatingDate}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='outOfMarketType'>outOfMarketType: </label><div class='col-sm-8'><input id='outOfMarketType' class='form-check-input' type='checkbox'{{#outOfMarketType}} checked{{/outOfMarketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scheduleType'>scheduleType: </label><div class='col-sm-8'><input id='scheduleType' class='form-control' type='text'{{#scheduleType}} value='{{scheduleType}}'{{/scheduleType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='wcrID'>wcrID: </label><div class='col-sm-8'><input id='wcrID' class='form-control' type='text'{{#wcrID}} value='{{wcrID}}'{{/wcrID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie}}'{{/RegisteredInterTie}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InterTie'>InterTie: </label><div class='col-sm-8'><input id='InterTie' class='form-control' type='text'{{#InterTie}} value='{{InterTie}}'{{/InterTie}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An Energy Price Index for each Resource is valid for a period (e.g. daily) that is identified by a Valid Period Start Time and a Valid Period End Time.
@@ -3766,22 +5450,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EnergyPriceIndex_collapse" aria-expanded="true" aria-controls="EnergyPriceIndex_collapse">EnergyPriceIndex</a>
-<div id="EnergyPriceIndex_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#lastModified}}<div><b>lastModified</b>: {{lastModified}}</div>{{/lastModified}}
-{{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
-{{#endEffectiveDate}}<div><b>endEffectiveDate</b>: {{endEffectiveDate}}</div>{{/endEffectiveDate}}
-{{#energyPriceIndex}}<div><b>energyPriceIndex</b>: {{energyPriceIndex}}</div>{{/energyPriceIndex}}
-{{#energyPriceIndexType}}<div><b>energyPriceIndexType</b>: {{energyPriceIndexType}}</div>{{/energyPriceIndexType}}
-{{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);})'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyPriceIndex_collapse" aria-expanded="true" aria-controls="EnergyPriceIndex_collapse" style="margin-left: 10px;">EnergyPriceIndex</a></legend>
+                    <div id="EnergyPriceIndex_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#lastModified}}<div><b>lastModified</b>: {{lastModified}}</div>{{/lastModified}}
+                    {{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
+                    {{#endEffectiveDate}}<div><b>endEffectiveDate</b>: {{endEffectiveDate}}</div>{{/endEffectiveDate}}
+                    {{#energyPriceIndex}}<div><b>energyPriceIndex</b>: {{energyPriceIndex}}</div>{{/energyPriceIndex}}
+                    {{#energyPriceIndexType}}<div><b>energyPriceIndexType</b>: {{energyPriceIndexType}}</div>{{/energyPriceIndexType}}
+                    {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);})'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyPriceIndex_collapse" aria-expanded="true" aria-controls="EnergyPriceIndex_collapse" style="margin-left: 10px;">EnergyPriceIndex</a></legend>
+                    <div id="EnergyPriceIndex_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastModified'>lastModified: </label><div class='col-sm-8'><input id='lastModified' class='form-control' type='text'{{#lastModified}} value='{{lastModified}}'{{/lastModified}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyPriceIndex'>energyPriceIndex: </label><div class='col-sm-8'><input id='energyPriceIndex' class='form-control' type='text'{{#energyPriceIndex}} value='{{energyPriceIndex}}'{{/energyPriceIndex}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyPriceIndexType'>energyPriceIndexType: </label><div class='col-sm-8'><input id='energyPriceIndexType' class='form-control' type='text'{{#energyPriceIndexType}} value='{{energyPriceIndexType}}'{{/energyPriceIndexType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Loss sensitivity applied to a ConnectivityNode for a given time interval.
@@ -3838,18 +5558,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#LossSensitivity_collapse" aria-expanded="true" aria-controls="LossSensitivity_collapse">LossSensitivity</a>
-<div id="LossSensitivity_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + MarketPlan.MarketFactors.prototype.template.call (this) +
-`
-{{#lossFactor}}<div><b>lossFactor</b>: {{lossFactor}}</div>{{/lossFactor}}
-{{#MktConnectivityNode}}<div><b>MktConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktConnectivityNode}}&quot;);})'>{{MktConnectivityNode}}</a></div>{{/MktConnectivityNode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LossSensitivity_collapse" aria-expanded="true" aria-controls="LossSensitivity_collapse" style="margin-left: 10px;">LossSensitivity</a></legend>
+                    <div id="LossSensitivity_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MarketPlan.MarketFactors.prototype.template.call (this) +
+                    `
+                    {{#lossFactor}}<div><b>lossFactor</b>: {{lossFactor}}</div>{{/lossFactor}}
+                    {{#MktConnectivityNode}}<div><b>MktConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktConnectivityNode}}&quot;);})'>{{MktConnectivityNode}}</a></div>{{/MktConnectivityNode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LossSensitivity_collapse" aria-expanded="true" aria-controls="LossSensitivity_collapse" style="margin-left: 10px;">LossSensitivity</a></legend>
+                    <div id="LossSensitivity_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lossFactor'>lossFactor: </label><div class='col-sm-8'><input id='lossFactor' class='form-control' type='text'{{#lossFactor}} value='{{lossFactor}}'{{/lossFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktConnectivityNode'>MktConnectivityNode: </label><div class='col-sm-8'><input id='MktConnectivityNode' class='form-control' type='text'{{#MktConnectivityNode}} value='{{MktConnectivityNode}}'{{/MktConnectivityNode}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Measurement quality flags for Analog Values.
@@ -3906,18 +5658,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AnalogMeasurementValueQuality_collapse" aria-expanded="true" aria-controls="AnalogMeasurementValueQuality_collapse">AnalogMeasurementValueQuality</a>
-<div id="AnalogMeasurementValueQuality_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Meas.MeasurementValueQuality.prototype.template.call (this) +
-`
-{{#scadaQualityCode}}<div><b>scadaQualityCode</b>: {{scadaQualityCode}}</div>{{/scadaQualityCode}}
-{{#MktAnalogValue}}<div><b>MktAnalogValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktAnalogValue}}&quot;);})'>{{MktAnalogValue}}</a></div>{{/MktAnalogValue}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AnalogMeasurementValueQuality_collapse" aria-expanded="true" aria-controls="AnalogMeasurementValueQuality_collapse" style="margin-left: 10px;">AnalogMeasurementValueQuality</a></legend>
+                    <div id="AnalogMeasurementValueQuality_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.MeasurementValueQuality.prototype.template.call (this) +
+                    `
+                    {{#scadaQualityCode}}<div><b>scadaQualityCode</b>: {{scadaQualityCode}}</div>{{/scadaQualityCode}}
+                    {{#MktAnalogValue}}<div><b>MktAnalogValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktAnalogValue}}&quot;);})'>{{MktAnalogValue}}</a></div>{{/MktAnalogValue}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AnalogMeasurementValueQuality_collapse" aria-expanded="true" aria-controls="AnalogMeasurementValueQuality_collapse" style="margin-left: 10px;">AnalogMeasurementValueQuality</a></legend>
+                    <div id="AnalogMeasurementValueQuality_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Meas.MeasurementValueQuality.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scadaQualityCode'>scadaQualityCode: </label><div class='col-sm-8'><input id='scadaQualityCode' class='form-control' type='text'{{#scadaQualityCode}} value='{{scadaQualityCode}}'{{/scadaQualityCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktAnalogValue'>MktAnalogValue: </label><div class='col-sm-8'><input id='MktAnalogValue' class='form-control' type='text'{{#MktAnalogValue}} value='{{MktAnalogValue}}'{{/MktAnalogValue}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Possibly time-varying max MW or MVA and optionally Min MW limit or MVA limit (Y1 and Y2, respectively) applied as a default value if no specific constraint limits are specified for a contingency analysis.
@@ -3974,17 +5758,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DefaultConstraintLimit_collapse" aria-expanded="true" aria-controls="DefaultConstraintLimit_collapse">DefaultConstraintLimit</a>
-<div id="DefaultConstraintLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.Curve.prototype.template.call (this) +
-`
-{{#SecurityConstraintSum}}<div><b>SecurityConstraintSum</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecurityConstraintSum}}&quot;);})'>{{SecurityConstraintSum}}</a></div>{{/SecurityConstraintSum}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DefaultConstraintLimit_collapse" aria-expanded="true" aria-controls="DefaultConstraintLimit_collapse" style="margin-left: 10px;">DefaultConstraintLimit</a></legend>
+                    <div id="DefaultConstraintLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#SecurityConstraintSum}}<div><b>SecurityConstraintSum</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecurityConstraintSum}}&quot;);})'>{{SecurityConstraintSum}}</a></div>{{/SecurityConstraintSum}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DefaultConstraintLimit_collapse" aria-expanded="true" aria-controls="DefaultConstraintLimit_collapse" style="margin-left: 10px;">DefaultConstraintLimit</a></legend>
+                    <div id="DefaultConstraintLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SecurityConstraintSum'>SecurityConstraintSum: </label><div class='col-sm-8'><input id='SecurityConstraintSum' class='form-control' type='text'{{#SecurityConstraintSum}} value='{{SecurityConstraintSum}}'{{/SecurityConstraintSum}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Market subclass of IEC61970:ControlArea
@@ -4037,16 +5852,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MktControlArea_collapse" aria-expanded="true" aria-controls="MktControlArea_collapse">MktControlArea</a>
-<div id="MktControlArea_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ControlArea.ControlArea.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktControlArea_collapse" aria-expanded="true" aria-controls="MktControlArea_collapse" style="margin-left: 10px;">MktControlArea</a></legend>
+                    <div id="MktControlArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ControlArea.ControlArea.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktControlArea_collapse" aria-expanded="true" aria-controls="MktControlArea_collapse" style="margin-left: 10px;">MktControlArea</a></legend>
+                    <div id="MktControlArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ControlArea.ControlArea.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * To be used only to constrain a quantity that cannot be associated with a terminal.
@@ -4103,17 +5948,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#NodeConstraintTerm_collapse" aria-expanded="true" aria-controls="NodeConstraintTerm_collapse">NodeConstraintTerm</a>
-<div id="NodeConstraintTerm_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ConstraintTerm.prototype.template.call (this) +
-`
-{{#MktConnectivityNode}}<div><b>MktConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktConnectivityNode}}&quot;);})'>{{MktConnectivityNode}}</a></div>{{/MktConnectivityNode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NodeConstraintTerm_collapse" aria-expanded="true" aria-controls="NodeConstraintTerm_collapse" style="margin-left: 10px;">NodeConstraintTerm</a></legend>
+                    <div id="NodeConstraintTerm_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ConstraintTerm.prototype.template.call (this) +
+                    `
+                    {{#MktConnectivityNode}}<div><b>MktConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktConnectivityNode}}&quot;);})'>{{MktConnectivityNode}}</a></div>{{/MktConnectivityNode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NodeConstraintTerm_collapse" aria-expanded="true" aria-controls="NodeConstraintTerm_collapse" style="margin-left: 10px;">NodeConstraintTerm</a></legend>
+                    <div id="NodeConstraintTerm_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ConstraintTerm.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktConnectivityNode'>MktConnectivityNode: </label><div class='col-sm-8'><input id='MktConnectivityNode' class='form-control' type='text'{{#MktConnectivityNode}} value='{{MktConnectivityNode}}'{{/MktConnectivityNode}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A constraint term associated with a specific terminal on a physical piece of equipment.
@@ -4168,17 +6044,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TerminalConstraintTerm_collapse" aria-expanded="true" aria-controls="TerminalConstraintTerm_collapse">TerminalConstraintTerm</a>
-<div id="TerminalConstraintTerm_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + ConstraintTerm.prototype.template.call (this) +
-`
-{{#MktTerminal}}<div><b>MktTerminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktTerminal}}&quot;);})'>{{MktTerminal}}</a></div>{{/MktTerminal}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TerminalConstraintTerm_collapse" aria-expanded="true" aria-controls="TerminalConstraintTerm_collapse" style="margin-left: 10px;">TerminalConstraintTerm</a></legend>
+                    <div id="TerminalConstraintTerm_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ConstraintTerm.prototype.template.call (this) +
+                    `
+                    {{#MktTerminal}}<div><b>MktTerminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktTerminal}}&quot;);})'>{{MktTerminal}}</a></div>{{/MktTerminal}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TerminalConstraintTerm_collapse" aria-expanded="true" aria-controls="TerminalConstraintTerm_collapse" style="margin-left: 10px;">TerminalConstraintTerm</a></legend>
+                    <div id="TerminalConstraintTerm_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + ConstraintTerm.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktTerminal'>MktTerminal: </label><div class='col-sm-8'><input id='MktTerminal' class='form-control' type='text'{{#MktTerminal}} value='{{MktTerminal}}'{{/MktTerminal}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Specifies the start time, stop time, level for an EnergyTransaction.
@@ -4235,18 +6142,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#EnergyProfile_collapse" aria-expanded="true" aria-controls="EnergyProfile_collapse">EnergyProfile</a>
-<div id="EnergyProfile_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Profile.prototype.template.call (this) +
-`
-{{#EnergyTransaction}}<div><b>EnergyTransaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyTransaction}}&quot;);})'>{{EnergyTransaction}}</a></div>{{/EnergyTransaction}}
-{{#TransactionBid}}<div><b>TransactionBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransactionBid}}&quot;);})'>{{TransactionBid}}</a></div>{{/TransactionBid}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyProfile_collapse" aria-expanded="true" aria-controls="EnergyProfile_collapse" style="margin-left: 10px;">EnergyProfile</a></legend>
+                    <div id="EnergyProfile_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Profile.prototype.template.call (this) +
+                    `
+                    {{#EnergyTransaction}}<div><b>EnergyTransaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyTransaction}}&quot;);})'>{{EnergyTransaction}}</a></div>{{/EnergyTransaction}}
+                    {{#TransactionBid}}<div><b>TransactionBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransactionBid}}&quot;);})'>{{TransactionBid}}</a></div>{{/TransactionBid}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyProfile_collapse" aria-expanded="true" aria-controls="EnergyProfile_collapse" style="margin-left: 10px;">EnergyProfile</a></legend>
+                    <div id="EnergyProfile_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Profile.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyTransaction'>EnergyTransaction: </label><div class='col-sm-8'><input id='EnergyTransaction' class='form-control' type='text'{{#EnergyTransaction}} value='{{EnergyTransaction}}'{{/EnergyTransaction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransactionBid'>TransactionBid: </label><div class='col-sm-8'><input id='TransactionBid' class='form-control' type='text'{{#TransactionBid}} value='{{TransactionBid}}'{{/TransactionBid}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

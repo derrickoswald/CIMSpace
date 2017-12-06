@@ -337,6 +337,22 @@ define
             {
                 return ("");
             }
+
+            condition (obj)
+            {
+            }
+
+            uncondition (obj)
+            {
+            }
+
+            /**
+             * Edit template HTML for Element.
+             */
+            edit_template ()
+            {
+                return ("");
+            }
          }
 
         return (

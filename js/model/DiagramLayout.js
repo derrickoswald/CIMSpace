@@ -14,69 +14,12 @@ define
          * The orientation of the coordinate system with respect to top, left, and the coordinate number system.
          *
          */
-        class OrientationKind extends base.Element
+        var OrientationKind =
         {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.OrientationKind;
-                if (null == bucket)
-                   cim_data.OrientationKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.OrientationKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "OrientationKind";
-                base.parse_element (/<cim:OrientationKind.positive>([\s\S]*?)<\/cim:OrientationKind.positive>/g, obj, "positive", base.to_string, sub, context);
-                base.parse_element (/<cim:OrientationKind.negative>([\s\S]*?)<\/cim:OrientationKind.negative>/g, obj, "negative", base.to_string, sub, context);
-
-                var bucket = context.parsed.OrientationKind;
-                if (null == bucket)
-                   context.parsed.OrientationKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "OrientationKind", "positive", base.from_string, fields);
-                base.export_element (obj, "OrientationKind", "negative", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#OrientationKind_collapse" aria-expanded="true" aria-controls="OrientationKind_collapse">OrientationKind</a>
-<div id="OrientationKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#positive}}<div><b>positive</b>: {{positive}}</div>{{/positive}}
-{{#negative}}<div><b>negative</b>: {{negative}}</div>{{/negative}}
-</div>
-`
-                );
-           }        }
+            positive: "positive",
+            negative: "negative"
+        };
+        Object.freeze (OrientationKind);
 
         /**
          * A point in a given space defined by 3 coordinates and associated to a diagram object.
@@ -143,22 +86,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DiagramObjectPoint_collapse" aria-expanded="true" aria-controls="DiagramObjectPoint_collapse">DiagramObjectPoint</a>
-<div id="DiagramObjectPoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-{{#xPosition}}<div><b>xPosition</b>: {{xPosition}}</div>{{/xPosition}}
-{{#yPosition}}<div><b>yPosition</b>: {{yPosition}}</div>{{/yPosition}}
-{{#zPosition}}<div><b>zPosition</b>: {{zPosition}}</div>{{/zPosition}}
-{{#DiagramObject}}<div><b>DiagramObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramObject}}&quot;);})'>{{DiagramObject}}</a></div>{{/DiagramObject}}
-{{#DiagramObjectGluePoint}}<div><b>DiagramObjectGluePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramObjectGluePoint}}&quot;);})'>{{DiagramObjectGluePoint}}</a></div>{{/DiagramObjectGluePoint}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObjectPoint_collapse" aria-expanded="true" aria-controls="DiagramObjectPoint_collapse" style="margin-left: 10px;">DiagramObjectPoint</a></legend>
+                    <div id="DiagramObjectPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+                    {{#xPosition}}<div><b>xPosition</b>: {{xPosition}}</div>{{/xPosition}}
+                    {{#yPosition}}<div><b>yPosition</b>: {{yPosition}}</div>{{/yPosition}}
+                    {{#zPosition}}<div><b>zPosition</b>: {{zPosition}}</div>{{/zPosition}}
+                    {{#DiagramObject}}<div><b>DiagramObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramObject}}&quot;);})'>{{DiagramObject}}</a></div>{{/DiagramObject}}
+                    {{#DiagramObjectGluePoint}}<div><b>DiagramObjectGluePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramObjectGluePoint}}&quot;);})'>{{DiagramObjectGluePoint}}</a></div>{{/DiagramObjectGluePoint}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObjectPoint_collapse" aria-expanded="true" aria-controls="DiagramObjectPoint_collapse" style="margin-left: 10px;">DiagramObjectPoint</a></legend>
+                    <div id="DiagramObjectPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xPosition'>xPosition: </label><div class='col-sm-8'><input id='xPosition' class='form-control' type='text'{{#xPosition}} value='{{xPosition}}'{{/xPosition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='yPosition'>yPosition: </label><div class='col-sm-8'><input id='yPosition' class='form-control' type='text'{{#yPosition}} value='{{yPosition}}'{{/yPosition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zPosition'>zPosition: </label><div class='col-sm-8'><input id='zPosition' class='form-control' type='text'{{#zPosition}} value='{{zPosition}}'{{/zPosition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DiagramObject'>DiagramObject: </label><div class='col-sm-8'><input id='DiagramObject' class='form-control' type='text'{{#DiagramObject}} value='{{DiagramObject}}'{{/DiagramObject}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DiagramObjectGluePoint'>DiagramObjectGluePoint: </label><div class='col-sm-8'><input id='DiagramObjectGluePoint' class='form-control' type='text'{{#DiagramObjectGluePoint}} value='{{DiagramObjectGluePoint}}'{{/DiagramObjectGluePoint}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A reference to a style used by the originating system for a diagram object.
@@ -213,16 +192,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DiagramObjectStyle_collapse" aria-expanded="true" aria-controls="DiagramObjectStyle_collapse">DiagramObjectStyle</a>
-<div id="DiagramObjectStyle_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObjectStyle_collapse" aria-expanded="true" aria-controls="DiagramObjectStyle_collapse" style="margin-left: 10px;">DiagramObjectStyle</a></legend>
+                    <div id="DiagramObjectStyle_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObjectStyle_collapse" aria-expanded="true" aria-controls="DiagramObjectStyle_collapse" style="margin-left: 10px;">DiagramObjectStyle</a></legend>
+                    <div id="DiagramObjectStyle_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This is used for grouping diagram object points from different diagram objects that are considered to be glued together in a diagram even if they are not at the exact same coordinates.
@@ -275,16 +284,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DiagramObjectGluePoint_collapse" aria-expanded="true" aria-controls="DiagramObjectGluePoint_collapse">DiagramObjectGluePoint</a>
-<div id="DiagramObjectGluePoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObjectGluePoint_collapse" aria-expanded="true" aria-controls="DiagramObjectGluePoint_collapse" style="margin-left: 10px;">DiagramObjectGluePoint</a></legend>
+                    <div id="DiagramObjectGluePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObjectGluePoint_collapse" aria-expanded="true" aria-controls="DiagramObjectGluePoint_collapse" style="margin-left: 10px;">DiagramObjectGluePoint</a></legend>
+                    <div id="DiagramObjectGluePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The diagram being exchanged.
@@ -316,7 +355,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Diagram";
-                base.parse_element (/<cim:Diagram.orientation>([\s\S]*?)<\/cim:Diagram.orientation>/g, obj, "orientation", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Diagram.orientation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "orientation", sub, context);
                 base.parse_element (/<cim:Diagram.x1InitialView>([\s\S]*?)<\/cim:Diagram.x1InitialView>/g, obj, "x1InitialView", base.to_float, sub, context);
                 base.parse_element (/<cim:Diagram.x2InitialView>([\s\S]*?)<\/cim:Diagram.x2InitialView>/g, obj, "x2InitialView", base.to_float, sub, context);
                 base.parse_element (/<cim:Diagram.y1InitialView>([\s\S]*?)<\/cim:Diagram.y1InitialView>/g, obj, "y1InitialView", base.to_float, sub, context);
@@ -351,22 +390,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Diagram_collapse" aria-expanded="true" aria-controls="Diagram_collapse">Diagram</a>
-<div id="Diagram_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#orientation}}<div><b>orientation</b>: {{orientation}}</div>{{/orientation}}
-{{#x1InitialView}}<div><b>x1InitialView</b>: {{x1InitialView}}</div>{{/x1InitialView}}
-{{#x2InitialView}}<div><b>x2InitialView</b>: {{x2InitialView}}</div>{{/x2InitialView}}
-{{#y1InitialView}}<div><b>y1InitialView</b>: {{y1InitialView}}</div>{{/y1InitialView}}
-{{#y2InitialView}}<div><b>y2InitialView</b>: {{y2InitialView}}</div>{{/y2InitialView}}
-{{#DiagramStyle}}<div><b>DiagramStyle</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramStyle}}&quot;);})'>{{DiagramStyle}}</a></div>{{/DiagramStyle}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Diagram_collapse" aria-expanded="true" aria-controls="Diagram_collapse" style="margin-left: 10px;">Diagram</a></legend>
+                    <div id="Diagram_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#orientation}}<div><b>orientation</b>: {{orientation}}</div>{{/orientation}}
+                    {{#x1InitialView}}<div><b>x1InitialView</b>: {{x1InitialView}}</div>{{/x1InitialView}}
+                    {{#x2InitialView}}<div><b>x2InitialView</b>: {{x2InitialView}}</div>{{/x2InitialView}}
+                    {{#y1InitialView}}<div><b>y1InitialView</b>: {{y1InitialView}}</div>{{/y1InitialView}}
+                    {{#y2InitialView}}<div><b>y2InitialView</b>: {{y2InitialView}}</div>{{/y2InitialView}}
+                    {{#DiagramStyle}}<div><b>DiagramStyle</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramStyle}}&quot;);})'>{{DiagramStyle}}</a></div>{{/DiagramStyle}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.OrientationKind = []; if (!obj.orientation) obj.OrientationKind.push ({ id: '', selected: true}); for (var property in OrientationKind) obj.OrientationKind.push ({ id: property, selected: obj.orientation && obj.orientation.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.OrientationKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Diagram_collapse" aria-expanded="true" aria-controls="Diagram_collapse" style="margin-left: 10px;">Diagram</a></legend>
+                    <div id="Diagram_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='orientation'>orientation: </label><div class='col-sm-8'><select id='orientation' class='form-control'>{{#OrientationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OrientationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x1InitialView'>x1InitialView: </label><div class='col-sm-8'><input id='x1InitialView' class='form-control' type='text'{{#x1InitialView}} value='{{x1InitialView}}'{{/x1InitialView}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x2InitialView'>x2InitialView: </label><div class='col-sm-8'><input id='x2InitialView' class='form-control' type='text'{{#x2InitialView}} value='{{x2InitialView}}'{{/x2InitialView}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y1InitialView'>y1InitialView: </label><div class='col-sm-8'><input id='y1InitialView' class='form-control' type='text'{{#y1InitialView}} value='{{y1InitialView}}'{{/y1InitialView}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y2InitialView'>y2InitialView: </label><div class='col-sm-8'><input id='y2InitialView' class='form-control' type='text'{{#y2InitialView}} value='{{y2InitialView}}'{{/y2InitialView}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DiagramStyle'>DiagramStyle: </label><div class='col-sm-8'><input id='DiagramStyle' class='form-control' type='text'{{#DiagramStyle}} value='{{DiagramStyle}}'{{/DiagramStyle}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Layers are typically used for grouping diagram objects according to themes and scales.
@@ -423,17 +500,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VisibilityLayer_collapse" aria-expanded="true" aria-controls="VisibilityLayer_collapse">VisibilityLayer</a>
-<div id="VisibilityLayer_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#drawingOrder}}<div><b>drawingOrder</b>: {{drawingOrder}}</div>{{/drawingOrder}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VisibilityLayer_collapse" aria-expanded="true" aria-controls="VisibilityLayer_collapse" style="margin-left: 10px;">VisibilityLayer</a></legend>
+                    <div id="VisibilityLayer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#drawingOrder}}<div><b>drawingOrder</b>: {{drawingOrder}}</div>{{/drawingOrder}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VisibilityLayer_collapse" aria-expanded="true" aria-controls="VisibilityLayer_collapse" style="margin-left: 10px;">VisibilityLayer</a></legend>
+                    <div id="VisibilityLayer_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='drawingOrder'>drawingOrder: </label><div class='col-sm-8'><input id='drawingOrder' class='form-control' type='text'{{#drawingOrder}} value='{{drawingOrder}}'{{/drawingOrder}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An object that defines one or more points in a given space.
@@ -504,24 +612,62 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DiagramObject_collapse" aria-expanded="true" aria-controls="DiagramObject_collapse">DiagramObject</a>
-<div id="DiagramObject_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#drawingOrder}}<div><b>drawingOrder</b>: {{drawingOrder}}</div>{{/drawingOrder}}
-{{#isPolygon}}<div><b>isPolygon</b>: {{isPolygon}}</div>{{/isPolygon}}
-{{#offsetX}}<div><b>offsetX</b>: {{offsetX}}</div>{{/offsetX}}
-{{#offsetY}}<div><b>offsetY</b>: {{offsetY}}</div>{{/offsetY}}
-{{#rotation}}<div><b>rotation</b>: {{rotation}}</div>{{/rotation}}
-{{#Diagram}}<div><b>Diagram</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Diagram}}&quot;);})'>{{Diagram}}</a></div>{{/Diagram}}
-{{#DiagramObjectStyle}}<div><b>DiagramObjectStyle</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramObjectStyle}}&quot;);})'>{{DiagramObjectStyle}}</a></div>{{/DiagramObjectStyle}}
-{{#IdentifiedObject}}<div><b>IdentifiedObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IdentifiedObject}}&quot;);})'>{{IdentifiedObject}}</a></div>{{/IdentifiedObject}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObject_collapse" aria-expanded="true" aria-controls="DiagramObject_collapse" style="margin-left: 10px;">DiagramObject</a></legend>
+                    <div id="DiagramObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#drawingOrder}}<div><b>drawingOrder</b>: {{drawingOrder}}</div>{{/drawingOrder}}
+                    {{#isPolygon}}<div><b>isPolygon</b>: {{isPolygon}}</div>{{/isPolygon}}
+                    {{#offsetX}}<div><b>offsetX</b>: {{offsetX}}</div>{{/offsetX}}
+                    {{#offsetY}}<div><b>offsetY</b>: {{offsetY}}</div>{{/offsetY}}
+                    {{#rotation}}<div><b>rotation</b>: {{rotation}}</div>{{/rotation}}
+                    {{#Diagram}}<div><b>Diagram</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Diagram}}&quot;);})'>{{Diagram}}</a></div>{{/Diagram}}
+                    {{#DiagramObjectStyle}}<div><b>DiagramObjectStyle</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramObjectStyle}}&quot;);})'>{{DiagramObjectStyle}}</a></div>{{/DiagramObjectStyle}}
+                    {{#IdentifiedObject}}<div><b>IdentifiedObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IdentifiedObject}}&quot;);})'>{{IdentifiedObject}}</a></div>{{/IdentifiedObject}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObject_collapse" aria-expanded="true" aria-controls="DiagramObject_collapse" style="margin-left: 10px;">DiagramObject</a></legend>
+                    <div id="DiagramObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='drawingOrder'>drawingOrder: </label><div class='col-sm-8'><input id='drawingOrder' class='form-control' type='text'{{#drawingOrder}} value='{{drawingOrder}}'{{/drawingOrder}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isPolygon'>isPolygon: </label><div class='col-sm-8'><input id='isPolygon' class='form-check-input' type='checkbox'{{#isPolygon}} checked{{/isPolygon}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='offsetX'>offsetX: </label><div class='col-sm-8'><input id='offsetX' class='form-control' type='text'{{#offsetX}} value='{{offsetX}}'{{/offsetX}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='offsetY'>offsetY: </label><div class='col-sm-8'><input id='offsetY' class='form-control' type='text'{{#offsetY}} value='{{offsetY}}'{{/offsetY}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rotation'>rotation: </label><div class='col-sm-8'><input id='rotation' class='form-control' type='text'{{#rotation}} value='{{rotation}}'{{/rotation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Diagram'>Diagram: </label><div class='col-sm-8'><input id='Diagram' class='form-control' type='text'{{#Diagram}} value='{{Diagram}}'{{/Diagram}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DiagramObjectStyle'>DiagramObjectStyle: </label><div class='col-sm-8'><input id='DiagramObjectStyle' class='form-control' type='text'{{#DiagramObjectStyle}} value='{{DiagramObjectStyle}}'{{/DiagramObjectStyle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='IdentifiedObject'>IdentifiedObject: </label><div class='col-sm-8'><input id='IdentifiedObject' class='form-control' type='text'{{#IdentifiedObject}} value='{{IdentifiedObject}}'{{/IdentifiedObject}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The diagram style refer to a style used by the originating system for a diagram.
@@ -576,16 +722,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DiagramStyle_collapse" aria-expanded="true" aria-controls="DiagramStyle_collapse">DiagramStyle</a>
-<div id="DiagramStyle_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramStyle_collapse" aria-expanded="true" aria-controls="DiagramStyle_collapse" style="margin-left: 10px;">DiagramStyle</a></legend>
+                    <div id="DiagramStyle_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramStyle_collapse" aria-expanded="true" aria-controls="DiagramStyle_collapse" style="margin-left: 10px;">DiagramStyle</a></legend>
+                    <div id="DiagramStyle_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A diagram object for placing free-text or text derived from an associated domain object.
@@ -640,17 +816,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TextDiagramObject_collapse" aria-expanded="true" aria-controls="TextDiagramObject_collapse">TextDiagramObject</a>
-<div id="TextDiagramObject_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + DiagramObject.prototype.template.call (this) +
-`
-{{#text}}<div><b>text</b>: {{text}}</div>{{/text}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TextDiagramObject_collapse" aria-expanded="true" aria-controls="TextDiagramObject_collapse" style="margin-left: 10px;">TextDiagramObject</a></legend>
+                    <div id="TextDiagramObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DiagramObject.prototype.template.call (this) +
+                    `
+                    {{#text}}<div><b>text</b>: {{text}}</div>{{/text}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TextDiagramObject_collapse" aria-expanded="true" aria-controls="TextDiagramObject_collapse" style="margin-left: 10px;">TextDiagramObject</a></legend>
+                    <div id="TextDiagramObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + DiagramObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='text'>text: </label><div class='col-sm-8'><input id='text' class='form-control' type='text'{{#text}} value='{{text}}'{{/text}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
@@ -661,7 +868,6 @@ define
                 DiagramStyle: DiagramStyle,
                 DiagramObject: DiagramObject,
                 DiagramObjectGluePoint: DiagramObjectGluePoint,
-                OrientationKind: OrientationKind,
                 DiagramObjectPoint: DiagramObjectPoint
             }
         );

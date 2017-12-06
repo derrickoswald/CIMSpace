@@ -59,17 +59,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TiePoint_collapse" aria-expanded="true" aria-controls="TiePoint_collapse">TiePoint</a>
-<div id="TiePoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#tiePointMWRating}}<div><b>tiePointMWRating</b>: {{tiePointMWRating}}</div>{{/tiePointMWRating}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TiePoint_collapse" aria-expanded="true" aria-controls="TiePoint_collapse" style="margin-left: 10px;">TiePoint</a></legend>
+                    <div id="TiePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#tiePointMWRating}}<div><b>tiePointMWRating</b>: {{tiePointMWRating}}</div>{{/tiePointMWRating}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TiePoint_collapse" aria-expanded="true" aria-controls="TiePoint_collapse" style="margin-left: 10px;">TiePoint</a></legend>
+                    <div id="TiePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tiePointMWRating'>tiePointMWRating: </label><div class='col-sm-8'><input id='tiePointMWRating' class='form-control' type='text'{{#tiePointMWRating}} value='{{tiePointMWRating}}'{{/tiePointMWRating}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

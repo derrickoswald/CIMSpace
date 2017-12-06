@@ -11,6 +11,80 @@ define
     {
 
         /**
+         * Kind of cheque.
+         *
+         */
+        var ChequeKind =
+        {
+            postalOrder: "postalOrder",
+            bankOrder: "bankOrder",
+            other: "other"
+        };
+        Object.freeze (ChequeKind);
+
+        /**
+         * Kind of tender.
+         *
+         */
+        var TenderKind =
+        {
+            cheque: "cheque",
+            card: "card",
+            cash: "cash",
+            unspecified: "unspecified",
+            other: "other"
+        };
+        Object.freeze (TenderKind);
+
+        /**
+         * Kind of charge.
+         *
+         */
+        var ChargeKind =
+        {
+            consumptionCharge: "consumptionCharge",
+            demandCharge: "demandCharge",
+            auxiliaryCharge: "auxiliaryCharge",
+            taxCharge: "taxCharge",
+            other: "other"
+        };
+        Object.freeze (ChargeKind);
+
+        /**
+         * Kind of supplier.
+         *
+         */
+        var SupplierKind =
+        {
+            utility: "utility",
+            retailer: "retailer",
+            other: "other"
+        };
+        Object.freeze (SupplierKind);
+
+        /**
+         * Kind of transaction.
+         *
+         */
+        var TransactionKind =
+        {
+            serviceChargePayment: "serviceChargePayment",
+            taxChargePayment: "taxChargePayment",
+            auxiliaryChargePayment: "auxiliaryChargePayment",
+            accountPayment: "accountPayment",
+            diversePayment: "diversePayment",
+            transactionReversal: "transactionReversal",
+            tokenSalePayment: "tokenSalePayment",
+            tokenFreeIssue: "tokenFreeIssue",
+            tokenGrant: "tokenGrant",
+            tokenExchange: "tokenExchange",
+            tokenCancellation: "tokenCancellation",
+            meterConfigurationToken: "meterConfigurationToken",
+            other: "other"
+        };
+        Object.freeze (TransactionKind);
+
+        /**
          * Record of total receipted payment from customer.
          *
          */
@@ -69,20 +143,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Receipt_collapse" aria-expanded="true" aria-controls="Receipt_collapse">Receipt</a>
-<div id="Receipt_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#isBankable}}<div><b>isBankable</b>: {{isBankable}}</div>{{/isBankable}}
-{{#line}}<div><b>line</b>: {{line}}</div>{{/line}}
-{{#VendorShift}}<div><b>VendorShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VendorShift}}&quot;);})'>{{VendorShift}}</a></div>{{/VendorShift}}
-{{#CashierShift}}<div><b>CashierShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CashierShift}}&quot;);})'>{{CashierShift}}</a></div>{{/CashierShift}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Receipt_collapse" aria-expanded="true" aria-controls="Receipt_collapse" style="margin-left: 10px;">Receipt</a></legend>
+                    <div id="Receipt_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#isBankable}}<div><b>isBankable</b>: {{isBankable}}</div>{{/isBankable}}
+                    {{#line}}<div><b>line</b>: {{line}}</div>{{/line}}
+                    {{#VendorShift}}<div><b>VendorShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VendorShift}}&quot;);})'>{{VendorShift}}</a></div>{{/VendorShift}}
+                    {{#CashierShift}}<div><b>CashierShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CashierShift}}&quot;);})'>{{CashierShift}}</a></div>{{/CashierShift}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Receipt_collapse" aria-expanded="true" aria-controls="Receipt_collapse" style="margin-left: 10px;">Receipt</a></legend>
+                    <div id="Receipt_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isBankable'>isBankable: </label><div class='col-sm-8'><input id='isBankable' class='form-check-input' type='checkbox'{{#isBankable}} checked{{/isBankable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='line'>line: </label><div class='col-sm-8'><input id='line' class='form-control' type='text'{{#line}} value='{{line}}'{{/line}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VendorShift'>VendorShift: </label><div class='col-sm-8'><input id='VendorShift' class='form-control' type='text'{{#VendorShift}} value='{{VendorShift}}'{{/VendorShift}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CashierShift'>CashierShift: </label><div class='col-sm-8'><input id='CashierShift' class='form-control' type='text'{{#CashierShift}} value='{{CashierShift}}'{{/CashierShift}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Documentation of the tender when it is a type of card (credit, debit, etc).
@@ -145,21 +253,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Card_collapse" aria-expanded="true" aria-controls="Card_collapse">Card</a>
-<div id="Card_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#accountHolderName}}<div><b>accountHolderName</b>: {{accountHolderName}}</div>{{/accountHolderName}}
-{{#cvNumber}}<div><b>cvNumber</b>: {{cvNumber}}</div>{{/cvNumber}}
-{{#expiryDate}}<div><b>expiryDate</b>: {{expiryDate}}</div>{{/expiryDate}}
-{{#pan}}<div><b>pan</b>: {{pan}}</div>{{/pan}}
-{{#Tender}}<div><b>Tender</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Tender}}&quot;);})'>{{Tender}}</a></div>{{/Tender}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Card_collapse" aria-expanded="true" aria-controls="Card_collapse" style="margin-left: 10px;">Card</a></legend>
+                    <div id="Card_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#accountHolderName}}<div><b>accountHolderName</b>: {{accountHolderName}}</div>{{/accountHolderName}}
+                    {{#cvNumber}}<div><b>cvNumber</b>: {{cvNumber}}</div>{{/cvNumber}}
+                    {{#expiryDate}}<div><b>expiryDate</b>: {{expiryDate}}</div>{{/expiryDate}}
+                    {{#pan}}<div><b>pan</b>: {{pan}}</div>{{/pan}}
+                    {{#Tender}}<div><b>Tender</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Tender}}&quot;);})'>{{Tender}}</a></div>{{/Tender}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Card_collapse" aria-expanded="true" aria-controls="Card_collapse" style="margin-left: 10px;">Card</a></legend>
+                    <div id="Card_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accountHolderName'>accountHolderName: </label><div class='col-sm-8'><input id='accountHolderName' class='form-control' type='text'{{#accountHolderName}} value='{{accountHolderName}}'{{/accountHolderName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cvNumber'>cvNumber: </label><div class='col-sm-8'><input id='cvNumber' class='form-control' type='text'{{#cvNumber}} value='{{cvNumber}}'{{/cvNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='expiryDate'>expiryDate: </label><div class='col-sm-8'><input id='expiryDate' class='form-control' type='text'{{#expiryDate}} value='{{expiryDate}}'{{/expiryDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pan'>pan: </label><div class='col-sm-8'><input id='pan' class='form-control' type='text'{{#pan}} value='{{pan}}'{{/pan}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Tender'>Tender: </label><div class='col-sm-8'><input id='Tender' class='form-control' type='text'{{#Tender}} value='{{Tender}}'{{/Tender}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Details on amounts due for an account.
@@ -222,21 +365,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Due_collapse" aria-expanded="true" aria-controls="Due_collapse">Due</a>
-<div id="Due_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#arrears}}<div><b>arrears</b>: {{arrears}}</div>{{/arrears}}
-{{#charges}}<div><b>charges</b>: {{charges}}</div>{{/charges}}
-{{#current}}<div><b>current</b>: {{current}}</div>{{/current}}
-{{#interest}}<div><b>interest</b>: {{interest}}</div>{{/interest}}
-{{#principle}}<div><b>principle</b>: {{principle}}</div>{{/principle}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Due_collapse" aria-expanded="true" aria-controls="Due_collapse" style="margin-left: 10px;">Due</a></legend>
+                    <div id="Due_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#arrears}}<div><b>arrears</b>: {{arrears}}</div>{{/arrears}}
+                    {{#charges}}<div><b>charges</b>: {{charges}}</div>{{/charges}}
+                    {{#current}}<div><b>current</b>: {{current}}</div>{{/current}}
+                    {{#interest}}<div><b>interest</b>: {{interest}}</div>{{/interest}}
+                    {{#principle}}<div><b>principle</b>: {{principle}}</div>{{/principle}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Due_collapse" aria-expanded="true" aria-controls="Due_collapse" style="margin-left: 10px;">Due</a></legend>
+                    <div id="Due_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='arrears'>arrears: </label><div class='col-sm-8'><input id='arrears' class='form-control' type='text'{{#arrears}} value='{{arrears}}'{{/arrears}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='charges'>charges: </label><div class='col-sm-8'><input id='charges' class='form-control' type='text'{{#charges}} value='{{charges}}'{{/charges}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='current'>current: </label><div class='col-sm-8'><input id='current' class='form-control' type='text'{{#current}} value='{{current}}'{{/current}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='interest'>interest: </label><div class='col-sm-8'><input id='interest' class='form-control' type='text'{{#interest}} value='{{interest}}'{{/interest}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='principle'>principle: </label><div class='col-sm-8'><input id='principle' class='form-control' type='text'{{#principle}} value='{{principle}}'{{/principle}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A charge element associated with other entities such as tariff structures, auxiliary agreements or other charge elements.
@@ -269,7 +447,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Charge";
                 base.parse_element (/<cim:Charge.fixedPortion>([\s\S]*?)<\/cim:Charge.fixedPortion>/g, obj, "fixedPortion", base.to_string, sub, context);
-                base.parse_element (/<cim:Charge.kind>([\s\S]*?)<\/cim:Charge.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Charge.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:Charge.variablePortion>([\s\S]*?)<\/cim:Charge.variablePortion>/g, obj, "variablePortion", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Charge.ParentCharge\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ParentCharge", sub, context);
 
@@ -299,91 +477,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Charge_collapse" aria-expanded="true" aria-controls="Charge_collapse">Charge</a>
-<div id="Charge_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#fixedPortion}}<div><b>fixedPortion</b>: {{fixedPortion}}</div>{{/fixedPortion}}
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#variablePortion}}<div><b>variablePortion</b>: {{variablePortion}}</div>{{/variablePortion}}
-{{#ParentCharge}}<div><b>ParentCharge</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentCharge}}&quot;);})'>{{ParentCharge}}</a></div>{{/ParentCharge}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Charge_collapse" aria-expanded="true" aria-controls="Charge_collapse" style="margin-left: 10px;">Charge</a></legend>
+                    <div id="Charge_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#fixedPortion}}<div><b>fixedPortion</b>: {{fixedPortion}}</div>{{/fixedPortion}}
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#variablePortion}}<div><b>variablePortion</b>: {{variablePortion}}</div>{{/variablePortion}}
+                    {{#ParentCharge}}<div><b>ParentCharge</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentCharge}}&quot;);})'>{{ParentCharge}}</a></div>{{/ParentCharge}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of cheque.
-         *
-         */
-        class ChequeKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ChequeKind;
-                if (null == bucket)
-                   cim_data.ChequeKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ChequeKind[this._id];
+                super.condition (obj);
+                obj.ChargeKind = []; if (!obj.kind) obj.ChargeKind.push ({ id: '', selected: true}); for (var property in ChargeKind) obj.ChargeKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ChequeKind";
-                base.parse_element (/<cim:ChequeKind.postalOrder>([\s\S]*?)<\/cim:ChequeKind.postalOrder>/g, obj, "postalOrder", base.to_string, sub, context);
-                base.parse_element (/<cim:ChequeKind.bankOrder>([\s\S]*?)<\/cim:ChequeKind.bankOrder>/g, obj, "bankOrder", base.to_string, sub, context);
-                base.parse_element (/<cim:ChequeKind.other>([\s\S]*?)<\/cim:ChequeKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.ChequeKind;
-                if (null == bucket)
-                   context.parsed.ChequeKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.ChargeKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ChequeKind", "postalOrder", base.from_string, fields);
-                base.export_element (obj, "ChequeKind", "bankOrder", base.from_string, fields);
-                base.export_element (obj, "ChequeKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ChequeKind_collapse" aria-expanded="true" aria-controls="ChequeKind_collapse">ChequeKind</a>
-<div id="ChequeKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#postalOrder}}<div><b>postalOrder</b>: {{postalOrder}}</div>{{/postalOrder}}
-{{#bankOrder}}<div><b>bankOrder</b>: {{bankOrder}}</div>{{/bankOrder}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Charge_collapse" aria-expanded="true" aria-controls="Charge_collapse" style="margin-left: 10px;">Charge</a></legend>
+                    <div id="Charge_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fixedPortion'>fixedPortion: </label><div class='col-sm-8'><input id='fixedPortion' class='form-control' type='text'{{#fixedPortion}} value='{{fixedPortion}}'{{/fixedPortion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ChargeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ChargeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='variablePortion'>variablePortion: </label><div class='col-sm-8'><input id='variablePortion' class='form-control' type='text'{{#variablePortion}} value='{{variablePortion}}'{{/variablePortion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ParentCharge'>ParentCharge: </label><div class='col-sm-8'><input id='ParentCharge' class='form-control' type='text'{{#ParentCharge}} value='{{ParentCharge}}'{{/ParentCharge}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * A schedule of charges; structure associated with Tariff that allows the definition of complex tarif structures such as step and time of use when used in conjunction with TimeTariffInterval and Charge.
@@ -440,17 +583,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TariffProfile_collapse" aria-expanded="true" aria-controls="TariffProfile_collapse">TariffProfile</a>
-<div id="TariffProfile_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#tariffCycle}}<div><b>tariffCycle</b>: {{tariffCycle}}</div>{{/tariffCycle}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TariffProfile_collapse" aria-expanded="true" aria-controls="TariffProfile_collapse" style="margin-left: 10px;">TariffProfile</a></legend>
+                    <div id="TariffProfile_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#tariffCycle}}<div><b>tariffCycle</b>: {{tariffCycle}}</div>{{/tariffCycle}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TariffProfile_collapse" aria-expanded="true" aria-controls="TariffProfile_collapse" style="margin-left: 10px;">TariffProfile</a></legend>
+                    <div id="TariffProfile_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tariffCycle'>tariffCycle: </label><div class='col-sm-8'><input id='tariffCycle' class='form-control' type='text'{{#tariffCycle}} value='{{tariffCycle}}'{{/tariffCycle}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Credit/debit movements for an account.
@@ -509,19 +683,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AccountMovement_collapse" aria-expanded="true" aria-controls="AccountMovement_collapse">AccountMovement</a>
-<div id="AccountMovement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
-{{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
-{{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccountMovement_collapse" aria-expanded="true" aria-controls="AccountMovement_collapse" style="margin-left: 10px;">AccountMovement</a></legend>
+                    <div id="AccountMovement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+                    {{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
+                    {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccountMovement_collapse" aria-expanded="true" aria-controls="AccountMovement_collapse" style="margin-left: 10px;">AccountMovement</a></legend>
+                    <div id="AccountMovement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dateTime'>dateTime: </label><div class='col-sm-8'><input id='dateTime' class='form-control' type='text'{{#dateTime}} value='{{dateTime}}'{{/dateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reason'>reason: </label><div class='col-sm-8'><input id='reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * One of a sequence of intervals defined in terms of consumption quantity of a service such as electricity, water, gas, etc.
@@ -580,95 +787,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ConsumptionTariffInterval_collapse" aria-expanded="true" aria-controls="ConsumptionTariffInterval_collapse">ConsumptionTariffInterval</a>
-<div id="ConsumptionTariffInterval_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-{{#startValue}}<div><b>startValue</b>: {{startValue}}</div>{{/startValue}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConsumptionTariffInterval_collapse" aria-expanded="true" aria-controls="ConsumptionTariffInterval_collapse" style="margin-left: 10px;">ConsumptionTariffInterval</a></legend>
+                    <div id="ConsumptionTariffInterval_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+                    {{#startValue}}<div><b>startValue</b>: {{startValue}}</div>{{/startValue}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of tender.
-         *
-         */
-        class TenderKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.TenderKind;
-                if (null == bucket)
-                   cim_data.TenderKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.TenderKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "TenderKind";
-                base.parse_element (/<cim:TenderKind.cheque>([\s\S]*?)<\/cim:TenderKind.cheque>/g, obj, "cheque", base.to_string, sub, context);
-                base.parse_element (/<cim:TenderKind.card>([\s\S]*?)<\/cim:TenderKind.card>/g, obj, "card", base.to_string, sub, context);
-                base.parse_element (/<cim:TenderKind.cash>([\s\S]*?)<\/cim:TenderKind.cash>/g, obj, "cash", base.to_string, sub, context);
-                base.parse_element (/<cim:TenderKind.unspecified>([\s\S]*?)<\/cim:TenderKind.unspecified>/g, obj, "unspecified", base.to_string, sub, context);
-                base.parse_element (/<cim:TenderKind.other>([\s\S]*?)<\/cim:TenderKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.TenderKind;
-                if (null == bucket)
-                   context.parsed.TenderKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "TenderKind", "cheque", base.from_string, fields);
-                base.export_element (obj, "TenderKind", "card", base.from_string, fields);
-                base.export_element (obj, "TenderKind", "cash", base.from_string, fields);
-                base.export_element (obj, "TenderKind", "unspecified", base.from_string, fields);
-                base.export_element (obj, "TenderKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TenderKind_collapse" aria-expanded="true" aria-controls="TenderKind_collapse">TenderKind</a>
-<div id="TenderKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#cheque}}<div><b>cheque</b>: {{cheque}}</div>{{/cheque}}
-{{#card}}<div><b>card</b>: {{card}}</div>{{/card}}
-{{#cash}}<div><b>cash</b>: {{cash}}</div>{{/cash}}
-{{#unspecified}}<div><b>unspecified</b>: {{unspecified}}</div>{{/unspecified}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConsumptionTariffInterval_collapse" aria-expanded="true" aria-controls="ConsumptionTariffInterval_collapse" style="margin-left: 10px;">ConsumptionTariffInterval</a></legend>
+                    <div id="ConsumptionTariffInterval_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startValue'>startValue: </label><div class='col-sm-8'><input id='startValue' class='form-control' type='text'{{#startValue}} value='{{startValue}}'{{/startValue}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * One of a sequence of time intervals defined in terms of real time.
@@ -727,18 +889,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TimeTariffInterval_collapse" aria-expanded="true" aria-controls="TimeTariffInterval_collapse">TimeTariffInterval</a>
-<div id="TimeTariffInterval_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-{{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TimeTariffInterval_collapse" aria-expanded="true" aria-controls="TimeTariffInterval_collapse" style="margin-left: 10px;">TimeTariffInterval</a></legend>
+                    <div id="TimeTariffInterval_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+                    {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TimeTariffInterval_collapse" aria-expanded="true" aria-controls="TimeTariffInterval_collapse" style="margin-left: 10px;">TimeTariffInterval</a></legend>
+                    <div id="TimeTariffInterval_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startTime'>startTime: </label><div class='col-sm-8'><input id='startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An ad-hoc auxiliary account agreement associated with a customer agreement, not part of the customer's account, but typically subject to formal agreement between customer and supplier (utility).
@@ -813,26 +1007,66 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AuxiliaryAgreement_collapse" aria-expanded="true" aria-controls="AuxiliaryAgreement_collapse">AuxiliaryAgreement</a>
-<div id="AuxiliaryAgreement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Agreement.prototype.template.call (this) +
-`
-{{#arrearsInterest}}<div><b>arrearsInterest</b>: {{arrearsInterest}}</div>{{/arrearsInterest}}
-{{#auxCycle}}<div><b>auxCycle</b>: {{auxCycle}}</div>{{/auxCycle}}
-{{#auxPriorityCode}}<div><b>auxPriorityCode</b>: {{auxPriorityCode}}</div>{{/auxPriorityCode}}
-{{#fixedAmount}}<div><b>fixedAmount</b>: {{fixedAmount}}</div>{{/fixedAmount}}
-{{#minAmount}}<div><b>minAmount</b>: {{minAmount}}</div>{{/minAmount}}
-{{#payCycle}}<div><b>payCycle</b>: {{payCycle}}</div>{{/payCycle}}
-{{#subType}}<div><b>subType</b>: {{subType}}</div>{{/subType}}
-{{#vendPortion}}<div><b>vendPortion</b>: {{vendPortion}}</div>{{/vendPortion}}
-{{#vendPortionArrear}}<div><b>vendPortionArrear</b>: {{vendPortionArrear}}</div>{{/vendPortionArrear}}
-{{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAgreement}}&quot;);})'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryAgreement_collapse" aria-expanded="true" aria-controls="AuxiliaryAgreement_collapse" style="margin-left: 10px;">AuxiliaryAgreement</a></legend>
+                    <div id="AuxiliaryAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.template.call (this) +
+                    `
+                    {{#arrearsInterest}}<div><b>arrearsInterest</b>: {{arrearsInterest}}</div>{{/arrearsInterest}}
+                    {{#auxCycle}}<div><b>auxCycle</b>: {{auxCycle}}</div>{{/auxCycle}}
+                    {{#auxPriorityCode}}<div><b>auxPriorityCode</b>: {{auxPriorityCode}}</div>{{/auxPriorityCode}}
+                    {{#fixedAmount}}<div><b>fixedAmount</b>: {{fixedAmount}}</div>{{/fixedAmount}}
+                    {{#minAmount}}<div><b>minAmount</b>: {{minAmount}}</div>{{/minAmount}}
+                    {{#payCycle}}<div><b>payCycle</b>: {{payCycle}}</div>{{/payCycle}}
+                    {{#subType}}<div><b>subType</b>: {{subType}}</div>{{/subType}}
+                    {{#vendPortion}}<div><b>vendPortion</b>: {{vendPortion}}</div>{{/vendPortion}}
+                    {{#vendPortionArrear}}<div><b>vendPortionArrear</b>: {{vendPortionArrear}}</div>{{/vendPortionArrear}}
+                    {{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAgreement}}&quot;);})'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryAgreement_collapse" aria-expanded="true" aria-controls="AuxiliaryAgreement_collapse" style="margin-left: 10px;">AuxiliaryAgreement</a></legend>
+                    <div id="AuxiliaryAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='arrearsInterest'>arrearsInterest: </label><div class='col-sm-8'><input id='arrearsInterest' class='form-control' type='text'{{#arrearsInterest}} value='{{arrearsInterest}}'{{/arrearsInterest}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='auxCycle'>auxCycle: </label><div class='col-sm-8'><input id='auxCycle' class='form-control' type='text'{{#auxCycle}} value='{{auxCycle}}'{{/auxCycle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='auxPriorityCode'>auxPriorityCode: </label><div class='col-sm-8'><input id='auxPriorityCode' class='form-control' type='text'{{#auxPriorityCode}} value='{{auxPriorityCode}}'{{/auxPriorityCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fixedAmount'>fixedAmount: </label><div class='col-sm-8'><input id='fixedAmount' class='form-control' type='text'{{#fixedAmount}} value='{{fixedAmount}}'{{/fixedAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minAmount'>minAmount: </label><div class='col-sm-8'><input id='minAmount' class='form-control' type='text'{{#minAmount}} value='{{minAmount}}'{{/minAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='payCycle'>payCycle: </label><div class='col-sm-8'><input id='payCycle' class='form-control' type='text'{{#payCycle}} value='{{payCycle}}'{{/payCycle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='subType'>subType: </label><div class='col-sm-8'><input id='subType' class='form-control' type='text'{{#subType}} value='{{subType}}'{{/subType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vendPortion'>vendPortion: </label><div class='col-sm-8'><input id='vendPortion' class='form-control' type='text'{{#vendPortion}} value='{{vendPortion}}'{{/vendPortion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vendPortionArrear'>vendPortionArrear: </label><div class='col-sm-8'><input id='vendPortionArrear' class='form-control' type='text'{{#vendPortionArrear}} value='{{vendPortionArrear}}'{{/vendPortionArrear}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAgreement'>CustomerAgreement: </label><div class='col-sm-8'><input id='CustomerAgreement' class='form-control' type='text'{{#CustomerAgreement}} value='{{CustomerAgreement}}'{{/CustomerAgreement}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The entity that owns the point of sale and contracts with the cashier to receipt payments and vend tokens using the payment system.
@@ -887,16 +1121,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Vendor_collapse" aria-expanded="true" aria-controls="Vendor_collapse">Vendor</a>
-<div id="Vendor_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Vendor_collapse" aria-expanded="true" aria-controls="Vendor_collapse" style="margin-left: 10px;">Vendor</a></legend>
+                    <div id="Vendor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Vendor_collapse" aria-expanded="true" aria-controls="Vendor_collapse" style="margin-left: 10px;">Vendor</a></legend>
+                    <div id="Vendor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Details of a bank account.
@@ -959,21 +1223,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BankAccountDetail_collapse" aria-expanded="true" aria-controls="BankAccountDetail_collapse">BankAccountDetail</a>
-<div id="BankAccountDetail_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#accountNumber}}<div><b>accountNumber</b>: {{accountNumber}}</div>{{/accountNumber}}
-{{#bankName}}<div><b>bankName</b>: {{bankName}}</div>{{/bankName}}
-{{#branchCode}}<div><b>branchCode</b>: {{branchCode}}</div>{{/branchCode}}
-{{#holderID}}<div><b>holderID</b>: {{holderID}}</div>{{/holderID}}
-{{#holderName}}<div><b>holderName</b>: {{holderName}}</div>{{/holderName}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BankAccountDetail_collapse" aria-expanded="true" aria-controls="BankAccountDetail_collapse" style="margin-left: 10px;">BankAccountDetail</a></legend>
+                    <div id="BankAccountDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#accountNumber}}<div><b>accountNumber</b>: {{accountNumber}}</div>{{/accountNumber}}
+                    {{#bankName}}<div><b>bankName</b>: {{bankName}}</div>{{/bankName}}
+                    {{#branchCode}}<div><b>branchCode</b>: {{branchCode}}</div>{{/branchCode}}
+                    {{#holderID}}<div><b>holderID</b>: {{holderID}}</div>{{/holderID}}
+                    {{#holderName}}<div><b>holderName</b>: {{holderName}}</div>{{/holderName}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BankAccountDetail_collapse" aria-expanded="true" aria-controls="BankAccountDetail_collapse" style="margin-left: 10px;">BankAccountDetail</a></legend>
+                    <div id="BankAccountDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accountNumber'>accountNumber: </label><div class='col-sm-8'><input id='accountNumber' class='form-control' type='text'{{#accountNumber}} value='{{accountNumber}}'{{/accountNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bankName'>bankName: </label><div class='col-sm-8'><input id='bankName' class='form-control' type='text'{{#bankName}} value='{{bankName}}'{{/bankName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='branchCode'>branchCode: </label><div class='col-sm-8'><input id='branchCode' class='form-control' type='text'{{#branchCode}} value='{{branchCode}}'{{/branchCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='holderID'>holderID: </label><div class='col-sm-8'><input id='holderID' class='form-control' type='text'{{#holderID}} value='{{holderID}}'{{/holderID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='holderName'>holderName: </label><div class='col-sm-8'><input id='holderName' class='form-control' type='text'{{#holderName}} value='{{holderName}}'{{/holderName}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Logical point where transactions take place with operational interaction between cashier and the payment system; in certain cases the point of sale interacts directly with the end customer, in which case the cashier might not be a real person: for example a self-service kiosk or over the internet.
@@ -1028,94 +1327,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#PointOfSale_collapse" aria-expanded="true" aria-controls="PointOfSale_collapse">PointOfSale</a>
-<div id="PointOfSale_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#location}}<div><b>location</b>: {{location}}</div>{{/location}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PointOfSale_collapse" aria-expanded="true" aria-controls="PointOfSale_collapse" style="margin-left: 10px;">PointOfSale</a></legend>
+                    <div id="PointOfSale_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#location}}<div><b>location</b>: {{location}}</div>{{/location}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of charge.
-         *
-         */
-        class ChargeKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.ChargeKind;
-                if (null == bucket)
-                   cim_data.ChargeKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.ChargeKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ChargeKind";
-                base.parse_element (/<cim:ChargeKind.consumptionCharge>([\s\S]*?)<\/cim:ChargeKind.consumptionCharge>/g, obj, "consumptionCharge", base.to_string, sub, context);
-                base.parse_element (/<cim:ChargeKind.demandCharge>([\s\S]*?)<\/cim:ChargeKind.demandCharge>/g, obj, "demandCharge", base.to_string, sub, context);
-                base.parse_element (/<cim:ChargeKind.auxiliaryCharge>([\s\S]*?)<\/cim:ChargeKind.auxiliaryCharge>/g, obj, "auxiliaryCharge", base.to_string, sub, context);
-                base.parse_element (/<cim:ChargeKind.taxCharge>([\s\S]*?)<\/cim:ChargeKind.taxCharge>/g, obj, "taxCharge", base.to_string, sub, context);
-                base.parse_element (/<cim:ChargeKind.other>([\s\S]*?)<\/cim:ChargeKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.ChargeKind;
-                if (null == bucket)
-                   context.parsed.ChargeKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "ChargeKind", "consumptionCharge", base.from_string, fields);
-                base.export_element (obj, "ChargeKind", "demandCharge", base.from_string, fields);
-                base.export_element (obj, "ChargeKind", "auxiliaryCharge", base.from_string, fields);
-                base.export_element (obj, "ChargeKind", "taxCharge", base.from_string, fields);
-                base.export_element (obj, "ChargeKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ChargeKind_collapse" aria-expanded="true" aria-controls="ChargeKind_collapse">ChargeKind</a>
-<div id="ChargeKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#consumptionCharge}}<div><b>consumptionCharge</b>: {{consumptionCharge}}</div>{{/consumptionCharge}}
-{{#demandCharge}}<div><b>demandCharge</b>: {{demandCharge}}</div>{{/demandCharge}}
-{{#auxiliaryCharge}}<div><b>auxiliaryCharge</b>: {{auxiliaryCharge}}</div>{{/auxiliaryCharge}}
-{{#taxCharge}}<div><b>taxCharge</b>: {{taxCharge}}</div>{{/taxCharge}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PointOfSale_collapse" aria-expanded="true" aria-controls="PointOfSale_collapse" style="margin-left: 10px;">PointOfSale</a></legend>
+                    <div id="PointOfSale_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='location'>location: </label><div class='col-sm-8'><input id='location' class='form-control' type='text'{{#location}} value='{{location}}'{{/location}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Generally referring to a period of operation or work performed.
@@ -1182,22 +1435,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Shift_collapse" aria-expanded="true" aria-controls="Shift_collapse">Shift</a>
-<div id="Shift_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#activityInterval}}<div><b>activityInterval</b>: {{activityInterval}}</div>{{/activityInterval}}
-{{#receiptsGrandTotalBankable}}<div><b>receiptsGrandTotalBankable</b>: {{receiptsGrandTotalBankable}}</div>{{/receiptsGrandTotalBankable}}
-{{#receiptsGrandTotalNonBankable}}<div><b>receiptsGrandTotalNonBankable</b>: {{receiptsGrandTotalNonBankable}}</div>{{/receiptsGrandTotalNonBankable}}
-{{#receiptsGrandTotalRounding}}<div><b>receiptsGrandTotalRounding</b>: {{receiptsGrandTotalRounding}}</div>{{/receiptsGrandTotalRounding}}
-{{#transactionsGrandTotal}}<div><b>transactionsGrandTotal</b>: {{transactionsGrandTotal}}</div>{{/transactionsGrandTotal}}
-{{#transactionsGrandTotalRounding}}<div><b>transactionsGrandTotalRounding</b>: {{transactionsGrandTotalRounding}}</div>{{/transactionsGrandTotalRounding}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Shift_collapse" aria-expanded="true" aria-controls="Shift_collapse" style="margin-left: 10px;">Shift</a></legend>
+                    <div id="Shift_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#activityInterval}}<div><b>activityInterval</b>: {{activityInterval}}</div>{{/activityInterval}}
+                    {{#receiptsGrandTotalBankable}}<div><b>receiptsGrandTotalBankable</b>: {{receiptsGrandTotalBankable}}</div>{{/receiptsGrandTotalBankable}}
+                    {{#receiptsGrandTotalNonBankable}}<div><b>receiptsGrandTotalNonBankable</b>: {{receiptsGrandTotalNonBankable}}</div>{{/receiptsGrandTotalNonBankable}}
+                    {{#receiptsGrandTotalRounding}}<div><b>receiptsGrandTotalRounding</b>: {{receiptsGrandTotalRounding}}</div>{{/receiptsGrandTotalRounding}}
+                    {{#transactionsGrandTotal}}<div><b>transactionsGrandTotal</b>: {{transactionsGrandTotal}}</div>{{/transactionsGrandTotal}}
+                    {{#transactionsGrandTotalRounding}}<div><b>transactionsGrandTotalRounding</b>: {{transactionsGrandTotalRounding}}</div>{{/transactionsGrandTotalRounding}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Shift_collapse" aria-expanded="true" aria-controls="Shift_collapse" style="margin-left: 10px;">Shift</a></legend>
+                    <div id="Shift_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='activityInterval'>activityInterval: </label><div class='col-sm-8'><input id='activityInterval' class='form-control' type='text'{{#activityInterval}} value='{{activityInterval}}'{{/activityInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='receiptsGrandTotalBankable'>receiptsGrandTotalBankable: </label><div class='col-sm-8'><input id='receiptsGrandTotalBankable' class='form-control' type='text'{{#receiptsGrandTotalBankable}} value='{{receiptsGrandTotalBankable}}'{{/receiptsGrandTotalBankable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='receiptsGrandTotalNonBankable'>receiptsGrandTotalNonBankable: </label><div class='col-sm-8'><input id='receiptsGrandTotalNonBankable' class='form-control' type='text'{{#receiptsGrandTotalNonBankable}} value='{{receiptsGrandTotalNonBankable}}'{{/receiptsGrandTotalNonBankable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='receiptsGrandTotalRounding'>receiptsGrandTotalRounding: </label><div class='col-sm-8'><input id='receiptsGrandTotalRounding' class='form-control' type='text'{{#receiptsGrandTotalRounding}} value='{{receiptsGrandTotalRounding}}'{{/receiptsGrandTotalRounding}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionsGrandTotal'>transactionsGrandTotal: </label><div class='col-sm-8'><input id='transactionsGrandTotal' class='form-control' type='text'{{#transactionsGrandTotal}} value='{{transactionsGrandTotal}}'{{/transactionsGrandTotal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionsGrandTotalRounding'>transactionsGrandTotalRounding: </label><div class='col-sm-8'><input id='transactionsGrandTotalRounding' class='form-control' type='text'{{#transactionsGrandTotalRounding}} value='{{transactionsGrandTotalRounding}}'{{/transactionsGrandTotalRounding}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Details on an amount line, with rounding, date and note.
@@ -1258,20 +1547,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#LineDetail_collapse" aria-expanded="true" aria-controls="LineDetail_collapse">LineDetail</a>
-<div id="LineDetail_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
-{{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
-{{#note}}<div><b>note</b>: {{note}}</div>{{/note}}
-{{#rounding}}<div><b>rounding</b>: {{rounding}}</div>{{/rounding}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LineDetail_collapse" aria-expanded="true" aria-controls="LineDetail_collapse" style="margin-left: 10px;">LineDetail</a></legend>
+                    <div id="LineDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+                    {{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
+                    {{#note}}<div><b>note</b>: {{note}}</div>{{/note}}
+                    {{#rounding}}<div><b>rounding</b>: {{rounding}}</div>{{/rounding}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LineDetail_collapse" aria-expanded="true" aria-controls="LineDetail_collapse" style="margin-left: 10px;">LineDetail</a></legend>
+                    <div id="LineDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dateTime'>dateTime: </label><div class='col-sm-8'><input id='dateTime' class='form-control' type='text'{{#dateTime}} value='{{dateTime}}'{{/dateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='note'>note: </label><div class='col-sm-8'><input id='note' class='form-control' type='text'{{#note}} value='{{note}}'{{/note}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rounding'>rounding: </label><div class='col-sm-8'><input id='rounding' class='form-control' type='text'{{#rounding}} value='{{rounding}}'{{/rounding}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The operator of the point of sale for the duration of CashierShift.
@@ -1328,17 +1651,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Cashier_collapse" aria-expanded="true" aria-controls="Cashier_collapse">Cashier</a>
-<div id="Cashier_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Cashier_collapse" aria-expanded="true" aria-controls="Cashier_collapse" style="margin-left: 10px;">Cashier</a></legend>
+                    <div id="Cashier_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Cashier_collapse" aria-expanded="true" aria-controls="Cashier_collapse" style="margin-left: 10px;">Cashier</a></legend>
+                    <div id="Cashier_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Organisation that provides services to customers.
@@ -1369,7 +1723,7 @@ define
                 obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
                 obj.cls = "ServiceSupplier";
                 base.parse_element (/<cim:ServiceSupplier.issuerIdentificationNumber>([\s\S]*?)<\/cim:ServiceSupplier.issuerIdentificationNumber>/g, obj, "issuerIdentificationNumber", base.to_string, sub, context);
-                base.parse_element (/<cim:ServiceSupplier.kind>([\s\S]*?)<\/cim:ServiceSupplier.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ServiceSupplier.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
 
                 var bucket = context.parsed.ServiceSupplier;
                 if (null == bucket)
@@ -1395,18 +1749,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ServiceSupplier_collapse" aria-expanded="true" aria-controls="ServiceSupplier_collapse">ServiceSupplier</a>
-<div id="ServiceSupplier_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.OrganisationRole.prototype.template.call (this) +
-`
-{{#issuerIdentificationNumber}}<div><b>issuerIdentificationNumber</b>: {{issuerIdentificationNumber}}</div>{{/issuerIdentificationNumber}}
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceSupplier_collapse" aria-expanded="true" aria-controls="ServiceSupplier_collapse" style="margin-left: 10px;">ServiceSupplier</a></legend>
+                    <div id="ServiceSupplier_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    {{#issuerIdentificationNumber}}<div><b>issuerIdentificationNumber</b>: {{issuerIdentificationNumber}}</div>{{/issuerIdentificationNumber}}
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.SupplierKind = []; if (!obj.kind) obj.SupplierKind.push ({ id: '', selected: true}); for (var property in SupplierKind) obj.SupplierKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.SupplierKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceSupplier_collapse" aria-expanded="true" aria-controls="ServiceSupplier_collapse" style="margin-left: 10px;">ServiceSupplier</a></legend>
+                    <div id="ServiceSupplier_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='issuerIdentificationNumber'>issuerIdentificationNumber: </label><div class='col-sm-8'><input id='issuerIdentificationNumber' class='form-control' type='text'{{#issuerIdentificationNumber}} value='{{issuerIdentificationNumber}}'{{/issuerIdentificationNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#SupplierKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SupplierKind}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The actual tender when it is a type of cheque.
@@ -1439,7 +1827,7 @@ define
                 base.parse_element (/<cim:Cheque.bankAccountDetail>([\s\S]*?)<\/cim:Cheque.bankAccountDetail>/g, obj, "bankAccountDetail", base.to_string, sub, context);
                 base.parse_element (/<cim:Cheque.chequeNumber>([\s\S]*?)<\/cim:Cheque.chequeNumber>/g, obj, "chequeNumber", base.to_string, sub, context);
                 base.parse_element (/<cim:Cheque.date>([\s\S]*?)<\/cim:Cheque.date>/g, obj, "date", base.to_string, sub, context);
-                base.parse_element (/<cim:Cheque.kind>([\s\S]*?)<\/cim:Cheque.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Cheque.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:Cheque.micrNumber>([\s\S]*?)<\/cim:Cheque.micrNumber>/g, obj, "micrNumber", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Cheque.Tender\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Tender", sub, context);
 
@@ -1471,93 +1859,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Cheque_collapse" aria-expanded="true" aria-controls="Cheque_collapse">Cheque</a>
-<div id="Cheque_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#bankAccountDetail}}<div><b>bankAccountDetail</b>: {{bankAccountDetail}}</div>{{/bankAccountDetail}}
-{{#chequeNumber}}<div><b>chequeNumber</b>: {{chequeNumber}}</div>{{/chequeNumber}}
-{{#date}}<div><b>date</b>: {{date}}</div>{{/date}}
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#micrNumber}}<div><b>micrNumber</b>: {{micrNumber}}</div>{{/micrNumber}}
-{{#Tender}}<div><b>Tender</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Tender}}&quot;);})'>{{Tender}}</a></div>{{/Tender}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Cheque_collapse" aria-expanded="true" aria-controls="Cheque_collapse" style="margin-left: 10px;">Cheque</a></legend>
+                    <div id="Cheque_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#bankAccountDetail}}<div><b>bankAccountDetail</b>: {{bankAccountDetail}}</div>{{/bankAccountDetail}}
+                    {{#chequeNumber}}<div><b>chequeNumber</b>: {{chequeNumber}}</div>{{/chequeNumber}}
+                    {{#date}}<div><b>date</b>: {{date}}</div>{{/date}}
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#micrNumber}}<div><b>micrNumber</b>: {{micrNumber}}</div>{{/micrNumber}}
+                    {{#Tender}}<div><b>Tender</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Tender}}&quot;);})'>{{Tender}}</a></div>{{/Tender}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of supplier.
-         *
-         */
-        class SupplierKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.SupplierKind;
-                if (null == bucket)
-                   cim_data.SupplierKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.SupplierKind[this._id];
+                super.condition (obj);
+                obj.ChequeKind = []; if (!obj.kind) obj.ChequeKind.push ({ id: '', selected: true}); for (var property in ChequeKind) obj.ChequeKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "SupplierKind";
-                base.parse_element (/<cim:SupplierKind.utility>([\s\S]*?)<\/cim:SupplierKind.utility>/g, obj, "utility", base.to_string, sub, context);
-                base.parse_element (/<cim:SupplierKind.retailer>([\s\S]*?)<\/cim:SupplierKind.retailer>/g, obj, "retailer", base.to_string, sub, context);
-                base.parse_element (/<cim:SupplierKind.other>([\s\S]*?)<\/cim:SupplierKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.SupplierKind;
-                if (null == bucket)
-                   context.parsed.SupplierKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.ChequeKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "SupplierKind", "utility", base.from_string, fields);
-                base.export_element (obj, "SupplierKind", "retailer", base.from_string, fields);
-                base.export_element (obj, "SupplierKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SupplierKind_collapse" aria-expanded="true" aria-controls="SupplierKind_collapse">SupplierKind</a>
-<div id="SupplierKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#utility}}<div><b>utility</b>: {{utility}}</div>{{/utility}}
-{{#retailer}}<div><b>retailer</b>: {{retailer}}</div>{{/retailer}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Cheque_collapse" aria-expanded="true" aria-controls="Cheque_collapse" style="margin-left: 10px;">Cheque</a></legend>
+                    <div id="Cheque_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bankAccountDetail'>bankAccountDetail: </label><div class='col-sm-8'><input id='bankAccountDetail' class='form-control' type='text'{{#bankAccountDetail}} value='{{bankAccountDetail}}'{{/bankAccountDetail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='chequeNumber'>chequeNumber: </label><div class='col-sm-8'><input id='chequeNumber' class='form-control' type='text'{{#chequeNumber}} value='{{chequeNumber}}'{{/chequeNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='date'>date: </label><div class='col-sm-8'><input id='date' class='form-control' type='text'{{#date}} value='{{date}}'{{/date}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ChequeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ChequeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='micrNumber'>micrNumber: </label><div class='col-sm-8'><input id='micrNumber' class='form-control' type='text'{{#micrNumber}} value='{{micrNumber}}'{{/micrNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Tender'>Tender: </label><div class='col-sm-8'><input id='Tender' class='form-control' type='text'{{#Tender}} value='{{Tender}}'{{/Tender}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Tender is what is "offered" by the customer towards making a payment and is often more than the required payment (hence the need for 'change').
@@ -1591,7 +1946,7 @@ define
                 obj.cls = "Tender";
                 base.parse_element (/<cim:Tender.amount>([\s\S]*?)<\/cim:Tender.amount>/g, obj, "amount", base.to_string, sub, context);
                 base.parse_element (/<cim:Tender.change>([\s\S]*?)<\/cim:Tender.change>/g, obj, "change", base.to_string, sub, context);
-                base.parse_element (/<cim:Tender.kind>([\s\S]*?)<\/cim:Tender.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Tender.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_attribute (/<cim:Tender.Cheque\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Cheque", sub, context);
                 base.parse_attribute (/<cim:Tender.Card\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Card", sub, context);
                 base.parse_attribute (/<cim:Tender.Receipt\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Receipt", sub, context);
@@ -1624,22 +1979,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Tender_collapse" aria-expanded="true" aria-controls="Tender_collapse">Tender</a>
-<div id="Tender_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
-{{#change}}<div><b>change</b>: {{change}}</div>{{/change}}
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#Cheque}}<div><b>Cheque</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Cheque}}&quot;);})'>{{Cheque}}</a></div>{{/Cheque}}
-{{#Card}}<div><b>Card</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Card}}&quot;);})'>{{Card}}</a></div>{{/Card}}
-{{#Receipt}}<div><b>Receipt</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Receipt}}&quot;);})'>{{Receipt}}</a></div>{{/Receipt}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Tender_collapse" aria-expanded="true" aria-controls="Tender_collapse" style="margin-left: 10px;">Tender</a></legend>
+                    <div id="Tender_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
+                    {{#change}}<div><b>change</b>: {{change}}</div>{{/change}}
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#Cheque}}<div><b>Cheque</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Cheque}}&quot;);})'>{{Cheque}}</a></div>{{/Cheque}}
+                    {{#Card}}<div><b>Card</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Card}}&quot;);})'>{{Card}}</a></div>{{/Card}}
+                    {{#Receipt}}<div><b>Receipt</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Receipt}}&quot;);})'>{{Receipt}}</a></div>{{/Receipt}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.TenderKind = []; if (!obj.kind) obj.TenderKind.push ({ id: '', selected: true}); for (var property in TenderKind) obj.TenderKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.TenderKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Tender_collapse" aria-expanded="true" aria-controls="Tender_collapse" style="margin-left: 10px;">Tender</a></legend>
+                    <div id="Tender_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='change'>change: </label><div class='col-sm-8'><input id='change' class='form-control' type='text'{{#change}} value='{{change}}'{{/change}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#TenderKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TenderKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Cheque'>Cheque: </label><div class='col-sm-8'><input id='Cheque' class='form-control' type='text'{{#Cheque}} value='{{Cheque}}'{{/Cheque}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Card'>Card: </label><div class='col-sm-8'><input id='Card' class='form-control' type='text'{{#Card}} value='{{Card}}'{{/Card}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Receipt'>Receipt: </label><div class='col-sm-8'><input id='Receipt' class='form-control' type='text'{{#Receipt}} value='{{Receipt}}'{{/Receipt}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The entity that ultimately executes the transaction and which is in control of the process; typically this is embodied in secure software running on a server that may employ secure hardware encryption devices for secure transaction processing.
@@ -1692,16 +2085,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Transactor_collapse" aria-expanded="true" aria-controls="Transactor_collapse">Transactor</a>
-<div id="Transactor_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Transactor_collapse" aria-expanded="true" aria-controls="Transactor_collapse" style="margin-left: 10px;">Transactor</a></legend>
+                    <div id="Transactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Transactor_collapse" aria-expanded="true" aria-controls="Transactor_collapse" style="margin-left: 10px;">Transactor</a></legend>
+                    <div id="Transactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Variable and dynamic part of auxiliary agreement, generally representing the current state of the account related to the outstanding balance defined in auxiliary agreement.
@@ -1766,22 +2189,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AuxiliaryAccount_collapse" aria-expanded="true" aria-controls="AuxiliaryAccount_collapse">AuxiliaryAccount</a>
-<div id="AuxiliaryAccount_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#balance}}<div><b>balance</b>: {{balance}}</div>{{/balance}}
-{{#due}}<div><b>due</b>: {{due}}</div>{{/due}}
-{{#lastCredit}}<div><b>lastCredit</b>: {{lastCredit}}</div>{{/lastCredit}}
-{{#lastDebit}}<div><b>lastDebit</b>: {{lastDebit}}</div>{{/lastDebit}}
-{{#principleAmount}}<div><b>principleAmount</b>: {{principleAmount}}</div>{{/principleAmount}}
-{{#AuxiliaryAgreement}}<div><b>AuxiliaryAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AuxiliaryAgreement}}&quot;);})'>{{AuxiliaryAgreement}}</a></div>{{/AuxiliaryAgreement}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryAccount_collapse" aria-expanded="true" aria-controls="AuxiliaryAccount_collapse" style="margin-left: 10px;">AuxiliaryAccount</a></legend>
+                    <div id="AuxiliaryAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#balance}}<div><b>balance</b>: {{balance}}</div>{{/balance}}
+                    {{#due}}<div><b>due</b>: {{due}}</div>{{/due}}
+                    {{#lastCredit}}<div><b>lastCredit</b>: {{lastCredit}}</div>{{/lastCredit}}
+                    {{#lastDebit}}<div><b>lastDebit</b>: {{lastDebit}}</div>{{/lastDebit}}
+                    {{#principleAmount}}<div><b>principleAmount</b>: {{principleAmount}}</div>{{/principleAmount}}
+                    {{#AuxiliaryAgreement}}<div><b>AuxiliaryAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AuxiliaryAgreement}}&quot;);})'>{{AuxiliaryAgreement}}</a></div>{{/AuxiliaryAgreement}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryAccount_collapse" aria-expanded="true" aria-controls="AuxiliaryAccount_collapse" style="margin-left: 10px;">AuxiliaryAccount</a></legend>
+                    <div id="AuxiliaryAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='balance'>balance: </label><div class='col-sm-8'><input id='balance' class='form-control' type='text'{{#balance}} value='{{balance}}'{{/balance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='due'>due: </label><div class='col-sm-8'><input id='due' class='form-control' type='text'{{#due}} value='{{due}}'{{/due}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastCredit'>lastCredit: </label><div class='col-sm-8'><input id='lastCredit' class='form-control' type='text'{{#lastCredit}} value='{{lastCredit}}'{{/lastCredit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastDebit'>lastDebit: </label><div class='col-sm-8'><input id='lastDebit' class='form-control' type='text'{{#lastDebit}} value='{{lastDebit}}'{{/lastDebit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='principleAmount'>principleAmount: </label><div class='col-sm-8'><input id='principleAmount' class='form-control' type='text'{{#principleAmount}} value='{{principleAmount}}'{{/principleAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AuxiliaryAgreement'>AuxiliaryAgreement: </label><div class='col-sm-8'><input id='AuxiliaryAgreement' class='form-control' type='text'{{#AuxiliaryAgreement}} value='{{AuxiliaryAgreement}}'{{/AuxiliaryAgreement}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Unit for accounting; use either 'energyUnit' or 'currencyUnit' to specify the unit for 'value'.
@@ -1842,20 +2301,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AccountingUnit_collapse" aria-expanded="true" aria-controls="AccountingUnit_collapse">AccountingUnit</a>
-<div id="AccountingUnit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#energyUnit}}<div><b>energyUnit</b>: {{energyUnit}}</div>{{/energyUnit}}
-{{#monetaryUnit}}<div><b>monetaryUnit</b>: {{monetaryUnit}}</div>{{/monetaryUnit}}
-{{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccountingUnit_collapse" aria-expanded="true" aria-controls="AccountingUnit_collapse" style="margin-left: 10px;">AccountingUnit</a></legend>
+                    <div id="AccountingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#energyUnit}}<div><b>energyUnit</b>: {{energyUnit}}</div>{{/energyUnit}}
+                    {{#monetaryUnit}}<div><b>monetaryUnit</b>: {{monetaryUnit}}</div>{{/monetaryUnit}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccountingUnit_collapse" aria-expanded="true" aria-controls="AccountingUnit_collapse" style="margin-left: 10px;">AccountingUnit</a></legend>
+                    <div id="AccountingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyUnit'>energyUnit: </label><div class='col-sm-8'><input id='energyUnit' class='form-control' type='text'{{#energyUnit}} value='{{energyUnit}}'{{/energyUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='monetaryUnit'>monetaryUnit: </label><div class='col-sm-8'><input id='monetaryUnit' class='form-control' type='text'{{#monetaryUnit}} value='{{monetaryUnit}}'{{/monetaryUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><input id='multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A formal controlling contractual agreement between supplier and merchant, in terms of which the merchant is authorised to vend tokens and receipt payments on behalf of the supplier.
@@ -1910,117 +2403,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MerchantAgreement_collapse" aria-expanded="true" aria-controls="MerchantAgreement_collapse">MerchantAgreement</a>
-<div id="MerchantAgreement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Agreement.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MerchantAgreement_collapse" aria-expanded="true" aria-controls="MerchantAgreement_collapse" style="margin-left: 10px;">MerchantAgreement</a></legend>
+                    <div id="MerchantAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Kind of transaction.
-         *
-         */
-        class TransactionKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.TransactionKind;
-                if (null == bucket)
-                   cim_data.TransactionKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.TransactionKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "TransactionKind";
-                base.parse_element (/<cim:TransactionKind.serviceChargePayment>([\s\S]*?)<\/cim:TransactionKind.serviceChargePayment>/g, obj, "serviceChargePayment", base.to_string, sub, context);
-                base.parse_element (/<cim:TransactionKind.taxChargePayment>([\s\S]*?)<\/cim:TransactionKind.taxChargePayment>/g, obj, "taxChargePayment", base.to_string, sub, context);
-                base.parse_element (/<cim:TransactionKind.auxiliaryChargePayment>([\s\S]*?)<\/cim:TransactionKind.auxiliaryChargePayment>/g, obj, "auxiliaryChargePayment", base.to_string, sub, context);
-                base.parse_element (/<cim:TransactionKind.accountPayment>([\s\S]*?)<\/cim:TransactionKind.accountPayment>/g, obj, "accountPayment", base.to_string, sub, context);
-                base.parse_element (/<cim:TransactionKind.diversePayment>([\s\S]*?)<\/cim:TransactionKind.diversePayment>/g, obj, "diversePayment", base.to_string, sub, context);
-                base.parse_element (/<cim:TransactionKind.transactionReversal>([\s\S]*?)<\/cim:TransactionKind.transactionReversal>/g, obj, "transactionReversal", base.to_string, sub, context);
-                base.parse_element (/<cim:TransactionKind.tokenSalePayment>([\s\S]*?)<\/cim:TransactionKind.tokenSalePayment>/g, obj, "tokenSalePayment", base.to_string, sub, context);
-                base.parse_element (/<cim:TransactionKind.tokenFreeIssue>([\s\S]*?)<\/cim:TransactionKind.tokenFreeIssue>/g, obj, "tokenFreeIssue", base.to_string, sub, context);
-                base.parse_element (/<cim:TransactionKind.tokenGrant>([\s\S]*?)<\/cim:TransactionKind.tokenGrant>/g, obj, "tokenGrant", base.to_string, sub, context);
-                base.parse_element (/<cim:TransactionKind.tokenExchange>([\s\S]*?)<\/cim:TransactionKind.tokenExchange>/g, obj, "tokenExchange", base.to_string, sub, context);
-                base.parse_element (/<cim:TransactionKind.tokenCancellation>([\s\S]*?)<\/cim:TransactionKind.tokenCancellation>/g, obj, "tokenCancellation", base.to_string, sub, context);
-                base.parse_element (/<cim:TransactionKind.meterConfigurationToken>([\s\S]*?)<\/cim:TransactionKind.meterConfigurationToken>/g, obj, "meterConfigurationToken", base.to_string, sub, context);
-                base.parse_element (/<cim:TransactionKind.other>([\s\S]*?)<\/cim:TransactionKind.other>/g, obj, "other", base.to_string, sub, context);
-
-                var bucket = context.parsed.TransactionKind;
-                if (null == bucket)
-                   context.parsed.TransactionKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "TransactionKind", "serviceChargePayment", base.from_string, fields);
-                base.export_element (obj, "TransactionKind", "taxChargePayment", base.from_string, fields);
-                base.export_element (obj, "TransactionKind", "auxiliaryChargePayment", base.from_string, fields);
-                base.export_element (obj, "TransactionKind", "accountPayment", base.from_string, fields);
-                base.export_element (obj, "TransactionKind", "diversePayment", base.from_string, fields);
-                base.export_element (obj, "TransactionKind", "transactionReversal", base.from_string, fields);
-                base.export_element (obj, "TransactionKind", "tokenSalePayment", base.from_string, fields);
-                base.export_element (obj, "TransactionKind", "tokenFreeIssue", base.from_string, fields);
-                base.export_element (obj, "TransactionKind", "tokenGrant", base.from_string, fields);
-                base.export_element (obj, "TransactionKind", "tokenExchange", base.from_string, fields);
-                base.export_element (obj, "TransactionKind", "tokenCancellation", base.from_string, fields);
-                base.export_element (obj, "TransactionKind", "meterConfigurationToken", base.from_string, fields);
-                base.export_element (obj, "TransactionKind", "other", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TransactionKind_collapse" aria-expanded="true" aria-controls="TransactionKind_collapse">TransactionKind</a>
-<div id="TransactionKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#serviceChargePayment}}<div><b>serviceChargePayment</b>: {{serviceChargePayment}}</div>{{/serviceChargePayment}}
-{{#taxChargePayment}}<div><b>taxChargePayment</b>: {{taxChargePayment}}</div>{{/taxChargePayment}}
-{{#auxiliaryChargePayment}}<div><b>auxiliaryChargePayment</b>: {{auxiliaryChargePayment}}</div>{{/auxiliaryChargePayment}}
-{{#accountPayment}}<div><b>accountPayment</b>: {{accountPayment}}</div>{{/accountPayment}}
-{{#diversePayment}}<div><b>diversePayment</b>: {{diversePayment}}</div>{{/diversePayment}}
-{{#transactionReversal}}<div><b>transactionReversal</b>: {{transactionReversal}}</div>{{/transactionReversal}}
-{{#tokenSalePayment}}<div><b>tokenSalePayment</b>: {{tokenSalePayment}}</div>{{/tokenSalePayment}}
-{{#tokenFreeIssue}}<div><b>tokenFreeIssue</b>: {{tokenFreeIssue}}</div>{{/tokenFreeIssue}}
-{{#tokenGrant}}<div><b>tokenGrant</b>: {{tokenGrant}}</div>{{/tokenGrant}}
-{{#tokenExchange}}<div><b>tokenExchange</b>: {{tokenExchange}}</div>{{/tokenExchange}}
-{{#tokenCancellation}}<div><b>tokenCancellation</b>: {{tokenCancellation}}</div>{{/tokenCancellation}}
-{{#meterConfigurationToken}}<div><b>meterConfigurationToken</b>: {{meterConfigurationToken}}</div>{{/meterConfigurationToken}}
-{{#other}}<div><b>other</b>: {{other}}</div>{{/other}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MerchantAgreement_collapse" aria-expanded="true" aria-controls="MerchantAgreement_collapse" style="margin-left: 10px;">MerchantAgreement</a></legend>
+                    <div id="MerchantAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * The record of details of payment for service or token sale.
@@ -2052,7 +2474,7 @@ define
                 obj.cls = "Transaction";
                 base.parse_element (/<cim:Transaction.diverseReference>([\s\S]*?)<\/cim:Transaction.diverseReference>/g, obj, "diverseReference", base.to_string, sub, context);
                 base.parse_element (/<cim:Transaction.donorReference>([\s\S]*?)<\/cim:Transaction.donorReference>/g, obj, "donorReference", base.to_string, sub, context);
-                base.parse_element (/<cim:Transaction.kind>([\s\S]*?)<\/cim:Transaction.kind>/g, obj, "kind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Transaction.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:Transaction.line>([\s\S]*?)<\/cim:Transaction.line>/g, obj, "line", base.to_string, sub, context);
                 base.parse_element (/<cim:Transaction.receiverReference>([\s\S]*?)<\/cim:Transaction.receiverReference>/g, obj, "receiverReference", base.to_string, sub, context);
                 base.parse_element (/<cim:Transaction.reversedId>([\s\S]*?)<\/cim:Transaction.reversedId>/g, obj, "reversedId", base.to_string, sub, context);
@@ -2103,31 +2525,78 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Transaction_collapse" aria-expanded="true" aria-controls="Transaction_collapse">Transaction</a>
-<div id="Transaction_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#diverseReference}}<div><b>diverseReference</b>: {{diverseReference}}</div>{{/diverseReference}}
-{{#donorReference}}<div><b>donorReference</b>: {{donorReference}}</div>{{/donorReference}}
-{{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-{{#line}}<div><b>line</b>: {{line}}</div>{{/line}}
-{{#receiverReference}}<div><b>receiverReference</b>: {{receiverReference}}</div>{{/receiverReference}}
-{{#reversedId}}<div><b>reversedId</b>: {{reversedId}}</div>{{/reversedId}}
-{{#serviceUnitsEnergy}}<div><b>serviceUnitsEnergy</b>: {{serviceUnitsEnergy}}</div>{{/serviceUnitsEnergy}}
-{{#serviceUnitsError}}<div><b>serviceUnitsError</b>: {{serviceUnitsError}}</div>{{/serviceUnitsError}}
-{{#PricingStructure}}<div><b>PricingStructure</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PricingStructure}}&quot;);})'>{{PricingStructure}}</a></div>{{/PricingStructure}}
-{{#AuxiliaryAccount}}<div><b>AuxiliaryAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AuxiliaryAccount}}&quot;);})'>{{AuxiliaryAccount}}</a></div>{{/AuxiliaryAccount}}
-{{#Receipt}}<div><b>Receipt</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Receipt}}&quot;);})'>{{Receipt}}</a></div>{{/Receipt}}
-{{#VendorShift}}<div><b>VendorShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VendorShift}}&quot;);})'>{{VendorShift}}</a></div>{{/VendorShift}}
-{{#CashierShift}}<div><b>CashierShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CashierShift}}&quot;);})'>{{CashierShift}}</a></div>{{/CashierShift}}
-{{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);})'>{{Meter}}</a></div>{{/Meter}}
-{{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Transaction_collapse" aria-expanded="true" aria-controls="Transaction_collapse" style="margin-left: 10px;">Transaction</a></legend>
+                    <div id="Transaction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#diverseReference}}<div><b>diverseReference</b>: {{diverseReference}}</div>{{/diverseReference}}
+                    {{#donorReference}}<div><b>donorReference</b>: {{donorReference}}</div>{{/donorReference}}
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#line}}<div><b>line</b>: {{line}}</div>{{/line}}
+                    {{#receiverReference}}<div><b>receiverReference</b>: {{receiverReference}}</div>{{/receiverReference}}
+                    {{#reversedId}}<div><b>reversedId</b>: {{reversedId}}</div>{{/reversedId}}
+                    {{#serviceUnitsEnergy}}<div><b>serviceUnitsEnergy</b>: {{serviceUnitsEnergy}}</div>{{/serviceUnitsEnergy}}
+                    {{#serviceUnitsError}}<div><b>serviceUnitsError</b>: {{serviceUnitsError}}</div>{{/serviceUnitsError}}
+                    {{#PricingStructure}}<div><b>PricingStructure</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PricingStructure}}&quot;);})'>{{PricingStructure}}</a></div>{{/PricingStructure}}
+                    {{#AuxiliaryAccount}}<div><b>AuxiliaryAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AuxiliaryAccount}}&quot;);})'>{{AuxiliaryAccount}}</a></div>{{/AuxiliaryAccount}}
+                    {{#Receipt}}<div><b>Receipt</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Receipt}}&quot;);})'>{{Receipt}}</a></div>{{/Receipt}}
+                    {{#VendorShift}}<div><b>VendorShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VendorShift}}&quot;);})'>{{VendorShift}}</a></div>{{/VendorShift}}
+                    {{#CashierShift}}<div><b>CashierShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CashierShift}}&quot;);})'>{{CashierShift}}</a></div>{{/CashierShift}}
+                    {{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);})'>{{Meter}}</a></div>{{/Meter}}
+                    {{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.TransactionKind = []; if (!obj.kind) obj.TransactionKind.push ({ id: '', selected: true}); for (var property in TransactionKind) obj.TransactionKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.TransactionKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Transaction_collapse" aria-expanded="true" aria-controls="Transaction_collapse" style="margin-left: 10px;">Transaction</a></legend>
+                    <div id="Transaction_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diverseReference'>diverseReference: </label><div class='col-sm-8'><input id='diverseReference' class='form-control' type='text'{{#diverseReference}} value='{{diverseReference}}'{{/diverseReference}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='donorReference'>donorReference: </label><div class='col-sm-8'><input id='donorReference' class='form-control' type='text'{{#donorReference}} value='{{donorReference}}'{{/donorReference}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#TransactionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransactionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='line'>line: </label><div class='col-sm-8'><input id='line' class='form-control' type='text'{{#line}} value='{{line}}'{{/line}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='receiverReference'>receiverReference: </label><div class='col-sm-8'><input id='receiverReference' class='form-control' type='text'{{#receiverReference}} value='{{receiverReference}}'{{/receiverReference}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reversedId'>reversedId: </label><div class='col-sm-8'><input id='reversedId' class='form-control' type='text'{{#reversedId}} value='{{reversedId}}'{{/reversedId}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='serviceUnitsEnergy'>serviceUnitsEnergy: </label><div class='col-sm-8'><input id='serviceUnitsEnergy' class='form-control' type='text'{{#serviceUnitsEnergy}} value='{{serviceUnitsEnergy}}'{{/serviceUnitsEnergy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='serviceUnitsError'>serviceUnitsError: </label><div class='col-sm-8'><input id='serviceUnitsError' class='form-control' type='text'{{#serviceUnitsError}} value='{{serviceUnitsError}}'{{/serviceUnitsError}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PricingStructure'>PricingStructure: </label><div class='col-sm-8'><input id='PricingStructure' class='form-control' type='text'{{#PricingStructure}} value='{{PricingStructure}}'{{/PricingStructure}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AuxiliaryAccount'>AuxiliaryAccount: </label><div class='col-sm-8'><input id='AuxiliaryAccount' class='form-control' type='text'{{#AuxiliaryAccount}} value='{{AuxiliaryAccount}}'{{/AuxiliaryAccount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Receipt'>Receipt: </label><div class='col-sm-8'><input id='Receipt' class='form-control' type='text'{{#Receipt}} value='{{Receipt}}'{{/Receipt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VendorShift'>VendorShift: </label><div class='col-sm-8'><input id='VendorShift' class='form-control' type='text'{{#VendorShift}} value='{{VendorShift}}'{{/VendorShift}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CashierShift'>CashierShift: </label><div class='col-sm-8'><input id='CashierShift' class='form-control' type='text'{{#CashierShift}} value='{{CashierShift}}'{{/CashierShift}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Meter'>Meter: </label><div class='col-sm-8'><input id='Meter' class='form-control' type='text'{{#Meter}} value='{{Meter}}'{{/Meter}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The operating account controlled by merchant agreement, against which the vendor may vend tokens or receipt payments.
@@ -2188,19 +2657,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MerchantAccount_collapse" aria-expanded="true" aria-controls="MerchantAccount_collapse">MerchantAccount</a>
-<div id="MerchantAccount_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Common.Document.prototype.template.call (this) +
-`
-{{#currentBalance}}<div><b>currentBalance</b>: {{currentBalance}}</div>{{/currentBalance}}
-{{#provisionalBalance}}<div><b>provisionalBalance</b>: {{provisionalBalance}}</div>{{/provisionalBalance}}
-{{#MerchantAgreement}}<div><b>MerchantAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MerchantAgreement}}&quot;);})'>{{MerchantAgreement}}</a></div>{{/MerchantAgreement}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MerchantAccount_collapse" aria-expanded="true" aria-controls="MerchantAccount_collapse" style="margin-left: 10px;">MerchantAccount</a></legend>
+                    <div id="MerchantAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#currentBalance}}<div><b>currentBalance</b>: {{currentBalance}}</div>{{/currentBalance}}
+                    {{#provisionalBalance}}<div><b>provisionalBalance</b>: {{provisionalBalance}}</div>{{/provisionalBalance}}
+                    {{#MerchantAgreement}}<div><b>MerchantAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MerchantAgreement}}&quot;);})'>{{MerchantAgreement}}</a></div>{{/MerchantAgreement}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MerchantAccount_collapse" aria-expanded="true" aria-controls="MerchantAccount_collapse" style="margin-left: 10px;">MerchantAccount</a></legend>
+                    <div id="MerchantAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='currentBalance'>currentBalance: </label><div class='col-sm-8'><input id='currentBalance' class='form-control' type='text'{{#currentBalance}} value='{{currentBalance}}'{{/currentBalance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='provisionalBalance'>provisionalBalance: </label><div class='col-sm-8'><input id='provisionalBalance' class='form-control' type='text'{{#provisionalBalance}} value='{{provisionalBalance}}'{{/provisionalBalance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MerchantAgreement'>MerchantAgreement: </label><div class='col-sm-8'><input id='MerchantAgreement' class='form-control' type='text'{{#MerchantAgreement}} value='{{MerchantAgreement}}'{{/MerchantAgreement}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The operating shift for a cashier, during which the cashier may transact against the cashier shift, subject to vendor shift being open.
@@ -2259,19 +2761,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CashierShift_collapse" aria-expanded="true" aria-controls="CashierShift_collapse">CashierShift</a>
-<div id="CashierShift_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Shift.prototype.template.call (this) +
-`
-{{#cashFloat}}<div><b>cashFloat</b>: {{cashFloat}}</div>{{/cashFloat}}
-{{#Cashier}}<div><b>Cashier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Cashier}}&quot;);})'>{{Cashier}}</a></div>{{/Cashier}}
-{{#PointOfSale}}<div><b>PointOfSale</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PointOfSale}}&quot;);})'>{{PointOfSale}}</a></div>{{/PointOfSale}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CashierShift_collapse" aria-expanded="true" aria-controls="CashierShift_collapse" style="margin-left: 10px;">CashierShift</a></legend>
+                    <div id="CashierShift_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Shift.prototype.template.call (this) +
+                    `
+                    {{#cashFloat}}<div><b>cashFloat</b>: {{cashFloat}}</div>{{/cashFloat}}
+                    {{#Cashier}}<div><b>Cashier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Cashier}}&quot;);})'>{{Cashier}}</a></div>{{/Cashier}}
+                    {{#PointOfSale}}<div><b>PointOfSale</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PointOfSale}}&quot;);})'>{{PointOfSale}}</a></div>{{/PointOfSale}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CashierShift_collapse" aria-expanded="true" aria-controls="CashierShift_collapse" style="margin-left: 10px;">CashierShift</a></legend>
+                    <div id="CashierShift_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Shift.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cashFloat'>cashFloat: </label><div class='col-sm-8'><input id='cashFloat' class='form-control' type='text'{{#cashFloat}} value='{{cashFloat}}'{{/cashFloat}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Cashier'>Cashier: </label><div class='col-sm-8'><input id='Cashier' class='form-control' type='text'{{#Cashier}} value='{{Cashier}}'{{/Cashier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PointOfSale'>PointOfSale: </label><div class='col-sm-8'><input id='PointOfSale' class='form-control' type='text'{{#PointOfSale}} value='{{PointOfSale}}'{{/PointOfSale}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The operating shift for a vendor during which the vendor may transact against the merchant's account.
@@ -2334,54 +2869,83 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VendorShift_collapse" aria-expanded="true" aria-controls="VendorShift_collapse">VendorShift</a>
-<div id="VendorShift_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Shift.prototype.template.call (this) +
-`
-{{#merchantDebitAmount}}<div><b>merchantDebitAmount</b>: {{merchantDebitAmount}}</div>{{/merchantDebitAmount}}
-{{#posted}}<div><b>posted</b>: {{posted}}</div>{{/posted}}
-{{#Vendor}}<div><b>Vendor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Vendor}}&quot;);})'>{{Vendor}}</a></div>{{/Vendor}}
-{{#MerchantAccount}}<div><b>MerchantAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MerchantAccount}}&quot;);})'>{{MerchantAccount}}</a></div>{{/MerchantAccount}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VendorShift_collapse" aria-expanded="true" aria-controls="VendorShift_collapse" style="margin-left: 10px;">VendorShift</a></legend>
+                    <div id="VendorShift_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Shift.prototype.template.call (this) +
+                    `
+                    {{#merchantDebitAmount}}<div><b>merchantDebitAmount</b>: {{merchantDebitAmount}}</div>{{/merchantDebitAmount}}
+                    {{#posted}}<div><b>posted</b>: {{posted}}</div>{{/posted}}
+                    {{#Vendor}}<div><b>Vendor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Vendor}}&quot;);})'>{{Vendor}}</a></div>{{/Vendor}}
+                    {{#MerchantAccount}}<div><b>MerchantAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MerchantAccount}}&quot;);})'>{{MerchantAccount}}</a></div>{{/MerchantAccount}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VendorShift_collapse" aria-expanded="true" aria-controls="VendorShift_collapse" style="margin-left: 10px;">VendorShift</a></legend>
+                    <div id="VendorShift_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Shift.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='merchantDebitAmount'>merchantDebitAmount: </label><div class='col-sm-8'><input id='merchantDebitAmount' class='form-control' type='text'{{#merchantDebitAmount}} value='{{merchantDebitAmount}}'{{/merchantDebitAmount}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='posted'>posted: </label><div class='col-sm-8'><input id='posted' class='form-check-input' type='checkbox'{{#posted}} checked{{/posted}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Vendor'>Vendor: </label><div class='col-sm-8'><input id='Vendor' class='form-control' type='text'{{#Vendor}} value='{{Vendor}}'{{/Vendor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MerchantAccount'>MerchantAccount: </label><div class='col-sm-8'><input id='MerchantAccount' class='form-control' type='text'{{#MerchantAccount}} value='{{MerchantAccount}}'{{/MerchantAccount}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
+                Shift: Shift,
                 MerchantAccount: MerchantAccount,
-                Cashier: Cashier,
-                TenderKind: TenderKind,
-                AccountingUnit: AccountingUnit,
-                BankAccountDetail: BankAccountDetail,
-                ServiceSupplier: ServiceSupplier,
-                MerchantAgreement: MerchantAgreement,
-                ChargeKind: ChargeKind,
-                PointOfSale: PointOfSale,
-                Due: Due,
-                ChequeKind: ChequeKind,
                 Receipt: Receipt,
                 VendorShift: VendorShift,
-                SupplierKind: SupplierKind,
+                Cashier: Cashier,
+                AccountingUnit: AccountingUnit,
                 Cheque: Cheque,
                 LineDetail: LineDetail,
+                BankAccountDetail: BankAccountDetail,
+                ServiceSupplier: ServiceSupplier,
                 TariffProfile: TariffProfile,
                 AuxiliaryAccount: AuxiliaryAccount,
                 Charge: Charge,
                 AccountMovement: AccountMovement,
                 AuxiliaryAgreement: AuxiliaryAgreement,
-                ConsumptionTariffInterval: ConsumptionTariffInterval,
+                MerchantAgreement: MerchantAgreement,
                 Tender: Tender,
                 Transaction: Transaction,
+                ConsumptionTariffInterval: ConsumptionTariffInterval,
                 Vendor: Vendor,
                 CashierShift: CashierShift,
                 TimeTariffInterval: TimeTariffInterval,
                 Card: Card,
-                Transactor: Transactor,
-                TransactionKind: TransactionKind,
-                Shift: Shift
+                PointOfSale: PointOfSale,
+                Due: Due,
+                Transactor: Transactor
             }
         );
     }

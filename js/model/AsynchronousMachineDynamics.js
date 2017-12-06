@@ -75,20 +75,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AsynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="AsynchronousMachineDynamics_collapse">AsynchronousMachineDynamics</a>
-<div id="AsynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.RotatingMachineDynamics.prototype.template.call (this) +
-`
-{{#TurbineGovernorDynamics}}<div><b>TurbineGovernorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineGovernorDynamics}}&quot;);})'>{{TurbineGovernorDynamics}}</a></div>{{/TurbineGovernorDynamics}}
-{{#AsynchronousMachine}}<div><b>AsynchronousMachine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachine}}&quot;);})'>{{AsynchronousMachine}}</a></div>{{/AsynchronousMachine}}
-{{#WindTurbineType1or2Dynamics}}<div><b>WindTurbineType1or2Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType1or2Dynamics}}&quot;);})'>{{WindTurbineType1or2Dynamics}}</a></div>{{/WindTurbineType1or2Dynamics}}
-{{#MechanicalLoadDynamics}}<div><b>MechanicalLoadDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MechanicalLoadDynamics}}&quot;);})'>{{MechanicalLoadDynamics}}</a></div>{{/MechanicalLoadDynamics}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="AsynchronousMachineDynamics_collapse" style="margin-left: 10px;">AsynchronousMachineDynamics</a></legend>
+                    <div id="AsynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.RotatingMachineDynamics.prototype.template.call (this) +
+                    `
+                    {{#TurbineGovernorDynamics}}<div><b>TurbineGovernorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineGovernorDynamics}}&quot;);})'>{{TurbineGovernorDynamics}}</a></div>{{/TurbineGovernorDynamics}}
+                    {{#AsynchronousMachine}}<div><b>AsynchronousMachine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachine}}&quot;);})'>{{AsynchronousMachine}}</a></div>{{/AsynchronousMachine}}
+                    {{#WindTurbineType1or2Dynamics}}<div><b>WindTurbineType1or2Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType1or2Dynamics}}&quot;);})'>{{WindTurbineType1or2Dynamics}}</a></div>{{/WindTurbineType1or2Dynamics}}
+                    {{#MechanicalLoadDynamics}}<div><b>MechanicalLoadDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MechanicalLoadDynamics}}&quot;);})'>{{MechanicalLoadDynamics}}</a></div>{{/MechanicalLoadDynamics}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="AsynchronousMachineDynamics_collapse" style="margin-left: 10px;">AsynchronousMachineDynamics</a></legend>
+                    <div id="AsynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.RotatingMachineDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TurbineGovernorDynamics'>TurbineGovernorDynamics: </label><div class='col-sm-8'><input id='TurbineGovernorDynamics' class='form-control' type='text'{{#TurbineGovernorDynamics}} value='{{TurbineGovernorDynamics}}'{{/TurbineGovernorDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AsynchronousMachine'>AsynchronousMachine: </label><div class='col-sm-8'><input id='AsynchronousMachine' class='form-control' type='text'{{#AsynchronousMachine}} value='{{AsynchronousMachine}}'{{/AsynchronousMachine}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType1or2Dynamics'>WindTurbineType1or2Dynamics: </label><div class='col-sm-8'><input id='WindTurbineType1or2Dynamics' class='form-control' type='text'{{#WindTurbineType1or2Dynamics}} value='{{WindTurbineType1or2Dynamics}}'{{/WindTurbineType1or2Dynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MechanicalLoadDynamics'>MechanicalLoadDynamics: </label><div class='col-sm-8'><input id='MechanicalLoadDynamics' class='form-control' type='text'{{#MechanicalLoadDynamics}} value='{{MechanicalLoadDynamics}}'{{/MechanicalLoadDynamics}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The electrical equations of all variations of the asynchronous model are based on the AsynchronousEquivalentCircuit diagram for the direct and quadrature axes, with two equivalent rotor windings in each axis.
@@ -166,21 +200,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AsynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="AsynchronousMachineEquivalentCircuit_collapse">AsynchronousMachineEquivalentCircuit</a>
-<div id="AsynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + AsynchronousMachineDynamics.prototype.template.call (this) +
-`
-{{#rr1}}<div><b>rr1</b>: {{rr1}}</div>{{/rr1}}
-{{#rr2}}<div><b>rr2</b>: {{rr2}}</div>{{/rr2}}
-{{#xlr1}}<div><b>xlr1</b>: {{xlr1}}</div>{{/xlr1}}
-{{#xlr2}}<div><b>xlr2</b>: {{xlr2}}</div>{{/xlr2}}
-{{#xm}}<div><b>xm</b>: {{xm}}</div>{{/xm}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="AsynchronousMachineEquivalentCircuit_collapse" style="margin-left: 10px;">AsynchronousMachineEquivalentCircuit</a></legend>
+                    <div id="AsynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AsynchronousMachineDynamics.prototype.template.call (this) +
+                    `
+                    {{#rr1}}<div><b>rr1</b>: {{rr1}}</div>{{/rr1}}
+                    {{#rr2}}<div><b>rr2</b>: {{rr2}}</div>{{/rr2}}
+                    {{#xlr1}}<div><b>xlr1</b>: {{xlr1}}</div>{{/xlr1}}
+                    {{#xlr2}}<div><b>xlr2</b>: {{xlr2}}</div>{{/xlr2}}
+                    {{#xm}}<div><b>xm</b>: {{xm}}</div>{{/xm}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="AsynchronousMachineEquivalentCircuit_collapse" style="margin-left: 10px;">AsynchronousMachineEquivalentCircuit</a></legend>
+                    <div id="AsynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AsynchronousMachineDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rr1'>rr1: </label><div class='col-sm-8'><input id='rr1' class='form-control' type='text'{{#rr1}} value='{{rr1}}'{{/rr1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rr2'>rr2: </label><div class='col-sm-8'><input id='rr2' class='form-control' type='text'{{#rr2}} value='{{rr2}}'{{/rr2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xlr1'>xlr1: </label><div class='col-sm-8'><input id='xlr1' class='form-control' type='text'{{#xlr1}} value='{{xlr1}}'{{/xlr1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xlr2'>xlr2: </label><div class='col-sm-8'><input id='xlr2' class='form-control' type='text'{{#xlr2}} value='{{xlr2}}'{{/xlr2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xm'>xm: </label><div class='col-sm-8'><input id='xm' class='form-control' type='text'{{#xm}} value='{{xm}}'{{/xm}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * <b>Parameter Notes:</b>
@@ -264,21 +333,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AsynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="AsynchronousMachineTimeConstantReactance_collapse">AsynchronousMachineTimeConstantReactance</a>
-<div id="AsynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + AsynchronousMachineDynamics.prototype.template.call (this) +
-`
-{{#tpo}}<div><b>tpo</b>: {{tpo}}</div>{{/tpo}}
-{{#tppo}}<div><b>tppo</b>: {{tppo}}</div>{{/tppo}}
-{{#xp}}<div><b>xp</b>: {{xp}}</div>{{/xp}}
-{{#xpp}}<div><b>xpp</b>: {{xpp}}</div>{{/xpp}}
-{{#xs}}<div><b>xs</b>: {{xs}}</div>{{/xs}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="AsynchronousMachineTimeConstantReactance_collapse" style="margin-left: 10px;">AsynchronousMachineTimeConstantReactance</a></legend>
+                    <div id="AsynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AsynchronousMachineDynamics.prototype.template.call (this) +
+                    `
+                    {{#tpo}}<div><b>tpo</b>: {{tpo}}</div>{{/tpo}}
+                    {{#tppo}}<div><b>tppo</b>: {{tppo}}</div>{{/tppo}}
+                    {{#xp}}<div><b>xp</b>: {{xp}}</div>{{/xp}}
+                    {{#xpp}}<div><b>xpp</b>: {{xpp}}</div>{{/xpp}}
+                    {{#xs}}<div><b>xs</b>: {{xs}}</div>{{/xs}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="AsynchronousMachineTimeConstantReactance_collapse" style="margin-left: 10px;">AsynchronousMachineTimeConstantReactance</a></legend>
+                    <div id="AsynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AsynchronousMachineDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpo'>tpo: </label><div class='col-sm-8'><input id='tpo' class='form-control' type='text'{{#tpo}} value='{{tpo}}'{{/tpo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tppo'>tppo: </label><div class='col-sm-8'><input id='tppo' class='form-control' type='text'{{#tppo}} value='{{tppo}}'{{/tppo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xp'>xp: </label><div class='col-sm-8'><input id='xp' class='form-control' type='text'{{#xp}} value='{{xp}}'{{/xp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xpp'>xpp: </label><div class='col-sm-8'><input id='xpp' class='form-control' type='text'{{#xpp}} value='{{xpp}}'{{/xpp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xs'>xs: </label><div class='col-sm-8'><input id='xs' class='form-control' type='text'{{#xs}} value='{{xs}}'{{/xs}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

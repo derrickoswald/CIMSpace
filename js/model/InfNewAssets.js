@@ -61,19 +61,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MaintenanceDataSet_collapse" aria-expanded="true" aria-controls="MaintenanceDataSet_collapse">MaintenanceDataSet</a>
-<div id="MaintenanceDataSet_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.ProcedureDataSet.prototype.template.call (this) +
-`
-{{#conditionAfter}}<div><b>conditionAfter</b>: {{conditionAfter}}</div>{{/conditionAfter}}
-{{#conditionBefore}}<div><b>conditionBefore</b>: {{conditionBefore}}</div>{{/conditionBefore}}
-{{#maintCode}}<div><b>maintCode</b>: {{maintCode}}</div>{{/maintCode}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MaintenanceDataSet_collapse" aria-expanded="true" aria-controls="MaintenanceDataSet_collapse" style="margin-left: 10px;">MaintenanceDataSet</a></legend>
+                    <div id="MaintenanceDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.ProcedureDataSet.prototype.template.call (this) +
+                    `
+                    {{#conditionAfter}}<div><b>conditionAfter</b>: {{conditionAfter}}</div>{{/conditionAfter}}
+                    {{#conditionBefore}}<div><b>conditionBefore</b>: {{conditionBefore}}</div>{{/conditionBefore}}
+                    {{#maintCode}}<div><b>maintCode</b>: {{maintCode}}</div>{{/maintCode}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MaintenanceDataSet_collapse" aria-expanded="true" aria-controls="MaintenanceDataSet_collapse" style="margin-left: 10px;">MaintenanceDataSet</a></legend>
+                    <div id="MaintenanceDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.ProcedureDataSet.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='conditionAfter'>conditionAfter: </label><div class='col-sm-8'><input id='conditionAfter' class='form-control' type='text'{{#conditionAfter}} value='{{conditionAfter}}'{{/conditionAfter}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='conditionBefore'>conditionBefore: </label><div class='col-sm-8'><input id='conditionBefore' class='form-control' type='text'{{#conditionBefore}} value='{{conditionBefore}}'{{/conditionBefore}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maintCode'>maintCode: </label><div class='col-sm-8'><input id='maintCode' class='form-control' type='text'{{#maintCode}} value='{{maintCode}}'{{/maintCode}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Documents the result of one inspection, for a given attribute of an asset.
@@ -128,17 +161,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#InspectionDataSet_collapse" aria-expanded="true" aria-controls="InspectionDataSet_collapse">InspectionDataSet</a>
-<div id="InspectionDataSet_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.ProcedureDataSet.prototype.template.call (this) +
-`
-{{#locationCondition}}<div><b>locationCondition</b>: {{locationCondition}}</div>{{/locationCondition}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InspectionDataSet_collapse" aria-expanded="true" aria-controls="InspectionDataSet_collapse" style="margin-left: 10px;">InspectionDataSet</a></legend>
+                    <div id="InspectionDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.ProcedureDataSet.prototype.template.call (this) +
+                    `
+                    {{#locationCondition}}<div><b>locationCondition</b>: {{locationCondition}}</div>{{/locationCondition}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InspectionDataSet_collapse" aria-expanded="true" aria-controls="InspectionDataSet_collapse" style="margin-left: 10px;">InspectionDataSet</a></legend>
+                    <div id="InspectionDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.ProcedureDataSet.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='locationCondition'>locationCondition: </label><div class='col-sm-8'><input id='locationCondition' class='form-control' type='text'{{#locationCondition}} value='{{locationCondition}}'{{/locationCondition}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The result of a problem (typically an asset failure) diagnosis.
@@ -217,29 +281,72 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DiagnosisDataSet_collapse" aria-expanded="true" aria-controls="DiagnosisDataSet_collapse">DiagnosisDataSet</a>
-<div id="DiagnosisDataSet_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.ProcedureDataSet.prototype.template.call (this) +
-`
-{{#effect}}<div><b>effect</b>: {{effect}}</div>{{/effect}}
-{{#failureMode}}<div><b>failureMode</b>: {{failureMode}}</div>{{/failureMode}}
-{{#finalCause}}<div><b>finalCause</b>: {{finalCause}}</div>{{/finalCause}}
-{{#finalCode}}<div><b>finalCode</b>: {{finalCode}}</div>{{/finalCode}}
-{{#finalOrigin}}<div><b>finalOrigin</b>: {{finalOrigin}}</div>{{/finalOrigin}}
-{{#finalRemark}}<div><b>finalRemark</b>: {{finalRemark}}</div>{{/finalRemark}}
-{{#phaseCode}}<div><b>phaseCode</b>: {{phaseCode}}</div>{{/phaseCode}}
-{{#preliminaryCode}}<div><b>preliminaryCode</b>: {{preliminaryCode}}</div>{{/preliminaryCode}}
-{{#preliminaryDateTime}}<div><b>preliminaryDateTime</b>: {{preliminaryDateTime}}</div>{{/preliminaryDateTime}}
-{{#preliminaryRemark}}<div><b>preliminaryRemark</b>: {{preliminaryRemark}}</div>{{/preliminaryRemark}}
-{{#rootCause}}<div><b>rootCause</b>: {{rootCause}}</div>{{/rootCause}}
-{{#rootOrigin}}<div><b>rootOrigin</b>: {{rootOrigin}}</div>{{/rootOrigin}}
-{{#rootRemark}}<div><b>rootRemark</b>: {{rootRemark}}</div>{{/rootRemark}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagnosisDataSet_collapse" aria-expanded="true" aria-controls="DiagnosisDataSet_collapse" style="margin-left: 10px;">DiagnosisDataSet</a></legend>
+                    <div id="DiagnosisDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.ProcedureDataSet.prototype.template.call (this) +
+                    `
+                    {{#effect}}<div><b>effect</b>: {{effect}}</div>{{/effect}}
+                    {{#failureMode}}<div><b>failureMode</b>: {{failureMode}}</div>{{/failureMode}}
+                    {{#finalCause}}<div><b>finalCause</b>: {{finalCause}}</div>{{/finalCause}}
+                    {{#finalCode}}<div><b>finalCode</b>: {{finalCode}}</div>{{/finalCode}}
+                    {{#finalOrigin}}<div><b>finalOrigin</b>: {{finalOrigin}}</div>{{/finalOrigin}}
+                    {{#finalRemark}}<div><b>finalRemark</b>: {{finalRemark}}</div>{{/finalRemark}}
+                    {{#phaseCode}}<div><b>phaseCode</b>: {{phaseCode}}</div>{{/phaseCode}}
+                    {{#preliminaryCode}}<div><b>preliminaryCode</b>: {{preliminaryCode}}</div>{{/preliminaryCode}}
+                    {{#preliminaryDateTime}}<div><b>preliminaryDateTime</b>: {{preliminaryDateTime}}</div>{{/preliminaryDateTime}}
+                    {{#preliminaryRemark}}<div><b>preliminaryRemark</b>: {{preliminaryRemark}}</div>{{/preliminaryRemark}}
+                    {{#rootCause}}<div><b>rootCause</b>: {{rootCause}}</div>{{/rootCause}}
+                    {{#rootOrigin}}<div><b>rootOrigin</b>: {{rootOrigin}}</div>{{/rootOrigin}}
+                    {{#rootRemark}}<div><b>rootRemark</b>: {{rootRemark}}</div>{{/rootRemark}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagnosisDataSet_collapse" aria-expanded="true" aria-controls="DiagnosisDataSet_collapse" style="margin-left: 10px;">DiagnosisDataSet</a></legend>
+                    <div id="DiagnosisDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.ProcedureDataSet.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effect'>effect: </label><div class='col-sm-8'><input id='effect' class='form-control' type='text'{{#effect}} value='{{effect}}'{{/effect}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='failureMode'>failureMode: </label><div class='col-sm-8'><input id='failureMode' class='form-control' type='text'{{#failureMode}} value='{{failureMode}}'{{/failureMode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='finalCause'>finalCause: </label><div class='col-sm-8'><input id='finalCause' class='form-control' type='text'{{#finalCause}} value='{{finalCause}}'{{/finalCause}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='finalCode'>finalCode: </label><div class='col-sm-8'><input id='finalCode' class='form-control' type='text'{{#finalCode}} value='{{finalCode}}'{{/finalCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='finalOrigin'>finalOrigin: </label><div class='col-sm-8'><input id='finalOrigin' class='form-control' type='text'{{#finalOrigin}} value='{{finalOrigin}}'{{/finalOrigin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='finalRemark'>finalRemark: </label><div class='col-sm-8'><input id='finalRemark' class='form-control' type='text'{{#finalRemark}} value='{{finalRemark}}'{{/finalRemark}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseCode'>phaseCode: </label><div class='col-sm-8'><input id='phaseCode' class='form-control' type='text'{{#phaseCode}} value='{{phaseCode}}'{{/phaseCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='preliminaryCode'>preliminaryCode: </label><div class='col-sm-8'><input id='preliminaryCode' class='form-control' type='text'{{#preliminaryCode}} value='{{preliminaryCode}}'{{/preliminaryCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='preliminaryDateTime'>preliminaryDateTime: </label><div class='col-sm-8'><input id='preliminaryDateTime' class='form-control' type='text'{{#preliminaryDateTime}} value='{{preliminaryDateTime}}'{{/preliminaryDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='preliminaryRemark'>preliminaryRemark: </label><div class='col-sm-8'><input id='preliminaryRemark' class='form-control' type='text'{{#preliminaryRemark}} value='{{preliminaryRemark}}'{{/preliminaryRemark}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rootCause'>rootCause: </label><div class='col-sm-8'><input id='rootCause' class='form-control' type='text'{{#rootCause}} value='{{rootCause}}'{{/rootCause}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rootOrigin'>rootOrigin: </label><div class='col-sm-8'><input id='rootOrigin' class='form-control' type='text'{{#rootOrigin}} value='{{rootOrigin}}'{{/rootOrigin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rootRemark'>rootRemark: </label><div class='col-sm-8'><input id='rootRemark' class='form-control' type='text'{{#rootRemark}} value='{{rootRemark}}'{{/rootRemark}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Test results, usually obtained by a lab or other independent organisation.
@@ -298,19 +405,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#TestDataSet_collapse" aria-expanded="true" aria-controls="TestDataSet_collapse">TestDataSet</a>
-<div id="TestDataSet_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Assets.ProcedureDataSet.prototype.template.call (this) +
-`
-{{#conclusion}}<div><b>conclusion</b>: {{conclusion}}</div>{{/conclusion}}
-{{#specimenID}}<div><b>specimenID</b>: {{specimenID}}</div>{{/specimenID}}
-{{#specimenToLabDateTime}}<div><b>specimenToLabDateTime</b>: {{specimenToLabDateTime}}</div>{{/specimenToLabDateTime}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TestDataSet_collapse" aria-expanded="true" aria-controls="TestDataSet_collapse" style="margin-left: 10px;">TestDataSet</a></legend>
+                    <div id="TestDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.ProcedureDataSet.prototype.template.call (this) +
+                    `
+                    {{#conclusion}}<div><b>conclusion</b>: {{conclusion}}</div>{{/conclusion}}
+                    {{#specimenID}}<div><b>specimenID</b>: {{specimenID}}</div>{{/specimenID}}
+                    {{#specimenToLabDateTime}}<div><b>specimenToLabDateTime</b>: {{specimenToLabDateTime}}</div>{{/specimenToLabDateTime}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TestDataSet_collapse" aria-expanded="true" aria-controls="TestDataSet_collapse" style="margin-left: 10px;">TestDataSet</a></legend>
+                    <div id="TestDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Assets.ProcedureDataSet.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='conclusion'>conclusion: </label><div class='col-sm-8'><input id='conclusion' class='form-control' type='text'{{#conclusion}} value='{{conclusion}}'{{/conclusion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='specimenID'>specimenID: </label><div class='col-sm-8'><input id='specimenID' class='form-control' type='text'{{#specimenID}} value='{{specimenID}}'{{/specimenID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='specimenToLabDateTime'>specimenToLabDateTime: </label><div class='col-sm-8'><input id='specimenToLabDateTime' class='form-control' type='text'{{#specimenToLabDateTime}} value='{{specimenToLabDateTime}}'{{/specimenToLabDateTime}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {

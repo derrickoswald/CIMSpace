@@ -9,6 +9,18 @@ define
     {
 
         /**
+         * Validity for MeasurementValue.
+         *
+         */
+        var Validity =
+        {
+            GOOD: "GOOD",
+            QUESTIONABLE: "QUESTIONABLE",
+            INVALID: "INVALID"
+        };
+        Object.freeze (Validity);
+
+        /**
          * Describes the translation of a set of values into a name and is intendend to facilitate cusom translations.
          *
          * Each ValueAliasSet has a name, description etc. A specific Measurement may represent a discrete state like Open, Closed, Intermediate etc. This requires a translation from the MeasurementValue.value number to a string, e.g. 0-&gt;"Invalid", 1-&gt;"Open", 2-&gt;"Closed", 3-&gt;"Intermediate". Each ValueToAlias member in ValueAliasSet.Value describe a mapping for one particular value to a name.
@@ -61,16 +73,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ValueAliasSet_collapse" aria-expanded="true" aria-controls="ValueAliasSet_collapse">ValueAliasSet</a>
-<div id="ValueAliasSet_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ValueAliasSet_collapse" aria-expanded="true" aria-controls="ValueAliasSet_collapse" style="margin-left: 10px;">ValueAliasSet</a></legend>
+                    <div id="ValueAliasSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ValueAliasSet_collapse" aria-expanded="true" aria-controls="ValueAliasSet_collapse" style="margin-left: 10px;">ValueAliasSet</a></legend>
+                    <div id="ValueAliasSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The current state for a measurement.
@@ -139,94 +181,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MeasurementValue_collapse" aria-expanded="true" aria-controls="MeasurementValue_collapse">MeasurementValue</a>
-<div id="MeasurementValue_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#sensorAccuracy}}<div><b>sensorAccuracy</b>: {{sensorAccuracy}}</div>{{/sensorAccuracy}}
-{{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
-{{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
-{{#MeasurementValueSource}}<div><b>MeasurementValueSource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValueSource}}&quot;);})'>{{MeasurementValueSource}}</a></div>{{/MeasurementValueSource}}
-{{#ErpPerson}}<div><b>ErpPerson</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPerson}}&quot;);})'>{{ErpPerson}}</a></div>{{/ErpPerson}}
-{{#MeasurementValueQuality}}<div><b>MeasurementValueQuality</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValueQuality}}&quot;);})'>{{MeasurementValueQuality}}</a></div>{{/MeasurementValueQuality}}
-{{#RemoteSource}}<div><b>RemoteSource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteSource}}&quot;);})'>{{RemoteSource}}</a></div>{{/RemoteSource}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeasurementValue_collapse" aria-expanded="true" aria-controls="MeasurementValue_collapse" style="margin-left: 10px;">MeasurementValue</a></legend>
+                    <div id="MeasurementValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#sensorAccuracy}}<div><b>sensorAccuracy</b>: {{sensorAccuracy}}</div>{{/sensorAccuracy}}
+                    {{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
+                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+                    {{#MeasurementValueSource}}<div><b>MeasurementValueSource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValueSource}}&quot;);})'>{{MeasurementValueSource}}</a></div>{{/MeasurementValueSource}}
+                    {{#ErpPerson}}<div><b>ErpPerson</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPerson}}&quot;);})'>{{ErpPerson}}</a></div>{{/ErpPerson}}
+                    {{#MeasurementValueQuality}}<div><b>MeasurementValueQuality</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValueQuality}}&quot;);})'>{{MeasurementValueQuality}}</a></div>{{/MeasurementValueQuality}}
+                    {{#RemoteSource}}<div><b>RemoteSource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteSource}}&quot;);})'>{{RemoteSource}}</a></div>{{/RemoteSource}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Validity for MeasurementValue.
-         *
-         */
-        class Validity extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.Validity;
-                if (null == bucket)
-                   cim_data.Validity = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.Validity[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "Validity";
-                base.parse_element (/<cim:Validity.GOOD>([\s\S]*?)<\/cim:Validity.GOOD>/g, obj, "GOOD", base.to_string, sub, context);
-                base.parse_element (/<cim:Validity.QUESTIONABLE>([\s\S]*?)<\/cim:Validity.QUESTIONABLE>/g, obj, "QUESTIONABLE", base.to_string, sub, context);
-                base.parse_element (/<cim:Validity.INVALID>([\s\S]*?)<\/cim:Validity.INVALID>/g, obj, "INVALID", base.to_string, sub, context);
-
-                var bucket = context.parsed.Validity;
-                if (null == bucket)
-                   context.parsed.Validity = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "Validity", "GOOD", base.from_string, fields);
-                base.export_element (obj, "Validity", "QUESTIONABLE", base.from_string, fields);
-                base.export_element (obj, "Validity", "INVALID", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Validity_collapse" aria-expanded="true" aria-controls="Validity_collapse">Validity</a>
-<div id="Validity_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#GOOD}}<div><b>GOOD</b>: {{GOOD}}</div>{{/GOOD}}
-{{#QUESTIONABLE}}<div><b>QUESTIONABLE</b>: {{QUESTIONABLE}}</div>{{/QUESTIONABLE}}
-{{#INVALID}}<div><b>INVALID</b>: {{INVALID}}</div>{{/INVALID}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeasurementValue_collapse" aria-expanded="true" aria-controls="MeasurementValue_collapse" style="margin-left: 10px;">MeasurementValue</a></legend>
+                    <div id="MeasurementValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sensorAccuracy'>sensorAccuracy: </label><div class='col-sm-8'><input id='sensorAccuracy' class='form-control' type='text'{{#sensorAccuracy}} value='{{sensorAccuracy}}'{{/sensorAccuracy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeStamp'>timeStamp: </label><div class='col-sm-8'><input id='timeStamp' class='form-control' type='text'{{#timeStamp}} value='{{timeStamp}}'{{/timeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MeasurementValueSource'>MeasurementValueSource: </label><div class='col-sm-8'><input id='MeasurementValueSource' class='form-control' type='text'{{#MeasurementValueSource}} value='{{MeasurementValueSource}}'{{/MeasurementValueSource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPerson'>ErpPerson: </label><div class='col-sm-8'><input id='ErpPerson' class='form-control' type='text'{{#ErpPerson}} value='{{ErpPerson}}'{{/ErpPerson}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MeasurementValueQuality'>MeasurementValueQuality: </label><div class='col-sm-8'><input id='MeasurementValueQuality' class='form-control' type='text'{{#MeasurementValueQuality}} value='{{MeasurementValueQuality}}'{{/MeasurementValueQuality}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteSource'>RemoteSource: </label><div class='col-sm-8'><input id='RemoteSource' class='form-control' type='text'{{#RemoteSource}} value='{{RemoteSource}}'{{/RemoteSource}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Quality flags in this class are as defined in IEC 61850, except for estimatorReplaced, which has been included in this class for convenience.
@@ -267,7 +275,7 @@ define
                 base.parse_element (/<cim:Quality61850.source>([\s\S]*?)<\/cim:Quality61850.source>/g, obj, "source", base.to_string, sub, context);
                 base.parse_element (/<cim:Quality61850.suspect>([\s\S]*?)<\/cim:Quality61850.suspect>/g, obj, "suspect", base.to_boolean, sub, context);
                 base.parse_element (/<cim:Quality61850.test>([\s\S]*?)<\/cim:Quality61850.test>/g, obj, "test", base.to_boolean, sub, context);
-                base.parse_element (/<cim:Quality61850.validity>([\s\S]*?)<\/cim:Quality61850.validity>/g, obj, "validity", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Quality61850.validity\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "validity", sub, context);
 
                 var bucket = context.parsed.Quality61850;
                 if (null == bucket)
@@ -303,28 +311,72 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Quality61850_collapse" aria-expanded="true" aria-controls="Quality61850_collapse">Quality61850</a>
-<div id="Quality61850_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#badReference}}<div><b>badReference</b>: {{badReference}}</div>{{/badReference}}
-{{#estimatorReplaced}}<div><b>estimatorReplaced</b>: {{estimatorReplaced}}</div>{{/estimatorReplaced}}
-{{#failure}}<div><b>failure</b>: {{failure}}</div>{{/failure}}
-{{#oldData}}<div><b>oldData</b>: {{oldData}}</div>{{/oldData}}
-{{#operatorBlocked}}<div><b>operatorBlocked</b>: {{operatorBlocked}}</div>{{/operatorBlocked}}
-{{#oscillatory}}<div><b>oscillatory</b>: {{oscillatory}}</div>{{/oscillatory}}
-{{#outOfRange}}<div><b>outOfRange</b>: {{outOfRange}}</div>{{/outOfRange}}
-{{#overFlow}}<div><b>overFlow</b>: {{overFlow}}</div>{{/overFlow}}
-{{#source}}<div><b>source</b>: {{source}}</div>{{/source}}
-{{#suspect}}<div><b>suspect</b>: {{suspect}}</div>{{/suspect}}
-{{#test}}<div><b>test</b>: {{test}}</div>{{/test}}
-{{#validity}}<div><b>validity</b>: {{validity}}</div>{{/validity}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Quality61850_collapse" aria-expanded="true" aria-controls="Quality61850_collapse" style="margin-left: 10px;">Quality61850</a></legend>
+                    <div id="Quality61850_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#badReference}}<div><b>badReference</b>: {{badReference}}</div>{{/badReference}}
+                    {{#estimatorReplaced}}<div><b>estimatorReplaced</b>: {{estimatorReplaced}}</div>{{/estimatorReplaced}}
+                    {{#failure}}<div><b>failure</b>: {{failure}}</div>{{/failure}}
+                    {{#oldData}}<div><b>oldData</b>: {{oldData}}</div>{{/oldData}}
+                    {{#operatorBlocked}}<div><b>operatorBlocked</b>: {{operatorBlocked}}</div>{{/operatorBlocked}}
+                    {{#oscillatory}}<div><b>oscillatory</b>: {{oscillatory}}</div>{{/oscillatory}}
+                    {{#outOfRange}}<div><b>outOfRange</b>: {{outOfRange}}</div>{{/outOfRange}}
+                    {{#overFlow}}<div><b>overFlow</b>: {{overFlow}}</div>{{/overFlow}}
+                    {{#source}}<div><b>source</b>: {{source}}</div>{{/source}}
+                    {{#suspect}}<div><b>suspect</b>: {{suspect}}</div>{{/suspect}}
+                    {{#test}}<div><b>test</b>: {{test}}</div>{{/test}}
+                    {{#validity}}<div><b>validity</b>: {{validity}}</div>{{/validity}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.Validity = []; if (!obj.validity) obj.Validity.push ({ id: '', selected: true}); for (var property in Validity) obj.Validity.push ({ id: property, selected: obj.validity && obj.validity.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.Validity;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Quality61850_collapse" aria-expanded="true" aria-controls="Quality61850_collapse" style="margin-left: 10px;">Quality61850</a></legend>
+                    <div id="Quality61850_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='badReference'>badReference: </label><div class='col-sm-8'><input id='badReference' class='form-check-input' type='checkbox'{{#badReference}} checked{{/badReference}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='estimatorReplaced'>estimatorReplaced: </label><div class='col-sm-8'><input id='estimatorReplaced' class='form-check-input' type='checkbox'{{#estimatorReplaced}} checked{{/estimatorReplaced}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='failure'>failure: </label><div class='col-sm-8'><input id='failure' class='form-check-input' type='checkbox'{{#failure}} checked{{/failure}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='oldData'>oldData: </label><div class='col-sm-8'><input id='oldData' class='form-check-input' type='checkbox'{{#oldData}} checked{{/oldData}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='operatorBlocked'>operatorBlocked: </label><div class='col-sm-8'><input id='operatorBlocked' class='form-check-input' type='checkbox'{{#operatorBlocked}} checked{{/operatorBlocked}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='oscillatory'>oscillatory: </label><div class='col-sm-8'><input id='oscillatory' class='form-check-input' type='checkbox'{{#oscillatory}} checked{{/oscillatory}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='outOfRange'>outOfRange: </label><div class='col-sm-8'><input id='outOfRange' class='form-check-input' type='checkbox'{{#outOfRange}} checked{{/outOfRange}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='overFlow'>overFlow: </label><div class='col-sm-8'><input id='overFlow' class='form-check-input' type='checkbox'{{#overFlow}} checked{{/overFlow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='source'>source: </label><div class='col-sm-8'><input id='source' class='form-control' type='text'{{#source}} value='{{source}}'{{/source}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='suspect'>suspect: </label><div class='col-sm-8'><input id='suspect' class='form-check-input' type='checkbox'{{#suspect}} checked{{/suspect}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='test'>test: </label><div class='col-sm-8'><input id='test' class='form-check-input' type='checkbox'{{#test}} checked{{/test}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='validity'>validity: </label><div class='col-sm-8'><select id='validity' class='form-control'>{{#Validity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Validity}}</select></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Specifies one limit value for a Measurement.
@@ -379,16 +431,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Limit_collapse" aria-expanded="true" aria-controls="Limit_collapse">Limit</a>
-<div id="Limit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Limit_collapse" aria-expanded="true" aria-controls="Limit_collapse" style="margin-left: 10px;">Limit</a></legend>
+                    <div id="Limit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Limit_collapse" aria-expanded="true" aria-controls="Limit_collapse" style="margin-left: 10px;">Limit</a></legend>
+                    <div id="Limit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Control is used for supervisory/device control.
@@ -457,23 +539,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Control_collapse" aria-expanded="true" aria-controls="Control_collapse">Control</a>
-<div id="Control_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#operationInProgress}}<div><b>operationInProgress</b>: {{operationInProgress}}</div>{{/operationInProgress}}
-{{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
-{{#unitMultiplier}}<div><b>unitMultiplier</b>: {{unitMultiplier}}</div>{{/unitMultiplier}}
-{{#unitSymbol}}<div><b>unitSymbol</b>: {{unitSymbol}}</div>{{/unitSymbol}}
-{{#controlType}}<div><b>controlType</b>: {{controlType}}</div>{{/controlType}}
-{{#PowerSystemResource}}<div><b>PowerSystemResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemResource}}&quot;);})'>{{PowerSystemResource}}</a></div>{{/PowerSystemResource}}
-{{#RemoteControl}}<div><b>RemoteControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteControl}}&quot;);})'>{{RemoteControl}}</a></div>{{/RemoteControl}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Control_collapse" aria-expanded="true" aria-controls="Control_collapse" style="margin-left: 10px;">Control</a></legend>
+                    <div id="Control_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#operationInProgress}}<div><b>operationInProgress</b>: {{operationInProgress}}</div>{{/operationInProgress}}
+                    {{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
+                    {{#unitMultiplier}}<div><b>unitMultiplier</b>: {{unitMultiplier}}</div>{{/unitMultiplier}}
+                    {{#unitSymbol}}<div><b>unitSymbol</b>: {{unitSymbol}}</div>{{/unitSymbol}}
+                    {{#controlType}}<div><b>controlType</b>: {{controlType}}</div>{{/controlType}}
+                    {{#PowerSystemResource}}<div><b>PowerSystemResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemResource}}&quot;);})'>{{PowerSystemResource}}</a></div>{{/PowerSystemResource}}
+                    {{#RemoteControl}}<div><b>RemoteControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteControl}}&quot;);})'>{{RemoteControl}}</a></div>{{/RemoteControl}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Control_collapse" aria-expanded="true" aria-controls="Control_collapse" style="margin-left: 10px;">Control</a></legend>
+                    <div id="Control_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='operationInProgress'>operationInProgress: </label><div class='col-sm-8'><input id='operationInProgress' class='form-check-input' type='checkbox'{{#operationInProgress}} checked{{/operationInProgress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeStamp'>timeStamp: </label><div class='col-sm-8'><input id='timeStamp' class='form-control' type='text'{{#timeStamp}} value='{{timeStamp}}'{{/timeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><input id='unitMultiplier' class='form-control' type='text'{{#unitMultiplier}} value='{{unitMultiplier}}'{{/unitMultiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitSymbol'>unitSymbol: </label><div class='col-sm-8'><input id='unitSymbol' class='form-control' type='text'{{#unitSymbol}} value='{{unitSymbol}}'{{/unitSymbol}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlType'>controlType: </label><div class='col-sm-8'><input id='controlType' class='form-control' type='text'{{#controlType}} value='{{controlType}}'{{/controlType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource}}'{{/PowerSystemResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteControl'>RemoteControl: </label><div class='col-sm-8'><input id='RemoteControl' class='form-control' type='text'{{#RemoteControl}} value='{{RemoteControl}}'{{/RemoteControl}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * MeasurementValueSource describes the alternative sources updating a MeasurementValue.
@@ -528,16 +647,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MeasurementValueSource_collapse" aria-expanded="true" aria-controls="MeasurementValueSource_collapse">MeasurementValueSource</a>
-<div id="MeasurementValueSource_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeasurementValueSource_collapse" aria-expanded="true" aria-controls="MeasurementValueSource_collapse" style="margin-left: 10px;">MeasurementValueSource</a></legend>
+                    <div id="MeasurementValueSource_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeasurementValueSource_collapse" aria-expanded="true" aria-controls="MeasurementValueSource_collapse" style="margin-left: 10px;">MeasurementValueSource</a></legend>
+                    <div id="MeasurementValueSource_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A Measurement represents any measured, calculated or non-measured non-calculated quantity.
@@ -606,23 +755,60 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Measurement_collapse" aria-expanded="true" aria-controls="Measurement_collapse">Measurement</a>
-<div id="Measurement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#measurementType}}<div><b>measurementType</b>: {{measurementType}}</div>{{/measurementType}}
-{{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
-{{#unitMultiplier}}<div><b>unitMultiplier</b>: {{unitMultiplier}}</div>{{/unitMultiplier}}
-{{#unitSymbol}}<div><b>unitSymbol</b>: {{unitSymbol}}</div>{{/unitSymbol}}
-{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
-{{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
-{{#PowerSystemResource}}<div><b>PowerSystemResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemResource}}&quot;);})'>{{PowerSystemResource}}</a></div>{{/PowerSystemResource}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Measurement_collapse" aria-expanded="true" aria-controls="Measurement_collapse" style="margin-left: 10px;">Measurement</a></legend>
+                    <div id="Measurement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#measurementType}}<div><b>measurementType</b>: {{measurementType}}</div>{{/measurementType}}
+                    {{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
+                    {{#unitMultiplier}}<div><b>unitMultiplier</b>: {{unitMultiplier}}</div>{{/unitMultiplier}}
+                    {{#unitSymbol}}<div><b>unitSymbol</b>: {{unitSymbol}}</div>{{/unitSymbol}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+                    {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);})'>{{Asset}}</a></div>{{/Asset}}
+                    {{#PowerSystemResource}}<div><b>PowerSystemResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemResource}}&quot;);})'>{{PowerSystemResource}}</a></div>{{/PowerSystemResource}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Measurement_collapse" aria-expanded="true" aria-controls="Measurement_collapse" style="margin-left: 10px;">Measurement</a></legend>
+                    <div id="Measurement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='measurementType'>measurementType: </label><div class='col-sm-8'><input id='measurementType' class='form-control' type='text'{{#measurementType}} value='{{measurementType}}'{{/measurementType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phases'>phases: </label><div class='col-sm-8'><input id='phases' class='form-control' type='text'{{#phases}} value='{{phases}}'{{/phases}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><input id='unitMultiplier' class='form-control' type='text'{{#unitMultiplier}} value='{{unitMultiplier}}'{{/unitMultiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitSymbol'>unitSymbol: </label><div class='col-sm-8'><input id='unitSymbol' class='form-control' type='text'{{#unitSymbol}} value='{{unitSymbol}}'{{/unitSymbol}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Asset'>Asset: </label><div class='col-sm-8'><input id='Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource}}'{{/PowerSystemResource}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Specifies a set of Limits that are associated with a Measurement.
@@ -679,17 +865,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#LimitSet_collapse" aria-expanded="true" aria-controls="LimitSet_collapse">LimitSet</a>
-<div id="LimitSet_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#isPercentageLimits}}<div><b>isPercentageLimits</b>: {{isPercentageLimits}}</div>{{/isPercentageLimits}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LimitSet_collapse" aria-expanded="true" aria-controls="LimitSet_collapse" style="margin-left: 10px;">LimitSet</a></legend>
+                    <div id="LimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#isPercentageLimits}}<div><b>isPercentageLimits</b>: {{isPercentageLimits}}</div>{{/isPercentageLimits}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LimitSet_collapse" aria-expanded="true" aria-controls="LimitSet_collapse" style="margin-left: 10px;">LimitSet</a></legend>
+                    <div id="LimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isPercentageLimits'>isPercentageLimits: </label><div class='col-sm-8'><input id='isPercentageLimits' class='form-check-input' type='checkbox'{{#isPercentageLimits}} checked{{/isPercentageLimits}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Describes the translation of one particular value into a name, e.g. 1 as "Open".
@@ -746,18 +963,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ValueToAlias_collapse" aria-expanded="true" aria-controls="ValueToAlias_collapse">ValueToAlias</a>
-<div id="ValueToAlias_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);})'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ValueToAlias_collapse" aria-expanded="true" aria-controls="ValueToAlias_collapse" style="margin-left: 10px;">ValueToAlias</a></legend>
+                    <div id="ValueToAlias_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);})'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ValueToAlias_collapse" aria-expanded="true" aria-controls="ValueToAlias_collapse" style="margin-left: 10px;">ValueToAlias</a></legend>
+                    <div id="ValueToAlias_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ValueAliasSet'>ValueAliasSet: </label><div class='col-sm-8'><input id='ValueAliasSet' class='form-control' type='text'{{#ValueAliasSet}} value='{{ValueAliasSet}}'{{/ValueAliasSet}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * DiscreteValue represents a discrete MeasurementValue.
@@ -816,19 +1065,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DiscreteValue_collapse" aria-expanded="true" aria-controls="DiscreteValue_collapse">DiscreteValue</a>
-<div id="DiscreteValue_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + MeasurementValue.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#Command}}<div><b>Command</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Command}}&quot;);})'>{{Command}}</a></div>{{/Command}}
-{{#Discrete}}<div><b>Discrete</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Discrete}}&quot;);})'>{{Discrete}}</a></div>{{/Discrete}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscreteValue_collapse" aria-expanded="true" aria-controls="DiscreteValue_collapse" style="margin-left: 10px;">DiscreteValue</a></legend>
+                    <div id="DiscreteValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MeasurementValue.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#Command}}<div><b>Command</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Command}}&quot;);})'>{{Command}}</a></div>{{/Command}}
+                    {{#Discrete}}<div><b>Discrete</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Discrete}}&quot;);})'>{{Discrete}}</a></div>{{/Discrete}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscreteValue_collapse" aria-expanded="true" aria-controls="DiscreteValue_collapse" style="margin-left: 10px;">DiscreteValue</a></legend>
+                    <div id="DiscreteValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MeasurementValue.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Command'>Command: </label><div class='col-sm-8'><input id='Command' class='form-control' type='text'{{#Command}} value='{{Command}}'{{/Command}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Discrete'>Discrete: </label><div class='col-sm-8'><input id='Discrete' class='form-control' type='text'{{#Discrete}} value='{{Discrete}}'{{/Discrete}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * StringMeasurementValue represents a measurement value of type string.
@@ -885,18 +1167,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StringMeasurementValue_collapse" aria-expanded="true" aria-controls="StringMeasurementValue_collapse">StringMeasurementValue</a>
-<div id="StringMeasurementValue_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + MeasurementValue.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#StringMeasurement}}<div><b>StringMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StringMeasurement}}&quot;);})'>{{StringMeasurement}}</a></div>{{/StringMeasurement}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StringMeasurementValue_collapse" aria-expanded="true" aria-controls="StringMeasurementValue_collapse" style="margin-left: 10px;">StringMeasurementValue</a></legend>
+                    <div id="StringMeasurementValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MeasurementValue.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#StringMeasurement}}<div><b>StringMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StringMeasurement}}&quot;);})'>{{StringMeasurement}}</a></div>{{/StringMeasurement}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StringMeasurementValue_collapse" aria-expanded="true" aria-controls="StringMeasurementValue_collapse" style="margin-left: 10px;">StringMeasurementValue</a></legend>
+                    <div id="StringMeasurementValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MeasurementValue.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StringMeasurement'>StringMeasurement: </label><div class='col-sm-8'><input id='StringMeasurement' class='form-control' type='text'{{#StringMeasurement}} value='{{StringMeasurement}}'{{/StringMeasurement}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * AccumulatorValue represents an accumulated (counted) MeasurementValue.
@@ -955,19 +1269,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AccumulatorValue_collapse" aria-expanded="true" aria-controls="AccumulatorValue_collapse">AccumulatorValue</a>
-<div id="AccumulatorValue_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + MeasurementValue.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#Accumulator}}<div><b>Accumulator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Accumulator}}&quot;);})'>{{Accumulator}}</a></div>{{/Accumulator}}
-{{#AccumulatorReset}}<div><b>AccumulatorReset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AccumulatorReset}}&quot;);})'>{{AccumulatorReset}}</a></div>{{/AccumulatorReset}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccumulatorValue_collapse" aria-expanded="true" aria-controls="AccumulatorValue_collapse" style="margin-left: 10px;">AccumulatorValue</a></legend>
+                    <div id="AccumulatorValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MeasurementValue.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#Accumulator}}<div><b>Accumulator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Accumulator}}&quot;);})'>{{Accumulator}}</a></div>{{/Accumulator}}
+                    {{#AccumulatorReset}}<div><b>AccumulatorReset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AccumulatorReset}}&quot;);})'>{{AccumulatorReset}}</a></div>{{/AccumulatorReset}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccumulatorValue_collapse" aria-expanded="true" aria-controls="AccumulatorValue_collapse" style="margin-left: 10px;">AccumulatorValue</a></legend>
+                    <div id="AccumulatorValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MeasurementValue.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Accumulator'>Accumulator: </label><div class='col-sm-8'><input id='Accumulator' class='form-control' type='text'{{#Accumulator}} value='{{Accumulator}}'{{/Accumulator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AccumulatorReset'>AccumulatorReset: </label><div class='col-sm-8'><input id='AccumulatorReset' class='form-control' type='text'{{#AccumulatorReset}} value='{{AccumulatorReset}}'{{/AccumulatorReset}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * AnalogValue represents an analog MeasurementValue.
@@ -1026,19 +1373,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AnalogValue_collapse" aria-expanded="true" aria-controls="AnalogValue_collapse">AnalogValue</a>
-<div id="AnalogValue_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + MeasurementValue.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#Analog}}<div><b>Analog</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Analog}}&quot;);})'>{{Analog}}</a></div>{{/Analog}}
-{{#AnalogControl}}<div><b>AnalogControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AnalogControl}}&quot;);})'>{{AnalogControl}}</a></div>{{/AnalogControl}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AnalogValue_collapse" aria-expanded="true" aria-controls="AnalogValue_collapse" style="margin-left: 10px;">AnalogValue</a></legend>
+                    <div id="AnalogValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MeasurementValue.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#Analog}}<div><b>Analog</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Analog}}&quot;);})'>{{Analog}}</a></div>{{/Analog}}
+                    {{#AnalogControl}}<div><b>AnalogControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AnalogControl}}&quot;);})'>{{AnalogControl}}</a></div>{{/AnalogControl}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AnalogValue_collapse" aria-expanded="true" aria-controls="AnalogValue_collapse" style="margin-left: 10px;">AnalogValue</a></legend>
+                    <div id="AnalogValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + MeasurementValue.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Analog'>Analog: </label><div class='col-sm-8'><input id='Analog' class='form-control' type='text'{{#Analog}} value='{{Analog}}'{{/Analog}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AnalogControl'>AnalogControl: </label><div class='col-sm-8'><input id='AnalogControl' class='form-control' type='text'{{#AnalogControl}} value='{{AnalogControl}}'{{/AnalogControl}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Measurement quality flags.
@@ -1095,17 +1475,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#MeasurementValueQuality_collapse" aria-expanded="true" aria-controls="MeasurementValueQuality_collapse">MeasurementValueQuality</a>
-<div id="MeasurementValueQuality_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Quality61850.prototype.template.call (this) +
-`
-{{#MeasurementValue}}<div><b>MeasurementValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValue}}&quot;);})'>{{MeasurementValue}}</a></div>{{/MeasurementValue}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeasurementValueQuality_collapse" aria-expanded="true" aria-controls="MeasurementValueQuality_collapse" style="margin-left: 10px;">MeasurementValueQuality</a></legend>
+                    <div id="MeasurementValueQuality_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Quality61850.prototype.template.call (this) +
+                    `
+                    {{#MeasurementValue}}<div><b>MeasurementValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValue}}&quot;);})'>{{MeasurementValue}}</a></div>{{/MeasurementValue}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeasurementValueQuality_collapse" aria-expanded="true" aria-controls="MeasurementValueQuality_collapse" style="margin-left: 10px;">MeasurementValueQuality</a></legend>
+                    <div id="MeasurementValueQuality_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Quality61850.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MeasurementValue'>MeasurementValue: </label><div class='col-sm-8'><input id='MeasurementValue' class='form-control' type='text'{{#MeasurementValue}} value='{{MeasurementValue}}'{{/MeasurementValue}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Limit values for Accumulator measurements.
@@ -1162,18 +1573,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AccumulatorLimit_collapse" aria-expanded="true" aria-controls="AccumulatorLimit_collapse">AccumulatorLimit</a>
-<div id="AccumulatorLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Limit.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#LimitSet}}<div><b>LimitSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LimitSet}}&quot;);})'>{{LimitSet}}</a></div>{{/LimitSet}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccumulatorLimit_collapse" aria-expanded="true" aria-controls="AccumulatorLimit_collapse" style="margin-left: 10px;">AccumulatorLimit</a></legend>
+                    <div id="AccumulatorLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Limit.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#LimitSet}}<div><b>LimitSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LimitSet}}&quot;);})'>{{LimitSet}}</a></div>{{/LimitSet}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccumulatorLimit_collapse" aria-expanded="true" aria-controls="AccumulatorLimit_collapse" style="margin-left: 10px;">AccumulatorLimit</a></legend>
+                    <div id="AccumulatorLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Limit.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LimitSet'>LimitSet: </label><div class='col-sm-8'><input id='LimitSet' class='form-control' type='text'{{#LimitSet}} value='{{LimitSet}}'{{/LimitSet}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Limit values for Analog measurements.
@@ -1230,18 +1673,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AnalogLimit_collapse" aria-expanded="true" aria-controls="AnalogLimit_collapse">AnalogLimit</a>
-<div id="AnalogLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Limit.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#LimitSet}}<div><b>LimitSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LimitSet}}&quot;);})'>{{LimitSet}}</a></div>{{/LimitSet}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AnalogLimit_collapse" aria-expanded="true" aria-controls="AnalogLimit_collapse" style="margin-left: 10px;">AnalogLimit</a></legend>
+                    <div id="AnalogLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Limit.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#LimitSet}}<div><b>LimitSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LimitSet}}&quot;);})'>{{LimitSet}}</a></div>{{/LimitSet}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AnalogLimit_collapse" aria-expanded="true" aria-controls="AnalogLimit_collapse" style="margin-left: 10px;">AnalogLimit</a></legend>
+                    <div id="AnalogLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Limit.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LimitSet'>LimitSet: </label><div class='col-sm-8'><input id='LimitSet' class='form-control' type='text'{{#LimitSet}} value='{{LimitSet}}'{{/LimitSet}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * This command reset the counter value to zero.
@@ -1296,17 +1771,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AccumulatorReset_collapse" aria-expanded="true" aria-controls="AccumulatorReset_collapse">AccumulatorReset</a>
-<div id="AccumulatorReset_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Control.prototype.template.call (this) +
-`
-{{#AccumulatorValue}}<div><b>AccumulatorValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AccumulatorValue}}&quot;);})'>{{AccumulatorValue}}</a></div>{{/AccumulatorValue}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccumulatorReset_collapse" aria-expanded="true" aria-controls="AccumulatorReset_collapse" style="margin-left: 10px;">AccumulatorReset</a></legend>
+                    <div id="AccumulatorReset_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Control.prototype.template.call (this) +
+                    `
+                    {{#AccumulatorValue}}<div><b>AccumulatorValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AccumulatorValue}}&quot;);})'>{{AccumulatorValue}}</a></div>{{/AccumulatorValue}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccumulatorReset_collapse" aria-expanded="true" aria-controls="AccumulatorReset_collapse" style="margin-left: 10px;">AccumulatorReset</a></legend>
+                    <div id="AccumulatorReset_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Control.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AccumulatorValue'>AccumulatorValue: </label><div class='col-sm-8'><input id='AccumulatorValue' class='form-control' type='text'{{#AccumulatorValue}} value='{{AccumulatorValue}}'{{/AccumulatorValue}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An analog control used for supervisory control.
@@ -1365,19 +1871,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AnalogControl_collapse" aria-expanded="true" aria-controls="AnalogControl_collapse">AnalogControl</a>
-<div id="AnalogControl_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Control.prototype.template.call (this) +
-`
-{{#maxValue}}<div><b>maxValue</b>: {{maxValue}}</div>{{/maxValue}}
-{{#minValue}}<div><b>minValue</b>: {{minValue}}</div>{{/minValue}}
-{{#AnalogValue}}<div><b>AnalogValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AnalogValue}}&quot;);})'>{{AnalogValue}}</a></div>{{/AnalogValue}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AnalogControl_collapse" aria-expanded="true" aria-controls="AnalogControl_collapse" style="margin-left: 10px;">AnalogControl</a></legend>
+                    <div id="AnalogControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Control.prototype.template.call (this) +
+                    `
+                    {{#maxValue}}<div><b>maxValue</b>: {{maxValue}}</div>{{/maxValue}}
+                    {{#minValue}}<div><b>minValue</b>: {{minValue}}</div>{{/minValue}}
+                    {{#AnalogValue}}<div><b>AnalogValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AnalogValue}}&quot;);})'>{{AnalogValue}}</a></div>{{/AnalogValue}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AnalogControl_collapse" aria-expanded="true" aria-controls="AnalogControl_collapse" style="margin-left: 10px;">AnalogControl</a></legend>
+                    <div id="AnalogControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Control.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxValue'>maxValue: </label><div class='col-sm-8'><input id='maxValue' class='form-control' type='text'{{#maxValue}} value='{{maxValue}}'{{/maxValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minValue'>minValue: </label><div class='col-sm-8'><input id='minValue' class='form-control' type='text'{{#minValue}} value='{{minValue}}'{{/minValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AnalogValue'>AnalogValue: </label><div class='col-sm-8'><input id='AnalogValue' class='form-control' type='text'{{#AnalogValue}} value='{{AnalogValue}}'{{/AnalogValue}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A Command is a discrete control used for supervisory control.
@@ -1438,20 +1977,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Command_collapse" aria-expanded="true" aria-controls="Command_collapse">Command</a>
-<div id="Command_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Control.prototype.template.call (this) +
-`
-{{#normalValue}}<div><b>normalValue</b>: {{normalValue}}</div>{{/normalValue}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-{{#DiscreteValue}}<div><b>DiscreteValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscreteValue}}&quot;);})'>{{DiscreteValue}}</a></div>{{/DiscreteValue}}
-{{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);})'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Command_collapse" aria-expanded="true" aria-controls="Command_collapse" style="margin-left: 10px;">Command</a></legend>
+                    <div id="Command_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Control.prototype.template.call (this) +
+                    `
+                    {{#normalValue}}<div><b>normalValue</b>: {{normalValue}}</div>{{/normalValue}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#DiscreteValue}}<div><b>DiscreteValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscreteValue}}&quot;);})'>{{DiscreteValue}}</a></div>{{/DiscreteValue}}
+                    {{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);})'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Command_collapse" aria-expanded="true" aria-controls="Command_collapse" style="margin-left: 10px;">Command</a></legend>
+                    <div id="Command_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Control.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='normalValue'>normalValue: </label><div class='col-sm-8'><input id='normalValue' class='form-control' type='text'{{#normalValue}} value='{{normalValue}}'{{/normalValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DiscreteValue'>DiscreteValue: </label><div class='col-sm-8'><input id='DiscreteValue' class='form-control' type='text'{{#DiscreteValue}} value='{{DiscreteValue}}'{{/DiscreteValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ValueAliasSet'>ValueAliasSet: </label><div class='col-sm-8'><input id='ValueAliasSet' class='form-control' type='text'{{#ValueAliasSet}} value='{{ValueAliasSet}}'{{/ValueAliasSet}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         class DiscreteCommand extends Command
         {
@@ -1500,16 +2073,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#DiscreteCommand_collapse" aria-expanded="true" aria-controls="DiscreteCommand_collapse">DiscreteCommand</a>
-<div id="DiscreteCommand_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Command.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscreteCommand_collapse" aria-expanded="true" aria-controls="DiscreteCommand_collapse" style="margin-left: 10px;">DiscreteCommand</a></legend>
+                    <div id="DiscreteCommand_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Command.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscreteCommand_collapse" aria-expanded="true" aria-controls="DiscreteCommand_collapse" style="margin-left: 10px;">DiscreteCommand</a></legend>
+                    <div id="DiscreteCommand_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Command.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An analog control that increase or decrease a set point value with pulses.
@@ -1564,17 +2167,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RaiseLowerCommand_collapse" aria-expanded="true" aria-controls="RaiseLowerCommand_collapse">RaiseLowerCommand</a>
-<div id="RaiseLowerCommand_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + AnalogControl.prototype.template.call (this) +
-`
-{{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);})'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RaiseLowerCommand_collapse" aria-expanded="true" aria-controls="RaiseLowerCommand_collapse" style="margin-left: 10px;">RaiseLowerCommand</a></legend>
+                    <div id="RaiseLowerCommand_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AnalogControl.prototype.template.call (this) +
+                    `
+                    {{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);})'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RaiseLowerCommand_collapse" aria-expanded="true" aria-controls="RaiseLowerCommand_collapse" style="margin-left: 10px;">RaiseLowerCommand</a></legend>
+                    <div id="RaiseLowerCommand_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AnalogControl.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ValueAliasSet'>ValueAliasSet: </label><div class='col-sm-8'><input id='ValueAliasSet' class='form-control' type='text'{{#ValueAliasSet}} value='{{ValueAliasSet}}'{{/ValueAliasSet}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An analog control that issue a set point value.
@@ -1631,18 +2265,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SetPoint_collapse" aria-expanded="true" aria-controls="SetPoint_collapse">SetPoint</a>
-<div id="SetPoint_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + AnalogControl.prototype.template.call (this) +
-`
-{{#normalValue}}<div><b>normalValue</b>: {{normalValue}}</div>{{/normalValue}}
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SetPoint_collapse" aria-expanded="true" aria-controls="SetPoint_collapse" style="margin-left: 10px;">SetPoint</a></legend>
+                    <div id="SetPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AnalogControl.prototype.template.call (this) +
+                    `
+                    {{#normalValue}}<div><b>normalValue</b>: {{normalValue}}</div>{{/normalValue}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SetPoint_collapse" aria-expanded="true" aria-controls="SetPoint_collapse" style="margin-left: 10px;">SetPoint</a></legend>
+                    <div id="SetPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + AnalogControl.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='normalValue'>normalValue: </label><div class='col-sm-8'><input id='normalValue' class='form-control' type='text'{{#normalValue}} value='{{normalValue}}'{{/normalValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Discrete represents a discrete Measurement, i.e. a Measurement representing discrete values, e.g. a Breaker position.
@@ -1703,20 +2369,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Discrete_collapse" aria-expanded="true" aria-controls="Discrete_collapse">Discrete</a>
-<div id="Discrete_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Measurement.prototype.template.call (this) +
-`
-{{#maxValue}}<div><b>maxValue</b>: {{maxValue}}</div>{{/maxValue}}
-{{#minValue}}<div><b>minValue</b>: {{minValue}}</div>{{/minValue}}
-{{#normalValue}}<div><b>normalValue</b>: {{normalValue}}</div>{{/normalValue}}
-{{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);})'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Discrete_collapse" aria-expanded="true" aria-controls="Discrete_collapse" style="margin-left: 10px;">Discrete</a></legend>
+                    <div id="Discrete_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Measurement.prototype.template.call (this) +
+                    `
+                    {{#maxValue}}<div><b>maxValue</b>: {{maxValue}}</div>{{/maxValue}}
+                    {{#minValue}}<div><b>minValue</b>: {{minValue}}</div>{{/minValue}}
+                    {{#normalValue}}<div><b>normalValue</b>: {{normalValue}}</div>{{/normalValue}}
+                    {{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);})'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Discrete_collapse" aria-expanded="true" aria-controls="Discrete_collapse" style="margin-left: 10px;">Discrete</a></legend>
+                    <div id="Discrete_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Measurement.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxValue'>maxValue: </label><div class='col-sm-8'><input id='maxValue' class='form-control' type='text'{{#maxValue}} value='{{maxValue}}'{{/maxValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minValue'>minValue: </label><div class='col-sm-8'><input id='minValue' class='form-control' type='text'{{#minValue}} value='{{minValue}}'{{/minValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='normalValue'>normalValue: </label><div class='col-sm-8'><input id='normalValue' class='form-control' type='text'{{#normalValue}} value='{{normalValue}}'{{/normalValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ValueAliasSet'>ValueAliasSet: </label><div class='col-sm-8'><input id='ValueAliasSet' class='form-control' type='text'{{#ValueAliasSet}} value='{{ValueAliasSet}}'{{/ValueAliasSet}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Analog represents an analog Measurement.
@@ -1777,20 +2477,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Analog_collapse" aria-expanded="true" aria-controls="Analog_collapse">Analog</a>
-<div id="Analog_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Measurement.prototype.template.call (this) +
-`
-{{#maxValue}}<div><b>maxValue</b>: {{maxValue}}</div>{{/maxValue}}
-{{#minValue}}<div><b>minValue</b>: {{minValue}}</div>{{/minValue}}
-{{#normalValue}}<div><b>normalValue</b>: {{normalValue}}</div>{{/normalValue}}
-{{#positiveFlowIn}}<div><b>positiveFlowIn</b>: {{positiveFlowIn}}</div>{{/positiveFlowIn}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Analog_collapse" aria-expanded="true" aria-controls="Analog_collapse" style="margin-left: 10px;">Analog</a></legend>
+                    <div id="Analog_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Measurement.prototype.template.call (this) +
+                    `
+                    {{#maxValue}}<div><b>maxValue</b>: {{maxValue}}</div>{{/maxValue}}
+                    {{#minValue}}<div><b>minValue</b>: {{minValue}}</div>{{/minValue}}
+                    {{#normalValue}}<div><b>normalValue</b>: {{normalValue}}</div>{{/normalValue}}
+                    {{#positiveFlowIn}}<div><b>positiveFlowIn</b>: {{positiveFlowIn}}</div>{{/positiveFlowIn}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Analog_collapse" aria-expanded="true" aria-controls="Analog_collapse" style="margin-left: 10px;">Analog</a></legend>
+                    <div id="Analog_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Measurement.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxValue'>maxValue: </label><div class='col-sm-8'><input id='maxValue' class='form-control' type='text'{{#maxValue}} value='{{maxValue}}'{{/maxValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minValue'>minValue: </label><div class='col-sm-8'><input id='minValue' class='form-control' type='text'{{#minValue}} value='{{minValue}}'{{/minValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='normalValue'>normalValue: </label><div class='col-sm-8'><input id='normalValue' class='form-control' type='text'{{#normalValue}} value='{{normalValue}}'{{/normalValue}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='positiveFlowIn'>positiveFlowIn: </label><div class='col-sm-8'><input id='positiveFlowIn' class='form-check-input' type='checkbox'{{#positiveFlowIn}} checked{{/positiveFlowIn}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Accumulator represents an accumulated (counted) Measurement, e.g. an energy value.
@@ -1845,17 +2579,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#Accumulator_collapse" aria-expanded="true" aria-controls="Accumulator_collapse">Accumulator</a>
-<div id="Accumulator_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Measurement.prototype.template.call (this) +
-`
-{{#maxValue}}<div><b>maxValue</b>: {{maxValue}}</div>{{/maxValue}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Accumulator_collapse" aria-expanded="true" aria-controls="Accumulator_collapse" style="margin-left: 10px;">Accumulator</a></legend>
+                    <div id="Accumulator_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Measurement.prototype.template.call (this) +
+                    `
+                    {{#maxValue}}<div><b>maxValue</b>: {{maxValue}}</div>{{/maxValue}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Accumulator_collapse" aria-expanded="true" aria-controls="Accumulator_collapse" style="margin-left: 10px;">Accumulator</a></legend>
+                    <div id="Accumulator_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Measurement.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxValue'>maxValue: </label><div class='col-sm-8'><input id='maxValue' class='form-control' type='text'{{#maxValue}} value='{{maxValue}}'{{/maxValue}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * StringMeasurement represents a measurement with values of type string.
@@ -1908,16 +2673,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#StringMeasurement_collapse" aria-expanded="true" aria-controls="StringMeasurement_collapse">StringMeasurement</a>
-<div id="StringMeasurement_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Measurement.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StringMeasurement_collapse" aria-expanded="true" aria-controls="StringMeasurement_collapse" style="margin-left: 10px;">StringMeasurement</a></legend>
+                    <div id="StringMeasurement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Measurement.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StringMeasurement_collapse" aria-expanded="true" aria-controls="StringMeasurement_collapse" style="margin-left: 10px;">StringMeasurement</a></legend>
+                    <div id="StringMeasurement_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Measurement.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An AccumulatorLimitSet specifies a set of Limits that are associated with an Accumulator measurement.
@@ -1970,16 +2765,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AccumulatorLimitSet_collapse" aria-expanded="true" aria-controls="AccumulatorLimitSet_collapse">AccumulatorLimitSet</a>
-<div id="AccumulatorLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + LimitSet.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccumulatorLimitSet_collapse" aria-expanded="true" aria-controls="AccumulatorLimitSet_collapse" style="margin-left: 10px;">AccumulatorLimitSet</a></legend>
+                    <div id="AccumulatorLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LimitSet.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccumulatorLimitSet_collapse" aria-expanded="true" aria-controls="AccumulatorLimitSet_collapse" style="margin-left: 10px;">AccumulatorLimitSet</a></legend>
+                    <div id="AccumulatorLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LimitSet.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * An AnalogLimitSet specifies a set of Limits that are associated with an Analog measurement.
@@ -2032,16 +2857,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#AnalogLimitSet_collapse" aria-expanded="true" aria-controls="AnalogLimitSet_collapse">AnalogLimitSet</a>
-<div id="AnalogLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + LimitSet.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AnalogLimitSet_collapse" aria-expanded="true" aria-controls="AnalogLimitSet_collapse" style="margin-left: 10px;">AnalogLimitSet</a></legend>
+                    <div id="AnalogLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LimitSet.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AnalogLimitSet_collapse" aria-expanded="true" aria-controls="AnalogLimitSet_collapse" style="margin-left: 10px;">AnalogLimitSet</a></legend>
+                    <div id="AnalogLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + LimitSet.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
@@ -2058,7 +2913,6 @@ define
                 StringMeasurementValue: StringMeasurementValue,
                 MeasurementValueQuality: MeasurementValueQuality,
                 AnalogLimitSet: AnalogLimitSet,
-                Validity: Validity,
                 Discrete: Discrete,
                 AccumulatorLimitSet: AccumulatorLimitSet,
                 AnalogValue: AnalogValue,

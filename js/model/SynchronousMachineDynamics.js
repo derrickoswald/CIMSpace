@@ -11,6 +11,43 @@ define
     {
 
         /**
+         * Type of rotor on physical machine.
+         *
+         */
+        var RotorKind =
+        {
+            roundRotor: "roundRotor",
+            salientPole: "salientPole"
+        };
+        Object.freeze (RotorKind);
+
+        /**
+         * Type of synchronous machine model used in Dynamic simulation applications.
+         *
+         */
+        var SynchronousMachineModelKind =
+        {
+            subtransient: "subtransient",
+            subtransientTypeF: "subtransientTypeF",
+            subtransientTypeJ: "subtransientTypeJ",
+            subtransientSimplified: "subtransientSimplified",
+            subtransientSimplifiedDirectAxis: "subtransientSimplifiedDirectAxis"
+        };
+        Object.freeze (SynchronousMachineModelKind);
+
+        /**
+         * Excitation base system mode.
+         *
+         */
+        var IfdBaseKind =
+        {
+            ifag: "ifag",
+            ifnl: "ifnl",
+            iffl: "iffl"
+        };
+        Object.freeze (IfdBaseKind);
+
+        /**
          * Synchronous machine whose behaviour is described by reference to a standard model expressed in one of the following forms:
          * <ul>
          * <li>simplified (or classical), where a group of generators or motors is not modelled in detail</li>
@@ -79,235 +116,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="SynchronousMachineDynamics_collapse">SynchronousMachineDynamics</a>
-<div id="SynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + StandardModels.RotatingMachineDynamics.prototype.template.call (this) +
-`
-{{#MechanicalLoadDynamics}}<div><b>MechanicalLoadDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MechanicalLoadDynamics}}&quot;);})'>{{MechanicalLoadDynamics}}</a></div>{{/MechanicalLoadDynamics}}
-{{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
-{{#SynchronousMachine}}<div><b>SynchronousMachine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachine}}&quot;);})'>{{SynchronousMachine}}</a></div>{{/SynchronousMachine}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="SynchronousMachineDynamics_collapse" style="margin-left: 10px;">SynchronousMachineDynamics</a></legend>
+                    <div id="SynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.RotatingMachineDynamics.prototype.template.call (this) +
+                    `
+                    {{#MechanicalLoadDynamics}}<div><b>MechanicalLoadDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MechanicalLoadDynamics}}&quot;);})'>{{MechanicalLoadDynamics}}</a></div>{{/MechanicalLoadDynamics}}
+                    {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+                    {{#SynchronousMachine}}<div><b>SynchronousMachine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachine}}&quot;);})'>{{SynchronousMachine}}</a></div>{{/SynchronousMachine}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * Type of rotor on physical machine.
-         *
-         */
-        class RotorKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.RotorKind;
-                if (null == bucket)
-                   cim_data.RotorKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.RotorKind[this._id];
+                super.condition (obj);
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "RotorKind";
-                base.parse_element (/<cim:RotorKind.roundRotor>([\s\S]*?)<\/cim:RotorKind.roundRotor>/g, obj, "roundRotor", base.to_string, sub, context);
-                base.parse_element (/<cim:RotorKind.salientPole>([\s\S]*?)<\/cim:RotorKind.salientPole>/g, obj, "salientPole", base.to_string, sub, context);
-
-                var bucket = context.parsed.RotorKind;
-                if (null == bucket)
-                   context.parsed.RotorKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "RotorKind", "roundRotor", base.from_string, fields);
-                base.export_element (obj, "RotorKind", "salientPole", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#RotorKind_collapse" aria-expanded="true" aria-controls="RotorKind_collapse">RotorKind</a>
-<div id="RotorKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#roundRotor}}<div><b>roundRotor</b>: {{roundRotor}}</div>{{/roundRotor}}
-{{#salientPole}}<div><b>salientPole</b>: {{salientPole}}</div>{{/salientPole}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="SynchronousMachineDynamics_collapse" style="margin-left: 10px;">SynchronousMachineDynamics</a></legend>
+                    <div id="SynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + StandardModels.RotatingMachineDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MechanicalLoadDynamics'>MechanicalLoadDynamics: </label><div class='col-sm-8'><input id='MechanicalLoadDynamics' class='form-control' type='text'{{#MechanicalLoadDynamics}} value='{{MechanicalLoadDynamics}}'{{/MechanicalLoadDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SynchronousMachine'>SynchronousMachine: </label><div class='col-sm-8'><input id='SynchronousMachine' class='form-control' type='text'{{#SynchronousMachine}} value='{{SynchronousMachine}}'{{/SynchronousMachine}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
-
-        /**
-         * Type of synchronous machine model used in Dynamic simulation applications.
-         *
-         */
-        class SynchronousMachineModelKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.SynchronousMachineModelKind;
-                if (null == bucket)
-                   cim_data.SynchronousMachineModelKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.SynchronousMachineModelKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "SynchronousMachineModelKind";
-                base.parse_element (/<cim:SynchronousMachineModelKind.subtransient>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransient>/g, obj, "subtransient", base.to_string, sub, context);
-                base.parse_element (/<cim:SynchronousMachineModelKind.subtransientTypeF>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransientTypeF>/g, obj, "subtransientTypeF", base.to_string, sub, context);
-                base.parse_element (/<cim:SynchronousMachineModelKind.subtransientTypeJ>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransientTypeJ>/g, obj, "subtransientTypeJ", base.to_string, sub, context);
-                base.parse_element (/<cim:SynchronousMachineModelKind.subtransientSimplified>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransientSimplified>/g, obj, "subtransientSimplified", base.to_string, sub, context);
-                base.parse_element (/<cim:SynchronousMachineModelKind.subtransientSimplifiedDirectAxis>([\s\S]*?)<\/cim:SynchronousMachineModelKind.subtransientSimplifiedDirectAxis>/g, obj, "subtransientSimplifiedDirectAxis", base.to_string, sub, context);
-
-                var bucket = context.parsed.SynchronousMachineModelKind;
-                if (null == bucket)
-                   context.parsed.SynchronousMachineModelKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "SynchronousMachineModelKind", "subtransient", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineModelKind", "subtransientTypeF", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineModelKind", "subtransientTypeJ", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineModelKind", "subtransientSimplified", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineModelKind", "subtransientSimplifiedDirectAxis", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#SynchronousMachineModelKind_collapse" aria-expanded="true" aria-controls="SynchronousMachineModelKind_collapse">SynchronousMachineModelKind</a>
-<div id="SynchronousMachineModelKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#subtransient}}<div><b>subtransient</b>: {{subtransient}}</div>{{/subtransient}}
-{{#subtransientTypeF}}<div><b>subtransientTypeF</b>: {{subtransientTypeF}}</div>{{/subtransientTypeF}}
-{{#subtransientTypeJ}}<div><b>subtransientTypeJ</b>: {{subtransientTypeJ}}</div>{{/subtransientTypeJ}}
-{{#subtransientSimplified}}<div><b>subtransientSimplified</b>: {{subtransientSimplified}}</div>{{/subtransientSimplified}}
-{{#subtransientSimplifiedDirectAxis}}<div><b>subtransientSimplifiedDirectAxis</b>: {{subtransientSimplifiedDirectAxis}}</div>{{/subtransientSimplifiedDirectAxis}}
-</div>
-`
-                );
-           }        }
-
-        /**
-         * Excitation base system mode.
-         *
-         */
-        class IfdBaseKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.IfdBaseKind;
-                if (null == bucket)
-                   cim_data.IfdBaseKind = bucket = {};
-                bucket[this._id] = template;
-            }
-
-            remove (cim_data)
-            {
-               super.remove (cim_data);
-               delete cim_data.IfdBaseKind[this._id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "IfdBaseKind";
-                base.parse_element (/<cim:IfdBaseKind.ifag>([\s\S]*?)<\/cim:IfdBaseKind.ifag>/g, obj, "ifag", base.to_string, sub, context);
-                base.parse_element (/<cim:IfdBaseKind.ifnl>([\s\S]*?)<\/cim:IfdBaseKind.ifnl>/g, obj, "ifnl", base.to_string, sub, context);
-                base.parse_element (/<cim:IfdBaseKind.iffl>([\s\S]*?)<\/cim:IfdBaseKind.iffl>/g, obj, "iffl", base.to_string, sub, context);
-
-                var bucket = context.parsed.IfdBaseKind;
-                if (null == bucket)
-                   context.parsed.IfdBaseKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "IfdBaseKind", "ifag", base.from_string, fields);
-                base.export_element (obj, "IfdBaseKind", "ifnl", base.from_string, fields);
-                base.export_element (obj, "IfdBaseKind", "iffl", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
-            {
-                return (
-`
-<a data-toggle="collapse" href="#IfdBaseKind_collapse" aria-expanded="true" aria-controls="IfdBaseKind_collapse">IfdBaseKind</a>
-<div id="IfdBaseKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#ifag}}<div><b>ifag</b>: {{ifag}}</div>{{/ifag}}
-{{#ifnl}}<div><b>ifnl</b>: {{ifnl}}</div>{{/ifnl}}
-{{#iffl}}<div><b>iffl</b>: {{iffl}}</div>{{/iffl}}
-</div>
-`
-                );
-           }        }
+           }
+        }
 
         /**
          * All synchronous machine detailed types use a subset of the same data parameters and input/output variables.
@@ -340,7 +194,7 @@ define
                 obj = SynchronousMachineDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "SynchronousMachineDetailed";
                 base.parse_element (/<cim:SynchronousMachineDetailed.efdBaseRatio>([\s\S]*?)<\/cim:SynchronousMachineDetailed.efdBaseRatio>/g, obj, "efdBaseRatio", base.to_float, sub, context);
-                base.parse_element (/<cim:SynchronousMachineDetailed.ifdBaseType>([\s\S]*?)<\/cim:SynchronousMachineDetailed.ifdBaseType>/g, obj, "ifdBaseType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:SynchronousMachineDetailed.ifdBaseType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ifdBaseType", sub, context);
                 base.parse_element (/<cim:SynchronousMachineDetailed.saturationFactor120QAxis>([\s\S]*?)<\/cim:SynchronousMachineDetailed.saturationFactor120QAxis>/g, obj, "saturationFactor120QAxis", base.to_float, sub, context);
                 base.parse_element (/<cim:SynchronousMachineDetailed.saturationFactorQAxis>([\s\S]*?)<\/cim:SynchronousMachineDetailed.saturationFactorQAxis>/g, obj, "saturationFactorQAxis", base.to_float, sub, context);
 
@@ -370,20 +224,56 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SynchronousMachineDetailed_collapse" aria-expanded="true" aria-controls="SynchronousMachineDetailed_collapse">SynchronousMachineDetailed</a>
-<div id="SynchronousMachineDetailed_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + SynchronousMachineDynamics.prototype.template.call (this) +
-`
-{{#efdBaseRatio}}<div><b>efdBaseRatio</b>: {{efdBaseRatio}}</div>{{/efdBaseRatio}}
-{{#ifdBaseType}}<div><b>ifdBaseType</b>: {{ifdBaseType}}</div>{{/ifdBaseType}}
-{{#saturationFactor120QAxis}}<div><b>saturationFactor120QAxis</b>: {{saturationFactor120QAxis}}</div>{{/saturationFactor120QAxis}}
-{{#saturationFactorQAxis}}<div><b>saturationFactorQAxis</b>: {{saturationFactorQAxis}}</div>{{/saturationFactorQAxis}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineDetailed_collapse" aria-expanded="true" aria-controls="SynchronousMachineDetailed_collapse" style="margin-left: 10px;">SynchronousMachineDetailed</a></legend>
+                    <div id="SynchronousMachineDetailed_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SynchronousMachineDynamics.prototype.template.call (this) +
+                    `
+                    {{#efdBaseRatio}}<div><b>efdBaseRatio</b>: {{efdBaseRatio}}</div>{{/efdBaseRatio}}
+                    {{#ifdBaseType}}<div><b>ifdBaseType</b>: {{ifdBaseType}}</div>{{/ifdBaseType}}
+                    {{#saturationFactor120QAxis}}<div><b>saturationFactor120QAxis</b>: {{saturationFactor120QAxis}}</div>{{/saturationFactor120QAxis}}
+                    {{#saturationFactorQAxis}}<div><b>saturationFactorQAxis</b>: {{saturationFactorQAxis}}</div>{{/saturationFactorQAxis}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.IfdBaseKind = []; if (!obj.ifdBaseType) obj.IfdBaseKind.push ({ id: '', selected: true}); for (var property in IfdBaseKind) obj.IfdBaseKind.push ({ id: property, selected: obj.ifdBaseType && obj.ifdBaseType.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.IfdBaseKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineDetailed_collapse" aria-expanded="true" aria-controls="SynchronousMachineDetailed_collapse" style="margin-left: 10px;">SynchronousMachineDetailed</a></legend>
+                    <div id="SynchronousMachineDetailed_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SynchronousMachineDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdBaseRatio'>efdBaseRatio: </label><div class='col-sm-8'><input id='efdBaseRatio' class='form-control' type='text'{{#efdBaseRatio}} value='{{efdBaseRatio}}'{{/efdBaseRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ifdBaseType'>ifdBaseType: </label><div class='col-sm-8'><select id='ifdBaseType' class='form-control'>{{#IfdBaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/IfdBaseKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='saturationFactor120QAxis'>saturationFactor120QAxis: </label><div class='col-sm-8'><input id='saturationFactor120QAxis' class='form-control' type='text'{{#saturationFactor120QAxis}} value='{{saturationFactor120QAxis}}'{{/saturationFactor120QAxis}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='saturationFactorQAxis'>saturationFactorQAxis: </label><div class='col-sm-8'><input id='saturationFactorQAxis' class='form-control' type='text'{{#saturationFactorQAxis}} value='{{saturationFactorQAxis}}'{{/saturationFactorQAxis}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The electrical equations for all variations of the synchronous models are based on the SynchronousEquivalentCircuit diagram for the direct and quadrature axes.
@@ -484,27 +374,68 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="SynchronousMachineEquivalentCircuit_collapse">SynchronousMachineEquivalentCircuit</a>
-<div id="SynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + SynchronousMachineDetailed.prototype.template.call (this) +
-`
-{{#r1d}}<div><b>r1d</b>: {{r1d}}</div>{{/r1d}}
-{{#r1q}}<div><b>r1q</b>: {{r1q}}</div>{{/r1q}}
-{{#r2q}}<div><b>r2q</b>: {{r2q}}</div>{{/r2q}}
-{{#rfd}}<div><b>rfd</b>: {{rfd}}</div>{{/rfd}}
-{{#x1d}}<div><b>x1d</b>: {{x1d}}</div>{{/x1d}}
-{{#x1q}}<div><b>x1q</b>: {{x1q}}</div>{{/x1q}}
-{{#x2q}}<div><b>x2q</b>: {{x2q}}</div>{{/x2q}}
-{{#xad}}<div><b>xad</b>: {{xad}}</div>{{/xad}}
-{{#xaq}}<div><b>xaq</b>: {{xaq}}</div>{{/xaq}}
-{{#xf1d}}<div><b>xf1d</b>: {{xf1d}}</div>{{/xf1d}}
-{{#xfd}}<div><b>xfd</b>: {{xfd}}</div>{{/xfd}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="SynchronousMachineEquivalentCircuit_collapse" style="margin-left: 10px;">SynchronousMachineEquivalentCircuit</a></legend>
+                    <div id="SynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SynchronousMachineDetailed.prototype.template.call (this) +
+                    `
+                    {{#r1d}}<div><b>r1d</b>: {{r1d}}</div>{{/r1d}}
+                    {{#r1q}}<div><b>r1q</b>: {{r1q}}</div>{{/r1q}}
+                    {{#r2q}}<div><b>r2q</b>: {{r2q}}</div>{{/r2q}}
+                    {{#rfd}}<div><b>rfd</b>: {{rfd}}</div>{{/rfd}}
+                    {{#x1d}}<div><b>x1d</b>: {{x1d}}</div>{{/x1d}}
+                    {{#x1q}}<div><b>x1q</b>: {{x1q}}</div>{{/x1q}}
+                    {{#x2q}}<div><b>x2q</b>: {{x2q}}</div>{{/x2q}}
+                    {{#xad}}<div><b>xad</b>: {{xad}}</div>{{/xad}}
+                    {{#xaq}}<div><b>xaq</b>: {{xaq}}</div>{{/xaq}}
+                    {{#xf1d}}<div><b>xf1d</b>: {{xf1d}}</div>{{/xf1d}}
+                    {{#xfd}}<div><b>xfd</b>: {{xfd}}</div>{{/xfd}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="SynchronousMachineEquivalentCircuit_collapse" style="margin-left: 10px;">SynchronousMachineEquivalentCircuit</a></legend>
+                    <div id="SynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SynchronousMachineDetailed.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r1d'>r1d: </label><div class='col-sm-8'><input id='r1d' class='form-control' type='text'{{#r1d}} value='{{r1d}}'{{/r1d}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r1q'>r1q: </label><div class='col-sm-8'><input id='r1q' class='form-control' type='text'{{#r1q}} value='{{r1q}}'{{/r1q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r2q'>r2q: </label><div class='col-sm-8'><input id='r2q' class='form-control' type='text'{{#r2q}} value='{{r2q}}'{{/r2q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfd'>rfd: </label><div class='col-sm-8'><input id='rfd' class='form-control' type='text'{{#rfd}} value='{{rfd}}'{{/rfd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x1d'>x1d: </label><div class='col-sm-8'><input id='x1d' class='form-control' type='text'{{#x1d}} value='{{x1d}}'{{/x1d}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x1q'>x1q: </label><div class='col-sm-8'><input id='x1q' class='form-control' type='text'{{#x1q}} value='{{x1q}}'{{/x1q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x2q'>x2q: </label><div class='col-sm-8'><input id='x2q' class='form-control' type='text'{{#x2q}} value='{{x2q}}'{{/x2q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xad'>xad: </label><div class='col-sm-8'><input id='xad' class='form-control' type='text'{{#xad}} value='{{xad}}'{{/xad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xaq'>xaq: </label><div class='col-sm-8'><input id='xaq' class='form-control' type='text'{{#xaq}} value='{{xaq}}'{{/xaq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xf1d'>xf1d: </label><div class='col-sm-8'><input id='xf1d' class='form-control' type='text'{{#xf1d}} value='{{xf1d}}'{{/xf1d}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xfd'>xfd: </label><div class='col-sm-8'><input id='xfd' class='form-control' type='text'{{#xfd}} value='{{xfd}}'{{/xfd}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The simplified model represents a synchronous generator as a constant internal voltage behind an impedance (<b>Rs</b> + <b>jXp</b>) as shown in the Simplified diagram.
@@ -559,16 +490,46 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SynchronousMachineSimplified_collapse" aria-expanded="true" aria-controls="SynchronousMachineSimplified_collapse">SynchronousMachineSimplified</a>
-<div id="SynchronousMachineSimplified_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + SynchronousMachineDynamics.prototype.template.call (this) +
-`
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineSimplified_collapse" aria-expanded="true" aria-controls="SynchronousMachineSimplified_collapse" style="margin-left: 10px;">SynchronousMachineSimplified</a></legend>
+                    <div id="SynchronousMachineSimplified_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SynchronousMachineDynamics.prototype.template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineSimplified_collapse" aria-expanded="true" aria-controls="SynchronousMachineSimplified_collapse" style="margin-left: 10px;">SynchronousMachineSimplified</a></legend>
+                    <div id="SynchronousMachineSimplified_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SynchronousMachineDynamics.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Synchronous machine detailed modelling types are defined by the combination of the attributes SynchronousMachineTimeConstantReactance.modelType and SynchronousMachineTimeConstantReactance.rotorType.
@@ -633,8 +594,8 @@ define
                 obj = SynchronousMachineDetailed.prototype.parse.call (this, context, sub);
                 obj.cls = "SynchronousMachineTimeConstantReactance";
                 base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.ks>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.ks>/g, obj, "ks", base.to_float, sub, context);
-                base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.modelType>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.modelType>/g, obj, "modelType", base.to_string, sub, context);
-                base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.rotorType>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.rotorType>/g, obj, "rotorType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:SynchronousMachineTimeConstantReactance.modelType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "modelType", sub, context);
+                base.parse_attribute (/<cim:SynchronousMachineTimeConstantReactance.rotorType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "rotorType", sub, context);
                 base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.tc>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.tc>/g, obj, "tc", base.to_string, sub, context);
                 base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.tpdo>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.tpdo>/g, obj, "tpdo", base.to_string, sub, context);
                 base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.tppdo>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.tppdo>/g, obj, "tppdo", base.to_string, sub, context);
@@ -683,38 +644,83 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#SynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="SynchronousMachineTimeConstantReactance_collapse">SynchronousMachineTimeConstantReactance</a>
-<div id="SynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + SynchronousMachineDetailed.prototype.template.call (this) +
-`
-{{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
-{{#modelType}}<div><b>modelType</b>: {{modelType}}</div>{{/modelType}}
-{{#rotorType}}<div><b>rotorType</b>: {{rotorType}}</div>{{/rotorType}}
-{{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-{{#tpdo}}<div><b>tpdo</b>: {{tpdo}}</div>{{/tpdo}}
-{{#tppdo}}<div><b>tppdo</b>: {{tppdo}}</div>{{/tppdo}}
-{{#tppqo}}<div><b>tppqo</b>: {{tppqo}}</div>{{/tppqo}}
-{{#tpqo}}<div><b>tpqo</b>: {{tpqo}}</div>{{/tpqo}}
-{{#xDirectSubtrans}}<div><b>xDirectSubtrans</b>: {{xDirectSubtrans}}</div>{{/xDirectSubtrans}}
-{{#xDirectSync}}<div><b>xDirectSync</b>: {{xDirectSync}}</div>{{/xDirectSync}}
-{{#xDirectTrans}}<div><b>xDirectTrans</b>: {{xDirectTrans}}</div>{{/xDirectTrans}}
-{{#xQuadSubtrans}}<div><b>xQuadSubtrans</b>: {{xQuadSubtrans}}</div>{{/xQuadSubtrans}}
-{{#xQuadSync}}<div><b>xQuadSync</b>: {{xQuadSync}}</div>{{/xQuadSync}}
-{{#xQuadTrans}}<div><b>xQuadTrans</b>: {{xQuadTrans}}</div>{{/xQuadTrans}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="SynchronousMachineTimeConstantReactance_collapse" style="margin-left: 10px;">SynchronousMachineTimeConstantReactance</a></legend>
+                    <div id="SynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SynchronousMachineDetailed.prototype.template.call (this) +
+                    `
+                    {{#ks}}<div><b>ks</b>: {{ks}}</div>{{/ks}}
+                    {{#modelType}}<div><b>modelType</b>: {{modelType}}</div>{{/modelType}}
+                    {{#rotorType}}<div><b>rotorType</b>: {{rotorType}}</div>{{/rotorType}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#tpdo}}<div><b>tpdo</b>: {{tpdo}}</div>{{/tpdo}}
+                    {{#tppdo}}<div><b>tppdo</b>: {{tppdo}}</div>{{/tppdo}}
+                    {{#tppqo}}<div><b>tppqo</b>: {{tppqo}}</div>{{/tppqo}}
+                    {{#tpqo}}<div><b>tpqo</b>: {{tpqo}}</div>{{/tpqo}}
+                    {{#xDirectSubtrans}}<div><b>xDirectSubtrans</b>: {{xDirectSubtrans}}</div>{{/xDirectSubtrans}}
+                    {{#xDirectSync}}<div><b>xDirectSync</b>: {{xDirectSync}}</div>{{/xDirectSync}}
+                    {{#xDirectTrans}}<div><b>xDirectTrans</b>: {{xDirectTrans}}</div>{{/xDirectTrans}}
+                    {{#xQuadSubtrans}}<div><b>xQuadSubtrans</b>: {{xQuadSubtrans}}</div>{{/xQuadSubtrans}}
+                    {{#xQuadSync}}<div><b>xQuadSync</b>: {{xQuadSync}}</div>{{/xQuadSync}}
+                    {{#xQuadTrans}}<div><b>xQuadTrans</b>: {{xQuadTrans}}</div>{{/xQuadTrans}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj.SynchronousMachineModelKind = []; if (!obj.modelType) obj.SynchronousMachineModelKind.push ({ id: '', selected: true}); for (var property in SynchronousMachineModelKind) obj.SynchronousMachineModelKind.push ({ id: property, selected: obj.modelType && obj.modelType.endsWith ('.' + property)});
+                obj.RotorKind = []; if (!obj.rotorType) obj.RotorKind.push ({ id: '', selected: true}); for (var property in RotorKind) obj.RotorKind.push ({ id: property, selected: obj.rotorType && obj.rotorType.endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj.SynchronousMachineModelKind;
+                delete obj.RotorKind;
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="SynchronousMachineTimeConstantReactance_collapse" style="margin-left: 10px;">SynchronousMachineTimeConstantReactance</a></legend>
+                    <div id="SynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + SynchronousMachineDetailed.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='modelType'>modelType: </label><div class='col-sm-8'><select id='modelType' class='form-control'>{{#SynchronousMachineModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SynchronousMachineModelKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rotorType'>rotorType: </label><div class='col-sm-8'><select id='rotorType' class='form-control'>{{#RotorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RotorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpdo'>tpdo: </label><div class='col-sm-8'><input id='tpdo' class='form-control' type='text'{{#tpdo}} value='{{tpdo}}'{{/tpdo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tppdo'>tppdo: </label><div class='col-sm-8'><input id='tppdo' class='form-control' type='text'{{#tppdo}} value='{{tppdo}}'{{/tppdo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tppqo'>tppqo: </label><div class='col-sm-8'><input id='tppqo' class='form-control' type='text'{{#tppqo}} value='{{tppqo}}'{{/tppqo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpqo'>tpqo: </label><div class='col-sm-8'><input id='tpqo' class='form-control' type='text'{{#tpqo}} value='{{tpqo}}'{{/tpqo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xDirectSubtrans'>xDirectSubtrans: </label><div class='col-sm-8'><input id='xDirectSubtrans' class='form-control' type='text'{{#xDirectSubtrans}} value='{{xDirectSubtrans}}'{{/xDirectSubtrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xDirectSync'>xDirectSync: </label><div class='col-sm-8'><input id='xDirectSync' class='form-control' type='text'{{#xDirectSync}} value='{{xDirectSync}}'{{/xDirectSync}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xDirectTrans'>xDirectTrans: </label><div class='col-sm-8'><input id='xDirectTrans' class='form-control' type='text'{{#xDirectTrans}} value='{{xDirectTrans}}'{{/xDirectTrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xQuadSubtrans'>xQuadSubtrans: </label><div class='col-sm-8'><input id='xQuadSubtrans' class='form-control' type='text'{{#xQuadSubtrans}} value='{{xQuadSubtrans}}'{{/xQuadSubtrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xQuadSync'>xQuadSync: </label><div class='col-sm-8'><input id='xQuadSync' class='form-control' type='text'{{#xQuadSync}} value='{{xQuadSync}}'{{/xQuadSync}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xQuadTrans'>xQuadTrans: </label><div class='col-sm-8'><input id='xQuadTrans' class='form-control' type='text'{{#xQuadTrans}} value='{{xQuadTrans}}'{{/xQuadTrans}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
-                SynchronousMachineModelKind: SynchronousMachineModelKind,
                 SynchronousMachineDynamics: SynchronousMachineDynamics,
                 SynchronousMachineSimplified: SynchronousMachineSimplified,
-                RotorKind: RotorKind,
-                IfdBaseKind: IfdBaseKind,
                 SynchronousMachineDetailed: SynchronousMachineDetailed,
                 SynchronousMachineTimeConstantReactance: SynchronousMachineTimeConstantReactance,
                 SynchronousMachineEquivalentCircuit: SynchronousMachineEquivalentCircuit

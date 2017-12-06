@@ -9,6 +9,18 @@ define
     {
 
         /**
+         * The direction attribute describes the side of  a limit that is a violation.
+         *
+         */
+        var OperationalLimitDirectionKind =
+        {
+            high: "high",
+            low: "low",
+            absoluteValue: "absoluteValue"
+        };
+        Object.freeze (OperationalLimitDirectionKind);
+
+        /**
          * A set of limits associated with equipment.
          *
          * Sets of limits might apply to a specific temperature, or season for example. A set of limits may contain different severities of limit levels that would apply to the same equipment. The set may contain limits of different types such as apparent power and current limits or high and low voltage limits  that are logically applied together as a set.
@@ -65,18 +77,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OperationalLimitSet_collapse" aria-expanded="true" aria-controls="OperationalLimitSet_collapse">OperationalLimitSet</a>
-<div id="OperationalLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
-{{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimitSet_collapse" aria-expanded="true" aria-controls="OperationalLimitSet_collapse" style="margin-left: 10px;">OperationalLimitSet</a></legend>
+                    <div id="OperationalLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimitSet_collapse" aria-expanded="true" aria-controls="OperationalLimitSet_collapse" style="margin-left: 10px;">OperationalLimitSet</a></legend>
+                    <div id="OperationalLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipment'>Equipment: </label><div class='col-sm-8'><input id='Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A value associated with a specific kind of limit.
@@ -135,18 +179,50 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OperationalLimit_collapse" aria-expanded="true" aria-controls="OperationalLimit_collapse">OperationalLimit</a>
-<div id="OperationalLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#OperationalLimitSet}}<div><b>OperationalLimitSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperationalLimitSet}}&quot;);})'>{{OperationalLimitSet}}</a></div>{{/OperationalLimitSet}}
-{{#OperationalLimitType}}<div><b>OperationalLimitType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperationalLimitType}}&quot;);})'>{{OperationalLimitType}}</a></div>{{/OperationalLimitType}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimit_collapse" aria-expanded="true" aria-controls="OperationalLimit_collapse" style="margin-left: 10px;">OperationalLimit</a></legend>
+                    <div id="OperationalLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#OperationalLimitSet}}<div><b>OperationalLimitSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperationalLimitSet}}&quot;);})'>{{OperationalLimitSet}}</a></div>{{/OperationalLimitSet}}
+                    {{#OperationalLimitType}}<div><b>OperationalLimitType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperationalLimitType}}&quot;);})'>{{OperationalLimitType}}</a></div>{{/OperationalLimitType}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimit_collapse" aria-expanded="true" aria-controls="OperationalLimit_collapse" style="margin-left: 10px;">OperationalLimit</a></legend>
+                    <div id="OperationalLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OperationalLimitSet'>OperationalLimitSet: </label><div class='col-sm-8'><input id='OperationalLimitSet' class='form-control' type='text'{{#OperationalLimitSet}} value='{{OperationalLimitSet}}'{{/OperationalLimitSet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OperationalLimitType'>OperationalLimitType: </label><div class='col-sm-8'><input id='OperationalLimitType' class='form-control' type='text'{{#OperationalLimitType}} value='{{OperationalLimitType}}'{{/OperationalLimitType}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A specific directed terminal flow for a branch group.
@@ -205,19 +281,52 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BranchGroupTerminal_collapse" aria-expanded="true" aria-controls="BranchGroupTerminal_collapse">BranchGroupTerminal</a>
-<div id="BranchGroupTerminal_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#positiveFlowIn}}<div><b>positiveFlowIn</b>: {{positiveFlowIn}}</div>{{/positiveFlowIn}}
-{{#BranchGroup}}<div><b>BranchGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BranchGroup}}&quot;);})'>{{BranchGroup}}</a></div>{{/BranchGroup}}
-{{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BranchGroupTerminal_collapse" aria-expanded="true" aria-controls="BranchGroupTerminal_collapse" style="margin-left: 10px;">BranchGroupTerminal</a></legend>
+                    <div id="BranchGroupTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#positiveFlowIn}}<div><b>positiveFlowIn</b>: {{positiveFlowIn}}</div>{{/positiveFlowIn}}
+                    {{#BranchGroup}}<div><b>BranchGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BranchGroup}}&quot;);})'>{{BranchGroup}}</a></div>{{/BranchGroup}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BranchGroupTerminal_collapse" aria-expanded="true" aria-controls="BranchGroupTerminal_collapse" style="margin-left: 10px;">BranchGroupTerminal</a></legend>
+                    <div id="BranchGroupTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='positiveFlowIn'>positiveFlowIn: </label><div class='col-sm-8'><input id='positiveFlowIn' class='form-check-input' type='checkbox'{{#positiveFlowIn}} checked{{/positiveFlowIn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BranchGroup'>BranchGroup: </label><div class='col-sm-8'><input id='BranchGroup' class='form-control' type='text'{{#BranchGroup}} value='{{BranchGroup}}'{{/BranchGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * A group of branch terminals whose directed flow summation is to be monitored.
@@ -284,22 +393,58 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#BranchGroup_collapse" aria-expanded="true" aria-controls="BranchGroup_collapse">BranchGroup</a>
-<div id="BranchGroup_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#maximumActivePower}}<div><b>maximumActivePower</b>: {{maximumActivePower}}</div>{{/maximumActivePower}}
-{{#maximumReactivePower}}<div><b>maximumReactivePower</b>: {{maximumReactivePower}}</div>{{/maximumReactivePower}}
-{{#minimumActivePower}}<div><b>minimumActivePower</b>: {{minimumActivePower}}</div>{{/minimumActivePower}}
-{{#minimumReactivePower}}<div><b>minimumReactivePower</b>: {{minimumReactivePower}}</div>{{/minimumReactivePower}}
-{{#monitorActivePower}}<div><b>monitorActivePower</b>: {{monitorActivePower}}</div>{{/monitorActivePower}}
-{{#monitorReactivePower}}<div><b>monitorReactivePower</b>: {{monitorReactivePower}}</div>{{/monitorReactivePower}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BranchGroup_collapse" aria-expanded="true" aria-controls="BranchGroup_collapse" style="margin-left: 10px;">BranchGroup</a></legend>
+                    <div id="BranchGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#maximumActivePower}}<div><b>maximumActivePower</b>: {{maximumActivePower}}</div>{{/maximumActivePower}}
+                    {{#maximumReactivePower}}<div><b>maximumReactivePower</b>: {{maximumReactivePower}}</div>{{/maximumReactivePower}}
+                    {{#minimumActivePower}}<div><b>minimumActivePower</b>: {{minimumActivePower}}</div>{{/minimumActivePower}}
+                    {{#minimumReactivePower}}<div><b>minimumReactivePower</b>: {{minimumReactivePower}}</div>{{/minimumReactivePower}}
+                    {{#monitorActivePower}}<div><b>monitorActivePower</b>: {{monitorActivePower}}</div>{{/monitorActivePower}}
+                    {{#monitorReactivePower}}<div><b>monitorReactivePower</b>: {{monitorReactivePower}}</div>{{/monitorReactivePower}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BranchGroup_collapse" aria-expanded="true" aria-controls="BranchGroup_collapse" style="margin-left: 10px;">BranchGroup</a></legend>
+                    <div id="BranchGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumActivePower'>maximumActivePower: </label><div class='col-sm-8'><input id='maximumActivePower' class='form-control' type='text'{{#maximumActivePower}} value='{{maximumActivePower}}'{{/maximumActivePower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumReactivePower'>maximumReactivePower: </label><div class='col-sm-8'><input id='maximumReactivePower' class='form-control' type='text'{{#maximumReactivePower}} value='{{maximumReactivePower}}'{{/maximumReactivePower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumActivePower'>minimumActivePower: </label><div class='col-sm-8'><input id='minimumActivePower' class='form-control' type='text'{{#minimumActivePower}} value='{{minimumActivePower}}'{{/minimumActivePower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumReactivePower'>minimumReactivePower: </label><div class='col-sm-8'><input id='minimumReactivePower' class='form-control' type='text'{{#minimumReactivePower}} value='{{minimumReactivePower}}'{{/minimumReactivePower}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='monitorActivePower'>monitorActivePower: </label><div class='col-sm-8'><input id='monitorActivePower' class='form-check-input' type='checkbox'{{#monitorActivePower}} checked{{/monitorActivePower}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='monitorReactivePower'>monitorReactivePower: </label><div class='col-sm-8'><input id='monitorReactivePower' class='form-check-input' type='checkbox'{{#monitorReactivePower}} checked{{/monitorReactivePower}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * The operational meaning of a category of limits.
@@ -330,7 +475,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "OperationalLimitType";
                 base.parse_element (/<cim:OperationalLimitType.acceptableDuration>([\s\S]*?)<\/cim:OperationalLimitType.acceptableDuration>/g, obj, "acceptableDuration", base.to_string, sub, context);
-                base.parse_element (/<cim:OperationalLimitType.direction>([\s\S]*?)<\/cim:OperationalLimitType.direction>/g, obj, "direction", base.to_string, sub, context);
+                base.parse_attribute (/<cim:OperationalLimitType.direction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "direction", sub, context);
                 base.parse_attribute (/<cim:OperationalLimitType.TargetOperationalLimitmTypeScaling\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TargetOperationalLimitmTypeScaling", sub, context);
 
                 var bucket = context.parsed.OperationalLimitType;
@@ -358,90 +503,54 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OperationalLimitType_collapse" aria-expanded="true" aria-controls="OperationalLimitType_collapse">OperationalLimitType</a>
-<div id="OperationalLimitType_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + Core.IdentifiedObject.prototype.template.call (this) +
-`
-{{#acceptableDuration}}<div><b>acceptableDuration</b>: {{acceptableDuration}}</div>{{/acceptableDuration}}
-{{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
-{{#TargetOperationalLimitmTypeScaling}}<div><b>TargetOperationalLimitmTypeScaling</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetOperationalLimitmTypeScaling}}&quot;);})'>{{TargetOperationalLimitmTypeScaling}}</a></div>{{/TargetOperationalLimitmTypeScaling}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimitType_collapse" aria-expanded="true" aria-controls="OperationalLimitType_collapse" style="margin-left: 10px;">OperationalLimitType</a></legend>
+                    <div id="OperationalLimitType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#acceptableDuration}}<div><b>acceptableDuration</b>: {{acceptableDuration}}</div>{{/acceptableDuration}}
+                    {{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
+                    {{#TargetOperationalLimitmTypeScaling}}<div><b>TargetOperationalLimitmTypeScaling</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetOperationalLimitmTypeScaling}}&quot;);})'>{{TargetOperationalLimitmTypeScaling}}</a></div>{{/TargetOperationalLimitmTypeScaling}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
-
-        /**
-         * The direction attribute describes the side of  a limit that is a violation.
-         *
-         */
-        class OperationalLimitDirectionKind extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                this._id = template.id;
-                var bucket = cim_data.OperationalLimitDirectionKind;
-                if (null == bucket)
-                   cim_data.OperationalLimitDirectionKind = bucket = {};
-                bucket[this._id] = template;
             }
 
-            remove (cim_data)
+            condition (obj)
             {
-               super.remove (cim_data);
-               delete cim_data.OperationalLimitDirectionKind[this._id];
+                super.condition (obj);
+                obj.OperationalLimitDirectionKind = []; if (!obj.direction) obj.OperationalLimitDirectionKind.push ({ id: '', selected: true}); for (var property in OperationalLimitDirectionKind) obj.OperationalLimitDirectionKind.push ({ id: property, selected: obj.direction && obj.direction.endsWith ('.' + property)});
             }
 
-            parse (context, sub)
+            uncondition (obj)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "OperationalLimitDirectionKind";
-                base.parse_element (/<cim:OperationalLimitDirectionKind.high>([\s\S]*?)<\/cim:OperationalLimitDirectionKind.high>/g, obj, "high", base.to_string, sub, context);
-                base.parse_element (/<cim:OperationalLimitDirectionKind.low>([\s\S]*?)<\/cim:OperationalLimitDirectionKind.low>/g, obj, "low", base.to_string, sub, context);
-                base.parse_element (/<cim:OperationalLimitDirectionKind.absoluteValue>([\s\S]*?)<\/cim:OperationalLimitDirectionKind.absoluteValue>/g, obj, "absoluteValue", base.to_string, sub, context);
-
-                var bucket = context.parsed.OperationalLimitDirectionKind;
-                if (null == bucket)
-                   context.parsed.OperationalLimitDirectionKind = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
+                super.uncondition (obj);
+                delete obj.OperationalLimitDirectionKind;
             }
 
-            export (obj, full)
-            {
-                var fields = [];
-
-                base.export_element (obj, "OperationalLimitDirectionKind", "high", base.from_string, fields);
-                base.export_element (obj, "OperationalLimitDirectionKind", "low", base.from_string, fields);
-                base.export_element (obj, "OperationalLimitDirectionKind", "absoluteValue", base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-
-            template ()
+            edit_template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#OperationalLimitDirectionKind_collapse" aria-expanded="true" aria-controls="OperationalLimitDirectionKind_collapse">OperationalLimitDirectionKind</a>
-<div id="OperationalLimitDirectionKind_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + base.Element.prototype.template.call (this) +
-`
-{{#high}}<div><b>high</b>: {{high}}</div>{{/high}}
-{{#low}}<div><b>low</b>: {{low}}</div>{{/low}}
-{{#absoluteValue}}<div><b>absoluteValue</b>: {{absoluteValue}}</div>{{/absoluteValue}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimitType_collapse" aria-expanded="true" aria-controls="OperationalLimitType_collapse" style="margin-left: 10px;">OperationalLimitType</a></legend>
+                    <div id="OperationalLimitType_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='acceptableDuration'>acceptableDuration: </label><div class='col-sm-8'><input id='acceptableDuration' class='form-control' type='text'{{#acceptableDuration}} value='{{acceptableDuration}}'{{/acceptableDuration}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='direction'>direction: </label><div class='col-sm-8'><select id='direction' class='form-control'>{{#OperationalLimitDirectionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OperationalLimitDirectionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TargetOperationalLimitmTypeScaling'>TargetOperationalLimitmTypeScaling: </label><div class='col-sm-8'><input id='TargetOperationalLimitmTypeScaling' class='form-control' type='text'{{#TargetOperationalLimitmTypeScaling}} value='{{TargetOperationalLimitmTypeScaling}}'{{/TargetOperationalLimitmTypeScaling}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
                 );
-           }        }
+           }
+        }
 
         /**
          * Operational limit on current.
@@ -496,17 +605,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#CurrentLimit_collapse" aria-expanded="true" aria-controls="CurrentLimit_collapse">CurrentLimit</a>
-<div id="CurrentLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + OperationalLimit.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentLimit_collapse" aria-expanded="true" aria-controls="CurrentLimit_collapse" style="margin-left: 10px;">CurrentLimit</a></legend>
+                    <div id="CurrentLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OperationalLimit.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentLimit_collapse" aria-expanded="true" aria-controls="CurrentLimit_collapse" style="margin-left: 10px;">CurrentLimit</a></legend>
+                    <div id="CurrentLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OperationalLimit.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Apparent power limit.
@@ -561,17 +701,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ApparentPowerLimit_collapse" aria-expanded="true" aria-controls="ApparentPowerLimit_collapse">ApparentPowerLimit</a>
-<div id="ApparentPowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + OperationalLimit.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ApparentPowerLimit_collapse" aria-expanded="true" aria-controls="ApparentPowerLimit_collapse" style="margin-left: 10px;">ApparentPowerLimit</a></legend>
+                    <div id="ApparentPowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OperationalLimit.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ApparentPowerLimit_collapse" aria-expanded="true" aria-controls="ApparentPowerLimit_collapse" style="margin-left: 10px;">ApparentPowerLimit</a></legend>
+                    <div id="ApparentPowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OperationalLimit.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Operational limit applied to voltage.
@@ -626,17 +797,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#VoltageLimit_collapse" aria-expanded="true" aria-controls="VoltageLimit_collapse">VoltageLimit</a>
-<div id="VoltageLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + OperationalLimit.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageLimit_collapse" aria-expanded="true" aria-controls="VoltageLimit_collapse" style="margin-left: 10px;">VoltageLimit</a></legend>
+                    <div id="VoltageLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OperationalLimit.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageLimit_collapse" aria-expanded="true" aria-controls="VoltageLimit_collapse" style="margin-left: 10px;">VoltageLimit</a></legend>
+                    <div id="VoltageLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OperationalLimit.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         /**
          * Limit on active power flow.
@@ -691,17 +893,48 @@ define
             template ()
             {
                 return (
-`
-<a data-toggle="collapse" href="#ActivePowerLimit_collapse" aria-expanded="true" aria-controls="ActivePowerLimit_collapse">ActivePowerLimit</a>
-<div id="ActivePowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
-`
-      + OperationalLimit.prototype.template.call (this) +
-`
-{{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-</div>
-`
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivePowerLimit_collapse" aria-expanded="true" aria-controls="ActivePowerLimit_collapse" style="margin-left: 10px;">ActivePowerLimit</a></legend>
+                    <div id="ActivePowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OperationalLimit.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    <fieldset>
+
+                    `
                 );
-           }        }
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivePowerLimit_collapse" aria-expanded="true" aria-controls="ActivePowerLimit_collapse" style="margin-left: 10px;">ActivePowerLimit</a></legend>
+                    <div id="ActivePowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    `
+                    + OperationalLimit.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    <fieldset>
+                    `
+                );
+           }
+        }
 
         return (
             {
@@ -709,7 +942,6 @@ define
                 BranchGroup: BranchGroup,
                 OperationalLimitType: OperationalLimitType,
                 ActivePowerLimit: ActivePowerLimit,
-                OperationalLimitDirectionKind: OperationalLimitDirectionKind,
                 OperationalLimitSet: OperationalLimitSet,
                 BranchGroupTerminal: BranchGroupTerminal,
                 ApparentPowerLimit: ApparentPowerLimit,
